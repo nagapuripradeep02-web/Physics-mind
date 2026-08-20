@@ -346,3 +346,57 @@ explanation is wanted.
 2. **`display:` beats the `hidden` attribute** (recorded earlier for `.btn-mic`) — the reason
    `[hidden] { display: none !important; }` sits near the top of the stylesheet. Every new
    component with an explicit `display` depends on it.
+
+---
+
+# Catalog — the landing view (added 2026-08-20, founder decision)
+
+The product opens on a **catalog**, the way Viditra does for teachers: chapters listed, questions
+inside, filterable by VSAQ / SAQ / LAQ, with search. One self-contained file still — the catalog
+is a VIEW (`#catalogView` / `#notebookView`), routed by `location.hash`:
+
+    #/                      catalog (the default)
+    #/q/<question_id>       notebook, default cut
+    #/q/<id>/<cutKey>       notebook, that cut
+
+Back/forward work from `file://`; an in-notebook cut switch writes the hash back (`syncHash`), so
+the current view is always shareable. `route()` no-ops when the target state is already on screen
+— without that, the hash write-back would re-load the question it just rendered.
+
+## `units.json` — the manifest
+
+The catalog lists the BOOK'S inventory, not just what is authored (founder: show the chapter's
+true shape). `answer-book/units.json` carries every question the Fastrack lists for a unit —
+section (VSAQ/SAQ), number, **star rank** (stars live here, not in the question schema: the
+ranking belongs to the inventory), and text. An entry with `question_id` opens in the notebook;
+`cut` names which length that book entry corresponds to (SAQ 2 and SAQ 4 both map to the
+projectile file, different cuts). No `question_id` → a dimmed, unclickable "Not written yet" card.
+
+**Drift is a build failure in both directions** (`build_answer_book.ts`): an authored question
+missing from the manifest would be invisible in the catalog; a manifest pointer at nothing would
+be a dead card. Both exit 1 naming the offender — the PILOT_CONCEPTS silent-drop lesson applied
+here before it could happen.
+
+## Filters
+
+The qtype chips match on the UNION of an entry's book section and its authored cuts' qtypes — the
+projectile counts under LAQ and SAQ both. Counts on the chips are static per build (an inventory,
+not a moving target). Opening a card resolves WHICH cut: the entry's own `cut` wins when it fits
+the active filter, else the first cut of the filtered qtype — and the time chip follows the same
+resolution, so a card mapped to the 4-mark cut never advertises the 8-mark answer's minutes.
+
+## Design language
+
+Anatomy echoes the Viditra teacher catalog (narrow 780px column, chapter sections with 999px count
+pills, cards with a trailing arrow, border-tint hover, chip vocabulary) but in THIS product's
+light paper palette — the Viditra dark tokens were deliberately not imported (`--ink` and `--red`
+mean different things there). Signature: every card carries a thin red left rule, the examiner's
+margin line from the notebook.
+
+## What replaced the question picker
+
+The rail `<select>` (`#qCard`) is gone; `← All questions` in the topbar returns to the catalog.
+`PM_ANSWER.openQuestion(id, cutKey?)` is the seam tests and the AI layer use; `openCatalog()`
+goes back. Cut overrides gained `margin_note` and `why` — the root wording can state a mark count
+a reduced cut contradicts ("the two marks are for the words alone" beside a 1-mark step), and the
+first catalog screenshot caught exactly that on the parallelogram SAQ cut.

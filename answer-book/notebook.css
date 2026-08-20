@@ -164,6 +164,91 @@ body {
 
 .verify-note { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); }
 
+/* ── catalog (the landing view) ──────────────────────────────────────────
+   Anatomy borrowed from the Viditra teacher catalog (narrow column, chapter
+   sections with count pills, cards with a trailing arrow, border-tint hover,
+   999px chip language) — but in THIS product's light paper palette. The one
+   deliberate signature: every card carries a thin red left rule, the
+   examiner's margin line from the notebook. */
+
+.catalog { max-width: 780px; margin: 0 auto; padding: 30px 20px 60px; }
+
+.cat-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.015em; }
+.cat-sub { font-size: 13.5px; color: var(--chrome-dim); margin-top: 5px; }
+
+.cat-filters { margin: 20px 0 6px; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cat-chips + .cat-chips { margin-top: 8px; }
+.cat-chip {
+  font: 600 12.5px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-dim);
+}
+.cat-chip .ct { font-weight: 500; opacity: 0.75; margin-left: 3px; }
+.cat-chip:hover { border-color: var(--accent); color: var(--accent); }
+.cat-chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.cat-chip.on .ct { opacity: 0.85; }
+
+.cat-search {
+  width: 100%; margin-top: 12px;
+  font: inherit; font-size: 14px; color: var(--chrome-ink);
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 10px; padding: 10px 13px;
+}
+.cat-search:focus { outline: none; border-color: var(--accent); }
+
+.cat-section h2 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 700; margin: 26px 0 12px;
+}
+.cat-count {
+  font-size: 11px; font-weight: 600; color: var(--chrome-dim);
+  border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
+}
+
+.cat-card {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px 13px 27px; margin-bottom: 10px;
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 13px; text-decoration: none; color: inherit;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+/* the examiner's margin line */
+.cat-card::before {
+  content: ""; position: absolute; left: 13px; top: 12px; bottom: 12px;
+  width: 2px; border-radius: 1px; background: rgba(198, 40, 40, 0.5);
+}
+.cat-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
+.cat-card:hover .cc-arrow { color: var(--accent); transform: translateX(3px); }
+
+.cc-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.cc-top { display: flex; align-items: baseline; gap: 9px; }
+.cc-ref {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--chrome-dim);
+}
+.cc-stars { font-size: 12px; letter-spacing: 2px; color: var(--red); }
+.cc-text {
+  font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--chrome-ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.cc-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-chip {
+  font-size: 11px; font-weight: 600; color: var(--chrome-dim);
+  border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
+}
+.cc-chip.marks { background: #FDECEC; border-color: #F2C4C4; color: var(--red); }
+.cc-arrow { color: var(--chrome-dim); font-size: 18px; transition: color 0.16s ease, transform 0.16s ease; }
+
+/* Planned but not written yet: present so the chapter keeps its true shape,
+   quiet so it never reads as clickable. */
+.cat-card.soon { border-style: dashed; background: transparent; cursor: default; }
+.cat-card.soon::before { opacity: 0.35; }
+.cat-card.soon .cc-text { color: var(--chrome-dim); font-weight: 500; }
+.cat-card.soon:hover { border-color: var(--chrome-line); background: transparent; }
+
+.cat-none { text-align: center; color: var(--chrome-dim); font-size: 13.5px; margin: 34px 0; }
+
 /* ── test-yourself entry + overlay ─────────────────────────────────────── */
 
 .btn-test { background: var(--ink); color: #fff; border-color: var(--ink); }
@@ -457,7 +542,7 @@ body {
 @media print {
   @page { size: A4; margin: 0; }
   body { background: #fff; }
-  .topbar, .rail, .btn-next, .question-card { display: none !important; }
+  .topbar, .rail, .btn-next, .question-card, .catalog { display: none !important; }
   .layout { display: block; margin: 0; padding: 0; max-width: none; }
   .notebook { transform: none !important; gap: 0; }
   .page {

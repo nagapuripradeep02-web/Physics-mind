@@ -29,11 +29,38 @@
     <span class="brand-sub" id="boardLabel"></span>
   </div>
   <div class="topbar-actions">
-    <button class="btn btn-ghost" id="btnRestart" type="button">Restart</button>
-    <button class="btn btn-ghost" id="btnPrint" type="button">Print</button>
-    <button class="btn btn-test" id="btnTest" type="button">Test myself</button>
+    <a class="btn btn-ghost btn-back" id="btnCatalog" href="#/" hidden>&#8592; All questions</a>
+    <button class="btn btn-ghost nb-only" id="btnRestart" type="button" hidden>Restart</button>
+    <button class="btn btn-ghost nb-only" id="btnPrint" type="button" hidden>Print</button>
+    <button class="btn btn-test nb-only" id="btnTest" type="button" hidden>Test myself</button>
   </div>
 </header>
+
+<!-- ═══ CATALOG VIEW — the landing page ═════════════════════════════════════
+     One self-contained file, so the catalog is a VIEW, not a second page.
+     Hash routes: #/ = this view · #/q/<id> (+ /<cutKey>) = the notebook.
+     Anatomy echoes the Viditra teacher catalog (narrow column, chapter
+     sections with count pills, title+arrow cards, border-tint hover) but in
+     the Answer Book's own light paper palette. -->
+<main class="catalog" id="catalogView" hidden>
+  <div class="cat-hero">
+    <h1>Question Bank</h1>
+    <p class="cat-sub" id="catSub"></p>
+  </div>
+
+  <div class="cat-filters">
+    <div class="cat-chips" id="qtypeChips" role="group" aria-label="Question type"></div>
+    <div class="cat-chips" id="unitChips" role="group" aria-label="Chapter" hidden></div>
+    <input type="search" class="cat-search" id="catSearch"
+           placeholder="Search questions&hellip; (e.g. parallelogram, projectile, 45)">
+  </div>
+
+  <div id="catSections"></div>
+  <p class="cat-none" id="catNone" hidden>No questions match. Clear the search or the filter.</p>
+</main>
+
+<!-- ═══ NOTEBOOK VIEW ═══════════════════════════════════════════════════════ -->
+<div id="notebookView" hidden>
 
 <section class="question-card" id="questionCard">
   <div class="question-meta" id="questionMeta"></div>
@@ -43,13 +70,6 @@
 <main class="layout">
 
   <aside class="rail">
-    <!-- Question picker: the build inlines the whole unit. Hidden by the engine
-         when the build holds a single question. -->
-    <div class="card q-card" id="qCard" hidden>
-      <div class="card-title">Question</div>
-      <select class="q-pick" id="qPick" aria-label="Choose a question"></select>
-    </div>
-
     <!-- Cut switch: the same question answered at two lengths. Hidden by the
          engine when the question declares fewer than two cuts. -->
     <div class="card cut-card" id="cutCard">
@@ -92,6 +112,8 @@
   </section>
 
 </main>
+
+</div><!-- /#notebookView -->
 
 <!-- Test-yourself overlay. Three ways to be checked: tick it yourself, a photo/PDF
      of what you wrote, or say it aloud. The photo and mic paths appear only when

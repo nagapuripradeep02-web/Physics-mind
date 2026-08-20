@@ -70,6 +70,8 @@
         merged.marks = o.marks;
         if (o.label) merged.label = o.label;
         if (o.lines) merged.lines = o.lines;
+        if (o.margin_note) merged.margin_note = o.margin_note;
+        if (o.why) merged.why = o.why;
         // A 0-mark step gets no red tick, so it must carry no mark note.
         if (o.mark_note) merged.mark_note = o.mark_note;
         if (merged.marks === 0) delete merged.mark_note;
@@ -205,48 +207,260 @@
     // The wording follows the cut: the paper asks for the trajectory AND the
     // results at 8 marks, and only the results at 4.
     $('questionText').textContent = 'Q. ' + (cut.question_text || question.question_text);
-    renderQuestionPick();
     renderCutSwitch();
     renderMeta();
     renderMarkSplit();
     renderStepList();
   }
 
-  /** Switching cut restarts the answer: it is a different answer, not a filter. */
+  /** Switching cut restarts the answer: it is a different answer, not a filter.
+      The hash is kept truthful so the current view is always shareable. */
   function switchCut(i) {
     if (i === cutIndex) return;
     applyCut(i);
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();          // photo/mic are only honest on the default cut
+    syncHash();
   }
 
-  function renderQuestionPick() {
-    var card = $('qCard');
-    if (questions.length < 2) { card.hidden = true; return; }
-    card.hidden = false;
-    var sel = $('qPick');
-    sel.innerHTML = '';
-    questions.forEach(function (q, i) {
-      var o = document.createElement('option');
-      o.value = String(i);
-      o.textContent = (i + 1) + '. ' + q.question_text;
-      o.selected = i === qIndex;
-      sel.appendChild(o);
-    });
-  }
-
-  /** Same re-render as a cut switch, one level up. */
-  function switchQuestion(i) {
-    if (i === qIndex || !questions[i]) return;
+  /** Full question load — the mechanism behind the router. Always re-renders,
+      even for the already-active question, so a route can be trusted blindly. */
+  function loadQuestion(i, cutKey) {
     qIndex = i;
     question = questions[i];
     loadCuts();
-    applyCut(0);
+    var ci = 0;
+    if (cutKey) {
+      for (var k = 0; k < cuts.length; k++) if (cuts[k].key === cutKey) { ci = k; break; }
+    }
+    applyCut(ci);
     document.querySelector('.notebook-col').setAttribute('data-question-id', question.question_id);
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();
+  }
+
+  // ═══ catalog + router ═════════════════════════════════════════════════════
+  // The catalog is the landing view (founder decision 2026-08-20) and lists the
+  // BOOK'S inventory (PM_UNITS), not just what is authored: an entry with a
+  // question_id opens in the notebook, the rest render as coming-soon cards so
+  // the chapter keeps its true shape. Routes: #/ = catalog, #/q/<id>(/<cutKey>)
+  // = notebook — hash-based so back/forward work from file://.
+
+  var UNITS = window.PM_UNITS || [];
+  var qIndexById = {};
+  questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
+
+  var currentView = null;               // 'catalog' | 'notebook'
+  var catFilter = { qtype: 'ALL', search: '' };
+
+  function showView(v) {
+    currentView = v;
+    var nb = v === 'notebook';
+    $('catalogView').hidden = nb;
+    $('notebookView').hidden = !nb;
+    $('btnCatalog').hidden = !nb;
+    var only = document.querySelectorAll('.nb-only');
+    for (var i = 0; i < only.length; i++) only[i].hidden = !nb;
+  }
+
+  /** The qtypes an entry can be practised AT: its book section, plus every cut
+      of its authored question. The projectile counts under LAQ and SAQ both. */
+  function entryQtypes(e) {
+    var s = {};
+    s[e.section] = true;
+    if (e.question_id !== undefined && qIndexById[e.question_id] !== undefined) {
+      var q = questions[qIndexById[e.question_id]];
+      (q.cuts && q.cuts.length ? q.cuts : [{ qtype: q.qtype }]).forEach(function (c) {
+        s[c.qtype] = true;
+      });
+    }
+    return s;
+  }
+
+  /** Which cut a card should open. The book entry's own cut wins when it fits
+      the active filter; otherwise the first cut of the filtered qtype. */
+  function resolveCutKey(e) {
+    if (e.question_id === undefined) return null;
+    var q = questions[qIndexById[e.question_id]];
+    var qcuts = q.cuts || [];
+    var cutOf = function (key) {
+      for (var i = 0; i < qcuts.length; i++) if (qcuts[i].key === key) return qcuts[i];
+      return null;
+    };
+    if (e.cut && (catFilter.qtype === 'ALL' || (cutOf(e.cut) || {}).qtype === catFilter.qtype)) {
+      return e.cut;
+    }
+    if (catFilter.qtype !== 'ALL') {
+      for (var j = 0; j < qcuts.length; j++) if (qcuts[j].qtype === catFilter.qtype) return qcuts[j].key;
+    }
+    return e.cut || null;
+  }
+
+  function entryMatches(e, unitName) {
+    if (catFilter.qtype !== 'ALL' && !entryQtypes(e)[catFilter.qtype]) return false;
+    if (catFilter.search) {
+      var blob = (e.section + ' ' + e.section + e.number + ' ' + e.section + ' ' + e.number +
+                  ' ' + e.text + ' ' + unitName).toLowerCase();
+      if (blob.indexOf(catFilter.search) < 0) return false;
+    }
+    return true;
+  }
+
+  function renderCatalog() {
+    var allEntries = [];
+    UNITS.forEach(function (u) { u.questions.forEach(function (e) { allEntries.push(e); }); });
+    var ready = allEntries.filter(function (e) { return e.question_id !== undefined; }).length;
+    var coming = allEntries.length - ready;
+    $('catSub').textContent = ready + ' answers ready' + (coming ? ' · ' + coming + ' more coming' : '');
+
+    // qtype chips, counts static across the whole build so they read as an
+    // inventory, not as a moving target
+    var chipRow = $('qtypeChips');
+    chipRow.innerHTML = '';
+    ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
+      var n = t === 'ALL'
+        ? allEntries.length
+        : allEntries.filter(function (e) { return entryQtypes(e)[t]; }).length;
+      if (t !== 'ALL' && n === 0) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cat-chip' + (catFilter.qtype === t ? ' on' : '');
+      b.setAttribute('data-qtype', t);
+      b.setAttribute('aria-pressed', catFilter.qtype === t ? 'true' : 'false');
+      b.innerHTML = '';
+      b.appendChild(document.createTextNode(t === 'ALL' ? 'All' : t));
+      var ct = document.createElement('span');
+      ct.className = 'ct';
+      ct.textContent = String(n);
+      b.appendChild(ct);
+      b.addEventListener('click', function () { catFilter.qtype = t; renderCatalog(); });
+      chipRow.appendChild(b);
+    });
+
+    var sections = $('catSections');
+    sections.innerHTML = '';
+    var shown = 0;
+
+    UNITS.forEach(function (u) {
+      var visible = u.questions.filter(function (e) { return entryMatches(e, u.name); });
+      if (!visible.length) return;
+      shown += visible.length;
+
+      var sec = document.createElement('section');
+      sec.className = 'cat-section';
+      var h = document.createElement('h2');
+      h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + u.name));
+      var pill = document.createElement('span');
+      pill.className = 'cat-count';
+      var uReady = u.questions.filter(function (e) { return e.question_id !== undefined; }).length;
+      pill.textContent = uReady + ' of ' + u.questions.length + ' ready';
+      h.appendChild(pill);
+      sec.appendChild(h);
+
+      visible.forEach(function (e) {
+        var authored = e.question_id !== undefined;
+        var card = document.createElement(authored ? 'a' : 'div');
+        card.className = 'cat-card' + (authored ? '' : ' soon');
+        if (authored) {
+          var ck = resolveCutKey(e);
+          card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
+            (ck ? '/' + encodeURIComponent(ck) : ''));
+        }
+        var main = document.createElement('div');
+        main.className = 'cc-main';
+
+        var top = document.createElement('div');
+        top.className = 'cc-top';
+        var ref = document.createElement('span');
+        ref.className = 'cc-ref';
+        ref.textContent = e.section + ' ' + e.number;
+        top.appendChild(ref);
+        if (e.stars > 0) {
+          var st = document.createElement('span');
+          st.className = 'cc-stars';
+          st.textContent = new Array(e.stars + 1).join('★');
+          top.appendChild(st);
+        }
+        main.appendChild(top);
+
+        var txt = document.createElement('div');
+        txt.className = 'cc-text';
+        txt.textContent = e.text;
+        main.appendChild(txt);
+
+        var badges = document.createElement('div');
+        badges.className = 'cc-badges';
+        if (authored) {
+          var q = questions[qIndexById[e.question_id]];
+          var qcuts = q.cuts && q.cuts.length ? q.cuts : [{ qtype: q.qtype, marks_total: q.marks_total }];
+          qcuts.forEach(function (c) {
+            var chip = document.createElement('span');
+            chip.className = 'cc-chip marks';
+            chip.textContent = c.qtype + ' · ' + c.marks_total + 'M';
+            badges.appendChild(chip);
+          });
+          // The time follows the cut THIS CARD OPENS (same resolution as the
+          // href), not the root question — a card mapped to the 4-mark cut
+          // must not advertise the 8-mark answer's fifteen minutes.
+          var openKey = resolveCutKey(e);
+          var openCut = null;
+          for (var oc = 0; oc < qcuts.length; oc++) if (qcuts[oc].key === openKey) openCut = qcuts[oc];
+          var tm = document.createElement('span');
+          tm.className = 'cc-chip';
+          tm.textContent = '~' + ((openCut && openCut.expected_time_min) || q.expected_time_min) + ' min';
+          badges.appendChild(tm);
+        } else {
+          var soon = document.createElement('span');
+          soon.className = 'cc-chip';
+          soon.textContent = 'Not written yet';
+          badges.appendChild(soon);
+        }
+        main.appendChild(badges);
+        card.appendChild(main);
+
+        if (authored) {
+          var arrow = document.createElement('span');
+          arrow.className = 'cc-arrow';
+          arrow.textContent = '→';
+          card.appendChild(arrow);
+        }
+        sec.appendChild(card);
+      });
+      sections.appendChild(sec);
+    });
+
+    $('catNone').hidden = shown > 0;
+  }
+
+  function showCatalog() {
+    showView('catalog');
+    renderCatalog();
+  }
+
+  /** Keep the hash truthful after an in-notebook cut switch, so the current
+      view is always shareable. The default cut carries no /cut segment. */
+  function syncHash() {
+    var h = '#/q/' + encodeURIComponent(question.question_id) +
+      (cutIndex > 0 ? '/' + encodeURIComponent(cut.key) : '');
+    if (location.hash !== h) location.hash = h;
+  }
+
+  function route() {
+    var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
+    if (!m) { showCatalog(); return; }
+    var id = decodeURIComponent(m[1]);
+    if (qIndexById[id] === undefined) { location.hash = '#/'; return; }
+    var cutKey = m[2] ? decodeURIComponent(m[2]) : null;
+    // No-op when this exact state is already on screen: a cut switch writes the
+    // hash back, and re-loading here would restart the answer it just rendered.
+    if (currentView === 'notebook' && qIndex === qIndexById[id]) {
+      var want = cutKey || cuts[0].key;
+      if (cut.key === want) return;
+    }
+    showView('notebook');
+    loadQuestion(qIndexById[id], cutKey);
   }
 
   function updateChrome() {
@@ -730,15 +944,19 @@
 
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
-  $('qPick').addEventListener('change', function () { switchQuestion(Number(this.value)); });
   $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
   $('btnPrint').addEventListener('click', function () {
     if (!completed) renderUpTo(steps.length - 1, false);
     window.print();
   });
+  $('catSearch').addEventListener('input', function () {
+    catFilter.search = this.value.trim().toLowerCase();
+    renderCatalog();
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === ' ' || e.key === 'ArrowRight') {
-      if (e.target === document.body) { e.preventDefault(); advance(); }
+      // never steal the spacebar from the catalog search box
+      if (e.target === document.body && currentView === 'notebook') { e.preventDefault(); advance(); }
     }
   });
 
@@ -1376,6 +1594,17 @@
       }
       return false;
     },
+    /** Route to a question (optionally a specific cut) through the hash, so the
+        URL stays truthful. Loads synchronously; the hash is synced after. */
+    openQuestion: function (id, cutKey) {
+      if (qIndexById[id] === undefined) return false;
+      showView('notebook');
+      loadQuestion(qIndexById[id], cutKey || null);
+      syncHash();
+      return true;
+    },
+    /** Back to the catalog view. */
+    openCatalog: function () { location.hash = '#/'; showCatalog(); },
     goToStep: function (stepId) {
       for (var i = 0; i < steps.length; i++) {
         if (steps[i].id === stepId) { renderUpTo(i, true); return true; }
@@ -1388,8 +1617,11 @@
 
   // ═══ boot — behind the web-font gate (measuring in fallback `cursive`
   //     breaks every frozen height when Kalam swaps in) ══════════════════════
+  // EVERYTHING waits for the gate, catalog included: a deep link (#/q/<id>)
+  // routes straight into the notebook, which measures — so routing before the
+  // fonts settle would freeze wrong heights on exactly the shareable path.
 
-  renderChrome();
+  $('boardLabel').textContent = question.board_label;
   var fontLoad = (document.fonts && document.fonts.load)
     ? Promise.all([document.fonts.load('26px Kalam'), document.fonts.load('700 26px Kalam')])
     : Promise.resolve();
@@ -1397,10 +1629,8 @@
     fontLoad.then(function () { return document.fonts.ready; }),
     new Promise(function (r) { setTimeout(r, 2500); })
   ]).then(function () {
-    newPage();
-    writePageHeader();
-    updateChrome();
-    fitNotebook();
     initTest();
+    route();
+    window.addEventListener('hashchange', route);
   });
 })();

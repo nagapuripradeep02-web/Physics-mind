@@ -19,9 +19,32 @@ test.beforeAll(() => {
     if (!existsSync(DIST)) throw new Error('answer-book/dist/index.html missing — run npm run build:answers first');
 });
 
-test('reveals all steps, earns exactly the total, and never splits a block across a page', async ({ page }) => {
+/**
+ * The page now lands on the CATALOG (founder decision 2026-08-20), so tests of
+ * the notebook must open a question first. openFirst() = the old boot: first
+ * question, default cut. openQ() = a specific question via the PM_ANSWER seam
+ * (same path the router and the AI layer use).
+ */
+async function openFirst(page: any): Promise<void> {
     await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => {
+        const w = window as any;
+        w.PM_ANSWER.openQuestion(w.PM_QUESTIONS[0].question_id);
+    });
     await page.waitForSelector('.page');
+}
+
+async function openQ(page: any, id: string, cut?: string): Promise<void> {
+    await page.evaluate(
+        ([qid, ck]: [string, string | undefined]) => (window as any).PM_ANSWER.openQuestion(qid, ck),
+        [id, cut] as [string, string | undefined]);
+    await page.waitForSelector('.page');
+    await page.waitForTimeout(200);
+}
+
+test('reveals all steps, earns exactly the total, and never splits a block across a page', async ({ page }) => {
+    await openFirst(page);
 
     // tap through every step, waiting for the completion event each time
     const stepCount = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps.length);
@@ -55,8 +78,7 @@ test('reveals all steps, earns exactly the total, and never splits a block acros
 });
 
 test('jump via the rail reproduces the identical pagination', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
 
     // Pick a mid-list step from the ACTIVE question. A literal step id broke the
     // moment a second question was authored and became PM_QUESTIONS[0].
@@ -103,14 +125,25 @@ test('jump via the rail reproduces the identical pagination', async ({ page }) =
     expect(jumpedPage).toBe(tappedPage);   // same page break either way
 });
 
-test('mobile viewport scales without horizontal scroll', async ({ page }) => {
+test('mobile viewport scales without horizontal scroll, in both views', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
+    // the catalog is the landing view now — it must not scroll sideways either
     await page.goto(URL);
-    await page.waitForSelector('.page');
-    const hscroll = await page.evaluate(
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const catScroll = await page.evaluate(
         () => document.documentElement.scrollWidth > window.innerWidth + 1
     );
-    expect(hscroll).toBe(false);
+    expect(catScroll, 'catalog view').toBe(false);
+
+    await page.evaluate(() => {
+        const w = window as any;
+        w.PM_ANSWER.openQuestion(w.PM_QUESTIONS[0].question_id);
+    });
+    await page.waitForSelector('.page');
+    const nbScroll = await page.evaluate(
+        () => document.documentElement.scrollWidth > window.innerWidth + 1
+    );
+    expect(nbScroll, 'notebook view').toBe(false);
 });
 
 // ── spoken-recall check ──────────────────────────────────────────────────────
@@ -125,8 +158,7 @@ test('with no recall endpoint the page stays fully offline and offers no mic', a
             external.push(u);
         }
     });
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
 
     const state = await page.evaluate(() => ({
         endpoint: (window as any).PM_API_BASE,
@@ -143,8 +175,7 @@ test('with no recall endpoint the page stays fully offline and offers no mic', a
 });
 
 test('the answer still earns the full mark total with the recall feature present', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const r = await page.evaluate(() => {
         (window as any).PM_ANSWER.revealAll();
         return (window as any).PM_ANSWER.getState();
@@ -160,8 +191,7 @@ test('the answer still earns the full mark total with the recall feature present
 // is no longer an empty state to show.
 
 test('with no checking API the page offers the self-check but neither photo nor mic', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     await page.click('#btnTest');
 
     const r = await page.evaluate(() => ({
@@ -181,8 +211,7 @@ test('with no checking API the page offers the self-check but neither photo nor 
 });
 
 test('the test panel carries no clock', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     await page.click('#btnTest');
     await page.waitForTimeout(1500);         // long enough for a 1 s tick to have fired
 
@@ -203,8 +232,7 @@ test('the self-check scores from authored marks with no network', async ({ page 
         const u = req.url();
         if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
     });
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     await page.click('#btnTest');
     await page.click('#btnSelf');
 
@@ -236,8 +264,7 @@ test('the self-check scores from authored marks with no network', async ({ page 
 });
 
 test('the paper section and marks agree across header, chip and mark split', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const r = await page.evaluate(() => {
         const q = (window as any).PM_ANSWER.question;
         return {
@@ -265,13 +292,9 @@ test('the paper section and marks agree across header, chip and mark split', asy
  * if the build genuinely has none.
  */
 async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
-    const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
-    for (let i = 0; i < count; i++) {
-        await page.evaluate((n: number) => {
-            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
-            if (sel) { sel.value = String(n); sel.dispatchEvent(new Event('change')); }
-        }, i);
-        await page.waitForTimeout(250);
+    const ids = await page.evaluate(() => (window as any).PM_ANSWER.questionIds);
+    for (const id of ids) {
+        await openQ(page, id);
         const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
         if (cuts.length >= 2) return cuts;
     }
@@ -284,8 +307,7 @@ async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
 // tests exist to keep that from coming back.
 
 test('switching cut changes the answer, the marks and the header together', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
 
     const cuts = await selectMultiCutQuestion(page);
     test.skip(cuts === null, 'no question in this build declares more than one cut');
@@ -342,8 +364,7 @@ test('switching cut changes the answer, the marks and the header together', asyn
 });
 
 test('a step pill jumps to the right step after a cut switch', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const cuts = await selectMultiCutQuestion(page);
     test.skip(cuts === null, 'no question in this build declares more than one cut');
 
@@ -363,8 +384,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
     // Pencil strokes reveal through a clip rect that starts zero-sized along the
@@ -374,8 +394,8 @@ test('construction lines survive an instant placement, in every question', async
     // element is still there, still "visible", just clipped to nothing.
     for (let q = 0; q < count; q++) {
         await page.evaluate((i) => {
-            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
-            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+            const w = window as any;
+            w.PM_ANSWER.openQuestion(w.PM_ANSWER.questionIds[i]);
         }, q);
         await page.waitForTimeout(250);
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
@@ -396,8 +416,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
     // Figures are hand-placed by coordinate, so two labels colliding is the most
@@ -405,8 +424,8 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
     // gate, which only ever checks that elements EXIST.
     for (let q = 0; q < count; q++) {
         await page.evaluate((i) => {
-            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
-            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+            const w = window as any;
+            w.PM_ANSWER.openQuestion(w.PM_ANSWER.questionIds[i]);
         }, q);
         await page.waitForTimeout(250);
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
@@ -435,8 +454,7 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
 });
 
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
     test.skip(count < 2, 'single-question build');
 
@@ -445,8 +463,8 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
     // it is the documented hook for the AI layer. It must be a live read.
     const before = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
     await page.evaluate(() => {
-        const sel = document.getElementById('qPick') as HTMLSelectElement;
-        sel.value = '1'; sel.dispatchEvent(new Event('change'));
+        const w = window as any;
+        w.PM_ANSWER.openQuestion(w.PM_ANSWER.questionIds[1]);
     });
     await page.waitForTimeout(400);
     const after = await page.evaluate(() => ({
@@ -461,14 +479,13 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
 });
 
 test('every cut of every question totals exactly its own marks', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
     for (let q = 0; q < qCount; q++) {
         await page.evaluate((i) => {
-            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
-            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+            const w = window as any;
+            w.PM_ANSWER.openQuestion(w.PM_ANSWER.questionIds[i]);
         }, q);
         await page.waitForTimeout(250);
 
@@ -497,8 +514,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
 });
 
 test('no written line wraps past its own height, in either cut', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
 
     // A too-long authored equation silently wraps and strands a fragment on the
@@ -525,8 +541,7 @@ test('no written line wraps past its own height, in either cut', async ({ page }
 });
 
 test('the modes and the rail teaching cards are gone', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const r = await page.evaluate(() => ({
         modeCard: document.querySelector('.mode-card') !== null,
         why: document.getElementById('whyCard') !== null,
@@ -549,8 +564,7 @@ test('the modes and the rail teaching cards are gone', async ({ page }) => {
 });
 
 test('the overlay closes on Escape and on a backdrop click', async ({ page }) => {
-    await page.goto(URL);
-    await page.waitForSelector('.page');
+    await openFirst(page);
     const hidden = () => page.evaluate(() => document.getElementById('testOverlay')!.hidden);
 
     await page.click('#btnTest');
@@ -561,4 +575,165 @@ test('the overlay closes on Escape and on a backdrop click', async ({ page }) =>
     await page.click('#btnTest');
     await page.click('#testOverlay', { position: { x: 8, y: 8 } });   // backdrop
     expect(await hidden()).toBe(true);
+});
+
+// ── catalog: the landing view ────────────────────────────────────────────────
+// The catalog lists the BOOK'S inventory (PM_UNITS), not just what is authored,
+// so a student sees the chapter's true shape. Coming-soon entries must never
+// read as clickable, and the qtype filter works on the UNION of an entry's book
+// section and its authored cuts (the projectile counts as LAQ and SAQ both).
+
+test('the catalog is the landing view and shows the full inventory', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const r = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        const entries = units.reduce((a: number, u: any) => a + u.questions.length, 0);
+        const ready = units.reduce(
+            (a: number, u: any) => a + u.questions.filter((e: any) => e.question_id).length, 0);
+        return {
+            entries, ready,
+            notebookHidden: document.getElementById('notebookView')!.hidden,
+            cards: document.querySelectorAll('.cat-card').length,
+            soon: document.querySelectorAll('.cat-card.soon').length,
+            soonHrefs: [...document.querySelectorAll('.cat-card.soon')]
+                .filter((c) => c.hasAttribute('href')).length,
+            soonChips: [...document.querySelectorAll('.cat-card.soon .cc-chip')]
+                .every((c) => c.textContent === 'Not written yet'),
+            pill: document.querySelector('.cat-count')!.textContent,
+            sub: document.getElementById('catSub')!.textContent,
+        };
+    });
+
+    expect(r.notebookHidden).toBe(true);
+    expect(r.cards).toBe(r.entries);                    // every book entry is a card
+    expect(r.soon).toBe(r.entries - r.ready);           // unauthored render as coming-soon
+    expect(r.soonHrefs).toBe(0);                        // and never as links
+    expect(r.soonChips).toBe(true);
+    expect(r.pill).toContain(r.ready + ' of ' + r.entries + ' ready');
+    expect(r.sub).toContain(r.ready + ' answers ready');
+});
+
+test('qtype filter chips match on section AND authored cuts, with true counts', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const expectFilter = async (qtype: string) => {
+        await page.click('#qtypeChips .cat-chip[data-qtype="' + qtype + '"]');
+        await page.waitForTimeout(200);
+        return page.evaluate((t) => {
+            const w = window as any;
+            const qById: Record<string, any> = {};
+            (w.PM_QUESTIONS as any[]).forEach((q) => { qById[q.question_id] = q; });
+            const match = (e: any) => {
+                if (t === 'ALL') return true;
+                if (e.section === t) return true;
+                const q = e.question_id ? qById[e.question_id] : null;
+                return q ? (q.cuts ?? [{ qtype: q.qtype }]).some((c: any) => c.qtype === t) : false;
+            };
+            const want = (w.PM_UNITS as any[])
+                .reduce((a: number, u: any) => a + u.questions.filter(match).length, 0);
+            const chip = document.querySelector('#qtypeChips .cat-chip[data-qtype="' + t + '"]')!;
+            return {
+                visible: document.querySelectorAll('.cat-card').length,
+                want,
+                chipCount: Number(chip.querySelector('.ct')!.textContent),
+                chipOn: chip.classList.contains('on'),
+            };
+        }, qtype);
+    };
+
+    for (const t of ['LAQ', 'SAQ', 'VSAQ', 'ALL']) {
+        const r = await expectFilter(t);
+        expect(r.chipOn, t + ' chip active').toBe(true);
+        expect(r.visible, t + ' visible cards').toBe(r.want);
+        expect(r.chipCount, t + ' chip count').toBe(r.want);
+    }
+});
+
+test('opening from an active qtype filter lands on a cut of that qtype', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // Find a question that is NOT qtype-LAQ in its book section but offers an
+    // LAQ cut — the case the resolution logic exists for.
+    const target = await page.evaluate(() => {
+        const w = window as any;
+        for (const u of w.PM_UNITS as any[]) {
+            for (const e of u.questions) {
+                if (!e.question_id || e.section === 'LAQ') continue;
+                const q = (w.PM_QUESTIONS as any[]).find((x) => x.question_id === e.question_id);
+                if ((q.cuts ?? []).some((c: any) => c.qtype === 'LAQ')) return e.question_id;
+            }
+        }
+        return null;
+    });
+    test.skip(target === null, 'no LAQ-cut question in this build');
+
+    await page.click('#qtypeChips .cat-chip[data-qtype="LAQ"]');
+    await page.waitForTimeout(200);
+    await page.click('a.cat-card[href*="' + target + '"]');
+    await page.waitForSelector('.page');
+    await page.waitForTimeout(300);
+
+    const r = await page.evaluate(() => {
+        const w = window as any;
+        const cut = w.PM_ANSWER.listCuts().find((c: any) => c.active);
+        return { qtype: cut.qtype, hash: location.hash, id: w.PM_ANSWER.question.question_id };
+    });
+    expect(r.id).toBe(target);
+    expect(r.qtype).toBe('LAQ');
+    expect(r.hash).toContain(target as string);
+});
+
+test('deep link boots into the notebook and Back returns to the catalog', async ({ page }) => {
+    // the shareable path: a hash link opens a question + cut directly
+    const target = 'ts_ipe_p1_mp_projectile_motion';
+    await page.goto(URL + '#/q/' + target + '/saq_parabola');
+    await page.waitForSelector('.page');
+    await page.waitForTimeout(300);
+
+    const nb = await page.evaluate(() => ({
+        view: document.getElementById('notebookView')!.hidden ? 'catalog' : 'notebook',
+        id: (window as any).PM_ANSWER.question.question_id,
+        cut: (window as any).PM_ANSWER.getState().cutKey,
+        backShown: !document.getElementById('btnCatalog')!.hidden,
+    }));
+    expect(nb.view).toBe('notebook');
+    expect(nb.id).toBe(target);
+    expect(nb.cut).toBe('saq_parabola');
+    expect(nb.backShown).toBe(true);
+
+    await page.click('#btnCatalog');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const cat = await page.evaluate(() => ({
+        hash: location.hash,
+        notebookHidden: document.getElementById('notebookView')!.hidden,
+        backHidden: document.getElementById('btnCatalog')!.hidden,
+    }));
+    expect(cat.hash).toBe('#/');
+    expect(cat.notebookHidden).toBe(true);
+    expect(cat.backHidden).toBe(true);
+});
+
+test('catalog search narrows the cards and can find nothing', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    await page.fill('#catSearch', 'parallelogram');
+    await page.waitForTimeout(200);
+    const one = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
+    expect(one).toBeGreaterThanOrEqual(1);
+    expect(one).toBeLessThan(5);
+
+    // a search that matches nothing shows the no-results row, not a blank page
+    await page.fill('#catSearch', 'zzzz nothing');
+    await page.waitForTimeout(200);
+    const none = await page.evaluate(() => ({
+        cards: document.querySelectorAll('.cat-card').length,
+        noneShown: !document.getElementById('catNone')!.hidden,
+    }));
+    expect(none.cards).toBe(0);
+    expect(none.noneShown).toBe(true);
 });

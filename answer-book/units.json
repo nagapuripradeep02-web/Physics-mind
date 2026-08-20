@@ -1,0 +1,146 @@
+{
+  "comment": "Per-unit question inventory for the catalog. Source: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text + star rank only, never its prose or solutions. An entry with question_id is authored and opens in the notebook (cut names which length this book entry corresponds to); an entry without one renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing.",
+  "units": [
+    {
+      "number": 4,
+      "name": "Motion in a Plane",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State the parallelogram law of vectors. Derive an expression for the magnitude and direction of the resultant vector.",
+          "question_id": "ts_ipe_p1_vec_parallelogram_law",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Show that the maximum height and range of a projectile are u²sin²θ/2g and u²sin2θ/g respectively.",
+          "question_id": "ts_ipe_p1_mp_projectile_motion",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Define unit vector, null vector and position vector.",
+          "question_id": "ts_ipe_p1_vec_unit_null_position"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the trajectory of an object thrown at an angle with the horizontal is a parabola.",
+          "question_id": "ts_ipe_p1_mp_projectile_motion",
+          "cut": "saq_parabola"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Show that for a projectile launched at an angle of 45° the maximum height of the projectile is one quarter of the range.",
+          "question_id": "ts_ipe_p1_mp_projectile_at_45"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If |a + b| = |a − b|, prove that the angle between a and b is 90°.",
+          "question_id": "ts_ipe_p1_vec_equal_sum_difference"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Two balls are projected from the same point in directions 30° and 60° with respect to the horizontal. What is the ratio of their initial velocities if they (a) attain the same height (b) have the same range?"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Explain the terms average velocity and instantaneous velocity. When are they equal?"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "O is a point on the ground chosen as origin. A body first suffers a displacement of 10√2 m north-east, next 10 m north and finally 10√2 m north-west. How far is it from the origin?"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "The vertical component of a vector is equal to its horizontal component. What is the angle made by the vector with the x-axis?"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "A vector V makes an angle with the horizontal. The vector is rotated through an angle α. Does this rotation change the vector V?"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A = i + j. What is the angle between the vector and the x-axis?"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q."
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 1,
+          "text": "Can a vector of magnitude zero have non-zero components?"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "What is the acceleration of a projectile at the top of its trajectory?"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "When two right-angled vectors of magnitude 7 units and 24 units combine, what is the magnitude of their resultant?"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?"
+        }
+      ]
+    }
+  ]
+}

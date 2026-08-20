@@ -727,7 +727,9 @@
       ],
       "steps": {
         "s1_statement": {
-          "marks": 1
+          "marks": 1,
+          "margin_note": "Write the whole statement. The mark is for the words alone.",
+          "why": "The examiner gives one of the four marks for the words alone, before any physics. Writing the full statement is the cheapest scoring you will do in this answer."
         },
         "s2_figure": {
           "marks": 1

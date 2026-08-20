@@ -61,6 +61,65 @@ for (const f of files) {
     questions.push(q);
 }
 
+// ── 1b. read + cross-check the unit manifest ─────────────────────────────────
+// units.json is the catalog's inventory: every question the BOOK lists for a
+// unit, whether authored yet or not. Its star ranks and section numbering are
+// the book's; entries with a question_id open in the notebook, the rest render
+// as coming-soon cards. Drift in EITHER direction is a build failure: an
+// authored question the manifest does not list would be invisible in the
+// catalog, and a manifest pointer at nothing would be a dead card. Both are
+// exactly the silent-drop failure mode PILOT_CONCEPTS once had.
+type ManifestEntry = {
+    ref: string;
+    section: 'VSAQ' | 'SAQ' | 'LAQ';
+    number: number;
+    stars: number;
+    text: string;
+    question_id?: string;
+    cut?: string;
+};
+type ManifestUnit = { number: number; name: string; questions: ManifestEntry[] };
+
+const manifestPath = join(BOOK_DIR, 'units.json');
+let manifest: { units: ManifestUnit[] };
+try {
+    manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+} catch (e) {
+    fail(`${manifestPath}\n  invalid JSON: ${(e as Error).message}`);
+}
+if (!Array.isArray(manifest.units) || manifest.units.length === 0) {
+    fail(`${manifestPath}\n  units[] is missing or empty`);
+}
+
+const questionById = new Map(questions.map((q) => [q.question_id, q]));
+const listedIds = new Set<string>();
+for (const u of manifest.units) {
+    const refs = new Set<string>();
+    for (const e of u.questions) {
+        if (refs.has(e.ref)) fail(`${manifestPath}\n  unit ${u.number}: duplicate ref "${e.ref}"`);
+        refs.add(e.ref);
+        if (!['VSAQ', 'SAQ', 'LAQ'].includes(e.section)) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: section "${e.section}" is not VSAQ/SAQ/LAQ`);
+        }
+        if (!(e.stars >= 0 && e.stars <= 3)) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: stars must be 0-3`);
+        }
+        if (e.question_id) {
+            const q = questionById.get(e.question_id);
+            if (!q) fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: question_id "${e.question_id}" has no authored file`);
+            listedIds.add(e.question_id);
+            if (e.cut && !(q.cuts ?? []).some((c) => c.key === e.cut)) {
+                fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: cut "${e.cut}" does not exist on ${e.question_id}`);
+            }
+        }
+    }
+}
+for (const q of questions) {
+    if (!listedIds.has(q.question_id)) {
+        fail(`${manifestPath}\n  authored question "${q.question_id}" is not listed in any unit — it would be invisible in the catalog`);
+    }
+}
+
 // ── 2. read the engine files ─────────────────────────────────────────────────
 const shell = readFileSync(join(BOOK_DIR, 'shell.html'), 'utf8');
 const css = readFileSync(join(BOOK_DIR, 'notebook.css'), 'utf8');
@@ -94,6 +153,7 @@ const apiBase = process.env.ANSWER_BOOK_API_BASE ?? '';
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
+    `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
     `window.PM_API_BASE = ${JSON.stringify(apiBase)};`;
 
 const html = shell
@@ -130,5 +190,20 @@ for (const q of questions) {
             if (omitted.length) console.log(`         omits: ${omitted.join(', ')}`);
         }
     }
+}
+// Per-unit coverage — READY counts manifest ENTRIES, not files: SAQ 2 and SAQ 4
+// both map to the projectile file, and each is its own card in the catalog.
+console.log('');
+for (const u of manifest.units) {
+    const ready = u.questions.filter((e) => e.question_id).length;
+    const pending = u.questions.filter((e) => !e.question_id);
+    const bySec = pending.reduce<Record<string, number>>((acc, e) => {
+        acc[e.section] = (acc[e.section] ?? 0) + 1;
+        return acc;
+    }, {});
+    const pendingTxt = pending.length
+        ? ` (pending: ${Object.entries(bySec).map(([s, n]) => `${n} ${s}`).join(', ')})`
+        : '';
+    console.log(`  Unit ${u.number} — ${u.name}: ${ready}/${u.questions.length} ready${pendingTxt}`);
 }
 console.log(`\nNext: npm run serve:answers → http://localhost:8100  (or open ${outPath} directly)`);

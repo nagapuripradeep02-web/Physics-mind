@@ -154,6 +154,13 @@ const cutStepSchema = z
         label: z.string().min(1).optional(),
         /** Override the written lines. Omit to reuse the full-cut lines verbatim. */
         lines: z.array(lineSchema).optional(),
+        /**
+         * Override the rail guidance when the full cut's wording states a mark
+         * count this cut contradicts ("the two marks are for the words alone"
+         * beside a 1-mark step). Same reasoning for `why`.
+         */
+        margin_note: z.string().optional(),
+        why: z.string().min(1).optional(),
     })
     .superRefine((cs, ctx) => {
         if (cs.marks === 0 && cs.mark_note) {
