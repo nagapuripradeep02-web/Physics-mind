@@ -109,6 +109,19 @@ const stepSchema = z
         figure: figureSchema.optional(),
         /** Voice-recall rubric. All steps carry one, or none do (enforced question-level). */
         recall: stepRecallSchema.optional(),
+        /**
+         * One line: WHY this step exists — the reasoning a student needs to reconstruct
+         * the answer rather than memorise it. Shown in the rail in Study mode only.
+         * NEVER rendered on the notebook page: the page is an answer script, not a textbook
+         * (Rules 24/34), and anything inside .step-block would be typed and would change
+         * pagination.
+         */
+        why: z.string().min(1).optional(),
+        /**
+         * Where students actually lose this step's marks. 1-3 short, literal items.
+         * Rail only, same reasoning as `why`.
+         */
+        common_mistakes: z.array(z.string().min(1)).max(3).optional(),
     })
     .superRefine((step, ctx) => {
         if (step.kind === 'diagram') {

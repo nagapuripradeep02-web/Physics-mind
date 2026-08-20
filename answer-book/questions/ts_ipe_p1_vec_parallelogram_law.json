@@ -88,7 +88,13 @@
             "diagonal",
             "resultant"
           ]
-        }
+        },
+        "why": "The examiner gives two of the eight marks for the words alone, before any physics. Writing the full statement is the cheapest scoring you will do in this answer.",
+        "common_mistakes": [
+          "Writing only half the law — the two adjacent sides, but not that the diagonal is the resultant.",
+          "Saying 'the resultant is the sum' instead of stating the law.",
+          "Leaving out 'drawn from the same point', so the diagonal is not pinned down."
+        ]
       },
       {
         "id": "s2_figure",
@@ -319,7 +325,13 @@
             "picture",
             "sketch"
           ]
-        }
+        },
+        "why": "Every later line names a point from this figure. Without it, the examiner cannot follow OD, CD or angle alpha, and the derivation marks become hard to award.",
+        "common_mistakes": [
+          "Drawing the diagonal from the wrong corner of OACB.",
+          "Leaving points unlabelled, so later steps refer to nothing.",
+          "Forgetting to mark the angles theta and alpha."
+        ]
       },
       {
         "id": "s3_construction",
@@ -364,7 +376,12 @@
             "angle AOB",
             "raastha"
           ]
-        }
+        },
+        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the whole trick of the proof: it turns the parallelogram into a right triangle.",
+        "common_mistakes": [
+          "Dropping the perpendicular to OA instead of to OA extended.",
+          "Not saying which angle is theta and which is alpha."
+        ]
       },
       {
         "id": "s4_legs",
@@ -415,7 +432,13 @@
             "Q sine theta",
             "P plus Q cos theta"
           ]
-        }
+        },
+        "why": "Q is at an angle, so it cannot be added to P directly. Resolving it into Q cos theta along P and Q sin theta perpendicular to P turns the problem into ordinary right-triangle geometry.",
+        "common_mistakes": [
+          "Swapping the two — writing AD = Q sin theta and CD = Q cos theta.",
+          "Forgetting that angle CAD equals theta because AC is parallel to OB.",
+          "Writing OD = Q cos theta and leaving out the P."
+        ]
       },
       {
         "id": "s5_pythagoras",
@@ -471,7 +494,13 @@
             "two PQ cos theta",
             "sin square plus cos square"
           ]
-        }
+        },
+        "why": "Pythagoras only works in a right triangle, which is exactly why CD was dropped perpendicular in the construction. The cos squared plus sin squared step is what collapses the long expression into the standard formula.",
+        "common_mistakes": [
+          "Writing R squared = P squared + Q squared + 2PQ, leaving out cos theta.",
+          "Skipping the expansion and jumping to the final formula — the examiner looks for the middle line.",
+          "Not using sin squared theta + cos squared theta = 1, so the answer never simplifies."
+        ]
       },
       {
         "id": "s6_direction",
@@ -512,7 +541,13 @@
             "CD by OD",
             "Q sin theta by P plus Q cos theta"
           ]
-        }
+        },
+        "why": "The magnitude alone does not fix a vector. The same right triangle ODC that gave the magnitude also gives the direction, so no new construction is needed here.",
+        "common_mistakes": [
+          "Measuring alpha from Q instead of from P.",
+          "Writing tan alpha = Q sin theta / P, leaving out the Q cos theta.",
+          "Assuming alpha is half of theta, which is only true when P and Q are equal."
+        ]
       },
       {
         "id": "s7_alpha",
@@ -550,7 +585,12 @@
             "tan to the power minus one",
             "alpha equals tan"
           ]
-        }
+        },
+        "why": "The question asks for the direction, so the answer must be alpha itself, not tan alpha. Boxing both final results lets the examiner find them in one glance.",
+        "common_mistakes": [
+          "Stopping at tan alpha and never writing alpha = tan inverse.",
+          "Leaving the answer unboxed among the working."
+        ]
       },
       {
         "id": "s8_special_cases",
@@ -596,7 +636,11 @@
             "maximum",
             "minimum"
           ]
-        }
+        },
+        "why": "These three cases are the fastest way to check your own formula. If theta = 0 does not give P + Q, something in your derivation is wrong.",
+        "common_mistakes": [
+          "Writing these instead of the derivation — they carry no marks in this question."
+        ]
       }
     ]
   },

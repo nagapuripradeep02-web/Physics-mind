@@ -28,6 +28,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Any display: rule beats the `hidden` attribute's UA display:none. The mic button
+   is display:flex, so without this it stayed visible with no endpoint configured —
+   caught by e2e, not by eye. */
+[hidden] { display: none !important; }
+
 body {
   font-family: Inter, system-ui, sans-serif;
   background: var(--chrome-bg);
@@ -132,6 +137,69 @@ body {
 
 .verify-note { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); }
 
+/* ── mode toggle + study-mode teaching layer ───────────────────────────── */
+
+.mode-row { display: flex; gap: 4px; }
+.mode-btn {
+  flex: 1; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  padding: 7px 4px; border-radius: 8px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-dim);
+}
+.mode-btn:hover { border-color: var(--accent); color: var(--accent); }
+.mode-btn.active {
+  background: var(--ink); border-color: var(--ink); color: #fff;
+}
+.mode-hint { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); margin-top: 8px; }
+
+.why-note { font-size: 13.5px; line-height: 1.55; }
+.mistake-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.mistake-list li {
+  font-size: 12.5px; line-height: 1.5; padding-left: 16px; position: relative;
+  color: var(--chrome-ink);
+}
+.mistake-list li::before {
+  content: '✗'; position: absolute; left: 0; top: 0; color: var(--red); font-weight: 700;
+}
+
+/* ── assess panel (test-myself) ────────────────────────────────────────── */
+
+.assess-intro { font-size: 13px; line-height: 1.5; color: var(--chrome-dim); margin-bottom: 10px; }
+.assess-timer {
+  text-align: center; font-size: 26px; font-weight: 700; color: var(--ink);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+.assess-timer .target { display: block; font-size: 11.5px; font-weight: 500; color: var(--chrome-dim); }
+.btn-assess {
+  width: 100%; background: var(--ink); color: #fff; border: none;
+  padding: 11px; border-radius: 10px; font-size: 14px; margin-top: 10px;
+}
+.btn-assess:hover { background: #24418f; color: #fff; }
+.assess-card .btn-mic { margin-top: 8px; }
+
+.self-score { margin-top: 4px; }
+.ss-progress { font-size: 11.5px; color: var(--chrome-dim); margin-bottom: 8px; }
+.ss-step-label { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+.ss-marks { font-size: 12px; color: var(--chrome-dim); margin-bottom: 8px; }
+.ss-model {
+  font-size: 13px; line-height: 1.55; padding: 9px 10px; border-radius: 8px;
+  background: var(--chrome-bg); border: 1px solid var(--chrome-line); margin-bottom: 10px;
+}
+.ss-ask { font-size: 12.5px; color: var(--chrome-ink); margin-bottom: 7px; font-weight: 600; }
+.ss-buttons { display: flex; flex-direction: column; gap: 5px; }
+.ss-buttons .btn { width: 100%; padding: 8px; font-size: 13px; }
+.ss-buttons .btn.got { border-color: #1B7F3B; color: #1B7F3B; }
+.ss-buttons .btn.partly { border-color: #B4770B; color: #B4770B; }
+.ss-buttons .btn.missed { border-color: var(--red); color: var(--red); }
+
+.ss-total { font-size: 21px; font-weight: 700; color: var(--red); line-height: 1.25; }
+.ss-time { font-size: 12.5px; color: var(--chrome-dim); margin-top: 6px; line-height: 1.5; }
+.ss-redo { margin-top: 12px; }
+.ss-redo h4 {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin-bottom: 7px;
+}
+.ss-redo .recall-item { cursor: pointer; }
+
 /* ── spoken-recall check ───────────────────────────────────────────────── */
 
 .recall-intro { font-size: 13px; line-height: 1.5; color: var(--chrome-dim); margin-bottom: 10px; }
@@ -193,7 +261,7 @@ body {
 }
 .recall-empty { font-size: 13.5px; line-height: 1.6; }
 
-@media print { .recall-card { display: none !important; } }
+@media print { .assess-card, .mode-card, #whyCard, #mistakeCard { display: none !important; } }
 
 #pm-assistant-slot {
   /* AI assistant seam: reserved, empty. Width/position ready for a future panel. */

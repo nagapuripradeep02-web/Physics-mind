@@ -56,6 +56,34 @@ from `file://`.
 Today the page shows `PM_QUESTIONS[0]` only; a question picker is deliberately out of scope
 until there is more than one question worth picking.
 
+## Three modes
+
+A rail toggle switches what the same authored data is used for:
+
+| Mode | Notebook | Rail |
+|---|---|---|
+| **Study** (default) | tap through | `why` + `common_mistakes` for the step you are about to write |
+| **Exam** | tap through | nothing extra — identical to the original build |
+| **Test myself** | **stays blank** | the assess panel: count-up timer, then either path below |
+
+**Test myself** has two paths and is the single "assess me" entry:
+- **I am done — check my paper** → reveals each step *before* asking `I wrote this / Partly /
+  I missed it` (harder to over-credit yourself). Partly = half marks, so totals can read `6.5`.
+  Ends with the score, the time taken against `expected_time_min`, and a **redo list** — each
+  entry shows that step's first common mistake and taps back into Study mode at that step.
+- **Speak it instead** → the spoken-recall check. Appears **only** when a recall endpoint is
+  configured; with none, the paper path still works completely and the page makes zero network
+  calls.
+
+**Authoring the teaching layer** — two optional per-step fields, both **rail-only**:
+```jsonc
+"why": "One line: why this step exists. Study mode only.",
+"common_mistakes": ["1-3 short literal items — where this step's marks are actually lost."]
+```
+They must never render inside `.step-block`: anything there gets typed by the engine and
+changes pagination. That invariant is asserted in `e2e/answer_book.spec.ts` ("exam mode is a
+true no-op").
+
 ## Determinism (Rule 18)
 
 **The notebook itself is preloaded JSON + deterministic JS** — no LLM, no API call, no

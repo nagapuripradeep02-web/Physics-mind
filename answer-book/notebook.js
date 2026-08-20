@@ -30,6 +30,15 @@
   // ── state ─────────────────────────────────────────────────────────────────
   var stepIndex = -1;             // last fully revealed step
   var marksEarned = 0;
+  /**
+   * 'study' — tap through, with the why/mistake teaching cards in the rail
+   * 'exam'  — tap through, no extras (byte-identical to the original behaviour)
+   * 'test'  — the notebook starts blank; the student writes on paper or speaks it
+   * Every switch routes through renderUpTo() so in-flight typing timers are
+   * cancelled — clearing #notebook directly would leave orphan timers that still
+   * mutate stepIndex/marksEarned when they fire.
+   */
+  var mode = 'study';
   var pageBodies = [];            // .page-body elements in order
   var revealing = false;
   var finishCurrent = null;       // completes the animating step instantly
@@ -119,14 +128,39 @@
       pills[i].firstChild.textContent = done ? '✓' : '·';
     }
 
-    var noteCard = $('marginNoteCard');
+    // Rail teaching layer. `next` is the step the student is about to write, which
+    // is the one the guidance should describe.
     var next = steps[stepIndex + 1];
-    var shown = revealing ? steps[stepIndex + 1] : next;
-    if (shown && shown.margin_note) {
+    var teaching = mode === 'study';
+
+    var noteCard = $('marginNoteCard');
+    if (next && next.margin_note && mode !== 'test') {
       noteCard.hidden = false;
-      $('marginNote').textContent = shown.margin_note;
+      $('marginNote').textContent = next.margin_note;
     } else {
       noteCard.hidden = true;
+    }
+
+    var whyCard = $('whyCard');
+    if (teaching && next && next.why) {
+      whyCard.hidden = false;
+      $('whyNote').textContent = next.why;
+    } else {
+      whyCard.hidden = true;
+    }
+
+    var mistakeCard = $('mistakeCard');
+    var list = $('mistakeList');
+    if (teaching && next && next.common_mistakes && next.common_mistakes.length) {
+      mistakeCard.hidden = false;
+      list.innerHTML = '';
+      next.common_mistakes.forEach(function (m) {
+        var li = document.createElement('li');
+        li.textContent = m;
+        list.appendChild(li);
+      });
+    } else {
+      mistakeCard.hidden = true;
     }
 
     if (completed) {
@@ -511,6 +545,8 @@
   // ═══ flow ═════════════════════════════════════════════════════════════════
 
   function advance() {
+    // In test-myself the page stays blank on purpose — the student writes it.
+    if (mode === 'test') return;
     if (revealing) {                     // impatience: finish the current step
       if (finishCurrent) finishCurrent();
       return;
@@ -597,6 +633,183 @@
     notebook.style.marginBottom = fit < 1 ? (-(natural * (1 - fit))) + 'px' : '';
   }
   window.addEventListener('resize', fitNotebook);
+
+  // ═══ modes ═══════════════════════════════════════════════════════════════
+
+  var MODE_HINT = {
+    study: 'Tap through the answer. The rail explains why each step is there and where marks are lost.',
+    exam: 'Just the answer and the marks. No explanations.',
+    test: 'The page is blank. Write the answer yourself, then check it.'
+  };
+
+  var assess = { running: false, startedAt: 0, timer: null, idx: 0, awarded: [], elapsedMs: 0 };
+
+  function setMode(next) {
+    if (next === mode) return;
+    stopAssessTimer();
+    mode = next;
+    var btns = $('modeRow').children;
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', btns[i].getAttribute('data-mode') === mode);
+    }
+    $('modeHint').textContent = MODE_HINT[mode];
+    $('assessCard').hidden = mode !== 'test';
+    $('btnNext').hidden = mode === 'test';
+    // The accumulator tracks how much of the notebook has been REVEALED. In test
+    // mode the page stays blank, so a "0/8" beside the test score would read as a
+    // second, contradictory result.
+    $('accCard').hidden = mode === 'test';
+    if (mode === 'test') startAssess(); else resetAssessUi();
+    renderUpTo(-1, false);           // full teardown: cancels any in-flight timers
+  }
+
+  // ── test-myself ───────────────────────────────────────────────────────────
+
+  function fmtClock(ms) {
+    var s = Math.floor(ms / 1000);
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  }
+  /** 5.5 stays 5.5; 6.0 shows as 6. */
+  function fmtMarks(n) { return Number.isInteger(n) ? String(n) : n.toFixed(1); }
+
+  function stopAssessTimer() {
+    if (assess.timer) clearInterval(assess.timer);
+    assess.timer = null;
+    assess.running = false;
+  }
+
+  function resetAssessUi() {
+    stopAssessTimer();
+    assess.idx = 0; assess.awarded = []; assess.elapsedMs = 0;
+    $('assessStart').hidden = false;
+    $('selfScore').hidden = true;
+    $('selfScore').innerHTML = '';
+    $('recallResult').hidden = true;
+  }
+
+  function startAssess() {
+    resetAssessUi();
+    assess.running = true;
+    assess.startedAt = Date.now();
+    var target = question.expected_time_min;
+    function tick() {
+      assess.elapsedMs = Date.now() - assess.startedAt;
+      $('assessTimer').innerHTML = fmtClock(assess.elapsedMs) +
+        '<span class="target">about ' + target + ' minutes in the exam</span>';
+    }
+    tick();
+    assess.timer = setInterval(tick, 1000);
+  }
+
+  /** Reveal the model step FIRST, then ask — harder to over-credit yourself. */
+  function renderSelfScore() {
+    stopAssessTimer();
+    $('assessStart').hidden = true;
+    var box = $('selfScore');
+    box.hidden = false;
+    box.innerHTML = '';
+
+    if (assess.idx >= steps.length) { renderSelfScoreTotal(box); return; }
+    var step = steps[assess.idx];
+
+    box.appendChild(el('div', 'ss-progress', 'Step ' + (assess.idx + 1) + ' of ' + steps.length));
+    box.appendChild(el('div', 'ss-step-label', step.label));
+    box.appendChild(el('div', 'ss-marks', step.marks === 0
+      ? 'no marks — extra content'
+      : marksLabel(step.marks)));
+
+    var model = stepSummary(step.id);
+    if (model) box.appendChild(el('div', 'ss-model', model));
+
+    if (step.marks === 0) {
+      box.appendChild(el('div', 'ss-ask', 'This one carries no marks.'));
+      var skip = el('button', 'btn', 'Next');
+      skip.type = 'button';
+      skip.addEventListener('click', function () { award(0); });
+      var wrapSkip = el('div', 'ss-buttons'); wrapSkip.appendChild(skip);
+      box.appendChild(wrapSkip);
+      return;
+    }
+
+    box.appendChild(el('div', 'ss-ask', 'Did you write this?'));
+    var wrap = el('div', 'ss-buttons');
+    [['I wrote this', 'got', step.marks],
+     ['Partly', 'partly', step.marks / 2],
+     ['I missed it', 'missed', 0]].forEach(function (opt) {
+      var b = el('button', 'btn ' + opt[1], opt[0]);
+      b.type = 'button';
+      b.addEventListener('click', function () { award(opt[2], opt[1]); });
+      wrap.appendChild(b);
+    });
+    box.appendChild(wrap);
+  }
+
+  function award(marks, verdict) {
+    assess.awarded.push({ step: steps[assess.idx], marks: marks, verdict: verdict || 'none' });
+    assess.idx++;
+    renderSelfScore();
+  }
+
+  function renderSelfScoreTotal(box) {
+    var total = assess.awarded.reduce(function (a, r) { return a + r.marks; }, 0);
+    box.appendChild(el('div', 'ss-total',
+      'You would have scored ' + fmtMarks(total) + ' out of ' + marksTotal + '.'));
+    box.appendChild(el('div', 'ss-time',
+      'You took ' + fmtClock(assess.elapsedMs) + '. In the exam you get about ' +
+      question.expected_time_min + ' minutes for ' + marksTotal + ' marks.'));
+    box.appendChild(el('p', 'recall-caveat',
+      'You marked this yourself. The examiner marks what is written on the paper.'));
+
+    var redo = assess.awarded.filter(function (r) {
+      return r.verdict === 'missed' || r.verdict === 'partly';
+    });
+    if (redo.length) {
+      var wrap = el('div', 'ss-redo');
+      wrap.appendChild(el('h4', null, 'Write these again'));
+      redo.forEach(function (r) {
+        var item = el('div', 'recall-item ' + (r.verdict === 'missed' ? 'missed' : 'unsure'));
+        var head = el('div', 'ri-head');
+        head.appendChild(el('span', 'ri-mark', r.verdict === 'missed' ? '✗' : '~'));
+        head.appendChild(el('span', 'ri-label', r.step.label));
+        if (r.step.marks > 0) head.appendChild(el('span', 'ri-marks', marksLabel(r.step.marks)));
+        item.appendChild(head);
+        if (r.step.common_mistakes && r.step.common_mistakes.length) {
+          item.appendChild(el('div', 'ri-hint', r.step.common_mistakes[0]));
+        }
+        var actions = el('div', 'recall-actions');
+        var write = el('button', 'btn', 'Write this step');
+        write.type = 'button';
+        write.addEventListener('click', function () {
+          setMode('study');
+          window.PM_ANSWER.goToStep(r.step.id);
+        });
+        actions.appendChild(write);
+        item.appendChild(actions);
+        wrap.appendChild(item);
+      });
+      box.appendChild(wrap);
+    }
+
+    var again = el('button', 'btn btn-assess', 'Test myself again');
+    again.type = 'button';
+    again.addEventListener('click', function () { startAssess(); });
+    box.appendChild(again);
+  }
+
+  function initModes() {
+    var row = $('modeRow');
+    for (var i = 0; i < row.children.length; i++) {
+      (function (btn) {
+        btn.addEventListener('click', function () { setMode(btn.getAttribute('data-mode')); });
+      })(row.children[i]);
+    }
+    row.children[0].classList.add('active');
+    $('modeHint').textContent = MODE_HINT.study;
+    $('btnDonePaper').addEventListener('click', function () {
+      assess.idx = 0; assess.awarded = [];
+      renderSelfScore();
+    });
+  }
 
   // ═══ spoken-recall check ═════════════════════════════════════════════════
   // Progressive enhancement: with no endpoint configured this whole block does
@@ -732,7 +945,7 @@
       .then(function (res) {
         $('btnMic').disabled = false; micLabel('Tap to speak again');
         if (!res.ok) {
-          if (res.status === 503) { $('recallCard').hidden = true; return; }
+          if (res.status === 503) { $('btnMic').hidden = true; $('recallIntro').hidden = true; return; }
           showRecallMessage('Could not check that recording. Nothing has been marked wrong.');
           return;
         }
@@ -822,6 +1035,7 @@
 
   function renderRecall(res) {
     var box = $('recallResult');
+    $('assessStart').hidden = true;     // the mic path takes over the panel
     box.hidden = false;
     box.innerHTML = '';
 
@@ -929,10 +1143,16 @@
     if (res.order_note) box.appendChild(el('p', 'recall-note', res.order_note));
   }
 
+  /**
+   * The mic is the OPTIONAL half of test-myself. With no endpoint configured the
+   * button never appears and the page makes zero network calls — the paper path
+   * still works completely.
+   */
   function initRecall() {
     if (!RECALL_ENDPOINT) return;                       // no endpoint → no mic, no fetch
     if (!question.recall_available) return;             // no authored rubric → nothing to check
-    $('recallCard').hidden = false;
+    $('btnMic').hidden = false;
+    $('recallIntro').hidden = false;
     $('recallIntro').textContent = question.recall_prompt ||
       'Say the steps you would write for this answer, in order.';
     $('btnMic').addEventListener('click', function () {
@@ -979,6 +1199,7 @@
     writePageHeader();
     updateChrome();
     fitNotebook();
+    initModes();
     initRecall();
   });
 })();

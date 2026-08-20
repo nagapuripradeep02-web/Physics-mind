@@ -106,13 +106,14 @@ test('with no recall endpoint the page stays fully offline and offers no mic', a
 
     const state = await page.evaluate(() => ({
         endpoint: (window as any).PM_RECALL_ENDPOINT,
-        cardHidden: document.getElementById('recallCard')!.hidden,
+        // the assess panel exists in every mode; the MIC inside it is what must be absent
+        micHidden: document.getElementById('btnMic')!.hidden,
         // the grader-side rubric must never ship to the browser
         leakedRubric: JSON.stringify((window as any).PM_QUESTIONS).includes('must_convey'),
     }));
 
     expect(state.endpoint).toBe('');       // default build has no endpoint
-    expect(state.cardHidden).toBe(true);   // therefore no mic
+    expect(state.micHidden).toBe(true);    // therefore no mic
     expect(state.leakedRubric).toBe(false);
     expect(external).toEqual([]);          // and zero network calls
 });
@@ -126,4 +127,84 @@ test('the answer still reaches 8/8 with the recall feature present', async ({ pa
     });
     expect(r.marksEarned).toBe(r.marksTotal);
     expect(r.pageCount).toBeGreaterThanOrEqual(2);
+});
+
+// ── Tier 1: modes, teaching layer, self-assessment ───────────────────────────
+// The regression that matters most is that Exam mode is a TRUE no-op: the
+// teaching layer must never reach the notebook page, because anything inside
+// .step-block gets typed and changes pagination.
+
+test('exam mode is a true no-op — nothing extra reaches the notebook page', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    await page.click('.mode-btn[data-mode="exam"]');
+
+    const r = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        const allowed = ['line', 'red-mark', 'figure-wrap', 'total-underline'];
+        const stray: string[] = [];
+        document.querySelectorAll('.step-block').forEach((b) => {
+            Array.from(b.children).forEach((c) => {
+                if (!allowed.some((cls) => c.classList.contains(cls))) {
+                    stray.push(`${b.getAttribute('data-step-id')}:${c.className}`);
+                }
+            });
+        });
+        return {
+            stray,
+            pages: document.querySelectorAll('.page').length,
+            state: (window as any).PM_ANSWER.getState(),
+            whyHidden: document.getElementById('whyCard')!.hidden,
+            mistakesHidden: document.getElementById('mistakeCard')!.hidden,
+        };
+    });
+
+    expect(r.stray).toEqual([]);            // the page is still only an answer script
+    expect(r.pages).toBe(2);                // pagination unchanged
+    expect(r.state.marksEarned).toBe(r.state.marksTotal);
+    expect(r.whyHidden).toBe(true);
+    expect(r.mistakesHidden).toBe(true);
+});
+
+test('study mode shows the teaching layer in the rail only', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const r = await page.evaluate(() => ({
+        mode: (document.querySelector('.mode-btn.active') as HTMLElement).dataset.mode,
+        why: document.getElementById('whyNote')!.textContent!.length,
+        mistakes: document.querySelectorAll('#mistakeList li').length,
+        pageHasWhy: document.querySelector('.step-block .why-note') !== null,
+    }));
+    expect(r.mode).toBe('study');           // the default
+    expect(r.why).toBeGreaterThan(20);
+    expect(r.mistakes).toBeGreaterThan(0);
+    expect(r.pageHasWhy).toBe(false);
+});
+
+test('test mode: blank page, tap does not advance, self-score totals correctly', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    await page.click('.mode-btn[data-mode="test"]');
+
+    // the notebook stays blank on purpose — and tapping it must not reveal anything
+    expect(await page.locator('.step-block').count()).toBe(0);
+    await page.click('#notebook');
+    expect(await page.locator('.step-block').count()).toBe(0);
+    expect(await page.locator('#btnNext').isHidden()).toBe(true);
+    // no mic without an endpoint; the paper path must still work
+    expect(await page.locator('#btnMic').isHidden()).toBe(true);
+
+    await page.click('#btnDonePaper');
+    // 2 + 0.5 + 1 + 0 + 1 + 1 + 0.5 + 0(no-mark step) = 6
+    for (const v of ['got', 'partly', 'got', 'missed', 'got', 'got', 'partly']) {
+        await page.waitForSelector(`.ss-buttons .btn.${v}`);
+        await page.click(`.ss-buttons .btn.${v}`);
+    }
+    await page.waitForSelector('.ss-buttons .btn');   // the 0-mark step's plain Next
+    await page.click('.ss-buttons .btn');
+
+    await expect(page.locator('.ss-total')).toHaveText('You would have scored 6 out of 8.');
+    // partly + missed land in the redo list; got does not
+    expect(await page.locator('.ss-redo .ri-label').allTextContents())
+        .toEqual(['Draw the figure', 'Find AD and CD', 'Final answer for α']);
 });

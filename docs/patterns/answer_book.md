@@ -204,3 +204,67 @@ Speech input is **code-mixed English + Telugu, auto-detected** (`language_code` 
 omitted from the Sarvam request). All rendered feedback is English. Rule 30i governs what the
 product *ships*, not what it can *understand* — accepting how a Telangana student actually
 revises aloud is not a Telugu surface.
+
+---
+
+# Tier 1 — modes, teaching layer, self-assessment (added 2026-08-20)
+
+One page, three students: the sprinter tests himself, the reviser writes and self-scores, the
+learner reads why each step exists. All from the same authored data, at zero running cost.
+
+## Mode model
+
+`mode` is one closure variable with three values, switched from a rail toggle. **Every switch
+routes through `renderUpTo(-1, false)`** — clearing `#notebook` directly would leave orphan
+typing timers that still mutate `stepIndex`/`marksEarned` when they fire.
+
+- `study` (default) — tap through + `why`/`common_mistakes` rail cards
+- `exam` — tap through, no extras. **Byte-identical to the pre-Tier-1 behaviour**, and that is
+  the regression the e2e suite guards.
+- `test` — the notebook stays blank; `advance()` early-returns so tapping the page does nothing.
+
+## The rail-only invariant
+
+`why` and `common_mistakes` render **only in the rail**, never inside `.step-block`. Two
+engine facts force this: `typeLines` types **every** `.line` descendant, and `placeStep` freezes
+**only** `.line` heights while paginating on the block's total `offsetHeight`. A teaching note
+in the block would be typed out as if it were part of the answer *and* would move the page
+break. The e2e test asserts no `.step-block` ever gains a child outside
+`line | red-mark | figure-wrap | total-underline`.
+
+## Self-scoring
+
+The model step is revealed **before** the student is asked — harder to over-credit yourself
+than a blind yes/no. `Partly` = half marks, so totals are non-integer; `fmtMarks` prints `6.5`
+but `6`, never `6.0`. Zero-mark steps get a plain "Next" instead of a verdict, because a student
+cannot lose marks that were never on offer. The redo list carries each step's first
+`common_mistakes` entry, so the miss teaches instead of only scolding.
+
+The accumulator card is hidden in `test` mode: it counts how much of the notebook has been
+*revealed*, and a "0/8" beside "you would have scored 6 out of 8" reads as a contradictory
+second result.
+
+## A CSS trap worth remembering
+
+`.btn-mic { display: flex }` **beats the `hidden` attribute's UA `display:none`**, so the mic
+button stayed visible with no endpoint configured — breaking the offline promise in the UI
+while every other check passed. Fixed globally with `[hidden] { display: none !important; }`
+near the top of the stylesheet. Caught by e2e, not by eye; any future component with an
+explicit `display` needs the same care.
+
+## Deferred: SAQ/VSAQ variants
+
+Not built, for two reasons. **The mark splits would be invented** — no real IPE paper has been
+seen showing this asked at 4 marks, and the 8-mark split already ships
+`needs_teacher_verification: true`. And it is the only Tier-1 item that changes the *visible
+step set*, which breaks eight things: the `#stepList` pills are built append-only and read
+positionally (with stale captured indices in their click handlers), `marksTotal` is captured
+once at L28 and written once to `#accTotal`, `#markSplit` and the marks chip are append-only,
+`page_header` has "· 8 marks" as literal text, `fitNotebook()` never re-runs after
+`renderUpTo`, and the schema's mark-sum gate validates only the full set.
+
+The enabling refactor: extract `renderStepList()` / `renderMarkSplit()` / `renderMeta()` out of
+the append-only `renderChrome` so each clears first; make every marks readout read a live
+`marksTotal`; derive the header text; call `fitNotebook()` at the end of `renderUpTo`; add a
+paired root total + superRefine. Then author the cuts — **only once a real IPE teacher confirms
+them.**

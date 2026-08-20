@@ -47,15 +47,38 @@
       <div class="step-list" id="stepList"></div>
     </div>
 
-    <div class="card accumulator">
+    <div class="card accumulator" id="accCard">
       <div class="acc-value"><span id="accValue">0</span><span class="acc-total" id="accTotal">/8</span></div>
       <div class="acc-label">marks for what is written so far</div>
       <div class="acc-bar"><div class="acc-fill" id="accFill"></div></div>
     </div>
 
+    <div class="card mode-card">
+      <div class="card-title">Mode</div>
+      <div class="mode-row" id="modeRow">
+        <button class="mode-btn" type="button" data-mode="study">Study</button>
+        <button class="mode-btn" type="button" data-mode="exam">Exam</button>
+        <button class="mode-btn" type="button" data-mode="test">Test myself</button>
+      </div>
+      <p class="mode-hint" id="modeHint"></p>
+    </div>
+
     <div class="card" id="marginNoteCard" hidden>
       <div class="card-title">How to earn it</div>
       <div class="margin-note" id="marginNote"></div>
+    </div>
+
+    <!-- Study-mode teaching layer. Rail only — the notebook page stays an answer
+         script (Rules 24/34), and anything inside .step-block would be typed and
+         would change pagination. -->
+    <div class="card" id="whyCard" hidden>
+      <div class="card-title">Why this step</div>
+      <div class="why-note" id="whyNote"></div>
+    </div>
+
+    <div class="card" id="mistakeCard" hidden>
+      <div class="card-title">Where marks are lost</div>
+      <ul class="mistake-list" id="mistakeList"></ul>
     </div>
 
     <div class="card">
@@ -65,16 +88,25 @@
 
     <div class="card verify-note" id="verifyNote" hidden></div>
 
-    <!-- Spoken-recall check. Hidden unless a recall endpoint is configured AND the
-         question has an authored rubric — with neither, the page is exactly as it
-         shipped: no mic, no network. -->
-    <section class="card recall-card" id="recallCard" hidden>
+    <!-- Assess panel — only in Test-myself mode. Two paths: write it on paper and
+         self-score, or speak it and let the recall check grade it. The mic path
+         appears only when a recall endpoint is configured, so with no endpoint the
+         paper path still works completely and the page makes zero network calls. -->
+    <section class="card assess-card" id="assessCard" hidden>
       <div class="card-title">Test yourself</div>
-      <p class="recall-intro" id="recallIntro"></p>
-      <button class="btn btn-mic" id="btnMic" type="button">
-        <span class="mic-dot"></span><span id="micLabel">Tap to speak</span>
-      </button>
+
+      <div id="assessStart">
+        <p class="assess-intro">Write this answer on paper. Or speak it if you are short of time.</p>
+        <div class="assess-timer" id="assessTimer"></div>
+        <button class="btn btn-assess" id="btnDonePaper" type="button">I am done — check my paper</button>
+        <button class="btn btn-mic" id="btnMic" type="button" hidden>
+          <span class="mic-dot"></span><span id="micLabel">Speak it instead</span>
+        </button>
+        <p class="recall-intro" id="recallIntro" hidden></p>
+      </div>
+
       <div class="recall-timer" id="recallTimer" hidden></div>
+      <div class="self-score" id="selfScore" hidden></div>
       <div class="recall-result" id="recallResult" hidden></div>
     </section>
 
