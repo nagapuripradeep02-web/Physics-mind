@@ -455,9 +455,11 @@ From the March 2026 AP paper, transcribed:
   `ts_ipe_p1_wpe_kinetic_energy_momentum` (2M in both).
 - C-26 "Mention the methods used to decrease friction." — our
   `ts_ipe_p1_lom_methods_to_decrease_friction` (4M in both).
-- "Explain the terms average velocity and instantaneous velocity. When are they equal?" — our
-  `ts_ipe_p1_mp_average_instantaneous_velocity` (TS SAQ 4M; the transcription places it in AP's
-  8M section, which is unverified — if real, it is a live cuts[] case in the other direction).
+- C-24 "Explain the terms average velocity and instantaneous velocity. When are they equal?" — our
+  `ts_ipe_p1_mp_average_instantaneous_velocity` (4M in BOTH — one transcription labelled it
+  Section D, but the numbering disproves that: A ends at 9, B at 23, so C runs 24-35 and D 36-38;
+  Q24 is a Section C 4-mark question. Every known C question — 24, 26, 27, 30, 31, 32, 35 —
+  falls inside 24-35, consistent).
 
 Both boards now draw from the same NCERT-shaped bank at different lengths — which is exactly what
 `cuts[]` + the `board` header field model. An AP edition is a re-heading + re-cutting exercise
