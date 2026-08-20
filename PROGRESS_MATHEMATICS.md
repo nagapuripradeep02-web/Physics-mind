@@ -152,10 +152,32 @@ the identical shape as before, the one failure still STATE_9 D5's known false po
 ### ⏭ NEXT
 
 1. ~~Fix the four walk findings~~ — **DONE 2026-08-20**, all four closed by authoring (see above).
-2. **The two OPEN rows from #118 are still gaps, not defects to fix here:** a fleet-wide minimum-ink
-   check, and a real label-separation gate so a camera nudge stops being provisional.
-3. **Then founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** first.
-4. **Re-baseline stays a deliberate approval:** #112 changed the norm-bar glyph and #118 every stroke
+2. **Four more rows worked, none closable by authoring — annotated with what was measured (14 OPEN):**
+   - **S8's 8 px label pair has no cheap fix, and the obvious one is wrong.** S8's pose *is* the target
+     of S5's `camera_steps` (both az −38 / el 56 / r 13), so nudging S8 alone turns the S5→S8 cut into a
+     teleport. A projection model was built and **validated against the shipped pixels** (predicts the
+     labels at x=621/653; measured 618/652), then searched over ±14° az × ±12° el: the best reachable
+     centre separation is **40.6 px against 33.1 today**, and a 12 px box gap needs ~38.5 px — so the
+     whole nudge budget buys ~2 px of margin while costing a 14° move on two states plus a re-derivation
+     of S5's camera-solve claims. Real remedies: move both poses together, or an authorable per-label
+     offset (the engine pins a vector's label at `tip + 0.3·unit(tip−origin)` with no authoring control
+     — a Rule-40 delta). Stretching the cross vector to separate the tips was **rejected**: its length is
+     on the HUD as `‖d₁×d₂‖ = 0.936`, so that authors a known defect class.
+   - **`vg_explore_state_is_a_still_picture` scope-corrected** — discharged for #9 and narrowed to
+     `vector_products_in_space`, with the ping-pong measurement as evidence, plus a warning that S9's red
+     D5 is the *other* row's false positive and must not be read as this one re-opening.
+   - **`formula_surface_states_an_identity_in_a_unit_the_hud_never_renders` checked on #9: it does not
+     reproduce.** S8's identity is the one fully verifiable on screen and evaluates **TRUE** on the
+     rendered numbers (1.685 / 0.936 = 1.8002). Recorded the adjacent weakness honestly: on S3 and S6 the
+     verifying readouts are not rendered at all, so those identities are *unfalsifiable* rather than false.
+   - **The Δ-discharge probe was RUN, and three deltas are absent, not one** — Δ1, Δ7 and Δ9 all return
+     0 hits in renderer and gate, while Δ2/Δ4/Δ5/Δ6/Δ10 are present. **That row's own negative control
+     asserts Δ1 and Δ9 are present, so it cannot pass as written.** Caveat recorded: a zero hit count
+     proves the identifier is absent, not the mechanism.
+3. **The two #118 gaps remain engine/gate work:** a fleet-wide minimum-ink check, and a real
+   label-separation gate.
+4. **Then founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** first.
+5. **Re-baseline stays a deliberate approval:** #112 changed the norm-bar glyph and #118 every stroke
    width, so any pre-fix capture differs **by design** (Rule 34e).
 
 ---
