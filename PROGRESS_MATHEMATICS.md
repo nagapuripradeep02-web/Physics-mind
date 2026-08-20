@@ -180,9 +180,23 @@ only in a commit message is the same failure one rung down.
 
 ### ⏭ NEXT — in order
 
-1. **Re-run THE EYE on all 9 states against the post-#118 branch**, and re-walk. Every legibility,
-   occlusion and collision observation before it is void; the concept has no baselines to compare
-   against, so this is a fresh capture, not a diff.
+1. ~~Re-run THE EYE on all 9 states against the post-#118 branch~~ — **DONE 2026-08-20.** Full chain:
+   `tsc` 0 · `validate:mathematics` 5/5 with **zero WARNs on target** · `check:vector-geometry-3d` **ALL
+   SECTIONS PASSED** (1 071 PASS assertions / 108 negative controls, §29's ≥2 px stroke floor among them:
+   a line now draws **3.36 px** at d=13 and **2.73 px** at d=16, against **0.118 px** pre-fix) · cache
+   re-seeded (mandatory after #118 + `fab6235`) · **THE EYE: 40 checks · 39 passed · 1 failed · 1 skip**,
+   508 s. The skip is H2 (no baseline — correct). The failure is STATE_9 D5, and it is the known false
+   positive **re-confirmed by measurement, not by assumption**: a direct pixelmatch of the 21 dense frames
+   shows **332–374 changed px on every adjacent pair**, bbox marching x[482→744] and back in a clean
+   palindrome about t=9000 — the λ ping-pong, with t=1000→2000 identical to t=19000→20000, which also
+   re-proves #113's 18 s loop. D5 fails only because the canvas ratio (0.04 %) and ink ratio (~0.32 %) are
+   both diluted by the static slider/picker/HUD chrome, exactly as
+   `visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_explore_states` (OPEN) describes —
+   the **fourth** walk to re-confirm this by hand. **STATE_4's label fix is now pixel-verified**: `d` at
+   ~(630, 268), `n` at ~(655, 289), **≈33 px apart** against a 12 px floor, matching the 35 px the
+   projection model predicted. Recorded on its row, which stays OPEN for its structural half.
+   **Still outstanding: the eye-walk** — a human/agent read of every dumped frame. THE EYE proves pixels
+   moved and reproduce; it has no opinion on whether the picture teaches.
 2. ~~File the missing rows~~ — **DONE 2026-08-20** (see the CLOSED note above). What remains from them
    is the work the two OPEN rows name: a fleet-wide minimum-ink check, and a real label-separation gate
    so STATE_4's camera nudge stops being provisional.

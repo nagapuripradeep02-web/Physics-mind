@@ -106,8 +106,13 @@ const ROWS: Row[] = [
   },
 ];
 
-/** Marker-gated annotation: the neighbouring class recurred on a different figure. */
+/** Marker-gated annotations. */
 const UPDATES = [
+  {
+    bug_class: 'label_separation_is_a_function_of_the_authored_camera_and_no_gate_recomputes_it_when_the_camera_moves',
+    marker: 'PIXEL-VERIFIED 2026-08-20',
+    note: ' PIXEL-VERIFIED 2026-08-20 — half (a) of this row is discharged, half (b) is not, so it STAYS OPEN. THE EYE was re-run on all nine states against the post-#118 branch (40 checks, 39 passed, 1 skip, 1 known-false-positive failure), and STATE_4\'s frozen frame was measured directly: the d label centres near (630, 268) and the n label near (655, 289), a separation of about 33px, against the 12px floor this row\'s probe specifies. They read as two distinct glyph clusters, not one. That is consistent with the 35px the projection model predicted, so the computed fix is now confirmed from pixels rather than asserted. What remains OPEN is the structural half: the remedy is still a camera VALUE with no gate behind it, so the separation re-breaks silently on the next camera edit, and nothing recomputes it. Closing this row needs the projected label-separation check in the probe, not another measurement.',
+  },
   {
     bug_class: 'skeleton_cites_two_contradictory_values_for_one_measured_event_in_the_same_document',
     marker: 'CLASS RECURRED 2026-08-10',
