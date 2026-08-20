@@ -100,6 +100,15 @@ body {
   text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 10px;
 }
 
+/* Question picker — a select, not pills: a full unit is 18 questions and the
+   rail cannot hold 18 buttons. Text is truncated by the select itself. */
+.q-pick {
+  width: 100%; font: inherit; font-size: 13px; color: var(--chrome-ink);
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 9px; padding: 8px 9px; cursor: pointer;
+}
+.q-pick:hover { border-color: var(--accent); }
+
 /* Cut switch — the same question at two lengths. Two equal segments, because
    neither length is the "real" one: which is right depends on the paper. */
 .cut-switch { display: flex; gap: 6px; }

@@ -169,6 +169,12 @@ const cutSchema = z.object({
     marks_total: z.number().int().positive(),
     paper_section: z.string().min(1),
     expected_time_min: z.number().int().positive(),
+    /**
+     * The paper does not ask the same words at both lengths — the 8-mark form asks
+     * for the trajectory AND the results, the 4-mark form asks only for the results.
+     * Omit to reuse the question's own text.
+     */
+    question_text: z.string().min(1).optional(),
     mark_split: z.array(z.object({ label: z.string().min(1), marks: z.number().int().positive() })),
     /** step_id -> override. A step id NOT present here does not appear in this cut. */
     steps: z.record(z.string(), cutStepSchema),

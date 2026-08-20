@@ -43,6 +43,13 @@
 <main class="layout">
 
   <aside class="rail">
+    <!-- Question picker: the build inlines the whole unit. Hidden by the engine
+         when the build holds a single question. -->
+    <div class="card q-card" id="qCard" hidden>
+      <div class="card-title">Question</div>
+      <select class="q-pick" id="qPick" aria-label="Choose a question"></select>
+    </div>
+
     <!-- Cut switch: the same question answered at two lengths. Hidden by the
          engine when the question declares fewer than two cuts. -->
     <div class="card cut-card" id="cutCard">

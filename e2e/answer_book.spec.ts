@@ -58,36 +58,49 @@ test('jump via the rail reproduces the identical pagination', async ({ page }) =
     await page.goto(URL);
     await page.waitForSelector('.page');
 
-    const tapped = await page.evaluate(async () => {
-        const pm = (window as any).PM_ANSWER;
-        pm.revealAll();
-        return { pages: pm.getState().pageCount, marks: pm.getState().marksEarned };
+    // Pick a mid-list step from the ACTIVE question. A literal step id broke the
+    // moment a second question was authored and became PM_QUESTIONS[0].
+    const target = await page.evaluate(() => {
+        const steps = (window as any).PM_ANSWER.question.answer.steps as any[];
+        return steps[steps.length - 3].id;   // late enough to be past a page break
     });
 
-    const jumped = await page.evaluate(async () => {
+    // Which PAGE the target step lands on. Comparing total pageCount instead was
+    // wrong: tapping to the end renders more steps than jumping to the middle, so
+    // the totals legitimately differ and the old literal only matched by luck.
+    // What must hold is that a step lands on the SAME page either way.
+    const pageOf = (id: string) => page.evaluate((stepId) => {
+        const bodies = [...document.querySelectorAll('.page-body')];
+        return bodies.findIndex((b) => b.querySelector(`[data-step-id="${stepId}"]`) !== null);
+    }, id);
+
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForTimeout(400);
+    const tappedPage = await pageOf(target);
+
+    const jumped = await page.evaluate(async (id) => {
         const pm = (window as any).PM_ANSWER;
-        pm.goToStep('s6_direction');
+        pm.goToStep(id);
         // goToStep animates the last step — finish it instantly
         pm.revealNext();
         await new Promise((r) => setTimeout(r, 400));
         return pm.getState();
-    });
+    }, target);
+    const jumpedPage = await pageOf(target);
 
-    // Sum the AUTHORED marks up to and including s6 rather than writing a literal:
-    // the mark split is a claim pending teacher verification and has already been
-    // revised once (LAQ/8 -> SAQ/4). A literal turns a legitimate re-split into a
-    // false failure and tells you nothing about pagination, which is what this
-    // test is actually for.
-    const expected = await page.evaluate(() => {
+    // Marks are summed from the AUTHORED steps, never written as a literal: the
+    // split is a claim pending teacher verification and has been revised once
+    // already, and a literal would report that revision as a pagination failure.
+    const expected = await page.evaluate((id) => {
         const steps = (window as any).PM_ANSWER.question.answer.steps as any[];
-        const upto = steps.findIndex((s) => s.id === 's6_direction');
+        const upto = steps.findIndex((s: any) => s.id === id);
         return steps.slice(0, upto + 1).reduce((a, s) => a + s.marks, 0);
-    });
+    }, target);
 
-    expect(jumped.stepId).toBe('s6_direction');
+    expect(jumped.stepId).toBe(target);
     expect(jumped.marksEarned).toBe(expected);
-    // page break must land in the same place either way
-    expect(jumped.pageCount).toBe(tapped.pages);
+    expect(tappedPage).toBeGreaterThanOrEqual(0);
+    expect(jumpedPage).toBe(tappedPage);   // same page break either way
 });
 
 test('mobile viewport scales without horizontal scroll', async ({ page }) => {
@@ -253,6 +266,8 @@ test('switching cut changes the answer, the marks and the header together', asyn
 
     const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
     test.skip(cuts.length < 2, 'question declares a single cut');
+    const cutSplitRows = await page.evaluate(
+        () => ((window as any).PM_ANSWER.question.cuts ?? []).map((c: any) => c.mark_split.length));
 
     const read = () => page.evaluate(() => ({
         state: (window as any).PM_ANSWER.getState(),
@@ -285,7 +300,7 @@ test('switching cut changes the answer, the marks and the header together', asyn
 
     // chrome CLEARS rather than appends — the old bug stacked these
     expect(second.chips).toBe(first.chips);
-    expect(second.split).toBe(cuts[1].marks_total === 4 ? 4 : second.split);
+    expect(second.split).toBe(cutSplitRows[1]);   // rows follow the cut, not the marks
 
     // and the reduced cut still totals exactly its own marks
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
@@ -365,7 +380,14 @@ test('the modes and the rail teaching cards are gone', async ({ page }) => {
     expect(r.modeCard).toBe(false);
     expect(r.why).toBe(false);
     expect(r.mistakes).toBe(false);
-    expect(r.railTitles).toEqual(['How much to write', 'Answer plan', 'How to earn it', 'Mark split']);
+    // The Question card only exists in a multi-question build, so assert the
+    // stable core is present and in order rather than pinning the whole array.
+    expect(r.railTitles).toContain('Answer plan');
+    expect(r.railTitles).toContain('How to earn it');
+    expect(r.railTitles).toContain('Mark split');
+    expect(r.railTitles.indexOf('Answer plan')).toBeLessThan(r.railTitles.indexOf('Mark split'));
+    expect(r.railTitles).not.toContain('Study');       // the three-mode toggle is gone
+    expect(r.railTitles).not.toContain('Why this step');
     expect(r.testEntryInTopBar).toBe(true);   // the entry lives top-right now
 });
 

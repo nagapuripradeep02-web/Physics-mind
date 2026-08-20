@@ -22,8 +22,16 @@
   var ELEMENT_GAP_MS = 110;       // pause between figure strokes/labels
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var question = (window.PM_QUESTIONS || [])[0];
-  if (!question) { document.body.textContent = 'No question data in this build.'; return; }
+  // ═══ questions ═══════════════════════════════════════════════════════════
+  // The build inlines the whole unit, and the page rendered PM_QUESTIONS[0] only
+  // — so authoring a second question silently HID the first. A picker appears as
+  // soon as there is more than one; switching is the same re-render a cut switch
+  // does, which is the only reason this is a few lines rather than a rewrite.
+
+  var questions = window.PM_QUESTIONS || [];
+  if (!questions.length) { document.body.textContent = 'No question data in this build.'; return; }
+  var qIndex = 0;
+  var question = questions[0];
 
   // ═══ cuts — the same answer at two lengths ═══════════════════════════════
   // A cut SELECTS from the one authored step list; it never holds a second copy
@@ -33,19 +41,21 @@
   // With no `cuts` in the data the synthesised single cut reproduces the old
   // behaviour exactly, so every existing question keeps working untouched.
 
-  var cuts = question.cuts && question.cuts.length ? question.cuts : [{
-    key: 'full', label: 'Full answer', qtype: question.qtype,
-    marks_total: question.marks_total, paper_section: question.paper_section,
-    expected_time_min: question.expected_time_min, mark_split: question.mark_split,
-    steps: question.answer.steps.reduce(function (acc, s) {
-      acc[s.id] = { marks: s.marks }; return acc;
-    }, {}),
-    needs_teacher_verification:
-      !!(question.verification && question.verification.needs_teacher_verification)
-  }];
+  var cuts, cutIndex = 0, cut, steps, marksTotal;
 
-  var cutIndex = 0;
-  var cut, steps, marksTotal;
+  function loadCuts() {
+    cuts = question.cuts && question.cuts.length ? question.cuts : [{
+      key: 'full', label: 'Full answer', qtype: question.qtype,
+      marks_total: question.marks_total, paper_section: question.paper_section,
+      expected_time_min: question.expected_time_min, mark_split: question.mark_split,
+      steps: question.answer.steps.reduce(function (acc, s) {
+        acc[s.id] = { marks: s.marks }; return acc;
+      }, {}),
+      needs_teacher_verification:
+        !!(question.verification && question.verification.needs_teacher_verification)
+    }];
+  }
+  loadCuts();
 
   /** Project the authored steps through the active cut. Authored ORDER always wins. */
   function applyCut(i) {
@@ -191,7 +201,10 @@
 
   function renderChrome() {
     $('boardLabel').textContent = question.board_label;
-    $('questionText').textContent = 'Q. ' + question.question_text;
+    // The wording follows the cut: the paper asks for the trajectory AND the
+    // results at 8 marks, and only the results at 4.
+    $('questionText').textContent = 'Q. ' + (cut.question_text || question.question_text);
+    renderQuestionPick();
     renderCutSwitch();
     renderMeta();
     renderMarkSplit();
@@ -205,6 +218,34 @@
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();          // photo/mic are only honest on the default cut
+  }
+
+  function renderQuestionPick() {
+    var card = $('qCard');
+    if (questions.length < 2) { card.hidden = true; return; }
+    card.hidden = false;
+    var sel = $('qPick');
+    sel.innerHTML = '';
+    questions.forEach(function (q, i) {
+      var o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = (i + 1) + '. ' + q.question_text;
+      o.selected = i === qIndex;
+      sel.appendChild(o);
+    });
+  }
+
+  /** Same re-render as a cut switch, one level up. */
+  function switchQuestion(i) {
+    if (i === qIndex || !questions[i]) return;
+    qIndex = i;
+    question = questions[i];
+    loadCuts();
+    applyCut(0);
+    document.querySelector('.notebook-col').setAttribute('data-question-id', question.question_id);
+    renderChrome();
+    renderUpTo(-1, false);
+    initTestPaths();
   }
 
   function updateChrome() {
@@ -681,6 +722,7 @@
 
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
+  $('qPick').addEventListener('change', function () { switchQuestion(Number(this.value)); });
   $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
   $('btnPrint').addEventListener('click', function () {
     if (!completed) renderUpTo(steps.length - 1, false);
