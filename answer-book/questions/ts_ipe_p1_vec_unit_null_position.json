@@ -1,0 +1,460 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_unit_null_position",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define unit vector, null vector and position vector.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Unit vector",
+      "marks": 1
+    },
+    {
+      "label": "Null vector",
+      "marks": 1
+    },
+    {
+      "label": "Position vector",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), SHORT ANSWER ***3 of Unit 4, three-star. SHIPS WITH ONE CUT ON PURPOSE: three definitions are a 4-mark answer and nothing else. Padding them to an 8-mark LAQ would teach a student to write twice what the question pays for, which is the opposite of what this book is for — and TS IPE Section C is drawn from the long derivations, not from definitions. The engine hides the length switch by itself when a question declares a single cut. The 1/1/2 split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit_vector",
+        "kind": "equation",
+        "label": "Unit vector",
+        "marks": 1,
+        "mark_note": "Unit vector",
+        "lines": [
+          {
+            "text": "Unit vector:",
+            "style": "heading"
+          },
+          "A vector whose magnitude is one unit",
+          "is called a unit vector.",
+          "It fixes only the direction.",
+          {
+            "text": "Â = A / |A|",
+            "style": "eq"
+          },
+          "The unit vectors along the x, y and z",
+          "axes are written i, j and k."
+        ],
+        "margin_note": "Write the formula, not only the sentence. \"Magnitude one\" and Â = A/|A| are what the examiner ticks.",
+        "why": "A vector carries a size and a direction together. Dividing by its own magnitude strips the size away and leaves the direction alone, which is the only thing a unit vector is for.",
+        "common_mistakes": [
+          "Saying a unit vector has magnitude one unit of the same quantity — it has no unit at all.",
+          "Writing Â = A without the magnitude in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a unit vector has magnitude one and is A divided by the magnitude of A.",
+          "accept": [
+            "a vector of magnitude one is a unit vector",
+            "unit vector is A by mod A",
+            "it gives only the direction",
+            "magnitude one unnadi, direction matrame cheptundi",
+            "A cap equals A by magnitude of A"
+          ],
+          "reject": [
+            "a vector of zero magnitude",
+            "drawn from the origin to the point"
+          ],
+          "heard_as": [
+            "unit vector",
+            "a cap",
+            "a hat",
+            "i cap j cap k cap",
+            "mod A"
+          ]
+        }
+      },
+      {
+        "id": "s2_null_vector",
+        "kind": "equation",
+        "label": "Null vector",
+        "marks": 1,
+        "mark_note": "Null vector",
+        "lines": [
+          {
+            "text": "Null vector:",
+            "style": "heading"
+          },
+          "A vector whose magnitude is zero is",
+          "called a null vector or zero vector.",
+          "Its direction is not defined.",
+          {
+            "text": "A + (−A) = 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say that the direction is not defined. That sentence is what separates a null vector from an ordinary one.",
+        "why": "Adding a vector to its own negative has to give something, and that something cannot point anywhere. The null vector is what keeps vector addition closed.",
+        "common_mistakes": [
+          "Saying the direction is zero — a direction cannot be zero, it is undefined.",
+          "Writing the answer as the number 0 instead of the zero vector."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a null vector has zero magnitude and an undefined direction.",
+          "accept": [
+            "a vector whose magnitude is zero",
+            "null vector, zero magnitude, direction not defined",
+            "A plus minus A gives the null vector",
+            "zero vector ani kuda antaru",
+            "its direction is arbitrary or undefined"
+          ],
+          "reject": [
+            "magnitude one unit",
+            "from the origin to the point P"
+          ],
+          "heard_as": [
+            "null vector",
+            "zero vector",
+            "nal vector",
+            "no vector"
+          ]
+        }
+      },
+      {
+        "id": "s3_position_vector",
+        "kind": "text",
+        "label": "Position vector",
+        "marks": 1,
+        "mark_note": "Position vector",
+        "lines": [
+          {
+            "text": "Position vector:",
+            "style": "heading"
+          },
+          "The vector drawn from the origin O to",
+          "a point P gives the position of P.",
+          "It is called the position vector of P."
+        ],
+        "margin_note": "Name the origin. A position vector means nothing until you say what it is measured from.",
+        "why": "A point on its own has no direction or distance attached to it. Joining it to a chosen origin turns a location into a vector you can add and resolve.",
+        "common_mistakes": [
+          "Leaving out the origin, which makes the vector meaningless.",
+          "Confusing it with displacement, which joins two points, not the origin and a point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the position vector is drawn from the origin to the point.",
+          "accept": [
+            "drawn from the origin to the point",
+            "position vector of P is O P",
+            "it gives the position of the particle from the origin",
+            "origin nunchi point varaku",
+            "the vector joining the origin and the point"
+          ],
+          "reject": [
+            "magnitude is zero",
+            "magnitude is one unit"
+          ],
+          "heard_as": [
+            "position vector",
+            "O P",
+            "from the origin"
+          ]
+        }
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Sketch (extra)",
+        "marks": 0,
+        "figure": {
+          "id": "fig_position_vector",
+          "width": 440,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_z",
+              "d": "M 140 215 L 140 55",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z_head",
+              "d": "M 134 65 L 140 55 L 146 65",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_z",
+              "x": 132,
+              "y": 44,
+              "text": "z",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 140 215 L 392 215",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y_head",
+              "d": "M 382 209 L 392 215 L 382 221",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 398,
+              "y": 220,
+              "text": "y",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 140 215 L 58 282",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 70 279 L 58 282 L 63 271",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 44,
+              "y": 296,
+              "text": "x",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 124,
+              "y": 232,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "r_vec",
+              "d": "M 140 215 L 244 143",
+              "ms": 620,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "r_head",
+              "d": "M 236 155 L 244 143 L 230 146",
+              "ms": 120,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 176,
+              "y": 166,
+              "text": "r",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 250,
+              "y": 133,
+              "text": "P (x, y, z)",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "drop_pf",
+              "d": "M 244 143 L 244 253",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "fa",
+              "d": "M 244 253 L 290 215",
+              "ms": 320,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "fb",
+              "d": "M 244 253 L 94 253",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 248,
+              "y": 271,
+              "text": "F",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 294,
+              "y": 208,
+              "text": "A",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 84,
+              "y": 270,
+              "text": "B",
+              "ms": 180,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Not marked on a definitions question. A twenty-second sketch — draw it only if the words are already down.",
+        "why": "The three coordinates are hard to picture from the formula alone. Dropping P to the plane at F and then to the axes is what shows where x, y and z each come from.",
+        "common_mistakes": [
+          "Spending exam time on a careful 3-D box for a question that marks the words, not the picture."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a sketch is drawn. Naming it is full credit.",
+          "accept": [
+            "then a small figure",
+            "draw the axes and the point P",
+            "sketch geestha",
+            "I draw the position vector diagram",
+            "a rough diagram of the three axes"
+          ],
+          "reject": [
+            "position vector is drawn from the origin"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "sketch",
+            "draw"
+          ]
+        }
+      },
+      {
+        "id": "s5_position_components",
+        "kind": "boxed_final",
+        "label": "In component form",
+        "marks": 1,
+        "mark_note": "Components",
+        "lines": [
+          "If P has coordinates (x, y, z), then",
+          {
+            "text": "OP = r = x i + y j + z k",
+            "style": "eq"
+          },
+          {
+            "text": "|r| = √(x² + y² + z²)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Box the magnitude. Put the caps on i, j and k by hand — they are unit vectors, not numbers.",
+        "why": "Writing the position vector in components is what lets you actually compute with it — the magnitude then follows straight from Pythagoras in three dimensions.",
+        "common_mistakes": [
+          "Leaving out the unit vectors and writing r = x + y + z.",
+          "Forgetting the square root in the magnitude."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = x i + y j + z k and |r| = root of (x² + y² + z²).",
+          "accept": [
+            "r equals x i cap plus y j cap plus z k cap",
+            "magnitude is root x squared plus y squared plus z squared",
+            "in component form with i j and k",
+            "components lo raastha",
+            "the magnitude comes from Pythagoras"
+          ],
+          "reject": [
+            "a vector of magnitude one",
+            "magnitude zero and no direction"
+          ],
+          "heard_as": [
+            "x i cap",
+            "i cap j cap k cap",
+            "root of x squared",
+            "mod r"
+          ]
+        }
+      },
+      {
+        "id": "s6_notes",
+        "kind": "text",
+        "label": "Notes (extra)",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Note:",
+            "style": "heading"
+          },
+          "A unit vector has no units of its own.",
+          "Any vector can be written as A = |A| Â.",
+          "The position vector changes if the",
+          "origin is moved."
+        ],
+        "margin_note": "Not asked. Write it only if time is left.",
+        "why": "Each line here is a very short question in its own right, and the last one is the usual trap: the point does not move, but its position vector does.",
+        "common_mistakes": [
+          "Thinking the position vector is a property of the point alone."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the extra notes are mentioned. Naming them is full credit.",
+          "accept": [
+            "then the notes",
+            "and some extra points",
+            "a unit vector has no units",
+            "notes cheptha",
+            "finally the special points"
+          ],
+          "reject": [
+            "position vector is from the origin to the point"
+          ],
+          "heard_as": [
+            "notes",
+            "extra",
+            "no units"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -615,6 +615,13 @@
 
     if (!animate || REDUCED) {
       block.style.visibility = '';
+      // A figure placed INSTANTLY still has to be put into its finished state.
+      // Pencil strokes are revealed by a clip-rect wipe and the rect is built
+      // zero-sized along the wipe axis, so skipping this leaves every dashed
+      // construction line invisible — on revealAll, on a rail jump, and on the
+      // PRINTED page, which renders the whole answer instantly. armFigure first
+      // because it is what measures _bb, which finishFigure then reads.
+      if (figWrap) { armFigure(figWrap); finishFigure(figWrap); }
       complete();
       return;
     }

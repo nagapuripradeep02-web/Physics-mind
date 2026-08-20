@@ -339,6 +339,39 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
     expect(st.stepId).toBe(ids[ids.length - 1]);
 });
 
+test('construction lines survive an instant placement, in every question', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
+
+    // Pencil strokes reveal through a clip rect that starts zero-sized along the
+    // wipe axis. revealAll(), a rail jump and PRINT all place steps instantly, so
+    // if the instant path does not finish the figure every dashed construction
+    // line silently disappears — invisible to every other gate, because the path
+    // element is still there, still "visible", just clipped to nothing.
+    for (let q = 0; q < count; q++) {
+        await page.evaluate((i) => {
+            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
+            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+        }, q);
+        await page.waitForTimeout(250);
+        await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+        await page.waitForTimeout(500);
+
+        const collapsed = await page.evaluate(() => {
+            const bad: string[] = [];
+            document.querySelectorAll('.step-block clipPath rect').forEach((r) => {
+                const w = parseFloat(r.getAttribute('width') || '0');
+                const h = parseFloat(r.getAttribute('height') || '0');
+                if (w <= 0 || h <= 0) bad.push(`${r.parentElement?.getAttribute('id')} ${w}x${h}`);
+            });
+            return bad;
+        });
+        const id = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
+        expect(collapsed, `${id} has clipped-away construction lines`).toEqual([]);
+    }
+});
+
 test('no written line wraps past its own height, in either cut', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
