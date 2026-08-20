@@ -176,7 +176,27 @@ the identical shape as before, the one failure still STATE_9 D5's known false po
      proves the identifier is absent, not the mechanism.
 3. **The two #118 gaps remain engine/gate work:** a fleet-wide minimum-ink check, and a real
    label-separation gate.
-4. **Then founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** first.
+4. **Checkpoint B — ATTEMPTED 2026-08-20, BLOCKED. Its Pass-3 artifact now exists; the gate itself
+   cannot run from this session.**
+   - **Built the missing input.** CP-B's Pass 3 reads a `.founder_runs/<id>/<ts>/` live-drive dump and
+     none existed for #9. Built the review page, served it, and ran `founder:drive`:
+     **9 states · 27 shots · 11 drags · 0 collisions · 0 flags · 0 console errors**, motion probe
+     `bytesEqual: false`. **All 11 drags moved and NONE reverted** — every slider is live and seizes,
+     including the S1/S2/S6 rows the §2b `show_sliders` fix added, and all four of S9's group-A knobs.
+     Recorded here because `.founder_runs/` is gitignored and the dump does not survive the branch.
+     *(This is the pass that caught what every deterministic gate missed on the fourth concept.)*
+   - **Blocker 1 — the agent is not loadable.** `founder-proxy` (and `quality-auditor`, `eye-walker`)
+     live in `physics-mind/.claude/agents/`, but a session started in the **`Viditra` parent folder**
+     loads zero project agents. CP-B must be dispatched from a session opened in `physics-mind/`.
+   - **Blocker 2 — two entry conditions are stale, independently of the agent.** CP-B's contract is
+     *"after quality_auditor PASS + eye_walker's verdict table + the founder_drive dump"*.
+     `quality_auditor`'s last verdict was **FAIL** (the pass-3 audit); its findings were fixed by #118
+     and `fab6235`, but **no PASS has been recorded since**. And `eye_walker`'s 4th-walk CLEAN verdict
+     **predates #118**, so it certifies hairline pixels — void by exactly the logic that voided
+     everything else. Both need re-running before B, and both are agent dispatches too.
+   - **Not faked.** A CP-B run by the session that authored the fixes, without the reject-biased
+     Opus-pinned role and its 3-cycle budget, would be worthless — the role's whole value is
+     independence from the session under review. PR **#96 must not merge** before a real one.
 5. **Re-baseline stays a deliberate approval:** #112 changed the norm-bar glyph and #118 every stroke
    width, so any pre-fix capture differs **by design** (Rule 34e).
 
