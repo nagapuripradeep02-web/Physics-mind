@@ -1343,7 +1343,12 @@
 
   window.PM_ANSWER = Object.freeze({
     version: 1,
-    question: question,
+    // A GETTER, not a captured value. `question` is reassigned by
+    // switchQuestion, and a plain property froze the boot-time question — so
+    // after a switch this seam kept describing the previous one. Object.freeze
+    // stops the accessor being redefined; it does not stop it being read.
+    get question() { return question; },
+    get questionIds() { return questions.map(function (q) { return q.question_id; }); },
     getState: function () {
       return {
         stepIndex: stepIndex,

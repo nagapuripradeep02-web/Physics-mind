@@ -255,6 +255,29 @@ test('the paper section and marks agree across header, chip and mark split', asy
     expect(r.header).toContain(r.qtype === 'LAQ' ? 'Section C' : 'Section B');
 });
 
+/**
+ * Select the first question in the build that offers more than one cut.
+ *
+ * These tests used to `test.skip` when PM_QUESTIONS[0] had a single cut — and
+ * that is exactly what happened the moment a one-cut question sorted to the
+ * front: two cut tests reported as skipped, which reads as green. A skipped
+ * check is not a pass. Now they go and FIND a multi-cut question, and only skip
+ * if the build genuinely has none.
+ */
+async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
+    const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
+    for (let i = 0; i < count; i++) {
+        await page.evaluate((n: number) => {
+            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
+            if (sel) { sel.value = String(n); sel.dispatchEvent(new Event('change')); }
+        }, i);
+        await page.waitForTimeout(250);
+        const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
+        if (cuts.length >= 2) return cuts;
+    }
+    return null;
+}
+
 // ── cuts: the same question at two lengths ──────────────────────────────────
 // The chrome used to be append-only, so a second render stacked duplicates and
 // the step pills kept click handlers closed over the previous step set. These
@@ -264,8 +287,8 @@ test('switching cut changes the answer, the marks and the header together', asyn
     await page.goto(URL);
     await page.waitForSelector('.page');
 
-    const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
-    test.skip(cuts.length < 2, 'question declares a single cut');
+    const cuts = await selectMultiCutQuestion(page);
+    test.skip(cuts === null, 'no question in this build declares more than one cut');
     const cutSplitRows = await page.evaluate(
         () => ((window as any).PM_ANSWER.question.cuts ?? []).map((c: any) => c.mark_split.length));
 
@@ -280,23 +303,23 @@ test('switching cut changes the answer, the marks and the header together', asyn
     }));
 
     const first = await read();
-    expect(first.state.cutKey).toBe(cuts[0].key);
+    expect(first.state.cutKey).toBe(cuts![0].key);
     expect(first.pills).toBe(first.state.stepIds.length);
-    expect(first.accTotal).toBe('/' + cuts[0].marks_total);
-    expect(first.header).toContain(`${cuts[0].marks_total} marks`);
+    expect(first.accTotal).toBe('/' + cuts![0].marks_total);
+    expect(first.header).toContain(`${cuts![0].marks_total} marks`);
 
     await page.click('#cutSwitch .cut-btn:nth-child(2)');
     await page.waitForTimeout(300);
     const second = await read();
 
     // the shorter cut really is shorter, and every readout followed it
-    expect(second.state.cutKey).toBe(cuts[1].key);
-    expect(second.state.marksTotal).toBe(cuts[1].marks_total);
+    expect(second.state.cutKey).toBe(cuts![1].key);
+    expect(second.state.marksTotal).toBe(cuts![1].marks_total);
     expect(second.state.stepIds.length).toBeLessThan(first.state.stepIds.length);
     expect(second.pills).toBe(second.state.stepIds.length);
-    expect(second.accTotal).toBe('/' + cuts[1].marks_total);
-    expect(second.header).toContain(`${cuts[1].marks_total} marks`);
-    expect(second.header).not.toContain(`${cuts[0].marks_total} marks`);
+    expect(second.accTotal).toBe('/' + cuts![1].marks_total);
+    expect(second.header).toContain(`${cuts![1].marks_total} marks`);
+    expect(second.header).not.toContain(`${cuts![0].marks_total} marks`);
 
     // chrome CLEARS rather than appends — the old bug stacked these
     expect(second.chips).toBe(first.chips);
@@ -306,7 +329,7 @@ test('switching cut changes the answer, the marks and the header together', asyn
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
     await page.waitForTimeout(400);
     const done = await page.evaluate(() => (window as any).PM_ANSWER.getState());
-    expect(done.marksEarned).toBe(cuts[1].marks_total);
+    expect(done.marksEarned).toBe(cuts![1].marks_total);
 
     // switching back restores the full answer without duplicating anything
     await page.click('#cutSwitch .cut-btn:nth-child(1)');
@@ -321,8 +344,8 @@ test('switching cut changes the answer, the marks and the header together', asyn
 test('a step pill jumps to the right step after a cut switch', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
-    const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
-    test.skip(cuts.length < 2, 'question declares a single cut');
+    const cuts = await selectMultiCutQuestion(page);
+    test.skip(cuts === null, 'no question in this build declares more than one cut');
 
     await page.click('#cutSwitch .cut-btn:nth-child(2)');
     await page.waitForTimeout(300);
@@ -370,6 +393,32 @@ test('construction lines survive an instant placement, in every question', async
         const id = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
         expect(collapsed, `${id} has clipped-away construction lines`).toEqual([]);
     }
+});
+
+test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
+    test.skip(count < 2, 'single-question build');
+
+    // PM_ANSWER.question was a CAPTURED value on a frozen object, so after a
+    // switch this seam still described the boot-time question — silently, and
+    // it is the documented hook for the AI layer. It must be a live read.
+    const before = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
+    await page.evaluate(() => {
+        const sel = document.getElementById('qPick') as HTMLSelectElement;
+        sel.value = '1'; sel.dispatchEvent(new Event('change'));
+    });
+    await page.waitForTimeout(400);
+    const after = await page.evaluate(() => ({
+        seam: (window as any).PM_ANSWER.question.question_id,
+        dom: document.querySelector('.notebook-col')!.getAttribute('data-question-id'),
+        text: document.getElementById('questionText')!.textContent,
+    }));
+
+    expect(after.seam).not.toBe(before);
+    expect(after.seam).toBe(after.dom);                       // seam agrees with the DOM
+    expect(after.text).toContain('Q.');
 });
 
 test('every cut of every question totals exactly its own marks', async ({ page }) => {

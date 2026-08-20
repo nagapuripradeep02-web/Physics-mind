@@ -1,0 +1,408 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_projectile_at_45",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that for a projectile launched at an angle of 45°, the maximum height is one quarter of the range.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two standard results",
+      "marks": 1
+    },
+    {
+      "label": "Maximum height at 45°",
+      "marks": 1
+    },
+    {
+      "label": "Range at 45°",
+      "marks": 1
+    },
+    {
+      "label": "Comparing them",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), SHORT ANSWER **5 of Unit 4, two-star. ITS OWN FILE, NOT A CUT of the projectile question: a cut can only SELECT from steps that are already authored, and this answer needs new ones — substituting 45° into each result. It quotes H and R rather than deriving them, which is what the book does and what the question asks. SHIPS WITH ONE CUT: there is no 8-mark form of a substitution proof. The 1/1/1/1 split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_results",
+        "kind": "equation",
+        "label": "The two results",
+        "marks": 1,
+        "mark_note": "Formulae",
+        "lines": [
+          "For a projectile thrown with speed u at",
+          "an angle θ, the standard results are",
+          {
+            "text": "H = u² sin²θ / 2g",
+            "style": "eq"
+          },
+          {
+            "text": "R = u² sin 2θ / g",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Quote both formulae before substituting. The examiner wants to see what you are starting from.",
+        "why": "This question does not ask you to derive anything. It asks you to put one value of θ into two results you already know, so writing them down correctly is most of the work.",
+        "common_mistakes": [
+          "Writing sin θ instead of sin²θ in the height.",
+          "Writing sin θ instead of sin 2θ in the range."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two standard results H = u² sin²θ / 2g and R = u² sin 2θ / g are the starting point.",
+          "accept": [
+            "start with the height and range formulas",
+            "H is u squared sin squared theta by two g",
+            "R is u squared sin two theta by g",
+            "rendu formulas raastha",
+            "write down the maximum height and range expressions"
+          ],
+          "reject": [
+            "put theta equals forty five degrees",
+            "so H is R by four"
+          ],
+          "heard_as": [
+            "sin squared theta",
+            "sin two theta",
+            "height and range formulas"
+          ]
+        }
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch (extra)",
+        "marks": 0,
+        "figure": {
+          "id": "fig_projectile_45",
+          "width": 470,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 55 250 L 425 250",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 415 244 L 425 250 L 415 256",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 431,
+              "y": 268,
+              "text": "x",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 52,
+              "y": 270,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "path",
+              "d": "M 70 250 Q 230 90 390 250",
+              "ms": 860,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 394,
+              "y": 270,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "u_vec",
+              "d": "M 70 250 L 130 190",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "u_head",
+              "d": "M 125 203 L 130 190 L 117 195",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_u",
+              "x": 92,
+              "y": 196,
+              "text": "u",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "arc_45",
+              "d": "M 114 250 A 44 44 0 0 0 101 219",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_45",
+              "x": 118,
+              "y": 236,
+              "text": "45°",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "apex_drop",
+              "d": "M 230 170 L 230 250",
+              "ms": 360,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 233,
+              "y": 160,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 238,
+              "y": 214,
+              "text": "H",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "range_line",
+              "d": "M 70 282 L 390 282",
+              "ms": 480,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "range_head_l",
+              "d": "M 80 276 L 70 282 L 80 288",
+              "ms": 110,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "range_head_r",
+              "d": "M 380 276 L 390 282 L 380 288",
+              "ms": 110,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 222,
+              "y": 302,
+              "text": "R",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "Not marked. This figure is drawn to scale — measure H and R on it and the ratio really is one to four.",
+        "why": "The answer is a ratio, so a picture drawn to scale lets you check it by eye before you trust the algebra. At 45° the path is much flatter than students expect.",
+        "common_mistakes": [
+          "Sketching a tall narrow arch, which makes H look bigger than R/4 and hides the result."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a sketch is drawn. Naming it is full credit.",
+          "accept": [
+            "a small figure",
+            "draw the path at forty five degrees",
+            "sketch geestha",
+            "I draw the parabola with H and R marked",
+            "then the diagram"
+          ],
+          "reject": [
+            "maximum height is u squared by four g"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "sketch",
+            "draw"
+          ]
+        }
+      },
+      {
+        "id": "s3_height_45",
+        "kind": "equation",
+        "label": "Height at 45°",
+        "marks": 1,
+        "mark_note": "Height",
+        "lines": [
+          "Put θ = 45° in the height:",
+          {
+            "text": "H = u² sin²45° / 2g",
+            "style": "eq"
+          },
+          {
+            "text": "sin 45° = 1/√2,  so  sin²45° = 1/2",
+            "style": "eq"
+          },
+          {
+            "text": "H = u² / 4g          … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Show the sin²45° = 1/2 line. Jumping straight to u²/4g loses the working mark.",
+        "why": "Squaring 1/√2 to get 1/2 is the only real step here, and it is where the 4 in the final answer comes from.",
+        "common_mistakes": [
+          "Using sin 45° = 1/2 instead of 1/√2.",
+          "Forgetting to square, which gives u²/(2√2 g)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting 45° into H gives u² / 4g.",
+          "accept": [
+            "put forty five in the height formula",
+            "sin forty five squared is half",
+            "height becomes u squared by four g",
+            "H lo forty five pedatha",
+            "H equals u squared over four g"
+          ],
+          "reject": [
+            "range becomes u squared by g",
+            "so H is R by four"
+          ],
+          "heard_as": [
+            "sin forty five",
+            "one by root two",
+            "u squared by four g"
+          ]
+        }
+      },
+      {
+        "id": "s4_range_45",
+        "kind": "equation",
+        "label": "Range at 45°",
+        "marks": 1,
+        "mark_note": "Range",
+        "lines": [
+          "Put θ = 45° in the range:",
+          {
+            "text": "R = u² sin (2 × 45°) / g",
+            "style": "eq"
+          },
+          {
+            "text": "sin 90° = 1,  so  R = u² / g   … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The angle inside the sine is 2θ, so it becomes 90°, not 45°.",
+        "why": "This is why 45° gives the greatest range: sin 2θ reaches its largest value, 1, exactly when 2θ is 90°.",
+        "common_mistakes": [
+          "Writing sin 45° instead of sin 90° in the range.",
+          "Leaving the answer as u² sin 90° / g without evaluating it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting 45° into R gives u² / g, because sin 90° = 1.",
+          "accept": [
+            "two theta becomes ninety degrees",
+            "sin ninety is one so range is u squared by g",
+            "put forty five in the range formula",
+            "R lo pedithe u square by g",
+            "range becomes u squared over g"
+          ],
+          "reject": [
+            "height becomes u squared by four g",
+            "so H is R by four"
+          ],
+          "heard_as": [
+            "sin ninety",
+            "two theta",
+            "u squared by g"
+          ]
+        }
+      },
+      {
+        "id": "s5_compare",
+        "kind": "boxed_final",
+        "label": "Compare them",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "From (2), u² / g = R.",
+          "Substituting this in (1):",
+          {
+            "text": "H = R / 4",
+            "style": "eq"
+          },
+          {
+            "text": "H = R / 4   when θ = 45°",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say which numbered line you are substituting into. Box the final relation.",
+        "why": "Both results carry the same u²/g, so replacing it by R removes u and g together and leaves a pure ratio — which is what the question asked for.",
+        "common_mistakes": [
+          "Stopping at H = u²/4g without bringing R back in.",
+          "Writing R = H/4, the ratio the wrong way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u²/g is replaced by R to give H = R/4.",
+          "accept": [
+            "substitute u squared by g equals R",
+            "so H is R by four",
+            "maximum height is one quarter of the range",
+            "H equals R by four ani vasthundi",
+            "compare the two and u and g cancel"
+          ],
+          "reject": [
+            "sin ninety is one",
+            "the standard results are"
+          ],
+          "heard_as": [
+            "R by four",
+            "r by 4",
+            "one quarter",
+            "quarter of the range"
+          ]
+        }
+      }
+    ]
+  }
+}
