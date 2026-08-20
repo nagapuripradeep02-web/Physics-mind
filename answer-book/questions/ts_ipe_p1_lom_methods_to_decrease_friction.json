@@ -1,0 +1,210 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_methods_to_decrease_friction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Mention the methods used to decrease friction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Polishing",
+      "marks": 1
+    },
+    {
+      "label": "Ball bearings",
+      "marks": 1
+    },
+    {
+      "label": "Lubricants",
+      "marks": 1
+    },
+    {
+      "label": "Streamlining",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_polishing",
+        "kind": "text",
+        "label": "Polishing",
+        "marks": 1,
+        "mark_note": "Polishing",
+        "lines": [
+          {
+            "text": "1. Polishing",
+            "style": "heading"
+          },
+          "Polishing smooths the surface and",
+          "removes the small irregularities that",
+          "lock into each other, so friction falls."
+        ],
+        "margin_note": "Give the method a number and a one-line reason. The reason is what earns the mark.",
+        "why": "Friction comes from surface roughness meshing together. Take the roughness away and there is less to mesh.",
+        "common_mistakes": [
+          "Naming the four methods with no reason for any of them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That polishing smooths the surfaces and reduces friction.",
+          "accept": [
+            "polishing the surfaces",
+            "smoothing removes irregularities",
+            "polish chesthe friction thaggutundi"
+          ],
+          "reject": [
+            "ball bearings"
+          ],
+          "heard_as": [
+            "polishing",
+            "smooth",
+            "irregularities"
+          ]
+        }
+      },
+      {
+        "id": "s2_ball_bearings",
+        "kind": "text",
+        "label": "Ball bearings",
+        "marks": 1,
+        "mark_note": "Ball bearings",
+        "lines": [
+          {
+            "text": "2. Ball bearings",
+            "style": "heading"
+          },
+          "Hard steel balls placed between moving",
+          "parts turn sliding friction into rolling",
+          "friction, which is much smaller."
+        ],
+        "margin_note": "The words that earn this are \"sliding into rolling\". Say which becomes which.",
+        "why": "A rolling ball never drags across the surface — a fresh point touches down each moment instead of scraping.",
+        "common_mistakes": [
+          "Saying bearings \"remove friction\". They replace it with a much smaller kind."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ball bearings turn sliding friction into much smaller rolling friction.",
+          "accept": [
+            "ball bearings change sliding to rolling friction",
+            "steel balls between moving parts",
+            "sliding friction rolling friction ga marutundi"
+          ],
+          "reject": [
+            "polishing the surfaces"
+          ],
+          "heard_as": [
+            "ball bearings",
+            "rolling friction",
+            "steel balls"
+          ]
+        }
+      },
+      {
+        "id": "s3_lubricants",
+        "kind": "text",
+        "label": "Lubricants",
+        "marks": 1,
+        "mark_note": "Lubricants",
+        "lines": [
+          {
+            "text": "3. Lubricants",
+            "style": "heading"
+          },
+          "Oil or grease fills the hollows and",
+          "keeps the two surfaces apart, so they",
+          "slide over a fluid layer instead."
+        ],
+        "margin_note": "Say the surfaces are kept APART. That is the whole mechanism.",
+        "why": "Once a fluid film separates them the solids never touch, and a liquid layer shears far more easily than metal on metal.",
+        "common_mistakes": [
+          "Writing only \"oil is applied\" with no explanation of what the oil does."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a lubricant fills the gaps and keeps the surfaces apart.",
+          "accept": [
+            "oil or grease is used",
+            "lubricant keeps the surfaces apart",
+            "fills the irregularities",
+            "oil vesthe surfaces touch avvavu"
+          ],
+          "reject": [
+            "ball bearings"
+          ],
+          "heard_as": [
+            "lubricant",
+            "oil",
+            "grease"
+          ]
+        }
+      },
+      {
+        "id": "s4_streamlining",
+        "kind": "boxed_final",
+        "label": "Streamlining",
+        "marks": 1,
+        "mark_note": "Streamlining",
+        "lines": [
+          {
+            "text": "4. Streamlining",
+            "style": "heading"
+          },
+          "Cars, aeroplanes and ships are given",
+          "curved shapes so that air or water",
+          "flows smoothly past them.",
+          {
+            "text": "This reduces the fluid friction.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Name the friction being reduced — this one is air or water friction, not surface friction.",
+        "why": "The first three methods attack solid-on-solid contact. This one attacks a different opponent entirely: the fluid the body moves through.",
+        "common_mistakes": [
+          "Describing streamlining as a way to reduce friction with the ROAD."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That streamlined shapes reduce the friction from air or water.",
+          "accept": [
+            "streamlining the shape",
+            "curved shapes so air flows smoothly",
+            "reduces air friction",
+            "air friction thaggutundi"
+          ],
+          "reject": [
+            "oil or grease is used"
+          ],
+          "heard_as": [
+            "streamlining",
+            "air",
+            "smoothly"
+          ]
+        }
+      }
+    ]
+  }
+}

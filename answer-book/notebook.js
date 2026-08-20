@@ -233,7 +233,7 @@
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
   var currentView = null;               // 'catalog' | 'notebook'
-  var catFilter = { qtype: 'ALL', search: '' };
+  var catFilter = { qtype: 'ALL', unit: 'ALL', search: '' };
 
   function showView(v) {
     currentView = v;
@@ -258,11 +258,12 @@
              expected_time_min: q.expected_time_min };
   }
 
-  function entryMatches(e, unitName) {
+  function entryMatches(e, u) {
     if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
+    if (catFilter.unit !== 'ALL' && u.number !== catFilter.unit) return false;
     if (catFilter.search) {
       var blob = (e.section + ' ' + e.section + e.number + ' ' + e.section + ' ' + e.number +
-                  ' ' + e.text + ' ' + unitName).toLowerCase();
+                  ' ' + e.text + ' ' + u.name).toLowerCase();
       if (blob.indexOf(catFilter.search) < 0) return false;
     }
     return true;
@@ -299,12 +300,40 @@
       chipRow.appendChild(b);
     });
 
+    // Chapter chips, labelled by chapter NAME because that is what a student is
+    // looking for. The row appears only from the second unit on: with one chapter a
+    // chapter filter is noise, and with several a single scroll stops being usable.
+    // Counts are whole-chapter inventory, static like the qtype counts above.
+    var unitRow = $('unitChips');
+    unitRow.innerHTML = '';
+    unitRow.hidden = UNITS.length < 2;
+    if (UNITS.length >= 2) {
+      var unitChips = [{ key: 'ALL', label: 'All chapters', n: allEntries.length }];
+      UNITS.forEach(function (u) {
+        unitChips.push({ key: u.number, label: u.name, n: u.questions.length });
+      });
+      unitChips.forEach(function (c) {
+        var ub = document.createElement('button');
+        ub.type = 'button';
+        ub.className = 'cat-chip' + (catFilter.unit === c.key ? ' on' : '');
+        ub.setAttribute('data-unit', String(c.key));
+        ub.setAttribute('aria-pressed', catFilter.unit === c.key ? 'true' : 'false');
+        ub.appendChild(document.createTextNode(c.label));
+        var uct = document.createElement('span');
+        uct.className = 'ct';
+        uct.textContent = String(c.n);
+        ub.appendChild(uct);
+        ub.addEventListener('click', function () { catFilter.unit = c.key; renderCatalog(); });
+        unitRow.appendChild(ub);
+      });
+    }
+
     var sections = $('catSections');
     sections.innerHTML = '';
     var shown = 0;
 
     UNITS.forEach(function (u) {
-      var visible = u.questions.filter(function (e) { return entryMatches(e, u.name); });
+      var visible = u.questions.filter(function (e) { return entryMatches(e, u); });
       if (!visible.length) return;
       shown += visible.length;
 

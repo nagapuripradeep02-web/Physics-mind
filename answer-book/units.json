@@ -181,49 +181,56 @@
           "section": "LAQ",
           "number": 1,
           "stars": 3,
-          "text": "a) State Newton’s second law of motion. Hence derive F = ma from it. b) A body is moving along a circular path such that its speed always remains constant. Should there be a force acting on the body?"
+          "text": "a) State Newton’s second law of motion. Hence derive F = ma from it. b) A body is moving along a circular path such that its speed always remains constant. Should there be a force acting on the body?",
+          "question_id": "ts_ipe_p1_lom_newton_second_law_f_ma"
         },
         {
           "ref": "saq1",
           "section": "SAQ",
           "number": 1,
           "stars": 3,
-          "text": "Define the terms momentum and impulse. State and explain the law of conservation of linear momentum. Give its examples."
+          "text": "Define the terms momentum and impulse. State and explain the law of conservation of linear momentum. Give its examples.",
+          "question_id": "ts_ipe_p1_lom_momentum_impulse_conservation"
         },
         {
           "ref": "saq2",
           "section": "SAQ",
           "number": 2,
           "stars": 3,
-          "text": "Why are shock absorbers used in motor cycles and cars?"
+          "text": "Why are shock absorbers used in motor cycles and cars?",
+          "question_id": "ts_ipe_p1_lom_shock_absorbers"
         },
         {
           "ref": "saq3",
           "section": "SAQ",
           "number": 3,
           "stars": 3,
-          "text": "Explain the advantages and disadvantages of friction."
+          "text": "Explain the advantages and disadvantages of friction.",
+          "question_id": "ts_ipe_p1_lom_friction_advantages_disadvantages"
         },
         {
           "ref": "saq4",
           "section": "SAQ",
           "number": 4,
           "stars": 3,
-          "text": "Mention the methods used to decrease friction."
+          "text": "Mention the methods used to decrease friction.",
+          "question_id": "ts_ipe_p1_lom_methods_to_decrease_friction"
         },
         {
           "ref": "saq5",
           "section": "SAQ",
           "number": 5,
           "stars": 1,
-          "text": "Why is pulling the lawn roller preferred to pushing it?"
+          "text": "Why is pulling the lawn roller preferred to pushing it?",
+          "question_id": "ts_ipe_p1_lom_pulling_vs_pushing_roller"
         },
         {
           "ref": "saq6",
           "section": "SAQ",
           "number": 6,
           "stars": 0,
-          "text": "State the laws of rolling friction."
+          "text": "State the laws of rolling friction.",
+          "question_id": "ts_ipe_p1_lom_laws_of_rolling_friction"
         },
         {
           "ref": "vsaq1",

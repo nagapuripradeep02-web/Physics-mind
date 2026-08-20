@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_friction_advantages_disadvantages",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the advantages and disadvantages of friction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Advantages",
+      "marks": 2
+    },
+    {
+      "label": "Disadvantages",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_advantages",
+        "kind": "text",
+        "label": "Advantages",
+        "marks": 2,
+        "mark_note": "Advantages",
+        "lines": [
+          {
+            "text": "Advantages of friction:",
+            "style": "heading"
+          },
+          "1. We can walk without slipping.",
+          "2. Fingers can grip and hold objects.",
+          "3. Brakes stop a moving vehicle.",
+          "4. Nails and screws hold in a wall.",
+          "5. Belts drive machine parts."
+        ],
+        "margin_note": "Number them. Four or five one-line points read faster than a paragraph and are easier to mark.",
+        "why": "Every one of these is friction opposing a slip that would otherwise happen — the same mechanism, five settings.",
+        "common_mistakes": [
+          "Writing one long paragraph, so the examiner has to hunt for the separate points."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least two advantages of friction, such as walking, gripping, or braking.",
+          "accept": [
+            "we can walk without slipping",
+            "brakes work because of friction",
+            "we can hold objects",
+            "nadavadaniki friction kavali"
+          ],
+          "reject": [
+            "wear and tear of machines"
+          ],
+          "heard_as": [
+            "walking",
+            "brakes",
+            "grip",
+            "nails"
+          ]
+        }
+      },
+      {
+        "id": "s2_disadvantages",
+        "kind": "text",
+        "label": "Disadvantages",
+        "marks": 2,
+        "mark_note": "Disadvantages",
+        "lines": [
+          {
+            "text": "Disadvantages of friction:",
+            "style": "heading"
+          },
+          "1. Machine parts wear out.",
+          "2. Heat is produced, so the efficiency",
+          {
+            "text": "of an engine falls.",
+            "style": "indent"
+          },
+          "3. A large part of the power is lost in",
+          {
+            "text": "overcoming friction.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Two or three points are enough here. Do not pad the list once the marks are earned.",
+        "why": "All three are the same loss seen three ways: the work done against friction leaves the machine as heat.",
+        "common_mistakes": [
+          "Repeating \"wear and tear\" in three different words as three separate points."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least two disadvantages, such as wear and tear, heat, or loss of power.",
+          "accept": [
+            "wear and tear of machines",
+            "heat is produced and efficiency falls",
+            "power is wasted",
+            "machine parts arigipotayi"
+          ],
+          "reject": [
+            "we can walk without slipping"
+          ],
+          "heard_as": [
+            "wear and tear",
+            "heat",
+            "efficiency",
+            "power loss"
+          ]
+        }
+      }
+    ]
+  }
+}

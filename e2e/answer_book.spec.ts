@@ -403,6 +403,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
+    test.slow();   // fleet sweep — its cost grows with every unit added to the book
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -435,6 +436,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
+    test.slow();   // fleet sweep — its cost grows with every unit added to the book
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -498,6 +500,10 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
 });
 
 test('every cut of every question totals exactly its own marks', async ({ page }) => {
+    // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
+    // 30 s default the moment a second unit doubled the book — a timeout, never an
+    // assertion, so the gate was reporting "failed" while nothing was wrong.
+    test.slow();
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -667,6 +673,52 @@ test('qtype filter chips match on the section alone, with true counts', async ({
         expect(r.chipOn, t + ' chip active').toBe(true);
         expect(r.visible, t + ' visible cards').toBe(r.want);
         expect(r.chipCount, t + ' chip count').toBe(r.want);
+    }
+});
+
+test('chapter chips appear from the second unit and filter to their own chapter', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // The row is stubbed in shell.html but was never populated, so for one whole unit
+    // it sat hidden and empty. It has to stay hidden while there is one chapter (a
+    // filter with a single choice is noise) and appear the moment there are two.
+    const shape = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        const row = document.getElementById('unitChips')!;
+        return {
+            unitCount: units.length,
+            hidden: row.hidden,
+            chips: [...row.querySelectorAll('.cat-chip')].map((c) => c.getAttribute('data-unit')),
+            want: ['ALL', ...units.map((u: any) => String(u.number))],
+        };
+    });
+    expect(shape.unitCount).toBeGreaterThanOrEqual(2);   // else this gate proves nothing
+    expect(shape.hidden).toBe(false);
+    expect(shape.chips).toEqual(shape.want);             // All chapters, then one per unit in order
+
+    // Each chip shows only its own chapter, and its count is that chapter's whole
+    // inventory — coming-soon entries included, exactly like the qtype chips.
+    for (const key of shape.want) {
+        await page.click('#unitChips .cat-chip[data-unit="' + key + '"]');
+        await page.waitForTimeout(200);
+        const r = await page.evaluate((k) => {
+            const units = (window as any).PM_UNITS as any[];
+            const mine = k === 'ALL' ? units : units.filter((u: any) => String(u.number) === k);
+            const chip = document.querySelector('#unitChips .cat-chip[data-unit="' + k + '"]')!;
+            return {
+                visible: document.querySelectorAll('.cat-card').length,
+                headings: document.querySelectorAll('.cat-section').length,
+                want: mine.reduce((a: number, u: any) => a + u.questions.length, 0),
+                wantHeadings: mine.length,
+                chipCount: Number(chip.querySelector('.ct')!.textContent),
+                chipOn: chip.classList.contains('on'),
+            };
+        }, key);
+        expect(r.chipOn, key + ' chip active').toBe(true);
+        expect(r.visible, key + ' visible cards').toBe(r.want);
+        expect(r.headings, key + ' chapter headings').toBe(r.wantHeadings);
+        expect(r.chipCount, key + ' chip count').toBe(r.want);
     }
 });
 

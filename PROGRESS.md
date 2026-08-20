@@ -1,5 +1,43 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📕 SESSION — Answer Book: **UNIT 5 "LAWS OF MOTION" COMPLETE (17/17) + chapter chips** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the Answer Book is a two-chapter book. Unit 5 "Laws of Motion" is complete — 1 LAQ + 6 SAQ + 10 VSAQ, 17 for 17, every card openable — and the catalog now has the chapter filter the last session's log claimed it already had. The per-unit recipe held: the manifest went in first, questions were authored in batches, and the build stayed green at every step. The interesting work was NOT the authoring; it was the four gates that had quietly encoded "the book has one unit" and only said so when a second one arrived.**
+
+### The inventory decision: one LAQ, and no invented ones
+Unit 4 needed two LAQ entries of its own because the Fastrack lists those derivations only as SAQ. The instinct was to repeat that here. **Checked instead:** the Fastrack (pp.12–14) HAS a Long Answer section for Unit 5 with exactly one question, and the TSBIE Basic Learning Material has **no Section C for Laws of Motion at all** — its Unit 5 runs VSAQ (7) → SAQ (3) → straight into Unit 6. Nothing sources a second 8-mark form, so none was written. Recorded in the `units.json` comment so the next session does not re-derive it. SAQ 5 (the lawn roller) is the only entry in either unit with printed exam years — "(May-12, Mar-04, 06)" → `appearances: [2004, 2006, 2012]`, itself a claim until a teacher confirms it.
+
+### Four gates were hostages to a one-unit book
+Every one of these passed on 20 questions and failed on 37. None was a product defect — the product was right in all four cases:
+1. **Rail pagination** picked `steps[length − 3]` of whichever question sorted first in `PM_QUESTIONS`. Unit 5 put a 2-step VSAQ in that slot → `steps[−1]` → TypeError. Its own comment already recorded the previous version of this bug (a literal step id, broken when a second QUESTION was authored) — the same mistake one layer up. It now **seeks the longest question**, since the page break it exists to check only occurs in a long answer, and asserts ≥3 steps so a degenerate pick can never read as a pass.
+2. **Section/marks agreement** hardcoded `'Section B'` and checked **one** question. A VSAQ (Section A) sorting first turned it red while it was saying nothing about the other 36. It now sweeps all 34 files and asserts each header names its own `paper_section`.
+3. **Catalog inventory** compared the FIRST `.cat-count` pill to the WHOLE-book total. Those coincided only while there was one unit. Pills are per-unit; the book total is in `catSub`. Both are checked now.
+4. **The three fleet sweeps ran out of TIME**, not assertions — `every cut of every question` hit the 30 s default at 34 questions, and the construction-line and label-overlap sweeps were at 27.6 s, i.e. one unit away from the same fate. `test.slow()` on all three. **A timeout reported as a failure is the worst kind of red: it looks like a defect and names nothing.**
+
+Both rewritten assertions were **negative-controlled**, not assumed: a deliberately wrong `page_header` section is caught by file name, and restoring the old global-count pill turns the catalog gate red.
+
+### The chapter chips — the claim in the last log was false
+Last session's recipe said "the chapter filter chips appear automatically at 2 units". They do not. `shell.html:53` carried `<div class="cat-chips" id="unitChips" hidden>` and **`notebook.js` never referenced it** — a stubbed container, hidden and empty, for a whole unit. (The CSS was already there: `.cat-chips + .cat-chips { margin-top: 8px }` was written for a second row that never came.) Wired this session, mirroring the qtype chip block: labelled by chapter NAME because that is what a student looks for, counts = whole-chapter inventory including coming-soon, and the row **stays hidden at one unit** — a filter with a single choice is noise. New gate `chapter chips appear from the second unit and filter to their own chapter` (25 tests now), also negative-controlled: deleting the filter line leaves 4 cards visible under a chapter chip and the gate says so. The stale claim in the Unit 4 entry below is struck through rather than deleted.
+
+### The questions (17 files, 4 figures)
+- **LAQ 1** (8M): Newton's second law stated in MOMENTUM, then derived to F = ma through `F = k dp/dt` → `p = mv` with m constant → `k = 1 because of how the newton is DEFINED` (the step students skip). Part (b) — constant speed on a circle — carries the chapter's commonest error in `common_mistakes`: "no, because the speed is constant".
+- **SAQ 5, the lawn roller** — two free-body panels drawn to the SAME scale from one shared generator, so the roller, ground, and θ are identical and only the force flips side. `N` is drawn deliberately shorter in the pull panel and longer in the push panel: the answer is one sign, and the picture shows it before the algebra does.
+- **SAQ 1** carries a two-piece shell figure; the other three SAQs and all ten VSAQs are text and equations. Every step across all 17 has `margin_note` + `why` + `common_mistakes` + a full recall rubric with Telugu code-mix.
+- **Where the book teaches what is MARKED, not what is true**, the answer writes what earns the mark and the honest version goes in that step's `why` — the rolling-friction "laws" (deformation is the real mechanism; "inversely proportional to radius" is an approximation) and "μ > 1 because polishing increases adhesion" (μ is a measured ratio with no cap; rubber on rubber passes 1 without polishing).
+
+### Verification (measured, not asserted)
+`build:answers` → **Unit 4 20/20 · Unit 5 17/17**, drift gate clean both directions, every marks-sum ✓ · `smoke:answers` **25/25** · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (unchanged — no concept JSON touched) · built page re-parsed: 34 questions, all 4 figures present, recall rubrics correctly stripped from the browser payload · `serve:answers` HTTP 200, 241 KB single file.
+
+### Files
+`answer-book/units.json` (Unit 5 block + the no-Section-C note) · 17 new `answer-book/questions/ts_ipe_p1_lom_*.json` · `answer-book/notebook.js` (unit chips + `catFilter.unit`; `entryMatches` now takes the unit object) · `e2e/answer_book.spec.ts` (3 gates de-hardcoded, 3 marked slow, 1 new). **No platform file touched** — no renderer, no `src/data/concepts/`, no schema, no build script, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the two roller panels and the circular-motion figure.** The label-overlap gate proves no two labels collide; it cannot tell you the picture reads well. `npm run serve:answers` → `http://localhost:8100`. Check **print** on SAQ 5 and the LAQ specifically — the construction-line defect only ever appeared on the instant path.
+2. **Unit 6 "Work Power Energy"** (book pp.15+) is next by the same recipe. Note its BLM section DOES open with Long Answer Questions, unlike Unit 5 — expect real Section-C forms there.
+3. **Standing blockers, unchanged (founder calls):** Google billing (free-tier quota exhausted) · hosting for the photo/mic graders · the Telangana-teacher verification pass over every invented mark split, now 37 entries deep · the cost swap (Web Speech + DeepSeek) before the voice path goes wide.
+
+---
+
 ## 📗 SESSION — Answer Book: **UNIT 4 COMPLETE (20/20) + the catalog + MERGED TO MASTER** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`, PR #128 MERGED `81dd853`)
 
 **Bottom line: the Answer Book went from one prototype question to a finished product surface in one day, and it is ON MASTER. Unit 4 "Motion in a Plane" is complete — 2 LAQ + 9 SAQ + 9 VSAQ, every card openable — behind a Viditra-style catalog with VSAQ/SAQ/LAQ filters, search, and ONE CARD = ONE QUESTION AT ONE LENGTH (the founder's review killed the multi-length cards in one screenshot). Ten commits; every one verified before push; three defects were caught by gates built the same day.**
@@ -32,7 +70,7 @@ Hash routes `#/` · `#/q/<id>` · `#/q/<id>/<cutKey>`; back/forward work from fi
 
 ### NEXT (the founder starts a NEW UNIT next session, SAME desk + branch)
 1. **Pick the unit** from the Fastrack contents (Physics pp.4–46; e.g. Unit 5 Laws of Motion pp.12–14 — VSAQ ×10 + SAQ ×~6 already photographed in session context) and read its pages from `C:\Users\PRADEEEP\Downloads\891334617-...Fastrack.pdf`.
-2. **The per-unit recipe is now mechanical:** add a `units.json` unit block (sections/numbers/stars/texts from the book; LAQ forms as own entries where TSBIE Section-C asks them) → author question JSONs to the bar (margin_note/why/common_mistakes/recall per step; figures with computed placements; lines ≤ ~45 chars) → map `question_id`(+`cut`) into the manifest → `npm run build:answers` (drift gate + coverage) → `npm run smoke:answers` (24 gates sweep every question) → tsc/validate → commit/push. The chapter filter chips appear automatically at 2 units.
+2. **The per-unit recipe is now mechanical:** add a `units.json` unit block (sections/numbers/stars/texts from the book; LAQ forms as own entries where TSBIE Section-C asks them) → author question JSONs to the bar (margin_note/why/common_mistakes/recall per step; figures with computed placements; lines ≤ ~45 chars) → map `question_id`(+`cut`) into the manifest → `npm run build:answers` (drift gate + coverage) → `npm run smoke:answers` (24 gates sweep every question) → tsc/validate → commit/push. ~~The chapter filter chips appear automatically at 2 units.~~ **[WRONG — corrected in the Unit 5 session above: the `unitChips` row was stubbed in `shell.html` and never populated by `notebook.js`, so it sat hidden and empty. Wiring it was Unit 5 work. It IS automatic now.]**
 3. **Standing blockers (unchanged, founder calls):** Google billing (free tier exhausted) + hosting for photo/mic; the Telangana-teacher verification pass over every invented mark split; cost swap (Web Speech + DeepSeek) if the voice path goes wide.
 4. Branch is merged and 0-ahead; next session's commits open a NEW PR from this same branch when ready.
 
