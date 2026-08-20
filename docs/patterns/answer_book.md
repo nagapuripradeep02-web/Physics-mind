@@ -406,3 +406,74 @@ The rail `<select>` (`#qCard`) is gone; `← All questions` in the topbar return
 goes back. Cut overrides gained `margin_note` and `why` — the root wording can state a mark count
 a reduced cut contradicts ("the two marks are for the words alone" beside a 1-mark step), and the
 first catalog screenshot caught exactly that on the parallelogram SAQ cut.
+
+## Board landscape 2026-27 — the two IPE patterns diverged (researched 2026-08-20)
+
+The product is built on the TS pattern. In 2026 the two states stopped being variants of one exam,
+and the analysis below is what the authoring model rests on. Multi-source web research 2026-08-20;
+none of it is from an official circular yet — re-verify against tsbie.cgg.gov.in /
+bieap.apcfss.in model papers when they publish.
+
+### Telangana (TGBIE) — our board: theory UNCHANGED, syllabus revised
+
+- **Physics theory stays 60 marks** — explicitly stated in the reform coverage, and the March 2026
+  paper ran exactly our structure: Section A 10×2 compulsory · B 6-of-8 ×4 · C 2-of-3 ×8,
+  21 questions, 3 hours, English + Telugu. **The Answer Book's model is safe for March 2027.**
+- What changes 2026-27 (FIRST year; second year follows 2027-28): the old 30-mark second-year-only
+  practicals split into **15 marks per year**, conducted externally at each year's end. Maths goes
+  75 written → **60 written + 15 Activity-Based Learning** per paper. Humanities/Languages
+  100 → 80 + 20 internal. ("60 + 15 ABL" is the MATHS formula — for Physics the 15 is practicals.)
+- **The real exposure is the syllabus revision**, not the pattern: NCERT-aligned for 2026-27,
+  ~30% cuts in some subjects (Chemistry named), non-JEE/NEET topics removed, a new "Artificial
+  Intelligence in Physics" chapter, QR-coded textbooks. Our inventory is sourced from the 2024
+  Fastrack, which compiles the OLD syllabus's exam history. Mechanics (Units 4-6) is NCERT-stable;
+  the per-unit inventory still needs a diff against the new TGBIE textbooks when they publish.
+
+### Andhra Pradesh (BIEAP) — already switched, March 2026
+
+AP ran its reformed paper in March 2026 (first year; second year reforms 2026-27). NCERT syllabus
+(first year since 2025-26), CBSE-style format. **Physics Paper-I (NEW), Max Marks 85, 3 hours:**
+
+| Section | Questions | Marks | Choice |
+|---|---|---|---|
+| A | 9 | 1 each = 9 | ALL compulsory — mix of MCQ, fill-in-blank, one-liner |
+| B | 14 | 2 each = 28 | ALL compulsory — no choice |
+| C | 12 | 4 each, answer 8 = 32 | 8 of 12 |
+| D | 3 | 8 each, answer 2 = 16 | 2 of 3 |
+
+Plus 20 internal assessment; practicals separate (pass 11). Pass mark 29/85 (Yr 1).
+Source scan: `C:\Users\PRADEEEP\Downloads\AP-Inter-1stYear-Physics-QP-March2026-newpattern.pdf`
+(page 1 of 3 — the testbook CDN copy; the full paper is 3 pages). A near-complete transcription
+was recovered from exam-day coverage: Section A and B complete, C 6 of 12, D 1 of 3.
+
+### The finding that matters: the AP paper asks OUR questions
+
+From the March 2026 AP paper, transcribed:
+- B-13 "What is inertia? What gives the measure of inertia?" — our `ts_ipe_p1_lom_inertia_measure`
+  (TS VSAQ 2M ↔ AP Section B 2M: same length, both compulsory sections).
+- B-14 "State the relation between kinetic energy and momentum of a body." — our
+  `ts_ipe_p1_wpe_kinetic_energy_momentum` (2M in both).
+- C-26 "Mention the methods used to decrease friction." — our
+  `ts_ipe_p1_lom_methods_to_decrease_friction` (4M in both).
+- "Explain the terms average velocity and instantaneous velocity. When are they equal?" — our
+  `ts_ipe_p1_mp_average_instantaneous_velocity` (TS SAQ 4M; the transcription places it in AP's
+  8M section, which is unverified — if real, it is a live cuts[] case in the other direction).
+
+Both boards now draw from the same NCERT-shaped bank at different lengths — which is exactly what
+`cuts[]` + the `board` header field model. An AP edition is a re-heading + re-cutting exercise
+over the same authored step lists, not a rewrite.
+
+### What an AP edition would need (scoped, not planned)
+
+1. `board: 'ap_ipe'` headers (the field exists) + AP cuts on shared step lists.
+2. A `qtype` slot for AP Section A (1-mark objective/fill-in) — the current enum is VSAQ/SAQ/LAQ.
+3. AP-specific inventory: the Fastrack star-ranks are TS exam-frequency data and do NOT transfer;
+   AP's new-pattern history starts with the March 2026 paper (the seed frequency signal).
+4. Note AP Section B: 14 compulsory 2-mark questions, no choice — 2M coverage is worth far more
+   there than in TS, where a student can dodge within the section.
+
+### Deliberately NOT done
+
+No pattern_version field, no AP authoring, no schema change. The TS product is structurally safe;
+the trigger points are (a) TGBIE's revised theory model papers appearing, (b) the new TS textbooks
+publishing (→ per-unit inventory diff), (c) a founder decision to open the AP edition.
