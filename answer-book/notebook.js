@@ -30,15 +30,6 @@
   // ── state ─────────────────────────────────────────────────────────────────
   var stepIndex = -1;             // last fully revealed step
   var marksEarned = 0;
-  /**
-   * 'study' — tap through, with the why/mistake teaching cards in the rail
-   * 'exam'  — tap through, no extras (byte-identical to the original behaviour)
-   * 'test'  — the notebook starts blank; the student writes on paper or speaks it
-   * Every switch routes through renderUpTo() so in-flight typing timers are
-   * cancelled — clearing #notebook directly would leave orphan timers that still
-   * mutate stepIndex/marksEarned when they fire.
-   */
-  var mode = 'study';
   var pageBodies = [];            // .page-body elements in order
   var revealing = false;
   var finishCurrent = null;       // completes the animating step instantly
@@ -128,39 +119,16 @@
       pills[i].firstChild.textContent = done ? '✓' : '·';
     }
 
-    // Rail teaching layer. `next` is the step the student is about to write, which
-    // is the one the guidance should describe.
+    // `next` is the step the student is about to write, so its guidance is what
+    // the rail should show. `why` and `common_mistakes` are authored but no longer
+    // rendered here — they surface in the redo list after a check.
     var next = steps[stepIndex + 1];
-    var teaching = mode === 'study';
-
     var noteCard = $('marginNoteCard');
-    if (next && next.margin_note && mode !== 'test') {
+    if (next && next.margin_note) {
       noteCard.hidden = false;
       $('marginNote').textContent = next.margin_note;
     } else {
       noteCard.hidden = true;
-    }
-
-    var whyCard = $('whyCard');
-    if (teaching && next && next.why) {
-      whyCard.hidden = false;
-      $('whyNote').textContent = next.why;
-    } else {
-      whyCard.hidden = true;
-    }
-
-    var mistakeCard = $('mistakeCard');
-    var list = $('mistakeList');
-    if (teaching && next && next.common_mistakes && next.common_mistakes.length) {
-      mistakeCard.hidden = false;
-      list.innerHTML = '';
-      next.common_mistakes.forEach(function (m) {
-        var li = document.createElement('li');
-        li.textContent = m;
-        list.appendChild(li);
-      });
-    } else {
-      mistakeCard.hidden = true;
     }
 
     if (completed) {
@@ -545,8 +513,6 @@
   // ═══ flow ═════════════════════════════════════════════════════════════════
 
   function advance() {
-    // In test-myself the page stays blank on purpose — the student writes it.
-    if (mode === 'test') return;
     if (revealing) {                     // impatience: finish the current step
       if (finishCurrent) finishCurrent();
       return;
@@ -634,40 +600,16 @@
   }
   window.addEventListener('resize', fitNotebook);
 
-  // ═══ modes ═══════════════════════════════════════════════════════════════
+  // ═══ test yourself (overlay) ═════════════════════════════════════════════
+  // Two ways to be checked: a photo/PDF of what the student wrote, or saying the
+  // steps aloud. Both converge on renderCheck(). Each path appears only when its
+  // endpoint is configured; with neither, the page stays the offline answer book.
 
-  var MODE_HINT = {
-    study: 'Tap through the answer. The rail explains why each step is there and where marks are lost.',
-    exam: 'Just the answer and the marks. No explanations.',
-    test: 'The page is blank. Write the answer yourself, then check it.'
-  };
-
-  var assess = { running: false, startedAt: 0, timer: null, idx: 0, awarded: [], elapsedMs: 0 };
-
-  function setMode(next) {
-    if (next === mode) return;
-    stopAssessTimer();
-    mode = next;
-    var btns = $('modeRow').children;
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].classList.toggle('active', btns[i].getAttribute('data-mode') === mode);
-    }
-    $('modeHint').textContent = MODE_HINT[mode];
-    $('assessCard').hidden = mode !== 'test';
-    $('btnNext').hidden = mode === 'test';
-    // The accumulator tracks how much of the notebook has been REVEALED. In test
-    // mode the page stays blank, so a "0/8" beside the test score would read as a
-    // second, contradictory result.
-    $('accCard').hidden = mode === 'test';
-    if (mode === 'test') startAssess(); else resetAssessUi();
-    renderUpTo(-1, false);           // full teardown: cancels any in-flight timers
-  }
-
-  // ── test-myself ───────────────────────────────────────────────────────────
+  var assess = { startedAt: 0, timer: null };
 
   function fmtClock(ms) {
-    var s = Math.floor(ms / 1000);
-    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    var sec = Math.floor(ms / 1000);
+    return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
   }
   /** 5.5 stays 5.5; 6.0 shows as 6. */
   function fmtMarks(n) { return Number.isInteger(n) ? String(n) : n.toFixed(1); }
@@ -675,147 +617,39 @@
   function stopAssessTimer() {
     if (assess.timer) clearInterval(assess.timer);
     assess.timer = null;
-    assess.running = false;
   }
 
-  function resetAssessUi() {
-    stopAssessTimer();
-    assess.idx = 0; assess.awarded = []; assess.elapsedMs = 0;
-    $('assessStart').hidden = false;
-    $('selfScore').hidden = true;
-    $('selfScore').innerHTML = '';
+  function openTest() {
+    $('testOverlay').hidden = false;
+    $('testChoose').hidden = false;
     $('recallResult').hidden = true;
-  }
-
-  function startAssess() {
-    resetAssessUi();
-    assess.running = true;
+    $('recallResult').innerHTML = '';
+    $('btnPhoto').classList.remove('busy');
+    $('btnMic').classList.remove('busy');
     assess.startedAt = Date.now();
+    stopAssessTimer();
     var target = question.expected_time_min;
     function tick() {
-      assess.elapsedMs = Date.now() - assess.startedAt;
-      $('assessTimer').innerHTML = fmtClock(assess.elapsedMs) +
+      $('assessTimer').innerHTML = fmtClock(Date.now() - assess.startedAt) +
         '<span class="target">about ' + target + ' minutes in the exam</span>';
     }
     tick();
     assess.timer = setInterval(tick, 1000);
   }
 
-  /** Reveal the model step FIRST, then ask — harder to over-credit yourself. */
-  function renderSelfScore() {
+  function closeTest() {
     stopAssessTimer();
-    $('assessStart').hidden = true;
-    var box = $('selfScore');
-    box.hidden = false;
-    box.innerHTML = '';
-
-    if (assess.idx >= steps.length) { renderSelfScoreTotal(box); return; }
-    var step = steps[assess.idx];
-
-    box.appendChild(el('div', 'ss-progress', 'Step ' + (assess.idx + 1) + ' of ' + steps.length));
-    box.appendChild(el('div', 'ss-step-label', step.label));
-    box.appendChild(el('div', 'ss-marks', step.marks === 0
-      ? 'no marks — extra content'
-      : marksLabel(step.marks)));
-
-    var model = stepSummary(step.id);
-    if (model) box.appendChild(el('div', 'ss-model', model));
-
-    if (step.marks === 0) {
-      box.appendChild(el('div', 'ss-ask', 'This one carries no marks.'));
-      var skip = el('button', 'btn', 'Next');
-      skip.type = 'button';
-      skip.addEventListener('click', function () { award(0); });
-      var wrapSkip = el('div', 'ss-buttons'); wrapSkip.appendChild(skip);
-      box.appendChild(wrapSkip);
-      return;
-    }
-
-    box.appendChild(el('div', 'ss-ask', 'Did you write this?'));
-    var wrap = el('div', 'ss-buttons');
-    [['I wrote this', 'got', step.marks],
-     ['Partly', 'partly', step.marks / 2],
-     ['I missed it', 'missed', 0]].forEach(function (opt) {
-      var b = el('button', 'btn ' + opt[1], opt[0]);
-      b.type = 'button';
-      b.addEventListener('click', function () { award(opt[2], opt[1]); });
-      wrap.appendChild(b);
-    });
-    box.appendChild(wrap);
-  }
-
-  function award(marks, verdict) {
-    assess.awarded.push({ step: steps[assess.idx], marks: marks, verdict: verdict || 'none' });
-    assess.idx++;
-    renderSelfScore();
-  }
-
-  function renderSelfScoreTotal(box) {
-    var total = assess.awarded.reduce(function (a, r) { return a + r.marks; }, 0);
-    box.appendChild(el('div', 'ss-total',
-      'You would have scored ' + fmtMarks(total) + ' out of ' + marksTotal + '.'));
-    box.appendChild(el('div', 'ss-time',
-      'You took ' + fmtClock(assess.elapsedMs) + '. In the exam you get about ' +
-      question.expected_time_min + ' minutes for ' + marksTotal + ' marks.'));
-    box.appendChild(el('p', 'recall-caveat',
-      'You marked this yourself. The examiner marks what is written on the paper.'));
-
-    var redo = assess.awarded.filter(function (r) {
-      return r.verdict === 'missed' || r.verdict === 'partly';
-    });
-    if (redo.length) {
-      var wrap = el('div', 'ss-redo');
-      wrap.appendChild(el('h4', null, 'Write these again'));
-      redo.forEach(function (r) {
-        var item = el('div', 'recall-item ' + (r.verdict === 'missed' ? 'missed' : 'unsure'));
-        var head = el('div', 'ri-head');
-        head.appendChild(el('span', 'ri-mark', r.verdict === 'missed' ? '✗' : '~'));
-        head.appendChild(el('span', 'ri-label', r.step.label));
-        if (r.step.marks > 0) head.appendChild(el('span', 'ri-marks', marksLabel(r.step.marks)));
-        item.appendChild(head);
-        if (r.step.common_mistakes && r.step.common_mistakes.length) {
-          item.appendChild(el('div', 'ri-hint', r.step.common_mistakes[0]));
-        }
-        var actions = el('div', 'recall-actions');
-        var write = el('button', 'btn', 'Write this step');
-        write.type = 'button';
-        write.addEventListener('click', function () {
-          setMode('study');
-          window.PM_ANSWER.goToStep(r.step.id);
-        });
-        actions.appendChild(write);
-        item.appendChild(actions);
-        wrap.appendChild(item);
-      });
-      box.appendChild(wrap);
-    }
-
-    var again = el('button', 'btn btn-assess', 'Test myself again');
-    again.type = 'button';
-    again.addEventListener('click', function () { startAssess(); });
-    box.appendChild(again);
-  }
-
-  function initModes() {
-    var row = $('modeRow');
-    for (var i = 0; i < row.children.length; i++) {
-      (function (btn) {
-        btn.addEventListener('click', function () { setMode(btn.getAttribute('data-mode')); });
-      })(row.children[i]);
-    }
-    row.children[0].classList.add('active');
-    $('modeHint').textContent = MODE_HINT.study;
-    $('btnDonePaper').addEventListener('click', function () {
-      assess.idx = 0; assess.awarded = [];
-      renderSelfScore();
-    });
+    if (rec.active) stopRecording();
+    $('testOverlay').hidden = true;
   }
 
   // ═══ spoken-recall check ═════════════════════════════════════════════════
   // Progressive enhancement: with no endpoint configured this whole block does
   // nothing, the card stays hidden, and the page makes zero network calls.
 
-  var RECALL_ENDPOINT = (window.PM_RECALL_ENDPOINT || '').trim();
+  var API_BASE = (window.PM_API_BASE || '').trim().replace(/\/$/, '');
+  var RECALL_ENDPOINT = API_BASE ? API_BASE + '/recall-check' : '';
+  var PHOTO_ENDPOINT = API_BASE ? API_BASE + '/photo-check' : '';
   var MAX_RECORD_MS = 90000;   // the only hard bound on the dominant (STT) cost
   var MIN_RECORD_MS = 4000;    // below this we never upload — an accidental tap costs nothing
   var SILENCE_RMS = 0.005;     // below this for the whole take = nothing was said
@@ -949,7 +783,7 @@
           showRecallMessage('Could not check that recording. Nothing has been marked wrong.');
           return;
         }
-        renderRecall(res.body);
+        renderCheck(res.body, 'mic');
       })
       .catch(function () {
         $('btnMic').disabled = false; micLabel('Tap to speak');
@@ -1033,132 +867,284 @@
 
   function marksLabel(n) { return n === 1 ? '1 mark' : n + ' marks'; }
 
-  function renderRecall(res) {
+  /**
+   * ONE renderer for both paths. The mic path arrives already graded against the
+   * transcript; the photo path arrives as PROPOSALS the student confirms, because
+   * a misread of handwriting must never become a wrong accusation. Confirming is
+   * what turns a proposal into a mark.
+   */
+  function renderCheck(res, source) {
     var box = $('recallResult');
-    $('assessStart').hidden = true;     // the mic path takes over the panel
+    $('testChoose').hidden = true;
     box.hidden = false;
     box.innerHTML = '';
 
     if (res.outcome === 'not_enough_heard') { renderNotEnough(); return; }
+    if (res.outcome === 'nothing_readable') {
+      box.appendChild(el('p', 'recall-empty', 'We could not read that page.'));
+      box.appendChild(el('p', 'recall-caveat',
+        'Nothing has been marked wrong. Try a straighter photo in better light, or upload a PDF.'));
+      box.appendChild(retryBtn());
+      return;
+    }
     if (res.outcome === 'check_failed') {
-      showRecallMessage('We could not check that recording. Nothing has been marked wrong.'); return;
+      showRecallMessage('We could not check that. Nothing has been marked wrong.');
+      return;
     }
     if (res.outcome === 'not_this_answer') {
-      box.appendChild(el('p', 'recall-empty', 'What you said does not look like this answer.'));
-      box.appendChild(el('p', 'recall-caveat',
-        'Nothing has been marked wrong. Tap the mic and say the steps for this question.'));
+      box.appendChild(el('p', 'recall-empty', source === 'photo'
+        ? 'That page does not look like this answer.'
+        : 'What you said does not look like this answer.'));
+      box.appendChild(el('p', 'recall-caveat', 'Nothing has been marked wrong.'));
+      box.appendChild(retryBtn());
       return;
     }
 
-    var earned = res.marks_earned;
-    var overridden = {};
+    var confirmMode = source === 'photo';
+    // For a photo, only what the student confirms counts. Start from the model's
+    // proposal so the common case is one tap, but every mark is the student's.
+    var confirmed = {};
+    res.steps.forEach(function (s) { confirmed[s.step_id] = s.bucket === 'covered'; });
 
-    function scoreLine() {
-      var extra = 0;
-      for (var k in overridden) if (overridden[k]) extra += overridden[k];
-      return 'About ' + (earned + extra) + ' out of ' + res.marks_total + ' marks.';
+    function total() {
+      return res.steps.reduce(function (a, s) {
+        return a + (confirmed[s.step_id] ? s.marks : 0);
+      }, 0);
+    }
+
+    var head = el('div', 'recall-score', '');
+    box.appendChild(head);
+    box.appendChild(el('p', 'recall-caveat', confirmMode
+      ? 'Tick what you actually wrote. Only what you tick is counted.'
+      : 'This is an estimate from what you said out loud. In the exam the marks come from what you write on the paper.'));
+
+    function refresh() {
+      head.textContent = (confirmMode ? 'Confirmed ' : 'About ') +
+        fmtMarks(total()) + ' out of ' + res.marks_total + ' marks.';
+      if (redoBox) redoBox.replaceWith(redoBox = redoList(res, confirmed));
     }
 
     if (res.thin_transcript) {
       box.appendChild(el('p', 'recall-caveat',
         'That was a very short recording. The check below may not be complete.'));
     }
-    var score = el('div', 'recall-score', scoreLine());
-    box.appendChild(score);
-    box.appendChild(el('p', 'recall-caveat',
-      'This is an estimate from what you said out loud. In the exam the marks come from what you write on the paper.'));
-
-    box.appendChild(el('div', 'recall-lead', 'What we heard'));
-    box.appendChild(transcriptWithHighlights(res.transcript, res.steps));
-    box.appendChild(el('p', 'recall-caveat',
-      'Speech to text is not perfect. If a word came out wrong, that is the microphone, not you.'));
-
-    var groups = [
-      { key: 'covered', title: 'What you covered' },
-      { key: 'missed', title: 'You did not say these' },
-      { key: 'unsure', title: 'We are not sure about these' }
-    ];
-
-    groups.forEach(function (g) {
-      var rows = res.steps.filter(function (s) { return s.bucket === g.key; });
-      if (!rows.length) return;
-      var wrap = el('div', 'recall-group');
-      wrap.appendChild(el('h4', null, g.title));
-      rows.forEach(function (s) {
-        var item = el('div', 'recall-item ' + g.key);
-        var head = el('div', 'ri-head');
-        head.appendChild(el('span', 'ri-mark', g.key === 'covered' ? '✓' : g.key === 'missed' ? '✗' : '?'));
-        head.appendChild(el('span', 'ri-label', s.label));
-        if (s.marks > 0) head.appendChild(el('span', 'ri-marks', marksLabel(s.marks)));
-        item.appendChild(head);
-
-        if (g.key === 'covered' && s.evidence) {
-          item.appendChild(el('div', 'ri-said', 'You said: "' + s.evidence + '"'));
-          if (s.confidence < 0.5) item.appendChild(el('div', 'ri-hint', 'This one was hard to hear. We counted it.'));
-        }
-        if (g.key !== 'covered') {
-          var summary = stepSummary(s.step_id);
-          if (summary) item.appendChild(el('div', 'ri-what', 'In the answer this step is:  ' + summary));
-          if (s.credit === 'name_it') {
-            item.appendChild(el('div', 'ri-hint',
-              'Saying this step out loud by name is enough for this mark.'));
-          }
-          var unsureHint = null;
-          if (g.key === 'unsure') {
-            unsureHint = el('div', 'ri-hint',
-              'We could not find this clearly in what you said. It is not marked as missed.');
-            item.appendChild(unsureHint);
-          }
-          var actions = el('div', 'recall-actions');
-          if (g.key === 'unsure' && s.marks > 0) {
-            var yes = el('button', 'btn', 'I did say this');
-            yes.type = 'button';
-            yes.addEventListener('click', function () {
-              overridden[s.step_id] = s.marks;
-              score.textContent = scoreLine();
-              item.classList.remove('unsure'); item.classList.add('covered');
-              head.firstChild.textContent = '✓';
-              if (unsureHint) unsureHint.remove();   // it no longer applies
-              actions.innerHTML = '';
-              item.appendChild(el('div', 'ri-hint', 'Counted.'));
-            });
-            actions.appendChild(yes);
-          }
-          var write = el('button', 'btn', 'Write this step');
-          write.type = 'button';
-          write.addEventListener('click', function () { window.PM_ANSWER.goToStep(s.step_id); });
-          actions.appendChild(write);
-          item.appendChild(actions);
-        }
-        wrap.appendChild(item);
-      });
-      box.appendChild(wrap);
-    });
-
-    var bonus = res.steps.filter(function (s) { return s.bucket === 'covered' && s.marks === 0; });
-    if (bonus.length) {
-      box.appendChild(el('p', 'recall-note',
-        'You also said the extra content at the end. It carries no marks in this question.'));
+    if (!confirmMode && res.transcript) {
+      box.appendChild(el('div', 'recall-lead', 'What we heard'));
+      box.appendChild(transcriptWithHighlights(res.transcript, res.steps));
+      box.appendChild(el('p', 'recall-caveat',
+        'Speech to text is not perfect. If a word came out wrong, that is the microphone, not you.'));
     }
+
+    if (confirmMode) {
+      box.appendChild(el('div', 'recall-lead', 'We read your page. Tick what you wrote.'));
+      var list = el('div', 'recall-group');
+      res.steps.forEach(function (s) {
+        var row = el('label', 'confirm-row');
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = confirmed[s.step_id];
+        row.classList.toggle('on', cb.checked);
+        cb.addEventListener('change', function () {
+          confirmed[s.step_id] = cb.checked;
+          row.classList.toggle('on', cb.checked);
+          refresh();
+        });
+        var txt = el('span', 'confirm-text');
+        txt.appendChild(el('span', 'confirm-label', s.label));
+        if (s.marks > 0) txt.appendChild(el('span', 'confirm-marks', marksLabel(s.marks)));
+        if (s.evidence) txt.appendChild(el('span', 'confirm-found', 'We saw: ' + s.evidence));
+        else if (s.bucket !== 'covered') {
+          txt.appendChild(el('span', 'confirm-found', 'We did not find this on the page.'));
+        }
+        row.appendChild(cb);
+        row.appendChild(txt);
+        list.appendChild(row);
+      });
+      box.appendChild(list);
+    } else {
+      ['covered', 'missed', 'unsure'].forEach(function (key) {
+        var rows = res.steps.filter(function (s) { return s.bucket === key; });
+        if (!rows.length) return;
+        var wrap = el('div', 'recall-group');
+        wrap.appendChild(el('h4', null,
+          key === 'covered' ? 'What you covered'
+            : key === 'missed' ? 'You did not say these'
+            : 'We are not sure about these'));
+        rows.forEach(function (s) { wrap.appendChild(resultRow(s, key, confirmed, refresh)); });
+        box.appendChild(wrap);
+      });
+    }
+
+    var redoBox = redoList(res, confirmed);
+    box.appendChild(redoBox);
+    refresh();
     if (res.order_note) box.appendChild(el('p', 'recall-note', res.order_note));
+    box.appendChild(retryBtn());
   }
 
-  /**
-   * The mic is the OPTIONAL half of test-myself. With no endpoint configured the
-   * button never appears and the page makes zero network calls — the paper path
-   * still works completely.
-   */
-  function initRecall() {
-    if (!RECALL_ENDPOINT) return;                       // no endpoint → no mic, no fetch
-    if (!question.recall_available) return;             // no authored rubric → nothing to check
-    $('btnMic').hidden = false;
-    $('recallIntro').hidden = false;
-    $('recallIntro').textContent = question.recall_prompt ||
-      'Say the steps you would write for this answer, in order.';
-    $('btnMic').addEventListener('click', function () {
-      if (rec.active) stopRecording(); else startRecording();
-    });
+  function retryBtn() {
+    var b = el('button', 'btn btn-assess', 'Test myself again');
+    b.type = 'button';
+    b.addEventListener('click', function () { openTest(); });
+    return b;
   }
+
+  function resultRow(s, key, confirmed, refresh) {
+    var item = el('div', 'recall-item ' + key);
+    var head = el('div', 'ri-head');
+    head.appendChild(el('span', 'ri-mark', key === 'covered' ? '✓' : key === 'missed' ? '✗' : '?'));
+    head.appendChild(el('span', 'ri-label', s.label));
+    if (s.marks > 0) head.appendChild(el('span', 'ri-marks', marksLabel(s.marks)));
+    item.appendChild(head);
+
+    if (key === 'covered' && s.evidence) {
+      item.appendChild(el('div', 'ri-said', 'You said: "' + s.evidence + '"'));
+      if (s.confidence < 0.5) {
+        item.appendChild(el('div', 'ri-hint', 'This one was hard to hear. We counted it.'));
+      }
+    }
+    if (key !== 'covered') {
+      var summary = stepSummary(s.step_id);
+      if (summary) item.appendChild(el('div', 'ri-what', 'In the answer this step is:  ' + summary));
+      if (s.credit === 'name_it') {
+        item.appendChild(el('div', 'ri-hint', 'Saying this step out loud by name is enough for this mark.'));
+      }
+      var unsureHint = null;
+      if (key === 'unsure') {
+        unsureHint = el('div', 'ri-hint',
+          'We could not find this clearly in what you said. It is not marked as missed.');
+        item.appendChild(unsureHint);
+      }
+      var actions = el('div', 'recall-actions');
+      if (key === 'unsure' && s.marks > 0) {
+        var yes = el('button', 'btn', 'I did say this');
+        yes.type = 'button';
+        yes.addEventListener('click', function () {
+          confirmed[s.step_id] = true;
+          refresh();
+          item.classList.remove('unsure');
+          item.classList.add('covered');
+          head.firstChild.textContent = '✓';
+          if (unsureHint) unsureHint.remove();
+          actions.innerHTML = '';
+          item.appendChild(el('div', 'ri-hint', 'Counted.'));
+        });
+        actions.appendChild(yes);
+      }
+      var write = el('button', 'btn', 'Write this step');
+      write.type = 'button';
+      write.addEventListener('click', function () {
+        closeTest();
+        window.PM_ANSWER.goToStep(s.step_id);
+      });
+      actions.appendChild(write);
+      item.appendChild(actions);
+    }
+    return item;
+  }
+
+  /** The authored teaching layer surfaces here: each miss carries its own mistake note. */
+  function redoList(res, confirmed) {
+    var wrap = el('div', 'ss-redo');
+    var misses = res.steps.filter(function (s) {
+      return !confirmed[s.step_id] && s.marks > 0;
+    });
+    if (!misses.length) return wrap;
+    wrap.appendChild(el('h4', null, 'Write these again'));
+    misses.forEach(function (s) {
+      var full = stepById(s.step_id);
+      var item = el('div', 'recall-item missed');
+      var head = el('div', 'ri-head');
+      head.appendChild(el('span', 'ri-mark', '✗'));
+      head.appendChild(el('span', 'ri-label', s.label));
+      head.appendChild(el('span', 'ri-marks', marksLabel(s.marks)));
+      item.appendChild(head);
+      if (full && full.common_mistakes && full.common_mistakes.length) {
+        item.appendChild(el('div', 'ri-hint', full.common_mistakes[0]));
+      }
+      if (full && full.why) item.appendChild(el('div', 'ri-what', full.why));
+      var actions = el('div', 'recall-actions');
+      var write = el('button', 'btn', 'Write this step');
+      write.type = 'button';
+      write.addEventListener('click', function () {
+        closeTest();
+        window.PM_ANSWER.goToStep(s.step_id);
+      });
+      actions.appendChild(write);
+      item.appendChild(actions);
+      wrap.appendChild(item);
+    });
+    return wrap;
+  }
+
+  // -- photo / PDF -----------------------------------------------------------
+
+  var MAX_UPLOAD_BYTES = 12 * 1024 * 1024;
+
+  function sendPhoto(file) {
+    if (file.size > MAX_UPLOAD_BYTES) {
+      $('testChoose').hidden = true;
+      showRecallMessage('That file is too large. Try a photo instead of a scan, or a smaller PDF.');
+      return;
+    }
+    stopAssessTimer();
+    $('btnPhoto').classList.add('busy');
+    $('testChoose').hidden = true;
+    showRecallMessage('Reading your page...');
+    var form = new FormData();
+    form.append('page', file, file.name || 'answer');
+    form.append('question_id', question.question_id);
+    fetch(PHOTO_ENDPOINT, { method: 'POST', body: form })
+      .then(function (r) {
+        return r.json().then(function (b) { return { ok: r.ok, status: r.status, body: b }; });
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          showRecallMessage(res.status === 503
+            ? 'Photo checking is not switched on in this copy.'
+            : 'We could not read that page. Nothing has been marked wrong.');
+          return;
+        }
+        renderCheck(res.body, 'photo');
+      })
+      .catch(function () {
+        showRecallMessage('Could not reach the checker. Your answer book still works, and nothing has been marked wrong.');
+      });
+  }
+
+  function initTest() {
+    $('btnTest').addEventListener('click', openTest);
+    $('btnCloseTest').addEventListener('click', closeTest);
+    $('testOverlay').addEventListener('click', function (e) {
+      if (e.target === $('testOverlay')) closeTest();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !$('testOverlay').hidden) closeTest();
+    });
+
+    var any = false;
+    if (PHOTO_ENDPOINT && question.recall_available) {
+      any = true;
+      $('btnPhoto').hidden = false;
+      $('btnPhoto').addEventListener('click', function () { $('photoInput').click(); });
+      $('photoInput').addEventListener('change', function () {
+        if (this.files && this.files[0]) sendPhoto(this.files[0]);
+        this.value = '';
+      });
+    }
+    if (RECALL_ENDPOINT && question.recall_available) {
+      any = true;
+      $('btnMic').hidden = false;
+      $('btnMic').addEventListener('click', function () {
+        if (rec.active) stopRecording(); else startRecording();
+      });
+    }
+    $('testIntro').textContent = any
+      ? 'Write this answer on paper and upload it, or say the steps aloud.'
+      : '';
+    $('testNone').hidden = any;
+  }
+
 
   // ═══ AI assistant seam (read-only; see docs/patterns/answer_book.md) ══════
 
@@ -1199,7 +1185,6 @@
     writePageHeader();
     updateChrome();
     fitNotebook();
-    initModes();
-    initRecall();
+    initTest();
   });
 })();

@@ -86,14 +86,15 @@ const browserQuestions = questions.map((q) => ({
     },
 }));
 
-// The recall endpoint is optional. Unset → the page never offers the mic and makes
-// zero network calls, exactly as it shipped (progressive enhancement, not a dependency).
-const recallEndpoint = process.env.ANSWER_BOOK_RECALL_ENDPOINT ?? '';
+// The checking API is optional. Unset → the page offers neither photo nor mic and
+// makes zero network calls, exactly as it shipped (progressive enhancement, not a
+// dependency). One base; the client derives /recall-check and /photo-check.
+const apiBase = process.env.ANSWER_BOOK_API_BASE ?? '';
 
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
-    `window.PM_RECALL_ENDPOINT = ${JSON.stringify(recallEndpoint)};`;
+    `window.PM_API_BASE = ${JSON.stringify(apiBase)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => css)
@@ -107,7 +108,7 @@ writeFileSync(outPath, html, 'utf8');
 
 // ── report ───────────────────────────────────────────────────────────────────
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
-console.log(`  recall endpoint: ${recallEndpoint || '(unset — mic hidden, page stays fully offline)'}`);
+console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
     const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';

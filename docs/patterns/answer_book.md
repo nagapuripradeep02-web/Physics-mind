@@ -268,3 +268,51 @@ the append-only `renderChrome` so each clears first; make every marks readout re
 `marksTotal`; derive the header text; call `fitNotebook()` at the end of `renderUpTo`; add a
 paired root total + superRefine. Then author the cuts — **only once a real IPE teacher confirms
 them.**
+
+---
+
+# Test yourself — photo + mic (2026-08-20, replaces the three-mode toggle)
+
+The Study / Exam / Test-myself toggle is **removed**. There is one entry — a **Test myself**
+button in the top-right corner — opening an overlay with two ways to be checked:
+
+- **Photo or PDF** → vision model proposes which steps it can see → **the student confirms a
+  tick-list** → only ticked steps count.
+- **Speak it** → the spoken-recall check, unchanged.
+
+Both render through one `renderCheck(res, source)`.
+
+## Why the photo path proposes instead of marking
+
+`recallGrader` can verify an evidence quote by substring-matching it against the transcript
+(guard G4). **A photo has no transcript**, so that guard cannot exist. The student's confirmation
+replaces it: a misread of untidy handwriting costs one tap instead of becoming a wrong
+accusation. `photoGrader` therefore returns *proposals*, the browser recomputes the total from
+the ticks, and the server total is provisional only.
+
+The same asymmetry as the mic path is kept in the model's favour: a low-confidence read
+(< 0.5) becomes **unsure**, never **missed** — bad light is a photo problem, not a student
+problem.
+
+## Endpoint configuration
+
+One env var, `ANSWER_BOOK_API_BASE`; the client derives `/recall-check` and `/photo-check`
+(replaces the old `ANSWER_BOOK_RECALL_ENDPOINT`). Each path is gated on its own key —
+`SARVAM_API_KEY` for the mic, `GOOGLE_GENERATIVE_AI_API_KEY` for the photo — and a missing key
+returns 503, which hides that option rather than showing a broken button. With no base at all
+the page makes zero network calls, asserted in e2e.
+
+## The teaching layer moved
+
+`why` and `common_mistakes` are still authored and validated but no longer render while tapping
+through. They surface **in the redo list** after a check, where a miss is exactly the moment the
+explanation is wanted.
+
+## Two layout traps found by tests, not by eye
+
+1. **A third top-bar button overflows a phone.** `Test myself` beside `Restart`/`Print` pushed
+   `scrollWidth` to 432 on a 390 px viewport. Fixed by letting `.topbar` wrap under 560 px. The
+   existing mobile no-horizontal-scroll test caught it.
+2. **`display:` beats the `hidden` attribute** (recorded earlier for `.btn-mic`) — the reason
+   `[hidden] { display: none !important; }` sits near the top of the stylesheet. Every new
+   component with an explicit `display` depends on it.

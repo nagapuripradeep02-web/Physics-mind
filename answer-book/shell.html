@@ -31,6 +31,7 @@
   <div class="topbar-actions">
     <button class="btn btn-ghost" id="btnRestart" type="button">Restart</button>
     <button class="btn btn-ghost" id="btnPrint" type="button">Print</button>
+    <button class="btn btn-test" id="btnTest" type="button">Test myself</button>
   </div>
 </header>
 
@@ -53,33 +54,11 @@
       <div class="acc-bar"><div class="acc-fill" id="accFill"></div></div>
     </div>
 
-    <div class="card mode-card">
-      <div class="card-title">Mode</div>
-      <div class="mode-row" id="modeRow">
-        <button class="mode-btn" type="button" data-mode="study">Study</button>
-        <button class="mode-btn" type="button" data-mode="exam">Exam</button>
-        <button class="mode-btn" type="button" data-mode="test">Test myself</button>
-      </div>
-      <p class="mode-hint" id="modeHint"></p>
-    </div>
-
     <div class="card" id="marginNoteCard" hidden>
       <div class="card-title">How to earn it</div>
       <div class="margin-note" id="marginNote"></div>
     </div>
 
-    <!-- Study-mode teaching layer. Rail only — the notebook page stays an answer
-         script (Rules 24/34), and anything inside .step-block would be typed and
-         would change pagination. -->
-    <div class="card" id="whyCard" hidden>
-      <div class="card-title">Why this step</div>
-      <div class="why-note" id="whyNote"></div>
-    </div>
-
-    <div class="card" id="mistakeCard" hidden>
-      <div class="card-title">Where marks are lost</div>
-      <ul class="mistake-list" id="mistakeList"></ul>
-    </div>
 
     <div class="card">
       <div class="card-title">Mark split</div>
@@ -88,27 +67,6 @@
 
     <div class="card verify-note" id="verifyNote" hidden></div>
 
-    <!-- Assess panel — only in Test-myself mode. Two paths: write it on paper and
-         self-score, or speak it and let the recall check grade it. The mic path
-         appears only when a recall endpoint is configured, so with no endpoint the
-         paper path still works completely and the page makes zero network calls. -->
-    <section class="card assess-card" id="assessCard" hidden>
-      <div class="card-title">Test yourself</div>
-
-      <div id="assessStart">
-        <p class="assess-intro">Write this answer on paper. Or speak it if you are short of time.</p>
-        <div class="assess-timer" id="assessTimer"></div>
-        <button class="btn btn-assess" id="btnDonePaper" type="button">I am done — check my paper</button>
-        <button class="btn btn-mic" id="btnMic" type="button" hidden>
-          <span class="mic-dot"></span><span id="micLabel">Speak it instead</span>
-        </button>
-        <p class="recall-intro" id="recallIntro" hidden></p>
-      </div>
-
-      <div class="recall-timer" id="recallTimer" hidden></div>
-      <div class="self-score" id="selfScore" hidden></div>
-      <div class="recall-result" id="recallResult" hidden></div>
-    </section>
 
     <!-- AI assistant seam: slot only, no content, no fetch (see docs/patterns/answer_book.md) -->
     <aside id="pm-assistant-slot" hidden></aside>
@@ -120,6 +78,45 @@
   </section>
 
 </main>
+
+<!-- Test-yourself overlay. Two ways to be checked: a photo/PDF of what you wrote,
+     or say it aloud. Each path appears only when its endpoint is configured, so with
+     none the page is exactly the offline answer book it has always been. -->
+<div class="overlay" id="testOverlay" hidden>
+  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="testTitle">
+    <div class="overlay-head">
+      <h2 id="testTitle">Test yourself</h2>
+      <button class="overlay-close" id="btnCloseTest" type="button" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="overlay-body" id="testBody">
+      <div id="testChoose">
+        <p class="assess-intro" id="testIntro"></p>
+        <div class="assess-timer" id="assessTimer"></div>
+        <div class="choice-row">
+          <button class="choice" id="btnPhoto" type="button" hidden>
+            <span class="choice-icon">&#128247;</span>
+            <span class="choice-label">Photo or PDF</span>
+            <span class="choice-sub">Upload what you wrote</span>
+          </button>
+          <button class="choice" id="btnMic" type="button" hidden>
+            <span class="choice-icon">&#127908;</span>
+            <span class="choice-label" id="micLabel">Speak it</span>
+            <span class="choice-sub">Say the steps aloud</span>
+          </button>
+        </div>
+        <input type="file" id="photoInput" accept="image/*,application/pdf" hidden>
+        <p class="assess-none" id="testNone" hidden>
+          Checking is not switched on in this copy. You can still write the answer on paper
+          and compare it with the page.
+        </p>
+      </div>
+
+      <div class="recall-timer" id="recallTimer" hidden></div>
+      <div class="recall-result" id="recallResult" hidden></div>
+    </div>
+  </div>
+</div>
 
 <script>
 /*__DATA__*/

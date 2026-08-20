@@ -56,33 +56,37 @@ from `file://`.
 Today the page shows `PM_QUESTIONS[0]` only; a question picker is deliberately out of scope
 until there is more than one question worth picking.
 
-## Three modes
+## Test yourself
 
-A rail toggle switches what the same authored data is used for:
+A **Test myself** button sits in the top-right corner. It opens an overlay with two ways to be
+checked — write the answer by hand, or say it aloud:
 
-| Mode | Notebook | Rail |
-|---|---|---|
-| **Study** (default) | tap through | `why` + `common_mistakes` for the step you are about to write |
-| **Exam** | tap through | nothing extra — identical to the original build |
-| **Test myself** | **stays blank** | the assess panel: count-up timer, then either path below |
+- **Photo or PDF** — upload a photo of what you wrote. A vision model reports which authored
+  steps it can see, and the student gets a **tick-list to confirm**. Only what is ticked counts.
+  This is deliberate: handwritten physics is exactly where a model misreads, so a misread costs
+  a tap, never a wrong accusation.
+- **Speak it** — the spoken-recall check (see below).
 
-**Test myself** has two paths and is the single "assess me" entry:
-- **I am done — check my paper** → reveals each step *before* asking `I wrote this / Partly /
-  I missed it` (harder to over-credit yourself). Partly = half marks, so totals can read `6.5`.
-  Ends with the score, the time taken against `expected_time_min`, and a **redo list** — each
-  entry shows that step's first common mistake and taps back into Study mode at that step.
-- **Speak it instead** → the spoken-recall check. Appears **only** when a recall endpoint is
-  configured; with none, the paper path still works completely and the page makes zero network
-  calls.
+Both converge on one renderer. Every miss shows that step's `common_mistakes[0]` and its `why`,
+with a **Write this step** button that closes the overlay and types that step into the notebook.
 
-**Authoring the teaching layer** — two optional per-step fields, both **rail-only**:
-```jsonc
-"why": "One line: why this step exists. Study mode only.",
-"common_mistakes": ["1-3 short literal items — where this step's marks are actually lost."]
+Each option appears **only when its endpoint is configured**. With none, the overlay says so
+plainly and the page stays the offline answer book it has always been.
+
+## Build with checking switched on
+
+```bash
+npm run dev                                                  # the API (localhost:3000)
+ANSWER_BOOK_API_BASE=http://localhost:3000/api/answer-book   npm run build:answers
+npm run serve:answers                                        # http://localhost:8100
 ```
-They must never render inside `.step-block`: anything there gets typed by the engine and
-changes pagination. That invariant is asserted in `e2e/answer_book.spec.ts` ("exam mode is a
-true no-op").
+One base; the client derives `/recall-check` and `/photo-check`. The mic needs
+`SARVAM_API_KEY`; the photo path needs `GOOGLE_GENERATIVE_AI_API_KEY`. Either missing returns
+503 and that option simply does not appear.
+
+**Authoring note:** `why` and `common_mistakes` are still authored per step and still validated
+— they are no longer shown while tapping through, and surface only in the redo list after a
+check.
 
 ## Determinism (Rule 18)
 
