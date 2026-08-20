@@ -26,7 +26,7 @@
 | 3b | Second concept — **`graph_transformations`** (a·f(b(x−h))+k) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 ride-along · 8 P3). Merged as PR #53; desk `fix/math-graph-transformations-checkpointB` carries the fix rounds + re-baseline (`8b2d196`, 8 states), **not yet PR'd**. Chain: CP-A → author → quality_auditor → founder_proxy B ×3 cycles → offset-deletion round (8 of 9 deleted). **Checkpoint C + professor gate SKIPPED — founder call 2026-08-08.** TTS 20 EN clips; stale clips auto-muted. |
 | 3c | Third concept — **`derivative_as_secant_limit`** (ranked P1) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 · 4 P3). Merged as PR #50; desk `fix/math-derivative-checkpointB` carries the fix rounds + re-baseline (`7012e42`, 9 states), **not yet PR'd**. Same chain, 3 B-cycles, then 11 of 12 offsets deleted. **Checkpoint C + professor gate SKIPPED — founder call.** TTS 26 EN clips. |
 | 3d | Fourth concept — **`definite_integral_as_accumulated_area`** (ranked P1 #3 — **completes P1**) | ✅ **MERGED to master 2026-08-09 — PR #70 and engine PR #76 both landed; baselines re-approved against the merged state and THE EYE returns 50/50.** Checkpoint C + professor gate SKIPPED (founder call). Shipping (PILOT_CONCEPTS/TTS/deploy) untouched and founder-only. Prior: **Checkpoint B APPROVED (cycle 3 of 3; authoring sign-off only). Rubric 17/20. Nine ride-along findings, zero blocking. Engine PR #76 open with four platform fixes; PR #70 still DRAFT; nothing re-baselined.** Prior status: Checkpoint B cycle 1 = FIX(engine) 2026-08-08. Cycle 1 of 3 spent, two remain.** Cycle 0's six findings are ALL verified closed (engine PR **#72 MERGED**, `05eceff`). Four NEW P1s, three findable only by a live drive. `quality_auditor` 3rd audit **PASS**; `eye_walker` FINDINGS(3); THE EYE **50/50**. **PR #70 open, HOLD — do not merge.** Baselines were re-approved and are ALREADY STALE again: two of them certify frames the product cannot reach. Full detail + the exact next round below. |
-| 3e | Fifth concept — **`lines_and_planes_in_space`** (ranked P3 #9; `vector_geometry_3d` / `mode:"lines_planes"`, 9 states) | 🟡 **AUTHORED · FIX-COMPLETE · AUDITED ×3 — NOT approved, NOT merged, NOT baselined, not in `PILOT_CONCEPTS`.** Desk `feat/mathematics-lines-and-planes` @ `6c2dc01` (16 ahead of master, 0 behind, pushed); **PR #96 OPEN — must not merge.** The 2026-08-09 xhigh review's **15 confirmed defects are all cleared** (2026-08-10): scar queue **26 → 13 OPEN** of 47 rows (33 FIXED · 1 FALSE_POSITIVE), and nothing OPEN is a defect this concept introduced. Chain run: `quality_auditor` ×3 (FAIL → fixed · FAIL → fixed · 3 findings) · `eye_walker` ×4 (4th CLEAN, 0 findings) · **founder review NEVER RUN.** Seven engine PRs merged for it — #108/#109/#110/#112/#113/#114 (gate 712 → 1015) and #118 (→ 1055). **⚠ #118 (a tube's radius applied twice → every line a ~0.1 px hairline) VOIDS every pre-fix pixel walk on this branch; THE EYE has not re-run since, and no baseline exists for any of the 9 states.** Record: `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.1 + the two sessions below. |
+| 3e | Fifth concept — **`lines_and_planes_in_space`** (ranked P3 #9; `vector_geometry_3d` / `mode:"lines_planes"`, 9 states) | 🟡 **AUTHORED · FIX-COMPLETE · AUDITED ×3 — NOT approved, NOT merged, NOT baselined, not in `PILOT_CONCEPTS`.** Desk `feat/mathematics-lines-and-planes` @ `6c2dc01` (16 ahead of master, 0 behind, pushed); **PR #96 OPEN — must not merge.** The 2026-08-09 xhigh review's **15 confirmed defects are all cleared** (2026-08-10): scar queue **26 → 13 OPEN** of 47 rows (33 FIXED · 1 FALSE_POSITIVE), and nothing OPEN is a defect this concept introduced. Chain run: `quality_auditor` ×3 · `eye_walker` ×4 · **founder review NEVER RUN.** **THE EYE re-run post-#118 (2026-08-20): 40 checks · 39 passed · 1 skip (H2) · 1 known false positive** — and the first trustworthy eye-walk then found **4 new defects** (S3's aha state blank at its own climax; `v` named and unlabelled on S2; S7's two arcs reading as one; an S5 pacing-table drift) plus an 8 px label pair on S8. Queue **13 → 19 OPEN**. Seven engine PRs merged for it — #108/#109/#110/#112/#113/#114 (gate 712 → 1015) and #118 (→ 1055). **⚠ #118 (a tube's radius applied twice → every line a ~0.1 px hairline) VOIDED every pre-fix pixel walk on this branch; re-run and re-walked 2026-08-20. Still NO baseline for any of the 9 states.** Record: `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.1 + the two sessions below. |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 | — | **3D-vectors chapter (ranked P3 #7/#9)** | ⏸ **STOPPED mid-flight by founder 2026-08-08**, to restart from Phase 0 in a fresh session. Full record: `docs/MATHEMATICS_VECTORS_3D_HANDOFF.md` → superseded by `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`. Ranked list corrected P2 #5 → **P3 #7** (the "no new engine" premise was false). |
@@ -50,6 +50,78 @@ no concept JSON.** No mathematics concept is in `PILOT_CONCEPTS` — nothing shi
 > state claims its change has**, and they never touch a control. Only founder_proxy's live-drive
 > (Playwright, real mouse drags) found either. Filed as
 > `eye_deterministic_gates_pass_a_state_whose_motion_is_correct_in_amount_and_wrong_in_direction`.
+
+---
+
+## 👁 SESSION — the record brought current, THE EYE re-run over trustworthy pixels, and the first walk that could be believed (2026-08-20, desk `feat/mathematics-lines-and-planes` `6c2dc01 → HEAD`; no code changed, no PR)
+
+**Nothing shipped and nothing was fixed. The session's whole output is RECORD** — the log, the queue,
+and one honest walk. Concept #9 is still **not approved, not merged, not baselined**; PR #96 is still
+OPEN. Queue for this concept: **13 → 19 OPEN**, every new row a gap that was already there and unwritten.
+
+### 1 · The 2026-08-10 round entered in the log, and the two events no handoff carried
+
+`PROGRESS_MATHEMATICS.md` had stopped at 2026-08-09, where #9 still reads "banked again, 15 defects,
+none fixed" — the entire fix round lived only in `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.1
+and in commit messages. Written up as the session entry below this one. The handoff itself stops at
+16:12, so **PR #118 and `fab6235` were in no document at all** until this session.
+
+### 2 · Four rows filed for the pass-3 audit and #118 (`_seed_engine_bug_queue_lines_and_planes_pass3.ts`)
+
+The 08-10 session's own §2a lesson was *a correction living only in a database is not in the record*;
+a fix living only in a commit message is the same failure one rung down. Filed with the §2a guards in
+both paths, replay-verified 5/5 skip: the **radius-squared mechanism** (CRITICAL/FIXED, carrying the
+standing note that pre-#118 pixel evidence is void), **no gate asserts a drawn object is thick enough
+to see** (MAJOR/**OPEN** — §29 closes it for one scenario only), **a fix round closes the reported
+instances and never sweeps** (MODERATE/FIXED, the sweep run to prove it), and **label separation is a
+function of the authored camera** (MODERATE/**OPEN**).
+
+### 3 · THE EYE, all 9 states, post-#118 — 40 checks · 39 passed · 1 failed · 1 skip
+
+Chain: `tsc` 0 · `validate:mathematics` 5/5 zero WARNs on target · `check:vector-geometry-3d` **ALL
+SECTIONS PASSED** (1 071 PASS / 108 negative controls; a line now draws **3.36 px** at d=13 against
+**0.118 px** pre-fix) · cache re-seeded · 508 s.
+
+The skip is H2 (no baseline). The failure is STATE_9 D5, **measured rather than assumed**: 332–374 px
+change on every adjacent pair, bbox marching x[482→744] and back in a palindrome about t=9000, with
+t=1000→2000 identical to t=19000→20000 — which also re-proves #113's loop. It fails only because the
+canvas ratio (0.04 %) and ink ratio (~0.32 %) are diluted by static chrome, as its OPEN row says.
+**Fourth walk to re-confirm that by hand.**
+
+### 4 · THE WALK — four findings, none of them visible to any gate
+
+The first walk over pixels that could be believed. **What held:** S1's anchor drawn before the line
+grows · S3's aha mechanic (2.628 → 2.301 → **2.200** at the minimum → 2.353) · S5's crossing dot and
+`1.800` co-present · S6's θ 69.4 → 94.3 → **115.0** · S8's cross vector landing on the gap · S9's
+authored group-A controls and `‖n‖` in two strokes.
+
+| # | State | Finding |
+|---|---|---|
+| **MAJOR** | **S3** | `cmp` hides at 9000, `perp` reveals at 9000 with `grow_ms: 600` — so **at t=9000 there is no segment on screen and the HUD is empty** (t=8000 `segment length = 2.339` → t=9000 *nothing* → t=10000 `distance = 2.198`). The aha state goes blank at the beat whose narration is *"it bottoms out at the perpendicular, and locks in place."* The sweep foot is already at the true foot by 9000, so the honest picture is a recolour in place, not a delete-and-regrow |
+| MODERATE | **S2** | The HUD prints `n·v` and the narration says *"a vector"*; **`v` is labelled in no state.** Second instance of a class closed for `a` on S1 — survived because that row's probe treats the HUD only as a place a symbol is SATISFIED, never as one where a symbol is INTRODUCED |
+| MODERATE | **S7** | Both arcs render, at the **same apex and same radius, contiguous** — t=12000 shows one arc, t=15000 the same arc simply extended. The picture is one unbroken ~90° curve, so *"the two add to ninety"* is asserted by two HUD rows and shown nowhere. Radius (~208 px) also exceeds the drawn normal arm (~180 px). **Supersedes the founder-taste note** — not a taste call |
+| MODERATE | **S5** | The skeleton's pacing row states a perpendicular window of 3800–6000 and a camera window of 6000–13000; the JSON authors **0 + 1800** and **7500 + 9000**. Both wrong, while the same document's state table is right. Filed with the reason: since #93 a readout is gated on its subject ARRIVING, so the number can only be early if the geometry is — any "correction" back to the documented order re-opens the CRITICAL row that fix closed |
+
+Two annotations rather than duplicate rows: **STATE_8's `d₁×d₂` / `a₂−a₁` labels measure an 8 px box
+gap on a shared baseline** (against a 12 px floor; the fixed STATE_4 pair measures 20 px by the same
+method) — recorded on the label row as its second instance, exactly what that row predicted; and a
+**scope note** on the fix-round-sweep row, since its FIXED status covers the 25° figure only and the
+S5 drift is a second figure in the same table.
+
+> **One correction, recorded because the inference error is the durable part:** mid-walk I read S7's
+> arc as detached from its vertex. Measuring both endpoints at 205–212 px from the point where line,
+> normal and shadow meet shows it is correctly centred. The defect is the radius and the missing
+> separation, not the apex. *An arc that looks wrong is a measurement to take, not a diagnosis.*
+
+### ⏭ NEXT
+
+1. **Fix the four walk findings**, S3 first — it is the aha state and the fix is an overlap of two
+   authored windows, not a mechanism.
+2. **The two OPEN rows from #118 are still gaps, not defects to fix here:** a fleet-wide minimum-ink
+   check, and a real label-separation gate so a camera nudge stops being provisional.
+3. **Then founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** first.
+4. **Re-baseline stays a deliberate approval:** #112 changed the norm-bar glyph and #118 every stroke
+   width, so any pre-fix capture differs **by design** (Rule 34e).
 
 ---
 
@@ -180,31 +252,11 @@ only in a commit message is the same failure one rung down.
 
 ### ⏭ NEXT — in order
 
-1. ~~Re-run THE EYE on all 9 states against the post-#118 branch~~ — **DONE 2026-08-20.** Full chain:
-   `tsc` 0 · `validate:mathematics` 5/5 with **zero WARNs on target** · `check:vector-geometry-3d` **ALL
-   SECTIONS PASSED** (1 071 PASS assertions / 108 negative controls, §29's ≥2 px stroke floor among them:
-   a line now draws **3.36 px** at d=13 and **2.73 px** at d=16, against **0.118 px** pre-fix) · cache
-   re-seeded (mandatory after #118 + `fab6235`) · **THE EYE: 40 checks · 39 passed · 1 failed · 1 skip**,
-   508 s. The skip is H2 (no baseline — correct). The failure is STATE_9 D5, and it is the known false
-   positive **re-confirmed by measurement, not by assumption**: a direct pixelmatch of the 21 dense frames
-   shows **332–374 changed px on every adjacent pair**, bbox marching x[482→744] and back in a clean
-   palindrome about t=9000 — the λ ping-pong, with t=1000→2000 identical to t=19000→20000, which also
-   re-proves #113's 18 s loop. D5 fails only because the canvas ratio (0.04 %) and ink ratio (~0.32 %) are
-   both diluted by the static slider/picker/HUD chrome, exactly as
-   `visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_explore_states` (OPEN) describes —
-   the **fourth** walk to re-confirm this by hand. **STATE_4's label fix is now pixel-verified**: `d` at
-   ~(630, 268), `n` at ~(655, 289), **≈33 px apart** against a 12 px floor, matching the 35 px the
-   projection model predicted. Recorded on its row, which stays OPEN for its structural half.
-   **Still outstanding: the eye-walk** — a human/agent read of every dumped frame. THE EYE proves pixels
-   moved and reproduce; it has no opinion on whether the picture teaches.
-2. ~~File the missing rows~~ — **DONE 2026-08-20** (see the CLOSED note above). What remains from them
-   is the work the two OPEN rows name: a fleet-wide minimum-ink check, and a real label-separation gate
-   so STATE_4's camera nudge stops being provisional.
-3. **Founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** before it.
-4. **Re-baseline is a deliberate approval, not a diff surprise:** #112 changed the norm-bar glyph and
-   #118 changed every stroke width, so any state printing `‖n‖` / `‖d₁×d₂‖` or drawing a line differs
-   from any pre-fix capture **by design** (Rule 34e, founder decision).
-
+> **Every item here was carried out on 2026-08-20 or superseded — the session entry above owns the
+> current next-steps list.** In summary: (1) THE EYE re-run on all 9 states, 39/40, and the eye-walk
+> taken; (2) the missing rows filed; (3) founder review / Checkpoint B still never run, and PR **#96
+> must not merge** before it; (4) re-baselining is still a deliberate approval, since #112 changed the
+> norm-bar glyph and #118 every stroke width (Rule 34e).
 ---
 
 ## 📐 SESSION — concept #9 authored on the merged 3D engine, and FIVE platform fixes found by walking it (2026-08-09, master `2c0b24f` → `bb73ee8`; PRs #90/#91/#93/#94/#95 all merged)
