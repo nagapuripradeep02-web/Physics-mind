@@ -132,6 +132,69 @@ body {
 
 .verify-note { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); }
 
+/* ── spoken-recall check ───────────────────────────────────────────────── */
+
+.recall-intro { font-size: 13px; line-height: 1.5; color: var(--chrome-dim); margin-bottom: 10px; }
+
+.btn-mic {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px;
+  background: var(--ink); color: #fff; border: none; padding: 12px; border-radius: 10px;
+  font-size: 14.5px;
+}
+.btn-mic:hover { background: #24418f; color: #fff; }
+.btn-mic:disabled { opacity: 0.5; cursor: default; }
+.btn-mic.recording { background: var(--red); }
+.btn-mic.recording:hover { background: #a91d1d; }
+.mic-dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+.btn-mic.recording .mic-dot { animation: micPulse 1s ease-in-out infinite; }
+@keyframes micPulse { 50% { opacity: 0.25; transform: scale(0.8); } }
+
+.recall-timer {
+  text-align: center; font-size: 12.5px; color: var(--chrome-dim);
+  margin-top: 8px; font-variant-numeric: tabular-nums;
+}
+
+.recall-result { margin-top: 14px; font-size: 13.5px; }
+.recall-score { font-size: 21px; font-weight: 700; color: var(--red); line-height: 1.25; }
+.recall-caveat { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); margin-top: 6px; }
+.recall-lead { font-size: 12.5px; color: var(--chrome-ink); margin-bottom: 6px; font-weight: 600; }
+
+.recall-transcript {
+  margin-top: 12px; padding: 10px; border-radius: 8px;
+  background: var(--chrome-bg); border: 1px solid var(--chrome-line);
+  font-size: 13px; line-height: 1.6; max-height: 190px; overflow-y: auto;
+}
+.recall-transcript mark { background: #D6F0DC; color: inherit; border-radius: 3px; padding: 0 2px; }
+
+.recall-group { margin-top: 14px; }
+.recall-group h4 {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin-bottom: 7px;
+}
+.recall-item {
+  padding: 8px 0; border-top: 1px solid var(--chrome-line);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.recall-item .ri-head { display: flex; gap: 7px; align-items: baseline; }
+.recall-item .ri-mark { font-weight: 700; }
+.recall-item.covered .ri-mark { color: #1B7F3B; }
+.recall-item.missed .ri-mark { color: var(--red); }
+.recall-item.unsure .ri-mark { color: var(--chrome-dim); }
+.recall-item .ri-label { font-weight: 600; }
+.recall-item .ri-marks { margin-left: auto; font-size: 12px; color: var(--chrome-dim); white-space: nowrap; }
+.recall-item .ri-said { font-size: 12.5px; color: var(--chrome-dim); font-style: italic; }
+.recall-item .ri-what { font-size: 12.5px; color: var(--chrome-ink); }
+.recall-item .ri-hint { font-size: 12px; color: var(--chrome-dim); }
+.recall-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.recall-actions .btn { padding: 5px 10px; font-size: 12px; }
+
+.recall-note {
+  margin-top: 12px; font-size: 12px; line-height: 1.5; color: var(--chrome-dim);
+}
+.recall-empty { font-size: 13.5px; line-height: 1.6; }
+
+@media print { .recall-card { display: none !important; } }
+
 #pm-assistant-slot {
   /* AI assistant seam: reserved, empty. Width/position ready for a future panel. */
   display: block; min-height: 0;

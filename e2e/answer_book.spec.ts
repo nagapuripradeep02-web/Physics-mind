@@ -88,3 +88,42 @@ test('mobile viewport scales without horizontal scroll', async ({ page }) => {
     );
     expect(hscroll).toBe(false);
 });
+
+// ── spoken-recall check ──────────────────────────────────────────────────────
+// The offline guarantee is the one that regresses silently: if a future change
+// makes the page fetch unconditionally, a student on file:// loses the answer book.
+
+test('with no recall endpoint the page stays fully offline and offers no mic', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.googleapis') && !u.includes('fonts.gstatic')) {
+            external.push(u);
+        }
+    });
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+
+    const state = await page.evaluate(() => ({
+        endpoint: (window as any).PM_RECALL_ENDPOINT,
+        cardHidden: document.getElementById('recallCard')!.hidden,
+        // the grader-side rubric must never ship to the browser
+        leakedRubric: JSON.stringify((window as any).PM_QUESTIONS).includes('must_convey'),
+    }));
+
+    expect(state.endpoint).toBe('');       // default build has no endpoint
+    expect(state.cardHidden).toBe(true);   // therefore no mic
+    expect(state.leakedRubric).toBe(false);
+    expect(external).toEqual([]);          // and zero network calls
+});
+
+test('the answer still reaches 8/8 with the recall feature present', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const r = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        return (window as any).PM_ANSWER.getState();
+    });
+    expect(r.marksEarned).toBe(r.marksTotal);
+    expect(r.pageCount).toBeGreaterThanOrEqual(2);
+});

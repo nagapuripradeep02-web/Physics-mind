@@ -71,8 +71,29 @@ for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_A
 }
 
 // ── 3. inline + write ────────────────────────────────────────────────────────
+// The `recall` rubric is GRADER-side data (it contains reject lists and the
+// must_convey wording). The API reads the question file itself, so strip it from
+// the browser copy — the page only needs to know whether recall is available.
+const browserQuestions = questions.map((q) => ({
+    ...q,
+    recall_available: q.answer.steps.every((s) => Boolean(s.recall)),
+    answer: {
+        ...q.answer,
+        steps: q.answer.steps.map(({ recall, ...step }) => {
+            void recall;
+            return step;
+        }),
+    },
+}));
+
+// The recall endpoint is optional. Unset → the page never offers the mic and makes
+// zero network calls, exactly as it shipped (progressive enhancement, not a dependency).
+const recallEndpoint = process.env.ANSWER_BOOK_RECALL_ENDPOINT ?? '';
+
 // </script> inside any string can never break out of the data block:
-const dataJs = `window.PM_QUESTIONS = ${JSON.stringify(questions).replace(/</g, '\\u003c')};`;
+const dataJs =
+    `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
+    `window.PM_RECALL_ENDPOINT = ${JSON.stringify(recallEndpoint)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => css)
@@ -86,9 +107,11 @@ writeFileSync(outPath, html, 'utf8');
 
 // ── report ───────────────────────────────────────────────────────────────────
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
+console.log(`  recall endpoint: ${recallEndpoint || '(unset — mic hidden, page stays fully offline)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
-    console.log(`  ${q.question_id}  [${q.qtype} ${q.marks_total}M]  steps=${q.answer.steps.length}  marks-sum=${sum} ✓`);
+    const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';
+    console.log(`  ${q.question_id}  [${q.qtype} ${q.marks_total}M]  steps=${q.answer.steps.length}  marks-sum=${sum} ✓  ${recall}`);
     for (const s of q.answer.steps) {
         console.log(`    ${String(s.marks).padStart(2)}M  ${s.id}  (${s.kind})`);
     }

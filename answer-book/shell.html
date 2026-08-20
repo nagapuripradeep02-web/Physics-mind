@@ -65,6 +65,19 @@
 
     <div class="card verify-note" id="verifyNote" hidden></div>
 
+    <!-- Spoken-recall check. Hidden unless a recall endpoint is configured AND the
+         question has an authored rubric — with neither, the page is exactly as it
+         shipped: no mic, no network. -->
+    <section class="card recall-card" id="recallCard" hidden>
+      <div class="card-title">Test yourself</div>
+      <p class="recall-intro" id="recallIntro"></p>
+      <button class="btn btn-mic" id="btnMic" type="button">
+        <span class="mic-dot"></span><span id="micLabel">Tap to speak</span>
+      </button>
+      <div class="recall-timer" id="recallTimer" hidden></div>
+      <div class="recall-result" id="recallResult" hidden></div>
+    </section>
+
     <!-- AI assistant seam: slot only, no content, no fetch (see docs/patterns/answer_book.md) -->
     <aside id="pm-assistant-slot" hidden></aside>
   </aside>

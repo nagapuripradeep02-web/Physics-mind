@@ -64,7 +64,31 @@
           "then their resultant is represented in magnitude",
           "and direction by the diagonal of the parallelogram",
           "drawn from the same point."
-        ]
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Both halves of the law: the two vectors at a point are the two adjacent sides of a parallelogram, AND the resultant is the diagonal from that same point. If only one half is spoken, not covered, confidence 0.5 or lower.",
+          "accept": [
+            "two vectors as the two adjacent sides of a parallelogram then the resultant is the diagonal from the same point",
+            "if two vectors act at a point they are the sides of a parallelogram and the diagonal is the resultant",
+            "adjacent sides represent the two vectors and the diagonal represents the resultant in magnitude and direction",
+            "rendu vectors ni parallelogram lo adjacent sides ga theeskunte diagonal ye resultant",
+            "first the statement two vectors adjacent sides diagonal is the resultant"
+          ],
+          "reject": [
+            "first I write the statement",
+            "parallelogram law of vectors",
+            "the resultant is the sum of the two vectors"
+          ],
+          "heard_as": [
+            "parallelogram",
+            "parallel program",
+            "para logram",
+            "adjacent sides",
+            "diagonal",
+            "resultant"
+          ]
+        }
       },
       {
         "id": "s2_figure",
@@ -269,6 +293,32 @@
               "ms": 220
             }
           ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn at this point in the answer. Naming the act of drawing is full credit. The student cannot speak a diagram.",
+          "accept": [
+            "then I draw the figure",
+            "diagram geestha",
+            "draw the parallelogram OACB",
+            "I draw a parallelogram with the two vectors as sides",
+            "picture veyali"
+          ],
+          "reject": [
+            "the diagonal of the parallelogram is the resultant",
+            "the parallelogram law of vectors"
+          ],
+          "heard_as": [
+            "diagram",
+            "figure",
+            "geestha",
+            "geeystha",
+            "vestha",
+            "veyali",
+            "draw",
+            "picture",
+            "sketch"
+          ]
         }
       },
       {
@@ -289,7 +339,32 @@
           "Join OC. The diagonal OC = R is the resultant.",
           "Draw CD ⊥ to OA extended, meeting it at D.",
           "Let ∠AOC = α."
-        ]
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the construction is written after the figure. Saying the word construction is full credit. So is naming any part of it: OA = P, OB = Q, angle AOB = theta, complete OACB, join OC, drop CD perpendicular to OA extended, angle AOC = alpha.",
+          "accept": [
+            "then construction",
+            "OA is P and OB is Q and the angle between them is theta",
+            "complete the parallelogram OACB and join OC",
+            "drop a perpendicular from C to OA extended",
+            "construction raastha"
+          ],
+          "reject": [
+            "then I draw the figure",
+            "I draw the diagram"
+          ],
+          "heard_as": [
+            "construction",
+            "constriction",
+            "conduction",
+            "join OC",
+            "perpendicular",
+            "extended",
+            "angle AOB",
+            "raastha"
+          ]
+        }
       },
       {
         "id": "s4_legs",
@@ -316,7 +391,31 @@
             "text": "∴ OD = OA + AD = P + Q cos θ",
             "style": "eq"
           }
-        ]
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The two legs from right triangle CAD. EITHER naming both legs AD = Q cos theta and CD = Q sin theta, OR naming OD = P + Q cos theta, is enough. Q resolved into a component along P and one perpendicular to P also counts.",
+          "accept": [
+            "AD is Q cos theta and CD is Q sin theta",
+            "resolve Q into Q cos theta along OA and Q sin theta perpendicular",
+            "OD becomes P plus Q cos theta",
+            "in the triangle CAD the angle is theta so the sides are Q cos theta and Q sin theta",
+            "components vasthayi Q cos theta and Q sin theta"
+          ],
+          "reject": [
+            "I use the right triangle",
+            "then I take the components"
+          ],
+          "heard_as": [
+            "Q cos theta",
+            "cue cos theta",
+            "kyu cos theta",
+            "Q cos theater",
+            "Q sin theta",
+            "Q sine theta",
+            "P plus Q cos theta"
+          ]
+        }
       },
       {
         "id": "s5_pythagoras",
@@ -347,7 +446,32 @@
             "text": "R = √(P² + Q² + 2PQ cos θ)",
             "style": "boxed"
           }
-        ]
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "EITHER the move (Pythagoras on triangle ODC, OC squared equals OD squared plus CD squared) OR the result (R equals root of P squared plus Q squared plus 2PQ cos theta). Either one alone is full credit.",
+          "accept": [
+            "apply Pythagoras theorem in triangle ODC",
+            "OC square equals OD square plus CD square",
+            "R equals root of P square plus Q square plus two PQ cos theta",
+            "expand it and sin square plus cos square becomes one",
+            "pythagoras petti magnitude vasthundi"
+          ],
+          "reject": [
+            "then I find the magnitude",
+            "then I get R"
+          ],
+          "heard_as": [
+            "pythagoras",
+            "pythagorus",
+            "square root",
+            "under root",
+            "root of",
+            "P square plus Q square",
+            "two PQ cos theta",
+            "sin square plus cos square"
+          ]
+        }
       },
       {
         "id": "s6_direction",
@@ -366,7 +490,29 @@
             "text": "tan α = Q sin θ / (P + Q cos θ)",
             "style": "eq"
           }
-        ]
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The tangent relation for direction: tan alpha = CD / OD, that is tan alpha = Q sin theta over P + Q cos theta. The inverse form spoken at step 7 contains this relation and counts here too.",
+          "accept": [
+            "tan alpha equals CD by OD",
+            "tan alpha is Q sin theta over P plus Q cos theta",
+            "for the direction tan alpha equals opposite by adjacent",
+            "alpha equals tan inverse of Q sin theta by P plus Q cos theta"
+          ],
+          "reject": [
+            "then I find the direction",
+            "then the angle alpha"
+          ],
+          "heard_as": [
+            "tan alpha",
+            "than alpha",
+            "ten alpha",
+            "tan alfa",
+            "CD by OD",
+            "Q sin theta by P plus Q cos theta"
+          ]
+        }
       },
       {
         "id": "s7_alpha",
@@ -381,7 +527,30 @@
             "text": "∴ α = tan⁻¹ [ Q sin θ / (P + Q cos θ) ]",
             "style": "boxed"
           }
-        ]
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The final answer written as alpha itself: alpha = tan inverse of [Q sin theta / (P + Q cos theta)]. Saying only tan alpha = ... is step 6, not this step.",
+          "accept": [
+            "alpha equals tan inverse of Q sin theta by P plus Q cos theta",
+            "so alpha is tan inverse of that",
+            "I box alpha equal to tan inverse",
+            "alpha ni tan inverse lo raastha"
+          ],
+          "reject": [
+            "tan alpha equals Q sin theta by P plus Q cos theta",
+            "then I write the direction"
+          ],
+          "heard_as": [
+            "tan inverse",
+            "tan universe",
+            "than inverse",
+            "arc tan",
+            "arctan",
+            "tan to the power minus one",
+            "alpha equals tan"
+          ]
+        }
       },
       {
         "id": "s8_special_cases",
@@ -406,8 +575,30 @@
             "text": "θ = 180° → R = P − Q  (minimum)",
             "style": "indent"
           }
-        ]
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the special cases are added at the end. Naming them is full credit. Any one of the three values also counts: theta = 0 gives P + Q, theta = 90 gives root P square plus Q square, theta = 180 gives P minus Q.",
+          "accept": [
+            "then special cases",
+            "when theta is zero R is P plus Q",
+            "at ninety degrees it is root P square plus Q square",
+            "maximum when they are in the same direction and minimum when opposite",
+            "last lo special cases raastha"
+          ],
+          "reject": [],
+          "heard_as": [
+            "special cases",
+            "theta zero",
+            "theta is zero",
+            "ninety degrees",
+            "one eighty",
+            "maximum",
+            "minimum"
+          ]
+        }
       }
     ]
-  }
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both."
 }

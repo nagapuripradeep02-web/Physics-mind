@@ -598,6 +598,348 @@
   }
   window.addEventListener('resize', fitNotebook);
 
+  // ═══ spoken-recall check ═════════════════════════════════════════════════
+  // Progressive enhancement: with no endpoint configured this whole block does
+  // nothing, the card stays hidden, and the page makes zero network calls.
+
+  var RECALL_ENDPOINT = (window.PM_RECALL_ENDPOINT || '').trim();
+  var MAX_RECORD_MS = 90000;   // the only hard bound on the dominant (STT) cost
+  var MIN_RECORD_MS = 4000;    // below this we never upload — an accidental tap costs nothing
+  var SILENCE_RMS = 0.005;     // below this for the whole take = nothing was said
+
+  var rec = { active: false, ctx: null, stream: null, proc: null, chunks: [], startedAt: 0,
+              timer: null, peak: 0 };
+
+  /** Ported from feat/voice-professor-generalize VoiceProfessorClient.tsx L143-193.
+   *  Sarvam STT rejects webm/opus (MediaRecorder's default) — so we capture raw
+   *  Float32 PCM and write a 16 kHz mono 16-bit RIFF header by hand. */
+  function encodeWav(chunks, inputRate) {
+    var total = 0, i, j;
+    for (i = 0; i < chunks.length; i++) total += chunks[i].length;
+    var flat = new Float32Array(total), off = 0;
+    for (i = 0; i < chunks.length; i++) { flat.set(chunks[i], off); off += chunks[i].length; }
+
+    var outRate = 16000;
+    var ratio = inputRate > outRate ? inputRate / outRate : 1;
+    var outLen = Math.floor(flat.length / ratio) || flat.length;
+    var samples = new Float32Array(outLen);
+    for (i = 0; i < outLen; i++) {
+      var start = Math.floor(i * ratio);
+      var end = Math.min(flat.length, Math.floor((i + 1) * ratio) || start + 1);
+      var sum = 0, n = 0;
+      for (j = start; j < end; j++) { sum += flat[j]; n++; }
+      samples[i] = n ? sum / n : (flat[start] || 0);
+    }
+
+    var buffer = new ArrayBuffer(44 + samples.length * 2);
+    var view = new DataView(buffer);
+    function writeStr(o, s) { for (var k = 0; k < s.length; k++) view.setUint8(o + k, s.charCodeAt(k)); }
+    writeStr(0, 'RIFF'); view.setUint32(4, 36 + samples.length * 2, true); writeStr(8, 'WAVE');
+    writeStr(12, 'fmt '); view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+    view.setUint32(24, outRate, true); view.setUint32(28, outRate * 2, true);
+    view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+    writeStr(36, 'data'); view.setUint32(40, samples.length * 2, true);
+    var p = 44;
+    for (i = 0; i < samples.length; i++) {
+      var s = Math.max(-1, Math.min(1, samples[i]));
+      view.setInt16(p, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      p += 2;
+    }
+    return new Blob([buffer], { type: 'audio/wav' });
+  }
+
+  function micLabel(t) { $('micLabel').textContent = t; }
+
+  function teardownRecorder() {
+    try { if (rec.proc) rec.proc.disconnect(); } catch (e) {}
+    try { if (rec.stream) rec.stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+    try { if (rec.ctx && rec.ctx.state !== 'closed') rec.ctx.close(); } catch (e) {}
+    if (rec.timer) clearInterval(rec.timer);
+    rec.active = false; rec.ctx = null; rec.stream = null; rec.proc = null; rec.timer = null;
+  }
+
+  function startRecording() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showRecallMessage('This browser cannot record audio. Try Chrome.'); return;
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      var ctx = new Ctx();
+      var source = ctx.createMediaStreamSource(stream);
+      var proc = ctx.createScriptProcessor(4096, 1, 1);
+      var sink = ctx.createGain(); sink.gain.value = 0;   // silent sink: fires without echo
+
+      rec = { active: true, ctx: ctx, stream: stream, proc: proc, chunks: [],
+              startedAt: Date.now(), timer: null, peak: 0 };
+
+      proc.onaudioprocess = function (e) {
+        var d = e.inputBuffer.getChannelData(0);
+        rec.chunks.push(new Float32Array(d));
+        var sum = 0;
+        for (var i = 0; i < d.length; i++) sum += d[i] * d[i];
+        rec.peak = Math.max(rec.peak, Math.sqrt(sum / d.length));
+      };
+      source.connect(proc); proc.connect(sink); sink.connect(ctx.destination);
+
+      $('btnMic').classList.add('recording');
+      micLabel('Stop and check');
+      $('recallTimer').hidden = false;
+      $('recallResult').hidden = true;
+      rec.timer = setInterval(function () {
+        var s = Math.floor((Date.now() - rec.startedAt) / 1000);
+        $('recallTimer').textContent = s + ' seconds — up to 90';
+        if (Date.now() - rec.startedAt >= MAX_RECORD_MS) stopRecording();
+      }, 250);
+    }).catch(function (err) {
+      var name = err && err.name;
+      if (name === 'NotAllowedError' || name === 'SecurityError') {
+        showRecallMessage('The microphone is blocked. Allow it in your browser settings and try again.');
+      } else if (name === 'NotFoundError') {
+        showRecallMessage('No microphone was found on this device.');
+      } else {
+        showRecallMessage('Could not start the microphone. Try again.');
+      }
+    });
+  }
+
+  function stopRecording() {
+    if (!rec.active) return;
+    var elapsed = Date.now() - rec.startedAt;
+    var chunks = rec.chunks;
+    var rate = rec.ctx ? rec.ctx.sampleRate : 48000;
+    var peak = rec.peak;
+    teardownRecorder();
+    $('btnMic').classList.remove('recording');
+    $('recallTimer').hidden = true;
+    micLabel('Tap to speak');
+
+    // client-side gate: never pay for an accidental tap or a silent room
+    if (elapsed < MIN_RECORD_MS || peak < SILENCE_RMS || !chunks.length) {
+      renderNotEnough();
+      return;
+    }
+
+    var wav = encodeWav(chunks, rate);
+    $('btnMic').disabled = true;
+    micLabel('Checking…');
+    var form = new FormData();
+    form.append('audio', wav, 'audio.wav');
+    form.append('question_id', question.question_id);
+
+    fetch(RECALL_ENDPOINT, { method: 'POST', body: form })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, status: r.status, body: b }; }); })
+      .then(function (res) {
+        $('btnMic').disabled = false; micLabel('Tap to speak again');
+        if (!res.ok) {
+          if (res.status === 503) { $('recallCard').hidden = true; return; }
+          showRecallMessage('Could not check that recording. Nothing has been marked wrong.');
+          return;
+        }
+        renderRecall(res.body);
+      })
+      .catch(function () {
+        $('btnMic').disabled = false; micLabel('Tap to speak');
+        showRecallMessage('Could not reach the checker. Your answer book still works — nothing has been marked wrong.');
+      });
+  }
+
+  // ── rendering ─────────────────────────────────────────────────────────────
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function showRecallMessage(msg) {
+    var box = $('recallResult');
+    box.hidden = false;
+    box.innerHTML = '';
+    box.appendChild(el('p', 'recall-empty', msg));
+  }
+
+  function renderNotEnough() {
+    var box = $('recallResult');
+    box.hidden = false;
+    box.innerHTML = '';
+    box.appendChild(el('p', 'recall-empty', 'We did not hear enough to check.'));
+    box.appendChild(el('p', 'recall-caveat',
+      'Tap the mic and say the steps in order, starting with the statement of the law. ' +
+      'You can speak in English, in Telugu, or in both.'));
+  }
+
+  /** Transcript with every verified quote highlighted; overlapping spans merged. */
+  function transcriptWithHighlights(text, steps) {
+    var spans = steps
+      .filter(function (s) { return s.evidence_start != null && s.evidence_end != null; })
+      .map(function (s) { return [s.evidence_start, s.evidence_end]; })
+      .sort(function (a, b) { return a[0] - b[0]; });
+    var merged = [];
+    spans.forEach(function (sp) {
+      var last = merged[merged.length - 1];
+      if (last && sp[0] <= last[1]) last[1] = Math.max(last[1], sp[1]);
+      else merged.push([sp[0], sp[1]]);
+    });
+    var wrap = el('div', 'recall-transcript');
+    var at = 0;
+    merged.forEach(function (sp) {
+      if (sp[0] > at) wrap.appendChild(document.createTextNode(text.slice(at, sp[0])));
+      wrap.appendChild(el('mark', null, text.slice(sp[0], sp[1])));
+      at = sp[1];
+    });
+    if (at < text.length) wrap.appendChild(document.createTextNode(text.slice(at)));
+    return wrap;
+  }
+
+  function stepById(id) {
+    for (var i = 0; i < steps.length; i++) if (steps[i].id === id) return steps[i];
+    return null;
+  }
+
+  /** What the answer actually says for a step — shown on a miss, so the miss teaches. */
+  function stepSummary(id) {
+    var s = stepById(id);
+    if (!s) return '';
+    if (s.kind === 'diagram') return 'a labelled figure';
+    var out = [];
+    (s.lines || []).forEach(function (raw) {
+      var spec = typeof raw === 'string' ? { text: raw } : raw;
+      if (spec.style === 'eq' || spec.style === 'boxed') out.push(spec.text);
+    });
+    if (!out.length) {
+      // no equations in this step — fall back to prose, but never the "Heading:" line
+      (s.lines || []).forEach(function (raw) {
+        var spec = typeof raw === 'string' ? { text: raw, style: 'normal' } : raw;
+        if (spec.style !== 'heading' && out.length < 2) out.push(spec.text);
+      });
+    }
+    return out.slice(0, 2).join('   ');
+  }
+
+  function marksLabel(n) { return n === 1 ? '1 mark' : n + ' marks'; }
+
+  function renderRecall(res) {
+    var box = $('recallResult');
+    box.hidden = false;
+    box.innerHTML = '';
+
+    if (res.outcome === 'not_enough_heard') { renderNotEnough(); return; }
+    if (res.outcome === 'check_failed') {
+      showRecallMessage('We could not check that recording. Nothing has been marked wrong.'); return;
+    }
+    if (res.outcome === 'not_this_answer') {
+      box.appendChild(el('p', 'recall-empty', 'What you said does not look like this answer.'));
+      box.appendChild(el('p', 'recall-caveat',
+        'Nothing has been marked wrong. Tap the mic and say the steps for this question.'));
+      return;
+    }
+
+    var earned = res.marks_earned;
+    var overridden = {};
+
+    function scoreLine() {
+      var extra = 0;
+      for (var k in overridden) if (overridden[k]) extra += overridden[k];
+      return 'About ' + (earned + extra) + ' out of ' + res.marks_total + ' marks.';
+    }
+
+    if (res.thin_transcript) {
+      box.appendChild(el('p', 'recall-caveat',
+        'That was a very short recording. The check below may not be complete.'));
+    }
+    var score = el('div', 'recall-score', scoreLine());
+    box.appendChild(score);
+    box.appendChild(el('p', 'recall-caveat',
+      'This is an estimate from what you said out loud. In the exam the marks come from what you write on the paper.'));
+
+    box.appendChild(el('div', 'recall-lead', 'What we heard'));
+    box.appendChild(transcriptWithHighlights(res.transcript, res.steps));
+    box.appendChild(el('p', 'recall-caveat',
+      'Speech to text is not perfect. If a word came out wrong, that is the microphone, not you.'));
+
+    var groups = [
+      { key: 'covered', title: 'What you covered' },
+      { key: 'missed', title: 'You did not say these' },
+      { key: 'unsure', title: 'We are not sure about these' }
+    ];
+
+    groups.forEach(function (g) {
+      var rows = res.steps.filter(function (s) { return s.bucket === g.key; });
+      if (!rows.length) return;
+      var wrap = el('div', 'recall-group');
+      wrap.appendChild(el('h4', null, g.title));
+      rows.forEach(function (s) {
+        var item = el('div', 'recall-item ' + g.key);
+        var head = el('div', 'ri-head');
+        head.appendChild(el('span', 'ri-mark', g.key === 'covered' ? '✓' : g.key === 'missed' ? '✗' : '?'));
+        head.appendChild(el('span', 'ri-label', s.label));
+        if (s.marks > 0) head.appendChild(el('span', 'ri-marks', marksLabel(s.marks)));
+        item.appendChild(head);
+
+        if (g.key === 'covered' && s.evidence) {
+          item.appendChild(el('div', 'ri-said', 'You said: "' + s.evidence + '"'));
+          if (s.confidence < 0.5) item.appendChild(el('div', 'ri-hint', 'This one was hard to hear. We counted it.'));
+        }
+        if (g.key !== 'covered') {
+          var summary = stepSummary(s.step_id);
+          if (summary) item.appendChild(el('div', 'ri-what', 'In the answer this step is:  ' + summary));
+          if (s.credit === 'name_it') {
+            item.appendChild(el('div', 'ri-hint',
+              'Saying this step out loud by name is enough for this mark.'));
+          }
+          var unsureHint = null;
+          if (g.key === 'unsure') {
+            unsureHint = el('div', 'ri-hint',
+              'We could not find this clearly in what you said. It is not marked as missed.');
+            item.appendChild(unsureHint);
+          }
+          var actions = el('div', 'recall-actions');
+          if (g.key === 'unsure' && s.marks > 0) {
+            var yes = el('button', 'btn', 'I did say this');
+            yes.type = 'button';
+            yes.addEventListener('click', function () {
+              overridden[s.step_id] = s.marks;
+              score.textContent = scoreLine();
+              item.classList.remove('unsure'); item.classList.add('covered');
+              head.firstChild.textContent = '✓';
+              if (unsureHint) unsureHint.remove();   // it no longer applies
+              actions.innerHTML = '';
+              item.appendChild(el('div', 'ri-hint', 'Counted.'));
+            });
+            actions.appendChild(yes);
+          }
+          var write = el('button', 'btn', 'Write this step');
+          write.type = 'button';
+          write.addEventListener('click', function () { window.PM_ANSWER.goToStep(s.step_id); });
+          actions.appendChild(write);
+          item.appendChild(actions);
+        }
+        wrap.appendChild(item);
+      });
+      box.appendChild(wrap);
+    });
+
+    var bonus = res.steps.filter(function (s) { return s.bucket === 'covered' && s.marks === 0; });
+    if (bonus.length) {
+      box.appendChild(el('p', 'recall-note',
+        'You also said the extra content at the end. It carries no marks in this question.'));
+    }
+    if (res.order_note) box.appendChild(el('p', 'recall-note', res.order_note));
+  }
+
+  function initRecall() {
+    if (!RECALL_ENDPOINT) return;                       // no endpoint → no mic, no fetch
+    if (!question.recall_available) return;             // no authored rubric → nothing to check
+    $('recallCard').hidden = false;
+    $('recallIntro').textContent = question.recall_prompt ||
+      'Say the steps you would write for this answer, in order.';
+    $('btnMic').addEventListener('click', function () {
+      if (rec.active) stopRecording(); else startRecording();
+    });
+  }
+
   // ═══ AI assistant seam (read-only; see docs/patterns/answer_book.md) ══════
 
   window.PM_ANSWER = Object.freeze({
@@ -637,5 +979,6 @@
     writePageHeader();
     updateChrome();
     fitNotebook();
+    initRecall();
   });
 })();

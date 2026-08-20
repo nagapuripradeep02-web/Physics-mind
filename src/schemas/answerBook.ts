@@ -67,6 +67,31 @@ const lineSchema = z.union([
     }),
 ]);
 
+/**
+ * Voice-recall rubric for one step — grader-side only, never shipped to the browser.
+ *
+ * Used by the "speak your recall" check: the student says the SKELETON of the answer
+ * from memory and we report what they covered. Authored per question (~12-15 min for
+ * an 8-mark LAQ). A question is recall-enabled only when EVERY step carries one.
+ */
+const stepRecallSchema = z.object({
+    /**
+     * name_it — the student physically CANNOT speak this step (a drawing, a construction,
+     *           a list of extras). Naming the move is FULL credit. This single enum removes
+     *           the largest class of false negative before the model is even asked.
+     * say_it  — the idea itself must come through in some words; naming alone is not enough.
+     */
+    credit: z.enum(['name_it', 'say_it']),
+    /** One sentence: what must come through. Grader-facing — never shown to a student. */
+    must_convey: z.string().min(1),
+    /** Spoken phrasings that DO earn this step. 3-5 is enough. */
+    accept: z.array(z.string().min(1)).min(1),
+    /** Near-misses that do NOT earn it — mostly stops a neighbouring step's words leaking in. */
+    reject: z.array(z.string().min(1)).default([]),
+    /** Forms speech-to-text is likely to produce for this step's terms. Drives the rescue pass. */
+    heard_as: z.array(z.string().min(1)).default([]),
+});
+
 const stepSchema = z
     .object({
         /** Stable forever — the chatbot seam + deep-link anchor. */
@@ -82,6 +107,8 @@ const stepSchema = z
         margin_note: z.string().optional(),
         lines: z.array(lineSchema).optional(),
         figure: figureSchema.optional(),
+        /** Voice-recall rubric. All steps carry one, or none do (enforced question-level). */
+        recall: stepRecallSchema.optional(),
     })
     .superRefine((step, ctx) => {
         if (step.kind === 'diagram') {
@@ -125,6 +152,9 @@ export const answerBookQuestionSchema = z
             note: z.string().optional(),
         }),
 
+        /** What the student is asked to say aloud in the recall check. Required when steps carry `recall`. */
+        recall_prompt: z.string().min(1).optional(),
+
         answer: z.object({
             /** Written at the top of page 1, e.g. ["Q. 21", "Addition of Vectors — 8 marks"]. */
             page_header: z.array(z.string().min(1)).min(1),
@@ -150,6 +180,20 @@ export const answerBookQuestionSchema = z
         const dupes = ids.filter((id, i) => ids.indexOf(id) !== i);
         if (dupes.length) {
             ctx.addIssue({ code: 'custom', message: `duplicate step ids: ${[...new Set(dupes)].join(', ')}` });
+        }
+        // Recall rubric is all-or-none: a partial rubric would silently tell a student
+        // they missed a step that was never graded.
+        const withRecall = q.answer.steps.filter((s) => s.recall).length;
+        if (withRecall > 0 && withRecall !== q.answer.steps.length) {
+            ctx.addIssue({
+                code: 'custom',
+                message:
+                    `recall rubric is on ${withRecall}/${q.answer.steps.length} steps — author all of them or none. ` +
+                    `A partial rubric would report an ungraded step as missed.`,
+            });
+        }
+        if (withRecall > 0 && !q.recall_prompt) {
+            ctx.addIssue({ code: 'custom', message: 'steps carry a recall rubric, so recall_prompt is required' });
         }
     });
 

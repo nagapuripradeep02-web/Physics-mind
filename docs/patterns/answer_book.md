@@ -101,7 +101,9 @@ body is exactly 32 rules (1024px). Placement:
   — question files there would break `npm run validate:concepts`.
 - **Rule 40 (platform files):** `build_review_site.ts`, renderers, `deriveStateMeta.ts` not
   touched. `build_answer_book.ts` is a new, separate script.
-- **Rule 18 (deterministic):** zero runtime API calls, zero randomness.
+- **Rule 18 (deterministic):** the notebook makes zero runtime API calls and has zero
+  randomness. **Amended 2026-08-20 by the spoken-recall check** — see the section below; the
+  amendment is deliberate and founder-approved, not a drift.
 - **Rule 41 (plain English):** applies to every label/note/button. "The examiner gives 2
   marks for this", never "nail this step".
 - **Offline follow-up (undecided):** the single network call is Google Fonts Kalam; the
@@ -110,3 +112,95 @@ body is exactly 32 rules (1024px). Placement:
   Deferred — it adds a binary to the build.
 - **Positioning note:** this is a deliberate student-facing track (founder decision,
   2026-08-20) beside the teacher-facing V1 mission — recorded, not accidental.
+
+---
+
+# Spoken-recall check (added 2026-08-20)
+
+A student taps a mic and says, from memory, the SKELETON of how they would write the answer
+("first the statement, then draw the parallelogram, then construction, then R equals root
+P squared plus Q squared plus 2PQ cos theta"). We report what they covered, what they did not
+say, and roughly what they would score.
+
+**Why it works pedagogically:** a student cannot recite a derivation verbatim, but they can
+recite its skeleton — and the skeleton is exactly what the mark scheme pays for. A 60-second
+spoken recall predicts the 15-minute written answer well enough to be useful, and it digitises
+a habit students already have (revising aloud) rather than teaching a new one.
+
+## The Rule-18 amendment (deliberate, founder-approved)
+
+The original record said "zero runtime API calls, works from `file://`". That still holds for
+the notebook. The check is **progressive enhancement**:
+
+- It appears only when the build receives `ANSWER_BOOK_RECALL_ENDPOINT`. Unset (the default) →
+  no mic, no fetch, page byte-identical to before. Asserted in `e2e/answer_book.spec.ts`.
+- The model **generates no physics and no marks**. It performs a *matching* task against an
+  authored rubric. Ids are intersected against real step ids; every evidence quote is verified
+  to occur in the transcript; **the score is summed server-side from authored marks** and the
+  model never sees a number. Conductor, not composer — the Rule 18 floor is intact.
+
+## Rubric field (`steps[].recall`, grader-side only)
+
+`credit: name_it | say_it` · `must_convey` · `accept[]` · `reject[]` · `heard_as[]`, plus a
+top-level `recall_prompt`. **All steps or none** (build-enforced): a partial rubric would
+report an ungraded step as missed. **Stripped from the browser copy** — the API reads the
+question file itself, so `reject` lists and grader wording never ship.
+
+`credit: name_it` is founder decision 2 made mechanical: a student physically cannot speak a
+drawing or a construction, so **naming the move is full credit**. It is one enum on three
+steps and it removes the largest class of false negative before the model is even asked.
+
+## The seven guards (`src/lib/answerBook/recallGrader.ts`)
+
+A confident wrong "you missed this" is the one failure that kills this feature. Seven guards
+stand in the way, cheapest first:
+
+| # | Guard |
+|---|---|
+| G1 | `credit: name_it` — the "cannot speak a drawing" class, removed by authoring |
+| G2 | **< 12 words → `not_enough_heard`, no LLM call at all.** An accidental tap costs nothing |
+| G3 | `on_topic: false` → retry screen; no score, no misses |
+| G4 | **Evidence quote not found in the transcript → "not sure", NOT "missed."** A failed check almost always means the model paraphrased, not that the student failed; dropping straight to missed would manufacture the exact false negative we are guarding against |
+| G5 | Asymmetric floors: **≥0.50 to credit, ≥0.70 to accuse.** The gap is the generosity, expressed as a number |
+| G6 | `heard_as` rescue demotes missed → not sure. Deliberately never promotes to covered — a stray "theta" must not earn a step |
+| G7 | An omitted/malformed step is "not sure", never "missed"; **zero-mark steps are never listed as missed** (a student cannot miss unmarked content) |
+
+Also: the score is clamped to `[0, marks_total]`; the order note reports **at most one**
+earliest inversion using `mark_split` labels and has **no code path to a number**;
+`normalizeForQuote` keeps a raw-index map so the UI highlights the student's *actual* words,
+punctuation and all.
+
+The spoken-maths repair map (`tan universe` → `tan inverse`, `parallel program` →
+`parallelogram`, `pythagorus` → `pythagoras`, `theater` → `theta`) lives in the grader, not in
+question files — it is speech-to-text behaviour, not physics, and every question shares it.
+
+## Cost
+
+≈ **₹0.60 per check** at a 60-second recording. Sarvam STT is ~83% of that; the LLM is
+rounding error. The two levers that matter are both client-side: a **90-second hard cap** and a
+**silence/short-tap gate that never uploads** (turns an accidental tap from ₹0.60 into ₹0).
+
+## Client capture — the non-obvious constraint
+
+**Sarvam STT rejects webm/opus, so `MediaRecorder` is a dead end.** The client captures raw
+Float32 PCM through a ScriptProcessor into a silent gain sink, then hand-writes a 16 kHz mono
+16-bit RIFF header (`encodeWav`, ported from the voice-professor branch). Do not "simplify"
+this to MediaRecorder.
+
+## Hosting — the open follow-up
+
+The endpoint currently runs only on `npm run dev` (localhost:3000), and the Next app is
+deployed nowhere. When this goes public the natural home is a **Supabase Edge Function** — the
+only deployed runtime in the repo that already holds secrets (`Deno.env.get`), on the same
+project the static pilot site already talks to, with `supabase/functions/razorpay-webhook/` as
+the structural template. Both Cloudflare Workers are assets-only (`[assets]`, no `main`). Two
+things that template lacks and a public endpoint needs: **CORS** and an **abuse gate** — the
+Answer Book has no login, so there is no JWT to rate-limit on, and each call spends real money
+on Sarvam plus the LLM. Decide that before exposing it.
+
+## Language
+
+Speech input is **code-mixed English + Telugu, auto-detected** (`language_code` is deliberately
+omitted from the Sarvam request). All rendered feedback is English. Rule 30i governs what the
+product *ships*, not what it can *understand* — accepting how a Telangana student actually
+revises aloud is not a Telugu surface.
