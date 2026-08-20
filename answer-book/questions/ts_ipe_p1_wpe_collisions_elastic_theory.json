@@ -1,0 +1,653 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_collisions_elastic_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are collisions? Explain the possible types of collisions. Develop the theory of one-dimensional elastic collision.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a collision is",
+      "marks": 1
+    },
+    {
+      "label": "The two types",
+      "marks": 2
+    },
+    {
+      "label": "The figure",
+      "marks": 1
+    },
+    {
+      "label": "Momentum equation",
+      "marks": 1
+    },
+    {
+      "label": "Energy equation",
+      "marks": 1
+    },
+    {
+      "label": "Relative velocities",
+      "marks": 1
+    },
+    {
+      "label": "The final velocities",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER 3, and the TSBIE Basic Learning Material carries the same question in its Unit 6 Long Answer set. The Fastrack ALSO asks the relative-velocity result alone as SHORT ANSWER 1, which is why this file carries two cuts rather than two answers. Both splits are invented and need a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Work Power Energy · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What a collision is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A collision is a strong interaction",
+          "between two bodies in which momentum is",
+          "exchanged in a very short time.",
+          "Example: two billiard balls striking."
+        ],
+        "margin_note": "The words worth the mark are \"short time\" — that is what separates a collision from an ordinary push.",
+        "why": "Because the interaction is brief, outside forces have almost no time to act, which is exactly why momentum can be treated as conserved.",
+        "common_mistakes": [
+          "Defining a collision as bodies touching. Two charged particles can collide without ever touching."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a collision is a strong, short-lived interaction in which momentum is exchanged.",
+          "accept": [
+            "strong interaction between two bodies",
+            "momentum is exchanged in a short time",
+            "thakkuva time lo momentum exchange"
+          ],
+          "reject": [
+            "elastic collision conserves kinetic energy"
+          ],
+          "heard_as": [
+            "interaction",
+            "short time",
+            "exchange"
+          ]
+        }
+      },
+      {
+        "id": "s2_types",
+        "kind": "text",
+        "label": "The two types",
+        "marks": 2,
+        "mark_note": "Types",
+        "lines": [
+          {
+            "text": "Elastic collision:",
+            "style": "heading"
+          },
+          "both the momentum and the kinetic",
+          "energy of the system are conserved.",
+          "Example: collisions between atomic and",
+          "subatomic particles.",
+          {
+            "text": "Inelastic collision:",
+            "style": "heading"
+          },
+          "only the momentum is conserved; the",
+          "kinetic energy is not.",
+          "Example: a ball struck by a bat."
+        ],
+        "margin_note": "Each type gets a definition AND an example. The example is a separate thing to lose.",
+        "why": "Momentum survives both kinds because the forces are internal. Kinetic energy only survives when nothing is left behind as heat, sound or a dent.",
+        "common_mistakes": [
+          "Saying momentum is not conserved in an inelastic collision. It always is."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That elastic conserves both momentum and kinetic energy, inelastic conserves only momentum, with an example of each.",
+          "accept": [
+            "elastic conserves both",
+            "inelastic conserves only momentum",
+            "atomic particles and a ball hit by a bat",
+            "inelastic lo KE conserve avvadu"
+          ],
+          "reject": [
+            "strong interaction between two bodies"
+          ],
+          "heard_as": [
+            "elastic",
+            "inelastic",
+            "both",
+            "only momentum"
+          ]
+        }
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "The set-up",
+        "marks": 1,
+        "mark_note": "Figure",
+        "margin_note": "Three panels — before, during, after — with every velocity named. The whole derivation reads off this picture.",
+        "why": "Six symbols appear in the algebra. The figure is where each one is attached to a body, which is what stops the signs going wrong.",
+        "common_mistakes": [
+          "Drawing only \"before\" and \"after\", losing the contact moment where the forces act."
+        ],
+        "figure": {
+          "id": "collision_three_panels",
+          "width": 470,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "b1",
+              "d": "M 27 90 A 18 18 0 1 0 63 90 A 18 18 0 1 0 27 90",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "lbl_bm1",
+              "x": 35,
+              "y": 96,
+              "text": "m₁",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bu1",
+              "d": "M 65 90 L 100 90",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bu1_head",
+              "d": "M 92 84 L 100 90 L 92 96",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_bu1",
+              "x": 72,
+              "y": 78,
+              "text": "u₁",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "b2",
+              "d": "M 108 90 A 14 14 0 1 0 136 90 A 14 14 0 1 0 108 90",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_bm2",
+              "x": 114,
+              "y": 96,
+              "text": "m₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "bu2",
+              "d": "M 138 90 L 162 90",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "bu2_head",
+              "d": "M 154 84 L 162 90 L 154 96",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_bu2",
+              "x": 140,
+              "y": 78,
+              "text": "u₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_before",
+              "x": 56,
+              "y": 142,
+              "text": "Before",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "d1",
+              "d": "M 197 90 A 18 18 0 1 0 233 90 A 18 18 0 1 0 197 90",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "d2",
+              "d": "M 233 90 A 14 14 0 1 0 261 90 A 14 14 0 1 0 233 90",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "cap_during",
+              "x": 202,
+              "y": 142,
+              "text": "During",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "a1",
+              "d": "M 337 90 A 18 18 0 1 0 373 90 A 18 18 0 1 0 337 90",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "lbl_am1",
+              "x": 345,
+              "y": 96,
+              "text": "m₁",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av1",
+              "d": "M 375 90 L 400 90",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "av1_head",
+              "d": "M 392 84 L 400 90 L 392 96",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_av1",
+              "x": 377,
+              "y": 78,
+              "text": "v₁",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "a2",
+              "d": "M 411 90 A 14 14 0 1 0 439 90 A 14 14 0 1 0 411 90",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_am2",
+              "x": 417,
+              "y": 96,
+              "text": "m₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "av2",
+              "d": "M 441 90 L 466 90",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "av2_head",
+              "d": "M 458 84 L 466 90 L 458 96",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_av2",
+              "x": 443,
+              "y": 78,
+              "text": "v₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_after",
+              "x": 348,
+              "y": 142,
+              "text": "After",
+              "ms": 220
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a before / during / after figure is drawn with the masses and all four velocities labelled.",
+          "accept": [
+            "draw before during and after",
+            "figure with m1 m2 u1 u2 v1 v2",
+            "moodu panels figure geyyali"
+          ],
+          "reject": [
+            "by conservation of linear momentum"
+          ],
+          "heard_as": [
+            "before",
+            "after",
+            "figure"
+          ]
+        }
+      },
+      {
+        "id": "s4_momentum",
+        "kind": "equation",
+        "label": "Momentum equation",
+        "marks": 1,
+        "mark_note": "Momentum",
+        "lines": [
+          "Two bodies of masses m₁ and m₂ move",
+          "along the same line with velocities u₁",
+          "and u₂ (u₁ > u₂). After the collision",
+          "their velocities are v₁ and v₂.",
+          "By conservation of linear momentum,",
+          {
+            "text": "m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂",
+            "style": "eq"
+          },
+          {
+            "text": "m₁(u₁ − v₁) = m₂(v₂ − u₂)  … (1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Introduce all six symbols here, then write the equation. Number it — the next steps refer back to it.",
+        "why": "Rearranging into (1) groups each body with its own change of velocity, which is what makes the division two steps later cancel so cleanly.",
+        "common_mistakes": [
+          "Not numbering the equations, then having nothing to name when dividing them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That conservation of momentum gives m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂, rearranged as equation (1).",
+          "accept": [
+            "by conservation of linear momentum",
+            "m1 u1 plus m2 u2 equals m1 v1 plus m2 v2",
+            "momentum equation is number one",
+            "momentum conservation rasali"
+          ],
+          "reject": [
+            "kinetic energy is also conserved"
+          ],
+          "heard_as": [
+            "conservation of momentum",
+            "m1 u1",
+            "equation one"
+          ]
+        }
+      },
+      {
+        "id": "s5_energy",
+        "kind": "equation",
+        "label": "Energy equation",
+        "marks": 1,
+        "mark_note": "Energy",
+        "lines": [
+          "The collision is elastic, so the total",
+          "kinetic energy is also conserved:",
+          {
+            "text": "½m₁u₁² + ½m₂u₂² = ½m₁v₁² + ½m₂v₂²",
+            "style": "eq"
+          },
+          {
+            "text": "m₁(u₁² − v₁²) = m₂(v₂² − u₂²)  … (2)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say \"elastic\" out loud before using this. It is the only reason the equation is allowed.",
+        "why": "This is the step that is false for an inelastic collision, which is why the whole result belongs to elastic collisions alone.",
+        "common_mistakes": [
+          "Using the kinetic-energy equation without stating that the collision is elastic."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the collision is elastic, kinetic energy is also conserved, giving equation (2).",
+          "accept": [
+            "kinetic energy is also conserved",
+            "half m1 u1 squared plus half m2 u2 squared",
+            "elastic kabatti KE kuda conserve"
+          ],
+          "reject": [
+            "by conservation of linear momentum"
+          ],
+          "heard_as": [
+            "kinetic energy conserved",
+            "elastic",
+            "equation two"
+          ]
+        }
+      },
+      {
+        "id": "s6_divide",
+        "kind": "boxed_final",
+        "label": "Relative velocities",
+        "marks": 1,
+        "mark_note": "Relative velocity",
+        "lines": [
+          "Dividing (2) by (1),",
+          {
+            "text": "u₁ + v₁ = v₂ + u₂",
+            "style": "eq"
+          },
+          {
+            "text": "u₁ − u₂ = v₂ − v₁   … (3)",
+            "style": "boxed"
+          },
+          "The relative velocity of approach before",
+          "the collision equals the relative",
+          "velocity of separation after it."
+        ],
+        "margin_note": "Finish with the sentence in words. The examiner is looking for that statement, not only the algebra.",
+        "why": "Dividing is only allowed because the bodies actually collide and separate, so u₁ ≠ v₁ and the factors being cancelled are not zero. The book never says this, but a division by zero is what it would otherwise be.",
+        "common_mistakes": [
+          "Writing u₁ − u₂ = v₁ − v₂, with the two final velocities the wrong way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing (2) by (1) gives u₁ − u₂ = v₂ − v₁: approach speed equals separation speed.",
+          "accept": [
+            "divide two by one",
+            "u1 minus u2 equals v2 minus v1",
+            "relative velocity of approach equals relative velocity of separation",
+            "approach velocity separation velocity same"
+          ],
+          "reject": [
+            "kinetic energy is also conserved"
+          ],
+          "heard_as": [
+            "dividing",
+            "relative velocity",
+            "approach",
+            "separation"
+          ]
+        }
+      },
+      {
+        "id": "s7_finals",
+        "kind": "boxed_final",
+        "label": "The final velocities",
+        "marks": 1,
+        "mark_note": "Final velocities",
+        "lines": [
+          "Substituting (3) into (1) and solving,",
+          "and writing D = m₁ + m₂,",
+          {
+            "text": "v₁ = [(m₁ − m₂)u₁ + 2m₂u₂] / D",
+            "style": "boxed"
+          },
+          {
+            "text": "v₂ = [(m₂ − m₁)u₂ + 2m₁u₁] / D",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Writing D = m₁ + m₂ once keeps both lines on one rule. Say what D stands for.",
+        "why": "Check them against a case you know: with equal masses, m₁ − m₂ = 0 and the two bodies simply swap velocities — which is what happens on a carrom board.",
+        "common_mistakes": [
+          "Swapping the u₁ and u₂ terms between the two expressions."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the final velocities are v₁ and v₂ in terms of the masses and initial velocities over m₁ + m₂.",
+          "accept": [
+            "v1 equals m1 minus m2 into u1 plus two m2 u2 by the sum",
+            "v2 has two m1 u1 in it",
+            "final velocities formula",
+            "v1 v2 formulas rasali"
+          ],
+          "reject": [
+            "u1 minus u2 equals v2 minus v1"
+          ],
+          "heard_as": [
+            "final velocities",
+            "m1 plus m2",
+            "two m2"
+          ]
+        }
+      }
+    ]
+  },
+  "cuts": [
+    {
+      "key": "laq",
+      "label": "8-mark answer",
+      "qtype": "LAQ",
+      "marks_total": 8,
+      "paper_section": "Section C",
+      "expected_time_min": 15,
+      "mark_split": [
+        {
+          "label": "What a collision is",
+          "marks": 1
+        },
+        {
+          "label": "The two types",
+          "marks": 2
+        },
+        {
+          "label": "The figure",
+          "marks": 1
+        },
+        {
+          "label": "Momentum equation",
+          "marks": 1
+        },
+        {
+          "label": "Energy equation",
+          "marks": 1
+        },
+        {
+          "label": "Relative velocities",
+          "marks": 1
+        },
+        {
+          "label": "The final velocities",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_define": {
+          "marks": 1,
+          "mark_note": "Definition"
+        },
+        "s2_types": {
+          "marks": 2,
+          "mark_note": "Types"
+        },
+        "s3_figure": {
+          "marks": 1,
+          "mark_note": "Figure"
+        },
+        "s4_momentum": {
+          "marks": 1,
+          "mark_note": "Momentum"
+        },
+        "s5_energy": {
+          "marks": 1,
+          "mark_note": "Energy"
+        },
+        "s6_divide": {
+          "marks": 1,
+          "mark_note": "Relative velocity"
+        },
+        "s7_finals": {
+          "marks": 1,
+          "mark_note": "Final velocities"
+        }
+      },
+      "needs_teacher_verification": true
+    },
+    {
+      "key": "saq",
+      "label": "4-mark answer",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "question_text": "Show that in the case of a one-dimensional elastic collision, the relative velocity of approach of the two colliding bodies before collision is equal to the relative velocity of separation after collision.",
+      "mark_split": [
+        {
+          "label": "The figure",
+          "marks": 1
+        },
+        {
+          "label": "Momentum equation",
+          "marks": 1
+        },
+        {
+          "label": "Energy equation",
+          "marks": 1
+        },
+        {
+          "label": "The result",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s3_figure": {
+          "marks": 1,
+          "mark_note": "Figure"
+        },
+        "s4_momentum": {
+          "marks": 1,
+          "mark_note": "Momentum"
+        },
+        "s5_energy": {
+          "marks": 1,
+          "mark_note": "Energy"
+        },
+        "s6_divide": {
+          "marks": 1,
+          "mark_note": "The result",
+          "label": "The result",
+          "margin_note": "This is what the question asks for. Finish with the sentence in words, not only the algebra."
+        }
+      },
+      "needs_teacher_verification": true
+    }
+  ]
+}

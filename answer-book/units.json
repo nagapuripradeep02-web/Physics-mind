@@ -323,28 +323,34 @@
           "section": "LAQ",
           "number": 1,
           "stars": 3,
-          "text": "State and prove the law of conservation of energy in the case of a freely falling body."
+          "text": "State and prove the law of conservation of energy in the case of a freely falling body.",
+          "question_id": "ts_ipe_p1_wpe_conservation_of_energy_falling_body"
         },
         {
           "ref": "laq2",
           "section": "LAQ",
           "number": 2,
           "stars": 3,
-          "text": "Develop the notions of work and kinetic energy and show that it leads to the work-energy theorem."
+          "text": "Develop the notions of work and kinetic energy and show that it leads to the work-energy theorem.",
+          "question_id": "ts_ipe_p1_wpe_work_kinetic_energy_theorem"
         },
         {
           "ref": "laq3",
           "section": "LAQ",
           "number": 3,
           "stars": 1,
-          "text": "What are collisions? Explain the possible types of collisions. Develop the theory of one-dimensional elastic collision."
+          "text": "What are collisions? Explain the possible types of collisions. Develop the theory of one-dimensional elastic collision.",
+          "cut": "laq",
+          "question_id": "ts_ipe_p1_wpe_collisions_elastic_theory"
         },
         {
           "ref": "saq1",
           "section": "SAQ",
           "number": 1,
           "stars": 3,
-          "text": "Show that in the case of a one-dimensional elastic collision, the relative velocity of approach of the two colliding bodies before collision is equal to the relative velocity of separation after collision."
+          "text": "Show that in the case of a one-dimensional elastic collision, the relative velocity of approach of the two colliding bodies before collision is equal to the relative velocity of separation after collision.",
+          "cut": "saq",
+          "question_id": "ts_ipe_p1_wpe_collisions_elastic_theory"
         },
         {
           "ref": "saq2",

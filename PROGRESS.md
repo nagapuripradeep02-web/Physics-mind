@@ -1,5 +1,43 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📙 SESSION — Answer Book: **UNIT 6 "WORK POWER ENERGY" COMPLETE (12/12)** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: three chapters, 49 catalog entries, 45 authored files. Unit 6 is complete — 3 LAQ + 3 SAQ + 6 VSAQ over 11 files, because LAQ 3 and SAQ 1 are two lengths of ONE answer. This was the derivation unit: three separate 8-mark proofs and four figures, the heaviest authoring load of the three units so far, and the platform absorbed it with ZERO changes — no schema, no build script, no player, no gate rewrites. The chapter chips added last session grew to three on their own.**
+
+### The source check came back the OPPOSITE way from Unit 5 — which is the point of doing it per unit
+Unit 5's finding was that the TSBIE Basic Learning Material has **no Section C at all** for Laws of Motion, so we authored one LAQ and invented none. The instinct going into Unit 6 was that the BLM would again be the thinner book. It is not: its Unit 6 carries **exactly these three Long Answer questions and nothing else** — no VSAQ section, no SAQ section, then "Attached Problems". So both books agree on the whole 8-mark set here, and the VSAQ/SAQ list is the Fastrack's alone. **Neither book is reliably the superset. The two-book check is per unit, permanently.** Recorded in `units.json`.
+
+### The first real `cuts[]` case since Unit 4
+The Fastrack asks the relative-velocity result **alone** as SHORT ANSWER 1 and the **whole** collision theory as LONG ANSWER 3. That is one authored step list at two lengths, not two answers — the parallelogram pattern. `ts_ipe_p1_wpe_collisions_elastic_theory` is the root (LAQ, 8M, Section C) with `cuts[]`: `laq` = all 7 steps, `saq` = 4 steps at 4M / Section B with its own `question_text`. The manifest points `laq3` and `saq1` at the same file with different `cut` keys, so each is its own card showing ONE length and ONE marks chip. The build's per-cut report confirms it omits exactly `s1_define, s2_types, s7_finals`.
+**Coherence** was the authoring job, not the schema's: every symbol the surviving steps use (m₁, m₂, u₁, u₂, v₁, v₂) is introduced in `s4_momentum`, which is deliberately kept in both cuts. Unit 5 had no cuts at all — correctly, since no Unit 5 question is asked at two lengths by either book. Cuts follow the source; they are never invented to look thorough.
+
+### PROBLEMS — deferred on the founder's call, with the reasons that make it worth revisiting
+Unit 6 is the first unit with a PROBLEMS section: 4 numericals in the Fastrack, the first 2 repeated in the BLM as "Attached Problems". They belong to **no paper section** — the TS IPE paper has A/B/C only — so the manifest's `section` field cannot hold them without a 4th value, which would mean touching `build_answer_book.ts`, `notebook.js` and every gate that iterates `['LAQ','SAQ','VSAQ']`. A practice problem also carries no mark scheme, and the product's claim is "answered the way the examiner marks them". Two facts recorded in `units.json` for whoever revisits: Fastrack problem 3 carries printed years **(Mar, May-14)**, so at least one HAS been examined; and the two books **disagree on problem 2's answer** — 14.95 kW at g = 9.8 versus 15 kW at g = 10. Author them deliberately if they are ever added, never transcribe.
+
+### The three proofs and four figures
+- **LAQ 1** (conservation of energy, freely falling body) — the A/B/C figure with `h`, `x` and `(h − x)` marked, then the same three lines at each point (KE, PE, total). B carries the most marks because it is the only point where both energies are non-zero, and the `x` visibly cancels.
+- **LAQ 2** (work → kinetic energy → work-energy theorem) — the three cases of `cos θ` written out, then the proof built from two named ingredients (`v² − u² = 2aS` and `F = ma`) with the `S` cancelling. The statement insists on **NET** force; without that word the theorem is false whenever more than one force acts, and that is in `common_mistakes`.
+- **LAQ 3** (collisions) — before / during / after in three panels, all six symbols attached to a body.
+- **SAQ 2** (gravitational PE) — the box raised through `h`, its starting position dashed on the ground.
+- **Where the book teaches what is marked rather than what is true**: LAQ 3's division of the energy equation by the momentum equation is only legal because the bodies actually collide and separate (`u₁ ≠ v₁`) — otherwise it is a division by zero. The book never says so; the answer writes what earns the mark and the `why` carries the honesty.
+
+### Watch this
+Gate 15 (`every cut of every question totals exactly its own marks`) now runs **51.6 s of its 90 s `test.slow()` budget** — it was 30 s at two units. Gates 12 and 13 are at ~38 s. At this growth roughly **two more units** fit before the widest sweep needs its budget raised again. Raise it deliberately when that happens; do not trim the sweep.
+
+### Verification (measured)
+`build:answers` → **Unit 4 20/20 · Unit 5 17/17 · Unit 6 12/12**, drift gate clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **25/25** across 45 questions · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (unchanged — no concept JSON touched) · built page re-parsed: 3 units, 49 entries, 45 files, all 4 new figures present, the cut resolving `laq(8M)+saq(4M)`, recall rubrics stripped from the browser payload · `serve:answers` HTTP 200.
+
+### Files
+`answer-book/units.json` (Unit 6 block + both findings) · 11 new `answer-book/questions/ts_ipe_p1_wpe_*.json`. **No platform file touched at all this session** — no renderer, no schema, no build script, no player, no gates, no `src/data/concepts/`, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes.** `npm run serve:answers` → `http://localhost:8100`. The three-panel collision figure and the A/B/C falling-body figure especially; **print** on all three LAQs (the construction-line defect only ever showed on the instant path); and open LAQ 3 and SAQ 1 from the catalog to confirm each shows one length with its own marks chip.
+2. **Unit 7 "System of Particles and Rotational Motion"** (book pp.19+) is next: 9 VSAQ visible on the first page alone, and its own SAQ set opens with the parallel-axes theorem. Run the two-book check again — do not assume which book is thinner.
+3. **PR #132 now covers Units 5 and 6**, retitled and rewritten to match its contents rather than silently growing.
+4. **Standing blockers, unchanged (founder calls):** Google billing (free-tier quota exhausted) · hosting for the photo/mic graders · the Telangana-teacher verification pass over every invented mark split, now **49 entries** deep · the cost swap (Web Speech + DeepSeek) before the voice path goes wide.
+
+---
+
 ## 📕 SESSION — Answer Book: **UNIT 5 "LAWS OF MOTION" COMPLETE (17/17) + chapter chips** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: the Answer Book is a two-chapter book. Unit 5 "Laws of Motion" is complete — 1 LAQ + 6 SAQ + 10 VSAQ, 17 for 17, every card openable — and the catalog now has the chapter filter the last session's log claimed it already had. The per-unit recipe held: the manifest went in first, questions were authored in batches, and the build stayed green at every step. The interesting work was NOT the authoring; it was the four gates that had quietly encoded "the book has one unit" and only said so when a second one arrived.**

@@ -1,0 +1,444 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_work_kinetic_energy_theorem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Develop the notions of work and kinetic energy and show that it leads to the work-energy theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work",
+      "marks": 2
+    },
+    {
+      "label": "Kinetic energy",
+      "marks": 1
+    },
+    {
+      "label": "The figure",
+      "marks": 1
+    },
+    {
+      "label": "The theorem",
+      "marks": 1
+    },
+    {
+      "label": "The proof",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER — and the TSBIE Basic Learning Material carries the same question in its own Unit 6 Long Answer set, so both sources agree this is an 8-mark form. The split across the steps is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Work Power Energy · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_work",
+        "kind": "equation",
+        "label": "Work",
+        "marks": 2,
+        "mark_note": "Work",
+        "lines": [
+          {
+            "text": "Work:",
+            "style": "heading"
+          },
+          "the dot product of the force and the",
+          "displacement.",
+          {
+            "text": "W = F · S = F S cos θ",
+            "style": "eq"
+          },
+          "θ = 0°  → W = + F S  (positive work)",
+          "θ = 90° → W = 0        (zero work)",
+          "θ = 180° → W = − F S  (negative work)"
+        ],
+        "margin_note": "Definition, formula, then the three cases. The cases are half the marks here.",
+        "why": "Work is a scalar built from two vectors, so only the part of the force along the motion counts. The three cases are just cos θ at its three special values.",
+        "common_mistakes": [
+          "Writing W = F × S as a cross product. Work is a DOT product and is a scalar."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is the dot product F·S = F S cos θ, with positive, zero and negative cases.",
+          "accept": [
+            "work is the dot product of force and displacement",
+            "W equals F S cos theta",
+            "theta zero positive, ninety zero, one eighty negative",
+            "dot product ye work"
+          ],
+          "reject": [
+            "kinetic energy is half m v squared"
+          ],
+          "heard_as": [
+            "dot product",
+            "F S cos theta",
+            "positive zero negative"
+          ]
+        }
+      },
+      {
+        "id": "s2_kinetic",
+        "kind": "equation",
+        "label": "Kinetic energy",
+        "marks": 1,
+        "mark_note": "Kinetic energy",
+        "lines": [
+          {
+            "text": "Kinetic energy:",
+            "style": "heading"
+          },
+          "the energy possessed by a body by",
+          "virtue of its motion.",
+          {
+            "text": "KE = ½mv²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "\"By virtue of its motion\" is the phrase. Potential energy is the one about position.",
+        "why": "This is the quantity the theorem will connect the work to, so it has to be defined before the proof can mean anything.",
+        "common_mistakes": [
+          "Writing KE = mv² without the half."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That kinetic energy is the energy due to motion, KE = ½mv².",
+          "accept": [
+            "energy because of its motion",
+            "KE is half m v squared",
+            "motion valla vachhe energy"
+          ],
+          "reject": [
+            "work is the dot product of force and displacement"
+          ],
+          "heard_as": [
+            "motion",
+            "half m v squared"
+          ]
+        }
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "The set-up",
+        "marks": 1,
+        "mark_note": "Figure",
+        "margin_note": "One block, twice: u at A, v at B, F pushing, S between them. Everything the proof uses is in this picture.",
+        "why": "The proof mixes a kinematics equation with a force equation, and the figure is what shows they describe the same journey.",
+        "common_mistakes": [
+          "Drawing the block but not marking S, so F S has no distance to refer to."
+        ],
+        "figure": {
+          "id": "work_energy_block",
+          "width": 420,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 30 150 L 390 150",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "block_a",
+              "d": "M 70 110 L 120 110 L 120 150 L 70 150 L 70 110",
+              "ms": 560
+            },
+            {
+              "type": "label",
+              "id": "lbl_ma",
+              "x": 88,
+              "y": 136,
+              "text": "m",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 66,
+              "y": 168,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "force",
+              "d": "M 20 130 L 66 130",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "force_head",
+              "d": "M 57 123 L 66 130 L 57 137",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 26,
+              "y": 118,
+              "text": "F",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "vel_u",
+              "d": "M 95 95 L 145 95",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "vel_u_head",
+              "d": "M 136 88 L 145 95 L 136 102",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_u",
+              "x": 112,
+              "y": 84,
+              "text": "u",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "block_b",
+              "d": "M 280 110 L 330 110 L 330 150 L 280 150 L 280 110",
+              "ms": 560
+            },
+            {
+              "type": "label",
+              "id": "lbl_mb",
+              "x": 298,
+              "y": 136,
+              "text": "m",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 336,
+              "y": 168,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "vel_v",
+              "d": "M 305 95 L 365 95",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "vel_v_head",
+              "d": "M 356 88 L 365 95 L 356 102",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 330,
+              "y": 84,
+              "text": "v",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "s_line",
+              "d": "M 95 172 L 305 172",
+              "ms": 460,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "s_left",
+              "d": "M 105 166 L 95 172 L 105 178",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "s_right",
+              "d": "M 295 166 L 305 172 L 295 178",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 194,
+              "y": 190,
+              "text": "S",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn of the body moving from A to B under F, with u, v and S marked.",
+          "accept": [
+            "draw the block moving from A to B",
+            "mark u v and S",
+            "figure with force and displacement"
+          ],
+          "reject": [
+            "W equals half m v squared minus half m u squared"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "draw"
+          ]
+        }
+      },
+      {
+        "id": "s4_theorem",
+        "kind": "text",
+        "label": "The theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Work-energy theorem:",
+            "style": "heading"
+          },
+          "The work done by the net force acting",
+          "on a body is equal to the change in its",
+          "kinetic energy."
+        ],
+        "margin_note": "State it before proving it. And say NET force — the theorem is false for one force among several.",
+        "why": "The word \"net\" is what makes it exact. Friction and the applied force each do work; only their sum equals the change in kinetic energy.",
+        "common_mistakes": [
+          "Leaving out \"net\", which makes the statement wrong whenever more than one force acts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done by the net force equals the change in kinetic energy.",
+          "accept": [
+            "work done by the net force equals change in kinetic energy",
+            "net force chese work KE change ki equal"
+          ],
+          "reject": [
+            "kinetic energy is half m v squared"
+          ],
+          "heard_as": [
+            "net force",
+            "change in kinetic energy"
+          ]
+        }
+      },
+      {
+        "id": "s5_proof",
+        "kind": "equation",
+        "label": "The proof",
+        "marks": 2,
+        "mark_note": "Proof",
+        "lines": [
+          "Let the body move from A to B through a",
+          "distance S, from velocity u to v.",
+          "From v² − u² = 2aS,",
+          {
+            "text": "a = (v² − u²) / 2S",
+            "style": "eq"
+          },
+          "The work done is W = F S, and F = ma,",
+          "so W = maS. Substituting a,",
+          {
+            "text": "W = m · (v² − u²)/2S · S",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two ingredients, named: the kinematics equation and F = ma. Then substitute — do not skip to the answer.",
+        "why": "The S cancels, which is why the result depends only on the speeds and not on how far it took to change them.",
+        "common_mistakes": [
+          "Using F = ma but never writing W = F S, so there is nothing to substitute into."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is found from v² − u² = 2aS and substituted into W = F S = maS.",
+          "accept": [
+            "v squared minus u squared equals two a S",
+            "W equals F S equals m a S",
+            "substitute a into the work",
+            "a ni substitute cheyyali"
+          ],
+          "reject": [
+            "work done by the net force equals change in kinetic energy"
+          ],
+          "heard_as": [
+            "two a S",
+            "m a S",
+            "substitute"
+          ]
+        }
+      },
+      {
+        "id": "s6_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "The S cancels, leaving",
+          {
+            "text": "W = ½mv² − ½mu²",
+            "style": "boxed"
+          },
+          "that is, W = final KE − initial KE.",
+          "Hence the work-energy theorem is proved."
+        ],
+        "margin_note": "Say the last line in words as well as symbols — that sentence IS the theorem you stated earlier.",
+        "why": "The proof closes only when the algebra is named back as the statement it set out to show.",
+        "common_mistakes": [
+          "Stopping at the algebra without linking it back to the theorem."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That W = ½mv² − ½mu², the change in kinetic energy, proving the theorem.",
+          "accept": [
+            "W equals half m v squared minus half m u squared",
+            "final KE minus initial KE",
+            "theorem is proved",
+            "KE lo change ye work"
+          ],
+          "reject": [
+            "v squared minus u squared equals two a S"
+          ],
+          "heard_as": [
+            "half m v squared",
+            "final minus initial",
+            "proved"
+          ]
+        }
+      }
+    ]
+  }
+}
