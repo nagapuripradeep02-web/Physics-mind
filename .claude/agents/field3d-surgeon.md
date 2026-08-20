@@ -307,7 +307,9 @@ Same-change registration duties (miss one = silent failure or THE EYE false-fail
 
 Ops notes: run long `visual:eyes` DETACHED (`Start-Process`) — the harness reaps backgrounded
 runs; never pipe EYE output through `tail` on the primary run (a truncated breakdown cost a
-diagnosis once). Trusted-drag paths THE EYE cannot fire → drive headlessly with a throwaway
+diagnosis once). EYE exit codes: 0 clean · 1 failure · 2 crash · **3 motion-gate blackout** (D5
+never ran — scenario unregistered; not green, and on a NEW scenario it means your deriveStateMeta
+co-edit is missing). Trusted-drag paths THE EYE cannot fire → drive headlessly with a throwaway
 Playwright script against the review player, then delete it.
 
 ## Output contract — the report

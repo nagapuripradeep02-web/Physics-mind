@@ -40,6 +40,7 @@ import {
     pilotHeadTags,
     isPilotConcept,
     listPilotConceptIds,
+    PILOT_CONCEPTS,
     chapterTitle,
     writeRootAssets,
     CLASS12_CHAPTER_NAMES,
@@ -3714,15 +3715,34 @@ function main(): void {
         return;
     }
 
-    // --pilot: rebuild the professor deploy set — every baseline-locked concept
-    // (visual_baselines/<id>/baselines.json = founder ran visual:approve).
+    // --pilot: rebuild the professor deploy set — the curated PILOT_CONCEPTS list
+    // (concept JSON must exist AND the concept must be baseline-locked: a
+    // visual_baselines/<id>/baselines.json means the founder ran visual:approve).
     if (arg === '--pilot') {
         const ids = listPilotConceptIds(ROOT);
         if (ids.length === 0) {
-            console.error('✖ --pilot: no baseline-locked concepts found in visual_baselines/.');
+            console.error('✖ --pilot: PILOT_CONCEPTS resolved to zero buildable concepts.');
             process.exit(1);
         }
-        console.log(`Building ${ids.length} pilot sim${ids.length === 1 ? '' : 's'} (curated PILOT_CONCEPTS) …\n`);
+        // Pre-deploy gate: a catalog entry with no approved baseline has never
+        // passed THE EYE's H2 — it must not reach teachers. And an id the
+        // resolver silently dropped is the worst failure mode for this list
+        // (see listPilotConceptIds), so both conditions fail LOUDLY here.
+        const dropped = PILOT_CONCEPTS.filter((id) => !ids.includes(id));
+        const unbaselined = ids.filter(
+            (id) => !existsSync(join(ROOT, 'visual_baselines', id, 'baselines.json')),
+        );
+        if (dropped.length > 0 || unbaselined.length > 0) {
+            if (dropped.length > 0) {
+                console.error(`✖ --pilot: ${dropped.length} PILOT_CONCEPTS id(s) have no concept JSON on disk:\n    ${dropped.join('\n    ')}`);
+            }
+            if (unbaselined.length > 0) {
+                console.error(`✖ --pilot: ${unbaselined.length} catalog id(s) have no visual_baselines/<id>/baselines.json (never founder-approved):\n    ${unbaselined.join('\n    ')}`);
+            }
+            console.error('  Fix the list or approve the baselines — the pilot build refuses to ship either state.');
+            process.exit(1);
+        }
+        console.log(`Building ${ids.length} pilot sim${ids.length === 1 ? '' : 's'} (curated PILOT_CONCEPTS, all baseline-locked) …\n`);
         for (const id of ids) buildOne(id);
         writeRootAssets(OUT_DIR);
         rebuildCatalog();

@@ -10838,7 +10838,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame: flow dots, orbiting B1 arrows, and the force/B1 vectors driven
     // by the two current directions. F2_x = -dir1*dir2, F1_x = +dir1*dir2
     // (parallel -> attract, antiparallel -> repel). Reads sandbox sliders live.
-    function updateParallelCurrentsForceFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep): heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent dot/orbit accumulators below hold their phase.
+    function updateParallelCurrentsForceFrame(dt) {
         var stateDef = config.states[PM_currentState];
         if (!stateDef) return;
         var ex = stateDef.extras || {};
@@ -10869,7 +10873,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (!o.visible) continue;
                 var ddir = (ud.wire === 1) ? dir1 : dir2;
                 if (ud.dotPhase == null) ud.dotPhase = (ud.dotIndex || 0) / (ud.dotCount || 6);
-                ud.dotPhase += 0.016 * __pmSteps * dotSpeed;
+                ud.dotPhase += dt * dotSpeed;
                 var loopT = ud.dotPhase % 1;
                 o.position.x = (ud.wire === 1) ? x1 : x2;
                 o.position.y = ddir > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
@@ -10881,7 +10885,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (current up). The orbit flows in DECREASING angle and the arrowhead
                 // points along B (downstream). dir1 flips the whole sense for current down.
                 var rotSign = dir1;
-                ud.swPhase += 0.016 * __pmSteps * orbitRate * (-rotSign);
+                ud.swPhase += dt * orbitRate * (-rotSign);
                 var ang = (ud.flowAngleOffset || 0) + ud.swPhase;
                 o.position.set((ud.flowCenterX || x1) + ud.flowRadius * Math.cos(ang), ud.flowHeight, ud.flowRadius * Math.sin(ang));
                 var tx = Math.sin(ang) * rotSign, tz = -Math.cos(ang) * rotSign;
@@ -19031,7 +19035,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame motion — PURE function of the state clock (deterministic, Rule 26):
     // the always-on current-dot stream (speed ∝ I) + the per-state scripted beats
     // (assemble G+S→ammeter, assemble G+R→voltmeter, swap-warning pulse).
-    function updateGalvanometerAmmeterVoltmeterFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent dot stream below holds its position.
+    function updateGalvanometerAmmeterVoltmeterFrame(dt) {
         if (config.scenario_type !== "galvanometer_to_ammeter_voltmeter") return;
         var sd = config.states[PM_currentState] || {};
         var ex = sd.extras || {};
@@ -19047,7 +19055,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var pts = gavPathCache[dd.userData.path] || gavPathCache.solo;
             // the tiny coil current creeps; the vm-branch trickle creeps too.
             var sp = speed * ((dd.userData.path === "coil" || dd.userData.path === "vmbranch") ? 0.35 : 1.0);
-            dd.userData.t = (dd.userData.t + sp * 0.016 * __pmSteps);
+            dd.userData.t = (dd.userData.t + sp * dt);
             var xy = gavLerpPath(pts, dd.userData.t);
             dd.position.set(xy[0], xy[1], 0);
         }
@@ -19438,7 +19446,11 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     var bmInteracted = false;
-    function updateBarMagnetAsDipoleFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent tracer stream below holds its position.
+    function updateBarMagnetAsDipoleFrame(dt) {
         if (config.scenario_type !== "bar_magnet_as_dipole") return;
         var sd = config.states[PM_currentState] || {};
         var ex = sd.extras || {};
@@ -19448,7 +19460,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < bmTracers.length; d++) {
                 var tr = bmTracers[d]; if (!tr.visible) continue;
                 var path = bmArchPaths[tr.userData.arch % bmArchPaths.length];
-                tr.userData.t = (tr.userData.t + 0.18 * 0.016 * __pmSteps);
+                tr.userData.t = (tr.userData.t + 0.18 * dt);
                 var xy = gavLerpPath(path, tr.userData.t);
                 tr.position.set(xy[0], xy[1], 0.05);
             }
@@ -24677,7 +24689,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame gauss_law_magnetism update — closed-loop tracer stream + the S4
     // surface morph + the S6 sandbox drag + the Φ_B = 0 readout. Pure function of
     // the state clock (Rule 26).
-    function updateGaussLawMagnetismFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent tracer/internal-dot streams below hold their positions.
+    function updateGaussLawMagnetismFrame(dt) {
         if (config.scenario_type !== "gauss_law_magnetism") return;
         var stateDef = config.states[PM_currentState]; if (!stateDef) return;
         var gm = stateDef.gm || {};
@@ -24741,7 +24757,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < gmTracers.length; d++) {
                 var tr = gmTracers[d]; if (!tr.visible) continue;
                 var path = gmLoopPaths[tr.userData.loop % gmLoopPaths.length];
-                tr.userData.t = tr.userData.t + 0.18 * 0.016 * __pmSteps;
+                tr.userData.t = tr.userData.t + 0.18 * dt;
                 var xyz = gmLerpPath3(path, tr.userData.t);
                 tr.position.set(xyz[0], xyz[1], xyz[2]);
             }
@@ -24749,7 +24765,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // 2b. The internal-return dot traces the front internal tube (S→N).
         var intT = gmFindById("gm_internal"), intD = gmFindById("gm_internal_dot");
         if (intT && intD && intD.visible && intT.userData.loopPath) {
-            intD.userData.t = intD.userData.t + 0.18 * 0.016 * __pmSteps;
+            intD.userData.t = intD.userData.t + 0.18 * dt;
             var lp = gmLerpPath3(intT.userData.loopPath, intD.userData.t);
             intD.position.set(lp[0], lp[1], lp[2]);
         }
@@ -30833,8 +30849,35 @@ export const FIELD_3D_RENDERER_CODE = `
     var ACL_S5_POST_F = 0.25;
 
     var aclSrcGrp = null, aclCoilGrp = null, aclArrow = null, aclMeterNeedle = null, aclUgaugeFill = null;
+    var aclArrowLbl = null;
 
     function aclFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+
+    // ── Reveal ladder (Rule 25 foundation-first / Rule 16a; engine_bug_queue
+    //   field3d_hardcoded_sprite_label_prespoils_later_state_reveal) ─────────
+    //   Ported from the ac_capacitor sibling's accStateIndex/accIRevealed pair
+    //   (the same class was fixed there and the port was missed here). STATE_1
+    //   poses the question ("same source, new component -- everything still
+    //   oscillates"); the quarter-cycle LAG is STATE_2's ANSWER and this
+    //   concept's Rule-16a confrontation of the resistor's in-phase rhythm.
+    //   The wire arrow's caption states that answer in words, so it is gated
+    //   behind this ONE predicate and can never be printed by an earlier
+    //   state. Authored override wins if json_author ever needs a different
+    //   ladder; the DEFAULT is "revealed from the SECOND authored state
+    //   onward" (Object.keys preserves the authored order; Rule 25d runtime
+    //   reordering never changes it). NOTE: deliberately NOT keyed on
+    //   show_lag_bracket -- that flag is TRUE on STATE_2 only (false on the
+    //   other eight states), so it would un-teach the lag again from STATE_3
+    //   onward; a reveal ladder is monotone, a display flag is not.
+    function aclStateIndex() {
+        var ks = Object.keys(config.states || {});
+        for (var si = 0; si < ks.length; si++) { if (ks[si] === PM_currentState) return si; }
+        return 0;
+    }
+    function aclIRevealed(d) {
+        if (d && d.show_i_reveal != null) return !!d.show_i_reveal;
+        return aclStateIndex() >= 1;
+    }
 
     // Slider-control resolver (mirrors acrSc's SHAPE as new acl_-prefixed
     // code — never calls into ac_resistor's own acrSc).
@@ -30993,9 +31036,16 @@ export const FIELD_3D_RENDERER_CODE = `
         //    block §6.4, binding).
         aclArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.45, ACL_TOP_Y + 0.32, 0), 0.9, hexToThreeColor("#4FC3F7"), 0.2, 0.13);
         aclArrow.userData = { elementType: "acl_arrow", id: "acl_arrow" }; addToScene(aclArrow);
-        var arrowLbl = createLabelSprite("i (lags v by \\u00bc cycle)", "#4FC3F7", 0.22);
-        arrowLbl.position.set(0, ACL_TOP_Y + 0.68, 0);
-        arrowLbl.userData = { elementType: "acl_arrow", id: "acl_arrow_lbl" }; addToScene(arrowLbl);
+        // The arrow's caption is STATE_2's ANSWER, not a permanent decoration:
+        // built BARE ("i") and re-lettered per state through aclIRevealed, so
+        // STATE_1 -- which legitimately needs the direction arrow -- can never
+        // print the lag result before the concept has confronted it.
+        // pmCreateAutoLabel (auto-refitting retained canvas) replaces
+        // createLabelSprite precisely so the text can grow live without
+        // clipping when the full caption lands.
+        aclArrowLbl = pmCreateAutoLabel("i", "#4FC3F7", 0.22);
+        aclArrowLbl.position.set(0, ACL_TOP_Y + 0.68, 0);
+        aclArrowLbl.userData = { elementType: "acl_arrow", id: "acl_arrow_lbl" }; addToScene(aclArrowLbl);
 
         // 7. Back-emf arrow pair (S3 mechanism) — source-drive arrow (sign(v))
         //    + induced arrow (eps_back=-v), each computed independently from
@@ -31026,7 +31076,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // at y=1.15, unmoved) still marks the mechanism precisely, and the
         // shared red colour keeps the label visually tied to it despite the
         // offset.
-        var backemfLbl = createLabelSprite("\\u03b5_back (opposes the change)", "#EF5350", 0.2);
+        // Rule 34c, third text path (hardcoded 3D sprite label): this read
+        // "\\u03b5_back (opposes the change)" — a literal ASCII underscore on
+        // screen in S3. createLabelSprite is a single-run canvas fillText with
+        // NO markup and NO compose support, and "back" has no Unicode
+        // subscript codepoints (b and c do not exist as subscripts), so the
+        // only in-scenario fix is to drop the underscore NOTATION and name the
+        // quantity in the concept's own authored words ("back-emf", used
+        // throughout its narration). The HUD row keeps the compact symbol form
+        // \\u03b5<sub>back</sub> (DOM path, real markup available there).
+        var backemfLbl = createLabelSprite("back-emf \\u03b5 (opposes the change)", "#EF5350", 0.2);
         backemfLbl.position.set(ACL_COIL_X - 1.0, 1.3, 0);
         backemfLbl.userData = { elementType: "acl_emf_arrows", id: "acl_backemf_lbl" }; addToScene(backemfLbl);
 
@@ -31187,18 +31246,41 @@ export const FIELD_3D_RENDERER_CODE = `
             if (dvEl) dvEl.style.display = "none";
         }
 
+        // The wire arrow's caption is a REVEAL, not a fixture (see
+        // aclIRevealed): bare "i" before the lag is taught, the full lag
+        // caption from the reveal state onward. Re-lettered on every state
+        // apply so Rule-25d reordering can never strand the wrong caption
+        // (and so re-entering STATE_1 restores the bare form).
+        var arrowLblObj = aclFindById("acl_arrow_lbl");
+        if (arrowLblObj) updateLabelSpriteText(arrowLblObj, aclIRevealed(d) ? "i (lags v by \\u00bc cycle)" : "i");
+
         // S8's apparatus holds a STATIC, DIMMED pose (physics_block §3 S8 —
         // Rule 26 motion carried entirely by the scope-pane fold + algebra
-        // dock, not the 3D apparatus). A one-time opacity pass; the per-frame
-        // update SKIPS the 3D apparatus entirely in this mode (see
-        // updateAcInductorFrame's animate3d guard below), so this pose sticks.
-        if (d.dim_apparatus) {
-            for (var di = 0; di < sceneObjects.length; di++) {
-                var dobj = sceneObjects[di], dud = dobj.userData;
-                if (!dud || !dud.elementType || dud.elementType.indexOf("acl_") !== 0) continue;
-                if (dud.elementType === "acl_u_gauge" || dud.elementType === "acl_meter") continue; // keep their own live readout legible, never dimmed
-                dobj.traverse(function (n) { if (n.material) { var ms = Array.isArray(n.material) ? n.material : [n.material]; for (var mi3 = 0; mi3 < ms.length; mi3++) { ms[mi3].transparent = true; ms[mi3].opacity = 0.45; } } });
-            }
+        // dock, not the 3D apparatus). The per-frame update SKIPS the 3D
+        // apparatus entirely in this mode (see updateAcInductorFrame's
+        // animate3d guard below), so this pose sticks.
+        //   This is a TWO-WAY pass (the transformer/tfr_ restore pattern): each
+        // material's ORIGINAL opacity is cached once and restored whenever the
+        // state does NOT ask for the dim, so re-opening an earlier state from
+        // the rail (Rule 25d lets the teacher reorder/re-enter at will) can
+        // never leave the apparatus stranded at 0.45 for the rest of the
+        // session. A one-way dim was the
+        // field3d_dim_apparatus_one_way_with_no_restore_on_state_exit scar.
+        var aclDimApp = !!d.dim_apparatus;
+        for (var di = 0; di < sceneObjects.length; di++) {
+            var dobj = sceneObjects[di], dud = dobj.userData;
+            if (!dud || !dud.elementType || dud.elementType.indexOf("acl_") !== 0) continue;
+            if (dud.elementType === "acl_u_gauge" || dud.elementType === "acl_meter") continue; // keep their own live readout legible, never dimmed (never cached, never restored)
+            dobj.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi3 = 0; mi3 < ms.length; mi3++) {
+                    var mm3 = ms[mi3];
+                    if (mm3.__aclOrigOpacity === undefined) { mm3.__aclOrigOpacity = mm3.opacity; mm3.__aclOrigTransp = mm3.transparent; }
+                    if (aclDimApp) { mm3.transparent = true; mm3.opacity = Math.min(mm3.__aclOrigOpacity, 0.45); }
+                    else { mm3.transparent = mm3.__aclOrigTransp; mm3.opacity = mm3.__aclOrigOpacity; }
+                }
+            });
         }
     }
 
@@ -31446,6 +31528,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // loops/emf-arrows/gauge/meter/graphs/derivation/readouts. S8's 3D
     // apparatus is intentionally SKIPPED (animate3d=false) — its motion lives
     // entirely on the scope panes (physics_block §3 S8).
+    // DOM/HUD subscript composer (Rule 34c) — a scenario-LOCAL clone of the
+    // sibling *HtmlComposeSub family (acc_/phs_/slcr_/pwr_/lco_ each own one;
+    // scar field3d_subscript_compose_routine_cloned_four_times says clone, do
+    // NOT refactor the sealed siblings to share). Cloned from the WIDENED
+    // lco_ form so a Greek base letter is carried too: this scenario's own
+    // \\u03b5_back needs it (the older Latin-only form would have silently
+    // skipped it). GENERAL by construction — it carries any base_subscript
+    // pair rather than a closed token whitelist, so a future readout row can
+    // never reintroduce the defect by adding one more hardcoded token
+    // (the accComposeSegments whitelist trap: a two-token /(X_C|v_C)/ list
+    // could not have caught U_max even if this path had called it).
+    // innerHTML only — textContent would print the literal underscore.
+    function aclHtmlComposeSub(text) {
+        if (text == null) return "";
+        return String(text).replace(/([A-Za-z\\u03b1-\\u03c9])_([A-Za-z0-9]+)/g, "$1<sub>$2</sub>");
+    }
+
     function updateAcInductorFrame() {
         if (config.scenario_type !== "ac_inductor") return;
         var stateDef = config.states[PM_currentState]; if (!stateDef) return;
@@ -31596,11 +31695,18 @@ export const FIELD_3D_RENDERER_CODE = `
             if (d.show_avg_p_readout) {
                 html += "<div style=\\"color:#66BB6A\\">\\u27e8p\\u27e9 = 0.00 W</div>";
             }
-            roEl.innerHTML = html;
+            // Composed on the way out (mirrors slcr_/pwr_'s roEl.innerHTML =
+            // <pfx>HtmlComposeSub(html)): the \\u03b5_back row above carried a
+            // literal ASCII underscore to the screen on every S3 frame.
+            roEl.innerHTML = aclHtmlComposeSub(html);
         }
         var urEl2 = document.getElementById("acl_ureadout");
         if (urEl2 && urEl2.style.display !== "none") {
-            urEl2.innerHTML = "<div>U = " + U.toFixed(2) + " J</div><div>U_max = " + Umax.toFixed(2) + " J</div>";
+            // U_max was a literal ASCII underscore on screen in S6/S7 (Rule 34c
+            // violation, bug_class field3d_ascii_underscore_subscript_in_
+            // secondary_readout — the acc_ sibling's identical line was fixed
+            // during the ch7 loop, this one was left pending a founder call).
+            urEl2.innerHTML = aclHtmlComposeSub("<div>U = " + U.toFixed(2) + " J</div><div>U_max = " + Umax.toFixed(2) + " J</div>");
         }
     }
 
@@ -34018,6 +34124,7 @@ export const FIELD_3D_RENDERER_CODE = `
     var SLCR_TOP_Y = 1.1, SLCR_BOT_Y = -1.1;
     var SLCR_BEAD_COUNT = 18;
     var SLCR_BEAD_AMP = 0.5;                                      // bead arclength swing at default current
+    var SLCR_DIM_OP = 0.4;                                        // dim_apparatus recede level (never 0 — the machine stays present)
     // Colour law (chapter default).
     var SLCR_COL_V = "#4FC3F7", SLCR_COL_I = "#FFB300";
     var SLCR_COL_VR = "#ECEFF1", SLCR_COL_VL = "#B388FF", SLCR_COL_VC = "#69F0AE", SLCR_COL_Z = "#4FC3F7";
@@ -34509,6 +34616,31 @@ export const FIELD_3D_RENDERER_CODE = `
         ctx.closePath(); ctx.fill();
     }
 
+    // ── Multi-diagram band layout (Rule 34d).  The fan and the impedance
+    //   triangle BOTH live in the left disc region by default, so a state that
+    //   declares slcr_fan AND slcr_triangle drew them on top of each other
+    //   (arrows crossing the disc, R/X/Z chips fused).  When BOTH are declared,
+    //   this resolver hands each diagram its own non-overlapping sub-zone and
+    //   the draw functions honour it; when only one of them is declared it
+    //   returns null and every legacy coordinate is used verbatim, so the
+    //   single-diagram states (S3/S4 fan+strip, S5 chain, S6 triangle,
+    //   S8/S9/S10 plot) are byte-identical to before.
+    //   Reading order is left -> right (fan -> triangle -> plot): the same
+    //   order the derivation is taught in, and the band is wide (500) and short
+    //   (170), so columns are the only split that keeps a 5-arrow fan legible. ─
+    function slcrBandLayout(showFan, showTri, showPlot) {
+        if (!(showFan && showTri)) return null;
+        if (showPlot) {
+            // Three diagrams in one 500x170 band (S11 explore): the fan gives up
+            // 10px of radius and the plot ~1/3 of its width so the triangle gets
+            // a real column of its own.
+            return { fan: { cx: 62, cy: 84, R: 46 }, tri: { x0: 134, x1: 270, yc: 84 }, plotX0: 278 };
+        }
+        // Two diagrams (S7): the plot is absent, so the whole right region is
+        // free — the fan keeps its exact legacy disc and the triangle moves out.
+        return { fan: { cx: SLCR_DISC_CX, cy: SLCR_DISC_CY, R: SLCR_DISC_R }, tri: { x0: 176, x1: 470, yc: 84 }, plotX0: SLCR_STRIP_X0 };
+    }
+
     // ── The band canvas draw (disc region + strip/plot region, ONE canvas,
     //   FULL clearRect each frame so sequential captions can never composite). ──
     function slcrDrawBand(d, tSec, thetaDeg, phys, freeze, ramp) {
@@ -34521,11 +34653,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var showChain = slcrVisHas("slcr_chain"), showTri = slcrVisHas("slcr_triangle");
         var showPlot = slcrVisHas("slcr_reso_plot"), showChips = slcrVisHas("slcr_chips") && !!d.show_chips;
 
+        var lay = slcrBandLayout(showFan, showTri, showPlot);
         if (showStrip) slcrDrawStrip(ctx, gc, d, tSec, thetaDeg, phys);
-        if (showPlot) slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp);
-        if (showFan) slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze);
+        if (showPlot) slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp, lay);
+        if (showFan) slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze, lay);
         if (showChain) slcrDrawChain(ctx, d, tSec, thetaDeg, phys);
-        if (showTri) slcrDrawTriangle(ctx, d, tSec, phys, showChips);
+        if (showTri) slcrDrawTriangle(ctx, d, tSec, phys, showChips, lay);
         if (d.mode === "kvl_stack") slcrDrawKvl(ctx, gc, d, tSec, thetaDeg, phys, freeze);
     }
 
@@ -34564,9 +34697,21 @@ export const FIELD_3D_RENDERER_CODE = `
     // Five-arrow phasor fan (disc region): i amber (0deg ref), V_R white (along i),
     // V_L violet (+90), V_C green (-90), source v cyan (+phi). ONE theta(t) drives
     // all five with locked constant offsets (never independently animated).
-    function slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze) {
-        var cx = SLCR_DISC_CX, cy = SLCR_DISC_CY, R = SLCR_DISC_R;
+    function slcrDrawFan(ctx, d, tSec, thetaDeg, phys, freeze, lay) {
+        var fanL = (lay && lay.fan) || null;
+        var cx = fanL ? fanL.cx : SLCR_DISC_CX, cy = fanL ? fanL.cy : SLCR_DISC_CY, R = fanL ? fanL.R : SLCR_DISC_R;
         var Lv = R / 12.0, Li = R / 4.0;                            // per-unit volt / amber scales
+        // Zone fit (multi-diagram layout ONLY): one UNIFORM factor on every arrow
+        // so the fan can never grow out of its disc and across the triangle's
+        // column when a teacher drags v_m / R / L / C in the explore sandbox.
+        // Uniform => every relative length (and therefore every phase relation)
+        // is preserved; it only ever shrinks (fit <= 1), never magnifies.
+        var fit = 1;
+        if (fanL) {
+            var mx = Math.max(Li * phys.im, Lv * phys.im * phys.Z);
+            if (d.show_v_chips !== false) mx = Math.max(mx, Lv * phys.VR, Lv * phys.VL, Lv * phys.VC);
+            if (mx > R) fit = R / mx;
+        }
         ctx.strokeStyle = slcrGlowOn("fan") ? "#78909C" : "#546E7A"; ctx.lineWidth = 1.3;
         ctx.beginPath(); ctx.arc(cx, cy, R, 0, 2 * Math.PI); ctx.stroke();
         ctx.strokeStyle = "#37474F"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.stroke();
@@ -34579,13 +34724,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (tag) { ctx.fillStyle = col; ctx.font = "9px 'Cambria Math','Times New Roman',serif"; slcrFillComposed(ctx, tag, tx + 3, ty, "left"); }
         }
         // arrows (draw amber i first as reference, then the three voltages, then source).
-        arrow(0, Li * phys.im, SLCR_COL_I, "i_phasor", "i\\u2098");
+        arrow(0, Li * phys.im * fit, SLCR_COL_I, "i_phasor", "i\\u2098");
         if (d.show_v_chips !== false) {
-            arrow(0, Lv * phys.VR, SLCR_COL_VR, "vr_phasor", "V_R");
-            arrow(90, Lv * phys.VL, SLCR_COL_VL, "vl_phasor", "V_L");
-            arrow(-90, Lv * phys.VC, SLCR_COL_VC, "vc_phasor", "V_C");
+            arrow(0, Lv * phys.VR * fit, SLCR_COL_VR, "vr_phasor", "V_R");
+            arrow(90, Lv * phys.VL * fit, SLCR_COL_VL, "vl_phasor", "V_L");
+            arrow(-90, Lv * phys.VC * fit, SLCR_COL_VC, "vc_phasor", "V_C");
         }
-        arrow(phi, Lv * phys.im * phys.Z, SLCR_COL_V, "v_phasor", "v\\u2098");
+        arrow(phi, Lv * phys.im * phys.Z * fit, SLCR_COL_V, "v_phasor", "v\\u2098");
         // phi arc (live) — numeral only when show_arc_numeral (withheld before S7).
         if (slcrVisHas("slcr_arc") && d.show_arc) {
             var a0 = th * Math.PI / 180, a1 = (th + phi) * Math.PI / 180, arcR = 22;
@@ -34682,7 +34827,8 @@ export const FIELD_3D_RENDERER_CODE = `
     // Z (cyan). unit-morph: a scale factor eases from the volt figure to the ohm
     // figure over the morph window (a representation morph, Rule 29-exempt scripted
     // shape change, NOT physical motion), then the chips relabel V -> Ohm.
-    function slcrDrawTriangle(ctx, d, tSec, phys, showChips) {
+    function slcrDrawTriangle(ctx, d, tSec, phys, showChips, lay) {
+        var triL = (lay && lay.tri) || null;
         var ox = SLCR_DISC_CX - 44, oy = SLCR_DISC_CY + 40;    // triangle origin (bottom-left)
         var pxPerOhm = 7.0;
         var mStart = cueTriggerMs("morph_start", (d.morph_start_at_ms != null ? d.morph_start_at_ms : 800)) / 1000;
@@ -34694,6 +34840,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var rLen = phys.VR * legScale, xLen = (phys.VL - phys.VC) * legScale;
         var xWin = phys.X >= 0 ? SLCR_COL_VL : SLCR_COL_VC;
         var xSign = phys.X >= 0 ? -1 : 1;                        // X_L wins -> leg above (screen up = -y)
+        if (triL) {
+            // Own sub-zone (Rule 34d): shrink-to-fit ONLY (never magnify — the
+            // guided pair state keeps the same 7 px/Ohm figure the triangle-only
+            // state shows), then sit the triangle vertically centred in the zone
+            // so the winner-sign flip cannot push a leg out of the band.
+            var zoneW = (triL.x1 - triL.x0) - 10 - 58;           // 10 left pad, 58 for the right-hand chips
+            var zoneH = 122;                                      // leaves room for the chip above/below
+            var fitT = Math.min(1, zoneW / Math.max(Math.abs(rLen), 1), zoneH / Math.max(Math.abs(xLen), 1));
+            rLen *= fitT; xLen *= fitT;
+            ox = triL.x0 + 10;
+            oy = triL.yc - xSign * Math.abs(xLen) / 2;
+        }
         var apex = [ox + rLen, oy + xSign * Math.abs(xLen)];
         var g = slcrGlowOn("triangle");
         // R leg (white, horizontal).
@@ -34702,7 +34860,31 @@ export const FIELD_3D_RENDERER_CODE = `
         slcrArrow(ctx, ox + rLen, oy, apex[0], apex[1], xWin, g ? 2.8 : 2.2);
         // Z hypotenuse (cyan).
         slcrArrow(ctx, ox, oy, apex[0], apex[1], SLCR_COL_Z, g ? 3 : 2.4);
-        if (showChips) {
+        if (showChips && triL) {
+            // Sub-zone chip slots. Each chip is anchored OUTSIDE the leg it names:
+            // R on the far side of the base, X beside the middle of the vertical
+            // leg, Z just past the hypotenuse's own arrowhead (the apex) — the
+            // same label-at-the-tip convention the phasor fan uses, and the only
+            // slot that never lands on a leg when the triangle is tall and narrow.
+            // Both right-hand chips share one x, separated vertically by half the
+            // X leg, so even the degenerate resonance case (X = 0, where the Z
+            // arrow legitimately coincides with the R arrow) reads as three
+            // distinct values instead of one fused blob.
+            var midY = oy + xSign * Math.abs(xLen) / 2;
+            var chipX = ox + rLen + 6;
+            ctx.font = "9px 'Cambria Math','Times New Roman',serif";
+            ctx.fillStyle = SLCR_COL_VR; ctx.fillText("R = " + window.PM_slcrR.toFixed(1) + " \\u03a9", ox, xSign > 0 ? oy - 6 : oy + 13);
+            ctx.fillStyle = xWin; ctx.fillText("X = " + Math.abs(phys.X).toFixed(2) + " \\u03a9", chipX, midY + 3);
+            ctx.fillStyle = SLCR_COL_Z; slcrFillComposed(ctx, "Z = " + phys.Z.toFixed(1) + " \\u03a9", chipX, apex[1] + xSign * 11 + 3, "left");
+            if (!slcrVisHas("slcr_reso_plot")) {
+                // X_L / X_C tug-of-war pair — parked at the far right of the
+                // triangle's own zone (the strip region is free on this state),
+                // clear of every triangle chip.
+                ctx.font = "10px 'Cambria Math','Times New Roman',serif";
+                ctx.fillStyle = SLCR_COL_VL; slcrFillComposed(ctx, "X_L = " + phys.XL.toFixed(2) + " \\u03a9", triL.x1, 20, "right");
+                ctx.fillStyle = SLCR_COL_VC; slcrFillComposed(ctx, "X_C = " + phys.XC.toFixed(2) + " \\u03a9", triL.x1, 35, "right");
+            }
+        } else if (showChips) {
             ctx.font = "9px 'Cambria Math','Times New Roman',serif";
             ctx.fillStyle = SLCR_COL_VR; ctx.fillText("R = " + window.PM_slcrR.toFixed(1) + " \\u03a9", ox, oy + 13);
             ctx.fillStyle = SLCR_COL_Z; slcrFillComposed(ctx, "Z = " + phys.Z.toFixed(1) + " \\u03a9", ox + rLen / 2 + 4, oy + xSign * Math.abs(xLen) / 2 - 4, "left");
@@ -34728,8 +34910,8 @@ export const FIELD_3D_RENDERER_CODE = `
     // S8/S9/S11 resonance plot pair (right region): upper X-vs-f (X_L violet line
     // rising, X_C green curve falling, crossing marked), lower i-vs-f (peak curve +
     // live dot). Shared f-axis; the crossing and the peak are VERTICALLY ALIGNED.
-    function slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp) {
-        var x0 = SLCR_STRIP_X0, x1 = SLCR_STRIP_X1, w = x1 - x0;
+    function slcrDrawResoPlot(ctx, gc, d, tSec, phys, ramp, lay) {
+        var x0 = (lay && lay.plotX0 != null) ? lay.plotX0 : SLCR_STRIP_X0, x1 = SLCR_STRIP_X1, w = x1 - x0;
         var upTop = 12, upBot = 78, loTop = 90, loBot = SLCR_BAND_H - 16;
         var xAxMax = 13, iAxMax = (d.plot_i_axis_max != null ? d.plot_i_axis_max : 2.2);
         function fx(f) { return x0 + ((f - SLCR_FMIN) / (SLCR_FMAX - SLCR_FMIN)) * w; }
@@ -34855,12 +35037,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var docked = slcrRevealDock(d, t);
         var beadAmp = SLCR_BEAD_AMP * Math.max(0.15, Math.min(1.1, phys.im / 2.0));
         var disp = beadAmp * Math.sin(thetaDeg * Math.PI / 180) * (docked ? 1 : 0);
+        var beadDimF = slcrDimFactor(d);   // dim_apparatus rides the LIVE bead channel as a multiplier (Rule 29: brightness, never size)
         for (var bi = 0; bi < sceneObjects.length; bi++) {
             var bo = sceneObjects[bi], bu = bo.userData;
             if (!bu || !bu.slcrBead) continue;
             var pt = slcrLoopAt(bu.home + disp);
             bo.position.set(pt[0], pt[1], pt[2]);
-            if (bo.material) bo.material.opacity = 0.45 + 0.4 * Math.abs(Math.sin(thetaDeg * Math.PI / 180));
+            if (bo.material) bo.material.opacity = (0.45 + 0.4 * Math.abs(Math.sin(thetaDeg * Math.PI / 180))) * beadDimF;
         }
 
         // ── S1 reveal-build element fade-in ──
@@ -34896,17 +35079,27 @@ export const FIELD_3D_RENDERER_CODE = `
         var start = (d.beads_start_at_ms != null ? d.beads_start_at_ms : 4000) / 1000;
         return t >= start;
     }
+    // dim_apparatus multiplier. The R/L/C element GROUPS (heater, coil, plates and
+    // their sprite labels) are re-written to full opacity by slcrApplyRevealFade on
+    // EVERY frame, so the one-time opacity pass in applyAcSeriesLcrState was silently
+    // clobbered for exactly the three pieces the eye tracks — only the bare wires and
+    // the source ring actually receded (the
+    // field3d_dim_apparatus_declared_but_contract_not_honoured scar). Threading the
+    // factor through the per-frame paths makes the flag whole, and returns 1 on every
+    // non-dim state so those frames stay byte-identical.
+    function slcrDimFactor(d) { return d && d.dim_apparatus ? SLCR_DIM_OP : 1; }
     function slcrApplyRevealFade(d, t) {
+        var dimF = slcrDimFactor(d);
         if (d.mode !== "series_build") {
-            if (slcrElemR) slcrSetGroupOpacity(slcrElemR, 1);
-            if (slcrElemL) slcrSetGroupOpacity(slcrElemL, 1);
-            if (slcrElemC) slcrSetGroupOpacity(slcrElemC, 1);
+            if (slcrElemR) slcrSetGroupOpacity(slcrElemR, dimF);
+            if (slcrElemL) slcrSetGroupOpacity(slcrElemL, dimF);
+            if (slcrElemC) slcrSetGroupOpacity(slcrElemC, dimF);
             return;
         }
         var rAt = cueTriggerMs("dock_r", (d.dock_r_at_ms != null ? d.dock_r_at_ms : 0)) / 1000;
         var lAt = cueTriggerMs("dock_l", (d.dock_l_at_ms != null ? d.dock_l_at_ms : 1400)) / 1000;
         var cAt = cueTriggerMs("dock_c", (d.dock_c_at_ms != null ? d.dock_c_at_ms : 2800)) / 1000;
-        function fade(startS) { return Math.max(0, Math.min(1, (t - startS) / 1.0)); }
+        function fade(startS) { return Math.max(0, Math.min(1, (t - startS) / 1.0)) * dimF; }
         if (slcrElemR) slcrSetGroupOpacity(slcrElemR, fade(rAt));
         if (slcrElemL) slcrSetGroupOpacity(slcrElemL, fade(lAt));
         if (slcrElemC) slcrSetGroupOpacity(slcrElemC, fade(cAt));
@@ -37222,7 +37415,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var pa = TFR_PRIM_PTS[pi], pb = TFR_PRIM_PTS[(pi + 1) % TFR_PRIM_PTS.length];
             var pw = createTubeLine([pa, pb], "#B0BEC5", 0.024); if (pw) { pw.userData = { glowKey: "primary" }; primGrp.add(pw); }
         }
-        var plbl = createLabelSprite("primary N_p = 100", TFR_COL_VP, 0.22);
+        var plbl = createLabelSprite("primary Nₚ = 100", TFR_COL_VP, 0.22);
         plbl.position.set(TFR_CORE_LX, 1.05, 0); primGrp.add(plbl);
         addToScene(primGrp);
         var switchGrp = new THREE.Group(); switchGrp.userData = { elementType: "tfr_switch", id: "tfr_switch" };
@@ -37239,7 +37432,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var sbgeo = new THREE.BoxGeometry(0.38, 0.045, 0.045); sbgeo.translate(0.19, 0, 0);
         tfrSecBlade = new THREE.Mesh(sbgeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#455A64"), emissiveIntensity: 0.3 }));
         tfrSecBlade.position.set(2.0, TFR_LOOP_TY, 0); tfrSecBlade.userData = { glowKey: "secondary" }; secGrp.add(tfrSecBlade);
-        var slbl = createLabelSprite("secondary N_s", TFR_COL_VS, 0.22);
+        var slbl = createLabelSprite("secondary Nₛ", TFR_COL_VS, 0.22);
         slbl.position.set(TFR_CORE_RX, 1.05, 0); secGrp.add(slbl);
         addToScene(secGrp);
         // Lamp + load.
@@ -37247,10 +37440,10 @@ export const FIELD_3D_RENDERER_CODE = `
         tfrBuildLamp(lampGrp); addToScene(lampGrp);
         // Meters (needle dials; numerals live in the HUD).
         var meterGrp = new THREE.Group(); meterGrp.userData = { elementType: "tfr_meters", id: "tfr_meters" };
-        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, 1.25, "V_p", TFR_COL_VP, 25, "vp");
-        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, -1.25, "I_p", TFR_COL_I, 4, "ip");
-        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, 1.25, "V_s", TFR_COL_VS, 90, "vs");
-        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, -1.25, "I_s", TFR_COL_I, 4, "is");
+        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, 1.25, "Vₚ", TFR_COL_VP, 25, "vp");
+        tfrBuildMeterDial(meterGrp, TFR_SRC_X + 0.02, -1.25, "Iₚ", TFR_COL_I, 4, "ip");
+        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, 1.25, "Vₛ", TFR_COL_VS, 90, "vs");
+        tfrBuildMeterDial(meterGrp, TFR_LOAD_X, -1.25, "Iₛ", TFR_COL_I, 4, "is");
         addToScene(meterGrp);
         // Bead streams (primary loop + secondary loop).
         function makeBeads(pts, loopName) {
@@ -80663,7 +80856,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Parallel currents force — flow dots, orbiting B1 arrows, force vectors.
         if (config.scenario_type === "parallel_currents_force") {
-            updateParallelCurrentsForceFrame();
+            updateParallelCurrentsForceFrame(heldAtPin ? 0 : dtStep);
             updatePcfRhrHandFrame();   // STATE_3 right-hand: slow I→B→F curl + highlight
         }
 
@@ -80816,14 +81009,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // galvanometer_to_ammeter_voltmeter — continuous current-dot stream +
         // assemble / swap beats (pure fn of the state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "galvanometer_to_ammeter_voltmeter") {
-            updateGalvanometerAmmeterVoltmeterFrame();
+            updateGalvanometerAmmeterVoltmeterFrame(heldAtPin ? 0 : dtStep);
             applyGalvanometerAmmeterVoltmeterGlow();
         }
 
         // bar_magnet_as_dipole — field-tracer stream + loop trace / break / probe
         // r-sweep beats (pure fn of the state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "bar_magnet_as_dipole") {
-            updateBarMagnetAsDipoleFrame();
+            updateBarMagnetAsDipoleFrame(heldAtPin ? 0 : dtStep);
             applyBarMagnetAsDipoleGlow();
         }
 
@@ -80852,7 +81045,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // gauss_law_magnetism — closed-loop tracer stream + S4 surface morph +
         // S6 sandbox drag + Φ_B = 0 readout (state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "gauss_law_magnetism") {
-            updateGaussLawMagnetismFrame();
+            updateGaussLawMagnetismFrame(heldAtPin ? 0 : dtStep);
             applyGaussLawMagnetismGlow();
         }
 
@@ -81859,6 +82052,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var curDirSign = stateDef.current_direction_indicator === "down" ? -1 :
                              stateDef.current_direction_indicator === "up" ? 1 : 0;
             var dotSpeed = 0.55; // wire-units per second along the 5-unit visible span
+            // The freeze-determinism guard (mirrors the solenoid's cfDt): under a
+            // time pin __pmSteps is FORCED to 1, so dtStep never reaches 0 and the
+            // path-dependent orbit/dot accumulators below would keep advancing
+            // through SET_TIME_FREEZE (teacher Pause). swDt is 0 while pinned.
+            var swDt = heldAtPin ? 0 : dtStep;
 
             // ── switch_toggle (magnetic_field_concept_B STATE_1/STATE_3) ──────
             //   The wire current i(t) is i_before on state entry; at close_at_ms /
@@ -82080,7 +82278,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // rotating field," just no longer a perfectly rigid one (deterministic,
                         // no randomness, no new state — Rule 26).
                         var swRateScale = 1 + 0.02 * (swRingIdx - 2.5) + 0.012 * (swHeightIdx - 1);
-                        swUd.swPhase += dtStep * effRotRate * rotDirSign * swRateScale;
+                        swUd.swPhase += swDt * effRotRate * rotDirSign * swRateScale;
                         var swStagger = ((swHeightIdx * 6 + swRingIdx) / 18) * Math.PI * 2;
                         var ang = (swUd.flowAngleOffset || 0) + swUd.swPhase + swStagger;
                         swObj.position.set(
@@ -82114,7 +82312,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // Flow speed scales with the live current (dots crawl as the
                         // switch ramps the current down, freeze as it hits 0).
                         if (swUd.dotPhase == null) swUd.dotPhase = phase;
-                        swUd.dotPhase += dtStep * dotSpeed * iScale;
+                        swUd.dotPhase += swDt * dotSpeed * iScale;
                         var loopT = swUd.dotPhase % 1;
                         // Up-flow: y goes -2.5 → +2.5; Down-flow: y goes +2.5 → -2.5
                         swObj.position.x = wireScenarioOffsetX; // ride with the panel split

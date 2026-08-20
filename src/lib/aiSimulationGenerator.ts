@@ -2834,6 +2834,10 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     normal_reaction:                "mechanics_2d",
     tension_in_string:              "mechanics_2d",
     hinge_force:                    "mechanics_2d",
+    // Ch.8.5 Friction — ALSO in PCPL_CONCEPTS below; the PCPL set takes precedence
+    // at the sim-assembler site. Without this entry the id fell through to the
+    // step-4 substring loop / "particle_field" default in resolveRendererType().
+    friction_static_kinetic:        "mechanics_2d",
     free_body_diagram:              "field_3d",   // RETROFIT 2026-07-25 onto newtons_laws_body (was mechanics_2d)
     connected_bodies:                "field_3d",   // NEW 2026-07-25 — newtons_laws_body Branch B (coupled/pulley)
     block_on_incline:               "field_3d",   // NEW 2026-07-26 — newtons_laws_body Branch A (incline friction threshold)
