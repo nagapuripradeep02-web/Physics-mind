@@ -372,6 +372,42 @@ test('construction lines survive an instant placement, in every question', async
     }
 });
 
+test('every cut of every question totals exactly its own marks', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
+
+    for (let q = 0; q < qCount; q++) {
+        await page.evaluate((i) => {
+            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
+            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+        }, q);
+        await page.waitForTimeout(250);
+
+        const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
+        for (const c of cuts) {
+            await page.evaluate((k) => (window as any).PM_ANSWER.setCut(k), c.key);
+            await page.waitForTimeout(200);
+            await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+            await page.waitForTimeout(450);
+
+            const r = await page.evaluate(() => ({
+                st: (window as any).PM_ANSWER.getState(),
+                acc: document.getElementById('accValue')!.textContent,
+                total: document.getElementById('accTotal')!.textContent,
+                header: [...document.querySelectorAll('.page-header-block .line')]
+                    .map((e) => e.textContent).join(' | '),
+            }));
+            const where = `${r.st.cutKey} of question ${q + 1}`;
+            expect(r.st.marksTotal, where).toBe(c.marks_total);
+            expect(r.st.marksEarned, where).toBe(c.marks_total);   // a full answer earns the lot
+            expect(r.acc, where).toBe(String(c.marks_total));
+            expect(r.total, where).toBe('/' + c.marks_total);
+            expect(r.header, where).toContain(`${c.marks_total} marks`);
+        }
+    }
+});
+
 test('no written line wraps past its own height, in either cut', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');

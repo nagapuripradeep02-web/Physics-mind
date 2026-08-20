@@ -188,6 +188,7 @@
     // "How much to write" title floating above nothing.
     if (cuts.length < 2) { $('cutCard').hidden = true; return; }
     $('cutCard').hidden = false;
+    row.className = 'cut-switch' + (cuts.length > 2 ? ' stack' : '');
     cuts.forEach(function (c, i) {
       var b = document.createElement('button');
       b.type = 'button';

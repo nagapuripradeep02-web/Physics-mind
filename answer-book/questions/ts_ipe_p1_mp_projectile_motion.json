@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. The 8-mark LAQ here combines them the way the paper asks the full question; the 4-mark cut is the book’s ***2 exactly. BOTH mark splits are invented, as is the choice of which steps the 4-mark answer may omit. A Telangana IPE teacher must confirm both before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty."
   },
   "cuts": [
     {
@@ -113,7 +113,7 @@
     },
     {
       "key": "saq",
-      "label": "4-mark answer",
+      "label": "4-mark: height and range",
       "qtype": "SAQ",
       "marks_total": 4,
       "paper_section": "Section B",
@@ -194,6 +194,42 @@
       },
       "needs_teacher_verification": true,
       "note": "Sri Chaitanya Fastrack SHORT ANSWER ***2 of Unit 4, three-star. The 4-mark split and the decision to fold the time of flight into the range step are invented."
+    },
+    {
+      "key": "saq_parabola",
+      "label": "4-mark: parabola",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "question_text": "Show that the trajectory of an object thrown at an angle with the horizontal is a parabola.",
+      "mark_split": [
+        {
+          "label": "Labelled figure",
+          "marks": 1
+        },
+        {
+          "label": "Resolving u",
+          "marks": 1
+        },
+        {
+          "label": "Equation of the path",
+          "marks": 2
+        }
+      ],
+      "steps": {
+        "s2_figure": {
+          "marks": 1
+        },
+        "s3_components": {
+          "marks": 1
+        },
+        "s4_trajectory": {
+          "marks": 2
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) SHORT ANSWER ***4 of Unit 4, three-star. Same authored steps as the 8-mark answer, stopping at the parabola. The 4-mark split is invented."
     }
   ],
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
