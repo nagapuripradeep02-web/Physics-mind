@@ -134,14 +134,19 @@ async function main(): Promise<void> {
     console.log(`  Reveal map:  ${stateIds.map(s => `${s}=${maxRevealMsByState[s] ?? '?'}ms${holdExpectations[s] ? `(${holdExpectations[s]})` : ''}`).join(', ')}`);
     if (i2FormulaStates > 0) console.log(`  I2 formulas: replaying math_show in ${i2FormulaStates} states (equation-panel frames dumped)`);
 
-    console.log('\n📸 Capturing every state + dense ~1s frames (this takes 1–3 min)...');
+    console.log('\n📸 Capturing every state + dense frames (this takes 1–3 min)...');
     const captureStart = Date.now();
     const capture = await captureSimStates({
         conceptId,
         panelAHtml: cached.sim_html,
         panelBHtml: isMulti ? (cached.secondary_sim_html as string) : undefined,
         stateIds,
-        dense: { intervalMs: 1000, durationMsByState },
+        // intervalMs deliberately NOT set here — it must stay incommensurate with
+        // the drive periods sims animate at, and that constraint (with the
+        // measurement behind it) lives on DENSE_DEFAULT_INTERVAL_MS in
+        // screenshotter.ts. Hardcoding 1000 here silently overrode that default
+        // and phase-locked the sampler to every f_demo=0.5Hz state in Ch.7.
+        dense: { durationMsByState },
         ttsMathByState,
         // Sim-time-aware primary capture — pin+poll PM_simTimeMs to each state's
         // all-reveals-complete time so late reveals are photographed (headless
