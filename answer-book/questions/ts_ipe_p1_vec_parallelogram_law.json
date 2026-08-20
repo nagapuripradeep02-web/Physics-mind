@@ -11,16 +11,16 @@
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
   "question_text": "State the parallelogram law of vectors. Derive an expression for the magnitude and direction of the resultant vector.",
   "appearances": [],
   "mark_split": [
     {
       "label": "Statement of the law",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Labelled figure",
@@ -28,31 +28,31 @@
     },
     {
       "label": "Magnitude derivation",
-      "marks": 3
+      "marks": 1
     },
     {
       "label": "Direction derivation",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Question appears in the TSBIE Basic Learning Material 2021-22 (Unit 4) and the Sri Chaitanya IPE Fastrack. The 8-mark split and exact IPE appearance years are claims until a Telangana IPE teacher confirms them."
+    "note": "RECLASSIFIED 2026-08-20 from LAQ/8 to SAQ/4 on founder decision. The Sri Chaitanya IPE Junior Fastrack (Revised May 2024) lists this as SHORT ANSWER QUESTION 1 of Unit 4, three-star ranked; the chapter has no LONG ANSWER section at all. The earlier LAQ/8 framing came from the TSBIE Basic Learning Material and was already flagged as a claim. CONFLICT STILL OPEN: the derivation is long for 4 marks, so a Telangana IPE teacher must confirm both the section and the 4-mark split before this goes to a student. Star rank is the book's; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
   },
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Motion in a Plane · 8 marks"
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_statement",
         "kind": "text",
         "label": "State the law",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Statement",
-        "margin_note": "Write the whole statement. The two marks are for the words alone.",
+        "margin_note": "Write the whole statement. The mark is for the words alone.",
         "lines": [
           {
             "text": "Statement:",
@@ -89,7 +89,7 @@
             "resultant"
           ]
         },
-        "why": "The examiner gives two of the eight marks for the words alone, before any physics. Writing the full statement is the cheapest scoring you will do in this answer.",
+        "why": "The examiner gives one of the four marks for the words alone, before any physics. Writing the full statement is the cheapest scoring you will do in this answer.",
         "common_mistakes": [
           "Writing only half the law — the two adjacent sides, but not that the diagonal is the resultant.",
           "Saying 'the resultant is the sum' instead of stating the law.",
@@ -337,9 +337,8 @@
         "id": "s3_construction",
         "kind": "text",
         "label": "Construction",
-        "marks": 1,
-        "mark_note": "Construction",
-        "margin_note": "Name every point you drew. The examiner matches these names against the figure.",
+        "marks": 0,
+        "margin_note": "Name every point you drew. The examiner matches these names against the figure. No mark of its own — the magnitude mark below depends on it.",
         "lines": [
           {
             "text": "Construction:",
@@ -377,7 +376,7 @@
             "raastha"
           ]
         },
-        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the whole trick of the proof: it turns the parallelogram into a right triangle.",
+        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the whole trick of the proof: it turns the parallelogram into a right triangle. It carries no mark by itself, but skip it and the magnitude line has nothing to stand on.",
         "common_mistakes": [
           "Dropping the perpendicular to OA instead of to OA extended.",
           "Not saying which angle is theta and which is alpha."
@@ -387,9 +386,8 @@
         "id": "s4_legs",
         "kind": "equation",
         "label": "Find AD and CD",
-        "marks": 1,
-        "mark_note": "Triangle CAD",
-        "margin_note": "AC is parallel to OB, so the angle at A equals θ. Both legs come from this one triangle.",
+        "marks": 0,
+        "margin_note": "AC is parallel to OB, so the angle at A equals θ. Both legs come from this one triangle. No mark of its own — it feeds the magnitude line.",
         "lines": [
           "In the right triangle CAD:",
           {
@@ -433,7 +431,7 @@
             "P plus Q cos theta"
           ]
         },
-        "why": "Q is at an angle, so it cannot be added to P directly. Resolving it into Q cos theta along P and Q sin theta perpendicular to P turns the problem into ordinary right-triangle geometry.",
+        "why": "Q is at an angle, so it cannot be added to P directly. Resolving it into Q cos theta along P and Q sin theta perpendicular to P turns the problem into ordinary right-triangle geometry. The mark for this work is awarded on the magnitude line.",
         "common_mistakes": [
           "Swapping the two — writing AD = Q sin theta and CD = Q cos theta.",
           "Forgetting that angle CAD equals theta because AC is parallel to OB.",
@@ -506,9 +504,8 @@
         "id": "s6_direction",
         "kind": "equation",
         "label": "Direction of R",
-        "marks": 1,
-        "mark_note": "tan α",
-        "margin_note": "Use the same right triangle ODC. Say which side is opposite and which is adjacent to α.",
+        "marks": 0,
+        "margin_note": "Use the same right triangle ODC. Say which side is opposite and which is adjacent to α. The direction mark is awarded on the boxed answer below.",
         "lines": [
           "Direction: in the right triangle ODC,",
           {
@@ -542,7 +539,7 @@
             "Q sin theta by P plus Q cos theta"
           ]
         },
-        "why": "The magnitude alone does not fix a vector. The same right triangle ODC that gave the magnitude also gives the direction, so no new construction is needed here.",
+        "why": "The magnitude alone does not fix a vector. The same right triangle ODC that gave the magnitude also gives the direction, so no new construction is needed here. The mark lands on the next line, where α itself appears.",
         "common_mistakes": [
           "Measuring alpha from Q instead of from P.",
           "Writing tan alpha = Q sin theta / P, leaving out the Q cos theta.",

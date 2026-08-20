@@ -50,7 +50,7 @@ test('reveals all steps, earns exactly the total, and never splits a block acros
 
     expect(result.state.marksEarned).toBe(result.state.marksTotal);
     expect(result.acc).toBe(String(result.state.marksTotal));
-    expect(result.state.pageCount).toBeGreaterThanOrEqual(2); // the LAQ honestly fills page 1
+    expect(result.state.pageCount).toBeGreaterThanOrEqual(2); // the derivation honestly fills page 1
     expect(result.straddle).toEqual([]);                      // no block split across a page break
 });
 
@@ -73,8 +73,19 @@ test('jump via the rail reproduces the identical pagination', async ({ page }) =
         return pm.getState();
     });
 
+    // Sum the AUTHORED marks up to and including s6 rather than writing a literal:
+    // the mark split is a claim pending teacher verification and has already been
+    // revised once (LAQ/8 -> SAQ/4). A literal turns a legitimate re-split into a
+    // false failure and tells you nothing about pagination, which is what this
+    // test is actually for.
+    const expected = await page.evaluate(() => {
+        const steps = (window as any).PM_ANSWER.question.answer.steps as any[];
+        const upto = steps.findIndex((s) => s.id === 's6_direction');
+        return steps.slice(0, upto + 1).reduce((a, s) => a + s.marks, 0);
+    });
+
     expect(jumped.stepId).toBe('s6_direction');
-    expect(jumped.marksEarned).toBe(7); // 2+1+1+1+1+1 through s6
+    expect(jumped.marksEarned).toBe(expected);
     // page break must land in the same place either way
     expect(jumped.pageCount).toBe(tapped.pages);
 });
@@ -118,7 +129,7 @@ test('with no recall endpoint the page stays fully offline and offers no mic', a
     expect(external).toEqual([]);          // and zero network calls
 });
 
-test('the answer still reaches 8/8 with the recall feature present', async ({ page }) => {
+test('the answer still earns the full mark total with the recall feature present', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
     const r = await page.evaluate(() => {
@@ -184,6 +195,14 @@ test('the self-check scores from authored marks with no network', async ({ page 
     await page.click('#btnTest');
     await page.click('#btnSelf');
 
+    // Read the expected numbers from the AUTHORED question, never hardcode them:
+    // this question was reclassified LAQ/8 -> SAQ/4 and a literal would have made
+    // a correct reclassification look like a scoring regression.
+    const authored = await page.evaluate(() => {
+        const q = (window as any).PM_ANSWER.question;
+        return { total: q.marks_total, firstMarks: q.answer.steps[0].marks };
+    });
+
     // every row starts unticked: this path makes no claim about the page
     const start = await page.evaluate(() => ({
         rows: document.querySelectorAll('#recallResult .confirm-row').length,
@@ -192,15 +211,35 @@ test('the self-check scores from authored marks with no network', async ({ page 
     }));
     expect(start.rows).toBeGreaterThan(0);
     expect(start.ticked).toBe(0);
-    expect(start.score).toContain('0 out of 8');
+    expect(start.score).toContain(`0 out of ${authored.total}`);
 
-    // ticking the 2-mark statement step must move the score by exactly 2
+    // ticking the first step must move the score by exactly that step's marks
     await page.click('#recallResult .confirm-row');
     const after = await page.evaluate(
         () => document.querySelector('#recallResult .recall-score')!.textContent);
-    expect(after).toContain('2 out of 8');
+    expect(after).toContain(`${authored.firstMarks} out of ${authored.total}`);
 
     expect(external).toEqual([]);            // scored entirely in the browser
+});
+
+test('the paper section and marks agree across header, chip and mark split', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const r = await page.evaluate(() => {
+        const q = (window as any).PM_ANSWER.question;
+        return {
+            qtype: q.qtype,
+            total: q.marks_total,
+            splitSum: q.mark_split.reduce((a: number, m: any) => a + m.marks, 0),
+            stepSum: q.answer.steps.reduce((a: number, s: any) => a + s.marks, 0),
+            header: q.answer.page_header.join(' | '),
+        };
+    });
+    // the three places a mark total appears must never drift apart
+    expect(r.splitSum).toBe(r.total);
+    expect(r.stepSum).toBe(r.total);
+    expect(r.header).toContain(`${r.total} marks`);
+    expect(r.header).toContain(r.qtype === 'LAQ' ? 'Section C' : 'Section B');
 });
 
 test('the modes and the rail teaching cards are gone', async ({ page }) => {
