@@ -26,7 +26,7 @@
 | 3b | Second concept — **`graph_transformations`** (a·f(b(x−h))+k) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 ride-along · 8 P3). Merged as PR #53; desk `fix/math-graph-transformations-checkpointB` carries the fix rounds + re-baseline (`8b2d196`, 8 states), **not yet PR'd**. Chain: CP-A → author → quality_auditor → founder_proxy B ×3 cycles → offset-deletion round (8 of 9 deleted). **Checkpoint C + professor gate SKIPPED — founder call 2026-08-08.** TTS 20 EN clips; stale clips auto-muted. |
 | 3c | Third concept — **`derivative_as_secant_limit`** (ranked P1) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 · 4 P3). Merged as PR #50; desk `fix/math-derivative-checkpointB` carries the fix rounds + re-baseline (`7012e42`, 9 states), **not yet PR'd**. Same chain, 3 B-cycles, then 11 of 12 offsets deleted. **Checkpoint C + professor gate SKIPPED — founder call.** TTS 26 EN clips. |
 | 3d | Fourth concept — **`definite_integral_as_accumulated_area`** (ranked P1 #3 — **completes P1**) | ✅ **MERGED to master 2026-08-09 — PR #70 and engine PR #76 both landed; baselines re-approved against the merged state and THE EYE returns 50/50.** Checkpoint C + professor gate SKIPPED (founder call). Shipping (PILOT_CONCEPTS/TTS/deploy) untouched and founder-only. Prior: **Checkpoint B APPROVED (cycle 3 of 3; authoring sign-off only). Rubric 17/20. Nine ride-along findings, zero blocking. Engine PR #76 open with four platform fixes; PR #70 still DRAFT; nothing re-baselined.** Prior status: Checkpoint B cycle 1 = FIX(engine) 2026-08-08. Cycle 1 of 3 spent, two remain.** Cycle 0's six findings are ALL verified closed (engine PR **#72 MERGED**, `05eceff`). Four NEW P1s, three findable only by a live drive. `quality_auditor` 3rd audit **PASS**; `eye_walker` FINDINGS(3); THE EYE **50/50**. **PR #70 open, HOLD — do not merge.** Baselines were re-approved and are ALREADY STALE again: two of them certify frames the product cannot reach. Full detail + the exact next round below. |
-| 3e | Fifth concept — **`lines_and_planes_in_space`** (ranked P3 #9; `vector_geometry_3d` / `mode:"lines_planes"`, 9 states) | 🟡 **AUTHORED · FIX-COMPLETE · AUDITED ×3 — NOT approved, NOT merged, NOT baselined, not in `PILOT_CONCEPTS`.** Desk `feat/mathematics-lines-and-planes` @ `6c2dc01` (16 ahead of master, 0 behind, pushed); **PR #96 OPEN — must not merge.** The 2026-08-09 xhigh review's **15 confirmed defects are all cleared** (2026-08-10): scar queue **26 → 13 OPEN** of 47 rows (33 FIXED · 1 FALSE_POSITIVE), and nothing OPEN is a defect this concept introduced. Chain run: `quality_auditor` ×3 · `eye_walker` ×4 · **founder review NEVER RUN.** **THE EYE re-run post-#118 (2026-08-20): 40 checks · 39 passed · 1 skip (H2) · 1 known false positive** — and the first trustworthy eye-walk then found **4 new defects** (S3's aha state blank at its own climax; `v` named and unlabelled on S2; S7's two arcs reading as one; an S5 pacing-table drift) plus an 8 px label pair on S8. Queue **13 → 19 OPEN**. Seven engine PRs merged for it — #108/#109/#110/#112/#113/#114 (gate 712 → 1015) and #118 (→ 1055). **⚠ #118 (a tube's radius applied twice → every line a ~0.1 px hairline) VOIDED every pre-fix pixel walk on this branch; re-run and re-walked 2026-08-20. Still NO baseline for any of the 9 states.** Record: `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.1 + the two sessions below. |
+| 3e | Fifth concept — **`lines_and_planes_in_space`** (ranked P3 #9; `vector_geometry_3d` / `mode:"lines_planes"`, 9 states) | 🟡 **AUTHORED · FIX-COMPLETE · AUDITED ×3 — NOT approved, NOT merged, NOT baselined, not in `PILOT_CONCEPTS`.** Desk `feat/mathematics-lines-and-planes` @ `6c2dc01` (16 ahead of master, 0 behind, pushed); **PR #96 OPEN — must not merge.** The 2026-08-09 xhigh review's **15 confirmed defects are all cleared** (2026-08-10): scar queue **26 → 13 OPEN** of 47 rows (33 FIXED · 1 FALSE_POSITIVE), and nothing OPEN is a defect this concept introduced. Chain run: `quality_auditor` ×3 · `eye_walker` ×4 · **founder review NEVER RUN.** **THE EYE re-run post-#118 (2026-08-20): 40 checks · 39 passed · 1 skip (H2) · 1 known false positive** — and the first trustworthy eye-walk then found **4 new defects** (S3's aha state blank at its own climax; `v` named and unlabelled on S2; S7's two arcs reading as one; an S5 pacing-table drift) plus an 8 px label pair on S8. Queue **13 → 19 OPEN**, then **19 → 15** once all four walk findings were fixed by authoring the same day (no engine change needed). Seven engine PRs merged for it — #108/#109/#110/#112/#113/#114 (gate 712 → 1015) and #118 (→ 1055). **⚠ #118 (a tube's radius applied twice → every line a ~0.1 px hairline) VOIDED every pre-fix pixel walk on this branch; re-run and re-walked 2026-08-20. Still NO baseline for any of the 9 states.** Record: `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.1 + the two sessions below. |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 | — | **3D-vectors chapter (ranked P3 #7/#9)** | ⏸ **STOPPED mid-flight by founder 2026-08-08**, to restart from Phase 0 in a fresh session. Full record: `docs/MATHEMATICS_VECTORS_3D_HANDOFF.md` → superseded by `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`. Ranked list corrected P2 #5 → **P3 #7** (the "no new engine" premise was false). |
@@ -113,10 +113,45 @@ S5 drift is a second figure in the same table.
 > normal and shadow meet shows it is correctly centred. The defect is the radius and the missing
 > separation, not the apex. *An arc that looks wrong is a measurement to take, not a diagnosis.*
 
+### 5 · THE FIX ROUND — all four walk findings closed, by authoring alone
+
+**No engine change was needed for any of them**: the vg scenario already exposed `label` on segments
+and `radius` on arcs, so nothing required a Rule-40 dispatch. Queue **19 → 15 OPEN**.
+
+| Finding | Fix | Proof |
+|---|---|---|
+| **S3 hand-off (MAJOR)** | `perp` reveals at **8950** with **`grow_ms: 0`** — full 50 ms *before* `cmp` hides at 9000, so the windows overlap instead of meeting at a point. `grow_ms: 0` is deliberate: `vgRevealFrac` short-circuits (`if (g <= 0) return 1`), so the lock is instant, which is what *"locks in place"* describes; a grow would have needed the green drawn coincident with the white for its whole duration | Same three frames that found it: t=8000 white + `segment length = 2.339`; **t=9000 GREEN at full length with its right-angle mark + `distance = 2.198`**; t=10000 unchanged. Blank frame and empty HUD both gone |
+| **S2 `v` unlabelled** | Both test segments author `label: "v"` | `v` renders on the test vector at t=13000. Labels now n, d, v = 3, inside the authored max of 4 |
+| **S7 arcs read as one** | `arc_normal` **radius 0.62**, `arc_plane` **0.95** — a 53 % step (probe asks ≥15 %), and 0.62 puts the inner arc *inside* the ~180 px normal arm the shared 0.9 overran at ~208 px | Two clearly nested arcs at the pin with dark between them, where the pre-fix frame showed one unbroken curve |
+| **S5 pacing drift** | Five rows corrected | See below — the sweep is the finding |
+
+**Two sweeps, because fixing the reported instance is not fixing the class:**
+
+- **Hand-off collisions: 5 across the 9 states, of which only 2 were defects.** S3 (reported) and
+  **S2 `test_v_inplane` → `test_v_offplane` at 11200**, found by the sweep and fixed the same way
+  (11150 + `grow_ms: 0`). The other three — S4's `Lpar`/`arc_par`/`X_par` → `Lcut` at 9500 — are
+  **not** instances: two different lines at different positions with a deliberately disjoint window,
+  already on the record from the re-audit. *A collision is only a defect when the same object is
+  being handed over.*
+- **Pacing drift: FIVE of nine rows, not one.** S2, S3, S5, S7 and S8 all disagreed with the build;
+  S1, S4, S6, S9 were correct. **The capture column was correct on all nine** — `eye_capture_ms` *is*
+  authored, in `epic_l_path.states` rather than in the `vg` block, and an earlier extraction that
+  looked only in `vg` read it as absent everywhere. Corrected in the record so the next reader does
+  not re-derive the same false alarm. S2's cell was the worst: it described a breathing patch that is
+  not authored and omitted the `n·v` demonstration, which is the state's whole lesson.
+
+The S5 cell now carries the **coupling** as a standing warning: since #93 a readout waits for its
+subject to ARRIVE, so `skew_distance` can only be live at ~1620 if the geometry reveals at 0 —
+"restoring" the documented 3800–6000 ordering would silently move the number off the misconception
+beat and re-open the CRITICAL row that fix closed.
+
+**Re-verified after the fixes:** `tsc` 0 · `validate:mathematics` 5/5 · `check:vector-geometry-3d`
+**ALL SECTIONS PASSED** · cache re-seeded · **THE EYE 40 checks · 39 passed · 1 failed · 1 skip** —
+the identical shape as before, the one failure still STATE_9 D5's known false positive. No regressions.
+
 ### ⏭ NEXT
 
-1. **Fix the four walk findings**, S3 first — it is the aha state and the fix is an overlap of two
-   authored windows, not a mechanism.
+1. ~~Fix the four walk findings~~ — **DONE 2026-08-20**, all four closed by authoring (see above).
 2. **The two OPEN rows from #118 are still gaps, not defects to fix here:** a fleet-wide minimum-ink
    check, and a real label-separation gate so a camera nudge stops being provisional.
 3. **Then founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** first.

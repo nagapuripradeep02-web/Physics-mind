@@ -1086,6 +1086,7 @@
             {
               "id": "test_v_inplane",
               "role": "neutral",
+              "label": "v",
               "from": "P1",
               "to": { "lerp": [ { "on": "P1", "u": -1.3, "v": 0.6 }, { "on": "P1", "u": 1.1, "v": -0.8 } ], "t": { "knob": "aux_a" } },
               "reveal_at_ms": 6500,
@@ -1096,9 +1097,11 @@
             {
               "id": "test_v_offplane",
               "role": "neutral",
+              "label": "v",
               "from": "P1",
               "to": { "lerp": [ { "on": "P1", "u": 1.1, "v": -0.8 }, [1.556288, 0.716738, 1.192001] ], "t": { "knob": "aux_b" } },
-              "reveal_at_ms": 11200,
+              "reveal_at_ms": 11150,
+              "grow_ms": 0,
               "readout": "n_dot_v",
               "against": "P1"
             }
@@ -1170,8 +1173,8 @@
             "to": "P1",
             "foot_id": "true_foot",
             "role": "derived",
-            "reveal_at_ms": 9000,
-            "grow_ms": 600,
+            "reveal_at_ms": 8950,
+            "grow_ms": 0,
             "show_right_angle": true
           },
           "animate": [
@@ -1417,15 +1420,19 @@
               "id": "arc_normal",
               "between": ["Lcut", "P1.normal"],
               "readout": "angle_line_normal_deg",
+              "radius": 0.62,
               "reveal_at_ms": 9000,
-              "grow_ms": 1200
+              "grow_ms": 1200,
+              "note": "radius stepped BELOW the default 0.9 for two reasons, both measured on the post-#118 capture: at 0.9 the arc drew ~208px while the normal arm drew ~180px, so it terminated PAST the tip of the arm it measures to; and arc_plane sits at 0.95, so the 53% step is what lets a reader see 55 and 35 as two arcs rather than one continuous 90 curve"
             },
             {
               "id": "arc_plane",
               "between": ["Lcut", "P1"],
               "readout": "angle_line_plane_deg",
+              "radius": 0.95,
               "reveal_at_ms": 13000,
-              "grow_ms": 1500
+              "grow_ms": 1500,
+              "note": "the outer of the stepped pair; both arms here are full-length lines, so 0.95 terminates on both"
             }
           ],
           "value_readouts": ["angle_line_normal_deg", "angle_line_plane_deg"],
