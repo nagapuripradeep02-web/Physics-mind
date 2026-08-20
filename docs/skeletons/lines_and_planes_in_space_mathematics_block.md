@@ -41,16 +41,21 @@ animate?: Array<{
     easing?: 'linear' | 'smoothstep' | 'ease_out_cubic';
 }>;
 ```
-There is no `at_ms`, no `ramp_ms`, no `mode`, no `"ping_pong"`. The resolver (`vgAnimValue`,
+There is no `at_ms`, no `ramp_ms`, no `mode`, no `"ping_pong"` **field on an `animate[]` entry**
+— but note (**⚠ CORRECTED 2026-08-21, QA pass-11 F9:**) that this is a statement about FIELD NAMES only: looping IS supported, at the state
+level, by `vg.animate_loop_ms`, which wraps the clock the windows are evaluated against. The resolver (`vgAnimValue`,
 `:12317–12338`) is documented in its own header as **one-shot-hold**: *"the value is 'from' for
 ms <= start_ms, eases from -> to across [start_ms, start_ms+duration_ms], then HOLDS at 'to' forever —
 never a returning triangle."* Authoring the skeleton's `{at_ms, ramp_ms, mode:"ping_pong"}` shape
 produces **no motion at all** (every field the resolver reads is `undefined`, so `start_ms` falls back
-to 0 and `duration_ms` to 0 — an instant, invisible jump at state-entry). **S9's "λ ping-pongs until a
-slider is seized" cannot be built as literally stated** — see §4 S9 below for the honest substitute
-(a long, finite, multi-window back-and-forth built from ordinary one-shot windows, not a true infinite
-loop) and the FLAG recommending a genuine `mode:"ping_pong"` engine primitive if the founder wants the
-real thing.
+to 0 and `duration_ms` to 0 — an instant, invisible jump at state-entry). **⚠ CORRECTED 2026-08-21, QA pass-11 F9:** ~~"**S9's 'λ ping-pongs until a slider is seized' cannot be built as literally stated** — see §4
+S9 for the honest substitute … and the FLAG recommending a genuine `mode:"ping_pong"` engine
+primitive"~~. **It CAN be built as literally stated, and ships that way.** The one-shot-hold quote above
+describes `vgAnimValue`'s per-window behaviour, which is still true — but the state clock feeding it is
+wrapped by `vg.animate_loop_ms` (F21b), so the windows repeat forever. Shipped S9:
+`animate_loop_ms: 18000` + two 9 s `lambda` legs. This sentence was the SOURCE the §4 S9 paragraph
+cited; pass-10 withdrew the citing text and left this one standing, which is how this family survived
+four sweeps.
 
 **Diff 2 — `camera_gate.exempt_pairs` / `min_screen_length_frac` (Δ7).** CONFIRMED NEVER BUILT.
 ```
@@ -172,7 +177,7 @@ JSON keys in the shipped shape, and `mathematics_author` specs both because the 
                        "unit": "unitless", "min": 1.5, "max": 4.5, "default": 3.0 },
     "q_height":     { "name": "the free point q's authored offset along +y from its base (x,z) position",
                        "unit": "unitless", "min": 0.0, "max": 3.0, "default": 1.19 },
-    "line2_offset": { "name": "S9 group-B only: slides the skew line M2's anchor along d2-hat",
+    "line2_offset": { "name": "S9 group-B only — slides M2's anchor along n̂c = normalize(d₁×d₂), the common-perpendicular direction (⚠ CORRECTED 2026-08-20, F1a: previously described/authored as 'along d2-hat', a vector PARALLEL to M2's own drawn direction — translating an anchor along an infinite line's OWN direction leaves the line pixel-identical, so that description named an INERT slider; the shipped offset.along is n̂c, the axis PERPENDICULAR to both directions — the same vector as M2's own rotate.about — which is what actually moves the skew gap and drives skew_distance live, matching S8's own formula)",
                        "unit": "unitless", "min": -2.5, "max": 2.5, "default": 0.0 },
     "theta_deg":    { "name": "angle between the two skew directions d1, d2 (S6 sweep; camera fidelity VERIFIED only on this exact interval, see §2b)",
                        "unit": "deg", "min": 25, "max": 115, "default": 69.3846 },
@@ -403,17 +408,25 @@ calls, `field_3d_renderer.ts:13500–13504`, and `VG_ROW_RANGE`, populated at `:
 | `aux_b` | not slider-bound (same as `aux_a`) | `[0, 1]` internal (S2's dot-product test-vector sweep fraction) | Never exposed; `vg.animate[]`-only (S2 only). |
 | `scene_group` | not a numeric knob — a `<select>` (`vg_scene_group_select`, `:13512–13520`) | `"A" \| "B"` | S9 only; option labels authored via `d.scene_groups:[{key,label},…]`. |
 
-**A UX consequence of the control-visibility mechanism worth flagging, not fixing:** `d.controls`
-(which rows are shown/enabled) and `d.control_ranges` are both read ONCE per STATE ENTRY
-(`applyVectorGeometry3DState`, `:14384–14401`), never re-evaluated when the `scene_group` `<select>`
-changes mid-state. **S9's `controls` array must therefore be the UNION of both groups' knobs**
-(`lambda, lambda_span, half_extent, q_height, theta_deg, line2_offset` — everything either group uses),
-so whichever group is selected has its relevant sliders visible. A side effect: while group B is
-selected, `half_extent`'s slider is still visible and live but has NO visible effect (group B's objects
-don't include the plane); while group A is selected, `theta_deg` is visible but does nothing (group A's
-objects don't include the skew pair). This is harmless (a "dead" slider, not a wrong number) and is not
-fixable without a reactive per-group control-list mechanism the engine does not have — recorded here so
-`quality_auditor` does not mistake it for a defect.
+**Per-group control visibility — how it actually works.** `vgEffectiveControls` (`field_3d_renderer.ts`,
+declared just above the row-visibility pass) resolves `d.group_controls[group]` and falls back to the
+flat `d.controls` only when a state authors no groups; the `scene_group` picker re-runs the
+row-visibility pass **and nothing else** (Rule 39c — a full re-apply would re-seed knobs and clear
+drag-seize flags). Shipped S9 authors
+`group_controls: {"A":["lambda","lambda_span","half_extent","q_height"],"B":["theta_deg","line2_offset"]}`,
+so each group shows exactly its own knobs. **⚠ CORRECTED 2026-08-21, QA pass-11 F9:** ~~"`d.controls` and `d.control_ranges` are both read
+ONCE per STATE ENTRY, never re-evaluated when the `scene_group` select changes mid-state … S9's
+`controls` array must therefore be the UNION of both groups' knobs … a side effect: `half_extent`
+is still visible and live but has NO visible effect … `theta_deg` is visible but does nothing"~~ —
+there is no union requirement and there are no dead sliders. (Pass-10 struck a condensed paraphrase of
+this passage and left the passage itself, so a top-down reader still met nine lines of it first.) **⚠ CORRECTED 2026-08-21, QA pass-10 F8:** ~~"S9's `controls` array must therefore be the UNION of both groups' knobs … a side effect is a
+'dead' slider … not fixable without a reactive per-group control-list mechanism the engine does not
+have — recorded here so `quality_auditor` does not mistake it for a defect."~~ — **the mechanism exists
+and ships.** S9 authors `group_controls: {"A":["lambda","lambda_span","half_extent","q_height"],
+"B":["theta_deg","line2_offset"]}`, and `vgEffectiveControls` (`field_3d_renderer.ts:14942`, contract
+at `:14922`) resolves the per-group list, with the row-visibility pass re-run on a group switch and
+nothing else (Rule 39c). There is no dead slider, so there is nothing for the auditor to stand down on
+— which is why a false "not fixable" note is worse than no note.
 
 
 ## 4. Within-state motion timeline + per-state control spec (Rule 31), on the SHIPPED `animate[]` surface
@@ -427,7 +440,7 @@ cross-authored) or `vg.camera_mode:"group"` + `vg.group_cameras`.
 
 ### STATE_1 — "One Number Names Every Point on a Line"
 `parameter-sweep` · core · `manual_click` · register: **graphical leads, numeric supports** (Rule 33d
-number: the live coordinate on the λ marker) · words 34–42.
+number: the live coordinate on the λ marker) · words ~~34–42~~ **⚠ CORRECTED: shipped final 52 words, within Rule 31's 25–55 law**.
 **Camera (CORRECTED, §⭐ above):** `camera_position:[0.0, 8.0, 13.8564]` (R16/az90/el30, Act I's
 STATE_5 literal, verbatim) · `camera_mode:"steps"` · `camera_steps:[{at_ms:0, az:94, el:6, dist:13,
 ease_ms:4000}]` (the ease spans the dim-down + line-extend window, arriving at Act II's working pose by
@@ -445,7 +458,10 @@ the time λ begins sweeping).
 - `animate:[{knob:"lambda", from:-3.5, to:3.5, start_ms:4000, duration_ms:13000, easing:"linear"}]` —
   the one-shot-hold naturally supplies the "hold" phase for free once `duration_ms` elapses (17000 ms):
   no extra authoring needed for the hold.
-- `value_readouts:["lambda"]` (HUD row `λ = …`, 3 dp) plus the coordinate label riding the marker
+- `value_readouts:[]` (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~`["lambda"]`~~ — the shipped array is EMPTY. The λ value the
+  state teaches rides the marker's own coordinate label, not a HUD row; the closed row
+  `vg_readout_token_authored_on_a_state_whose_constructs_never_publish_it` is exactly this state
+  declaring a λ readout the engine could never emit) plus the coordinate label riding the marker
   (`a = (−0.80, 0.60, −0.50)` static, `λ`'s own live position — both DOM-readable, `:439–441`).
 - `controls:["lambda"]`, `vg.control_ranges:{lambda:{min:-3.5,max:3.5}}` (§3).
 **Checked:** at `eye_capture_ms:12000`, `u=(12000-4000)/13000=0.6154`, linear ⇒ `λ = −3.5+0.6154×7 =
@@ -454,12 +470,14 @@ the time λ begins sweeping).
 ### STATE_2 — "A Normal Direction Fixes a Whole Plane"
 `reveal-build` · core · register: **graphical leads; the S2-only beat is symbolic-adjacent** (the
 perpendicularity TEST, `n̂·v`, is a number, not a formula — kept off the formula surface per 38c, see §5)
-· words 44–52.
+· words ~~44–52~~ **⚠ CORRECTED: shipped final 55 words, at the Rule 31 cap**.
 **Objects:** `P1` (same object, now BRIGHTENING back from ghost — `ghost_at_ms` simply absent/undefined
 in S2's own `d`, so `vgGhostFactor` returns 1 for the whole state, i.e. full bright throughout; the
-patch itself unfolds via `reveal_at_ms:2500, grow_ms:4000` acting on `half_extent`'s own `frac` scaling,
-`bind_half_extent:true` is NOT set here — `half_extent` breathes on an AUTHORED literal via a SEPARATE
-mechanism, see below), `L1` retiring to ghost (`ghost_at_ms:0` on `L1` this state, engine 600 ms fade).
+patch itself unfolds by ANIMATING THE KNOB: shipped `P1` carries **no timing fields at all** and DOES set
+`bind_half_extent: true`, and the unfold is `animate:[{knob:"half_extent", from:0.4, to:3,
+start_ms:0, duration_ms:4000, easing:"smoothstep"}]` — **⚠ CORRECTED 2026-08-21, QA pass-10 F8:** ~~"unfolds via `reveal_at_ms:2500,
+grow_ms:4000` … `bind_half_extent:true` is NOT set here"~~, three wrong facts in one clause; the
+skeleton §12 had it right ("0–4000 the patch unfolds (`half_extent` 0.4→3.0, smoothstep)")), `L1` retiring to ghost (`ghost_at_ms:0` on `L1` this state, engine 600 ms fade).
 **The dot-product introduction beat (6500–15000 ms), SAFE two-segment recipe (avoids the
 readout-collision hazard below):**
 ```
@@ -470,17 +488,28 @@ segments: [
   { id:"test_v_offplane", role:"neutral", from:"P1",
     to: { lerp: [ {on:"P1", u:1.1, v:-0.8}, <literal off-plane point = P1.point+1.1u-0.8v+1.8n̂> ],
           t:{knob:"aux_b"} },
-    reveal_at_ms:11200, readout:"n_dot_v", against:"P1" }
+    reveal_at_ms:11150, grow_ms:0, readout:"n_dot_v", against:"P1" }
+    /* **⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~reveal_at_ms:11200 with no grow_ms~~ — i.e. reveal EQUAL to its
+       predecessor's hide_at_ms:11200, a zero-overlap hand-off. Shipped is 11150 + grow_ms:0, the same
+       50 ms overlap + instantaneous lock as STATE_3's perp/cmp, and for the same reason: it closed
+       construct_handoff_deletes_the_taught_object_and_its_number_at_the_very_beat_that_names_it. */
 ],
 animate: [
+  { knob:"half_extent", from:0.4, to:3, start_ms:0, duration_ms:4000, easing:"smoothstep" },
   { knob:"aux_a", from:0, to:1, start_ms:6500,  duration_ms:4000, easing:"smoothstep" },
   { knob:"aux_b", from:0, to:1, start_ms:11200, duration_ms:2800, easing:"smoothstep" }
 ]
+/* **⚠ CORRECTED 2026-08-21, QA pass-10 F8:** the half_extent window was MISSING from this quoted array — it is the patch unfold itself,
+   the state's opening beat. Three windows ship, not two. */
 ```
-**Why this is safe (§2c's hazard-4 discipline, applied prophylactically).** Readout resolution in
-`vgResolveLinesPlanes` is UNCONDITIONAL — it runs every frame for EVERY authored segment regardless of
-`reveal_at_ms`/`hide_at_ms` (`:13066–13083`), and `out.readouts.n_dot_v` is overwritten by whichever
-matching segment is LAST in the array. Both endpoints of `test_v_inplane`'s lerp are IN-PLANE addresses
+**Why this is safe (§2c's hazard-4 discipline, applied prophylactically).** Readout resolution in `vgResolveLinesPlanes` is **GATED ON ARRIVAL** — `if (vgArrived(sfrac))` guards
+`segment_length`, and `n_dot_v` additionally requires its plane to have arrived
+(`if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac))`). **⚠ CORRECTED 2026-08-21, QA pass-11 F9:** ~~"Readout resolution … is
+UNCONDITIONAL — it runs every frame for EVERY authored segment regardless of `reveal_at_ms`/`hide_at_ms`"~~
+— that was true when this block was written and is now false: the engine closed it at the value source
+under the bug_class `vg_lines_planes_segment_readouts_compute_regardless_of_reveal_state` (Δ2b, "A
+NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE SOURCE"). `out.readouts.n_dot_v` is still overwritten by
+whichever matching segment is LAST in the array, so the array-order discipline below still applies. Both endpoints of `test_v_inplane`'s lerp are IN-PLANE addresses
 (`{on:"P1", u:_, v:_}` with no third coordinate leaving the plane), so its `n̂·v` is **exactly 0 for
 every value of `t`, not just for `t∈[0,1]`** — safe no matter what `aux_a` is doing before/after its own
 window. `test_v_offplane`'s FIRST endpoint is the SAME in-plane point `test_v_inplane` ends on, so
@@ -490,16 +519,17 @@ before `aux_b`'s window opens (`t` holds at its `from=0`), `test_v_offplane` ALS
 frame. **This two-segment, ordered-array construction is a general recipe worth recording as a candidate
 `engine_bug_queue` prevention row** (see FLAGS) — a naively-ordered or single-instrument version of this
 exact beat would print a plausible-looking but silently wrong `n·v` during the wrong phase.
-**Objects, continued:** `value_readouts:["n_norm","n_dot_v"]`. `controls:["half_extent"]`.
+**Objects, continued:** `value_readouts:["n_dot_v"]`. `controls:["half_extent"]`. (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was
+~~`["n_norm","n_dot_v"]`~~ — `n_norm` is not authored on this state; it ships on S9 only.)
 **Checked (qualitative):** phase 1 (6500–10500 ms) `n̂·v ≡ 0.000`; phase 2 (11200–14000 ms) ramps off
 zero; both endpoints chosen so the tip visibly leaves the drawn patch by full reveal.
 
 ### STATE_3 — "The Perpendicular Is the Shortest Segment" (PRIMARY AHA)
 `sweep-to-extremum` (coined, per skeleton) · core · **`misconception_watch`: M1** · register:
 **graphical leads, numeric is the whole payoff** (Rule 33d: the falling→rising `distance` readout IS
-the demonstration) · words 40–48.
+the demonstration) · words ~~40–48~~ **⚠ CORRECTED: shipped final 54 words, within Rule 31's 25–55 law**.
 **Objects:** `points:[{id:"q", position:[1.93,1.19,0.51], role:"neutral", label:"q", reveal_at_ms:0,
-grow_ms:2000}]`. The sweeping comparison foot, **authored as an OFFSET from the TRUE FOOT** (not the
+grow_ms:400}]` (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~grow_ms:2000~~). The sweeping comparison foot, **authored as an OFFSET from the TRUE FOOT** (not the
 plane-address form `{on:"P1",u:s}`, which is measured from `P1`'s own anchor and would NOT put `s=0` at
 the minimum — verified in §2e/Numerical sanity check: the plane-address form gives the true foot at
 `s≈1.296`, not `0`):
@@ -507,21 +537,28 @@ the minimum — verified in §2e/Numerical sanity check: the plane-address form 
 points: [ { id:"foot_sweep", position:[1.2232,-0.8294,0.0051] /* the true foot, computed once */,
             role:"neutral", offset:{ along:[0.9435,-0.3312,0], zero:0, knob:"aux_a" } } ]
 segments: [ { id:"cmp", role:"neutral", from:"q", to:"foot_sweep", reveal_at_ms:0, readout:"length" } ]
-animate: [ { knob:"aux_a", from:-2.2, to:1.6, start_ms:2000, duration_ms:5000, easing:"linear" },
-           { knob:"aux_a", from:1.6, to:0,   start_ms:7000, duration_ms:2000, easing:"smoothstep" } ]
+animate: [ { knob:"aux_a", from:-2.2, to:1.6, start_ms:2500, duration_ms:9500, easing:"linear" },
+           { knob:"aux_a", from:1.6, to:0,   start_ms:12000, duration_ms:3500, easing:"smoothstep" } ]
 ```
 (Linear easing on the first window so `s=0`, the true minimum, lands at the arithmetic midpoint of the
-window's TIME, `t = 2000 + (0-(-2.2))/3.8 × 5000 = 4895 ms` — close to, not exactly, the skeleton's
-"≈ t 5100"; the skeleton's own `≈` already concedes this is an estimate, and the exact value depends on
-the easing curve chosen, which was NOT specified in the skeleton — flagged as a minor recommendation,
-not a contradiction, since both are approximate by the skeleton's own notation.)
+window's TIME, `t = 2500 + (0-(-2.2))/3.8 × 9500 = 8000 ms`, which is exactly the skeleton §12's
+"≈ t 8000". **⚠ CORRECTED 2026-08-20, QA pass-8 F6:** ~~`t = 2000 + (0-(-2.2))/3.8 × 5000 = 4895 ms` —
+close to, not exactly, the skeleton's "≈ t 5100"~~. That arithmetic was internally consistent with the
+STALE window above it, so it read as sound while being 3105 ms wrong; and the "≈ t 5100" it reconciled
+against no longer exists anywhere in the skeleton (`grep 5100` = 0 hits). Both halves are now shipped values.)
 Then: `right_angle` mark via `perpendicular:{from:"q", to:"P1", foot_id:"true_foot", role:"derived",
-reveal_at_ms:9000, grow_ms:600, show_right_angle:true}` — this SECOND object (the true perpendicular,
-role `"derived"`/green) reveals at 9000 ms, exactly as `foot_sweep`'s segment (`role:"neutral"`) is
-hidden (`hide_at_ms:9000` added to `cmp` above) — the "segment turns green and locks" beat is two
+reveal_at_ms:15450, grow_ms:0, show_right_angle:true}` — this SECOND object (the true perpendicular,
+role `"derived"`/green) reveals at 15450 ms, 50 ms BEFORE `foot_sweep`'s segment (`role:"neutral"`) is
+hidden (`hide_at_ms:15500` on `cmp` above) — **⚠ CORRECTED 2026-08-20, QA pass-8 F6:** ~~reveal 9000 /
+grow 600 against hide 9000~~; the windows now OVERLAP by 50 ms with `grow_ms: 0`, so the lock is
+instantaneous and the canvas is never empty at the aha instant (the fix that closed
+`construct_handoff_deletes_the_taught_object_and_its_number_at_the_very_beat_that_names_it`) — the "segment turns green and locks" beat is two
 DIFFERENT objects handing off, not one object changing colour (roles are static per object, confirmed
 `§1`), matching Δ2's reveal-chain design exactly.
-**`value_readouts:["point_plane_distance"]`. `controls:[]`** (no live slider on this state — the sweep is
+**`value_readouts:["segment_length","point_plane_distance"]`. `controls:[]`** (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** the shipped array
+also carries `segment_length` FIRST — the sweeping segment's live length, which is the number the sweep
+beat is read from; ~~`["point_plane_distance"]`~~ alone described only the locked value. Same defect the
+STATE_4 cell below already caught and corrected for `angle_line_normal_deg`.) (no live slider on this state — the sweep is
 choreography-only, matching the skeleton's control table). Formula surface `D = |n̂·(q−a)| / ‖n‖` is
 present from state entry (no timed reveal exists on the vg formula surface; engine request Δ11 filed).
 **Checked:** `s=−2.2→3.1086`, `s=0→2.1983`, `s=+1.6→2.7201` (§2e) — all three MATCH the skeleton to
@@ -529,46 +566,97 @@ the stated precision.
 
 ### STATE_4 — "A Line Meets a Plane Once, or Never"
 `translate-through` · core · **`misconception_watch`: M2** · register: **graphical leads** · words
-42–50.
+~~42–50~~ **⚠ CORRECTED: shipped final 53 words, within Rule 31's 25–55 law** (this document's
+design-time estimate was stale, not a defect in the shipped narration — see the Final narration
+ledger below).
 **Objects:** `P1` static/bright. Two `lines[]`, SEQUENTIAL via `reveal_at_ms`/`hide_at_ms`:
-`Lpar` (`role:"dir2"`/cyan, the `n̂·d̂=0` case) visible 0–9500 ms, sliding bodily via
+`Lpar` (`role:"dir2"`/cyan, the `n̂·d̂=0` case) visible 0–9500 ms. ~~sliding bodily via
 `offset:{along:<a translation direction in the plane's own frame>, zero:0, knob:"aux_a"}`,
-`animate:[{knob:"aux_a", from:0, to:1, start_ms:2000, duration_ms:6000}]`; `Lcut` (`role:"dir1"`/amber)
-`reveal_at_ms:9500`. `intersection:{line:"Lcut", plane:"P1", id:"X", role:"derived",
-reveal_at_ms:15000, grow_ms:600, show_right_angle:false}` — **Δ4's `no_meeting_point` token is authored
-on `Lpar`'s own window too**: `value_readouts:["d_dot_n","no_meeting_point","lambda","intersection_point"]`
+`animate:[{knob:"aux_a", from:0, to:1, start_ms:2000, duration_ms:6000}]`~~ **⚠ CORRECTED (F-A,
+2026-08-20 — this pass records a fix this document never carried at all):** `Lpar` slides SIDEWAYS,
+staying above the plane at a CONSTANT height — `offset:{along:[0.379337,1.083821,-4.866357],
+zero:0.5, knob:"aux_a"}`. This `along` vector is the IN-PLANE axis `n̂×û` (magnitude 5.000000,
+`along·n̂ = −2.76×10⁻⁷` — zero to float precision), so the plane distance is translation-invariant
+along it BY CONSTRUCTION. This is the taught fact, not incidental choreography: **constant distance
+while sliding IS the visible signature of "n·d = 0 ⇒ parallel, never meets"** — a visibly CLOSING gap
+here would argue FOR the misconception on the exact state built to kill it.
+`animate:[{knob:"aux_a", from:0, to:0.55, start_ms:2000, duration_ms:6000, easing:"smoothstep"}]`
+— bounded at displacement +0.25 wu off the `zero:0.5` home pose. The withdrawn `to:1` endpoint (a
+full ±2.5-equivalent sweep) drove `Lpar` to **0.217 wu from the camera itself**, where it collapsed
+end-on to **~6 px** — invisible while `s4_1`/`s4_2` narrate the constant-height claim. The re-solved
+sweep keeps the image diagonal **≥ 78.9 px** across the whole slide (checked against pixels: 127.4 px
+at t=0 → 74.4 px at t=8000, still visible to `hide_at_ms:9500`; the skeleton's own independent
+re-solve, run `20260820-213712`, corroborates: 128.6/119/43 px predicted vs 127/118/40 px measured at
+t=0/4000/6000 — a different sampling of the same bounded slide). `angle_arcs:[{id:"arc_par",
+between:["Lpar","P1.normal"], readout:"angle_line_normal_deg", reveal_at_ms:500, hide_at_ms:9500}]`
+— present for `Lpar`'s own window, reading `90.0°` throughout (perpendicular to the normal is the
+algebraic content of `n·d=0`).
+`Lcut` (`role:"dir1"`/amber) `reveal_at_ms:9500, grow_ms:800` — the CONTRAST slide, deliberately on
+the OPPOSITE axis: it grows in LIFTED 1.4 units along `n̂` (state default `aux_b:1.4`) via
+`offset:{along:[0.32152,0.91862,0.22966], zero:0, knob:"aux_b"}`, then
+`animate:[{knob:"aux_b", from:1.4, to:0, start_ms:10500, duration_ms:4500, easing:"smoothstep"}]`
+slides it bodily DOWN along `n̂` onto its home pose — the in-plane slide (`Lpar`) changes nothing, the
+along-`n̂` slide (`Lcut`) closes the gap. ~~`intersection:{line:"Lcut", plane:"P1", id:"X",
+role:"derived", reveal_at_ms:15000, grow_ms:600, show_right_angle:false}`~~ **⚠ CORRECTED: the
+shipped surface is `intersections[]`, PLURAL, two entries** — `X_par` (`line:"Lpar", plane:"P1",
+role:"derived", reveal_at_ms:1000, hide_at_ms:9500, grow_ms:600, show_right_angle:false` — authored
+only so the token slot resolves; it never actually renders a marker, since no meeting point exists
+to draw) and `X` (`line:"Lcut", plane:"P1", role:"derived", reveal_at_ms:15000, grow_ms:600,
+show_right_angle:false` — the real snap-on marker, at `λ=2.600`) — **Δ4's `no_meeting_point` token is
+authored on `Lpar`'s own window too**: ~~`value_readouts:["d_dot_n","no_meeting_point","lambda","intersection_point"]`~~
+**⚠ CORRECTED — the shipped array also carries `angle_line_normal_deg` (arc_par's own token), first:**
+`value_readouts:["angle_line_normal_deg","d_dot_n","no_meeting_point","lambda","intersection_point"]`
 so the HUD prints the literal "no meeting point" row while `Lpar` is the active/visible line (Δ4's whole
 point — a hidden marker alone teaches nothing; the token makes the ABSENCE a rendered fact, `:13624–13630`).
 **`n·d` CORRECTED per §2e: `0.574`, not `0.624`** — both the parallel line's `0.000` and the cutting
 line's `0.574` are what will actually render. `controls:[]`.
-**Checked:** `Lpar`: `d̂·n̂ = 2.8×10⁻¹⁷`, `|·| ≤ 1e-9` ✓ (parallel case fires). `Lcut`: `d̂·n̂ = 0.5736`
-(matches `cos(55°)=sin(35°)` exactly, §2e), `λ=2.600` (scale-invariant, unaffected by the `n·d`
-correction).
+**Checked:** `Lpar`: `d̂·n̂ = 2.8×10⁻¹⁷`, `|·| ≤ 1e-9` ✓ (parallel case fires); `offset.along·n̂ =
+−2.76×10⁻⁷` on a `|along| = 5.000000` vector ✓ (the constant-height claim, verified, not eyeballed).
+`Lcut`: `d̂·n̂ = 0.5736` (matches `cos(55°)=sin(35°)` exactly, §2e), `λ=2.600` (scale-invariant,
+unaffected by the `n·d` correction).
+**Final narration (already shipped, matches this correction):** `s4_1` "This line is perpendicular
+to the normal. Watch it slide sideways above the plane." · `s4_2` "Its height never changes, so it
+never touches." — both describe the SIDEWAYS/constant-height picture; the withdrawn "slides toward
+the plane" reading this document carried before this pass never matched either the shipped geometry
+or the shipped narration.
 
 ### STATE_5 — "Two Lines That Never Meet" (SUPPORTING AHA)
 `rotate-to-reveal` · core · **`misconception_watch`: M3** · register: **graphical leads, the LIVE
-number is the whole confrontation** (Rule 32a: the true value is on screen from `t=0`, before the false
-picture ever appears unnumbered) · words 44–52.
+number is the whole confrontation** (Rule 32a: the true value is on screen from ≈1800 ms, ~200 ms before the false
+picture ever appears unnumbered) · words ~~44–52~~ **⚠ CORRECTED: shipped final 55 words, at the Rule 31 cap**.
 **Camera:** `camera_position` = the S5 entry pose in xyz (`R=13, az=146°, el=4°` converted:
 `[R·cos(4°)·cos(146°), R·sin(4°), R·cos(4°)·sin(146°)] = [-10.751, 0.907, 7.252]`), `camera_mode:"steps"`,
-`camera_steps:[{at_ms:6000, az:<S8's az -38>, el:<S8's el 56>, dist:13, ease_ms:7000}]` (arrives by
-13000 ms, per §12).
+`camera_steps:[{at_ms:5000, az:<S8's az -38>, el:<S8's el 56>, dist:13, ease_ms:12000},
+{at_ms:20000, ease_ms:0}]` (the swing runs 5000–17000 ms, then a terminal hold step at 20000; skeleton
+§12 records `at_ms: 5000, ease_ms: 12000; was 7500 / 9000`). **⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~a single step
+`{at_ms:6000, ease_ms:7000}` "arrives by 13000 ms"~~ — both values and the step COUNT were stale.
 **Objects:** `lines:[M1(role:"dir1"/amber), M2(role:"dir2"/cyan)]` both `reveal_at_ms:0`. **`value_
-readouts:["skew_distance"]` present from `t=0`** (the resolved value is available the instant
-`common_perpendicular` is authored, regardless of the SEGMENT's own reveal fraction — the readout and
+readouts:["skew_distance"]` live from ≈1800 ms** (**⚠ CORRECTED 2026-08-21, QA pass-13:** ~~"present from `t=0`" … "available
+the instant `common_perpendicular` is authored, regardless of the SEGMENT's own reveal fraction"~~ — the
+readout publishes under `if (vgArrived(cfrac))`, and `vgArrived` is `frac >= VG_SUBJECT_SHOWN_MIN`
+(0.999), so with `common_perp` authored `reveal_at_ms:0, grow_ms:1800` the number lands at ≈1798 ms.
+**The pedagogy is unaffected and still holds:** the crossing pulse reveals at 2000 ms, so the true value
+still precedes the false picture — by ~200 ms, not by 2000 ms. The `res` object is still COMPUTED before
+the `if (res.exists)` branch; it is the PUBLISH that waits. The readout and
 the drawn segment are independent, confirmed at `:13092–13094`, computed BEFORE the `if(res.exists)`
 segment-drawing branch). The crossing-pixel marker (§2e correction): `points:[{id:"crossing_mark",
 position:[-1.7974,-0.9896,0.3909] /* on LINE 1, the point whose projection under THIS fixed entry pose
-coincides with line 2's image — see §2e */, role:"neutral", reveal_at_ms:2000, hide_at_ms:3500}]` — a
+coincides with line 2's image — see §2e */, role:"neutral", reveal_at_ms:2000, grow_ms:300, hide_at_ms:3500}]` — a
 1.5 s pulse, matching the skeleton's timing exactly, now on a VERIFIED position rather than an
 unreconciled "t" value. `common_perpendicular:{between:["M1","M2"], id:"common_perp", role:"derived",
-reveal_at_ms:3800, grow_ms:2200}`.
-**Checked:** distance `1.800` present at `t=0` ✓; crossing marker position independently re-derived
+reveal_at_ms:0, grow_ms:1800}`. **⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~reveal_at_ms:3800, grow_ms:2200~~ — not cosmetic: it placed
+the green common perpendicular growing at 3800–6000, i.e. AFTER the crossing pulse retires at 3500.
+Shipped grows it 0–1800, BEFORE the pulse, which is what the misconception beat requires — the
+`shortest distance = 1.800` readout is gated on the perpendicular ARRIVING, so the number can only be
+live on the false-picture beat if the geometry reveals at 0 (the coupling the skeleton's S5 row carries
+as a standing warning; "restoring" the documented 3800 ordering re-opens the CRITICAL row it closed).
+**Checked:** distance `1.800` published at ≈1798 ms ✓ (**⚠ CORRECTED 2026-08-21, QA pass-13:** ~~"present at `t=0`"~~ — the
+attestation was measured against the pre-PR-#93 ungated resolver); crossing marker position independently re-derived
 (§2e), NOT copied from either contradictory skeleton citation.
 
 ### STATE_6 — "Directions Alone Fix the Angle"
 `rotate/flip` · core · register: **numeric leads** (the only state where it does, per skeleton §10g —
-the angle readout IS the subject) · words 38–46.
+the angle readout IS the subject) · words ~~38–46~~ **⚠ CORRECTED: shipped final 51 words, within Rule 31's 25–55 law**.
 **Objects:** `M1`, `M2` re-drawn from one shared origin (`point:[0,0,0]` on a display-only copy — the
 DoD's own note that this is a re-drawing, not the same objects, is preserved). `angle_arcs:[{id:"arc1",
 between:["M1","M2"], readout:"angle_lines_deg"}]`.
@@ -578,10 +666,21 @@ concept, so it can never detach from the arc's apex); `M2` authors NO offset fie
 fixed at its authored anchor point for the whole state — `M1`/`M2`'s `dir` fields are UNTOUCHED through
 phase 1 — arc holds at `69.4°` (Rule 32b: only the anchor moves, the taught quantity — direction — does
 not). Phase 2: `M2.rotate = {about: [0.2877,-0.8387,-0.4625] /* n̂c, the authored literal cross-product
-axis, verified below */, zero: 69.3846, knob:"theta_deg"}`, `animate:[{knob:"theta_deg", from:25,
-to:115, start_ms:<phase-2 start>, duration_ms:<phase-2 span>, easing:"linear"}]` (the exact ms split
-between phase 1 and phase 2 is the skeleton's own §12 FIX ROUND table, a `→JSON` directive owned by
-`json_author` — untouched by this desk; only WHICH object slides is this desk's correction).
+axis, verified below */, zero: 69.3846, knob:"theta_deg"}`. ~~`animate:[{knob:"theta_deg", from:25,
+to:115, start_ms:<phase-2 start>, duration_ms:<phase-2 span>, easing:"linear"}]`~~ **⚠ CORRECTED
+(this pass): the shipped surface is TWO windows — a HOLD, then a RISE — never a single 25→115
+sweep:** `animate:[{knob:"theta_deg", from:69.3846, to:69.3846, start_ms:0, duration_ms:10500,
+easing:"linear"}, {knob:"theta_deg", from:69.3846, to:115, start_ms:10500, duration_ms:9000,
+easing:"linear"}]`. `theta_deg` never scripts a fall to 25° at all — the FIRST window's `from` and
+`to` are BOTH `69.3846`, so `vgAnimValue`'s own pre-roll (reading a knob's `from` before its
+`start_ms`) can only ever read the correct default; this is what makes the earlier θ=25°
+dead-config defect (pass-4 F1) structurally impossible now, not merely timed around. The window
+then rises to `115°` over the remaining 9 s. Reaching `25°` on this state is TEACHER-DRIVEN ONLY,
+via the live `theta_deg` slider (`controls:["theta_deg"]`,
+`vg.control_ranges:{theta_deg:{min:25,max:115}}`) — never scripted. (The exact ms split is the
+skeleton's own §12 FIX ROUND table, a `→JSON` directive owned by `json_author` — untouched by this
+desk; only WHICH object carries the offset is this desk's own correction, both this pass and the
+prior one.)
 **`vg.control_ranges:{theta_deg:{min:25,max:115}}`** (§3 — stays inside the camera-verified sweep).
 `controls:["theta_deg"]`.
 **Why (closes the residue on the OPEN MAJOR scar `vg_offset_animate_ends_off_zero_so_a_rotated_line_
@@ -604,12 +703,29 @@ provably agree at every point of the sweep, not merely at the endpoints.
 
 ### STATE_7 — "Measure to the Normal, Then Subtract" (extended)
 `decompose` · extended · register: **graphical leads** · words 40–48.
-**Camera:** `camera_mode:"steps"`, `camera_steps:[{at_ms:0, az:140, el:26, dist:13, ease_ms:1800}]` off
+**Camera:** `camera_mode:"steps"`, `camera_steps:[{at_ms:0, az:140, el:26, dist:13, ease_ms:1800}, {at_ms:17000, ease_ms:0}]` (**⚠ CORRECTED 2026-08-21, QA pass-10 F8:** the
+shipped array has **two** steps; the quoted literal closed after the first — the identical
+step-count defect corrected on S5 this same round) off
 the shared home pose (S2's own pose — the skeleton's own P1-2 correction, `az 140/el 26`, NOT S2's
 reused pose, which the re-solve scored at `8.45°` minimum pairwise separation — genuinely unreadable).
-**Objects:** `Lcut` returns; `projection:{line:"Lcut", plane:"P1", id:"shadow", role:"neutral"}`;
-`angle_arcs:[{id:"arc_normal", between:["Lcut","P1.normal"], readout:"angle_line_normal_deg"},
-{id:"arc_plane", between:["Lcut","P1"], readout:"angle_line_plane_deg"}]` — **the `L,P.normal` vs `L,P`
+**Objects** (**⚠ CORRECTED 2026-08-21, QA pass-12 F10:** the literal previously quoted here **closed early** — no reveal times, no radii, and
+the whole `segments` array missing. Post-`d044dbb1` an arc's `reveal_at_ms` **is** the gate on its angle
+token, so an author rebuilding S7 from the old literal would author arcs with no reveal time, both
+tokens would publish at state entry, and
+`vg_projection_publishes_both_angle_tokens_before_either_arc_is_drawn` would reproduce **on the state it
+was closed for**. The correct values are transcribed from skeleton §12, not re-derived):
+`lines:[{id:"Lcut", …, reveal_at_ms:0, grow_ms:1000}]`;
+`projection:{line:"Lcut", plane:"P1", id:"shadow", role:"neutral", reveal_at_ms:4000, grow_ms:3000}`;
+`segments:[{id:"normal_part", role:"neutral", from:[2.485307,−0.086981,0.263557],
+to:[2.11647,−1.14078,0.0001], reveal_at_ms:2500, grow_ms:2500}]` — the "part along the normal" the
+narration names, added by the 2026-08-20 fix round and previously absent from this document entirely;
+`angle_arcs:[{id:"arc_normal", between:["Lcut","P1.normal"], readout:"angle_line_normal_deg",
+radius:0.62, reveal_at_ms:8000, grow_ms:2500},
+{id:"arc_plane", between:["Lcut","P1"], readout:"angle_line_plane_deg",
+radius:0.95, reveal_at_ms:12000, grow_ms:3000}]` (the stepped radii are the fix for
+`two_angle_arcs_sharing_an_arm_are_drawn_at_one_radius`: 0.62 sits INSIDE the normal arm, which the
+shared 0.9 overran, and the 53 % step is what lets a reader see 55° and 35° as two arcs rather than one
+continuous 90° curve — both arcs carry the reasoning as an authored `note`) — **the `L,P.normal` vs `L,P`
 forms are the exact Δ5 mechanism** (`:13192–13206`) that keeps "angle to normal" and "angle to plane"
 separately addressable, which is the state's entire point. `value_readouts:["angle_line_normal_deg",
 "angle_line_plane_deg"]`. `controls:[]`.
@@ -619,18 +735,34 @@ resolver is given.
 
 ### STATE_8 — "The Gap Runs Along d₁ × d₂" (advanced)
 `overlay-match` (coined) · advanced · `derivation_first_principles` · register: **graphical leads,
-symbolic surface writes LAST** (Rule 34b/38c) · words 44–52.
+symbolic surface writes LAST** (Rule 34b/38c) · words ~~44–52~~ **⚠ CORRECTED: shipped final 55 words, at the Rule 31 cap**.
 **Camera:** static `az −38° / el 56° / dist 13` (arrived-at already, via S5's `camera_steps`).
-**Objects:** S5's scene returns (`M1`, `M2`, `common_perp` all `reveal_at_ms:0`, already-settled).
+**Objects:** S5's scene returns — `M1`/`M2` `reveal_at_ms:0, grow_ms:1500`, `common_perp`
+`reveal_at_ms:1000, grow_ms:1000` (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** was ~~all `reveal_at_ms:0`, already-settled~~).
 `vectors:[{id:"cross_vec", role:"derived", origin:[0,0,0], derive:"cross", of:["M1","M2"], scale:1,
-reveal_at_ms:2000}, {id:"a2_minus_a1", role:"third", origin:"M1", derive:"between", of:["M1","M2"],
-reveal_at_ms:2000}]` — **`role:"third"` is the magenta restoration**, exactly matching `VG_ROLE_COLOR.
+reveal_at_ms:3000, grow_ms:3000}, {id:"a2_minus_a1", role:"third", origin:"M1", derive:"between",
+of:["M1","M2"], reveal_at_ms:1000, grow_ms:1000}]` (**⚠ CORRECTED 2026-08-21, QA pass-9 F7:** both were ~~reveal_at_ms:2000~~. `a2_minus_a1`
+matters most: it must complete WITH `common_perp` at 2000, because F13b publishes
+`numerator_triple_product` on the perpendicular's arrival — a later reveal put the number on the HUD
+11–13 s before the vector it names, an eye_walker MAJOR. The residual 4 s `cross_norm`-before-`cross_vec`
+lead is the documented Δ12 engine item, not an authoring choice.) — **`role:"third"` is the magenta restoration**, exactly matching `VG_ROLE_COLOR.
 third = "#E15FA8"`. The "translates onto the common perpendicular" beat: `cross_vec`'s `origin` address
 ramps from `[0,0,0]` to `common_perp`'s own midpoint via `{lerp:[[0,0,0],"common_perp"], t:{knob:"aux_a"}}`
 — **this is only possible because `vgAddr`'s `lerp` form accepts a DERIVED-point string id** (`ctx.
-derived["common_perp"]`, populated at `:13099`) — `animate:[{knob:"aux_a", from:0, to:1, start_ms:7000,
-duration_ms:5000, easing:"smoothstep"}]`. Formula surface + three HUD terms (`numerator_triple_product`,
-`cross_norm`, `skew_distance`) fill in at 12000–15000 ms. `controls:[]`.
+derived["common_perp"]`, populated at `:13099`) — ~~`animate:[{knob:"aux_a", from:0, to:1, start_ms:7000,
+duration_ms:5000, easing:"smoothstep"}]`~~ **⚠ CORRECTED (this pass): the shipped window is
+`start_ms:8500, duration_ms:7000`** (the `to:1` endpoint itself was never wrong):
+`animate:[{knob:"aux_a", from:0, to:1, start_ms:8500, duration_ms:7000, easing:"smoothstep"}]`.
+Formula surface + three HUD terms (`numerator_triple_product`, `cross_norm`, `skew_distance`)
+~~fill in at 12000–15000 ms~~ **⚠ FLAGGED, not re-solved by this desk: that timing was computed off
+the now-corrected animate window's OLD end (7000+5000=12000) and is unverified against the new one.
+`common_perp` itself is `reveal_at_ms:1000, grow_ms:1000` (**⚠ CORRECTED 2026-08-21, QA pass-10 F8:** ~~"`reveal_at_ms:0`,
+already-settled (inherited from S5)"~~ — the value this document had already struck 18 lines above, so
+the conclusion that rested on it is withdrawn too: the three tokens are NOT live from state entry, they
+publish on the perpendicular's arrival at 2000 ms, which is why `a2_minus_a1` must complete at 2000). This is the SAME area the handoff's
+own Δ12 finding already names (`cross_norm` leads `cross_vec` by several seconds under the shipped
+interim, `MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.03d) — a founder/`peter_parker:field3d_surgeon`
+call, not something this desk re-solves by assertion.** `controls:[]`.
 **Checked:** `1.6847/0.9360 = 1.8000` ✓ (§2e) — the three-term identity holds against the ACTUAL
 resolved numbers, not a separately-typed decimal.
 
@@ -639,31 +771,39 @@ resolved numbers, not a separately-typed decimal.
 `scene_groups:[{key:"A",label:"line + plane"},{key:"B",label:"skew pair"}]`,
 `camera_mode:"group"`, `group_cameras:{A:{az:138,el:20,dist:14}, B:{az:-58,el:64,dist:13}}`.
 `controls:["scene_group","lambda","lambda_span","half_extent","q_height","theta_deg","line2_offset"]`
-(the UNION of both groups' knobs — §3). `vg.control_ranges:{half_extent:{min:1.5,max:4.5},
+(**⚠ CORRECTED 2026-08-21, QA pass-11 F9:** ~~the UNION of both groups' knobs~~ — S9 authors `group_controls`, so each group resolves its
+own list via `vgEffectiveControls`; the flat `controls` array is the no-groups fallback, not a union
+requirement — §3). `vg.control_ranges:{half_extent:{min:1.5,max:4.5},
 lambda_span:{min:2.5,max:5.0}, theta_deg:{min:25,max:115}}`. Every object in group A
 (`L1`, `P1`, the perpendicular, `q`) authors `groups:["A"]`; every object in group B (`M1`, `M2`,
-`common_perp`, `cross_vec`) authors `groups:["B"]` (`vgInGroup`, `:12848–12854` — an object naming no
+`common_perp` — **⚠ CORRECTED 2026-08-21, QA pass-10 F8:** ~~and `cross_vec`~~; shipped S9 authors NO `vectors` array at all, and this
+document's own 2026-08-10 amendment below already removed it) authors `groups:["B"]` (`vgInGroup`, `:12848–12854` — an object naming no
 `groups` belongs to EVERY group, so this must be authored explicitly on every S9 object or the wrong
 group's apparatus stays visible).
 
 **§ Rule 37 — the honest resolution of "λ ping-pongs until a slider is seized" (Diff 1, in full).**
-`vg.animate[]` is confirmed one-shot-hold (§ "THREE DIFFS" above) — there is **no engine primitive for
-an infinite loop**, so a literal perpetual ping-pong CANNOT be authored on the shipped surface. The
+**⚠ CORRECTED 2026-08-21, QA pass-10 F8:** ~~"`vg.animate[]` is one-shot-hold … there is **no engine primitive for an infinite loop**, so a
+literal perpetual ping-pong CANNOT be authored"~~ — **FALSE, and the recommendation that followed it was
+the exact construction the engine team filed as a bug.** The primitive EXISTS: `vg.animate_loop_ms`
+declares a period and `vgLoopMs` wraps the state clock into it (`field_3d_renderer.ts:529`,
+`:12438–12455`, `:15019`). Shipped S9 authors `animate_loop_ms: 18000` with two 9 s legs and loops
+forever. The withdrawn advice — "8 legs of 9 s each, ≈72 s total" — is precisely
+`vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_freezes`, whose row records that #9's
+STATE_9 once "hand-unrolled a ping-pong as EIGHT alternating windows ending at 72000 ms and froze at
+lambda = -3.5 from 72 s onward … An authored loop that is merely LONG is a bug with a delay on it." The
 player-level Rule 37 guarantee (the clock free-runs, never auto-freezes on `interaction_complete`) is
 real and independent of this scenario — but it only produces visible motion for as long as some
 authored `animate[]` window is still open or has not yet been superseded; past the last window's end,
-`vgAnimValue` returns `to` and holds there **forever**, silently, with no further motion. **Honest
-substitute, buildable today:** author a LONG but FINITE multi-window back-and-forth on `lambda`
-(several `animate[]` entries on the same knob with disjoint windows — the shipped, documented
-multi-segment mechanism, `:12285–12287`) covering several minutes — e.g. 8 legs of 9 s each
-(`−3.5→3.5`, `3.5→−3.5`, ×4, ≈72 s total) — long enough that in any realistic classroom session the
-line is in motion whenever a teacher glances at it, while remaining truthful that after roughly a
-minute and a quarter of complete inactivity the sweep settles and holds (not a true infinite loop). The
-drag-seize contract already handles "a real drag interrupts it at any point" (`:14417–14424`) with no
-extra authoring. **FLAGGED, not silently substituted**: if the founder wants a genuine infinite
-ping-pong, that is a new `animate[]` `mode` value (e.g. `"ping_pong"`) — a real, small engine change,
-not something `mathematics_author`/`json_author` can construct from the current primitive. Recorded as
-a FLAG below rather than assumed away.
+`vgAnimValue` returns `to` and holds there **forever**, silently, with no further motion. **⚠ CORRECTED 2026-08-21, QA pass-11 F9:** the ELEVEN LINES that stood here are withdrawn in full — the pass-10 correction struck this
+paragraph's opening sentence and left its **recommendation** live, which is the worse half.
+~~"Honest substitute, buildable today: author a LONG but FINITE multi-window back-and-forth on lambda …
+e.g. 8 legs of 9 s each (−3.5→3.5, 3.5→−3.5, ×4, ≈72 s total) … FLAGGED: a genuine infinite ping-pong
+is a new animate[] mode value, a real, small engine change"~~. **The correct recipe is one line:**
+author `vg.animate_loop_ms: 18000` beside two 9 s `lambda` legs, exactly as shipped S9 does — the
+clock wraps (`vgLoopMs`) and the sweep runs forever. The withdrawn advice is verbatim the
+`vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_freezes` bug, whose row records this
+very concept hand-unrolling eight legs to 72000 ms and freezing thereafter: **an authored loop that is
+merely LONG is a bug with a delay on it.** No engine change is requested; nothing is FLAGged below.
 
 
 ## 5. Notation ladder (Rule 38c) — verified against the actual formula-surface assignments
@@ -798,8 +938,8 @@ the design intent):**
   "S1's entry camera_position is [0.0, 8.0, 13.8564] (R=16, az=90 deg, el=30 deg) -- Act I's own STATE_5 literal, verbatim -- not the skeleton's assumed R=9; camera_steps eases IN to R=13, not out",
   "half_extent's engine-shipped slider ceiling is 3.0 (vgSc at field_3d_renderer.ts:13502); reaching this concept's own declared domain ceiling of 4.5 on S9 REQUIRES an authored vg.control_ranges override -- absent that override, S9's own camera solve (which assumed a sweep up to 4.5) is not actually reachable by a teacher",
   "theta_deg's on-screen angle-arc fidelity was measured ONLY over [25,115] degrees (skeleton P2-2: worst error 0.88/3.70 deg over that exact sweep) -- outside that interval the arc's accuracy is unmeasured, so S6 and S9's group-B row both narrow theta_deg via vg.control_ranges to [25,115], never left at the engine's wider shared default [20,160]",
-  "the two-segment dot-product-intro recipe on S2 relies on BOTH segments reading n.v = 0 for every value of their own knob whenever their lerp endpoints are both in-plane addresses -- verified this holds unconditionally (not just at the intended t), which is what keeps the resolver's per-frame unconditional readout recomputation from ever printing a wrong number during either segment's off-window idle state",
-  "STATE_6 phase 1 slides ONLY M1's anchor (M1 never rotates anywhere in this concept); M2 authors no offset field and stays fixed at its anchor until phase 2's theta_deg rotation -- vgObjOffset translates by a fixed world vector independent of vgObjRotate (field_3d_renderer.ts:13079/13085), so any offset authored on the object theta_deg rotates live (no timed control-reveal exists to block an early drag) would let a teacher's drag carry that object's arm off the shared arc apex by up to 1.07 world units -- the vg_offset_animate_ends_off_zero_so_a_rotated_line_leaves_its_shared_arc_apex row's own negative control; unreachable on this concept now that M2 never carries an offset"
+  "the two-segment dot-product-intro recipe on S2 relies on BOTH segments reading n.v = 0 for every value of their own knob whenever their lerp endpoints are both in-plane addresses -- verified this holds unconditionally (not just at the intended t), which is what keeps the per-frame readout from ever printing a wrong value during either segment's idle window [CORRECTED 2026-08-21, QA pass-12: the clause formerly read 'the resolver's per-frame unconditional readout recomputation' — the resolver is NOT unconditional, it gates every publish on vgArrived; 'unconditionally' attaches to the MATHEMATICAL fact, never to the resolver. This wording now matches the shipped physics_engine_config.constraints entry in substance (a faithful paraphrase, not the identical string)]",
+  "[PROPOSED — NOT IN THE SHIPPED ARRAY, noted 2026-08-21 QA pass-13: this doc lists NINE constraints, physics_engine_config.constraints ships EIGHT. Either ship this entry or drop it; it is true and worth shipping] STATE_6 phase 1 slides ONLY M1's anchor (M1 never rotates anywhere in this concept); M2 authors no offset field and stays fixed at its anchor until phase 2's theta_deg rotation -- vgObjOffset translates by a fixed world vector independent of vgObjRotate (field_3d_renderer.ts:13079/13085), so any offset authored on the object theta_deg rotates live (no timed control-reveal exists to block an early drag) would let a teacher's drag carry that object's arm off the shared arc apex by up to 1.07 world units -- the vg_offset_animate_ends_off_zero_so_a_rotated_line_leaves_its_shared_arc_apex row's own negative control; unreachable on this concept now that M2 never carries an offset"
 ]
 ```
 
@@ -981,35 +1121,52 @@ imported. HC Verma and DC Pandey not consulted — physics-only sources, forbidd
    common perpendicular) have no automated exemption mechanism to discharge against; a human reviewer
    reading a low pairwise-separation score on exactly those three pairs must recognise it as
    BY-DESIGN, not as a camera defect, until Δ7 lands.
-5. **A candidate `engine_bug_queue` row, found but not filed** (not this role's tool access):
+5. **WITHDRAWN **⚠ CORRECTED 2026-08-21, QA pass-11 F9:**** ~~"A candidate `engine_bug_queue` row, found but not filed:
    `field3d_vg_segment_readout_computed_unconditionally_regardless_of_reveal_state` — `vgResolveLinesPlanes`
-   computes a segment's `readout` token every frame regardless of `reveal_at_ms`/`hide_at_ms`
-   (`:13066–13083`), so a multi-segment "same instrument, different phases" recipe (like S2's
-   dot-product intro beat) can silently print the WRONG phase's value if the segments are authored in
-   the wrong array order or if either segment's idle (pre-window) position leaves its own domain (§4's
-   S2 recipe is SAFE because both segments' idle positions stay in-plane by construction — future
-   concepts reusing this pattern may not be so lucky without knowing to check).
+   computes a segment's readout every frame regardless of `reveal_at_ms`/`hide_at_ms`"~~ — **the row
+   already exists and is FIXED**, as `vg_lines_planes_segment_readouts_compute_regardless_of_reveal_state`;
+   the engine gates every readout on `vgArrived`. This FLAG is addressed to
+   `founder_proxy`/`quality_auditor` by name, so left standing it would have asked Checkpoint B to open
+   an engine request for a closed bug class — the same failure mode as the withdrawn FLAG 7. The
+   surviving, still-true half: `n_dot_v` is overwritten by whichever matching segment is LAST in the
+   array, so a multi-segment "same instrument, different phases" recipe still depends on array order
+   (§4's S2 recipe is safe by construction; a future reuse should check).
 6. **`camera_mode:"group"`/`group_cameras` (Δ10's actual mechanism) and `scene_group`/`scene_groups`
    (Δ10's selector) are all absent from the `vg` TypeScript type** (`:390–517`) though the frame driver
    reads all four at runtime — a fourth instance of the authorability gap Diff 3 named, confirmed by
    direct read of the `camera_mode?: 'authored' | 'steps' | 'auto_frame'` union, which excludes
    `'group'` outright. Recommend a platform-side (Rule 40) type-declaration fix; not a build blocker.
-7. **`vg.animate[]` has no infinite-loop primitive** — S9's "λ ping-pongs until a slider is seized" is
-   authored as a long, finite, multi-window back-and-forth (§4, S9) rather than a true perpetual loop,
-   because the shipped mechanism is one-shot-hold by its own documentation (`:12282–12288`). If the
-   founder wants a genuine infinite ping-pong on any explore state, that is a small, real engine change
-   (a `mode:"ping_pong"` value on `animate[]` entries) — flagged, not silently worked around.
+7. **WITHDRAWN **⚠ CORRECTED 2026-08-21, QA pass-10 F8:**** ~~"`vg.animate[]` has no infinite-loop primitive … a genuine infinite ping-pong
+   is a small, real engine change"~~ — the primitive exists and ships. S9 authors
+   `animate_loop_ms: 18000` (`vgLoopMs`, `field_3d_renderer.ts:12438–12455`) and ping-pongs forever on
+   two 9 s legs. This FLAG was addressed to `founder_proxy`/`quality_auditor`, so left standing it
+   would have carried a false engine-gap claim into Checkpoint B. No engine change is requested.
 8. **The catalog prerequisite discrepancy the skeleton already flagged (its FLAG 1) is unresolved and
    out of this role's authoring scope** — `mathematicsCatalog.ts:139`'s `vector_dot_and_cross_product`
    vs the wave's actual Act I id `vector_products_in_space`. Carried forward, not re-argued.
-9. **The S9 explore state's `line2_offset` knob (group B) carries the SAME exposure the STATE_6 fix
+9. ~~**The S9 explore state's `line2_offset` knob (group B) carries the SAME exposure the STATE_6 fix
    just closed, and is OUT OF SCOPE for this fix round.** `line2_offset` is authored to "slide the skew
    line M2's anchor along d2-hat" (§1 engine_config), and S9's group-B controls also expose `theta_deg`
    live, on the same object `M2`, with no per-window gating (S9 is a free sandbox by design — every
    control is live at once). A teacher who drags `line2_offset` off zero and then drags `theta_deg`
    reproduces STATE_6's now-fixed failure mode inside the explore state. This was NOT in this round's
    routed scope (the filed scar's negative control names only STATE_6) and this desk has not re-designed
-   S9 to match — flagged for the next fix round or for `founder_proxy`, not silently carried as safe.
+   S9 to match — flagged for the next fix round or for `founder_proxy`, not silently carried as safe.**~~
+   **⚠ WITHDRAWN, this pass (2026-08-20) — the premise was FALSE on two independent grounds.** §1
+   `engine_config`'s "along d2-hat" was itself a stale, inert-slider description (F1a — see the §1
+   correction above): the shipped `M2.offset.along = [0.287668,-0.838664,-0.462482] = n̂c =
+   normalize(d₁×d₂)`, the SAME vector as `M2.rotate.about` — the axis PERPENDICULAR to both
+   directions, never a vector parallel to `M2`'s own rotating direction. Because `n̂c` is invariant
+   under a rotation performed ABOUT `n̂c` itself, `line2_offset` and `theta_deg` cannot desync the way
+   the withdrawn STATE_6 design did (there, the offset ran along the object's OWN direction, which the
+   SAME slider then rotated out from under it — a structurally different hazard). This is confirmed,
+   not merely argued: `MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` §0.03b ("Also closed") records
+   `line2_offset` now driving `skew_distance` LIVE (`1.800 → 0.800 → 0.000 → 3.500`, trusted-event
+   drive) with the OPEN MAJOR apex scar confirmed closed. Separately, and independent of the vector
+   question: S9 authors NO `angle_arcs` at all (unlike STATE_6), so there is no shared arc apex for
+   `M2` to detach from in the first place. **Not a silent clearance** — this is a re-read of
+   already-recorded evidence (the handoff), not a fresh render verification by this desk; a future
+   walk finding a live problem here would be a NEW finding, not a recurrence of this withdrawn one.
 
 
 
@@ -1039,10 +1196,28 @@ file's full text:
   entry, per the architect's exact replacement text.
 - **After:** re-running the identical regex over the edited file returns 4 hits — all 4 are the same
   legitimate `n·d`/`n.d` mentions, verified by string-matching each hit line against `n·d`/`n.d`/`d·n`/
-  `d.n`. **True-positive count: 0.** The scar `a_fix_round_closes_the_reported_instances_of_a_restated_
-  value_and_never_sweeps_the_document_for_the_rest` is satisfied — every instance was found by a
-  document-wide regex sweep, not only the seven lines the routing message named, and the seven named
-  lines matched the sweep's own output exactly.
+  `d.n`. **True-positive count: 0.**
+- **⚠ CORRECTED (pass-7 routing, 2026-08-20) — the claim below, as this document originally stated it,
+  was FALSE and is retracted; a narrower, true claim replaces it.** This document originally said: *"The
+  scar `a_fix_round_closes_the_reported_instances_of_a_restated_value_and_never_sweeps_the_document_for_
+  the_rest` is satisfied — every instance was found by a document-wide regex sweep, not only the seven
+  lines the routing message named, and the seven named lines matched the sweep's own output exactly."*
+  That is true ONLY for the one value class this regex covers (lowercase-`d`-as-distance) — it is not a
+  document-wide guarantee against the scar's GENERAL form, and the scar recurred a THIRD time inside
+  this SAME document, on FOUR OTHER value classes this exact regex was never built to see: F-A's
+  `animate to:1`/`offset zero:0`/singular `intersection` (STATE_4), the stale `theta_deg` 25→115 single
+  window (STATE_6), STATE_8's `start_ms:7000`/`duration_ms:5000`, and `line2_offset`'s "along d2-hat"
+  direction (repeated internally at §1, FLAG 9, and the Founder-call note — three sites, one wrong
+  claim). A correctly-scoped sweep for ONE value class was mistaken for a general guarantee; that
+  mistake is the third recurrence, not a fourth defect of a new kind. **The corrected claim: F3's own
+  scope (lowercase-`d`-as-distance) is closed, verified by a true document-wide sweep FOR THAT VALUE
+  CLASS ONLY.** The scar's general form is closed for THIS document only as of this pass's own sweep —
+  see "THE SWEEP — before/after, this pass" below, which is the first sweep in this document's history
+  to run every changed value class against the full text rather than the one the routing message named.
+  **Process recommendation (a founder/process call, not an authoring fix):** a fix round that names N
+  specific stale lines should routinely also grep-sweep the FULL document for every DISTINCT value/claim
+  it is about to touch, not only the value class the routing message called out — that is the actual
+  root cause of this recurring three times on one concept.
 
 **2 · F6 — two Rule 41a idioms, replaced with literal wording; STATE_3/STATE_4 stay inside the 25–55
 Rule-31 word budget.** Final text below. `s3_3`'s replacement is the auditor's own suggested literal
@@ -1066,15 +1241,20 @@ exists to catch, so this desk did not leave one standing.
 | id | Final `text_en` | Words | State total |
 |---|---|---|---|
 | `s3_3` | "It reaches its smallest value at the perpendicular, and locks." | 10 | STATE_3: 54 (unchanged — `s3_3` is a 1-for-1 word-count swap) |
-| `s4_3` | "A second line arrives, heading differently. It crosses, and a marker appears." | 12 | STATE_4: 54 (was 55) |
+| `s4_3` | "A second line arrives, heading differently. It crosses, and a marker appears." | 12 | STATE_4: ~~54 (was 55)~~ **⚠ CORRECTED: shipped total is 53** — `s4_1`/`s4_2` were themselves later re-authored by the F-A fix (this same pass, §4 STATE_4 above) to the sideways/constant-height narration; the row below's "unchanged" claim is corrected alongside this one |
 | `s7_1` | "This line splits: one part flat in the plane, one along the normal." | 13 | STATE_7: 47 (was 53; sentences 4+5 merged into one `s7_4`, `s7_5` retired) |
 | `s7_2` | "The angle to the normal is fifty-five degrees." | 8 | — |
 | `s7_3` | "The angle to the plane is the rest: thirty-five degrees." | 10 | — |
 | `s7_4` | "Measure to the normal first, then subtract from ninety: that is the angle to the plane." | 16 | — |
 | `s6_2` | "Slide one line along itself: the angle does not change." | 10 | STATE_6: 51 (unchanged — 1-for-1 word-count swap) |
 
-`s3_1`, `s3_2`, `s3_4`, `s4_1`, `s4_2`, `s4_4`, `s6_1`, `s6_3`, `s6_4` are unchanged — not reproduced
-here to avoid `json_author` overwriting a correct sentence with a byte-identical "fix". STATE_7's `s7_5`
+`s3_1`, `s3_2`, `s3_4`, `s4_4`, `s6_1`, `s6_3`, `s6_4` are unchanged — not reproduced here to avoid
+`json_author` overwriting a correct sentence with a byte-identical "fix". ~~`s4_1`, `s4_2` [previously
+listed here as unchanged]~~ **⚠ CORRECTED — both HAVE changed, by the F-A fix (§4 STATE_4 above), and
+the shipped JSON already carries the new text**: `s4_1` "This line is perpendicular to the normal.
+Watch it slide sideways above the plane." (14 words) · `s4_2` "Its height never changes, so it never
+touches." (8 words) — replacing an earlier "slides toward the plane" reading. `s4_1`+`s4_2`+`s4_3`
+(12)+`s4_4` (19) = **53**, the STATE_4 total corrected in the ledger row above. STATE_7's `s7_5`
 id is RETIRED (its content is folded into the rewritten `s7_4`); `json_author` should remove the
 `s7_5` object from `tts_sentences` rather than leave an orphaned duplicate.
 
@@ -1083,7 +1263,135 @@ id is RETIRED (its content is folded into the rewritten `s7_4`); `json_author` s
 Item 4 (STATE_6) was routed as "one word" but the underlying geometry decision (M1 slides / M2 does
 not) was already made by the routing message, not by this desk — this desk's own judgment call was to
 ALSO correct §2b's claim text and §4's choreography paragraph to match (rather than leaving the ledger
-describing "both anchors slide" beside a narration line that now says one line does), and to flag
+describing "both anchors slide" beside a narration line that now says one line does). ~~and to flag
 (not fix) the identical exposure sitting unaddressed in S9's `line2_offset`/`theta_deg` pair — a
 founder/`quality_auditor` scoping decision, not an authoring one, since S9's own control-visibility
-design is out of this round's routed scope.
+design is out of this round's routed scope.~~ **⚠ WITHDRAWN (this pass, 2026-08-20) — that flagged S9
+exposure never existed under the shipped geometry; see FLAG 9's own correction above.** The premise
+(`line2_offset` sliding `M2` along its own rotating direction `d̂₂`) was never what shipped: the real
+`offset.along = n̂c` is invariant under `theta_deg`'s own rotation about that same axis, and S9
+authors no `angle_arcs` for an apex to detach from in the first place. This document's own §1 name
+for `line2_offset` was independently stale on the exact same premise (F1a) — three internal
+repetitions of one wrong claim, all corrected in this same pass, which is itself the finding this
+round's routing message opened with.
+
+
+---
+
+> **⚠ STANDING CAVEAT on renderer line citations (added 2026-08-21, QA pass-11).** The `:NNNNN`
+> pointers into `field_3d_renderer.ts` throughout this document were correct when written and have
+> since drifted — measured this round: 18 of 19 symbol-anchored citations are stale by roughly
+> +160…+390 lines (e.g. `vgAnimValue` cited at `:12317–12338`, actually `:12478`; `vgInGroup` cited
+> `:12848–12854`, actually `:13018`, where `:12848` is now `vgPlaneBasis`). Only `vgResolveLinesPlanes`
+> still resolves. **Resolve every citation by SYMBOL NAME, never by line number.** The substance of the
+> cited claims survives except where explicitly corrected above. Not swept individually: fixing 19
+> pointers that drift again on the next renderer commit trades one stale surface for another — the
+> durable fix is the symbol-name rule, plus the family sweep in the note below.
+>
+> **The sweep that closes the engine-facts class (QA pass-11 diagnosis).** A commit-diff over the
+> concept JSON enumerates claims about the JSON, and structurally cannot reach a claim about the
+> RENDERER — no diff of `lines_and_planes_in_space.json` contains the word `vgArrived`. Before any
+> future round on this document, run
+> `git log --oneline <last-verified-sha>..HEAD -- src/lib/renderers/field_3d_renderer.ts`; each commit
+> there is a FAMILY, and each family has multiple sites found by grepping its vocabulary, not its
+> values. The three that invalidated this document: `86eb9190` (readout arrival gating →
+> "UNCONDITIONAL / regardless of"), `7c7e963c` (`animate_loop_ms` → "infinite / finite / ping_pong /
+> 8 legs"), `5eace82d` (`vgEffectiveControls` → "read ONCE per STATE ENTRY / NO visible effect").
+> This class recurred six times because each round corrected the site the routing message named and
+> left the other sites of the same family standing.
+>
+> **Two method corrections learned at QA pass-12 — apply both or the sweep leaks.** (1) Grep each
+> vocabulary **case-insensitively**: a lowercase "unconditional" in §7's constraints block survived an
+> otherwise-correct family-1 sweep. (2) Enumerate the commits with
+> `git log --oneline --full-history --no-merges <sha>..HEAD -- src/lib/renderers/field_3d_renderer.ts`
+> — plain `git log -- <path>` simplified six `vector_geometry_3d` commits behind their merge nodes and
+> would have hidden four of them, including `d044dbb1` (an arc's `reveal_at_ms` became the gate on its
+> angle token), which was the fourth family and the last live build-recipe defect in this document.
+> The full list swept clean at pass 12: `d044dbb1`, `4416c3c8`, `9cfe7ee0`, `3318c55b`, `7c7e963c`,
+> `5eace82d`, `bb11bf4e` — plus `86eb9190`, which predates this document's first authoring commit and
+> was therefore stale on the day it was written.
+
+## FIX ROUND 2026-08-20 (pass 7) — record integrity: the four stale cells + THE SWEEP
+
+Routed via `quality_auditor` pass 7 FAIL `[reason: pass-1]` — this document's own §4 had drifted from
+the shipped truth on four cells (STATE_4's F-A sweep/offset/intersection surface, STATE_6's
+`theta_deg` animate shape, STATE_8's timing, S9's `line2_offset` direction), plus stale per-state word
+budgets, a stale ledger row, and a false document-wide sweep claim. Every cell was corrected AT ITS
+OWN SITE, in place, using the strikethrough-then-correct convention this document and the skeleton
+already established — see §1 (`line2_offset`), §4 STATE_4, §4 STATE_6, §4 STATE_8, the §4 word-budget
+headers on S1/S2/S3/S5/S6/S8, FLAG 9, the Founder-call note, the sweep-claim paragraph above, and the
+Final narration ledger's STATE_4 row + "unchanged" list. Nothing was silently overwritten — every wrong
+number this document ever carried is still readable, struck through, beside its correction and the
+date.
+
+### THE SWEEP — before → after, this pass
+
+**Method:** re-ran the routing message's own patterns (`to:\s*1\b` in an `aux_a`/`aux_b` animate
+context, `from:\s*25\b`, `start_ms:\s*7000\b`, `along d2-hat`/`d̂₂`, `34–42`, `44–52`, `40–48`,
+`38–46`, `slides bodily`/`sliding bodily`, `slides toward the plane`, plus `42–50` for STATE_4's own
+budget) against all three files, both before any edit in this pass and after every edit above.
+
+**Raw pattern-hit counts went UP, not down, and re-checking that number honestly matters as much as
+reporting it.** Measured by re-running the routing message's own listed patterns, plus two variants this document's actual wording needed (`sliding bodily`, the participle form the block itself used, and `42–50`, STATE_4's own stale range), against the git-committed original
+and the edited file: across all three files, **24 → 55** raw hits; restricted to this document's own
+authored content (excluding this very meta-section, which quotes the pattern strings themselves for
+documentation and would otherwise inflate its own count), **19 → 28**. This is expected and correct,
+not a regression: the annotation convention QUOTES the old wrong value inside a `~~struck-through~~`
+span next to its correction, so a value this pass fixed can appear MORE than once in the raw grep —
+once as the dated historical record, sometimes again in the explanatory prose around it (e.g. "the
+withdrawn `to:1` endpoint..."). A raw hit count is therefore the wrong metric for "is this fixed", the
+same reason F3's own sweep (§ above) reported a **true-positive count** rather than a raw hit count.
+Applying the same discipline, checked line by line against the edited file (every hit re-read, not
+assumed from the pattern alone):
+
+| pattern | BEFORE (true-positive / live-stale) | AFTER (true-positive / live-stale) |
+|---|---|---|
+| `to:\s*1\b` in the `aux_a` STATE_4 context | 1 (line 536) | **0** |
+| `from:\s*25\b` (STATE_6 phase 2) | 1 (line 581) | **0** |
+| `start_ms:\s*7000\b` (STATE_8) | 1 (line 631) | **0** |
+| `along d2-hat` (§1 `line2_offset` + its FLAG-9 quote) | 2 (lines 175, 1007) | **0** |
+| word-budget ranges not bracketing the shipped count (S1/S2/S3/S4/S5/S6/S8) | 7 | **0** |
+| `sliding bodily` (STATE_4's own motion description) | 1 (line 534) | **0** |
+| **Total true-positive, this document** | **13** | **0** |
+
+Two further stale items this pass closed are outside those grep patterns (found by direct read, not
+regex) and are counted separately, per the routing message's own instruction: the Final narration
+ledger's `STATE_4: 54 (was 55)` row (shipped total is 53) and its adjacent claim that `s4_1`/`s4_2`
+were unchanged (they were later re-authored by the F-A fix) — **2 more**, now corrected — and the §7
+sweep-claim itself, which asserted a document-wide guarantee its own regex never covered — **1 more**,
+now qualified rather than deleted (the underlying F3 work stands; only the overclaim is withdrawn).
+**Grand total this pass: 16 stale record-integrity items closed, 0 remaining by this sweep's own
+method.**
+
+### Surviving hits — what they are and why each one is correct to leave standing
+
+- **Inside a `~~struck-through~~` span, beside its `**⚠ CORRECTED**` replacement** — every pattern's
+  own former wrong value, kept as the historical record this convention exists to preserve (§1, §4
+  STATE_4/6/8, FLAG 9, Founder-call note, the sweep-claim paragraph, this section). Intentional by
+  design — deleting these instead of striking them would repeat the exact failure this pass exists to
+  fix (a correction a later reader cannot audit is not a correction — the skeleton's own stated law,
+  quoted at its line 1071).
+- **`docs/skeletons/lines_and_planes_in_space_skeleton.md`** — every hit there (S4's F-A record at
+  lines 242/658, S2's own word-budget history at lines 400/1107) is the ARCHITECT's file, already
+  correctly annotated with its own dated corrections, and out of this desk's edit scope (constraint:
+  edit ONLY the mathematics block). Not touched; cited here only to confirm they are not silent
+  survivors of THIS document's defect.
+- **`s7_1`–`s7_4`'s own `40–48` header (STATE_7, block line 655)** — never stale: 47 already falls
+  inside 40–48. Left untouched deliberately, same as the routing message's own table noted ("only S7
+  40–48 contains its 47").
+- **S2's own, unrelated `to:1` animate windows** (lines 476–477) — genuine, different, still-correct
+  choreography (the two-segment dot-product intro), matched by the same loose pattern but never part of
+  the four routed defects. **VERIFIED against the shipped JSON**, not dispositioned by reasoning.
+  **⚠ CORRECTED 2026-08-20, QA pass-8 F6:** this bullet previously also cleared ~~S3's `start_ms:7000`
+  window (lines 510–511) as "still-correct"~~. It was NOT: seven values in that one cell disagreed with
+  the build (windows 2000/5000 + 7000/2000 vs shipped 2500/9500 + 12000/3500; `perp` 9000/600 vs
+  15450/0; `cmp` hide 9000 vs 15500) — on the PRIMARY AHA state. The lesson is the one §7 already names,
+  one step further: a surviving hit must be VERIFIED against the JSON, never cleared by argument. The S2
+  and S3 hits matched the same pattern and read identically; only a JSON diff separates them.
+- **`d̂₂` at line 1188 (Founder-call note)** — used to NAME the withdrawn, false premise ("along its own
+  rotating direction `d̂₂` was never what shipped"), not to assert it as current.
+
+**Not found anywhere, before or after: any surviving instance of `along d2-hat`, `from:25` inside a
+live (non-struck) animate block, `start_ms:7000` inside a live STATE_8 block, or a word-budget range
+that fails to bracket its state's own shipped `text_en` count**, per direct re-grep after every edit
+above.
