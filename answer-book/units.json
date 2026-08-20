@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06).",
   "units": [
     {
       "number": 4,
@@ -169,6 +169,141 @@
           "stars": 0,
           "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?",
           "question_id": "ts_ipe_p1_mp_walk_avg_velocity_speed"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Laws of Motion",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "a) State Newton’s second law of motion. Hence derive F = ma from it. b) A body is moving along a circular path such that its speed always remains constant. Should there be a force acting on the body?"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Define the terms momentum and impulse. State and explain the law of conservation of linear momentum. Give its examples."
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Why are shock absorbers used in motor cycles and cars?"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Explain the advantages and disadvantages of friction."
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Mention the methods used to decrease friction."
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 1,
+          "text": "Why is pulling the lawn roller preferred to pushing it?"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "State the laws of rolling friction."
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is inertia? What gives the measure of inertia?",
+          "question_id": "ts_ipe_p1_lom_inertia_measure"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "When a bullet is fired from a gun, the gun gives a kick in the backward direction. Explain.",
+          "question_id": "ts_ipe_p1_lom_gun_recoil_kick"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Why does a heavy rifle not recoil as strongly as a light rifle using the same cartridges?",
+          "question_id": "ts_ipe_p1_lom_heavy_rifle_recoil"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If a bomb at rest explodes into two pieces, the pieces must travel in opposite directions. Explain.",
+          "question_id": "ts_ipe_p1_lom_bomb_explodes_two_pieces"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Can the coefficient of friction be greater than one?",
+          "question_id": "ts_ipe_p1_lom_friction_coefficient_above_one"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Why does a car with flattened tyres stop sooner than one with inflated tyres?",
+          "question_id": "ts_ipe_p1_lom_flat_tyres_stop_sooner"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "A horse has to pull harder during the start of the motion than later. Explain.",
+          "question_id": "ts_ipe_p1_lom_horse_pull_harder_start"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "What happens to the coefficient of friction if the weight of the body is doubled?",
+          "question_id": "ts_ipe_p1_lom_friction_coefficient_weight_doubled"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "A batsman hits back a ball straight in the direction of the bowler without changing its initial speed of 12 m/s. If the mass of the ball is 0.15 kg, determine the impulse imparted to the ball. (Assume linear motion of the ball.)",
+          "question_id": "ts_ipe_p1_lom_batsman_impulse_ball"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Calculate the time needed for a net force of 5 N to change the velocity of a 10 kg mass by 2 m/s.",
+          "question_id": "ts_ipe_p1_lom_time_for_velocity_change"
         }
       ]
     }

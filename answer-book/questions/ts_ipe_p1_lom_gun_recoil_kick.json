@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_gun_recoil_kick",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "When a bullet is fired from a gun, the gun gives a kick in the backward direction. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law used",
+        "marks": 1,
+        "mark_note": "The law",
+        "lines": [
+          "Before firing, the gun and the bullet",
+          "are at rest, so the total momentum is",
+          "zero. No external force acts, so",
+          "linear momentum is conserved."
+        ],
+        "margin_note": "Name the law in words — \"conservation of linear momentum\" is what the examiner looks for.",
+        "why": "The explosion pushes gun and bullet apart, but that force is internal to the pair. Internal forces can never change the total momentum.",
+        "common_mistakes": [
+          "Saying only \"reaction\" without naming a law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total momentum before firing is zero and momentum is conserved.",
+          "accept": [
+            "momentum is conserved",
+            "total momentum before firing is zero",
+            "conservation of linear momentum",
+            "modata momentum zero untundi"
+          ],
+          "reject": [
+            "the gun moves backward"
+          ],
+          "heard_as": [
+            "conserved",
+            "total momentum",
+            "zero"
+          ]
+        }
+      },
+      {
+        "id": "s2_recoil",
+        "kind": "boxed_final",
+        "label": "Why it kicks back",
+        "marks": 1,
+        "mark_note": "The result",
+        "lines": [
+          "The bullet gains forward momentum, so",
+          "the gun must gain an equal momentum",
+          "backward. That backward motion is the",
+          "kick.",
+          {
+            "text": "Total momentum stays zero.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say \"equal momentum\", not \"equal velocity\" — the gun is far heavier, so it moves much slower.",
+        "why": "Equal and opposite MOMENTA, not equal speeds. The heavy gun carries the same momentum at a small speed, which is why the kick is survivable.",
+        "common_mistakes": [
+          "Writing that the gun moves back with the same SPEED as the bullet."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the forward momentum of the bullet is matched by an equal backward momentum of the gun.",
+          "accept": [
+            "gun gets equal backward momentum",
+            "bullet forward gun backward equal momentum",
+            "gun ki backward momentum vastundi"
+          ],
+          "reject": [
+            "momentum is conserved"
+          ],
+          "heard_as": [
+            "backward momentum",
+            "equal and opposite",
+            "kick"
+          ]
+        }
+      }
+    ]
+  }
+}

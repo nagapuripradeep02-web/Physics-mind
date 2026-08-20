@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_bomb_explodes_two_pieces",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a bomb at rest explodes into two pieces, the pieces must travel in opposite directions. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Before the blast",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_before",
+        "kind": "equation",
+        "label": "Before the blast",
+        "marks": 1,
+        "mark_note": "Before",
+        "lines": [
+          "The bomb is at rest, so the total",
+          "momentum before the explosion is zero.",
+          "Momentum is conserved, so after it:",
+          {
+            "text": "0 = m₁v₁ + m₂v₂",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Start from zero. Everything in this answer follows from that one word.",
+        "why": "The explosion is internal. It can hand momentum from one piece to the other, but it cannot create any for the pair.",
+        "common_mistakes": [
+          "Forgetting to say the initial momentum is zero, then having nothing to conclude from."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bomb is at rest so the total momentum is zero, and it stays zero.",
+          "accept": [
+            "total momentum before is zero",
+            "bomb at rest so momentum zero",
+            "momentum is conserved and it was zero",
+            "modata bomb rest lo undi momentum zero"
+          ],
+          "reject": [
+            "the pieces move in opposite directions"
+          ],
+          "heard_as": [
+            "zero",
+            "at rest",
+            "conserved"
+          ]
+        }
+      },
+      {
+        "id": "s2_conclude",
+        "kind": "boxed_final",
+        "label": "Why opposite",
+        "marks": 1,
+        "mark_note": "The result",
+        "lines": [
+          {
+            "text": "m₁v₁ = − m₂v₂",
+            "style": "boxed"
+          },
+          "The two momenta are equal in size and",
+          "opposite in sign, so the pieces must",
+          "fly in opposite directions."
+        ],
+        "margin_note": "The minus sign IS the answer. Write it, then say what it means.",
+        "why": "Two vectors can add to zero only if they point opposite ways. The masses need not be equal — the momenta must be.",
+        "common_mistakes": [
+          "Claiming the two pieces have equal SPEEDS. Only their momenta match."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two momenta are equal and opposite, so the pieces travel in opposite directions.",
+          "accept": [
+            "equal and opposite momenta",
+            "m1v1 equals minus m2v2",
+            "so they move in opposite directions",
+            "opposite directions lo veltayi"
+          ],
+          "reject": [
+            "total momentum before is zero"
+          ],
+          "heard_as": [
+            "equal and opposite",
+            "minus",
+            "opposite directions"
+          ]
+        }
+      }
+    ]
+  }
+}

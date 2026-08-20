@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_inertia_measure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is inertia? What gives the measure of inertia?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What inertia is",
+      "marks": 1
+    },
+    {
+      "label": "What measures it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What inertia is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Inertia is the inability of a body to",
+          "change its state of rest or of uniform",
+          "motion by itself."
+        ],
+        "margin_note": "The phrase \"by itself\" is the whole idea — do not drop it.",
+        "why": "A body does not resist motion; it resists a CHANGE of motion. Nothing about its state changes until an outside force acts.",
+        "common_mistakes": [
+          "Calling inertia a force. It is a property of the body, not a force acting on it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inertia is the inability of a body to change its own state of rest or of uniform motion.",
+          "accept": [
+            "inability to change its state by itself",
+            "a body cannot change rest or motion on its own",
+            "body tanaka tanuga state change cheyyaledu"
+          ],
+          "reject": [
+            "mass is the measure of inertia"
+          ],
+          "heard_as": [
+            "inability",
+            "state of rest",
+            "by itself"
+          ]
+        }
+      },
+      {
+        "id": "s2_measure",
+        "kind": "boxed_final",
+        "label": "What measures it",
+        "marks": 1,
+        "mark_note": "Measure",
+        "lines": [
+          "Mass is the measure of inertia.",
+          {
+            "text": "Larger the mass, larger the inertia.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The second mark is for naming MASS. Say the word plainly.",
+        "why": "The same push changes a light body much more than a heavy one, so mass is exactly the quantity being measured.",
+        "common_mistakes": [
+          "Answering \"weight\". Weight changes from place to place; inertia does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mass is the measure of inertia.",
+          "accept": [
+            "mass is the measure of inertia",
+            "more mass more inertia",
+            "mass ye inertia ki measure"
+          ],
+          "reject": [
+            "inability to change its state"
+          ],
+          "heard_as": [
+            "mass",
+            "measure"
+          ]
+        }
+      }
+    ]
+  }
+}

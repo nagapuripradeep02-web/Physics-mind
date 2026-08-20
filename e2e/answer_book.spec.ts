@@ -82,12 +82,20 @@ test('reveals all steps, earns exactly the total, and never splits a block acros
 test('jump via the rail reproduces the identical pagination', async ({ page }) => {
     await openFirst(page);
 
-    // Pick a mid-list step from the ACTIVE question. A literal step id broke the
-    // moment a second question was authored and became PM_QUESTIONS[0].
-    const target = await page.evaluate(() => {
-        const steps = (window as any).PM_ANSWER.question.answer.steps as any[];
-        return steps[steps.length - 3].id;   // late enough to be past a page break
+    // Seek the LONGEST question and take a mid-list step from it. A literal step id
+    // broke the moment a second question was authored and became PM_QUESTIONS[0]; a
+    // literal index broke again when a second UNIT put a 2-step VSAQ in that slot
+    // (steps.length - 3 === -1). The page break this gate exists to check only occurs
+    // in a long answer, so the question must be sought, never assumed.
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const best = qs.reduce((a, q) => (q.answer.steps.length > a.answer.steps.length ? q : a), qs[0]);
+        const steps = best.answer.steps as any[];
+        return { qid: best.question_id, stepId: steps[steps.length - 3].id, stepCount: steps.length };
     });
+    expect(pick.stepCount).toBeGreaterThanOrEqual(3);   // a degenerate pick is not a pass
+    await openQ(page, pick.qid);
+    const target = pick.stepId;                          // late enough to be past a page break
 
     // Which PAGE the target step lands on. Comparing total pageCount instead was
     // wrong: tapping to the end renders more steps than jumping to the middle, so
@@ -267,21 +275,27 @@ test('the self-check scores from authored marks with no network', async ({ page 
 
 test('the paper section and marks agree across header, chip and mark split', async ({ page }) => {
     await openFirst(page);
-    const r = await page.evaluate(() => {
-        const q = (window as any).PM_ANSWER.question;
-        return {
-            qtype: q.qtype,
-            total: q.marks_total,
-            splitSum: q.mark_split.reduce((a: number, m: any) => a + m.marks, 0),
-            stepSum: q.answer.steps.reduce((a: number, s: any) => a + s.marks, 0),
-            header: q.answer.page_header.join(' | '),
-        };
+
+    // Sweeps EVERY question, like the other inventory gates. Checking only the first
+    // one made the gate a hostage to file order: it hardcoded "Section B" and went red
+    // the moment a second unit sorted a VSAQ (Section A) into PM_QUESTIONS[0] — while
+    // saying nothing at all about the other thirty-six.
+    const bad = await page.evaluate(() => {
+        const out: string[] = [];
+        for (const q of (window as any).PM_QUESTIONS as any[]) {
+            const splitSum = q.mark_split.reduce((a: number, m: any) => a + m.marks, 0);
+            const stepSum = q.answer.steps.reduce((a: number, s: any) => a + s.marks, 0);
+            const header = q.answer.page_header.join(' | ');
+            // the three places a mark total appears must never drift apart, and the
+            // header must name the section the question is actually sat in
+            if (splitSum !== q.marks_total) out.push(`${q.question_id}: mark_split sums ${splitSum}, not ${q.marks_total}`);
+            if (stepSum !== q.marks_total) out.push(`${q.question_id}: steps sum ${stepSum}, not ${q.marks_total}`);
+            if (!header.includes(`${q.marks_total} marks`)) out.push(`${q.question_id}: header omits "${q.marks_total} marks"`);
+            if (!header.includes(q.paper_section)) out.push(`${q.question_id}: header omits "${q.paper_section}"`);
+        }
+        return out;
     });
-    // the three places a mark total appears must never drift apart
-    expect(r.splitSum).toBe(r.total);
-    expect(r.stepSum).toBe(r.total);
-    expect(r.header).toContain(`${r.total} marks`);
-    expect(r.header).toContain(r.qtype === 'LAQ' ? 'Section C' : 'Section B');
+    expect(bad).toEqual([]);
 });
 
 /**
@@ -606,7 +620,12 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
                 .filter((c) => c.hasAttribute('href')).length,
             soonChips: [...document.querySelectorAll('.cat-card.soon .cc-chip')]
                 .every((c) => c.textContent === 'Not written yet'),
-            pill: document.querySelector('.cat-count')!.textContent,
+            // One pill per unit, each counting ITS OWN unit — the whole-book total
+            // lives in catSub. Reading only the first pill and comparing it to the
+            // global count passed by coincidence while there was exactly one unit.
+            expectedPills: units.map((u: any) =>
+                u.questions.filter((e: any) => e.question_id).length + ' of ' + u.questions.length + ' ready'),
+            pills: [...document.querySelectorAll('.cat-count')].map((p) => p.textContent),
             sub: document.getElementById('catSub')!.textContent,
         };
     });
@@ -616,8 +635,8 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
     expect(r.soon).toBe(r.entries - r.ready);           // unauthored render as coming-soon
     expect(r.soonHrefs).toBe(0);                        // and never as links
     expect(r.soonChips).toBe(true);
-    expect(r.pill).toContain(r.ready + ' of ' + r.entries + ' ready');
-    expect(r.sub).toContain(r.ready + ' answers ready');
+    expect(r.pills).toEqual(r.expectedPills);           // per-unit pills, one each, in order
+    expect(r.sub).toContain(r.ready + ' answers ready'); // whole-book total
 });
 
 test('qtype filter chips match on the section alone, with true counts', async ({ page }) => {
