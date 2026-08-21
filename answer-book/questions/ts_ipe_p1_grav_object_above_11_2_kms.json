@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_object_above_11_2_kms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "An object projected with a velocity greater than or equal to 11.2 km s⁻¹ will not return to the earth. Explain the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What 11.2 km/s is",
+      "marks": 2
+    },
+    {
+      "label": "Why it does not return",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Listed by the TSBIE Basic Learning Material (book p.26, Short Answer 4) and NOT by the Sri Chaitanya Fastrack — the union of the two books is the bank. The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "equation",
+        "label": "What 11.2 km/s is",
+        "marks": 2,
+        "mark_note": "The number",
+        "lines": [
+          "11.2 km s⁻¹ is the ESCAPE VELOCITY of the",
+          "earth — the minimum speed at which a body must",
+          "be projected from the surface so that it never",
+          "comes back.",
+          {
+            "text": "v_e = √(2gR) = 11.2 km s⁻¹",
+            "style": "eq"
+          }
+        ],
+        "why": "Naming the number is most of the answer: the question is really \"what is special about 11.2 km/s?\"",
+        "common_mistakes": [
+          "Calling it the orbital velocity, which is 7.9 km/s."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 11.2 kilometres per second is the escape velocity of the earth, root 2 g R.",
+          "accept": [
+            "escape velocity of the earth",
+            "root 2 g R",
+            "11.2 kilometres per second"
+          ],
+          "reject": [
+            "some kinetic energy is still left"
+          ],
+          "heard_as": [
+            "escape velocity",
+            "11.2"
+          ]
+        }
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it does not return",
+        "marks": 2,
+        "mark_note": "The reason",
+        "lines": [
+          "A body projected at exactly this speed has just",
+          "enough kinetic energy to do all the work needed",
+          "against the earth’s pull on the whole way out.",
+          "If it is projected any faster, some kinetic",
+          "energy is still left when the pull has become",
+          "negligible, so",
+          {
+            "text": "The body never returns to the earth.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Gravity never becomes exactly zero, but it falls off as 1/r² fast enough that a FINITE amount of energy is enough to get clear.",
+        "common_mistakes": [
+          "Saying gravity stops acting beyond some height; it never stops, it only weakens."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the body has enough kinetic energy to do all the work against gravity, with energy left over, so it never returns.",
+          "accept": [
+            "enough kinetic energy to escape",
+            "energy still left",
+            "never returns"
+          ],
+          "reject": [
+            "escape velocity of the earth"
+          ],
+          "heard_as": [
+            "never returns",
+            "energy"
+          ]
+        }
+      }
+    ]
+  }
+}

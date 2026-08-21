@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_polar_satellites",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are polar satellites?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Why they are used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Satellites that go round the earth in a",
+          "north-south orbit, passing over the poles,",
+          "are called polar satellites. They move in a",
+          "low orbit, a few hundred kilometres up."
+        ],
+        "why": "The name is the orbit: geostationary satellites sit over the equator, polar satellites cross the poles.",
+        "common_mistakes": [
+          "Confusing them with geostationary satellites, which stay over the equator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That polar satellites move in a low north-south orbit passing over the poles.",
+          "accept": [
+            "north-south orbit",
+            "pass over the poles",
+            "low orbit"
+          ],
+          "reject": [
+            "they survey the whole earth"
+          ],
+          "heard_as": [
+            "polar",
+            "poles"
+          ]
+        }
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "Why they are used",
+        "marks": 1,
+        "mark_note": "Use",
+        "lines": [
+          {
+            "text": "Low orbit, north-south, over the poles",
+            "style": "boxed"
+          },
+          "The earth turns beneath them, so a polar",
+          "satellite sees a different strip of ground on",
+          "every pass and can survey the WHOLE earth."
+        ],
+        "why": "A geostationary satellite always sees the same face of the earth; a polar one eventually sees all of it.",
+        "common_mistakes": [
+          "Giving television relay as the use — that is what a geostationary satellite does."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the earth turns beneath them so they can survey the whole earth strip by strip.",
+          "accept": [
+            "earth turns beneath them",
+            "survey the whole earth",
+            "different strip each pass"
+          ],
+          "reject": [
+            "north-south orbit"
+          ],
+          "heard_as": [
+            "whole earth",
+            "survey"
+          ]
+        }
+      }
+    ]
+  }
+}

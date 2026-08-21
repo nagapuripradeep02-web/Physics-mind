@@ -1,0 +1,267 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_orbital_velocity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is orbital velocity? Obtain an expression for it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition and figure",
+      "marks": 1
+    },
+    {
+      "label": "The two forces",
+      "marks": 2
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The definition and figure",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "satellite_orbit",
+          "width": 340,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "orbit",
+              "d": "M 45 170 A 105 105 0 1 0 255 170 A 105 105 0 1 0 45 170",
+              "ms": 760,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_orbit",
+              "x": 30,
+              "y": 116,
+              "text": "orbit",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "earth",
+              "d": "M 92 170 A 58 58 0 1 0 208 170 A 58 58 0 1 0 92 170",
+              "ms": 640
+            },
+            {
+              "type": "label",
+              "id": "lbl_earth",
+              "x": 96,
+              "y": 236,
+              "text": "planet, mass M",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "centre",
+              "d": "M 147 170 L 153 170",
+              "ms": 90
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 136,
+              "y": 190,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rline",
+              "d": "M 150 170 L 208 170",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 176,
+              "y": 162,
+              "text": "R",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "hline",
+              "d": "M 150 112 L 150 66",
+              "ms": 280
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 160,
+              "y": 92,
+              "text": "h",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "sat",
+              "d": "M 145 65 A 5 5 0 1 0 155 65 A 5 5 0 1 0 145 65",
+              "ms": 260
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 120,
+              "y": 58,
+              "text": "m",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "vel",
+              "d": "M 158 65 L 208 65",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "velhead",
+              "d": "M 200 60 L 209 65 L 200 70",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 214,
+              "y": 58,
+              "text": "v₀",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The whole derivation turns on one length — the orbit radius is (R + h), not R — and the figure is what fixes it.",
+        "common_mistakes": [
+          "Using R instead of (R + h) as the radius of the circular path."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a satellite of mass m orbits a planet of mass M and radius R at a height h, so the orbit radius is R plus h.",
+          "accept": [
+            "draw the planet with the satellite at height h",
+            "mark R and h"
+          ],
+          "reject": [
+            "gravitational pull provides the centripetal force"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram"
+          ]
+        }
+      },
+      {
+        "id": "s2_forces",
+        "kind": "equation",
+        "label": "The two forces",
+        "marks": 2,
+        "mark_note": "Two forces",
+        "lines": [
+          "Orbital velocity is the velocity with which a",
+          "body must revolve to stay in a circular orbit.",
+          "The gravitational pull of the planet supplies",
+          "exactly the centripetal force the satellite",
+          "needs, so the two are equal:",
+          {
+            "text": "m v₀² / (R + h) = G M m / (R + h)²",
+            "style": "eq"
+          }
+        ],
+        "why": "A satellite is not held up by anything — it is falling, and falling at just the rate that keeps the ground curving away beneath it.",
+        "common_mistakes": [
+          "Adding the two forces instead of setting them equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the gravitational pull equals the centripetal force, m v naught squared by R plus h equals G M m by R plus h squared.",
+          "accept": [
+            "gravitational pull provides the centripetal force",
+            "m v squared by R plus h equals G M m by R plus h squared"
+          ],
+          "reject": [
+            "draw the planet with the satellite"
+          ],
+          "heard_as": [
+            "centripetal",
+            "equate"
+          ]
+        }
+      },
+      {
+        "id": "s3_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          "Cancelling m and one factor of (R + h),",
+          {
+            "text": "v₀ = √(G M / (R + h))",
+            "style": "eq"
+          },
+          "For an orbit close to the surface h is small",
+          "and G M = g R², so",
+          {
+            "text": "v₀ = √(gR) ≈ 7.9 km s⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "Compare with escape velocity: v_e = √2 × v₀, so escaping needs only about 1.4 times the orbital speed.",
+        "common_mistakes": [
+          "Forgetting to cancel one factor of (R + h) and getting a square in the denominator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v naught is root G M by R plus h, which near the surface is root g R, about 7.9 kilometres per second.",
+          "accept": [
+            "root G M by R plus h",
+            "root g R",
+            "7.9 kilometres per second"
+          ],
+          "reject": [
+            "gravitational pull provides the centripetal force"
+          ],
+          "heard_as": [
+            "root g R",
+            "7.9"
+          ]
+        }
+      }
+    ]
+  }
+}

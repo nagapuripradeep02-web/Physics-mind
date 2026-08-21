@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_gravitational_potential_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define gravitational potential energy. Write its expression for a body of mass m at a distance r from a body of mass M.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The gravitational potential energy of a body at",
+          "a point is the work done in bringing the body",
+          "from infinity to that point."
+        ],
+        "why": "Infinity is chosen as the zero because that is the only distance at which the pull genuinely vanishes.",
+        "common_mistakes": [
+          "Defining it as m g h, which is only the near-surface special case."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is the work done in bringing the body from infinity to that point.",
+          "accept": [
+            "work done bringing it from infinity",
+            "from infinity to that point"
+          ],
+          "reject": [
+            "minus G M m by r"
+          ],
+          "heard_as": [
+            "infinity",
+            "work done"
+          ]
+        }
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          {
+            "text": "U = − G M m / r",
+            "style": "boxed"
+          },
+          "It is NEGATIVE because the pull does the work",
+          "as the body comes inward, and U is taken as",
+          "zero at infinity."
+        ],
+        "why": "A negative energy means the system is BOUND: work has to be put in to get the body back out to infinity.",
+        "common_mistakes": [
+          "Dropping the minus sign, which would describe two masses that repel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U equals minus G M m by r, negative because U is zero at infinity.",
+          "accept": [
+            "minus G M m by r",
+            "negative because zero at infinity"
+          ],
+          "reject": [
+            "work done bringing it from infinity"
+          ],
+          "heard_as": [
+            "minus G M m by r",
+            "negative"
+          ]
+        }
+      }
+    ]
+  }
+}

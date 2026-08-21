@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_escape_velocity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is escape velocity? Obtain an expression for it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The energy condition",
+      "marks": 2
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The escape velocity of a planet is the MINIMUM",
+          "velocity with which a body must be projected",
+          "from its surface so that it never returns —",
+          "it escapes the planet’s gravitational field."
+        ],
+        "why": "\"Minimum\" is the word that earns the mark: any greater speed also escapes, so the question is asking for the threshold.",
+        "common_mistakes": [
+          "Defining it as the velocity of a satellite in orbit; that is the ORBITAL velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That escape velocity is the minimum velocity of projection for which the body never returns.",
+          "accept": [
+            "minimum velocity to escape",
+            "never returns to the planet"
+          ],
+          "reject": [
+            "half m v e squared equals G M m by R"
+          ],
+          "heard_as": [
+            "escape velocity",
+            "minimum"
+          ]
+        }
+      },
+      {
+        "id": "s2_energy",
+        "kind": "equation",
+        "label": "The energy condition",
+        "marks": 2,
+        "mark_note": "Energy",
+        "lines": [
+          "A body of mass m on the surface of a planet of",
+          "mass M and radius R is held by a gravitational",
+          "potential energy of magnitude",
+          {
+            "text": "PE = G M m / R",
+            "style": "eq"
+          },
+          "It just escapes when the kinetic energy given",
+          "to it equals that:",
+          {
+            "text": "½ m v_e² = G M m / R",
+            "style": "eq"
+          }
+        ],
+        "why": "Escaping is an energy question, not a force question: the body needs enough energy to climb all the way out, however long that takes.",
+        "common_mistakes": [
+          "Setting the kinetic energy equal to m g R, which uses a constant g that is only valid near the surface."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That half m v e squared is set equal to G M m by R.",
+          "accept": [
+            "half m v e squared equals G M m by R",
+            "kinetic energy equals the potential energy"
+          ],
+          "reject": [
+            "minimum velocity to escape"
+          ],
+          "heard_as": [
+            "half m v squared",
+            "G M m by R"
+          ]
+        }
+      },
+      {
+        "id": "s3_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          "Cancelling m and using G M = g R²,",
+          {
+            "text": "v_e = √(2GM / R) = √(2gR)",
+            "style": "eq"
+          },
+          {
+            "text": "v_e ≈ 11.2 km s⁻¹ for the earth",
+            "style": "boxed"
+          },
+          "The mass m cancels, so every body needs the",
+          "same escape speed."
+        ],
+        "why": "That m cancels is the important part: a feather and a rocket must be projected at exactly the same speed to escape.",
+        "common_mistakes": [
+          "Leaving m in the final answer after it has cancelled."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v e is root 2 G M by R, equal to root 2 g R, about 11.2 kilometres per second for the earth.",
+          "accept": [
+            "root 2 G M by R",
+            "root 2 g R",
+            "11.2 kilometres per second"
+          ],
+          "reject": [
+            "half m v e squared equals G M m by R"
+          ],
+          "heard_as": [
+            "root 2 g R",
+            "11.2"
+          ]
+        }
+      }
+    ]
+  }
+}

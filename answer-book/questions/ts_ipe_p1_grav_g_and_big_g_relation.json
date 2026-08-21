@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_g_and_big_g_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the relation between the acceleration due to gravity g at the surface of a planet and the universal gravitational constant G.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The gravitational force",
+      "marks": 1
+    },
+    {
+      "label": "The weight",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_force",
+        "kind": "equation",
+        "label": "The gravitational force",
+        "marks": 1,
+        "mark_note": "The force",
+        "lines": [
+          "Let a body of mass m rest on the surface of a",
+          "planet of mass M and radius R. By the law of",
+          "gravitation the planet pulls it with a force",
+          {
+            "text": "F = G M m / R²",
+            "style": "eq"
+          }
+        ],
+        "why": "A sphere pulls an outside body exactly as though its whole mass sat at its centre, which is why R is the distance to use.",
+        "common_mistakes": [
+          "Using the distance from the surface rather than the radius R from the centre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the gravitational force on the body is G M m by R squared.",
+          "accept": [
+            "G M m by R squared",
+            "law of gravitation"
+          ],
+          "reject": [
+            "that same force is the weight"
+          ],
+          "heard_as": [
+            "G M m",
+            "R squared"
+          ]
+        }
+      },
+      {
+        "id": "s2_weight",
+        "kind": "equation",
+        "label": "The weight",
+        "marks": 1,
+        "mark_note": "The weight",
+        "lines": [
+          "That same pull is what we call the weight of",
+          "the body, and weight is mass times the",
+          "acceleration due to gravity:",
+          {
+            "text": "F = m g",
+            "style": "eq"
+          }
+        ],
+        "why": "Naming the SAME force twice is the entire derivation; the algebra afterwards is one cancellation.",
+        "common_mistakes": [
+          "Treating the gravitational pull and the weight as two different forces that must be added."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the same force is the weight of the body, equal to m g.",
+          "accept": [
+            "weight is m g",
+            "the same force is the weight"
+          ],
+          "reject": [
+            "G M m by R squared"
+          ],
+          "heard_as": [
+            "m g",
+            "weight"
+          ]
+        }
+      },
+      {
+        "id": "s3_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 2,
+        "mark_note": "The relation",
+        "lines": [
+          "Both expressions describe the same force, so",
+          {
+            "text": "m g = G M m / R²",
+            "style": "eq"
+          },
+          "Cancelling m from both sides,",
+          {
+            "text": "g = G M / R²",
+            "style": "boxed"
+          },
+          "g depends only on the mass and radius of the",
+          "planet, never on the body placed on it."
+        ],
+        "why": "Because m cancels, every body falls with the same acceleration — the fact Galileo is remembered for.",
+        "common_mistakes": [
+          "Keeping m in the final answer, which would make heavy bodies fall faster."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m cancels, giving g equals G M by R squared, independent of the body.",
+          "accept": [
+            "g equals G M by R squared",
+            "m cancels",
+            "independent of the body"
+          ],
+          "reject": [
+            "weight is m g"
+          ],
+          "heard_as": [
+            "G M by R squared",
+            "cancels"
+          ]
+        }
+      }
+    ]
+  }
+}
