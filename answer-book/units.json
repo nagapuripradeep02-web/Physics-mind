@@ -1199,6 +1199,77 @@
           "question_id": "ts_ipe_m1a_pv_vsaq_magnitude_cross_product"
         }
       ]
+    },
+    {
+      "number": 6,
+      "name": "Trigonometric Ratios upto Transformations (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "If A + B + C = 180°, then show that sin2A + sin2B + sin2C = 4 sinA sinB sinC.",
+          "question_id": "ts_ipe_m1a_tr_sin2a_sum"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that cos2A + cos2B + cos2C = −1 − 4 cosA cosB cosC.",
+          "question_id": "ts_ipe_m1a_tr_cos2a_sum"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2) sin(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_half_squares"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) − sin²(C/2) = 1 − 2 cos(A/2) cos(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_half_minus_c"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "If A + B + C = π, then prove that cos²(A/2) + cos²(B/2) + cos²(C/2) = 2(1 + sin(A/2) sin(B/2) sin(C/2)).",
+          "question_id": "ts_ipe_m1a_tr_cos_half_squares"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If A, B, C are angles in a triangle, then prove that cosA + cosB − cosC = −1 + 4 cos(A/2) cos(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_cosa_cosb_minus_cosc"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "If A + B + C = 2S, then prove that sin(S−A) + sin(S−B) + sinC = 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_s_minus_a"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cosC = −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2).",
+          "question_id": "ts_ipe_m1a_tr_cos_s_minus_a"
+        }
+      ]
     }
   ]
 }
