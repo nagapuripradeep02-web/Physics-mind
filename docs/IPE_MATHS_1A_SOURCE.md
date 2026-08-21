@@ -148,11 +148,31 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1, 2 and 3 — 76 entries.**
-   **Unit 3 (Matrices) — COMPLETE at 44 of 44, book pp.22-34, 51-55, 82-86.** The largest unit on the
+3. **Units complete so far: 1, 2, 3 and 4 — 98 entries.**
+   **Unit 4 (Addition of Vectors) — COMPLETE at 20 of 20**: 10 SAQ (book pp.57-61) + 10 VSAQ (pp.87-88).
+   **It has NO LAQ**, and that is not an omission: the paper gives Addition of Vectors Q5, Q6 (VSAQ) and
+   Q12 (SAQ) but no Section-C slot, and the book has no Addition-of-Vectors LAQ chapter either — the
+   mirror image of Unit 2, which is LAQ-only. Four of the SAQs are one coplanarity method over different
+   vectors (scalar triple product = 0) and a fifth runs it backwards to solve for λ. The hexagon proof
+   (answer 51) is the first MATHEMATICS question in the book to carry a figure: it is proved from the
+   picture rather than from components, and the two substitutions it turns on (AE = BD, AF = CD) cannot
+   be seen without one.
+
+   ⚠ **A SCOPING LESSON, recorded because it cost a correction.** Unit 3's SAQ chapter was first scoped
+   from the book's "TOP 40 SAQ" hit list (book p.9) and recorded as answers 40-45 over pp.51-55. That
+   list is a **SELECTION, not an inventory**: the chapter actually runs to answer 47 on p.56, and two
+   questions were missed until the walk to the Addition of Vectors chapter boundary for Unit 4 turned
+   them up. Unit 3's LAQ pass was unaffected because it read every page pp.22-34 rather than the list.
+   **The rule this fixes: scope a chapter by walking to its BOUNDARY — read the page after the one you
+   think is the last — never from a hit list.** The hit lists are the priority signal (stars, SSP pages,
+   appearance years); the chapter pages are the inventory. Unit 3 is now 46 of 46, and Unit 4 was scoped
+   by boundary-walking from the start (pp.56 and 62 were both read to confirm where the chapter ends).
+
+   **Units 1, 2 and 3.**
+   **Unit 3 (Matrices) — COMPLETE at 46 of 46, book pp.22-34, 51-56, 82-86** (corrected from 44 over pp.51-55; see the scoping lesson above). The largest unit on the
    paper: two Section-C slots (Q20, Q21), one Section-B slot (Q11) and TWO Section-A slots (Q3, Q4),
    so 22 of the 75 marks. 17 LAQ (four families: six determinant proofs, four Cramer, three matrix
-   inversion, four Gauss-Jordan) + 9 SAQ + 18 VSAQ. Two Gauss-Jordan answers do not fit the family
+   inversion, four Gauss-Jordan) + 11 SAQ + 18 VSAQ. Two Gauss-Jordan answers do not fit the family
    skeleton and are authored as a matched pair: 20.3 has an INFINITE solution set and 20.4 has NO
    solution, and the only thing separating them is whether the constant beside the row of zeros is
    itself zero. This is the unit that made typeset lines (`render: "katex"`) load-bearing — 195 lines

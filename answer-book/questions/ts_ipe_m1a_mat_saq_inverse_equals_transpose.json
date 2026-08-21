@@ -1,0 +1,200 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_inverse_equals_transpose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If 3A is the matrix with rows (1, 2, 2), (2, 1, −2) and (−2, 2, −1), then show that A⁻¹ = Aᵀ.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Restate the claim as AAᵀ = I",
+      "marks": 1
+    },
+    {
+      "label": "Write A and Aᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Multiply and reach the identity",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Matrices, answer 47. Printed appearances: TS 18, plus the pre-bifurcation tag 'IPE 14' which appearances[] cannot carry. AUTHORED LATE, and why is worth recording: the first pass over this unit scoped the Matrices SAQ chapter as answers 40-45 (pp.51-55) from the book's \"TOP 40 SAQ\" hit list. That list is a SELECTION, not an inventory — the chapter actually runs to answer 47 on p.56, and this question and its neighbour were missed. Found on 2026-08-21 while walking to the Addition of Vectors chapter boundary for Unit 4. The LAQ pass had read every page pp.22-34 and was complete; only the SAQ pass trusted the hit list. Note the question gives 3A, not A — dividing by 3 first is a step students skip, and every entry of both A and Aᵀ then carries a factor of 1/3, which is where the 1/9 in the product comes from. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It follows the split the same book DOES print for Matrices answer 40 on book p.51, the only tagged 4-mark answer in the chapter. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would show the inverse of A equals its transpose — say what you would prove instead.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rtp",
+        "kind": "equation",
+        "label": "Restate as AAᵀ = I",
+        "marks": 1,
+        "mark_note": "Required to prove",
+        "margin_note": "First mark. Same move as the previous question: multiply both sides by A so the inverse disappears. A⁻¹ = Aᵀ becomes AAᵀ = I, which is one multiplication.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Required To Prove (RTP):",
+          "A⁻¹ = Aᵀ  ⇔  AA⁻¹ = AAᵀ  ⇔  I = AAᵀ",
+          "So it is enough to show AAᵀ = I."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying both sides by A turns A⁻¹ = Aᵀ into AAᵀ = I, so no inverse need be computed.",
+          "accept": [
+            "multiply both sides by A so A inverse equals A transpose becomes A A transpose equals I",
+            "restate it as A times A transpose equals the identity",
+            "show A A transpose is I instead of finding the inverse",
+            "rendu vaipula A tho multiply cheste A A transpose equals I avthundi",
+            "it is enough to prove A into A transpose is the identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A A transpose",
+            "equals I",
+            "multiply both sides",
+            "RTP",
+            "identity"
+          ]
+        },
+        "why": "A matrix whose transpose is its inverse is called orthogonal, and AAᵀ = I is the definition. Restating the claim turns it into that standard check.",
+        "common_mistakes": [
+          "Computing A⁻¹ by cofactors instead.",
+          "Restating as AᵀA and treating it as a different problem; here it gives the same result."
+        ]
+      },
+      {
+        "id": "s2_a_and_transpose",
+        "kind": "equation",
+        "label": "Write A and Aᵀ",
+        "marks": 1,
+        "mark_note": "The matrices",
+        "margin_note": "Second mark, and the step most often skipped. The question gives 3A, so A itself is that matrix divided by 3. Then Aᵀ swaps rows for columns, keeping the 1/3.",
+        "lines": [
+          "Given 3A, so A is that matrix divided by 3:",
+          {
+            "text": "A = \\tfrac{1}{3}\\begin{bmatrix} 1 & 2 & 2 \\\\ 2 & 1 & -2 \\\\ -2 & 2 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Aᵀ is A with rows and columns exchanged:",
+          {
+            "text": "A^{T} = \\tfrac{1}{3}\\begin{bmatrix} 1 & 2 & -2 \\\\ 2 & 1 & 2 \\\\ 2 & -2 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is the given matrix divided by 3, and that Aᵀ is A with rows and columns exchanged, keeping the 1/3.",
+          "accept": [
+            "divide the given matrix by three to get A then transpose it keeping the one third",
+            "the question gives three A so A is one third of it, and A transpose swaps rows and columns",
+            "A is one third of the given matrix and the transpose exchanges rows for columns",
+            "ichinadi three A kabatti A ni three tho divide chesi, tarvata transpose teeskovali",
+            "first get A itself then write its transpose"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three A",
+            "divide by three",
+            "one third",
+            "transpose",
+            "rows and columns"
+          ]
+        },
+        "why": "Missing the division by 3 is fatal and silent: the product would come out as 9I instead of I, and 9I is not the identity.",
+        "common_mistakes": [
+          "Treating the given matrix as A itself.",
+          "Transposing but dropping the 1/3.",
+          "Reversing the rows instead of exchanging rows with columns."
+        ]
+      },
+      {
+        "id": "s3_product",
+        "kind": "boxed_final",
+        "label": "Multiply out",
+        "marks": 2,
+        "mark_note": "Product is I",
+        "margin_note": "Half the marks. The two 1/3 factors multiply to 1/9, and the matrix product comes out as 9 down the diagonal and 0 elsewhere — so the 9s and the 1/9 cancel exactly.",
+        "lines": [
+          "Multiplying row by column, the 1/3 factors give 1/9:",
+          "Row 1 × column 1:  1 + 4 + 4 = 9",
+          "Row 1 × column 2:  2 + 2 − 4 = 0",
+          {
+            "text": "AA^{T} = \\tfrac{1}{9}\\begin{bmatrix} 9 & 0 & 0 \\\\ 0 & 9 & 0 \\\\ 0 & 0 & 9 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A⁻¹ = Aᵀ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product AAᵀ gives 9 on the diagonal and 0 elsewhere, and the 1/9 outside cancels it to the identity — proving A⁻¹ = Aᵀ.",
+          "accept": [
+            "the product gives nine on the diagonal and zero elsewhere and the one ninth outside makes it the identity",
+            "multiply row by column, the nines cancel against the one ninth to give I",
+            "A A transpose comes out as the identity so A inverse is A transpose",
+            "nine diagonal lo vasthundi, one ninth tho cancel ayi identity avthundi",
+            "the result is I which proves the inverse equals the transpose"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine",
+            "one ninth",
+            "identity",
+            "diagonal",
+            "A transpose"
+          ]
+        },
+        "why": "Each diagonal entry is a row of A dotted with itself, which is a sum of squares — that is why they are all 9 and positive. Each off-diagonal entry is one row dotted with a different one, and those vanish.",
+        "common_mistakes": [
+          "Forgetting the 1/9 and concluding AAᵀ = 9I.",
+          "Writing \"= 1\" instead of \"= I\".",
+          "Stopping at the identity without returning to A⁻¹ = Aᵀ."
+        ]
+      }
+    ]
+  }
+}

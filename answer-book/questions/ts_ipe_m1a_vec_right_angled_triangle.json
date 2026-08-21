@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_right_angled_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the points A(2i−j+k), B(i−3j−5k) and C(3i−4j−4k) are the vertices of a right-angled triangle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the three side vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find their magnitudes",
+      "marks": 1
+    },
+    {
+      "label": "Check the Pythagoras relation",
+      "marks": 1
+    },
+    {
+      "label": "Conclude right-angled",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 52. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would show these three points make a right-angled triangle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sides",
+        "kind": "equation",
+        "label": "Find the side vectors",
+        "marks": 1,
+        "mark_note": "Side vectors",
+        "margin_note": "First mark. Go round the triangle: AB, then BC, then CA. Going round means each vector ends where the next begins, so none of the three sides is missed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "AB = OB − OA = (i − 3j − 5k) − (2i − j + k)",
+          "  = −i − 2j − 6k",
+          "BC = OC − OB = (3i − 4j − 4k) − (i − 3j − 5k)",
+          "  = 2i − j + k",
+          "CA = OA − OC = (2i − j + k) − (3i − 4j − 4k)",
+          "  = −i + 3j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three side vectors AB, BC and CA are found by subtracting position vectors, going round the triangle.",
+          "accept": [
+            "find AB BC and CA by subtracting the position vectors going round the triangle",
+            "each side is the far point minus the near point, taken in order",
+            "work out the three sides AB BC CA",
+            "AB BC CA ni position vectors subtract chesi kanukovali",
+            "go round the triangle taking differences"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB",
+            "BC",
+            "CA",
+            "subtract",
+            "side vectors"
+          ]
+        },
+        "why": "Taking the sides in a cycle guarantees you have all three and no repeats. Picking AB, AC and BC would give the same triangle but makes the next comparison harder to read.",
+        "common_mistakes": [
+          "Subtracting the wrong way round on one side.",
+          "Computing AB, AC and BC and then comparing the wrong pair."
+        ]
+      },
+      {
+        "id": "s2_magnitudes",
+        "kind": "equation",
+        "label": "Find the magnitudes",
+        "marks": 1,
+        "mark_note": "Lengths",
+        "margin_note": "Second mark. Square each component, add, take the root. Leave the answers as surds — squaring them again in the next step is easier from √41 than from 6.4.",
+        "lines": [
+          "|AB| = √((−1)² + (−2)² + (−6)²) = √(1+4+36) = √41",
+          "|BC| = √(2² + (−1)² + 1²) = √(4+1+1) = √6",
+          "|CA| = √((−1)² + 3² + 5²) = √(1+9+25) = √35"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each side length is the square root of the sum of the squares of its components, giving √41, √6 and √35.",
+          "accept": [
+            "take the square root of the sum of the squares of the components for each side, giving root forty one root six and root thirty five",
+            "find the magnitude of each vector as a surd",
+            "the three lengths are root forty one, root six and root thirty five",
+            "prathi vector magnitude root gaa rasi, root 41, root 6, root 35 vasthai",
+            "square the components, add, and take the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "magnitude",
+            "root forty one",
+            "root six",
+            "root thirty five",
+            "square root"
+          ]
+        },
+        "why": "Leaving the lengths as surds is deliberate: the test compares SQUARES, and the square of √41 is just 41.",
+        "common_mistakes": [
+          "Losing a sign before squaring — every square is positive.",
+          "Turning the surds into decimals and then failing to match exactly."
+        ]
+      },
+      {
+        "id": "s3_pythagoras",
+        "kind": "equation",
+        "label": "Check Pythagoras",
+        "marks": 1,
+        "mark_note": "The relation",
+        "margin_note": "Third mark. Square the three lengths and look for the one that equals the sum of the other two. Here 41 = 6 + 35, so AB is the hypotenuse.",
+        "lines": [
+          "|AB|² = 41",
+          "|BC|² + |CA|² = 6 + 35 = 41",
+          "∴ |AB|² = |BC|² + |CA|²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squares are compared and the longest side squared equals the sum of the other two squares — 41 = 6 + 35.",
+          "accept": [
+            "square them and forty one equals six plus thirty five so Pythagoras holds",
+            "the square of the longest side equals the sum of the other two squares",
+            "AB squared is forty one which is six plus thirty five",
+            "forty one equals six plus thirty five, so Pythagoras satisfy avthundi",
+            "check the Pythagoras relation on the squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "forty one",
+            "six plus thirty five",
+            "Pythagoras",
+            "squared",
+            "hypotenuse"
+          ]
+        },
+        "why": "The converse of Pythagoras is what is being used: if the squares fit, the triangle IS right-angled. You are not assuming a right angle and checking — you are proving one exists.",
+        "common_mistakes": [
+          "Testing the wrong side as the hypotenuse; it must be the longest.",
+          "Comparing the lengths rather than their squares."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Name the conclusion, and it is worth naming WHERE the right angle is: opposite the longest side, so at C.",
+        "lines": [
+          "The relation holds, so the angle opposite AB is 90°.",
+          {
+            "text": "∴ A, B, C are the vertices of a right-angled triangle.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because the Pythagoras relation holds, the three points form a right-angled triangle.",
+          "accept": [
+            "since the relation holds the three points form a right angled triangle",
+            "Pythagoras is satisfied so it is a right angled triangle",
+            "the points A B C make a right angled triangle",
+            "relation satisfy ayindi kabatti right angled triangle",
+            "therefore the triangle is right angled"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "right angled triangle",
+            "vertices",
+            "ninety degrees"
+          ]
+        },
+        "why": "The right angle sits at the vertex the hypotenuse does not touch. Saying so shows the relation was understood rather than pattern-matched.",
+        "common_mistakes": [
+          "Writing \"hence proved\" without naming the triangle.",
+          "Claiming the right angle is at A or B."
+        ]
+      }
+    ]
+  }
+}

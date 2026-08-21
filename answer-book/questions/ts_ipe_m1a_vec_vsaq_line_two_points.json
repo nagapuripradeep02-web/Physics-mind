@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_line_two_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the vector equation of the line passing through the points 2i + j + 3k and −4i + 3j − k.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the two points",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 116.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say the vector equation of a line through two given points.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Name the two points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both given vectors are POSITIONS this time — there is no direction handed to you, which is what makes the formula different from the previous question.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given points A(a) = 2i + j + 3k and",
+          "B(b) = −4i + 3j − k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both given vectors are named as position vectors a and b of two points on the line.",
+          "accept": [
+            "both are points so call them a and b",
+            "name the two position vectors a and b",
+            "these are two points on the line, not a point and a direction",
+            "rendu points, a and b ani peru pettali",
+            "identify both as position vectors"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two points",
+            "position vectors",
+            "a and b"
+          ]
+        },
+        "why": "Spotting that both are points is the whole decision in this question — it selects which of the two line formulas to use.",
+        "common_mistakes": [
+          "Using r = a + tb as though the second vector were a direction.",
+          "Subtracting to find a direction and then forgetting to add the point back."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The two-point form is r = (1−t)a + tb: t = 0 puts you at A, t = 1 puts you at B, and the rest of the line follows.",
+        "lines": [
+          "Vector equation of the line is",
+          "r = (1−t)a + tb,  t ∈ R",
+          {
+            "text": "∴ r = (1−t)(2i + j + 3k) + t(−4i + 3j − k), t ∈ R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is r = (1−t)a + tb with t real.",
+          "accept": [
+            "r equals one minus t times a plus t times b",
+            "use the two point form one minus t a plus t b",
+            "r is one minus t into the first point plus t into the second",
+            "r equals one minus t a plus t b, t real",
+            "the two point form of the line"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus t",
+            "two point form",
+            "r equals",
+            "t belongs to R"
+          ]
+        },
+        "why": "The coefficients (1−t) and t always add to 1, which is exactly the condition for a point to lie on the line joining A and B.",
+        "common_mistakes": [
+          "Writing r = (1−t)a + b.",
+          "Using two different parameters for one line."
+        ]
+      }
+    ]
+  }
+}

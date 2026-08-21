@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_opposite_unit_vector",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let a = 2i + 4j − 5k, b = i + j + k and c = j + 2k. Find the unit vector in the opposite direction of a + b + c.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Add and find the magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Divide and reverse the sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 114.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15 · AP 19 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would find a unit vector in the OPPOSITE direction to a sum.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Add and find the magnitude",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. c has no i term — write it as 0i + j + 2k so the columns line up. The magnitude comes out to exactly 7, which is a good sign the addition is right.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "c = 0i + j + 2k, so",
+          "a + b + c = (2i + 4j − 5k) + (i + j + k) + (0i + j + 2k)",
+          "  = 3i + 6j − 2k",
+          "⇒ |a + b + c| = √(9 + 36 + 4) = √49 = 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vectors are added to give 3i + 6j − 2k, whose magnitude is 7.",
+          "accept": [
+            "add all three to get three i plus six j minus two k and the magnitude is seven",
+            "the sum is three i plus six j minus two k with length seven",
+            "add the three vectors then take the modulus which is seven",
+            "moodu vectors add cheste three i plus six j minus two k, magnitude seven",
+            "write c as zero i plus j plus two k and add"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three i plus six j",
+            "seven",
+            "add",
+            "magnitude",
+            "forty nine"
+          ]
+        },
+        "why": "Writing the missing component as 0 rather than leaving a gap is what keeps the addition aligned. The magnitude landing on a whole number is the arithmetic checking itself.",
+        "common_mistakes": [
+          "Dropping c entirely because it has no i term.",
+          "Sign slip on the k column: −5 + 1 + 2 = −2."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide and reverse the sign",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and the point of the question. Opposite direction means a minus sign in front of the whole thing — the length stays 1, only the direction flips.",
+        "lines": [
+          "Opposite unit vector = −(a + b + c)/|a + b + c|",
+          {
+            "text": "= −(3i + 6j − 2k)/7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unit vector is divided by 7 AND negated, because the question asked for the opposite direction.",
+          "accept": [
+            "divide by seven and put a minus sign in front for the opposite direction",
+            "the opposite unit vector is minus three i plus six j minus two k all over seven",
+            "negate the unit vector to reverse the direction",
+            "minus sign petti seven tho divide cheyyali, opposite direction ki",
+            "flip the sign of the unit vector"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus",
+            "opposite",
+            "seven",
+            "unit vector",
+            "negative"
+          ]
+        },
+        "why": "Multiplying a vector by −1 reverses it without changing its length. That single minus sign is the whole difference between this question and the previous one.",
+        "common_mistakes": [
+          "Giving the unit vector without the minus sign.",
+          "Negating only one component instead of the whole vector."
+        ]
+      }
+    ]
+  }
+}

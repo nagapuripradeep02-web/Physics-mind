@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_rhombus_vertices",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the points (5, −1, 1), (7, −4, 7), (1, −6, 10) and (−1, −3, 4) are the vertices of a rhombus.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the four side vectors",
+      "marks": 1
+    },
+    {
+      "label": "Show all four sides are equal",
+      "marks": 1
+    },
+    {
+      "label": "Find the diagonals and show they differ",
+      "marks": 1
+    },
+    {
+      "label": "Conclude rhombus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.60 — SAQ chapter 8 Addition of Vectors, answer 53. Printed appearances: the single tag 'IPE 13' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. A rhombus needs BOTH halves: four equal sides AND unequal diagonals. Four equal sides alone would also fit a square, which is why the diagonals are checked. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would show four points make a rhombus — say everything you have to check.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sides",
+        "kind": "equation",
+        "label": "Find the side vectors",
+        "marks": 1,
+        "mark_note": "Side vectors",
+        "margin_note": "First mark. Take the points in the order given as A, B, C, D and go round: AB, BC, CD, DA. Order matters — a different order makes the same four points into a crossed shape.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A(5,−1,1), B(7,−4,7), C(1,−6,10), D(−1,−3,4)",
+          "AB = OB − OA = 2i − 3j + 6k",
+          "BC = OC − OB = −6i − 2j + 3k",
+          "CD = OD − OC = −2i + 3j − 6k",
+          "DA = OA − OD = 6i + 2j − 3k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four points are named A, B, C, D in the given order and the four side vectors AB, BC, CD, DA are found by subtraction.",
+          "accept": [
+            "name them A B C D in order and find AB BC CD and DA by subtracting position vectors",
+            "go round the quadrilateral taking the four side vectors",
+            "find the four sides in order",
+            "naalugu points ni A B C D ani peru petti, naalugu sides kanukovali",
+            "work out the four side vectors in sequence"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB",
+            "BC",
+            "CD",
+            "DA",
+            "side vectors",
+            "in order"
+          ]
+        },
+        "why": "A quadrilateral is only defined once the order of its vertices is fixed. Going round in the given order is what makes AB and CD opposite sides rather than crossing ones.",
+        "common_mistakes": [
+          "Taking the points in a different order and getting a crossed figure.",
+          "Computing only two sides and assuming the rest."
+        ]
+      },
+      {
+        "id": "s2_equal",
+        "kind": "equation",
+        "label": "Show the sides are equal",
+        "marks": 1,
+        "mark_note": "Equal sides",
+        "margin_note": "Second mark. All four magnitudes come to 7 — and 4 + 9 + 36 = 49 every time, just with the numbers in a different order. Write all four out; three plus an assumption is not a proof.",
+        "lines": [
+          "|AB| = √(4+9+36) = √49 = 7",
+          "|BC| = √(36+4+9) = √49 = 7",
+          "|CD| = √(4+9+36) = √49 = 7",
+          "|DA| = √(36+4+9) = √49 = 7",
+          "∴ |AB| = |BC| = |CD| = |DA|, so all four sides are equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all four side magnitudes are computed and each comes to 7, so the four sides are equal.",
+          "accept": [
+            "all four magnitudes come to seven so the sides are equal",
+            "each side has length seven, root of forty nine",
+            "compute the four lengths and they are all seven",
+            "naalugu sides magnitude seven vasthundi, anni equal",
+            "the four sides are all equal in length"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "seven",
+            "forty nine",
+            "equal sides",
+            "magnitude"
+          ]
+        },
+        "why": "Four equal sides is what makes a quadrilateral a rhombus OR a square. It is necessary but not yet sufficient, which is why the next step exists.",
+        "common_mistakes": [
+          "Checking two sides and asserting the other two by symmetry.",
+          "Stopping here and calling it a rhombus."
+        ]
+      },
+      {
+        "id": "s3_diagonals",
+        "kind": "equation",
+        "label": "Check the diagonals",
+        "marks": 1,
+        "mark_note": "Diagonals",
+        "margin_note": "Third mark, and the half students skip. The diagonals are AC and BD — corner to opposite corner, not side to side. They must come out UNEQUAL, or the figure is a square.",
+        "lines": [
+          "AC = OC − OA = −4i − 5j + 9k",
+          "  |AC| = √(16+25+81) = √122",
+          "BD = OD − OB = −8i + j − 3k",
+          "  |BD| = √(64+1+9) = √74",
+          "∴ |AC| ≠ |BD|, so the diagonals are unequal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diagonals AC and BD are found and their magnitudes, √122 and √74, are different.",
+          "accept": [
+            "find the diagonals AC and BD, they come to root one twenty two and root seventy four which are unequal",
+            "the two diagonals have different lengths so it is not a square",
+            "check AC and BD and they are not equal",
+            "diagonals AC BD kanukunte root 122 and root 74, equal kaadu",
+            "the diagonals are unequal"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "diagonals",
+            "AC",
+            "BD",
+            "root one twenty two",
+            "root seventy four",
+            "unequal"
+          ]
+        },
+        "why": "A square is a rhombus with equal diagonals. Showing they differ is what rules the square out and pins the figure down as a rhombus specifically.",
+        "common_mistakes": [
+          "Taking AB and CD as the diagonals; those are sides.",
+          "Finding the diagonals but never comparing them."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude rhombus",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. State both findings together — equal sides and unequal diagonals — because it is the pair of them that names the shape.",
+        "lines": [
+          "All four sides are equal and the diagonals are unequal.",
+          {
+            "text": "∴ A, B, C, D form a rhombus.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That four equal sides together with unequal diagonals makes the figure a rhombus.",
+          "accept": [
+            "four equal sides and unequal diagonals so it is a rhombus",
+            "since the sides are equal but the diagonals are not, the figure is a rhombus",
+            "the four points form a rhombus",
+            "sides equal, diagonals equal kaadu, kabatti rhombus",
+            "therefore it is a rhombus and not a square"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "rhombus",
+            "equal sides",
+            "unequal diagonals",
+            "square"
+          ]
+        },
+        "why": "Naming both conditions is what separates a rhombus from a square in the examiner’s eyes. One without the other does not identify the shape.",
+        "common_mistakes": [
+          "Concluding rhombus from the equal sides alone.",
+          "Writing \"hence proved\" with neither condition named."
+        ]
+      }
+    ]
+  }
+}

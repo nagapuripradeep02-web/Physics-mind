@@ -1,0 +1,341 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_hexagon_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If ABCDEF is a regular hexagon with centre O, then prove that AB + AC + AD + AE + AF = 3AD = 6AO.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use AE = BD and AF = CD",
+      "marks": 1
+    },
+    {
+      "label": "Regroup into three copies of AD",
+      "marks": 2
+    },
+    {
+      "label": "Replace AD by 2AO",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Addition of Vectors, answer 51, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 16,18. The book labels it a \"Super Sixer Q\". It is the only question in the chapter that is proved from a PICTURE rather than from components, so the figure is authored as its own step: the two substitutions the proof turns on (AE = BD and AF = CD) cannot be seen without it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would prove this — say which pairs of vectors you swap and why the picture lets you.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. In a regular hexagon opposite sides are equal and parallel, and the three long diagonals all pass through the centre. Both facts are used below.",
+        "lines": [
+          "Given ABCDEF is a regular hexagon with centre O."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the figure is a regular hexagon with centre O. Naming it is full credit.",
+          "accept": [
+            "given a regular hexagon ABCDEF with centre O",
+            "start by writing that it is a regular hexagon with centre O",
+            "note the hexagon is regular and O is its centre",
+            "regular hexagon ani, O centre ani rasta",
+            "write down the given hexagon and its centre"
+          ],
+          "reject": [
+            "write the given",
+            "draw the hexagon"
+          ],
+          "heard_as": [
+            "regular hexagon",
+            "centre",
+            "ABCDEF",
+            "O"
+          ]
+        },
+        "why": "Regular is doing real work here: it is what makes opposite sides equal vectors and what puts O exactly halfway along AD.",
+        "common_mistakes": [
+          "Assuming the result for any hexagon.",
+          "Forgetting that O is the centre and not just some interior point."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the hexagon",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth the thirty seconds. Mark A to F round the shape and draw the diagonal AD through O — with that line on the page the two substitutions below become obvious instead of memorised.",
+        "figure": {
+          "id": "hexagon_abcdef",
+          "width": 300,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "outline",
+              "ms": 1100,
+              "d": "M 110 179 L 190 179 L 230 110 L 190 41 L 110 41 L 70 110 Z"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ad",
+              "ms": 600,
+              "d": "M 110 179 L 190 41"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 96,
+              "y": 196,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 194,
+              "y": 196,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 240,
+              "y": 116,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 194,
+              "y": 34,
+              "text": "D",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 100,
+              "y": 34,
+              "text": "E",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 52,
+              "y": 116,
+              "text": "F",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 158,
+              "y": 104,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a labelled hexagon is drawn with the diagonal AD through the centre. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the hexagon and label A to F with O in the middle",
+            "sketch the regular hexagon and draw the diagonal AD through O",
+            "draw the figure marking the vertices and the centre",
+            "hexagon geesi A nunchi F varaku label chesi AD diagonal geeyali",
+            "make a labelled diagram with the long diagonal shown"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "diagram",
+            "hexagon",
+            "diagonal",
+            "AD"
+          ]
+        },
+        "why": "AE and BD are opposite sides of the rectangle ABDE, and AF and CD are opposite sides of ACDF. You can assert that from the picture in a moment, or fail to see it at all without one.",
+        "common_mistakes": [
+          "Skipping the figure and then guessing which vectors are equal.",
+          "Labelling the vertices clockwise, which swaps the pairs."
+        ]
+      },
+      {
+        "id": "s3_pair",
+        "kind": "equation",
+        "label": "Swap AE and AF",
+        "marks": 1,
+        "mark_note": "Equal vectors",
+        "margin_note": "First mark. ABDE is a rectangle, so AE and BD are the same vector; ACDF is a rectangle, so AF and CD are the same. Replacing them is what lets the sum collapse.",
+        "lines": [
+          "∴ (AB + AC) + AD + (AE + AF)",
+          "= (AB + AC) + AD + (BD + CD)",
+          "  [∵ AE = BD,  AF = CD]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AE is replaced by BD and AF by CD, because each pair is a pair of opposite, equal sides in the hexagon.",
+          "accept": [
+            "replace AE by BD and AF by CD since they are equal vectors in the hexagon",
+            "swap AE for BD and AF for CD, they are opposite equal sides",
+            "use AE equals BD and AF equals CD",
+            "AE ki BD, AF ki CD substitute cheyyali, avi equal vectors",
+            "those two pairs are equal so exchange them"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AE equals BD",
+            "AF equals CD",
+            "equal vectors",
+            "swap",
+            "replace"
+          ]
+        },
+        "why": "Equal vectors have the same length AND direction, so one can be written for the other anywhere. Choosing BD and CD is not arbitrary — they are the ones that pair up with AB and AC in the next line.",
+        "common_mistakes": [
+          "Swapping to DB and DC, which are the reverses and flip the signs.",
+          "Assuming any two sides of a hexagon are equal vectors; only opposite ones are."
+        ]
+      },
+      {
+        "id": "s4_group",
+        "kind": "equation",
+        "label": "Regroup into three ADs",
+        "marks": 2,
+        "mark_note": "Triangle law",
+        "margin_note": "Half the marks. Regroup so each bracket is a nose-to-tail pair: AB + BD lands on AD, and AC + CD lands on AD. With the AD already there, that is three of them.",
+        "lines": [
+          "= (AB + BD) + AD + (AC + CD)",
+          "= AD + AD + AD",
+          "= 3AD"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms are regrouped nose to tail so AB + BD = AD and AC + CD = AD, giving three copies of AD in all.",
+          "accept": [
+            "group them so AB plus BD is AD and AC plus CD is AD, with the AD already there that makes three AD",
+            "use the triangle law on each bracket to get AD each time",
+            "each pair joins nose to tail to give AD so the total is three AD",
+            "AB plus BD equals AD, AC plus CD equals AD, so moodu AD",
+            "regroup and every bracket collapses to AD"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB plus BD",
+            "AD",
+            "three AD",
+            "triangle law",
+            "nose to tail"
+          ]
+        },
+        "why": "The triangle law says that going A to B and then B to D is the same as going A to D. Every bracket here is chosen so that the middle letter cancels that way.",
+        "common_mistakes": [
+          "Regrouping as (AB + AC) and getting nothing that collapses.",
+          "Losing the standalone AD and finishing with 2AD.",
+          "Adding the magnitudes instead of the vectors."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Replace AD by 2AO",
+        "marks": 1,
+        "mark_note": "Final form",
+        "margin_note": "Last mark. O is the centre, so it is the midpoint of the long diagonal AD — which makes AD exactly twice AO. The question asked for both forms, so write both.",
+        "lines": [
+          "O is the centre, so it is the midpoint of AD:",
+          "3AD = 3(2AO)   [∵ AD = 2AO]",
+          {
+            "text": "∴ AB + AC + AD + AE + AF = 3AD = 6AO",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AD = 2AO because the centre O is the midpoint of the diagonal AD, so 3AD = 6AO.",
+          "accept": [
+            "O is the midpoint of AD so AD is twice AO, giving three AD equals six AO",
+            "since the centre bisects the long diagonal, AD equals two AO",
+            "replace AD by two AO to get six AO",
+            "O centre kabatti AD midpoint, AD equals two AO, so six AO",
+            "three AD becomes six AO"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AD equals two AO",
+            "midpoint",
+            "centre",
+            "six AO",
+            "three AD"
+          ]
+        },
+        "why": "The long diagonals of a regular hexagon all pass through the centre and are bisected by it. That is the only place the word \"centre\" is used in the proof, and it is what converts 3AD into 6AO.",
+        "common_mistakes": [
+          "Writing AD = AO and finishing with 3AO.",
+          "Stopping at 3AD when the question asked for 6AO as well."
+        ]
+      }
+    ]
+  }
+}
