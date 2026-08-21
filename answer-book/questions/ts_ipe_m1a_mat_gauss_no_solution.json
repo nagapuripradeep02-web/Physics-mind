@@ -1,0 +1,297 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_gauss_no_solution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "By the Gauss-Jordan method, solve 2x + 4y − z = 0, x + 2y + 2z = 5, 3x + 6y − 7z = 2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Clear column 1 below the leading entry",
+      "marks": 2
+    },
+    {
+      "label": "Make the two lower pivots 1",
+      "marks": 1
+    },
+    {
+      "label": "Reach the impossible row and read it",
+      "marks": 2
+    },
+    {
+      "label": "State that there is no solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.4. This answer carries NO printed year tag, so `appearances` is empty; it is in the book on merit rather than on frequency. It is the second of only two questions in the whole Matrices chapter whose answer is not a single triple — the other is answer 20.3, which has infinitely many. The two are a deliberate pair and are best studied together: both end with a row whose coefficients are all zero, and the ONLY thing that separates them is whether the constant after the rule is zero too. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the other three Gauss-Jordan answers in this unit. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — and say what it means if a row ends up with all zeros on the left but not on the right.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_augmented",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. Look at the x and y coefficients: 2 and 4, then 1 and 2, then 3 and 6 — every row has y twice x. Columns 1 and 2 are proportional, which is the first hint that this system will not behave.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 2 & 4 & -1 \\\\ 1 & 2 & 2 \\\\ 3 & 6 & -7 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 0 \\\\ 5 \\\\ 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The augmented matrix is",
+          {
+            "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 2 & 4 & -1 & 0 \\\\ 1 & 2 & 2 & 5 \\\\ 3 & 6 & -7 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written — the coefficient matrix with the constants column attached.",
+          "accept": [
+            "write the augmented matrix A D with the constants joined to the coefficient matrix",
+            "form A given D by putting the right hand side as a fourth column",
+            "write the coefficient matrix together with the constants column",
+            "augmented matrix rasta, coefficients tho patu constants column kuda",
+            "attach the constants to A to make the augmented matrix"
+          ],
+          "reject": [
+            "write the matrix",
+            "make the augmented matrix",
+            "write A and D"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants column",
+            "fourth column"
+          ]
+        },
+        "why": "The method is identical whatever the answer turns out to be. You cannot tell from the question that this system has no solution — the working is what tells you.",
+        "common_mistakes": [
+          "Spotting the proportional columns and writing 'no solution' straight away; that is a guess, not a proof.",
+          "Writing A alone and losing the constants."
+        ]
+      },
+      {
+        "id": "s2_forward",
+        "kind": "equation",
+        "label": "Clear column 1",
+        "marks": 2,
+        "mark_note": "Forward elimination",
+        "margin_note": "Two marks. Row 2 already starts with a 1, so swap it to the top first. Then clear column 1 as usual — and watch column 2 go to zero along with it.",
+        "lines": [
+          "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 2 & 4 & -1 & 0 \\\\ 3 & 6 & -7 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − 3R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & -5 & -10 \\\\ 0 & 0 & -13 & -13 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rows are swapped to get a leading 1, then row 1 is used to clear column 1 — and that column 2 clears at the same time.",
+          "accept": [
+            "swap rows to get a one on top then subtract multiples of row one to clear the first column and the second clears too",
+            "exchange row one and row two then eliminate below the leading one",
+            "use the leading one to make both the first and second columns zero below it",
+            "row one row two swap chesi, R2 minus 2R1 and R3 minus 3R1 cheyyali",
+            "get a one at the top left then knock out the entries under it"
+          ],
+          "reject": [
+            "do row operations",
+            "clear the column",
+            "swap the rows"
+          ],
+          "heard_as": [
+            "leading one",
+            "swap",
+            "R2 minus 2R1",
+            "first column",
+            "second column"
+          ]
+        },
+        "why": "Columns 1 and 2 are proportional, so clearing one clears the other. That leaves only z with a live coefficient — two equations about one unknown, which is one equation too many.",
+        "common_mistakes": [
+          "Clearing column 1 before getting a leading 1 and introducing fractions.",
+          "Assuming the zero second column is an arithmetic error."
+        ]
+      },
+      {
+        "id": "s3_pivots",
+        "kind": "equation",
+        "label": "Make the lower pivots 1",
+        "marks": 1,
+        "mark_note": "Normalise",
+        "margin_note": "Fourth mark. Divide each of the bottom two rows by its own leading number. Now both rows claim to fix z — and they claim different values, which is the contradiction about to surface.",
+        "lines": [
+          "R₂ → R₂ ÷ (−5),  R₃ → R₃ ÷ (−13)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 1 & 1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 2 says z = 2 and row 3 says z = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bottom two rows are divided by their leading entries to become 0 0 1, and that they then disagree about the value of z.",
+          "accept": [
+            "divide row two by minus five and row three by minus thirteen so both become zero zero one but with different constants",
+            "normalise the bottom rows and they give z equals two and z equals one which disagree",
+            "make both lower pivots one and the two rows contradict each other about z",
+            "rendu rows ni divide cheste zero zero one avthai kani z values veru veru",
+            "the two bottom rows both fix z but at different values"
+          ],
+          "reject": [
+            "divide the rows",
+            "normalise the matrix",
+            "make the pivots one"
+          ],
+          "heard_as": [
+            "divide",
+            "zero zero one",
+            "z equals two",
+            "z equals one",
+            "disagree"
+          ]
+        },
+        "why": "z cannot be 2 and 1 at the same time. The next step turns that plain observation into the standard form an examiner is looking for.",
+        "common_mistakes": [
+          "Dividing the coefficients but not the constant after the rule.",
+          "Picking one of the two z values and carrying on with it.",
+          "Dividing by the wrong entry."
+        ]
+      },
+      {
+        "id": "s4_contradiction",
+        "kind": "equation",
+        "label": "Reach the impossible row",
+        "marks": 2,
+        "mark_note": "Contradiction",
+        "margin_note": "Two marks. Subtracting the identical rows leaves zeros on the left of the rule but −1 on the right. Read that row back as an equation and it says 0 = −1, which nothing can satisfy.",
+        "lines": [
+          "R₃ → R₃ − R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 2 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\\\ 0 & 0 & 0 & -1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 3 read back as an equation is",
+          "0(x) + 0(y) + 0(z) = −1,  that is  0 = −1.",
+          "This is impossible."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the last row becomes 0 0 0 with a NON-zero constant, and that reading it back gives 0 = −1, which is impossible.",
+          "accept": [
+            "row three becomes all zeros on the left but minus one on the right which says zero equals minus one and that is impossible",
+            "subtract the two identical rows and the last row reads zero equals minus one",
+            "the final row gives zero x plus zero y plus zero z equals minus one which cannot happen",
+            "last row zero zero zero kani constant minus one, ante zero equals minus one, adi impossible",
+            "the coefficients vanish but the constant does not so the equation is a contradiction"
+          ],
+          "reject": [
+            "the row becomes zero",
+            "there is a contradiction",
+            "it is not possible"
+          ],
+          "heard_as": [
+            "zero equals minus one",
+            "impossible",
+            "contradiction",
+            "all zeros",
+            "constant"
+          ]
+        },
+        "why": "This is the ONE thing that separates this question from the infinite-solution one. There the zero row had a zero constant and said 0 = 0, which is harmlessly true. Here the constant survives, and the row says something false.",
+        "common_mistakes": [
+          "Writing 'infinite solutions' because a row went to zeros, without checking the constant.",
+          "Crossing the zero row out as though it were empty.",
+          "Reporting z = 2 from row 2 as if part of the answer had been salvaged."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "State that there is no solution",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Say it plainly and say why. 'No solution' with the impossible equation quoted beside it is the complete answer — there is nothing else to write.",
+        "lines": [
+          "Since one equation of the equivalent system",
+          "cannot be satisfied by any x, y, z:",
+          {
+            "text": "∴ The system has no solution.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the system has NO solution, and that the reason is the impossible row — not merely that the working stopped.",
+          "accept": [
+            "the system has no solution because one equation says zero equals minus one",
+            "there is no solution since a row gives an impossible equation",
+            "no values of x y and z can satisfy the system so there is no solution",
+            "system ki solution ledu, endukante oka equation impossible",
+            "the equations are inconsistent so no solution exists"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "no solution"
+          ],
+          "heard_as": [
+            "no solution",
+            "inconsistent",
+            "impossible",
+            "cannot be satisfied"
+          ]
+        },
+        "why": "Geometrically the three equations are three planes with no common point. Saying 'no solution' answers the question; quoting the row that proves it is what earns the mark.",
+        "common_mistakes": [
+          "Writing 'no solution' with no reason given.",
+          "Leaving the answer blank because no numbers were found; 'no solution' IS the answer here.",
+          "Confusing this with the infinite-solution case."
+        ]
+      }
+    ]
+  }
+}
