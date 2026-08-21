@@ -257,7 +257,7 @@
             },
             {
               "id": "s2_2",
-              "text_en": "A vector in the plane gives zero dot product with the normal — also called the scalar product.",
+              "text_en": "A vector in the plane gives zero dot product — also called scalar product — with the normal.",
               "glow": "test_v_inplane"
             },
             {
@@ -550,8 +550,7 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Both directions return from one shared point, with the angle between them.",
-              "glow": "arc1"
+              "text_en": "Both directions return from one shared point, with the angle between them."
             },
             {
               "id": "s6_2",
@@ -564,8 +563,7 @@
             },
             {
               "id": "s6_4",
-              "text_en": "The angle between two lines is the smaller one, never above ninety, and comes from directions alone.",
-              "glow": "arc1"
+              "text_en": "The angle between two lines is the smaller one, never above ninety, and comes from directions alone."
             }
           ]
         }
@@ -626,17 +624,17 @@
             {
               "id": "s7_2",
               "text_en": "The angle to the normal is fifty-five degrees.",
-              "glow": "arc_normal"
+              "glow": "P1.normal"
             },
             {
               "id": "s7_3",
               "text_en": "The angle to the plane is the rest: thirty-five degrees.",
-              "glow": "arc_plane"
+              "glow": "shadow"
             },
             {
               "id": "s7_4",
               "text_en": "Measure to the normal first, then subtract from ninety: that is the angle to the plane.",
-              "glow": "arc_plane"
+              "glow": "shadow"
             }
           ]
         }

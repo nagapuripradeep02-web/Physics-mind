@@ -1582,3 +1582,37 @@ already states — STATE_6 landed at **69**. Fixed by letting each sentence do o
 
 **STATE_6 = 54.** s6_3 narrates the beat (the number turns around); s6_4 states the rule and keeps the
 "directions alone" close. STATE_4 trimmed to 55 by dropping "that" from s4_4. No glow on s6_3.
+
+### F7 glow bindings — CORRECTED 2026-08-21 (quality_auditor, post-CP-B cycle 0)
+
+Five of the 26 bindings named ANGLE ARCS (`arc1` ×2, `arc_normal`, `arc_plane` ×2). **An arc can never be a
+glow focal**, and naming one is not a no-op — it is an inversion:
+
+- `applyGlowEmphasis` matches the target against `userData.vgId` (glow branch in `field_3d_renderer.ts`,
+  the `vg_lp_*` case).
+- `vgId` is written only by `stamp()`, called for lines, planes (+`.normal`), points, segments and
+  vectors — **never in the arc block**.
+- An unmatched member is a non-focal PEER, and `vg_lp_arc` is absent from the `brightenOnly` list, so it
+  takes `touchOp` → `GLOW_DIM_OPACITY = 0.4`.
+
+Net effect: on the two states whose entire subject IS an angle arc, the arc dimmed to 40 % while its
+lines held and nothing brightened — Rules 29/32e running backwards. Invisible to THE EYE by construction
+(the capture path never sends `SET_GLOW`), but live in the product: `build_review_site.ts` fires the glow
+on the STATE CLOCK, narration on or off.
+
+Corrected: `s6_1`/`s6_4` unbound (each names the pair, not one object — same convention as the other nine
+no-binding sentences); `s7_2` → `P1.normal`; `s7_3`/`s7_4` → `shadow` (the drawn carrier of "the angle to
+the plane"). **All 24 surviving bindings verified to resolve** against the stampable id set, including the
+renderer-injected `L1_lambda` (pushed into `pts` as `id + "_lambda"` before the point loop stamps it —
+a first checker wrongly flagged it because it modelled only AUTHORED points).
+
+Proposed row: `vg_angle_arcs_are_never_stamped_so_a_glow_that_names_an_arc_dims_the_very_object_the_sentence_is_about`
+— the durable fix is one `stamp(al, A.id)` in the arc block plus `vg_lp_arc` in `brightenOnly`, which
+would make arcs glowable fleet-wide. **Platform file, Rule 40, founder call** — not authorable here.
+Note the concept's `focal_primitive_id` is `"arc1"`/`"arc_normal"`, i.e. the declared focal is an object
+the glow mechanism cannot address; that field is schema-only and consumed by no renderer, so it is inert
+rather than a second defect — but it is the same tell.
+
+Also corrected: `s2_2`'s dual label attached to *the normal* ("the normal is also called the scalar
+product") instead of to *dot product*. Now `"…gives zero dot product — also called scalar product — with
+the normal."` STATE_2 stays at 55.
