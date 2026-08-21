@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_force_law_shm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the force law for simple harmonic motion. What does the negative sign in it mean?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The force law",
+      "marks": 1
+    },
+    {
+      "label": "The negative sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "The force law",
+        "marks": 1,
+        "mark_note": "Force law",
+        "lines": [
+          "For a body in simple harmonic motion the",
+          "restoring force is proportional to the",
+          "displacement from the mean position:",
+          {
+            "text": "F = −k y,   where k = m ω²",
+            "style": "eq"
+          }
+        ],
+        "why": "This one line is the definition of SHM written as a force instead of as an acceleration.",
+        "common_mistakes": [
+          "Writing F = −k v, using velocity instead of displacement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F equals minus k y, with k equal to m omega squared.",
+          "accept": [
+            "F is minus k y",
+            "k is m omega squared"
+          ],
+          "reject": [
+            "it points back to the mean position"
+          ],
+          "heard_as": [
+            "minus k y",
+            "force law"
+          ]
+        }
+      },
+      {
+        "id": "s2_sign",
+        "kind": "boxed_final",
+        "label": "The negative sign",
+        "marks": 1,
+        "mark_note": "The sign",
+        "lines": [
+          {
+            "text": "F and y always point opposite ways",
+            "style": "boxed"
+          },
+          "The force pushes the body back towards the",
+          "mean position, whichever side it is on.",
+          "Without the minus sign the body would be",
+          "driven further out and would never oscillate."
+        ],
+        "why": "The minus sign is not decoration — it is the whole reason the motion turns around instead of running away.",
+        "common_mistakes": [
+          "Reading the minus sign as \"the force is negative\", when it only means the force is opposite to y."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the minus sign means the force is always opposite to the displacement, pushing the body back to the mean position.",
+          "accept": [
+            "force is opposite to displacement",
+            "pushes it back to the mean position"
+          ],
+          "reject": [
+            "F is minus k y"
+          ],
+          "heard_as": [
+            "opposite",
+            "restoring"
+          ]
+        }
+      }
+    ]
+  }
+}

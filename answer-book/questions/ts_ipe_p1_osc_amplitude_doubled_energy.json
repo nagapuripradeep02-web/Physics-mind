@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_amplitude_doubled_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the total energy of a simple harmonic oscillator if its amplitude is doubled?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "The total energy of a simple harmonic",
+          "oscillator is",
+          {
+            "text": "E = ½ m ω² A²",
+            "style": "eq"
+          },
+          "m and ω do not change when the amplitude is",
+          "changed, so E ∝ A²."
+        ],
+        "why": "Writing E in terms of A first turns the whole question into one proportionality.",
+        "common_mistakes": [
+          "Thinking the energy depends on where the particle is; the TOTAL energy does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E is half m omega squared A squared, so E is proportional to A squared.",
+          "accept": [
+            "half m omega squared A squared",
+            "E is proportional to A squared"
+          ],
+          "reject": [
+            "it becomes four times"
+          ],
+          "heard_as": [
+            "A squared",
+            "total energy"
+          ]
+        }
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "Doubling A multiplies A² by four, so",
+          {
+            "text": "The total energy becomes FOUR times.",
+            "style": "boxed"
+          },
+          "The time period is unchanged — for small",
+          "oscillations T does not depend on the",
+          "amplitude at all."
+        ],
+        "why": "A wider swing stores four times the energy but still takes the same time; the two facts are worth stating together.",
+        "common_mistakes": [
+          "Saying the time period doubles as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the total energy becomes four times, while the time period is unchanged.",
+          "accept": [
+            "four times",
+            "energy quadruples",
+            "time period unchanged"
+          ],
+          "reject": [
+            "E is proportional to A squared"
+          ],
+          "heard_as": [
+            "four times",
+            "unchanged"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_pendulum_in_lift",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the time period of a simple pendulum when the lift carrying it moves up with an acceleration a?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The effective g",
+      "marks": 1
+    },
+    {
+      "label": "The time period",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effective",
+        "kind": "equation",
+        "label": "The effective g",
+        "marks": 1,
+        "mark_note": "Effective g",
+        "lines": [
+          "In a lift going up with acceleration a, the",
+          "floor pushes up harder on the bob, and the",
+          "effective value of g acting on it becomes",
+          {
+            "text": "g_eff = g + a",
+            "style": "eq"
+          }
+        ],
+        "why": "Only g changes; the length of the string and the mass of the bob do not, so every lift question is one substitution.",
+        "common_mistakes": [
+          "Changing the length or the mass instead of g."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the effective g becomes g plus a when the lift accelerates upward.",
+          "accept": [
+            "g plus a",
+            "effective g increases"
+          ],
+          "reject": [
+            "the time period decreases"
+          ],
+          "heard_as": [
+            "g plus a",
+            "effective"
+          ]
+        }
+      },
+      {
+        "id": "s2_period",
+        "kind": "boxed_final",
+        "label": "The time period",
+        "marks": 1,
+        "mark_note": "Time period",
+        "lines": [
+          {
+            "text": "T = 2π√(l / (g + a))",
+            "style": "boxed"
+          },
+          "T is SMALLER than on the ground, so the",
+          "pendulum swings faster. If the lift goes down",
+          "with acceleration a the effective value is",
+          "g − a, and T is larger."
+        ],
+        "why": "In free fall a = g, the effective value is zero and T becomes infinite — the same answer as a pendulum in a satellite.",
+        "common_mistakes": [
+          "Using g + a for a lift moving down as well; the sign follows the direction of the acceleration, not the motion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T is 2 pi root l by g plus a, smaller than on the ground.",
+          "accept": [
+            "2 pi root l by g plus a",
+            "time period decreases",
+            "swings faster"
+          ],
+          "reject": [
+            "g plus a is the effective value"
+          ],
+          "heard_as": [
+            "smaller",
+            "faster"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_seconds_pendulum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a seconds pendulum? What is its length on the surface of the earth?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The length",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A simple pendulum whose time period of",
+          "oscillation is 2 seconds is called a seconds",
+          "pendulum. Each half swing therefore takes",
+          "exactly 1 second."
+        ],
+        "why": "The half swing is the useful unit: that is what a clock counts to make one tick.",
+        "common_mistakes": [
+          "Saying its time period is 1 second — 1 second is the half swing, not the full period."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a seconds pendulum has a time period of 2 seconds, so each half swing takes 1 second.",
+          "accept": [
+            "time period is two seconds",
+            "one second per half swing"
+          ],
+          "reject": [
+            "about one metre"
+          ],
+          "heard_as": [
+            "seconds pendulum",
+            "two seconds"
+          ]
+        }
+      },
+      {
+        "id": "s2_length",
+        "kind": "boxed_final",
+        "label": "The length",
+        "marks": 1,
+        "mark_note": "Length",
+        "lines": [
+          "From T = 2π√(L/g), putting T = 2 s,",
+          {
+            "text": "L = g T² / 4π² = (9.8 × 4) / 39.48",
+            "style": "eq"
+          },
+          {
+            "text": "L ≈ 1 metre",
+            "style": "boxed"
+          },
+          "Since g changes from place to place, this",
+          "length is not exactly the same everywhere."
+        ],
+        "why": "The length depends on g, so a seconds pendulum has to be adjusted slightly when a clock is moved a long way.",
+        "common_mistakes": [
+          "Quoting 1 metre as an exact universal value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the length works out to about 1 metre from T equals 2 pi root L by g.",
+          "accept": [
+            "about one metre",
+            "L is g T squared by four pi squared"
+          ],
+          "reject": [
+            "time period is two seconds"
+          ],
+          "heard_as": [
+            "one metre",
+            "length"
+          ]
+        }
+      }
+    ]
+  }
+}
