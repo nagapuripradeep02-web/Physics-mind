@@ -1,0 +1,419 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_equal_sum_difference",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If |a + b| = |a − b|, prove that the angle between a and b is 90°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two magnitudes",
+      "marks": 1
+    },
+    {
+      "label": "Equating and squaring",
+      "marks": 1
+    },
+    {
+      "label": "Solving for cos θ",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), SHORT ANSWER **6 of Unit 4, two-star. SHIPS WITH ONE CUT: a four-line algebraic proof has no 8-mark form. The figure is extra and unmarked — the book prints none — but it carries the reason the result is true (equal diagonals make the parallelogram a rectangle), which the algebra hides. The 1/1/1/1 split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_magnitudes",
+        "kind": "equation",
+        "label": "The two magnitudes",
+        "marks": 1,
+        "mark_note": "Magnitudes",
+        "lines": [
+          "Let θ be the angle between a and b.",
+          {
+            "text": "|a + b| = √(a² + b² + 2ab cos θ)",
+            "style": "eq"
+          },
+          {
+            "text": "|a − b| = √(a² + b² − 2ab cos θ)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The only difference between the two is the SIGN of the 2ab cos θ term. Write both before you use them.",
+        "why": "Both come from the same parallelogram-law result. Reversing b flips the sign of the cross term, and that single sign is what the whole proof turns on.",
+        "common_mistakes": [
+          "Writing a² + b² − 2ab cos θ for the sum.",
+          "Dropping the square root and comparing the squares without saying so."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both magnitudes are written using a² + b² ± 2ab cos θ.",
+          "accept": [
+            "write the magnitude of a plus b and a minus b",
+            "root of a squared plus b squared plus two a b cos theta",
+            "the difference has a minus two a b cos theta",
+            "rendu magnitudes raastha",
+            "both come from the parallelogram law"
+          ],
+          "reject": [
+            "so cos theta is zero",
+            "therefore theta is ninety degrees"
+          ],
+          "heard_as": [
+            "two a b cos theta",
+            "mod a plus b",
+            "a squared plus b squared"
+          ]
+        }
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch (extra)",
+        "marks": 0,
+        "figure": {
+          "id": "fig_sum_difference",
+          "width": 470,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "oa",
+              "d": "M 90 240 L 300 240",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "oa_head",
+              "d": "M 290 234 L 300 240 L 290 246",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 72,
+              "y": 258,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_apt",
+              "x": 306,
+              "y": 262,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 185,
+              "y": 264,
+              "text": "a",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "ob",
+              "d": "M 90 240 L 200 120",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ob_head",
+              "d": "M 195 133 L 200 120 L 187 126",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_bpt",
+              "x": 186,
+              "y": 108,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 108,
+              "y": 164,
+              "text": "b",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 152 240 A 62 62 0 0 0 132 194",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 125,
+              "y": 210,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bc",
+              "d": "M 200 120 L 410 120",
+              "ms": 480,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ac",
+              "d": "M 300 240 L 410 120",
+              "ms": 460,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 416,
+              "y": 112,
+              "text": "C",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "oc",
+              "d": "M 90 240 L 410 120",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "oc_head",
+              "d": "M 400 130 L 410 120 L 396 119",
+              "ms": 120,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_apb",
+              "x": 316,
+              "y": 148,
+              "text": "a + b",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ba",
+              "d": "M 200 120 L 300 240",
+              "ms": 620,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "ba_head",
+              "d": "M 288 234 L 300 240 L 296 227",
+              "ms": 120,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_amb",
+              "x": 190,
+              "y": 176,
+              "text": "a − b",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "margin_note": "Not marked. It shows WHY the answer is a right angle, which the algebra alone does not.",
+        "why": "a + b and a − b are the two diagonals of the parallelogram built on a and b. A parallelogram whose diagonals are equal is a rectangle, and a rectangle has right angles at its corners. The algebra below is this picture written out.",
+        "common_mistakes": [
+          "Drawing a − b from the origin. It runs from the tip of b to the tip of a."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a sketch is drawn. Naming it is full credit.",
+          "accept": [
+            "draw the parallelogram",
+            "a small figure with both diagonals",
+            "sketch geestha",
+            "then the diagram",
+            "I draw a and b and the two diagonals"
+          ],
+          "reject": [
+            "the angle between them is ninety degrees"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "sketch",
+            "parallelogram"
+          ]
+        }
+      },
+      {
+        "id": "s3_equate",
+        "kind": "equation",
+        "label": "Equate and square",
+        "marks": 1,
+        "mark_note": "Squaring",
+        "lines": [
+          "It is given that |a + b| = |a − b|.",
+          "Squaring both sides:",
+          {
+            "text": "a² + b² + 2ab cos θ",
+            "style": "eq"
+          },
+          {
+            "text": "        = a² + b² − 2ab cos θ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Square first. Comparing the two square roots directly earns nothing.",
+        "why": "Squaring removes both square roots at once and is safe here, because a magnitude is never negative — so the two sides being equal and their squares being equal say the same thing.",
+        "common_mistakes": [
+          "Squaring only one side.",
+          "Squaring term by term, as if √(x + y) were √x + √y."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two magnitudes are set equal and both sides squared.",
+          "accept": [
+            "equate them and square both sides",
+            "given they are equal so square both sides",
+            "squaring removes the square roots",
+            "square chesi rendu sides equal chestha",
+            "set the two expressions equal"
+          ],
+          "reject": [
+            "four a b cos theta equals zero",
+            "theta is ninety"
+          ],
+          "heard_as": [
+            "square both sides",
+            "squaring",
+            "equate"
+          ]
+        }
+      },
+      {
+        "id": "s4_solve",
+        "kind": "equation",
+        "label": "Solve for cos θ",
+        "marks": 1,
+        "mark_note": "Simplify",
+        "lines": [
+          "a² and b² cancel from both sides:",
+          {
+            "text": "2ab cos θ = −2ab cos θ",
+            "style": "eq"
+          },
+          {
+            "text": "4ab cos θ = 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Bring the right-hand term across rather than dividing — dividing by cos θ would lose the very answer you want.",
+        "why": "Everything symmetric in a and b disappears, leaving only the cross term. That is why the result holds for any two magnitudes at all.",
+        "common_mistakes": [
+          "Dividing both sides by cos θ, which throws away the solution.",
+          "Writing 2ab cos θ = 0 instead of 4ab cos θ = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a² and b² cancel leaving 4ab cos θ = 0.",
+          "accept": [
+            "a squared and b squared cancel",
+            "you get four a b cos theta equals zero",
+            "bring the term across and it doubles",
+            "cancel chesthe four a b cos theta zero",
+            "only the cross term is left"
+          ],
+          "reject": [
+            "therefore theta is ninety degrees",
+            "both magnitudes are equal"
+          ],
+          "heard_as": [
+            "four a b cos theta",
+            "cancel",
+            "cross term"
+          ]
+        }
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "The angle",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "a and b are not null vectors, so a ≠ 0",
+          "and b ≠ 0. Therefore",
+          {
+            "text": "cos θ = 0",
+            "style": "eq"
+          },
+          {
+            "text": "θ = 90°",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say that a and b are non-zero before dividing them out. That sentence is part of the mark.",
+        "why": "A product is zero only if one of its factors is. Ruling out a and b is what leaves cos θ as the factor that must vanish.",
+        "common_mistakes": [
+          "Jumping to cos θ = 0 without ruling out a = 0 or b = 0.",
+          "Giving θ = 0° instead of 90°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and b are non-zero, so cos θ = 0 and θ = 90 degrees.",
+          "accept": [
+            "a and b are not zero so cos theta is zero",
+            "therefore theta is ninety degrees",
+            "the angle between them is a right angle",
+            "cos theta zero kabatti theta ninety",
+            "they are perpendicular"
+          ],
+          "reject": [
+            "four a b cos theta equals zero",
+            "square both sides"
+          ],
+          "heard_as": [
+            "cos theta is zero",
+            "ninety degrees",
+            "90 degrees",
+            "perpendicular"
+          ]
+        }
+      }
+    ]
+  }
+}

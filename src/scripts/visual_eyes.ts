@@ -27,10 +27,11 @@ import { buildContactSheets } from '@/lib/validators/visual/contactSheet';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
-import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations } from '@/lib/validators/visual/deriveStateMeta';
+import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations, describeScenario } from '@/lib/validators/visual/deriveStateMeta';
 import { dumpCaptureToDisk } from '@/lib/validators/visual/frameDump';
 import { extractTtsVisualBindings, buildTtsMathByState } from '@/lib/validators/visual/ttsBindings';
 import type { CheckResult } from '@/lib/validators/visual/spec';
+import { tally, tallyLine, skipBreakdown, motionGateBlackout, verdictLine } from '@/lib/validators/visual/skipReport';
 import { loadCachedSim, loadConceptJson, fail } from './lib/loadCachedSim';
 
 function printAllChecks(label: string, results: CheckResult[]): void {
@@ -44,7 +45,9 @@ function printAllChecks(label: string, results: CheckResult[]): void {
     for (const [cat, rows] of [...byCategory.entries()].sort()) {
         console.log(`  Category ${cat}:`);
         for (const r of rows) {
-            const sym = r.passed ? '✓' : '✗';
+            // ⊘ (never ran) is deliberately NOT ✓ — a skip that renders as a tick
+            // is how a concept with no motion coverage reads as verified.
+            const sym = r.skipped === true ? '⊘' : r.passed ? '✓' : '✗';
             // Surface-everything rule: failures print FULL evidence; passes a readable slice.
             const evidence = r.passed && r.evidence.length > 140 ? `${r.evidence.slice(0, 140)}…` : r.evidence;
             console.log(`    ${sym} [${r.check_id}] ${r.state_id}: ${evidence}`);
@@ -126,18 +129,24 @@ async function main(): Promise<void> {
 
     console.log(`  Sim type:    ${cached.sim_type ?? 'single (default)'}`);
     console.log(`  States:      ${stateIds.join(', ')}`);
+    console.log(`  Scenario:    ${describeScenario(conceptJson ?? cached.physics_config)}`);
     console.log(`  Motion map:  ${stateIds.map(s => `${s}=${expectsMotion[s] ?? '?'}`).join(', ')}`);
     console.log(`  Reveal map:  ${stateIds.map(s => `${s}=${maxRevealMsByState[s] ?? '?'}ms${holdExpectations[s] ? `(${holdExpectations[s]})` : ''}`).join(', ')}`);
     if (i2FormulaStates > 0) console.log(`  I2 formulas: replaying math_show in ${i2FormulaStates} states (equation-panel frames dumped)`);
 
-    console.log('\n📸 Capturing every state + dense ~1s frames (this takes 1–3 min)...');
+    console.log('\n📸 Capturing every state + dense frames (this takes 1–3 min)...');
     const captureStart = Date.now();
     const capture = await captureSimStates({
         conceptId,
         panelAHtml: cached.sim_html,
         panelBHtml: isMulti ? (cached.secondary_sim_html as string) : undefined,
         stateIds,
-        dense: { intervalMs: 1000, durationMsByState },
+        // intervalMs deliberately NOT set here — it must stay incommensurate with
+        // the drive periods sims animate at, and that constraint (with the
+        // measurement behind it) lives on DENSE_DEFAULT_INTERVAL_MS in
+        // screenshotter.ts. Hardcoding 1000 here silently overrode that default
+        // and phase-locked the sampler to every f_demo=0.5Hz state in Ch.7.
+        dense: { durationMsByState },
         ttsMathByState,
         // Sim-time-aware primary capture — pin+poll PM_simTimeMs to each state's
         // all-reveals-complete time so late reveals are photographed (headless
@@ -157,7 +166,7 @@ async function main(): Promise<void> {
     console.log('\n🎯 Running deterministic gates (pixel + dense motion + regression — $0)...');
     const [pixelResult, regressionResult] = await Promise.all([
         runPixelGate({ conceptId, capture, panelCount: isMulti ? 2 : 1, expectsMotion, holdExpectations }),
-        runRegressionGate({ conceptId, capture }),
+        runRegressionGate({ conceptId, capture, expectsMotion }),
     ]);
 
     const allResults = [...pixelResult.check_results, ...regressionResult.check_results];
@@ -199,13 +208,22 @@ async function main(): Promise<void> {
     console.log(`\n👁  Individual frames (drill-down — every file the sheets were built from):\n`);
     for (const f of dump.files) console.log(f);
 
-    const failed = allResults.filter(r => !r.passed).length;
-    console.log(`\n📊 ${allResults.length} deterministic checks · ${allResults.length - failed} passed · ${failed} failed · $0.00 · ${Date.now() - overallStart}ms`);
-    console.log(failed === 0
-        ? '✅ Deterministic gates clean. Now Read the frames — the eye is the gate the machine cannot replace.\n'
-        : '❌ Deterministic failures above — fix before any founder review.\n');
+    // Skips are counted SEPARATELY from passes — a check that never ran is not
+    // evidence, and reporting it as a pass is a measured defect (skipReport.ts).
+    const t = tally(allResults);
+    console.log(`\n📊 ${tallyLine(t)} · $0.00 · ${Date.now() - overallStart}ms`);
+    const breakdown = skipBreakdown(allResults);
+    if (breakdown.length > 0) {
+        console.log(`\n⊘ GATE COVERAGE — ${t.skipped} check(s) never executed (a skip is NOT evidence):`);
+        for (const line of breakdown) console.log(line);
+    }
+    const blackout = motionGateBlackout(allResults, describeScenario(conceptJson ?? cached.physics_config));
+    if (blackout) console.log(`\n${blackout}`);
+    console.log(verdictLine(t, '✅ Deterministic gates clean. Now Read the frames — the eye is the gate the machine cannot replace.\n'));
 
-    process.exit(failed === 0 ? 0 : 1);
+    // Exit 3 = motion-gate blackout: no failure, but D5 never ran on any state
+    // (unregistered scenario). Machine consumers must not read that as green.
+    process.exit(t.failed > 0 ? 1 : blackout ? 3 : 0);
 }
 
 main().catch(err => {

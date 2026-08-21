@@ -100,7 +100,13 @@
  *      number, the two sibling branches asserted still-correct, and the
  *      pre-fix build (the shipped body with the fold deleted) run as the
  *      control. Products mode is asserted UNTOUCHED — its θ (a, b) is
- *      between vectors and stays obtuse-capable.
+ *      between vectors and stays obtuse-capable. Clause (i) carries the
+ *      SECOND surface of the same symbol: the CONTROL ROW, which showed the
+ *      knob under the label "θ (d₁, d₂)" and so disagreed with the folded
+ *      HUD by up to 50°. It is read as TEXT in mode "lines_planes" (STATE_6
+ *      at the frozen pin / the dense probe / the ramp end / a trusted drag,
+ *      and STATE_9 group B, where there is no angle readout at all), which
+ *      is the read clause (h) made only for products.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -269,7 +275,7 @@ const SHIPPED_ROW_LABEL: Record<string, string> = {};
  * buildVgSandbox). It is never used by any positive assertion.
  */
 function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string,
-  rowPassSrc?: string) {
+  rowPassSrc?: string, thetaLabelSrc?: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function("window", "document", "ROW_RANGE", "ROW_LABEL", [
     labelSrcOverride || grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
@@ -282,7 +288,10 @@ function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?
     // document exactly like vgSyncRampedRows.
     "var VG_ROW_LABEL = ROW_LABEL;",
     grabFn("vgList"), grabFn("vgInGroup"),
-    grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
+    // `thetaLabelSrc` replaces exactly the vgThetaRowLabel body and nothing
+    // else, so §30's control can run the SHIPPED writer over the PRE-FIX
+    // (pair-naming) label — the mutate-one-body precedent of buildVgSandbox.
+    thetaLabelSrc || grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
     // §28 · the ROW-VISIBILITY pass, the one place that decides which rows are
     // on screen. Pulled out WITH a document for the same reason the label
     // writer is: the apply pass AND the scene-group picker both call it, and
@@ -339,9 +348,9 @@ const ROW_ID_KEYS: string[] = (() => {
  * buildVgSandbox and of §25's label control.
  */
 function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom(),
-  srcOverride?: string, rowPassSrc?: string) {
+  srcOverride?: string, rowPassSrc?: string, thetaLabelSrc?: string) {
   const win: Record<string, unknown> = {};
-  const T = vgTextFns(win, dom.document, undefined, rowPassSrc);
+  const T = vgTextFns(win, dom.document, undefined, rowPassSrc, thetaLabelSrc);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
     "vgShowAB", "vgWriteRowLabels", "vgApplyControlRows",
@@ -5075,7 +5084,7 @@ console.log("\n=== 24. THE LABEL IS PART OF THE NUMBER: a generic segment prints
   }
 }
 
-console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control label is not a compile-time string (bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_in_every_mode) ===");
+console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control label is not a compile-time string, and names the OBJECT the knob turns rather than any pair quantity (bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_in_every_mode + control_row_label_names_a_derived_quantity_the_knob_stops_equalling_once_a_convention_fold_lands) ===");
 {
   // The panel is built ONCE, before any state is applied, so every label baked
   // into it describes geometry the renderer has not yet selected. "θ (a, b)"
@@ -5083,6 +5092,17 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   // binds it, a and b are not drawn at all (§22 / vgShowAB), and #9 STATE_6 —
   // whose entire lesson is the angle between d₁ and d₂, and whose ONLY control
   // is this row — read "θ (a, b): 69°".
+  //
+  // THE ROW NAMES THE CONTROL, NOT A MEASURED QUANTITY. The first fix wrote the
+  // PAIR ("θ (d₁, d₂)"), which held only while the line-line angle was published
+  // RAW over [0, 180]; §30's acute fold ended that, and the row then disagreed
+  // with the HUD by up to 50° (bug_class control_row_label_names_a_derived_
+  // quantity_the_knob_stops_equalling_once_a_convention_fold_lands). The knob
+  // TURNS ONE OBJECT (vgObjRotate) on an authored scale, so the row names that
+  // object and nothing else — "turn d₂" — and the reference line is deliberately
+  // not named, because naming two objects is what reads as a pair angle. The
+  // CONTRADICTION half of this claim — the row against the readout beside it,
+  // at the far end of the state's own knob — is §30's clause (i).
   //
   // Measured in TEXT, through the SHIPPED apply pass and the SHIPPED writer
   // (runApplyPass injects the same vgWriteRowLabels the scene-group picker
@@ -5142,17 +5162,24 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     const dom = fakeDom();
     applyOn(LP_STATE, dom);
     const txt = labOf(dom);
-    assertTrue(`a lines_planes state whose knob rotates M2 against M1 labels the row from the AUTHORED lines — "${txt}"`,
-      txt === "θ (d₁, d₂)");
-    assertTrue("...it names d₁ and d₂", txt.indexOf("d₁") >= 0 && txt.indexOf("d₂") >= 0);
+    assertTrue(`a lines_planes state whose knob rotates M2 labels the row from the AUTHORED object it turns — "${txt}"`,
+      txt === "turn d₂");
+    assertTrue("...it names the rotated line, d₂", txt.indexOf("d₂") >= 0);
     assertTrue("...and the products pair is GONE from the row a teacher reads", txt.indexOf("(a, b)") < 0);
+    // The pair claim itself is gone: neither the reference line nor the symbol
+    // the formula surface owns appears, so there is no quantity here for the
+    // acute readout to contradict.
+    assertTrue(`...it does NOT name the reference line d₁ (naming two objects is what reads as a pair angle) — "${txt}"`,
+      txt.indexOf("d₁") < 0);
+    assertTrue(`...and does not reuse θ, which belongs to the state's one formula surface (Rule 34b) — "${txt}"`,
+      txt.indexOf("θ") < 0);
     // Reachability: the label is on a row that is actually on screen. A correct
     // label on a hidden row would pass a text check and teach nobody.
     assertTrue("the θ row is displayed and the panel is open on this state (the label is REACHABLE)",
       dom.get("vg_theta_deg_row").style.display === "block" && dom.get("vg_sliders").style.display === "block");
-    // Order: reference first, rotated second — the order the state's own
-    // formula and readout (angle_lines_deg, "d₁ and d₂") name them in.
-    assertTrue("the reference line is named FIRST and the rotated line second", txt === "θ (" + "d₁" + ", " + "d₂" + ")");
+    // The whole label, character for character: a verb naming what the control
+    // does, then the one object it does it to.
+    assertTrue("the row is exactly the action plus the rotated object", txt === "turn " + "d₂");
     // No OTHER row was renamed by the pass.
     const others = Object.keys(SHIPPED_ROW_LABEL).filter((k) => k !== "theta_deg");
     assertTrue(`the other ${others.length} rows still carry the labels they were built with`,
@@ -5184,17 +5211,17 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   {
     const dom = fakeDom();
     applyOn(LP_STATE, dom);
-    assertTrue(`entry to the lines_planes state derives the label ("${labOf(dom)}")`, labOf(dom) === "θ (d₁, d₂)");
+    assertTrue(`entry to the lines_planes state derives the label ("${labOf(dom)}")`, labOf(dom) === "turn d₂");
     runApplyPass([], PROD_STATE, dom);
     assertTrue(`...and the next mode-omitted state RESTORES it ("${labOf(dom)}")`, labOf(dom) === BUILT);
     runApplyPass([], LP_STATE, dom);
-    assertTrue("...and back again, with no residue in either direction", labOf(dom) === "θ (d₁, d₂)");
+    assertTrue("...and back again, with no residue in either direction", labOf(dom) === "turn d₂");
   }
 
   // (e) THE GROUP SWITCH — #9 STATE_9's shape. theta turns nothing in group A,
-  //     so the row names NOTHING there rather than naming group B's lines; the
+  //     so the row names NOTHING there rather than naming group B's line; the
   //     picker's own re-write (the shipped vgWriteRowLabels the change handler
-  //     calls) brings the pair back when group B is selected.
+  //     calls) names the turned line again when group B is selected.
   {
     const GROUPED = {
       show_sliders: true,
@@ -5214,18 +5241,18 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     const dom = fakeDom();
     const r = applyOn(GROUPED, dom);
     check("the state opens on the first authored group", r.win.PM_vgSceneGroup as string, "A", 0);
-    assertTrue(`group A turns no line with this knob, so the row names NO object — "${labOf(dom)}"`, labOf(dom) === "θ");
+    assertTrue(`group A turns no line with this knob, so the row names NO object — "${labOf(dom)}"`, labOf(dom) === "turn");
     assertTrue("...and in particular does not name group B's lines, which are not on screen",
       labOf(dom).indexOf("d₁") < 0 && labOf(dom).indexOf("d₂") < 0 && labOf(dom).indexOf("(a, b)") < 0);
     // The picker: write the live global and re-run the SHIPPED writer, exactly
     // as the <select>'s change handler does.
     r.win.PM_vgSceneGroup = "B";
     r.T.vgWriteRowLabels(GROUPED.vg);
-    assertTrue(`switching to group B re-derives the pair that group actually shows — "${labOf(dom)}"`,
-      labOf(dom) === "θ (d₁, d₂)");
+    assertTrue(`switching to group B re-derives the line that group actually turns — "${labOf(dom)}"`,
+      labOf(dom) === "turn d₂");
     r.win.PM_vgSceneGroup = "A";
     r.T.vgWriteRowLabels(GROUPED.vg);
-    assertTrue("...and switching back drops them again (the label follows the picker, not the entry)", labOf(dom) === "θ");
+    assertTrue("...and switching back drops it again (the label follows the picker, not the entry)", labOf(dom) === "turn");
     // The handler really does call the writer — a mechanism that exists but is
     // never called is the recorded discharge-against-a-mechanism-that-was-
     // never-built failure in miniature.
@@ -5236,13 +5263,12 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   }
 
   // (f) NOTHING IS EVER INVENTED — every un-derivable case falls back to a bare
-  //     "θ", which names no object at all, and NEVER to the products pair.
+  //     "turn", which names no object at all, and NEVER to the products pair.
   {
     const T = vgTextFns({}, fakeDom().document);
     const lp = (lines: unknown[]) => T.vgThetaRowLabel({ mode: "lines_planes", lines }, null);
     const cases: Array<[string, string]> = [
       ["the rotated line carries no label", lp([{ id: "M1", label: "d₁" }, { id: "M2", rotate: M2_ROT }])],
-      ["the rotated line is the ONLY object (no reference to measure against)", lp([{ id: "M2", label: "d₂", rotate: M2_ROT }])],
       ["nothing in the scene binds theta_deg at all", lp([{ id: "M1", label: "d₁" }, { id: "M2", label: "d₂" }])],
       ["the rotate block binds a DIFFERENT knob", lp([{ id: "M1", label: "d₁" },
         { id: "M2", label: "d₂", rotate: { about: [0, 1, 0], knob: "line2_offset" } }])],
@@ -5252,8 +5278,15 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     ];
     for (const [why, got] of cases) {
       assertTrue(`fallback names no object when ${why} — got "${got}"`,
-        got === "θ" && got.indexOf("a") < 0 && got.indexOf("b") < 0 && got.indexOf("d") < 0);
+        got === "turn" && got.indexOf("a") < 0 && got.indexOf("b") < 0 && got.indexOf("d") < 0
+        && got.indexOf("θ") < 0);
     }
+    // A REFERENCE OBJECT IS NOT REQUIRED — the knob turns d₂ whether or not
+    // anything else is on screen, and the row says so. (Under the pair label
+    // this same scene fell back to a bare "θ": the row went quiet about a
+    // control that was working.)
+    assertTrue(`the rotated line alone, with no reference to measure against, is still named — got "${lp([{ id: "M2", label: "d₂", rotate: M2_ROT }])}"`,
+      lp([{ id: "M2", label: "d₂", rotate: M2_ROT }]) === "turn d₂");
     // A plane may bind the knob too (vgObjRotate turns a plane's normal on the
     // same code path), and then it is named on the same rule.
     assertTrue("a PLANE whose normal binds the knob is named like a line",
@@ -5261,7 +5294,7 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
         mode: "lines_planes",
         lines: [{ id: "L", label: "d" }],
         planes: [{ id: "P", label: "n", normal: [0, 1, 0], rotate: M2_ROT }],
-      }, null) === "θ (d, n)");
+      }, null) === "turn n");
   }
 
   // (g) THE NEGATIVE CONTROL — the pre-fix behaviour, reconstructed from the
@@ -5280,8 +5313,8 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       PRE_SRC.indexOf("vgWriteRowLabels(") < 0 && PRE_SRC !== APPLY_SRC);
     const dom = fakeDom();
     applyOn(LP_STATE, dom, PRE_SRC);
-    expectFail(`the pre-fix row names the objects the knob turns on a lines_planes state (it renders "${labOf(dom)}")`,
-      labOf(dom) === "θ (d₁, d₂)");
+    expectFail(`the pre-fix row names the object the knob turns on a lines_planes state (it renders "${labOf(dom)}")`,
+      labOf(dom) === "turn d₂");
     expectFail(`the pre-fix row keeps the products pair off a state that draws neither a nor b (it renders "${labOf(dom)}")`,
       labOf(dom).indexOf("(a, b)") < 0);
     assertTrue(`...it is exactly the shipped-today defect: the built products label, verbatim, on a lines_planes state ("${labOf(dom)}")`,
@@ -5310,7 +5343,7 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       id: "vg_theta_deg_row", getAttribute: () => null,
       querySelector: (sel: string) => (sel === "label" ? { textContent: text } : null),
     });
-    check("the ⚙ entry derived from the lines_planes row", W(rowEl("θ (d₁, d₂): 69°")), "θ (d₁, d₂) slider", 0);
+    check("the ⚙ entry derived from the lines_planes row", W(rowEl("turn d₂: 69°")), "turn d₂ slider", 0);
     check("...and from the products row, unchanged", W(rowEl("θ (a, b): 60°")), "θ (a, b) slider", 0);
   }
 
@@ -6207,13 +6240,13 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
       EXPECT_LIVE.A.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
     assertTrue("...the picker row stays on screen (a group that hid it would be a trap)",
       dom.get("vg_scene_group_row").style.display === "block");
-    assertTrue("...and the θ row is re-labelled for the lines group B actually shows (the two passes compose)",
-      dom.get("vg_theta_deg_lab").textContent === "θ (d₁, d₂)");
+    assertTrue("...and the θ row is re-labelled for the line group B actually turns (the two passes compose)",
+      dom.get("vg_theta_deg_lab").textContent === "turn d₂");
     pick("A");
     assertTrue(`switching back restores A's rows exactly (${shownRows(dom).join(", ")})`,
       JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
-    assertTrue("...and the θ label drops the pair again (it names nothing group A turns)",
-      dom.get("vg_theta_deg_lab").textContent === "θ");
+    assertTrue("...and the θ label names no object again (group A turns nothing with this knob)",
+      dom.get("vg_theta_deg_lab").textContent === "turn");
     // THE APPLY PASS DID NOT RE-RUN — the three side effects only it produces.
     assertTrue("the group switch did NOT re-run the apply pass: the teacher's drag-seize flag survives (Rule 39c)",
       r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
@@ -7026,6 +7059,202 @@ console.log("\n=== 30. THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obey
     assertTrue("angle_lines_deg is a lines_planes token — it has no publish site outside the resolver",
       (SRC.match(/out\.readouts\.angle_lines_deg =/g) || []).length === 2
       && (SRC.match(/angle_lines_deg =/g) || []).length === 2);
+  }
+
+  // ── (i) THE CONTROL PANEL CARRIES THE SAME SYMBOL — the surface the fold
+  //     was never read against ────────────────────────────────────────────
+  //   bug_class control_row_label_names_a_derived_quantity_the_knob_stops_
+  //   equalling_once_a_convention_fold_lands (MAJOR). Clause (h) reads the θ
+  //   ROW AS TEXT — but only in mode "products", which is exactly why four
+  //   rounds of gating on this state missed the row a teacher actually drags.
+  //   In mode "lines_planes" the row was labelled "θ (d₁, d₂)" and shows the
+  //   KNOB, while the HUD one panel away shows the FOLDED angle: one symbol
+  //   pair, two numbers, 50° apart at the knob's own maximum (row 115°, HUD
+  //   65.0°) — on the state whose narration says the angle is never above
+  //   ninety and whose misconception_watch M4 is "the angle between two lines
+  //   can be more than 90 degrees". The control panel confirmed the belief the
+  //   narration denied.
+  //
+  //   AND IT IS WORSE ON #9 STATE_9's skew group, which no drive dump reaches:
+  //   that group publishes NO angle readout at all, so the row is the ONLY θ
+  //   surface there and nothing on screen contradicts it. That group is
+  //   asserted here, through the scene-group picker's own re-write.
+  //
+  //   THE DISCRIMINATING QUANTITY IS THE PAIR OF SURFACES READ TOGETHER, as
+  //   TEXT, at the state's OWN instants: the label from the SHIPPED writer
+  //   (vgWriteRowLabels — the apply pass and the picker both call it), the
+  //   row's number and the HUD from the SHIPPED frame at the frozen pin
+  //   (t=15000), the dense probe (t=19000), the ramp's end, and a trusted
+  //   teacher drag. Every one of those four instants is a number founder-proxy
+  //   measured on the shipped build, so this clause is pinned to evidence and
+  //   not to a re-derivation.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const ROT_AXIS: V3 = [0.287668, -0.838664, -0.462482];
+
+    // #9 STATE_9's group-B shape, verbatim in the parts that matter: the skew
+    // pair, the same rotate block, the group partition — and NO angle token in
+    // value_readouts, which is the whole reason this group is the dangerous one.
+    const S9: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 1, theta_deg: THETA0, line2_offset: 0,
+      scene_groups: [{ key: "A", label: "line + plane" }, { key: "B", label: "skew pair" }],
+      scene_group: "A",
+      value_readouts: ["skew_distance"],
+      controls: ["scene_group", "theta_deg", "line2_offset"],
+      group_controls: { A: [], B: ["theta_deg", "line2_offset"] },
+      control_ranges: { theta_deg: { min: 25, max: 115 } },
+      lines: [
+        { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d", groups: ["A"], reveal_at_ms: 0 },
+        { id: "M1", point: [-1.2, -0.9, 0.6], dir: D1, role: "dir1", label: "d₁", groups: ["B"], reveal_at_ms: 0 },
+        { id: "M2", point: [0.479887, -1.725775, -0.749677], dir: D2, role: "dir2", label: "d₂", groups: ["B"], reveal_at_ms: 0,
+          offset: { along: ROT_AXIS, zero: 0, knob: "line2_offset" },
+          rotate: { about: ROT_AXIS, zero: THETA0, knob: "theta_deg" } },
+      ],
+      common_perpendicular: { id: "common_perp", between: ["M1", "M2"], role: "derived", groups: ["B"], reveal_at_ms: 0 },
+    };
+
+    /**
+     * THE PRE-FIX LABEL BODY, verbatim from the build this clause convicts
+     * (commit f95347f0, the acute fold). The fix DELETED the reference half, so
+     * there is no shipped text left to mutate — the body is carried here
+     * instead, and guarded three ways below: it must differ from the shipped
+     * body, it must still contain the pair concatenation, and it must
+     * reproduce the exact strings founder-proxy read off the shipped build.
+     */
+    const PRE_THETA_SRC = [
+      'function vgThetaRowLabel(d, group) {',
+      '    d = d || {};',
+      '    if (d.mode !== "lines_planes") return null;',
+      '    var rotLab = null, refLab = null, pools = [vgList(d.lines), vgList(d.planes)];',
+      '    for (var pi = 0; pi < pools.length; pi++) {',
+      '        for (var i = 0; i < pools[pi].length; i++) {',
+      '            var o = pools[pi][i] || {};',
+      '            if (!vgInGroup(o, group)) continue;',
+      '            var lab = (typeof o.label === "string" && o.label !== "") ? o.label : null;',
+      '            var r = o.rotate || null;',
+      '            var turns = !!(r && r.about && r.about.length === 3 && r.knob === "theta_deg");',
+      '            if (turns) { if (rotLab === null) rotLab = lab; }',
+      '            else if (refLab === null && lab) refLab = lab;',
+      '        }',
+      '    }',
+      '    if (!rotLab || !refLab || rotLab === refLab) return "θ";',
+      '    return "θ (" + refLab + ", " + rotLab + ")";',
+      '}',
+    ].join("\n");
+    {
+      const SHIPPED_THETA = grabFn("vgThetaRowLabel");
+      assertTrue("the pre-fix label body differs from the shipped one (the control has something to plant)",
+        PRE_THETA_SRC.trim() !== SHIPPED_THETA.trim() && PRE_THETA_SRC.indexOf('"θ (" + refLab') > 0);
+      assertTrue("...and the SHIPPED body no longer builds a pair label at all (the defect cannot come back quietly)",
+        SHIPPED_THETA.indexOf("θ (") < 0 && SHIPPED_THETA.indexOf("refLab") < 0);
+    }
+
+    type Read = { lab: string; rowVal: number; hud: string | null; hudNum: number | null; row: string };
+    const seed = (dom: ReturnType<typeof fakeDom>) => {
+      for (const k of Object.keys(SHIPPED_ROW_LABEL)) dom.get("vg_" + k + "_lab").textContent = SHIPPED_ROW_LABEL[k];
+      return dom;
+    };
+    /**
+     * The two surfaces, read together off ONE dom: the apply pass writes the
+     * label (and the picker re-writes it on a group switch), the SHIPPED frame
+     * writes the row's number and the HUD.
+     */
+    const readAt = (vg: Record<string, unknown>, ms: number,
+      opts: { group?: string; dragTheta?: number; thetaSrc?: string } = {}): Read => {
+      const dom = seed(fakeDom());
+      const r = runApplyPass([], { show_sliders: true, vg }, dom, undefined, undefined, opts.thetaSrc);
+      if (opts.group) { r.win.PM_vgSceneGroup = opts.group; r.T.vgWriteRowLabels(vg); }
+      if (opts.dragTheta != null) { r.win.PM_vgTheta = opts.dragTheta; r.win.PM_vgThetaDragged = true; }
+      runFrame(vg, ms, dom, r.win, true);
+      const lab = dom.get("vg_theta_deg_lab").textContent;
+      // Under a trusted drag the range input's own handler owns the row's
+      // number (vgSyncRampedRows steps aside by contract), so the number on
+      // screen IS the knob the teacher dragged to.
+      const rowVal = opts.dragTheta != null ? opts.dragTheta : Number(dom.get("vg_theta_deg_val").textContent);
+      const m = /<div id="vg_readout_angle_lines_deg">([^<]*)<\/div>/.exec(dom.get("vg_readout").innerHTML);
+      const hud = m ? m[1] : null;
+      const hn = hud ? Number(/(-?[0-9.]+)°/.exec(hud)![1]) : null;
+      return { lab, rowVal, hud, hudNum: hn, row: lab + ": " + rowVal.toFixed(0) + "°" };
+    };
+    /**
+     * A row makes a PAIR CLAIM when it carries the symbol the state's formula
+     * surface owns (θ) or names two of the scene's objects at once: either way
+     * a teacher reads its number as "the angle between them". A row that makes
+     * that claim MUST agree with the angle readout — and a row that makes it
+     * where there is no readout at all is worse, not better, so the claim is
+     * banned outright rather than merely reconciled.
+     */
+    const OBJ = ["d₁", "d₂"];
+    const pairClaim = (lab: string) => lab.indexOf("θ") >= 0 || OBJ.filter((L) => lab.indexOf(L) >= 0).length >= 2;
+    /** The whole invariant, in one predicate — used by the assertions AND the controls. */
+    const honest = (r: Read) => !pairClaim(r.lab);
+
+    // ── the four instants founder-proxy measured on the shipped build ───────
+    const FROZEN = 15000, DENSE = 19000, RAMP_END = 19500, DRAG = 104;
+    const s6Frozen = readAt(BLOCK, FROZEN);
+    const s6Dense = readAt(BLOCK, DENSE);
+    const s6End = readAt(BLOCK, RAMP_END);
+    const s6Drag = readAt(BLOCK, FROZEN, { dragTheta: DRAG });
+
+    // The fixture reproduces the measured HUD/knob pairs BEFORE anything is
+    // claimed about the label — a clause asserting honesty on instants the
+    // shipped build never reached would prove nothing.
+    check("STATE_6 frozen pin t=15000: the knob is where founder-proxy read it", s6Frozen.rowVal, 92, 0);
+    check("...and the HUD beside it prints the folded angle", s6Frozen.hudNum as number, 87.8, 0.05, "°");
+    check("STATE_6 dense probe t=19000: the knob", s6Dense.rowVal, 112, 0);
+    check("...and the HUD", s6Dense.hudNum as number, 67.5, 0.05, "°");
+    check("STATE_6 ramp end t=19500: the knob reaches its authored maximum", s6End.rowVal, 115, 0);
+    check("...and the HUD prints the equation's answer", s6End.hudNum as number, 65.0, 0.05, "°");
+    check("STATE_6 trusted drag to 104°: the HUD", s6Drag.hudNum as number, 76.0, 0.05, "°");
+
+    // ── THE CLAIM: at every one of them the row names the CONTROL ───────────
+    for (const [why, r] of [["frozen pin t=15000", s6Frozen], ["dense probe t=19000", s6Dense],
+      ["ramp end t=19500", s6End], ["trusted drag to 104°", s6Drag]] as Array<[string, Read]>) {
+      assertTrue(`STATE_6 ${why}: the row names what the knob turns — "${r.row}" beside "${r.hud}"`,
+        r.lab === "turn d₂" && honest(r));
+      assertTrue(`...and makes NO claim the readout contradicts (row ${r.rowVal.toFixed(0)}° vs angle ${(r.hudNum as number).toFixed(1)}°, ${Math.abs(r.rowVal - (r.hudNum as number)).toFixed(1)}° apart)`,
+        !pairClaim(r.lab));
+    }
+
+    // ── STATE_9 GROUP B — the row is the ONLY θ surface there ───────────────
+    const s9a = readAt(S9, 4000);
+    const s9b = readAt(S9, 4000, { group: "B" });
+    const s9bMax = readAt(S9, 4000, { group: "B", dragTheta: 115 });
+    assertTrue(`group B publishes NO angle readout at all (hud: ${JSON.stringify(s9b.hud)}) — nothing on screen can contradict this row`,
+      s9b.hud === null && s9bMax.hud === null);
+    assertTrue(`group A turns nothing with this knob, so the row names no object — "${s9a.lab}"`, s9a.lab === "turn");
+    assertTrue(`group B, at the authored pose: the row names the line it turns — "${s9b.row}"`,
+      s9b.lab === "turn d₂" && s9b.rowVal === 69 && honest(s9b));
+    assertTrue(`group B, theta dragged to MAX: still the control, never a pair angle — "${s9bMax.row}"`,
+      s9bMax.lab === "turn d₂" && s9bMax.rowVal === 115 && !pairClaim(s9bMax.lab));
+
+    // ── THE NEGATIVE CONTROL: the shipped-today build, at the same instants ─
+    {
+      const pre = (vg: Record<string, unknown>, ms: number, o: { group?: string; dragTheta?: number } = {}) =>
+        readAt(vg, ms, { ...o, thetaSrc: PRE_THETA_SRC });
+      const p6Frozen = pre(BLOCK, FROZEN), p6Dense = pre(BLOCK, DENSE), p6End = pre(BLOCK, RAMP_END);
+      const p9b = pre(S9, 4000, { group: "B" }), p9bMax = pre(S9, 4000, { group: "B", dragTheta: 115 });
+      // The control really planted the defect: the exact strings founder-proxy
+      // read off the shipped build come back.
+      assertTrue(`the pre-fix label really was planted — STATE_6 renders "${p6Frozen.row}" (founder-proxy read "θ (d₁, d₂): 92°")`,
+        p6Frozen.lab === "θ (d₁, d₂)" && p6Frozen.row === "θ (d₁, d₂): 92°");
+      assertTrue(`...and STATE_9 group B renders "${p9b.row}" / "${p9bMax.row}" (founder-proxy read 69° and 115°)`,
+        p9b.row === "θ (d₁, d₂): 69°" && p9bMax.row === "θ (d₁, d₂): 115°");
+      expectFail(`the pre-fix STATE_6 frozen frame makes no claim its own readout contradicts (row "${p6Frozen.row}" vs "${p6Frozen.hud}")`,
+        !pairClaim(p6Frozen.lab));
+      expectFail(`the pre-fix STATE_6 at t=19000 agrees with the readout beside it (row ${p6Dense.rowVal}° vs angle ${(p6Dense.hudNum as number).toFixed(1)}°)`,
+        !pairClaim(p6Dense.lab) || Math.abs(p6Dense.rowVal - (p6Dense.hudNum as number)) <= 0.5);
+      expectFail(`the pre-fix STATE_6 at the knob's maximum agrees with the readout (row ${p6End.rowVal}° vs angle ${(p6End.hudNum as number).toFixed(1)}° — ${Math.abs(p6End.rowVal - (p6End.hudNum as number)).toFixed(1)}° apart)`,
+        !pairClaim(p6End.lab) || Math.abs(p6End.rowVal - (p6End.hudNum as number)) <= 0.5);
+      expectFail(`the pre-fix STATE_9 group B names no pair angle where there is no readout to check it against (row "${p9bMax.row}", hud ${JSON.stringify(p9bMax.hud)})`,
+        !pairClaim(p9bMax.lab));
+      // ...and the products row is BYTE-IDENTICAL across the two builds: this
+      // clause's fix cannot have reached mode "products" (clause (h)'s subject).
+      const prodPre = readAt({ a_mag: 3, b_mag: 2, theta_deg: 115, controls: ["theta_deg"], value_readouts: ["theta_deg"] }, 9000, { thetaSrc: PRE_THETA_SRC });
+      const prodNow = readAt({ a_mag: 3, b_mag: 2, theta_deg: 115, controls: ["theta_deg"], value_readouts: ["theta_deg"] }, 9000);
+      assertTrue(`a products row is unchanged by this fix — "${prodNow.lab}" (pre-fix "${prodPre.lab}"), and still the built label`,
+        prodNow.lab === prodPre.lab && prodNow.lab === SHIPPED_ROW_LABEL.theta_deg && prodNow.lab === "θ (a, b)");
+    }
   }
 }
 

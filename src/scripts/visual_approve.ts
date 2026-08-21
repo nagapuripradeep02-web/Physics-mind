@@ -27,7 +27,7 @@ import {
     type BaselineManifest,
 } from '@/lib/validators/visual/regressionGate';
 import { deriveMotionExpectations } from '@/lib/validators/visual/deriveStateMeta';
-import { loadCachedSim, fail } from './lib/loadCachedSim';
+import { loadCachedSim, loadConceptJson, fail } from './lib/loadCachedSim';
 
 function newestRunDir(conceptId: string): string | null {
     const root = join(process.cwd(), '.visual_runs', conceptId);
@@ -51,9 +51,22 @@ async function main(): Promise<void> {
     console.log(`\n📐 Approving visual baselines for ${conceptId}`);
     console.log(`   Source run: ${runDir}\n`);
 
-    // Motion expectations decide the compare default per state.
+    // Motion expectations decide the compare default per state — so they must be
+    // read from the CONCEPT JSON, exactly as THE EYE reads them.
+    //
+    // SCAR (2026-08-13): this read `cached.physics_config` alone, the third copy of
+    // the wrong-source bug fixed in visual_eyes.ts on 2026-08-09 (engine_bug_queue:
+    // eye_gate_skipped_for_an_unregistered_scenario_is_counted_as_a_pass). A
+    // hand-seeded concept's cached physics_config carries only epic_l_path — no
+    // field_3d_config, no states — so resolveField3dStates() returned null, the map
+    // came back EMPTY, and every state was approved as `compare: true` including
+    // states that visibly animate. This is the worse half of the bug: THE EYE merely
+    // fails to check, but this WRITES a baseline that cannot reproduce, and the
+    // resulting H2 noise then teaches everyone to re-approve without looking.
     const cached = await loadCachedSim(conceptId);
-    const expectsMotion = deriveMotionExpectations(cached.physics_config);
+    const conceptJson = loadConceptJson(conceptId);
+    const expectsMotion = deriveMotionExpectations(conceptJson ?? cached.physics_config);
+    const unknownStates: string[] = [];
 
     const statePngs = readdirSync(runDir)
         .filter(f => f.endsWith('__panel_a.png'))
@@ -62,6 +75,42 @@ async function main(): Promise<void> {
 
     const baselineDir = join(process.cwd(), 'visual_baselines', conceptId);
     mkdirSync(baselineDir, { recursive: true });
+
+    // REFUSE to approve a run that would silently STRIP frozen coverage.
+    //
+    // The prune pass below owns this directory, so a state that has no frozen frame
+    // in the source run loses its approved <STATE>__frozen.png — and the frozen
+    // frame is the ONLY deterministic H2 guard an animated state has. Since
+    // 2026-08-13 the harness legitimately DROPS a frozen frame whose sim-time pin
+    // was never reached (a mid-reveal frame is not a baseline), which means a run
+    // captured on a loaded machine can arrive here one frozen frame short. Approving
+    // it would delete real coverage and report success — the exact invisible-loss
+    // shape as the orphan-PNG bug the prune pass exists to fix, but in the direction
+    // no one checks. Explicit opt-out only, and it prints what would be lost.
+    const priorManifestPath = join(baselineDir, 'baselines.json');
+    if (existsSync(priorManifestPath) && !process.argv.includes('--allow-frozen-loss')) {
+        try {
+            const prior = JSON.parse(readFileSync(priorManifestPath, 'utf-8')) as BaselineManifest;
+            const losing = Object.entries(prior.states ?? {})
+                .filter(([sid, meta]) => meta?.compare_frozen === true && !existsSync(join(runDir, `${sid}__frozen.png`)))
+                .map(([sid]) => sid);
+            if (losing.length > 0) {
+                fail(
+                    `REFUSING to approve: ${losing.length} state(s) currently have an approved FROZEN baseline that this `
+                    + `run cannot replace — ${losing.join(', ')}.\n`
+                    + `   The frozen frame is the only deterministic H2 guard an animated state has, and approving would\n`
+                    + `   delete it. The usual cause is a capture whose sim-time pin was never reached on a loaded machine\n`
+                    + `   (THE EYE prints "Frozen frame DROPPED" in its capture warnings) — re-run visual:eyes on a quiet\n`
+                    + `   box rather than approving a degraded run.\n\n`
+                    + `   If dropping that coverage is genuinely intended (e.g. the state no longer exists), re-run with\n`
+                    + `     npm run visual:approve -- ${conceptId} ${runDir} --allow-frozen-loss`,
+                );
+            }
+        } catch {
+            // Unreadable prior manifest: nothing to protect, continue. (fail() exits
+            // the process rather than throwing, so a refusal never lands here.)
+        }
+    }
 
     const states: BaselineManifest['states'] = {};
     for (const file of statePngs) {
@@ -73,9 +122,18 @@ async function main(): Promise<void> {
             .toBuffer();
         const dest = join(baselineDir, `${stateId}.png`);
         writeFileSync(dest, downscaled);
+        // compare:false is EARNED by a declared-motion state. `undefined` is not a
+        // declaration of stillness — it means the scenario is unregistered in
+        // deriveMotionExpectations, so live compare here is a GUESS. It stays ON
+        // (the pinned primary capture usually reproduces, and this is real H2
+        // coverage worth keeping), but it is announced below rather than silently
+        // assumed: an unpinnable animated state under a guessed compare:true is
+        // exactly how electric_potential_point_charge got a 2.90% baseline that
+        // could never pass (2026-08-11).
         const animated = expectsMotion[stateId] === true;
+        if (expectsMotion[stateId] === undefined) unknownStates.push(stateId);
         states[stateId] = { compare: !animated };
-        console.log(`   ${animated ? '◌' : '✓'} ${stateId}.png (${Math.round(downscaled.length / 1024)} KB)${animated ? ' — compare:false (animated state, reference only)' : ''}`);
+        console.log(`   ${animated ? '◌' : '✓'} ${stateId}.png (${Math.round(downscaled.length / 1024)} KB)${animated ? ' — compare:false (animated state, reference only)' : ''}${expectsMotion[stateId] === undefined ? ' — compare:true on an UNKNOWN motion expectation (guess)' : ''}`);
 
         // Frozen baseline — the SET_TIME_FREEZE deterministic capture. This is
         // what gives ANIMATED states real H2 protection (live compare is off
@@ -123,6 +181,15 @@ async function main(): Promise<void> {
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
     console.log(`\n   Manifest: ${manifestPath}`);
+    if (unknownStates.length > 0) {
+        console.log(
+            `\n⚠  ${unknownStates.length}/${statePngs.length} state(s) had an UNKNOWN motion expectation and were `
+            + `live-compared on a guess: ${unknownStates.join(', ')}.\n`
+            + `   THE EYE's D5 motion gate also never ran on these states — a dead animation would have looked\n`
+            + `   identical to a working one in the run you are approving. Register this scenario in\n`
+            + `   deriveMotionExpectations (see npm run check:motion-registry) so both the gate and this default\n`
+            + `   stop guessing.`);
+    }
     console.log(`\n✅ ${statePngs.length} baselines approved${orphans.length > 0 ? `, ${orphans.length} orphan(s) pruned` : ''}. Remember: git add visual_baselines/${conceptId}\n`);
 }
 

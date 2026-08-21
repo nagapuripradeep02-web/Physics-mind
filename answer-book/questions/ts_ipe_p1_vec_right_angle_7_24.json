@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_right_angle_7_24",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "When two right-angled vectors of magnitude 7 units and 24 units combine, what is the magnitude of their resultant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula at 90°",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 8 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "The formula at 90°",
+        "marks": 1,
+        "mark_note": "Setup",
+        "lines": [
+          "At θ = 90°, cos θ = 0, so the",
+          "parallelogram law becomes Pythagoras:",
+          {
+            "text": "R = √(P² + Q²) = √(7² + 24²)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say WHY the cross term is gone: cos 90° = 0.",
+        "why": "Perpendicular vectors are the one case where the general law collapses to Pythagoras, because the 2PQ cos θ term vanishes.",
+        "common_mistakes": [
+          "Keeping a 2PQ term at 90°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 90 = 0, so R = √(7² + 24²).",
+          "accept": [
+            "cos ninety is zero",
+            "root of forty nine plus five seventy six",
+            "Pythagoras avutundi"
+          ],
+          "reject": [
+            "the answer is twenty five"
+          ],
+          "heard_as": [
+            "cos ninety",
+            "seven",
+            "twenty four"
+          ]
+        }
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "R = √(49 + 576) = √625",
+            "style": "eq"
+          },
+          {
+            "text": "R = 25 units",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Box the value with \"units\".",
+        "why": "7-24-25 is a Pythagorean triple — the clean 625 confirms the working.",
+        "common_mistakes": [
+          "Adding 7 + 24 = 31 as if the vectors were parallel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the resultant is √625 = 25 units.",
+          "accept": [
+            "root six twenty five is twenty five",
+            "twenty five units",
+            "iravai aidu units"
+          ],
+          "reject": [
+            "cos ninety is zero"
+          ],
+          "heard_as": [
+            "twenty five",
+            "25"
+          ]
+        }
+      }
+    ]
+  }
+}

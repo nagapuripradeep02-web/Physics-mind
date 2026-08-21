@@ -454,6 +454,26 @@ export interface CheckResult {
     /** Vision-model explanation. Required when passed=false. */
     evidence: string;
     bug_class: BugClass;
+    /**
+     * TRUE when this check did not actually execute — the input it needed was
+     * absent (no dense series, no approved baseline) or the declaration it
+     * enforces on was unknown (D5's motion expectation). A skip is still
+     * `passed: true` deliberately: the gate fails CLOSED and never blocks a run
+     * on missing inputs. But a skip is NOT evidence, and conflating the two is a
+     * measured defect, not a theoretical one:
+     *
+     *   engine_bug_queue: eye_gate_skipped_for_an_unregistered_scenario_is_
+     *   counted_as_a_pass (OPEN). lines_and_planes_in_space's first run printed
+     *   "39 checks · 39 passed · 0 failed" where NINE were skips (8× D5 + H2) and
+     *   the motion gate had never executed once. The 2026-08-12 registry audit
+     *   measured the scale: 344 of 653 baseline-locked states (52.7%) carry an
+     *   unknown motion expectation, so D5 has never run on 41 concepts — every
+     *   one of which reported a clean green.
+     *
+     * Every reporter MUST count skips separately from passes. Do not use this
+     * field to change pass/fail semantics.
+     */
+    skipped?: boolean;
 }
 
 /** Aggregate result returned by /api/validate-simulation */

@@ -194,14 +194,14 @@ async function buildD1pResult(capture: CaptureResult): Promise<CheckResult> {
 
     if (!ats || ats.frames_b64.length < 2) {
         return mkResult('D1p', 'TIMESERIES', true,
-            'Skipped — animation_timeseries unavailable or has <2 frames.');
+            'Skipped — animation_timeseries unavailable or has <2 frames.', true);
     }
 
     const firstB64 = ats.frames_b64[0];
     const lastB64 = ats.frames_b64[ats.frames_b64.length - 1];
     if (!firstB64 || !lastB64) {
         return mkResult('D1p', `TIMESERIES@${ats.state_id}`, true,
-            'Skipped — first or last frame missing.');
+            'Skipped — first or last frame missing.', true);
     }
 
     return await runD1pDiff(firstB64, lastB64, ats.state_id, ats.capture_times_ms);
@@ -217,7 +217,7 @@ async function runD1pDiff(
         const [a, b] = await Promise.all([decodeRgba(firstB64), decodeRgba(lastB64)]);
         if (a.width !== b.width || a.height !== b.height) {
             return mkResult('D1p', `TIMESERIES@${stateId}`, true,
-                `Skipped — frame dimensions differ (${a.width}x${a.height} vs ${b.width}x${b.height}).`);
+                `Skipped — frame dimensions differ (${a.width}x${a.height} vs ${b.width}x${b.height}).`, true);
         }
         const totalPx = a.width * a.height;
         // pixelmatch's `output` arg is `Uint8Array | Uint8ClampedArray | void`.
@@ -233,7 +233,7 @@ async function runD1pDiff(
         return mkResult('D1p', `TIMESERIES@${stateId}`, passed, evidence);
     } catch (err) {
         return mkResult('D1p', `TIMESERIES@${stateId}`, true,
-            `Skipped — pixel decode failed: ${err instanceof Error ? err.message : String(err)}`);
+            `Skipped — pixel decode failed: ${err instanceof Error ? err.message : String(err)}`, true);
     }
 }
 
@@ -255,7 +255,7 @@ async function runDenseChecks(
     if (series.frames_b64.length < 3) {
         return {
             results: (['D5', 'D6', 'D7'] as const).map(id =>
-                mkResult(id, stateId, true, `Skipped — dense series has ${series.frames_b64.length} frames (<3).`)),
+                mkResult(id, stateId, true, `Skipped — dense series has ${series.frames_b64.length} frames (<3).`, true)),
         };
     }
 
@@ -264,7 +264,7 @@ async function runDenseChecks(
         pairs = await adjacentDiffRatios(series.frames_b64);
     } catch (err) {
         const why = `Skipped — dense frame decode failed: ${err instanceof Error ? err.message : String(err)}`;
-        return { results: (['D5', 'D6', 'D7'] as const).map(id => mkResult(id, stateId, true, why)) };
+        return { results: (['D5', 'D6', 'D7'] as const).map(id => mkResult(id, stateId, true, why, true)) };
     }
 
     // D6/D7 read the UNCHANGED canvas-ratio series below — their median-relative
@@ -305,7 +305,12 @@ async function runDenseChecks(
         results.push(mkResult('D5', stateId, passed, evidence));
     } else {
         results.push(mkResult('D5', stateId, true,
-            `Skipped — motion expectation ${expectsMotion === false ? 'declared static' : 'unknown'} for ${stateId}.`));
+            expectsMotion === false
+                ? `Skipped — motion expectation declared static for ${stateId}.`
+                : `Skipped — motion expectation UNKNOWN for ${stateId}: this scenario has no branch in `
+                  + `deriveMotionExpectations, so the motion gate did not run on this state and NOTHING is `
+                  + `asserted about its pixels. Audit the fleet with npm run check:motion-registry.`,
+            true));
     }
 
     // D6 — no mid-state pixel teleport
@@ -652,6 +657,12 @@ function mkResult(
     stateId: string,
     passed: boolean,
     evidence: string,
+    /**
+     * Pass `true` at every site whose evidence begins "Skipped — ". A skip stays
+     * `passed: true` (fail-closed on missing inputs) but MUST NOT be reported as
+     * a pass — see CheckResult.skipped in spec.ts for the measured defect.
+     */
+    skipped = false,
 ): CheckResult {
     const spec = VISUAL_CHECKS[id];
     return {
@@ -661,6 +672,7 @@ function mkResult(
         passed,
         evidence,
         bug_class: spec.bugClass,
+        ...(skipped ? { skipped: true } : {}),
     };
 }
 

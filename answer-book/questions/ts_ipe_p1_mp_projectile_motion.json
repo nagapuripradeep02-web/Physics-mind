@@ -1,0 +1,845 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_projectile_motion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the trajectory of a projectile is a parabola. Derive expressions for its time of flight, maximum height and horizontal range.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition and components",
+      "marks": 2
+    },
+    {
+      "label": "Labelled figure",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the path",
+      "marks": 2
+    },
+    {
+      "label": "Time of flight",
+      "marks": 1
+    },
+    {
+      "label": "Maximum height",
+      "marks": 1
+    },
+    {
+      "label": "Horizontal range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "cuts": [
+    {
+      "key": "laq",
+      "label": "8-mark answer",
+      "qtype": "LAQ",
+      "marks_total": 8,
+      "paper_section": "Section C",
+      "expected_time_min": 15,
+      "mark_split": [
+        {
+          "label": "Definition and components",
+          "marks": 2
+        },
+        {
+          "label": "Labelled figure",
+          "marks": 1
+        },
+        {
+          "label": "Equation of the path",
+          "marks": 2
+        },
+        {
+          "label": "Time of flight",
+          "marks": 1
+        },
+        {
+          "label": "Maximum height",
+          "marks": 1
+        },
+        {
+          "label": "Horizontal range",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_definition": {
+          "marks": 1
+        },
+        "s2_figure": {
+          "marks": 1
+        },
+        "s3_components": {
+          "marks": 1
+        },
+        "s4_trajectory": {
+          "marks": 2
+        },
+        "s5_time_of_flight": {
+          "marks": 1
+        },
+        "s6_max_height": {
+          "marks": 1
+        },
+        "s7_range": {
+          "marks": 1
+        },
+        "s8_notes": {
+          "marks": 0
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The full question as the paper asks it: parabola, then time of flight, height and range. The 8-mark split is a claim."
+    },
+    {
+      "key": "saq",
+      "label": "4-mark: height and range",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "question_text": "Show that the maximum height and the horizontal range of a projectile are u²sin²θ/2g and u²sin2θ/g.",
+      "mark_split": [
+        {
+          "label": "Labelled figure",
+          "marks": 1
+        },
+        {
+          "label": "Maximum height",
+          "marks": 1
+        },
+        {
+          "label": "Time of flight and range",
+          "marks": 2
+        }
+      ],
+      "steps": {
+        "s2_figure": {
+          "marks": 1
+        },
+        "s6_max_height": {
+          "marks": 1,
+          "lines": [
+            "A body is projected from O with speed u",
+            "at an angle θ to the horizontal.",
+            {
+              "text": "Along x:  u cos θ,   Along y:  u sin θ",
+              "style": "eq"
+            },
+            "At the highest point A the vertical",
+            "velocity is zero.",
+            {
+              "text": "v² − u² = 2as,  a = −g,  s = H",
+              "style": "eq"
+            },
+            {
+              "text": "0 − u² sin²θ = −2 g H",
+              "style": "eq"
+            },
+            {
+              "text": "H = u² sin²θ / 2g",
+              "style": "boxed"
+            }
+          ]
+        },
+        "s7_range": {
+          "marks": 2,
+          "label": "Time of flight and range",
+          "lines": [
+            "At the landing point B, y = 0 at t = T:",
+            {
+              "text": "0 = (u sin θ) T − ½ g T²",
+              "style": "eq"
+            },
+            {
+              "text": "T = 2u sin θ / g",
+              "style": "eq"
+            },
+            "The horizontal velocity never changes, so",
+            {
+              "text": "R = (u cos θ)(2u sin θ / g)",
+              "style": "eq"
+            },
+            {
+              "text": "R = 2u² sin θ cos θ / g",
+              "style": "eq"
+            },
+            "and since sin 2θ = 2 sin θ cos θ,",
+            {
+              "text": "R = u² sin 2θ / g",
+              "style": "boxed"
+            }
+          ]
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "Sri Chaitanya Fastrack SHORT ANSWER ***2 of Unit 4, three-star. The 4-mark split and the decision to fold the time of flight into the range step are invented."
+    },
+    {
+      "key": "saq_parabola",
+      "label": "4-mark: parabola",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "question_text": "Show that the trajectory of an object thrown at an angle with the horizontal is a parabola.",
+      "mark_split": [
+        {
+          "label": "Labelled figure",
+          "marks": 1
+        },
+        {
+          "label": "Resolving u",
+          "marks": 1
+        },
+        {
+          "label": "Equation of the path",
+          "marks": 2
+        }
+      ],
+      "steps": {
+        "s2_figure": {
+          "marks": 1
+        },
+        "s3_components": {
+          "marks": 1
+        },
+        "s4_trajectory": {
+          "marks": 2
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) SHORT ANSWER ***4 of Unit 4, three-star. Same authored steps as the 8-mark answer, stopping at the parabola. The 4-mark split is invented."
+    }
+  ],
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Motion in a Plane · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Define projectile",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Projectile:",
+            "style": "heading"
+          },
+          "A body thrown into space at an angle with",
+          "the horizontal, moving under gravity alone,",
+          "is called a projectile.",
+          "Air resistance is neglected."
+        ],
+        "margin_note": "Say \"under gravity alone\". The examiner looks for that phrase, and for air resistance being neglected.",
+        "why": "Two facts the whole derivation rests on are hidden in this sentence: no horizontal force, and a constant vertical acceleration g. State them and every later line follows.",
+        "common_mistakes": [
+          "Writing \"thrown at 90 degrees\" — a straight-up throw is not this case.",
+          "Leaving out that air resistance is neglected."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a projectile is a body thrown at an angle to the horizontal that moves under gravity alone.",
+          "accept": [
+            "a body thrown at an angle to the horizontal",
+            "it moves only under gravity",
+            "projectile definition, thrown at an angle, only gravity acts",
+            "first I define projectile",
+            "body projected at an angle, air resistance neglected"
+          ],
+          "reject": [
+            "the path is a parabola",
+            "range is u squared sin two theta by g"
+          ],
+          "heard_as": [
+            "projectile",
+            "projectail",
+            "thrown at an angle",
+            "under gravity"
+          ]
+        }
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the figure",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "fig_projectile",
+          "width": 470,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 50 260 L 440 260",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 430 254 L 440 260 L 430 266",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 60 270 L 60 40",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y_head",
+              "d": "M 54 50 L 60 40 L 66 50",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 446,
+              "y": 280,
+              "text": "x",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 46,
+              "y": 36,
+              "text": "y",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 42,
+              "y": 280,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "path",
+              "d": "M 60 260 Q 230 -80 400 260",
+              "ms": 900,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 404,
+              "y": 281,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "u_vec",
+              "d": "M 60 260 L 150 150",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "u_head",
+              "d": "M 146 164 L 150 150 L 137 157",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_u",
+              "x": 106,
+              "y": 186,
+              "text": "u",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 106 260 A 46 46 0 0 0 89 224",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 112,
+              "y": 246,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "proj_v",
+              "d": "M 150 150 L 150 260",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "proj_h",
+              "d": "M 150 150 L 60 150",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_usin",
+              "x": 156,
+              "y": 212,
+              "text": "u sin θ",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_ucos",
+              "x": 78,
+              "y": 142,
+              "text": "u cos θ",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "apex_drop",
+              "d": "M 230 90 L 230 260",
+              "ms": 400,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 233,
+              "y": 80,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 240,
+              "y": 182,
+              "text": "H",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "apex_v",
+              "d": "M 230 90 L 282 90",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "apex_v_head",
+              "d": "M 273 84 L 282 90 L 273 96",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_apexv",
+              "x": 286,
+              "y": 84,
+              "text": "u cos θ",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "range_line",
+              "d": "M 60 292 L 400 292",
+              "ms": 500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "range_head_l",
+              "d": "M 70 286 L 60 292 L 70 298",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "range_head_r",
+              "d": "M 390 286 L 400 292 L 390 298",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 222,
+              "y": 312,
+              "text": "R",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "Label O, A, B, the angle θ, both components, H and R. One mark is for a complete, labelled figure.",
+        "why": "Every later line names a point from this figure — A is where the vertical velocity is zero, B is where y returns to zero. Without them the examiner cannot follow H or R.",
+        "common_mistakes": [
+          "Drawing the path as an arc of a circle instead of a parabola.",
+          "Marking H at the end of the path instead of at the top.",
+          "Leaving the angle θ unmarked at O."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn at this point. Naming the act of drawing is full credit.",
+          "accept": [
+            "then I draw the figure",
+            "draw the projectile path",
+            "diagram geestha",
+            "I draw the parabola with O A and B",
+            "draw the trajectory and mark the angle"
+          ],
+          "reject": [
+            "the path of a projectile is a parabola",
+            "at the top the vertical velocity is zero"
+          ],
+          "heard_as": [
+            "diagram",
+            "figure",
+            "draw",
+            "graph",
+            "picture",
+            "trajectory"
+          ]
+        }
+      },
+      {
+        "id": "s3_components",
+        "kind": "equation",
+        "label": "Resolve u",
+        "marks": 1,
+        "mark_note": "Components",
+        "lines": [
+          "Let the body be projected from O with",
+          "speed u at an angle θ to the horizontal.",
+          {
+            "text": "Along x:  u cos θ,   acceleration = 0",
+            "style": "eq"
+          },
+          {
+            "text": "Along y:  u sin θ,   acceleration = −g",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Both components come from the one speed u. The horizontal one never changes; only the vertical one does.",
+        "why": "Projectile motion is two ordinary straight-line motions happening at once. Splitting u is what lets you use the equations of motion you already know, one axis at a time.",
+        "common_mistakes": [
+          "Swapping sin and cos between the two axes.",
+          "Giving the horizontal motion an acceleration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That u is resolved into u cos theta horizontally and u sin theta vertically, with zero horizontal acceleration and −g vertically.",
+          "accept": [
+            "resolve u into u cos theta and u sin theta",
+            "horizontal component u cos theta, vertical component u sin theta",
+            "along x there is no acceleration, along y it is minus g",
+            "components ni resolve chestha",
+            "split the velocity into horizontal and vertical parts"
+          ],
+          "reject": [
+            "the path is a parabola",
+            "time of flight is two u sin theta by g"
+          ],
+          "heard_as": [
+            "u cos theta",
+            "you cos theta",
+            "u sin theta",
+            "components",
+            "resolve"
+          ]
+        }
+      },
+      {
+        "id": "s4_trajectory",
+        "kind": "equation",
+        "label": "Equation of the path",
+        "marks": 2,
+        "mark_note": "Trajectory",
+        "lines": [
+          "Let the body be at P(x, y) after time t.",
+          "Along x, the velocity is constant:",
+          {
+            "text": "x = (u cos θ) t",
+            "style": "eq"
+          },
+          {
+            "text": "∴ t = x / (u cos θ)",
+            "style": "eq"
+          },
+          "Along y, with acceleration −g:",
+          {
+            "text": "y = (u sin θ) t − ½ g t²",
+            "style": "eq"
+          },
+          "Substituting for t:",
+          {
+            "text": "y = x tan θ − g x² / (2u² cos²θ)",
+            "style": "eq"
+          },
+          "Here tan θ and g/(2u²cos²θ) are constants,",
+          {
+            "text": "y = A x − B x²",
+            "style": "boxed"
+          },
+          "which is the equation of a parabola."
+        ],
+        "margin_note": "Eliminate t between the two equations. Two of the eight marks are for this step, so show the substitution.",
+        "why": "x and y each depend on time, so neither alone shows the shape of the path. Removing t leaves a relation between x and y only — and that relation is what a parabola is.",
+        "common_mistakes": [
+          "Stopping at x and y separately without eliminating t.",
+          "Dropping the minus sign and getting an upward curve.",
+          "Not saying that A and B are constants, which is the whole point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t is eliminated between x and y to give y in terms of x alone, of the form y = Ax − Bx², a parabola.",
+          "accept": [
+            "substitute t from the x equation into the y equation",
+            "eliminate t and you get y equals A x minus B x squared",
+            "y in terms of x only, so it is a parabola",
+            "t ni eliminate chesi parabola vasthundi",
+            "the equation of the trajectory is a parabola"
+          ],
+          "reject": [
+            "maximum height is u squared sin squared theta by two g",
+            "range is u squared sin two theta by g"
+          ],
+          "heard_as": [
+            "parabola",
+            "prabola",
+            "trajectory",
+            "eliminate t",
+            "a x minus b x squared"
+          ]
+        }
+      },
+      {
+        "id": "s5_time_of_flight",
+        "kind": "equation",
+        "label": "Time of flight",
+        "marks": 1,
+        "mark_note": "Time of flight",
+        "lines": [
+          "At the landing point B the body is back",
+          "at the same level, so y = 0 at t = T.",
+          {
+            "text": "0 = (u sin θ) T − ½ g T²",
+            "style": "eq"
+          },
+          {
+            "text": "½ g T = u sin θ",
+            "style": "eq"
+          },
+          {
+            "text": "T = 2u sin θ / g",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "T is the time for the WHOLE path. The time to the top is half of it.",
+        "why": "The range needs a time to multiply by, and this is it. Setting y back to zero is what picks out the landing instant rather than any other moment.",
+        "common_mistakes": [
+          "Using the time to the top instead of the whole flight in the range.",
+          "Cancelling T without saying T is not zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 0 at landing gives T = 2u sin theta / g.",
+          "accept": [
+            "put y equals zero at the end to get the time of flight",
+            "time of flight is two u sin theta by g",
+            "at B the displacement is zero so T equals two u sin theta over g",
+            "time of flight T ni theesukunta",
+            "the total time in the air"
+          ],
+          "reject": [
+            "maximum height is u squared sin squared theta by two g",
+            "range equals horizontal velocity into time"
+          ],
+          "heard_as": [
+            "time of flight",
+            "two u sin theta by g",
+            "T equals"
+          ]
+        }
+      },
+      {
+        "id": "s6_max_height",
+        "kind": "equation",
+        "label": "Maximum height",
+        "marks": 1,
+        "mark_note": "Maximum height",
+        "lines": [
+          "At the highest point A the vertical",
+          "velocity is zero.",
+          {
+            "text": "v² − u² = 2as,  a = −g,  s = H",
+            "style": "eq"
+          },
+          {
+            "text": "0 − u² sin²θ = −2 g H",
+            "style": "eq"
+          },
+          {
+            "text": "H = u² sin²θ / 2g",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Use only the VERTICAL velocity here. The horizontal one is still u cos θ at the top, and it is not zero.",
+        "why": "The top is defined by the vertical velocity reaching zero — that single condition is what turns the equation of motion into a formula for H.",
+        "common_mistakes": [
+          "Setting the whole velocity to zero at the top instead of only the vertical part.",
+          "Using u instead of u sin θ in v² − u² = 2as."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vertical velocity is zero at the top, giving H = u² sin²θ / 2g.",
+          "accept": [
+            "at the top the vertical velocity is zero",
+            "maximum height is u squared sin squared theta by two g",
+            "use v squared minus u squared equals two a s with a equals minus g",
+            "peak daggara vertical velocity zero",
+            "the highest point gives the maximum height formula"
+          ],
+          "reject": [
+            "range is u squared sin two theta by g",
+            "time of flight is two u sin theta by g"
+          ],
+          "heard_as": [
+            "maximum height",
+            "max height",
+            "H max",
+            "u squared sin squared theta"
+          ]
+        }
+      },
+      {
+        "id": "s7_range",
+        "kind": "boxed_final",
+        "label": "Horizontal range",
+        "marks": 1,
+        "mark_note": "Range",
+        "lines": [
+          "The horizontal velocity never changes, so",
+          {
+            "text": "R = (u cos θ) × T",
+            "style": "eq"
+          },
+          {
+            "text": "R = (u cos θ)(2u sin θ / g)",
+            "style": "eq"
+          },
+          {
+            "text": "R = 2u² sin θ cos θ / g",
+            "style": "eq"
+          },
+          "and since sin 2θ = 2 sin θ cos θ,",
+          {
+            "text": "R = u² sin 2θ / g",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Box the final result. Write the sin 2θ line — the marked answer is in that form, not in sin θ cos θ.",
+        "why": "Horizontal motion has no acceleration, so distance is simply speed times time. The double-angle step is what puts the answer in the form the question asks for.",
+        "common_mistakes": [
+          "Leaving the answer as 2u² sin θ cos θ / g.",
+          "Using the time to the top instead of the full time of flight."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R = horizontal velocity × time of flight = u² sin 2θ / g.",
+          "accept": [
+            "range is horizontal velocity into time of flight",
+            "range equals u squared sin two theta by g",
+            "u cos theta into two u sin theta by g",
+            "range R ni raastha u square sin two theta by g",
+            "using sin two theta equals two sin theta cos theta"
+          ],
+          "reject": [
+            "maximum height is u squared sin squared theta by two g",
+            "the path is a parabola"
+          ],
+          "heard_as": [
+            "range",
+            "sin two theta",
+            "sine two theta",
+            "u squared sin two theta by g"
+          ]
+        }
+      },
+      {
+        "id": "s8_notes",
+        "kind": "text",
+        "label": "Special cases (extra)",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Note:",
+            "style": "heading"
+          },
+          "R is maximum when sin 2θ = 1,",
+          "that is when θ = 45°.",
+          "Two angles θ and (90° − θ) give the same R."
+        ],
+        "margin_note": "Not asked. Write it only if time is left.",
+        "why": "These two facts are the fastest check on your own formula, and each is a starred very-short question in its own right.",
+        "common_mistakes": [
+          "Claiming 45° also gives the maximum height — it does not."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the special cases are mentioned. Naming them is full credit.",
+          "accept": [
+            "then the special cases",
+            "maximum range at forty five degrees",
+            "complementary angles give the same range",
+            "special cases cheptha",
+            "and finally the notes"
+          ],
+          "reject": [
+            "range is u squared sin two theta by g"
+          ],
+          "heard_as": [
+            "forty five degrees",
+            "45 degrees",
+            "special cases",
+            "complementary"
+          ]
+        }
+      }
+    ]
+  }
+}

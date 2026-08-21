@@ -102,6 +102,17 @@ jobs:
       - name: Concept JSON schema + registration cross-check
         run: npm run validate:concepts
 
+      # THE EYE's D5 motion gate silently never ran on 41 of 96 baseline-locked
+      # concepts — 344 states carried an UNKNOWN expectation and skips were
+      # reported as passes (measured 2026-08-13, engine_bug_queue OPEN row
+      # motion_expectation_registry_covers_half_the_fleet). The budget below is
+      # that census. Lower it as scenario registrations land in deriveStateMeta;
+      # it must NEVER rise — an increase means a scenario shipped unregistered.
+      # Reads only tracked local files (visual_baselines/ + src/data/concepts/):
+      # no .env.local, no browser, no network.
+      - name: Motion-registry ratchet (D5 coverage must not regress)
+        run: npm run check:motion-registry -- --budget 344
+
       # validate:concepts scans src/data/concepts/ NON-recursively by design (the
       # isolation contract, docs/CHEMISTRY_ARCHITECTURE.md §7), so it never sees
       # src/data/concepts/chemistry/ — a broken chemistry concept passed this

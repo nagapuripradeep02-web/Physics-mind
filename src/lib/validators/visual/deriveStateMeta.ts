@@ -634,6 +634,18 @@ export function deriveMotionExpectations(
                 }
                 // Seeded at rest with no drive: fall through undefined, exactly
                 // like the not-provable force_rig paths above.
+                //   E10 (rotmech 0c-5) DELIBERATELY DOES NOT WIDEN THIS. The
+                // drive roller and the brake pad genuinely repaint pixels while
+                // they travel, but only inside a bounded window that ends AT the
+                // engage instant — the dense capture samples at t = 1 ms and then
+                // every 1000 ms, so whether two consecutive samples straddle that
+                // window is an accident of the authored schedule, not a property
+                // of the state. Declaring motion from an actuator would therefore
+                // over-declare on exactly the state class this branch already
+                // refuses to over-declare on (a drive a co-engaged brake
+                // outweighs: a static hold, whose actuator still travels in and
+                // then stands still). Skipping stays correct; over-declaring
+                // would make D5 fail on correct work.
             }
             // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
             // genuinely CYCLE (the payoff is the repetition — "cut it
@@ -987,6 +999,38 @@ function resolveField3dScenarioType(config: Record<string, unknown> | null): str
     if (f3dCfg && typeof f3dCfg.scenario_type === 'string') return f3dCfg.scenario_type;
     if (typeof config.scenario_type === 'string') return config.scenario_type;
     return null;
+}
+
+/**
+ * Human-readable "<family> / <scenario_type>" for a concept config — the label a
+ * report needs when it has to NAME the scenario whose motion classification is
+ * missing (engine_bug_queue prevention rule on
+ * eye_manifest_counts_skipped_checks_as_passed…: "a scenario_type the motion
+ * classifier cannot resolve raises an explicit UNCLASSIFIED warning NAMING the
+ * scenario"). Reads the same two shapes the resolvers above accept.
+ */
+export function describeScenario(config: Record<string, unknown> | null): string {
+    if (!config) return '(no config)';
+    const f3d = asObj(config.field_3d_config);
+    if (f3d || typeof config.scenario_type === 'string') {
+        return `field_3d / ${resolveField3dScenarioType(config) ?? '(no scenario_type)'}`;
+    }
+    const pf = asObj(config.particle_field_config);
+    if (pf) return `particle_field / ${typeof pf.topology === 'string' ? `topology:${pf.topology}` : '(no topology)'}`;
+    const pcpl = asObj(config.parametric_config);
+    if (pcpl) return `parametric / ${typeof pcpl.scenario_type === 'string' ? pcpl.scenario_type : '(no scenario_type)'}`;
+    // PCPL / mechanics_2d concepts carry NO renderer config block at all — their
+    // scenes live in epic_l_path.states + scene_composition, and the renderer is
+    // named only by renderer_pair.panel_a. Report that label and nothing more:
+    // "mechanics_2d" there does NOT mean mechanics_2d_renderer.ts runs (PCPL_CONCEPTS
+    // in aiSimulationGenerator overrides it — CLAUDE.md §1 naming trap), and this
+    // file's PCPL motion branches key off STATE SHAPE (variable_choreography,
+    // scene animation types), never off this string. Claiming a family here would
+    // be a guess; naming the label is a fact.
+    const rp = asObj(config.renderer_pair);
+    const panelA = rp && typeof rp.panel_a === 'string' ? rp.panel_a : null;
+    if (panelA) return `2d / renderer_pair:${panelA}`;
+    return '(unresolved renderer family)';
 }
 
 /**
@@ -3463,10 +3507,34 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                     !!s && Math.abs(asNum(s.torque_Nm, 0)) > 0)
                 : (Math.abs(asNum(rbrTau.tau_brake_Nm, 0)) || Math.abs(asNum(rbrTau.applied_torque_Nm, 0))
                     ? [rbrTau] : []);
+            //   E10 (rotmech 0c-5): an ACTUATOR — the brake pad or the drive
+            // roller — retracts over its own travel_ms AFTER the release
+            // instant, so a pin fixed at release + 2000 lands MID-RETRACTION
+            // whenever that travel is longer than the cushion, and the frozen
+            // frame photographs an actuator caught halfway out: a pose that is
+            // neither engaged nor parked (eye_frozen_candidate_offset_falls_
+            // outside_engine_display_band). travel_ms resolves EXACTLY as the
+            // engine's seed resolves it — per entry, then the top-level
+            // pad_travel_ms, then the 1200 ms engine default.
+            //   The cushion is 500, not RBR_CUSHION (900), and that is
+            // deliberate: at the 1200 ms default the widened candidate is 1700,
+            // which loses to the existing 2000 floor, so EVERY state authored
+            // before this — and every state that authors a normal travel — keeps
+            // the pin it already had, to the millisecond. The branch only ever
+            // fires for a genuinely long travel.
+            const RBR_TRAVEL_DEFAULT = 1200;
+            const RBR_TRAVEL_CUSHION = 500;
+            const rbrTravelOf = (w: Record<string, unknown>): number => {
+                const per = asNum(w.travel_ms, NaN);
+                if (Number.isFinite(per)) return per;
+                const top = asNum(rbrTau.pad_travel_ms, NaN);
+                return Number.isFinite(top) ? top : RBR_TRAVEL_DEFAULT;
+            };
             for (const w of rbrTqWindows) {
                 if (typeof w.release_at_ms === 'number' && Number.isFinite(w.release_at_ms)) {
                     rbrFound = true;
-                    candidates.push(w.release_at_ms + 2000);
+                    candidates.push(w.release_at_ms
+                        + Math.max(2000, rbrTravelOf(w) + RBR_TRAVEL_CUSHION));
                 } else if (typeof w.engage_at_ms === 'number' && Number.isFinite(w.engage_at_ms)) {
                     rbrFound = true;
                     candidates.push(w.engage_at_ms + 3000);   // well into the decay / spin-up

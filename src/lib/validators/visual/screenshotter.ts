@@ -411,13 +411,19 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
                 // the handler.
                 await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
                 await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: revealTargetMs }, hasPanelB);
+                const wallCapMs = revealTargetMs * 3.5 + 8000;
                 const poll = await pollSimTimeReached(page, 'panel_a', revealTargetMs, {
                     // Cap widened 2026-07-31 alongside making the stall fatal: a
                     // genuinely-working-but-slow run on a loaded machine must not fail
                     // spuriously now that a stall aborts. Widening ALONE would have been
                     // the wrong fix — it only moves the threshold at which a silent
                     // wrong-phase frame is manufactured.
-                    wallCapMs: revealTargetMs * 3.5 + 8000,
+                    wallCapMs,
+                    // …and widening was still not enough on real hardware, because the
+                    // cap is a bet on headless frame rate (see pollSimTimeReached). Past
+                    // the budget, keep waiting only while the pinned clock is genuinely
+                    // still climbing; flatline → abort immediately.
+                    extendWhileProgressingUntilMs: Math.max(wallCapMs * 3, 60000),
                 });
                 if (!poll.reached) {
                     // FATAL — never capture anyway. A frame that never reached its pin
@@ -429,13 +435,24 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
                     // A frame that missed its pin is not evidence — fail the run loudly
                     // so the cause gets fixed, rather than degrading into a warning
                     // nobody reads.
+                    // Rate is the diagnosis, so PUT IT IN THE ARTIFACT. Under a pin the
+                    // clock advances 16.67ms per rendered frame, so sim-ms/wall-s ÷ 16.67
+                    // is the headless frame rate — the number that says whether this was a
+                    // dead pin (≈0) or a slow scene (climbing steadily and still short).
+                    const simMsPerSec = poll.waitedMs > 0 ? (poll.lastSimMs / poll.waitedMs) * 1000 : 0;
                     throw new Error(
                         `EYE_CAPTURE_ABORTED — sim-time pin never reached for ${stateId}: `
-                        + `PM_simTimeMs stalled at ${Math.round(poll.lastSimMs)}/${revealTargetMs}ms `
-                        + `after ${poll.waitedMs}ms of polling (wall cap ${Math.round(revealTargetMs * 3.5 + 8000)}ms). `
+                        + `PM_simTimeMs reached ${Math.round(poll.lastSimMs)}/${revealTargetMs}ms `
+                        + `(${((100 * poll.lastSimMs) / revealTargetMs).toFixed(1)}%) after ${poll.waitedMs}ms of polling `
+                        + `[gave up: ${poll.gaveUp}; budget ${Math.round(wallCapMs)}ms, ceiling ${Math.round(Math.max(wallCapMs * 3, 60000))}ms]. `
+                        + `Observed pinned-clock rate ${Math.round(simMsPerSec)} sim-ms/s ≈ ${(simMsPerSec / 16.67).toFixed(1)} fps. `
                         + `The frame would show an arbitrary phase, so it is NOT evidence and was not captured. `
-                        + `Likely causes: the renderer ignores SET_TIME_FREEZE / does not advance PM_simTimeMs to the `
-                        + `pinned instant, or the machine is too loaded to reach it within the cap.`,
+                        + (poll.gaveUp === 'stalled'
+                            ? `The clock FLATLINED (no advance for ${POLL_STALL_WINDOW_MS}ms) — the renderer is ignoring `
+                              + `SET_TIME_FREEZE or its clock is not running. This is a renderer defect, not slowness.`
+                            : `The clock was still ADVANCING at the ceiling — this scene is too slow to reach its pin on `
+                              + `this machine. Re-run on a quiet box; if it recurs, the state's reveal target is too late `
+                              + `for the headless frame rate and the choreography (not the cap) needs shortening.`),
                     );
                 }
                 // Compass + other performance.now()-driven easings can't be pinned;
@@ -528,7 +545,22 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
                     const atMs = req.frozenFrame.atMsByState?.[stateId] ?? req.frozenFrame.atMs ?? 1500;
                     const frozen = await captureFrozenFrame(page, hasPanelB, { atMs, settleMs: req.frozenFrame.settleMs });
                     const target = stateCaptures.find(c => c.state_id === stateId);
-                    if (target) target.frozen_png_b64 = frozen;
+                    // A frozen frame that missed its pin is DROPPED, not stored. H2's
+                    // frozen compare then reports an honest "Skipped — this capture has
+                    // no frozen frame" (a path that already exists) instead of diffing an
+                    // arbitrary phase and calling the difference a regression. Silence is
+                    // not an option here: this is the frame visual:approve would freeze.
+                    if (!frozen.reached) {
+                        warnings.push(
+                            `Frozen frame DROPPED for ${stateId}: sim-time pin never reached `
+                            + `(${Math.round(frozen.lastSimMs)}/${atMs}ms after ${frozen.waitedMs}ms, `
+                            + `${Math.round((frozen.lastSimMs / Math.max(1, frozen.waitedMs)) * 1000)} sim-ms/s). `
+                            + `A mid-reveal frame is not a deterministic baseline, so it was discarded — `
+                            + `H2's frozen compare for this state will report as skipped. Re-run on a quieter machine.`,
+                        );
+                    } else if (target) {
+                        target.frozen_png_b64 = frozen.png;
+                    }
                 } catch (err) {
                     warnings.push(`Frozen-frame capture failed for ${stateId}: ${err instanceof Error ? err.message : String(err)}`);
                 }
@@ -576,6 +608,11 @@ function getFrame(page: Page, name: PanelName): Frame | null {
     return page.frame({ name }) ?? null;
 }
 
+/** Sim-time advance that counts as real progress (≈6 pinned 1/60s frame steps). */
+const POLL_PROGRESS_EPSILON_MS = 100;
+/** No progress for this much WALL time = the clock is stuck, not merely slow. */
+const POLL_STALL_WINDOW_MS = 4000;
+
 /**
  * Poll the renderer's exposed SIM-TIME clock (window.PM_simTimeMs, state-local
  * ms) inside a panel iframe until it reaches targetMs, or until the wall-clock
@@ -583,11 +620,27 @@ function getFrame(page: Page, name: PanelName): Frame | null {
  * false negative: rather than guessing on wall-clock, we wait for the renderer's
  * own clock to actually advance past the reveal time. Degrades gracefully —
  * returns reached:false on cap so the caller can warn + capture anyway (never hangs).
+ *
+ * SLOW ≠ STUCK (2026-08-13, magnetic_field_concept_B). Under a SET_TIME_FREEZE pin
+ * the step count is forced to 1 (Rule 36), so the pinned clock advances exactly
+ * 16.67ms per RENDERED FRAME — reaching a 12500ms pin costs 750 headless frames.
+ * The wall cap is therefore a bet on frame rate: `targetMs * 3.5 + 8000` assumes
+ * the scene sustains ≳17fps. magnetic_field_concept_B STATE_5 measured 11344ms of
+ * sim time in 51.8s (219 sim-ms/s ≈ 13fps) — it was 91% of the way there, still
+ * climbing, and was aborted 1.2% short of the pin for the third session running.
+ * Raising the constant would only move that threshold; what actually separates a
+ * working-but-slow machine from a renderer that ignores the pin is whether the
+ * clock is STILL ADVANCING. So when `extendWhileProgressingUntilMs` is set, the
+ * cap stops being an abort and becomes a budget: past it the poll keeps waiting
+ * while the clock advances ≥100ms per 4s window, and gives up the moment it
+ * flatlines — which catches a genuinely dead pin ~12x FASTER than the old cap did,
+ * while letting a slow one finish. Opt-in, so the dense per-frame loop and the
+ * frozen-frame poll keep their exact previous timing.
  */
 async function pollSimTimeReached(
     page: Page, frameName: PanelName, targetMs: number,
-    opts: { wallCapMs: number; pollMs?: number },
-): Promise<{ reached: boolean; lastSimMs: number; waitedMs: number }> {
+    opts: { wallCapMs: number; pollMs?: number; extendWhileProgressingUntilMs?: number },
+): Promise<{ reached: boolean; lastSimMs: number; waitedMs: number; gaveUp: 'cap' | 'stalled' | 'ceiling' | null }> {
     const pollMs = opts.pollMs ?? 50;
     // Tolerance absorbs the renderer's discrete 16ms frame step AND float drift:
     // SET_TIME_FREEZE pins time at stateStartTime + targetMs/1000, and
@@ -595,9 +648,12 @@ async function pollSimTimeReached(
     // stateStartTime is large, so PM_simTimeMs can land at e.g. 7299.999 for a
     // 7300 target. Without this the poll misses the pin and burns the full cap.
     const SIM_TIME_TOLERANCE_MS = 50;
+    const ceilingMs = opts.extendWhileProgressingUntilMs ?? opts.wallCapMs;
     const start = Date.now();
     let lastSimMs = 0;
-    while (Date.now() - start < opts.wallCapMs) {
+    let progressSimMs = 0;
+    let progressAt = start;
+    for (;;) {
         const frame = getFrame(page, frameName);
         if (frame) {
             try {
@@ -607,15 +663,23 @@ async function pollSimTimeReached(
                 });
                 if (typeof sim === 'number') {
                     lastSimMs = sim;
-                    if (sim >= targetMs - SIM_TIME_TOLERANCE_MS) return { reached: true, lastSimMs: sim, waitedMs: Date.now() - start };
+                    if (sim >= targetMs - SIM_TIME_TOLERANCE_MS) return { reached: true, lastSimMs: sim, waitedMs: Date.now() - start, gaveUp: null };
+                    if (sim - progressSimMs >= POLL_PROGRESS_EPSILON_MS) { progressSimMs = sim; progressAt = Date.now(); }
                 }
             } catch {
                 // Frame mid-navigation or renderer without PM_simTimeMs — retry / time out.
             }
         }
+        const elapsed = Date.now() - start;
+        if (elapsed >= ceilingMs) {
+            return { reached: false, lastSimMs, waitedMs: elapsed, gaveUp: ceilingMs > opts.wallCapMs ? 'ceiling' : 'cap' };
+        }
+        // Past the nominal budget, only a STILL-ADVANCING clock earns more time.
+        if (elapsed >= opts.wallCapMs && Date.now() - progressAt >= POLL_STALL_WINDOW_MS) {
+            return { reached: false, lastSimMs, waitedMs: elapsed, gaveUp: 'stalled' };
+        }
         await page.waitForTimeout(pollMs);
     }
-    return { reached: false, lastSimMs, waitedMs: Date.now() - start };
 }
 
 async function injectPanelProbe(page: Page, frameName: PanelName, warnings: string[]): Promise<void> {
@@ -721,14 +785,31 @@ async function postToPanels(page: Page, msg: Record<string, unknown>, hasPanelB:
  */
 async function captureFrozenFrame(
     page: Page, hasPanelB: boolean, opts: { atMs: number; settleMs?: number },
-): Promise<string> {
+): Promise<{ png: string; reached: boolean; lastSimMs: number; waitedMs: number }> {
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
     await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
     await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: opts.atMs }, hasPanelB);
     // Poll the renderer's actual sim-clock to REACH the pin before settling —
     // headless rAF throttling means field_3d's frame-count clock can still be
     // climbing to the pin when the wall-clock settle below would otherwise fire.
-    const poll = await pollSimTimeReached(page, 'panel_a', opts.atMs, { wallCapMs: opts.atMs * 2.5 + 4000 });
+    //
+    // THIS FRAME IS THE H2 BASELINE, so a missed pin is worse here than anywhere
+    // else in the harness: the primary capture was made FATAL on a missed pin
+    // (2026-07-31) precisely because a wrong-phase frame becomes evidence, yet
+    // this path kept capturing regardless and its output is what visual:approve
+    // freezes forever. MEASURED (magnetic_field_concept_B STATE_5, 2026-08-13): a
+    // 12500ms pin under the old cap of atMs*2.5+4000 = 35.25s needs ~57s at this
+    // machine's observed 219 sim-ms/s, so the frozen frame was photographed
+    // mid-reveal — the state's live capture (fatal path, pin reached) and its own
+    // frozen capture disagreed by 3.71% inside a SINGLE run, versus 1.37% in the
+    // run the baseline was made from, and H2 read the difference as a 3.57%
+    // regression in a renderer that had not changed. Same progress-extension as
+    // the primary path, and the caller now DROPS a frame that missed its pin.
+    const wallCapMs = opts.atMs * 2.5 + 4000;
+    const poll = await pollSimTimeReached(page, 'panel_a', opts.atMs, {
+        wallCapMs,
+        extendWhileProgressingUntilMs: Math.max(wallCapMs * 3, 60000),
+    });
     // Settle covers the pin run-up PLUS performance.now()-driven easings (compass
     // swing) the pin can't freeze. Subtract time already spent polling.
     const settle = Math.max(opts.atMs * 1.1 + 500, opts.settleMs ?? 3000);
@@ -738,7 +819,7 @@ async function captureFrozenFrame(
     await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
     await postToPanels(page, { type: 'REPLAY_ANIMATIONS' }, hasPanelB);
-    return png.toString('base64');
+    return { png: png.toString('base64'), reached: poll.reached, lastSimMs: poll.lastSimMs, waitedMs: poll.waitedMs };
 }
 
 /** Post a SET_MATH message to Panel A (drives the renderer's equation panel). */
@@ -844,7 +925,22 @@ async function composeSideBySide(left: Buffer, right: Buffer): Promise<Buffer> {
 
 const KEYFRAME_OFFSETS_MS = [0, 2500, 5000, 7500, 10000];
 
-const DENSE_DEFAULT_INTERVAL_MS = 1000;
+// 700ms, NOT a round 1000ms, and the oddness is the whole point: the interval
+// must stay INCOMMENSURATE with the drive periods sims actually animate at.
+// At 1000ms a state driven at f_demo=0.5Hz advances exactly 180° per sample, so
+// every frame catches sin(ωt) at the same phase — bead displacement
+// (disp = amp*sin θ) reads exactly 0.000 and opacity exactly 0.450 in EVERY
+// frame. Measured 2026-08-10 across Ch.7: adjacent dense frames byte-identical
+// (max channel delta 0/255) on states whose beads were provably moving — the
+// frozen frame, pinned at a non-integer 4700ms, differed by 190/255 over 750px.
+// f_demo=0.25Hz aliases the same way for sin(2ωt)/sin²/cos² power and energy
+// terms. That produced BOTH false D5 failures (4 states) and false passes (a
+// state "passing" on a phasor fan flipping 0°↔180°) across 44 states / 6
+// concepts. 700ms advances 126°/sample at 0.5Hz — a 7-sample phase cycle — and
+// its finer spacing also stops short cue windows (a 1s freeze hold) falling
+// between samples. Any replacement must satisfy: (interval_ms * f_hz * 360)
+// mod 180 != 0 for every f a sim drives at.
+const DENSE_DEFAULT_INTERVAL_MS = 700;
 const DENSE_DEFAULT_DURATION_MS = 10000;
 const DENSE_MIN_DURATION_MS = 3000;
 // 60s / 61 frames: follow the declared state duration (Rule-31 guided states
@@ -854,7 +950,12 @@ const DENSE_MIN_DURATION_MS = 3000;
 // deriveStateMeta DURATION_MAX_MS (the 30s clamp hid every narration tail past
 // 30s from the gate); previously raised from 15000/15 on 2026-06-10.
 const DENSE_MAX_DURATION_MS = 60000;
-const DENSE_DEFAULT_MAX_FRAMES = 61;
+// Must track DENSE_DEFAULT_INTERVAL_MS: frameCount = min(maxFrames,
+// floor(duration/interval)+1), so this cap — not the duration — is what
+// actually bounds coverage. 60000/700+1 = 86.7, hence 87. Left at the old 61 it
+// would silently clip every state at 42s and re-open the long-narration-tail
+// blind spot the 2026-07-03 raise closed.
+const DENSE_DEFAULT_MAX_FRAMES = 87;
 
 /**
  * Capture a dense frame series for the CURRENT state (caller has already

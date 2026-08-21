@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_walk_avg_velocity_speed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Average velocity",
+      "marks": 1
+    },
+    {
+      "label": "Average speed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 9 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity",
+        "kind": "equation",
+        "label": "Average velocity",
+        "marks": 1,
+        "mark_note": "Velocity",
+        "lines": [
+          "Going: 2.5/5 h = 30 min. Return:",
+          "2.5/7.5 h = 20 min. So in 50 min he is",
+          "back home — displacement zero.",
+          {
+            "text": "v(avg) = 0 / 50 min",
+            "style": "eq"
+          },
+          {
+            "text": "v(avg) = 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Show the 30 + 20 = 50 min first — it proves the round trip fits the interval exactly.",
+        "why": "Average velocity reads only the endpoints. He ends where he started, so the displacement — and with it the average velocity — is zero.",
+        "common_mistakes": [
+          "Averaging 5 and 7.5 to get the velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That he is back home in exactly 50 min, so the average velocity is zero.",
+          "accept": [
+            "displacement is zero so velocity is zero",
+            "thirty plus twenty is fifty minutes",
+            "velocity sunna"
+          ],
+          "reject": [
+            "average speed is six"
+          ],
+          "heard_as": [
+            "zero",
+            "displacement zero",
+            "fifty minutes"
+          ]
+        }
+      },
+      {
+        "id": "s2_speed",
+        "kind": "boxed_final",
+        "label": "Average speed",
+        "marks": 1,
+        "mark_note": "Speed",
+        "lines": [
+          {
+            "text": "speed = total distance / total time",
+            "style": "eq"
+          },
+          {
+            "text": "= (2.5 + 2.5) km / (5/6) h",
+            "style": "eq"
+          },
+          {
+            "text": "average speed = 6 km/h",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "50 min = 5/6 h. Distance counts BOTH legs; that is what separates it from velocity.",
+        "why": "Speed reads the whole path walked, 5 km, over the 5/6 hour it took — the same trip that gave zero velocity gives 6 km/h speed.",
+        "common_mistakes": [
+          "Averaging 5 and 7.5 to get 6.25 — time is not split equally between the legs."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average speed is 5 km over 5/6 h = 6 km/h.",
+          "accept": [
+            "five kilometres in fifty minutes",
+            "six kilometres per hour",
+            "aaru km per hour"
+          ],
+          "reject": [
+            "average velocity is zero"
+          ],
+          "heard_as": [
+            "six",
+            "6 km",
+            "total distance"
+          ]
+        }
+      }
+    ]
+  }
+}
