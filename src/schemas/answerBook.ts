@@ -64,6 +64,19 @@ const lineSchema = z.union([
         text: z.string().min(1),
         style: lineStyleSchema.optional(),
         pause_after_ms: z.number().int().nonnegative().optional(),
+        /**
+         * How `text` is drawn. Default `plain` — Unicode math in the handwriting font,
+         * typed character by character. `katex` means `text` is TeX SOURCE, typeset by
+         * KaTeX at BUILD time (never in the browser — Rule 18) and revealed by a
+         * width-clip wipe, because a typeset tree cannot be typed a character at a time.
+         *
+         * Use it ONLY for constructs with no honest one-line Unicode form: matrices and
+         * determinants, and capital-letter subscripts (Iᴀ, I_B) which Unicode simply does
+         * not encode. A fraction, a root or a power that reads fine on one line stays
+         * `plain` — the notebook is a handwritten answer script, and every KaTeX line is
+         * a small break in that illusion (docs/patterns/answer_book.md).
+         */
+        render: z.enum(['plain', 'katex']).optional(),
     }),
 ]);
 

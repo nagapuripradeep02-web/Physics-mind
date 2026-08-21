@@ -531,17 +531,28 @@ test('no written line wraps past its own height, in either cut', async ({ page }
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
         await page.waitForTimeout(500);
 
-        const wrapped = await page.evaluate(() => {
+        const r = await page.evaluate(() => {
             const bad: string[] = [];
+            const offRule: string[] = [];
             document.querySelectorAll('.step-block .line').forEach((el) => {
                 const e = el as HTMLElement;
                 const lh = parseFloat(getComputedStyle(e).lineHeight || '0');
                 if (!lh || !e.textContent) return;
-                if (e.getBoundingClientRect().height > lh * 1.6) bad.push(e.textContent.trim());
+                const h = e.getBoundingClientRect().height;
+                // A typeset line (render: "katex") is legitimately several rules tall —
+                // a 3×3 matrix is three. The wrap rule cannot apply to it, but the
+                // STRONGER invariant does: it must occupy a whole number of rules, or
+                // every line after it walks off the ruled paper.
+                if (e.getAttribute('data-render') === 'katex') {
+                    if (Math.round(h) % 32 !== 0) offRule.push(e.textContent.trim() + ` [h=${h}]`);
+                    return;
+                }
+                if (h > lh * 1.6) bad.push(e.textContent.trim());
             });
-            return bad;
+            return { bad, offRule };
         });
-        expect(wrapped, `cut "${cuts[i].key}" has wrapped line(s)`).toEqual([]);
+        expect(r.bad, `cut "${cuts[i].key}" has wrapped line(s)`).toEqual([]);
+        expect(r.offRule, `cut "${cuts[i].key}" has typeset line(s) off the rule`).toEqual([]);
     }
 });
 
@@ -762,4 +773,92 @@ test('catalog search narrows the cards and can find nothing', async ({ page }) =
     }));
     expect(none.cards).toBe(0);
     expect(none.noneShown).toBe(true);
+});
+
+// ── mathematics: the subject dimension + typeset lines ───────────────────────
+// Both mechanisms landed with the Maths-1A track. They are asserted here because
+// each one fails SILENTLY: a broken subject filter just shows the wrong cards, and
+// a build that stops typesetting shows raw TeX that still "renders".
+
+test('the catalog filters by subject and each section shows its own mark value', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const subjects = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        const by: Record<string, number> = {};
+        units.forEach((u) => {
+            const s = u.subject || 'physics';
+            by[s] = (by[s] ?? 0) + u.questions.length;
+        });
+        return by;
+    });
+    const names = Object.keys(subjects);
+    const row = page.locator('#subjectChips');
+    // One subject = no row at all; the physics-only build must look untouched.
+    if (names.length < 2) {
+        await expect(row).toBeHidden();
+        return;
+    }
+    await expect(row).toBeVisible();
+
+    for (const s of names) {
+        await page.click(`#subjectChips [data-subject="${s}"]`);
+        await page.waitForTimeout(200);
+        const shown = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
+        expect(shown, `cards shown for ${s}`).toBe(subjects[s]);
+    }
+
+    // The section heading's mark value is read off the questions, never hardcoded:
+    // a Physics-I long answer is 8 marks and a Maths-1A long answer is 7.
+    await page.click('#subjectChips [data-subject="ALL"]');
+    await page.waitForTimeout(200);
+    const heads = await page.evaluate(() =>
+        [...document.querySelectorAll('#catSections .cat-subhead')].map((h) => h.textContent || ''));
+    for (const h of heads) {
+        const m = /·\s*(\d+)\s*marks/.exec(h);
+        if (!m) continue;
+        const card = await page.evaluate((label) => {
+            const hs = [...document.querySelectorAll('#catSections .cat-subhead')];
+            const el = hs.find((x) => x.textContent === label)!;
+            let n: Element | null = el.nextElementSibling;
+            while (n && !n.classList.contains('cat-card')) n = n.nextElementSibling;
+            return n ? (n.querySelector('.cc-chip')?.textContent ?? '') : '';
+        }, h);
+        expect(card, `first card under "${h}"`).toContain(m[1] + ' marks');
+    }
+});
+
+test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const withKatex = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[])
+            .filter((q) => q.answer.steps.some((s: any) =>
+                (s.lines || []).some((l: any) => l && l.render === 'katex')))
+            .map((q) => q.question_id));
+    if (!withKatex.length) return;              // a book with no typeset line is legal
+
+    for (const id of withKatex) {
+        await openQ(page, id);
+        await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+        await page.waitForTimeout(700);
+        const r = await page.evaluate(() => {
+            const clips = [...document.querySelectorAll('.kx-clip')] as HTMLElement[];
+            return {
+                clips: clips.length,
+                typeset: clips.filter((c) => c.querySelector('.katex')).length,
+                // overflow:hidden makes the wipe possible and truncation invisible
+                clipped: clips.filter((c) => c.scrollWidth > (c.closest('.line') as HTMLElement).clientWidth + 1)
+                    .map((c) => c.getAttribute('data-tex')),
+                rawTex: /\\(circ|therefore|because|begin\{|frac|text\{)/.test(
+                    document.getElementById('notebookView')!.textContent || ''),
+            };
+        });
+        expect(r.clips, `${id} has typeset lines`).toBeGreaterThan(0);
+        expect(r.typeset, `${id}: every clip holds real KaTeX output`).toBe(r.clips);
+        expect(r.clipped, `${id}: typeset line(s) truncated by the wipe container`).toEqual([]);
+        expect(r.rawTex, `${id}: raw TeX leaked onto the page`).toBe(false);
+    }
 });

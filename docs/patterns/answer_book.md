@@ -34,9 +34,10 @@ header over the same steps. There is no country/board fact inside any step.
 U+2212 minus, never hyphen). This is deliberate: a KaTeX-typeset fraction inside a Kalam
 notebook page breaks the illusion, char-by-char reveal is trivial on a text node and hostile
 to KaTeX, and the one-line slash form is exactly what a hand writes in a booklet in 15
-minutes. Upgrade path if a question ever needs a stacked fraction/integral: an optional
-per-line `"render": "katex"` with a width-clip reveal (KaTeX is already vendored — see
-`writeVendorAssets()` in `build_review_site.ts` for the copy pattern). Not before.
+minutes. **That upgrade path was taken on 2026-08-21** when Maths-1A arrived — matrices
+are 5 of its 24 questions and a capital-letter subscript (Iᴀ) has no Unicode form at all.
+See *Mechanism 3* below. The rule the original note was protecting still stands: a
+fraction, root or power that reads honestly on one line stays plain Unicode.
 
 ## Mechanism 1 — pagination: measure → freeze → clear → type
 
@@ -77,6 +78,55 @@ body is exactly 32 rules (1024px). Placement:
   as the text + no bordered box. **No `feTurbulence` wobble** (fuzzes 2px strokes, costs GPU
   on low-end Android). If wobble is ever added it must be **seeded/authored, never
   `Math.random()`** — every load must render identically (Rule 18 posture).
+
+## Mechanism 3 — typeset lines (`render: "katex"`, added 2026-08-21)
+
+Some mathematics simply cannot be written on one line of text: a 3×3 matrix, a
+determinant, and — less obviously — `I_A`, because **Unicode has no subscript capital
+letters** (it stops at lowercase ₐ ₑ ᵢ). Maths-1A needs both: Matrices is Q3, Q4, Q11,
+Q20, Q21, and the Functions chapter's identity-function LAQs are unwritable without the
+subscript.
+
+- **A line opts in**: `{ "text": "<TeX source>", "render": "katex" }`. `text` is TeX, not
+  text. Default stays `plain`.
+- **Typeset by the BUILD, never the browser.** `build_answer_book.ts` calls
+  `katex.renderToString(..., { throwOnError: true, output: 'html' })` and stores the HTML.
+  The page ships no KaTeX JS. A bad macro fails the build naming the question and step —
+  it can never reach a student as a red error string (Rule 18 posture, unchanged).
+  Cut-substituted `lines` are typeset too; missing them would ship a cut whose matrix
+  arrived as raw TeX.
+- **Revealed by a width wipe**, not typed — a typeset tree has no characters to type.
+  `.kx-clip` is `overflow:hidden`, its natural width frozen then collapsed to 0 and
+  animated back, paced off the TeX length so it does not outrun the plain line above it.
+- **Height snaps to whole rules.** `Math.ceil(h / 32) * 32` in `placeStep`, the same thing
+  `buildFigure` does. Skip it and every later line walks off the ruled paper.
+- **Over-wide lines are the one silent failure** — the `overflow:hidden` that makes the
+  wipe possible also truncates invisibly. `placeStep` warns to the console, and
+  `e2e/answer_book.spec.ts` asserts no clip is truncated.
+- **The hand, borrowed.** KaTeX keeps its layout and its big drawn brackets, but
+  `.mathnormal`/`.mathrm`/`.text` are re-set in **Kalam**, so a matrix reads as
+  handwriting rather than as a printed textbook dropped onto a written page.
+  **Digits deliberately stay KaTeX**: Kalam's "1" is a bare stroke, so a Kalam subscript
+  turns `a₁ b₁ c₁` into "a, b, c," — built, looked at, rejected.
+- **Fonts**: KaTeX's stylesheet is inlined with every `@font-face` rewritten to an
+  embedded woff2 data URI (the page must stay ONE file that works from `file://`).
+  Emitted **only when a typeset line exists**, so a physics-only book is unchanged:
+  177 KB without, ~645 KB with.
+- **The graders never see TeX.** `recallGrader` builds its prompt from the `recall`
+  rubric and `photoGrader` never reads `lines`, so TeX source reaches no model.
+
+**When NOT to use it.** Every typeset line is a small break in the handwriting illusion.
+Use it for matrices, determinants and capital-letter subscripts. `R = √(P² + Q² + 2PQ cos θ)`,
+`Tan⁻¹((x+y)/(1−xy))` and `Δ = √(s(s−a)(s−b)(s−c))` stay plain Unicode.
+
+## Subject dimension in the catalog (added 2026-08-21)
+
+`units.json` units carry `subject`; **absent means physics**, exactly the way an
+appearance with no `board` means TS. The catalog's subject chip row renders only from
+the **second** subject on, so a physics-only build is visually untouched. Section
+headings read their mark value off the questions in the group rather than hardcoding it —
+a Physics-I long answer is 8 marks, a Maths-1A long answer is 7, and the hardcoded
+"· 8 marks" printed the wrong number over the maths section the day it landed.
 
 ## AI-chatbot seam (exists; nothing more)
 

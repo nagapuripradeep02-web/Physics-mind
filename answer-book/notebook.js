@@ -238,7 +238,7 @@
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
   var currentView = null;               // 'catalog' | 'notebook'
-  var catFilter = { qtype: 'ALL', search: '' };
+  var catFilter = { subject: 'ALL', qtype: 'ALL', search: '' };
 
   function showView(v) {
     currentView = v;
@@ -263,11 +263,16 @@
              expected_time_min: q.expected_time_min };
   }
 
-  function entryMatches(e, unitName) {
+  /** A unit's subject. Absent = physics: physics units predate the field, exactly the
+      way an appearance with no board means TS. */
+  function subjectOf(u) { return u.subject || 'physics'; }
+
+  function entryMatches(e, u) {
+    if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return false;
     if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
     if (catFilter.search) {
       var blob = (e.section + ' ' + e.section + e.number + ' ' + e.section + ' ' + e.number +
-                  ' ' + e.text + ' ' + unitName).toLowerCase();
+                  ' ' + e.text + ' ' + u.name + ' ' + subjectOf(u)).toLowerCase();
       if (blob.indexOf(catFilter.search) < 0) return false;
     }
     return true;
@@ -279,6 +284,40 @@
     var ready = allEntries.filter(function (e) { return e.question_id !== undefined; }).length;
     var coming = allEntries.length - ready;
     $('catSub').textContent = ready + ' answers ready' + (coming ? ' · ' + coming + ' more coming' : '');
+
+    // Subject chips. Hidden while the book holds ONE subject, so a physics-only
+    // build looks exactly as it did — the row appears the moment a second subject
+    // is authored. Counts are whole-inventory, static like the qtype counts below.
+    var subjRow = $('subjectChips');
+    subjRow.innerHTML = '';
+    var subjects = [];
+    UNITS.forEach(function (u) {
+      if (subjects.indexOf(subjectOf(u)) < 0) subjects.push(subjectOf(u));
+    });
+    subjRow.hidden = subjects.length < 2;
+    if (subjects.length >= 2) {
+      var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry', mathematics: 'Mathematics' };
+      var subjChips = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
+      subjects.forEach(function (sName) {
+        var n = 0;
+        UNITS.forEach(function (u) { if (subjectOf(u) === sName) n += u.questions.length; });
+        subjChips.push({ key: sName, label: SUBJ_LABEL[sName] || sName, n: n });
+      });
+      subjChips.forEach(function (c) {
+        var sb = document.createElement('button');
+        sb.type = 'button';
+        sb.className = 'cat-chip' + (catFilter.subject === c.key ? ' on' : '');
+        sb.setAttribute('data-subject', String(c.key));
+        sb.setAttribute('aria-pressed', catFilter.subject === c.key ? 'true' : 'false');
+        sb.appendChild(document.createTextNode(c.label));
+        var sct = document.createElement('span');
+        sct.className = 'ct';
+        sct.textContent = String(c.n);
+        sb.appendChild(sct);
+        sb.addEventListener('click', function () { catFilter.subject = c.key; renderCatalog(); });
+        subjRow.appendChild(sb);
+      });
+    }
 
     // qtype chips, counts static across the whole build so they read as an
     // inventory, not as a moving target
@@ -309,7 +348,7 @@
     var shown = 0;
 
     UNITS.forEach(function (u) {
-      var visible = u.questions.filter(function (e) { return entryMatches(e, u.name); });
+      var visible = u.questions.filter(function (e) { return entryMatches(e, u); });
       if (!visible.length) return;
       shown += visible.length;
 
@@ -327,18 +366,29 @@
       // Sub-group by exam section, in paper-marks order. A crammer thinks in
       // sections; interleaving LAQ cards among the book's SAQ numbering would
       // re-create the confusion the one-length model exists to remove.
+      // The mark VALUE is read off the questions in the group, never hardcoded: a
+      // Physics-I long answer is 8 marks but a Maths-1A long answer is 7, and a
+      // baked-in "· 8 marks" printed the wrong number over the maths section.
+      // A group with nothing authored yet shows no number rather than a guess.
       var SECTIONS = [
-        { key: 'LAQ', label: 'Long Answer Questions · 8 marks' },
-        { key: 'SAQ', label: 'Short Answer Questions · 4 marks' },
-        { key: 'VSAQ', label: 'Very Short Answer Questions · 2 marks' }
+        { key: 'LAQ', label: 'Long Answer Questions' },
+        { key: 'SAQ', label: 'Short Answer Questions' },
+        { key: 'VSAQ', label: 'Very Short Answer Questions' }
       ];
+      function sectionLabel(sg, group) {
+        for (var gi = 0; gi < group.length; gi++) {
+          var gc = entryCut(group[gi]);
+          if (gc) return sg.label + ' · ' + gc.marks_total + ' marks';
+        }
+        return sg.label;
+      }
       SECTIONS.forEach(function (sg) {
         var group = visible.filter(function (e) { return e.section === sg.key; });
         if (!group.length) return;
 
         var sh = document.createElement('h3');
         sh.className = 'cat-subhead';
-        sh.textContent = sg.label;
+        sh.textContent = sectionLabel(sg, group);
         sec.appendChild(sh);
 
         group.forEach(function (e) {
@@ -531,7 +581,29 @@
         var el = document.createElement('div');
         el.className = 'line ' + style;
         el.setAttribute('data-line-index', String(li));
-        if (style === 'boxed') {
+        if (spec.render === 'katex' && spec.html) {
+          // Typeset by the BUILD (never here — Rule 18). A typeset tree has no
+          // characters to type, so this line is revealed by a width wipe instead;
+          // data-tex keeps the source addressable for the chatbot seam.
+          el.setAttribute('data-render', 'katex');
+          var clip = document.createElement('span');
+          clip.className = 'kx-clip';
+          clip.setAttribute('data-tex', spec.text);
+          var kin = document.createElement('span');
+          kin.className = 'kx-in';
+          kin.innerHTML = spec.html;
+          clip.appendChild(kin);
+          // A boxed final answer keeps its box when it has to be typeset — the box is
+          // the student's "this is the answer" signal and must not depend on notation.
+          if (style === 'boxed') {
+            var bx = document.createElement('span');
+            bx.className = 'boxed-inner';
+            bx.appendChild(clip);
+            el.appendChild(bx);
+          } else {
+            el.appendChild(clip);
+          }
+        } else if (style === 'boxed') {
           var inner = document.createElement('span');
           inner.className = 'boxed-inner';
           inner.textContent = spec.text;
@@ -721,6 +793,15 @@
     var lineEls = block.querySelectorAll('.line');
     for (var i = 0; i < lineEls.length; i++) {
       var el = lineEls[i];
+      var clip = el.querySelector('.kx-clip');
+      if (clip) {
+        // Freeze the natural width, then collapse it (scrollWidth still reports the
+        // content width at width:0, the same trick the pencil wipe uses).
+        targets.push({ el: clip, kx: true, w: clip.scrollWidth,
+                       text: clip.getAttribute('data-tex') || '' });
+        clip.style.width = '0px';
+        continue;
+      }
       var inner = el.querySelector('.boxed-inner');
       var target = inner || el;
       targets.push({ el: target, text: target.textContent });
@@ -737,6 +818,16 @@
       if (cancelled) return;
       if (li >= targets.length) { cursor.remove(); onDone(); return; }
       var t = targets[li];
+      if (t.kx) {
+        // Paced off the TeX length so a matrix does not land faster than the plain
+        // line above it, and never so slow that a student waits on one construct.
+        var dur = Math.max(320, Math.min(2400, t.text.length * CHAR_MS));
+        t.el.style.transition = 'width ' + dur + 'ms linear';
+        t.el.style.width = t.w + 'px';
+        li++; ci = 0;
+        timer = setTimeout(tick, dur + LINE_GAP_MS);
+        return;
+      }
       if (ci === 0) t.el.appendChild(cursor);
       if (ci < t.text.length) {
         cursor.insertAdjacentText('beforebegin', t.text.charAt(ci));
@@ -753,7 +844,10 @@
       cancelled = true;
       if (timer) clearTimeout(timer);
       cursor.remove();
-      targets.forEach(function (t) { t.el.textContent = t.text; });
+      targets.forEach(function (t) {
+        if (t.kx) { t.el.style.transition = 'none'; t.el.style.width = t.w + 'px'; return; }
+        t.el.textContent = t.text;
+      });
       onDone();
     };
   }
@@ -779,7 +873,21 @@
     // 4. freeze measured line heights (a wrapped line keeps its two-rule box)
     var lineEls = block.querySelectorAll('.line');
     for (var i = 0; i < lineEls.length; i++) {
-      lineEls[i].style.height = lineEls[i].offsetHeight + 'px';
+      var lh = lineEls[i].offsetHeight;
+      // A typeset block (a matrix is three rows tall) is NOT a multiple of the rule,
+      // and one stray pixel here walks every later line off the ruled paper. Snap up
+      // to whole rules — the same thing buildFigure does with its height.
+      if (lineEls[i].getAttribute('data-render') === 'katex') {
+        lh = Math.ceil(lh / 32) * 32;
+        // .kx-clip is overflow:hidden so the wipe has something to clip — which means
+        // an over-wide typeset line would be TRUNCATED with no other symptom. Say so.
+        var kc = lineEls[i].querySelector('.kx-clip');
+        if (kc && kc.scrollWidth > lineEls[i].clientWidth + 1) {
+          console.warn('answer-book: typeset line is wider than the page body and will be ' +
+            'clipped — shorten the TeX: ' + (kc.getAttribute('data-tex') || ''));
+        }
+      }
+      lineEls[i].style.height = lh + 'px';
     }
 
     // arm the figure while layout is live (getTotalLength needs it)

@@ -447,6 +447,39 @@ body {
   padding: 0 14px;
 }
 
+/* ── typeset lines (render: "katex") ───────────────────────────────────────
+   For constructs with no honest one-line Unicode form — matrices, determinants,
+   capital-letter subscripts. Typeset by the build; revealed by a width wipe, so
+   .kx-clip must stay inline-block with overflow hidden or the wipe has nothing to
+   clip. The line's HEIGHT is snapped to whole rules in placeStep, not here. */
+.line[data-render="katex"] { white-space: nowrap; }
+.kx-clip { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: top; max-width: 100%; }
+.kx-in { display: inline-block; }
+.kx-clip .katex {
+  color: var(--ink);
+  font-size: 24px;          /* sits with Kalam 26px without out-shouting it */
+}
+/* The hand, borrowed. KaTeX keeps its LAYOUT and its big drawn brackets, but the
+   math LETTERS are re-set in the notebook's handwriting so a matrix does not read
+   as a printed textbook dropped onto a written page.
+   Digits stay KaTeX on purpose: Kalam's "1" is a bare stroke, so a Kalam subscript
+   turns a₁ b₁ c₁ into "a, b, c," — tested, rejected. Brackets stay KaTeX because
+   the Size fonts are what make them scale to the rows. */
+.kx-clip .katex .mathnormal,
+.kx-clip .katex .mathrm,
+.kx-clip .katex .text {
+  font-family: Kalam, cursive;
+  font-style: normal;
+}
+/* A heading that has to be typeset (it names Iᴀ) still reads as a heading. */
+.line.heading .kx-clip { text-decoration: underline; text-underline-offset: 5px; }
+.line.heading .kx-clip .katex .mathnormal,
+.line.heading .kx-clip .katex .mathrm,
+.line.heading .kx-clip .katex .text { font-weight: 700; }
+/* KaTeX ships its own error styling in red — the examiner's colour. A build that
+   reaches the browser has already thrown, so this is belt-and-braces only. */
+.kx-clip .katex .katex-error { color: var(--pencil); }
+
 .page-header-block { margin-bottom: var(--rule); }
 .page-header-block .line { font-weight: 700; }
 
