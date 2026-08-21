@@ -13807,24 +13807,47 @@ export const FIELD_3D_RENDERER_CODE = `
     //   drawn at all (vgShowAB), and the row still read "θ (a, b)" on the one
     //   state whose entire lesson is the angle between d₁ and d₂.
     //
-    //   The label is therefore DERIVED FROM THE AUTHORED OBJECTS, not from a
-    //   second hardcoded per-mode string: the rotated object is the one whose
-    //   rotate block binds knob "theta_deg", the reference is the first other
-    //   labelled object in the SAME scene group, and the row reads
-    //   "θ (<reference>, <rotated>)" — the pair a teacher sees, in the order the
-    //   state's own formula names them. A per-mode literal ("θ (d₁, d₂)") would
-    //   only move the defect one mode deeper: the next lines_planes concept
-    //   labelling its lines ℓ and m would be lied to by the identical mechanism.
+    //   ── AND IT NAMES A CONTROL, NEVER A QUANTITY THE CONTROL MERELY EQUALS ─
+    //   bug_class control_row_label_names_a_derived_quantity_the_knob_stops_
+    //   equalling_once_a_convention_fold_lands. The first fix derived the row
+    //   from the authored objects and wrote the PAIR, "θ (d₁, d₂)". That was true
+    //   only by arithmetic coincidence: the line-line angle was published RAW
+    //   over [0, 180], and the authored rotation axis is perpendicular to both
+    //   directions, so the knob and the pair angle happened to be one number.
+    //   The acute fold ended the coincidence — the angle between two LINES is
+    //   |cos|, it can never exceed 90°, so past 90° the readout comes back down
+    //   while the knob keeps rising. #9 STATE_6 then carried "angle = 87.8°" in
+    //   the HUD and "θ (d₁, d₂): 92°" in the control panel, 50° apart at the
+    //   knob's maximum, on the state whose misconception_watch is "the angle
+    //   between two lines can be more than 90 degrees": the control panel
+    //   confirmed the belief the narration was denying. On STATE_9's skew group
+    //   it is worse — there is no angle readout there at all, so the row is the
+    //   only θ surface and nothing on screen contradicts it.
     //
-    //   NOTHING IS EVER INVENTED. If no labelled rotated/reference pair can be
-    //   resolved in the current group — an unlabelled line, or a group in which
-    //   theta turns nothing at all — the row falls back to a bare "θ", which
-    //   names no object; it NEVER falls back to the products pair.
+    //   THE KNOB DOES NOT MEASURE AN ANGLE. It TURNS ONE OBJECT about an
+    //   authored axis (vgObjRotate), on a scale whose zero is authored too
+    //   (rotate.zero), so no pair quantity is safe to print beside it. The row
+    //   therefore names the object it turns and NOTHING else — "turn d₂" — a
+    //   claim about the CONTROL, which stays true at every value of the knob
+    //   and under any future convention change at the value source. The
+    //   reference object is deliberately not named: naming two objects is what
+    //   makes a label read as a pair angle. And the symbol θ is deliberately
+    //   not reused — θ belongs to the state's one formula surface (Rule 34b),
+    //   where it is the acute angle the HUD prints.
     //
-    //   The test is NEGATIVE ("is lines_planes"), like vgShowAB's: a state that
-    //   authors no mode — every state of Act I — returns null here and keeps the
-    //   built label byte for byte, so no authoring change can silently rename
-    //   the products row.
+    //   NOTHING IS EVER INVENTED. If nothing in the current group binds this
+    //   knob with an axis, or the object it turns carries no label, the row
+    //   falls back to a bare "turn", which names no object; it NEVER falls back
+    //   to the products pair.
+    //
+    //   SCOPE — mode "products" is untouched, and it is the case that must NOT
+    //   move: vector_products_in_space's "θ (a, b)" is the angle between two
+    //   VECTORS, which this same knob authors directly (vgBuildVectors straddles
+    //   a and b at ±θ/2), which the row therefore equals at every value, and
+    //   which must stay free to read past 90° because that concept teaches the
+    //   SIGN of a·b. The test is NEGATIVE ("is lines_planes"), like vgShowAB's:
+    //   a products state — explicit mode, or no mode at all — returns null here
+    //   and keeps the built label byte for byte.
     //
     //   The group is read from the LIVE global (the picker writes it), never
     //   from the authored per-state value — scar field3d_explore_picker_updates_
@@ -13833,20 +13856,19 @@ export const FIELD_3D_RENDERER_CODE = `
     function vgThetaRowLabel(d, group) {
         d = d || {};
         if (d.mode !== "lines_planes") return null;
-        var rotLab = null, refLab = null, pools = [vgList(d.lines), vgList(d.planes)];
+        var rotLab = null, found = false, pools = [vgList(d.lines), vgList(d.planes)];
         for (var pi = 0; pi < pools.length; pi++) {
             for (var i = 0; i < pools[pi].length; i++) {
                 var o = pools[pi][i] || {};
                 if (!vgInGroup(o, group)) continue;
-                var lab = (typeof o.label === "string" && o.label !== "") ? o.label : null;
                 var r = o.rotate || null;
-                var turns = !!(r && r.about && r.about.length === 3 && r.knob === "theta_deg");
-                if (turns) { if (rotLab === null) rotLab = lab; }
-                else if (refLab === null && lab) refLab = lab;
+                if (!(r && r.about && r.about.length === 3 && r.knob === "theta_deg")) continue;
+                if (found) continue;                       // the FIRST object the knob turns
+                found = true;
+                rotLab = (typeof o.label === "string" && o.label !== "") ? o.label : null;
             }
         }
-        if (!rotLab || !refLab || rotLab === refLab) return "θ";
-        return "θ (" + refLab + ", " + rotLab + ")";
+        return rotLab ? ("turn " + rotLab) : "turn";
     }
     // EVERY row is visited on every state — a row this state does not override
     // is written back to the label it was BORN with, so a mode-derived label can
