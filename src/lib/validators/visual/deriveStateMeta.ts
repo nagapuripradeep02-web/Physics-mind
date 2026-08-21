@@ -110,6 +110,20 @@ export function deriveMotionExpectations(
         const f3dScenarioType = resolveField3dScenarioType(physicsConfig);
         for (const [stateId, stateRaw] of Object.entries(f3d.states)) {
             const state = asObj(stateRaw);
+            // radius_in_uniform_field STATE_7 — the pyq_compare explore sandbox
+            // (added 2026-08-15 with the JEE-2024 ring): user-driven sliders over a
+            // free-running orbit. The headless harness freezes the clock on
+            // interactive states, so no mid-state motion can be expected — declare
+            // false EXPLICITLY (same runtime effect as unknown: D5 skips) so the
+            // motion-registry ratchet counts the state REGISTERED instead of
+            // newly-unknown. STATE_1–6 stay unregistered ON PURPOSE: this scenario
+            // is part of the grandfathered 41-concept debt, and its full motion
+            // registration belongs to the planned D5 sweep, not to this state.
+            if (f3dScenarioType === 'radius_in_uniform_field'
+                && state && state.show_sliders === true
+                && state.advance_mode === 'interaction_complete') {
+                out[stateId] = false; continue;
+            }
             const gauss = state ? asObj(state.gauss) : null;
             if (gauss && gauss.flow === true) { out[stateId] = true; continue; }
             // amperes_circuital_law: the march / accumulate / unroll modes are
