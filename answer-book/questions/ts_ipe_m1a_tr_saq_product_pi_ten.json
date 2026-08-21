@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_product_pi_ten",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Convert to degrees and reduce",
+      "marks": 1
+    },
+    {
+      "label": "Pair into differences of squares",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    },
+    {
+      "label": "Multiply out and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 68. Printed appearances: AP 15 · TS 15 · AP 19 · TS 19 — four printed tags, the most-asked SAQ in this chapter. The same structure as answer 67, but it finishes with the exact values of sin18° and sin54° rather than a double angle. Those two values are worth memorising: (√5 − 1)/4 and (√5 + 1)/4. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_degrees_and_r",
+        "kind": "equation",
+        "label": "Convert to degrees and reduce",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Degrees are easier here because 18° and 54° are the standard angles whose exact sines are known. The last two come out negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cos(π/10) = cos18°,  cos(3π/10) = cos54°",
+          "cos(7π/10) = cos126° = cos(180° − 54°) = −cos54°",
+          "cos(9π/10) = cos162° = cos(180° − 18°) = −cos18°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four angles are converted to 18°, 54°, −54° and −18° in cosine form.",
+          "accept": [
+            "convert to degrees, eighteen and fifty four, and the last two are negative",
+            "cos seven pi by ten is minus cos fifty four and cos nine pi by ten is minus cos eighteen",
+            "change to degrees and reduce the obtuse ones",
+            "degrees ga marchi, chivari rendu minus vasthai",
+            "the four angles become plus and minus eighteen and fifty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eighteen degrees",
+            "fifty four",
+            "minus cos",
+            "degrees"
+          ]
+        },
+        "why": "Radians hide the fact that these are the pentagon angles. Converting is what makes the exact values recognisable.",
+        "common_mistakes": [
+          "Staying in radians and missing the standard values.",
+          "Getting cos 126° positive."
+        ]
+      },
+      {
+        "id": "s2_pair_into_differences_of",
+        "kind": "equation",
+        "label": "Pair into differences of squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Same pairing as answer 67 — each plus bracket with its own minus partner.",
+        "lines": [
+          "L.H.S = (1 + cos18°)(1 + cos54°)(1 − cos54°)(1 − cos18°)",
+          "= (1 − cos²18°)(1 − cos²54°)",
+          "= sin²18° sin²54°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets pair into (1 − cos²) forms, giving sin²18° sin²54°.",
+          "accept": [
+            "pair each bracket with its negative to get one minus cos squared which is sin squared",
+            "the product becomes sin squared eighteen times sin squared fifty four",
+            "pair them into differences of squares",
+            "pairs cheste sin square eighteen into sin square fifty four vasthundi",
+            "each pair gives a sine squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin squared eighteen",
+            "sin squared fifty four",
+            "difference of squares"
+          ]
+        },
+        "why": "Identical move to answer 67 — the two questions are the same shape with different angles.",
+        "common_mistakes": [
+          "Pairing in the written order.",
+          "Writing 1 − cos² as cos²."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_exact_val",
+        "kind": "equation",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4. These are standard results and are quoted, not derived.",
+        "lines": [
+          "sin18° = (√5 − 1)/4,  sin54° = (√5 + 1)/4",
+          "= [(√5 − 1)/4]² [(√5 + 1)/4]²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the standard exact values sin18° = (√5−1)/4 and sin54° = (√5+1)/4 are substituted.",
+          "accept": [
+            "substitute sin eighteen equals root five minus one over four and sin fifty four equals root five plus one over four",
+            "use the standard exact values for the two sines",
+            "quote the known values of sin eighteen and sin fifty four",
+            "sin eighteen and sin fifty four exact values substitute cheyyali",
+            "the two sines have known surd values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root five minus one",
+            "root five plus one",
+            "over four",
+            "exact values"
+          ]
+        },
+        "why": "These two values are conjugates, which is why their product is rational — that is what makes the whole expression collapse to a simple fraction.",
+        "common_mistakes": [
+          "Trying to derive the values instead of quoting them.",
+          "Swapping the two values."
+        ]
+      },
+      {
+        "id": "s4_multiply_out_and_simplif",
+        "kind": "boxed_final",
+        "label": "Multiply out and simplify",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Group the two conjugates together first: (√5 − 1)(√5 + 1) is 5 − 1 = 4, and the surds vanish.",
+        "lines": [
+          "= [(√5 − 1)(√5 + 1)/16]²",
+          "= [(5 − 1)/16]² = [4/16]²",
+          {
+            "text": "= (1/4)² = 1/16 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugates multiply to 5 − 1 = 4, giving (4/16)² = 1/16.",
+          "accept": [
+            "root five minus one times root five plus one is four so it becomes four over sixteen all squared which is one sixteenth",
+            "the conjugates give five minus one equals four and the answer is one over sixteen",
+            "multiply the conjugates first then square",
+            "conjugates multiply cheste four vasthundi, answer one by sixteen",
+            "the answer is one sixteenth"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "conjugates",
+            "five minus one",
+            "one sixteenth",
+            "four over sixteen"
+          ]
+        },
+        "why": "Multiplying the conjugates BEFORE squaring is what keeps the arithmetic clean — squaring each surd first would work but is far messier.",
+        "common_mistakes": [
+          "Squaring each bracket before multiplying.",
+          "Finishing at 1/4."
+        ]
+      }
+    ]
+  }
+}

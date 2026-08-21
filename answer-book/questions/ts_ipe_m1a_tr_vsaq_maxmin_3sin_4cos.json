@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_maxmin_3sin_4cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum and minimum values of f(x) = 3sinx − 4cosx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identify a, b, c and find √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the max and min formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 127.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Identify a, b, c and find √(a²+b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The coefficient of cos is NEGATIVE here — carry the minus, and note the square removes it anyway.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = 3sinx − 4cosx",
+          "Comparing with a sinx + b cosx + c:",
+          "a = 3, b = −4, c = 0",
+          "√(a² + b²) = √(9 + 16) = √25 = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 3, b = −4, c = 0, and that squaring removes the minus so the root is still 5.",
+          "accept": [
+            "a is three b is minus four and squaring removes the sign so the root is five",
+            "the cosine coefficient is negative but the square makes it positive",
+            "root of nine plus sixteen is five even with the minus",
+            "b minus four kani square cheste positive, root five",
+            "identify the coefficients including the minus"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four",
+            "square removes the sign",
+            "five",
+            "root twenty five"
+          ]
+        },
+        "why": "Only the SIZE of the swing matters, not its direction — which is why a negative coefficient gives the same amplitude as a positive one.",
+        "common_mistakes": [
+          "Writing b = 4 and losing track of the sign for no reason.",
+          "Getting √(9 − 16) and a negative under the root."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the max and min formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Same as the twin — and the same answers, because the amplitude is the same.",
+        "lines": [
+          "Maximum = c + √(a²+b²) = 0 + 5 = 5",
+          "Minimum = c − √(a²+b²) = 0 − 5 = −5",
+          {
+            "text": "∴ Maximum = 5, Minimum = −5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum is 5 and the minimum is −5.",
+          "accept": [
+            "maximum is five and minimum is minus five, same as the other question",
+            "the answers are five and negative five",
+            "max five min minus five",
+            "maximum five, minimum minus five",
+            "both values come out the same as the twin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "maximum five",
+            "minimum minus five",
+            "same"
+          ]
+        },
+        "why": "This function is the previous one shifted sideways, not stretched — so it reaches exactly the same heights.",
+        "common_mistakes": [
+          "Expecting a different answer because of the minus.",
+          "Giving only one value."
+        ]
+      }
+    ]
+  }
+}

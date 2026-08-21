@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_cos42_cos78_cos162",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that cos42° + cos78° + cos162° = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite as 60° ± 18°",
+      "marks": 1
+    },
+    {
+      "label": "Apply cos(A+B) + cos(A−B)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 131.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Rewrite as 60° ± 18°",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the trick. 42° is 60° − 18° and 78° is 60° + 18°, so the first two are a matched pair around 60°. The third reduces to −cos18°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos42° + cos78° + cos162°",
+          "= cos(60° − 18°) + cos(60° + 18°) + cos(180° − 18°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 42° and 78° are written as 60° ∓ 18° and 162° as 180° − 18°.",
+          "accept": [
+            "write forty two as sixty minus eighteen and seventy eight as sixty plus eighteen and one sixty two as one eighty minus eighteen",
+            "spot that the first two are sixty either side of eighteen",
+            "rewrite all three around eighteen degrees",
+            "forty two ante sixty minus eighteen, seventy eight ante sixty plus eighteen",
+            "express them in terms of eighteen degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty minus eighteen",
+            "sixty plus eighteen",
+            "one eighty minus eighteen"
+          ]
+        },
+        "why": "All three angles are built from 18°, and seeing that is the whole question. Without the rewrite there is nothing to combine.",
+        "common_mistakes": [
+          "Trying to evaluate each cosine separately.",
+          "Missing that 162° reduces to −cos 18°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply cos(A+B) + cos(A−B)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The pair collapses to 2cos60°cos18° = cos18°, which the third term cancels exactly.",
+        "lines": [
+          "= 2 cos60° cos18° − cos18°",
+          "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
+          "= 2 × (1/2) × cos18° − cos18°",
+          "= cos18° − cos18°",
+          {
+            "text": "= 0 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair becomes 2cos60°cos18° = cos18°, which cancels the third term to give 0.",
+          "accept": [
+            "the pair gives two cos sixty cos eighteen which is cos eighteen and that cancels the last term",
+            "two times a half is one so it leaves cos eighteen minus cos eighteen",
+            "everything cancels to zero",
+            "two cos sixty cos eighteen ante cos eighteen, cancel ayi zero",
+            "the answer is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos sixty",
+            "cos eighteen",
+            "cancel",
+            "zero"
+          ]
+        },
+        "why": "cos60° = 1/2 exactly cancels the 2 in front, leaving a single cos18° — which is precisely what the third term subtracts.",
+        "common_mistakes": [
+          "Using the difference formula and getting sines.",
+          "Forgetting the minus on cos 162°."
+        ]
+      }
+    ]
+  }
+}

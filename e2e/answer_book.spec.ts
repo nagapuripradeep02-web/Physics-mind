@@ -308,13 +308,18 @@ test('the paper section and marks agree across header, chip and mark split', asy
  * if the build genuinely has none.
  */
 async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
-    const ids = await page.evaluate(() => (window as any).PM_ANSWER.questionIds);
-    for (const id of ids) {
-        await openQ(page, id);
-        const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
-        if (cuts.length >= 2) return cuts;
-    }
-    return null;
+    // Find the id from the DATA, then open only that one. This used to open every
+    // question in turn and ask listCuts() — O(n) page renders — which timed out once
+    // Maths-1A Unit 6 took the book past 160 questions: the only multi-cut questions
+    // are the physics ones, and `ts_ipe_p1_*` now sorts behind 130+ `ts_ipe_m1a_*`.
+    // `cuts` is a top-level field on the question, so the scan needs no rendering at
+    // all. Raising the timeout would have worked today and failed again at Unit 7.
+    const id = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[]).find((q) => (q.cuts || []).length >= 2)?.question_id
+        ?? null);
+    if (id === null) return null;
+    await openQ(page, id);
+    return await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
 }
 
 // ── cuts: the same question at two lengths ──────────────────────────────────

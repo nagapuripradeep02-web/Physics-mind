@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_cot_minus_tan",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that cotA − tanA = 2 cot2A.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write both as fractions",
+      "marks": 1
+    },
+    {
+      "label": "Subtract over a common denominator",
+      "marks": 1
+    },
+    {
+      "label": "Introduce the double angle",
+      "marks": 1
+    },
+    {
+      "label": "Convert to cot",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 63.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. The twin of 63.1. The subtraction makes the numerator cos²A − sin²A instead of a sum, and that is cos 2A — which is why this answer ends in cot rather than cosec. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_both_as_fractions",
+        "kind": "equation",
+        "label": "Write both as fractions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same opening as the twin — reduce everything to sine and cosine.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cotA − tanA",
+          "= cosA/sinA − sinA/cosA"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cotA and tanA are written as cosA/sinA and sinA/cosA.",
+          "accept": [
+            "write cot A as cos A over sin A and tan A as sin A over cos A",
+            "express both in sine and cosine",
+            "convert cot and tan into fractions",
+            "cot A ni cos A by sin A ga rasta",
+            "put both over sine and cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A over sin A",
+            "sin A over cos A",
+            "cot",
+            "tan"
+          ]
+        },
+        "why": "Identical first move to the twin. What changes is the sign between them, and everything downstream follows from that.",
+        "common_mistakes": [
+          "Subtracting the wrong way round.",
+          "Writing tan A as cos A / sin A."
+        ]
+      },
+      {
+        "id": "s2_subtract_over_a_common_d",
+        "kind": "equation",
+        "label": "Subtract over a common denominator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The numerator is cos²A − sin²A — a DIFFERENCE this time, and that is exactly cos 2A.",
+        "lines": [
+          "= (cos²A − sin²A)/(sinA cosA)",
+          "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting gives cos²A − sin²A on top, which is cos 2A.",
+          "accept": [
+            "the numerator is cos squared minus sin squared which is cos two A",
+            "subtracting gives a difference of squares equal to cos two A",
+            "combine and the top becomes cos two A",
+            "numerator cos square minus sin square ante cos two A",
+            "the difference gives cos two A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared minus sin squared",
+            "cos two A",
+            "difference",
+            "common denominator"
+          ]
+        },
+        "why": "A sum of the squares gives 1; a DIFFERENCE gives cos 2A. That single change is what separates this proof from its twin.",
+        "common_mistakes": [
+          "Writing cos²A − sin²A = 1.",
+          "Getting sin²A − cos²A and picking up a sign."
+        ]
+      },
+      {
+        "id": "s3_introduce_the_double_ang",
+        "kind": "equation",
+        "label": "Introduce the double angle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Same trick as the twin — double top and bottom so the denominator becomes sin 2A.",
+        "lines": [
+          "= 2 cos2A/(2 sinA cosA)",
+          "= 2 cos2A/sin2A   [∵ sin2A = 2 sinA cosA]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That top and bottom are doubled so the denominator becomes sin 2A.",
+          "accept": [
+            "multiply top and bottom by two so the bottom is sin two A",
+            "introduce the double angle in the denominator",
+            "double both to get two cos two A over sin two A",
+            "rendu vaipula two tho multiply cheyyali",
+            "the denominator becomes sin two A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two A",
+            "two cos two A",
+            "double angle"
+          ]
+        },
+        "why": "Both this proof and its twin need the same 2 manufactured in the denominator. Only the numerator differs.",
+        "common_mistakes": [
+          "Doubling only one side of the fraction.",
+          "Losing the cos 2A on top."
+        ]
+      },
+      {
+        "id": "s4_convert_to_cot",
+        "kind": "boxed_final",
+        "label": "Convert to cot",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. cos over sin is cot, so the answer is 2 cot 2A.",
+        "lines": [
+          {
+            "text": "= 2 cot2A = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2A / sin 2A is written as cot 2A, giving 2 cot 2A.",
+          "accept": [
+            "cos two A over sin two A is cot two A so the answer is two cot two A",
+            "the ratio is cot so it becomes two cot two A",
+            "convert to cot to finish",
+            "cos by sin ante cot, so two cot two A",
+            "the answer is two cot two A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cot two A",
+            "cot",
+            "cos over sin"
+          ]
+        },
+        "why": "The twin ended in cosec because its numerator was 1; this one ends in cot because its numerator is a cosine.",
+        "common_mistakes": [
+          "Writing tan instead of cot.",
+          "Leaving the answer as a fraction."
+        ]
+      }
+    ]
+  }
+}

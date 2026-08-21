@@ -148,7 +148,18 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1, 2, 3, 4 and 5 — 124 entries.**
+3. **Units complete so far: 1 to 6 — 166 entries.**
+   **Unit 6 (Trigonometric Ratios upto Transformations) — COMPLETE at 42 of 42**: 8 LAQ (book
+   pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). The second-largest unit after Matrices, and
+   the one with the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23
+   is ALWAYS a transformation identity. All eight LAQs are ONE method — state the angle condition,
+   pair two terms with a sum-to-product formula, use the condition to convert, factor, finish with
+   a product formula — and four of them sit as TWINS on facing halves of a page, each pair differing
+   by a single sign or a single choice of double-angle form. The VSAQ chapter is grouped by the book
+   itself: periods, then maxima and minima, then evaluations, then identities; its header note
+   ("Writing Formula itself gets you 1 Mark in these Questions") is why the first step of every VSAQ
+   answer here IS the formula.
+
    **Unit 5 (Product of Vectors) — COMPLETE at 26 of 26**: 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64)
    + 12 VSAQ (pp.89-91). The first maths unit to carry ALL THREE sections — Q7 (VSAQ), Q13 (SAQ)
    and Q22 (LAQ) — and the first since Matrices whose chapters print mark splits: answer 23 on

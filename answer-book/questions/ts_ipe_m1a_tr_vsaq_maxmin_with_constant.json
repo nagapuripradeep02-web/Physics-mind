@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_maxmin_with_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum and minimum values of f(x) = 5sinx + 12cosx − 13.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identify a, b, c and find √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the max and min formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 128.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Identify a, b, c and find √(a²+b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This one HAS a constant, and it is −13. It shifts both answers down by 13, so it cannot be ignored.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = 5sinx + 12cosx − 13",
+          "Comparing with a sinx + b cosx + c:",
+          "a = 5, b = 12, c = −13",
+          "√(a² + b²) = √(25 + 144) = √169 = 13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 5, b = 12, c = −13, and √(a²+b²) = 13.",
+          "accept": [
+            "a five b twelve c minus thirteen and the root of twenty five plus one forty four is thirteen",
+            "identify the constant as minus thirteen and the root as thirteen",
+            "root one sixty nine is thirteen",
+            "a five b twelve c minus thirteen, root thirteen",
+            "the amplitude is thirteen and the constant is minus thirteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus thirteen",
+            "thirteen",
+            "one sixty nine",
+            "constant"
+          ]
+        },
+        "why": "The amplitude happens to equal the constant here, which is why the maximum lands exactly on zero — a neat coincidence worth noticing as a check.",
+        "common_mistakes": [
+          "Taking c as +13.",
+          "Ignoring the constant entirely."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the max and min formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The constant shifts everything down: max = −13 + 13 = 0 and min = −13 − 13 = −26. The function never rises above zero.",
+        "lines": [
+          "Maximum = c + √(a²+b²) = −13 + 13 = 0",
+          "Minimum = c − √(a²+b²) = −13 − 13 = −26",
+          {
+            "text": "∴ Maximum = 0, Minimum = −26",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum is 0 and the minimum is −26.",
+          "accept": [
+            "minus thirteen plus thirteen is zero and minus thirteen minus thirteen is minus twenty six",
+            "maximum zero and minimum minus twenty six",
+            "the constant shifts both down so the max is zero",
+            "maximum zero, minimum minus twenty six",
+            "the answers are zero and negative twenty six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero",
+            "minus twenty six",
+            "maximum",
+            "minimum"
+          ]
+        },
+        "why": "A maximum of exactly 0 means the function touches the axis at its highest point and is negative everywhere else — the constant is doing all of that.",
+        "common_mistakes": [
+          "Giving 13 and −13 by dropping the constant.",
+          "Adding the constant to only one of the two."
+        ]
+      }
+    ]
+  }
+}

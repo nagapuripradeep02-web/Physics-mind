@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_tan50_tan40",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that tan50° − tan40° = 2 tan10°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Start from tan(50° − 40°)",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the denominator",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 132.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: the printed tags are 'IPE 11,07' — both PRE-BIFURCATION papers, before the 2014 TS/AP split. appearances[].board has no value for that era, so the years are recorded here in prose and appearances[] is left empty. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Start from tan(50° − 40°)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Work BACKWARDS from the answer: 50° − 40° is 10°, so write tan(50° − 40°) = tan10° and expand the left side.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take 50° − 40° = 10°",
+          "⇒ tan(50° − 40°) = tan10°",
+          "∴ (tan50° − tan40°)/(1 + tan50° tan40°) = tan10°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(50° − 40°) = tan10° is written and the tan(A−B) formula expanded on the left.",
+          "accept": [
+            "fifty minus forty is ten so write tan of fifty minus forty equals tan ten and expand",
+            "start from the difference of the angles and use the tan A minus B formula",
+            "work backwards from tan ten",
+            "fifty minus forty ante ten, tan A minus B formula rasta",
+            "expand tan of the difference"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan fifty minus forty",
+            "tan ten",
+            "tan A minus B",
+            "expand"
+          ]
+        },
+        "why": "The answer contains tan10°, and 10° is the difference of the two angles on the left. Starting from that observation is what makes the proof one line long.",
+        "common_mistakes": [
+          "Trying to expand tan 50° and tan 40° separately.",
+          "Using the sum formula."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Simplify the denominator",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 40° is 90° − 50°, so tan40° is cot50° — and tan50° × cot50° is exactly 1, making the denominator 2.",
+        "lines": [
+          "tan40° = tan(90° − 50°) = cot50°",
+          "⇒ (tan50° − tan40°)/(1 + tan50° cot50°) = tan10°",
+          "= (tan50° − tan40°)/(1 + 1) = tan10°   [∵ tanθ cotθ = 1]",
+          "Cross multiplying:",
+          {
+            "text": "tan50° − tan40° = 2 tan10°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan40° = cot50°, so tan50° tan40° = 1 and the denominator becomes 2, giving the result on cross-multiplying.",
+          "accept": [
+            "tan forty is cot fifty so the product is one and the denominator is two, then cross multiply",
+            "the denominator becomes one plus one which is two",
+            "tan times cot is one so the bottom is two",
+            "tan forty ante cot fifty, product one, denominator two",
+            "cross multiplying gives two tan ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot fifty",
+            "tan times cot is one",
+            "denominator two",
+            "cross multiply"
+          ]
+        },
+        "why": "The 2 in the answer comes from 1 + 1 in the denominator. Everything else was already there — that single simplification is the whole proof.",
+        "common_mistakes": [
+          "Not spotting that 40° and 50° are complementary.",
+          "Forgetting to cross-multiply at the end."
+        ]
+      }
+    ]
+  }
+}

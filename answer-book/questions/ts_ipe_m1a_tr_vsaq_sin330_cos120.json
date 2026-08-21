@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_sin330_cos120",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of sin330° · cos120° + cos210° · sin300°.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce each angle",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 129.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Reduce each angle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Each angle goes to its acute partner with a sign attached. Write all four reductions before multiplying anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin330° = sin(360° − 30°) = −sin30° = −1/2",
+          "cos120° = cos(180° − 60°) = −cos60° = −1/2",
+          "cos210° = cos(180° + 30°) = −cos30° = −√3/2",
+          "sin300° = sin(360° − 60°) = −sin60° = −√3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all four angles are reduced to acute ones with the correct signs: −1/2, −1/2, −√3/2, −√3/2.",
+          "accept": [
+            "reduce each angle to an acute one with its sign, all four come out negative",
+            "sin three thirty is minus a half and cos one twenty is minus a half and so on",
+            "use allied angles to reduce all four",
+            "naalugu angles ni acute ga marchali, anni minus vasthai",
+            "each reduces to a known value with a minus"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a half",
+            "minus root three by two",
+            "allied angles",
+            "reduce"
+          ]
+        },
+        "why": "Every one of these four angles lies outside the first quadrant, so every one picks up a sign. Getting all four right is the whole first mark.",
+        "common_mistakes": [
+          "Losing a sign on one of the four.",
+          "Reducing 210° as 180° − 30° instead of 180° + 30°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute and evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two negatives multiply to a positive in each product, so both terms are positive and they add.",
+        "lines": [
+          "Given expression = (−1/2)(−1/2) + (−√3/2)(−√3/2)",
+          "= 1/4 + 3/4",
+          {
+            "text": "= 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives 1/4 + 3/4 = 1.",
+          "accept": [
+            "a quarter plus three quarters is one",
+            "both products are positive and they add to one",
+            "the value is one",
+            "one by four plus three by four equals one",
+            "the answer is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one quarter",
+            "three quarters",
+            "one"
+          ]
+        },
+        "why": "Both products are a negative times a negative, so both come out positive — and a quarter plus three quarters is exactly 1.",
+        "common_mistakes": [
+          "Getting a negative answer by mishandling the signs.",
+          "Squaring √3/2 as 3/4 but writing √3/4."
+        ]
+      }
+    ]
+  }
+}
