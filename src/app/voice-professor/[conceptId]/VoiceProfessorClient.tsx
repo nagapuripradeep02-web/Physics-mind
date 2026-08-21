@@ -63,28 +63,12 @@ const FILLERS = [
     "Let me bring up the picture for this.",
 ];
 
-// Minimal typing for the webkit-prefixed Web Speech API (not in the TS DOM lib).
-interface SRAlternative { readonly transcript: string; readonly confidence: number; }
-interface SRResult { readonly isFinal: boolean; readonly length: number; readonly [i: number]: SRAlternative; }
-interface SRResultList { readonly length: number; readonly [i: number]: SRResult; }
-interface SREvent { readonly resultIndex: number; readonly results: SRResultList; }
-interface SpeechRec {
-    lang: string;
-    continuous: boolean;
-    interimResults: boolean;
-    start(): void;
-    stop(): void;
-    abort(): void;
-    onstart: (() => void) | null;
-    onresult: ((e: SREvent) => void) | null;
-    onend: (() => void) | null;
-    onerror: ((e: { error?: string }) => void) | null;
-}
-type SpeechRecCtor = new () => SpeechRec;
-function getSpeechRecCtor(): SpeechRecCtor | null {
-    if (typeof window === "undefined") return null;
-    const w = window as unknown as { SpeechRecognition?: SpeechRecCtor; webkitSpeechRecognition?: SpeechRecCtor };
-    return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
+// Conversation mode uses @ricky0123/vad-web (Silero VAD) on an echo-cancelled mic,
+// imported lazily at first use (it pulls wasm + an AudioWorklet + the onnx model, so
+// it must run client-only, never at SSR). We only need a tiny handle type here.
+interface VadHandle { start(): void; pause(): void; destroy(): void; }
+function micCaptureSupported(): boolean {
+    return typeof navigator !== "undefined" && !!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia;
 }
 
 // The line the professor actually SPEAKS: the model's `say`, plus the server-
@@ -214,7 +198,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
     const [textInput, setTextInput] = useState("");
     const [log, setLog] = useState<LogEntry[]>([]);
     const [speaking, setSpeaking] = useState(false);
-    // Hands-free real-time conversation mode (browser SpeechRecognition).
+    // Hands-free real-time conversation mode (echo-cancelled VAD mic).
     const [convMode, setConvMode] = useState(false);   // continuous listen ↔ answer loop
     const [listening, setListening] = useState(false); // SR actively hearing the user
     const [interim, setInterim] = useState("");        // live (non-final) user words
@@ -288,7 +272,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
     const lastFillerRef = useRef<number>(-1);
     const fillersPrefetchedRef = useRef(false);
     // Conversation-mode plumbing (read inside SR callbacks to dodge stale closures).
-    const recognitionRef = useRef<SpeechRec | null>(null);
+    const vadRef = useRef<VadHandle | null>(null);
     const convModeRef = useRef(false);
     const speakingRef = useRef(false);
     useEffect(() => { convModeRef.current = convMode; }, [convMode]);
@@ -656,19 +640,21 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
 
             // ── consumer (player) ──
             const consume = async () => {
-                // Latency mask: speak a short filler IMMEDIATELY (instant prefetched clip)
-                // so there is no dead air while beat 1 is generated + synthesized. The
-                // producer fetch below runs concurrently, so this overlaps generation.
-                // Part of the turn → a barge-in (abortCurrent) interrupts it like any beat.
-                const filler = pickFiller();
-                if (token !== turnTokenRef.current) return;
-                setThinking(false);
-                setSpeaking(true);
-                if (filler.b64) await playBase64(filler.b64);
-                else await speakWebSpeech(filler.text);
-                if (token !== turnTokenRef.current) return;
-                // Beat 1 may still be generating — show "thinking" again until it lands.
-                if (queue.length === 0 && !streamDone) { setSpeaking(false); setThinking(true); }
+                // Latency mask: speak a short filler IMMEDIATELY so there is no dead air while
+                // beat 1 is generated + synthesized — EXCEPT in conversation mode, where the
+                // always-on VAD mic + a spoken filler would feed an echo/feedback loop. There the
+                // first beat plays directly (the VAD mic + active-stop barge-in handle pacing).
+                if (!convModeRef.current) {
+                    const filler = pickFiller();
+                    if (token !== turnTokenRef.current) return;
+                    setThinking(false);
+                    setSpeaking(true);
+                    if (filler.b64) await playBase64(filler.b64);
+                    else await speakWebSpeech(filler.text);
+                    if (token !== turnTokenRef.current) return;
+                    // Beat 1 may still be generating — show "thinking" again until it lands.
+                    if (queue.length === 0 && !streamDone) { setSpeaking(false); setThinking(true); }
+                }
 
                 let i = 0;
                 let firstPlayed = false;
@@ -1066,7 +1052,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
     }, []);
 
     const sendAudioForStt = useCallback(
-        async (blob: Blob) => {
+        async (blob: Blob, quiet = false) => {
             setThinking(true);
             try {
                 const form = new FormData();
@@ -1076,9 +1062,10 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
                 const res = await fetch("/api/voice/stt", { method: "POST", body: form });
                 const data = (await res.json()) as { transcript?: string; error?: string };
                 if (res.ok && data.transcript && data.transcript.trim()) handleUserTextRef.current(data.transcript);
-                else addLog({ role: "error", text: data?.error ?? "could not transcribe audio" });
+                // quiet: a VAD segment that transcribes to nothing (cough, noise) is normal — don't spam errors.
+                else if (!quiet) addLog({ role: "error", text: data?.error ?? "could not transcribe audio" });
             } catch (err) {
-                addLog({ role: "error", text: err instanceof Error ? err.message : "stt failed" });
+                if (!quiet) addLog({ role: "error", text: err instanceof Error ? err.message : "stt failed" });
             } finally {
                 setThinking(false);
             }
@@ -1152,63 +1139,58 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
         if (chunks.length) void sendAudioForStt(encodeWav(chunks, rate));
     }, [teardownRecorder, sendAudioForStt, stopOrbLoop, playPop]);
 
-    // ── Hands-free conversation (browser SpeechRecognition) ───────────────────
-    // One tap starts a continuous listen↔answer loop: your words stream in live,
-    // a pause auto-submits (SR `isFinal`), she answers, and SR keeps listening so
-    // you can just talk back — or cut in while she speaks (barge-in). Her voice
-    // stays Sarvam; this only changes how YOUR speech is captured.
-    const startConversation = useCallback((): boolean => {
-        const Ctor = getSpeechRecCtor();
-        if (!Ctor) return false;
+    // ── Hands-free conversation (echo-cancelled VAD mic) ──────────────────────
+    // One tap starts a continuous, hands-free loop: an echo-cancelled mic feeds an
+    // in-browser Silero VAD. When YOU start talking it stops her (barge-in); when you
+    // pause, that utterance is transcribed by Sarvam and answered. Her own voice is
+    // echo-cancelled before the VAD sees it, so she can't trigger herself (no loop).
+    const startConversation = useCallback(async (): Promise<boolean> => {
+        if (!micCaptureSupported()) return false;
         ensureFxCtx();
-        let rec: SpeechRec;
-        try { rec = new Ctor(); } catch { return false; }
-        rec.lang = "en-IN";
-        rec.continuous = true;
-        rec.interimResults = true;
-        rec.onstart = () => setListening(true);
-        rec.onresult = (e: SREvent) => {
-            let interimStr = "";
-            let finalStr = "";
-            for (let i = e.resultIndex; i < e.results.length; i++) {
-                const r = e.results[i];
-                const txt = r[0] ? r[0].transcript : "";
-                if (r.isFinal) finalStr += txt; else interimStr += txt;
-            }
-            const speakingNow = speakingRef.current;
-            if (!speakingNow) setInterim(interimStr);   // while SHE speaks, don't echo her words back as my interim
-            const finalClean = finalStr.trim();
-            if (!finalClean) return;
-            // Echo guard: while she speaks, only a clear (multi-word) utterance counts as a barge-in.
-            if (speakingNow && finalClean.split(/\s+/).length < 2) return;
-            if (speakingNow) abortCurrent();            // barge-in: stop her, take the new question
-            setInterim("");
-            handleUserTextRef.current(finalClean);
-        };
-        rec.onerror = (ev: { error?: string }) => {
-            if (ev && (ev.error === "not-allowed" || ev.error === "service-not-allowed")) {
-                convModeRef.current = false;
-                setConvMode(false);
-                addLog({ role: "error", text: "microphone permission denied" });
-            }
-        };
-        rec.onend = () => {
-            setListening(false);
-            // Continuous: restart while still in conversation mode (debounced to avoid a tight loop).
-            if (convModeRef.current) {
-                window.setTimeout(() => {
-                    if (convModeRef.current && recognitionRef.current === rec) {
-                        try { rec.start(); } catch { /* a stale session — next onend retries */ }
-                    }
-                }, 250);
-            }
-        };
-        recognitionRef.current = rec;
         convModeRef.current = true;
         setConvMode(true);
-        try { rec.start(); } catch { /* will restart via onend */ }
+        setListening(true);
+        try {
+            const { MicVAD } = await import("@ricky0123/vad-web");
+            if (!convModeRef.current) return true;              // tapped off during the async load
+            const vad = await MicVAD.new({
+                // Echo-cancelled capture so HER voice (through the speakers) is attenuated
+                // before the VAD ever sees it — the core of the no-feedback-loop fix.
+                getStream: () => navigator.mediaDevices.getUserMedia({
+                    audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+                }),
+                // Load the Silero model + worklet + ORT wasm from CDN — the npm default ("./")
+                // would 404 against our app root. Pinned to the installed versions.
+                baseAssetPath: "https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.30/dist/",
+                onnxWASMBasePath: "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/",
+                // Slightly conservative Silero thresholds so residual speaker echo can't false-start;
+                // ~0.8 s of silence ends the utterance (auto-submit); min 200 ms filters blips.
+                positiveSpeechThreshold: 0.6,
+                negativeSpeechThreshold: 0.4,
+                minSpeechMs: 200,
+                redemptionMs: 800,
+                onSpeechStart: () => {
+                    // Active-stop barge-in: the instant YOU speak, stop her so she can't talk over you.
+                    if (speakingRef.current) abortCurrent();
+                },
+                onSpeechEnd: (audio: Float32Array) => {
+                    if (!convModeRef.current) return;
+                    // Silero hands back 16 kHz Float32 → straight into the existing encoder + Sarvam STT.
+                    try { void sendAudioForStt(encodeWav([audio], 16000), true); } catch { /* noop */ }
+                },
+            });
+            if (!convModeRef.current) { try { vad.destroy(); } catch { /* noop */ } return true; }
+            vadRef.current = vad;
+            vad.start();
+        } catch {
+            convModeRef.current = false;
+            setConvMode(false);
+            setListening(false);
+            addLog({ role: "error", text: "couldn't start the conversation mic — you can type instead" });
+            return false;
+        }
         return true;
-    }, [ensureFxCtx, abortCurrent, addLog]);
+    }, [ensureFxCtx, abortCurrent, addLog, sendAudioForStt]);
 
     const stopConversation = useCallback(() => {
         convModeRef.current = false;
@@ -1216,20 +1198,16 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
         setListening(false);
         setInterim("");
         abortCurrent();   // stop any in-flight answer audio
-        const rec = recognitionRef.current;
-        recognitionRef.current = null;
-        if (rec) {
-            rec.onend = null; rec.onresult = null; rec.onerror = null; rec.onstart = null;
-            try { rec.stop(); } catch { /* noop */ }
-            try { rec.abort(); } catch { /* noop */ }
-        }
+        const vad = vadRef.current;
+        vadRef.current = null;
+        if (vad) { try { vad.pause(); } catch { /* noop */ } try { vad.destroy(); } catch { /* noop */ } }
     }, [abortCurrent]);
 
     const toggleMic = useCallback(() => {
         ensureFxCtx(); // unlock audio in this gesture (pop + TTS analyser)
         if (convMode) { stopConversation(); return; }
-        // Prefer hands-free conversation (browser SpeechRecognition); fall back to Sarvam batch record.
-        if (getSpeechRecCtor()) { startConversation(); return; }
+        // Prefer hands-free conversation (echo-cancelled VAD mic); fall back to Sarvam tap-record.
+        if (micCaptureSupported()) { void startConversation(); return; }
         if (recording) stopRecording();
         else void startRecording();
     }, [convMode, recording, startConversation, stopConversation, startRecording, stopRecording, ensureFxCtx]);
@@ -1439,7 +1417,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
                         chatCollapsed ? "w-0" : "w-[340px]"
                     }`}
                 >
-                    <div className="flex w-[340px] flex-1 flex-col p-4">
+                    <div className="flex w-[340px] flex-1 min-h-0 flex-col p-4">
                         {/* subtle collapse control — the only chrome */}
                         <div className="flex shrink-0 justify-end">
                             <button
@@ -1451,7 +1429,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
                             </button>
                         </div>
 
-                        <div className={`flex flex-1 flex-col items-center gap-7 px-1 pb-6 ${convMode ? "justify-start pt-1" : "justify-center"}`}>
+                        <div className={`flex flex-1 min-h-0 flex-col items-center gap-7 px-1 pb-6 ${convMode ? "justify-start pt-1" : "justify-center"}`}>
                             {/* big mic */}
                             <div className="flex flex-col items-center gap-3.5">
                                 <button
@@ -1519,7 +1497,7 @@ export function VoiceProfessorClient({ conceptId, conceptName, simHtml, states, 
                             </>
                             ) : (
                             /* transparent live transcript — you (right) ↔ professor (left), no bubbles */
-                            <div ref={logRef} className="w-full flex-1 overflow-y-auto px-1 pt-1 space-y-2">
+                            <div ref={logRef} className="w-full flex-1 min-h-0 overflow-y-auto px-1 pt-1 space-y-2">
                                 {log.every((e) => e.role === "nav") && !interim && (
                                     <p className="px-2 text-center text-[13px] italic text-stone-500/70">Listening… just start talking. Tap the mic to end.</p>
                                 )}
