@@ -1,5 +1,48 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Answer Book: **the ENUMERATION SWEEP reaches Units 4, 5 and 6 — and the union check FLIPS** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the Session-89 doctrine has now been applied to every chapter in the book, not just the one it was invented on. The three already-complete chapters — Motion in a Plane, Laws of Motion, Work Power Energy — were re-sourced against both books and then swept: +11, +12 and +10 predicted lean cards, honestly badged. Four chapters, 115 catalog entries, 111 files, 44 of them predicted. The interesting finding is the SOURCING one: in these three units the TSBIE Basic Learning Material is a strict SUBSET of the Fastrack, the exact opposite of Unit 7 — so the two-book check earns its keep by giving a DIFFERENT answer per unit, not by always finding something.**
+
+### The union check was re-run, and it came back clean
+Earlier sessions checked the BLM's Units 4 and 5 only for a **Section C** (that was the question in front of them at the time). This session read its short-answer sections page by page: **BLM Unit 4** (book pp.6–9) lists 6 VSAQs and 4 SAQs and no Section C; **BLM Unit 5** (pp.10–11) lists 7 VSAQs and 3 SAQs and no Section C; **BLM Unit 6** (pp.12–16) lists the 3 LAQs and then "Attached Problems", as already recorded. **Every one of those 20 questions was already in the inventory.** The asked cores stand unchanged at 20 / 17 / 12 and nothing was added from the BLM.
+
+Two sourcing claims were corrected in the `units.json` comment while the books were open:
+- Unit 4's two LAQ entries are **invented** Section-C forms, not "the BLM's Section-C forms" — the BLM lists the parallelogram law and the parabola as 4-mark SAQs exactly as the Fastrack does, and **neither book has a Unit 4 Section C**. (The memory note was right; the manifest comment was loose.)
+- The BLM places *"How is average velocity different from instantaneous velocity?"* in **Unit 3** (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4. Our card follows the Fastrack — and AP March 2026 asked it at 4 marks (C-24).
+
+### The sweep: 33 predicted cells, and what the gaps say about the source books
+Archetype × object grid over each NCERT chapter minus the union, then ranked and authored as **lean cards** (`source: "enumerated"`, violet "Predicted — not asked yet" chip, no figures, short rubrics):
+- **Unit 4 — 7 VSAQ + 4 SAQ.** Scalar vs vector · max/min resultant · zero resultant of unequal vectors · the 120° case · maximum-range angle · complementary angles · centripetal acceleration (2M) — and at 4M: resolution into components, relative velocity in a plane, the centripetal-acceleration derivation, the velocity of a projectile at any instant.
+- **Unit 5 — 7 VSAQ + 5 SAQ.** Newton's **first** law · Newton's **third** law · impulse units/dimensions · angle of repose · limiting vs kinetic friction · centripetal force · the lift reading — and at 4M: angle of friction = angle of repose, the rough incline, banking of roads, the static/kinetic friction laws, the three types of inertia.
+- **Unit 6 — 6 VSAQ + 4 SAQ.** State the work–energy theorem · state conservation of mechanical energy + its condition · coefficient of restitution · equal-mass elastic collision · spring potential energy · momentum doubled — and at 4M: the **scalar product** and its properties, work by a variable force, the perfectly-inelastic energy loss, elastic vs inelastic.
+
+**What was missing is itself a finding.** The gaps were not exotic: Unit 5 had **neither Newton's first nor third law anywhere in the bank**, and nothing on angle of repose, the rough incline or banking; Unit 6 had **no scalar product at all**, though NCERT introduces it in that very chapter. A star-ranked commercial question bank tracks what was *asked*, so it inherits whatever the examiners happened to skip — which is precisely the hole enumeration exists to fill.
+
+### Back-test passed, for a fourth, fifth and sixth chapter
+Every question either book asks in these three units, **plus all four March-2026 AP hits from these chapters** (B-13 inertia · B-14 KE–momentum · C-26 methods to decrease friction · C-24 average vs instantaneous velocity), falls inside the grid. Nothing landed outside. Six chapters in, the eight archetypes have not needed an addition.
+
+### The trap this run found: sweep against the BANK, not against the unit
+The Unit 4 grid proposes *"define angular velocity, derive v = rω"* — which is already **Unit 7 SAQ 7**. The Unit 6 grid proposes the **vector** product — already **Unit 7 SAQ 2**. Both were dropped by hand; the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own placement. Nothing automatic catches this: the drift gate checks that a manifest entry resolves to a file, not that two units are teaching the same cell. **Recorded in the pattern doc as a standing step of the method.**
+
+### Plain language (Rule 41) was enforced after generation, not assumed
+A register scan over the 33 new cards caught 20 idioms/personifications that had slipped into rendered lines and rail text — "it wins for every u", "the components never talk to each other", "stops dead", "the whole trick", "the sign cannot survive a square", "the job it does sideways". All rewritten literally; the 5 that touched rendered lines were re-checked against the 52-character notebook width.
+
+### Verification (measured)
+`build:answers` → **31/31 · 29/29 · 22/22 · 33/33**, drift gate clean both directions, every marks-sum ✓ · `smoke:answers` **26/26 across 111 questions (6.0 min)** · `npx tsc --noEmit` **0** · built page re-parsed: 4 units, 115 entries, 111 question payloads, 44 enumerated, recall rubrics stripped from the browser payload (0 leaked), 481 KB. **Sweep headroom checked deliberately:** the three fleet sweeps ran at **90 s / 90 s / 114 s of their 240 s budgets** at 111 questions — the 240 s raise made at 4 units still has room, so do not trim.
+
+### Files
+`answer-book/units.json` (33 entries + the sourcing findings in the comment) · 33 new `answer-book/questions/ts_ipe_p1_{vec,mp,lom,wpe}_*.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 2 — Units 4, 5 and 6"). **No platform file touched** — no renderer, no schema, no build script, no player, no gates, no `src/data/concepts/`, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the predicted tail.** `npm run serve:answers` → `http://localhost:8100`. The honest question is whether 44 predicted cards out of 115 is the right ratio for a student opening the catalog, or whether the violet chip needs to be louder / the predicted cards need their own filter chip.
+2. **The teacher pass is now 115 entries deep, 44 of them predicted cells needing validation or deletion.** That is the loop the doctrine is waiting on — a teacher confirming a predicted cell promotes it to a full card; a teacher rejecting one deletes it.
+3. **Unit 8 "Oscillations"** is still the next NEW chapter (book pp.23+; its BLM section opens WITH LAQs — expect real Section-C forms). Run the union check and the enumeration sweep together now, as one step.
+4. **Confirm the vault sync** — still drafted, shown and unwritten from the previous session.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap.
+
+---
+
 ## 📒 SESSION — Answer Book: **UNIT 7 COMPLETE (33/33) with the ENUMERATION PILOT + board tags + Session 89 filed** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: four chapters, 82 catalog entries, 78 files — and the first unit built under the Session-89 doctrine. Unit 7 "System of Particles and Rotational Motion" ships 22 asked-core questions (the UNION of both books — the first unit where that mattered) plus 11 PREDICTED lean cards from the enumeration sweep, honestly badged. Every question now shows which papers asked it ("Asked: TS 2011, 2010 · AP 2026") — the TS/AP differentiation the founder ordered, built as one bank with board-aware dress, never two catalogs.**

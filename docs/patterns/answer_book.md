@@ -515,6 +515,38 @@ Empirical footing: the two source books are not supersets of each other even wit
 (Unit 7: the BLM holds 2 VSAQs the Fastrack lacks; the Fastrack holds 6 SAQs the BLM lacks) —
 **the union is the starting bank; enumeration extends past the union.**
 
+### Run 2 — Units 4, 5 and 6 (2026-08-21): the method holds, and the union check flips
+
+The sweep was run over three already-complete chapters. Two findings worth keeping:
+
+**(a) Neither book is reliably the superset, but which one is thinner changes per unit.** Unit 7
+needed the union because the BLM held VSAQs the Fastrack lacked. Units 4, 5 and 6 are the opposite:
+re-running the check over the BLM's *short-answer* sections (earlier sessions had only checked them
+for a Section C) shows the BLM is a strict **subset** in all three — 6 VSAQ + 4 SAQ in Unit 4,
+7 VSAQ + 3 SAQ in Unit 5, LAQs only in Unit 6, every one of them already in the Fastrack list.
+The asked cores stayed at 20 / 17 / 12 and nothing was added. **The check still has to run per
+unit — its ANSWER is what varies, not its necessity.** It also corrected a sourcing claim: Unit 4's
+two LAQ entries are *invented* Section-C forms, not the BLM's — neither book has a Unit 4 Section C.
+
+**(b) The archetype set survived three more chapters.** +11 predicted cells in Unit 4, +12 in
+Unit 5, +10 in Unit 6 (44 predicted across the four swept chapters). Back-test: every question
+either book asks in these units, plus all four March-2026 AP hits from these chapters (B-13, B-14,
+C-26, C-24), falls inside the grid. Nothing landed outside — six chapters in, the eight archetypes
+have not needed an addition.
+
+**What the sweep found missing is itself a signal about the source books.** The gaps were not
+exotic: Unit 5 had neither Newton's **first** nor **third** law anywhere in the bank, and nothing
+on angle of repose, the rough incline, or banking; Unit 6 had no scalar product at all, though
+NCERT introduces it in that chapter. A star-ranked commercial question bank tracks what was asked,
+so it inherits whatever the examiners happened to skip — which is precisely the hole enumeration
+exists to fill.
+
+**Cross-unit duplication is a real failure mode of this method** and has to be checked by hand: the
+grid for Unit 4 proposes "define angular velocity, derive v = rω", which is already Unit 7 SAQ 7,
+and the grid for Unit 6 proposes the vector product, which is Unit 7 SAQ 2. Both were dropped;
+the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own
+placement. **Sweep a chapter against the whole bank, not against its own unit.**
+
 ## The term-pack design (designed Session 89 — NOT built)
 
 The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE
