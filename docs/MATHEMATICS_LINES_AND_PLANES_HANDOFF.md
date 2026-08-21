@@ -14,6 +14,11 @@
 > queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
 > the 2026-08-09 record, kept verbatim.
 >
+> **⚠ START AT §0.01 (2026-08-21) — it is the paste-and-go resume.** CP-B cycle 1's three P1s are
+> APPLIED and pushed; the next action is ONE quality-auditor dispatch, then a fresh founder_drive, then
+> founder-proxy Checkpoint B **cycle 2 of 3**. The engine half is **PR #133, CI green, unmerged — a
+> founder call.** §0.02 is the cycle-0 record; §0.03 is the round that got the build to Checkpoint B.
+>
 > **⚠ CHECKPOINT B HAS RUN — read §0.02 FIRST (2026-08-21).** founder_proxy returned **FIX**,
 > not APPROVE, on two P1s: STATE_6 printed an angle its own formula surface forbids (115° where the
 > equation gives 65°), and s8_4 mis-named a labelled HUD number. Both fixed; the first became the
@@ -94,6 +99,61 @@ stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warni
 `parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
 drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
 sample that window).
+
+---
+
+## 0.01 RESUME 2026-08-21 — paste-and-go. Everything is pushed; nothing is in flight.
+
+**State: CP-B cycle 1's three P1s are APPLIED. The next action is one audit, then CP-B cycle 2.**
+
+### Where things are
+
+| | |
+|---|---|
+| Chapter branch | `feat/mathematics-lines-and-planes` @ **`529b592f`**, clean, pushed |
+| Engine branch | `fix/vg-acute-line-angle` @ **`a7d1f334`** — **PR #133**, `CLEAN`/`MERGEABLE`, CI green, **awaiting founder merge** |
+| Office | on `master`, clean (desks are visited, per `GIT_WORKFLOW §7`) |
+| desk:audit | `0 commits exist only on this machine` |
+| THE EYE (current) | `.visual_runs/lines_and_planes_in_space/20260821-160907/` — 39/40 (`STATE_9:D5` = dispositioned false positive) |
+| founder_drive | `.founder_runs/lines_and_planes_in_space/2026-08-21T09-13-40-278Z/` — **STALE**, predates the cycle-1 fixes; re-run before CP-B |
+
+### FIRST COMMAND ON RESUME
+
+```bash
+cd /Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-lines-and-planes
+git fetch origin && git status -sb          # expect: up to date with origin, clean
+npx --yes http-server review-site -p 8087 -c-1 &    # CP-B reads the served page
+```
+The desk already has `node_modules` and `.env.local` linked. If the desk is gone:
+`git worktree add <path> feat/mathematics-lines-and-planes`, then symlink both from the office.
+
+### THE NEXT ACTION — one `quality-auditor` dispatch, then CP-B cycle 2
+
+A `quality_auditor` pass on the cycle-1 fixes was **dispatched and stopped mid-run** (no verdict, no files touched — it is report-only). **Re-dispatch it.** It must verify:
+
+1. **P1-A** — `vgThetaRowLabel` now reads `turn d₂`, agreeing with the readout across the whole slider range on STATE_6 **and** STATE_9 group B (which has no angle readout at all, so the row was previously uncontradicted).
+2. **P1-B** — STATE_4: `Lpar` = `d′` (U+2032), `Lcut` keeps `d`; `par_tag` (a `size: 0` point, label-only) carries `n·d′ = 0`; `X_live` (`10300`–`15000`) closes the blank HUD from 6.0 s to 0.6 s — **the windows must stay disjoint from `X` (~15600)** or the panel publishes nothing and records a conflict. STATE_4 = 55 words.
+3. **P1-C** — framing: before `31/34/29/28/34/35/29/34/30` → after `64/64/41/41/68/48/47/68/43`. **S3, S4, S9 remain under 45% as documented refusals** (their worst vertex clips before the radius gets smaller). Judge the refusals; overturning one is a legitimate outcome.
+4. No regression on the cycle-0 fixes (F1–F11) and all nine word budgets.
+
+**Tell it the measurement caveat** — founder_proxy and I both measured S4/S9 at ~60% and were both wrong, because our masks stopped at `y < 120` while STATE_4's HUD runs to y≈135 and S9's explore panel is taller. Use a **per-state** chrome mask (HUD box, slider box incl. S9's view dropdown, caption pill, formula box); a blanket `x < 360` column under-reports instead, by truncating real geometry.
+
+**Then** re-run `founder_drive` (the dump above is stale) and dispatch `founder-proxy` **Checkpoint B, fix cycle 2 of 3**.
+
+### Carry into CP-B cycle 2 as known-open (all dispositioned; none authorable)
+
+- **PR #133's merge** — founder.
+- **Two unstamped pools** — `vg_lp_arc` AND `vg_lp_right_angle` never call `stamp()` and are absent from `brightenOnly`, so both are force-dimmed to 0.4 whenever ANY glow is active. STATE_7's two arcs carry the only two numbers that state teaches. Filed; the row was corrected on 2026-08-21 (my first version said "one pool" and understated it). `peter_parker:field3d_surgeon`.
+- **Multiplicative peer-dim, BOTH branches** — `GLOW_DIM_OPACITY = 0.4` is absolute, so a 0.28 plane's "dim" makes it brighter; the focal branch's `opacity = 1.0` discards authored `ghost`. Should scale against `_glowBaseOp`.
+- **F6** — `aux_a` has no slider path in `LP_KNOBS`, so the concept's own aha cannot be re-run by hand. S9 recipe is written into the skeleton, ready.
+- **S9's pairwise-separation metric** — solved at the old R14/R13, not re-run at the new R10/9.8. Nothing looks collinear; unverified rather than verified.
+- S5's pulse co-location (Rule 25) · Δ11 · Δ12 · the ghost-arrow row · `vg_lp_angle_arc_apex_…` still open on S4 · STATE_1's `λ: -0.00` · S8's `s8_1` lead-in miss · FLAGs 1/4/6/8.
+- **Not defects:** mathematics isolation (registers NOWHERE); no `audio_manifest.json` (Rule 30h); no `text_hi` (Rule 30i); `STATE_9:D5`; H2-no-baseline.
+
+### Two lessons this round earned — apply them, don't rediscover them
+
+1. **Where a mechanism is invisible to THE EYE — glow, TTS-driven reveals, teacher drags — a green EYE run is not evidence about it.** A 39/40 sat on top of a live glow defect for a full round. The authoring check IS the gate there, so it gets a machine probe, not a prose assurance.
+2. **Two independent measurements agreeing can still be identically wrong.** founder_proxy and I both read left-hand chrome as geometry. When a number decides work, re-derive it with a different instrument, not a second opinion using the same method.
 
 ---
 
