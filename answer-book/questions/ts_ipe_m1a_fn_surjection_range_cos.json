@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_surjection_range_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {0, π/6, π/4, π/3, π/2} and f: A→B is a surjection defined by f(x) = cos x then find B.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The five cosine values",
+      "marks": 1
+    },
+    {
+      "label": "The set B",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 90.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find B — the values you compute, and why B is exactly that set.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Compute every image",
+        "marks": 1,
+        "mark_note": "The five cosine values",
+        "margin_note": "One mark for the five standard cosine values. These are table values — write them exactly, not as decimals.",
+        "lines": [
+          "f(0) = cos 0 = 1",
+          "f(π/6) = cos π/6 = √3/2",
+          "f(π/4) = cos π/4 = 1/√2",
+          "f(π/3) = cos π/3 = 1/2",
+          "f(π/2) = cos π/2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "The five standard values: cos 0 = 1, cos π/6 = √3/2, cos π/4 = 1/√2, cos π/3 = 1/2, cos π/2 = 0.",
+          "accept": [
+            "cos zero is one cos pi by six is root three by two cos pi by four is one by root two cos pi by three is half cos pi by two is zero",
+            "the standard cosine values one root three by two one by root two half and zero",
+            "substitute each angle into cosine and use the table values",
+            "cos values one root three by two one by root two half zero",
+            "evaluate cosine at each of the five angles"
+          ],
+          "reject": [
+            "I find the cosines",
+            "substitute each angle",
+            "use the table"
+          ],
+          "heard_as": [
+            "cos zero",
+            "pi by six",
+            "root three by two",
+            "one by root two",
+            "half"
+          ]
+        },
+        "why": "The images are just the standard table, but they must be exact — a decimal is not the value the examiner wants.",
+        "common_mistakes": [
+          "Swapping cos π/6 and cos π/3 — the two most confused values.",
+          "Writing decimals such as 0.866 instead of √3/2."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Write B as a set",
+        "marks": 1,
+        "mark_note": "The set B",
+        "margin_note": "The second mark is the SET. Surjection means B is exactly the range; no value repeats here.",
+        "lines": [
+          "f is a surjection ⇒ B = f(A)",
+          "B = {1, √3/2, 1/√2, 1/2, 0}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because f is a surjection, B is the set of those five values.",
+          "accept": [
+            "since f is onto B is the range which is one root three by two one by root two half and zero",
+            "B is the set of the five cosine values",
+            "surjection means the codomain is exactly the range so B is that set",
+            "surjection kabatti B ye range",
+            "B equals one root three by two one by root two one half zero"
+          ],
+          "reject": [
+            "B is the range",
+            "that is the answer",
+            "the set of cosines"
+          ],
+          "heard_as": [
+            "surjection",
+            "onto",
+            "range",
+            "set",
+            "B"
+          ]
+        },
+        "why": "Every value is different here, so unlike the previous question nothing collapses — but the reason B equals the range is the same word: surjection.",
+        "common_mistakes": [
+          "Writing B as an interval such as [0, 1] rather than the five-element set.",
+          "Omitting 0 or 1, the two endpoint values."
+        ]
+      }
+    ]
+  }
+}

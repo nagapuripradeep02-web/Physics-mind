@@ -84,8 +84,13 @@ building twice.)
    personified coaching talk — "I'm Super Hit 'Q'", "f for friend, g for good, gof for good friend",
    "BABY CHAT: Matrices are known for Easiest Models" — plus Telugu-script asides. Rule 41 bans that
    register in every reader-facing string; Rule 30i makes the product English-only.
-2. **Year tags are 2-digit and stop at 19** in everything sampled. Same rot the physics Fastrack had
-   (new binding, old frequency data). Do not present them as current.
+2. **Year tags are 2-digit and DO run past 2019** — corrected 2026-08-21 when book p.81 turned up
+   `TS 20,22` and `AP 20`. The earlier "stops at 19" note was drawn from too small a sample; this
+   book is not the physics Fastrack, whose frequency data really was frozen at 2014.
+   **Pre-bifurcation papers are tagged plain `IPE`** (`IPE 09`, `IPE 13`) — before the 2014 TS/AP
+   split there was one Andhra Pradesh board. `appearances[].board` is `ts_ipe | ap_ipe` with no
+   value for that era, so those years are recorded in `verification.note` prose rather than as
+   data. Worth one enum value (`ipe`) whenever the physics branch next touches that schema.
 3. **The book covers TS and AP together.** Our header is `board: "ts_ipe"`; the AP years are extra
    signal, and an AP variant is a header swap over the same portable steps — which is what the
    schema was built for.
@@ -95,6 +100,10 @@ building twice.)
    Trigonometric Functions · 9 Hyperbolic Functions · 10 Properties of Triangles.
 5. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
    there, unlike the physics Fastrack which starred every question. Do not imply per-question rank.
+6. **The book prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages.**
+   A VSAQ is 2 marks and the book gives no internal division, so the 1+1 across a VSAQ's two steps
+   is OURS, not the source's. Every VSAQ file says so in `verification.note`. This is the one place
+   in the mathematics track where a split is authored rather than read.
 
 ## Open items — status
 
@@ -109,9 +118,11 @@ building twice.)
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Coverage of Unit 1 is partial.** Its LAQ section is complete (4 of 4, book pp.14-15).
-   The Functions VSAQs (book pp.79-81) are not read yet, so the unit is not the full
-   inventory `units.json` otherwise promises.
+3. ~~**Coverage of Unit 1 is partial.**~~ **CLOSED 2026-08-21 — Unit 1 is COMPLETE at 24 of 24**:
+   4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81, of which p.81 is ★★★ SSP 81, "the most
+   dominating domain page"). Functions has **no SAQ** — not in this book, and not on the paper,
+   whose Section B is Q11-Q17 and contains no Functions question. So 24 entries is the whole unit,
+   not a staging post.
 4. **Plain-text identity notation is `I_A`/`I_B`** in chrome fields (question_text,
    manifest text, mark_split labels) — the chrome is Inter, not the hand, and the
    underscore is the unambiguous plain-text convention. Real subscripts appear on the

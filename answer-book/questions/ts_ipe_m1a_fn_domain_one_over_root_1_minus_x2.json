@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_one_over_root_1_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function 1/√(1 − x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 97.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when 1 − x² > 0",
+          "⇒ x² − 1 < 0",
+          "⇒ (x + 1)(x − 1) < 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the root sits in the denominator, so 1 − x² must be strictly greater than zero, not merely non negative.",
+          "accept": [
+            "one minus x squared strictly greater than zero because the root is in the denominator",
+            "the inside must be positive since we divide by the root",
+            "strictly positive not zero because it is a denominator",
+            "denominator kabatti strictly positive undali",
+            "cannot be zero so one minus x squared is greater than zero"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "denominator",
+            "one minus x squared",
+            "strictly",
+            "minus one",
+            "one"
+          ]
+        },
+        "why": "Dividing by the root means it cannot be zero, so the endpoints where 1 − x² = 0 are thrown out.",
+        "common_mistakes": [
+          "Using ≥ 0, which wrongly admits x = ±1 where the denominator vanishes.",
+          "Forgetting to reverse the inequality sign when rearranging to x² − 1 < 0."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ (−1, 1)",
+          "∴ Domain = (−1, 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the OPEN interval from minus 1 to 1.",
+          "accept": [
+            "open interval minus one to one",
+            "x strictly between minus one and one",
+            "minus one to one with the endpoints excluded",
+            "minus one nunchi one varaku but endpoints levu",
+            "the open interval from minus 1 to 1"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "denominator",
+            "one minus x squared",
+            "strictly",
+            "minus one",
+            "one",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Strict inequality gives round brackets, which is the whole difference between this and a plain √(1 − x²).",
+        "common_mistakes": [
+          "Writing [−1, 1] and including the two points where the function is undefined.",
+          "Giving the outside intervals, where the inside is negative."
+        ]
+      }
+    ]
+  }
+}
