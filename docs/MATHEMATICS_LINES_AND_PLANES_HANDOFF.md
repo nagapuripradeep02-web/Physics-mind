@@ -17,7 +17,8 @@
 > **⚠ START AT §0.01 (2026-08-21) — it is the paste-and-go resume.** CP-B cycle 1's three P1s are
 > APPLIED and pushed; the next action is ONE quality-auditor dispatch, then a fresh founder_drive, then
 > founder-proxy Checkpoint B **cycle 2 of 3**. The engine half is **PR #133, CI green, unmerged — a
-> founder call.** §0.02 is the cycle-0 record; §0.03 is the round that got the build to Checkpoint B.
+> founder call.** ~~PR #133 unmerged~~ — **MERGED 2026-08-21 as `91c55b0f`; the engine half is on master.**
+> §0.02 is the cycle-0 record; §0.03 is the round that got the build to Checkpoint B.
 >
 > **⚠ CHECKPOINT B HAS RUN — read §0.02 FIRST (2026-08-21).** founder_proxy returned **FIX**,
 > not APPROVE, on two P1s: STATE_6 printed an angle its own formula surface forbids (115° where the
@@ -111,7 +112,7 @@ sample that window).
 | | |
 |---|---|
 | Chapter branch | `feat/mathematics-lines-and-planes` @ **`529b592f`**, clean, pushed |
-| Engine branch | `fix/vg-acute-line-angle` @ **`a7d1f334`** — **PR #133**, `CLEAN`/`MERGEABLE`, CI green, **awaiting founder merge** |
+| Engine branch | **MERGED** — PR #133 landed on `master` 2026-08-21 as merge commit **`91c55b0f`** (both `f95347f0` the acute fold and `a7d1f334` the θ row label). The desk `Physics-mind-fix/vg-acute-line-angle` can be closed (`npm run desk:close -- fix/vg-acute-line-angle`); its only remaining content is two untracked THE EYE fixture JSONs. |
 | Office | on `master`, clean (desks are visited, per `GIT_WORKFLOW §7`) |
 | desk:audit | `0 commits exist only on this machine` |
 | THE EYE (current) | `.visual_runs/lines_and_planes_in_space/20260821-160907/` — 39/40 (`STATE_9:D5` = dispositioned false positive) |
@@ -140,9 +141,15 @@ A `quality_auditor` pass on the cycle-1 fixes was **dispatched and stopped mid-r
 
 **Then** re-run `founder_drive` (the dump above is stale) and dispatch `founder-proxy` **Checkpoint B, fix cycle 2 of 3**.
 
+**Consequence of the merge for this branch:** the chapter branch carries the two engine commits as
+cherry-picks (`b596a343`). They now exist on master too, so the next `desk:sync` will reconcile them —
+expect the cherry-picks to drop out cleanly. The branch is **38 behind master**; that sync is owed before
+PR #96 can merge and should be its own deliberate `git-steward` step with the conflict-stop rule live
+(above all on the six Rule-40 platform files), not folded into a fix round.
+
 ### Carry into CP-B cycle 2 as known-open (all dispositioned; none authorable)
 
-- **PR #133's merge** — founder.
+- ~~PR #133's merge~~ — **DONE**, merged as `91c55b0f`. The acute convention is now platform-wide: every `vector_geometry_3d` concept gets the folded readout and the honest control-row label, and `vector_products_in_space` inherits it with its obtuse `θ (a, b)` untouched (proven byte-identical across 261 frames pre-merge).
 - **Two unstamped pools** — `vg_lp_arc` AND `vg_lp_right_angle` never call `stamp()` and are absent from `brightenOnly`, so both are force-dimmed to 0.4 whenever ANY glow is active. STATE_7's two arcs carry the only two numbers that state teaches. Filed; the row was corrected on 2026-08-21 (my first version said "one pool" and understated it). `peter_parker:field3d_surgeon`.
 - **Multiplicative peer-dim, BOTH branches** — `GLOW_DIM_OPACITY = 0.4` is absolute, so a 0.28 plane's "dim" makes it brighter; the focal branch's `opacity = 1.0` discards authored `ghost`. Should scale against `_glowBaseOp`.
 - **F6** — `aux_a` has no slider path in `LP_KNOBS`, so the concept's own aha cannot be re-run by hand. S9 recipe is written into the skeleton, ready.
