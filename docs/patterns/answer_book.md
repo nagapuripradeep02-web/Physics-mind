@@ -479,3 +479,85 @@ over the same authored step lists, not a rewrite.
 No pattern_version field, no AP authoring, no schema change. The TS product is structurally safe;
 the trigger points are (a) TGBIE's revised theory model papers appearing, (b) the new TS textbooks
 publishing (→ per-unit inventory diff), (c) a founder decision to open the AP edition.
+
+## The enumeration method — the VSAQ/SAQ space per chapter is closed (Session 89, 2026-08-21)
+
+A 2-mark answer must fit 2-4 lines, so every VSAQ is one of ~8 archetypes applied to the chapter's
+finite object inventory. Archetypes, each evidenced by authored cards / real papers:
+
+| Archetype | Evidence |
+|---|---|
+| Define X (+ SI unit) | inertia · unit/null vector · work-power-energy |
+| State the law | Hooke's law (AP 2026 B) · Kepler's areas (AP 2026 A) |
+| Explain with a law | gun recoil · bomb pieces · horse at start |
+| Yes/No + reason | can mu exceed 1 · zero vector with non-zero components |
+| What-if / special case | mu when weight doubles · a at projectile top · SHM energy at 2A (AP 2026) |
+| Relation between two quantities | KE-momentum (both boards, both years) |
+| Mini-numerical (2 steps) | batsman 3.6 N s · t = 4 s · the 7-24 resultant |
+| Condition / comparison | when is work zero · elastic vs inelastic constants |
+
+Method per chapter: (1) extract the **object inventory** from the textbook (every definition, law,
+formula, named phenomenon — ~15-20 objects; use the NEW NCERT-aligned book once published);
+(2) cross with the archetypes, delete non-sensical cells → **~30-40 askable VSAQs**, ~10-15 SAQs
+(SAQ archetypes add sub-derivations, definition sets, distinguish tables, list-with-reasons,
+state-the-laws, medium numericals — numericals enumerate at the FORMULA level, the boards lift
+their numbers from textbook examples); (3) rank: asked (appearances) > book-listed (stars) >
+predicted; (4) **back-test**: every question actually asked 2019-2026 in either state must fall
+inside the grid, else fix the archetype set before the map ships. Honest ceiling ~95% — the claim
+is "every question of the last N years plus the full predicted space", never "cannot be surprised".
+
+**Tiered authoring** (the cost half of the doctrine): full cards (figures, full rubrics) ONLY for
+the asked core; the predicted tail ships as **lean cards** — schema-valid steps + marks + short
+rubric, no figures — promoted to full cards only when a paper season or the teacher pass validates
+the cell. Manifest entries carry `source`: absent = Fastrack, `"blm"` = TSBIE BLM only,
+`"enumerated"` = predicted; cards render a plain "Predicted — not asked yet" chip (Rule 41).
+Empirical footing: the two source books are not supersets of each other even within one unit
+(Unit 7: the BLM holds 2 VSAQs the Fastrack lacks; the Fastrack holds 6 SAQs the BLM lacks) —
+**the union is the starting bank; enumeration extends past the union.**
+
+## The term-pack design (designed Session 89 — NOT built)
+
+The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE
+(March); every internal exam is the board paper over a smaller chapter window. Design: the student
+declares `{exam_date, chapters[]}` (two-tap picker; a later chat shell parses free text into the
+same struct — **chatbot is the doorman, never the building**; the offline single file must work
+fully without it). Deterministic outputs: filtered bank view · a board-format practice paper over
+those chapters (real section counts + choice structure) · a marks-weighted day-by-day plan ·
+a term-scoped readiness meter. AI boundaries (Rule 18 as the trust position — "every answer
+human-verified; AI only checks YOU"): explain-a-step = DeepSeek grounded strictly in the authored
+`why`/`margin_note`/`common_mistakes` (cacheable per step); **memory tips are authored and
+measured** (tip → did the next recall pass?), never improvised live. Cost basis: DeepSeek
+₹0.045/check (₹0.014 cached), Web Speech free/on-device.
+
+## Marks arithmetic — what full-bank mastery buys (Session 89)
+
+| | TS (60M) | AP (85M) |
+|---|---|---|
+| LAQ/8M section | 16M, dodge 1-of-3 | 16M, dodge 1-of-3 |
+| SAQ/4M section | 24M, dodge 2-of-8 | 32M, dodge 4-of-12 |
+| **Choice-protected total** | **40M** | **48M** |
+| 2M section | 20M, NO choice | 28M (14 q), NO choice |
+| 1M section | — | 9M, NO choice, MCQ/fill-in/one-liner |
+| No-choice exposure | 20M (33%) | 37M (43%) |
+
+Full-bank mastery ⇒ ~38-40 choice-protected in TS plus most of Section A → honest ~50-56/60 target.
+In AP the compulsory B section makes complete 2M coverage LOAD-BEARING, not garnish. Caveats that
+keep "guaranteed" honest: year-one-of-new-syllabus draw risk (absorbed by choice; resolved by model
+papers), knowing ≠ producing (the checking loop is the guarantee's enforcement mechanism), and all
+mark splits are claims until the teacher pass.
+
+## Board picker = a lens over ONE bank (founder question, Session 89)
+
+When login/state selection lands: the student picks TS or AP once; the catalog stays ONE inventory.
+The board choice re-labels section groupings (TS "Section A - VSAQ" content appears under AP's
+"Section B" name), selects which header/cut a card opens with, foregrounds that board's Asked
+years, and drives that board's marks arithmetic/readiness. TS+AP share the 2/4/8 mark values, so
+most cards are valid in both at the same marks; AP adds the 1M drill surface. **Never two
+catalogs, never duplicated files** — one card = one question stays law; board affects presentation
+and cuts only. Today's `appearances[].board` tags are the data foundation for that view.
+
+## AP paper-merge facts (2025-26 revision, for the record)
+
+Maths 1A+1B merged into ONE 100M paper (was 75+75; objective questions added; pass 26→35).
+Botany+Zoology merged into one Biology paper (43+42=85, separate booklets). Physics/Chemistry 85M
+each (+20 internal; practicals separate, pass 11; theory pass 29/85 Yr-1).
