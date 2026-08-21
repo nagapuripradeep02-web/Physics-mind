@@ -1616,3 +1616,35 @@ rather than a second defect — but it is the same tell.
 Also corrected: `s2_2`'s dual label attached to *the normal* ("the normal is also called the scalar
 product") instead of to *dot product*. Now `"…gives zero dot product — also called scalar product — with
 the normal."` STATE_2 stays at 55.
+
+### Glow bindings — second correction, 2026-08-21 (quality_auditor narrow re-audit)
+
+The first correction fixed STAMPABILITY. Re-running the classifier with two more dimensions —
+**is the target still VISIBLE when its sentence plays**, and **is its element type safe to make focal** —
+found two more:
+
+- **`s5_3` → `crossing_mark` could never fire.** The marker is `reveal_at_ms: 2000, hide_at_ms: 3500`;
+  `s5_3` plays at **9.45–13.89 s** (`estSentenceMs`, WPM 150 / rate 0.9 / GAP 280 — `build_review_site.ts`).
+  `vgRevealFrac` returns 0 past `hide`, so the mesh is invisible and the glow loop's `if (!o.visible) continue`
+  skips it. A no-op rather than an inversion (STATE_5's other elements are all `brightenOnly`), but the
+  block was about to attest that all bindings "resolve", which reads as "work". **Unbound** — and the
+  sentence names the pair ("These two lines cross on screen, but not in space"), the same rationale that
+  unbound `s6_1`. Underneath sits a Rule 25 co-location gap worth its own look: the pulse fires at
+  2.0–3.5 s, inside the road analogy, ~6 s before the sentence that names it.
+- **`s2_4` → `P1` would make the plane FULLY OPAQUE.** `applyGlowEmphasis`'s focal branch writes
+  `m.opacity = 1.0` whenever `touchOp` — and `vg_lp_plane` is absent from the `brightenOnly` list, while a
+  plane's base is `setOpacity(qm, 0.28 * P.ghost)`. So glowing a plane takes it 0.28 → **1.0**, occluding
+  the line and the normal behind it. **Unbound**; the sentence is a recap plus a forward tease, which the
+  no-binding convention already covers.
+
+**All 22 surviving bindings verified on three axes** — stampable id, alive at sentence time, and element
+type in `brightenOnly` (or a point, where `touchOp` is harmless because a point is small and opaque
+anyway). Targets by type: 10 line/shadow, 8 segment/vector, 3 normal, 3 point.
+
+**Engine advisory, wider than the arc row (founder call, Rule 40).** The same `brightenOnly` omission
+means a NON-focal plane goes 0.28 → `GLOW_DIM_OPACITY` 0.4 — i.e. the "dim" makes it *more* opaque —
+on every state that carries a plane and any glow at all (S1/S2/S3/S4/S7). That predates this round and is
+not closed by the arc fix as filed. The durable fix is either adding `vg_lp_plane` to `brightenOnly` or
+making the peer-dim MULTIPLICATIVE against each material's own base opacity rather than an absolute
+constant — the second is the better shape, since an absolute constant is wrong for any element whose
+base is below it.

@@ -267,8 +267,7 @@
             },
             {
               "id": "s2_4",
-              "text_en": "The plane is named. Take a point off it: how far is it?",
-              "glow": "P1"
+              "text_en": "The plane is named. Take a point off it: how far is it?"
             }
           ]
         }
@@ -485,8 +484,7 @@
             },
             {
               "id": "s5_3",
-              "text_en": "These two lines cross on screen, but not in space.",
-              "glow": "crossing_mark"
+              "text_en": "These two lines cross on screen, but not in space."
             },
             {
               "id": "s5_4",
