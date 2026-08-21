@@ -119,7 +119,7 @@
       "every relation this concept draws is defined everywhere it is drawn: a line has no excluded lambda, a plane has no excluded point, and the point-plane distance is defined for every q not on the plane -- the only real exclusion is the DEGENERATE case a line-plane meet or a common-perpendicular direction fails to exist, and both are DETECTED (an inequality test on a dot/cross product of unit vectors, epsilon 1e-9) rather than divided-by-zero",
       "the degeneracy epsilon (1e-9) gates BOTH the line-meets-plane test and the common-perpendicular-exists test as an inequality, never an exact-zero test, so a line authored exactly parallel by construction (float round-off of order 1e-16) is still correctly classified parallel",
       "n . d for the STATE_4/STATE_7 cutting line renders as 0.574 on the live HUD (both operands normalized by the renderer before the dot product), matching cos(55deg) = sin(35deg) exactly -- never 0.624, which is a different, un-rendered quantity (a unit direction dotted with the un-normalized plane-normal vector)",
-      "the STATE_5 screen-crossing marker is authored as a literal 3D point on the first skew line at (-1.797411, -0.989612, 0.390906), independently re-derived from the STATE_5 camera pose (radius 13, azimuth 146deg, elevation 4deg) by solving the two lines' projected screen paths for their intersection in closed form",
+      "the STATE_5 screen-crossing marker is authored as a literal 3D point on the first skew line at (-1.50068, -0.945102, 0.494762), re-derived from the SHIPPED STATE_5 camera pose (radius 7.13, azimuth 146deg, elevation 4deg) by solving the two lines' projected screen paths for their intersection in closed form (s = -0.321742 along M1). THIS LITERAL IS A FUNCTION OF THE CAMERA -- the screen-crossing of two skew lines depends on the camera CENTRE, so any change to STATE_5's camera_position invalidates it and it MUST be re-solved in the same change. It was not re-solved when the CP-B cycle-1 camera pass moved this pose from radius 13 to 7.13, and the marker landed 31.4px away from a crossing it is 11px wide; caught by quality_auditor 2026-08-21. The pedagogy survives the re-solve: the counterpart point on M2 is 2.5517 wu away in 3D while exactly collinear with the camera, which is precisely what makes the crossing false",
       "STATE_1's entry camera_position is [0.0, 8.0, 13.8564] (radius 16, azimuth 90deg, elevation 30deg) -- the sibling concept vector_products_in_space's own STATE_5 camera literal, verbatim, kept UNCHANGED by the Checkpoint-B cycle-1 P1-C framing fix -- and its within-state camera_steps eases IN to radius 7.74 (was 13; tightened at cycle-1 so the eye_capture_ms=12000 frame, which lands after the ease completes and so is governed entirely by the camera_steps target and not by this entry value, fills a legible fraction of the canvas), never out",
       "half_extent's slider ceiling must be widened past the shared default (which tops out at 3.0) to reach this concept's own domain ceiling of 4.5 on STATE_9, via a per-state control_ranges override -- otherwise STATE_9's own solved camera pose (framed for the full 1.5-4.5 sweep) is not actually reachable by a live drag",
       "theta_deg's on-screen angle-arc fidelity is authored ONLY over [25, 115] degrees -- STATE_6 and STATE_9's skew-view row both narrow theta_deg to that interval via control_ranges, never left at a wider shared default",
@@ -1307,7 +1307,7 @@
               "plane": "P1",
               "role": "derived",
               "reveal_at_ms": 15000,
-              "grow_ms": 600,
+              "grow_ms": 0,
               "show_right_angle": false
             }
           ],
@@ -1355,7 +1355,7 @@
           "points": [
             {
               "id": "crossing_mark",
-              "position": [-1.797411, -0.989612, 0.390906],
+              "position": [-1.50068, -0.945102, 0.494762],
               "role": "neutral",
               "reveal_at_ms": 2000,
               "hide_at_ms": 3500,
