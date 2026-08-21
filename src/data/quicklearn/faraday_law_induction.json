@@ -1,0 +1,194 @@
+{
+  "concept_id": "faraday_law_induction",
+  "title": "Faraday's Law of Induction in about 10 minutes",
+  "intro": {
+    "heading": "One magnet, one coil, and electricity from motion",
+    "lines": [
+      "Slide a magnet into a coil of wire and a current appears in the wire — with no battery anywhere. This is electromagnetic induction.",
+      "The rule is exact: a CHANGING magnetic flux through the coil induces an EMF. A steady flux, however strong, induces nothing.",
+      "The induced EMF is ε = −N dΦ/dt: it grows with the rate of change and with the number of turns N.",
+      "Every generator in every power station works on exactly this rule. Let us see it happen."
+    ],
+    "what_changes": [
+      { "you_change": "Magnet position (in or out of the coil)", "you_see": "The galvanometer needle swings only WHILE the magnet moves" },
+      { "you_change": "Direction of motion (push in vs pull out)", "you_see": "The needle swings the opposite way" },
+      { "you_change": "Speed of the magnet", "you_see": "A faster push gives a larger EMF reading" },
+      { "you_change": "Turns N of the coil", "you_see": "More turns give a larger EMF for the same push" }
+    ]
+  },
+  "param_map": {
+    "pos": { "input_id": "far_pos_slider", "kind": "range", "min": -1.8, "max": 3.4, "step": 0.05 },
+    "speed": { "input_id": "far_speed_slider", "kind": "range", "min": 0.3, "max": 2, "step": 0.1 },
+    "turns": { "input_id": "far_turns_slider", "kind": "range", "min": 1, "max": 12, "step": 1 }
+  },
+  "readings": [
+    { "label": "magnet position (3.4 = fully outside, negative = deep inside)", "source": "range", "name": "far_pos_slider", "round": 1 },
+    { "label": "magnet speed v", "source": "range", "name": "far_speed_slider", "round": 1 },
+    { "label": "turns N", "source": "range", "name": "far_turns_slider", "round": 0 },
+    { "label": "readout box shows", "source": "text", "name": "far_readout" }
+  ],
+  "missions": [
+    {
+      "id": "m1",
+      "state": "STATE_1",
+      "kind": "observe",
+      "instruction": "Watch the coil and the magnet. The magnet is held still, the green flux lines through the coil do not change, and the galvanometer arrow G stays pointing straight — zero. A steady flux induces nothing.",
+      "min_watch_ms": 10000,
+      "done_label": "I saw it"
+    },
+    {
+      "id": "m2",
+      "state": "STATE_2",
+      "kind": "observe",
+      "instruction": "Now the magnet slides INTO the coil. Watch two things at once: the flux lines pack denser through the coil, and the galvanometer arrow swings away from zero. Then the magnet stops — and the arrow drops straight back to zero.",
+      "min_watch_ms": 12000,
+      "done_label": "I saw the swing"
+    },
+    {
+      "id": "m3",
+      "state": "STATE_3",
+      "kind": "observe",
+      "instruction": "This time the magnet is pulled back OUT. The flux through the coil falls instead of rising — watch the galvanometer arrow swing the OPPOSITE way from before. The direction of the change sets the sign of the EMF.",
+      "min_watch_ms": 10000,
+      "done_label": "I saw it reverse"
+    },
+    {
+      "id": "m4",
+      "state": "STATE_4",
+      "kind": "observe",
+      "instruction": "Watch the face of the coil nearest the magnet. As the N pole approaches, that face becomes a red N pole and the small red arrow shows the push-back — the coil OPPOSES the magnet coming in. Pull away, and it flips to a blue S pole to oppose the leaving. This is Lenz's law.",
+      "min_watch_ms": 12000,
+      "done_label": "I saw the push-back"
+    },
+    {
+      "id": "m5",
+      "state": "STATE_5",
+      "kind": "set_param",
+      "instruction": "Now you drive it. Drag the Speed slider to 1.5 or more and watch the readout box at the top right: a faster magnet means the flux changes faster, and the EMF number ε grows.",
+      "success": { "param": "speed", "op": "gte", "value": 1.5 },
+      "hint": "The Speed v slider is in the panel at the bottom right of the simulation.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m6",
+      "state": "STATE_5",
+      "kind": "set_param",
+      "instruction": "Now drag Turns N up to 10 or more. Each turn of the coil adds its own EMF, so the total ε in the readout grows with N — same push, bigger EMF.",
+      "success": { "param": "turns", "op": "gte", "value": 10 },
+      "hint": "The Turns N slider is just below the Speed slider, bottom right.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m7",
+      "state": "STATE_6",
+      "kind": "set_param",
+      "instruction": "Free play. Drag the Magnet position slider below 0 to push the magnet deep into the coil, and watch ε spike WHILE it moves and die to zero when it rests. Try speed and turns too — every rule you just learned is live.",
+      "success": { "param": "pos", "op": "lte", "value": 0 },
+      "hint": "The Magnet position slider is the top row of the panel at the bottom right.",
+      "hint_after_ms": 25000
+    }
+  ],
+  "remember": {
+    "key_ideas": [
+      "Only a CHANGING magnetic flux induces an EMF. A steady flux — however strong, however close the magnet — induces nothing.",
+      "The needle swings only WHILE the magnet moves, and the direction of the swing follows the direction of the change: push in one way, pull out the other.",
+      "Lenz's law: the induced current always opposes the change that created it. That is the minus sign, and it is why energy is conserved.",
+      "The EMF grows with the rate of change and with the turns: double the speed or double N, and ε doubles."
+    ],
+    "formula": {
+      "plain": "ε = −N dΦ/dt,  with  Φ = B·A·cosθ",
+      "reading": "The induced EMF equals minus N times the rate of change of magnetic flux. Flux is field times area times the cosine of the angle."
+    },
+    "common_mistake": {
+      "wrong": "A magnet sitting inside a coil keeps a current flowing because the flux there is large.",
+      "right": "A resting magnet induces nothing. The EMF exists only WHILE the flux is changing — the moment the motion stops, the needle drops to zero."
+    }
+  },
+  "quiz": {
+    "question_ids": [
+      "ql_steady_flux",
+      "ql_stop_moving",
+      "ql_pull_out",
+      "ql_lenz",
+      "ql_turns"
+    ]
+  },
+  "diagnosis_overrides": {
+    "ql_stop_moving": {
+      "replay_state": "STATE_2",
+      "replay_prompt": "Watch the galvanometer arrow: it swings only WHILE the magnet slides, and the moment the magnet stops — still deep inside the coil — the arrow drops straight back to zero."
+    },
+    "ql_lenz": {
+      "replay_state": "STATE_4",
+      "replay_prompt": "Watch the coil's near face as the N pole approaches: it becomes a red N pole and the small red arrow shows the coil pushing back against the motion."
+    },
+    "ql_pull_out": {
+      "replay_state": "STATE_3",
+      "replay_prompt": "Watch the arrow as the magnet leaves: the flux falls instead of rising, and the swing is the mirror of the push-in swing."
+    }
+  },
+  "skills": {
+    "concept": ["ql_steady_flux"],
+    "misconception": ["ql_stop_moving"],
+    "direction": ["ql_pull_out", "ql_lenz"],
+    "calculation": ["ql_rate", "ql_turns"]
+  },
+  "stage": {
+    "viewpoint": "The view is a 3D scene the student can orbit — dragging rotates the view and scrolling zooms. An orange coil of wire (drawn as a spring with several loops) sits in the middle, and a bar magnet — a cylinder with a red half marked N and a blue half marked S — sits on the coil's axis to its right and slides in and out along that axis. Green lines with arrowheads run horizontally through the middle of the coil; they are the magnetic flux threading the coil. It is NOT a circuit diagram: there is no battery, no resistor, no switch, and no wires drawn beyond the coil itself. The galvanometer is drawn as a single small arrow below the coil, next to a letter G — not as a boxed meter with a dial.",
+    "elements": [
+      {
+        "looks_like": "an orange spring shape made of several round loops, labelled 'coil: N turns'",
+        "means": "the coil of wire. The number of loops is N — the Turns slider redraws it with more or fewer loops."
+      },
+      {
+        "looks_like": "a cylinder with a red half labelled N and a blue half labelled S, to the right of the coil",
+        "means": "the bar magnet. It slides along the coil's axis; its motion is the CAUSE of everything in this lesson."
+      },
+      {
+        "looks_like": "green horizontal lines with small arrowheads passing through the middle of the coil",
+        "means": "the magnetic flux threading the coil. When the magnet slides in, these lines pack denser — the flux through the coil is rising."
+      },
+      {
+        "looks_like": "a small pink-red arrow below the coil next to a letter G, pointing straight up when idle",
+        "means": "the galvanometer needle. It tilts away from vertical only WHILE an EMF is induced, and the side it tilts to follows the sign of the EMF. At zero EMF it points straight up."
+      },
+      {
+        "looks_like": "small yellow dots sitting on the coil's wire that appear and run along the loops",
+        "means": "the induced current in the coil. The dots move only while the flux is changing; when the magnet rests they stop and fade."
+      },
+      {
+        "looks_like": "a small red arrow near the coil face labelled 'opposes motion' (in the Lenz state), with a red N or blue S label on the coil's face",
+        "means": "Lenz's law made visible: the coil's face becomes the pole that opposes the magnet's motion, and the arrow is the push-back force on the magnet."
+      },
+      {
+        "looks_like": "a dark box at the top right showing lines like 'Φ = B·A', 'N = 6 turns', and 'ε = −N dΦ/dt = … mV'",
+        "means": "the live readout. Φ is the flux, N the turns, and ε the induced EMF in millivolts right now — it is nonzero only while the magnet moves."
+      },
+      {
+        "looks_like": "yellow equation text on the right side of the scene",
+        "means": "the formula the current step teaches — Φ = B·A cosθ early on, ε = −N dΦ/dt once the magnet moves."
+      },
+      {
+        "looks_like": "a panel of sliders at the bottom right (Speed v, Turns N, and in the last step Magnet position)",
+        "means": "the controls. They appear only in the last two steps; earlier steps animate the magnet automatically."
+      }
+    ]
+  },
+  "tutor": {
+    "welcome": [
+      "Hi! I am Vidi, your guide for this lesson.",
+      "One magnet, one coil, and the rule behind every power station on Earth. Do each small step with me — and ask me anything, any time, in the box below."
+    ],
+    "celebrations": {
+      "m1": "You saw it! A resting magnet, a steady flux, and a needle at exactly zero. Strength is not enough — only CHANGE induces.",
+      "m2": "That is Faraday's law happening. The flux rose while the magnet moved and the needle swung — then the motion stopped, the change stopped, and the EMF died to zero.",
+      "m3": "Exactly — opposite change, opposite swing. The DIRECTION of the flux change sets the sign of the EMF.",
+      "m4": "You saw Lenz's law! The coil always makes the pole that fights the change. That push-back is why you must do work to move the magnet — and where the electrical energy comes from.",
+      "m5": "There it is — a faster magnet means a faster flux change, and ε grew with it. The rate is what matters.",
+      "m6": "You did it! Each turn adds its own EMF in series, so ε grew with N. That is the N in ε = −N dΦ/dt.",
+      "m7": "Great experimenting! You now have the whole law: ε is nonzero only while Φ changes, its sign follows the direction of the change, and its size scales with the rate and the turns."
+    },
+    "quiz_intro": "Now let us check what you learned. 5 questions. You have seen every answer happen on the screen.",
+    "summary_line": "Great work today. Every step you took and every question you asked is saved, so you can pick up where you left off."
+  }
+}

@@ -394,5 +394,149 @@
       "negative": "#82B1FF",
       "field_line": "#42A5F5"
     }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the magnetic force on a moving charge when they can (1) state that F = qvB sin θ — zero along the field and maximum across it; (2) compute the force from q, v, B and θ; (3) give the force's direction with the right-hand rule and reverse it for a negative charge; (4) state that the force does no work — it changes the direction of motion, never the speed; and (5) predict the path: a straight line at θ = 0, a circle of radius r = mv/qB at θ = 90°, and a helix in between.",
+    "questions": [
+      {
+        "q_id": "ql_zero_angle",
+        "stem": "A proton moves exactly along the direction of a uniform magnetic field. What is the magnetic force on it?",
+        "options": {
+          "A": "F = qvB, the maximum value",
+          "B": "Zero — the angle between v and B is zero, and sin 0 = 0",
+          "C": "A small force in the direction of motion",
+          "D": "A force opposite to the motion that slows the proton down"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "uses the maximum-force formula qvB, which holds only when v is ACROSS the field (θ = 90°) — along the field, sin θ = 0 and the force vanishes",
+          "C": "the magnetic force is never along the motion — F = qv×B is always at a right angle to v, and at θ = 0 it is zero anyway",
+          "D": "a magnetic force can never slow a particle — it is always perpendicular to the velocity, and along the field it vanishes entirely"
+        },
+        "tested_idea": "F = qvB sin θ is zero at θ = 0 — no force when the velocity is along the field.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "An electron moves exactly opposite to a uniform magnetic field (θ = 180°). State the magnetic force on it, and why."
+      },
+      {
+        "q_id": "ql_calc_force",
+        "stem": "A proton (q = 1.6 × 10⁻¹⁹ C) moves at 2 × 10⁵ m/s at right angles to a 0.01 T magnetic field. What is the magnetic force on it?",
+        "options": {
+          "A": "6.4 × 10⁻¹⁶ N",
+          "B": "3.2 × 10⁻²⁶ N",
+          "C": "3.2 × 10⁻¹⁶ N, from F = qvB = 1.6 × 10⁻¹⁹ × 2 × 10⁵ × 0.01",
+          "D": "Zero, because the field is too weak"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "doubles the correct answer — a slip such as using 2q or 2B; the product qvB gives 3.2 × 10⁻¹⁶ N",
+          "B": "slips ten powers of ten — the powers of 10 were subtracted instead of added while multiplying",
+          "D": "a weak field still makes a real force — weak only means small, and at θ = 90° the formula F = qvB applies in full"
+        },
+        "tested_idea": "At θ = 90°, F = qvB — multiply the three values, carrying the powers of ten.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "The same proton moves at 4 × 10⁵ m/s at right angles to a 0.02 T field. Find the force on it."
+      },
+      {
+        "q_id": "ql_no_work",
+        "stem": "A proton circles in a uniform magnetic field. The field strength is then doubled. What happens to the proton's SPEED?",
+        "options": {
+          "A": "Nothing — the speed stays exactly the same; only the circle becomes tighter",
+          "B": "The speed doubles, because the force doubled",
+          "C": "The speed increases a little, because the force pushes it along the circle",
+          "D": "The speed halves, because the tighter circle slows it down"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the field-speeds-it-up trap — the force is always at a right angle to the velocity, so it does zero work and can never change the speed, only the direction",
+          "C": "the force never has a part along the motion — it points to the CENTRE of the circle, not along it",
+          "D": "a tighter circle changes the path, not the speed — the equally spaced trail markers in the simulation show the speed unchanged"
+        },
+        "tested_idea": "The magnetic force does no work — F is perpendicular to v always, so B changes the direction of motion, never the speed.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A charged particle circles in a magnetic field for one full minute. Compare its speed at the end with its speed at the start, and explain."
+      },
+      {
+        "q_id": "ql_flip_sign",
+        "stem": "A proton moving through a magnetic field feels a force toward the left. The proton is replaced by an electron moving the same way at the same speed. Which way does the force on the electron point?",
+        "options": {
+          "A": "Still toward the left — the rule does not care about the sign of the charge",
+          "B": "Along the velocity",
+          "C": "Along the magnetic field",
+          "D": "Toward the right — flipping the sign of the charge reverses the force"
+        },
+        "correct": "D",
+        "distractor_misconceptions": {
+          "A": "the sign of q sits inside F = qv×B — a negative charge feels the force in exactly the opposite direction",
+          "B": "the magnetic force is never along the velocity — it is always at a right angle to it",
+          "C": "the force is never along the field either — it is perpendicular to BOTH v and B"
+        },
+        "tested_idea": "Reversing the sign of the charge reverses the direction of the magnetic force — same rule, opposite thumb.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "In the simulation, the force arrow points one way for +e. State what happens to the force arrow when the badge is flipped to −e, and why."
+      },
+      {
+        "q_id": "ql_radius",
+        "stem": "A proton circles in a uniform magnetic field with radius r. Its speed is then doubled, with the field unchanged. What is the new radius?",
+        "options": {
+          "A": "r/2 — faster particles make tighter circles",
+          "B": "2r — the radius r = mv/qB grows in direct proportion to the speed",
+          "C": "r — the radius does not depend on the speed",
+          "D": "4r — the radius grows with the square of the speed"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "inverts the relation — in r = mv/qB the speed sits in the NUMERATOR, so more speed means a bigger circle; it is a stronger FIELD that tightens the circle",
+          "C": "drops v from r = mv/qB — it is the period T = 2πm/qB that stays fixed when the speed changes, not the radius",
+          "D": "squares the effect — r is proportional to v, not to v²"
+        },
+        "tested_idea": "r = mv/qB — the radius is directly proportional to the speed; doubling v doubles r.",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A proton and a deuteron (twice the mass, same charge) enter the same field at the same speed, both at right angles to it. Compare the radii of their circles."
+      },
+      {
+        "q_id": "ql_helix_spare",
+        "stem": "A proton enters a uniform magnetic field with its velocity at 45° to the field. What path does it follow?",
+        "options": {
+          "A": "A circle, since part of the velocity is across the field",
+          "B": "A straight line, since part of the velocity is along the field",
+          "C": "A helix — the part of v across the field circles, while the part along the field drifts forward",
+          "D": "A parabola, like a ball thrown sideways"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "only a velocity ENTIRELY across the field gives a closed circle — the along-field part keeps drifting forward and opens the circle into a spiral",
+          "B": "the across-field part of v feels a real force and gets turned — the path cannot stay straight",
+          "D": "a parabola needs a CONSTANT force in one fixed direction, like gravity on a thrown ball — here the force keeps turning together with the velocity"
+        },
+        "tested_idea": "At an angle between 0° and 90°, v splits into a drifting part along B and a circling part across B — their sum is a helix.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Describe the path of a charged particle whose velocity makes 60° with a uniform magnetic field, naming the two parts of the motion."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "ql_zero_angle"
+      ],
+      "STATE_2": [
+        "ql_calc_force",
+        "ql_no_work",
+        "ql_radius"
+      ],
+      "STATE_3": [
+        "ql_flip_sign"
+      ],
+      "STATE_4": [
+        "ql_helix_spare"
+      ]
+    },
+    "non_assessed_states": []
   }
 }

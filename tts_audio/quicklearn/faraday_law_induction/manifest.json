@@ -1,0 +1,142 @@
+{
+  "ea30f6fb362c7dd3": {
+    "text": "Hi! I am Vidi, your guide for this lesson.",
+    "chars": 42,
+    "bytes": 45975
+  },
+  "3d262dab619e8b6c": {
+    "text": "One magnet, one coil, and the rule behind every power station on Earth. Do each small step with me, and ask me anything, any time, in the box below.",
+    "chars": 148,
+    "bytes": 164675
+  },
+  "7c8ecc68720925d1": {
+    "text": "Watch the coil and the magnet. The magnet is held still, the green flux lines through the coil do not change, and the galvanometer arrow G stays pointing straight, zero. A steady flux induces nothing.",
+    "chars": 200,
+    "bytes": 229041
+  },
+  "0e450ff5f50b4793": {
+    "text": "Now the magnet slides INTO the coil. Watch two things at once: the flux lines pack denser through the coil, and the galvanometer arrow swings away from zero. Then the magnet stops, and the arrow drops straight back to zero.",
+    "chars": 223,
+    "bytes": 245342
+  },
+  "d50dd7725c5c0ad1": {
+    "text": "This time the magnet is pulled back OUT. The flux through the coil falls instead of rising, watch the galvanometer arrow swing the OPPOSITE way from before. The direction of the change sets the sign of the EMF.",
+    "chars": 210,
+    "bytes": 219428
+  },
+  "3cd6e26de082ed92": {
+    "text": "Watch the face of the coil nearest the magnet. As the N pole approaches, that face becomes a red N pole and the small red arrow shows the push-back, the coil OPPOSES the magnet coming in. Pull away, and it flips to a blue S pole to oppose the leaving. This is Lenz's law.",
+    "chars": 271,
+    "bytes": 275435
+  },
+  "88f882d6cd8ead56": {
+    "text": "Now you drive it. Drag the Speed slider to 1.5 or more and watch the readout box at the top right: a faster magnet means the flux changes faster, and the EMF number ε grows.",
+    "chars": 173,
+    "bytes": 229041
+  },
+  "5245f58fe0a90771": {
+    "text": "Hint: The speed v slider is in the panel at the bottom right of the simulation.",
+    "chars": 79,
+    "bytes": 80248
+  },
+  "46ec119779352f2c": {
+    "text": "Now drag Turns N up to 10 or more. Each turn of the coil adds its own EMF, so the total ε in the readout grows with N, same push, bigger EMF.",
+    "chars": 141,
+    "bytes": 208561
+  },
+  "b7d35301859fb796": {
+    "text": "Hint: The Turns N slider is just below the Speed slider, bottom right.",
+    "chars": 70,
+    "bytes": 86935
+  },
+  "5c5593c9ed15f9b0": {
+    "text": "Free play. Drag the Magnet position slider below 0 to push the magnet deep into the coil, and watch ε spike WHILE it moves and die to zero when it rests. Try speed and turns too, every rule you just learned is live.",
+    "chars": 215,
+    "bytes": 274181
+  },
+  "33f4d3795a19c13c": {
+    "text": "Hint: The Magnet position slider is the top row of the panel at the bottom right.",
+    "chars": 81,
+    "bytes": 99474
+  },
+  "7d7011e93faea066": {
+    "text": "You saw it! A resting magnet, a steady flux, and a needle at exactly zero. Strength is not enough, only CHANGE induces.",
+    "chars": 119,
+    "bytes": 151301
+  },
+  "f3ad858187a9418e": {
+    "text": "That is Faraday's law happening. The flux rose while the magnet moved and the needle swung, then the motion stopped, the change stopped, and the EMF died to zero.",
+    "chars": 162,
+    "bytes": 175960
+  },
+  "f7fa45bf00001431": {
+    "text": "Exactly, opposite change, opposite swing. The DIRECTION of the flux change sets the sign of the EMF.",
+    "chars": 100,
+    "bytes": 114520
+  },
+  "2286c6835b391a99": {
+    "text": "You saw Lenz's law! The coil always makes the pole that fights the change. That push-back is why you must do work to move the magnet, and where the electrical energy comes from.",
+    "chars": 177,
+    "bytes": 197694
+  },
+  "73a7264b0e16b3b7": {
+    "text": "There it is, a faster magnet means a faster flux change, and ε grew with it. The rate is what matters.",
+    "chars": 102,
+    "bytes": 132075
+  },
+  "92cdd06035a6b76d": {
+    "text": "You did it! Each turn adds its own EMF in series, so ε grew with N. That is the N in ε equals −N d phi /dt.",
+    "chars": 107,
+    "bytes": 188081
+  },
+  "762cbf437c2283ec": {
+    "text": "Great experimenting! You now have the whole law: ε is nonzero only while phi changes, its sign follows the direction of the change, and its size scales with the rate and the turns.",
+    "chars": 180,
+    "bytes": 226115
+  },
+  "b158da69782eea31": {
+    "text": "Watch this part again: Magnetic flux: how much field threads the coil",
+    "chars": 69,
+    "bytes": 77322
+  },
+  "bc63b99d68dc6237": {
+    "text": "Watch the galvanometer arrow: it swings only WHILE the magnet slides, and the moment the magnet stops, still deep inside the coil, the arrow drops straight back to zero.",
+    "chars": 169,
+    "bytes": 205635
+  },
+  "acf3090aa0e3a9ff": {
+    "text": "Watch the arrow as the magnet leaves: the flux falls instead of rising, and the swing is the mirror of the push-in swing.",
+    "chars": 121,
+    "bytes": 155480
+  },
+  "9d0af41666db731f": {
+    "text": "Watch the coil's near face as the N pole approaches: it becomes a red N pole and the small red arrow shows the coil pushing back against the motion.",
+    "chars": 148,
+    "bytes": 178468
+  },
+  "40b4e0b2745e615d": {
+    "text": "Watch this part again: Rate and turns: what makes the EMF bigger",
+    "chars": 64,
+    "bytes": 78994
+  },
+  "915129b3c3cf2643": {
+    "text": "Well done! You completed this step.",
+    "chars": 35,
+    "bytes": 33854
+  },
+  "bbc97d74e39d05b1": {
+    "text": "The slider for this step could not be found. Watch the simulation, then press Continue.",
+    "chars": 87,
+    "bytes": 89861
+  },
+  "f6f56d102a63dea5": {
+    "text": "Watch this part again. Ask me if anything is unclear.",
+    "chars": 53,
+    "bytes": 68127
+  },
+  "f309e159e9c4c88f": {
+    "text": "Both sliders are yours now. Make the current large, then small. Watch the graph follow you, and ask me anything you wonder about.",
+    "chars": 129,
+    "bytes": 140434
+  }
+}

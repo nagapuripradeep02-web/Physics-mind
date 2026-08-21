@@ -726,5 +726,140 @@
       "negative": "#42A5F5",
       "field_line": "#66BB6A"
     }
+  },
+  "assessment": {
+    "mastery_definition": "The student can state that only a CHANGING flux induces an EMF, predict the galvanometer's behavior when the magnet moves, stops, or reverses, use Lenz's law to give the direction of the induced current, and scale the EMF with the rate of change and the number of turns.",
+    "questions": [
+      {
+        "q_id": "ql_steady_flux",
+        "stem": "A strong bar magnet is held perfectly still inside a coil connected to a galvanometer. What does the galvanometer show?",
+        "options": {
+          "A": "A steady deflection, because the magnet's field is strong",
+          "B": "Zero — the flux through the coil is not changing, so no EMF is induced",
+          "C": "A small deflection that slowly grows as the coil charges up",
+          "D": "A deflection that lasts until the magnet is taken away"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "believes a magnet near a coil induces current just by BEING there — but induction needs a CHANGING flux, and a still magnet gives a constant flux",
+          "C": "treats the coil like a capacitor that charges from a steady field — a coil has no such charging behavior; constant flux means zero EMF at every instant",
+          "D": "believes the PRESENCE of the magnet sustains a current — only the CHANGE while it moves in or out does"
+        },
+        "tested_idea": "A steady flux induces nothing — only a changing flux induces an EMF.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil rests on a table directly above a strong stationary magnet. State the galvanometer reading, and why."
+      },
+      {
+        "q_id": "ql_rate",
+        "stem": "You push the same magnet into the same coil twice: first slowly, then twice as fast. Compared with the slow push, the fast push gives a peak EMF that is about",
+        "options": {
+          "A": "The same — the total flux change is the same either way",
+          "B": "Twice as large — the flux changes at twice the rate",
+          "C": "Four times as large",
+          "D": "Half as large — there is less time to build up EMF"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "confuses the TOTAL flux change with its RATE — the EMF is set by dΦ/dt, not by how much flux changes overall",
+          "C": "squares the speed as if EMF depended on rate squared — ε = −N dΦ/dt is linear in the rate",
+          "D": "believes EMF needs time to accumulate like charge on a capacitor — EMF is instantaneous, set by the rate at that moment"
+        },
+        "tested_idea": "The EMF scales linearly with the RATE of flux change (ε = −N dΦ/dt).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A magnet is pulled out of a coil at one-third of its earlier speed. Compare the peak EMF with the earlier pull."
+      },
+      {
+        "q_id": "ql_stop_moving",
+        "stem": "You slide a magnet into a coil and then hold it still, deep inside the coil. What does the galvanometer needle do?",
+        "options": {
+          "A": "It stays deflected as long as the magnet stays inside",
+          "B": "It swings further, because the flux inside is now at its largest",
+          "C": "It drops back to zero the moment the magnet stops moving",
+          "D": "It reverses direction and stays reversed"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "believes a large flux sustains a current — the flux is large but CONSTANT, and a constant flux induces nothing",
+          "B": "reads the SIZE of the flux as the cause of EMF — the cause is the RATE OF CHANGE, which is zero once the magnet stops",
+          "D": "confuses stopping with reversing — the sign of the EMF flips only when the flux change reverses direction (magnet pulled back out)"
+        },
+        "tested_idea": "EMF exists only WHILE the flux is changing — it vanishes the instant the change stops, however large the flux is.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A magnet rests inside a coil. The needle reads zero. Explain why, even though the flux through the coil is at its maximum."
+      },
+      {
+        "q_id": "ql_pull_out",
+        "stem": "Pushing the magnet's N pole INTO the coil deflects the needle to the right. What happens when you pull the magnet back OUT?",
+        "options": {
+          "A": "The needle deflects to the right again",
+          "B": "The needle deflects to the left — the flux now falls, so the EMF has the opposite sign",
+          "C": "The needle stays at zero because the magnet is still near the coil",
+          "D": "The needle vibrates rapidly between left and right"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "believes any motion gives the same deflection — the DIRECTION of the flux change sets the sign of the EMF, and pulling out reverses it",
+          "C": "believes nearness decides everything — the flux is changing during the pull, so an EMF must appear",
+          "D": "imagines the needle responding to shaking rather than to the single steady fall of flux during one smooth pull"
+        },
+        "tested_idea": "The direction of the flux change sets the SIGN of the EMF — push in one way, pull out the other way.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil's needle kicks left when a magnet's S pole approaches. Predict the kick when the S pole is withdrawn."
+      },
+      {
+        "q_id": "ql_lenz",
+        "stem": "As the magnet's N pole approaches the coil, the face of the coil nearest the magnet becomes",
+        "options": {
+          "A": "An N pole, so the coil repels the approaching magnet",
+          "B": "An S pole, so the coil pulls the magnet in faster",
+          "C": "Neither — a coil carrying current has no poles",
+          "D": "An N pole, so the coil attracts the approaching magnet"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "reverses Lenz's law — if the coil HELPED the magnet in, the motion would speed itself up and create energy from nothing",
+          "C": "misses that a current loop IS a magnet — the induced current gives the coil a real N and S face",
+          "D": "pairs the right pole with the wrong force — two N poles facing each other repel, they never attract"
+        },
+        "tested_idea": "Lenz's law: the induced current always opposes the change that created it — that is what the minus sign records, and why energy is conserved.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A magnet's N pole is pulled AWAY from a coil. State the pole that appears on the coil's near face, and why."
+      },
+      {
+        "q_id": "ql_turns",
+        "stem": "A coil of 6 turns gives a peak EMF of 2 mV for a certain push of the magnet. The same push on an identical coil with 12 turns gives about",
+        "options": {
+          "A": "2 mV — the number of turns does not matter",
+          "B": "4 mV — each turn adds its own EMF, so double the turns doubles the total",
+          "C": "1 mV — more turns share the same EMF between them",
+          "D": "8 mV — the EMF grows with the square of the turns"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "ignores the N in ε = −N dΦ/dt — every turn is threaded by the same changing flux and contributes its own EMF in series",
+          "C": "imagines the EMF divided among turns like current in parallel branches — the turns add in series, they do not share",
+          "D": "squares N — the total is N times one turn's EMF, linear not quadratic"
+        },
+        "tested_idea": "The EMF scales linearly with the number of turns N — each turn adds its own EMF in series.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A 20-turn coil replaces a 5-turn coil in the same experiment. Compare the peak EMFs for the same magnet motion."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["ql_steady_flux"],
+      "STATE_2": ["ql_rate", "ql_stop_moving"],
+      "STATE_3": ["ql_pull_out"],
+      "STATE_4": ["ql_lenz"],
+      "STATE_5": ["ql_turns"]
+    },
+    "non_assessed_states": ["STATE_6"]
   }
 }

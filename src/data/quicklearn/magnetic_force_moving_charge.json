@@ -1,0 +1,147 @@
+{
+  "concept_id": "magnetic_force_moving_charge",
+  "title": "Magnetic Force on a Moving Charge in about 10 minutes",
+  "intro": {
+    "heading": "One field, one moving charge, one sideways push",
+    "lines": [
+      "A charged particle moving through a magnetic field feels a push. This push is called the magnetic force.",
+      "The push is sideways — always at a right angle to the velocity. It turns the particle instead of speeding it up.",
+      "The size of the force is F = qvB sin θ, where θ is the angle between the velocity and the field.",
+      "Old television picture tubes steered their electron beam with exactly this force. Let us see it."
+    ],
+    "what_changes": [
+      { "you_change": "Angle θ between v and B", "you_see": "The path changes shape: straight line, then helix, then circle" },
+      { "you_change": "Speed |v|", "you_see": "The circle grows bigger" },
+      { "you_change": "Field B", "you_see": "The circle pulls tighter" },
+      { "you_change": "Charge sign", "you_see": "The force flips to the opposite side" }
+    ]
+  },
+  "param_map": {
+    "theta": { "input_id": "theta_slider", "kind": "range", "min": 0, "max": 90, "step": 1 },
+    "v": { "input_id": "v_slider", "kind": "range", "min": 0.5, "max": 5, "step": 0.1 },
+    "B": { "input_id": "b_slider", "kind": "range", "min": 1, "max": 100, "step": 1 },
+    "q": { "input_id": "q_toggle", "kind": "toggle" }
+  },
+  "readings": [
+    { "label": "charge", "source": "text", "name": "q_toggle" },
+    { "label": "speed |v|", "source": "range", "name": "v_slider", "round": 1, "unit": "×10⁵ m/s" },
+    { "label": "field B", "source": "range", "name": "b_slider", "round": 0, "unit": "mT" },
+    { "label": "angle θ between v and B", "source": "range", "name": "theta_slider", "round": 0, "unit": "degrees" },
+    { "label": "force readout shows", "source": "text", "name": "f_readout" }
+  ],
+  "missions": [
+    {
+      "id": "m1",
+      "state": "STATE_1",
+      "kind": "observe",
+      "instruction": "Watch the proton. Its velocity points along the blue field arrows, the angle is zero, and the force readout stays at zero. No force — it moves in a straight line.",
+      "min_watch_ms": 9000,
+      "done_label": "I saw it"
+    },
+    {
+      "id": "m2",
+      "state": "STATE_1",
+      "kind": "set_param",
+      "instruction": "Drag the angle slider to 30 degrees or more. The moment the velocity tilts away from the field, a force appears and the path starts to bend.",
+      "success": { "param": "theta", "op": "gte", "value": 30 },
+      "hint": "The angle slider is in the panel at the top right of the simulation.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m3",
+      "state": "STATE_2",
+      "kind": "set_param",
+      "instruction": "Now the velocity is fully across the field and the path is a circle. Raise the speed to 3 or more. Watch the circle grow.",
+      "success": { "param": "v", "op": "gte", "value": 3 },
+      "hint": "The speed slider is marked |v| in the top-right panel.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m4",
+      "state": "STATE_2",
+      "kind": "set_param",
+      "instruction": "Now raise the field B to 30 mT or more. The circle pulls tighter — and check the small pale markers on the path: still equally spaced. The speed never changes.",
+      "success": { "param": "B", "op": "gte", "value": 30 },
+      "hint": "The field slider is marked B in the top-right panel.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m5",
+      "state": "STATE_3",
+      "kind": "toggle",
+      "instruction": "This is the right-hand rule: fingers along v, curl toward B, thumb gives F. Now click the +e badge to flip the charge to negative, and watch the force arrow flip to the opposite side.",
+      "success": { "param": "q" },
+      "hint": "The +e badge is at the top of the panel on the right. Click it once.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m6",
+      "state": "STATE_4",
+      "kind": "set_param",
+      "instruction": "The angle is 45 degrees and the path is a helix — part of v circles, part drifts along the field. Drag the angle down to 20 degrees or less and watch the helix stretch out toward a straight line.",
+      "success": { "param": "theta", "op": "lte", "value": 20 },
+      "hint": "Drag the angle slider toward zero and watch the path change shape.",
+      "hint_after_ms": 20000
+    }
+  ],
+  "remember": {
+    "key_ideas": [
+      "The magnetic force is zero when the velocity is along the field, and largest when it is across the field.",
+      "The force is always at a right angle to the velocity, so it turns the particle but never changes its speed.",
+      "Only the part of v across the field makes the circle. The part along the field drifts freely — together they make a helix."
+    ],
+    "formula": {
+      "plain": "F = qvB sin θ",
+      "reading": "Force equals charge times speed times field strength times the sine of the angle between v and B."
+    },
+    "common_mistake": {
+      "wrong": "A stronger magnetic field makes the particle go faster.",
+      "right": "The magnetic force never changes the speed. A stronger field only bends the path into a tighter circle."
+    }
+  },
+  "quiz": {
+    "question_ids": [
+      "ql_zero_angle",
+      "ql_calc_force",
+      "ql_no_work",
+      "ql_flip_sign",
+      "ql_radius"
+    ]
+  },
+  "diagnosis_overrides": {
+    "ql_no_work": {
+      "replay_state": "STATE_2",
+      "replay_prompt": "Watch the small pale markers on the circle — they stay equally spaced the whole time, so the speed never changes."
+    },
+    "ql_flip_sign": {
+      "replay_state": "STATE_3",
+      "replay_prompt": "Click the +e badge to flip the charge, and watch the force arrow jump to the opposite side."
+    }
+  },
+  "skills": {
+    "concept": ["ql_zero_angle"],
+    "calculation": ["ql_calc_force", "ql_radius"],
+    "direction": ["ql_flip_sign"],
+    "misconception": ["ql_no_work"]
+  },
+  "stage": {
+    "extends": "lorentz_force_uniform_field",
+    "elements": []
+  },
+  "tutor": {
+    "welcome": [
+      "Hi! I am Vidi, your guide for this lesson.",
+      "One proton, one magnetic field, and one rule that runs everything from old TV tubes to particle accelerators. Do each small step with me — and ask me anything, any time, in the box below."
+    ],
+    "celebrations": {
+      "m1": "You saw it! The velocity points along the field, the angle is zero, and the force readout stays at zero. No force — a straight line.",
+      "m2": "There it is! The moment v tilts away from B, a force appears and the path starts to bend.",
+      "m3": "Nice! A faster proton makes a bigger circle. The radius grows with speed: r = mv/qB.",
+      "m4": "You did it! A stronger field pulls the circle tighter. And the pale markers stayed equally spaced — the speed never changed.",
+      "m5": "Exactly! Negative charge, opposite force. Same rule, opposite thumb.",
+      "m6": "You found it! As the angle shrinks, more of the velocity drifts along the field and the helix stretches out. At zero it becomes a straight line again."
+    },
+    "quiz_intro": "Now let us check what you learned. 5 questions. You have seen every answer happen on the screen.",
+    "summary_line": "Great work today. Every step you took and every question you asked is saved, so you can pick up where you left off."
+  }
+}

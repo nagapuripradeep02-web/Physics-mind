@@ -1,0 +1,137 @@
+{
+  "ea30f6fb362c7dd3": {
+    "text": "Hi! I am Vidi, your guide for this lesson.",
+    "chars": 42,
+    "bytes": 62275
+  },
+  "057e8d4523d84425": {
+    "text": "One proton, one magnetic field, and one rule that runs everything from old TV tubes to particle accelerators. Do each small step with me, and ask me anything, any time, in the box below.",
+    "chars": 186,
+    "bytes": 242834
+  },
+  "c26f99b5f434ba01": {
+    "text": "Watch the proton. Its velocity points along the blue field arrows, the angle is zero, and the force readout stays at zero. No force, it moves in a straight line.",
+    "chars": 161,
+    "bytes": 183902
+  },
+  "62edc95f9b2a0c62": {
+    "text": "Drag the angle slider to 30 degrees or more. The moment the velocity tilts away from the field, a force appears and the path starts to bend.",
+    "chars": 140,
+    "bytes": 163422
+  },
+  "284c89cf8ffc218c": {
+    "text": "Hint: The angle slider is in the panel at the top right of the simulation.",
+    "chars": 74,
+    "bytes": 88607
+  },
+  "8d45ba13a9087d30": {
+    "text": "Now the velocity is fully across the field and the path is a circle. Raise the speed to 3 or more. Watch the circle grow.",
+    "chars": 121,
+    "bytes": 148375
+  },
+  "3731d3218bf81c58": {
+    "text": "Hint: The speed slider is marked v in the top-right panel.",
+    "chars": 58,
+    "bytes": 71889
+  },
+  "1afbbfa964111117": {
+    "text": "Now raise the magnetic field B to 30 millitesla or more. The circle pulls tighter, and check the small pale markers on the path: still equally spaced. The speed never changes.",
+    "chars": 175,
+    "bytes": 212741
+  },
+  "de7dba5d8c6036c0": {
+    "text": "Hint: The field slider is marked magnetic field B in the top-right panel.",
+    "chars": 73,
+    "bytes": 86935
+  },
+  "ca9657e5b276a8b3": {
+    "text": "This is the right-hand rule: fingers along v, curl toward magnetic field B, thumb gives force F . Now click the +e badge to flip the charge to negative, and watch the force arrow flip to the opposite side.",
+    "chars": 205,
+    "bytes": 263314
+  },
+  "b76b4021681cb697": {
+    "text": "Hint: The +e badge is at the top of the panel on the right. Click it once.",
+    "chars": 74,
+    "bytes": 106161
+  },
+  "342f11c3478de134": {
+    "text": "The angle is 45 degrees and the path is a helix, part of v circles, part drifts along the field. Drag the angle down to 20 degrees or less and watch the helix stretch out toward a straight line.",
+    "chars": 194,
+    "bytes": 216920
+  },
+  "22dc531b72a082b6": {
+    "text": "Hint: Drag the angle slider toward zero and watch the path change shape.",
+    "chars": 72,
+    "bytes": 80248
+  },
+  "2d603bcb0d6e956c": {
+    "text": "You saw it! The velocity points along the field, the angle is zero, and the force readout stays at zero. No force, a straight line.",
+    "chars": 131,
+    "bytes": 147121
+  },
+  "9569cc165856b7ad": {
+    "text": "There it is! The moment v tilts away from magnetic field B, a force appears and the path starts to bend.",
+    "chars": 104,
+    "bytes": 121208
+  },
+  "4c796d97d8727a82": {
+    "text": "Nice! A faster proton makes a bigger circle. The radius grows with speed: r equals mv/qB.",
+    "chars": 89,
+    "bytes": 144195
+  },
+  "f833b2fbf2d2fa69": {
+    "text": "You did it! A stronger field pulls the circle tighter. And the pale markers stayed equally spaced, the speed never changed.",
+    "chars": 123,
+    "bytes": 152555
+  },
+  "19fdea738058e180": {
+    "text": "Exactly! Negative charge, opposite force. Same rule, opposite thumb.",
+    "chars": 68,
+    "bytes": 92369
+  },
+  "63d3d693865fda55": {
+    "text": "You found it! As the angle shrinks, more of the velocity drifts along the field and the helix stretches out. At zero it becomes a straight line again.",
+    "chars": 150,
+    "bytes": 162168
+  },
+  "c0260bbaa5b2697d": {
+    "text": "Watch this part again: Straight line, v along magnetic field B ( theta equals 0 degrees)",
+    "chars": 88,
+    "bytes": 125387
+  },
+  "a2c9fb2a5911afee": {
+    "text": "Watch this part again: The circle, v across magnetic field B ( theta equals 90 degrees)",
+    "chars": 87,
+    "bytes": 111595
+  },
+  "d1b7e827af1877f6": {
+    "text": "Watch the small pale markers on the circle, they stay equally spaced the whole time, so the speed never changes.",
+    "chars": 112,
+    "bytes": 152555
+  },
+  "caab09c10913816c": {
+    "text": "Click the +e badge to flip the charge, and watch the force arrow jump to the opposite side.",
+    "chars": 91,
+    "bytes": 114520
+  },
+  "915129b3c3cf2643": {
+    "text": "Well done! You completed this step.",
+    "chars": 35,
+    "bytes": 33854
+  },
+  "bbc97d74e39d05b1": {
+    "text": "The slider for this step could not be found. Watch the simulation, then press Continue.",
+    "chars": 87,
+    "bytes": 109087
+  },
+  "f6f56d102a63dea5": {
+    "text": "Watch this part again. Ask me if anything is unclear.",
+    "chars": 53,
+    "bytes": 65201
+  },
+  "f309e159e9c4c88f": {
+    "text": "Both sliders are yours now. Make the current large, then small. Watch the graph follow you, and ask me anything you wonder about.",
+    "chars": 129,
+    "bytes": 133329
+  }
+}

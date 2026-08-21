@@ -1,0 +1,122 @@
+{
+  "ea30f6fb362c7dd3": {
+    "text": "Hi! I am Vidi, your guide for this lesson.",
+    "chars": 42,
+    "bytes": 58514
+  },
+  "ba9005e318212307": {
+    "text": "We will learn Ohm's law on a real moving simulation, one small step at a time. Ask me anything, any time, in the box below.",
+    "chars": 123,
+    "bytes": 142942
+  },
+  "a12ab14b7abbcca7": {
+    "text": "Watch the meter. The battery switches on, the push spreads through the wire, and the current climbs to a steady value.",
+    "chars": 118,
+    "bytes": 130821
+  },
+  "a661f0085b29bfc3": {
+    "text": "Drag the Voltage slider to 5 volts or more. Watch the bright dot climb the straight line.",
+    "chars": 89,
+    "bytes": 114520
+  },
+  "8d768b1ae9c434ad": {
+    "text": "Hint: The voltage V slider is on the right side of the simulation.",
+    "chars": 66,
+    "bytes": 76068
+  },
+  "8b8a577bd3f463f8": {
+    "text": "Now push the voltage up by at least 3 more volts. The dot slides along the SAME straight line, that straight line is Ohm's law.",
+    "chars": 127,
+    "bytes": 150047
+  },
+  "6117fbede41a1f3f": {
+    "text": "Raise the Resistance to 15 ohms or more. Watch the line get steeper, steeper means more resistance.",
+    "chars": 99,
+    "bytes": 103235
+  },
+  "14abe4adb4bc2ffe": {
+    "text": "Hint: The resistance R slider is on the right side of the simulation.",
+    "chars": 69,
+    "bytes": 84427
+  },
+  "820799a388abdf55": {
+    "text": "Watch the two counting meters, one before the resistor and one after it. The counts stay equal. Nothing is used up.",
+    "chars": 115,
+    "bytes": 110341
+  },
+  "eade60b62b049349": {
+    "text": "This wire is a glowing filament bulb. Push the voltage to 10 volts and watch the line bend, the hot filament does not follow the straight line.",
+    "chars": 143,
+    "bytes": 155480
+  },
+  "d6c811e1f595f062": {
+    "text": "You saw it! The battery gave the push, and the current climbed to a steady value. That push is called voltage.",
+    "chars": 110,
+    "bytes": 126641
+  },
+  "c4ef511828640549": {
+    "text": "Nice work! You raised the voltage and the bright dot climbed the straight line. More push, more current.",
+    "chars": 104,
+    "bytes": 118282
+  },
+  "8fbf70537f706574": {
+    "text": "Exactly! The dot stayed on the same straight line. That straight line through zero IS Ohm's law.",
+    "chars": 96,
+    "bytes": 125387
+  },
+  "69c6eccee1599327": {
+    "text": "You did it! You raised the resistance and the line became steeper. A steeper line means more resistance.",
+    "chars": 104,
+    "bytes": 137508
+  },
+  "c0ddb8dc3773ac20": {
+    "text": "Right! The count going in and the count coming out stayed equal the whole time. Current is never used up.",
+    "chars": 105,
+    "bytes": 95294
+  },
+  "e0192a7281af2b46": {
+    "text": "You found the limit! The hot filament bends the line, its resistance rises as it heats. The straight line only holds at constant temperature.",
+    "chars": 141,
+    "bytes": 153809
+  },
+  "601a3ae4b368cb0f": {
+    "text": "Watch this part again: PRIMARY aha, the swept voltage V, current I trace is a straight line through the origin",
+    "chars": 110,
+    "bytes": 163422
+  },
+  "3e7d4b51e55f94a4": {
+    "text": "Watch this part again: resistance R equals voltage V /i, resistance is the slope; more resistance R tilts the line steeper",
+    "chars": 122,
+    "bytes": 162168
+  },
+  "b61ac7045e9cde7b": {
+    "text": "Watch the two counting meters, the count going in and the count coming out stay equal the whole time.",
+    "chars": 101,
+    "bytes": 121208
+  },
+  "1b3d025d46bbd8a5": {
+    "text": "Push the voltage high and watch the bright trace bend away from the straight reference line.",
+    "chars": 92,
+    "bytes": 100728
+  },
+  "915129b3c3cf2643": {
+    "text": "Well done! You completed this step.",
+    "chars": 35,
+    "bytes": 33854
+  },
+  "bbc97d74e39d05b1": {
+    "text": "The slider for this step could not be found. Watch the simulation, then press Continue.",
+    "chars": 87,
+    "bytes": 86935
+  },
+  "f6f56d102a63dea5": {
+    "text": "Watch this part again. Ask me if anything is unclear.",
+    "chars": 53,
+    "bytes": 58514
+  },
+  "f309e159e9c4c88f": {
+    "text": "Both sliders are yours now. Make the current large, then small. Watch the graph follow you, and ask me anything you wonder about.",
+    "chars": 129,
+    "bytes": 141688
+  }
+}
