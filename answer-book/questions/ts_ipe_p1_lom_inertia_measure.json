@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "What is inertia? What gives the measure of inertia?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 13,
+      "board": "ap_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "What inertia is",
@@ -30,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {

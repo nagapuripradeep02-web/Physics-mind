@@ -128,6 +128,14 @@
       el.textContent = c;
       meta.appendChild(el);
     });
+    // Which papers asked this (board-tagged appearances — Session 89).
+    var asked = askedLine(question);
+    if (asked) {
+      var ac = document.createElement('span');
+      ac.className = 'chip asked';
+      ac.textContent = asked;
+      meta.appendChild(ac);
+    }
     var marksChip = document.createElement('span');
     marksChip.className = 'chip chip-marks';
     marksChip.textContent = marksTotal + ' marks';
@@ -256,6 +264,21 @@
     for (var i = 0; i < qcuts.length; i++) if (qcuts[i].key === e.cut) return qcuts[i];
     return { key: null, qtype: q.qtype, marks_total: q.marks_total,
              expected_time_min: q.expected_time_min };
+  }
+
+  /** "Asked: TS 2012, 2004 · AP 2026" from a question's appearances[]. Board absent
+      = TS (the historical meaning). Empty appearances → null (no line, never "Asked:"
+      with nothing after it). */
+  function askedLine(q) {
+    if (!q || !q.appearances || !q.appearances.length) return null;
+    var by = { ts_ipe: [], ap_ipe: [] };
+    q.appearances.forEach(function (a) {
+      by[a.board === 'ap_ipe' ? 'ap_ipe' : 'ts_ipe'].push(a.year);
+    });
+    var parts = [];
+    if (by.ts_ipe.length) parts.push('TS ' + by.ts_ipe.sort().reverse().join(', '));
+    if (by.ap_ipe.length) parts.push('AP ' + by.ap_ipe.sort().reverse().join(', '));
+    return 'Asked: ' + parts.join(' · ');
   }
 
   function entryMatches(e, u) {
@@ -409,6 +432,23 @@
             tm.className = 'cc-chip';
             tm.textContent = '~' + ec.expected_time_min + ' min';
             badges.appendChild(tm);
+            // Board differentiation (Session 89): a TS or AP student sees which
+            // papers actually asked this. Enumerated entries say so plainly
+            // (Rule 41) — a predicted question must never dress as an asked one.
+            if (e.source === 'enumerated') {
+              var pr = document.createElement('span');
+              pr.className = 'cc-chip predicted';
+              pr.textContent = 'Predicted — not asked yet';
+              badges.appendChild(pr);
+            } else {
+              var asked = askedLine(questions[qIndexById[e.question_id]]);
+              if (asked) {
+                var ak = document.createElement('span');
+                ak.className = 'cc-chip asked';
+                ak.textContent = asked;
+                badges.appendChild(ak);
+              }
+            }
           } else {
             var soon = document.createElement('span');
             soon.className = 'cc-chip';
