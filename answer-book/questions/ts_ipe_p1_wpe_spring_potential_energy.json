@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_spring_potential_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is elastic potential energy? Write the expression for the potential energy stored in a stretched spring.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The idea",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_idea",
+        "kind": "text",
+        "label": "The idea",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Work has to be done to stretch or compress a",
+          "spring. That work is stored in the spring as",
+          "elastic potential energy, and the spring",
+          "returns it when it is released."
+        ],
+        "why": "Potential energy is always stored WORK; naming the work that was done is the cleanest way to say what is stored.",
+        "common_mistakes": [
+          "Calling it kinetic energy because the spring can make something move later."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done in stretching or compressing a spring is stored as elastic potential energy.",
+          "accept": [
+            "work done stretching is stored",
+            "stored in the spring and returned"
+          ],
+          "reject": [
+            "half k x squared"
+          ],
+          "heard_as": [
+            "elastic potential energy",
+            "stored"
+          ]
+        }
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          {
+            "text": "U = ½ k x²",
+            "style": "boxed"
+          },
+          "k is the force constant of the spring and x",
+          "is the stretch or compression from its",
+          "natural length. U is positive for both."
+        ],
+        "why": "The x² is why compressing by the same amount stores the same energy as stretching — squaring removes the sign of x.",
+        "common_mistakes": [
+          "Writing U = kx² without the half, which comes from the force growing from 0 to kx."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U is half k x squared, with k the force constant and x the stretch from the natural length.",
+          "accept": [
+            "half k x squared",
+            "k is the force constant",
+            "x is the stretch"
+          ],
+          "reject": [
+            "work done stretching is stored"
+          ],
+          "heard_as": [
+            "half k x squared",
+            "force constant"
+          ]
+        }
+      }
+    ]
+  }
+}

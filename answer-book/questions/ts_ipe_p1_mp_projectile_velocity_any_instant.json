@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_projectile_velocity_any_instant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A body is projected with a speed u at an angle θ with the horizontal. Obtain expressions for the magnitude and direction of its velocity after a time t.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two components",
+      "marks": 1
+    },
+    {
+      "label": "The magnitude",
+      "marks": 2
+    },
+    {
+      "label": "The direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_components",
+        "kind": "equation",
+        "label": "The two components",
+        "marks": 1,
+        "mark_note": "Components",
+        "lines": [
+          "Nothing pushes the body sideways, and",
+          "gravity only pulls it down. So",
+          {
+            "text": "v_x = u cos θ   (unchanged)",
+            "style": "eq"
+          },
+          {
+            "text": "v_y = u sin θ − g t",
+            "style": "eq"
+          }
+        ],
+        "why": "The horizontal and vertical motions are independent, so each component is handled as a separate straight-line problem.",
+        "common_mistakes": [
+          "Letting g change the horizontal component as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v x stays u cos theta and v y is u sin theta minus g t.",
+          "accept": [
+            "u cos theta unchanged",
+            "u sin theta minus g t"
+          ],
+          "reject": [
+            "root of v x squared plus v y squared"
+          ],
+          "heard_as": [
+            "u cos theta",
+            "u sin theta minus g t"
+          ]
+        }
+      },
+      {
+        "id": "s2_magnitude",
+        "kind": "equation",
+        "label": "The magnitude",
+        "marks": 2,
+        "mark_note": "Magnitude",
+        "lines": [
+          "The two components are perpendicular, so",
+          {
+            "text": "v = √(v_x² + v_y²)",
+            "style": "eq"
+          },
+          "Substituting and expanding,",
+          {
+            "text": "v = √(u² − 2 u g t sin θ + g²t²)",
+            "style": "eq"
+          }
+        ],
+        "why": "The u² remains because sin²θ + cos²θ = 1 — the same identity that collapses every projectile expression.",
+        "common_mistakes": [
+          "Adding the components directly instead of taking the square root of the sum of squares."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v is the root of v x squared plus v y squared, giving root of u squared minus 2 u g t sin theta plus g squared t squared.",
+          "accept": [
+            "root of v x squared plus v y squared",
+            "u squared minus 2 u g t sin theta plus g squared t squared"
+          ],
+          "reject": [
+            "u cos theta unchanged"
+          ],
+          "heard_as": [
+            "root",
+            "v x squared plus v y squared"
+          ]
+        }
+      },
+      {
+        "id": "s3_direction",
+        "kind": "boxed_final",
+        "label": "The direction",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          "If α is the angle of v with the horizontal,",
+          {
+            "text": "tan α = v_y / v_x",
+            "style": "boxed"
+          },
+          "At the top v_y = 0, so α = 0 and v = u cos θ."
+        ],
+        "why": "The check at the top is worth writing: it shows the body is still moving there, which is the commonest misconception in this chapter.",
+        "common_mistakes": [
+          "Saying the velocity is zero at the top — only its vertical part is."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan alpha is v y over v x, and at the top v y is zero so v equals u cos theta.",
+          "accept": [
+            "tan alpha is v y by v x",
+            "at the top v is u cos theta"
+          ],
+          "reject": [
+            "root of v x squared plus v y squared"
+          ],
+          "heard_as": [
+            "tan alpha",
+            "at the top"
+          ]
+        }
+      }
+    ]
+  }
+}

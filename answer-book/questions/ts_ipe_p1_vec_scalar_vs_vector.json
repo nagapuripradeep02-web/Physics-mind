@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_scalar_vs_vector",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between a scalar and a vector. Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Scalar",
+      "marks": 1
+    },
+    {
+      "label": "Vector",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scalar",
+        "kind": "text",
+        "label": "Scalar",
+        "marks": 1,
+        "mark_note": "Scalar",
+        "lines": [
+          "A scalar has magnitude only. A number",
+          "with its unit describes it completely,",
+          "and scalars add by ordinary arithmetic.",
+          "Examples: mass, time, speed, work."
+        ],
+        "why": "The real test is not \"does it point somewhere in the picture\" but \"do I need a direction to add two of them correctly\".",
+        "common_mistakes": [
+          "Calling speed a vector — speed is the size of velocity and carries no direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a scalar has magnitude only and adds by ordinary arithmetic.",
+          "accept": [
+            "magnitude only",
+            "adds by ordinary addition",
+            "just a number and a unit"
+          ],
+          "reject": [
+            "magnitude and direction"
+          ],
+          "heard_as": [
+            "scalar",
+            "magnitude only"
+          ]
+        }
+      },
+      {
+        "id": "s2_vector",
+        "kind": "text",
+        "label": "Vector",
+        "marks": 1,
+        "mark_note": "Vector",
+        "lines": [
+          "A vector has both magnitude and direction,",
+          "and it adds by the triangle or the",
+          "parallelogram law, not by arithmetic.",
+          "Examples: displacement, velocity, force."
+        ],
+        "why": "The addition law is the working definition: 3 N and 4 N can give 5 N, which no pair of scalars ever does.",
+        "common_mistakes": [
+          "Saying only \"it has direction\" — the mark scheme also requires the addition law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a vector has magnitude and direction and adds by the triangle or parallelogram law.",
+          "accept": [
+            "magnitude and direction",
+            "triangle law",
+            "parallelogram law"
+          ],
+          "reject": [
+            "magnitude only"
+          ],
+          "heard_as": [
+            "vector",
+            "direction"
+          ]
+        }
+      }
+    ]
+  }
+}

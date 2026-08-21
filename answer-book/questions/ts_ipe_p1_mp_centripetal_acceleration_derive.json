@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_centripetal_acceleration_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the centripetal acceleration of a body in uniform circular motion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The setup",
+      "marks": 1
+    },
+    {
+      "label": "The similar triangles",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The setup",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "A body moves on a circle of radius r with",
+          "constant speed v. In a time Δt the radius",
+          "turns through an angle Δθ, and the velocity",
+          "vector turns through the SAME angle Δθ."
+        ],
+        "why": "The velocity always stays perpendicular to the radius, so when one turns by an angle the other must turn by the same angle.",
+        "common_mistakes": [
+          "Assuming the velocity vector does not turn because the speed is constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in time delta t the radius and the velocity both turn through the same angle delta theta.",
+          "accept": [
+            "both turn through the same angle",
+            "radius and velocity turn by delta theta"
+          ],
+          "reject": [
+            "the triangles are similar"
+          ],
+          "heard_as": [
+            "same angle",
+            "delta theta"
+          ]
+        }
+      },
+      {
+        "id": "s2_triangles",
+        "kind": "equation",
+        "label": "The similar triangles",
+        "marks": 2,
+        "mark_note": "Similar triangles",
+        "lines": [
+          "The triangle of the two velocity vectors and",
+          "the triangle of the two radii are similar,",
+          "both being isosceles with the same apex",
+          "angle Δθ. So",
+          {
+            "text": "Δv / v = Δs / r",
+            "style": "eq"
+          },
+          "Dividing throughout by Δt,",
+          {
+            "text": "Δv/Δt = (v/r)(Δs/Δt) = v²/r",
+            "style": "eq"
+          }
+        ],
+        "why": "Similar triangles turn a hard vector subtraction into a ratio of lengths, which is the whole method of this derivation.",
+        "common_mistakes": [
+          "Writing Δv / r = Δs / v, the two triangles matched up wrongly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the velocity triangle and the radius triangle are similar, giving delta v by v equals delta s by r.",
+          "accept": [
+            "similar triangles",
+            "delta v by v equals delta s by r",
+            "divide by delta t"
+          ],
+          "reject": [
+            "both turn through the same angle"
+          ],
+          "heard_as": [
+            "similar",
+            "delta v by v"
+          ]
+        }
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "a = v²/r = ω²r,  towards the centre",
+            "style": "boxed"
+          },
+          "The speed never changes; only the direction",
+          "does, so this acceleration is always",
+          "perpendicular to the velocity."
+        ],
+        "why": "An acceleration perpendicular to the velocity can only turn the motion, never speed it up — which is why the speed stays constant.",
+        "common_mistakes": [
+          "Dropping the direction; the magnitude alone does not earn the last mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a equals v squared by r, equal to omega squared r, directed towards the centre.",
+          "accept": [
+            "v squared by r",
+            "omega squared r",
+            "towards the centre"
+          ],
+          "reject": [
+            "similar triangles"
+          ],
+          "heard_as": [
+            "v squared by r",
+            "centre"
+          ]
+        }
+      }
+    ]
+  }
+}

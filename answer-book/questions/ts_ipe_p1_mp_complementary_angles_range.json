@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_complementary_angles_range",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two bodies are projected with the same speed at angles θ and (90° − θ) with the horizontal. Compare their horizontal ranges.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two ranges",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ranges",
+        "kind": "equation",
+        "label": "The two ranges",
+        "marks": 1,
+        "mark_note": "Both ranges",
+        "lines": [
+          "For the angle θ:",
+          {
+            "text": "R₁ = u² sin 2θ / g",
+            "style": "eq"
+          },
+          "For the angle (90° − θ):",
+          {
+            "text": "R₂ = u² sin(180° − 2θ) / g",
+            "style": "eq"
+          }
+        ],
+        "why": "Doubling (90° − θ) gives (180° − 2θ), so the second range is the same formula at a supplementary angle.",
+        "common_mistakes": [
+          "Writing the second angle inside the sine as (90° − 2θ) instead of (180° − 2θ)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second range uses sin of 180 degrees minus 2 theta.",
+          "accept": [
+            "sin 180 minus 2 theta",
+            "double the angle 90 minus theta"
+          ],
+          "reject": [
+            "the ranges are equal"
+          ],
+          "heard_as": [
+            "180 minus 2 theta",
+            "second range"
+          ]
+        }
+      },
+      {
+        "id": "s2_compare",
+        "kind": "boxed_final",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "sin(180° − 2θ) = sin 2θ, so",
+          {
+            "text": "R₁ = R₂ — the two ranges are equal",
+            "style": "boxed"
+          },
+          "Example: 30° and 60° land at the same spot,",
+          "though the 60° body flies higher and longer."
+        ],
+        "why": "Equal ranges do not mean equal flights: the steeper throw trades forward speed for time in the air, and the two effects cancel exactly.",
+        "common_mistakes": [
+          "Concluding the two paths are identical — the heights and the times of flight differ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin of 180 minus 2 theta equals sin 2 theta, so the two ranges are equal.",
+          "accept": [
+            "the ranges are equal",
+            "sin 180 minus 2 theta equals sin 2 theta",
+            "30 and 60 give the same range"
+          ],
+          "reject": [
+            "sin 180 minus 2 theta is the second range"
+          ],
+          "heard_as": [
+            "equal",
+            "same range"
+          ]
+        }
+      }
+    ]
+  }
+}

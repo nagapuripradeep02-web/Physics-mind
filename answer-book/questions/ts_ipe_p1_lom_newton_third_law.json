@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_newton_third_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Newton’s third law of motion. Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "To every action there is an equal and",
+          "opposite reaction.",
+          "The two forces are equal in magnitude,",
+          "opposite in direction, and act on TWO",
+          "different bodies."
+        ],
+        "why": "The \"two different bodies\" clause is the whole law; without it the pair would cancel and nothing could ever move.",
+        "common_mistakes": [
+          "Saying the action and reaction cancel each other — they act on different bodies, so they never do."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That action and reaction are equal and opposite and act on two different bodies.",
+          "accept": [
+            "equal and opposite reaction",
+            "act on two different bodies"
+          ],
+          "reject": [
+            "the foot pushes the ground"
+          ],
+          "heard_as": [
+            "action",
+            "reaction"
+          ]
+        }
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Walking on the ground",
+            "style": "boxed"
+          },
+          "The foot pushes the ground backwards",
+          "(action); the ground pushes the foot",
+          "forwards (reaction), and that push moves",
+          "the person."
+        ],
+        "why": "The reaction is the force that actually does the useful work, which is why the pair being on different bodies matters.",
+        "common_mistakes": [
+          "Naming a single force as the example instead of naming both of the pair."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the foot pushes the ground backwards and the ground pushes the foot forwards.",
+          "accept": [
+            "foot pushes the ground back",
+            "ground pushes the foot forward",
+            "walking"
+          ],
+          "reject": [
+            "act on two different bodies"
+          ],
+          "heard_as": [
+            "walking",
+            "ground pushes"
+          ]
+        }
+      }
+    ]
+  }
+}

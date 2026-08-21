@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_inclined_plane_sliding",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A body slides down a rough inclined plane of inclination θ. Derive an expression for its acceleration.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The forces",
+      "marks": 1
+    },
+    {
+      "label": "Resolving them",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_forces",
+        "kind": "text",
+        "label": "The forces",
+        "marks": 1,
+        "mark_note": "Forces",
+        "lines": [
+          "Three forces act on the body: its weight",
+          "m g vertically down, the normal force N",
+          "perpendicular to the surface, and friction f",
+          "up the slope, opposing the sliding."
+        ],
+        "why": "Friction always opposes the relative sliding, so for a body moving DOWN the slope it must point UP the slope.",
+        "common_mistakes": [
+          "Drawing friction down the slope, which would speed the body up instead of slowing it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That weight acts down, the normal force acts perpendicular to the surface, and friction acts up the slope.",
+          "accept": [
+            "weight normal force and friction",
+            "friction acts up the slope"
+          ],
+          "reject": [
+            "N equals mg cos theta"
+          ],
+          "heard_as": [
+            "three forces",
+            "up the slope"
+          ]
+        }
+      },
+      {
+        "id": "s2_resolve",
+        "kind": "equation",
+        "label": "Resolving them",
+        "marks": 2,
+        "mark_note": "Resolving",
+        "lines": [
+          "Resolve the weight along and perpendicular",
+          "to the plane. Perpendicular to the plane the",
+          "body does not move, so",
+          {
+            "text": "N = m g cos θ,   f = μ N = μ m g cos θ",
+            "style": "eq"
+          },
+          "Along the plane, the net force gives ma:",
+          {
+            "text": "m a = m g sin θ − μ m g cos θ",
+            "style": "eq"
+          }
+        ],
+        "why": "Resolving ALONG and PERPENDICULAR to the plane, rather than horizontally and vertically, is what keeps the acceleration in one equation.",
+        "common_mistakes": [
+          "Using N = mg on an incline; the normal force is only mg cos θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That N is mg cos theta, friction is mu mg cos theta, and ma is mg sin theta minus mu mg cos theta.",
+          "accept": [
+            "N is mg cos theta",
+            "ma equals mg sin theta minus mu mg cos theta"
+          ],
+          "reject": [
+            "friction acts up the slope"
+          ],
+          "heard_as": [
+            "mg cos theta",
+            "mg sin theta"
+          ]
+        }
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Cancelling m throughout,",
+          {
+            "text": "a = g (sin θ − μ cos θ)",
+            "style": "boxed"
+          },
+          "If tan θ ≤ μ the bracket is not positive and",
+          "the body does not slide at all."
+        ],
+        "why": "The mass cancels, so a heavy body and a light body slide down the same slope with the same acceleration.",
+        "common_mistakes": [
+          "Keeping m in the final answer after it has cancelled."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a equals g into sin theta minus mu cos theta, and the body does not slide if tan theta is at most mu.",
+          "accept": [
+            "g into sin theta minus mu cos theta",
+            "does not slide if tan theta is less than mu"
+          ],
+          "reject": [
+            "N is mg cos theta"
+          ],
+          "heard_as": [
+            "sin theta minus mu cos theta",
+            "g into"
+          ]
+        }
+      }
+    ]
+  }
+}

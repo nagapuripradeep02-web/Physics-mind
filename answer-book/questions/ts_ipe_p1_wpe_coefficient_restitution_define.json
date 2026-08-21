@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_coefficient_restitution_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the coefficient of restitution. What are its values for a perfectly elastic and for a perfectly inelastic collision?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The coefficient of restitution e is the ratio",
+          "of the relative velocity of separation after",
+          "a collision to the relative velocity of",
+          "approach before it.",
+          {
+            "text": "e = (v₂ − v₁) / (u₁ − u₂)",
+            "style": "eq"
+          }
+        ],
+        "why": "It is a measured number for a pair of bodies, and it is what tells you how much of the approach speed is left after the collision.",
+        "common_mistakes": [
+          "Writing it as a ratio of momenta or of kinetic energies rather than of relative velocities."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That e is the relative velocity of separation divided by the relative velocity of approach.",
+          "accept": [
+            "separation over approach",
+            "relative velocity of separation by relative velocity of approach"
+          ],
+          "reject": [
+            "e is one for elastic"
+          ],
+          "heard_as": [
+            "coefficient of restitution",
+            "separation"
+          ]
+        }
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "The two values",
+        "marks": 1,
+        "mark_note": "Values",
+        "lines": [
+          {
+            "text": "Perfectly elastic:  e = 1",
+            "style": "boxed"
+          },
+          {
+            "text": "Perfectly inelastic:  e = 0",
+            "style": "boxed"
+          },
+          "A real collision lies between, 0 < e < 1."
+        ],
+        "why": "e = 0 does not mean the bodies stop; it means they separate at zero relative speed, so they move on together.",
+        "common_mistakes": [
+          "Reading e = 0 as \"both bodies come to rest\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That e is 1 for a perfectly elastic collision and 0 for a perfectly inelastic one.",
+          "accept": [
+            "one for elastic",
+            "zero for perfectly inelastic",
+            "between zero and one for real collisions"
+          ],
+          "reject": [
+            "separation over approach"
+          ],
+          "heard_as": [
+            "e equals one",
+            "e equals zero"
+          ]
+        }
+      }
+    ]
+  }
+}

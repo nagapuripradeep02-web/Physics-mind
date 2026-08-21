@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_momentum_doubled_kinetic_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the kinetic energy of a body if its momentum is doubled?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "For a body of mass m,",
+          {
+            "text": "K = p² / 2m",
+            "style": "eq"
+          },
+          "The mass does not change, so K depends on",
+          "p squared alone."
+        ],
+        "why": "Writing K in terms of p first is what makes the question one line; going through the speed takes three.",
+        "common_mistakes": [
+          "Using K = ½mv² and forgetting that doubling p also doubles v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That K equals p squared by 2m, so K depends on p squared at fixed mass.",
+          "accept": [
+            "K equals p squared by 2 m",
+            "K depends on p squared"
+          ],
+          "reject": [
+            "it becomes four times"
+          ],
+          "heard_as": [
+            "p squared by 2 m",
+            "kinetic energy"
+          ]
+        }
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "Doubling p multiplies p² by four, so",
+          {
+            "text": "The kinetic energy becomes FOUR times.",
+            "style": "boxed"
+          },
+          "In the same way, doubling the kinetic energy",
+          "multiplies the momentum by √2 only."
+        ],
+        "why": "The reverse statement is worth writing because boards ask the question both ways round.",
+        "common_mistakes": [
+          "Answering \"it doubles\", by treating K as proportional to p."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the kinetic energy becomes four times.",
+          "accept": [
+            "four times",
+            "it becomes 4 K"
+          ],
+          "reject": [
+            "K equals p squared by 2 m"
+          ],
+          "heard_as": [
+            "four times",
+            "quadruples"
+          ]
+        }
+      }
+    ]
+  }
+}

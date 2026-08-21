@@ -1,0 +1,111 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_newton_first_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Newton’s first law of motion. What does it define?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "What it defines",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Every body continues in its state of rest,",
+          "or of uniform motion in a straight line,",
+          "unless an external force acts on it."
+        ],
+        "why": "The law says what happens when NO force acts; that is why it is the law of inertia.",
+        "common_mistakes": [
+          "Stating only the rest half and dropping \"uniform motion in a straight line\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a body stays at rest or in uniform motion in a straight line unless an external force acts.",
+          "accept": [
+            "stays at rest or in uniform motion",
+            "unless an external force acts",
+            "law of inertia"
+          ],
+          "reject": [
+            "it defines force"
+          ],
+          "heard_as": [
+            "first law",
+            "uniform motion"
+          ]
+        }
+      },
+      {
+        "id": "s2_defines",
+        "kind": "boxed_final",
+        "label": "What it defines",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "The first law defines FORCE.",
+            "style": "boxed"
+          },
+          "Force is whatever changes a body’s state of",
+          "rest or of uniform motion. The law also",
+          "tells us that every body has inertia."
+        ],
+        "why": "The second law measures force once you already know what one is; the first law is what tells you what one IS.",
+        "common_mistakes": [
+          "Answering \"it defines momentum\" or \"it defines acceleration\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first law defines force, as whatever changes the state of rest or uniform motion.",
+          "accept": [
+            "it defines force",
+            "defines force and inertia"
+          ],
+          "reject": [
+            "stays at rest or in uniform motion"
+          ],
+          "heard_as": [
+            "defines force",
+            "inertia"
+          ]
+        }
+      }
+    ]
+  }
+}

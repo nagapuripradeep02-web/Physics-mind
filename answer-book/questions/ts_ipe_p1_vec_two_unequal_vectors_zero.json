@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_two_unequal_vectors_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can the resultant of two vectors of unequal magnitude be zero? Give the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "No.",
+          "Two vectors add to zero only when they",
+          "are equal in magnitude and opposite in",
+          "direction."
+        ],
+        "why": "Zero means the two arrows must close on themselves, and only equal-and-opposite arrows do that.",
+        "common_mistakes": [
+          "Answering \"yes, if the angle is 180°\" — opposite direction alone is not enough."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is no, because cancelling needs equal magnitudes and opposite directions.",
+          "accept": [
+            "no",
+            "equal and opposite",
+            "only if equal in magnitude"
+          ],
+          "reject": [
+            "mod P minus Q is never zero"
+          ],
+          "heard_as": [
+            "no",
+            "equal and opposite"
+          ]
+        }
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The smallest resultant of P and Q is |P − Q|.",
+          {
+            "text": "If P ≠ Q, then |P − Q| ≠ 0",
+            "style": "boxed"
+          },
+          "Three unequal vectors CAN give zero, if",
+          "they close into a triangle."
+        ],
+        "why": "Naming the smallest possible resultant turns a memorised \"no\" into a proof, and the three-vector line shows exactly where the limit stops.",
+        "common_mistakes": [
+          "Extending the \"no\" to three vectors — three unequal vectors can close a triangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the smallest resultant is mod P minus Q, which is not zero when P is not equal to Q.",
+          "accept": [
+            "smallest is mod P minus Q",
+            "not zero when they are unequal",
+            "three vectors can give zero"
+          ],
+          "reject": [
+            "equal and opposite"
+          ],
+          "heard_as": [
+            "mod P minus Q",
+            "smallest"
+          ]
+        }
+      }
+    ]
+  }
+}

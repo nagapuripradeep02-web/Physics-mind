@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_max_range_angle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For what angle of projection is the horizontal range of a projectile maximum? Write that maximum range.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The condition",
+      "marks": 1
+    },
+    {
+      "label": "The angle and the range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "The condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          "The range of a projectile is",
+          {
+            "text": "R = u² sin 2θ / g",
+            "style": "eq"
+          },
+          "u and g are fixed, so R is largest when",
+          "sin 2θ is largest, that is sin 2θ = 1."
+        ],
+        "why": "The angle sits inside one sine, so the whole question is \"when is a sine equal to 1\".",
+        "common_mistakes": [
+          "Maximising sin θ instead of sin 2θ, which gives 90° and zero range."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R is u squared sin 2 theta by g, so R is maximum when sin 2 theta equals 1.",
+          "accept": [
+            "u squared sin 2 theta by g",
+            "sin 2 theta equals one"
+          ],
+          "reject": [
+            "45 degrees"
+          ],
+          "heard_as": [
+            "sin 2 theta",
+            "maximum"
+          ]
+        }
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The angle and the range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "2θ = 90°, so θ = 45°.",
+          {
+            "text": "Maximum range = u² / g,  at θ = 45°",
+            "style": "boxed"
+          },
+          "The angle 45° does not depend on the",
+          "speed of projection."
+        ],
+        "why": "45° splits the speed equally between carrying the body forward and keeping it in the air, which is why 45° is the best angle at every speed.",
+        "common_mistakes": [
+          "Writing the maximum range as u²/2g, which is the maximum HEIGHT of a vertical throw."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That theta is 45 degrees and the maximum range is u squared by g.",
+          "accept": [
+            "45 degrees",
+            "u squared by g"
+          ],
+          "reject": [
+            "sin 2 theta equals one"
+          ],
+          "heard_as": [
+            "45",
+            "u squared by g"
+          ]
+        }
+      }
+    ]
+  }
+}

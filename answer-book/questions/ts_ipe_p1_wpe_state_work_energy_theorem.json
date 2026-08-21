@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_state_work_energy_theorem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the work–energy theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "In symbols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The work done by the NET force acting on a",
+          "body is equal to the change in the kinetic",
+          "energy of that body."
+        ],
+        "why": "The word NET carries the whole theorem: with more than one force acting, the work of any single one of them is not the change in kinetic energy.",
+        "common_mistakes": [
+          "Dropping the word \"net\" and saying \"the work done by a force\", which is false whenever two forces act."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done by the net force equals the change in kinetic energy.",
+          "accept": [
+            "work done by the net force",
+            "equals the change in kinetic energy"
+          ],
+          "reject": [
+            "K f minus K i"
+          ],
+          "heard_as": [
+            "net force",
+            "kinetic energy"
+          ]
+        }
+      },
+      {
+        "id": "s2_symbols",
+        "kind": "boxed_final",
+        "label": "In symbols",
+        "marks": 1,
+        "mark_note": "Symbols",
+        "lines": [
+          {
+            "text": "W = K_f − K_i = ½ m v² − ½ m u²",
+            "style": "boxed"
+          },
+          "A positive W speeds the body up; a negative",
+          "W, such as the work of friction, slows it."
+        ],
+        "why": "The sign of the work is the sign of the speed change, which is why friction always writes as a negative work.",
+        "common_mistakes": [
+          "Writing K_i − K_f, which reverses the sign of every answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That W equals K final minus K initial, that is half m v squared minus half m u squared.",
+          "accept": [
+            "K final minus K initial",
+            "half m v squared minus half m u squared"
+          ],
+          "reject": [
+            "work done by the net force"
+          ],
+          "heard_as": [
+            "K f minus K i",
+            "half m v squared"
+          ]
+        }
+      }
+    ]
+  }
+}
