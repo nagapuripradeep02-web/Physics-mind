@@ -1,0 +1,199 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_vector_product_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define vector product. Explain the properties of a vector product with two examples.",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 27,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Properties",
+      "marks": 2
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER 2. The split is invented and needs a Telangana IPE teacher. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (Section C, the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Vector product:",
+            "style": "heading"
+          },
+          "The vector product of two vectors is a",
+          "vector whose magnitude is the product",
+          "of their magnitudes and the sine of the",
+          "angle between them:",
+          {
+            "text": "P × Q = PQ sin θ · n̂",
+            "style": "eq"
+          },
+          "n̂ is perpendicular to the plane of P",
+          "and Q, by the right-hand rule."
+        ],
+        "margin_note": "Three parts to the definition: magnitude, direction, and the rule that fixes the direction.",
+        "why": "The direction clause is what makes it a VECTOR product — without n̂ and the right-hand rule the definition describes only a number.",
+        "common_mistakes": [
+          "Leaving out the perpendicular direction, which reduces the definition to the magnitude alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P × Q = PQ sin θ n̂, with n̂ perpendicular to the plane by the right-hand rule.",
+          "accept": [
+            "P Q sin theta n cap",
+            "perpendicular to the plane",
+            "right hand rule"
+          ],
+          "reject": [
+            "cross product is not commutative"
+          ],
+          "heard_as": [
+            "sin theta",
+            "perpendicular",
+            "right hand"
+          ]
+        }
+      },
+      {
+        "id": "s2_properties",
+        "kind": "equation",
+        "label": "The properties",
+        "marks": 2,
+        "mark_note": "Properties",
+        "lines": [
+          {
+            "text": "Properties:",
+            "style": "heading"
+          },
+          "1. Not commutative:",
+          {
+            "text": "P × Q = −(Q × P)",
+            "style": "eq"
+          },
+          "2. Distributive over addition:",
+          {
+            "text": "P × (Q + R) = P × Q + P × R",
+            "style": "eq"
+          },
+          "3. Parallel vectors (θ = 0°):",
+          {
+            "text": "|P × Q| = 0",
+            "style": "eq"
+          },
+          "4. Perpendicular vectors (θ = 90°):",
+          {
+            "text": "|P × Q| = PQ (maximum)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Four numbered properties, each with its one-line equation. Note property 1 keeps the magnitude — only the direction flips.",
+        "why": "Properties 3 and 4 are just sin θ at its two extremes; 1 is the right-hand rule read in the other order. Nothing here needs memorising if the definition is understood.",
+        "common_mistakes": [
+          "Writing P × Q = Q × P — the cross product anti-commutes.",
+          "Saying parallel vectors give the MAXIMUM product; that is the perpendicular case."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least three properties: anti-commutative, distributive, zero for parallel, maximum for perpendicular.",
+          "accept": [
+            "not commutative, sign flips",
+            "distributive over addition",
+            "parallel vectors give zero",
+            "perpendicular gives maximum"
+          ],
+          "reject": [
+            "torque is r cross F"
+          ],
+          "heard_as": [
+            "commutative",
+            "distributive",
+            "parallel zero"
+          ]
+        }
+      },
+      {
+        "id": "s3_examples",
+        "kind": "boxed_final",
+        "label": "Two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples:",
+            "style": "heading"
+          },
+          {
+            "text": "1. Torque:  τ = r × F",
+            "style": "boxed"
+          },
+          {
+            "text": "2. Angular momentum:  L = r × p",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The question says WITH TWO EXAMPLES — the pair τ and L is the expected answer and costs two lines.",
+        "why": "Both examples are position crossed with something — force gives torque, momentum gives angular momentum. Rotation runs on cross products.",
+        "common_mistakes": [
+          "Giving work W = F·S as an example — that is the DOT product."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That torque = r × F and angular momentum = r × p are the two examples.",
+          "accept": [
+            "torque is r cross F",
+            "angular momentum is r cross p",
+            "tau and L examples"
+          ],
+          "reject": [
+            "P Q sin theta n cap"
+          ],
+          "heard_as": [
+            "torque",
+            "angular momentum",
+            "r cross"
+          ]
+        }
+      }
+    ]
+  }
+}

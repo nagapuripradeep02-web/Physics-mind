@@ -1,0 +1,168 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_torque_alpha_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Angular acceleration",
+      "marks": 1
+    },
+    {
+      "label": "Torque",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alpha",
+        "kind": "equation",
+        "label": "Angular acceleration",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Angular acceleration:",
+            "style": "heading"
+          },
+          "the rate of change of angular velocity.",
+          {
+            "text": "α = dω/dt,  SI unit: rad/s²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Definition, formula, unit — one mark, three short lines.",
+        "why": "α completes the rotational alphabet: θ, ω, α mirror s, v, a exactly.",
+        "common_mistakes": [
+          "Confusing α with ω — acceleration is the rate of change OF the velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular acceleration is the rate of change of angular velocity, α = dω/dt.",
+          "accept": [
+            "rate of change of angular velocity",
+            "alpha is d omega by d t",
+            "radian per second square"
+          ],
+          "reject": [
+            "rate of change of angular momentum"
+          ],
+          "heard_as": [
+            "d omega by d t",
+            "alpha"
+          ]
+        }
+      },
+      {
+        "id": "s2_torque",
+        "kind": "equation",
+        "label": "Torque",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Torque:",
+            "style": "heading"
+          },
+          "the rate of change of angular momentum.",
+          {
+            "text": "τ = dL/dt   (also τ = r × F)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Give the dL/dt definition here — it is the one the derivation below starts from.",
+        "why": "Torque has two faces: r × F says where it comes from; dL/dt says what it does. The relation below needs the second face.",
+        "common_mistakes": [
+          "Defining torque only as r × F and then having nothing to differentiate."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That torque is the rate of change of angular momentum, τ = dL/dt.",
+          "accept": [
+            "rate of change of angular momentum",
+            "tau is d L by d t",
+            "r cross F kuda"
+          ],
+          "reject": [
+            "rate of change of angular velocity"
+          ],
+          "heard_as": [
+            "d L by d t",
+            "torque"
+          ]
+        }
+      },
+      {
+        "id": "s3_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 2,
+        "mark_note": "Relation",
+        "lines": [
+          "For a rigid body rotating about a fixed",
+          "axis, L = Iω with I constant, so",
+          {
+            "text": "τ = dL/dt = d(Iω)/dt = I·dω/dt",
+            "style": "eq"
+          },
+          {
+            "text": "τ = I α",
+            "style": "boxed"
+          },
+          "the rotational form of F = ma."
+        ],
+        "margin_note": "Say WHY I comes out of the derivative — the body is rigid, so I is constant. That one clause is the derivation.",
+        "why": "τ = Iα is Newton’s second law with every actor replaced by its rotational twin: force→torque, mass→moment of inertia, acceleration→angular acceleration.",
+        "common_mistakes": [
+          "Pulling I out of the derivative without saying it is constant — for a rigid body it is, and saying so earns the step."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That L = Iω with constant I gives τ = Iα, the rotational F = ma.",
+          "accept": [
+            "L is I omega",
+            "I is constant so it comes out",
+            "tau equals I alpha"
+          ],
+          "reject": [
+            "tau is d L by d t"
+          ],
+          "heard_as": [
+            "I alpha",
+            "constant",
+            "F equals m a"
+          ]
+        }
+      }
+    ]
+  }
+}

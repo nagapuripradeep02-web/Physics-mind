@@ -427,77 +427,88 @@
           "section": "SAQ",
           "number": 1,
           "stars": 3,
-          "text": "a) State and prove the parallel axes theorem. b) For a thin flat circular disk, the radius of gyration about a diameter as axis is k. If the disk is cut along a diameter AB into two equal pieces, find the radius of gyration of each piece about AB."
+          "text": "a) State and prove the parallel axes theorem. b) For a thin flat circular disk, the radius of gyration about a diameter as axis is k. If the disk is cut along a diameter AB into two equal pieces, find the radius of gyration of each piece about AB.",
+          "question_id": "ts_ipe_p1_rot_parallel_axes_theorem"
         },
         {
           "ref": "saq2",
           "section": "SAQ",
           "number": 2,
           "stars": 3,
-          "text": "Define vector product. Explain the properties of a vector product with two examples."
+          "text": "Define vector product. Explain the properties of a vector product with two examples.",
+          "question_id": "ts_ipe_p1_rot_vector_product_properties"
         },
         {
           "ref": "saq3",
           "section": "SAQ",
           "number": 3,
           "stars": 3,
-          "text": "State and prove the perpendicular axes theorem."
+          "text": "State and prove the perpendicular axes theorem.",
+          "question_id": "ts_ipe_p1_rot_perpendicular_axes_theorem"
         },
         {
           "ref": "saq4",
           "section": "SAQ",
           "number": 4,
           "stars": 3,
-          "text": "State and prove the principle of conservation of angular momentum. Explain the principle with examples."
+          "text": "State and prove the principle of conservation of angular momentum. Explain the principle with examples.",
+          "question_id": "ts_ipe_p1_rot_conservation_angular_momentum"
         },
         {
           "ref": "saq5",
           "section": "SAQ",
           "number": 5,
           "stars": 3,
-          "text": "Distinguish between centre of mass and centre of gravity."
+          "text": "Distinguish between centre of mass and centre of gravity.",
+          "question_id": "ts_ipe_p1_rot_cm_vs_cg_distinguish"
         },
         {
           "ref": "saq6",
           "section": "SAQ",
           "number": 6,
           "stars": 2,
-          "text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque."
+          "text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque.",
+          "question_id": "ts_ipe_p1_rot_torque_alpha_relation"
         },
         {
           "ref": "saq7",
           "section": "SAQ",
           "number": 7,
           "stars": 3,
-          "text": "Define angular velocity. Derive v = rω."
+          "text": "Define angular velocity. Derive v = rω.",
+          "question_id": "ts_ipe_p1_rot_angular_velocity_v_r_omega"
         },
         {
           "ref": "saq8",
           "section": "SAQ",
           "number": 8,
           "stars": 0,
-          "text": "Find the centre of mass of three particles at the vertices of an equilateral triangle. The masses of the particles are 100 g, 150 g and 200 g respectively. Each side of the equilateral triangle is 0.5 m long."
+          "text": "Find the centre of mass of three particles at the vertices of an equilateral triangle. The masses of the particles are 100 g, 150 g and 200 g respectively. Each side of the equilateral triangle is 0.5 m long.",
+          "question_id": "ts_ipe_p1_rot_cm_three_particles_triangle"
         },
         {
           "ref": "saq9",
           "section": "SAQ",
           "number": 9,
           "stars": 0,
-          "text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?"
+          "text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?",
+          "question_id": "ts_ipe_p1_rot_mi_rod_about_end"
         },
         {
           "ref": "saq10",
           "section": "SAQ",
           "number": 10,
           "stars": 0,
-          "text": "The moment of inertia of a flywheel making 300 revolutions per minute is 0.3 kg·m². Find the torque required to bring it to rest in 20 s."
+          "text": "The moment of inertia of a flywheel making 300 revolutions per minute is 0.3 kg·m². Find the torque required to bring it to rest in 20 s.",
+          "question_id": "ts_ipe_p1_rot_flywheel_torque_numerical"
         },
         {
           "ref": "saq11",
           "section": "SAQ",
           "number": 11,
           "stars": 0,
-          "text": "When 100 J of work is done on a flywheel, its angular velocity increases from 60 rpm to 180 rpm. What is the moment of inertia of the wheel?"
+          "text": "When 100 J of work is done on a flywheel, its angular velocity increases from 60 rpm to 180 rpm. What is the moment of inertia of the wheel?",
+          "question_id": "ts_ipe_p1_rot_flywheel_work_mi_numerical"
         },
         {
           "ref": "vsaq1",
