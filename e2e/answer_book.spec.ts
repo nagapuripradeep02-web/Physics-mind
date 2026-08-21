@@ -676,6 +676,71 @@ test('qtype filter chips match on the section alone, with true counts', async ({
     }
 });
 
+test('board tags render: asked chips carry real years, predicted entries say so', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // Session 89: a TS or AP student must see which papers asked a question, and
+    // an enumerated (predicted) question must NEVER dress as an asked one. The
+    // expectations are computed from the DATA, not hardcoded: every card whose
+    // question has appearances[] shows an .asked chip with each board's years;
+    // every source:"enumerated" entry shows the predicted chip and no asked chip.
+    const r = await page.evaluate(() => {
+        const w = window as any;
+        const qById: Record<string, any> = {};
+        (w.PM_QUESTIONS as any[]).forEach((q) => { qById[q.question_id] = q; });
+        const bad: string[] = [];
+        let askedSeen = 0, predictedSeen = 0;
+        (w.PM_UNITS as any[]).forEach((u) => u.questions.forEach((e: any) => {
+            if (!e.question_id) return;
+            const card = document.querySelector(
+                `.cat-card[href="#/q/${encodeURIComponent(e.question_id)}"]`) ||
+                [...document.querySelectorAll('.cat-card')].find((c) =>
+                    (c.getAttribute('href') || '').indexOf(encodeURIComponent(e.question_id)) >= 0);
+            if (!card) { bad.push(`${e.ref}: card not found`); return; }
+            const asked = card.querySelector('.cc-chip.asked');
+            const predicted = card.querySelector('.cc-chip.predicted');
+            if (e.source === 'enumerated') {
+                predictedSeen++;
+                if (!predicted) bad.push(`${e.question_id}: enumerated but no predicted chip`);
+                if (asked) bad.push(`${e.question_id}: enumerated yet shows an asked chip`);
+                if (predicted && predicted.textContent !== 'Predicted — not asked yet')
+                    bad.push(`${e.question_id}: predicted chip wording drifted`);
+            } else {
+                const apps = (qById[e.question_id] || {}).appearances || [];
+                if (apps.length) {
+                    askedSeen++;
+                    if (!asked) { bad.push(`${e.question_id}: has appearances but no asked chip`); return; }
+                    const txt = asked.textContent || '';
+                    for (const a of apps) {
+                        const label = a.board === 'ap_ipe' ? 'AP' : 'TS';
+                        if (txt.indexOf(String(a.year)) < 0 || txt.indexOf(label) < 0)
+                            bad.push(`${e.question_id}: asked chip "${txt}" missing ${label} ${a.year}`);
+                    }
+                } else if (asked) {
+                    bad.push(`${e.question_id}: asked chip with no appearances data`);
+                }
+            }
+        }));
+        return { bad, askedSeen, predictedSeen };
+    });
+    expect(r.bad).toEqual([]);
+    // the gate must have exercised both branches, or it proves nothing
+    expect(r.askedSeen).toBeGreaterThanOrEqual(5);
+    expect(r.predictedSeen).toBeGreaterThanOrEqual(5);
+
+    // and the notebook meta row carries the asked line for a tagged question
+    await page.evaluate(() => {
+        const w = window as any;
+        const tagged = (w.PM_QUESTIONS as any[]).find((q) => (q.appearances || []).length);
+        w.PM_ANSWER.openQuestion(tagged.question_id);
+    });
+    await page.waitForSelector('.page');
+    const metaAsked = await page.evaluate(
+        () => document.querySelector('#questionMeta .chip.asked')?.textContent || '');
+    expect(metaAsked).toContain('Asked:');
+});
+
 test('chapter chips appear from the second unit and filter to their own chapter', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');

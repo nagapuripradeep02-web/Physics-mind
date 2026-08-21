@@ -599,6 +599,105 @@
           "text": "Two rigid bodies have the same moment of inertia about their axes of symmetry. Which body will have the greater kinetic energy?",
           "source": "blm",
           "question_id": "ts_ipe_p1_rot_same_mi_greater_ke"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Define radius of gyration. Write its relation to the moment of inertia.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_define_radius_of_gyration"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "State the parallel axes theorem.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_state_parallel_axes"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "State the perpendicular axes theorem.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_state_perpendicular_axes"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Define the angular momentum of a rigid body and write its relation to the angular velocity.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_angular_momentum_l_i_omega"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "A ballet dancer spinning with her arms stretched folds her arms. What happens to her angular velocity?",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_dancer_folds_arms"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What is a couple? Give one example.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_what_is_a_couple"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "State the conditions for the mechanical equilibrium of a rigid body.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_equilibrium_conditions"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Write the SI unit and dimensional formula of torque. Is torque the same physical quantity as work?",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_torque_units_dimensions"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is meant by mechanical equilibrium of a rigid body? State its conditions and explain what a couple is.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_equilibrium_couple_saq"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Define angular momentum. For a rigid body rotating about a fixed axis, derive L = Iω.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_derive_l_i_omega"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Obtain an expression for the kinetic energy of a body rolling without slipping.",
+          "source": "enumerated",
+          "question_id": "ts_ipe_p1_rot_ke_rolling_body"
         }
       ]
     }

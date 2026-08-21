@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📒 SESSION — Answer Book: **UNIT 7 COMPLETE (33/33) with the ENUMERATION PILOT + board tags + Session 89 filed** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: four chapters, 82 catalog entries, 78 files — and the first unit built under the Session-89 doctrine. Unit 7 "System of Particles and Rotational Motion" ships 22 asked-core questions (the UNION of both books — the first unit where that mattered) plus 11 PREDICTED lean cards from the enumeration sweep, honestly badged. Every question now shows which papers asked it ("Asked: TS 2011, 2010 · AP 2026") — the TS/AP differentiation the founder ordered, built as one bank with board-aware dress, never two catalogs.**
+
+### Session 89 filed first (founder-ordered)
+`docs/DISCUSSIONS.md` Session 89 (Session 88 lives on feat/quick-learn — numbering respected): the 2026-27 board landscape, the marks arithmetic, the three-layer sourcing doctrine, the enumeration thesis, tiered authoring, the term-pack design with fixed AI boundaries, board differentiation, the pan-India scan, the product ladder. Pattern doc gained four sections including **board-picker = a lens over ONE bank** (founder's mid-session question: at login a student picks TS or AP; the catalog re-labels, never duplicates — TS and AP share the 2/4/8 mark values, so most cards are valid in both at the same marks).
+
+### The union finding (Unit 7's inventory decision)
+The BLM carries **two VSAQs the Fastrack lacks** (girl-carrying-bag CM; same-MI greater KE) and the Fastrack carries **six SAQs the BLM lacks** (both axes theorems, MI of rod, three numericals). Neither book is a superset even inside one unit → the manifest is the union, `source: "blm"` marking provenance. Both books agree: **no Unit 7 LAQ section** (BLM verified page-by-page — Unit 7 ends at SAQ 5, straight into Unit 8's LAQs). None invented.
+
+### The enumeration pilot (the doctrine's first field test)
+Object×archetype sweep over the NCERT chapter minus the union → **8 predicted VSAQs** (radius of gyration · both theorem STATEMENTS at 2M — the exact form AP 2026 used for Kepler's law · L = Iω · the dancer · the couple · equilibrium conditions · torque units/dimensions + the torque-vs-work trap) + **3 predicted SAQs** (equilibrium+couple · derive L = Iω · rolling KE). Authored as **lean cards** (no figures, short rubrics) with `source: "enumerated"` and a PREDICTED verification note. **Back-test: every question asked in AP March 2026 from this chapter (door torque B-15, vector product C-27) and every Fastrack/BLM question falls inside the grid — nothing landed outside, the archetype set holds.**
+
+### Board tags + badges (Part B)
+Schema: `appearances[]` items gained optional `board` ('ts_ipe'|'ap_ipe'; absent = TS — backward compatible, deliberate scope). All six confirmed AP-2026 hits tagged (inertia B-13 · methods C-26 · avg/inst velocity C-24 · KE-momentum B-14 · door B-15 · vector product C-27); the CM-triangle numerical carries the Fastrack's printed years 2004/05/10/11. Cards + notebook meta render the green "Asked:" chip; enumerated entries render the violet **"Predicted — not asked yet"** chip and can never dress as asked. **New gate, negative-controlled twice on the RENDER side** (predicted chip dropped → 11 failures by name; AP group dropped from the asked line → 6 failures by name). A data-side control was discarded as meaningless — the gate checks data↔render consistency, which a data edit cannot break.
+
+### The figures earned their gates again
+The label-overlap gate caught r/Δθ (v=rω) and O/100g (CM triangle) in the browser; a local text-box scan caught A/150g; the browser caught P/y (perpendicular axes). All fixed by computed repositioning. The CM triangle is drawn TO SCALE so the computed (5/18, 1/(3√3)) visibly leans toward the 200 g vertex — a built-in sanity check.
+
+### Verification (measured)
+`build:answers` → **20/20 · 17/17 · 12/12 · 33/33**, drift clean both directions, every marks-sum ✓ · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (the schema edit disturbed nothing) · built page re-parsed: 82 entries, 78 files, all 4 Unit-7 figures, all 6 AP tags, 11 enumerated, recall stripped, 383 KB · figure gates green across all 78 · badge gate green + 2 render-side negative controls · fleet sweeps under their raised 240s budgets (raise was deliberate, in the same commit that grew the fleet). Numericals hand-checked: CM (5/18, 1/(3√3)) m · τ = 2i+12j+10k · 0.471 N·m · 0.63 kg·m².
+
+### NEXT
+1. **Founder eyes**: the four Unit-7 figures (both axes theorems especially — the proof-bearing constructions), a Predicted card (does the honesty read right?), the Asked chips, and **print** on the theorem SAQs. `npm run serve:answers` → localhost:8100.
+2. **Unit 8 "Oscillations"** next (book pp.23+; its BLM section opens WITH LAQs — SHM/projection and the simple pendulum — expect real Section-C forms, the Unit 6 shape). Run the two-book union check; run the enumeration sweep as standard practice now.
+3. **The teacher pass is now 82 entries deep** — including 11 predicted cells that need validation or deletion. The enumeration method makes teacher verification MORE valuable, not less.
+4. Standing blockers unchanged: Google quota · grader hosting · cost swap.
+
+---
+
 ## 🔎 SESSION — Answer Book: **the 2026-27 board-pattern analysis — TS theory safe, AP diverged, and the AP paper asks OUR questions** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: founder asked what the 2026-27 TS/AP reforms do to this product. Researched across ~15 sources (no official circular fetched yet — tsbie.cgg.gov.in refused DNS from here). The TS theory paper the Answer Book models is EXPLICITLY unchanged at 60 marks A/B/C — the reform adds 15-mark first-year practicals outside the written paper — so the 49 entries stand for March 2027. The real exposure is the TS syllabus revision (NCERT-aligned 2026-27, ~30% cuts in some subjects, new AI-in-Physics chapter): the Fastrack-sourced inventories need a per-unit diff against the new TGBIE textbooks when they publish. AP meanwhile ALREADY ran a different exam in March 2026 — Physics Paper-I (NEW), 85 marks, four sections (9×1 + 14×2 all compulsory · 8-of-12×4 · 2-of-3×8), NCERT syllabus, CBSE-style — and its paper asks several of our exact questions (inertia measure, KE-momentum relation, methods to decrease friction) at the same or different mark values. Both boards now draw from one NCERT-shaped bank at different lengths — which is exactly what `cuts[]` + the `board` field model. Full analysis: `docs/patterns/answer_book.md` §Board landscape 2026-27; compact status in the `units.json` comment.**

@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_define_radius_of_gyration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define radius of gyration. Write its relation to the moment of inertia.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The radius of gyration of a body about",
+          "an axis is the distance at which the",
+          "whole mass, if concentrated as a point,",
+          "would have the same moment of inertia."
+        ],
+        "why": "k compresses a whole mass distribution into one honest distance — which is why every disc/ring comparison question speaks in k.",
+        "common_mistakes": [
+          "Defining k as \"the radius of the body\" — it is a computed distance, not a physical radius."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k is the distance where the whole mass, concentrated, gives the same moment of inertia.",
+          "accept": [
+            "distance where the whole mass concentrated gives the same I",
+            "radius of gyration definition"
+          ],
+          "reject": [
+            "I equals M k squared"
+          ],
+          "heard_as": [
+            "radius of gyration",
+            "concentrated"
+          ]
+        }
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          {
+            "text": "I = Mk²,  so  k = √(I/M)",
+            "style": "boxed"
+          },
+          "SI unit: metre."
+        ],
+        "why": "The relation is the definition in symbols: replace the body by a point mass M at distance k and demand the same I.",
+        "common_mistakes": [
+          "Writing k = I/M without the square root."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I = Mk², so k = root of I by M.",
+          "accept": [
+            "I equals M k squared",
+            "k is root I by M"
+          ],
+          "reject": [
+            "distance where the whole mass concentrated gives the same I"
+          ],
+          "heard_as": [
+            "M k squared",
+            "root"
+          ]
+        }
+      }
+    ]
+  }
+}
