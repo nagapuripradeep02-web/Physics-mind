@@ -2610,6 +2610,25 @@ export interface Field3DConfig {
             // (reset, then a different axis). The caption follows the swell/shrink.
             ghost_compare?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
             ghost_compare_b?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
+            // PYQ (previous-year question) compare — a trap-then-truth beat for an
+            // exam-question state. At appear_at_ms a second ring is drawn at
+            // from_factor (the radius the student WRONGLY expects); at
+            // correct_at_ms it visibly COLLAPSES to to_factor (the real answer).
+            // Showing the wrong belief and then killing it on screen is Rule 16a.
+            // Factors multiply RAD_BASE_R, so they are the true radius RATIOS —
+            // e.g. same-KE proton→deuteron is from 2.0 (r ∝ m) to √2 (r ∝ √m).
+            // The panel text is authored, never computed: this renders a cited
+            // exam question, so every string is the founder's, not the engine's.
+            pyq_compare?: {
+                citation: string;      // "JEE Main 2024 · 9 April Shift 2"
+                question: string;      // the question, one short line
+                appear_at_ms: number;
+                from_factor: number;
+                from_label: string;    // names the WRONG expectation
+                correct_at_ms: number;
+                to_factor: number;
+                to_label: string;      // names the correct answer
+            };
             // Always-honored cut-line guards (renderer floor, regardless of value).
             hide_period_readout?: boolean;
             hide_magnitude_readout?: boolean;
@@ -3292,6 +3311,27 @@ canvas { display: block; width: 100%; height: 100%; }
 }
 #radius_eqn .rad_eqn_balance { color: #D4D4D8; }
 #radius_eqn .rad_eqn_solved { color: #FFF176; display: none; }
+/* radius_in_uniform_field PYQ panel (previous-year question states). Top-LEFT:
+   clears the review-chrome "Full screen" button (top:52px, Rule 34d) and sits in
+   the one free corner — #radius_sliders owns top-right, #radius_eqn bottom-left. */
+#radius_pyq {
+    position: fixed; top: 52px; left: 8px; max-width: 300px;
+    background: rgba(0,0,0,0.86); color: ${textColor};
+    padding: 10px 13px; border-radius: 6px;
+    font: 13px/1.55 'Segoe UI', system-ui, sans-serif;
+    z-index: 11; display: none; pointer-events: none;
+    border-left: 3px solid #FF8A65;
+}
+#radius_pyq .rad_pyq_cite {
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: #FFCC80; font-weight: 700; margin-bottom: 5px;
+}
+#radius_pyq .rad_pyq_q { color: #E0E0E0; }
+#radius_pyq .rad_pyq_trap { margin-top: 7px; color: #FF8A65; display: none; }
+#radius_pyq .rad_pyq_ans {
+    margin-top: 7px; color: #FFF176; font-weight: 700; display: none;
+    font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 15px;
+}
 /* parallel_plates explorer (STATE_7): V + d sliders → live E = V/d */
 #plates_sliders {
     position: fixed; top: 12px; right: 12px;
@@ -3724,6 +3764,12 @@ body.pm-clean [style*="position: fixed"] {
 <div id="radius_eqn" class="pm_hud">
     <div class="rad_eqn_balance" id="rad_eqn_balance">qvB = mv²/r</div>
     <div class="rad_eqn_solved" id="rad_eqn_solved">r = mv/qB</div>
+</div>
+<div id="radius_pyq" class="pm_hud">
+    <div class="rad_pyq_cite" id="rad_pyq_cite"></div>
+    <div class="rad_pyq_q" id="rad_pyq_q"></div>
+    <div class="rad_pyq_trap" id="rad_pyq_trap"></div>
+    <div class="rad_pyq_ans" id="rad_pyq_ans"></div>
 </div>
 <div id="helix_sliders" class="pm_hud">
     <div id="hx_theta_row"><label>θ = <span id="hx_theta_val">45</span>° (angle)</label>
@@ -4188,6 +4234,11 @@ export const FIELD_3D_RENDERER_CODE = `
         driveAxis: null, driveTarget: 1.0,     // current script-driven axis + its factor
         compareDir: 0                          // +1 = live wider than ghost, -1 = tighter
     };
+    // radius_in_uniform_field PYQ-compare runtime state (pyq_compare states only).
+    // trapShown / ansShown latch the two DOM reveals so each fires once per state
+    // entry; morph is the 0→1 collapse progress from from_factor to to_factor.
+    // Re-armed on every state entry in applyRadiusInUniformFieldState.
+    var radPyqState = { trapShown: false, ansShown: false, morph: 0 };
     // cyclotron_period — set true when a STATE_4 slider edit (m/v/q/B) changes the
     // live circle / lap-fill rate, so the next animate tick wipes the single orbit
     // trail buffer. (The shared-ω race states draw both rings full every frame, so
@@ -42888,6 +42939,15 @@ export const FIELD_3D_RENDERER_CODE = `
         makeGhostRing("rad_ghost_a", "#B0BEC5");
         makeGhostRing("rad_ghost_b", "#90A4AE");
 
+        // 8b. PYQ compare ring — the SECOND particle in a previous-year exam
+        //     question (e.g. the deuteron against the proton). Warm orange so it
+        //     reads as a distinct particle, not another faint ghost of the same
+        //     one. Re-tagged to its own elementType so the ghost-compare seed and
+        //     frame branches never touch it. radDrawGhostRing takes an arbitrary
+        //     radius, so this ring needs no new geometry code.
+        var pyqRing = makeGhostRing("rad_pyq_ring", "#FF8A65");
+        pyqRing.userData.elementType = "rad_pyq_ring";
+
         // 9. Equal-arc particle trail (the live orbit path) + a flash sprite for
         //    the STATE_1 "snaps shut" beat.
         var maxPts = 600;
@@ -42944,6 +43004,9 @@ export const FIELD_3D_RENDERER_CODE = `
         radGhostState.driveAxis = null; radGhostState.driveTarget = 1.0;
         radGhostState.compareDir = 0;
 
+        // Re-arm PYQ-compare runtime state (both reveals fire once per entry).
+        radPyqState.trapShown = false; radPyqState.ansShown = false; radPyqState.morph = 0;
+
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i];
             var ud = o.userData;
@@ -42953,6 +43016,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 ud.write_index = 0; ud.filled = 0; ud.last_marker_t = -1;
                 o.geometry.setDrawRange(0, 0);
             } else if (et === "rad_ghost_ring") {
+                o.visible = false; o.geometry.setDrawRange(0, 0);
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "rad_pyq_ring") {
                 o.visible = false; o.geometry.setDrawRange(0, 0);
                 if (o.material) o.material.opacity = 0;
             } else if (et === "rad_flash") {
@@ -42983,6 +43049,31 @@ export const FIELD_3D_RENDERER_CODE = `
             eqnSolved.innerHTML = "r = mv/qB";
             // Hidden until the per-frame loop reveals it at the rearrange beat.
             eqnSolved.style.display = "none";
+        }
+
+        // ── PYQ panel (top-left). Present ONLY on a state that declares
+        //    radius.pyq_compare. Every string is authored in the concept JSON and
+        //    written with textContent — this panel cites a real exam question, so
+        //    the engine must never compose or reword it. The trap + answer lines
+        //    start hidden; the per-frame loop reveals them at their beats.
+        var pyq = rad.pyq_compare || null;
+        var pyqEl = document.getElementById("radius_pyq");
+        var pyqCite = document.getElementById("rad_pyq_cite");
+        var pyqQ = document.getElementById("rad_pyq_q");
+        var pyqTrap = document.getElementById("rad_pyq_trap");
+        var pyqAns = document.getElementById("rad_pyq_ans");
+        if (pyqEl) pyqEl.style.display = pyq ? "block" : "none";
+        if (pyq) {
+            if (pyqCite) pyqCite.textContent = pyq.citation || "";
+            if (pyqQ) pyqQ.textContent = pyq.question || "";
+            // opacity is reset too — the per-frame loop dims this line once the
+            // answer lands, and a re-entered state must start un-dimmed.
+            if (pyqTrap) {
+                pyqTrap.textContent = pyq.from_label || "";
+                pyqTrap.style.display = "none";
+                pyqTrap.style.opacity = "1";
+            }
+            if (pyqAns) { pyqAns.textContent = pyq.to_label || ""; pyqAns.style.display = "none"; }
         }
 
         // ── Slider panel (Rule 31 per-state contextual controls, founder
@@ -43079,6 +43170,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // at each reveal_at_ms and then ramping the named axis toward ~1.5.
         var GHOST_TARGET = 1.5;
         var GHOST_RAMP_MS = 1400;   // smooth ramp from 1.0 to the target.
+        // PYQ collapse window: long enough that the shrink reads as one deliberate
+        // motion a teacher can talk over, short enough to stay inside one beat.
+        var PYQ_MORPH_MS = 1600;
         function axisApply(axis, factor) {
             if (axis === "m") mF = factor;
             else if (axis === "v") vF = factor;
@@ -43308,6 +43402,48 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                     lo.visible = true;
                     if (lo.material) lo.material.opacity = 0.45;
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "rad_pyq_ring") {
+                // PYQ compare ring — the second particle in a cited exam question.
+                // Appears at from_factor (the radius the student WRONGLY expects),
+                // then COLLAPSES to to_factor (the real answer). Factors multiply
+                // RAD_BASE_R, so they are true radius RATIOS and the live circle
+                // stays the baseline particle. Solid (opacity 0.9), not ghost-faint:
+                // this is a real second orbit, not an echo of the first.
+                var pyqC = rad.pyq_compare || null;
+                if (pyqC && stateMs >= (pyqC.appear_at_ms || 0)) {
+                    var pqFrom = (typeof pyqC.from_factor === "number") ? pyqC.from_factor : 1;
+                    var pqTo = (typeof pyqC.to_factor === "number") ? pyqC.to_factor : 1;
+                    var pqCorrAt = (typeof pyqC.correct_at_ms === "number") ? pyqC.correct_at_ms : Infinity;
+                    var pqProg = (stateMs < pqCorrAt) ? 0 :
+                        Math.min(1, (stateMs - pqCorrAt) / PYQ_MORPH_MS);
+                    // smoothstep — eases in and out so the collapse has a settle.
+                    var pqEased = pqProg * pqProg * (3 - 2 * pqProg);
+                    radPyqState.morph = pqEased;
+                    radDrawGhostRing(lo, RAD_BASE_R * (pqFrom + (pqTo - pqFrom) * pqEased), u1, u2);
+                    lo.visible = true;
+                    if (lo.material) lo.material.opacity = 0.9;
+                    // Two latched DOM reveals: the wrong expectation named as it
+                    // appears, the answer only once the collapse has finished.
+                    if (!radPyqState.trapShown) {
+                        var pqTrapEl = document.getElementById("rad_pyq_trap");
+                        if (pqTrapEl) pqTrapEl.style.display = "block";
+                        radPyqState.trapShown = true;
+                    }
+                    // 0.85, not 1.0: the answer should land AS the ring settles
+                    // (motion leads, label confirms — Rule 32a), and an exact
+                    // >= 1 test can sit one clock tick short of firing at all.
+                    if (!radPyqState.ansShown && pqProg >= 0.85) {
+                        var pqAnsEl = document.getElementById("rad_pyq_ans");
+                        if (pqAnsEl) pqAnsEl.style.display = "block";
+                        // Dim the superseded wrong line rather than removing it —
+                        // the teacher still points at what the trap was.
+                        var pqTrapDim = document.getElementById("rad_pyq_trap");
+                        if (pqTrapDim) pqTrapDim.style.opacity = "0.45";
+                        radPyqState.ansShown = true;
+                    }
                 } else {
                     lo.visible = false;
                 }

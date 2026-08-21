@@ -68,7 +68,7 @@
       "P_REF_R": { "name": "FIXED heater-glow reference (never self-normalized per-frame) — equals both vm*im and R*im^2 at resonance defaults (20.0 W)", "unit": "W", "constant": 20.0 },
       "f_glide_deltaT": { "name": "STATE_3 f-glide schedule duration (0.25 to 0.50 Hz)", "unit": "s", "constant": 3.0 },
       "R_cycle_down_deltaT": { "name": "STATE_6 R-cycle leg A duration (5.0 to 2.0 Ohm)", "unit": "s", "constant": 1.2 },
-      "R_cycle_hold_deltaT": { "name": "STATE_6 R-cycle paradox-hold beat at R=2.0 Ohm", "unit": "s", "constant": 1.0 },
+      "R_cycle_hold_deltaT": { "name": "STATE_6 R-cycle paradox-hold beat at R=2.0 Ohm — deliberately long so the settled/paused frame (and THE EYE's 60s-clamped reveal pin) lands inside the hold, never the auto-revert leg back to 5.0 Ohm", "unit": "s", "constant": 65.0 },
       "R_cycle_up_deltaT": { "name": "STATE_6 R-cycle leg A-prime duration (2.0 to 5.0 Ohm, EASED — never an instant snap)", "unit": "s", "constant": 1.2 }
     },
     "computed_outputs": {
@@ -213,7 +213,7 @@
             { "id": "s1_1", "text_en": "A wattmeter docks onto our familiar heater, coil, and capacitor loop.", "glow": "meter" },
             { "id": "s1_2", "text_en": "Watch the needle climb, then settle right at ten watts.", "glow": "meter" },
             { "id": "s1_3", "text_en": "Seven oh seven volts times one point four one four amps gives that number exactly.", "glow": "meter" },
-            { "id": "s1_4", "text_en": "A bare heater alone eats exactly this much; a lone coil eats none. Does volts times amps always work?", "glow": "meter" }
+            { "id": "s1_4", "text_en": "A bare heater alone dissipates exactly this much; a lone coil dissipates none. Does volts times amps always work?", "glow": "meter" }
           ]
         }
       },
@@ -350,7 +350,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s7_1", "text_en": "Three energy gauges dock: coil, plates, and heater, side by side.", "glow": "gauges" },
-            { "id": "s7_2", "text_en": "Coil and plates breathe in and out each cycle; net zero, borrowed and returned.", "glow": "gauges" },
+            { "id": "s7_2", "text_en": "Coil and plates exchange energy each cycle; net zero, stored and returned.", "glow": "gauges" },
             { "id": "s7_3", "text_en": "Only the heater climbs; six point one five joules, every cycle, never giving any back.", "glow": "gauges" },
             { "id": "s7_4", "text_en": "That's three point zero eight watts again, the meter's number, a third way.", "glow": "gauges" }
           ]
@@ -373,8 +373,8 @@
           "tts_sentences": [
             { "id": "s8_1", "text_en": "The impedance triangle detaches; watch it rescale from ohms into watts.", "glow": "triangle" },
             { "id": "s8_2", "text_en": "Its three legs relabel: three oh eight watts real, four six two reactive, five five five apparent.", "glow": "triangle", "scenario_cue": "rescale_morph" },
-            { "id": "s8_3", "text_en": "The reactive power isn't lost; it's borrowed and returned, but the wires still carry it.", "glow": "triangle" },
-            { "id": "s8_4", "text_en": "At the home frequency, this triangle collapses flat; every watt is real.", "glow": "triangle" }
+            { "id": "s8_3", "text_en": "The reactive power isn't lost; it's stored and returned, but the wires still carry it.", "glow": "triangle" },
+            { "id": "s8_4", "text_en": "At the home frequency, not shown here, this triangle would flatten completely.", "glow": "triangle" }
           ]
         }
       },
@@ -408,13 +408,13 @@
         "teaching_method": "exploration_sliders",
         "advance_mode": "interaction_complete",
         "scene_composition": [
-          { "type": "annotation", "id": "s10_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s10_top_label", "position": { "x": 380, "y": 60 }, "text": "Try the controls", "color": "#4FC3F7" },
           { "type": "annotation", "id": "s10_mid_label", "position": { "x": 200, "y": 250 }, "text": "Drag f, R, L, C, v_m — watch it all move", "color": "#FFCA28" },
           { "type": "annotation", "id": "s10_focal_label", "position": { "x": 560, "y": 400 }, "text": "P = V_rms · I_rms · cos φ", "color": "#66BB6A" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s10_1", "text_en": "It's all yours — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the whole power story move together.", "glow": "formula" }
+            { "id": "s10_1", "text_en": "Explore it yourself — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the whole power story move together.", "glow": "formula" }
           ]
         }
       }
@@ -701,7 +701,7 @@
           "theta0_deg": 0,
           "r_cycle_start_at_ms": 800,
           "r_down_dur_ms": 1200,
-          "r_hold_dur_ms": 1000,
+          "r_hold_dur_ms": 65000,
           "r_up_dur_ms": 1200,
           "r_cycle_top": 5.0,
           "r_cycle_bot": 2.0,
@@ -713,7 +713,7 @@
         }
       },
       "STATE_7": {
-        "label": "L and C only borrow and return energy each cycle — R alone ratchets, P = I_rms² R",
+        "label": "L and C only store and return energy each cycle — R alone ratchets, P = I_rms² R",
         "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_gauges", "pwr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
         "caption": "Only the heater keeps it",
@@ -776,10 +776,10 @@
         }
       },
       "STATE_10": {
-        "label": "Explore — the whole power story under the teacher's hands",
+        "label": "Explore — the whole power story under the teacher's control",
         "visible_elements": ["pwr_circuit", "pwr_beads", "pwr_meter", "pwr_strip", "pwr_ppane", "pwr_fan", "pwr_split", "pwr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "All yours",
+        "caption": "Try the controls",
         "show_sliders": true,
         "formula_overlay": "P = V_rms · I_rms · cos φ",
         "ac_power": {

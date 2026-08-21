@@ -128,7 +128,7 @@
   },
   "aha_moment": {
     "state_id": "STATE_6",
-    "statement": "A transformer trades volts for amps — never hands out free power.",
+    "statement": "A transformer trades volts for amps — it never supplies free power.",
     "visual_confirmation": "Iₚ visibly doubles Iₛ while the level Pₚ|Pₛ bars sit dead level at 16.0 W."
   },
   "entry_state_map": {
@@ -221,7 +221,7 @@
         }
       },
       "STATE_2": {
-        "title": "SUPPORTING aha — a closed loop riding a changing flux carries current, with no wires",
+        "title": "SUPPORTING aha — a closed loop linked to a changing flux carries current, with no wires",
         "duration": 18,
         "depth_ring": "core",
         "focal_primitive_id": "s2_focal_label",
@@ -240,7 +240,7 @@
         }
       },
       "STATE_3": {
-        "title": "PIVOT #2 — a transformer needs CHANGING flux; steady DC, however large, hands over nothing",
+        "title": "PIVOT #2 — a transformer needs CHANGING flux; steady DC, however large, transfers nothing",
         "duration": 20,
         "depth_ring": "core",
         "focal_primitive_id": "s3_focal_label",
@@ -255,7 +255,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s3_1", "text_en": "Swap in a steady battery.", "glow": "switch", "scenario_cue": "throw_armed" },
-            { "id": "s3_2", "text_en": "At the throw, one blip — then the secondary dies.", "glow": "switch", "scenario_cue": "blip" },
+            { "id": "s3_2", "text_en": "At the throw, one blip — then the secondary stops.", "glow": "switch", "scenario_cue": "blip" },
             { "id": "s3_3", "text_en": "The primary still carries current, sustaining a huge, frozen flux — current flowing, flux present, nothing changing.", "glow": "switch", "scenario_cue": "dc_hold" },
             { "id": "s3_4", "text_en": "So the secondary gets nothing.", "glow": "switch", "scenario_cue": "dc_hold" },
             { "id": "s3_5", "text_en": "Only changing flux crosses; that is why the grid runs on AC.", "glow": "switch", "scenario_cue": "fix_clause" }
@@ -270,7 +270,7 @@
         ]
       },
       "STATE_4": {
-        "title": "Every turn rides the same flux and earns the same equal share",
+        "title": "Every turn shares the same flux and gains the same equal share",
         "duration": 20,
         "depth_ring": "core",
         "focal_primitive_id": "s4_focal_label",
@@ -282,9 +282,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Every turn rides the same changing flux, so every turn earns the same tenth of a volt.", "glow": "primary", "scenario_cue": "ac_restore" },
+            { "id": "s4_1", "text_en": "Every turn shares the same changing flux, so every turn gains the same tenth of a volt.", "glow": "primary", "scenario_cue": "ac_restore" },
             { "id": "s4_2", "text_en": "Watch a hundred turns light one by one — a running counter, a bar filling to ten volts, in lockstep.", "glow": "primary", "scenario_cue": "tick_cascade" },
-            { "id": "s4_3", "text_en": "The secondary's own hundred turns ride that same flux — which is why it also reads ten volts.", "glow": "primary", "scenario_cue": "cascade_chip" }
+            { "id": "s4_3", "text_en": "The secondary's own hundred turns share that same flux — which is why it also reads ten volts.", "glow": "primary", "scenario_cue": "cascade_chip" }
           ]
         }
       },
@@ -305,7 +305,7 @@
           "tts_sentences": [
             { "id": "s5_1", "text_en": "Watch the secondary gain turns — a hundred climbing to two hundred, live.", "glow": "secondary", "scenario_cue": "ns_ramp" },
             { "id": "s5_2", "text_en": "The voltage climbs with it: ten volts to twenty.", "glow": "secondary", "scenario_cue": "ns_ramp" },
-            { "id": "s5_3", "text_en": "The flux never changed — only how many turns ride it.", "glow": "secondary", "scenario_cue": "invariant_clause" },
+            { "id": "s5_3", "text_en": "The flux never changed — only how many turns share it.", "glow": "secondary", "scenario_cue": "invariant_clause" },
             { "id": "s5_4", "text_en": "More turns than the primary makes a step-up transformer; wind fewer, and it steps down.", "glow": "secondary", "scenario_cue": "ramp_chip" }
           ]
         }
@@ -325,9 +325,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Twenty volts looks like a win — but watch the current: point eight amps, half of the primary's one point six.", "glow": "gauges", "scenario_cue": "ghost_latch" },
+            { "id": "s6_1", "text_en": "Twenty volts looks like a gain — but watch the current: point eight amps, half of the primary's one point six.", "glow": "gauges", "scenario_cue": "ghost_latch" },
             { "id": "s6_2", "text_en": "Sixteen watts goes in; sixteen watts comes out — no more, no less.", "glow": "gauges", "scenario_cue": "strike" },
-            { "id": "s6_3", "text_en": "A transformer trades volts for amps; it never hands out free power.", "glow": "gauges", "scenario_cue": "trade_clause" }
+            { "id": "s6_3", "text_en": "A transformer trades volts for amps; it never supplies free power.", "glow": "gauges", "scenario_cue": "trade_clause" }
           ]
         },
         "misconception_watch": [
@@ -377,7 +377,7 @@
         }
       },
       "STATE_9": {
-        "title": "Inside the core: solid metal breeds wide eddy whirlpools; lamination quenches them",
+        "title": "Inside the core: solid metal forms wide eddy whirlpools; lamination stops them",
         "duration": 20,
         "depth_ring": "extended",
         "focal_primitive_id": "s9_focal_label",
@@ -423,13 +423,13 @@
         "teaching_method": "exploration_sliders",
         "advance_mode": "interaction_complete",
         "scene_composition": [
-          { "type": "annotation", "id": "s11_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s11_top_label", "position": { "x": 380, "y": 60 }, "text": "Explore", "color": "#4FC3F7" },
           { "type": "annotation", "id": "s11_mid_label", "position": { "x": 200, "y": 250 }, "text": "Vₛ/Vₚ = Nₛ/Nₚ", "color": "#66BB6A" },
           { "type": "annotation", "id": "s11_focal_label", "position": { "x": 560, "y": 400 }, "text": "Drag Nₛ · Vₚ · f · R_load", "color": "#FFCA28" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s11_1", "text_en": "It's all yours — drag the turns, the voltage, the frequency, and the load, and watch the ratio, the currents, and the lamp respond live." }
+            { "id": "s11_1", "text_en": "Try the controls — drag the turns, the voltage, the frequency, and the load, and watch the ratio, the currents, and the lamp respond live." }
           ]
         }
       }
@@ -693,7 +693,7 @@
         }
       },
       "STATE_3": {
-        "label": "PIVOT #2 — swap in a DC battery: one blip at the throw, then a large STEADY flux hands over nothing",
+        "label": "PIVOT #2 — swap in a DC battery: one blip at the throw, then a large STEADY flux transfers nothing",
         "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips"],
         "camera_position": [1.3, 1.6, 12.0],
         "caption": "Steady flux — nothing crosses",
@@ -731,7 +731,7 @@
         }
       },
       "STATE_4": {
-        "label": "Each turn rides the same changing flux, so every turn contributes the SAME 0.100 V; turns in series stack",
+        "label": "Each turn shares the same changing flux, so every turn contributes the SAME 0.100 V; turns in series stack",
         "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips", "tfr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
         "caption": "Every turn, equal share",
@@ -918,7 +918,7 @@
         }
       },
       "STATE_9": {
-        "label": "Inside the core: solid metal breeds wide eddy whirlpools; lamination chops them — the leak quenched",
+        "label": "Inside the core: solid metal forms wide eddy whirlpools; lamination chops them — the leak stopped",
         "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_chips"],
         "camera_position": [1.3, 1.6, 12.0],
         "caption": "Thin slices stop eddies",
@@ -993,7 +993,7 @@
         "label": "Explore — the machine under the teacher's hands: turns, voltage, frequency, load",
         "visible_elements": ["tfr_core", "tfr_flux", "tfr_primary", "tfr_secondary", "tfr_switch", "tfr_beads", "tfr_meters", "tfr_lamp", "tfr_band", "tfr_gauges", "tfr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "All yours",
+        "caption": "Explore",
         "show_sliders": true,
         "formula_overlay": "Vₛ/Vₚ = Nₛ/Nₚ",
         "transformer": {

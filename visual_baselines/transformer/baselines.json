@@ -1,0 +1,51 @@
+{
+  "approved_at": "2026-08-11T10:42:25.846Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\transformer\\20260811-123929",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_10": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_11": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
