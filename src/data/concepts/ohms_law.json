@@ -745,5 +745,152 @@
         "glow_focal": "vi_graph"
       }
     }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Ohm's law when they can (1) state that for an ohmic conductor at constant temperature, current is directly proportional to voltage — double the voltage, double the current; (2) compute any one of V, I, R from the other two using V = IR; (3) read resistance off a V–I graph as the ratio V/I, checking which axis carries which variable before reading the slope; (4) state that the current entering a resistor equals the current leaving it — the resistor drops voltage, never current; and (5) recognize that a filament bulb is non-ohmic — its resistance rises as it heats, so the V–I line bends and one fixed R value no longer predicts the current.",
+    "questions": [
+      {
+        "q_id": "ql_concept_v_double",
+        "stem": "A plain wire is connected to a battery. The wire's resistance stays the same. The voltage is doubled. What happens to the current?",
+        "options": {
+          "A": "The current doubles",
+          "B": "The current stays the same",
+          "C": "The current halves",
+          "D": "The current becomes four times larger"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats current as a fixed property of the wire — current is set by voltage AND resistance together (I = V/R), so doubling the push at the same resistance doubles the flow",
+          "C": "inverts the relation — the current halves when RESISTANCE doubles at fixed voltage, not when voltage doubles",
+          "D": "squares the effect — current grows in direct proportion to voltage, not with the square of voltage"
+        },
+        "tested_idea": "For an ohmic conductor at constant resistance, current is directly proportional to voltage — double V means double I.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "The voltage across a fixed resistor is tripled. State what happens to the current, and why."
+      },
+      {
+        "q_id": "ql_calc_basic",
+        "stem": "A 3 Ω resistor is connected to a 6 V battery. What current flows through it?",
+        "options": {
+          "A": "2 A, from I = V/R = 6/3",
+          "B": "18 A, from I = V × R",
+          "C": "0.5 A, from I = R/V",
+          "D": "3 A, because the current equals the resistance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "multiplies voltage by resistance instead of dividing — the formula is I = V/R, not I = V × R",
+          "C": "inverts the formula — divides resistance by voltage instead of voltage by resistance",
+          "D": "copies the resistance number as the current with no formula at all — the current must be computed from both V and R"
+        },
+        "tested_idea": "Current through a resistor is I = V/R — 6 volts across 3 ohms drives 2 amperes.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A 4 Ω resistor is connected to a 12 V battery. Find the current through it."
+      },
+      {
+        "q_id": "ql_graph_slope",
+        "stem": "On the V–I graph in this simulation, current I is on the horizontal axis and voltage V is on the vertical axis. Two wires are tested. Wire 1 gives a steeper line than wire 2. What does that mean?",
+        "options": {
+          "A": "Wire 1 has more resistance — a steeper line means more voltage is needed for the same current",
+          "B": "Wire 1 has less resistance, because a steeper line always means easier flow",
+          "C": "Both wires have the same resistance — the steepness only shows the battery's voltage",
+          "D": "Wire 1 carries more current than wire 2 at every voltage"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "reads the slope backwards — with I on the horizontal axis the slope IS V/I = R, so steeper means MORE resistance; on a graph with V on the horizontal axis the reading flips, which is why the axes must be checked first",
+          "C": "confuses the line's slope, which the resistor sets, with the battery setting — the battery only picks a point ON the line",
+          "D": "states the opposite of what the steeper line shows — at any voltage the steeper, higher-resistance line sits at a SMALLER current"
+        },
+        "tested_idea": "With I on the horizontal axis, the slope of the V–I line is V/I = R — steeper line, larger resistance.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "On a V–I graph with current on the horizontal axis, wire A's line is less steep than wire B's. State which wire has less resistance, and why."
+      },
+      {
+        "q_id": "ql_conservation",
+        "stem": "A steady current of 2 A enters a resistor. The resistor gets warm. What current comes out of the other end of the resistor?",
+        "options": {
+          "A": "Exactly 2 A — the same number of charges leaves per second as enters",
+          "B": "Less than 2 A, because the resistor uses up some of the current",
+          "C": "Less than 2 A, because some of the charge is turned into heat",
+          "D": "It depends on the resistor's value — a bigger resistor lets out less current than went in"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the used-up-current trap — the resistor spends VOLTAGE, never current; every charge that enters, leaves",
+          "C": "turns charge into heat, which never happens — the ENERGY the charges carry becomes heat, while the charges themselves all pass through",
+          "D": "a bigger resistor lowers the current EVERYWHERE in the loop equally — the current in and out of the resistor is still the same number"
+        },
+        "tested_idea": "Current is the same on both sides of a resistor — the resistor drops voltage (energy per charge), never the number of charges per second.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A 5 A current flows into a heater element. State the current flowing out of the element, and name the quantity that actually drops across it."
+      },
+      {
+        "q_id": "ql_non_ohmic",
+        "stem": "A filament bulb glows when connected to a battery. The voltage is then doubled. Why does the current NOT double?",
+        "options": {
+          "A": "The filament heats up, so its resistance rises — I = V/R with a growing R gives less than double the current",
+          "B": "The current does double — V = IR holds exactly for every object",
+          "C": "The bulb uses up more current to make more light",
+          "D": "Doubling the voltage always halves the current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the R-is-a-universal-constant trap — V = IR defines R at each point, but R stays constant only for ohmic conductors at constant temperature, and a hot filament is not one",
+          "C": "the used-up-current trap hiding in a bulb — the light comes from the ENERGY the charges deliver, not from current being consumed",
+          "D": "states an inverse relation that belongs nowhere here — at fixed resistance doubling the voltage doubles the current; on a filament it less-than-doubles because R rose"
+        },
+        "tested_idea": "A filament is non-ohmic — its resistance rises as it heats, so the current grows less than proportionally with voltage and the V–I line bends.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A student measures a filament bulb at a low voltage, computes R, then uses that same R to predict the current at a much higher voltage. Explain why the measured current comes out smaller than the prediction."
+      },
+      {
+        "q_id": "ql_calc_slope_spare",
+        "stem": "On a V–I graph with current on the horizontal axis, a wire's straight line passes through the point I = 2 A, V = 10 V. What is the wire's resistance?",
+        "options": {
+          "A": "5 Ω, from R = V/I = 10/2",
+          "B": "20 Ω, from R = V × I",
+          "C": "0.2 Ω, from R = I/V",
+          "D": "8 Ω, from R = V − I"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "multiplies instead of divides — resistance is the RATIO V/I, not the product",
+          "C": "inverts the ratio — I/V is how EASILY current flows, not the resistance",
+          "D": "subtracts two quantities with different units — volts minus amperes is not a resistance"
+        },
+        "tested_idea": "Resistance is read off a straight V–I line through the origin as the ratio R = V/I at any point.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A straight V–I line through the origin passes through I = 4 A, V = 10 V. Find the resistance."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "ql_concept_v_double",
+        "ql_calc_basic"
+      ],
+      "STATE_3": [
+        "ql_graph_slope",
+        "ql_calc_slope_spare"
+      ],
+      "STATE_4": [
+        "ql_conservation"
+      ],
+      "STATE_5": [
+        "ql_non_ohmic"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_6"
+    ]
   }
 }

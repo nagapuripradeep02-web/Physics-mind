@@ -225,6 +225,34 @@ export const PILOT_CONCEPTS: string[] = [
     'kinetic_energy_definition',
     'conservative_vs_nonconservative_forces',
 
+    // ── Ch.7 — ALTERNATING CURRENT (Class 12) ────────────────────────────────
+    // Added 2026-08-11 on founder instruction, after the chapter-end
+    // verification: all 8 re-captured against the post-fix renderer, every
+    // frame read, 18 defects fixed (sampler aliasing, 4 renderer defects, 107
+    // Rule-41a strings, 2 states whose held frame contradicted their caption).
+    // Ordered as the chapter teaches it: §7.2 → §7.9.
+    //
+    // ⚠ Same professor-gate caveat as the Class-11 block above: NOT through
+    // AUTHORING_PIPELINE ④ (Asmi review).
+    //
+    // ⚠ Two states ship knowingly imperfect, both one-field reverts:
+    //   lc_oscillations STATE_1 — its charge-up now fills over 17s so the frame
+    //     is never dead, but a single monotonic fill cannot satisfy the motion
+    //     gate at any duration; the durable fix is continuing charge-flow motion
+    //     in the renderer.
+    //   ac_power_factor STATE_6 — holds at R=2.0Ω via a 65s hold that clamps at
+    //     DURATION_MAX_MS, so its "more amps, fewer watts" paradox survives to
+    //     the reveal pin. The clean repair is the wattless pin formula in
+    //     deriveStateMeta.
+    'ac_voltage_resistor',
+    'phasors',
+    'ac_voltage_inductor',
+    'ac_voltage_capacitor',
+    'series_lcr_circuit',
+    'ac_power_factor',
+    'lc_oscillations',
+    'transformer',
+
     // ── MATHEMATICS ──────────────────────────────────────────────────────────
     // No mathematics concept is in the pilot catalog yet (founder, 2026-08-07:
     // "don't do the pilot concepts at all, we'll see if we need it later").
@@ -310,10 +338,13 @@ export function chapterTitle(chapter: number | undefined, classLevel: number | u
         : classLevel === 11
             ? CLASS11_CHAPTER_NAMES[chapter]
             : undefined;
-    // Class 11 and 12 both have a chapter 6, so a bare "Chapter 6" would collide
-    // with "Chapter 6 — Electromagnetic Induction" in the grouped catalog.
-    // Qualify by class whenever we are not naming a Class-12 chapter.
-    if (name) return classLevel === 12 ? `Chapter ${chapter} — ${name}` : `Class 11 · ${name}`;
+    // A NAMED chapter carries its own identity, so it needs no class prefix —
+    // "Laws of Motion" cannot be confused with "Chapter 6 — Electromagnetic
+    // Induction" (founder, 2026-08-11). The collision the prefix guarded against
+    // is only reachable through the UNNAMED fallback below, where a bare
+    // "Chapter 6" genuinely would be ambiguous across Class 11 and 12 — so the
+    // class qualifier stays there and only there.
+    if (name) return classLevel === 12 ? `Chapter ${chapter} — ${name}` : name;
     return classLevel === 12 ? `Chapter ${chapter}` : `Class ${classLevel ?? '?'} · Chapter ${chapter}`;
 }
 

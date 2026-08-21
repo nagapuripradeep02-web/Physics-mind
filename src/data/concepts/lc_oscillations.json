@@ -123,7 +123,7 @@
     "derivation": ["STATE_8"],
     "exploration": ["STATE_9"],
     "exit_pills": {
-      "foundational_to_energy": "Where does the energy live while it swings? →"
+      "foundational_to_energy": "Where is the energy stored while it swings? →"
     }
   },
   "curriculum_tags": {
@@ -185,7 +185,7 @@
     "state_count": 9,
     "states": {
       "STATE_1": {
-        "title": "A charged capacitor is a full energy tank — sitting still",
+        "title": "A charged capacitor stores energy — no current flows yet",
         "duration": 18,
         "depth_ring": "core",
         "focal_primitive_id": "s1_focal_label",
@@ -199,8 +199,7 @@
           "tts_sentences": [
             { "id": "s1_1", "text_en": "Watch the plates fill — a battery drives charge onto them while the coil's branch stays open.", "glow": "plates", "scenario_cue": "apparatus_home" },
             { "id": "s1_2", "text_en": "Ten volts builds up, and six point three six joules packs into the electric field.", "glow": "plates", "scenario_cue": "charge_climb" },
-            { "id": "s1_3", "text_en": "Nothing moves through the coil yet — all the energy just sits still, waiting.", "glow": "plates" },
-            { "id": "s1_4", "text_en": "Now, remove the battery from the circuit completely.", "glow": "plates" }
+            { "id": "s1_3", "text_en": "Nothing moves through the coil yet — the energy is stored, with no current flowing.", "glow": "plates" }
           ]
         }
       },
@@ -238,9 +237,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "As the charge nears zero, a ghost freezes beside the circuit — asking if the current stops too.", "glow": "chips", "scenario_cue": "ghost_latch" },
-            { "id": "s3_2", "text_en": "Watch the real circuit answer: right at zero charge, the current hits its fastest — two full amps.", "glow": "chips", "scenario_cue": "strike" },
-            { "id": "s3_3", "text_en": "The coil won't let a flowing current die — it drives the charge through and reloads the plates backward.", "glow": "chips", "scenario_cue": "flip" }
+            { "id": "s3_1", "text_en": "As the charge nears zero, a ghost pose freezes beside the circuit — showing the current stopped too.", "glow": "chips", "scenario_cue": "ghost_latch" },
+            { "id": "s3_2", "text_en": "Watch the real circuit respond: right at zero charge, the current hits its fastest — two full amps.", "glow": "chips", "scenario_cue": "strike" },
+            { "id": "s3_3", "text_en": "The coil opposes the drop in current — it keeps driving the charge through and reloads the plates backward.", "glow": "chips", "scenario_cue": "flip" }
           ]
         },
         "misconception_watch": [
@@ -286,7 +285,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Two gauges take over — plates in green, coil in violet, breathing in exact antiphase.", "glow": "gauges", "scenario_cue": "gauge_focus" },
+            { "id": "s5_1", "text_en": "Two gauges take over — plates in green, coil in violet, moving in exact antiphase.", "glow": "gauges", "scenario_cue": "gauge_focus" },
             { "id": "s5_2", "text_en": "The total line never dips — six point three six joules, always, with no heat bar anywhere.", "glow": "gauges" },
             { "id": "s5_3", "text_en": "At the half-swing point, three eighteen and three eighteen still close to six thirty six.", "glow": "gauges", "scenario_cue": "half_split_chip" },
             { "id": "s5_4", "text_en": "Nothing is spent — it only changes address.", "glow": "gauges" }
@@ -364,20 +363,20 @@
         }
       },
       "STATE_9": {
-        "title": "Explore — the free circuit under the teacher's hands",
+        "title": "Explore — the teacher controls the free circuit",
         "duration": 0,
         "depth_ring": "core",
         "focal_primitive_id": "s9_focal_label",
         "teaching_method": "exploration_sliders",
         "advance_mode": "interaction_complete",
         "scene_composition": [
-          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "All yours", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s9_top_label", "position": { "x": 380, "y": 60 }, "text": "Explore", "color": "#4FC3F7" },
           { "type": "annotation", "id": "s9_mid_label", "position": { "x": 200, "y": 250 }, "text": "Drag V₀ · L · C · R · the switch", "color": "#FFCA28" },
           { "type": "annotation", "id": "s9_focal_label", "position": { "x": 560, "y": 400 }, "text": "f₀ = 1/(2π√(LC))", "color": "#66BB6A" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "It's all yours — charge the plates, throw the switch to release them, add resistance, and reshape the whole rhythm by dragging inductance and capacitance.", "glow": "formula" }
+            { "id": "s9_1", "text_en": "Explore freely — charge the plates, throw the switch to release them, add resistance, and reshape the whole rhythm by dragging inductance and capacitance.", "glow": "formula" }
           ]
         }
       }
@@ -551,7 +550,7 @@
         "label": "A battery charges the plates to 10.0 V — 6.36 J stored in the field; the coil branch stays open",
         "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_glyphs", "lco_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "Fill the tank",
+        "caption": "Charge the capacitor",
         "show_sliders": true,
         "formula_overlay": "E = ½CV₀²",
         "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
@@ -561,8 +560,8 @@
           "theta0_deg": 0,
           "apparatus_home_at_ms": 0,
           "charge_climb_start_at_ms": 0,
-          "charge_climb_dur_ms": 2000,
-          "v0_ungate_at_ms": 2000,
+          "charge_climb_dur_ms": 17000,
+          "v0_ungate_at_ms": 17000,
           "hud_show_q": true,
           "hud_show_i": false,
           "hud_show_energy": true,
@@ -673,7 +672,7 @@
         "label": "The mechanical twin docks — charge mirrors displacement, current mirrors velocity; L is the mass",
         "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_inset", "lco_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "A pendulum in copper",
+        "caption": "The coil acts as mass",
         "show_sliders": true,
         "formula_overlay": "q ↔ x · i ↔ v · L ↔ m · 1/C ↔ k",
         "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
@@ -698,7 +697,7 @@
         "label": "A small resistor eases in — the swing decays inside an envelope, heat climbs in the gauges",
         "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_inset"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "Real swings die out",
+        "caption": "Real swings decay",
         "show_sliders": true,
         "formula_overlay": "",
         "variable_overrides": { "V0": 10.0, "L": 3.1831, "C": 0.1273, "R": 0.0 },
@@ -749,7 +748,7 @@
         "label": "Explore — charge it, release it, add resistance, and reshape the whole free circuit",
         "visible_elements": ["lco_circuit", "lco_switch", "lco_battery", "lco_beads", "lco_glyphs", "lco_strip", "lco_gauges", "lco_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "All yours",
+        "caption": "Explore",
         "show_sliders": true,
         "formula_overlay": "f₀ = 1/(2π√(LC))",
         "lc_oscillation": {

@@ -2043,6 +2043,30 @@ export interface Field3DConfig {
                 // the drawn column stops equalling its own numeric, and the engine
                 // warns under NLB_ENERGY_SCALE_WARN_PREFIX.
                 h_ref_m?: number;
+                // ── SIGNED U (ch6 gravitational_potential_energy, founder review
+                //    2026-08-10) ────────────────────────────────────────────────
+                //   The stack above is UNSIGNED, which made h_ref_m a reference the
+                // author could only ever put at or BELOW the body's lowest point —
+                // and that is precisely the authoring cage the "zero is your choice"
+                // concept has to break out of. gravitational_potential_energy's S3
+                // was pinned at h_ref_m = 0.3 m for this reason (the largest
+                // non-negative choice available on its ramp), which moved the dashed
+                // line by a few PIXELS and made S1 and S3 read as the same picture.
+                //   With `signed`, every bar in `bars` EXCEPT E_total draws on the
+                // signed track SEAM M's work ledgers already use: a zero baseline at
+                // mid-height, deflecting UP for positive and DOWN for negative,
+                // sign-coloured, against ±bar_max_J. So a negative U_grav is drawn
+                // honestly instead of being clamped to an empty bar that disagrees
+                // with its own numeric, and h_ref_m becomes a free choice — which is
+                // what makes it authorable as a live teacher slider at all (the
+                // `h_ref` control token).
+                //   E_total is EXCLUDED and warns: a stack is a sum of parts drawn
+                // end to end, and there is no honest way to draw a signed component
+                // inside one. A state wanting both is an authoring error, not a
+                // rendering problem.
+                //   ABSENT ⇒ every existing state renders the unsigned stack byte
+                // for byte, including its negative-U_grav guard warning.
+                signed?: boolean;
                 // Decimal places on every joule numeric. Default 1 (0.1 J).
                 precision?: 0 | 1 | 2;
                 // ── SEAM M (spec note 6) — the one-shot `sum_merge` reveal ──────
@@ -2095,6 +2119,43 @@ export interface Field3DConfig {
                 // The dashed horizontal reference line + its label. Default true.
                 show_h_ref_line?: boolean;
                 h_ref_label?: string;              // default 'h = 0'
+                // ── THE h LEADER (founder review 2026-08-10) ──────────────────
+                //   A dashed VERTICAL drop from the tracked body to the h = 0 line,
+                // carrying a live 'h = 1.50 m' label. It exists because the engine
+                // drew the wrong quantity: `displacement_vector` puts a solid,
+                // labelled, growing arrow on d — the distance ALONG the ramp, which
+                // does not appear in mgh at all — while h, the entire subject of
+                // U = mgh, was never drawn as a measured length anywhere. A teacher
+                // pausing any frame could read d off the canvas and could not read h.
+                //   Measured from the SAME eng.energy_h_ref_m the U numeric and the
+                // dashed line already read, so the leader, the line and the number
+                // cannot disagree; it flips to hang UPWARD from the body when h is
+                // negative (see energy_layer.signed), because a leader that always
+                // dropped would point away from the line it measures to.
+                //   Hidden at |h| < NLB_HLEAD_MIN_M: a real zero is hidden, never
+                // drawn as a stub, which is this engine's own standing rule.
+                show_h_leader?: boolean;
+                // ── THE ZERO-LINE SLIDE (founder review 2026-08-10) ───────────
+                //   Open the state with the reference at `h_ref_slide_from_m` and
+                // ease it to the authored energy_layer.h_ref_m across
+                // `h_ref_slide_ms`. The point is Rule 32c: a state whose whole claim
+                // is "the zero line moved" must show the line MOVING, not merely
+                // stand it somewhere else than the previous state did.
+                //   A pure CLOSED FORM of the state-local clock (p = clamp(t/ms,0,1),
+                // smoothstep-eased), never a latch — so RESET_TRAJECTORY rewinds it
+                // exactly, it HOLDS its end value forever at p = 1, and a
+                // SET_TIME_FREEZE pin reproduces the same reference bit for bit
+                // (Rule 36). A trusted h_ref drag SEIZES it for the rest of the state
+                // through the same PM_nlbSweepSeized latch idle_auto_sweep honours
+                // (Rule 37) — otherwise the animation would fight the teacher.
+                h_ref_slide_from_m?: number;
+                h_ref_slide_ms?: number;           // default NLB_HREF_SLIDE_MS
+                // WHEN the slide starts, on the state-local clock. Default 0.
+                // Author it AFTER the last checkpoint's stamp so the state reads in
+                // the honest order: take the readings at one zero, then move the zero
+                // and watch those same readings change while ΔU does not. Latched
+                // U_grav stamps are reference-live (nlbCpText), so they follow.
+                h_ref_slide_at_ms?: number;
                 // The BRIGHT computed marker. Omit it and only the line is drawn.
                 predicted_stop?: {
                     label?: string;                // default 'highest point'
@@ -2233,6 +2294,31 @@ export interface Field3DConfig {
                 show_value?: boolean;          // append ' = 2.35 m'; default TRUE —
                                                // the number IS the lesson (the SEAM H
                                                // segment-label precedent)
+                // Draw it DIM (founder review 2026-08-10). d is the headline quantity
+                // in W = F·d·cos θ, which is what this instrument was built for — but
+                // in a U = mgh state it is the distractor, and drawn at full strength
+                // beside an unlabelled height it teaches that the ramp length is what
+                // stores the energy. On such a state author `dim` and let the h leader
+                // carry the emphasis. Rule 29-safe: this is opacity, never size.
+                dim?: boolean;
+            };
+            // ── THE GHOST SURFACE (founder review 2026-08-10) ────────────────────
+            //   A second, DIM ramp at a different angle, drawn from the same origin
+            // beside the live one, with its own displacement arrow spanning the same
+            // two HEIGHTS the live climb spans. It exists because a path-independence
+            // state cannot make its own case: with one ramp on screen, "shorter path,
+            // same U" asks the teacher to remember a number from a previous state,
+            // and the delta Rule 32c requires is nowhere in the frame.
+            //   Physics reads NOTHING here — it is a measured prop, like
+            // height_markers.ghost_marker: the engine computes where the live state's
+            // start and checkpoint heights land on the ghost angle and labels that
+            // span. So the two d values on screen are the same climb measured two
+            // ways, by construction rather than by authoring care.
+            //   The ghost answers to the glow id 'ghost_ramp'.
+            ghost_surface?: {
+                theta_deg: number;             // REQUIRED; equal to the live angle = no contrast, rejected
+                label?: string;                // e.g. 'gentle ramp'; omit for no caption
+                show_displacement?: boolean;   // the dim d arrow + its value; default TRUE
             };
             // ── Note 19b — the angle arc ─────────────────────────────────────────
             //   An arc drawn at the body, between any TWO addressable directions,
@@ -2270,7 +2356,16 @@ export interface Field3DConfig {
             // untaught, choose R so the reset fires BEFORE the block reaches the
             // spring's free end — the engine cannot check this for you.
             loop_reset_ms?: number;
-            idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
+            //   's' (founder review 2026-08-10) sweeps the tracked body's POSITION
+            // along the track instead of a force/geometry parameter. It exists
+            // because every other member of this enum is ALSO a slider token, so on
+            // an explore state the idle sweep drove the very handle the caption tells
+            // the teacher to drag — the θ row visibly crawled on its own before
+            // anyone touched it. 's' is backed by no slider, so the sandbox can idle
+            // honestly; and on a U = mgh sandbox it is the truthful motion anyway
+            // (the cart climbs, the bar climbs with it). Same closed-form triangle
+            // over the state clock, same PM_nlbSweepSeized cancellation.
+            idle_auto_sweep?: { param: 'F' | 'theta' | 'm' | 's'; range: [number, number] };
             // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
             // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
             // the deliberate opposite of idle_auto_sweep's repeating triangle: value
@@ -2515,6 +2610,25 @@ export interface Field3DConfig {
             // (reset, then a different axis). The caption follows the swell/shrink.
             ghost_compare?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
             ghost_compare_b?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
+            // PYQ (previous-year question) compare — a trap-then-truth beat for an
+            // exam-question state. At appear_at_ms a second ring is drawn at
+            // from_factor (the radius the student WRONGLY expects); at
+            // correct_at_ms it visibly COLLAPSES to to_factor (the real answer).
+            // Showing the wrong belief and then killing it on screen is Rule 16a.
+            // Factors multiply RAD_BASE_R, so they are the true radius RATIOS —
+            // e.g. same-KE proton→deuteron is from 2.0 (r ∝ m) to √2 (r ∝ √m).
+            // The panel text is authored, never computed: this renders a cited
+            // exam question, so every string is the founder's, not the engine's.
+            pyq_compare?: {
+                citation: string;      // "JEE Main 2024 · 9 April Shift 2"
+                question: string;      // the question, one short line
+                appear_at_ms: number;
+                from_factor: number;
+                from_label: string;    // names the WRONG expectation
+                correct_at_ms: number;
+                to_factor: number;
+                to_label: string;      // names the correct answer
+            };
             // Always-honored cut-line guards (renderer floor, regardless of value).
             hide_period_readout?: boolean;
             hide_magnitude_readout?: boolean;
@@ -3197,6 +3311,27 @@ canvas { display: block; width: 100%; height: 100%; }
 }
 #radius_eqn .rad_eqn_balance { color: #D4D4D8; }
 #radius_eqn .rad_eqn_solved { color: #FFF176; display: none; }
+/* radius_in_uniform_field PYQ panel (previous-year question states). Top-LEFT:
+   clears the review-chrome "Full screen" button (top:52px, Rule 34d) and sits in
+   the one free corner — #radius_sliders owns top-right, #radius_eqn bottom-left. */
+#radius_pyq {
+    position: fixed; top: 52px; left: 8px; max-width: 300px;
+    background: rgba(0,0,0,0.86); color: ${textColor};
+    padding: 10px 13px; border-radius: 6px;
+    font: 13px/1.55 'Segoe UI', system-ui, sans-serif;
+    z-index: 11; display: none; pointer-events: none;
+    border-left: 3px solid #FF8A65;
+}
+#radius_pyq .rad_pyq_cite {
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: #FFCC80; font-weight: 700; margin-bottom: 5px;
+}
+#radius_pyq .rad_pyq_q { color: #E0E0E0; }
+#radius_pyq .rad_pyq_trap { margin-top: 7px; color: #FF8A65; display: none; }
+#radius_pyq .rad_pyq_ans {
+    margin-top: 7px; color: #FFF176; font-weight: 700; display: none;
+    font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 15px;
+}
 /* parallel_plates explorer (STATE_7): V + d sliders → live E = V/d */
 #plates_sliders {
     position: fixed; top: 12px; right: 12px;
@@ -3630,6 +3765,12 @@ body.pm-clean [style*="position: fixed"] {
     <div class="rad_eqn_balance" id="rad_eqn_balance">qvB = mv²/r</div>
     <div class="rad_eqn_solved" id="rad_eqn_solved">r = mv/qB</div>
 </div>
+<div id="radius_pyq" class="pm_hud">
+    <div class="rad_pyq_cite" id="rad_pyq_cite"></div>
+    <div class="rad_pyq_q" id="rad_pyq_q"></div>
+    <div class="rad_pyq_trap" id="rad_pyq_trap"></div>
+    <div class="rad_pyq_ans" id="rad_pyq_ans"></div>
+</div>
 <div id="helix_sliders" class="pm_hud">
     <div id="hx_theta_row"><label>θ = <span id="hx_theta_val">45</span>° (angle)</label>
     <input type="range" id="hx_theta_slider" min="10" max="90" step="5" value="45"></div>
@@ -3901,6 +4042,122 @@ export const FIELD_3D_RENDERER_CODE = `
         return out;
     }
 
+    // ── Focus Overlay host (2026-08-19) ─────────────────────────────────────
+    //   The review-site player draws narration-synced focus cues (spotlight /
+    //   ring / pointer / underline) on ITS OWN overlay above the sim iframe
+    //   and polls this same-origin host per frame for a target screen rect.
+    //   Pull-only and pixel-free: nothing here renders, listens, or schedules,
+    //   so THE EYE (which never loads the player shell) sees zero change.
+    //   Contract: resolve(token) -> {x, y, w, h} in iframe-viewport CSS px,
+    //   or null when the token does not resolve to a visible thing right now.
+    //   A miss MUST stay null — the player hides the cue and records it on
+    //   PM_focusMisses; a guessed rect would point students at nothing.
+    var pmFocusScrA = new THREE.Vector3(), pmFocusScrB = new THREE.Vector3(), pmFocusScrC = new THREE.Vector3();
+    function pmFocusDomRect(token) {
+        var el = document.getElementById(token);
+        if (!el) return null;
+        var r = el.getBoundingClientRect();
+        if (!(r.width > 0 && r.height > 0)) return null;  // display:none collapses to 0x0
+        var cs = window.getComputedStyle(el);
+        if (cs.visibility === "hidden" || cs.display === "none") return null;
+        return { x: r.left, y: r.top, w: r.width, h: r.height };
+    }
+    function pmFocusFindObject(token) {
+        var ids = resolveGlowAliases([token]);
+        var anyMatch = null;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var so = sceneObjects[i], su = so && so.userData;
+            if (!su) continue;
+            if (ids.indexOf(su.id) < 0 && ids.indexOf(su.elementType) < 0) continue;
+            if (so.visible !== false) return so;
+            if (!anyMatch) anyMatch = so;
+        }
+        return anyMatch;
+    }
+    function pmFocusProjPx(v) {
+        var p = v.clone().project(camera);
+        if (p.z > 1) return null;  // behind the camera / beyond the far plane
+        return { x: (p.x + 1) / 2 * window.innerWidth, y: (1 - p.y) / 2 * window.innerHeight };
+    }
+    // Sprites are camera-facing billboards: the world quad spans the camera
+    // basis vectors scaled by sprite.scale (same math as nlbSpriteRectPx, but
+    // self-contained so it never depends on that scenario's preconditions).
+    function pmFocusSpriteRect(so, centre) {
+        var hw = so.scale.x * ((so._pmInkFrac != null) ? so._pmInkFrac : 1) / 2;
+        var hh = so.scale.y / 2;
+        var right = pmFocusScrA.setFromMatrixColumn(camera.matrixWorld, 0);
+        var up = pmFocusScrB.setFromMatrixColumn(camera.matrixWorld, 1);
+        var xs = [], ys = [];
+        for (var sx = -1; sx <= 1; sx += 2) {
+            for (var sy = -1; sy <= 1; sy += 2) {
+                var q = pmFocusProjPx(centre.clone().addScaledVector(right, sx * hw).addScaledVector(up, sy * hh));
+                if (!q) return null;
+                xs.push(q.x); ys.push(q.y);
+            }
+        }
+        var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+        var y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+        return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+    }
+    // World bounding radius WITHOUT Box3.setFromObject (per-frame cost on
+    // tablets): a mesh uses its cached geometry bounding sphere; a group scans
+    // ONE level of children. A modest estimate is fine — the player clamps.
+    function pmFocusWorldRadius(so, centre) {
+        var g = so.geometry;
+        if (g) {
+            if (!g.boundingSphere) g.computeBoundingSphere();
+            if (g.boundingSphere) {
+                var ws = so.getWorldScale(pmFocusScrB);
+                var m = Math.max(Math.abs(ws.x), Math.abs(ws.y), Math.abs(ws.z));
+                return g.boundingSphere.radius * (m || 1);
+            }
+        }
+        var best = 0, kids = so.children || [];
+        for (var i = 0; i < kids.length && i < 32; i++) {
+            var ch = kids[i];
+            if (!ch || ch.visible === false) continue;
+            var d = ch.getWorldPosition(pmFocusScrA).distanceTo(centre);
+            var cg = ch.geometry;
+            if (cg) {
+                if (!cg.boundingSphere) cg.computeBoundingSphere();
+                if (cg.boundingSphere) {
+                    var cs2 = ch.getWorldScale(pmFocusScrB);
+                    d += cg.boundingSphere.radius * Math.max(Math.abs(cs2.x), Math.abs(cs2.y), Math.abs(cs2.z));
+                }
+            }
+            if (d > best) best = d;
+        }
+        return best > 0 ? best : 0.5;
+    }
+    window.PM_FOCUS_HOST = {
+        resolve: function (token) {
+            try {
+                if (typeof token !== "string" || !token) return null;
+                var dom = pmFocusDomRect(token);
+                if (dom) return dom;
+                if (!camera || !window.THREE) return null;
+                var so = pmFocusFindObject(token);
+                if (!so) return null;
+                var centre = so.getWorldPosition(pmFocusScrC);
+                if (so.isSprite) return pmFocusSpriteRect(so, centre);
+                var wr = pmFocusWorldRadius(so, centre);
+                var q = pmFocusProjPx(centre);
+                if (!q) return null;
+                // px per world unit at this depth — self-contained (never the
+                // bsc scratch basis, which only that scenario refreshes).
+                var vv = pmFocusScrA.copy(centre).applyMatrix4(camera.matrixWorldInverse);
+                var depth = -vv.z;
+                if (depth < 0.05) depth = 0.05;
+                var k = (window.innerHeight / 2) / (depth * Math.tan((camera.fov || 60) * Math.PI / 360));
+                var r = wr * k;
+                var maxR = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+                if (r < 14) r = 14;
+                if (r > maxR) r = maxR;
+                return { x: q.x - r, y: q.y - r, w: 2 * r, h: 2 * r };
+            } catch (e) { return null; }
+        }
+    };
+
     // Diamond #2 — when a sentence wants the proton to stop translating along
     // its trajectory (so the F arrow is readable mid-narration), the renderer
     // captures the local trajectory time at the freeze moment and re-uses it
@@ -3977,6 +4234,11 @@ export const FIELD_3D_RENDERER_CODE = `
         driveAxis: null, driveTarget: 1.0,     // current script-driven axis + its factor
         compareDir: 0                          // +1 = live wider than ghost, -1 = tighter
     };
+    // radius_in_uniform_field PYQ-compare runtime state (pyq_compare states only).
+    // trapShown / ansShown latch the two DOM reveals so each fires once per state
+    // entry; morph is the 0→1 collapse progress from from_factor to to_factor.
+    // Re-armed on every state entry in applyRadiusInUniformFieldState.
+    var radPyqState = { trapShown: false, ansShown: false, morph: 0 };
     // cyclotron_period — set true when a STATE_4 slider edit (m/v/q/B) changes the
     // live circle / lap-fill rate, so the next animate tick wipes the single orbit
     // trail buffer. (The shared-ω race states draw both rings full every frame, so
@@ -42677,6 +42939,15 @@ export const FIELD_3D_RENDERER_CODE = `
         makeGhostRing("rad_ghost_a", "#B0BEC5");
         makeGhostRing("rad_ghost_b", "#90A4AE");
 
+        // 8b. PYQ compare ring — the SECOND particle in a previous-year exam
+        //     question (e.g. the deuteron against the proton). Warm orange so it
+        //     reads as a distinct particle, not another faint ghost of the same
+        //     one. Re-tagged to its own elementType so the ghost-compare seed and
+        //     frame branches never touch it. radDrawGhostRing takes an arbitrary
+        //     radius, so this ring needs no new geometry code.
+        var pyqRing = makeGhostRing("rad_pyq_ring", "#FF8A65");
+        pyqRing.userData.elementType = "rad_pyq_ring";
+
         // 9. Equal-arc particle trail (the live orbit path) + a flash sprite for
         //    the STATE_1 "snaps shut" beat.
         var maxPts = 600;
@@ -42733,6 +43004,9 @@ export const FIELD_3D_RENDERER_CODE = `
         radGhostState.driveAxis = null; radGhostState.driveTarget = 1.0;
         radGhostState.compareDir = 0;
 
+        // Re-arm PYQ-compare runtime state (both reveals fire once per entry).
+        radPyqState.trapShown = false; radPyqState.ansShown = false; radPyqState.morph = 0;
+
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i];
             var ud = o.userData;
@@ -42742,6 +43016,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 ud.write_index = 0; ud.filled = 0; ud.last_marker_t = -1;
                 o.geometry.setDrawRange(0, 0);
             } else if (et === "rad_ghost_ring") {
+                o.visible = false; o.geometry.setDrawRange(0, 0);
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "rad_pyq_ring") {
                 o.visible = false; o.geometry.setDrawRange(0, 0);
                 if (o.material) o.material.opacity = 0;
             } else if (et === "rad_flash") {
@@ -42772,6 +43049,31 @@ export const FIELD_3D_RENDERER_CODE = `
             eqnSolved.innerHTML = "r = mv/qB";
             // Hidden until the per-frame loop reveals it at the rearrange beat.
             eqnSolved.style.display = "none";
+        }
+
+        // ── PYQ panel (top-left). Present ONLY on a state that declares
+        //    radius.pyq_compare. Every string is authored in the concept JSON and
+        //    written with textContent — this panel cites a real exam question, so
+        //    the engine must never compose or reword it. The trap + answer lines
+        //    start hidden; the per-frame loop reveals them at their beats.
+        var pyq = rad.pyq_compare || null;
+        var pyqEl = document.getElementById("radius_pyq");
+        var pyqCite = document.getElementById("rad_pyq_cite");
+        var pyqQ = document.getElementById("rad_pyq_q");
+        var pyqTrap = document.getElementById("rad_pyq_trap");
+        var pyqAns = document.getElementById("rad_pyq_ans");
+        if (pyqEl) pyqEl.style.display = pyq ? "block" : "none";
+        if (pyq) {
+            if (pyqCite) pyqCite.textContent = pyq.citation || "";
+            if (pyqQ) pyqQ.textContent = pyq.question || "";
+            // opacity is reset too — the per-frame loop dims this line once the
+            // answer lands, and a re-entered state must start un-dimmed.
+            if (pyqTrap) {
+                pyqTrap.textContent = pyq.from_label || "";
+                pyqTrap.style.display = "none";
+                pyqTrap.style.opacity = "1";
+            }
+            if (pyqAns) { pyqAns.textContent = pyq.to_label || ""; pyqAns.style.display = "none"; }
         }
 
         // ── Slider panel (Rule 31 per-state contextual controls, founder
@@ -42868,6 +43170,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // at each reveal_at_ms and then ramping the named axis toward ~1.5.
         var GHOST_TARGET = 1.5;
         var GHOST_RAMP_MS = 1400;   // smooth ramp from 1.0 to the target.
+        // PYQ collapse window: long enough that the shrink reads as one deliberate
+        // motion a teacher can talk over, short enough to stay inside one beat.
+        var PYQ_MORPH_MS = 1600;
         function axisApply(axis, factor) {
             if (axis === "m") mF = factor;
             else if (axis === "v") vF = factor;
@@ -43097,6 +43402,48 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                     lo.visible = true;
                     if (lo.material) lo.material.opacity = 0.45;
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "rad_pyq_ring") {
+                // PYQ compare ring — the second particle in a cited exam question.
+                // Appears at from_factor (the radius the student WRONGLY expects),
+                // then COLLAPSES to to_factor (the real answer). Factors multiply
+                // RAD_BASE_R, so they are true radius RATIOS and the live circle
+                // stays the baseline particle. Solid (opacity 0.9), not ghost-faint:
+                // this is a real second orbit, not an echo of the first.
+                var pyqC = rad.pyq_compare || null;
+                if (pyqC && stateMs >= (pyqC.appear_at_ms || 0)) {
+                    var pqFrom = (typeof pyqC.from_factor === "number") ? pyqC.from_factor : 1;
+                    var pqTo = (typeof pyqC.to_factor === "number") ? pyqC.to_factor : 1;
+                    var pqCorrAt = (typeof pyqC.correct_at_ms === "number") ? pyqC.correct_at_ms : Infinity;
+                    var pqProg = (stateMs < pqCorrAt) ? 0 :
+                        Math.min(1, (stateMs - pqCorrAt) / PYQ_MORPH_MS);
+                    // smoothstep — eases in and out so the collapse has a settle.
+                    var pqEased = pqProg * pqProg * (3 - 2 * pqProg);
+                    radPyqState.morph = pqEased;
+                    radDrawGhostRing(lo, RAD_BASE_R * (pqFrom + (pqTo - pqFrom) * pqEased), u1, u2);
+                    lo.visible = true;
+                    if (lo.material) lo.material.opacity = 0.9;
+                    // Two latched DOM reveals: the wrong expectation named as it
+                    // appears, the answer only once the collapse has finished.
+                    if (!radPyqState.trapShown) {
+                        var pqTrapEl = document.getElementById("rad_pyq_trap");
+                        if (pqTrapEl) pqTrapEl.style.display = "block";
+                        radPyqState.trapShown = true;
+                    }
+                    // 0.85, not 1.0: the answer should land AS the ring settles
+                    // (motion leads, label confirms — Rule 32a), and an exact
+                    // >= 1 test can sit one clock tick short of firing at all.
+                    if (!radPyqState.ansShown && pqProg >= 0.85) {
+                        var pqAnsEl = document.getElementById("rad_pyq_ans");
+                        if (pqAnsEl) pqAnsEl.style.display = "block";
+                        // Dim the superseded wrong line rather than removing it —
+                        // the teacher still points at what the trap was.
+                        var pqTrapDim = document.getElementById("rad_pyq_trap");
+                        if (pqTrapDim) pqTrapDim.style.opacity = "0.45";
+                        radPyqState.ansShown = true;
+                    }
                 } else {
                     lo.visible = false;
                 }
@@ -44259,6 +44606,60 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbWrapSeedMirror(v0, dirIn) {
         var sv = nlbSgn(v0);
         return (sv !== 0 && dirIn !== 0 && sv !== dirIn) ? -1 : 1;
+    }
+    // ── SEAM J (U14) — WHICH wrap an INCLINED sandbox is allowed to use ────────
+    //   The bound-to-bound remap is energy-neutral for exactly one reason: on a
+    // FLAT track every point of the run is at the same height, so carrying the
+    // body from one end to the other changes nothing a bar or a ledger can see.
+    // Tilt the track and that stops being true. The remap then moves the body
+    // through the WHOLE height of the ramp in a single frame — and because the
+    // wrap re-zeroes the ledgers and re-captures the energy baseline in that same
+    // frame (nlbEnergyOnWrap), nothing on screen reports the jump. The identity
+    // dU = -W_gravity still holds to the last decimal on BOTH sides of it, so no
+    // arithmetic check can catch this; the PICTURE is what breaks.
+    //   Measured on potential_energy_definition STATE_4 (theta 30, length 6,
+    // s0 -3.6, v0 8, mu 0): the block leaves by the LOW bound at t = 3.54 s and
+    // is placed at the HIGH one, so U leaps 1.96 -> 235.3 J — 233 J, 42% of the
+    // 560 J bar — while the block is still descending, and it repeats every
+    // 1.11 s because a frictionless ramp damps nothing. A block on a frictionless
+    // ramp gaining 6 m of height AND speed, forever.
+    //   So on a slope the wrap RELAUNCHES instead: the body returns to its own
+    // authored home pose (s0, v0) rather than to the opposite bound. That is the
+    // loop_reset_ms idiom the guided states on this apparatus already use (Rule
+    // 32d's home pose, and the restart a teacher has already watched three times
+    // by the time they reach the sandbox), and it re-anchors POSITION AND
+    // VELOCITY TOGETHER, so the ledgers zero against the same pose they were
+    // authored against. On a frictionless ramp it is EXACTLY energy-neutral:
+    // (s0, v0) and (bound, v_bound) are two points of ONE conserved trajectory,
+    // so total mechanical energy is continuous across the relaunch where the
+    // remap violated it by 233 J. With friction it is openly a restart, which is
+    // the honest reading of a dissipative demo that has to keep running.
+    //   theta is read LIVE (nlbFrameThetaDeg), never from the authored JSON, so a
+    // teacher who tilts a flat sandbox with the theta slider gets the wrap that
+    // matches the track actually on screen. THE EYE drives no sliders, so every
+    // baseline still sees its authored theta: every flat sandbox — all 13 of
+    // them, four of which are baseline-locked Ch.6 concepts — takes the remap
+    // branch unchanged, bit for bit. Rule 36: a position remap and a constant,
+    // no dt and no accumulator, exactly as the branch it sits beside.
+    function nlbWrapIsRelaunch() {
+        return Math.abs(nlbFrameThetaDeg()) > 1e-9;
+    }
+    // The relaunch target — and the ONE case that has to fall back to the remap.
+    //   A home pose sitting ON a bound (or outside it) cannot be relaunched to: a
+    // body re-seeded there with the slope pulling it straight back out would
+    // leave again on the very next step, so the wrap would fire every frame and
+    // the sandbox would stand still while its ledgers re-zeroed underneath it —
+    // strictly worse than the remap it replaced. The margin therefore demands
+    // real room to run before the relaunch is used at all. No authored sandbox is
+    // anywhere near it: the two inclined states that actually reach a bound both
+    // seed 2.4 m inside a 12 m track. This is a guard against a future authoring
+    // mistake, not a live branch.
+    var NLB_WRAP_HOME_MARGIN_M = 0.05;
+    function nlbWrapHomeS(b, bd) {
+        var h = (b && typeof b.s0 === "number" && isFinite(b.s0)) ? b.s0 : 0;
+        if (!(h > bd.lo + NLB_WRAP_HOME_MARGIN_M)) return null;
+        if (!(h < bd.hi - NLB_WRAP_HOME_MARGIN_M)) return null;
+        return h;
     }
     // U12 — the sandbox wrap re-seeds omega alongside v, and re-anchors the segment
     // so the new lap is identical to the last one (SEAM J's own argument for
@@ -46894,6 +47295,43 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(surf);
         nlbRegister(surf); nlbRegister(slab);
 
+        // 1a. THE GHOST SURFACE (ghost_surface) — a second, dim ramp at its own
+        //     angle, built ONCE beside the live one and hidden until a state asks
+        //     for it. Its own group, because its rotation is INDEPENDENT of the live
+        //     theta: that independence is the whole instrument. Every part carries
+        //     ud.ghost, so nlbApplyGlow's first branch forces it into the dim-peer
+        //     channel unconditionally — it can never become the focal and it stays
+        //     visibly a PROP, exactly as height_markers.ghost_marker already does.
+        var gsurf = new THREE.Group();
+        gsurf.userData = { elementType: "nlb_ghost_group", id: "nlb_ghost_group", ghost: true };
+        var gslabMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(NLB_SURFACE_COLOR), emissive: hexToThreeColor(NLB_SURFACE_COLOR),
+            emissiveIntensity: 0.06, shininess: 30, transparent: true, opacity: NLB_GHOST_OPACITY
+        });
+        var gslab = new THREE.Mesh(new THREE.BoxGeometry(1, NLB_SURFACE_THICK, NLB_SURFACE_DEPTH), gslabMat);
+        gslab.position.set(0, -NLB_SURFACE_THICK / 2, 0);
+        gslab.userData = { elementType: "nlb_ghost", id: "nlb_ghost_slab", ghost: true };
+        gsurf.add(gslab);
+        // The ghost's own displacement arrow, a child of the ghost group so the one
+        // rotation lays it along the ghost track — the same contract the live d
+        // arrow has with the live surface group.
+        var gda = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            1, hexToThreeColor(NLB_DISP_COLOR), NLB_DISP_HEAD, NLB_DISP_HEAD * 0.8);
+        gda.userData = { elementType: "nlb_ghost", id: "ghost_disp", ghost: true };
+        gda.visible = false;
+        gsurf.add(gda); nlbRegister(gda);
+        var gdl = pmCreateAutoLabel("d", NLB_DISP_COLOR, 0.32);
+        gdl.userData = { elementType: "nlb_ghost", id: "ghost_disp_label", bodyId: "ghost_disp", ghost: true };
+        gdl.visible = false;
+        gsurf.add(gdl); nlbRegister(gdl);
+        var grl = pmCreateAutoLabel("", NLB_SURFACE_COLOR, 0.32);
+        grl.userData = { elementType: "nlb_ghost", id: "ghost_ramp_label", bodyId: "ghost_ramp", ghost: true };
+        grl.visible = false;
+        gsurf.add(grl); nlbRegister(grl);
+        gsurf.visible = false;
+        addToScene(gsurf);
+        nlbRegister(gsurf); nlbRegister(gslab);
+
         // 1b. The horizontal reference + angle arc the incline angle is measured
         //     from (world frame, NOT in the rotated group). Both collapse and
         //     hide at theta = 0 — a real zero is hidden, never a stub.
@@ -47806,7 +48244,7 @@ export const FIELD_3D_RENDERER_CODE = `
     // on-screen ROW ORDER (nlbSliderTokensUsed walks it), so inserting R beside m
     // would move every existing concept's rows and break Rule 32d's "a row never
     // moves between states" the moment two concepts disagreed.
-    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0", "R", "R2", "omega0"];
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0", "R", "R2", "omega0", "h_ref"];
     var NLB_SLIDER_SPEC = {
         m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
         m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
@@ -47822,6 +48260,25 @@ export const FIELD_3D_RENDERER_CODE = `
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 },
+        // ── THE ZERO LINE (ch6 gravitational_potential_energy, founder review
+        //    2026-08-10) — the reference height itself, as a teacher control ──
+        //   Every other dial here moves the APPARATUS. This one moves the OBSERVER'S
+        // CHOICE, and it is the only control on which "there is no true zero height"
+        // stops being a sentence in the narration and becomes something a teacher can
+        // do with their hand. Dragging it slides the dashed h = 0 line, re-derives
+        // every U numeric and the bar, and leaves ΔU visibly untouched.
+        //   It needs NO new physics wiring at all: nlbHeightM and nlbUpdateMarkers
+        // both already read the ONE resolved field eng.energy_h_ref_m every frame
+        // (spec note 7 made that a deliberate single source so the line and the
+        // number could never disagree), so the write below is the entire change.
+        //   Author it alongside energy_layer.signed — any reference above the body
+        // sends U negative, and the unsigned stack cannot draw that.
+        //   Default glyph is h₀, not h: bare h is the LIVE height the leader
+        // measures, and two different h's on one screen is exactly the collision
+        // Rule 34d exists to stop. Override per concept via slider_controls.label
+        // (gravitational_potential_energy uses the plain-English "zero line",
+        // Rule 41).
+        h_ref: { param: "h_ref_m",          slider: "nlb_href_slider",  row: "nlb_href_row",  val: "nlb_href_val",  lbl: "nlb_href_lbl",  glyph: "h₀", unit: " m",   dp: 1, min: -1,  max: 3,  step: 0.1, def: 0 },
         // ── SEAM R (rotmech 0c-3) — the two RADIUS dials and the SPIN dial ──────
         //   The token enum at the top of this file was widened for these three in
         //   0c-2 but the spec rows never landed, and a token absent from THIS map is
@@ -48053,6 +48510,16 @@ export const FIELD_3D_RENDERER_CODE = `
         else if (token === "theta") {
             eng.theta_deg = value;
             nlbApplySurface(value, eng.length_m);
+        }
+        else if (token === "h_ref") {
+            // The WHOLE write. eng.energy_h_ref_m is the single resolved reference
+            // nlbHeightM (every U numeric, every checkpoint capture) and
+            // nlbUpdateMarkers (the dashed line, the predicted-stop height readout)
+            // both re-read every frame, so the line moves, the bar re-derives and the
+            // stamps re-measure with no second path to keep in sync. Nothing here is
+            // integrated or accumulated: it is a pure reference change, so a
+            // SET_TIME_FREEZE pin and a RESET_TRAJECTORY are both unaffected.
+            eng.energy_h_ref_m = value;
         }
         else if (token === "mu_s" || token === "mu_k") {
             // The coefficients belong to the CONTACT, so one slider sets every
@@ -48346,7 +48813,12 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!sw || !sw.param || !sw.range || sw.range.length < 2) return;
         if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;   // seized: stop for good
         var tok = sw.param;
-        if (!NLB_SLIDER_SPEC[tok]) return;
+        // 's' is the ONE sweepable param with no slider row behind it, so the
+        // NLB_SLIDER_SPEC gate below would drop it. That absence is the point: every
+        // other member of the enum is also a control, so sweeping one made the idle
+        // animation crawl the very handle the explore caption tells the teacher to
+        // drag (founder review 2026-08-10 — the θ row visibly moved on its own).
+        if (tok !== "s" && !NLB_SLIDER_SPEC[tok]) return;
         var lo = sw.range[0], hi = sw.range[1];
         if (!(isFinite(lo) && isFinite(hi))) return;
         var u = (eng.t_ms % NLB_SWEEP_MS) / NLB_SWEEP_MS;
@@ -48356,8 +48828,66 @@ export const FIELD_3D_RENDERER_CODE = `
         // the angle arc, so never re-write an unchanged value.
         if (eng._sweep_last != null && Math.abs(v - eng._sweep_last) < 1e-4) return;
         eng._sweep_last = v;
+        if (tok === "s") {
+            // Position sweep: write the tracked body's own coordinate and hold it at
+            // rest. Legitimate ONLY because the sandbox states that author this are
+            // statically held (mu_s > tan θ across the authored angle range), so the
+            // integrator computes a = 0 and does not fight the write — the body is
+            // being CARRIED along its track, not accelerated. v is pinned to 0 for
+            // the same reason: a swept position with a stale velocity would publish a
+            // kinetic energy the picture does not show.
+            //   s0 is deliberately NOT written: it is the RESET_TRAJECTORY seed, and
+            // moving it would make a rewind land wherever the sweep happened to be.
+            var bs = nlbTrackedBody(eng, null);
+            if (bs) { bs.s = v; bs.v = 0; }
+            return;
+        }
         nlbApplyParam(tok, v);
         nlbSyncSliderRow(tok, v);
+    }
+    // ── height_markers.h_ref_slide_* — the zero line MOVING ──────────────────
+    //   Rule 32c: a state whose entire claim is "the zero line moved" has to show
+    //   the line move. Standing it somewhere else than the previous state did is a
+    //   difference between two frames a teacher never sees side by side, which is
+    //   precisely how gravitational_potential_energy's S1 and S3 read as the same
+    //   picture in founder review.
+    //   A pure CLOSED FORM of eng.t_ms, smoothstep-eased, mirroring nlbRunParamRamp
+    //   line for line: it HOLDS at the authored reference forever once p = 1, a
+    //   RESET_TRAJECTORY rewinds it exactly (no accumulator), and under a
+    //   SET_TIME_FREEZE pin dt = 0 leaves t_ms alone so the same reference is
+    //   recomputed bit for bit (Rule 36).
+    //   Rule 37: a trusted h_ref drag SEIZES it for the rest of the state through the
+    //   same latches the sweep and the ramp honour — a teacher moving the zero line
+    //   must never be dragged back by an animation still playing underneath them.
+    var NLB_HREF_SLIDE_MS = 1500;
+    function nlbRunHrefSlide(nlb, eng) {
+        var hm = nlb.height_markers;
+        if (!hm || typeof hm.h_ref_slide_from_m !== "number") return;
+        if (!isFinite(hm.h_ref_slide_from_m)) return;
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;
+        var to = (typeof eng.energy_h_ref_authored_m === "number") ? eng.energy_h_ref_authored_m : 0;
+        var dur = (typeof hm.h_ref_slide_ms === "number" && hm.h_ref_slide_ms > 0)
+            ? hm.h_ref_slide_ms : NLB_HREF_SLIDE_MS;
+        // The slide's START instant. Absent ⇒ 0 ⇒ the original behaviour (the line
+        // is already moving as the state opens). Authored, the state can run its
+        // whole climb at the ORIGINAL reference, latch its stamps there, and only
+        // THEN move the line — which is the honest order for this lesson: you see
+        // the readings taken, and then you watch those same readings change because
+        // you moved the zero, with ΔU sitting still through all of it. It also
+        // removes the trap that forced the slide to be fast: a slide racing to
+        // finish before the first crossing was the only way to stop the stamp
+        // latching a mid-animation transient.
+        var at = (typeof hm.h_ref_slide_at_ms === "number" && isFinite(hm.h_ref_slide_at_ms) && hm.h_ref_slide_at_ms > 0)
+            ? hm.h_ref_slide_at_ms : 0;
+        var p = ((eng.t_ms || 0) - at) / dur;
+        if (!(p > 0)) p = 0;
+        if (p > 1) p = 1;
+        var e = p * p * (3 - 2 * p);                       // smoothstep
+        var v = hm.h_ref_slide_from_m + (to - hm.h_ref_slide_from_m) * e;
+        if (eng._href_last != null && Math.abs(v - eng._href_last) < 1e-5) return;
+        eng._href_last = v;
+        eng.energy_h_ref_m = v;
+        nlbSyncSliderRow("h_ref", v);
     }
 
     // ── §7.1 pre-approved fix — param_ramp ─────────────────────────────────
@@ -49253,8 +49783,25 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_EN_STEPS = [
         { trk: 186, w: 46, gap: 12, sym: 13, val: 12, cap: 12, pad: "10px 13px" },
         { trk: 138, w: 40, gap: 9,  sym: 12, val: 11, cap: 11, pad: "8px 11px" },
-        { trk: 98,  w: 34, gap: 7,  sym: 11, val: 10, cap: 10, pad: "6px 9px" }
+        { trk: 98,  w: 34, gap: 7,  sym: 11, val: 10, cap: 10, pad: "6px 9px" },
+        // A FOURTH step (founder review 2026-08-10). The ladder returns on the first
+        // step that fits and otherwise falls out of the loop leaving the smallest
+        // step applied and still overflowing — which is exactly what shipped on the
+        // ΔU = −W state, where the energy group and the work group share the panel:
+        // the gravity ledger's caption and value ran off the bottom of the canvas and
+        // collided with the review chrome's brand mark. Three steps were enough while
+        // only ONE section existed.
+        { trk: 66,  w: 30, gap: 5,  sym: 10, val: 9,  cap: 9,  pad: "5px 7px" }
     ];
+    // The FLOOR the ladder fits against. Was a bare 12 px inset from the viewport,
+    // which is right for the iframe and wrong for the screen: the review player
+    // paints its "powered by Viditra" brand mark over the bottom-left of the sim
+    // from the PARENT document, so it is invisible to every measurement available
+    // inside here. A panel that fits the viewport can therefore still land on top of
+    // it (founder review 2026-08-10). Reserved as a constant rather than measured
+    // because the renderer genuinely cannot see the element — if the chrome's
+    // footprint changes, this is the one number to move.
+    var NLB_EN_FLOOR_RESERVE_PX = 34;
     var NLB_EN_TOP_MIN_PX = 52;      // clears the review chrome, like every other panel
     var NLB_EN_CLEAR_PX = 8;         // breathing room under the slow-motion badge
     // Authoring guards. Both prefixes are UNIQUE so THE EYE's console audit can
@@ -49302,6 +49849,29 @@ export const FIELD_3D_RENDERER_CODE = `
         var x = (typeof v === "number" && isFinite(v)) ? v : 0;
         if (Math.abs(x) < 0.5 * Math.pow(10, -d)) x = 0;
         return nlbMinus(x.toFixed(d)) + " J";
+    }
+    // energy_layer.signed — the half-track write, deliberately the SAME expression
+    // shape nlbUpdateWorkPanel uses for its ledgers so the two sections of this one
+    // panel cannot drift apart. Half the track is one unit of scale, so +maxJ fills
+    // the top half and −maxJ the bottom half.
+    //   The bar keeps its OWN colour in both directions (unlike a work ledger, which
+    // is red/green because the SIGN of W is that instrument's whole lesson). A
+    // negative U_grav is not a different kind of quantity and not a bad outcome — it
+    // is the same U measured from a line the author chose to put higher up — so the
+    // zero baseline and the signed numeral carry the sign, and colour does not
+    // editorialise about it.
+    //   Rounded to 3 dp for the reason nlbEnPct and the work panel both are: the
+    // value goes straight into a style string, and frozen-frame byte-identity must
+    // be a property of this code rather than of the CSSOM's number normalisation.
+    function nlbEnWriteSigned(fl, v, maxJ) {
+        if (!fl) return;
+        var frac = (maxJ > 0) ? Math.abs(v) / maxJ : 0;
+        if (frac > 1) frac = 1;
+        var pct = Math.round(frac * 50 * 1000) / 1000;
+        var up = v >= 0;
+        fl.style.height = pct + "%";
+        fl.style.bottom = up ? "50%" : "auto";
+        fl.style.top = up ? "auto" : "50%";
     }
     function nlbEnPct(v, maxJ) {
         if (!(maxJ > 0)) return 0;
@@ -49391,6 +49961,13 @@ export const FIELD_3D_RENDERER_CODE = `
                             '" style="position:absolute;left:0;right:0;bottom:0;height:0;background:' + NLB_EN_COL[segs[s]] + ';"></div>';
                     }
                 } else {
+                    // energy_layer.signed's ZERO BASELINE, built once at the maximum
+                    // shape and hidden by default (the built-once discipline every
+                    // other element here follows), so an unsigned state renders byte
+                    // for byte what it always did. Drawn UNDER the fill for the same
+                    // reason SEAM M's work baseline is: a bar at full deflection must
+                    // not erase its own reference.
+                    html += '<div class="nlb_en_zero" id="' + sid + '_z" style="display:none;position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,0.5);"></div>';
                     html += '<div class="nlb_en_fill" id="' + sid + '_f" style="position:absolute;left:0;right:0;bottom:0;height:0;background:' + NLB_EN_COL[k] + ';border-radius:3px;"></div>';
                 }
                 html += '</div>';
@@ -49467,6 +50044,89 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Shows exactly this state's bars and groups, writes the scale, then fits.
     //   Called from applyNewtonsLawsBodyState AND from the widget-vis path, so it
     //   must be idempotent and must not touch physics.
+    // ── ghost_surface — the second ramp a path-independence state needs ──────
+    //   With ONE ramp on screen, "shorter path, same U" is a claim about a number
+    //   the teacher has to remember from a previous state, and the delta Rule 32c
+    //   demands is nowhere in the frame. This draws the OTHER route beside the live
+    //   one and labels the span it covers between the SAME two heights, so the two
+    //   d values on screen are one climb measured two ways — by construction, not by
+    //   authoring care.
+    //   The span is derived, never authored: the live climb runs from the tracked
+    //   body's own seed s0 to its LAST checkpoint, both converted to heights through
+    //   the LIVE angle, then back to distances along the GHOST angle. So an author
+    //   who moves either endpoint cannot leave a stale ghost number behind.
+    function nlbApplyGhostSurface(nlb, eng) {
+        var g = nlbFindById("nlb_ghost_group");
+        if (!g) return;
+        var gs = nlb && nlb.ghost_surface;
+        var thL = (eng && eng.theta_deg) || 0;
+        var thG = (gs && typeof gs.theta_deg === "number" && isFinite(gs.theta_deg)) ? gs.theta_deg : null;
+        // A ghost at (or within a degree of) the live angle draws no contrast at all
+        // and would render as a smear over the real ramp. Refused, not drawn faintly.
+        var on = !!(gs && thG !== null && Math.abs(thG - thL) >= NLB_GHOST_MIN_DEG &&
+                    Math.abs(Math.sin(thG * Math.PI / 180)) > 1e-6);
+        g.visible = on;
+        var gda = nlbFindById("ghost_disp"), gdl = nlbFindById("ghost_disp_label"), grl = nlbFindById("ghost_ramp_label");
+        if (!on) {
+            if (gda) gda.visible = false;
+            if (gdl) gdl.visible = false;
+            if (grl) grl.visible = false;
+            return;
+        }
+        var halfWorld = Math.max(0.2, (eng.length_m || 0) * NLB_WORLD_PER_M);
+        g.rotation.set(0, 0, thG * Math.PI / 180);
+        // Same rig offset as the live surface, then pushed BACK in depth. Sharing the
+        // live ramp's z made the two slabs interpenetrate into an X through the body
+        // — two ramps arguing rather than one compared against another (measured on
+        // the first ghost frames). Behind, they read as what they are: the route not
+        // taken, standing off the route being driven.
+        var sgp = nlbFindById("nlb_surface_group");
+        g.position.set(sgp ? sgp.position.x : 0, sgp ? sgp.position.y : 0, NLB_GHOST_DEPTH_Z);
+        var gslab = nlbFindById("nlb_ghost_slab");
+        if (gslab) gslab.scale.set(halfWorld * 2, 1, 1);
+        if (grl) {
+            grl.visible = !!gs.label;
+            if (gs.label) {
+                grl.position.set(-halfWorld * 0.62, 0.46, 0);
+                nlbSetBodyLabelText(grl, gs.label);
+            }
+        }
+        // The measured span, in HEIGHTS then back into the ghost's own distances.
+        var b = nlbTrackedBody(eng, null);
+        var cps = eng.checkpoints_cfg;
+        var sEnd = (cps && cps.length) ? cps[cps.length - 1].s_m : null;
+        var showD = (gs.show_displacement !== false);
+        if (!showD || !b || sEnd === null || !isFinite(sEnd)) {
+            if (gda) gda.visible = false;
+            if (gdl) gdl.visible = false;
+            return;
+        }
+        var sinL = Math.sin(thL * Math.PI / 180), sinG = Math.sin(thG * Math.PI / 180);
+        var s0g = ((b.s0 || 0) * sinL) / sinG;
+        var s1g = (sEnd * sinL) / sinG;
+        var dG = s1g - s0g;
+        var vis = Math.abs(dG) >= NLB_DISP_MIN_M;
+        if (gda) gda.visible = vis;
+        if (gdl) gdl.visible = vis;
+        if (!vis) return;
+        var x0 = s0g * NLB_WORLD_PER_M;
+        var lenW = Math.abs(dG) * NLB_WORLD_PER_M;
+        var sgn = (dG < 0) ? -1 : 1;
+        var hd = Math.min(NLB_DISP_HEAD, lenW * 0.4);
+        if (gda) {
+            gda.position.set(x0, NLB_DISP_LANE, 0);
+            gda.setDirection(new THREE.Vector3(sgn, 0, 0));
+            gda.setLength(lenW, hd, hd * 0.8);
+        }
+        if (gdl) {
+            // A FULL label-height below the live d caption. The whole instrument is
+            // the two numbers side by side, so the one thing it must never do is
+            // print them on top of each other (measured on the first ghost frames:
+            // "d = 1.61 m" and "d = 2.40 m" overprinted exactly).
+            gdl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - NLB_DISP_LABEL_DY - NLB_GHOST_LABEL_DY, 0);
+            nlbSetBodyLabelText(gdl, "d = " + nlbFx(Math.abs(dG), 2) + " m");
+        }
+    }
     function nlbApplyEnergyLayer(nlb, eng) {
         var p = document.getElementById("nlb_energy");
         if (!p) return;
@@ -49487,6 +50147,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var ids = (cfg && cfg.body_ids && cfg.body_ids.length) ? cfg.body_ids.slice(0, 2) : [];
         var groups = cfg ? (ids.length ? ids.length : 1) : 0;
         var bodies = (nlb && nlb.bodies) || [];
+        var signedEn = !!(cfg && cfg.signed);
+        // A stack is a sum of parts drawn end to end; there is no honest way to draw
+        // a signed component inside one. Refuse rather than render a column whose
+        // height stops meaning its own total, and say so once.
+        if (signedEn && bars.indexOf("E_total") >= 0) {
+            nlbEnWarnOnce(eng, "_en_signed_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
+                "energy_layer.signed is set on a state that also shows the E_total " +
+                "STACK. A stacked column cannot draw a negative component, so E_total " +
+                "keeps its unsigned rendering and only the individual bars are signed. " +
+                "Author one or the other.");
+        }
         for (var g = 0; g < 2; g++) {
             var gEl = document.getElementById("nlb_en_g" + g);
             if (!gEl) continue;
@@ -49505,8 +50176,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 cap.style.display = capTxt ? "block" : "none";
             }
             for (var i = 0; i < NLB_EN_ORDER.length; i++) {
-                var sl = document.getElementById("nlb_en_g" + g + "_" + NLB_EN_ORDER[i]);
-                if (sl) sl.style.display = (g < groups && bars.indexOf(NLB_EN_ORDER[i]) >= 0) ? "block" : "none";
+                var enK = NLB_EN_ORDER[i];
+                var slId = "nlb_en_g" + g + "_" + enK;
+                var sl = document.getElementById(slId);
+                if (sl) sl.style.display = (g < groups && bars.indexOf(enK) >= 0) ? "block" : "none";
+                // energy_layer.signed's per-slot geometry, set HERE (the display
+                // pass) rather than per frame, so the per-frame write stays a pure
+                // height/offset update. Reset explicitly in BOTH directions: this
+                // pass also runs on a state that turns signed OFF, and a fill left
+                // anchored at bottom:50% would render every unsigned bar floating in
+                // the upper half of its track.
+                if (enK === "E_total") continue;
+                var zEl = document.getElementById(slId + "_z");
+                var fEl = document.getElementById(slId + "_f");
+                if (zEl) zEl.style.display = signedEn ? "block" : "none";
+                if (fEl && !signedEn) { fEl.style.bottom = "0"; fEl.style.top = "auto"; }
             }
         }
         // SEAM M — the work section's own slots, BEFORE the fit: the ladder measures
@@ -49552,7 +50236,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var p = document.getElementById("nlb_energy");
         if (!p || p.style.display === "none") return;
         p.style.top = nlbEnergyTopPx() + "px";
-        var limit = window.innerHeight - 12;
+        var limit = window.innerHeight - NLB_EN_FLOOR_RESERVE_PX;
         for (var st = 0; st < NLB_EN_STEPS.length; st++) {
             var S = NLB_EN_STEPS[st];
             p.style.padding = S.pad;
@@ -49593,6 +50277,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!snap) return;
         var maxJ = eng.energy_bar_max_J;
         var prec = cfg.precision;
+        var sgn = !!cfg.signed;
         var ids = (cfg.body_ids && cfg.body_ids.length) ? cfg.body_ids.slice(0, 2) : [];
         var groups = ids.length ? ids.length : 1;
         for (var g = 0; g < groups; g++) {
@@ -49640,11 +50325,17 @@ export const FIELD_3D_RENDERER_CODE = `
             // Guard: the UNSIGNED stack cannot draw a negative component, so a
             // reference authored above the body's lowest point would silently make
             // the drawn column disagree with its own numeric. Warn loudly instead.
-            if (Ug < -1e-9) {
+            // energy_layer.signed is the ANSWER to this warning, so a signed state
+            // must not fire it: there the negative value is drawn honestly below the
+            // baseline and h_ref_m is a free authoring (and teacher) choice. Leaving
+            // the warn armed would make the concept that fixed the problem the one
+            // concept whose console THE EYE's zero-occurrence audit fails on.
+            if (Ug < -1e-9 && !sgn) {
                 nlbEnWarnOnce(eng, "_en_scale_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
                     "U_grav went negative (" + Ug.toFixed(3) + " J): energy_layer.h_ref_m is " +
                     "ABOVE the tracked body's lowest point, and the unsigned stack cannot " +
-                    "draw it. Lower h_ref_m to the h = 0 line the state actually shows.");
+                    "draw it. Either lower h_ref_m to the h = 0 line the state actually " +
+                    "shows, or author energy_layer.signed to draw it on a signed track.");
             }
             for (var i = 0; i < NLB_EN_ORDER.length; i++) {
                 var k = NLB_EN_ORDER[i];
@@ -49656,7 +50347,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var txt = nlbEnFx(vals[k], prec);
                     if (vEl.textContent !== txt) vEl.textContent = txt;   // churn guard
                 }
-                if (vals[k] > maxJ + 1e-9) {
+                if (sgn ? (Math.abs(vals[k]) > maxJ + 1e-9) : (vals[k] > maxJ + 1e-9)) {
                     nlbEnWarnOnce(eng, "_en_scale_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
                         k + " reached " + vals[k].toFixed(2) + " J, over the authored " +
                         "energy_layer.bar_max_J of " + maxJ + " J. The bar clamps at full " +
@@ -49677,7 +50368,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                 } else {
                     var fl = document.getElementById(sid + "_f");
-                    if (fl) fl.style.height = nlbEnPct(vals[k], maxJ) + "%";
+                    if (fl) {
+                        if (sgn) nlbEnWriteSigned(fl, vals[k], maxJ);
+                        else fl.style.height = nlbEnPct(vals[k], maxJ) + "%";
+                    }
                 }
             }
         }
@@ -49835,7 +50529,32 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_DWELL_COL = new THREE.Color(NLB_DWELL_INK);
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
+    // The ghost ramp's slab opacity. Low enough to read instantly as "not the
+    // apparatus", high enough that its angle and its labelled span are legible on a
+    // projector — the same judgement height_markers.ghost_marker's dimming makes.
+    var NLB_GHOST_OPACITY = 0.28;
+    var NLB_GHOST_MIN_DEG = 1.0;           // a ghost at the live angle draws no contrast
+    var NLB_GHOST_DEPTH_Z = -0.85;         // world units behind the live ramp, so they never interpenetrate
+    var NLB_GHOST_LABEL_DY = 0.46;         // the ghost d caption clears the live one
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
+    // ── The h leader (height_markers.show_h_leader) ─────────────────────────
+    //   AMBER, deliberately NOT the level line's blue. The two are the same
+    //   measurement system, but a teacher glancing at a paused frame has to separate
+    //   "the line you chose to call zero" from "the height being measured to it",
+    //   and orientation alone is a weak cue on a busy incline. Amber is already the
+    //   palette's annotation tone (pvl_colors.field_line), so no new colour enters
+    //   the scene.
+    var NLB_MK_HLEAD_COLOR = "#FFD54F";
+    var NLB_HLEAD_DASHES = 14;             // dash count along the unit-span leader
+    var NLB_HLEAD_MIN_M = 0.03;            // below this the body IS on the line — hide, never stub
+    // Label placement, MEASURED against the collision it actually has (founder
+    // review frames 2026-08-10): the angle arc's own caption lives at the body, just
+    // downhill of it, so a leader label at the leader's midpoint lands straight on
+    // "θ = 30°". Pushed well to the LEFT (the ramp climbs to the right, so left of
+    // the leader is the open quadrant) and DOWN toward the reference line, which is
+    // the emptiest part of the frame and also where the measurement is being read to.
+    var NLB_HLEAD_LABEL_DX = -0.90;        // world units, left of the leader
+    var NLB_HLEAD_LABEL_FRAC = 0.35;       // fraction of the drop, measured up from the reference
     var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane every
                                                // FLAG-form marker caption is placed on
                                                // (nlbMkPlace). Named because
@@ -50083,6 +50802,38 @@ export const FIELD_3D_RENDERER_CODE = `
         hlL.userData = { elementType: "nlb_marker_label", id: "marker_h_ref_label", bodyId: "marker_h_ref" };
         hlL.visible = false;
         world.add(hlL); nlbRegister(hlL);
+
+        // ── THE h LEADER (height_markers.show_h_leader) ──────────────────────
+        //   A dashed VERTICAL drop from the body to the h = 0 line, carrying the
+        // live height. Built on the SAME unit-span + scale trick the level line
+        // above uses, and for the same reason: an explicit dash geometry survives
+        // rescaling without a per-frame computeLineDistances(), which is what keeps
+        // a frozen baseline byte-stable. Unit span [0, 1] in y — so scale.y IS the
+        // signed world height and a negative scale flips the leader to hang upward
+        // from a body BELOW the line, with no second geometry.
+        //   Lives in the WORLD group, not the SURFACE group: it measures a true
+        // vertical, and in the surface frame vertical is whatever the incline is not.
+        var lpts = [];
+        for (var li = 0; li < NLB_HLEAD_DASHES; li++) {
+            var y0 = li / NLB_HLEAD_DASHES;
+            lpts.push(new THREE.Vector3(0, y0, 0));
+            lpts.push(new THREE.Vector3(0, y0 + (1 / NLB_HLEAD_DASHES) * 0.58, 0));
+        }
+        var hLead = new THREE.LineSegments(
+            new THREE.BufferGeometry().setFromPoints(lpts),
+            new THREE.LineBasicMaterial({
+                color: hexToThreeColor(NLB_MK_HLEAD_COLOR), transparent: true,
+                opacity: 0.9, depthTest: false
+            }));
+        hLead.renderOrder = NLB_MK_RENDER_ORDER;
+        hLead.userData = { elementType: "nlb_marker", id: "marker_h_leader" };
+        hLead.visible = false;
+        world.add(hLead); nlbRegister(hLead);
+
+        var hLeadL = pmCreateAutoLabel("h", NLB_MK_HLEAD_COLOR, 0.34);
+        hLeadL.userData = { elementType: "nlb_marker_label", id: "marker_h_leader_label", bodyId: "marker_h_leader" };
+        hLeadL.visible = false;
+        world.add(hLeadL); nlbRegister(hLeadL);
 
         var mkT = nlbMkMakeMarker("marker_true", NLB_MK_TRUE_COLOR, false);
         surf.add(mkT); nlbRegister(mkT);
@@ -50571,7 +51322,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var cfg = eng.markers_cfg;
         // The lane separation runs before EVERY publish path, so the rects reported
         // are the rects drawn — including this one, where only checkpoints are up.
-        if (!cfg) { nlbStackMarkerLabels(); nlbPublishMarkers(eng, null); return; }
+        if (!cfg) {
+            // The leader is built once and lives across states, so a state that
+            // authors NO height_markers has to put it away explicitly — otherwise
+            // the previous state's leader hangs in the scene measuring to a line
+            // that is no longer drawn.
+            var hOff = nlbFindById("marker_h_leader"), hOffL = nlbFindById("marker_h_leader_label");
+            if (hOff) hOff.visible = false;
+            if (hOffL) hOffL.visible = false;
+            nlbStackMarkerLabels(); nlbPublishMarkers(eng, null); return;
+        }
         // The LEVEL line sits at exactly the resolved energy reference — the same
         // eng.energy_h_ref_m the U_grav numeric is measured from (spec note 7: the
         // number and the line cannot be allowed to disagree, so they read the ONE
@@ -50591,6 +51351,36 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var b = nlbTrackedBody(eng, cfg.body_id);
+        // ── The h leader's per-frame follow ──────────────────────────────────
+        //   h is read through nlbHeightM — the SAME function every U numeric goes
+        // through — so the drawn length, the dashed line it lands on and the joule
+        // reading are one quantity by construction, not three that have to be kept
+        // in agreement.
+        var hLd = nlbFindById("marker_h_leader"), hLdL = nlbFindById("marker_h_leader_label");
+        if (hLd) {
+            var hOn = !!cfg.show_h_leader && !!b && !b.ghost && !b.hanging;
+            var hVal = hOn ? nlbHeightM(eng, b) : 0;
+            // A real zero is HIDDEN, never drawn as a stub — the same rule the
+            // displacement vector follows at NLB_DISP_MIN_M.
+            if (hOn && Math.abs(hVal) < NLB_HLEAD_MIN_M) hOn = false;
+            hLd.visible = hOn;
+            if (hLdL) hLdL.visible = hOn;
+            if (hOn) {
+                var thR = (eng.theta_deg || 0) * Math.PI / 180;
+                var xW = b.s * Math.cos(thR) * NLB_WORLD_PER_M;
+                var yRefW = (eng.energy_h_ref_m || 0) * NLB_WORLD_PER_M;
+                var hW = hVal * NLB_WORLD_PER_M;
+                hLd.position.set(xW, yRefW, 0);
+                hLd.scale.set(1, hW, 1);
+                if (hLdL) {
+                    // Offset to the side of the leader, never on it: the leader is a
+                    // measuring line and a label sitting across it hides the thing
+                    // being measured (Rule 34d).
+                    hLdL.position.set(xW + NLB_HLEAD_LABEL_DX, yRefW + hW * NLB_HLEAD_LABEL_FRAC, 0);
+                    nlbSetBodyLabelText(hLdL, "h = " + nlbFx(hVal, 2) + " m");
+                }
+            }
+        }
         var pred = b ? nlbPredictedStopM(eng, b) : null;
         var ps = cfg.predicted_stop;
         if (ps && pred) {
@@ -50643,6 +51433,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                            // clearance under the deepest label. (Caught in
                                            // pixels at -0.46: the ΣF arrow and d shared a lane
                                            // and their heads met under the block.)
+    var NLB_DISP_LABEL_DY = 0.62;          // world units below the d shaft — clears the mg caption
     var NLB_DISP_MIN_M = 0.02;             // metres. Below this the body has NOT moved and
                                            // the arrow HIDES — never a stub (the engine's rule)
     var NLB_DISP_HEAD = 0.22;
@@ -50843,6 +51634,13 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             var ds2 = (b.s || 0) - nlbDispOrigin(b);
             var vis = (Math.abs(ds2) >= NLB_DISP_MIN_M) && !b.hanging;
+            // displacement_vector.dim — routed through the EXISTING ghost channel
+            // (ud.ghost, which nlbApplyGlow's first branch forces into the dim-peer
+            // lane unconditionally) rather than a second opacity path that the glow
+            // pass would overwrite every frame. Idempotent, so writing it here costs
+            // one property assignment and cannot drift from the authored value.
+            if (da) da.userData.ghost = !!cfg.dim;
+            if (dl) dl.userData.ghost = !!cfg.dim;
             if (da) da.visible = vis;
             if (dl) dl.visible = vis;
             if (vis) {
@@ -50860,7 +51658,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (dl) {
                     // Mid-span, below the shaft: a growing arrow whose label sat at
                     // the tip would walk off the track on a long run.
-                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - 0.30, 0);
+                    //   Dropped from 0.30 to NLB_DISP_LABEL_DY (founder review
+                    // 2026-08-10): the weight arrow hangs from the body straight
+                    // through this lane and its "mg" caption landed ON the d value on
+                    // essentially every frame of every driven state. The two are the
+                    // most-read numbers on the canvas and they were overprinting each
+                    // other (Rule 34d).
+                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - NLB_DISP_LABEL_DY, 0);
                     nlbSetArrowLabelText(dl, cfg.label + (cfg.show_value ? (" = " + nlbFx(Math.abs(ds2), 2) + " m") : ""));
                 }
             }
@@ -51265,10 +52069,11 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var parts = [];
+        var ugIdx = null;
         for (var i = 0; i < cp.capture.length; i++) {
             var k = cp.capture[i];
             if (k === "K") parts.push("K = " + nlbEnFx(kX, prec));
-            else if (k === "U_grav") parts.push("U = " + nlbEnFx(ugX, prec));
+            else if (k === "U_grav") { ugIdx = parts.length; parts.push("U = " + nlbEnFx(ugX, prec)); }
             else if (k === "U_spring") parts.push("Uₛ = " + nlbEnFx(usX, prec));
             else if (k === "E_total") parts.push("E = " + nlbEnFx(eX, prec));
             else if (k === "v") parts.push("v = " + nlbFx(vX, 2) + " m/s");
@@ -51283,7 +52088,43 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var head = cp.label + (cp.mode === "every" && cp._count > 1 ? (" (pass " + cp._count + ")") : "");
+        // ── REFERENCE-LIVE U (founder review 2026-08-10) ─────────────────────
+        //   A stamp is a reading at a PLACE, and U at a place genuinely depends on
+        // where you put zero — that is the whole concept. Frozen as a finished
+        // string, a latched stamp goes stale the moment h_ref moves, and the state
+        // that exists to teach "moving the zero changes every reading" was the one
+        // state whose readings did not change.
+        //   So the reference-INDEPENDENT ingredients are stashed beside the text:
+        // the checkpoint's height above the SURFACE ORIGIN (which no reference can
+        // move), the mass, and the reference in force at the stamp. nlbCpText below
+        // re-derives the U clause from those whenever the live reference has since
+        // moved. Everything else in the stamp stays frozen on purpose — a W ledger
+        // is path-dependent and a v is a fact about one instant; neither re-derives
+        // from a reference and both would be lies if they did.
+        cp._parts = parts.slice();
+        cp._head = head;
+        cp._ugIdx = ugIdx;
+        cp._ugM = b.m;
+        cp._ugPrec = prec;
+        cp._ugRef = (eng.energy_h_ref_m || 0);
+        // Height above the surface origin, recovered from the value just computed so
+        // it cannot drift from it: ug = m·g·(hAbs − ref)  ⇒  hAbs = ug/(m·g) + ref.
+        cp._ugHAbs = (b.m > 0) ? (ugX / (b.m * NLB_G) + cp._ugRef) : null;
         return head + ":  " + nlbStampClauses(parts);
+    }
+    //   The text a latched stamp RENDERS this frame. Byte-identical to the stored
+    //   string unless the energy reference has actually moved since the stamp — so
+    //   every concept in the fleet, none of which changes h_ref mid-state, renders
+    //   exactly what it always did, and no baseline can shift.
+    function nlbCpText(eng, cp) {
+        if (!cp || !cp.text) return "";
+        if (cp._ugIdx == null || cp._ugHAbs == null || !cp._parts) return cp.text;
+        var ref = (eng.energy_h_ref_m || 0);
+        if (Math.abs(ref - cp._ugRef) < 1e-9) return cp.text;
+        var ug = cp._ugM * NLB_G * (cp._ugHAbs - ref);
+        var parts = cp._parts.slice();
+        parts[cp._ugIdx] = "U = " + nlbEnFx(ug, cp._ugPrec);
+        return cp._head + ":  " + nlbStampClauses(parts);
     }
     // ── The CLAUSE-BOUNDARY WRAP (Rule 34b — one surface, and it reads as one) ───
     //   Every element of parts[] is one clause: a symbol, its equals sign, its value
@@ -51349,7 +52190,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!cps[i].text) continue;
             // Rule 14: this whole body is ONE template literal, so a newline escape
             // must be doubled or the outer literal eats it and emits a raw break.
-            txt += (txt ? "\\n" : "") + cps[i].text;
+            txt += (txt ? "\\n" : "") + nlbCpText(eng, cps[i]);
         }
         if (ff.textContent !== txt) ff.textContent = txt;
         var want = txt ? "block" : "none";
@@ -51628,6 +52469,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 ? nlb.energy_layer.bar_max_J : 1,
             energy_h_ref_m: (nlb.energy_layer && typeof nlb.energy_layer.h_ref_m === "number"
                 && isFinite(nlb.energy_layer.h_ref_m)) ? nlb.energy_layer.h_ref_m : 0,
+            // The AUTHORED reference, kept beside the live one. energy_h_ref_m is now
+            // writable by two things — the h_ref slider and the h_ref slide animation
+            // — so the slide needs a target that survives its own writes. Same value
+            // on entry, so a state authoring neither is unaffected.
+            energy_h_ref_authored_m: (nlb.energy_layer && typeof nlb.energy_layer.h_ref_m === "number"
+                && isFinite(nlb.energy_layer.h_ref_m)) ? nlb.energy_layer.h_ref_m : 0,
+            _href_last: null,
+            _en_signed_warned: false,
             _en_scale_warned: false,
             _en_drift_warned: false,
             _loop_cycle: null,    // loop_reset_ms edge memo; null = adopt, never fire
@@ -52002,6 +52851,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // catching the entry frame photographs THIS state's numbers, never the
         // previous state's. Hides itself outright when the state authors no layer.
         nlbApplyEnergyLayer(nlb, eng);
+        // The ghost ramp is a STATIC prop: its angle and its measured span are pure
+        // functions of authored numbers, so it is placed once per state rather than
+        // followed per frame. Nothing reads it back — no physics, no HUD, no capture.
+        nlbApplyGhostSurface(nlb, eng);
         // SEAM M — the 3D instruments: the dashed h = 0 level line at the SAME
         // reference the bars measure U_grav from, the computed predicted-stop marker
         // and its dim ghost, and this state's checkpoint flags. Hides every one of
@@ -52998,6 +53851,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // for the same reason: a theta ramp must not leave the arrows/rope one
         // frame behind the incline they are drawn on.
         nlbRunParamRamp(nlb, eng);
+        // The zero-line slide (height_markers.h_ref_slide_from_m). Same input-stage
+        // placement and the same Rule 36 argument as the two above: a closed form of
+        // eng.t_ms with no accumulator. It must run BEFORE the markers and the energy
+        // panel are written this frame, or the dashed line would sit one frame behind
+        // the U numeric it is supposed to be measuring from.
+        nlbRunHrefSlide(nlb, eng);
         // SEAM K — the GENUINE Hooke force. Same input-stage placement, and
         // deliberately LAST of the input hooks: when a state authors both a real k
         // and the legacy scripted block, the genuine path wins by overwriting the
@@ -53491,10 +54350,28 @@ export const FIELD_3D_RENDERER_CODE = `
                         // re-seed forgot to ask.
                         var wDir = (s1 > bd.hi) ? 1 : ((s1 < bd.lo) ? -1 : 0);
                         if (wDir !== 0) {
-                            s1 -= wDir * span;
-                            var wMr = nlbWrapSeedMirror(b.v0, wDir);
-                            v1 = wMr * ((b.v0 != null) ? b.v0 : 0);
-                            nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b, wMr);
+                            // U14 — on a SLOPE the remap below manufactures the whole
+                            // height of the ramp in one frame, so an inclined sandbox
+                            // RELAUNCHES at its authored home pose instead. See
+                            // nlbWrapIsRelaunch for why no arithmetic check catches
+                            // the remap and why theta is read live.
+                            //   The mirror is ABSENT on this branch for exactly the
+                            // reason it is absent from the race restart
+                            // (nlbRollWrapSeed's header): the body is re-anchored at
+                            // its authored s0 rather than at a bound, so the authored
+                            // launch is already aimed correctly by construction and
+                            // there is no bound to point it away from.
+                            var wHome = nlbWrapIsRelaunch() ? nlbWrapHomeS(b, bd) : null;
+                            if (wHome != null) {
+                                s1 = wHome;
+                                v1 = (typeof b.v0 === "number" && isFinite(b.v0)) ? b.v0 : 0;
+                                nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b);
+                            } else {
+                                s1 -= wDir * span;
+                                var wMr = nlbWrapSeedMirror(b.v0, wDir);
+                                v1 = wMr * ((b.v0 != null) ? b.v0 : 0);
+                                nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b, wMr);
+                            }
                         }
                     }
                     b.a = a; b.v = v1; b.s = s1;

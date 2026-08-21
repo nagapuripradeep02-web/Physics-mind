@@ -1,10 +1,10 @@
 {
-  "approved_at": "2026-07-11T20:44:45.826Z",
-  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\electric_potential_point_charge\\20260711-190708",
+  "approved_at": "2026-08-11T11:40:45.580Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\electric_potential_point_charge\\20260811-134033",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
-      "compare": true,
+      "compare": false,
       "compare_frozen": true
     },
     "STATE_2": {

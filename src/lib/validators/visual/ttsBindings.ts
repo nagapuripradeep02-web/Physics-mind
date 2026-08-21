@@ -23,6 +23,13 @@ export interface TtsVisualBinding {
      * so the capture harness can replay the panel faithfully (Category I2).
      */
     math_persist?: boolean;
+    /**
+     * Focus Overlay binding (2026-08-19): the narration-synced pointing cue
+     * the player draws above the sim. Mirrors the build-time resolution in
+     * build_review_site.ts (authored focus, else highlight_primitive_id as a
+     * ring). Category I3 checks the target names a visible element.
+     */
+    focus?: { target: string; cue: string };
 }
 
 export interface PrimitiveLegendEntry {
@@ -93,13 +100,25 @@ export function extractTtsVisualBindings(
             if (!s) continue;
             const glow = normalizeGlow(s.glow);
             const mathShow = typeof s.math_show === 'string' && s.math_show.length > 0 ? s.math_show : undefined;
-            if (glow.length === 0 && !mathShow) continue;
+            // Focus Overlay: mirror the player's build-time resolution (authored
+            // focus first, else the legacy PCPL highlight_primitive_id as ring).
+            const focusRaw = asRecord(s.focus);
+            const focusTarget = typeof focusRaw?.target === 'string' && focusRaw.target.trim().length > 0
+                ? focusRaw.target.trim()
+                : (typeof s.highlight_primitive_id === 'string' && s.highlight_primitive_id.trim().length > 0
+                    ? s.highlight_primitive_id.trim()
+                    : undefined);
+            const focus = focusTarget
+                ? { target: focusTarget, cue: typeof focusRaw?.cue === 'string' ? focusRaw.cue : 'ring' }
+                : undefined;
+            if (glow.length === 0 && !mathShow && !focus) continue;
             bindings.push({
                 sentence_id: typeof s.id === 'string' ? s.id : `${stateId}_s${bindings.length + 1}`,
                 text_en: typeof s.text_en === 'string' ? s.text_en : '',
                 glow,
                 math_show: mathShow,
                 math_persist: s.math_persist === true,
+                focus,
             });
         }
         if (bindings.length === 0) continue;

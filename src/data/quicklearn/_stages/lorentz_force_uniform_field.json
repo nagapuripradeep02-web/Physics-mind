@@ -1,0 +1,50 @@
+{
+  "_comment": "Shared visual vocabulary for the field_3d lorentz_force_uniform_field scenario. Grounded in THE EYE's baseline frames (viewed 2026-08-18), not guessed. The AI tutor has no vision — this text is the only thing it knows about the picture. A concept's own `stage` block extends this and wins on any conflicting `looks_like`.",
+  "viewpoint": "The view is a 3D space seen from a camera the student can orbit — dragging rotates the view and scrolling zooms. The space is filled with a grid of blue arrows that all point the same way; that grid IS the uniform magnetic field. It is NOT a circuit: there is no battery, no wire, no resistor, no meter with a needle anywhere. Nothing here is the inside of a wire — one single charged particle (a proton) moves through empty space.",
+  "elements": [
+    {
+      "looks_like": "a grid of many blue arrows filling the whole space, all pointing the same way (upward)",
+      "means": "the uniform magnetic field B. Every arrow shows the field's direction at that point. The arrows never move — the field is constant everywhere."
+    },
+    {
+      "looks_like": "one glowing orange-yellow ball with a plus sign on it",
+      "means": "the proton — the moving charged particle. The badge on it shows the sign of its charge; it changes to a minus sign if the charge is flipped to negative."
+    },
+    {
+      "looks_like": "an orange arrow attached to the ball, labelled v",
+      "means": "the proton's velocity — the direction it is moving right now."
+    },
+    {
+      "looks_like": "a green arrow attached to the ball, labelled F",
+      "means": "the magnetic force on the proton. It only appears when the force is not zero, and it always points at a right angle to both v and the blue field arrows."
+    },
+    {
+      "looks_like": "a pale line trailing behind the ball",
+      "means": "the path the proton has traced. Its shape is the whole lesson: a straight line when v is along the field, a circle when v is across the field, and a spiral (helix) in between."
+    },
+    {
+      "looks_like": "small pale spheres spaced along the circular path (in the circle state)",
+      "means": "markers dropped at equal time intervals. Their equal spacing is the proof that the speed never changes — the magnetic force turns the proton but never speeds it up or slows it down."
+    },
+    {
+      "looks_like": "a 3D human right hand floating near the particle (in the right-hand-rule state only)",
+      "means": "the right-hand rule model: fingers point along v, curl toward B, and the thumb gives the direction of the force F."
+    },
+    {
+      "looks_like": "grey and peach arrows labelled v cos θ and v sin θ (in the helix state only)",
+      "means": "the two parts of the velocity: v cos θ runs along the field and drifts freely, v sin θ runs across the field and gets turned in a circle. Together they make the helix."
+    },
+    {
+      "looks_like": "a panel in the top right corner with sliders and a small +e badge",
+      "means": "the controls: charge sign (+e or −e, click to flip), speed |v| in units of 10^5 m/s, field strength B in millitesla, and the angle θ between v and B in degrees. Different states show different sliders."
+    },
+    {
+      "looks_like": "a green line of text in the top-right panel reading F = some number fN",
+      "means": "the live force readout, in femtonewtons. It updates as the sliders move; it reads exactly zero when v is along the field."
+    },
+    {
+      "looks_like": "a short label in the bottom left corner, with 'Drag to rotate, Scroll to zoom' under it",
+      "means": "the name of what this state is showing, and a reminder that the 3D view itself can be turned with the mouse."
+    }
+  ]
+}

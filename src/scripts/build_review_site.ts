@@ -64,6 +64,17 @@ type TtsSentenceJson = {
     // sentence: the player posts SET_CUE_TIME with this sentence's start so the
     // renderer fires the event on the narrated beat instead of a hardcoded *_at_ms.
     scenario_cue?: string | null;
+    // Focus Overlay (2026-08-19): narration-synced pointing cue drawn by the
+    // PLAYER above the sim iframe (never a postMessage). target must be a REAL
+    // built id (field_3d sceneObjects userData id / DOM overlay id; PCPL
+    // scene_composition id; particle_field semantic key) — never the legacy
+    // *_label glow vocabulary, which the faraday audit proved resolves to
+    // nothing. cue defaults to 'ring' at extraction.
+    focus?: { target?: string; cue?: string } | null;
+    // Legacy PCPL per-sentence focal (54 authored sentences). Absorbed at
+    // extraction as the focus fallback (cue 'ring') so it never becomes a
+    // third pointing mechanism.
+    highlight_primitive_id?: string | null;
 };
 
 type ConceptJson = {
@@ -117,6 +128,10 @@ type ReviewSentence = {
     hand_phase: 'v' | 'b' | 'f' | null;
     freeze_proton: boolean;
     scenario_cue: string | null;
+    // Resolved at build time (authored focus, else highlight_primitive_id →
+    // ring, else null). NO implicit default from focal_primitive_id — it is
+    // live in PCPL's emphasis ladder and dangling on the other renderers.
+    focus: { target: string; cue: 'spotlight' | 'ring' | 'pointer' | 'underline' } | null;
 };
 
 type ReviewState = {
@@ -336,6 +351,18 @@ function extractStates(
         }
         return { available: true, duration_ms: c.duration_ms ?? 0, file: c.file ?? '' };
     };
+    // Focus Overlay: resolve the authored focus (or the legacy PCPL
+    // highlight_primitive_id, as a ring) into one explicit build-time value.
+    const FOCUS_CUES = new Set(['spotlight', 'ring', 'pointer', 'underline']);
+    const resolveFocus = (s: TtsSentenceJson): ReviewSentence['focus'] => {
+        const t = s.focus?.target?.trim();
+        if (t) {
+            const c = s.focus?.cue;
+            return { target: t, cue: (c && FOCUS_CUES.has(c) ? c : 'ring') as NonNullable<ReviewSentence['focus']>['cue'] };
+        }
+        const h = s.highlight_primitive_id?.trim();
+        return h ? { target: h, cue: 'ring' } : null;
+    };
     return Object.keys(states)
         .sort((a, b) => stateNumber(a) - stateNumber(b))
         .map((id) => {
@@ -359,6 +386,7 @@ function extractStates(
                         hand_phase: s.hand_phase ?? null,
                         freeze_proton: s.freeze_proton === true,
                         scenario_cue: s.scenario_cue ?? null,
+                        focus: resolveFocus(s),
                     };
                 })
                 .filter((s) => s.text_en.length > 0);
@@ -711,6 +739,28 @@ ${pilotHeadTags(1)}
               touch-action:pan-y; z-index:2; }
   #wbSpacer { width:1px; height:1px; pointer-events:none; }
   #simOverlay { position:absolute; inset:0; z-index:4; touch-action:none; }
+  /* Focus Overlay (2026-08-19) — narration-synced pointing cues. z-5: above the
+     pen ink (z-4, a transient cue outranks a standing annotation), below the
+     watermark (z-6) and all chrome (z-9+). Cue motion is WALL-CLOCK CSS only,
+     never the sim clock, so cues stay alive on a frozen/pinned frame. */
+  /* SVG is a REPLACED element: inset:0 alone does NOT stretch it (it sits at its
+     300x150 intrinsic default and clips every cue invisible — same trap as the
+     pen canvas, see the #simOverlay resize note). Explicit 100% is required. */
+  #focusOverlay { position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:none; }
+  #pmFxDim { fill:rgba(0,0,0,0.55); opacity:0; transition:opacity .28s ease; }
+  #pmFxDim.fxOn { opacity:1; }
+  #pmFxRing { fill:none; stroke:#FFC64D; stroke-width:3;
+              filter:drop-shadow(0 0 6px rgba(255,198,77,0.8));
+              animation:pmFxBreathe 1.6s ease-in-out infinite; }
+  #pmFxChev { fill:#FFC64D; filter:drop-shadow(0 0 5px rgba(255,198,77,0.75));
+              animation:pmFxBob 1.1s ease-in-out infinite; }
+  #pmFxChev.fxDir-left   { --fxbx:5px;  --fxby:0px; }
+  #pmFxChev.fxDir-right  { --fxbx:-5px; --fxby:0px; }
+  #pmFxChev.fxDir-top    { --fxbx:0px;  --fxby:5px; }
+  #pmFxChev.fxDir-bottom { --fxbx:0px;  --fxby:-5px; }
+  #pmFxUline { fill:#FFC64D; animation:pmFxBreathe 1.6s ease-in-out infinite; }
+  @keyframes pmFxBreathe { 0%,100% { opacity:0.95; } 50% { opacity:0.45; } }
+  @keyframes pmFxBob { 0%,100% { transform:translate(0,0); } 50% { transform:translate(var(--fxbx,0px),var(--fxby,0px)); } }
   #simPenBar { position:absolute; top:10px; left:10px; z-index:9; display:flex; gap:6px;
                background:rgba(16,14,11,0.82); backdrop-filter:blur(6px); padding:5px 6px; border-radius:10px;
                border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,0.4); }
@@ -767,6 +817,16 @@ ${pilotHeadTags(1)}
         <span class="nm" id="pmLoadName">Viditra</span><span class="pw">powered by <b>Viditra</b></span>
       </div></div>
       <canvas id="simOverlay"></canvas>
+      <svg id="focusOverlay" aria-hidden="true">
+        <defs><mask id="pmFxMask">
+          <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
+          <rect id="pmFxCut" x="0" y="0" width="0" height="0" rx="14" fill="#000"></rect>
+        </mask></defs>
+        <rect id="pmFxDim" x="0" y="0" width="100%" height="100%" mask="url(#pmFxMask)"></rect>
+        <rect id="pmFxRing" rx="12" visibility="hidden"></rect>
+        <path id="pmFxChev" visibility="hidden"></path>
+        <rect id="pmFxUline" rx="1.5" visibility="hidden"></rect>
+      </svg>
       <div id="simPenBar">
         <span class="seg">
           <button id="simMoveBtn" class="pmbtn on" title="Move the 3D sim — drag to rotate, scroll to zoom">&#9995; Move</button>
@@ -798,6 +858,7 @@ ${pilotHeadTags(1)}
         <button id="replayBtn">&#128257; Replay</button>
         <button id="muteBtn">&#128263; Muted</button>
         <button id="ccBtn" title="Show / hide subtitles">Subtitles</button>
+        <button id="focusBtn" title="Show / hide the narration focus cues (spotlight / ring / pointer)">Focus cues</button>
         <div class="spacer"></div>
         <label class="ctl">Speed <input id="rate" type="range" min="0.7" max="1.1" step="0.05" value="0.9"></label>
         <label class="ctl"><input id="auto" type="checkbox"> Auto-advance</label>
@@ -1096,7 +1157,7 @@ ${pilotHeadTags(1)}
   function sendFreeze(f) { post({ type: 'SET_FREEZE_PROTON', frozen: f === true }); }
   function sendReset() { post({ type: 'RESET_TRAJECTORY' }); }
   function sendReplay() { post({ type: 'REPLAY_ANIMATIONS' }); }
-  function clearSync() { sendGlow(null); sendHand(null); sendFreeze(false); }
+  function clearSync() { sendGlow(null); sendHand(null); sendFreeze(false); focusClear(); }
 
   // ════════════════════════════════════════════════════════════════════════
   //  CLOCK-DRIVEN REVEAL TIMELINE (Rule 26)
@@ -1196,6 +1257,128 @@ ${pilotHeadTags(1)}
     // (Returning the LAST sentence here was the boundary "wrong-statement" bug.)
     return held;
   }
+  // ── Focus Overlay engine (2026-08-19) — narration-synced pointing cues ─────
+  //   The player owns the drawing: an SVG sibling of the pen canvas in #stage.
+  //   Per rAF (only while a cue is active) it polls the SAME-ORIGIN iframe for
+  //   the target's screen rect — iframe.contentWindow.PM_FOCUS_HOST.resolve()
+  //   — so a ring genuinely FOLLOWS a moving object through choreography. No
+  //   postMessage exists on this channel; THE EYE (which never loads this
+  //   player shell) is blind to it by construction, so baselines never move.
+  //   Miss discipline: a spotlight with no cutout is a full-screen dim — the
+  //   catastrophic failure — so after FX_MISS_FRAMES consecutive nulls the cue
+  //   hides entirely and the miss lands on window.PM_focusMisses (a gate and
+  //   the console can read it). Polling continues: a target that appears
+  //   mid-sentence (a choreography reveal) re-shows the cue.
+  var LS_FOCUS = 'pm_focus';
+  var focusOn = (function () { try { return localStorage.getItem(LS_FOCUS) !== '0'; } catch (e) { return true; } })();
+  window.PM_focusMisses = [];
+  var fxActive = null;                 // { target, cue } | null
+  var fxRaf = 0, fxNullRun = 0, fxMissLogged = false, fxWarned = {};
+  var FX_PAD = 8, FX_MISS_FRAMES = 12; // ~200 ms grace for transient nulls
+  var fxSvg = null, fxDim = null, fxCut = null, fxRing = null, fxChev = null, fxUline = null, fxStage = null;
+  function fxInit() {
+    if (fxSvg) return true;
+    fxSvg = document.getElementById('focusOverlay');
+    if (!fxSvg) return false;
+    fxDim = document.getElementById('pmFxDim'); fxCut = document.getElementById('pmFxCut');
+    fxRing = document.getElementById('pmFxRing'); fxChev = document.getElementById('pmFxChev');
+    fxUline = document.getElementById('pmFxUline'); fxStage = document.getElementById('stage');
+    return true;
+  }
+  function fxHideAll() {
+    if (!fxInit()) return;
+    fxDim.classList.remove('fxOn');
+    fxRing.setAttribute('visibility', 'hidden');
+    fxChev.setAttribute('visibility', 'hidden');
+    fxUline.setAttribute('visibility', 'hidden');
+  }
+  function focusClear() {
+    fxActive = null; fxNullRun = 0; fxMissLogged = false;
+    if (fxRaf) { cancelAnimationFrame(fxRaf); fxRaf = 0; }
+    fxHideAll();
+  }
+  function focusSet(target, cue) {
+    if (!focusOn || !target) { focusClear(); return; }
+    fxActive = { target: target, cue: cue || 'ring' };
+    fxNullRun = 0; fxMissLogged = false;
+    if (!fxRaf) fxRaf = requestAnimationFrame(focusTick);
+  }
+  function readFocusRect(token) {
+    try { var h = iframe.contentWindow.PM_FOCUS_HOST; return h ? h.resolve(token) : null; } catch (e) { return null; }
+  }
+  function fxRecordMiss() {
+    if (fxMissLogged || !fxActive) return;
+    fxMissLogged = true;
+    var t = fxActive.target;
+    if (!fxWarned[t]) {
+      fxWarned[t] = true;
+      try { console.warn('[focus] unresolvable target: ' + t + ' (cue ' + fxActive.cue + ')'); } catch (e) {}
+    }
+    try {
+      window.PM_focusMisses.push({
+        concept: CONCEPT_ID, state_id: cur().id,
+        sentence_id: (curSi >= 0 && cur().sentences[curSi]) ? cur().sentences[curSi].id : null,
+        token: t, cue: fxActive.cue, at_ms: readSimTimeMs()
+      });
+    } catch (e) {}
+  }
+  function fxChevPath(side, x, y, w, h) {
+    var cx = x + w / 2, cy = y + h / 2, g = 10, s = 24;
+    if (side === 'left')   return 'M ' + (x - g - s) + ' ' + (cy - 12) + ' L ' + (x - g) + ' ' + cy + ' L ' + (x - g - s) + ' ' + (cy + 12) + ' Z';
+    if (side === 'right')  return 'M ' + (x + w + g + s) + ' ' + (cy - 12) + ' L ' + (x + w + g) + ' ' + cy + ' L ' + (x + w + g + s) + ' ' + (cy + 12) + ' Z';
+    if (side === 'top')    return 'M ' + (cx - 12) + ' ' + (y - g - s) + ' L ' + cx + ' ' + (y - g) + ' L ' + (cx + 12) + ' ' + (y - g - s) + ' Z';
+    return 'M ' + (cx - 12) + ' ' + (y + h + g + s) + ' L ' + cx + ' ' + (y + h + g) + ' L ' + (cx + 12) + ' ' + (y + h + g + s) + ' Z';
+  }
+  function fxPaint(x, y, w, h) {
+    var c = fxActive.cue;
+    if (c === 'spotlight') {
+      fxCut.setAttribute('x', x - FX_PAD); fxCut.setAttribute('y', y - FX_PAD);
+      fxCut.setAttribute('width', w + 2 * FX_PAD); fxCut.setAttribute('height', h + 2 * FX_PAD);
+      fxDim.classList.add('fxOn');
+      fxRing.setAttribute('visibility', 'hidden'); fxChev.setAttribute('visibility', 'hidden'); fxUline.setAttribute('visibility', 'hidden');
+    } else if (c === 'pointer') {
+      // Emptiest side of #stage gets the chevron (Rule 34d-lite): it points AT
+      // the target from the side with the most room, so it never covers it.
+      var sw = fxStage.clientWidth, sh = fxStage.clientHeight;
+      var rl = x, rr = sw - (x + w), rt = y, rb = sh - (y + h);
+      var side = 'left', m = rl;
+      if (rr > m) { side = 'right'; m = rr; }
+      if (rt > m) { side = 'top'; m = rt; }
+      if (rb > m) { side = 'bottom'; m = rb; }
+      fxChev.setAttribute('d', fxChevPath(side, x, y, w, h));
+      fxChev.setAttribute('class', 'fxDir-' + side);
+      fxChev.setAttribute('visibility', 'visible');
+      fxDim.classList.remove('fxOn');
+      fxRing.setAttribute('visibility', 'hidden'); fxUline.setAttribute('visibility', 'hidden');
+    } else if (c === 'underline') {
+      fxUline.setAttribute('x', x); fxUline.setAttribute('y', y + h + 4);
+      fxUline.setAttribute('width', w); fxUline.setAttribute('height', 3);
+      fxUline.setAttribute('visibility', 'visible');
+      fxDim.classList.remove('fxOn');
+      fxRing.setAttribute('visibility', 'hidden'); fxChev.setAttribute('visibility', 'hidden');
+    } else {  // ring (the default)
+      fxRing.setAttribute('x', x - FX_PAD); fxRing.setAttribute('y', y - FX_PAD);
+      fxRing.setAttribute('width', w + 2 * FX_PAD); fxRing.setAttribute('height', h + 2 * FX_PAD);
+      fxRing.setAttribute('visibility', 'visible');
+      fxDim.classList.remove('fxOn');
+      fxChev.setAttribute('visibility', 'hidden'); fxUline.setAttribute('visibility', 'hidden');
+    }
+  }
+  function focusTick() {
+    fxRaf = 0;
+    if (!fxActive) { fxHideAll(); return; }
+    fxRaf = requestAnimationFrame(focusTick);
+    if (document.hidden || !fxInit()) return;
+    var r = readFocusRect(fxActive.target);
+    if (!r) {
+      fxNullRun++;
+      if (fxNullRun >= FX_MISS_FRAMES) { fxHideAll(); fxRecordMiss(); }
+      return;
+    }
+    fxNullRun = 0;
+    var ir = iframe.getBoundingClientRect(), sr = fxStage.getBoundingClientRect();
+    fxPaint(r.x + ir.left - sr.left, r.y + ir.top - sr.top, r.w, r.h);
+  }
   // Paint one sentence's reveals + caption. Idempotent on curSi, so postMessages
   // fire only at sentence boundaries, not every tick. The next sentence overwrites
   // the previous reveals (a sentence with glow:null actively clears — intended).
@@ -1205,6 +1388,7 @@ ${pilotHeadTags(1)}
     if (si < 0) { caption.textContent = ''; clearSync(); sendMath(null, false); return; }
     var s = cur().sentences[si];
     sendGlow(s.glow);
+    if (s.focus) { focusSet(s.focus.target, s.focus.cue); } else { focusClear(); }
     sendHand(s.hand_phase);
     sendFreeze(s.freeze_proton);
     if (s.math_show) { sendMath(s.math_show, s.math_persist); }
@@ -1740,6 +1924,22 @@ ${pilotHeadTags(1)}
     pmt('subtitles_toggle', { on: subsOn });
     applySubs();
   });
+  // Focus cues: show/hide the narration pointing overlay. Teacher-wide
+  // preference (LS_FOCUS), default ON. Player-local — deliberately NOT in the
+  // ⚙ widget panel, which is unreachable on PCPL concepts (no widgets → no ⚙).
+  var focusBtn = document.getElementById('focusBtn');
+  function applyFocusUI() {
+    if (focusBtn) { focusBtn.classList.toggle('on', focusOn); focusBtn.textContent = focusOn ? 'Focus cues' : 'Focus off'; }
+  }
+  if (focusBtn) focusBtn.addEventListener('click', function () {
+    focusOn = !focusOn;
+    try { localStorage.setItem(LS_FOCUS, focusOn ? '1' : '0'); } catch (e) {}
+    pmt('focus_toggle', { on: focusOn });
+    applyFocusUI();
+    if (!focusOn) { focusClear(); }
+    else { curSi = -1; applyReveal(activeSiAt(readSimTimeMs())); }  // re-fire the current beat
+  });
+  applyFocusUI();
   // Rule 26a: MUTE is audio ONLY — never pauses the clock, reveals, or play-intent.
   muteBtn.addEventListener('click', function () {
     muted = !muted;

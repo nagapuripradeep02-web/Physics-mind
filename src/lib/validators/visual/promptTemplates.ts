@@ -544,7 +544,7 @@ Scope: ${input.scope}
 FRAME MANIFEST (images are provided in this order):
 ${manifest}
 
-TTS sentences for this state (text + glow target(s) + optional math_show):
+TTS sentences for this state (text + glow target(s) + optional math_show + optional focus binding):
 \`\`\`json
 ${bindings}
 \`\`\`
@@ -556,12 +556,13 @@ ${legend}
 
 I1: from the BASE SCENE (Image 1), is each glow target present and identifiable?
 ${i2Guidance}
+I3: from the BASE SCENE (Image 1), is each focus binding's target present and identifiable? (The focus cue itself — spotlight/ring/pointer/underline — is drawn by the PLAYER above the sim and is NEVER in these captures. Judge only that the target element exists for the overlay to point at. Vacuous pass when no sentence declares focus.)
 Return JSON.`;
     return {
         systemPrompt: SYSTEM_I,
         userText,
         images: input.screenshots.map(s => s.pngB64),
-        expectedChecks: ['I1', 'I2'],
+        expectedChecks: ['I1', 'I2', 'I3'],
     };
 }
 

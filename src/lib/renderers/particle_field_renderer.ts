@@ -430,6 +430,48 @@ function dimFor(name) {
   return s[name] ? 1 : dimLevel();
 }
 
+// ─── Focus Overlay host (2026-08-19) ────────────────────────────────────────
+//   The review-site player draws narration-synced focus cues on ITS OWN
+//   overlay above the sim iframe and polls this same-origin host per frame.
+//   Pull-only and pixel-free — THE EYE never loads the player, so baselines
+//   are untouched. particle_field has NO per-element ids (the glow vocabulary
+//   is a closed set of semantic keys), so v1 resolves only the SUBSYSTEM keys
+//   whose geometry circuitGeom() actually provides; anything else is null and
+//   the player reports the miss. Per-element ids are deliberately deferred.
+window.PM_FOCUS_HOST = {
+  resolve: function (token) {
+    try {
+      if (typeof token !== 'string' || !token) return null;
+      if (typeof isCircuitFamily !== 'function' || !isCircuitFamily()) return null;
+      if (typeof circuitGeom !== 'function') return null;
+      var g = circuitGeom();
+      var cx = null, cy = null, w = 0, h = 0;
+      if (token === 'electrons' || token === 'particles') {
+        var top = (g.three || g.gap) ? (g.topY - g.gap) : g.topY;
+        cx = (g.leftX + g.rightX) / 2; cy = (top + g.botY) / 2;
+        w = (g.rightX - g.leftX) + 40; h = (g.botY - top) + 40;
+      } else if (token === 'pump' || token === 'battery') {
+        cx = g.leftX; cy = g.midY; w = 80; h = 96;
+      } else if (token === 'ammeter_total' || token === 'ammeter') {
+        cx = g.amMain.x; cy = g.amMain.y; w = 72; h = 72;   // drawn radius 26 + label
+      } else if (token === 'resistors') {
+        cx = (g.sR1.x + g.sR2.x) / 2; cy = g.sR1.y; w = (g.sR2.x - g.sR1.x) + 90; h = 64;
+      } else if (token === 'junction') {
+        cx = g.jLx; cy = g.topY; w = 56; h = 56;
+      } else {
+        return null;   // honest miss — never a guessed rect
+      }
+      // Canvas -> viewport offset (the p5 canvas normally sits at 0,0 but the
+      // rect read keeps this correct under any host layout).
+      var cv = document.querySelector('canvas');
+      if (!cv) return null;
+      var r = cv.getBoundingClientRect();
+      var sx = (width > 0) ? r.width / width : 1, sy = (height > 0) ? r.height / height : 1;
+      return { x: r.left + (cx - w / 2) * sx, y: r.top + (cy - h / 2) * sy, w: w * sx, h: h * sy };
+    } catch (e) { return null; }
+  }
+};
+
 // ─── Setup ──────────────────────────────────────────────────────────────────
 function setup() {
   config = window.SIM_CONFIG;
