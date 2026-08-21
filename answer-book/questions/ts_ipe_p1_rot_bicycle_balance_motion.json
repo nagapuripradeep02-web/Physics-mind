@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_bicycle_balance_motion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is it easier to balance a bicycle in motion?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The rotating wheels of a moving bicycle",
+          "have angular momentum along the wheel",
+          "axis. With no external torque, angular",
+          "momentum stays constant in magnitude",
+          "and in DIRECTION."
+        ],
+        "margin_note": "The key word is DIRECTION — the conserved direction of L is what resists tilting.",
+        "why": "Angular momentum is a vector. Tilting the bicycle would change the direction of L, and that needs a torque — so small disturbances fail to tip it.",
+        "common_mistakes": [
+          "Saying only \"because of speed\". Speed alone balances nothing; the spinning wheels do."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the spinning wheels have angular momentum whose direction is conserved.",
+          "accept": [
+            "wheels have angular momentum",
+            "direction of angular momentum cannot change",
+            "L direction constant untundi"
+          ],
+          "reject": [
+            "the bicycle does not tilt"
+          ],
+          "heard_as": [
+            "angular momentum",
+            "direction",
+            "conserved"
+          ]
+        }
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Changing the tilt would change that",
+          "direction, which needs a torque. Small",
+          "disturbances cannot supply it, so",
+          {
+            "text": "the moving bicycle does not tip over.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Close the loop: conserved direction → tilting needs torque → small pushes fail → balance.",
+        "why": "A stationary bicycle has no angular momentum to protect it — any small lean grows. Motion gives the wheels a stored direction that fights the lean.",
+        "common_mistakes": [
+          "Stopping at \"angular momentum is conserved\" without connecting it to not tipping."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tilting needs a torque the disturbances cannot supply, so the bicycle stays balanced.",
+          "accept": [
+            "tilting needs a torque",
+            "small disturbances cannot tip it",
+            "balance ga untundi"
+          ],
+          "reject": [
+            "wheels have angular momentum"
+          ],
+          "heard_as": [
+            "torque",
+            "does not tip",
+            "balanced"
+          ]
+        }
+      }
+    ]
+  }
+}

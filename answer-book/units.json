@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog.",
   "units": [
     {
       "number": 4,
@@ -415,6 +415,179 @@
           "stars": 3,
           "text": "A body freely falling from a certain height h, after striking a smooth floor, rebounds and rises to a height h/2. What is the coefficient of restitution between the floor and the body?",
           "question_id": "ts_ipe_p1_wpe_coefficient_of_restitution_rebound"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "System of Particles and Rotational Motion",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "a) State and prove the parallel axes theorem. b) For a thin flat circular disk, the radius of gyration about a diameter as axis is k. If the disk is cut along a diameter AB into two equal pieces, find the radius of gyration of each piece about AB."
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Define vector product. Explain the properties of a vector product with two examples."
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "State and prove the perpendicular axes theorem."
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "State and prove the principle of conservation of angular momentum. Explain the principle with examples."
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Distinguish between centre of mass and centre of gravity."
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque."
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Define angular velocity. Derive v = rω."
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Find the centre of mass of three particles at the vertices of an equilateral triangle. The masses of the particles are 100 g, 150 g and 200 g respectively. Each side of the equilateral triangle is 0.5 m long."
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The moment of inertia of a flywheel making 300 revolutions per minute is 0.3 kg·m². Find the torque required to bring it to rest in 20 s."
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "When 100 J of work is done on a flywheel, its angular velocity increases from 60 rpm to 180 rpm. What is the moment of inertia of the wheel?"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Is it necessary that a mass should be present at the centre of mass of any system?",
+          "question_id": "ts_ipe_p1_rot_mass_at_centre_of_mass"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Why are spokes provided in a bicycle wheel?",
+          "question_id": "ts_ipe_p1_rot_spokes_bicycle_wheel"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "By spinning eggs on a table top, how will you distinguish a hard-boiled egg from a raw egg?",
+          "question_id": "ts_ipe_p1_rot_spinning_eggs_raw_boiled"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Why should a helicopter necessarily have two propellers?",
+          "question_id": "ts_ipe_p1_rot_helicopter_two_propellers"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Why is it easier to balance a bicycle in motion?",
+          "question_id": "ts_ipe_p1_rot_bicycle_balance_motion"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 1,
+          "text": "We cannot open or close a door by applying force at the hinges. Why?",
+          "question_id": "ts_ipe_p1_rot_door_force_at_hinges"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "If the polar ice caps of the earth were to melt, what would be the effect on the length of the day?",
+          "question_id": "ts_ipe_p1_rot_polar_ice_caps_day_length"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Find the torque of the force 7i + 3j − 5k about the origin. The force acts on a particle whose position vector is i − j + k.",
+          "question_id": "ts_ipe_p1_rot_torque_numerical_origin"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Why do we prefer a spanner of longer arm to a spanner of shorter arm?",
+          "question_id": "ts_ipe_p1_rot_spanner_longer_arm"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the difference in the positions of a girl carrying a bag in one of her hands and another girl carrying a bag in each of her two hands?",
+          "source": "blm",
+          "question_id": "ts_ipe_p1_rot_girl_carrying_bag_cm"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Two rigid bodies have the same moment of inertia about their axes of symmetry. Which body will have the greater kinetic energy?",
+          "source": "blm",
+          "question_id": "ts_ipe_p1_rot_same_mi_greater_ke"
         }
       ]
     }

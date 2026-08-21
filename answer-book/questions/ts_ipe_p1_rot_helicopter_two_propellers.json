@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_helicopter_two_propellers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why should a helicopter necessarily have two propellers?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "With one propeller",
+      "marks": 1
+    },
+    {
+      "label": "The second propeller",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_problem",
+        "kind": "text",
+        "label": "With one propeller",
+        "marks": 1,
+        "mark_note": "The problem",
+        "lines": [
+          "With a single propeller, conservation",
+          "of angular momentum makes the body of",
+          "the helicopter rotate in the direction",
+          "opposite to the propeller."
+        ],
+        "margin_note": "Name the law — conservation of angular momentum. That is the mark.",
+        "why": "The helicopter starts with zero angular momentum. If the rotor takes some in one direction, the body must take an equal amount the other way — nothing else is available to absorb it.",
+        "common_mistakes": [
+          "Saying one propeller \"cannot lift enough\". The question is about rotation, not lift."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with one propeller the body would rotate opposite to it, by conservation of angular momentum.",
+          "accept": [
+            "the body rotates in the opposite direction",
+            "conservation of angular momentum",
+            "body opposite direction lo tirugutundi"
+          ],
+          "reject": [
+            "the tail propeller balances it"
+          ],
+          "heard_as": [
+            "opposite direction",
+            "angular momentum",
+            "body rotates"
+          ]
+        }
+      },
+      {
+        "id": "s2_solution",
+        "kind": "boxed_final",
+        "label": "The second propeller",
+        "marks": 1,
+        "mark_note": "The fix",
+        "lines": [
+          "The small tail propeller produces a",
+          "counter-torque that balances this",
+          "tendency, so",
+          {
+            "text": "the body of the helicopter stays steady.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say what the tail rotor does — \"counter-balances the body’s rotation\" — not just that it exists.",
+        "why": "The tail rotor pushes air sideways, giving a torque about the main axis that cancels the reaction. That is why it sits far back on the tail — a long arm needs less force.",
+        "common_mistakes": [
+          "Claiming the two propellers share the lifting. The tail rotor is for balance, not lift."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tail propeller supplies the balancing counter-torque so the body does not spin.",
+          "accept": [
+            "tail propeller counter-balances",
+            "second propeller stops the body rotating",
+            "tail rotor balance chestundi"
+          ],
+          "reject": [
+            "the body rotates in the opposite direction"
+          ],
+          "heard_as": [
+            "tail",
+            "counter",
+            "balance"
+          ]
+        }
+      }
+    ]
+  }
+}

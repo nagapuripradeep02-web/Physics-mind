@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_spinning_eggs_raw_boiled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "By spinning eggs on a table top, how will you distinguish a hard-boiled egg from a raw egg?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The test",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "equation",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A raw egg has liquid inside. When spun,",
+          "the liquid is thrown outward, so the",
+          "raw egg has the larger moment of",
+          "inertia:",
+          {
+            "text": "I(raw) > I(boiled)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say WHY the raw egg’s I is larger — the fluid moves outward. The inequality alone is half the reason.",
+        "why": "The boiled egg is solid and spins as one piece. The raw egg’s fluid lags and spreads outward, putting mass farther from the axis.",
+        "common_mistakes": [
+          "Writing the inequality the wrong way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the raw egg has liquid inside, so its moment of inertia is larger when spun.",
+          "accept": [
+            "raw egg has fluid thrown outward",
+            "I of raw is greater than I of boiled",
+            "raw egg lo liquid untundi I ekkuva"
+          ],
+          "reject": [
+            "the boiled egg spins faster"
+          ],
+          "heard_as": [
+            "raw egg",
+            "liquid",
+            "moment of inertia"
+          ]
+        }
+      },
+      {
+        "id": "s2_test",
+        "kind": "boxed_final",
+        "label": "The test",
+        "marks": 1,
+        "mark_note": "Test",
+        "lines": [
+          "Spin both with the same effort. Since",
+          "Iω is what the spin gives each egg,",
+          {
+            "text": "the boiled egg spins faster.",
+            "style": "boxed"
+          },
+          "The slower, wobbling one is raw."
+        ],
+        "margin_note": "End with the observable: which egg does what. The examiner marks the test, not just the theory.",
+        "why": "For the same angular momentum, ω = L/I — the larger I of the raw egg buys a smaller ω. The internal fluid friction also keeps stealing its rotation, which is the wobble.",
+        "common_mistakes": [
+          "Describing the difference in I but never saying which egg visibly spins faster."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the boiled egg spins faster and the raw egg spins slower, which is the test.",
+          "accept": [
+            "boiled egg spins faster",
+            "raw egg is slower and wobbles",
+            "boiled fast ga tirugutundi"
+          ],
+          "reject": [
+            "raw egg has fluid thrown outward"
+          ],
+          "heard_as": [
+            "spins faster",
+            "boiled",
+            "slower"
+          ]
+        }
+      }
+    ]
+  }
+}

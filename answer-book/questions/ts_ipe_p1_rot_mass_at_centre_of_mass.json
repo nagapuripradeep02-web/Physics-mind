@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_mass_at_centre_of_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Is it necessary that a mass should be present at the centre of mass of any system?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "No. Mass need not be present at the",
+            "style": "boxed"
+          },
+          "centre of mass of a system."
+        ],
+        "margin_note": "Answer \"no\" in the first line. The centre of mass is a mathematical point, not a particle.",
+        "why": "The centre of mass is the average POSITION of the mass, weighted by how much mass sits where. An average need not land on any actual object.",
+        "common_mistakes": [
+          "Answering yes because the name contains the word \"mass\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That no, mass need not be present at the centre of mass.",
+          "accept": [
+            "no, mass need not be present",
+            "centre of mass can be empty",
+            "no mass avasaram ledu"
+          ],
+          "reject": [
+            "a ring has its centre of mass at its centre"
+          ],
+          "heard_as": [
+            "no",
+            "need not",
+            "not necessary"
+          ]
+        }
+      },
+      {
+        "id": "s2_example",
+        "kind": "text",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: a uniform ring. Its centre of",
+          "mass is at its geometric centre, where",
+          "there is no material at all."
+        ],
+        "margin_note": "The ring is the expected example — one line names it, one line says why it works.",
+        "why": "Every particle of the ring sits on the rim, yet symmetry places the average of all of them exactly at the empty centre.",
+        "common_mistakes": [
+          "Giving a solid sphere as the example — its centre of mass has material at it, so it proves nothing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a uniform ring has its centre of mass at its empty centre.",
+          "accept": [
+            "ring is the example",
+            "centre of mass of a ring is at the centre where there is no mass",
+            "ring ki centre lo mass undadu"
+          ],
+          "reject": [
+            "no, mass need not be present"
+          ],
+          "heard_as": [
+            "ring",
+            "centre",
+            "no material"
+          ]
+        }
+      }
+    ]
+  }
+}

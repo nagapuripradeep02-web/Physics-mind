@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_polar_ice_caps_day_length",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the polar ice caps of the earth were to melt, what would be the effect on the length of the day?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What changes",
+      "marks": 1
+    },
+    {
+      "label": "The effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_change",
+        "kind": "text",
+        "label": "What changes",
+        "marks": 1,
+        "mark_note": "What changes",
+        "lines": [
+          "The melted water spreads from the poles",
+          "over the whole surface — mass moves",
+          "AWAY from the axis, so the earth’s",
+          "moment of inertia I increases."
+        ],
+        "margin_note": "The mark is for \"mass moves away from the axis → I increases\". Say the mechanism, not just the result.",
+        "why": "The poles sit ON the rotation axis, where mass contributes almost nothing to I. Spread that mass to the equator and its r — and so mr² — grows.",
+        "common_mistakes": [
+          "Saying the earth becomes heavier. The mass is the same; only its distribution changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the melt water spreads outward so the moment of inertia of the earth increases.",
+          "accept": [
+            "water spreads over the surface",
+            "moment of inertia increases",
+            "I perugutundi"
+          ],
+          "reject": [
+            "the day becomes longer"
+          ],
+          "heard_as": [
+            "spreads",
+            "moment of inertia",
+            "increases"
+          ]
+        }
+      },
+      {
+        "id": "s2_effect",
+        "kind": "boxed_final",
+        "label": "The effect",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          "Angular momentum L = Iω is conserved,",
+          "so a larger I means a smaller ω.",
+          "Since T = 2π/ω,",
+          {
+            "text": "the length of the day INCREASES.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Chain the three: I up → ω down → T up. Each arrow is part of the answer.",
+        "why": "No external torque acts, so the earth pays for its larger I with a slower spin — the same ice-skater physics, run in reverse.",
+        "common_mistakes": [
+          "Concluding the day gets shorter, by forgetting that ω and T are inverses."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with Iω conserved, ω decreases and the day becomes longer.",
+          "accept": [
+            "omega decreases",
+            "the day becomes longer",
+            "T equals two pi by omega",
+            "roju length perugutundi"
+          ],
+          "reject": [
+            "moment of inertia increases"
+          ],
+          "heard_as": [
+            "longer",
+            "omega decreases",
+            "day increases"
+          ]
+        }
+      }
+    ]
+  }
+}

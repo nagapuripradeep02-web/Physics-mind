@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_spanner_longer_arm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do we prefer a spanner of longer arm to a spanner of shorter arm?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "The turning effect on the nut is the",
+          "torque:",
+          {
+            "text": "τ = r F",
+            "style": "eq"
+          },
+          "where r is the length of the arm from",
+          "the nut to the hand."
+        ],
+        "margin_note": "Same torque idea as the door question — name r as the arm length.",
+        "why": "A nut turns about its own axis; only torque about that axis loosens it.",
+        "common_mistakes": [
+          "Talking about \"more power\". The quantity at work is torque, not power."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the turning effect is torque, τ = r F, with r the arm length.",
+          "accept": [
+            "torque is r into F",
+            "turning effect is torque",
+            "arm length r"
+          ],
+          "reject": [
+            "longer arm gives more torque"
+          ],
+          "heard_as": [
+            "torque",
+            "r F",
+            "arm"
+          ]
+        }
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "For the same applied force, a longer",
+          "arm gives a larger r, so",
+          {
+            "text": "a longer spanner gives more torque.",
+            "style": "boxed"
+          },
+          "The nut turns with less effort."
+        ],
+        "margin_note": "Say \"for the same force\" — that is the comparison the question sets up.",
+        "why": "Torque trades force for distance. The long arm lets a small hand force do what a large force would need up close.",
+        "common_mistakes": [
+          "Leaving out \"same force\", which makes the comparison meaningless."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for the same force a longer arm gives more torque, so less effort is needed.",
+          "accept": [
+            "longer arm gives more torque",
+            "same force more torque",
+            "takkuva effort tho tirugutundi"
+          ],
+          "reject": [
+            "torque is r into F"
+          ],
+          "heard_as": [
+            "longer arm",
+            "more torque",
+            "less effort"
+          ]
+        }
+      }
+    ]
+  }
+}

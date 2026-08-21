@@ -403,7 +403,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.slow();   // fleet sweep — its cost grows with every unit added to the book
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -436,7 +436,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.slow();   // fleet sweep — its cost grows with every unit added to the book
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -503,7 +503,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
     // 30 s default the moment a second unit doubled the book — a timeout, never an
     // assertion, so the gate was reporting "failed" while nothing was wrong.
-    test.slow();
+    test.setTimeout(240_000);
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
