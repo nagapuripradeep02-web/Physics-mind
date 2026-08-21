@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_two_cos_sq_minus_root3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve 2cos²θ − √3 sinθ + 1 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Convert to one ratio",
+      "marks": 1
+    },
+    {
+      "label": "Factorise the quadratic",
+      "marks": 1
+    },
+    {
+      "label": "Reject the impossible root",
+      "marks": 1
+    },
+    {
+      "label": "Solve the valid root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.1. Printed appearances: the printed tag is 'Board Paper' with no year, so appearances[] is left empty. One of the two solutions is REJECTED — sinθ = −√3 is impossible because a sine can never exceed 1 in size. Saying so is part of the answer, not an aside. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_one_ratio",
+        "kind": "equation",
+        "label": "Convert to one ratio",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The equation mixes cos² with sin, so replace cos²θ by 1 − sin²θ. Everything is then in sine alone and it becomes an ordinary quadratic.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 2cos²θ − √3 sinθ + 1 = 0",
+          "⇒ 2(1 − sin²θ) − √3 sinθ + 1 = 0",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "⇒ 2 − 2sin²θ − √3 sinθ + 1 = 0",
+          "⇒ 2sin²θ + √3 sinθ − 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²θ is replaced by 1 − sin²θ so the equation becomes a quadratic in sinθ alone.",
+          "accept": [
+            "replace cos squared by one minus sin squared so everything is in sine",
+            "convert to a single ratio using the Pythagorean identity",
+            "it becomes two sin squared plus root three sin minus three equals zero",
+            "cos square ni one minus sin square ga marchi, sine lo quadratic ga marchali",
+            "get everything into sine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus sin squared",
+            "quadratic in sine",
+            "Pythagorean identity"
+          ]
+        },
+        "why": "A trig equation with two different ratios cannot be factorised. Reducing to ONE ratio is what turns it into ordinary algebra.",
+        "common_mistakes": [
+          "Replacing sin²θ instead and leaving a cosine behind.",
+          "Sign slip when multiplying out the −2."
+        ]
+      },
+      {
+        "id": "s2_factorise_the_quadratic",
+        "kind": "equation",
+        "label": "Factorise the quadratic",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Split the middle term: 2√3 sinθ − √3 sinθ gives √3 sinθ, and the pairs then share a bracket.",
+        "lines": [
+          "⇒ 2sin²θ + 2√3 sinθ − √3 sinθ − (√3)² = 0",
+          "⇒ 2sinθ(sinθ + √3) − √3(sinθ + √3) = 0",
+          "⇒ (2sinθ − √3)(sinθ + √3) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic factorises to (2sinθ − √3)(sinθ + √3) = 0.",
+          "accept": [
+            "split the middle term and factorise to two sin theta minus root three into sin theta plus root three",
+            "factorise the quadratic in sine",
+            "the factors are two sin minus root three and sin plus root three",
+            "middle term split chesi factorise cheyyali",
+            "factor into two brackets"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "factorise",
+            "two sin theta minus root three",
+            "sin theta plus root three",
+            "split"
+          ]
+        },
+        "why": "Treating sinθ as a single unknown is what makes the factorisation ordinary. Nothing trigonometric happens in this line at all.",
+        "common_mistakes": [
+          "Reaching for the quadratic formula and producing surds.",
+          "Splitting the middle term wrongly."
+        ]
+      },
+      {
+        "id": "s3_reject_the_impossible_root",
+        "kind": "equation",
+        "label": "Reject the impossible root",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, and the part most often skipped. sinθ = −√3 is about −1.73, and a sine can never leave [−1, 1] — so that branch is discarded, with the reason written down.",
+        "lines": [
+          "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
+          "⇒ sinθ = √3/2  (or)  sinθ = −√3",
+          "But |sinθ| ≤ 1 always, and √3 > 1,",
+          "so sinθ = −√3 has NO solution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinθ = −√3 is rejected because |sinθ| ≤ 1, and the reason is stated.",
+          "accept": [
+            "sin theta equals minus root three is impossible because sine cannot exceed one in size",
+            "reject the second root, a sine is always between minus one and one",
+            "that branch has no solution since root three is bigger than one",
+            "sin theta minus root three impossible, sine range minus one to one",
+            "discard the impossible value with a reason"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "no solution",
+            "mod sin theta less than one",
+            "reject",
+            "impossible",
+            "minus root three"
+          ]
+        },
+        "why": "A quadratic always gives two roots, but a trig equation only accepts values a sine or cosine can actually take. Checking the range is part of solving, not a formality.",
+        "common_mistakes": [
+          "Carrying sinθ = −√3 forward and inventing an angle for it.",
+          "Discarding it silently with no reason given."
+        ]
+      },
+      {
+        "id": "s4_solve_the_valid_root",
+        "kind": "boxed_final",
+        "label": "Solve the valid root",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. sinθ = √3/2 is sin(π/3), so the principal value is π/3 and the sine general solution applies.",
+        "lines": [
+          "Now sinθ = √3/2 = sin(π/3)",
+          "Here the principal value is α = π/3",
+          "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/3),  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinθ = √3/2 gives principal value π/3 and general solution θ = nπ + (−1)ⁿ(π/3), n ∈ Z.",
+          "accept": [
+            "sin theta is root three over two which is sin pi by three so theta is n pi plus minus one to the n pi by three",
+            "the principal value is pi by three and the general solution follows",
+            "the answer is n pi plus minus one power n pi by three",
+            "sin theta root three by two ante sin pi by three, general solution rasta",
+            "write the general solution for the valid root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three over two",
+            "pi by three",
+            "n pi",
+            "minus one to the n"
+          ]
+        },
+        "why": "Only one branch survived, so there is only one family of solutions — but it is still an infinite family, which is why n ∈ Z must appear.",
+        "common_mistakes": [
+          "Giving only θ = π/3 and no general solution.",
+          "Using the cosine general solution."
+        ]
+      }
+    ]
+  }
+}

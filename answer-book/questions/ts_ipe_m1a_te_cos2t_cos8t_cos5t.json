@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_cos2t_cos8t_cos5t",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve cos2θ + cos8θ = cos5θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pair two terms",
+      "marks": 1
+    },
+    {
+      "label": "Factorise",
+      "marks": 1
+    },
+    {
+      "label": "Solve cos5θ = 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve 2cos3θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.1. Printed appearances: none — this answer carries no year tag.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_two_terms",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Bring everything to one side, then pair the two terms whose half-sum matches the third angle — here 2θ and 8θ average to 5θ, which is exactly the term left over.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given cos2θ + cos8θ = cos5θ",
+          "⇒ (cos2θ + cos8θ) − cos5θ = 0",
+          "⇒ 2cos((2θ+8θ)/2) cos((2θ−8θ)/2) − cos5θ = 0",
+          "⇒ 2cos5θ cos(−3θ) − cos5θ = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos2θ and cos8θ are paired with the cos C + cos D formula, whose half-sum is 5θ.",
+          "accept": [
+            "pair cos two theta and cos eight theta, their half sum is five theta which matches the other term",
+            "apply the cos C plus cos D formula to the first two",
+            "bring everything to one side and pair the two that average to five theta",
+            "modati rendu ni pair cheste half sum five theta vasthundi",
+            "use sum to product on the pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos C plus cos D",
+            "half sum",
+            "five theta",
+            "pair"
+          ]
+        },
+        "why": "Pairing the RIGHT two terms is the whole skill: 2θ and 8θ average to 5θ, so a cos5θ appears and the equation gains a common factor. Any other pairing gives nothing.",
+        "common_mistakes": [
+          "Pairing cos8θ with cos5θ instead.",
+          "Leaving the cos5θ on the right-hand side."
+        ]
+      },
+      {
+        "id": "s2_factorise",
+        "kind": "equation",
+        "label": "Factorise",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. cos(−3θ) is cos3θ because cosine is even. Then cos5θ is common to both terms and comes out.",
+        "lines": [
+          "⇒ 2cos5θ cos3θ − cos5θ = 0",
+          "  [∵ cos(−θ) = cosθ]",
+          "⇒ cos5θ (2cos3θ − 1) = 0",
+          "⇒ cos5θ = 0  (or)  2cos3θ − 1 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(−3θ) = cos3θ and cos5θ is taken out as a common factor, splitting into two branches.",
+          "accept": [
+            "cos of minus three theta is cos three theta then take cos five theta common giving two branches",
+            "factorise out cos five theta so either factor can be zero",
+            "cosine is even so the minus goes, then factor",
+            "cos minus three theta ante cos three theta, cos five theta common teeyyali",
+            "take the common factor and split into two cases"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos is even",
+            "common factor",
+            "cos five theta",
+            "two branches"
+          ]
+        },
+        "why": "A product is zero when either factor is zero, which is why factorising splits one equation into two independent ones. Each must then be solved separately.",
+        "common_mistakes": [
+          "Writing cos(−3θ) = −cos3θ.",
+          "Cancelling cos5θ instead of factorising, which loses a whole family of solutions."
+        ]
+      },
+      {
+        "id": "s3_solve_cos5_0",
+        "kind": "equation",
+        "label": "Solve cos5θ = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. cosθ = 0 has its own general solution — (2n+1)π/2 — different from cosθ = cosα. Note the equation is in 5θ, so divide at the end.",
+        "lines": [
+          "(i) If cos5θ = 0 then",
+          "  5θ = (2n+1) π/2,  n ∈ Z",
+          {
+            "text": "  θ = (2n+1) π/10,  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos5θ = 0 gives 5θ = (2n+1)π/2, so θ = (2n+1)π/10.",
+          "accept": [
+            "cos five theta equals zero gives five theta equals two n plus one pi by two so theta is two n plus one pi by ten",
+            "the cosine is zero so use the odd multiples of pi by two then divide by five",
+            "theta is two n plus one pi over ten",
+            "cos zero ki two n plus one pi by two, five tho divide cheste pi by ten",
+            "solve the first branch"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two n plus one",
+            "pi by two",
+            "pi by ten",
+            "cos equals zero"
+          ]
+        },
+        "why": "cos = 0 at every odd multiple of π/2, which is a different formula from cos = cos α. Using the wrong one here loses half the solutions.",
+        "common_mistakes": [
+          "Using 2nπ ± π/2 and missing solutions.",
+          "Forgetting to divide the whole right side by 5."
+        ]
+      },
+      {
+        "id": "s4_solve_2cos3_1",
+        "kind": "boxed_final",
+        "label": "Solve 2cos3θ = 1",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. cos3θ = 1/2 = cos(π/3), so the cosine general solution applies — then divide through by 3.",
+        "lines": [
+          "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
+          "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
+          "  ⇒ 3θ = 2nπ ± π/3",
+          {
+            "text": "  θ = 2nπ/3 ± π/9,  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos3θ = 1/2 gives 3θ = 2nπ ± π/3, so θ = 2nπ/3 ± π/9.",
+          "accept": [
+            "cos three theta is a half which is cos pi by three so three theta is two n pi plus or minus pi by three and theta is two n pi by three plus or minus pi by nine",
+            "use the cosine general solution then divide by three",
+            "theta is two n pi over three plus or minus pi over nine",
+            "cos three theta half, general solution rasi three tho divide cheyyali",
+            "solve the second branch"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos pi by three",
+            "two n pi",
+            "pi by nine",
+            "divide by three"
+          ]
+        },
+        "why": "Both terms on the right must be divided by 3, not just one. Dividing only the α is the commonest slip in this whole chapter.",
+        "common_mistakes": [
+          "Dividing only the π/3 and leaving 2nπ.",
+          "Dropping the ± sign."
+        ]
+      }
+    ]
+  }
+}

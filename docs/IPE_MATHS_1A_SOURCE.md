@@ -148,7 +148,18 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1 to 6 — 166 entries.**
+3. **Units complete so far: 1 to 7 — 174 entries.**
+   **Unit 7 (Trigonometric Equations) — COMPLETE at 8 of 8, SAQ ONLY, book pp.68-71.** The paper gives
+   it a single slot, Q15, with no Section-A and no Section-C appearance — and the book agrees: there is
+   no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ
+   chapters are 14-19). The mirror of Unit 2, which is LAQ-only. The eight are FOUR MATCHED PAIRS, one
+   pair per page, and each pair is a different method rather than a different set of numbers:
+   70.x solves a sinθ + b cosθ = c by dividing by √(a²+b²); 71.x reduces to a quadratic in ONE ratio
+   (and 71.1 rejects a root because |sinθ| ≤ 1, which is a marked step, not an aside); 72.x pairs terms
+   with a sum-to-product formula (and 72.2 adds an INTERVAL, so its answer is a finite list, not a
+   general solution); 73.x never solves anything at all — it forms a quadratic and reads the sum and
+   product of its roots off the coefficients.
+
    **Unit 6 (Trigonometric Ratios upto Transformations) — COMPLETE at 42 of 42**: 8 LAQ (book
    pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). The second-largest unit after Matrices, and
    the one with the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23
