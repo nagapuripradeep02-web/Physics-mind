@@ -89,6 +89,18 @@
  *      reveals, ghosts, the grow-in ease and camera_steps stay un-wrapped),
  *      rewind determinism, drag-seize priority, byte-identity for every state
  *      that authors NO period, and the deriveStateMeta first-cycle decision.
+ *  30  THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obeys the equation
+ *      printed above it over the WHOLE range the state's own knob can reach.
+ *      The Δ5 line-line arc branch published the raw [0, 180] vector angle
+ *      under the formula surface cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖), so
+ *      lines_and_planes_in_space STATE_6 ended its authored sweep printing
+ *      "angle = 115.0°" where its own equation gives 65.0°. Swept over
+ *      θ ∈ [25, 115] against an independent evaluation of the printed
+ *      formula, with the ARC's drawn legs asserted acute alongside the
+ *      number, the two sibling branches asserted still-correct, and the
+ *      pre-fix build (the shipped body with the fold deleted) run as the
+ *      control. Products mode is asserted UNTOUCHED — its θ (a, b) is
+ *      between vectors and stays obtuse-capable.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -6724,6 +6736,296 @@ console.log("\n=== 29. A DRAWN LINE IS THICK ENOUGH TO SEE — unit pool geometr
     const pt = drawn.scene.filter((o: Stub) => o.userData.elementType === "vg_lp_point" && o.visible)[0];
     assertTrue(`a drawn point's world radius is its authored size, applied ONCE (${pt ? (pt.geometry._ctorR * pt._scale[0]).toFixed(4) : "none drawn"})`,
       !!pt && Math.abs(pt.geometry._ctorR * pt._scale[0] - pt._scale[0]) < 1e-12 && pt._scale[0] > 0.02);
+  }
+}
+
+console.log("\n=== 30. THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obeys the equation printed above it, over the WHOLE range the state can reach (bug_class formula_surface_carries_an_absolute_value_the_readout_never_applies_so_a_state_prints_an_angle_its_own_equation_forbids) ===");
+{
+  // CRITICAL. lines_and_planes_in_space STATE_6 prints the formula surface
+  //   cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)
+  // and then sweeps its own theta_deg knob from 69.3846° to 115° over nine
+  // seconds. The Δ5 line-line arc branch published the RAW [0, 180] vector
+  // angle, so the readout ended the sweep at "angle = 115.0°" — under an
+  // equation whose modulus makes 115° impossible. |cos 115°| = 0.4226, which
+  // is 65.0°. The frozen frame (pinned mid-rotation) read 92.2° where the
+  // equation gives 87.8°. A Class-12 student who copies the readout into a
+  // CBSE paper is marked wrong: the angle between two LINES is the acute one
+  // by definition (NCERT Cl.12 §11.4, and the same in IB HL / A-level FM),
+  // because a line has no direction and d/−d name the same line.
+  //
+  // THE DISCRIMINATING QUANTITY IS THE READOUT AT THE FAR END OF THE STATE'S
+  // OWN KNOB RANGE — not at the authored default. Every weaker sampling was
+  // green on the defect: at the default (69.3846°) the fold is a no-op, the
+  // arithmetic of the raw angle was always right, §19b's reveal gating was
+  // right, and THE EYE's frozen pin lands on a single frame with no equation
+  // to compare against. The state SHIPPED with the wrong number for the last
+  // nine seconds of its script.
+  //
+  // The two sibling branches (line-vs-normal, line-vs-plane) were always
+  // right — vgLinePlaneAngles folds inside itself with Math.abs — so this is
+  // the odd-one-out of a family of three, which is asserted below too.
+
+  // The SHIPPED STATE_6 vg block, verbatim (the rotation axis is chosen so
+  // the M1..M2 angle tracks theta_deg exactly, which is what lets the
+  // assertions below be stated against the KNOB).
+  const D1: V3 = [1, 0.15, 0.35];
+  const D2: V3 = [0.15, -0.5, 1];
+  const THETA0 = 69.3846;
+  const BLOCK: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 1, theta_deg: THETA0, aux_a: 0,
+    value_readouts: ["angle_lines_deg"],
+    controls: ["theta_deg"],
+    control_ranges: { theta_deg: { min: 25, max: 115 } },
+    lines: [
+      { id: "M1", point: [0, 0, 0], dir: D1, role: "dir1", label: "d₁", lambda_span: [-4.5, 4.5], reveal_at_ms: 0, grow_ms: 1200 },
+      { id: "M2", point: [0, 0, 0], dir: D2, role: "dir2", label: "d₂", lambda_span: [-4.5, 4.5], reveal_at_ms: 0, grow_ms: 1200,
+        rotate: { about: [0.287668, -0.838664, -0.462482], zero: THETA0, knob: "theta_deg" } },
+    ],
+    angle_arcs: [{ id: "arc1", between: ["M1", "M2"], readout: "angle_lines_deg", apex_at_origin: true }],
+    animate: [{ knob: "theta_deg", from: THETA0, to: 115, start_ms: 10500, duration_ms: 9000, easing: "linear" }],
+  };
+  const SETTLED = 3000;   // past the 1200 ms grow-in: every subject has arrived
+
+  /** THE EQUATION ON THE SCREEN, implemented independently of the renderer. */
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const rodrigues = (v: V3, axis: V3, deg: number): V3 => {
+    const k = nrm(axis), th = deg * Math.PI / 180, c = Math.cos(th), s = Math.sin(th);
+    const kv = cross3(k, v), kd = dot3(k, v);
+    return [v[0] * c + kv[0] * s + k[0] * kd * (1 - c),
+            v[1] * c + kv[1] * s + k[1] * kd * (1 - c),
+            v[2] * c + kv[2] * s + k[2] * kd * (1 - c)];
+  };
+  const d2At = (theta: number): V3 => rodrigues(D2, [0.287668, -0.838664, -0.462482], theta - THETA0);
+  /** cos θ = |d₁·d₂| / (‖d₁‖‖d₂‖) — the printed formula, evaluated. */
+  const FORMULA = (theta: number) => {
+    const b = d2At(theta);
+    return Math.acos(Math.min(1, Math.abs(dot3(D1, b)) / (len3(D1) * len3(b)))) * 180 / Math.PI;
+  };
+  /** The same WITHOUT the modulus — what the state used to print. */
+  const RAW = (theta: number) => {
+    const b = d2At(theta);
+    return Math.acos(Math.max(-1, Math.min(1, dot3(D1, b) / (len3(D1) * len3(b))))) * 180 / Math.PI;
+  };
+
+  /** The slack the authored 6-dp rotation axis costs, in degrees (measured). */
+  const AXIS_DP = 5e-5;
+
+  const resolveAt = (theta: number, src = E) => src.vgResolveLinesPlanes(BLOCK, { theta_deg: theta }, SETTLED);
+  const readoutAt = (theta: number, src = E) => resolveAt(theta, src).readouts.angle_lines_deg as number;
+  /** The panel TEXT a teacher reads, off the shipped label + precision table. */
+  const T30 = vgTextFns({}, fakeDom().document);
+  const rowAt = (theta: number, src = E) => T30.vgReadoutLine("angle_lines_deg", resolveAt(theta, src).readouts);
+
+  // ── (a) THE FIXTURE REALLY REACHES THE OBTUSE REGIME ─────────────────────
+  //   Asserted BEFORE the claim, so "never above 90" cannot pass vacuously on
+  //   a sweep that never crosses it.
+  {
+    check("the fixture reproduces the authored default: at the knob's zero the angle IS 69.3846°",
+      readoutAt(THETA0), 69.3846, 1e-4, "°");
+    assertTrue(`the raw vector angle DOES cross 90° inside the state's own control range (θ=115 → raw ${RAW(115).toFixed(1)}°) — the sweep is not vacuous`,
+      RAW(115) > 90 + 5);
+    // The authored rotation axis carries SIX decimal places, so the angle
+    // tracks the knob to ~2e-5°, not to machine epsilon. AXIS_DP is that
+    // budget, stated once: it is the only slack any assertion below is
+    // allowed, and it is four orders finer than the 1 dp the panel prints.
+    check("the knob is faithful — the raw angle tracks theta_deg one-for-one (the authored 6-dp rotation axis)",
+      RAW(115), 115, AXIS_DP, "°");
+  }
+
+  // ── (b) THE CLAIM: over θ ∈ [25, 115], the readout NEVER exceeds 90° ─────
+  {
+    let over = 0, worst = 0, worstAt = 0, samples = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      const v = readoutAt(th);
+      samples++;
+      if (!(v <= 90 + 1e-9)) { over++; if (v > worst) { worst = v; worstAt = th; } }
+    }
+    check(`over ${samples} sampled knob values across the state's WHOLE authored range [25, 115], the printed angle is never above 90°`
+      + (over ? ` (worst ${worst.toFixed(1)}° at θ=${worstAt})` : ""), over, 0, 0);
+  }
+
+  // ── (c) IT IS THE PRINTED EQUATION, NOT MERELY A CLAMP ──────────────────
+  //   min(v, 90) would also satisfy (b) and would be wrong everywhere past
+  //   90: the readout must equal |cos| evaluated, which FALLS.
+  {
+    let bad = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      if (Math.abs(readoutAt(th) - FORMULA(th)) > 1e-9) bad++;
+    }
+    check("...and at every one of those samples it EQUALS cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖) evaluated independently (not a clamp)", bad, 0, 0);
+    check("θ=115° (the end of the authored sweep): the readout is the equation's answer, 65.0°", readoutAt(115), 65, AXIS_DP, "°");
+    check("θ=92.2° (the frozen frame founder-proxy read as 92.2°): now 87.8°", readoutAt(92.2), 87.8, AXIS_DP, "°");
+    check("θ=90° exactly: the turning point reads 90.0°", readoutAt(90), 90, AXIS_DP, "°");
+    // The SHAPE of the fix, on the panel a teacher reads: up to 90, then back.
+    assertTrue(`the printed row rises and then FALLS — "${rowAt(80)}" → "${rowAt(90)}" → "${rowAt(110)}"`,
+      rowAt(80) === "angle = 80.0°" && rowAt(90) === "angle = 90.0°" && rowAt(110) === "angle = 70.0°");
+    // (The acute half is asserted BIT-IDENTICAL to the pre-fix build in (g),
+    // where that build exists — a comparison against this file's own
+    // implementation would only show that two implementations agree.)
+  }
+
+  // ── (d) THE ARC ON SCREEN AGREES WITH THE NUMBER ────────────────────────
+  //   A folded number beside an un-folded wedge is the same defect wearing
+  //   the other face: the picture would keep opening while the readout came
+  //   back down.
+  {
+    let mismatch = 0, obtuseWedge = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      const arc = resolveAt(th).arcs[0];
+      if (!arc || Math.abs((arc.value_deg as number) - readoutAt(th)) > 1e-12) mismatch++;
+      // The DRAWN wedge, from the two unit legs the arc mesh is built on.
+      if (dot3(arc.u0 as V3, arc.u1 as V3) < -1e-12) obtuseWedge++;
+    }
+    check("the arc's own value_deg is the same number as the readout at every sample", mismatch, 0, 0);
+    check("...and the DRAWN wedge (u0·u1 ≥ 0) is on the acute side at every sample", obtuseWedge, 0, 0);
+    // The apex is still the authored one — the fold moves the leg, not the arc.
+    const arc115 = resolveAt(115).arcs[0];
+    assertTrue("apex_at_origin still holds after the fold (the fix moves a leg, never the apex)",
+      (arc115.apex as V3).every((c: number) => Math.abs(c) < 1e-12));
+  }
+
+  // ── (e) THE ODD ONE OUT OF THREE: the sibling branches were always right ─
+  {
+    const RES = grabFn("vgResolveLinesPlanes");
+    const arcPass = RES.slice(RES.indexOf("var srcArcs = vgList(d.angle_arcs);"), RES.indexOf("if (projAngles) {"));
+    check("all THREE arc-subject branches now fold onto the acute side (line-normal, line-plane, line-line)",
+      (arcPass.match(/if \(vgDotVec\(u0, u1\) < 0\) u1 = vgScaleVec\(u1, -1\);/g) || []).length, 3, 0);
+    assertTrue("the line-line branch folds BEFORE it takes the value (the readout and the leg come from one decision)",
+      arcPass.indexOf("if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);\n                val = vgAngleDeg(u0, u1);") > 0);
+    // The siblings' fold is INSIDE their helper, which is why they never had
+    // this bug — asserted so a future edit to vgLinePlaneAngles cannot quietly
+    // widen their range.
+    const LPA = E.vgLinePlaneAngles([1, 0.2, 0.3], [-0.2, -1, 0.1]);
+    assertTrue(`vgLinePlaneAngles still returns both angles in [0, 90] even for an anti-aligned normal (to_normal ${LPA.to_normal.toFixed(2)}°, to_plane ${LPA.to_plane.toFixed(2)}°)`,
+      LPA.to_normal >= 0 && LPA.to_normal <= 90 && LPA.to_plane >= 0 && LPA.to_plane <= 90);
+    // vgAngleDeg itself is deliberately NOT folded — it is the general
+    // direction-vs-direction helper, and the fold belongs to the subject.
+    check("vgAngleDeg is still the raw [0, 180] helper (the fold is at the call site, not in the helper)",
+      E.vgAngleDeg([1, 0, 0], [-1, 0, 0]), 180, 1e-9, "°");
+    check("...and it has exactly ONE caller in the whole renderer (the branch fixed here)",
+      (SRC.match(/vgAngleDeg\(/g) || []).length, 2, 0);   // the declaration + the one call
+  }
+
+  // ── (f) THE AUTHORED SWEEP, THROUGH THE SHIPPED RAMP ────────────────────
+  //   (b) drives the knob directly (the teacher's slider). This drives it the
+  //   way the STATE does — vgAnimValue over state-local ms — because that is
+  //   the path that actually shipped the wrong number.
+  {
+    let over = 0, samples = 0; let last = -1;
+    for (let ms = 10500; ms <= 19500; ms += 250) {
+      const th = E.vgAnimValue(BLOCK.animate, "theta_deg", ms, THETA0);
+      const v = readoutAt(th);
+      samples++;
+      if (v > 90 + 1e-9) over++;
+      last = v;
+    }
+    check(`over ${samples} instants of the state's own 9 s theta ramp, the readout never exceeds 90°`, over, 0, 0);
+    check("...and the ramp's final instant prints the equation's answer", last, 65, AXIS_DP, "°");
+  }
+
+  // ── (g) THE NEGATIVE CONTROL: the shipped body with the fold removed ────
+  //   The SHIPPED resolver text with exactly the one added line deleted from
+  //   the line-line branch — the defect EXECUTED, not paraphrased. Guarded:
+  //   a control that cannot plant its defect THROWS.
+  {
+    const FOLD = "if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);\n                val = vgAngleDeg(u0, u1);";
+    const PRE_TEXT = "val = vgAngleDeg(u0, u1);";
+    const unfold = (name: string, src: string) => {
+      if (name !== "vgResolveLinesPlanes") return src;
+      if (src.indexOf(FOLD) < 0) {
+        throw new Error(
+          "§30 NEGATIVE CONTROL CANNOT BE BUILT: the line-line fold no longer matches "
+          + JSON.stringify(FOLD) + ". Re-anchor it and re-watch the control fail.");
+      }
+      return src.replace(FOLD, PRE_TEXT);
+    };
+    const PRE = buildVgSandbox(unfold) as any;
+    assertTrue("the pre-fix branch really was planted (θ=115 resolves through the un-folded body)",
+      typeof readoutAt(115, PRE) === "number");
+    expectFail(`the pre-fix readout stays at or below 90° across θ ∈ [25, 115] (it reaches ${readoutAt(115, PRE).toFixed(1)}° — the shipped defect)`,
+      (() => { for (let th = 25; th <= 115 + 1e-9; th += 1) if (readoutAt(th, PRE) > 90 + 1e-9) return false; return true; })());
+    expectFail(`the pre-fix readout obeys the formula surface printed above it at θ=115 (it prints ${readoutAt(115, PRE).toFixed(1)}°, the equation gives ${FORMULA(115).toFixed(1)}°)`,
+      Math.abs(readoutAt(115, PRE) - FORMULA(115)) < 1e-9);
+    expectFail(`the pre-fix frozen frame at θ=92.2° reads the equation's 87.8° (it reads ${readoutAt(92.2, PRE).toFixed(1)}° — the frame founder-proxy captured)`,
+      Math.abs(readoutAt(92.2, PRE) - 87.8) < 1e-9);
+    expectFail(`the pre-fix panel TEXT never prints an angle its own equation forbids (it prints "${T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).readouts)}")`,
+      (T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).readouts) || "").indexOf("115.0") < 0);
+    expectFail(`the pre-fix ARC is drawn on the acute side at θ=115 (u0·u1 = ${dot3(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u0, PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u1).toFixed(4)})`,
+      dot3(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u0,
+           PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u1) >= -1e-12);
+
+    // THE BLAST RADIUS, measured: on the acute half of this state, and on a
+    // block with NO line-line arc at all, the two builds agree BIT FOR BIT.
+    // The acute half of this state's own range, swept: this fix may not move
+    // a single number the state was already right about. Stopped one degree
+    // SHORT of the crossing, because θ = 90 is not on the acute side — it is
+    // the boundary, and is asserted separately below.
+    let moved = 0, sweptBelow = 0;
+    for (let th = 25; th <= 89; th += 1) {
+      sweptBelow++;
+      if (JSON.stringify(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: th }, SETTLED))
+        !== JSON.stringify(E.vgResolveLinesPlanes(BLOCK, { theta_deg: th }, SETTLED))) moved++;
+    }
+    check(`below 90° the fix moves NOTHING — the pre-fix and fixed resolvers agree BIT FOR BIT at all ${sweptBelow} sampled knob values`, moved, 0, 0);
+    // AT the crossing the two builds DO differ, and honestly so: the authored
+    // 6-dp axis puts the true angle at 90.0000190° when the knob says 90, so
+    // d₁·d₂ is -4.0e-7 and the fold correctly fires. The difference is one
+    // part in five million — four orders below the 1 dp the panel prints, so
+    // both builds render the same row. Asserted rather than hidden, because a
+    // sweep that quietly skipped its own boundary would be the same kind of
+    // partial sampling that let this bug ship.
+    {
+      const preTxt = T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 90 }, SETTLED).readouts);
+      const fixTxt = rowAt(90);
+      const delta = Math.abs(readoutAt(90, PRE) - readoutAt(90));
+      assertTrue(`at θ=90 exactly the two builds differ by ${delta.toExponential(1)}° (the 6-dp axis overshoots the crossing) — inside the axis budget`,
+        delta > 0 && delta < AXIS_DP);
+      assertTrue(`...and the RENDERED row is identical either way ("${preTxt}" === "${fixTxt}") — no teacher can see the boundary`,
+        preTxt === fixTxt && fixTxt === "angle = 90.0°");
+    }
+    const noArc = JSON.parse(JSON.stringify(BLOCK));
+    delete noArc.angle_arcs;
+    let allSame = true;
+    for (const th of [25, 60, 92.2, 115]) {
+      if (JSON.stringify(PRE.vgResolveLinesPlanes(noArc, { theta_deg: th }, SETTLED))
+        !== JSON.stringify(E.vgResolveLinesPlanes(noArc, { theta_deg: th }, SETTLED))) allSame = false;
+    }
+    assertTrue("with no line-line arc authored, the two builds agree BIT FOR BIT at every θ (the change is exactly one branch)", allSame);
+  }
+
+  // ── (h) MODE "products" IS UNTOUCHED — θ (a, b) STAYS OBTUSE-CAPABLE ────
+  //   vector_products_in_space teaches the SIGN of a·b, so its θ row must be
+  //   free to read past 90°. Two independent gates say it cannot be affected,
+  //   and both are asserted rather than argued: the resolver is never entered
+  //   in products mode, and that row is the theta_deg KNOB, which never
+  //   reaches vgAngleDeg at all.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    for (const th of [115, 150]) {
+      const dom = fakeDom();
+      const win: Record<string, unknown> = {};
+      runFrame({ a_mag: 3, b_mag: 2, theta_deg: th, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+      assertTrue(`products mode at θ=${th}: the resolver is never entered (PM_vgLinesPlanes === null)`, win.PM_vgLinesPlanes === null);
+      const html = dom.get("vg_readout").innerHTML;
+      const m = new RegExp('<div id="vg_readout_theta_deg">([^<]*)</div>').exec(html);
+      assertTrue(`products mode at θ=${th}: the θ row still prints the OBTUSE value — "${m ? m[1] : "(no row)"}"`,
+        !!m && m[1] === "θ = " + th + "°");
+      // ...and the physics that depends on it is still signed.
+      const v = (win.PM_vgVectors as any);
+      assertTrue(`products mode at θ=${th}: a·b is still NEGATIVE (${dot3(v.a as V3, v.b as V3).toFixed(3)}) — the obtuse lesson survives`,
+        dot3(v.a as V3, v.b as V3) < 0);
+    }
+    // The static half of the same guarantee, off the SHIPPED source: the one
+    // vgAngleDeg call sits inside the resolver, which has one mode-gated call
+    // site — so no products path can reach the fold.
+    const RES = grabFn("vgResolveLinesPlanes");
+    assertTrue("the only vgAngleDeg call in the renderer is inside vgResolveLinesPlanes", RES.indexOf("vgAngleDeg(") > 0);
+    assertTrue("...and vgResolveLinesPlanes has exactly one call site, behind d.mode === \"lines_planes\"",
+      (SRC.match(/lpRes = vgResolveLinesPlanes\(/g) || []).length === 1
+      && SRC.indexOf('if (d.mode === "lines_planes") {\n            lpRes = vgResolveLinesPlanes(') > 0);
+    assertTrue("angle_lines_deg is a lines_planes token — it has no publish site outside the resolver",
+      (SRC.match(/out\.readouts\.angle_lines_deg =/g) || []).length === 2
+      && (SRC.match(/angle_lines_deg =/g) || []).length === 2);
   }
 }
 

@@ -12779,14 +12779,23 @@ export const FIELD_3D_RENDERER_CODE = `
     function vgLerpVec(u, v, t) {
         return [u[0] + (v[0] - u[0]) * t, u[1] + (v[1] - u[1]) * t, u[2] + (v[2] - u[2]) * t];
     }
-    // Undirected angle between two directions, in DEGREES over the full
-    // [0, 180]. Deliberately NOT folded to the acute [0, 90] "angle between two
-    // lines" convention: the state that teaches this rotates one direction
-    // continuously from 25 to 115 degrees and the readout must track it
-    // continuously. Folding would make the printed number turn around at 90
-    // while the picture kept rotating — a readout that disagrees with the
-    // motion beside it. The acute convention is one subtraction away for any
-    // state that wants it, and is authored as a separate readout token.
+    // Undirected angle between two DIRECTIONS, in DEGREES over the full
+    // [0, 180]. Not folded to the acute [0, 90] convention, because a
+    // direction genuinely has a sense: this is also the helper any future
+    // direction-vs-direction claim reads, and folding at the bottom would
+    // remove information no caller could get back.
+    //   The FOLD BELONGS TO THE SUBJECT, and lives at the one call site that
+    // has one (the Δ5 line-line arc), where two LINES make it the definition
+    // rather than a preference. The original of this comment argued the
+    // opposite — that the readout must track the rotation continuously past
+    // 90° or it would "disagree with the motion beside it" — and that
+    // reasoning shipped bug_class formula_surface_carries_an_absolute_value_
+    // the_readout_never_applies_so_a_state_prints_an_angle_its_own_equation_
+    // forbids: the state printed 115.0° under cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖),
+    // which gives 65.0°. Continuity of the NUMBER is not a physics
+    // constraint; agreement with the equation on screen is. The arc is folded
+    // with the value there, so the picture turns around too and nothing
+    // disagrees with anything.
     function vgAngleDeg(u, v) {
         var lu = vgLenVec(u), lv = vgLenVec(v);
         if (!(lu > VG_MEET_EPS && lv > VG_MEET_EPS)) return null;
@@ -13523,6 +13532,44 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);
             } else if (ctx.lines[mB]) {
                 u1 = ctx.lines[mB].dir;
+                // Δ5b — bug_class formula_surface_carries_an_absolute_value_
+                // the_readout_never_applies_so_a_state_prints_an_angle_its_
+                // own_equation_forbids (CRITICAL). The angle between two
+                // LINES is the ACUTE one. A line has no direction — d and −d
+                // name the same line — so the convention is
+                // cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖), and the modulus IS the
+                // definition (NCERT Cl.12 §11.4; the same in IB HL and
+                // A-level FM). The two branches above were already right, and
+                // said so, because vgLinePlaneAngles folds inside itself with
+                // Math.abs and returns both of its angles in [0, 90]. Only
+                // this branch published the raw [0, 180] vector angle, so a
+                // state sweeping its own direction knob from 25° to 115°
+                // printed "angle = 115.0°" directly beneath a formula surface
+                // that forbids it — the printed equation evaluates to 65.0°,
+                // and a student who copies the readout into a paper is marked
+                // wrong.
+                //   Folded HERE, at the single value source, rather than
+                // inside vgAngleDeg: that helper is the general undirected
+                // angle between two DIRECTIONS and stays [0, 180]. What
+                // decides the fold is the SUBJECT — two lines — and only this
+                // branch knows it. One assignment therefore corrects all
+                // three surfaces that read val: the inline publish below,
+                // the generic o.readout publish after the push, and the
+                // arc's own value_deg label.
+                //   u1 is folded WITH it, on the sibling pattern, so the arc
+                // is DRAWN on the acute side the number names — past 90° the
+                // readout turns around and comes back down, and the wedge on
+                // screen comes down with it. A number that reversed while the
+                // picture kept opening would be this same defect wearing the
+                // other face.
+                //   SCOPE: mode "lines_planes" only, twice over — the whole
+                // resolver runs behind d.mode === "lines_planes" at its one
+                // call site, and angle_lines_deg is a lines_planes token.
+                // Mode "products" shows θ (a, b) between VECTORS, which is
+                // legitimately obtuse (the sign of a·b is Act I's whole
+                // lesson); it prints its own theta_deg KNOB and never reaches
+                // this branch or vgAngleDeg. It is untouched.
+                if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);
                 val = vgAngleDeg(u0, u1);
                 if (o.apex_at_origin === true) arcApex = [0, 0, 0];
                 if (aShown) out.readouts.angle_lines_deg = val;
