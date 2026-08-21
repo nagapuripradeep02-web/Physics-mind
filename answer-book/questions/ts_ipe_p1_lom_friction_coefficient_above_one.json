@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_friction_coefficient_above_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can the coefficient of friction be greater than one?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "Yes, μ can be greater than one.",
+            "style": "boxed"
+          },
+          "For most pairs of surfaces it is less",
+          "than one, but that is not a rule."
+        ],
+        "margin_note": "Answer yes in the first line. A hedged opening loses the mark.",
+        "why": "μ is only the ratio f/N that a particular pair of surfaces happens to give. Nothing in the definition caps it at one.",
+        "common_mistakes": [
+          "Answering \"no\" because every textbook example happens to be below one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, the coefficient of friction can be greater than one.",
+          "accept": [
+            "yes it can be greater than one",
+            "yes more than one is possible",
+            "avunu one kanna ekkuva undocchu"
+          ],
+          "reject": [
+            "polished surfaces increase adhesion"
+          ],
+          "heard_as": [
+            "yes",
+            "greater than one",
+            "can be"
+          ]
+        }
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "When two surfaces are highly polished,",
+          "the molecules come very close and",
+          "adhesion between them increases. Then",
+          "f can exceed N, so μ = f/N is above 1."
+        ],
+        "margin_note": "Finish on μ = f/N. The ratio is what makes \"greater than one\" mean anything.",
+        "why": "The board wants the adhesion reason. The honest general statement is broader: μ is a measured ratio, and pairs such as rubber on rubber pass 1 with no polishing at all.",
+        "common_mistakes": [
+          "Saying polishing always REDUCES friction. Past a point, very smooth surfaces stick."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That highly polished surfaces increase adhesion, so friction can exceed the normal force.",
+          "accept": [
+            "polished surfaces adhesion increases",
+            "friction becomes more than normal force",
+            "mu is f by N so it can cross one",
+            "polish chesthe adhesion perugutundi"
+          ],
+          "reject": [
+            "yes it can be greater than one"
+          ],
+          "heard_as": [
+            "polished",
+            "adhesion",
+            "f by N"
+          ]
+        }
+      }
+    ]
+  }
+}

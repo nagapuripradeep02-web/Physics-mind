@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_impulse_units_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the SI unit and the dimensional formula of impulse. Is impulse the same physical quantity as momentum?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Unit and dimensions",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_units",
+        "kind": "equation",
+        "label": "Unit and dimensions",
+        "marks": 1,
+        "mark_note": "Unit",
+        "lines": [
+          "Impulse J = force × time of contact.",
+          {
+            "text": "SI unit: newton second (N s)",
+            "style": "eq"
+          },
+          {
+            "text": "Dimensional formula: [M L T⁻¹]",
+            "style": "eq"
+          }
+        ],
+        "why": "Multiplying force by time removes one power of T from [M L T⁻²], which is exactly the dimensions of momentum.",
+        "common_mistakes": [
+          "Writing the unit as N/s instead of N s."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SI unit of impulse is newton second and its dimensional formula is M L T to the minus one.",
+          "accept": [
+            "newton second",
+            "M L T to the power minus one"
+          ],
+          "reject": [
+            "they are not the same quantity"
+          ],
+          "heard_as": [
+            "newton second",
+            "dimensional formula"
+          ]
+        }
+      },
+      {
+        "id": "s2_compare",
+        "kind": "boxed_final",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "They share the same unit and the same",
+          "dimensions, because impulse IS the change",
+          "in momentum:",
+          {
+            "text": "J = F t = Δp",
+            "style": "boxed"
+          },
+          "Impulse describes a process; momentum",
+          "describes a state at one instant."
+        ],
+        "why": "Same dimensions does not always mean the same quantity (torque and work share dimensions and are different) — here they genuinely match, because one is the change in the other.",
+        "common_mistakes": [
+          "Saying they are unrelated because one has \"time\" in it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That impulse equals the change in momentum, so they share unit and dimensions.",
+          "accept": [
+            "impulse is the change in momentum",
+            "J equals delta p",
+            "same unit and dimensions"
+          ],
+          "reject": [
+            "newton second"
+          ],
+          "heard_as": [
+            "change in momentum",
+            "delta p"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_keplers_law_of_areas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Kepler’s law of areas.",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 8,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "What it means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the March 2026 AP Inter Physics Paper-I (NEW) scan held in the corpus — Section A, question 8, read directly off the page. The Fastrack asks all THREE Kepler laws together at 4 marks (Unit 9 SAQ 4); a standalone statement of the law of areas is a different cell, and it is the one the AP paper actually asked. AP Section A carries 1 mark; this card is authored at the TS 2-mark VSAQ length because the bank is TS-shaped. The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Kepler’s second law — the law of areas:",
+            "style": "heading"
+          },
+          "The line joining a planet to the sun sweeps out",
+          "equal areas in equal intervals of time."
+        ],
+        "why": "The law says nothing about the shape of the orbit — only about how fast the planet moves along it.",
+        "common_mistakes": [
+          "Saying the planet sweeps equal ANGLES in equal times, which is false for an ellipse."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line joining a planet to the sun sweeps out equal areas in equal intervals of time.",
+          "accept": [
+            "equal areas in equal times",
+            "line joining planet to sun sweeps equal areas"
+          ],
+          "reject": [
+            "d A by d t is constant"
+          ],
+          "heard_as": [
+            "equal areas",
+            "sweeps"
+          ]
+        }
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it means",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          {
+            "text": "dA/dt = constant",
+            "style": "boxed"
+          },
+          "So a planet moves FASTER when it is nearer the",
+          "sun and slower when it is farther away. The law",
+          "is the conservation of angular momentum: the",
+          "sun’s pull has no turning effect about the sun."
+        ],
+        "why": "A force pointed straight at the sun can never exert a torque about the sun, so the planet’s angular momentum — and with it the areal rate — cannot change.",
+        "common_mistakes": [
+          "Saying the planet moves faster when it is farther from the sun."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the areal velocity d A by d t is constant, so the planet moves faster near the sun.",
+          "accept": [
+            "d A by d t is constant",
+            "faster near the sun",
+            "conservation of angular momentum"
+          ],
+          "reject": [
+            "equal areas in equal times"
+          ],
+          "heard_as": [
+            "areal velocity",
+            "faster"
+          ]
+        }
+      }
+    ]
+  }
+}

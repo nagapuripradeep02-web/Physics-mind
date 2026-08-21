@@ -1,0 +1,200 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_shock_absorbers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why are shock absorbers used in motor cycles and cars?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The jerk",
+      "marks": 1
+    },
+    {
+      "label": "What is fixed",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_jerk",
+        "kind": "equation",
+        "label": "The jerk",
+        "marks": 1,
+        "mark_note": "The jerk",
+        "lines": [
+          "On an uneven road the vehicle receives",
+          "a jerk — a sudden change of momentum.",
+          {
+            "text": "Impulse = F × Δt = Δp",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Open with impulse. Without it there is no way to talk about the time at all.",
+        "why": "A bump is not a force question, it is an impulse question: the road hands the vehicle a fixed change of momentum.",
+        "common_mistakes": [
+          "Answering only \"to give comfort\", with no physics."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bump gives a jerk, which is a change of momentum, and impulse = F × Δt.",
+          "accept": [
+            "jerk is a change of momentum",
+            "impulse equals force into time",
+            "road gives an impulse",
+            "jerk vachhinapudu momentum marutundi"
+          ],
+          "reject": [
+            "force is reduced"
+          ],
+          "heard_as": [
+            "jerk",
+            "impulse",
+            "change of momentum"
+          ]
+        }
+      },
+      {
+        "id": "s2_fixed",
+        "kind": "text",
+        "label": "What is fixed",
+        "marks": 1,
+        "mark_note": "What is fixed",
+        "lines": [
+          "The bump decides Δp, so that change",
+          "cannot be avoided. Only the TIME taken",
+          "for the change can be altered."
+        ],
+        "margin_note": "This is the hinge of the answer — say plainly which quantity you cannot change.",
+        "why": "You cannot argue the momentum change away. Every design choice left is about how long the change is spread over.",
+        "common_mistakes": [
+          "Claiming shock absorbers reduce the change in momentum. They do not — they stretch its duration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the change in momentum is fixed by the bump and only the time can be changed.",
+          "accept": [
+            "change in momentum is fixed",
+            "only the time can be increased",
+            "delta p is fixed only delta t changes",
+            "momentum change fix, time matrame marchagalam"
+          ],
+          "reject": [
+            "jerk is a change of momentum"
+          ],
+          "heard_as": [
+            "fixed",
+            "only the time",
+            "cannot change"
+          ]
+        }
+      },
+      {
+        "id": "s3_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "The relation",
+        "lines": [
+          "Rearranging the impulse equation,",
+          {
+            "text": "F = Δp / Δt   →   F ∝ 1/Δt",
+            "style": "eq"
+          },
+          "for a fixed change of momentum."
+        ],
+        "margin_note": "Write the inverse proportion. It is the sentence \"longer time, smaller force\" in symbols.",
+        "why": "Once Δp is fixed, force and time trade off exactly. Doubling the time halves the force.",
+        "common_mistakes": [
+          "Writing F ∝ Δt, which says the opposite of the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That force is inversely proportional to the time, for a fixed change of momentum.",
+          "accept": [
+            "force is inversely proportional to time",
+            "F equals delta p by delta t",
+            "time penchithe force thaggutundi"
+          ],
+          "reject": [
+            "change in momentum is fixed"
+          ],
+          "heard_as": [
+            "inversely proportional",
+            "delta p by delta t"
+          ]
+        }
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "A shock absorber spreads the jerk over",
+          "a longer time.",
+          {
+            "text": "Longer Δt → smaller force",
+            "style": "boxed"
+          },
+          "so the vehicle and the rider are safer."
+        ],
+        "margin_note": "End on the vehicle and the rider. That is what the question actually asked about.",
+        "why": "The spring and oil let the wheel move up slowly instead of the whole vehicle jolting, which is the longer Δt in physical form.",
+        "common_mistakes": [
+          "Stopping at the formula without saying what it does for the rider."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the shock absorber lengthens the time, so the force on the vehicle and rider is smaller.",
+          "accept": [
+            "increases the time so force is less",
+            "reduces the impulsive force",
+            "damage is minimised",
+            "time penchi force thaggistundi"
+          ],
+          "reject": [
+            "force is inversely proportional to time"
+          ],
+          "heard_as": [
+            "longer time",
+            "smaller force",
+            "safer"
+          ]
+        }
+      }
+    ]
+  }
+}

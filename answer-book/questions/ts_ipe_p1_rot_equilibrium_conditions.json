@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_equilibrium_conditions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the conditions for the mechanical equilibrium of a rigid body.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Translational",
+      "marks": 1
+    },
+    {
+      "label": "Rotational",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_translational",
+        "kind": "equation",
+        "label": "Translational equilibrium",
+        "marks": 1,
+        "mark_note": "Condition 1",
+        "lines": [
+          "The vector sum of all the forces on the",
+          "body must be zero:",
+          {
+            "text": "ΣF = 0",
+            "style": "eq"
+          }
+        ],
+        "why": "Zero net force stops the centre of mass from accelerating — half of what \"in equilibrium\" means.",
+        "common_mistakes": [
+          "Stopping here. A body with zero net force can still spin faster and faster."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the forces must be zero.",
+          "accept": [
+            "sum of forces is zero",
+            "sigma F zero"
+          ],
+          "reject": [
+            "sum of torques is zero"
+          ],
+          "heard_as": [
+            "forces",
+            "zero"
+          ]
+        }
+      },
+      {
+        "id": "s2_rotational",
+        "kind": "boxed_final",
+        "label": "Rotational equilibrium",
+        "marks": 1,
+        "mark_note": "Condition 2",
+        "lines": [
+          "The vector sum of all the torques about",
+          "any point must also be zero:",
+          {
+            "text": "Στ = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The couple question shows why both conditions are needed: a couple satisfies ΣF = 0 and still rotates the body.",
+        "common_mistakes": [
+          "Computing torques about one special point only — in equilibrium the sum vanishes about ANY point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the torques must also be zero.",
+          "accept": [
+            "sum of torques is zero",
+            "sigma tau zero"
+          ],
+          "reject": [
+            "sum of forces is zero"
+          ],
+          "heard_as": [
+            "torques",
+            "zero"
+          ]
+        }
+      }
+    ]
+  }
+}

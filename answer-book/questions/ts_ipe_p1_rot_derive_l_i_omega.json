@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_derive_l_i_omega",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define angular momentum. For a rigid body rotating about a fixed axis, derive L = Iω.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The derivation",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The angular momentum of a particle",
+          "about an axis is the moment of its",
+          "linear momentum:",
+          {
+            "text": "L = r × p,  magnitude L = mvr",
+            "style": "eq"
+          }
+        ],
+        "why": "The particle definition is the seed; the rigid body is a sum of particles.",
+        "common_mistakes": [
+          "Starting from L = Iω itself — that is the thing to be derived."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular momentum of a particle is r cross p with magnitude mvr.",
+          "accept": [
+            "L is r cross p",
+            "magnitude m v r"
+          ],
+          "reject": [
+            "L equals I omega"
+          ],
+          "heard_as": [
+            "r cross p",
+            "m v r"
+          ]
+        }
+      },
+      {
+        "id": "s2_derive",
+        "kind": "equation",
+        "label": "The derivation",
+        "marks": 2,
+        "mark_note": "Derivation",
+        "lines": [
+          "For a rigid body, every particle moves",
+          "on a circle with the SAME ω, and",
+          "v = rω for each. Summing over all",
+          "particles:",
+          {
+            "text": "L = Σ m v r = Σ m (rω) r = (Σ m r²) ω",
+            "style": "eq"
+          }
+        ],
+        "why": "Two facts do everything: the shared ω (that is what \"rigid\" means) and v = rω from earlier in this unit.",
+        "common_mistakes": [
+          "Treating ω as different for different particles — rigidity is what lets it come out of the sum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That summing mvr with v = rω gives (Σmr²)ω.",
+          "accept": [
+            "sum of m v r",
+            "v equals r omega for each",
+            "omega comes out of the sum"
+          ],
+          "reject": [
+            "magnitude m v r"
+          ],
+          "heard_as": [
+            "sum",
+            "r omega"
+          ]
+        }
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "But Σmr² is the moment of inertia I, so",
+          {
+            "text": "L = I ω",
+            "style": "boxed"
+          }
+        ],
+        "why": "The same compression that turned Σmv into p = mv turns Σmvr into Iω.",
+        "common_mistakes": [
+          "Failing to name Σmr² as I, leaving the sum unfinished."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum is I, so L = Iω.",
+          "accept": [
+            "sigma m r squared is I",
+            "L equals I omega"
+          ],
+          "reject": [
+            "sum of m v r"
+          ],
+          "heard_as": [
+            "I omega"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_horse_pull_harder_start",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A horse has to pull harder during the start of the motion than later. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "At the start",
+      "marks": 1
+    },
+    {
+      "label": "Once moving",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_start",
+        "kind": "text",
+        "label": "At the start",
+        "marks": 1,
+        "mark_note": "At the start",
+        "lines": [
+          "To start the cart, the horse must first",
+          "overcome limiting friction — the",
+          "largest value static friction can take."
+        ],
+        "margin_note": "The words worth the mark are \"limiting friction\". Static friction alone is vaguer.",
+        "why": "Static friction is not one number. It grows to match whatever pull is applied, up to a maximum — and the cart moves only once the pull passes that maximum.",
+        "common_mistakes": [
+          "Saying the cart is heavier at the start. The mass never changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That starting the cart means overcoming limiting (maximum static) friction.",
+          "accept": [
+            "must overcome limiting friction",
+            "maximum static friction has to be crossed",
+            "starting lo limiting friction cross cheyyali"
+          ],
+          "reject": [
+            "kinetic friction is smaller"
+          ],
+          "heard_as": [
+            "limiting friction",
+            "static",
+            "overcome"
+          ]
+        }
+      },
+      {
+        "id": "s2_later",
+        "kind": "boxed_final",
+        "label": "Once moving",
+        "marks": 1,
+        "mark_note": "Once moving",
+        "lines": [
+          "Once the cart is moving, only kinetic",
+          "friction acts, and",
+          {
+            "text": "kinetic friction < limiting friction",
+            "style": "boxed"
+          },
+          "so less effort is needed later."
+        ],
+        "margin_note": "The inequality is the answer. Write it out rather than describing it.",
+        "why": "While the surfaces slide, the tiny contact welds between them never get time to form fully, so the opposing force drops.",
+        "common_mistakes": [
+          "Writing that friction disappears once the cart moves. It only gets smaller."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That kinetic friction is less than limiting friction, so less effort is needed later.",
+          "accept": [
+            "kinetic friction is less than limiting friction",
+            "after starting friction reduces",
+            "kinetic friction thakkuva untundi"
+          ],
+          "reject": [
+            "must overcome limiting friction"
+          ],
+          "heard_as": [
+            "kinetic",
+            "less than",
+            "reduces"
+          ]
+        }
+      }
+    ]
+  }
+}

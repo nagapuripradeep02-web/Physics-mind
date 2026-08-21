@@ -216,6 +216,11 @@ body {
   border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
 }
 .cc-chip.marks { background: #FDECEC; border-color: #F2C4C4; color: var(--red); }
+/* Board-tagged exam history (Session 89): green = this paper really asked it. */
+.cc-chip.asked { background: #EDF7EE; border-color: #C6E3C9; color: #2E6B34; }
+/* An enumerated question must never dress as an asked one. */
+.cc-chip.predicted { background: #F4F1FA; border-color: #D9CFEC; color: #5B4A82; font-style: italic; }
+.question-meta .chip.asked { background: #EDF7EE; border-color: #C6E3C9; color: #2E6B34; }
 .cc-arrow { color: var(--chrome-dim); font-size: 18px; transition: color 0.16s ease, transform 0.16s ease; }
 
 /* Planned but not written yet: present so the chapter keeps its true shape,

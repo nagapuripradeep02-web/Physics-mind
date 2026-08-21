@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_heavy_rifle_recoil",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does a heavy rifle not recoil as strongly as a light rifle using the same cartridges?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "Momentum is conserved",
+        "marks": 1,
+        "mark_note": "The law",
+        "lines": [
+          "By conservation of linear momentum,",
+          {
+            "text": "M V = m v",
+            "style": "eq"
+          },
+          "M, V → rifle;   m, v → bullet"
+        ],
+        "margin_note": "Define the four symbols in one line. An unlabelled M costs the mark.",
+        "why": "The cartridge fixes the bullet side of this equation. Whatever m v it produces, the rifle must match it.",
+        "common_mistakes": [
+          "Writing M V = m v without saying which letters are the rifle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the momentum of the rifle equals the momentum of the bullet, by conservation of momentum.",
+          "accept": [
+            "M V equals m v",
+            "rifle momentum equals bullet momentum",
+            "conservation of momentum",
+            "rifle momentum bullet momentum same"
+          ],
+          "reject": [
+            "heavier rifle recoils less"
+          ],
+          "heard_as": [
+            "M V",
+            "equals",
+            "conservation"
+          ]
+        }
+      },
+      {
+        "id": "s2_conclude",
+        "kind": "boxed_final",
+        "label": "Why heavier means less",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "The same cartridge gives the same m v,",
+          {
+            "text": "V = m v / M   →   V ∝ 1/M",
+            "style": "boxed"
+          },
+          "so a heavier rifle recoils more slowly."
+        ],
+        "margin_note": "The mark is for the inverse relation — write V ∝ 1/M, not just \"it is heavy\".",
+        "why": "Recoil VELOCITY is what bruises a shoulder, and it is the momentum divided by the mass. Same momentum, more mass, less speed.",
+        "common_mistakes": [
+          "Answering \"because it is heavy\" with no relation written."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the recoil velocity is inversely proportional to the mass of the rifle.",
+          "accept": [
+            "recoil velocity is inversely proportional to mass",
+            "V is inversely proportional to M",
+            "mass ekkuva ayite velocity thakkuva"
+          ],
+          "reject": [
+            "M V equals m v"
+          ],
+          "heard_as": [
+            "inversely proportional",
+            "one by M",
+            "slower"
+          ]
+        }
+      }
+    ]
+  }
+}

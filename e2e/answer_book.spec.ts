@@ -82,12 +82,20 @@ test('reveals all steps, earns exactly the total, and never splits a block acros
 test('jump via the rail reproduces the identical pagination', async ({ page }) => {
     await openFirst(page);
 
-    // Pick a mid-list step from the ACTIVE question. A literal step id broke the
-    // moment a second question was authored and became PM_QUESTIONS[0].
-    const target = await page.evaluate(() => {
-        const steps = (window as any).PM_ANSWER.question.answer.steps as any[];
-        return steps[steps.length - 3].id;   // late enough to be past a page break
+    // Seek the LONGEST question and take a mid-list step from it. A literal step id
+    // broke the moment a second question was authored and became PM_QUESTIONS[0]; a
+    // literal index broke again when a second UNIT put a 2-step VSAQ in that slot
+    // (steps.length - 3 === -1). The page break this gate exists to check only occurs
+    // in a long answer, so the question must be sought, never assumed.
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const best = qs.reduce((a, q) => (q.answer.steps.length > a.answer.steps.length ? q : a), qs[0]);
+        const steps = best.answer.steps as any[];
+        return { qid: best.question_id, stepId: steps[steps.length - 3].id, stepCount: steps.length };
     });
+    expect(pick.stepCount).toBeGreaterThanOrEqual(3);   // a degenerate pick is not a pass
+    await openQ(page, pick.qid);
+    const target = pick.stepId;                          // late enough to be past a page break
 
     // Which PAGE the target step lands on. Comparing total pageCount instead was
     // wrong: tapping to the end renders more steps than jumping to the middle, so
@@ -267,21 +275,27 @@ test('the self-check scores from authored marks with no network', async ({ page 
 
 test('the paper section and marks agree across header, chip and mark split', async ({ page }) => {
     await openFirst(page);
-    const r = await page.evaluate(() => {
-        const q = (window as any).PM_ANSWER.question;
-        return {
-            qtype: q.qtype,
-            total: q.marks_total,
-            splitSum: q.mark_split.reduce((a: number, m: any) => a + m.marks, 0),
-            stepSum: q.answer.steps.reduce((a: number, s: any) => a + s.marks, 0),
-            header: q.answer.page_header.join(' | '),
-        };
+
+    // Sweeps EVERY question, like the other inventory gates. Checking only the first
+    // one made the gate a hostage to file order: it hardcoded "Section B" and went red
+    // the moment a second unit sorted a VSAQ (Section A) into PM_QUESTIONS[0] — while
+    // saying nothing at all about the other thirty-six.
+    const bad = await page.evaluate(() => {
+        const out: string[] = [];
+        for (const q of (window as any).PM_QUESTIONS as any[]) {
+            const splitSum = q.mark_split.reduce((a: number, m: any) => a + m.marks, 0);
+            const stepSum = q.answer.steps.reduce((a: number, s: any) => a + s.marks, 0);
+            const header = q.answer.page_header.join(' | ');
+            // the three places a mark total appears must never drift apart, and the
+            // header must name the section the question is actually sat in
+            if (splitSum !== q.marks_total) out.push(`${q.question_id}: mark_split sums ${splitSum}, not ${q.marks_total}`);
+            if (stepSum !== q.marks_total) out.push(`${q.question_id}: steps sum ${stepSum}, not ${q.marks_total}`);
+            if (!header.includes(`${q.marks_total} marks`)) out.push(`${q.question_id}: header omits "${q.marks_total} marks"`);
+            if (!header.includes(q.paper_section)) out.push(`${q.question_id}: header omits "${q.paper_section}"`);
+        }
+        return out;
     });
-    // the three places a mark total appears must never drift apart
-    expect(r.splitSum).toBe(r.total);
-    expect(r.stepSum).toBe(r.total);
-    expect(r.header).toContain(`${r.total} marks`);
-    expect(r.header).toContain(r.qtype === 'LAQ' ? 'Section C' : 'Section B');
+    expect(bad).toEqual([]);
 });
 
 /**
@@ -389,6 +403,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -421,6 +436,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -459,6 +475,12 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
 });
 
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
+    // This test does CONSTANT work — it opens two questions — but it runs straight
+    // after the two 2-minute fleet sweeps, and its page.goto inherits a browser that
+    // has just walked every question twice. Measured: 2.9s in isolation, 30.5s (the
+    // 30s default, i.e. a TIMEOUT reported as a failure) in sequence at six units.
+    // Raised deliberately in the commit that grew the fleet - do not trim the sweeps.
+    test.slow();
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
     test.skip(count < 2, 'single-question build');
@@ -484,6 +506,10 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
 });
 
 test('every cut of every question totals exactly its own marks', async ({ page }) => {
+    // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
+    // 30 s default the moment a second unit doubled the book — a timeout, never an
+    // assertion, so the gate was reporting "failed" while nothing was wrong.
+    test.setTimeout(240_000);
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -606,7 +632,12 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
                 .filter((c) => c.hasAttribute('href')).length,
             soonChips: [...document.querySelectorAll('.cat-card.soon .cc-chip')]
                 .every((c) => c.textContent === 'Not written yet'),
-            pill: document.querySelector('.cat-count')!.textContent,
+            // One pill per unit, each counting ITS OWN unit — the whole-book total
+            // lives in catSub. Reading only the first pill and comparing it to the
+            // global count passed by coincidence while there was exactly one unit.
+            expectedPills: units.map((u: any) =>
+                u.questions.filter((e: any) => e.question_id).length + ' of ' + u.questions.length + ' ready'),
+            pills: [...document.querySelectorAll('.cat-count')].map((p) => p.textContent),
             sub: document.getElementById('catSub')!.textContent,
         };
     });
@@ -616,8 +647,8 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
     expect(r.soon).toBe(r.entries - r.ready);           // unauthored render as coming-soon
     expect(r.soonHrefs).toBe(0);                        // and never as links
     expect(r.soonChips).toBe(true);
-    expect(r.pill).toContain(r.ready + ' of ' + r.entries + ' ready');
-    expect(r.sub).toContain(r.ready + ' answers ready');
+    expect(r.pills).toEqual(r.expectedPills);           // per-unit pills, one each, in order
+    expect(r.sub).toContain(r.ready + ' answers ready'); // whole-book total
 });
 
 test('qtype filter chips match on the section alone, with true counts', async ({ page }) => {
@@ -648,6 +679,117 @@ test('qtype filter chips match on the section alone, with true counts', async ({
         expect(r.chipOn, t + ' chip active').toBe(true);
         expect(r.visible, t + ' visible cards').toBe(r.want);
         expect(r.chipCount, t + ' chip count').toBe(r.want);
+    }
+});
+
+test('board tags render: asked chips carry real years, predicted entries say so', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // Session 89: a TS or AP student must see which papers asked a question, and
+    // an enumerated (predicted) question must NEVER dress as an asked one. The
+    // expectations are computed from the DATA, not hardcoded: every card whose
+    // question has appearances[] shows an .asked chip with each board's years;
+    // every source:"enumerated" entry shows the predicted chip and no asked chip.
+    const r = await page.evaluate(() => {
+        const w = window as any;
+        const qById: Record<string, any> = {};
+        (w.PM_QUESTIONS as any[]).forEach((q) => { qById[q.question_id] = q; });
+        const bad: string[] = [];
+        let askedSeen = 0, predictedSeen = 0;
+        (w.PM_UNITS as any[]).forEach((u) => u.questions.forEach((e: any) => {
+            if (!e.question_id) return;
+            const card = document.querySelector(
+                `.cat-card[href="#/q/${encodeURIComponent(e.question_id)}"]`) ||
+                [...document.querySelectorAll('.cat-card')].find((c) =>
+                    (c.getAttribute('href') || '').indexOf(encodeURIComponent(e.question_id)) >= 0);
+            if (!card) { bad.push(`${e.ref}: card not found`); return; }
+            const asked = card.querySelector('.cc-chip.asked');
+            const predicted = card.querySelector('.cc-chip.predicted');
+            if (e.source === 'enumerated') {
+                predictedSeen++;
+                if (!predicted) bad.push(`${e.question_id}: enumerated but no predicted chip`);
+                if (asked) bad.push(`${e.question_id}: enumerated yet shows an asked chip`);
+                if (predicted && predicted.textContent !== 'Predicted — not asked yet')
+                    bad.push(`${e.question_id}: predicted chip wording drifted`);
+            } else {
+                const apps = (qById[e.question_id] || {}).appearances || [];
+                if (apps.length) {
+                    askedSeen++;
+                    if (!asked) { bad.push(`${e.question_id}: has appearances but no asked chip`); return; }
+                    const txt = asked.textContent || '';
+                    for (const a of apps) {
+                        const label = a.board === 'ap_ipe' ? 'AP' : 'TS';
+                        if (txt.indexOf(String(a.year)) < 0 || txt.indexOf(label) < 0)
+                            bad.push(`${e.question_id}: asked chip "${txt}" missing ${label} ${a.year}`);
+                    }
+                } else if (asked) {
+                    bad.push(`${e.question_id}: asked chip with no appearances data`);
+                }
+            }
+        }));
+        return { bad, askedSeen, predictedSeen };
+    });
+    expect(r.bad).toEqual([]);
+    // the gate must have exercised both branches, or it proves nothing
+    expect(r.askedSeen).toBeGreaterThanOrEqual(5);
+    expect(r.predictedSeen).toBeGreaterThanOrEqual(5);
+
+    // and the notebook meta row carries the asked line for a tagged question
+    await page.evaluate(() => {
+        const w = window as any;
+        const tagged = (w.PM_QUESTIONS as any[]).find((q) => (q.appearances || []).length);
+        w.PM_ANSWER.openQuestion(tagged.question_id);
+    });
+    await page.waitForSelector('.page');
+    const metaAsked = await page.evaluate(
+        () => document.querySelector('#questionMeta .chip.asked')?.textContent || '');
+    expect(metaAsked).toContain('Asked:');
+});
+
+test('chapter chips appear from the second unit and filter to their own chapter', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // The row is stubbed in shell.html but was never populated, so for one whole unit
+    // it sat hidden and empty. It has to stay hidden while there is one chapter (a
+    // filter with a single choice is noise) and appear the moment there are two.
+    const shape = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        const row = document.getElementById('unitChips')!;
+        return {
+            unitCount: units.length,
+            hidden: row.hidden,
+            chips: [...row.querySelectorAll('.cat-chip')].map((c) => c.getAttribute('data-unit')),
+            want: ['ALL', ...units.map((u: any) => String(u.number))],
+        };
+    });
+    expect(shape.unitCount).toBeGreaterThanOrEqual(2);   // else this gate proves nothing
+    expect(shape.hidden).toBe(false);
+    expect(shape.chips).toEqual(shape.want);             // All chapters, then one per unit in order
+
+    // Each chip shows only its own chapter, and its count is that chapter's whole
+    // inventory — coming-soon entries included, exactly like the qtype chips.
+    for (const key of shape.want) {
+        await page.click('#unitChips .cat-chip[data-unit="' + key + '"]');
+        await page.waitForTimeout(200);
+        const r = await page.evaluate((k) => {
+            const units = (window as any).PM_UNITS as any[];
+            const mine = k === 'ALL' ? units : units.filter((u: any) => String(u.number) === k);
+            const chip = document.querySelector('#unitChips .cat-chip[data-unit="' + k + '"]')!;
+            return {
+                visible: document.querySelectorAll('.cat-card').length,
+                headings: document.querySelectorAll('.cat-section').length,
+                want: mine.reduce((a: number, u: any) => a + u.questions.length, 0),
+                wantHeadings: mine.length,
+                chipCount: Number(chip.querySelector('.ct')!.textContent),
+                chipOn: chip.classList.contains('on'),
+            };
+        }, key);
+        expect(r.chipOn, key + ' chip active').toBe(true);
+        expect(r.visible, key + ' visible cards').toBe(r.want);
+        expect(r.headings, key + ' chapter headings').toBe(r.wantHeadings);
+        expect(r.chipCount, key + ' chip count').toBe(r.want);
     }
 });
 

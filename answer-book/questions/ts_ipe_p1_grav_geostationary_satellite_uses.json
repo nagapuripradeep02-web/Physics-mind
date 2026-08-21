@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_geostationary_satellite_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is a geostationary satellite? State its uses.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 2
+    },
+    {
+      "label": "The uses",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "A satellite whose period of revolution is equal",
+          "to the period of rotation of the earth is called",
+          "a geostationary satellite.",
+          "Its time period is 24 hours; it moves from west",
+          "to east in the plane of the equator, at a height",
+          "of about 36 000 km. Its velocity relative to the",
+          "earth is zero, so it stays above the same point",
+          "on the ground."
+        ],
+        "why": "\"Relative velocity zero\" is the whole idea: an antenna on the ground can be aimed once and left alone.",
+        "common_mistakes": [
+          "Saying it does not move at all — it moves very fast; it simply keeps pace with the ground below."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That its period equals the earth rotation period of 24 hours, so it stays above the same point on the ground.",
+          "accept": [
+            "period equals the earth rotation",
+            "24 hours",
+            "stays above the same point"
+          ],
+          "reject": [
+            "weather forecasting"
+          ],
+          "heard_as": [
+            "geostationary",
+            "same point"
+          ]
+        }
+      },
+      {
+        "id": "s2_uses",
+        "kind": "boxed_final",
+        "label": "The uses",
+        "marks": 2,
+        "mark_note": "Uses",
+        "lines": [
+          {
+            "text": "Uses of a geostationary satellite:",
+            "style": "heading"
+          },
+          "1) Communication and television relay.",
+          "2) Weather forecasting.",
+          "3) Studying the upper layers of the atmosphere.",
+          "4) Studying the shape and size of the earth."
+        ],
+        "why": "Every use follows from one property: it never moves relative to the ground, so it can watch or serve one region without a break.",
+        "common_mistakes": [
+          "Listing whole-earth surveying, which needs a POLAR satellite instead."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Uses such as communication and television relay, weather forecasting, and studying the atmosphere.",
+          "accept": [
+            "communication",
+            "television relay",
+            "weather forecasting",
+            "studying the atmosphere"
+          ],
+          "reject": [
+            "period equals the earth rotation"
+          ],
+          "heard_as": [
+            "uses",
+            "communication"
+          ]
+        }
+      }
+    ]
+  }
+}

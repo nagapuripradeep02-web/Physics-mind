@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_satellite_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain expressions for the kinetic energy, the potential energy and the total energy of a satellite revolving in a circular orbit around the earth.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kinetic energy",
+      "marks": 1
+    },
+    {
+      "label": "Potential energy",
+      "marks": 1
+    },
+    {
+      "label": "Total energy",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ke",
+        "kind": "equation",
+        "label": "Kinetic energy",
+        "marks": 1,
+        "mark_note": "Kinetic",
+        "lines": [
+          "For a circular orbit of radius r the",
+          "gravitational pull supplies the centripetal",
+          "force, so m v² / r = G M m / r², which gives",
+          "v² = G M / r and therefore",
+          {
+            "text": "KE = ½ m v² = G M m / 2r",
+            "style": "eq"
+          }
+        ],
+        "why": "The orbit condition fixes the speed, so the kinetic energy is not free to be anything — it is set by the radius alone.",
+        "common_mistakes": [
+          "Treating v as an independent quantity instead of one fixed by the orbit radius."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the orbit condition gives v squared equals G M by r, so KE is G M m by 2 r.",
+          "accept": [
+            "G M m by two r",
+            "v squared is G M by r",
+            "centripetal force"
+          ],
+          "reject": [
+            "minus G M m by r"
+          ],
+          "heard_as": [
+            "kinetic energy",
+            "G M m by 2 r"
+          ]
+        }
+      },
+      {
+        "id": "s2_pe",
+        "kind": "equation",
+        "label": "Potential energy",
+        "marks": 1,
+        "mark_note": "Potential",
+        "lines": [
+          "The gravitational potential energy of the",
+          "satellite at that distance is",
+          {
+            "text": "PE = − G M m / r",
+            "style": "eq"
+          },
+          "measured from zero at infinity."
+        ],
+        "why": "The potential energy is exactly twice the kinetic energy in size and opposite in sign — a relation true for every circular orbit.",
+        "common_mistakes": [
+          "Writing PE as positive, or as m g h with a constant g."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PE is minus G M m by r.",
+          "accept": [
+            "minus G M m by r",
+            "potential energy is negative"
+          ],
+          "reject": [
+            "G M m by two r"
+          ],
+          "heard_as": [
+            "potential energy",
+            "minus"
+          ]
+        }
+      },
+      {
+        "id": "s3_total",
+        "kind": "boxed_final",
+        "label": "Total energy",
+        "marks": 2,
+        "mark_note": "Total",
+        "lines": [
+          "Adding the two,",
+          {
+            "text": "E = G M m / 2r − G M m / r",
+            "style": "eq"
+          },
+          {
+            "text": "E = − G M m / 2r",
+            "style": "boxed"
+          },
+          "Two things follow: the total energy is NEGATIVE,",
+          "so the satellite is bound to the earth; and",
+          "PE = −2 × KE for every circular orbit."
+        ],
+        "why": "Because E is negative, raising a satellite to a higher orbit RAISES its total energy while lowering its speed — the result that surprises most students.",
+        "common_mistakes": [
+          "Concluding a higher orbit means a faster satellite; it moves more slowly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E equals minus G M m by 2 r, negative so the satellite is bound, with PE equal to minus twice KE.",
+          "accept": [
+            "minus G M m by two r",
+            "the satellite is bound",
+            "PE is minus two times KE"
+          ],
+          "reject": [
+            "minus G M m by r"
+          ],
+          "heard_as": [
+            "total energy",
+            "bound"
+          ]
+        }
+      }
+    ]
+  }
+}

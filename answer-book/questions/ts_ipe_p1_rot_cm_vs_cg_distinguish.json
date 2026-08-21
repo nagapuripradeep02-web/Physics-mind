@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_cm_vs_cg_distinguish",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between centre of mass and centre of gravity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Centre of mass",
+      "marks": 2
+    },
+    {
+      "label": "Centre of gravity",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cm",
+        "kind": "text",
+        "label": "Centre of mass",
+        "marks": 2,
+        "mark_note": "Centre of mass",
+        "lines": [
+          {
+            "text": "Centre of mass:",
+            "style": "heading"
+          },
+          "1. The point at which the whole MASS of",
+          {
+            "text": "the body may be taken to be",
+            "style": "indent"
+          },
+          {
+            "text": "concentrated.",
+            "style": "indent"
+          },
+          "2. It does not depend on the value of g.",
+          "3. It describes the translational motion",
+          {
+            "text": "of the body.",
+            "style": "indent"
+          },
+          "4. It may or may not lie inside the body."
+        ],
+        "margin_note": "Number the points — the matching pair on the other side must line up one for one.",
+        "why": "The centre of mass is pure geometry-of-mass: it exists even far from any planet, which is exactly what point 2 records.",
+        "common_mistakes": [
+          "Writing prose instead of numbered points, so nothing lines up with the other column."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centre of mass concentrates the MASS, is independent of g, and governs translation.",
+          "accept": [
+            "whole mass concentrated at a point",
+            "independent of g",
+            "describes translational motion"
+          ],
+          "reject": [
+            "whole weight acts at that point"
+          ],
+          "heard_as": [
+            "mass concentrated",
+            "independent of g"
+          ]
+        }
+      },
+      {
+        "id": "s2_cg",
+        "kind": "boxed_final",
+        "label": "Centre of gravity",
+        "marks": 2,
+        "mark_note": "Centre of gravity",
+        "lines": [
+          {
+            "text": "Centre of gravity:",
+            "style": "heading"
+          },
+          "1. The point through which the whole",
+          {
+            "text": "WEIGHT of the body acts.",
+            "style": "indent"
+          },
+          "2. It depends on the value of g.",
+          "3. It decides the stability and balance",
+          {
+            "text": "of the body.",
+            "style": "indent"
+          },
+          {
+            "text": "4. For a small body in a uniform field,",
+            "style": "indent"
+          },
+          {
+            "text": "it coincides with the centre of mass.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Point 4 is the connecting sentence examiners look for: for ordinary bodies the two points coincide.",
+        "why": "Weight is mass TIMES g — so wherever g varies across a very large body, the weight-average and the mass-average part company. For everything on a table top they are the same point.",
+        "common_mistakes": [
+          "Claiming the two are always different. For a small uniform-field body they coincide."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centre of gravity is where the weight acts, depends on g, and coincides with the CM for small bodies.",
+          "accept": [
+            "whole weight acts at that point",
+            "depends on g",
+            "they coincide for small bodies"
+          ],
+          "reject": [
+            "whole mass concentrated at a point"
+          ],
+          "heard_as": [
+            "weight",
+            "depends on g",
+            "coincide"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_keplers_third_law_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive Kepler’s third law of planetary motion from Newton’s law of gravitation, for a planet moving in a circular orbit.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The circular orbit",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_orbit",
+        "kind": "equation",
+        "label": "The circular orbit",
+        "marks": 2,
+        "mark_note": "The orbit",
+        "lines": [
+          "Take a planet of mass m moving in a circular",
+          "orbit of radius r about the sun of mass M. The",
+          "sun’s pull supplies the centripetal force:",
+          {
+            "text": "m v² / r = G M m / r²",
+            "style": "eq"
+          },
+          "Cancelling m and one factor of r,",
+          {
+            "text": "v² = G M / r",
+            "style": "eq"
+          }
+        ],
+        "why": "A circle is not the real orbit, but Kepler’s third law comes out with the semi-major axis in place of r — so the circle gives the right law.",
+        "common_mistakes": [
+          "Keeping the planet’s mass m in the result; it cancels at this very first step."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating the gravitational pull to the centripetal force gives v squared equals G M by r.",
+          "accept": [
+            "v squared is G M by r",
+            "centripetal force equals gravitational pull"
+          ],
+          "reject": [
+            "T squared is proportional to r cubed"
+          ],
+          "heard_as": [
+            "v squared",
+            "G M by r"
+          ]
+        }
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 2,
+        "mark_note": "The result",
+        "lines": [
+          "The time period is T = 2πr / v, so",
+          {
+            "text": "T² = 4π²r² / v² = 4π²r² · r / (G M)",
+            "style": "eq"
+          },
+          {
+            "text": "T² = (4π² / G M) r³,   so   T² ∝ r³",
+            "style": "boxed"
+          },
+          "The bracket 4π²/GM is the same for every planet",
+          "of the sun, which is why one constant serves",
+          "them all."
+        ],
+        "why": "The constant depends on the mass of the CENTRAL body only — which is how the law is used to measure the mass of the sun, and the masses of planets from their moons.",
+        "common_mistakes": [
+          "Claiming the constant is universal; it changes if the central body changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T squared equals four pi squared by G M times r cubed, so T squared is proportional to r cubed.",
+          "accept": [
+            "T squared proportional to r cubed",
+            "four pi squared by G M",
+            "one constant for all planets"
+          ],
+          "reject": [
+            "v squared is G M by r"
+          ],
+          "heard_as": [
+            "T squared",
+            "r cubed"
+          ]
+        }
+      }
+    ]
+  }
+}

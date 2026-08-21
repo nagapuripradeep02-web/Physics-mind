@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_sign_of_work_bucket",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the sign of the work done by a force in the following: a) work done by a man in lifting a bucket out of a well by means of a rope tied to the bucket; b) work done by the gravitational force in the same case.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "a) The man",
+      "marks": 1
+    },
+    {
+      "label": "b) Gravity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_man",
+        "kind": "equation",
+        "label": "a) The man",
+        "marks": 1,
+        "mark_note": "a)",
+        "lines": [
+          "The man pulls the rope upward and the",
+          "bucket moves upward, so θ = 0°.",
+          {
+            "text": "W = F S cos 0° = + F S",
+            "style": "eq"
+          },
+          "The work done by the man is POSITIVE."
+        ],
+        "margin_note": "Give the angle, then the sign. The angle is the reason and it earns the mark.",
+        "why": "Force and displacement point the same way, so the man is adding energy to the bucket.",
+        "common_mistakes": [
+          "Answering \"positive\" with no angle, so there is no reason on the page."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done by the man is positive because the force and displacement are both upward.",
+          "accept": [
+            "positive work",
+            "theta is zero so it is positive",
+            "force and displacement same direction",
+            "manishi chese work positive"
+          ],
+          "reject": [
+            "gravity does negative work"
+          ],
+          "heard_as": [
+            "positive",
+            "zero degrees",
+            "same direction"
+          ]
+        }
+      },
+      {
+        "id": "s2_gravity",
+        "kind": "boxed_final",
+        "label": "b) Gravity",
+        "marks": 1,
+        "mark_note": "b)",
+        "lines": [
+          "Gravity acts downward while the bucket",
+          "moves upward, so θ = 180°.",
+          {
+            "text": "W = F S cos 180° = − F S",
+            "style": "boxed"
+          },
+          "The work done by gravity is NEGATIVE."
+        ],
+        "margin_note": "θ = 180° is the whole of part (b). Write the angle before the sign.",
+        "why": "Gravity opposes the motion here, so it takes energy out — exactly the energy stored as potential energy on the way up.",
+        "common_mistakes": [
+          "Answering zero because the bucket moves at a steady speed. Steady speed means the TOTAL work is zero, not gravity’s share."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done by gravity is negative because it acts opposite to the displacement.",
+          "accept": [
+            "negative work",
+            "theta is one eighty so it is negative",
+            "gravity opposes the motion",
+            "gravity chese work negative"
+          ],
+          "reject": [
+            "positive work"
+          ],
+          "heard_as": [
+            "negative",
+            "one eighty",
+            "opposite"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,373 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_potential_energy_gravitational",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is potential energy? Derive an expression for the gravitational potential energy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The lifting force",
+      "marks": 1
+    },
+    {
+      "label": "The work done",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The energy possessed by a body by",
+          "virtue of its position is called",
+          "potential energy."
+        ],
+        "margin_note": "The words that earn it are \"by virtue of its position\". Kinetic energy is the one about motion.",
+        "why": "Potential energy is stored by WHERE something is, not by how fast it moves — which is why lifting a book and holding it still gives it energy.",
+        "common_mistakes": [
+          "Defining it as the energy of a moving body, which is kinetic energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That potential energy is the energy a body has because of its position.",
+          "accept": [
+            "energy because of its position",
+            "energy by virtue of position",
+            "position valla vachhe energy"
+          ],
+          "reject": [
+            "U equals m g h"
+          ],
+          "heard_as": [
+            "position",
+            "potential energy",
+            "by virtue"
+          ]
+        }
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The body raised",
+        "marks": 0,
+        "margin_note": "A box lifted through h, with F up and mg down. It takes fifteen seconds and makes the next two steps obvious.",
+        "why": "The figure shows the two forces pointing opposite ways and the distance moved, which is everything the derivation uses.",
+        "common_mistakes": [
+          "Drawing the body but not the two force arrows, so the θ = 0 claim has nothing to stand on."
+        ],
+        "figure": {
+          "id": "lift_through_h",
+          "width": 380,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 40 250 L 340 250",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "hatch1",
+              "d": "M 70 250 L 58 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch2",
+              "d": "M 120 250 L 108 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch3",
+              "d": "M 170 250 L 158 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch4",
+              "d": "M 230 250 L 218 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch5",
+              "d": "M 280 250 L 268 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch6",
+              "d": "M 330 250 L 318 263",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "start_box",
+              "d": "M 180 210 L 220 210 L 220 250 L 180 250 L 180 210",
+              "ms": 460,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "body",
+              "d": "M 180 75 L 220 75 L 220 115 L 180 115 L 180 75",
+              "ms": 620
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 194,
+              "y": 100,
+              "text": "m",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "force",
+              "d": "M 200 75 L 200 30",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "force_head",
+              "d": "M 193 40 L 200 30 L 207 40",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 208,
+              "y": 26,
+              "text": "F",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "weight",
+              "d": "M 200 115 L 200 160",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "weight_head",
+              "d": "M 193 150 L 200 160 L 207 150",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_mg",
+              "x": 208,
+              "y": 158,
+              "text": "mg",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "h_line",
+              "d": "M 120 95 L 120 250",
+              "ms": 460,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "h_top",
+              "d": "M 114 105 L 120 95 L 126 105",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "h_bot",
+              "d": "M 114 240 L 120 250 L 126 240",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 100,
+              "y": 178,
+              "text": "h",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure of the body raised through height h is drawn, with F up and mg down.",
+          "accept": [
+            "draw the body lifted through h",
+            "figure with F up and mg down",
+            "body ni h varaku ethina figure"
+          ],
+          "reject": [
+            "work done equals m g h"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "draw"
+          ]
+        }
+      },
+      {
+        "id": "s3_force",
+        "kind": "equation",
+        "label": "The lifting force",
+        "marks": 1,
+        "mark_note": "The force",
+        "lines": [
+          "Let a body of mass m be raised slowly",
+          "through a height h. The applied force",
+          "just balances the weight:",
+          {
+            "text": "F = mg,  acting along the motion",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say \"slowly\". That is what lets you write F = mg instead of F > mg.",
+        "why": "Raised slowly, the body gains no kinetic energy, so every joule the applied force supplies is stored as potential energy and none is wasted on speed.",
+        "common_mistakes": [
+          "Forgetting the word \"slowly\", which leaves F = mg unjustified."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the body is raised slowly so the applied force equals mg.",
+          "accept": [
+            "force equals m g",
+            "applied force balances the weight",
+            "slowly ga ethithe F equals mg"
+          ],
+          "reject": [
+            "W equals m g h"
+          ],
+          "heard_as": [
+            "F equals m g",
+            "balances",
+            "slowly"
+          ]
+        }
+      },
+      {
+        "id": "s4_work",
+        "kind": "equation",
+        "label": "The work done",
+        "marks": 1,
+        "mark_note": "The work",
+        "lines": [
+          "The force and the displacement are in",
+          "the same direction, so θ = 0° and",
+          {
+            "text": "W = F s cos 0° = F s",
+            "style": "eq"
+          },
+          {
+            "text": "W = mg × h = mgh",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two lines: the general formula, then the substitution. Do not jump straight to mgh.",
+        "why": "This is the same W = F s cos θ as every other work question. Nothing special happens because the force is gravity.",
+        "common_mistakes": [
+          "Writing W = mgh with no formula above it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done is F s = mgh, with θ = 0.",
+          "accept": [
+            "work equals F into s",
+            "W equals m g h",
+            "theta is zero so W is F s",
+            "work ante mgh"
+          ],
+          "reject": [
+            "this work is stored as potential energy"
+          ],
+          "heard_as": [
+            "F into s",
+            "m g h",
+            "cos zero"
+          ]
+        }
+      },
+      {
+        "id": "s5_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "This work is stored in the body as",
+          "gravitational potential energy:",
+          {
+            "text": "U = mgh",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The last mark is for saying the work is STORED. Do not stop at the work done.",
+        "why": "The work does not vanish. It comes back the moment the body is released, as kinetic energy — which is what the next question proves.",
+        "common_mistakes": [
+          "Ending at W = mgh without ever calling it potential energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work is stored as gravitational potential energy, U = mgh.",
+          "accept": [
+            "this work is stored as potential energy",
+            "U equals m g h",
+            "potential energy ga store avutundi"
+          ],
+          "reject": [
+            "theta is zero so W is F s"
+          ],
+          "heard_as": [
+            "stored",
+            "potential energy",
+            "m g h"
+          ]
+        }
+      }
+    ]
+  }
+}

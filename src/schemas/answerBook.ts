@@ -210,8 +210,18 @@ export const answerBookQuestionSchema = z
         paper_section: z.string().min(1),
         expected_time_min: z.number().int().positive(),
         question_text: z.string().min(1),
-        /** Exam appearances — claims until a teacher confirms (see verification). */
-        appearances: z.array(z.object({ year: z.number().int(), q_no: z.number().int().optional() })),
+        /**
+         * Exam appearances — claims until a teacher confirms (see verification).
+         * `board` absent = ts_ipe (the historical meaning; TS years predate the field).
+         * ap_ipe entries exist because both boards draw one NCERT bank at different
+         * lengths — the March 2026 AP paper asked six of our authored questions
+         * (docs/patterns/answer_book.md §Board landscape).
+         */
+        appearances: z.array(z.object({
+            year: z.number().int(),
+            q_no: z.number().int().optional(),
+            board: z.enum(['ts_ipe', 'ap_ipe']).optional(),
+        })),
         /** Human-readable mark breakdown shown in the rail (display only; steps[] is the truth). */
         mark_split: z.array(z.object({ label: z.string().min(1), marks: z.number().int().positive() })),
         /** Rule 38g spirit: mark split + appearances are claims until a TS IPE teacher confirms. */

@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_field_intensity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the intensity of the gravitational field at a point. Write its SI unit.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The intensity of the gravitational field at a",
+          "point is the force experienced by a body of",
+          "UNIT mass placed at that point:",
+          {
+            "text": "E = F / m = G M / r²",
+            "style": "eq"
+          }
+        ],
+        "why": "Dividing out the test mass leaves a property of the SOURCE alone, which is what makes a field useful.",
+        "common_mistakes": [
+          "Defining it as the force on the source mass rather than on a unit test mass."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is the force on a unit mass at that point, equal to G M by r squared.",
+          "accept": [
+            "force per unit mass",
+            "G M by r squared"
+          ],
+          "reject": [
+            "newton per kilogram"
+          ],
+          "heard_as": [
+            "unit mass",
+            "field intensity"
+          ]
+        }
+      },
+      {
+        "id": "s2_unit",
+        "kind": "boxed_final",
+        "label": "The unit",
+        "marks": 1,
+        "mark_note": "Unit",
+        "lines": [
+          {
+            "text": "SI unit: N kg⁻¹ (the same as m s⁻²)",
+            "style": "boxed"
+          },
+          "It is a VECTOR, directed towards the mass that",
+          "produces the field. At the surface of the earth",
+          "its value is simply g."
+        ],
+        "why": "That the unit is also that of acceleration is not a coincidence: field intensity and acceleration due to gravity are the same quantity.",
+        "common_mistakes": [
+          "Treating it as a scalar and dropping the direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SI unit is newton per kilogram, the same as metre per second squared, and it equals g at the surface.",
+          "accept": [
+            "newton per kilogram",
+            "same as metre per second squared",
+            "equals g at the surface"
+          ],
+          "reject": [
+            "force per unit mass"
+          ],
+          "heard_as": [
+            "newton per kilogram",
+            "vector"
+          ]
+        }
+      }
+    ]
+  }
+}

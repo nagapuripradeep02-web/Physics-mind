@@ -1,0 +1,111 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_pendulum_clock_mountain",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Will a pendulum clock gain or lose time when taken to the top of a mountain?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What happens to g",
+      "marks": 1
+    },
+    {
+      "label": "What the clock does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gravity",
+        "kind": "text",
+        "label": "What happens to g",
+        "marks": 1,
+        "mark_note": "Value of g",
+        "lines": [
+          "The value of g decreases as we go higher above",
+          "the surface of the earth. So g at the top of a",
+          "mountain is a little less than g at sea level."
+        ],
+        "why": "g falls off with height because the place is further from the centre of the earth.",
+        "common_mistakes": [
+          "Saying g increases with height."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g is smaller at the top of a mountain than at sea level.",
+          "accept": [
+            "g decreases with height",
+            "g is less on the mountain"
+          ],
+          "reject": [
+            "the clock loses time"
+          ],
+          "heard_as": [
+            "g decreases",
+            "height"
+          ]
+        }
+      },
+      {
+        "id": "s2_clock",
+        "kind": "boxed_final",
+        "label": "What the clock does",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "T = 2π√(l/g), so T ∝ 1/√g. A smaller g gives a",
+          "LONGER time period — each swing now takes",
+          "more time than it should.",
+          {
+            "text": "The clock runs slow — it LOSES time",
+            "style": "boxed"
+          }
+        ],
+        "why": "A pendulum clock counts swings, so a longer swing means fewer counts in a real hour.",
+        "common_mistakes": [
+          "Saying it gains time because the bob is \"lighter\" up there — the mass of the bob does not appear in the period."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a smaller g gives a longer time period, so the clock runs slow and loses time.",
+          "accept": [
+            "loses time",
+            "time period increases",
+            "clock runs slow"
+          ],
+          "reject": [
+            "g decreases with height"
+          ],
+          "heard_as": [
+            "loses time",
+            "slow"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_g_units_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the units and dimensions of the universal gravitational constant G.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The SI unit",
+      "marks": 1
+    },
+    {
+      "label": "The dimensions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit",
+        "kind": "equation",
+        "label": "The SI unit",
+        "marks": 1,
+        "mark_note": "Unit",
+        "lines": [
+          "Rearranging F = G m₁m₂ / r² for G gives",
+          "G = F r² / (m₁ m₂), so the unit is",
+          {
+            "text": "SI unit: N m² kg⁻²",
+            "style": "eq"
+          }
+        ],
+        "why": "Rearranging the law of gravitation for G is quicker and safer than trying to remember either answer on its own.",
+        "common_mistakes": [
+          "Writing N m kg⁻² and losing the square on the metre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SI unit of G is newton metre squared per kilogram squared.",
+          "accept": [
+            "newton metre squared per kilogram squared",
+            "N m squared kg to the minus two"
+          ],
+          "reject": [
+            "M to the minus one L cubed T to the minus two"
+          ],
+          "heard_as": [
+            "newton metre squared",
+            "unit of G"
+          ]
+        }
+      },
+      {
+        "id": "s2_dimensions",
+        "kind": "boxed_final",
+        "label": "The dimensions",
+        "marks": 1,
+        "mark_note": "Dimensions",
+        "lines": [
+          "Putting [F] = [M L T⁻²], [r] = [L] and",
+          "[m] = [M] into the same rearrangement,",
+          {
+            "text": "[G] = [M⁻¹ L³ T⁻²]",
+            "style": "boxed"
+          }
+        ],
+        "why": "G is a constant of nature, so these dimensions never change however the formula is written.",
+        "common_mistakes": [
+          "Giving [M L³ T⁻²] with the mass power positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dimensional formula of G is M to the minus one, L cubed, T to the minus two.",
+          "accept": [
+            "M to the minus one L cubed T to the minus two",
+            "M inverse L cubed T inverse squared"
+          ],
+          "reject": [
+            "newton metre squared per kilogram squared"
+          ],
+          "heard_as": [
+            "dimensional formula",
+            "L cubed"
+          ]
+        }
+      }
+    ]
+  }
+}

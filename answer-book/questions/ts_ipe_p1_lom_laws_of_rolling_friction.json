@@ -1,0 +1,171 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_laws_of_rolling_friction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State the laws of rolling friction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "The three laws",
+      "marks": 2
+    },
+    {
+      "label": "The coefficient",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When one body rolls over the surface of",
+          "another, the friction between them is",
+          "called rolling friction."
+        ],
+        "margin_note": "Define it before listing the laws. One line, then move on.",
+        "why": "Rolling friction is a different mechanism from sliding friction, so it gets its own laws and its own coefficient.",
+        "common_mistakes": [
+          "Defining sliding friction by mistake and then listing the rolling laws under it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rolling friction is the friction when one body rolls over another.",
+          "accept": [
+            "friction when a body rolls over another",
+            "rolling friction definition",
+            "oka body inkoka daani meeda roll ainapudu"
+          ],
+          "reject": [
+            "proportional to normal reaction"
+          ],
+          "heard_as": [
+            "rolls over",
+            "rolling friction"
+          ]
+        }
+      },
+      {
+        "id": "s2_laws",
+        "kind": "text",
+        "label": "The three laws",
+        "marks": 2,
+        "mark_note": "The laws",
+        "lines": [
+          {
+            "text": "Laws of rolling friction:",
+            "style": "heading"
+          },
+          "1. The smaller the area of contact, the",
+          {
+            "text": "smaller the rolling friction.",
+            "style": "indent"
+          },
+          "2. The larger the radius of the rolling",
+          {
+            "text": "body, the smaller the friction.",
+            "style": "indent"
+          },
+          "3. It is directly proportional to the",
+          {
+            "text": "normal reaction.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Three numbered laws. Each is one sentence — do not explain them, the question says \"state\".",
+        "why": "These are the board statements, and they are what earns the marks. The physical cause behind all three is the same: rolling friction comes from the surfaces deforming under the load, so anything that reduces the squashing reduces the friction. Read law 2 as a good approximation, not an exact law.",
+        "common_mistakes": [
+          "Writing that rolling friction is INDEPENDENT of the normal reaction. That is the area-independence of sliding friction, a different law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least two of the three laws: smaller contact area, larger radius, proportional to normal reaction.",
+          "accept": [
+            "smaller area of contact less friction",
+            "larger radius less friction",
+            "directly proportional to the normal reaction",
+            "radius peddaga unte friction thakkuva"
+          ],
+          "reject": [
+            "friction when a body rolls over another"
+          ],
+          "heard_as": [
+            "area of contact",
+            "radius",
+            "normal reaction"
+          ]
+        }
+      },
+      {
+        "id": "s3_coefficient",
+        "kind": "boxed_final",
+        "label": "The coefficient",
+        "marks": 1,
+        "mark_note": "Coefficient",
+        "lines": [
+          "Writing the third law as an equation,",
+          {
+            "text": "F_R ∝ N   →   F_R = μ_R N",
+            "style": "boxed"
+          },
+          "where μ_R is the coefficient of rolling",
+          "friction."
+        ],
+        "margin_note": "Finish with the formula and name the symbol. A boxed equation with an unnamed symbol is half an answer.",
+        "why": "The coefficient is just the constant that turns the proportionality of law 3 into an equation you can put numbers into.",
+        "common_mistakes": [
+          "Using μ without the R subscript, which is the sliding coefficient."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F_R = μ_R N, where μ_R is the coefficient of rolling friction.",
+          "accept": [
+            "F R equals mu R into N",
+            "coefficient of rolling friction",
+            "mu R is the coefficient",
+            "rolling friction coefficient mu R"
+          ],
+          "reject": [
+            "smaller area of contact less friction"
+          ],
+          "heard_as": [
+            "mu R",
+            "coefficient",
+            "normal reaction"
+          ]
+        }
+      }
+    ]
+  }
+}

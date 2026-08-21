@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_velocity_acceleration_max",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Where in its path is the velocity of a particle in simple harmonic motion maximum, and where is its acceleration maximum? Write both maximum values.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The velocity",
+      "marks": 1
+    },
+    {
+      "label": "The acceleration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_velocity",
+        "kind": "equation",
+        "label": "The velocity",
+        "marks": 1,
+        "mark_note": "Velocity",
+        "lines": [
+          "v = ω√(A² − y²), which is largest when y = 0.",
+          "So the velocity is maximum at the MEAN",
+          "position, where the acceleration is zero:",
+          {
+            "text": "v_max = A ω",
+            "style": "eq"
+          }
+        ],
+        "why": "The particle has been pulled inward all the way from the extreme, so the mean position is where it has picked up the most speed.",
+        "common_mistakes": [
+          "Saying the velocity is maximum at the extreme positions, where it is actually zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v is maximum at the mean position and equals A omega.",
+          "accept": [
+            "maximum at the mean position",
+            "v max is A omega"
+          ],
+          "reject": [
+            "a max is omega squared A"
+          ],
+          "heard_as": [
+            "mean position",
+            "A omega"
+          ]
+        }
+      },
+      {
+        "id": "s2_acceleration",
+        "kind": "boxed_final",
+        "label": "The acceleration",
+        "marks": 1,
+        "mark_note": "Acceleration",
+        "lines": [
+          "a = −ω²y, which is largest when y = ±A.",
+          "So the acceleration is maximum at the EXTREME",
+          "positions, where the velocity is zero:",
+          {
+            "text": "a_max = ω² A",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two maxima sit at opposite ends of the path: where the particle moves fastest it is not accelerating, and where it stops it is pulled hardest.",
+        "common_mistakes": [
+          "Placing both maxima at the same point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is maximum at the extreme positions and equals omega squared A.",
+          "accept": [
+            "maximum at the extreme positions",
+            "a max is omega squared A"
+          ],
+          "reject": [
+            "maximum at the mean position"
+          ],
+          "heard_as": [
+            "extreme",
+            "omega squared A"
+          ]
+        }
+      }
+    ]
+  }
+}

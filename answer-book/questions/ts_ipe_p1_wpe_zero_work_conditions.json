@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_zero_work_conditions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the conditions under which a force does no work.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The three cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "Work done by a force is",
+          {
+            "text": "W = F S cos θ",
+            "style": "eq"
+          },
+          "so W is zero whenever any one of these",
+          "three factors is zero."
+        ],
+        "margin_note": "Start from the formula. The three conditions are just its three factors.",
+        "why": "Every \"no work\" case is one of the three factors going to zero. Reading them off the formula means you can never forget one.",
+        "common_mistakes": [
+          "Listing the cases with no formula, so there is nothing to read them off."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That W = F S cos θ, so the work is zero when a factor is zero.",
+          "accept": [
+            "W equals F S cos theta",
+            "work is force into displacement into cos theta",
+            "formula lo edaina factor zero aithe work zero"
+          ],
+          "reject": [
+            "displacement is zero"
+          ],
+          "heard_as": [
+            "F S cos theta",
+            "formula",
+            "zero"
+          ]
+        }
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "boxed_final",
+        "label": "The three cases",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          {
+            "text": "Work is zero if:",
+            "style": "heading"
+          },
+          "1. the displacement S = 0",
+          "2. the force F = 0",
+          {
+            "text": "3. θ = 90°, force ⊥ displacement",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Three numbered cases. The perpendicular one is the case examiners look for.",
+        "why": "A porter carrying a load on level ground does no work on it: the force is vertical, the motion horizontal. Tiring is not the same as doing work.",
+        "common_mistakes": [
+          "Giving only \"displacement is zero\" and stopping.",
+          "Saying a force perpendicular to the motion does work because you feel tired."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is zero when the displacement is zero, the force is zero, or the two are perpendicular.",
+          "accept": [
+            "displacement is zero",
+            "force is zero",
+            "force perpendicular to displacement",
+            "theta ninety degrees aithe work zero"
+          ],
+          "reject": [
+            "W equals F S cos theta"
+          ],
+          "heard_as": [
+            "displacement zero",
+            "perpendicular",
+            "ninety"
+          ]
+        }
+      }
+    ]
+  }
+}

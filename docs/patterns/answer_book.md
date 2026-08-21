@@ -406,3 +406,265 @@ The rail `<select>` (`#qCard`) is gone; `← All questions` in the topbar return
 goes back. Cut overrides gained `margin_note` and `why` — the root wording can state a mark count
 a reduced cut contradicts ("the two marks are for the words alone" beside a 1-mark step), and the
 first catalog screenshot caught exactly that on the parallelogram SAQ cut.
+
+## Board landscape 2026-27 — the two IPE patterns diverged (researched 2026-08-20)
+
+The product is built on the TS pattern. In 2026 the two states stopped being variants of one exam,
+and the analysis below is what the authoring model rests on. Multi-source web research 2026-08-20;
+none of it is from an official circular yet — re-verify against tsbie.cgg.gov.in /
+bieap.apcfss.in model papers when they publish.
+
+### Telangana (TGBIE) — our board: theory UNCHANGED, syllabus revised
+
+- **Physics theory stays 60 marks** — explicitly stated in the reform coverage, and the March 2026
+  paper ran exactly our structure: Section A 10×2 compulsory · B 6-of-8 ×4 · C 2-of-3 ×8,
+  21 questions, 3 hours, English + Telugu. **The Answer Book's model is safe for March 2027.**
+- What changes 2026-27 (FIRST year; second year follows 2027-28): the old 30-mark second-year-only
+  practicals split into **15 marks per year**, conducted externally at each year's end. Maths goes
+  75 written → **60 written + 15 Activity-Based Learning** per paper. Humanities/Languages
+  100 → 80 + 20 internal. ("60 + 15 ABL" is the MATHS formula — for Physics the 15 is practicals.)
+- **The real exposure is the syllabus revision**, not the pattern: NCERT-aligned for 2026-27,
+  ~30% cuts in some subjects (Chemistry named), non-JEE/NEET topics removed, a new "Artificial
+  Intelligence in Physics" chapter, QR-coded textbooks. Our inventory is sourced from the 2024
+  Fastrack, which compiles the OLD syllabus's exam history. Mechanics (Units 4-6) is NCERT-stable;
+  the per-unit inventory still needs a diff against the new TGBIE textbooks when they publish.
+
+### Andhra Pradesh (BIEAP) — already switched, March 2026
+
+AP ran its reformed paper in March 2026 (first year; second year reforms 2026-27). NCERT syllabus
+(first year since 2025-26), CBSE-style format. **Physics Paper-I (NEW), Max Marks 85, 3 hours:**
+
+| Section | Questions | Marks | Choice |
+|---|---|---|---|
+| A | 9 | 1 each = 9 | ALL compulsory — mix of MCQ, fill-in-blank, one-liner |
+| B | 14 | 2 each = 28 | ALL compulsory — no choice |
+| C | 12 | 4 each, answer 8 = 32 | 8 of 12 |
+| D | 3 | 8 each, answer 2 = 16 | 2 of 3 |
+
+Plus 20 internal assessment; practicals separate (pass 11). Pass mark 29/85 (Yr 1).
+Source scan: `C:\Users\PRADEEEP\Downloads\AP-Inter-1stYear-Physics-QP-March2026-newpattern.pdf`
+(page 1 of 3 — the testbook CDN copy; the full paper is 3 pages). A near-complete transcription
+was recovered from exam-day coverage: Section A and B complete, C 6 of 12, D 1 of 3.
+
+### The finding that matters: the AP paper asks OUR questions
+
+From the March 2026 AP paper, transcribed:
+- B-13 "What is inertia? What gives the measure of inertia?" — our `ts_ipe_p1_lom_inertia_measure`
+  (TS VSAQ 2M ↔ AP Section B 2M: same length, both compulsory sections).
+- B-14 "State the relation between kinetic energy and momentum of a body." — our
+  `ts_ipe_p1_wpe_kinetic_energy_momentum` (2M in both).
+- C-26 "Mention the methods used to decrease friction." — our
+  `ts_ipe_p1_lom_methods_to_decrease_friction` (4M in both).
+- C-24 "Explain the terms average velocity and instantaneous velocity. When are they equal?" — our
+  `ts_ipe_p1_mp_average_instantaneous_velocity` (4M in BOTH — one transcription labelled it
+  Section D, but the numbering disproves that: A ends at 9, B at 23, so C runs 24-35 and D 36-38;
+  Q24 is a Section C 4-mark question. Every known C question — 24, 26, 27, 30, 31, 32, 35 —
+  falls inside 24-35, consistent).
+
+Both boards now draw from the same NCERT-shaped bank at different lengths — which is exactly what
+`cuts[]` + the `board` header field model. An AP edition is a re-heading + re-cutting exercise
+over the same authored step lists, not a rewrite.
+
+### What an AP edition would need (scoped, not planned)
+
+1. `board: 'ap_ipe'` headers (the field exists) + AP cuts on shared step lists.
+2. A `qtype` slot for AP Section A (1-mark objective/fill-in) — the current enum is VSAQ/SAQ/LAQ.
+3. AP-specific inventory: the Fastrack star-ranks are TS exam-frequency data and do NOT transfer;
+   AP's new-pattern history starts with the March 2026 paper (the seed frequency signal).
+4. Note AP Section B: 14 compulsory 2-mark questions, no choice — 2M coverage is worth far more
+   there than in TS, where a student can dodge within the section.
+
+### Deliberately NOT done
+
+No pattern_version field, no AP authoring, no schema change. The TS product is structurally safe;
+the trigger points are (a) TGBIE's revised theory model papers appearing, (b) the new TS textbooks
+publishing (→ per-unit inventory diff), (c) a founder decision to open the AP edition.
+
+## The enumeration method — the VSAQ/SAQ space per chapter is closed (Session 89, 2026-08-21)
+
+A 2-mark answer must fit 2-4 lines, so every VSAQ is one of ~8 archetypes applied to the chapter's
+finite object inventory. Archetypes, each evidenced by authored cards / real papers:
+
+| Archetype | Evidence |
+|---|---|
+| Define X (+ SI unit) | inertia · unit/null vector · work-power-energy |
+| State the law | Hooke's law (AP 2026 B) · Kepler's areas (AP 2026 A) |
+| Explain with a law | gun recoil · bomb pieces · horse at start |
+| Yes/No + reason | can mu exceed 1 · zero vector with non-zero components |
+| What-if / special case | mu when weight doubles · a at projectile top · SHM energy at 2A (AP 2026) |
+| Relation between two quantities | KE-momentum (both boards, both years) |
+| Mini-numerical (2 steps) | batsman 3.6 N s · t = 4 s · the 7-24 resultant |
+| Condition / comparison | when is work zero · elastic vs inelastic constants |
+
+Method per chapter: (1) extract the **object inventory** from the textbook (every definition, law,
+formula, named phenomenon — ~15-20 objects; use the NEW NCERT-aligned book once published);
+(2) cross with the archetypes, delete non-sensical cells → **~30-40 askable VSAQs**, ~10-15 SAQs
+(SAQ archetypes add sub-derivations, definition sets, distinguish tables, list-with-reasons,
+state-the-laws, medium numericals — numericals enumerate at the FORMULA level, the boards lift
+their numbers from textbook examples); (3) rank: asked (appearances) > book-listed (stars) >
+predicted; (4) **back-test**: every question actually asked 2019-2026 in either state must fall
+inside the grid, else fix the archetype set before the map ships. Honest ceiling ~95% — the claim
+is "every question of the last N years plus the full predicted space", never "cannot be surprised".
+
+**Tiered authoring** (the cost half of the doctrine): full cards (figures, full rubrics) ONLY for
+the asked core; the predicted tail ships as **lean cards** — schema-valid steps + marks + short
+rubric, no figures — promoted to full cards only when a paper season or the teacher pass validates
+the cell. Manifest entries carry `source`: absent = Fastrack, `"blm"` = TSBIE BLM only,
+`"enumerated"` = predicted; cards render a plain "Predicted — not asked yet" chip (Rule 41).
+Empirical footing: the two source books are not supersets of each other even within one unit
+(Unit 7: the BLM holds 2 VSAQs the Fastrack lacks; the Fastrack holds 6 SAQs the BLM lacks) —
+**the union is the starting bank; enumeration extends past the union.**
+
+### Run 2 — Units 4, 5 and 6 (2026-08-21): the method holds, and the union check flips
+
+The sweep was run over three already-complete chapters. Two findings worth keeping:
+
+**(a) Neither book is reliably the superset, but which one is thinner changes per unit.** Unit 7
+needed the union because the BLM held VSAQs the Fastrack lacked. Units 4, 5 and 6 are the opposite:
+re-running the check over the BLM's *short-answer* sections (earlier sessions had only checked them
+for a Section C) shows the BLM is a strict **subset** in all three — 6 VSAQ + 4 SAQ in Unit 4,
+7 VSAQ + 3 SAQ in Unit 5, LAQs only in Unit 6, every one of them already in the Fastrack list.
+The asked cores stayed at 20 / 17 / 12 and nothing was added. **The check still has to run per
+unit — its ANSWER is what varies, not its necessity.** It also corrected a sourcing claim: Unit 4's
+two LAQ entries are *invented* Section-C forms, not the BLM's — neither book has a Unit 4 Section C.
+
+**(b) The archetype set survived three more chapters.** +11 predicted cells in Unit 4, +12 in
+Unit 5, +10 in Unit 6 (44 predicted across the four swept chapters). Back-test: every question
+either book asks in these units, plus all four March-2026 AP hits from these chapters (B-13, B-14,
+C-26, C-24), falls inside the grid. Nothing landed outside — six chapters in, the eight archetypes
+have not needed an addition.
+
+**What the sweep found missing is itself a signal about the source books.** The gaps were not
+exotic: Unit 5 had neither Newton's **first** nor **third** law anywhere in the bank, and nothing
+on angle of repose, the rough incline, or banking; Unit 6 had no scalar product at all, though
+NCERT introduces it in that chapter. A star-ranked commercial question bank tracks what was asked,
+so it inherits whatever the examiners happened to skip — which is precisely the hole enumeration
+exists to fill.
+
+**Cross-unit duplication is a real failure mode of this method** and has to be checked by hand: the
+grid for Unit 4 proposes "define angular velocity, derive v = rω", which is already Unit 7 SAQ 7,
+and the grid for Unit 6 proposes the vector product, which is Unit 7 SAQ 2. Both were dropped;
+the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own
+placement. **Sweep a chapter against the whole bank, not against its own unit.**
+
+### Run 3 — Unit 8 (2026-08-21): the back-test was too weak, and a real paper proved it
+
+Unit 8 Oscillations was built from both books read page by page (Fastrack pp.23–27, BLM pp.21–24).
+The union came back the **Unit 6 shape**: the BLM carries exactly the three LAQs and nothing else,
+so both books agree on the 8-mark set and the 3 VSAQ + 2 SAQ list is the Fastrack's alone. 8 asked
+entries — the thinnest asked core of any unit — plus 11 predicted, so here the tail is larger than
+the core. That is a property of the chapter, not of the method.
+
+**The correction this run forced.** The back-test as written asks: *does every question a real paper
+asked fall INSIDE the archetype grid?* Unit 8 passed it, as every unit has. But reading the March-2026
+AP paper directly turned up **Section A question 7, "When are two vectors said to be equal vectors?"** —
+a **Unit 4** question that neither source book lists, and that the Unit 4 sweep run *earlier the same
+day* did not author. "Equal vectors" was in that sweep's object inventory; the cell was dropped when
+selecting what to author. The archetype set held perfectly. The **selection from the grid** did not.
+
+> **Back-testing the archetype set is not back-testing the output.** When a real paper is in the
+> corpus, diff the sweep's authored list against that paper question by question. "Everything asked
+> falls inside the grid" is a statement about the grid; it says nothing about what you actually wrote.
+
+**A third provenance appeared with it.** That card is neither `blm` nor `enumerated` — it was *asked*,
+just not by either book. It ships as `source: "ap_2026_paper"` with a real `appearances` entry.
+`notebook.js` branches only on `source === 'enumerated'`, so an unknown source value falls through to
+the asked-chip path and needed no code change — but that is a property worth knowing before adding a
+fourth.
+
+**PROBLEMS, deferred, keep turning out to be examined.** Unit 6 problem 3 carries printed years;
+Unit 8 problem 2 (energy when the amplitude is doubled) is the what-if the AP 2026 paper asked, and is
+authored here as a predicted VSAQ rather than left in the deferred pile. Two for two. The founder's
+2026-08-20 deferral stands, but the evidence against it is now a pattern, not an anecdote.
+
+**The browser label gate earns its place on every new figure.** Four figures were authored for Unit 8
+(spring, pendulum, reference circle, energy graph) with a local geometric pre-check that reported
+clean. The browser gate still caught two rounds of collisions — `P`/`ω` on the reference circle, then
+`mg sin θ` against both `O` and `x` on the pendulum. The reason the pre-check was wrong is worth
+knowing: the gate measures `getBoundingClientRect()` on the RENDERED `<text>`, and the SVG is scaled
+to the notebook page, so a gap expressed in figure units shrinks on screen while the font does not.
+**Empirical rule: leave ≥ 40 figure units of vertical clearance between any two labels whose
+horizontal extents overlap** (28 was not enough at these figure widths). Pre-checks triage; the gate
+decides.
+
+### Run 4 — Unit 9 (2026-08-21): the corrected back-test pays on its first use
+
+Unit 9 Gravitation, both books read directly. **The corrected back-test worked exactly as intended.**
+The Unit-8 run had recorded that AP March 2026 Section A question 8 is *"State Kepler's law of areas"*
+and flagged it as a Unit-9 cell waiting. The Fastrack asks all **three** Kepler laws together at 4
+marks; a standalone statement of the law of areas is a different cell, and it is the one the paper
+asked. Authored as `source: "ap_2026_paper"` — the second card with that provenance. **Diffing the
+sweep against a real paper is a standing step now, not an idea.**
+
+**The union check has produced three distinct outcomes in six units.** It is worth tabulating,
+because the lesson is that the answer is genuinely unpredictable:
+
+| Unit | What the two-book check found |
+|---|---|
+| 4, 5, 6 | BLM is a strict **subset** of the Fastrack — nothing added |
+| 7 | **Each book holds questions the other lacks** — BLM 2 VSAQs, Fastrack 6 SAQs |
+| 8 | BLM is **LAQ-only**; both books agree on the 8-mark set, short answers are the Fastrack's |
+| 9 | BLM adds **one SAQ** the Fastrack lacks (the 11.2 km/s question) |
+
+No unit so far has had a Section C in *both* books, and four of the six have no Section C in either —
+so the standing rule holds: **invent an 8-mark form only when a book sources one.**
+
+**What the sweep found missing keeps indicting the source books, and the pattern is now specific:
+whole NCERT SECTIONS go missing, not scattered questions.** Unit 9's gaps were the chapter's entire
+gravitational potential / potential-energy section and its entire satellite-energy section — neither
+book asks a single question from either. Compare Unit 5 (neither Newton's first nor third law) and
+Unit 6 (no scalar product at all). A question bank tracks what was asked; it inherits every section
+the examiners have happened to skip, and it inherits them *whole*.
+
+**Where the book is wrong, write the mark and put the truth in `why`.** The Fastrack's answer to
+Unit 9 VSAQ 2 gives the vector form of the law of gravitation **without the minus sign**. NCERT keeps
+it, and without it the formula describes a repulsion. The card writes the minus and records the
+discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws"
+and for "μ > 1 because polishing increases adhesion".
+
+## The term-pack design (designed Session 89 — NOT built)
+
+The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE
+(March); every internal exam is the board paper over a smaller chapter window. Design: the student
+declares `{exam_date, chapters[]}` (two-tap picker; a later chat shell parses free text into the
+same struct — **chatbot is the doorman, never the building**; the offline single file must work
+fully without it). Deterministic outputs: filtered bank view · a board-format practice paper over
+those chapters (real section counts + choice structure) · a marks-weighted day-by-day plan ·
+a term-scoped readiness meter. AI boundaries (Rule 18 as the trust position — "every answer
+human-verified; AI only checks YOU"): explain-a-step = DeepSeek grounded strictly in the authored
+`why`/`margin_note`/`common_mistakes` (cacheable per step); **memory tips are authored and
+measured** (tip → did the next recall pass?), never improvised live. Cost basis: DeepSeek
+₹0.045/check (₹0.014 cached), Web Speech free/on-device.
+
+## Marks arithmetic — what full-bank mastery buys (Session 89)
+
+| | TS (60M) | AP (85M) |
+|---|---|---|
+| LAQ/8M section | 16M, dodge 1-of-3 | 16M, dodge 1-of-3 |
+| SAQ/4M section | 24M, dodge 2-of-8 | 32M, dodge 4-of-12 |
+| **Choice-protected total** | **40M** | **48M** |
+| 2M section | 20M, NO choice | 28M (14 q), NO choice |
+| 1M section | — | 9M, NO choice, MCQ/fill-in/one-liner |
+| No-choice exposure | 20M (33%) | 37M (43%) |
+
+Full-bank mastery ⇒ ~38-40 choice-protected in TS plus most of Section A → honest ~50-56/60 target.
+In AP the compulsory B section makes complete 2M coverage LOAD-BEARING, not garnish. Caveats that
+keep "guaranteed" honest: year-one-of-new-syllabus draw risk (absorbed by choice; resolved by model
+papers), knowing ≠ producing (the checking loop is the guarantee's enforcement mechanism), and all
+mark splits are claims until the teacher pass.
+
+## Board picker = a lens over ONE bank (founder question, Session 89)
+
+When login/state selection lands: the student picks TS or AP once; the catalog stays ONE inventory.
+The board choice re-labels section groupings (TS "Section A - VSAQ" content appears under AP's
+"Section B" name), selects which header/cut a card opens with, foregrounds that board's Asked
+years, and drives that board's marks arithmetic/readiness. TS+AP share the 2/4/8 mark values, so
+most cards are valid in both at the same marks; AP adds the 1M drill surface. **Never two
+catalogs, never duplicated files** — one card = one question stays law; board affects presentation
+and cuts only. Today's `appearances[].board` tags are the data foundation for that view.
+
+## AP paper-merge facts (2025-26 revision, for the record)
+
+Maths 1A+1B merged into ONE 100M paper (was 75+75; objective questions added; pass 26→35).
+Botany+Zoology merged into one Biology paper (43+42=85, separate booklets). Physics/Chemistry 85M
+each (+20 internal; practicals separate, pass 11; theory pass 29/85 Yr-1).

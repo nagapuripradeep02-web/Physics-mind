@@ -1,0 +1,280 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_spring_frequency",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain an equation for the frequency of oscillation of a spring of force constant k to which a mass m is attached.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "The force law",
+      "marks": 2
+    },
+    {
+      "label": "The frequency",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "loaded_spring",
+          "width": 380,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "support",
+              "d": "M 130 40 L 250 40",
+              "ms": 380,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "sh0",
+              "d": "M 150 40 L 138 27",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "sh1",
+              "d": "M 175 40 L 163 27",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "sh2",
+              "d": "M 200 40 L 188 27",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "sh3",
+              "d": "M 225 40 L 213 27",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "sh4",
+              "d": "M 248 40 L 236 27",
+              "ms": 80
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 185,
+              "y": 30,
+              "text": "S",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "coil",
+              "d": "M 190 40 L 190 54 L 210 61 L 170 75 L 210 89 L 170 103 L 210 117 L 190 126 L 190 140",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "lbl_k",
+              "x": 141,
+              "y": 92,
+              "text": "k",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "block",
+              "d": "M 165 140 L 215 140 L 215 180 L 165 180 L 165 140",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 183,
+              "y": 166,
+              "text": "m",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "mean",
+              "d": "M 128 180 L 252 180",
+              "ms": 420,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 112,
+              "y": 186,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "pulled",
+              "d": "M 165 215 L 215 215 L 215 255 L 165 255 L 165 215",
+              "ms": 480,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "yarrow",
+              "d": "M 244 181 L 244 213",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "yhead",
+              "d": "M 239 205 L 244 214 L 249 205",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 252,
+              "y": 203,
+              "text": "y",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The figure fixes the mean position O, which is where the spring force is zero — every y in the answer is measured from there.",
+        "common_mistakes": [
+          "Measuring y from the natural length of the spring instead of from the mean position O."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a spring hangs from a support with a mass m attached, pulled down through y from the mean position O.",
+          "accept": [
+            "draw the spring with the mass",
+            "mark the mean position and y"
+          ],
+          "reject": [
+            "F equals minus k y"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram"
+          ]
+        }
+      },
+      {
+        "id": "s2_force",
+        "kind": "equation",
+        "label": "The force law",
+        "marks": 2,
+        "mark_note": "Force law",
+        "lines": [
+          "Pull the mass down through a distance y and",
+          "release it. The spring pulls it back with a",
+          "restoring force proportional to y:",
+          {
+            "text": "F = −k y",
+            "style": "eq"
+          },
+          "The minus sign shows F and y point opposite",
+          "ways. By Newton’s second law F = m a, so",
+          {
+            "text": "m a = −k y   ⇒   a = −(k/m) y",
+            "style": "eq"
+          },
+          "a ∝ −y, which IS simple harmonic motion."
+        ],
+        "why": "Showing a ∝ −y first is what earns the right to use the SHM formulas at all; quoting T = 2π√(m/k) without it assumes the answer.",
+        "common_mistakes": [
+          "Dropping the minus sign, which turns an oscillation into a runaway."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F is minus k y, so m a is minus k y and a is minus k by m times y, proving SHM.",
+          "accept": [
+            "F equals minus k y",
+            "a equals minus k by m into y",
+            "a is proportional to minus y"
+          ],
+          "reject": [
+            "draw the spring with the mass"
+          ],
+          "heard_as": [
+            "minus k y",
+            "k by m"
+          ]
+        }
+      },
+      {
+        "id": "s3_frequency",
+        "kind": "boxed_final",
+        "label": "The frequency",
+        "marks": 1,
+        "mark_note": "Frequency",
+        "lines": [
+          "Comparing a = −(k/m)y with a = −ω²y,",
+          {
+            "text": "ω = √(k/m),   T = 2π/ω = 2π√(m/k)",
+            "style": "eq"
+          },
+          "Since the frequency n = 1/T,",
+          {
+            "text": "n = (1/2π) √(k/m)",
+            "style": "boxed"
+          }
+        ],
+        "why": "A stiffer spring (larger k) or a lighter mass both raise the frequency — which is exactly what the square root says.",
+        "common_mistakes": [
+          "Writing n = 2π√(k/m), forgetting that n is the reciprocal of T."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That omega is root k by m, T is 2 pi root m by k, and n is one by 2 pi times root k by m.",
+          "accept": [
+            "omega is root k by m",
+            "T is 2 pi root m by k",
+            "n is one by two pi root k by m"
+          ],
+          "reject": [
+            "F equals minus k y"
+          ],
+          "heard_as": [
+            "root k by m",
+            "2 pi"
+          ]
+        }
+      }
+    ]
+  }
+}

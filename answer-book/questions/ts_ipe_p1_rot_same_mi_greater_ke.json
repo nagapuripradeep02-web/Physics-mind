@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_same_mi_greater_ke",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two rigid bodies have the same moment of inertia about their axes of symmetry. Which body will have the greater kinetic energy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "TSBIE Basic Learning Material (2021-22), Unit 7 VERY SHORT ANSWER — this question is NOT in the Sri Chaitanya Fastrack; the two source books are not supersets of each other, so the unit inventory is their union. The 1+1 split is invented and needs a Telangana IPE teacher."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Rotational kinetic energy in terms of",
+          "angular momentum L:",
+          {
+            "text": "KE = L² / 2I",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This is the rotational twin of KE = p²/2m from Work Power Energy — same substitution, ω = L/I.",
+        "why": "KE = ½Iω² and L = Iω; putting ω = L/I into the first gives KE = L²/2I. Knowing both forms lets you answer with whichever quantity the question fixes.",
+        "common_mistakes": [
+          "Using KE = ½Iω² and getting stuck, because the question says nothing about ω."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That KE = L squared over 2I.",
+          "accept": [
+            "KE is L squared by two I",
+            "L square by 2I",
+            "rotational KE formula in L"
+          ],
+          "reject": [
+            "the body with greater angular momentum"
+          ],
+          "heard_as": [
+            "L squared",
+            "two I",
+            "kinetic energy"
+          ]
+        }
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "With I the same for both bodies,",
+          "KE ∝ L², so",
+          {
+            "text": "the body with the greater angular",
+            "style": "boxed"
+          },
+          {
+            "text": "momentum has the greater kinetic energy.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State the condition (\"I same for both\") before the conclusion — it is what makes the comparison fair.",
+        "why": "The question deliberately fixes I so that L alone decides. The same trick with p²/2m appeared on both boards’ papers — learn the pattern, not just this case.",
+        "common_mistakes": [
+          "Answering \"the faster one\" — ω is not given; the comparison the formula allows is through L."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with equal I, the body with greater angular momentum has greater kinetic energy.",
+          "accept": [
+            "the body with greater angular momentum",
+            "KE proportional to L squared",
+            "L ekkuva unna body ki KE ekkuva"
+          ],
+          "reject": [
+            "KE is L squared by two I"
+          ],
+          "heard_as": [
+            "greater angular momentum",
+            "greater kinetic energy"
+          ]
+        }
+      }
+    ]
+  }
+}

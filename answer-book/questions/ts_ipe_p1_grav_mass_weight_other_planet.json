@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_mass_weight_other_planet",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "As we go from one planet to another, how do (a) the mass and (b) the weight of a body change?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The mass",
+      "marks": 1
+    },
+    {
+      "label": "The weight",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mass",
+        "kind": "text",
+        "label": "The mass",
+        "marks": 1,
+        "mark_note": "Mass",
+        "lines": [
+          "The mass of a body is the quantity of matter",
+          "in it. It is the same everywhere and does not",
+          "change from one planet to another."
+        ],
+        "why": "Mass measures how hard a body is to accelerate, and that property travels with the body.",
+        "common_mistakes": [
+          "Saying the mass becomes smaller on a smaller planet."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mass is the quantity of matter and does not change from planet to planet.",
+          "accept": [
+            "mass stays the same",
+            "quantity of matter is unchanged"
+          ],
+          "reject": [
+            "weight is m g"
+          ],
+          "heard_as": [
+            "mass",
+            "same"
+          ]
+        }
+      },
+      {
+        "id": "s2_weight",
+        "kind": "boxed_final",
+        "label": "The weight",
+        "marks": 1,
+        "mark_note": "Weight",
+        "lines": [
+          "The weight of a body is the gravitational pull",
+          "on it, W = m g. Different planets have",
+          "different values of g, so",
+          {
+            "text": "Mass stays the same; weight changes.",
+            "style": "boxed"
+          }
+        ],
+        "why": "One number belongs to the body and the other to the body AND the planet — which is the whole distinction the question is testing.",
+        "common_mistakes": [
+          "Treating weight as a property of the body alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That weight is m g and changes because g differs from planet to planet.",
+          "accept": [
+            "weight is m g",
+            "g is different so weight changes"
+          ],
+          "reject": [
+            "quantity of matter is unchanged"
+          ],
+          "heard_as": [
+            "weight changes",
+            "m g"
+          ]
+        }
+      }
+    ]
+  }
+}

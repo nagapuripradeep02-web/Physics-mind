@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_dancer_folds_arms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A ballet dancer spinning with her arms stretched folds her arms. What happens to her angular velocity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "The law",
+        "lines": [
+          "No external torque acts, so angular",
+          "momentum is conserved:",
+          {
+            "text": "I₁ω₁ = I₂ω₂",
+            "style": "eq"
+          }
+        ],
+        "why": "The dancer example appears inside the conservation SAQ in both source books — the 2-mark standalone form is the same physics asked shorter.",
+        "common_mistakes": [
+          "Explaining with energy. The conserved quantity here is angular momentum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular momentum I-omega is conserved since no external torque acts.",
+          "accept": [
+            "I omega is conserved",
+            "no external torque"
+          ],
+          "reject": [
+            "her angular velocity increases"
+          ],
+          "heard_as": [
+            "conserved",
+            "I omega"
+          ]
+        }
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Folding the arms brings mass towards",
+          "the axis, so I decreases and",
+          {
+            "text": "her angular velocity increases.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Same physics as the polar-ice-caps question run the other way: mass inward, spin faster.",
+        "common_mistakes": [
+          "Saying she spins faster \"because she pushes\" — no torque is applied; I changed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That folding decreases I so omega increases.",
+          "accept": [
+            "I decreases so omega increases",
+            "she spins faster"
+          ],
+          "reject": [
+            "I omega is conserved"
+          ],
+          "heard_as": [
+            "spins faster",
+            "I decreases"
+          ]
+        }
+      }
+    ]
+  }
+}

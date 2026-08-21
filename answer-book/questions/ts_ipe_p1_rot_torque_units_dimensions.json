@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_torque_units_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the SI unit and dimensional formula of torque. Is torque the same physical quantity as work?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Unit and dimensions",
+      "marks": 1
+    },
+    {
+      "label": "Torque vs work",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_units",
+        "kind": "equation",
+        "label": "Unit and dimensions",
+        "marks": 1,
+        "mark_note": "Unit",
+        "lines": [
+          "Torque = force × perpendicular distance,",
+          "so",
+          {
+            "text": "SI unit: N·m;  dimensions: [M L² T⁻²]",
+            "style": "eq"
+          }
+        ],
+        "why": "The dimensional formula follows from τ = rF — the same product of a force and a length that work is built from.",
+        "common_mistakes": [
+          "Writing the unit as joule. Torque is deliberately kept as N·m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That torque is in newton metre with dimensions M L squared T minus 2.",
+          "accept": [
+            "newton metre",
+            "M L squared T minus two"
+          ],
+          "reject": [
+            "work is a scalar"
+          ],
+          "heard_as": [
+            "newton metre",
+            "dimensions"
+          ]
+        }
+      },
+      {
+        "id": "s2_compare",
+        "kind": "boxed_final",
+        "label": "Torque vs work",
+        "marks": 1,
+        "mark_note": "Compare",
+        "lines": [
+          "No. Work is a SCALAR (a dot product);",
+          "torque is a VECTOR (a cross product).",
+          {
+            "text": "Same dimensions, different quantities.",
+            "style": "boxed"
+          }
+        ],
+        "why": "A favourite trap: identical dimensions never make two quantities the same — the vector character separates them.",
+        "common_mistakes": [
+          "Concluding they are the same because the dimensions match."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is a scalar and torque a vector — same dimensions, different quantities.",
+          "accept": [
+            "work is a scalar torque is a vector",
+            "same dimensions different quantities"
+          ],
+          "reject": [
+            "newton metre"
+          ],
+          "heard_as": [
+            "scalar",
+            "vector"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_resultant_max_min",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two vectors have magnitudes P and Q. What are the maximum and minimum possible magnitudes of their resultant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "The two limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "Rule",
+        "lines": [
+          "For two vectors at an angle θ,",
+          {
+            "text": "R = √(P² + Q² + 2PQ cos θ)",
+            "style": "eq"
+          },
+          "R changes with θ only through cos θ,",
+          "and cos θ runs from +1 down to −1."
+        ],
+        "why": "One formula covers every case; the two results are simply its end points.",
+        "common_mistakes": [
+          "Adding the magnitudes directly at any angle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R is the root of P squared plus Q squared plus 2PQ cos theta, and cos theta runs from plus 1 to minus 1.",
+          "accept": [
+            "root P squared plus Q squared plus 2 P Q cos theta",
+            "cos theta from plus one to minus one"
+          ],
+          "reject": [
+            "P plus Q is the maximum"
+          ],
+          "heard_as": [
+            "cos theta",
+            "resultant formula"
+          ]
+        }
+      },
+      {
+        "id": "s2_limits",
+        "kind": "boxed_final",
+        "label": "The two limits",
+        "marks": 1,
+        "mark_note": "Limits",
+        "lines": [
+          {
+            "text": "Maximum: R = P + Q   (θ = 0°)",
+            "style": "boxed"
+          },
+          {
+            "text": "Minimum: R = |P − Q|   (θ = 180°)",
+            "style": "boxed"
+          },
+          "Every other angle gives a value between",
+          "these two."
+        ],
+        "why": "Same direction adds, opposite direction subtracts — the two limits a student can quote without touching the formula.",
+        "common_mistakes": [
+          "Writing the minimum as P − Q and getting a negative magnitude; it is the modulus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum is P plus Q at zero degrees and the minimum is mod P minus Q at 180 degrees.",
+          "accept": [
+            "P plus Q maximum",
+            "mod P minus Q minimum",
+            "zero degrees and 180 degrees"
+          ],
+          "reject": [
+            "cos theta runs from plus one to minus one"
+          ],
+          "heard_as": [
+            "maximum",
+            "minimum"
+          ]
+        }
+      }
+    ]
+  }
+}

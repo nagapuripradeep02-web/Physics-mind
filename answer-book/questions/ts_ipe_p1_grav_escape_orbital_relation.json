@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_escape_orbital_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the relation between the escape velocity and the orbital velocity of a satellite revolving close to the earth.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two speeds",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two",
+        "kind": "equation",
+        "label": "The two speeds",
+        "marks": 1,
+        "mark_note": "Both speeds",
+        "lines": [
+          "For a satellite revolving close to the surface",
+          "of the earth,",
+          {
+            "text": "v₀ = √(gR),    v_e = √(2gR)",
+            "style": "eq"
+          }
+        ],
+        "why": "Both come from the same R, so the ratio between them is a pure number with no earth data in it.",
+        "common_mistakes": [
+          "Using v₀ = √(2gR) and v_e = √(gR), the two the wrong way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v naught is root g R and v e is root 2 g R.",
+          "accept": [
+            "root g R",
+            "root 2 g R"
+          ],
+          "reject": [
+            "v e is root two times v naught"
+          ],
+          "heard_as": [
+            "root g R",
+            "escape"
+          ]
+        }
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Dividing one by the other,",
+          {
+            "text": "v_e = √2 × v₀",
+            "style": "boxed"
+          },
+          "So escaping needs only about 1.4 times the",
+          "orbital speed, not twice it."
+        ],
+        "why": "The factor is surprisingly small, which is why a satellite already in orbit is most of the way to leaving the earth altogether.",
+        "common_mistakes": [
+          "Saying the escape velocity is twice the orbital velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v e equals root two times v naught, about 1.4 times.",
+          "accept": [
+            "root two times v naught",
+            "about 1.4 times"
+          ],
+          "reject": [
+            "root g R"
+          ],
+          "heard_as": [
+            "root two",
+            "1.4"
+          ]
+        }
+      }
+    ]
+  }
+}

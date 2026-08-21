@@ -1,5 +1,296 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🪐 SESSION — Answer Book: **UNIT 9 "GRAVITATION" (27/27) — the corrected back-test pays on its first use** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: six chapters, 162 catalog entries, 157 files. Unit 9 ships 16 asked entries (14 Fastrack + 1 BLM-only + 1 AP-paper) plus 11 predicted. The union check flipped BACK — the BLM carries an SAQ the Fastrack lacks — and the back-test correction written down last session found its cell on the very first run it governed.**
+
+### The union check has now produced three different answers in six units
+Both books read directly again. The Fastrack (pp.28–30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — **no Section C and no PROBLEMS section**, the first unit since Unit 5 with neither. The BLM (pp.25–26) lists **four** Short Answer questions and nothing else — and the fourth, *"An object projected with a velocity ≥ 11.2 km s⁻¹ will not return to earth. Explain the reason,"* **is not in the Fastrack at all.** It ships as `saq7`, `source: "blm"`.
+
+| Unit | What the two-book check found |
+|---|---|
+| 4, 5, 6 | BLM a strict **subset** — nothing added |
+| 7 | **Each book holds questions the other lacks** |
+| 8 | BLM **LAQ-only**; both agree on the 8-mark set |
+| 9 | BLM adds **one SAQ** the Fastrack lacks |
+
+Four of the six units have no Section C in **either** book, so the standing rule holds: invent an 8-mark form only when a book sources one.
+
+### The corrected back-test worked, first time
+The Unit-8 session recorded the correction — *back-testing the archetype set is not back-testing the output; diff the sweep against a real paper* — and flagged AP March 2026 Section A Q8, **"State Kepler's law of areas,"** as a Unit-9 cell waiting. It was there. The Fastrack asks all **three** Kepler laws together at 4 marks (`saq4`); a standalone statement of the law of areas is a different cell, and it is the one the paper asked. Authored as `vsaq9`, `source: "ap_2026_paper"`, `appearances: [{year: 2026, q_no: 8, board: 'ap_ipe'}]` — the **second** card with that provenance. The procedure is now a standing step rather than an idea.
+
+### The gaps keep coming in whole NCERT sections, not scattered questions
+Unit 9's sweep found the chapter's **entire gravitational-potential / potential-energy section** and its **entire satellite-energy section** absent from both books — not one question from either. Compare Unit 5 (neither Newton's first nor third law) and Unit 6 (no scalar product at all). A question bank tracks what was *asked*, so it inherits every section the examiners have skipped, and it inherits them **whole**. 11 predicted cells: potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness, inertial vs gravitational mass, field intensity, why total energy is negative — and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's.
+
+### Where the book is wrong, write the mark and put the truth in `why`
+The Fastrack's answer to VSAQ 2 gives the vector form of the law of gravitation **without the minus sign**. NCERT keeps it, and without it the formula describes a repulsion. The card writes the minus and records the discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws" and for "μ > 1 because polishing increases adhesion".
+
+### A red that named nothing — and was not a defect
+`smoke:answers` came back 25/26 with **"the PM_ANSWER seam follows a question switch"** failing. It was a **`page.goto` timeout at the 30 s default**, not an assertion. That test does *constant* work — it opens two questions — so fleet growth should not touch it. Measured instead of assumed: **2.9 s in isolation, 30.5 s in sequence.** It runs immediately after the two 2-minute fleet sweeps, and its page load inherits a browser that has just walked every question twice. Raised deliberately with `test.slow()` and the measurement recorded in a comment beside it. **Do not trim the sweeps to make it fit.**
+
+### Verification (measured)
+`build:answers` → **32/32 · 29/29 · 22/22 · 33/33 · 19/19 · 27/27**, drift clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **26/26 across 157 questions (8.8 min)** · `npx tsc --noEmit` **0** · a Rule-41 register scan over the 27 new cards caught 6 idioms ("the striking part", "the give-away", "the mark of a bound system", "an orbit IS a fall", "weigh the sun", "dropping straight out of") — all rewritten literally. **Sweep headroom: 132 s / 132 s / 168 s of their 240 s budgets** at 157 questions — gate 15 is at 70%, so roughly ONE more unit before the next deliberate raise.
+
+### Files
+`answer-book/units.json` (Unit 9 block, 27 entries + the findings in the comment) · 27 new `answer-book/questions/ts_ipe_p1_grav_*.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 4 — Unit 9", with the union-outcome table) · `e2e/answer_book.spec.ts` (one deliberate timeout raise). **No platform file touched.** Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the two Unit-9 figures** — the satellite orbit (it fixes R + h, which is the whole derivation) and the Kepler ellipse with its two equal-area sectors. `npm run serve:answers` → `http://localhost:8100`.
+2. **The predicted ratio is 66 of 162 entries (41%)** — steady across three units now. The filter-chip question from two sessions ago is still open and is the last thing between this and a founder read-through.
+3. **Unit 10 "Mechanical Properties of Solids"** next (Fastrack pp.30+, BLM pp.27+ — both already sighted while reading Unit 9, and both have real content). Run the union check and diff the sweep against the AP paper: **Section A Q3 (highest elasticity), Q10 (J m⁻¹ and J m⁻² units)** are already-known cells in or near that chapter.
+4. **The full AP March-2026 paper is still the highest-value missing artifact** — page 1 of 3 has now paid for itself three times.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap · the vault sync, still drafted and unwritten.
+
+---
+
+## 📘 SESSION — Answer Book: **UNIT 8 "OSCILLATIONS" (19/19) — and the AP paper caught a hole in yesterday's sweep** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: five chapters, 135 catalog entries, 130 files. Unit 8 ships 8 asked entries (3 LAQ + 2 SAQ + 3 VSAQ over 7 files, four new figures, one `cuts[]` pair) plus 11 predicted lean cards. Both source books were read page by page on the founder's instruction — and that instruction paid immediately: reading the March-2026 AP paper directly turned up a UNIT 4 question neither book lists and the Unit 4 sweep had dropped. The back-test as written was too weak, and is now corrected.**
+
+### The two-book check: Unit 8 is the Unit 6 shape
+The TSBIE BLM's Unit 8 (book pp.21–24) carries **exactly the three Long Answer questions and nothing else** — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the 3 VSAQ + 2 SAQ list is the Fastrack's alone (pp.23–27). The books also **number the LAQs differently** (Fastrack: 1 = pendulum, 2 = projection; BLM: the reverse) — same three questions, different order. The manifest follows the Fastrack, as every unit does, because the star ranks and section numbers are the Fastrack's.
+
+**A real `cuts[]` pair, the third in the book.** The Fastrack asks the SHM definition *alone* as Short Answer 1 (4M) and the definition *plus* the projection proof as Long Answer 2 (8M). One authored step list at two lengths — `ts_ipe_p1_osc_shm_definition_projection` is the root with `laq` and `saq` cuts, the `saq` cut carrying its own `question_text`. Coherence checked by hand: the 4-mark cut is definition + examples, self-contained, no dangling reference to the hidden proof.
+
+### The finding that matters: a back-test can pass and still be too weak
+Reading the AP March-2026 scan directly (rather than the transcription of it) surfaced **Section A question 7 — "When are two vectors said to be equal vectors?"** That is a **Unit 4** question. Neither source book lists it. And the Unit 4 enumeration sweep — run *earlier the same day* — had "equal vectors" in its object inventory and **dropped the cell when choosing what to author.**
+
+The archetype set held: define-X × equal-vectors is inside the grid. The **selection from the grid** was too tight. So:
+
+> **Back-testing the archetype set is not back-testing the output.** "Every asked question falls inside the grid" is a statement about the grid. When a real paper is in the corpus, diff the sweep's authored list against that paper question by question.
+
+Recorded in `docs/patterns/answer_book.md` as a standing step, and the card is authored: `ts_ipe_p1_vec_equal_vectors`, Unit 4 vsaq17.
+
+**It needed a third provenance.** That card is neither `blm` nor `enumerated` — it was *asked*, just not by either book. It ships as **`source: "ap_2026_paper"`** with `appearances: [{year: 2026, q_no: 7, board: 'ap_ipe'}]` and renders "Asked: AP 2026". `notebook.js` branches only on `source === 'enumerated'`, so an unknown source falls through to the asked-chip path and needed **no code change** — worth knowing before a fourth value is added.
+
+### PROBLEMS, deferred, keep turning out to have been examined
+Unit 8 has six Fastrack problems. Still deferred per the founder's 2026-08-20 call — but **problem 2 (energy when the amplitude is doubled) is the exact what-if the AP 2026 paper asked**, and is authored here as a predicted VSAQ rather than left in the pile. That is **two for two** (Unit 6 problem 3 carries printed years "Mar, May-14"). The deferral stands; the evidence against it is now a pattern rather than an anecdote.
+
+### The sweep
+11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory · amplitude doubled · where v and a are maximum · seconds pendulum standalone · the force law and its minus sign · resonance · the pendulum in a lift — and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. **Unit 8 has the thinnest asked core of any unit (8), so here the predicted tail is LARGER than the core** — a property of the chapter, not of the method.
+
+### The label gate caught two rounds the local pre-check called clean
+Four figures were authored (spring, pendulum, reference circle, energy graph). A local geometric pre-check reported no overlaps; the browser gate then caught `P`/`ω` on the reference circle and, after that fix, `mg sin θ` against both `O` and `x` on the pendulum. The reason is worth knowing: the gate measures `getBoundingClientRect()` on the **rendered** `<text>`, and the SVG is **scaled** to the page — a gap in figure units shrinks on screen while the font does not. **Empirical rule now recorded: ≥ 40 figure units of vertical clearance between labels whose horizontal extents overlap.** Pre-checks triage; the gate decides.
+
+### Verification (measured)
+`build:answers` → **32/32 · 29/29 · 22/22 · 33/33 · 19/19**, drift clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **26/26 across 130 questions (9.1 min)** · `npx tsc --noEmit` **0** · a Rule-41 register scan over the 19 new cards caught 8 more idioms ("so violent", "the body gives up its own frequency", "it answers", "as though gravity had become stronger") — all rewritten literally. **Sweep headroom: 126 s / 132 s / 144 s of their 240 s budgets** at 130 questions — roughly two more units before the next deliberate raise.
+
+### Files
+`answer-book/units.json` (Unit 8 block + 11 enumerated + Unit 4 vsaq17 + all findings in the comment) · 19 new `answer-book/questions/ts_ipe_p1_osc_*.json` + `ts_ipe_p1_vec_equal_vectors.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 3 — Unit 8"). **No platform file touched.** Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the four Unit-8 figures** — the pendulum with both weight components especially, and the reference circle (it carries the whole proof). `npm run serve:answers` → `http://localhost:8100`. Check **print** on all three LAQs.
+2. **The predicted ratio is now 55 of 135 entries (41%).** Open founder question from the last session, sharper now: does the predicted tail need its own filter chip so the asked core stays the default view?
+3. **Unit 9 "Gravitation"** next (BLM pp.25+ opens with SAQs; Fastrack pp.27+). Run the union check and the sweep together, and **diff the sweep's output against the AP 2026 paper** — Section A question 8 is "State Kepler's law of areas", so that chapter has a known asked cell waiting.
+4. **The full AP March-2026 paper is still wanted** — only page 1 of 3 is in the corpus, and page 1 alone just paid for itself twice.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap · the vault sync, still drafted and unwritten.
+
+---
+
+## 📗 SESSION — Answer Book: **the ENUMERATION SWEEP reaches Units 4, 5 and 6 — and the union check FLIPS** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the Session-89 doctrine has now been applied to every chapter in the book, not just the one it was invented on. The three already-complete chapters — Motion in a Plane, Laws of Motion, Work Power Energy — were re-sourced against both books and then swept: +11, +12 and +10 predicted lean cards, honestly badged. Four chapters, 115 catalog entries, 111 files, 44 of them predicted. The interesting finding is the SOURCING one: in these three units the TSBIE Basic Learning Material is a strict SUBSET of the Fastrack, the exact opposite of Unit 7 — so the two-book check earns its keep by giving a DIFFERENT answer per unit, not by always finding something.**
+
+### The union check was re-run, and it came back clean
+Earlier sessions checked the BLM's Units 4 and 5 only for a **Section C** (that was the question in front of them at the time). This session read its short-answer sections page by page: **BLM Unit 4** (book pp.6–9) lists 6 VSAQs and 4 SAQs and no Section C; **BLM Unit 5** (pp.10–11) lists 7 VSAQs and 3 SAQs and no Section C; **BLM Unit 6** (pp.12–16) lists the 3 LAQs and then "Attached Problems", as already recorded. **Every one of those 20 questions was already in the inventory.** The asked cores stand unchanged at 20 / 17 / 12 and nothing was added from the BLM.
+
+Two sourcing claims were corrected in the `units.json` comment while the books were open:
+- Unit 4's two LAQ entries are **invented** Section-C forms, not "the BLM's Section-C forms" — the BLM lists the parallelogram law and the parabola as 4-mark SAQs exactly as the Fastrack does, and **neither book has a Unit 4 Section C**. (The memory note was right; the manifest comment was loose.)
+- The BLM places *"How is average velocity different from instantaneous velocity?"* in **Unit 3** (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4. Our card follows the Fastrack — and AP March 2026 asked it at 4 marks (C-24).
+
+### The sweep: 33 predicted cells, and what the gaps say about the source books
+Archetype × object grid over each NCERT chapter minus the union, then ranked and authored as **lean cards** (`source: "enumerated"`, violet "Predicted — not asked yet" chip, no figures, short rubrics):
+- **Unit 4 — 7 VSAQ + 4 SAQ.** Scalar vs vector · max/min resultant · zero resultant of unequal vectors · the 120° case · maximum-range angle · complementary angles · centripetal acceleration (2M) — and at 4M: resolution into components, relative velocity in a plane, the centripetal-acceleration derivation, the velocity of a projectile at any instant.
+- **Unit 5 — 7 VSAQ + 5 SAQ.** Newton's **first** law · Newton's **third** law · impulse units/dimensions · angle of repose · limiting vs kinetic friction · centripetal force · the lift reading — and at 4M: angle of friction = angle of repose, the rough incline, banking of roads, the static/kinetic friction laws, the three types of inertia.
+- **Unit 6 — 6 VSAQ + 4 SAQ.** State the work–energy theorem · state conservation of mechanical energy + its condition · coefficient of restitution · equal-mass elastic collision · spring potential energy · momentum doubled — and at 4M: the **scalar product** and its properties, work by a variable force, the perfectly-inelastic energy loss, elastic vs inelastic.
+
+**What was missing is itself a finding.** The gaps were not exotic: Unit 5 had **neither Newton's first nor third law anywhere in the bank**, and nothing on angle of repose, the rough incline or banking; Unit 6 had **no scalar product at all**, though NCERT introduces it in that very chapter. A star-ranked commercial question bank tracks what was *asked*, so it inherits whatever the examiners happened to skip — which is precisely the hole enumeration exists to fill.
+
+### Back-test passed, for a fourth, fifth and sixth chapter
+Every question either book asks in these three units, **plus all four March-2026 AP hits from these chapters** (B-13 inertia · B-14 KE–momentum · C-26 methods to decrease friction · C-24 average vs instantaneous velocity), falls inside the grid. Nothing landed outside. Six chapters in, the eight archetypes have not needed an addition.
+
+### The trap this run found: sweep against the BANK, not against the unit
+The Unit 4 grid proposes *"define angular velocity, derive v = rω"* — which is already **Unit 7 SAQ 7**. The Unit 6 grid proposes the **vector** product — already **Unit 7 SAQ 2**. Both were dropped by hand; the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own placement. Nothing automatic catches this: the drift gate checks that a manifest entry resolves to a file, not that two units are teaching the same cell. **Recorded in the pattern doc as a standing step of the method.**
+
+### Plain language (Rule 41) was enforced after generation, not assumed
+A register scan over the 33 new cards caught 20 idioms/personifications that had slipped into rendered lines and rail text — "it wins for every u", "the components never talk to each other", "stops dead", "the whole trick", "the sign cannot survive a square", "the job it does sideways". All rewritten literally; the 5 that touched rendered lines were re-checked against the 52-character notebook width.
+
+### Verification (measured)
+`build:answers` → **31/31 · 29/29 · 22/22 · 33/33**, drift gate clean both directions, every marks-sum ✓ · `smoke:answers` **26/26 across 111 questions (6.0 min)** · `npx tsc --noEmit` **0** · built page re-parsed: 4 units, 115 entries, 111 question payloads, 44 enumerated, recall rubrics stripped from the browser payload (0 leaked), 481 KB. **Sweep headroom checked deliberately:** the three fleet sweeps ran at **90 s / 90 s / 114 s of their 240 s budgets** at 111 questions — the 240 s raise made at 4 units still has room, so do not trim.
+
+### Files
+`answer-book/units.json` (33 entries + the sourcing findings in the comment) · 33 new `answer-book/questions/ts_ipe_p1_{vec,mp,lom,wpe}_*.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 2 — Units 4, 5 and 6"). **No platform file touched** — no renderer, no schema, no build script, no player, no gates, no `src/data/concepts/`, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the predicted tail.** `npm run serve:answers` → `http://localhost:8100`. The honest question is whether 44 predicted cards out of 115 is the right ratio for a student opening the catalog, or whether the violet chip needs to be louder / the predicted cards need their own filter chip.
+2. **The teacher pass is now 115 entries deep, 44 of them predicted cells needing validation or deletion.** That is the loop the doctrine is waiting on — a teacher confirming a predicted cell promotes it to a full card; a teacher rejecting one deletes it.
+3. **Unit 8 "Oscillations"** is still the next NEW chapter (book pp.23+; its BLM section opens WITH LAQs — expect real Section-C forms). Run the union check and the enumeration sweep together now, as one step.
+4. **Confirm the vault sync** — still drafted, shown and unwritten from the previous session.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap.
+
+---
+
+## 📒 SESSION — Answer Book: **UNIT 7 COMPLETE (33/33) with the ENUMERATION PILOT + board tags + Session 89 filed** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: four chapters, 82 catalog entries, 78 files — and the first unit built under the Session-89 doctrine. Unit 7 "System of Particles and Rotational Motion" ships 22 asked-core questions (the UNION of both books — the first unit where that mattered) plus 11 PREDICTED lean cards from the enumeration sweep, honestly badged. Every question now shows which papers asked it ("Asked: TS 2011, 2010 · AP 2026") — the TS/AP differentiation the founder ordered, built as one bank with board-aware dress, never two catalogs.**
+
+### Session 89 filed first (founder-ordered)
+`docs/DISCUSSIONS.md` Session 89 (Session 88 lives on feat/quick-learn — numbering respected): the 2026-27 board landscape, the marks arithmetic, the three-layer sourcing doctrine, the enumeration thesis, tiered authoring, the term-pack design with fixed AI boundaries, board differentiation, the pan-India scan, the product ladder. Pattern doc gained four sections including **board-picker = a lens over ONE bank** (founder's mid-session question: at login a student picks TS or AP; the catalog re-labels, never duplicates — TS and AP share the 2/4/8 mark values, so most cards are valid in both at the same marks).
+
+### The union finding (Unit 7's inventory decision)
+The BLM carries **two VSAQs the Fastrack lacks** (girl-carrying-bag CM; same-MI greater KE) and the Fastrack carries **six SAQs the BLM lacks** (both axes theorems, MI of rod, three numericals). Neither book is a superset even inside one unit → the manifest is the union, `source: "blm"` marking provenance. Both books agree: **no Unit 7 LAQ section** (BLM verified page-by-page — Unit 7 ends at SAQ 5, straight into Unit 8's LAQs). None invented.
+
+### The enumeration pilot (the doctrine's first field test)
+Object×archetype sweep over the NCERT chapter minus the union → **8 predicted VSAQs** (radius of gyration · both theorem STATEMENTS at 2M — the exact form AP 2026 used for Kepler's law · L = Iω · the dancer · the couple · equilibrium conditions · torque units/dimensions + the torque-vs-work trap) + **3 predicted SAQs** (equilibrium+couple · derive L = Iω · rolling KE). Authored as **lean cards** (no figures, short rubrics) with `source: "enumerated"` and a PREDICTED verification note. **Back-test: every question asked in AP March 2026 from this chapter (door torque B-15, vector product C-27) and every Fastrack/BLM question falls inside the grid — nothing landed outside, the archetype set holds.**
+
+### Board tags + badges (Part B)
+Schema: `appearances[]` items gained optional `board` ('ts_ipe'|'ap_ipe'; absent = TS — backward compatible, deliberate scope). All six confirmed AP-2026 hits tagged (inertia B-13 · methods C-26 · avg/inst velocity C-24 · KE-momentum B-14 · door B-15 · vector product C-27); the CM-triangle numerical carries the Fastrack's printed years 2004/05/10/11. Cards + notebook meta render the green "Asked:" chip; enumerated entries render the violet **"Predicted — not asked yet"** chip and can never dress as asked. **New gate, negative-controlled twice on the RENDER side** (predicted chip dropped → 11 failures by name; AP group dropped from the asked line → 6 failures by name). A data-side control was discarded as meaningless — the gate checks data↔render consistency, which a data edit cannot break.
+
+### The figures earned their gates again
+The label-overlap gate caught r/Δθ (v=rω) and O/100g (CM triangle) in the browser; a local text-box scan caught A/150g; the browser caught P/y (perpendicular axes). All fixed by computed repositioning. The CM triangle is drawn TO SCALE so the computed (5/18, 1/(3√3)) visibly leans toward the 200 g vertex — a built-in sanity check.
+
+### Verification (measured)
+`build:answers` → **20/20 · 17/17 · 12/12 · 33/33**, drift clean both directions, every marks-sum ✓ · **`smoke:answers` 26/26 across 78 questions (4.2 min)** — the three fleet sweeps ran inside their raised 240 s budgets (the raise was deliberate, in the same commit that grew the fleet), and the badge gate was negative-controlled twice on the RENDER side (drop the predicted chip → 11 named failures; drop the AP group from the asked line → 6 named failures) · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (the schema edit disturbed nothing) · built page re-parsed: 82 entries, 78 files, all 4 Unit-7 figures, all 6 AP tags, 11 enumerated, recall stripped, 383 KB · `serve:answers` HTTP 200. Numericals hand-checked: CM (5/18, 1/(3√3)) m · τ = 2i+12j+10k · 0.471 N·m · 0.63 kg·m².
+
+### Closing state
+Five commits this session — `3400b22` (Session 89 + pattern doc) · `f1cad1c` (board-tag schema + UI + AP backfill) · `b8b7908` (Unit 7 manifest + 11 VSAQs + sweep-timeout raise) · `bfc3be1` (11 SAQs, asked core 22/22) · `981cfeb` (enumeration pilot + badge gate). All pushed; remote verified at `981cfeb` by `git ls-remote` (the auto-push hook reports a false FAILED on the race — never trust its message, check the ref). **PR #132 retitled a second time** to "Units 5-7 + the Session-89 doctrine", 13 commits, body rewritten to match contents.
+
+**Vault sync drafted, awaiting founder confirm** (protocol: show before writing): a dated section for `wiki/projects/physicsmind.md`, a `log.md` synthesis entry, and a timeline fragment for `index.md` line 32 — the index DOES carry a dated PhysicsMind timeline, so the first draft's "no change needed" was wrong and is corrected in the draft. Local commit only, never pushed.
+
+### NEXT
+1. **Founder eyes**: the four Unit-7 figures (both axes theorems especially — the proof-bearing constructions), a Predicted card (does the honesty read right?), the Asked chips, and **print** on the theorem SAQs. `npm run serve:answers` → localhost:8100.
+2. **Unit 8 "Oscillations"** next (book pp.23+; its BLM section opens WITH LAQs — SHM/projection and the simple pendulum — expect real Section-C forms, the Unit 6 shape). Run the two-book union check; run the enumeration sweep as standard practice now.
+3. **The teacher pass is now 82 entries deep** — including 11 predicted cells that need validation or deletion. The enumeration method makes teacher verification MORE valuable, not less: a teacher confirming a predicted cell promotes a lean card to a full one, and a teacher rejecting one deletes it. That is the loop the doctrine is waiting on.
+4. **Confirm the vault sync** (drafted, shown, unwritten — five strategy threads deep).
+5. **Watch triggers, unchanged**: TGBIE's revised theory model papers (→ confirm the 60M A/B/C structure verbatim) · the new TS NCERT textbooks (→ per-unit inventory diff, and re-run each unit's enumeration against the new object inventory) · the official AP model papers (→ the full 3-page March 2026 scan we still lack; only p1 of 3 is in the corpus).
+6. Standing blockers unchanged: Google quota · grader hosting · cost swap.
+
+---
+
+## 🔎 SESSION — Answer Book: **the 2026-27 board-pattern analysis — TS theory safe, AP diverged, and the AP paper asks OUR questions** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: founder asked what the 2026-27 TS/AP reforms do to this product. Researched across ~15 sources (no official circular fetched yet — tsbie.cgg.gov.in refused DNS from here). The TS theory paper the Answer Book models is EXPLICITLY unchanged at 60 marks A/B/C — the reform adds 15-mark first-year practicals outside the written paper — so the 49 entries stand for March 2027. The real exposure is the TS syllabus revision (NCERT-aligned 2026-27, ~30% cuts in some subjects, new AI-in-Physics chapter): the Fastrack-sourced inventories need a per-unit diff against the new TGBIE textbooks when they publish. AP meanwhile ALREADY ran a different exam in March 2026 — Physics Paper-I (NEW), 85 marks, four sections (9×1 + 14×2 all compulsory · 8-of-12×4 · 2-of-3×8), NCERT syllabus, CBSE-style — and its paper asks several of our exact questions (inertia measure, KE-momentum relation, methods to decrease friction) at the same or different mark values. Both boards now draw from one NCERT-shaped bank at different lengths — which is exactly what `cuts[]` + the `board` field model. Full analysis: `docs/patterns/answer_book.md` §Board landscape 2026-27; compact status in the `units.json` comment.**
+
+- **Clarification recorded:** "60 + 15 ABL" is the MATHS formula (75→60 written + 15 Activity-Based Learning). For Physics the 15 is practicals (the old 30-mark second-year-only practicals split 15+15 across the years, conducted externally). One source adds a 15-mark record component — ambiguous until the official circular.
+- **AP 2026 paper fetched into the corpus:** `C:\Users\PRADEEEP\Downloads\AP-Inter-1stYear-Physics-QP-March2026-newpattern.pdf` (page 1 of 3, the testbook CDN scan — verified genuine: "PHYSICS - PAPER-I (NEW)", Max Marks 85). Near-complete transcription recovered from exam-day coverage (A + B complete, C 6/12, D 1/3) — recorded in the pattern doc. The full 3-page scan is still wanted; candidates: manabadi / schools360 Drive links (unverified vintage) or the official bieap.apcfss.in model papers.
+- **Watch triggers (no build action now):** (a) TGBIE revised theory model papers appear → confirm A/B/C verbatim; (b) new TS textbooks publish → per-unit inventory diff; (c) founder call on an AP edition → re-heading + re-cutting over the same step lists (schema gap: `qtype` has no slot for AP's 1-mark objective Section A).
+
+---
+
+## 📙 SESSION — Answer Book: **UNIT 6 "WORK POWER ENERGY" COMPLETE (12/12)** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: three chapters, 49 catalog entries, 45 authored files. Unit 6 is complete — 3 LAQ + 3 SAQ + 6 VSAQ over 11 files, because LAQ 3 and SAQ 1 are two lengths of ONE answer. This was the derivation unit: three separate 8-mark proofs and four figures, the heaviest authoring load of the three units so far, and the platform absorbed it with ZERO changes — no schema, no build script, no player, no gate rewrites. The chapter chips added last session grew to three on their own.**
+
+### The source check came back the OPPOSITE way from Unit 5 — which is the point of doing it per unit
+Unit 5's finding was that the TSBIE Basic Learning Material has **no Section C at all** for Laws of Motion, so we authored one LAQ and invented none. The instinct going into Unit 6 was that the BLM would again be the thinner book. It is not: its Unit 6 carries **exactly these three Long Answer questions and nothing else** — no VSAQ section, no SAQ section, then "Attached Problems". So both books agree on the whole 8-mark set here, and the VSAQ/SAQ list is the Fastrack's alone. **Neither book is reliably the superset. The two-book check is per unit, permanently.** Recorded in `units.json`.
+
+### The first real `cuts[]` case since Unit 4
+The Fastrack asks the relative-velocity result **alone** as SHORT ANSWER 1 and the **whole** collision theory as LONG ANSWER 3. That is one authored step list at two lengths, not two answers — the parallelogram pattern. `ts_ipe_p1_wpe_collisions_elastic_theory` is the root (LAQ, 8M, Section C) with `cuts[]`: `laq` = all 7 steps, `saq` = 4 steps at 4M / Section B with its own `question_text`. The manifest points `laq3` and `saq1` at the same file with different `cut` keys, so each is its own card showing ONE length and ONE marks chip. The build's per-cut report confirms it omits exactly `s1_define, s2_types, s7_finals`.
+**Coherence** was the authoring job, not the schema's: every symbol the surviving steps use (m₁, m₂, u₁, u₂, v₁, v₂) is introduced in `s4_momentum`, which is deliberately kept in both cuts. Unit 5 had no cuts at all — correctly, since no Unit 5 question is asked at two lengths by either book. Cuts follow the source; they are never invented to look thorough.
+
+### PROBLEMS — deferred on the founder's call, with the reasons that make it worth revisiting
+Unit 6 is the first unit with a PROBLEMS section: 4 numericals in the Fastrack, the first 2 repeated in the BLM as "Attached Problems". They belong to **no paper section** — the TS IPE paper has A/B/C only — so the manifest's `section` field cannot hold them without a 4th value, which would mean touching `build_answer_book.ts`, `notebook.js` and every gate that iterates `['LAQ','SAQ','VSAQ']`. A practice problem also carries no mark scheme, and the product's claim is "answered the way the examiner marks them". Two facts recorded in `units.json` for whoever revisits: Fastrack problem 3 carries printed years **(Mar, May-14)**, so at least one HAS been examined; and the two books **disagree on problem 2's answer** — 14.95 kW at g = 9.8 versus 15 kW at g = 10. Author them deliberately if they are ever added, never transcribe.
+
+### The three proofs and four figures
+- **LAQ 1** (conservation of energy, freely falling body) — the A/B/C figure with `h`, `x` and `(h − x)` marked, then the same three lines at each point (KE, PE, total). B carries the most marks because it is the only point where both energies are non-zero, and the `x` visibly cancels.
+- **LAQ 2** (work → kinetic energy → work-energy theorem) — the three cases of `cos θ` written out, then the proof built from two named ingredients (`v² − u² = 2aS` and `F = ma`) with the `S` cancelling. The statement insists on **NET** force; without that word the theorem is false whenever more than one force acts, and that is in `common_mistakes`.
+- **LAQ 3** (collisions) — before / during / after in three panels, all six symbols attached to a body.
+- **SAQ 2** (gravitational PE) — the box raised through `h`, its starting position dashed on the ground.
+- **Where the book teaches what is marked rather than what is true**: LAQ 3's division of the energy equation by the momentum equation is only legal because the bodies actually collide and separate (`u₁ ≠ v₁`) — otherwise it is a division by zero. The book never says so; the answer writes what earns the mark and the `why` carries the honesty.
+
+### Watch this
+Gate 15 (`every cut of every question totals exactly its own marks`) now runs **51.6 s of its 90 s `test.slow()` budget** — it was 30 s at two units. Gates 12 and 13 are at ~38 s. At this growth roughly **two more units** fit before the widest sweep needs its budget raised again. Raise it deliberately when that happens; do not trim the sweep.
+
+### Verification (measured)
+`build:answers` → **Unit 4 20/20 · Unit 5 17/17 · Unit 6 12/12**, drift gate clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **25/25** across 45 questions · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (unchanged — no concept JSON touched) · built page re-parsed: 3 units, 49 entries, 45 files, all 4 new figures present, the cut resolving `laq(8M)+saq(4M)`, recall rubrics stripped from the browser payload · `serve:answers` HTTP 200.
+
+### Files
+`answer-book/units.json` (Unit 6 block + both findings) · 11 new `answer-book/questions/ts_ipe_p1_wpe_*.json`. **No platform file touched at all this session** — no renderer, no schema, no build script, no player, no gates, no `src/data/concepts/`, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes.** `npm run serve:answers` → `http://localhost:8100`. The three-panel collision figure and the A/B/C falling-body figure especially; **print** on all three LAQs (the construction-line defect only ever showed on the instant path); and open LAQ 3 and SAQ 1 from the catalog to confirm each shows one length with its own marks chip.
+2. **Unit 7 "System of Particles and Rotational Motion"** (book pp.19+) is next: 9 VSAQ visible on the first page alone, and its own SAQ set opens with the parallel-axes theorem. Run the two-book check again — do not assume which book is thinner.
+3. **PR #132 now covers Units 5 and 6**, retitled and rewritten to match its contents rather than silently growing.
+4. **Standing blockers, unchanged (founder calls):** Google billing (free-tier quota exhausted) · hosting for the photo/mic graders · the Telangana-teacher verification pass over every invented mark split, now **49 entries** deep · the cost swap (Web Speech + DeepSeek) before the voice path goes wide.
+
+---
+
+## 📕 SESSION — Answer Book: **UNIT 5 "LAWS OF MOTION" COMPLETE (17/17) + chapter chips** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the Answer Book is a two-chapter book. Unit 5 "Laws of Motion" is complete — 1 LAQ + 6 SAQ + 10 VSAQ, 17 for 17, every card openable — and the catalog now has the chapter filter the last session's log claimed it already had. The per-unit recipe held: the manifest went in first, questions were authored in batches, and the build stayed green at every step. The interesting work was NOT the authoring; it was the four gates that had quietly encoded "the book has one unit" and only said so when a second one arrived.**
+
+### The inventory decision: one LAQ, and no invented ones
+Unit 4 needed two LAQ entries of its own because the Fastrack lists those derivations only as SAQ. The instinct was to repeat that here. **Checked instead:** the Fastrack (pp.12–14) HAS a Long Answer section for Unit 5 with exactly one question, and the TSBIE Basic Learning Material has **no Section C for Laws of Motion at all** — its Unit 5 runs VSAQ (7) → SAQ (3) → straight into Unit 6. Nothing sources a second 8-mark form, so none was written. Recorded in the `units.json` comment so the next session does not re-derive it. SAQ 5 (the lawn roller) is the only entry in either unit with printed exam years — "(May-12, Mar-04, 06)" → `appearances: [2004, 2006, 2012]`, itself a claim until a teacher confirms it.
+
+### Four gates were hostages to a one-unit book
+Every one of these passed on 20 questions and failed on 37. None was a product defect — the product was right in all four cases:
+1. **Rail pagination** picked `steps[length − 3]` of whichever question sorted first in `PM_QUESTIONS`. Unit 5 put a 2-step VSAQ in that slot → `steps[−1]` → TypeError. Its own comment already recorded the previous version of this bug (a literal step id, broken when a second QUESTION was authored) — the same mistake one layer up. It now **seeks the longest question**, since the page break it exists to check only occurs in a long answer, and asserts ≥3 steps so a degenerate pick can never read as a pass.
+2. **Section/marks agreement** hardcoded `'Section B'` and checked **one** question. A VSAQ (Section A) sorting first turned it red while it was saying nothing about the other 36. It now sweeps all 34 files and asserts each header names its own `paper_section`.
+3. **Catalog inventory** compared the FIRST `.cat-count` pill to the WHOLE-book total. Those coincided only while there was one unit. Pills are per-unit; the book total is in `catSub`. Both are checked now.
+4. **The three fleet sweeps ran out of TIME**, not assertions — `every cut of every question` hit the 30 s default at 34 questions, and the construction-line and label-overlap sweeps were at 27.6 s, i.e. one unit away from the same fate. `test.slow()` on all three. **A timeout reported as a failure is the worst kind of red: it looks like a defect and names nothing.**
+
+Both rewritten assertions were **negative-controlled**, not assumed: a deliberately wrong `page_header` section is caught by file name, and restoring the old global-count pill turns the catalog gate red.
+
+### The chapter chips — the claim in the last log was false
+Last session's recipe said "the chapter filter chips appear automatically at 2 units". They do not. `shell.html:53` carried `<div class="cat-chips" id="unitChips" hidden>` and **`notebook.js` never referenced it** — a stubbed container, hidden and empty, for a whole unit. (The CSS was already there: `.cat-chips + .cat-chips { margin-top: 8px }` was written for a second row that never came.) Wired this session, mirroring the qtype chip block: labelled by chapter NAME because that is what a student looks for, counts = whole-chapter inventory including coming-soon, and the row **stays hidden at one unit** — a filter with a single choice is noise. New gate `chapter chips appear from the second unit and filter to their own chapter` (25 tests now), also negative-controlled: deleting the filter line leaves 4 cards visible under a chapter chip and the gate says so. The stale claim in the Unit 4 entry below is struck through rather than deleted.
+
+### The questions (17 files, 4 figures)
+- **LAQ 1** (8M): Newton's second law stated in MOMENTUM, then derived to F = ma through `F = k dp/dt` → `p = mv` with m constant → `k = 1 because of how the newton is DEFINED` (the step students skip). Part (b) — constant speed on a circle — carries the chapter's commonest error in `common_mistakes`: "no, because the speed is constant".
+- **SAQ 5, the lawn roller** — two free-body panels drawn to the SAME scale from one shared generator, so the roller, ground, and θ are identical and only the force flips side. `N` is drawn deliberately shorter in the pull panel and longer in the push panel: the answer is one sign, and the picture shows it before the algebra does.
+- **SAQ 1** carries a two-piece shell figure; the other three SAQs and all ten VSAQs are text and equations. Every step across all 17 has `margin_note` + `why` + `common_mistakes` + a full recall rubric with Telugu code-mix.
+- **Where the book teaches what is MARKED, not what is true**, the answer writes what earns the mark and the honest version goes in that step's `why` — the rolling-friction "laws" (deformation is the real mechanism; "inversely proportional to radius" is an approximation) and "μ > 1 because polishing increases adhesion" (μ is a measured ratio with no cap; rubber on rubber passes 1 without polishing).
+
+### Verification (measured, not asserted)
+`build:answers` → **Unit 4 20/20 · Unit 5 17/17**, drift gate clean both directions, every marks-sum ✓ · `smoke:answers` **25/25** · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (unchanged — no concept JSON touched) · built page re-parsed: 34 questions, all 4 figures present, recall rubrics correctly stripped from the browser payload · `serve:answers` HTTP 200, 241 KB single file.
+
+### Files
+`answer-book/units.json` (Unit 5 block + the no-Section-C note) · 17 new `answer-book/questions/ts_ipe_p1_lom_*.json` · `answer-book/notebook.js` (unit chips + `catFilter.unit`; `entryMatches` now takes the unit object) · `e2e/answer_book.spec.ts` (3 gates de-hardcoded, 3 marked slow, 1 new). **No platform file touched** — no renderer, no `src/data/concepts/`, no schema, no build script, no `PILOT_CONCEPTS`, no TTS. Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the two roller panels and the circular-motion figure.** The label-overlap gate proves no two labels collide; it cannot tell you the picture reads well. `npm run serve:answers` → `http://localhost:8100`. Check **print** on SAQ 5 and the LAQ specifically — the construction-line defect only ever appeared on the instant path.
+2. **Unit 6 "Work Power Energy"** (book pp.15+) is next by the same recipe. Note its BLM section DOES open with Long Answer Questions, unlike Unit 5 — expect real Section-C forms there.
+3. **Standing blockers, unchanged (founder calls):** Google billing (free-tier quota exhausted) · hosting for the photo/mic graders · the Telangana-teacher verification pass over every invented mark split, now 37 entries deep · the cost swap (Web Speech + DeepSeek) before the voice path goes wide.
+
+---
+
+## 📗 SESSION — Answer Book: **UNIT 4 COMPLETE (20/20) + the catalog + MERGED TO MASTER** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`, PR #128 MERGED `81dd853`)
+
+**Bottom line: the Answer Book went from one prototype question to a finished product surface in one day, and it is ON MASTER. Unit 4 "Motion in a Plane" is complete — 2 LAQ + 9 SAQ + 9 VSAQ, every card openable — behind a Viditra-style catalog with VSAQ/SAQ/LAQ filters, search, and ONE CARD = ONE QUESTION AT ONE LENGTH (the founder's review killed the multi-length cards in one screenshot). Ten commits; every one verified before push; three defects were caught by gates built the same day.**
+
+### The founder's three UX rulings (each reshaped the product)
+- **No clock in Test yourself.** The stopwatch measured time-in-a-dialog, not time-on-the-answer (the student writes on paper FIRST). Removed; the exam expectation lives in the header chip. A "Tick it myself" self-check was added — scoring was ALREADY client-side (sum of authored marks over ticks), only the photo/mic PROPOSAL ever needed a server — so the emailable file now checks a student with no key, no billing, no network.
+- **Follow the book, then both.** The Fastrack lists parallelogram as SHORT ANSWER 1 (the chapter has NO Long Answer section), so the LAQ/8 prototype was first reclassified SAQ/4, then — founder: "build LAQ and let them switch" — the **cuts** mechanism landed: one authored step list served at several lengths (`cuts[]`: per-cut marks/labels/lines/margin_note/why, schema-enforced sums, cut question_text). Coherence rule: with omitted steps hidden, no surviving line may reference what only they introduced.
+- **One card = one length.** The catalog first shipped with union filters and multi-chip cards ("SAQ 2" wearing "LAQ · 8M" under an LAQ filter = three contradictions). Rebuilt: an entry belongs to exactly its section, the 8-mark forms are their own LAQ manifest entries, each card shows ONE marks chip, sections render as sub-groups (LAQ→SAQ→VSAQ), and **the in-notebook length switch is DELETED** (locked by a test). Cuts survive only in data + router + `PM_ANSWER.setCut`.
+
+### The catalog (landing view, one self-contained file still)
+Hash routes `#/` · `#/q/<id>` · `#/q/<id>/<cutKey>`; back/forward work from file://; `← All questions` returns. **`answer-book/units.json`** is the inventory manifest — the book's 18 questions + our 2 LAQ forms, star ranks, texts, and `question_id`+`cut` mappings; unauthored entries render as dimmed "Not written yet" cards. **Drift is a build failure BOTH directions** (authored-but-unlisted / listed-but-unresolvable), negative-controlled — the PILOT_CONCEPTS silent-drop lesson applied preemptively. Build prints per-unit coverage. Viditra catalog anatomy (narrow column, count pills, title+arrow cards, border-tint hover) in the Answer Book's light paper palette; every card carries a thin red left rule — the examiner's margin line.
+
+### Questions authored this session (16 of the 17 files)
+- **Projectile LAQ/8** (defn · figure · resolve · trajectory 2M · T · H · R · notes-0M; 28-element figure, apex COMPUTED via the Bezier t=0.5 rule; the apex velocity arrow answers VSAQ ★★★7 by picture) + SAQ cuts for ★★★2 and ★★★4 — the parabola cut needed ZERO line overrides, proof the steps are authored right.
+- **Definitions SAQ ★★★3** (unit/null/position; 3-D position-vector figure). **At-45° SAQ ★★5** — figure drawn TO SCALE so H measures exactly R/4. **|a+b|=|a−b| SAQ ★★6** — figure carries the real reason (equal diagonals ⇒ rectangle); diagonal-midpoint label placement computed.
+- **SAQ 7–9 + all nine VSAQs** (√3:1 & 1:1 · avg/inst velocity · the 30-m walk with a to-scale figure · nine 2-mark two-steppers incl. the g-at-the-top trap and the 6 km/h market walk). Physics hand-checked (√49, √676, √625, 50-min round trip). Every step: margin_note + why + common_mistakes + full recall rubric with Telugu code-mix.
+
+### Defects found by the session's own gates (the moat working same-day)
+1. **Construction lines were invisible on PRINT** — pencil strokes reveal via a clip rect built zero-sized; the instant path (revealAll / rail jump / print) never armed+finished the figure. The printed answer was losing CD, all four projectile dashes, the whole 3-D box. Fixed + gated + negative-controlled.
+2. **`k̂` cannot render in Kalam** — no precomposed k-circumflex exists in Unicode; combining mark measured with nonzero advance = fallback serif k mid-handwriting. Axis unit vectors are plain i, j, k; Â keeps its hat (U+00C2 precomposed).
+3. **`PM_ANSWER.question` was stale after a question switch** (captured value on a frozen object) → getter. **Two cut tests silently SKIPPED** when a one-cut question sorted to [0] — the skip-is-not-a-pass lesson, applied to our own suite; they now SEEK a multi-cut question.
+4. **The label-overlap gate** (built for ★★6) caught three real collisions in the SAQ-9 walk figure the same day. **The line-wrap gate** caught three over-packed lines in the first SAQ cut draft.
+5. First catalog screenshot caught rail text contradicting a cut's marks ("the two marks…" beside 1M) → per-cut margin_note/why overrides.
+
+### Merge (founder-ordered)
+`origin/master` merged INTO the branch first (GitHub's CONFLICTING flag was stale — clean merge; the Tier-1 platform work #123–#125 came in alongside). Full chain on the merged tree BEFORE push: renderer-syntax ×3 · tsc 0 · validate:concepts 153/0 · vitest 386/386 · smoke:answers 24/24 · motion-ratchet 344 ≤ 344 ✓ · CI verify ×2 green → **PR #128 MERGED to master `81dd853`**. Desk left OPEN deliberately: the founder continues Unit-next in this same desk/branch.
+
+### Files
+`answer-book/`: `units.json` (NEW manifest) · 16 new/edited `questions/*.json` · `notebook.js` (+catalog/router/cuts engine, −question select, −cut switch) · `notebook.css` · `shell.html` · `README.md`. Platform: `src/schemas/answerBook.ts` (cuts + overrides) · `src/scripts/build_answer_book.ts` (manifest gate + coverage report). Tests: `e2e/answer_book.spec.ts` → **24 tests** (catalog, filters, deep-link, no-switch lock, construction-line, label-overlap, line-wrap, seam). Docs: `docs/patterns/answer_book.md` (cuts · catalog · one-length model).
+
+### NEXT (the founder starts a NEW UNIT next session, SAME desk + branch)
+1. **Pick the unit** from the Fastrack contents (Physics pp.4–46; e.g. Unit 5 Laws of Motion pp.12–14 — VSAQ ×10 + SAQ ×~6 already photographed in session context) and read its pages from `C:\Users\PRADEEEP\Downloads\891334617-...Fastrack.pdf`.
+2. **The per-unit recipe is now mechanical:** add a `units.json` unit block (sections/numbers/stars/texts from the book; LAQ forms as own entries where TSBIE Section-C asks them) → author question JSONs to the bar (margin_note/why/common_mistakes/recall per step; figures with computed placements; lines ≤ ~45 chars) → map `question_id`(+`cut`) into the manifest → `npm run build:answers` (drift gate + coverage) → `npm run smoke:answers` (24 gates sweep every question) → tsc/validate → commit/push. ~~The chapter filter chips appear automatically at 2 units.~~ **[WRONG — corrected in the Unit 5 session above: the `unitChips` row was stubbed in `shell.html` and never populated by `notebook.js`, so it sat hidden and empty. Wiring it was Unit 5 work. It IS automatic now.]**
+3. **Standing blockers (unchanged, founder calls):** Google billing (free tier exhausted) + hosting for photo/mic; the Telangana-teacher verification pass over every invented mark split; cost swap (Web Speech + DeepSeek) if the voice path goes wide.
+4. Branch is merged and 0-ahead; next session's commits open a NEW PR from this same branch when ready.
+
+---
+
 ## 📘 SESSION — a NEW student-facing track: the **IPE Answer Book** (2026-08-19/20, `feat/ipe-answerbook`, PR #128)
 
 **Bottom line: four source PDFs analysed, then a new product track built from scratch — a Telangana IPE board-exam answer-writing guide where the model answer writes itself on ruled notebook paper with marks per step, the figure draws itself stroke by stroke, and the student is checked by photo or by voice. No simulations, no runtime LLM in the notebook itself. 21 files, 5 commits, PR #128. The most valuable outputs were the things that only failed when tested for real: every grading call was silently dying on a truncated JSON, a "plain absence" was being reported as "we are not sure", and a CSS `display:` rule was quietly defeating the offline guarantee on screen while the code was correct.**

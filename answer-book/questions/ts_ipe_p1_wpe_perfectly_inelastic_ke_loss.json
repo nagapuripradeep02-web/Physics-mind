@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_perfectly_inelastic_ke_loss",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Two bodies undergo a perfectly inelastic head-on collision. Obtain expressions for their common velocity and for the loss of kinetic energy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The common velocity",
+      "marks": 1
+    },
+    {
+      "label": "The two energies",
+      "marks": 2
+    },
+    {
+      "label": "The loss",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common",
+        "kind": "equation",
+        "label": "The common velocity",
+        "marks": 1,
+        "mark_note": "Common velocity",
+        "lines": [
+          "In a perfectly inelastic collision the bodies",
+          "move on together with one velocity v.",
+          "Momentum is conserved:",
+          {
+            "text": "m₁u₁ + m₂u₂ = (m₁ + m₂) v",
+            "style": "eq"
+          },
+          {
+            "text": "v = (m₁u₁ + m₂u₂) / (m₁ + m₂)",
+            "style": "eq"
+          }
+        ],
+        "why": "Momentum is conserved in EVERY collision; kinetic energy is not. Starting from the conserved quantity is what makes this answer short.",
+        "common_mistakes": [
+          "Using conservation of kinetic energy here; it is exactly what does not hold."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bodies move together and momentum conservation gives v equal to m one u one plus m two u two over m one plus m two.",
+          "accept": [
+            "they move together with one velocity",
+            "momentum is conserved",
+            "m one u one plus m two u two over m one plus m two"
+          ],
+          "reject": [
+            "half m one u one squared"
+          ],
+          "heard_as": [
+            "common velocity",
+            "momentum conserved"
+          ]
+        }
+      },
+      {
+        "id": "s2_energies",
+        "kind": "equation",
+        "label": "The two energies",
+        "marks": 2,
+        "mark_note": "Energies",
+        "lines": [
+          "Before the collision,",
+          {
+            "text": "K_i = ½ m₁u₁² + ½ m₂u₂²",
+            "style": "eq"
+          },
+          "After it the two move as one body:",
+          {
+            "text": "K_f = ½ (m₁ + m₂) v²",
+            "style": "eq"
+          },
+          "Substituting v from the first step gives K_f",
+          "in terms of the starting velocities."
+        ],
+        "why": "Writing both energies before subtracting keeps the algebra honest; substituting v too early is where mistakes usually happen.",
+        "common_mistakes": [
+          "Writing K_f with the two masses moving at different speeds after a perfectly inelastic collision."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That K initial is half m one u one squared plus half m two u two squared and K final is half of the total mass times v squared.",
+          "accept": [
+            "half m one u one squared plus half m two u two squared",
+            "half m one plus m two into v squared"
+          ],
+          "reject": [
+            "they move together with one velocity"
+          ],
+          "heard_as": [
+            "K initial",
+            "K final"
+          ]
+        }
+      },
+      {
+        "id": "s3_loss",
+        "kind": "boxed_final",
+        "label": "The loss",
+        "marks": 1,
+        "mark_note": "Loss",
+        "lines": [
+          "Subtracting and simplifying,",
+          {
+            "text": "ΔK = ½ [m₁m₂/(m₁+m₂)] (u₁ − u₂)²",
+            "style": "boxed"
+          },
+          "This is always positive, so kinetic energy is",
+          "always lost. It turns into heat and sound."
+        ],
+        "why": "The loss depends on the RELATIVE velocity, so two bodies moving at the same velocity lose nothing — the (u₁ − u₂)² factor shows the collision has to be a real one.",
+        "common_mistakes": [
+          "Concluding energy is destroyed; it is converted, not destroyed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the loss is half times the reduced mass times the square of the relative velocity, always positive, appearing as heat and sound.",
+          "accept": [
+            "half m one m two over m one plus m two into u one minus u two squared",
+            "always a loss",
+            "turns into heat and sound"
+          ],
+          "reject": [
+            "K initial is half m one u one squared"
+          ],
+          "heard_as": [
+            "loss",
+            "heat and sound"
+          ]
+        }
+      }
+    ]
+  }
+}

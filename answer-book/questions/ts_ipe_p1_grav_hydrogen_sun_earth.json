@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_hydrogen_sun_earth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Hydrogen is abundant around the sun but not around the earth. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Around the sun",
+      "marks": 1
+    },
+    {
+      "label": "Around the earth",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sun",
+        "kind": "text",
+        "label": "Around the sun",
+        "marks": 1,
+        "mark_note": "The sun",
+        "lines": [
+          "The sun has a very large mass, so its escape",
+          "velocity is much GREATER than the r.m.s.",
+          "speed of hydrogen molecules. The molecules",
+          "cannot get away, so hydrogen stays."
+        ],
+        "why": "The comparison is always the same one: escape velocity against the typical molecular speed.",
+        "common_mistakes": [
+          "Explaining it by temperature alone, without comparing the two speeds."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sun has a very large escape velocity, greater than the r m s speed of hydrogen, so hydrogen cannot escape.",
+          "accept": [
+            "escape velocity greater than the r m s speed",
+            "hydrogen cannot escape from the sun"
+          ],
+          "reject": [
+            "the earth loses hydrogen"
+          ],
+          "heard_as": [
+            "escape velocity",
+            "sun"
+          ]
+        }
+      },
+      {
+        "id": "s2_earth",
+        "kind": "boxed_final",
+        "label": "Around the earth",
+        "marks": 1,
+        "mark_note": "The earth",
+        "lines": [
+          "The earth’s escape velocity is SMALLER than",
+          "the r.m.s. speed of hydrogen molecules, so",
+          "they escape into space over time.",
+          {
+            "text": "Escape velocity vs r.m.s. speed decides it",
+            "style": "boxed"
+          },
+          "Heavier gases move more slowly and stay."
+        ],
+        "why": "The same rule explains why the earth keeps nitrogen and oxygen: a heavier molecule at the same temperature moves more slowly.",
+        "common_mistakes": [
+          "Saying the earth has no hydrogen at all; it has very little free hydrogen, not none."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the earth escape velocity is smaller than the r m s speed of hydrogen, so hydrogen escapes.",
+          "accept": [
+            "earth escape velocity is smaller",
+            "hydrogen escapes into space",
+            "heavier gases stay"
+          ],
+          "reject": [
+            "hydrogen cannot escape from the sun"
+          ],
+          "heard_as": [
+            "earth",
+            "escapes"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_periodic_vs_oscillatory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between periodic motion and oscillatory motion. Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Periodic motion",
+      "marks": 1
+    },
+    {
+      "label": "Oscillatory motion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_periodic",
+        "kind": "text",
+        "label": "Periodic motion",
+        "marks": 1,
+        "mark_note": "Periodic",
+        "lines": [
+          "Periodic motion is any motion that repeats",
+          "itself in equal intervals of time.",
+          "Example: the motion of the earth around the sun."
+        ],
+        "why": "The only requirement is repetition after a fixed time; the path can be anything at all.",
+        "common_mistakes": [
+          "Treating every periodic motion as a to-and-fro motion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That periodic motion repeats itself in equal intervals of time.",
+          "accept": [
+            "repeats in equal intervals of time",
+            "earth around the sun"
+          ],
+          "reject": [
+            "to and fro about a mean position"
+          ],
+          "heard_as": [
+            "periodic",
+            "repeats"
+          ]
+        }
+      },
+      {
+        "id": "s2_oscillatory",
+        "kind": "boxed_final",
+        "label": "Oscillatory motion",
+        "marks": 1,
+        "mark_note": "Oscillatory",
+        "lines": [
+          "Oscillatory motion is periodic motion in which",
+          "the body moves to and fro about a fixed mean",
+          "position. Example: a simple pendulum.",
+          {
+            "text": "All oscillatory motion is periodic",
+            "style": "boxed"
+          },
+          "but not all periodic motion is oscillatory."
+        ],
+        "why": "The earth going round the sun repeats but never turns back on itself — that is the whole difference.",
+        "common_mistakes": [
+          "Saying the two words mean the same thing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That oscillatory motion is to and fro about a mean position, so all oscillatory motion is periodic but not the reverse.",
+          "accept": [
+            "to and fro about a mean position",
+            "all oscillatory is periodic",
+            "simple pendulum"
+          ],
+          "reject": [
+            "repeats in equal intervals of time"
+          ],
+          "heard_as": [
+            "oscillatory",
+            "to and fro"
+          ]
+        }
+      }
+    ]
+  }
+}

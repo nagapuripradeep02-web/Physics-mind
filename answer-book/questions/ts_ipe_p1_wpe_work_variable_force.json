@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_work_variable_force",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the work done by a variable force.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The difficulty",
+      "marks": 1
+    },
+    {
+      "label": "Splitting the path",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_difficulty",
+        "kind": "text",
+        "label": "The difficulty",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "For a constant force, W = F S cos θ. A",
+          "variable force has a different value at every",
+          "point of the path, so no single F can be put",
+          "into that formula."
+        ],
+        "why": "Naming why the constant-force formula fails is what earns the first mark; the rest of the answer is the repair.",
+        "common_mistakes": [
+          "Using the average of the first and last values of F, which is only correct for a force that grows linearly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a variable force has a different value at every point, so the constant force formula cannot be used directly.",
+          "accept": [
+            "F changes at every point",
+            "the constant force formula does not apply"
+          ],
+          "reject": [
+            "split the path into small displacements"
+          ],
+          "heard_as": [
+            "variable force",
+            "changes"
+          ]
+        }
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Splitting the path",
+        "marks": 2,
+        "mark_note": "Splitting",
+        "lines": [
+          "Split the path into displacements Δx so small",
+          "that F is practically constant over each one.",
+          "Over one such piece the work is",
+          {
+            "text": "ΔW = F(x) Δx",
+            "style": "eq"
+          },
+          "Adding the pieces over the whole path,",
+          {
+            "text": "W = Σ F(x) Δx",
+            "style": "eq"
+          }
+        ],
+        "why": "Every hard quantity in physics is handled this way: cut the change into pieces small enough for the easy formula to hold, then add them up.",
+        "common_mistakes": [
+          "Taking Δx large, so that F is not constant over the piece and the step is not valid."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the path is split into small displacements over which F is nearly constant, and the small works are added.",
+          "accept": [
+            "split into small displacements",
+            "F is nearly constant over each piece",
+            "add up the small works"
+          ],
+          "reject": [
+            "F changes at every point"
+          ],
+          "heard_as": [
+            "small displacements",
+            "add up"
+          ]
+        }
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "As Δx is made smaller and smaller, the sum",
+          "becomes the area under the curve:",
+          {
+            "text": "W = area under the F – x graph",
+            "style": "boxed"
+          },
+          "Area below the axis counts as negative work."
+        ],
+        "why": "The graph reading is what an examiner tests, and it makes the sign of the work visible without any algebra.",
+        "common_mistakes": [
+          "Ignoring the sign of the area, so that a retarding force adds instead of subtracting."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done equals the area under the force displacement graph.",
+          "accept": [
+            "area under the F x graph",
+            "area under the force displacement curve"
+          ],
+          "reject": [
+            "split into small displacements"
+          ],
+          "heard_as": [
+            "area under",
+            "graph"
+          ]
+        }
+      }
+    ]
+  }
+}

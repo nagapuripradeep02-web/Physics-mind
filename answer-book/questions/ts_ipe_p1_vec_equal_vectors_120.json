@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_equal_vectors_120",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two vectors of equal magnitude have a resultant equal in magnitude to either of them. What is the angle between them?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setting up",
+      "marks": 1
+    },
+    {
+      "label": "Solving",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Setting up",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Let each vector have magnitude P and let θ",
+          "be the angle between them. The resultant",
+          "is also P, so",
+          {
+            "text": "P² = P² + P² + 2P·P cos θ",
+            "style": "eq"
+          }
+        ],
+        "why": "Writing \"the resultant is also P\" as an equation is the whole question; the algebra after it is two lines.",
+        "common_mistakes": [
+          "Setting the resultant to 2P instead of P."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting R equal to P in the parallelogram formula gives P squared equals 2P squared plus 2P squared cos theta.",
+          "accept": [
+            "put R equal to P",
+            "P squared equals P squared plus P squared plus 2 P squared cos theta"
+          ],
+          "reject": [
+            "cos theta is minus half"
+          ],
+          "heard_as": [
+            "equal magnitude",
+            "resultant is also P"
+          ]
+        }
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solving",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "0 = P²(1 + 2 cos θ)",
+            "style": "eq"
+          },
+          "cos θ = −½",
+          {
+            "text": "θ = 120°",
+            "style": "boxed"
+          }
+        ],
+        "why": "A negative cosine means an obtuse angle — the two vectors point further apart, and that is what squeezes the resultant back down to P.",
+        "common_mistakes": [
+          "Reading cos θ = −½ as 60° instead of 120°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos theta comes out as minus half, so theta is 120 degrees.",
+          "accept": [
+            "cos theta is minus half",
+            "120 degrees"
+          ],
+          "reject": [
+            "put R equal to P"
+          ],
+          "heard_as": [
+            "minus half",
+            "120"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_pendulum_in_satellite",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can a simple pendulum be used in an artificial satellite?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "No.",
+          "A simple pendulum will not oscillate at all",
+          "inside an artificial satellite, so it cannot",
+          "be used to measure time there."
+        ],
+        "why": "The bob needs something to pull it back to the mean position; inside a satellite nothing does.",
+        "common_mistakes": [
+          "Answering yes and saying it would simply swing more slowly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is no, a simple pendulum will not oscillate inside a satellite.",
+          "accept": [
+            "no",
+            "it will not oscillate"
+          ],
+          "reject": [
+            "effective g is zero"
+          ],
+          "heard_as": [
+            "no",
+            "cannot be used"
+          ]
+        }
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Inside an orbiting satellite everything is in",
+          "free fall together, so the effective value of",
+          "g acting on the bob is zero.",
+          {
+            "text": "T = 2π√(l/0) → T is infinite",
+            "style": "boxed"
+          },
+          "An infinite period means no oscillation."
+        ],
+        "why": "The satellite and the bob fall around the earth at the same rate, so relative to the satellite the bob feels no pull at all.",
+        "common_mistakes": [
+          "Saying there is no gravity in orbit — there is; the satellite and the bob are simply falling together."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the effective g is zero in free fall, so T is 2 pi root l by zero, which is infinite.",
+          "accept": [
+            "effective g is zero",
+            "T becomes infinite",
+            "free fall"
+          ],
+          "reject": [
+            "it will not oscillate"
+          ],
+          "heard_as": [
+            "g is zero",
+            "infinite"
+          ]
+        }
+      }
+    ]
+  }
+}
