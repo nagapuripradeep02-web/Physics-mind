@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_divisible_49n_16n_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "By Mathematical Induction, show that 49ⁿ + 16n − 1 is divisible by 64 for all positive integers n.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 10. Four [1 Mark] tags are printed on this page (statement, Step 1, Step 2, conclusion); the Step-3 tag is not legible on the scan, and 3 is the only value that makes the printed four sum to the chapter's 7. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would prove this by induction — how you write divisibility as an equation, and what happens in the third step.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark. Divisibility is written as an EQUATION — equal to 64 times an integer. Without that line there is nothing to substitute later.",
+        "lines": [
+          "Let S(n): 49ⁿ + 16n − 1 = 64q,",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 'divisible by 64' is written as an equation: the expression equals 64q for some integer q.",
+          "accept": [
+            "write it as forty nine to the n plus sixteen n minus one equals sixty four q where q is an integer",
+            "divisible by sixty four means it equals sixty four times some integer",
+            "set the expression equal to sixty four q with q an integer",
+            "sixty four q ki equal ga rastam q integer"
+          ],
+          "reject": [
+            "let s of n be the statement",
+            "I write s of n",
+            "it is divisible by sixty four"
+          ],
+          "heard_as": [
+            "sixty four q",
+            "integer",
+            "divisible",
+            "forty nine to the n"
+          ]
+        },
+        "why": "You cannot do algebra with the word 'divisible'. Turning it into = 64q is what lets Step 3 substitute the assumption.",
+        "common_mistakes": [
+          "Leaving the statement in words, so Step 3 has nothing to use.",
+          "Forgetting to say q is an integer, which is the whole content of divisibility."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Substitute n = 1 and show the number that comes out is a multiple of 64.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "49¹ + 16(1) − 1 = 49 + 16 − 1 = 64",
+          "= 64(1), which is divisible by 64.",
+          "So S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the expression equals 64, which is 64 × 1 and so divisible by 64.",
+          "accept": [
+            "forty nine plus sixteen minus one is sixty four which is sixty four times one",
+            "at n equals one you get exactly sixty four so it is divisible",
+            "the first case gives sixty four",
+            "n equals one ki sixty four vasthundi"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "it works for one"
+          ],
+          "heard_as": [
+            "sixty four",
+            "forty nine",
+            "sixteen",
+            "s of one"
+          ]
+        },
+        "why": "Landing on exactly 64 is a good sign the expression was copied right — the base case doubles as a check.",
+        "common_mistakes": [
+          "Getting 66 by mishandling the −1.",
+          "Asserting S(1) without the arithmetic."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for k, then REARRANGE to make 49ᵏ the subject — that rearranged line is what Step 3 substitutes.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 49ᵏ + 16k − 1 = 64q   …(1)",
+          "⇒ 49ᵏ = 64q − 16k + 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed as 49ᵏ + 16k − 1 = 64q, and rearranged to give 49ᵏ = 64q − 16k + 1.",
+          "accept": [
+            "assume it for k so forty nine to the k plus sixteen k minus one is sixty four q and make forty nine to the k the subject",
+            "rearrange the assumption to get forty nine to the k equals sixty four q minus sixteen k plus one",
+            "suppose s of k holds then express the power in terms of q",
+            "k ki assume chesi forty nine power k ni subject ga rastam"
+          ],
+          "reject": [
+            "assume s of k",
+            "take it as true for k",
+            "let it hold for k"
+          ],
+          "heard_as": [
+            "assume",
+            "forty nine to the k",
+            "sixty four q",
+            "equation one",
+            "rearrange"
+          ]
+        },
+        "why": "Step 3 will meet 49ᵏ⁺¹, which is 49 × 49ᵏ. Having 49ᵏ already written in terms of q is what makes that substitution possible.",
+        "common_mistakes": [
+          "Assuming the statement for all k rather than one k.",
+          "Not rearranging, which leaves Step 3 with nothing to put in."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three of the seven marks. Split 49ᵏ⁺¹ as 49·49ᵏ, substitute (1), and gather until 64 comes out as a factor.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "49ᵏ⁺¹ + 16(k+1) − 1 = 49·49ᵏ + 16k + 15",
+          "= 49(64q − 16k + 1) + 16k + 15   [from (1)]",
+          "= 49(64q) − 16k(49) + 49 + 16k + 15",
+          "= 49(64q) − 16k(49 − 1) + 64",
+          "= 49(64q) − 16k(48) + 64",
+          "= 64(49q − 12k + 1)",
+          "which is divisible by 64, since",
+          "49q − 12k + 1 is an integer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 49ᵏ⁺¹ is written as 49·49ᵏ, the assumption is substituted, and everything collects into 64(49q − 12k + 1) — a multiple of 64 because the bracket is an integer.",
+          "accept": [
+            "write forty nine to the k plus one as forty nine times forty nine to the k then substitute and it comes to sixty four times forty nine q minus twelve k plus one",
+            "substitute the assumption and take sixty four out as a factor",
+            "sixteen k times forty eight is sixty four times twelve k so sixty four factors out",
+            "substitute chesi sixty four common teeste integer migulutundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "substitute and simplify",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "forty nine to the k plus one",
+            "sixty four",
+            "forty eight",
+            "twelve k",
+            "integer"
+          ]
+        },
+        "why": "16k × 48 is 64 × 12k — that is the hidden 64 that makes the whole thing work. Spotting it is the point of the question.",
+        "common_mistakes": [
+          "Writing 49ᵏ⁺¹ as 49ᵏ + 49 instead of 49 × 49ᵏ.",
+          "Stopping at 64(…) without saying the bracket is an integer, which is what divisibility requires.",
+          "Slipping on 16(k+1) − 1 = 16k + 15."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the statement holds for every natural number.",
+          "accept": [
+            "since the first case is true and each case gives the next by p m i it is true for all n",
+            "hence by the principle of mathematical induction it holds for every natural number",
+            "base case plus inductive step gives it for all n in n",
+            "p m i prakaram anni n ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is divisible",
+            "that completes it"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the principle."
+        ]
+      }
+    ]
+  }
+}

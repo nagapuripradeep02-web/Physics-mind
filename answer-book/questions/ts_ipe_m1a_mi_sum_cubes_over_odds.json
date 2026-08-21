@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_cubes_over_odds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Show that 1³/1 + (1³ + 2³)/(1 + 3) + (1³ + 2³ + 3³)/(1 + 3 + 5) + … n terms = (n/24)(2n² + 9n + 13), ∀ n ∈ N.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "nth term and the statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2, question 9. NOTE: this page prints NO mark split; the 1+1+1+3+1 is the split the same book prints on questions 5, 6 and 8, applied because the five moves are identical. The only appearances printed are 'IPE 05,07,14' — pre-bifurcation papers (before the 2014 TS/AP split), for which appearances[].board has no value, so they are recorded here in prose rather than as data. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would prove this by induction — the nth term, and why the third step expands instead of factorising.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Find the nth term",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark, and the hardest one in the chapter: the nth term is a fraction whose top and bottom each need their own standard formula.",
+        "lines": [
+          "Numerator = 1³ + 2³ + … + n³ = n²(n+1)²/4",
+          "Denominator = 1 + 3 + … + (2n−1) = n²",
+          "nth term = [n²(n+1)²/4]/n² = (n+1)²/4",
+          "Let S(n): 1³/1 + … + (n+1)²/4",
+          "        = (n/24)(2n² + 9n + 13)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is the sum of cubes n²(n+1)²/4, the denominator is the sum of the first n odd numbers n², and dividing gives the nth term (n+1)²/4.",
+          "accept": [
+            "sum of cubes is n squared n plus one squared over four and the sum of odd numbers is n squared so the term is n plus one squared over four",
+            "the n squared cancels leaving n plus one whole squared by four",
+            "top is the cube formula bottom is n squared so the general term simplifies",
+            "cubes formula and odd numbers sum n square so n plus one square by four vasthundi"
+          ],
+          "reject": [
+            "find the nth term",
+            "use the formulas",
+            "simplify the term"
+          ],
+          "heard_as": [
+            "sum of cubes",
+            "odd numbers",
+            "n squared",
+            "n plus one squared",
+            "over four"
+          ]
+        },
+        "why": "Two standard results meet here and the n² cancels — which is why a term that looks complicated collapses to something simple enough to add.",
+        "common_mistakes": [
+          "Using n(n+1)/2 for the sum of cubes; that is the sum of the first n numbers.",
+          "Taking the denominator as the sum of the first n numbers rather than the first n ODD numbers.",
+          "Forgetting to cancel n², leaving an unusable term."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Both sides come to 1.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1³/1 = 1",
+          "R.H.S of S(1) = (1/24)(2 + 9 + 13) = 24/24 = 1",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 1 and the right side is (1/24)(24) = 1.",
+          "accept": [
+            "left side is one and right side is one over twenty four times twenty four which is one",
+            "two plus nine plus thirteen is twenty four so the right side is one",
+            "both sides give one at n equals one",
+            "n equals one ki rendu sides one"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base",
+            "verify it"
+          ],
+          "heard_as": [
+            "twenty four",
+            "one",
+            "l h s",
+            "r h s"
+          ]
+        },
+        "why": "The arithmetic 2 + 9 + 13 = 24 cancelling the 24 underneath is a good sign the formula has been copied correctly.",
+        "common_mistakes": [
+          "Slipping on 2(1)² + 9(1) + 13 and getting something other than 24.",
+          "Asserting the base case without the arithmetic."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1³/1 + … + (k+1)²/4",
+          "        = (k/24)(2k² + 9k + 13)   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is ASSUMED true for some k in N, written out as the sum up to k terms equals (k/24)(2k² + 9k + 13), and labelled (1) for later use.",
+          "accept": [
+            "assume the statement is true for k so the sum up to k terms equals (k/24)(2k² + 9k + 13)",
+            "suppose s of k holds and call it equation one",
+            "take it as true for some k in the naturals and number that line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "then I assume s of k",
+            "let it be true for k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "for k in n",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three marks. Unlike the earlier questions the two sides will not factorise into each other, so expand BOTH and show the same cubic.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = (k+2)²/4",
+          "L.H.S = (k/24)(2k² + 9k + 13) + (k+2)²/4",
+          "= [k(2k² + 9k + 13) + 6(k+2)²]/24",
+          "= (2k³ + 15k² + 37k + 24)/24   …(2)",
+          "R.H.S at k+1 = ((k+1)/24)(2(k+1)² + 9(k+1) + 13)",
+          "= ((k+1)/24)(2k² + 13k + 24)",
+          "= (2k³ + 15k² + 37k + 24)/24   …(3)",
+          "(2) = (3), so S(k+1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side with the extra term (k+2)²/4 expands to (2k³ + 15k² + 37k + 24)/24, that the right side at k+1 expands to the same cubic, and that the two are therefore equal.",
+          "accept": [
+            "expand both sides and they both come to two k cubed plus fifteen k squared plus thirty seven k plus twenty four over twenty four",
+            "this one does not factorise so expand the left and the right and compare",
+            "both sides give the same cubic so they are equal",
+            "rendu sides expand chesthe same cubic vasthundi"
+          ],
+          "reject": [
+            "add the next term",
+            "simplify both sides",
+            "they are equal"
+          ],
+          "heard_as": [
+            "expand",
+            "cubic",
+            "two k cubed",
+            "fifteen k squared",
+            "thirty seven k",
+            "twenty four"
+          ]
+        },
+        "why": "The earlier questions had a common factor to pull out. This one does not, so the honest route is to expand both sides to the same cubic — slower, but it always works.",
+        "common_mistakes": [
+          "Trying to factorise and giving up when nothing comes out.",
+          "Expanding only the left side and asserting it matches.",
+          "Arithmetic slips in 6(k+2)² = 6k² + 24k + 24."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because S(1) is true AND S(k) implies S(k+1), the principle of mathematical induction gives the result for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k implies s of k plus one by the principle of mathematical induction it is true for all n",
+            "hence by p m i the statement holds for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two earlier parts prove single statements. Only the principle turns them into a claim about every n, so the examiner marks the sentence that names it.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ]
+      }
+    ]
+  }
+}

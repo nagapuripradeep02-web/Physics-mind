@@ -98,12 +98,31 @@ building twice.)
    2 Mathematical Induction · 3 Matrices · 4 Addition of Vectors · 5 Product of Vectors ·
    6 Trigonometric Ratios upto Transformations · 7 Trigonometric Equations · 8 Inverse
    Trigonometric Functions · 9 Hyperbolic Functions · 10 Properties of Triangles.
-5. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
+5. **Products are written with the middle dot** (`1·2·3`, `3·5⁽²ⁿ⁺¹⁾`), not the book's period
+   (`1.2.3`, `3.5^(2n+1)`). Both characters are in Kalam; the period reads as a decimal to a
+   student who has not met the convention, and `3.5` is genuinely ambiguous. The exam paper uses
+   the period, so this is a deliberate clarification, not a transcription — worth a teacher's view.
+6. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
    there, unlike the physics Fastrack which starred every question. Do not imply per-question rank.
-6. **The book prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages.**
+7. **The book prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages.**
    A VSAQ is 2 marks and the book gives no internal division, so the 1+1 across a VSAQ's two steps
    is OURS, not the source's. Every VSAQ file says so in `verification.note`. This is the one place
    in the mathematics track where a split is authored rather than read.
+
+## What Kalam can and cannot draw (measured 2026-08-21)
+
+Which characters the handwriting font actually contains decides whether a line can stay plain
+Unicode or has to be typeset. Measured by comparing each glyph's advance width in Kalam against
+a font known to lack it — equal widths mean both fell back.
+
+- **In Kalam** (draw in the hand): `² ³ ⁴ ⁻ ¹ ⁿ ᵏ ⁽ ⁾ ⁺ ₂ · × … − ⇒ √ ∞`
+- **Falls back** to a system face: `∈ ∪ ∴ ∵ ∀ ˣ ₐ`
+
+The fallback set is all *geometric* mathematical symbols, which is why the existing questions
+read fine — a handwritten `∈` is geometric anyway. The consequence that matters: **superscript
+towers like `49ᵏ⁺¹` and `3·5⁽²ⁿ⁺¹⁾` need no KaTeX**, which is why all of Unit 2 is plain Unicode.
+Subscript *letters* (`ₙ`, `ₐ`) are NOT available, so write "nth term" in words rather than `Tₙ`,
+and reach for a typeset line only for capital-letter subscripts and matrices.
 
 ## Open items — status
 
@@ -118,7 +137,17 @@ building twice.)
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. ~~**Coverage of Unit 1 is partial.**~~ **CLOSED 2026-08-21 — Unit 1 is COMPLETE at 24 of 24**:
+3. **Units complete so far: 1 and 2, 32 entries.**
+   **Unit 2 (Mathematical Induction) — 8 of 8, book pp.16-21, LAQ ONLY.** The book has no induction
+   SAQ or VSAQ chapter and the paper has no induction question outside Section C, where it is
+   always Q19 — the single most predictable 7 marks on the paper. All eight share ONE skeleton,
+   and the book prints the split `1+1+1+3+1` against exactly the five moves (nth term · S(1) ·
+   assume S(k) · S(k+1) · P.M.I), which is the unit's teaching point. Two caveats: the split is
+   printed on questions 5, 6, 8 and 10 but NOT on 7, 9 and 11, where the same split is applied by
+   inference from the same chapter; and question laq8 is the book's **practice question**, posed
+   with no worked solution, so both its answer and its split are ours — flagged in its own file.
+
+   ~~**Coverage of Unit 1 is partial.**~~ **CLOSED 2026-08-21 — Unit 1 is COMPLETE at 24 of 24**:
    4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81, of which p.81 is ★★★ SSP 81, "the most
    dominating domain page"). Functions has **no SAQ** — not in this book, and not on the paper,
    whose Section B is Q11-Q17 and contains no Functions question. So 24 entries is the whole unit,
