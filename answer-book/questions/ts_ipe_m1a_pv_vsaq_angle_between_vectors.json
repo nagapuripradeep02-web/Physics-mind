@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_angle_between_vectors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the angle between the vectors i + 2j + 3k and 3i − j + 2k.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the cosine formula",
+      "marks": 1
+    },
+    {
+      "label": "Find the angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.90 — VSAQ chapter 17 Product of Vectors, answer 120.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19,22 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the angle between two vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "State the cosine formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the formula, then the dot product and the two magnitudes. Both magnitudes are √14 here, which makes the denominator simply 14.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i + 2j + 3k, b = 3i − j + 2k",
+          {
+            "text": "\\cos\\theta = \\frac{a \\cdot b}{|a|\\,|b|}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "a·b = 1(3) + 2(−1) + 3(2) = 3 − 2 + 6 = 7",
+          "|a| = √14,  |b| = √14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = (a·b)/(|a||b|) is stated, the dot product is 7 and both magnitudes are √14.",
+          "accept": [
+            "cos theta is a dot b over the two magnitudes, the dot product is seven and both lengths are root fourteen",
+            "write the cosine formula, dot product seven, magnitudes root fourteen each",
+            "use cos theta equals a dot b by mod a mod b",
+            "cos theta formula rasi, dot product seven, rendu magnitudes root fourteen",
+            "state the formula and work out the three pieces"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a dot b",
+            "seven",
+            "root fourteen",
+            "formula"
+          ]
+        },
+        "why": "The dot product already contains the angle — dividing by the two lengths is what isolates the cosine from it.",
+        "common_mistakes": [
+          "Adding the magnitudes instead of multiplying.",
+          "Sign slip on the middle term of the dot product."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find the angle",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. √14 times √14 is 14, so the fraction is 7/14 = 1/2 — and a cosine of a half is a familiar angle.",
+        "lines": [
+          "cos θ = 7/(√14 · √14) = 7/14 = 1/2",
+          "cos θ = 1/2 = cos 60°",
+          {
+            "text": "∴ θ = 60°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ simplifies to 1/2, so θ = 60°.",
+          "accept": [
+            "seven over fourteen is a half and cos sixty is a half so the angle is sixty degrees",
+            "cos theta is one half so theta is sixty degrees",
+            "the angle comes out as sixty degrees",
+            "cos theta half kabatti sixty degrees",
+            "theta equals sixty degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sixty degrees",
+            "one half",
+            "cos sixty",
+            "angle"
+          ]
+        },
+        "why": "Root fourteen times root fourteen is just fourteen — recognising that saves computing a decimal and leaves an exact angle.",
+        "common_mistakes": [
+          "Leaving the answer as cos θ = 1/2 when the ANGLE was asked for.",
+          "Reaching for a calculator instead of recognising the standard value."
+        ]
+      }
+    ]
+  }
+}

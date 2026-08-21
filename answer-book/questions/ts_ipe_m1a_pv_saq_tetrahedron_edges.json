@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_saq_tetrahedron_edges",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 7,
+  "question_text": "Find the volume of the tetrahedron having the edges i+j+k, i−j and i+2j+k.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the volume formula",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the scalar triple product",
+      "marks": 2
+    },
+    {
+      "label": "Divide by 6 and state the volume",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 60. Printed appearances: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the volume of a tetrahedron from its three edges.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. The three given vectors are already the EDGES from one corner, so they go straight into the formula with no subtraction needed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i + j + k, b = i − j, c = i + 2j + k",
+          "Volume of the tetrahedron with edges a, b, c is",
+          {
+            "text": "V = \\tfrac{1}{6}\\,|[a\\ b\\ c]|",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the volume of a tetrahedron on three edge vectors is one sixth of the modulus of their scalar triple product.",
+          "accept": [
+            "the volume is one sixth of the modulus of the scalar triple product",
+            "write the formula, one by six times mod of a b c box product",
+            "volume equals one sixth the triple product",
+            "volume formula one by six into mod of a b c",
+            "state the tetrahedron volume formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one sixth",
+            "scalar triple product",
+            "volume",
+            "box product",
+            "formula"
+          ]
+        },
+        "why": "The scalar triple product is the volume of the parallelepiped on the three edges; a tetrahedron is one sixth of that box.",
+        "common_mistakes": [
+          "Using ½ instead of ⅙, which is the triangle factor, not the tetrahedron one.",
+          "Omitting the modulus and reporting a negative volume."
+        ]
+      },
+      {
+        "id": "s2_triple",
+        "kind": "equation",
+        "label": "Evaluate the triple product",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The scalar triple product is a 3×3 determinant with the three edges as rows. Note b has a zero k component — write it in.",
+        "lines": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 0 \\\\ 1 & 2 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(−1 − 0) − 1(1 − 0) + 1(2 + 1)",
+          "= −1 − 1 + 3 = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the scalar triple product is a determinant with the three edges as rows, evaluating to 1.",
+          "accept": [
+            "put the three edges as rows of a determinant and expand to get one",
+            "the triple product determinant comes to one",
+            "evaluate the three by three determinant, the answer is one",
+            "moodu edges ni rows ga petti determinant expand cheste one vasthundi",
+            "the box product equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "determinant",
+            "triple product",
+            "one",
+            "rows"
+          ]
+        },
+        "why": "A zero component still occupies its column. Leaving it out would shift the whole row and change the determinant.",
+        "common_mistakes": [
+          "Missing the zero k component of b.",
+          "Getting the plus-minus-plus sign pattern wrong."
+        ]
+      },
+      {
+        "id": "s3_volume",
+        "kind": "boxed_final",
+        "label": "Divide by 6",
+        "marks": 1,
+        "mark_note": "Volume",
+        "margin_note": "Last mark. One sixth of 1. A volume is reported in cubic units — say so.",
+        "lines": [
+          "V = ⅙ |1|",
+          {
+            "text": "= 1/6 cubic units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the volume is one sixth of 1, that is 1/6 cubic units.",
+          "accept": [
+            "one sixth of one is one sixth cubic units",
+            "the volume is one by six cubic units",
+            "divide by six to get one sixth",
+            "one by six cubic units vasthundi",
+            "the answer is one sixth of a cubic unit"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one sixth",
+            "cubic units",
+            "volume"
+          ]
+        },
+        "why": "The modulus matters even when the number is positive: a determinant can come out negative, and a volume never can.",
+        "common_mistakes": [
+          "Reporting 1 instead of 1/6.",
+          "Writing square units instead of cubic."
+        ]
+      }
+    ]
+  }
+}

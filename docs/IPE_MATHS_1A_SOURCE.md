@@ -148,7 +148,17 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1, 2, 3 and 4 — 98 entries.**
+3. **Units complete so far: 1, 2, 3, 4 and 5 — 124 entries.**
+   **Unit 5 (Product of Vectors) — COMPLETE at 26 of 26**: 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64)
+   + 12 VSAQ (pp.89-91). The first maths unit to carry ALL THREE sections — Q7 (VSAQ), Q13 (SAQ)
+   and Q22 (LAQ) — and the first since Matrices whose chapters print mark splits: answer 23 on
+   p.37 (1+1+1+1+1+2), answers 58 and 59 on p.63 (1+1+1+1), answer 61 on p.64 (1+2+1). The two
+   skew-line distance questions (23, 24) share the printed split, one sourced and one applied from
+   its neighbour. The cube-diagonal proof (answer 62) is the unit's second figure and the second
+   maths question in the book to be argued from a picture. Note the book titles the LAQ chapter
+   "Product of Vectors" while its own hit list on p.7 calls the same chapter "Vector Algebra" —
+   the chapter pages are what was followed.
+
    **Unit 4 (Addition of Vectors) — COMPLETE at 20 of 20**: 10 SAQ (book pp.57-61) + 10 VSAQ (pp.87-88).
    **It has NO LAQ**, and that is not an omission: the paper gives Addition of Vectors Q5, Q6 (VSAQ) and
    Q12 (SAQ) but no Section-C slot, and the book has no Addition-of-Vectors LAQ chapter either — the

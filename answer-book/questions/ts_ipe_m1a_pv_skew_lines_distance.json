@@ -1,0 +1,334 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_skew_lines_distance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "Find the shortest distance between the skew lines r = (6i+2j+2k) + t(i−2j+2k) and r = (−4i−k) + s(3i−2j−2k).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the shortest-distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Identify a, b, c, d and find a−c",
+      "marks": 1
+    },
+    {
+      "label": "Find b×d",
+      "marks": 1
+    },
+    {
+      "label": "Find (a−c)·(b×d)",
+      "marks": 1
+    },
+    {
+      "label": "Find |b×d|",
+      "marks": 1
+    },
+    {
+      "label": "Divide to get the shortest distance",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 23, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,20. The book calls it \"the Top model LAQ in Vectors\", and it is the ONLY answer in this chapter whose mark split is printed.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of five working lines and [2 Marks] against the closing division — a sourced 1+1+1+1+1+2. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the shortest distance between two skew lines — say the formula and each piece you need.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark, and it is a mark for WRITING THE FORMULA — the book prints [1 Mark] against this line. Write it before touching any numbers.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given the skew lines",
+          "r = (6i + 2j + 2k) + t(i − 2j + 2k)",
+          "r = (−4i − k) + s(3i − 2j − 2k)",
+          "For skew lines r = a + tb and r = c + sd,",
+          {
+            "text": "\\text{S.D} = \\frac{|(a-c)\\cdot(b \\times d)|}{|b \\times d|}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the shortest-distance formula for skew lines r = a+tb and r = c+sd is |(a−c)·(b×d)| divided by |b×d|.",
+          "accept": [
+            "the shortest distance is mod of a minus c dotted with b cross d, all over mod b cross d",
+            "write the formula first, a minus c dot b cross d over the modulus of b cross d",
+            "the SD formula uses the scalar triple product over the magnitude of the cross product",
+            "shortest distance formula rasta, a minus c dot b cross d by mod b cross d",
+            "state the skew lines distance formula"
+          ],
+          "reject": [
+            "find the distance",
+            "use the formula"
+          ],
+          "heard_as": [
+            "shortest distance",
+            "formula",
+            "a minus c",
+            "b cross d",
+            "S D"
+          ]
+        },
+        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic later goes wrong.",
+        "common_mistakes": [
+          "Starting the arithmetic without the formula on the page.",
+          "Using b×d in the numerator but forgetting the dot with (a−c)."
+        ]
+      },
+      {
+        "id": "s2_identify",
+        "kind": "equation",
+        "label": "Identify a, b, c, d",
+        "marks": 1,
+        "mark_note": "a − c",
+        "margin_note": "Second mark. Compare each line with r = a + tb: the standalone vector is the point, the one with the parameter is the direction. Then subtract the two points.",
+        "lines": [
+          "Comparing with r = a + tb and r = c + sd:",
+          "a = 6i + 2j + 2k,  b = i − 2j + 2k",
+          "c = −4i − k,  d = 3i − 2j − 2k",
+          "So a − c = (6i + 2j + 2k) − (−4i − k)",
+          "  = 10i + 2j + 3k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a and c are the points and b and d the directions, and that a − c comes to 10i + 2j + 3k.",
+          "accept": [
+            "a and c are the points, b and d are the directions, and a minus c is ten i plus two j plus three k",
+            "compare with the standard form then subtract the two points",
+            "the standalone vectors are the points and the parameter ones are directions",
+            "a c points, b d directions, a minus c ten i plus two j plus three k",
+            "identify the four vectors and find a minus c"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a minus c",
+            "ten i",
+            "point",
+            "direction",
+            "compare"
+          ]
+        },
+        "why": "a − c is the vector joining a point on one line to a point on the other. The formula projects it onto the common perpendicular, which is what b×d gives.",
+        "common_mistakes": [
+          "Taking c − a, which changes the sign inside the modulus but not the answer — harmless here, but worth being deliberate about.",
+          "Mixing up which vector is the point and which the direction."
+        ]
+      },
+      {
+        "id": "s3_cross",
+        "kind": "equation",
+        "label": "Find b×d",
+        "marks": 1,
+        "mark_note": "b × d",
+        "margin_note": "Third mark. b×d is perpendicular to BOTH directions — it is the direction of the common perpendicular, which is why the distance is measured along it.",
+        "lines": [
+          {
+            "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 2 \\\\ 3 & -2 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(4 + 4) − j(−2 − 6) + k(−2 + 6)",
+          "= 8i + 8j + 4k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b×d is computed from the two direction vectors and comes to 8i + 8j + 4k.",
+          "accept": [
+            "cross the two directions to get eight i plus eight j plus four k",
+            "b cross d is the common perpendicular direction",
+            "take the cross product of the two direction vectors",
+            "rendu directions ni cross cheste eight i plus eight j plus four k",
+            "compute b cross d from the determinant"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross d",
+            "eight i",
+            "common perpendicular",
+            "directions"
+          ]
+        },
+        "why": "A vector perpendicular to both lines is the only direction along which a shortest distance can be measured. That is what the cross product supplies.",
+        "common_mistakes": [
+          "Crossing the two POINTS instead of the two directions.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s4_dot",
+        "kind": "equation",
+        "label": "Find (a−c)·(b×d)",
+        "marks": 1,
+        "mark_note": "Numerator",
+        "margin_note": "Fourth mark. A dot product of the two results just found — the numerator of the formula, before the modulus.",
+        "lines": [
+          "(a − c)·(b × d) = (10i + 2j + 3k)·(8i + 8j + 4k)",
+          "= 80 + 16 + 12 = 108"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is the dot product of (a−c) with (b×d), giving 108.",
+          "accept": [
+            "dot a minus c with b cross d to get one hundred and eight",
+            "the numerator is eighty plus sixteen plus twelve which is one zero eight",
+            "take the scalar product of the two results",
+            "a minus c dot b cross d equals one hundred eight",
+            "multiply matching components and add to get one zero eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one hundred eight",
+            "dot product",
+            "numerator",
+            "one zero eight"
+          ]
+        },
+        "why": "This dot product measures how much of the joining vector lies along the common perpendicular — which IS the gap between the lines, before scaling.",
+        "common_mistakes": [
+          "Taking a cross product instead of a dot.",
+          "Forgetting that the result is a number, not a vector."
+        ]
+      },
+      {
+        "id": "s5_magnitude",
+        "kind": "equation",
+        "label": "Find |b×d|",
+        "marks": 1,
+        "mark_note": "Denominator",
+        "margin_note": "Fifth mark. The denominator. 64 + 64 + 16 = 144, a perfect square — which is why this question divides so cleanly.",
+        "lines": [
+          "|b × d| = √(8² + 8² + 4²)",
+          "= √(64 + 64 + 16) = √144 = 12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |b×d| is √144 = 12.",
+          "accept": [
+            "the magnitude of b cross d is root one forty four which is twelve",
+            "sixty four plus sixty four plus sixteen is one forty four so the modulus is twelve",
+            "the denominator comes to twelve",
+            "mod b cross d twelve vasthundi",
+            "take the magnitude of the cross product, twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "twelve",
+            "one forty four",
+            "magnitude",
+            "denominator"
+          ]
+        },
+        "why": "Dividing by the length of b×d turns the projection into an actual distance — without it the answer would be scaled by however long the cross product happened to be.",
+        "common_mistakes": [
+          "Forgetting to take the square root.",
+          "Using |b|·|d| instead of |b×d|."
+        ]
+      },
+      {
+        "id": "s6_divide",
+        "kind": "boxed_final",
+        "label": "Divide",
+        "marks": 2,
+        "mark_note": "Shortest distance",
+        "margin_note": "The last two marks. 108 over 12 is 9 exactly. A distance is never negative, which is what the modulus in the formula guarantees.",
+        "lines": [
+          "S.D = |(a−c)·(b×d)| / |b×d|",
+          "= 108 / 12",
+          {
+            "text": "∴ Shortest distance = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing 108 by 12 gives a shortest distance of 9.",
+          "accept": [
+            "one hundred eight over twelve is nine so the shortest distance is nine",
+            "divide the numerator by the denominator to get nine",
+            "the shortest distance is nine units",
+            "one zero eight by twelve equals nine",
+            "the answer is nine"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "nine",
+            "one zero eight over twelve",
+            "shortest distance"
+          ]
+        },
+        "why": "The modulus makes the answer positive whichever way round a − c was taken — so a negative numerator is not an error, just a direction.",
+        "common_mistakes": [
+          "Reporting a negative distance.",
+          "Dividing the other way round."
+        ]
+      }
+    ]
+  }
+}

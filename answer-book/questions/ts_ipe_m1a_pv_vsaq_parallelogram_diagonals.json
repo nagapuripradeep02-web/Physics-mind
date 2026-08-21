@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_diagonals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the area of the parallelogram whose diagonals are 3i + j − 2k and i − 3j + 4k.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find d₁×d₂",
+      "marks": 1
+    },
+    {
+      "label": "Halve the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.90 — VSAQ chapter 17 Product of Vectors, answer 121.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS M-17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the area of a parallelogram from its DIAGONALS.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find d₁×d₂",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same cross product as before — but these are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given diagonals d₁ = 3i + j − 2k, d₂ = i − 3j + 4k",
+          {
+            "text": "d_1 \\times d_2 = \\begin{vmatrix} i & j & k \\\\ 3 & 1 & -2 \\\\ 1 & -3 & 4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(4 − 6) − j(12 + 2) + k(−9 − 1)",
+          "= −2i − 14j − 10k = −2(i + 7j + 5k)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product of the two diagonals is computed, giving −2(i + 7j + 5k).",
+          "accept": [
+            "cross the two diagonals to get minus two i minus fourteen j minus ten k, then take minus two out",
+            "take d one cross d two and factor out the minus two",
+            "the cross product of the diagonals is minus two into i plus seven j plus five k",
+            "diagonals cross cheste minus two common teeyyochu",
+            "compute the cross product of the diagonals"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "d one cross d two",
+            "minus two",
+            "fourteen j",
+            "diagonals",
+            "factor out"
+          ]
+        },
+        "why": "Factoring the −2 out before the magnitude turns √(4 + 196 + 100) into 2√(1 + 49 + 25) — the same number with far smaller arithmetic.",
+        "common_mistakes": [
+          "Treating the diagonals as if they were sides.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Halve the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and the difference from the previous question. From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
+        "lines": [
+          "|d₁ × d₂| = 2√(1 + 49 + 25) = 2√75",
+          "Area = ½ |d₁ × d₂| = ½ (2√75) = √75",
+          {
+            "text": "= 5√3 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area from diagonals is HALF the magnitude of their cross product, giving √75 = 5√3 square units.",
+          "accept": [
+            "from diagonals the area is half the magnitude so it is root seventy five which is five root three",
+            "halve it because these are diagonals, giving five root three square units",
+            "the area is five root three square units",
+            "diagonals kabatti half teeskovali, five root three vasthundi",
+            "half of two root seventy five is root seventy five equals five root three"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "half",
+            "five root three",
+            "root seventy five",
+            "diagonals",
+            "square units"
+          ]
+        },
+        "why": "The diagonals of a parallelogram span a figure twice its area, so the half corrects for that. Using the sides formula here would double the answer.",
+        "common_mistakes": [
+          "Forgetting the half and reporting 2√75.",
+          "Leaving √75 unsimplified."
+        ]
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — they will COLLIDE with physics unit numbers once physics opens its Units 1-3, because this manifest has no subject dimension yet. Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — they will COLLIDE with physics unit numbers once physics opens its Units 1-3, because this manifest has no subject dimension yet. Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap.",
   "units": [
     {
       "number": 4,
@@ -982,6 +982,221 @@
           "stars": 3,
           "text": "Find the vector equation of the plane passing through the points (0, 0, 0), (0, 5, 0) and (2, 0, 1).",
           "question_id": "ts_ipe_m1a_vec_vsaq_plane_origin_points"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Product of Vectors (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = 2i+j−k, b = −i+2j−4k and c = i+j+k, then find (a×b)·(b×c).",
+          "question_id": "ts_ipe_m1a_pv_axb_dot_bxc"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If a = 2i+j−3k, b = i−2j+k, c = −i+j−4k and d = i+j+k, then compute |(a×b)×(c×d)|.",
+          "question_id": "ts_ipe_m1a_pv_axb_cross_cxd"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If a = i−2j+3k, b = 2i+j+k and c = i+j+2k, then find |(a×b)×c| and |a×(b×c)|.",
+          "question_id": "ts_ipe_m1a_pv_two_triple_products"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If a = i−2j+k, b = 2i+j+k and c = i+2j−k, then find a×(b×c) and |(a×b)×c|.",
+          "question_id": "ts_ipe_m1a_pv_triple_product_pair"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the shortest distance between the skew lines r = (6i+2j+2k) + t(i−2j+2k) and r = (−4i−k) + s(3i−2j−2k).",
+          "question_id": "ts_ipe_m1a_pv_skew_lines_distance"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If A = (1, −2, −1), B = (4, 0, −3), C = (1, 2, −1) and D = (2, −4, −5), then find the distance between the lines AB and CD.",
+          "question_id": "ts_ipe_m1a_pv_distance_ab_cd"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If a, b, c are three vectors, then prove that (a×b)×c = (c·a)b − (c·b)a.",
+          "question_id": "ts_ipe_m1a_pv_triple_product_identity"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = (1, −1, −6), b = (1, −3, 4) and c = (2, −5, 3), then compute a×(b×c).",
+          "question_id": "ts_ipe_m1a_pv_saq_a_cross_bxc"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If a = 2i+3j+4k, b = i+j−k and c = i−j+k, then compute a×(b×c) and verify that it is perpendicular to a.",
+          "question_id": "ts_ipe_m1a_pv_saq_verify_perpendicular"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the area of the triangle formed with the points A(1,2,3), B(2,3,1) and C(3,1,2).",
+          "question_id": "ts_ipe_m1a_pv_saq_triangle_area"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the unit vector perpendicular to the plane passing through the points (1,2,3), (2,−1,1) and (1,2,−4).",
+          "question_id": "ts_ipe_m1a_pv_saq_unit_normal_plane"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the volume of the tetrahedron having the edges i+j+k, i−j and i+2j+k.",
+          "question_id": "ts_ipe_m1a_pv_saq_tetrahedron_edges"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the volume of the tetrahedron whose vertices are (1,2,1), (3,2,5), (2,−1,0) and (−1,0,1).",
+          "question_id": "ts_ipe_m1a_pv_saq_tetrahedron_vertices"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Prove that the smaller angle θ between any two diagonals of a cube is given by cos θ = 1/3.",
+          "question_id": "ts_ipe_m1a_pv_saq_cube_diagonals"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = i + 2j − 3k and b = 3i − j + 2k, then show that a+b and a−b are perpendicular to each other.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_sum_diff_perpendicular"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If |a + b| = |a − b|, then find the angle between a and b.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_equal_sum_diff_angle"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If the vectors 2i + λj − k and 4i − 2j + 2k are perpendicular to each other, then find λ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_find_lambda"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the vectors λi − 3j + 5k and 2λi − λj − k are perpendicular to each other, then find λ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_quadratic"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the angle between the vectors i + 2j + 3k and 3i − j + 2k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_angle_between_vectors"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the angle between the planes r·(2i − j + 2k) = 3 and r·(3i + 6j + k) = 4.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_angle_between_planes"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the area of the parallelogram whose adjacent sides are a = 2j − k and b = −i + k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_sides"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the area of the parallelogram whose diagonals are 3i + j − 2k and i − 3j + 4k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_diagonals"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find a unit vector perpendicular to the plane containing the vectors a = 4i + 3j − k and b = 2i − 6j − 3k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_unit_normal_two_vectors"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Let a = 2i − j + k and b = 3i + 4j − k. If θ is the angle between a and b, then find sin θ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_find_sin_theta"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the area of the triangle having 3i + 4j and −5i + 7j as adjacent sides.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_triangle_area_sides"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If a = 2i − j + k and b = i − 3j − 5k, then find |a × b|.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_magnitude_cross_product"
         }
       ]
     }

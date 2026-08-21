@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_sides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the area of the parallelogram whose adjacent sides are a = 2j − k and b = −i + k.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 1
+    },
+    {
+      "label": "Take the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.90 — VSAQ chapter 17 Product of Vectors, answer 121.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP M-16 · TS 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the area of a parallelogram from its sides.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Area from SIDES is the magnitude of their cross product — no halving. Both vectors have a missing component; write the zeros in.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sides a = 2j − k, b = −i + k",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 0 & 2 & -1 \\\\ -1 & 0 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 − 0) − j(0 − 1) + k(0 + 2)",
+          "= 2i + j + 2k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product of the two adjacent sides is computed, giving 2i + j + 2k.",
+          "accept": [
+            "cross the two sides to get two i plus j plus two k",
+            "take a cross b using the determinant with the zeros written in",
+            "the cross product of the adjacent sides is two i plus j plus two k",
+            "rendu sides cross cheste two i plus j plus two k",
+            "compute a cross b"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "two i plus j plus two k",
+            "determinant",
+            "zeros"
+          ]
+        },
+        "why": "The magnitude of a cross product IS the area of the parallelogram spanned by the two vectors — that is what a cross product means geometrically.",
+        "common_mistakes": [
+          "Missing the zero i component of a or the zero j of b.",
+          "Taking a dot product."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Area from adjacent SIDES has no factor of a half — that factor belongs to a triangle, and to the diagonals form.",
+        "lines": [
+          "Area = |a × b| = √(2² + 1² + 2²)",
+          "= √(4 + 1 + 4) = √9 = 3",
+          {
+            "text": "∴ Area = 3 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area is the magnitude of the cross product, √9 = 3 square units, with no halving.",
+          "accept": [
+            "the area is the magnitude which is root nine equals three square units",
+            "take the modulus to get three square units, no half here",
+            "the area is three square units",
+            "magnitude three vasthundi, half avasaram ledu",
+            "area equals three square units"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "three",
+            "square units",
+            "magnitude",
+            "root nine",
+            "no half"
+          ]
+        },
+        "why": "Sides give the parallelogram directly. The half only appears for a triangle, or when the DIAGONALS are given instead — as in the next question.",
+        "common_mistakes": [
+          "Halving the answer.",
+          "Omitting the units."
+        ]
+      }
+    ]
+  }
+}

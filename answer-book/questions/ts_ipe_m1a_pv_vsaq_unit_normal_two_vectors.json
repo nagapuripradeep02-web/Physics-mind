@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_unit_normal_two_vectors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find a unit vector perpendicular to the plane containing the vectors a = 4i + 3j − k and b = 2i − 6j − 3k.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 1
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.1. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find a unit vector perpendicular to two given vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The cross product of two vectors is perpendicular to both, so it is already the direction wanted — only its length needs fixing. Take 5 out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 4 & 3 & -1 \\\\ 2 & -6 & -3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−9 − 6) − j(−12 + 2) + k(−24 − 6)",
+          "= −15i + 10j − 30k = 5(−3i + 2j − 6k)",
+          "|a × b| = 5√(9 + 4 + 36) = 5√49 = 35"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a×b is computed as the perpendicular direction, giving 5(−3i + 2j − 6k) with magnitude 35.",
+          "accept": [
+            "cross a and b to get the perpendicular direction, five into minus three i plus two j minus six k, magnitude thirty five",
+            "the cross product is perpendicular to both and its magnitude is thirty five",
+            "take a cross b and its modulus",
+            "a cross b perpendicular vasthundi, magnitude thirty five",
+            "compute the cross product and its length"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "thirty five",
+            "perpendicular",
+            "five",
+            "magnitude"
+          ]
+        },
+        "why": "Any vector perpendicular to both a and b is perpendicular to the plane they span. The cross product supplies one directly.",
+        "common_mistakes": [
+          "Taking a dot product, which gives no direction.",
+          "Squaring 15, 10 and 30 instead of factoring the 5 out first."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The 5 cancels into the 35, leaving 7 in the denominator. Keep the ± — there are two unit normals, one each way.",
+        "lines": [
+          "Required unit vector = ± (a × b)/|a × b|",
+          "= ± 5(−3i + 2j − 6k)/35",
+          {
+            "text": "= ± (3i − 2j + 6k)/7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by the magnitude gives ±(3i − 2j + 6k)/7, and that the ± must be kept.",
+          "accept": [
+            "divide by thirty five so the five cancels leaving plus or minus three i minus two j plus six k over seven",
+            "the unit vector is plus or minus three i minus two j plus six k all over seven",
+            "keep the plus minus because there are two normals",
+            "thirty five tho divide cheste seven vasthundi, plus or minus tho",
+            "the answer is plus minus three i minus two j plus six k by seven"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "over seven",
+            "unit vector",
+            "two normals"
+          ]
+        },
+        "why": "Reversing a perpendicular leaves it perpendicular, so both signs are correct answers. Dropping the ± reports only one of them.",
+        "common_mistakes": [
+          "Omitting the ± sign.",
+          "Failing to cancel the 5 into the 35."
+        ]
+      }
+    ]
+  }
+}
