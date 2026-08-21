@@ -14,6 +14,12 @@
 > queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
 > the 2026-08-09 record, kept verbatim.
 >
+> **⚠ CHECKPOINT B HAS RUN — read §0.02 FIRST (2026-08-21).** founder_proxy returned **FIX**,
+> not APPROVE, on two P1s: STATE_6 printed an angle its own formula surface forbids (115° where the
+> equation gives 65°), and s8_4 mis-named a labelled HUD number. Both fixed; the first became the
+> state's best beat and a fourth misconception_watch. The engine half is **PR #133, unmerged — a
+> founder call.** §0.03 below is the round that got the build TO Checkpoint B.
+>
 > **⚠ SUPERSEDED AGAIN 2026-08-20 (evening) — read §0.03 FIRST.** CP-B round 1 ran: two audits
 > (pass 4 FAIL, pass 5 FAIL on one finding), a full architect → mathematics-author → json-author fix
 > round, and a second carrier fix for STATE_6. `founder_proxy` was **never dispatched** — §0.05's
@@ -88,6 +94,95 @@ stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warni
 `parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
 drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
 sample that window).
+
+---
+
+## 0.02 SESSION 2026-08-21 — CHECKPOINT B CYCLE 0 RAN. Read this before §0.03.
+
+**`founder_proxy` Checkpoint B was finally dispatched** (the thing §0.03/§0.05 could never reach) and
+returned **FIX**, not APPROVE. Its headline finding is the most valuable thing this concept has produced.
+
+### 0.02a — the 115° bug: what thirteen audit passes could not see
+
+STATE_6 printed `angle = 115.0°` beside its own formula surface `cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)`, whose
+absolute value **defines** the between-lines angle as acute. The equation on screen gives **65.0°**.
+A Class-12 student taking 115° into a CBSE paper is marked wrong.
+
+It survived 13 `quality_auditor` passes, 2 `eye_walker` walks, `check:vector-geometry-3d`, and THE EYE
+because **no gate compares a formula surface against the RANGE its own readout can reach**. The geometry
+was right, the rendering was right, the number was wrong.
+
+Root cause was one line: `vgResolveLinesPlanes`'s line-line arc branch took `val = vgAngleDeg(u0, u1)`
+raw, while the two sibling branches (`.normal`, plane) fold and say so in a comment.
+
+**The founder chose the engine fold over capping the sweep, and the architect turned it into the state's
+best beat:** the direction still turns 115° while the reported angle rises to 90° and comes back DOWN to
+65° — the one place the `|·|` becomes visible motion rather than notation. It earned a **fourth**
+`misconception_watch` (M4) on a concept that had exactly three genuine pivots.
+
+- Engine: **PR #133** (`fix/vg-acute-line-angle` @ `f95347f0`) — MERGEABLE/CLEAN, CI green, vitest 386/386.
+  One statement; `check_vector_geometry_3d.ts` gains **§30** with negative controls that rebuild the
+  resolver MINUS the fold and fire on every claim, plus an assertion that the folded value EQUALS
+  `acos(|d₁·d₂|/…)` at 91 samples (so a lazy `min(v,90)` clamp fails). **Not merged — founder's call.**
+- Chapter branch carries it as a **cherry-pick** (`b596a343`), identifiable as such; it drops out on the
+  next master sync.
+
+### 0.02b — the second P1, and the eleven others
+
+**F2** — `s8_4` called the 1.685 triple product *"how far the lines start apart"* while the magenta
+`a₂−a₁` beside it is drawn **2.308** long. Now *"the gap between the starting points, measured along this
+direction"*, which reproduces **1.7999996**. **F3** S4's `Lpar` ghosts instead of hiding, so the pinned
+frame carries both halves of "Crosses, or never touches". **F4** S7's `Lcut` re-anchored to its own
+intersection with P1 — **`vg_lp_angle_arc_apex_…` is now CLOSED on S7** (still open on S4: partial
+discharge, do not read "fixed" as fleet-wide). **F5** the CBSE tag shipped `verified: true` beside
+evidence reading "NOT a teacher confirmation". **F8/F9/F10/F11** titles, dialect, ghost opacity, dead keys.
+
+### 0.02c — the glow batch: fixed three times, wrong twice
+
+CP-B's **F7** asked for glow bindings on 33 unbound sentences. 26 were authored and reported as *"ids
+verified against the `stamp()` call sites"* — a report specific enough to be believed (it correctly caught
+that normals stamp as `P1.normal`, and that the λ marker generates as `L1_lambda`). **Both true.** But it
+answered *"does an object with this id exist?"* rather than *"is an object of this TYPE ever stamped?"*
+
+Three rounds, each finding what the previous checker did not model:
+
+1. **Stampability.** 5 bindings named ANGLE ARCS. Arcs are the one vg pool that never calls `stamp()`,
+   and `vg_lp_arc` is absent from `brightenOnly` — so an arc is an unmatched PEER that takes `touchOp` →
+   `GLOW_DIM_OPACITY = 0.4`. Naming an arc **INVERTS**: the one object the sentence is about is the one
+   object that dims. On the two states whose entire subject IS an arc.
+2. **Visibility at sentence time.** `s5_3 → crossing_mark` could never fire — marker hides at 3500 ms,
+   sentence plays at 9.45 s.
+3. **Element type safe as a focal.** `s2_4 → P1` would have made the plane **fully opaque** — the focal
+   branch writes `opacity = 1.0` under `touchOp`, against a plane base of 0.28.
+
+**22 bindings survive**, verified on all three axes. **THE EYE cannot see any of this by construction** —
+its capture path never sends `SET_GLOW` — so a green 39/40 sat on top of a live product defect for a full
+round. `build_review_site` fires the glow on the STATE CLOCK, narration on or off.
+
+Rows filed (`f0b97bc0`): the ENGINE gap (OPEN, `field3d_surgeon`, founder call) and the AUTHORING instance
+(FIXED). Prevention rules worth carrying: **enumerate the id-PRODUCING sites, not the consuming ones**; a
+claim that ids were "verified against the engine" **names which sites it read and what legal set resulted**;
+and **where a mechanism is invisible to THE EYE, a green EYE run is not evidence about it** — the authoring
+check IS the gate, so it gets a machine probe, not a prose assurance.
+
+### 0.02d — founder calls now stacked (none authorable)
+
+| item | owner | note |
+|---|---|---|
+| **PR #133 merge** | founder | the acute fold; unblocks #96 |
+| arc `stamp()` + `vg_lp_arc` in `brightenOnly` | `field3d_surgeon` | makes arcs glowable fleet-wide; the concept's own `focal_primitive_id` is `"arc1"` |
+| **multiplicative peer-dim** | `field3d_surgeon` | wider than the arc row: a NON-focal plane goes 0.28 → 0.4, so the "dim" makes it MORE opaque on S1/S2/S3/S4/S7. An absolute constant is wrong for any element whose base sits below it |
+| θ slider label vs HUD | founder routing | row reads the ROTATION knob (`112°`) beside the measured angle (`67.5°`); correct before the fold |
+| F6 — `aux_a` slider path | `field3d_surgeon` | the concept's own aha cannot be re-run by hand; S9 recipe is written into the skeleton, ready |
+| S5 pulse co-location | `alex:architect` | pulse fires 2.0–3.5 s, ~6 s before the sentence naming it (Rule 25) |
+| Δ11 · Δ12 · ghost-arrow row · S1 ghost contrast | as filed | unchanged |
+
+### 0.02e — state
+
+Branch `feat/mathematics-lines-and-planes` @ `276a29fb`, pushed, 0 local-only. Word budgets S1 52 · S2 55 ·
+S3 54 · S4 55 · S5 55 · S6 54 · S7 47 · S8 54 (all inside Rule 31). THE EYE `20260821-092650` 39/40 (the
+known `STATE_9:D5` false positive). `eye_walker` CLEAN, 0 new rows. Nothing baselined, nothing in
+`PILOT_CONCEPTS`, **PR #96 must not merge.**
 
 ---
 
