@@ -74,7 +74,8 @@
             "geostationary",
             "same point"
           ]
-        }
+        },
+        "memory_tip": "Three matches make it geostationary: same period (24 h), same direction (west to east), over the equator."
       },
       {
         "id": "s2_uses",
@@ -112,7 +113,8 @@
             "uses",
             "communication"
           ]
-        }
+        },
+        "memory_tip": "All uses are one property repeated: it never moves off its spot — TV relay, communication, weather watch of one region."
       }
     ]
   }

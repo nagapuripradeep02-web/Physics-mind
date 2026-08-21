@@ -91,7 +91,8 @@
             "i cap j cap k cap",
             "mod A"
           ]
-        }
+        },
+        "memory_tip": "The definition is a division: the vector over its own magnitude. Size 1, direction kept."
       },
       {
         "id": "s2_null_vector",
@@ -138,7 +139,8 @@
             "nal vector",
             "no vector"
           ]
-        }
+        },
+        "memory_tip": "Think A + (−A): the size is zero and no direction is left. That is the null vector."
       },
       {
         "id": "s3_position_vector",
@@ -180,7 +182,8 @@
             "O P",
             "from the origin"
           ]
-        }
+        },
+        "memory_tip": "Always drawn FROM the origin TO the point. The origin end never moves."
       },
       {
         "id": "s4_figure",
@@ -368,7 +371,8 @@
             "sketch",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "Draw the box: drop P to the xy-plane, then to the x-axis. The three coordinates appear as three edges."
       },
       {
         "id": "s5_position_components",
@@ -413,7 +417,8 @@
             "root of x squared",
             "mod r"
           ]
-        }
+        },
+        "memory_tip": "r = xi + yj + zk, and the magnitude is the square root of the three squares."
       },
       {
         "id": "s6_notes",
@@ -453,7 +458,8 @@
             "extra",
             "no units"
           ]
-        }
+        },
+        "memory_tip": "The trap to remember: a position vector depends on the chosen origin; the point alone fixes nothing."
       }
     ]
   }

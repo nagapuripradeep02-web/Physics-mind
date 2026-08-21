@@ -71,7 +71,8 @@
             "static",
             "overcome"
           ]
-        }
+        },
+        "memory_tip": "Starting must beat MAXIMUM static friction — the largest value friction can take."
       },
       {
         "id": "s2_later",
@@ -109,7 +110,8 @@
             "less than",
             "reduces"
           ]
-        }
+        },
+        "memory_tip": "Moving faces only kinetic friction, which is smaller. The order to remember: static maximum > kinetic."
       }
     ]
   }

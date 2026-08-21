@@ -74,7 +74,8 @@
             "momentum and kinetic energy",
             "elastic"
           ]
-        }
+        },
+        "memory_tip": "Elastic keeps BOTH: momentum and kinetic energy."
       },
       {
         "id": "s2_inelastic",
@@ -116,7 +117,8 @@
             "not conserved",
             "heat"
           ]
-        }
+        },
+        "memory_tip": "Inelastic keeps momentum only — some kinetic energy leaves as heat, sound and deformation."
       }
     ]
   }

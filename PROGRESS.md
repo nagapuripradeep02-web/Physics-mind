@@ -1,5 +1,28 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🤖 SESSION — Answer Book: **VIDI LANDS — Rungs 1+2 (deterministic companion + flag-gated live chat)** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the Answer Book's AI companion went from design doc (`1e8835d`) to working code in one session. The bank stays the brain; Vidi is the voice. Everything a student sees by default is deterministic and offline — greeting, four chips, chapter triage, exam-eve view, the honest check verdict, rename-after-first-value — rendered from `PM_QUESTIONS`/`PM_UNITS` + localStorage with ZERO network. Live chat exists only in a `build:answers:hosted` build against a new fail-closed Edge Function with its own ledger. Photo/mic verification deliberately NOT built (founder call). All 26 existing e2e gates passed with the layer live; 7 new Vidi gates added.**
+
+### What shipped
+- **Schema** (`src/schemas/answerBook.ts`): optional per-step `memory_tip` (+ cut override) and per-question `insider_note` — sparse-optional like `margin_note`, Rule 41 enforced.
+- **Authoring**: memory tips for the founder-scoped 3★ + LAQ subset — **179 steps across 56 questions**, + **12 insider notes**, every one grounded in the step's own lines/why (digest-driven, not guessed). Register scan caught and fixed 2 slips ("Same trick", "beats").
+- **Deterministic Vidi** (`answer-book/notebook.js` +~560 lines, ES5 house style; `shell.html`; `notebook.css`): panel in the reserved `#pm-assistant-slot` (never `.card-title` — rail-order gate safe); greeting from stars/`appearances[]`/`insider_note`; chips [Will this come? · Why this step? · How to remember? · How much to write?] answered from authored data with a typing beat; catalog triage strip under a chapter filter (own classes — card-count/search gates untouched); `#/exam-eve/<unit>` route (weakest self-checks from `pm_vidi_history`, then the 3★ set — the founder's 6 a.m. WhatsApp link); self-check verdict line updating live in the overlay (scoring math untouched — gate 8 exact); **rename offered ONCE after the first completed self-check** (blocklist EN+TE+transliterated, 20-char cap, names are display data — no uniqueness anywhere); phone = floating button + bottom-sheet.
+- **Live chat, flag-gated**: `window.PM_VIDI_BASE` via `ANSWER_BOOK_VIDI_BASE` / `npm run build:answers:hosted`. Empty (default) ⇒ ask row + telemetry flush DO NOT EXIST ⇒ offline gates hold by construction. Context built client-side, byte-stable per question+cut (DeepSeek prefix-cache), from the authored steps.
+- **Edge Function** `supabase/functions/answerbook-vidi-chat/index.ts` — sibling of Quick Learn's, own `task_type=answerbook_vidi_chat` (own $2/day cap + per-IP counters; never shares QL's budget), mark-scheme-grounded persona (never invents a step/mark; out-of-bank → plain "noted"; Telugu code-mix TEXT ONLY), context slice 10,000 (QL's 6,000 truncation bug not inherited), `{type:'events'}` telemetry batches → `simulation_feedback` before the key check.
+- **Tests**: 7 new gates appended (panel+chips+zero-network · tip-chip only-where-authored · verdict math · rename/blocklist/persistence · exam-eve · triage exact counts · phone bottom-sheet). The 3 fleet sweeps were NOT touched (Vidi adds only trivial per-question string work).
+- **Docs**: `docs/patterns/answer_book.md` seam section rewritten as the landed layer; design doc → IMPLEMENTED + the two PENDING founder rulings (Rule 18 amendment · Telugu code-mix carve-out); hosting runbook `docs/notes/answer_book_hosting.md`.
+
+### Founder steps (nothing deployed — Rule 17)
+(1) `supabase functions deploy answerbook-vidi-chat --no-verify-jwt` + `DEEPSEEK_API_KEY` secret; (2) verify locally per the runbook; (3) host the dist at a real URL + set `AB_ALLOWED_ORIGINS`; (4) review the 179 tips + 12 insider notes; (5) sign the two one-line rulings in the design doc.
+
+### NEXT
+1. Founder walk: `npm run serve:answers` → open a 3★ question → chips → self-check → rename → `#/exam-eve/8`.
+2. After hosting: watch `ai_usage_log` + `simulation_feedback` weekly — cluster free-form questions → author the common ones deterministic (the flywheel).
+3. Tips for the remaining ~101 questions arrive per-unit, guided by chip-tap data, not speculation.
+
+---
+
 ## 🪐 SESSION — Answer Book: **UNIT 9 "GRAVITATION" (27/27) — the corrected back-test pays on its first use** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: six chapters, 162 catalog entries, 157 files. Unit 9 ships 16 asked entries (14 Fastrack + 1 BLM-only + 1 AP-paper) plus 11 predicted. The union check flipped BACK — the BLM carries an SAQ the Fastrack lacks — and the back-test correction written down last session found its cell on the very first run it governed.**

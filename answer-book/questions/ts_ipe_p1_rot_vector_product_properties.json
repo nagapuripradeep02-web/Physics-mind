@@ -92,7 +92,8 @@
             "perpendicular",
             "right hand"
           ]
-        }
+        },
+        "memory_tip": "Say all three parts: magnitude AB sin θ, the direction n̂, and the right-hand rule that fixes it."
       },
       {
         "id": "s2_properties",
@@ -149,7 +150,8 @@
             "distributive",
             "parallel zero"
           ]
-        }
+        },
+        "memory_tip": "Four properties from two facts: the right-hand rule read backwards gives A×B = −B×A; sin θ at 0° and 90° gives the parallel and perpendicular cases."
       },
       {
         "id": "s3_examples",
@@ -192,7 +194,8 @@
             "angular momentum",
             "r cross"
           ]
-        }
+        },
+        "memory_tip": "Both examples start with r: r × F is torque, r × p is angular momentum."
       }
     ]
   }

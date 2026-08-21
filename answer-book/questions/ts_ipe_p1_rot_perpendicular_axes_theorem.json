@@ -86,7 +86,8 @@
             "I x plus I y",
             "lamina"
           ]
-        }
+        },
+        "memory_tip": "I_z = I_x + I_y — and say \"plane lamina\": the theorem works only for flat bodies."
       },
       {
         "id": "s2_figure",
@@ -270,7 +271,8 @@
             "axes",
             "lamina"
           ]
-        }
+        },
+        "memory_tip": "Draw the lamina in the xy-plane with one particle at (x, y); the right triangle shows r² = x² + y²."
       },
       {
         "id": "s3_proof",
@@ -314,7 +316,8 @@
             "x squared plus y squared",
             "sum"
           ]
-        }
+        },
+        "memory_tip": "One Pythagoras: Σmr² = Σmx² + Σmy²."
       },
       {
         "id": "s4_result",
@@ -352,7 +355,8 @@
             "I y",
             "proved"
           ]
-        }
+        },
+        "memory_tip": "Name the sums back carefully: Σmy² = I_x and Σmx² = I_y — the distance FROM the x-axis is y."
       }
     ]
   }

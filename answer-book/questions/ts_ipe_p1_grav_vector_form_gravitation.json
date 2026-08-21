@@ -73,7 +73,8 @@
             "r cubed",
             "vector form"
           ]
-        }
+        },
+        "memory_tip": "The r³ is not a new law — it is r² times one extra r that turns the vector r into a direction."
       },
       {
         "id": "s2_sign",
@@ -109,8 +110,10 @@
             "attractive",
             "minus sign"
           ]
-        }
+        },
+        "memory_tip": "The minus sign IS the attraction. Keep it, and say what it means."
       }
     ]
-  }
+  },
+  "insider_note": "Write the minus sign. Some guides omit it; without it the formula describes repulsion."
 }

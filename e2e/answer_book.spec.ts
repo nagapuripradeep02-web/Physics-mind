@@ -900,3 +900,224 @@ test('catalog search narrows the cards and can find nothing', async ({ page }) =
     expect(none.cards).toBe(0);
     expect(none.noneShown).toBe(true);
 });
+
+// ── Vidi — the assistant layer (docs/ANSWER_BOOK_VIDI_DESIGN.md, Rungs 1+2) ──
+// The default build has NO chat base (PM_VIDI_BASE === ''), so every Vidi
+// feature below must work with ZERO network calls — the offline guarantee
+// extends to the assistant. The free-text ask row must not exist at all.
+
+test('Vidi panel renders in the rail, chips answer deterministically, zero network', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await openFirst(page);
+
+    // panel visible, greeting bubble lands after its typing beat
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await page.waitForSelector('#vidiThread .vidi-msg.tutor:not(.vidi-typing)', { timeout: 4000 });
+
+    const r = await page.evaluate(() => ({
+        vidiBase: (window as any).PM_VIDI_BASE,
+        askRowHidden: document.getElementById('vidiAskRow')!.hidden,
+        chips: document.querySelectorAll('#vidiChips .vidi-chip').length,
+        // the rail-order gate pins .card-title — the panel must not add one
+        cardTitleInSlot: document.querySelector('#pm-assistant-slot .card-title') !== null,
+        greeting: document.querySelector('#vidiThread .vidi-msg.tutor')!.textContent || '',
+    }));
+    expect(r.vidiBase).toBe('');
+    expect(r.askRowHidden).toBe(true);        // no base → the ask row does not exist
+    expect(r.chips).toBeGreaterThanOrEqual(3);
+    expect(r.cardTitleInSlot).toBe(false);
+    expect(r.greeting.length).toBeGreaterThan(0);
+
+    // a chip answers instantly from authored data — still zero network
+    await page.click('#vidiChips .vidi-chip');   // "Will this come?"
+    await page.waitForFunction(
+        () => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length >= 2,
+        undefined, { timeout: 4000 });
+
+    expect(external).toEqual([]);
+});
+
+test('the memory-tip chip appears only where a tip is authored', async ({ page }) => {
+    await openFirst(page);
+    const ids = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const tipped = qs.find((q) => q.answer.steps[0] && q.answer.steps[0].memory_tip);
+        const bare = qs.find((q) => q.answer.steps.every((s: any) => !s.memory_tip));
+        return { tipped: tipped ? tipped.question_id : null, bare: bare ? bare.question_id : null };
+    });
+
+    const chipTexts = async () => page.evaluate(
+        () => Array.from(document.querySelectorAll('#vidiChips .vidi-chip')).map((b) => b.textContent));
+
+    test.skip(!ids.tipped, 'no question with a memory tip on its first step is authored yet');
+    await openQ(page, ids.tipped!);
+    expect(await chipTexts()).toContain('How to remember?');
+
+    if (ids.bare) {
+        await openQ(page, ids.bare);
+        expect(await chipTexts()).not.toContain('How to remember?');
+    }
+});
+
+test('the self-check verdict line updates live and the score math is untouched', async ({ page }) => {
+    await openFirst(page);
+    await page.click('#btnTest');
+    await page.click('#btnSelf');
+
+    const authored = await page.evaluate(() => {
+        const q = (window as any).PM_ANSWER.question;
+        return { total: q.marks_total, firstMarks: q.answer.steps[0].marks };
+    });
+
+    // the verdict exists, names the assistant, and starts from zero
+    const v0 = await page.evaluate(() => document.querySelector('#recallResult .vidi-verdict')!.textContent || '');
+    expect(v0).toContain('0 out of ' + authored.total);
+
+    // ticking the first row moves BOTH the score and the verdict by the same marks
+    await page.click('#recallResult .confirm-row');
+    const after = await page.evaluate(() => ({
+        score: document.querySelector('#recallResult .recall-score')!.textContent || '',
+        verdict: document.querySelector('#recallResult .vidi-verdict')!.textContent || '',
+    }));
+    expect(after.score).toContain(`${authored.firstMarks} out of ${authored.total}`);
+    expect(after.verdict).toContain(`${authored.firstMarks} out of ${authored.total}`);
+});
+
+test('rename is offered once after the first completed self-check, blocklist holds, name persists', async ({ page }) => {
+    await openFirst(page);
+
+    // complete a self-check (one tick = a touched check), then close the overlay
+    await page.click('#btnTest');
+    await page.click('#btnSelf');
+    await page.click('#recallResult .confirm-row');
+    await page.click('#btnCloseTest');
+
+    await page.waitForSelector('#vidiRename:not([hidden])', { timeout: 4000 });
+
+    // a blocked name is refused and the display name does not change
+    await page.fill('#vidiNameInput', 'chutiya');
+    await page.click('#vidiNameSave');
+    const blocked = await page.evaluate(() => ({
+        note: document.getElementById('vidiRenameNote')!.textContent || '',
+        name: document.querySelector('#pm-assistant-slot .vidi-name')!.textContent,
+        renameOpen: !document.getElementById('vidiRename')!.hidden,
+    }));
+    expect(blocked.renameOpen).toBe(true);
+    expect(blocked.name).toBe('Vidi');
+    expect(blocked.note).toContain('different');
+
+    // a real name is saved and shown
+    await page.fill('#vidiNameInput', 'Chintu');
+    await page.click('#vidiNameSave');
+    const renamed = await page.evaluate(() => ({
+        name: document.querySelector('#pm-assistant-slot .vidi-name')!.textContent,
+        renameOpen: !document.getElementById('vidiRename')!.hidden,
+    }));
+    expect(renamed.name).toBe('Chintu');
+    expect(renamed.renameOpen).toBe(false);
+
+    // persistence is a localStorage property — file:// may block it; assert only when it works
+    const storageWorks = await page.evaluate(() => {
+        try { localStorage.setItem('pm_vidi_t', '1'); localStorage.removeItem('pm_vidi_t'); return true; }
+        catch { return false; }
+    });
+    if (storageWorks) {
+        await openFirst(page);   // full reload
+        const kept = await page.evaluate(
+            () => document.querySelector('#pm-assistant-slot .vidi-name')!.textContent);
+        expect(kept).toBe('Chintu');
+
+        // …and the rename is NOT offered a second time
+        await page.click('#btnTest');
+        await page.click('#btnSelf');
+        await page.click('#recallResult .confirm-row');
+        await page.click('#btnCloseTest');
+        await page.waitForTimeout(400);
+        const reOffered = await page.evaluate(() => !document.getElementById('vidiRename')!.hidden);
+        expect(reOffered).toBe(false);
+    }
+});
+
+test('the exam-eve route renders the most-asked list and Back returns to the catalog', async ({ page }) => {
+    await page.goto(URL + '#/exam-eve/4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+
+    const r = await page.evaluate(() => ({
+        title: document.getElementById('eveTitle')!.textContent || '',
+        cards: document.querySelectorAll('#eveBody a.eve-card').length,
+        // eve cards must never read as catalog cards (the count gates pin .cat-card)
+        catCardsInEve: document.querySelectorAll('#eveBody .cat-card').length,
+        backShown: !document.getElementById('btnCatalog')!.hidden,
+    }));
+    expect(r.title).toContain('Unit 4');
+    expect(r.cards).toBeGreaterThan(0);          // unit 4 has 3-star questions
+    expect(r.catCardsInEve).toBe(0);
+    expect(r.backShown).toBe(true);
+
+    // a card opens its question
+    await page.click('#eveBody a.eve-card');
+    await page.waitForSelector('.page');
+
+    // and Back from the catalog button still lands on the catalog
+    await page.click('#btnCatalog');
+    await page.waitForSelector('#catalogView:not([hidden])');
+});
+
+test('the triage strip appears under a chapter filter and card counts stay exact', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const landing = await page.evaluate(() => ({
+        triageHidden: document.getElementById('vidiTriage')!.hidden,
+        cards: document.querySelectorAll('.cat-card').length,
+    }));
+    expect(landing.triageHidden).toBe(true);     // no chapter filter → no strip
+
+    await page.click('.cat-chip[data-unit="4"]');
+    await page.waitForTimeout(150);
+    const filtered = await page.evaluate(() => {
+        const u4 = ((window as any).PM_UNITS as any[]).find((u) => u.number === 4);
+        return {
+            triageHidden: document.getElementById('vidiTriage')!.hidden,
+            links: document.querySelectorAll('#vidiTriage .vidi-tri-link').length,
+            cards: document.querySelectorAll('.cat-card').length,
+            expected: u4.questions.length,
+            triageIsCard: document.querySelectorAll('#vidiTriage .cat-card').length,
+        };
+    });
+    expect(filtered.triageHidden).toBe(false);
+    expect(filtered.links).toBeGreaterThan(0);
+    expect(filtered.cards).toBe(filtered.expected);   // the strip added no cards
+    expect(filtered.triageIsCard).toBe(0);
+
+    // search hides the strip (the search gate counts a clean card list)
+    await page.fill('#catSearch', 'parallelogram');
+    await page.waitForTimeout(200);
+    const searched = await page.evaluate(() => document.getElementById('vidiTriage')!.hidden);
+    expect(searched).toBe(true);
+});
+
+test('on a phone the Vidi button opens the panel as a bottom sheet without sideways scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openFirst(page);
+
+    await page.waitForSelector('#vidiFab:not([hidden])');
+    await page.click('#vidiFab');
+    const r = await page.evaluate(() => ({
+        sheet: document.getElementById('pm-assistant-slot')!.classList.contains('vidi-sheet'),
+        closeShown: !document.getElementById('vidiClose')!.hidden,
+        hScroll: document.documentElement.scrollWidth > window.innerWidth + 1,
+    }));
+    expect(r.sheet).toBe(true);
+    expect(r.closeShown).toBe(true);
+    expect(r.hScroll).toBe(false);
+
+    await page.click('#vidiClose');
+    const closed = await page.evaluate(
+        () => document.getElementById('pm-assistant-slot')!.classList.contains('vidi-sheet'));
+    expect(closed).toBe(false);
+});

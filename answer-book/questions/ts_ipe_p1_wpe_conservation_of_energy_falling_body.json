@@ -93,7 +93,8 @@
             "converted",
             "total energy constant"
           ]
-        }
+        },
+        "memory_tip": "The statement has two halves: energy is never created or destroyed; it only changes form."
       },
       {
         "id": "s2_figure",
@@ -324,7 +325,8 @@
             "diagram",
             "A B C"
           ]
-        }
+        },
+        "memory_tip": "Draw three labelled points on one vertical line: A at height h, B after falling x, C at the ground."
       },
       {
         "id": "s3_at_a",
@@ -366,7 +368,8 @@
             "zero",
             "m g h"
           ]
-        }
+        },
+        "memory_tip": "At A everything is potential: total = mgh. This number must repeat at B and C."
       },
       {
         "id": "s4_at_b",
@@ -417,7 +420,8 @@
             "two g x",
             "m g x"
           ]
-        }
+        },
+        "memory_tip": "B is the real test: PE = mg(h − x), KE = mgx from v² = 2gx — the total is mgh again."
       },
       {
         "id": "s5_at_c",
@@ -464,7 +468,8 @@
             "zero",
             "two g h"
           ]
-        }
+        },
+        "memory_tip": "At C everything is kinetic: v² = 2gh gives KE = mgh."
       },
       {
         "id": "s6_conclusion",
@@ -504,8 +509,10 @@
             "same",
             "conserved"
           ]
-        }
+        },
+        "memory_tip": "Finish by writing the three totals side by side: mgh at A = at B = at C."
       }
     ]
-  }
+  },
+  "insider_note": "The figure with A, B, C carries its own mark, and point B carries 2 — the middle point is the real proof."
 }

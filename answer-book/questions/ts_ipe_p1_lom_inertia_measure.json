@@ -77,7 +77,8 @@
             "state of rest",
             "by itself"
           ]
-        }
+        },
+        "memory_tip": "Inertia resists CHANGE of state, not motion itself. Keep the word \"change\" in the sentence."
       },
       {
         "id": "s2_measure",
@@ -112,7 +113,8 @@
             "mass",
             "measure"
           ]
-        }
+        },
+        "memory_tip": "The measure is mass — more mass, more resistance to the same force."
       }
     ]
   }

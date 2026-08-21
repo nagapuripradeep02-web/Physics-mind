@@ -84,7 +84,8 @@
             "centre of mass",
             "M r squared"
           ]
-        }
+        },
+        "memory_tip": "The formula is the statement: I = I_G + M d² — the centre-of-mass value plus M times distance squared."
       },
       {
         "id": "s2_figure",
@@ -238,7 +239,8 @@
             "axes",
             "particle"
           ]
-        }
+        },
+        "memory_tip": "Draw the two parallel axes through C and A, one particle P, and the perpendicular foot Q."
       },
       {
         "id": "s3_proof",
@@ -290,7 +292,8 @@
             "centre of mass",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "Expand (AC + CQ)². The cross term Σm·CQ is zero by the definition of the centre of mass."
       },
       {
         "id": "s4_disc",
@@ -333,8 +336,10 @@
             "same k",
             "both halve"
           ]
-        }
+        },
+        "memory_tip": "Radius of gyration is a RATIO — cutting the disc scales I and M in the same proportion, so K stays the same."
       }
     ]
-  }
+  },
+  "insider_note": "Part b) is a separate mark — the answer (K unchanged) needs its reason stated: cutting scales I and M together."
 }

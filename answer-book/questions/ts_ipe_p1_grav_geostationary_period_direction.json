@@ -72,7 +72,8 @@
             "24 hours",
             "time period"
           ]
-        }
+        },
+        "memory_tip": "24 hours — exactly the earth’s own spin period."
       },
       {
         "id": "s2_direction",
@@ -108,7 +109,8 @@
             "west to east",
             "direction"
           ]
-        }
+        },
+        "memory_tip": "West to east — the same direction the earth turns."
       }
     ]
   }

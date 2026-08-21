@@ -183,7 +183,8 @@
             "figure",
             "diagram"
           ]
-        }
+        },
+        "memory_tip": "Draw the orbit and mark the radius as R + h from the CENTRE, not from the surface."
       },
       {
         "id": "s2_forces",
@@ -220,7 +221,8 @@
             "centripetal",
             "equate"
           ]
-        }
+        },
+        "memory_tip": "One balance line: gravity supplies the centripetal force, GMm/(R+h)² = mv₀²/(R+h)."
       },
       {
         "id": "s3_expression",
@@ -260,7 +262,8 @@
             "root g R",
             "7.9"
           ]
-        }
+        },
+        "memory_tip": "v₀ = √(GM/(R+h)). Pair it with escape velocity: v_e = √2 × v₀."
       }
     ]
   }

@@ -69,7 +69,8 @@
             "escape velocity",
             "sun"
           ]
-        }
+        },
+        "memory_tip": "One comparison decides it: escape velocity against the typical molecular speed. The sun has an enormous v_e, so hydrogen stays."
       },
       {
         "id": "s2_earth",
@@ -106,7 +107,8 @@
             "earth",
             "escapes"
           ]
-        }
+        },
+        "memory_tip": "On earth, light and fast hydrogen moves faster than our smaller v_e and escapes; heavier gases stay."
       }
     ]
   }

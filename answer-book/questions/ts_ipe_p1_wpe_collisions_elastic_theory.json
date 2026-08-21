@@ -92,7 +92,8 @@
             "short time",
             "exchange"
           ]
-        }
+        },
+        "memory_tip": "Two words carry the definition: a SHORT, STRONG interaction — too short for outside forces to matter."
       },
       {
         "id": "s2_types",
@@ -140,7 +141,8 @@
             "both",
             "only momentum"
           ]
-        }
+        },
+        "memory_tip": "One sentence each: both types conserve momentum; only the elastic one also conserves kinetic energy."
       },
       {
         "id": "s3_figure",
@@ -354,7 +356,8 @@
             "after",
             "figure"
           ]
-        }
+        },
+        "memory_tip": "Draw the two balls twice — before with u₁, u₂ and after with v₁, v₂ — so every symbol sits on a body."
       },
       {
         "id": "s4_momentum",
@@ -399,7 +402,8 @@
             "m1 u1",
             "equation one"
           ]
-        }
+        },
+        "memory_tip": "Equation (1): group each mass with its own velocity change: m₁(u₁ − v₁) = m₂(v₂ − u₂)."
       },
       {
         "id": "s5_energy",
@@ -440,7 +444,8 @@
             "elastic",
             "equation two"
           ]
-        }
+        },
+        "memory_tip": "Equation (2) is the elastic-only line: the same grouping, with squares."
       },
       {
         "id": "s6_divide",
@@ -485,7 +490,8 @@
             "approach",
             "separation"
           ]
-        }
+        },
+        "memory_tip": "Divide (2) by (1): speed of approach = speed of separation."
       },
       {
         "id": "s7_finals",
@@ -527,7 +533,8 @@
             "m1 plus m2",
             "two m2"
           ]
-        }
+        },
+        "memory_tip": "Check the result with equal masses: the two velocities simply swap."
       }
     ]
   },
@@ -649,5 +656,6 @@
       },
       "needs_teacher_verification": true
     }
-  ]
+  ],
+  "insider_note": "The division step, equation (2) by equation (1), is where most students stop — practise that one line."
 }

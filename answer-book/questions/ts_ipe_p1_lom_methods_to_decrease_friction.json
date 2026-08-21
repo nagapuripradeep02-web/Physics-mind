@@ -89,7 +89,8 @@
             "smooth",
             "irregularities"
           ]
-        }
+        },
+        "memory_tip": "Method 1 attacks roughness: polish, so less interlocks."
       },
       {
         "id": "s2_ball_bearings",
@@ -127,7 +128,8 @@
             "rolling friction",
             "steel balls"
           ]
-        }
+        },
+        "memory_tip": "Method 2 replaces sliding with rolling — rolling friction is much smaller."
       },
       {
         "id": "s3_lubricants",
@@ -166,7 +168,8 @@
             "oil",
             "grease"
           ]
-        }
+        },
+        "memory_tip": "Method 3 puts a liquid film between the solids so they never touch."
       },
       {
         "id": "s4_streamlining",
@@ -209,7 +212,8 @@
             "air",
             "smoothly"
           ]
-        }
+        },
+        "memory_tip": "Method 4 is for FLUID friction: shape the body so air or water parts smoothly."
       }
     ]
   }

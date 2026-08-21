@@ -76,7 +76,8 @@
             "liquid",
             "moment of inertia"
           ]
-        }
+        },
+        "memory_tip": "Raw means liquid inside: the fluid lags and spreads outward, which raises I."
       },
       {
         "id": "s2_test",
@@ -114,7 +115,8 @@
             "boiled",
             "slower"
           ]
-        }
+        },
+        "memory_tip": "Spin both the same way: the boiled egg spins fast and steadily; the raw egg turns slowly and stops sooner."
       }
     ]
   }

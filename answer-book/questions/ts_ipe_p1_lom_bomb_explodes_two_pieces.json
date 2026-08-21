@@ -76,7 +76,8 @@
             "at rest",
             "conserved"
           ]
-        }
+        },
+        "memory_tip": "Momentum before = 0, and the explosion is internal, so momentum after = 0 too."
       },
       {
         "id": "s2_conclude",
@@ -115,7 +116,8 @@
             "minus",
             "opposite directions"
           ]
-        }
+        },
+        "memory_tip": "Two momenta adding to zero must point opposite ways: m₁v₁ = −m₂v₂."
       }
     ]
   }

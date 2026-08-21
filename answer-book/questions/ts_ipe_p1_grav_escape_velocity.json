@@ -73,7 +73,8 @@
             "escape velocity",
             "minimum"
           ]
-        }
+        },
+        "memory_tip": "The word that earns the mark is MINIMUM — the least speed that never comes back."
       },
       {
         "id": "s2_energy",
@@ -114,7 +115,8 @@
             "half m v squared",
             "G M m by R"
           ]
-        }
+        },
+        "memory_tip": "It is an energy balance, not a force balance: ½mv² = GMm/R — kinetic energy pays for the whole climb."
       },
       {
         "id": "s3_expression",
@@ -154,7 +156,8 @@
             "root 2 g R",
             "11.2"
           ]
-        }
+        },
+        "memory_tip": "v_e = √(2gR). The m cancels — a feather and a rocket need the same speed."
       }
     ]
   }

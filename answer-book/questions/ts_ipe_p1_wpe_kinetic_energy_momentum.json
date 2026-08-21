@@ -84,7 +84,8 @@
             "p by m",
             "substitute"
           ]
-        }
+        },
+        "memory_tip": "Both are built from m and v: write KE = ½mv² and p = mv, then remove v."
       },
       {
         "id": "s2_relation",
@@ -120,7 +121,8 @@
             "p square",
             "root"
           ]
-        }
+        },
+        "memory_tip": "KE = p²/2m. Same momentum, smaller mass → larger kinetic energy."
       }
     ]
   }

@@ -75,7 +75,8 @@
             "rotation",
             "equator"
           ]
-        }
+        },
+        "memory_tip": "Cause 1 — spin: the equator travels the biggest circle, so it loses the most to rotation; the poles lose nothing."
       },
       {
         "id": "s2_shape",
@@ -111,7 +112,8 @@
             "radius",
             "poles"
           ]
-        }
+        },
+        "memory_tip": "Cause 2 — shape: the earth bulges at the equator, so the surface there is farther from the centre. Two causes, one direction."
       }
     ]
   }

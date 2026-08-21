@@ -1,0 +1,361 @@
+/**
+ * answerbook-vidi-chat — the public Vidi endpoint behind the IPE Answer Book
+ * (docs/ANSWER_BOOK_VIDI_DESIGN.md, Rung 2).
+ *
+ * Sibling of the Quick Learn function (physics-mind-quick-learn
+ * supabase/functions/quicklearn-chat) — same four fail-closed guards, its OWN
+ * task_type, so the two products never share a ledger, a budget, or an IP
+ * counter. The bank stays the brain: the page sends the authored answer
+ * (steps, marks, why lines) as ANSWER FACTS, and the model presents them —
+ * it never invents a step, a mark value, or a mark split (Rule 17/18 shape).
+ *
+ * DEPLOY WITH JWT VERIFICATION OFF — students have no Supabase account. It
+ * fails CLOSED on all four guards:
+ *   1. Origin must be in AB_ALLOWED_ORIGINS.
+ *   2. Per-IP burst limit  (AB_IP_PER_MIN, default 4/min).
+ *   3. Per-IP daily limit  (AB_IP_PER_DAY, default 40/day).
+ *   4. GLOBAL daily spend ceiling (AB_DAILY_USD_CAP, default $2/day). No key,
+ *      or an unreadable ledger, means every request is refused.
+ * All four are enforced against ai_usage_log itself — the ledger IS the
+ * rate-limit source of truth, so there is no second state store to drift.
+ *
+ * Raw IPs are never stored — only a salted SHA-256 hash, for rate limiting.
+ *
+ * Telemetry: the page also POSTs {type:'events'} batches (chip taps, check
+ * scores, renames, exam-eve opens). They need no model call, cost nothing,
+ * and land in simulation_feedback — handled before the key check, so
+ * telemetry works even on a day the tutor is resting.
+ *
+ *   supabase secrets set DEEPSEEK_API_KEY=...
+ *   optional: AB_ALLOWED_ORIGINS, AB_DAILY_USD_CAP, AB_IP_PER_MIN,
+ *             AB_IP_PER_DAY, AB_IP_SALT, AB_CHAT_MODEL, AB_USD_INR
+ *
+ * SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are injected by the platform.
+ */
+import 'jsr:@supabase/functions-js/edge-runtime.d.ts';
+
+const DEEPSEEK_KEY = Deno.env.get('DEEPSEEK_API_KEY') ?? '';
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL') ?? '';
+const SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
+const MODEL = Deno.env.get('AB_CHAT_MODEL') ?? 'deepseek-chat';
+const DAILY_USD_CAP = Number(Deno.env.get('AB_DAILY_USD_CAP') ?? '2');
+const IP_PER_MIN = Number(Deno.env.get('AB_IP_PER_MIN') ?? '4');
+const IP_PER_DAY = Number(Deno.env.get('AB_IP_PER_DAY') ?? '40');
+const USD_TO_INR = Number(Deno.env.get('AB_USD_INR') ?? '95.69');
+const IP_SALT = Deno.env.get('AB_IP_SALT') ?? SERVICE_KEY.slice(0, 24);
+// Origin stops the endpoint being embedded on someone else's page — a browser
+// cannot forge Origin. It is NOT the boundary against a scripted attacker
+// (curl sends any Origin); the per-IP limits and the global spend ceiling are.
+// localhost:8100 is `npm run serve:answers`, so the founder can test the
+// hosted build locally against the real function.
+const ALLOWED_ORIGINS = (Deno.env.get('AB_ALLOWED_ORIGINS') ??
+    'https://viditra.co,https://www.viditra.co,http://localhost:8100,http://127.0.0.1:8100')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+
+const TASK_TYPE = 'answerbook_vidi_chat';
+
+// The Answer Book persona. The Quick Learn persona is sim-grounded ("what the
+// student is looking at"); this one is MARK-SCHEME-grounded. The load-bearing
+// rule is the same shape as Quick Learn's apparatus rule: the FACTS below are
+// the truth, and anything outside them does not exist.
+const PERSONA = [
+    'You are Vidi, a friendly senior student sitting next to a school student who is preparing for their physics board exam with a written model answer.',
+    'The student may have given you a different name. It does not change anything about how you behave.',
+    'Your one job: answer the student’s question about THIS question and THIS model answer, in a warm and encouraging way.',
+    'Rules you always follow:',
+    '- Use plain, literal English a Class 11 student with textbook English understands. Physics words like "resultant", "centripetal", "amplitude" are fine. No idioms, no metaphors, no personification.',
+    '- The student may write in Telugu or mix Telugu and English. You may answer with natural Telugu-English mixing (Telugu script is fine), but keep physics terms and symbols in English. Never transliterate English words into Telugu script.',
+    '- Keep it SHORT: 2 to 4 sentences. One idea per sentence.',
+    '- Be positive and encouraging, but never fake.',
+    '- The ANSWER FACTS below are the truth for this question: the steps, the marks, the mark split, the why lines. Ground every answer in them and never contradict them.',
+    '- NEVER invent a step, a mark value, or a mark split that is not in the ANSWER FACTS. Marks come from the bank, not from you. If asked how marks are given, quote the split as written.',
+    '- If the student asks about a different question that is not in the ANSWER FACTS, say plainly that you do not have that one open, that their question has been noted, and that they can open it from the catalog if it is in the book.',
+    '- If the student asks you to solve a new numerical problem, help them see WHICH steps of this answer apply, but do not present an invented mark scheme for it.',
+    '- If the question is off-topic (not physics, not this exam), answer in one kind sentence and guide them back to the answer.',
+    '- Never use country-specific examples, brands, festivals, or currencies.',
+    '- You are an AI helper. If asked, say so plainly.',
+].join('\n');
+
+const FRIENDLY_BUSY = 'Give me a short moment and ask again. Meanwhile, keep writing — the book works without me.';
+const FRIENDLY_DOWN = 'I could not answer just now. The answer book still works — keep going, and try me again in a moment.';
+const FRIENDLY_CAP = 'You have asked a lot of good questions today — that is the daily limit. Keep practising; the answers and the self-check all still work.';
+const FRIENDLY_QUIET = 'I am resting for today, but the whole answer book still works without me. Keep going!';
+
+// DeepSeek V4-Flash list price (verified 2026-08-18). Peak = 01:00–04:00 and
+// 06:00–10:00 UTC, when rates double.
+const RATE_OFF = { cacheHit: 0.007, cacheMiss: 0.22, output: 0.66 };
+const RATE_PEAK = { cacheHit: 0.014, cacheMiss: 0.44, output: 1.32 };
+
+interface Usage {
+    prompt_tokens?: number;
+    completion_tokens?: number;
+    total_tokens?: number;
+    prompt_cache_hit_tokens?: number;
+    prompt_cache_miss_tokens?: number;
+}
+
+function computeCost(u: Usage, when: Date) {
+    const h = when.getUTCHours();
+    const peak = (h >= 1 && h < 4) || (h >= 6 && h < 10);
+    const rate = peak ? RATE_PEAK : RATE_OFF;
+    const prompt = u.prompt_tokens ?? 0;
+    const output = u.completion_tokens ?? 0;
+    const hit = u.prompt_cache_hit_tokens ?? 0;
+    const miss = u.prompt_cache_miss_tokens ?? Math.max(0, prompt - hit);
+    const usd = (hit * rate.cacheHit + miss * rate.cacheMiss + output * rate.output) / 1_000_000;
+    return {
+        peak, hit, miss, output, prompt,
+        total: u.total_tokens ?? prompt + output,
+        usd: Number(usd.toFixed(8)),
+        rate,
+    };
+}
+
+async function sha256Hex(s: string): Promise<string> {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function corsHeaders(origin: string): Record<string, string> {
+    return {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Vary': 'Origin',
+    };
+}
+
+function reply(origin: string, status: number, body: Record<string, unknown>): Response {
+    return new Response(JSON.stringify(body), { status, headers: corsHeaders(origin) });
+}
+
+interface LedgerRow {
+    created_at: string;
+    estimated_cost_usd: string | number | null;
+    metadata: { ip_hash?: string } | null;
+}
+
+/** One read of today's ledger answers all three volume guards. */
+async function readTodayLedger(): Promise<LedgerRow[] | null> {
+    const today = new Date().toISOString().split('T')[0];
+    const url = SUPABASE_URL + '/rest/v1/ai_usage_log?select=created_at,estimated_cost_usd,metadata' +
+        '&task_type=eq.' + TASK_TYPE + '&question_date=eq.' + today + '&limit=5000';
+    try {
+        const res = await fetch(url, { headers: { apikey: SERVICE_KEY, Authorization: 'Bearer ' + SERVICE_KEY } });
+        if (!res.ok) return null;
+        return await res.json() as LedgerRow[];
+    } catch {
+        return null;
+    }
+}
+
+async function writeUsage(row: Record<string, unknown>): Promise<void> {
+    try {
+        await fetch(SUPABASE_URL + '/rest/v1/ai_usage_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SERVICE_KEY,
+                Authorization: 'Bearer ' + SERVICE_KEY,
+                Prefer: 'return=minimal',
+            },
+            body: JSON.stringify([row]),
+        });
+    } catch (e) {
+        console.error('[answerbook-vidi-chat] usage write failed', e);
+    }
+}
+
+/**
+ * Telemetry batch → simulation_feedback (sacred table, already shaped for
+ * this: session_id / concept_id / interaction_data jsonb). One row per batch.
+ * Never throws — a failed write must not break the page.
+ */
+async function writeEvents(body: Record<string, any>): Promise<void> {
+    const events = Array.isArray(body.events) ? body.events.slice(0, 50) : [];
+    if (!events.length) return;
+    const row = {
+        session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
+        concept_id: 'answer_book',
+        student_rating: 'telemetry',
+        interaction_data: {
+            surface: 'answer_book',
+            events: events.map((e: Record<string, unknown>) => {
+                const out: Record<string, unknown> = {};
+                for (const k of Object.keys(e).slice(0, 12)) {
+                    const v = e[k];
+                    out[k] = typeof v === 'string' ? v.slice(0, 200) : v;
+                }
+                return out;
+            }),
+        },
+    };
+    try {
+        await fetch(SUPABASE_URL + '/rest/v1/simulation_feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SERVICE_KEY,
+                Authorization: 'Bearer ' + SERVICE_KEY,
+                Prefer: 'return=minimal',
+            },
+            body: JSON.stringify([row]),
+        });
+    } catch (e) {
+        console.error('[answerbook-vidi-chat] events write failed', e);
+    }
+}
+
+Deno.serve(async (req: Request) => {
+    const origin = req.headers.get('origin') ?? '';
+
+    if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: corsHeaders(origin) });
+    if (req.method !== 'POST') return reply(origin, 405, { error: 'method not allowed' });
+
+    // Guard 1 — origin allowlist.
+    if (!ALLOWED_ORIGINS.includes(origin)) {
+        return reply(origin, 403, { error: 'origin not allowed' });
+    }
+    let body: Record<string, any>;
+    try {
+        body = await req.json();
+    } catch {
+        return reply(origin, 400, { error: 'bad json' });
+    }
+
+    // Telemetry needs no model call — handled before the key check and the
+    // spend guards, so it works even on a day the tutor is resting.
+    if (body.type === 'events') {
+        await writeEvents(body);
+        return reply(origin, 200, { ok: true });
+    }
+
+    if (!DEEPSEEK_KEY) return reply(origin, 200, { reply: FRIENDLY_QUIET, questions_left: 0 });
+
+    const question = String(body.question ?? '').trim().slice(0, 1000);
+    if (!question) return reply(origin, 400, { error: 'empty question' });
+
+    const rawIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() ||
+        req.headers.get('cf-connecting-ip') || 'unknown';
+    const ipHash = await sha256Hex(IP_SALT + '|' + rawIp);
+
+    // Guards 2–4 — all computed from one ledger read. An unreadable ledger
+    // means we cannot prove we are under budget, so we refuse (fail closed).
+    const ledger = await readTodayLedger();
+    if (ledger === null) {
+        console.error('[answerbook-vidi-chat] ledger unreadable — refusing (fail closed)');
+        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: 0 });
+    }
+    let spentToday = 0;
+    let ipDay = 0;
+    let ipMinute = 0;
+    const nowMs = Date.now();
+    for (const r of ledger) {
+        spentToday += Number(r.estimated_cost_usd ?? 0);
+        if (r.metadata?.ip_hash === ipHash) {
+            ipDay++;
+            if (nowMs - new Date(r.created_at).getTime() < 60_000) ipMinute++;
+        }
+    }
+    if (spentToday >= DAILY_USD_CAP) {
+        console.warn('[answerbook-vidi-chat] daily spend cap hit: $' + spentToday.toFixed(4));
+        return reply(origin, 200, { reply: FRIENDLY_QUIET, questions_left: 0 });
+    }
+    if (ipDay >= IP_PER_DAY) return reply(origin, 200, { reply: FRIENDLY_CAP, questions_left: 0 });
+    if (ipMinute >= IP_PER_MIN) return reply(origin, 200, { reply: FRIENDLY_BUSY, questions_left: IP_PER_DAY - ipDay });
+
+    // Stable prefix first (persona + answer facts) so DeepSeek's automatic
+    // prompt cache hits — a cached prefix costs ~1/30th of a miss. The slice is
+    // 10,000 (not Quick Learn's 6,000): the largest LAQ context measures ~6-8K
+    // and a silent truncation of the tail steps would un-ground the model.
+    const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
+        String(body.tutor_context ?? '').slice(0, 10_000);
+
+    const situation = [
+        'Where the student is right now:',
+        '- question: ' + String(body.question_id ?? 'unknown'),
+        '- unit: ' + String(body.unit ?? 'unknown'),
+        '- answer length on screen: ' + String(body.cut_key ?? 'full'),
+        body.step_id ? '- the step they last revealed: ' + String(body.step_id) : '- they have not started writing yet',
+    ].filter(Boolean).join('\n');
+
+    const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
+        role: m.role === 'student' ? 'user' : 'assistant',
+        content: String(m.text ?? '').slice(0, 500),
+    }));
+
+    const messages = [
+        { role: 'system', content: system },
+        ...history,
+        { role: 'user', content: situation + '\n\nThe student asks: ' + question },
+    ];
+
+    const t0 = Date.now();
+    let text = '';
+    let usage: Usage = {};
+    try {
+        const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + DEEPSEEK_KEY },
+            body: JSON.stringify({ model: MODEL, messages, max_tokens: 300, temperature: 0.7, stream: false }),
+        });
+        if (!res.ok) throw new Error('DeepSeek ' + res.status + ': ' + (await res.text()).slice(0, 200));
+        const json = await res.json();
+        text = json.choices?.[0]?.message?.content ?? '';
+        usage = json.usage ?? {};
+    } catch (e) {
+        console.error('[answerbook-vidi-chat] ' + (e instanceof Error ? e.message : String(e)));
+        return reply(origin, 200, { reply: FRIENDLY_DOWN, questions_left: IP_PER_DAY - ipDay });
+    }
+
+    const latency = Date.now() - t0;
+    const when = new Date();
+    const cost = computeCost(usage, when);
+    const inputChars = messages.reduce((n, m) => n + m.content.length, 0);
+
+    await writeUsage({
+        session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
+        task_type: TASK_TYPE,
+        provider: 'deepseek',
+        model: MODEL,
+        input_chars: inputChars,
+        output_chars: text.length,
+        latency_ms: latency,
+        estimated_cost_usd: cost.usd,
+        fingerprint_key: body.question_id ? String(body.question_id) + '|answer_book|student_question' : null,
+        was_cache_hit: cost.hit > 0,
+        question_date: when.toISOString().split('T')[0],
+        actor: 'answerbook_student',
+        metadata: {
+            surface: 'answer_book',
+            question_id: body.question_id ?? null,
+            unit: body.unit ?? null,
+            cut_key: body.cut_key ?? null,
+            step_id: body.step_id ?? null,
+            question: question.slice(0, 500),
+            question_chars: question.length,
+            reply_chars: text.length,
+            ip_hash: ipHash,
+            tokens: {
+                prompt: cost.prompt,
+                completion: cost.output,
+                total: cost.total,
+                prompt_cache_hit: cost.hit,
+                prompt_cache_miss: cost.miss,
+            },
+            pricing: {
+                peak_window: cost.peak,
+                usd_per_million: { cache_hit: cost.rate.cacheHit, cache_miss: cost.rate.cacheMiss, output: cost.rate.output },
+            },
+            cost_inr_estimate: Number((cost.usd * USD_TO_INR).toFixed(6)),
+            usd_to_inr_rate: USD_TO_INR,
+            spent_today_usd_before: Number(spentToday.toFixed(6)),
+        },
+    });
+
+    return reply(origin, 200, {
+        reply: text || FRIENDLY_DOWN,
+        questions_left: Math.max(0, IP_PER_DAY - ipDay - 1),
+    });
+});

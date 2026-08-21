@@ -73,7 +73,8 @@
             "need not",
             "not necessary"
           ]
-        }
+        },
+        "memory_tip": "No — the centre of mass is an AVERAGE position, and an average need not be occupied."
       },
       {
         "id": "s2_example",
@@ -107,7 +108,8 @@
             "centre",
             "no material"
           ]
-        }
+        },
+        "memory_tip": "The ring: all its mass is on the rim, yet the centre of mass is at the empty centre."
       }
     ]
   }

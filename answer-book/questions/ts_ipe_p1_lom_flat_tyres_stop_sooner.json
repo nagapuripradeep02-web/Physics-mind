@@ -73,7 +73,8 @@
             "area of contact",
             "rolling friction"
           ]
-        }
+        },
+        "memory_tip": "A flat tyre bends more at every turn, and that bending wastes energy — rolling friction rises."
       },
       {
         "id": "s2_conclude",
@@ -109,7 +110,8 @@
             "stops sooner",
             "shorter distance"
           ]
-        }
+        },
+        "memory_tip": "More rolling friction removes kinetic energy faster, so the car stops in less distance."
       }
     ]
   }

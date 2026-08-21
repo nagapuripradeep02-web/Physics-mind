@@ -186,7 +186,8 @@
             "mean position",
             "proportional"
           ]
-        }
+        },
+        "memory_tip": "Two conditions, not one: proportional to the displacement AND directed toward the mean position. The minus sign states the second."
       },
       {
         "id": "s2_examples",
@@ -225,7 +226,8 @@
             "examples",
             "spring"
           ]
-        }
+        },
+        "memory_tip": "Keep a list of four: pendulum, loaded spring, vibrating string, and the projection of circular motion."
       },
       {
         "id": "s3_figure",
@@ -413,7 +415,8 @@
             "figure",
             "reference circle"
           ]
-        }
+        },
+        "memory_tip": "Draw the reference circle: P moves on the circle, N is its shadow on the diameter."
       },
       {
         "id": "s4_displacement",
@@ -456,7 +459,8 @@
             "A sin omega t",
             "omega t"
           ]
-        }
+        },
+        "memory_tip": "One trigonometry line does it: y = A sin ωt — the shadow of uniform circular motion."
       },
       {
         "id": "s5_acceleration",
@@ -495,7 +499,8 @@
             "differentiate",
             "omega squared"
           ]
-        }
+        },
+        "memory_tip": "Differentiate twice: each step brings down one ω, and the second brings back the sine with a minus."
       },
       {
         "id": "s6_conclusion",
@@ -533,8 +538,10 @@
             "minus omega squared y",
             "hence SHM"
           ]
-        }
+        },
+        "memory_tip": "a = −ω²y matches the definition word for word — say so to close the proof."
       }
     ]
-  }
+  },
+  "insider_note": "The definition alone is also asked as its own question — learn it word for word."
 }

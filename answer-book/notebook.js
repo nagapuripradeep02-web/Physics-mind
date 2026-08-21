@@ -72,6 +72,7 @@
         if (o.lines) merged.lines = o.lines;
         if (o.margin_note) merged.margin_note = o.margin_note;
         if (o.why) merged.why = o.why;
+        if (o.memory_tip) merged.memory_tip = o.memory_tip;
         // A 0-mark step gets no red tick, so it must carry no mark note.
         if (o.mark_note) merged.mark_note = o.mark_note;
         if (merged.marks === 0) delete merged.mark_note;
@@ -209,6 +210,7 @@
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();          // photo/mic are only honest on the default cut
+    VidiPanel.onQuestion();
     syncHash();
   }
 
@@ -227,6 +229,7 @@
     renderChrome();
     renderUpTo(-1, false);
     initTestPaths();
+    VidiPanel.onQuestion();
   }
 
   // ═══ catalog + router ═════════════════════════════════════════════════════
@@ -246,9 +249,11 @@
   function showView(v) {
     currentView = v;
     var nb = v === 'notebook';
-    $('catalogView').hidden = nb;
+    var ee = v === 'exam-eve';
+    $('catalogView').hidden = nb || ee;
     $('notebookView').hidden = !nb;
-    $('btnCatalog').hidden = !nb;
+    $('examEveView').hidden = !ee;
+    $('btnCatalog').hidden = !(nb || ee);
     var only = document.querySelectorAll('.nb-only');
     for (var i = 0; i < only.length; i++) only[i].hidden = !nb;
   }
@@ -471,6 +476,7 @@
     });
 
     $('catNone').hidden = shown > 0;
+    renderTriage();
   }
 
   function showCatalog() {
@@ -487,6 +493,8 @@
   }
 
   function route() {
+    var ee = location.hash.match(/^#\/exam-eve\/(\d+)$/);
+    if (ee) { showExamEve(parseInt(ee[1], 10)); return; }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
     if (!m) { showCatalog(); return; }
     var id = decodeURIComponent(m[1]);
@@ -1037,6 +1045,17 @@
   function closeTest() {
     if (rec.active) stopRecording();
     $('testOverlay').hidden = true;
+    // A touched self-check becomes history (the exam-eve view reads it), and the
+    // FIRST completed check ever is the moment Vidi offers the rename.
+    if (lastSelfCheck && lastSelfCheck.touched) {
+      Vidi.recordCheck(lastSelfCheck.qid, lastSelfCheck.score, lastSelfCheck.total);
+      Vidi.log('self_check', { qid: lastSelfCheck.qid, score: lastSelfCheck.score, total: lastSelfCheck.total });
+      var offer = !Vidi.renameOffered();
+      lastSelfCheck = null;
+      VidiPanel.onCheckClosed(offer);
+    } else {
+      lastSelfCheck = null;
+    }
   }
 
   // ═══ spoken-recall check ═════════════════════════════════════════════════
@@ -1314,16 +1333,37 @@
 
     var head = el('div', 'recall-score', '');
     box.appendChild(head);
+    // Vidi's verdict — updates live with every tick. Only the self-check writes
+    // history (photo is endpoint-gated and grades server-side).
+    var verdictEl = confirmMode ? el('div', 'vidi-verdict', '') : null;
+    var refreshCount = 0;
     // In readMode the lead line below already says "tick what you wrote", so the
     // caveat only has to carry the RULE. Saying both in full reads as nagging.
     box.appendChild(el('p', 'recall-caveat', confirmMode
       ? 'Only what you tick is counted.'
       : 'This is an estimate from what you said out loud. In the exam the marks come from what you write on the paper.'));
 
+    if (verdictEl) box.appendChild(verdictEl);
+
     function refresh() {
       head.textContent = (confirmMode ? 'Confirmed ' : 'About ') +
         fmtMarks(total()) + ' out of ' + res.marks_total + ' marks.';
       if (redoBox) redoBox.replaceWith(redoBox = redoList(res, confirmed));
+      refreshCount++;
+      if (verdictEl) {
+        var vMissed = res.steps.filter(function (s) { return !confirmed[s.step_id] && s.marks > 0; });
+        var vTotal = total();
+        verdictEl.textContent = !vMissed.length
+          ? (Vidi.getName() + ': Full marks — ' + fmtMarks(vTotal) + ' out of ' + res.marks_total +
+             '. Write it once more tomorrow so you do not forget it.')
+          : (Vidi.getName() + ': ' + fmtMarks(vTotal) + ' out of ' + res.marks_total +
+             ' so far. Not ticked yet: ' +
+             vMissed.map(function (s) { return s.label; }).join(' · ') + '.');
+      }
+      if (source === 'self') {
+        lastSelfCheck = { qid: question.question_id, score: total(),
+                          total: res.marks_total, touched: refreshCount > 1 };
+      }
     }
 
     if (res.thin_transcript) {
@@ -1596,6 +1636,524 @@
   }
 
 
+  // ═══ Vidi — the student's assistant ═══════════════════════════════════════
+  // The bank is the brain; Vidi is the voice (docs/ANSWER_BOOK_VIDI_DESIGN.md).
+  // Everything here is deterministic and offline unless PM_VIDI_BASE is set:
+  // the greeting, the chips, the triage strip, the exam-eve view and the check
+  // verdict render from PM_QUESTIONS/PM_UNITS + localStorage. Only the free-
+  // text ask row and the telemetry flush touch the network, and both exist
+  // only in a build that was given a chat base (npm run build:answers:hosted).
+
+  var VIDI_BASE = (window.PM_VIDI_BASE || '').trim().replace(/\/$/, '');
+  var lastSelfCheck = null;
+
+  var Vidi = (function () {
+    var mem = {};                       // fallback when localStorage is blocked
+    function lsGet(k) {
+      try { var v = localStorage.getItem(k); return v === null ? (mem[k] || null) : v; }
+      catch (e) { return mem[k] || null; }
+    }
+    function lsSet(k, v) { mem[k] = v; try { localStorage.setItem(k, v); } catch (e) {} }
+
+    // The name is display data, never an identifier — no uniqueness anywhere.
+    // The blocklist is a light substring check: a screenshot travels with the brand.
+    var BLOCK = ['fuck', 'shit', 'bitch', 'asshole', 'bastard', 'cunt', 'whore',
+      'slut', 'porn', 'rape', 'nude', 'chutiya', 'chutia', 'madarchod', 'bhenchod',
+      'behenchod', 'randi', 'lauda', 'lavda', 'lund', 'gandu', 'gaand', 'harami',
+      'lanja', 'pooku', 'puku', 'modda', 'dengu', 'denge', 'gudda', 'erri',
+      'లంజ', 'పూకు', 'మొడ్డ', 'దెంగ', 'గుద్ద'];
+    function normName(n) { return String(n || '').replace(/\s+/g, ' ').trim().slice(0, 20); }
+    function nameOk(n) {
+      var l = n.toLowerCase();
+      if (!l) return false;
+      for (var i = 0; i < BLOCK.length; i++) if (l.indexOf(BLOCK[i]) >= 0) return false;
+      return true;
+    }
+
+    var name = normName(lsGet('pm_vidi_name') || '') || 'Vidi';
+    if (!nameOk(name)) name = 'Vidi';
+
+    var history = {};
+    try { history = JSON.parse(lsGet('pm_vidi_history') || '{}') || {}; } catch (e) { history = {}; }
+
+    var session = lsGet('pm_vidi_session');
+    if (!session) {
+      session = 'ab_' + Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
+      lsSet('pm_vidi_session', session);
+    }
+
+    // Telemetry — fire-and-forget; silently dropped with no base (offline gate).
+    var evq = [];
+    function log(type, data) {
+      if (!VIDI_BASE) return;
+      var e = { t: type, at: Date.now() };
+      if (data) for (var k in data) if (Object.prototype.hasOwnProperty.call(data, k)) e[k] = data[k];
+      evq.push(e);
+      if (evq.length >= 10) flush();
+    }
+    function flush() {
+      if (!VIDI_BASE || !evq.length) return;
+      var batch = evq.splice(0, evq.length);
+      try {
+        fetch(VIDI_BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'events', session_id: session, events: batch })
+        }).catch(function () {});
+      } catch (e) {}
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') flush();
+    });
+
+    return {
+      session: session,
+      getName: function () { return name; },
+      setName: function (n) {
+        var v = normName(n);
+        if (!nameOk(v)) return false;
+        name = v; lsSet('pm_vidi_name', v); return true;
+      },
+      renameOffered: function () { return lsGet('pm_vidi_rename_done') === '1'; },
+      markRenameOffered: function () { lsSet('pm_vidi_rename_done', '1'); },
+      recordCheck: function (qid, score, total) {
+        var h = history[qid];
+        var best = (h && h.total === total) ? Math.max(h.best, score) : score;
+        history[qid] = { best: best, total: total, at: Date.now() };
+        lsSet('pm_vidi_history', JSON.stringify(history));
+      },
+      checkFor: function (qid) { return history[qid] || null; },
+      log: log,
+      flush: flush
+    };
+  })();
+
+  var VidiPanel = (function () {
+    var gen = 0;                        // guards late timers across question switches
+    var online = true;
+    var recentMsgs = [];
+
+    function threadEl() { return $('vidiThread'); }
+
+    function syncName() {
+      var els = document.querySelectorAll('.vidi-name');
+      for (var i = 0; i < els.length; i++) els[i].textContent = Vidi.getName();
+    }
+
+    function bubble(text, who) {
+      var m = el('div', 'vidi-msg ' + (who || 'tutor'), text);
+      threadEl().appendChild(m);
+      threadEl().scrollTop = threadEl().scrollHeight;
+      return m;
+    }
+
+    /** Tutor bubble with a short typing beat first. */
+    function say(text) {
+      var g = gen;
+      var m = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
+      threadEl().appendChild(m);
+      threadEl().scrollTop = threadEl().scrollHeight;
+      setTimeout(function () {
+        if (g !== gen) return;
+        m.classList.remove('vidi-typing');
+        m.textContent = text;
+        threadEl().scrollTop = threadEl().scrollHeight;
+      }, Math.min(900, 250 + text.length * 3));
+      return m;
+    }
+
+    /** The manifest entry behind the question+cut on screen (stars/source live there). */
+    function manifestEntry() {
+      var fallback = null;
+      for (var u = 0; u < UNITS.length; u++) {
+        var qs = UNITS[u].questions;
+        for (var i = 0; i < qs.length; i++) {
+          var e = qs[i];
+          if (e.question_id !== question.question_id) continue;
+          if (!fallback) fallback = e;
+          var hasCuts = question.cuts && question.cuts.length;
+          var entryCutKey = e.cut || (hasCuts ? question.cuts[0].key : null);
+          if (!hasCuts || entryCutKey === cut.key) return e;
+        }
+      }
+      return fallback;
+    }
+
+    function starsLine(e) {
+      if (!e) return null;
+      if (e.stars === 3) return 'This is a 3-star question — it is asked very often.';
+      if (e.stars === 2) return 'This is a 2-star question — it has been asked more than once.';
+      if (e.stars === 1) return 'This is a 1-star question.';
+      return null;
+    }
+
+    function greet() {
+      var e = manifestEntry();
+      var parts = [];
+      var st = starsLine(e);
+      if (st) parts.push(st);
+      if (e && e.source === 'enumerated') {
+        parts.push('It has not been asked yet — it is predicted from the syllabus.');
+      } else {
+        var asked = askedLine(question);
+        if (asked) parts.push(asked + '.');
+      }
+      if (question.insider_note) parts.push(question.insider_note);
+      parts.push('Tap the page to start writing, or tap a button below.');
+      say(parts.join(' '));
+    }
+
+    function currentStep() {
+      if (stepIndex >= 0 && steps[stepIndex]) return steps[stepIndex];
+      return steps[0] || null;
+    }
+
+    function chipBtn(label, fn) {
+      var b = el('button', 'vidi-chip', label);
+      b.type = 'button';
+      b.addEventListener('click', fn);
+      return b;
+    }
+
+    function renderVidiChips() {
+      var row = $('vidiChips');
+      row.innerHTML = '';
+      row.appendChild(chipBtn('Will this come?', chipCome));
+      row.appendChild(chipBtn('Why this step?', chipWhy));
+      var s = currentStep();
+      if (s && s.memory_tip) row.appendChild(chipBtn('How to remember?', chipTip));
+      row.appendChild(chipBtn('How much to write?', chipHowMuch));
+    }
+
+    function chipCome() {
+      Vidi.log('chip', { chip: 'come', qid: question.question_id });
+      var e = manifestEntry();
+      var parts = [];
+      var st = starsLine(e);
+      if (st) parts.push(st);
+      if (e && e.source === 'enumerated') {
+        parts.push('No paper has asked it yet. It fills a gap in the chapter, so it can appear.');
+      } else {
+        var asked = askedLine(question);
+        if (asked) parts.push(asked + '.');
+      }
+      if (!parts.length) parts.push('There is no exam record for this one yet.');
+      parts.push('Learn the 3-star questions of this chapter first.');
+      say(parts.join(' '));
+    }
+
+    function chipWhy() {
+      Vidi.log('chip', { chip: 'why', qid: question.question_id,
+        step: stepIndex >= 0 ? steps[stepIndex].id : null });
+      if (stepIndex < 0) {
+        say('Tap the page to write the first step. Then ask me again and I will explain the step you are on.');
+        return;
+      }
+      var s = steps[stepIndex];
+      var parts = ['Step "' + s.label + '":'];
+      parts.push(s.why || 'this step is a required part of the full answer.');
+      if (s.common_mistakes && s.common_mistakes.length) parts.push('Common mistake: ' + s.common_mistakes[0]);
+      say(parts.join(' '));
+    }
+
+    function chipTip() {
+      var s = currentStep();
+      Vidi.log('chip', { chip: 'tip', qid: question.question_id, step: s ? s.id : null });
+      if (!s || !s.memory_tip) { say('No memory tip for this step yet.'); return; }
+      say('To remember "' + s.label + '": ' + s.memory_tip);
+    }
+
+    function chipHowMuch() {
+      Vidi.log('chip', { chip: 'howmuch', qid: question.question_id });
+      var rows = [];
+      for (var i = 0; i < cut.mark_split.length; i++) {
+        rows.push(cut.mark_split[i].label + ' — ' + cut.mark_split[i].marks + 'M');
+      }
+      say('This answer is ' + marksTotal + ' marks. The split: ' + rows.join(' · ') +
+        '. Plan about ' + cut.expected_time_min + ' minutes for it.');
+    }
+
+    // ── free-text ask (exists only when the build has a chat base) ──────────
+
+    function friendlyOffline() {
+      online = false;
+      $('vidiAskRow').hidden = true;
+      say('I cannot answer questions right now. Everything else in the book still works.');
+    }
+
+    function postAsk(body, retriesLeft) {
+      return fetch(VIDI_BASE + '/api/chat', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }).then(function (r) {
+        return r.json().then(function (b) { return { ok: r.ok, body: b }; });
+      }).catch(function (err) {
+        if (retriesLeft > 0) {
+          return new Promise(function (resolve) { setTimeout(resolve, 800); })
+            .then(function () { return postAsk(body, retriesLeft - 1); });
+        }
+        throw err;
+      });
+    }
+
+    /** Byte-stable per question+cut, so the model's prompt-prefix cache hits. */
+    function buildVidiContext() {
+      var out = [];
+      out.push('QUESTION: ' + (cut.question_text || question.question_text));
+      out.push('SECTION: ' + cut.paper_section + ' · ' + cut.qtype + ' · ' + marksTotal +
+        ' marks · about ' + cut.expected_time_min + ' minutes');
+      var e = manifestEntry();
+      if (e) out.push('STARS: ' + e.stars + (e.source === 'enumerated' ? ' · predicted, not asked yet' : ''));
+      var asked = askedLine(question);
+      if (asked) out.push(asked);
+      var split = [];
+      for (var i = 0; i < cut.mark_split.length; i++) {
+        split.push(cut.mark_split[i].label + ' ' + cut.mark_split[i].marks + 'M');
+      }
+      out.push('MARK SPLIT: ' + split.join(' · '));
+      out.push('THE MODEL ANSWER, step by step:');
+      for (var k = 0; k < steps.length; k++) {
+        var s = steps[k];
+        out.push(String(k + 1) + '. [' + s.id + '] ' + s.label + ' — ' + s.marks + 'M');
+        if (s.kind === 'diagram') {
+          out.push('   WRITE: a labelled figure');
+        } else if (s.lines) {
+          var lt = [];
+          for (var j = 0; j < s.lines.length; j++) {
+            var spec = typeof s.lines[j] === 'string' ? { text: s.lines[j] } : s.lines[j];
+            lt.push(spec.text);
+          }
+          out.push('   WRITE: ' + lt.join(' / '));
+        }
+        if (s.why) out.push('   WHY: ' + s.why);
+        if (s.common_mistakes && s.common_mistakes.length) out.push('   MISTAKES: ' + s.common_mistakes.join(' | '));
+        if (s.memory_tip) out.push('   REMEMBER: ' + s.memory_tip);
+        if (s.margin_note) out.push('   NOTE: ' + s.margin_note);
+      }
+      return out.join('\n');
+    }
+
+    function vidiAsk() {
+      if (!VIDI_BASE || !online) return;
+      var input = $('vidiInput');
+      var txt = String(input.value || '').replace(/\s+/g, ' ').trim();
+      if (!txt) return;
+      input.value = '';
+      bubble(txt, 'student');
+      recentMsgs.push({ role: 'student', text: txt });
+      if (recentMsgs.length > 12) recentMsgs = recentMsgs.slice(-12);
+      var g = gen;
+      var typing = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
+      threadEl().appendChild(typing);
+      threadEl().scrollTop = threadEl().scrollHeight;
+      var body = {
+        session_id: Vidi.session,
+        question_id: question.question_id,
+        unit: question.unit.number,
+        cut_key: cut.key,
+        step_id: stepIndex >= 0 ? steps[stepIndex].id : null,
+        question: txt,
+        recent_messages: recentMsgs.slice(-6),
+        tutor_context: buildVidiContext()
+      };
+      postAsk(body, 1).then(function (res) {
+        if (g !== gen) return;
+        typing.remove();
+        var reply = res.ok && res.body && res.body.reply
+          ? String(res.body.reply)
+          : 'I cannot answer that right now. The book still works — keep going.';
+        bubble(reply, 'tutor');
+        recentMsgs.push({ role: 'tutor', text: reply });
+      }).catch(function () {
+        if (g !== gen) return;
+        typing.remove();
+        friendlyOffline();
+      });
+    }
+
+    // ── rename — offered ONCE, after the first completed self-check ─────────
+
+    function offerRename() {
+      Vidi.markRenameOffered();
+      $('vidiRename').hidden = false;
+      $('vidiRenameNote').textContent = 'You can give me your own name if you want. Type a name, or keep Vidi.';
+      say('Good work checking your answer. You can give me your own name if you want — see the box below.');
+      Vidi.log('rename_offered', {});
+    }
+
+    function saveRename() {
+      var v = $('vidiNameInput').value;
+      if (Vidi.setName(v)) {
+        $('vidiRename').hidden = true;
+        syncName();
+        say('Done. From now on I am ' + Vidi.getName() + '.');
+        Vidi.log('rename', { name: Vidi.getName() });
+      } else {
+        $('vidiRenameNote').textContent = 'That name will not work here. Please pick a different one.';
+      }
+    }
+
+    function keepRename() {
+      $('vidiRename').hidden = true;
+      Vidi.log('rename_kept', {});
+    }
+
+    return {
+      syncName: syncName,
+      onQuestion: function () {
+        gen++;
+        var slot = $('pm-assistant-slot');
+        slot.hidden = false;
+        slot.classList.remove('vidi-sheet');
+        $('vidiClose').hidden = true;
+        threadEl().innerHTML = '';
+        recentMsgs = [];
+        $('vidiAskRow').hidden = !VIDI_BASE || !online;
+        greet();
+        renderVidiChips();
+        Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
+      },
+      onStep: function () { renderVidiChips(); },
+      onCheckClosed: function (offer) { if (offer) offerRename(); },
+      ask: vidiAsk,
+      saveRename: saveRename,
+      keepRename: keepRename
+    };
+  })();
+
+  /** Vidi's chapter triage — shown only when ONE chapter is filtered and no
+      search is active. Own link classes: the card-count and search gates must
+      never see these as cards. */
+  function renderTriage() {
+    var box = $('vidiTriage');
+    if (catFilter.unit === 'ALL' || catFilter.search) { box.hidden = true; return; }
+    var u = null;
+    for (var i = 0; i < UNITS.length; i++) if (UNITS[i].number === catFilter.unit) u = UNITS[i];
+    if (!u) { box.hidden = true; return; }
+    var picks = [];
+    for (var st = 3; st >= 2 && picks.length < 5; st--) {
+      for (var k = 0; k < u.questions.length && picks.length < 5; k++) {
+        var e = u.questions[k];
+        if (e.question_id && e.stars === st) picks.push(e);
+      }
+    }
+    if (!picks.length) { box.hidden = true; return; }
+    box.innerHTML = '';
+    var head = el('div', 'vt-head');
+    head.appendChild(el('span', 'vidi-dot'));
+    head.appendChild(el('span', 'vidi-name', Vidi.getName()));
+    box.appendChild(head);
+    box.appendChild(el('div', 'vt-lead', 'Start with these — they are asked most often in this chapter:'));
+    var links = el('div', 'vidi-tri-links');
+    for (var p = 0; p < picks.length; p++) {
+      var pe = picks[p];
+      var a = document.createElement('a');
+      a.className = 'vidi-tri-link';
+      a.setAttribute('href', '#/q/' + encodeURIComponent(pe.question_id) +
+        (pe.cut ? '/' + encodeURIComponent(pe.cut) : ''));
+      a.textContent = pe.section + ' ' + pe.number + ' — ' + pe.text + ' ';
+      a.appendChild(el('span', 'vt-m', '(' + new Array(pe.stars + 1).join('★') + ')'));
+      links.appendChild(a);
+    }
+    box.appendChild(links);
+    var eve = document.createElement('a');
+    eve.className = 'vidi-eve-link';
+    eve.setAttribute('href', '#/exam-eve/' + u.number);
+    eve.textContent = 'Exam soon? Open the 15-minute list →';
+    box.appendChild(eve);
+    box.hidden = false;
+  }
+
+  /** #/exam-eve/<unit> — the 15-minute list: weakest self-checks first, then the
+      most-asked questions of the chapter. Deterministic; history from localStorage. */
+  function showExamEve(unitNumber) {
+    var u = null;
+    for (var i = 0; i < UNITS.length; i++) if (UNITS[i].number === unitNumber) u = UNITS[i];
+    if (!u) { location.hash = '#/'; return; }
+    showView('exam-eve');
+    $('eveTitle').textContent = 'Unit ' + u.number + ' — ' + u.name;
+    $('eveSub').textContent = Vidi.getName() + ' picked these. About 15 minutes: weakest first, then the most-asked.';
+    var body = $('eveBody');
+    body.innerHTML = '';
+
+    var weak = [];
+    for (var k = 0; k < u.questions.length; k++) {
+      var e = u.questions[k];
+      if (!e.question_id) continue;
+      var h = Vidi.checkFor(e.question_id);
+      if (h && h.total > 0 && h.best < h.total) weak.push({ e: e, r: h.best / h.total, h: h });
+    }
+    weak.sort(function (a, b) { return a.r - b.r; });
+    weak = weak.slice(0, 3);
+
+    var inWeak = {};
+    for (var w = 0; w < weak.length; w++) inWeak[weak[w].e.ref] = true;
+    var most = [];
+    for (var st = 3; st >= 2; st--) {
+      for (var m = 0; m < u.questions.length; m++) {
+        if (most.length >= 7 - weak.length) break;
+        var me = u.questions[m];
+        if (me.question_id && !inWeak[me.ref] && me.stars === st) most.push(me);
+      }
+    }
+
+    if (weak.length) {
+      var g1 = el('div', 'eve-group');
+      g1.appendChild(el('h3', null, 'Check these again'));
+      for (var a = 0; a < weak.length; a++) g1.appendChild(eveCard(weak[a].e, weak[a].h));
+      body.appendChild(g1);
+    }
+    if (most.length) {
+      var g2 = el('div', 'eve-group');
+      g2.appendChild(el('h3', null, 'The most-asked questions'));
+      for (var b = 0; b < most.length; b++) g2.appendChild(eveCard(most[b], null));
+      body.appendChild(g2);
+    }
+    if (!weak.length && !most.length) {
+      body.appendChild(el('p', 'eve-empty',
+        'Nothing to list yet. Open questions from the catalog and check yourself — your weakest ones will appear here.'));
+    }
+    Vidi.log('exam_eve', { unit: unitNumber });
+  }
+
+  function eveCard(e, h) {
+    var a = document.createElement('a');
+    a.className = 'eve-card';
+    a.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
+      (e.cut ? '/' + encodeURIComponent(e.cut) : ''));
+    var main = el('div', 'ev-main');
+    var top = el('div', 'ev-top');
+    top.appendChild(el('span', 'ev-ref', e.section + ' ' + e.number));
+    if (e.stars > 0) top.appendChild(el('span', 'ev-stars', new Array(e.stars + 1).join('★')));
+    if (h) top.appendChild(el('span', 'ev-score', 'Your check: ' + fmtMarks(h.best) + ' of ' + h.total));
+    main.appendChild(top);
+    main.appendChild(el('div', 'ev-text', e.text));
+    a.appendChild(main);
+    return a;
+  }
+
+  function initVidi() {
+    VidiPanel.syncName();
+    $('vidiFab').addEventListener('click', function () {
+      var slot = $('pm-assistant-slot');
+      var open = !slot.classList.contains('vidi-sheet');
+      slot.classList.toggle('vidi-sheet', open);
+      $('vidiClose').hidden = !open;
+      if (open) slot.hidden = false;
+    });
+    $('vidiClose').addEventListener('click', function () {
+      $('pm-assistant-slot').classList.remove('vidi-sheet');
+      $('vidiClose').hidden = true;
+    });
+    $('vidiSend').addEventListener('click', VidiPanel.ask);
+    $('vidiInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') VidiPanel.ask();
+    });
+    $('vidiNameSave').addEventListener('click', VidiPanel.saveRename);
+    $('vidiNameKeep').addEventListener('click', VidiPanel.keepRename);
+    document.addEventListener('pm:step-revealed', VidiPanel.onStep);
+    window.addEventListener('pagehide', Vidi.flush);
+  }
+
   // ═══ AI assistant seam (read-only; see docs/patterns/answer_book.md) ══════
 
   window.PM_ANSWER = Object.freeze({
@@ -1669,6 +2227,7 @@
     new Promise(function (r) { setTimeout(r, 2500); })
   ]).then(function () {
     initTest();
+    initVidi();
     route();
     window.addEventListener('hashchange', route);
   });

@@ -73,7 +73,8 @@
             "total momentum",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "Start at rest: total momentum 0 before firing, so 0 after."
       },
       {
         "id": "s2_recoil",
@@ -112,7 +113,8 @@
             "equal and opposite",
             "kick"
           ]
-        }
+        },
+        "memory_tip": "The bullet goes forward, so the gun must go backward with EQUAL momentum — not equal speed."
       }
     ]
   }

@@ -69,7 +69,8 @@
             "no",
             "cannot be used"
           ]
-        }
+        },
+        "memory_tip": "The answer is no — say it first, then give the reason."
       },
       {
         "id": "s2_reason",
@@ -106,7 +107,8 @@
             "g is zero",
             "infinite"
           ]
-        }
+        },
+        "memory_tip": "Inside the satellite everything is in free fall: effective g is zero, so T = 2π√(l/g) has no meaning — the bob never swings back."
       }
     ]
   }

@@ -76,7 +76,8 @@
             "zero degrees",
             "same direction"
           ]
-        }
+        },
+        "memory_tip": "Force up, motion up: same direction, positive work."
       },
       {
         "id": "s2_gravity",
@@ -115,7 +116,8 @@
             "one eighty",
             "opposite"
           ]
-        }
+        },
+        "memory_tip": "Gravity down, motion up: opposite directions, negative work."
       }
     ]
   }

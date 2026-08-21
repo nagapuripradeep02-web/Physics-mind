@@ -85,7 +85,8 @@
             "proportional",
             "direction of the force"
           ]
-        }
+        },
+        "memory_tip": "State the law in MOMENTUM: rate of change of momentum, in the direction of the force. F = ma comes later."
       },
       {
         "id": "s2_setup",
@@ -128,7 +129,8 @@
             "k",
             "proportionality"
           ]
-        }
+        },
+        "memory_tip": "Proportionality first: F ∝ dp/dt. Then insert k to make it an equation."
       },
       {
         "id": "s3_substitute",
@@ -166,7 +168,8 @@
             "constant",
             "dv by dt"
           ]
-        }
+        },
+        "memory_tip": "You may pull m out of d(mv)/dt only because m is constant — write that line."
       },
       {
         "id": "s4_result",
@@ -209,7 +212,8 @@
             "k is one",
             "F equals m a"
           ]
-        }
+        },
+        "memory_tip": "k becomes 1 by the definition of the newton: 1 N gives 1 kg exactly 1 m/s²."
       },
       {
         "id": "s5_figure",
@@ -335,7 +339,8 @@
             "circle",
             "tangent"
           ]
-        }
+        },
+        "memory_tip": "Draw the circle with two arrows: velocity along the tangent, force toward the centre."
       },
       {
         "id": "s6_partb",
@@ -376,7 +381,8 @@
             "direction changes",
             "accelerating"
           ]
-        }
+        },
+        "memory_tip": "Constant speed is not constant velocity — the direction changes, so there is acceleration, so there is a force."
       },
       {
         "id": "s7_note",
@@ -416,8 +422,10 @@
             "m v squared by r",
             "centre"
           ]
-        }
+        },
+        "memory_tip": "Name it: centripetal force, F = mv²/r, pointing to the centre."
       }
     ]
-  }
+  },
+  "insider_note": "Part b) is 3 of the 8 marks. Answer it as its own question, with its own figure."
 }

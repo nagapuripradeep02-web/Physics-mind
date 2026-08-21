@@ -191,7 +191,8 @@
             "figure",
             "diagram"
           ]
-        }
+        },
+        "memory_tip": "Draw the hanging spring with the mean position O marked — every y is measured from O."
       },
       {
         "id": "s2_force",
@@ -234,7 +235,8 @@
             "minus k y",
             "k by m"
           ]
-        }
+        },
+        "memory_tip": "Show F = −ky gives a = −(k/m)y FIRST; that line earns the right to use the SHM formulas."
       },
       {
         "id": "s3_frequency",
@@ -273,7 +275,8 @@
             "root k by m",
             "2 pi"
           ]
-        }
+        },
+        "memory_tip": "ω² = k/m, so n = (1/2π)√(k/m). Stiffer spring or lighter mass → higher frequency."
       }
     ]
   }

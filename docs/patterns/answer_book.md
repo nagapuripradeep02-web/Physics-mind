@@ -78,15 +78,36 @@ body is exactly 32 rules (1024px). Placement:
   on low-end Android). If wobble is ever added it must be **seeded/authored, never
   `Math.random()`** — every load must render identically (Rule 18 posture).
 
-## AI-chatbot seam (exists; nothing more)
+## Vidi — the assistant layer (landed 2026-08-22; design: docs/ANSWER_BOOK_VIDI_DESIGN.md)
 
-1. Data attributes on every rendered node: `.step-block[data-step-id][data-kind][data-marks]`,
-   `.line[data-line-index]`, notebook root `[data-question-id]`.
-2. `window.PM_ANSWER` (frozen): `{ version, question, getState(), goToStep(id),
-   revealNext(), revealAll() }`.
-3. `pm:step-revealed` CustomEvent per completed step + `<aside id="pm-assistant-slot" hidden>`
-   in the rail. `margin_note` per step is the grounding text a future assistant reads.
-   No fetch, no button, no transcript store until the chatbot actually lands.
+The seam grew into the layer. What exists now:
+
+1. The original wiring, unchanged: `.step-block[data-step-id][data-kind][data-marks]`,
+   `.line[data-line-index]`, `[data-question-id]`, frozen `window.PM_ANSWER`,
+   `pm:step-revealed`. `#pm-assistant-slot` now holds the Vidi panel.
+2. **Deterministic Vidi** (works offline, `file://` included): per-question greeting
+   (stars + asked years + `insider_note`), four chips (Will this come? / Why this step? /
+   How to remember? / How much to write?) answered from `PM_QUESTIONS`/`PM_UNITS`, the
+   catalog triage strip, the `#/exam-eve/<unit>` view (weakest self-checks + 3-star set),
+   the self-check verdict line, and the rename-after-first-check flow (localStorage:
+   `pm_vidi_name`, `pm_vidi_history`, `pm_vidi_rename_done`, `pm_vidi_session` — every
+   access try/catch-wrapped; names are display data, never identifiers).
+3. **Flag-gated live chat**: `window.PM_VIDI_BASE` (build env `ANSWER_BOOK_VIDI_BASE`,
+   `npm run build:answers:hosted`). Empty — the default — means the ask row and the
+   telemetry flush DO NOT EXIST and the offline e2e gates hold by construction. Set, the
+   page talks to `supabase/functions/answerbook-vidi-chat` (own `task_type` ledger, own
+   $2/day cap, 4/min + 40/day per hashed IP, fail-closed; `{type:'events'}` batches →
+   `simulation_feedback`). Context is assembled client-side, byte-stable per question+cut,
+   from the authored steps — the bank is the brain, Vidi is the voice.
+4. **New authored fields** (both optional+sparse, precedent `margin_note`): per-step
+   `memory_tip` (the "How to remember?" chip; authored 3★+LAQ first — 179 steps across
+   56 questions, 2026-08-22) and per-question `insider_note` (one examiner-insight
+   sentence). Rule 41 applies to every one.
+5. **Hard constraints that keep the gates green**: nothing Vidi renders enters
+   `.step-block` (rail/overlay/fixed layers only); no bare `display:` that beats
+   `[hidden]`; the panel never uses `.card-title`; triage links never use `.cat-card`;
+   every network path is build-flag-gated, default off. Hosting runbook:
+   `docs/notes/answer_book_hosting.md`.
 
 ## Rule tensions — resolved, do not relitigate
 

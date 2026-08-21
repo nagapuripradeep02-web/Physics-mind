@@ -92,7 +92,8 @@
             "independent of path",
             "gravitational"
           ]
-        }
+        },
+        "memory_tip": "Two marks, two properties: work is path-independent, and work round a closed loop is zero. Example: gravity."
       },
       {
         "id": "s2_nonconservative",
@@ -142,7 +143,8 @@
             "depends on the path",
             "friction"
           ]
-        }
+        },
+        "memory_tip": "Friction is the example to name: it opposes the motion BOTH ways, so a longer path costs more."
       },
       {
         "id": "s3_note",
@@ -177,7 +179,8 @@
             "heat",
             "recovered"
           ]
-        }
+        },
+        "memory_tip": "The useful line: only conservative forces store energy you can get back — that is when mgh and ½kx² exist."
       }
     ]
   }

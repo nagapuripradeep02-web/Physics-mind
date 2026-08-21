@@ -79,7 +79,8 @@
             "constant",
             "conserved"
           ]
-        }
+        },
+        "memory_tip": "The rotational twin of momentum conservation: no external TORQUE → L is constant."
       },
       {
         "id": "s2_proof",
@@ -126,7 +127,8 @@
             "constant",
             "I omega"
           ]
-        }
+        },
+        "memory_tip": "τ = dL/dt; put τ = 0 and Iω = constant follows."
       },
       {
         "id": "s3_examples",
@@ -179,7 +181,8 @@
             "spins faster",
             "helicopter"
           ]
-        }
+        },
+        "memory_tip": "Two examples, two mechanisms: the dancer changes I (arms in → spins faster); the helicopter needs a tail rotor because L is exchanged between its parts."
       }
     ]
   }

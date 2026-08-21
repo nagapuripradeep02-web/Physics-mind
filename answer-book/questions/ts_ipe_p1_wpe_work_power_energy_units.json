@@ -87,7 +87,8 @@
             "watt",
             "per unit time"
           ]
-        }
+        },
+        "memory_tip": "Work in joule; power is work PER TIME, in watt."
       },
       {
         "id": "s2_energy",
@@ -127,7 +128,8 @@
             "do work",
             "joule"
           ]
-        }
+        },
+        "memory_tip": "Energy is the capacity to do work, so it shares the joule."
       }
     ]
   }

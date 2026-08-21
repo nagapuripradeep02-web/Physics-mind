@@ -75,7 +75,8 @@
             "h two by h one",
             "restitution"
           ]
-        }
+        },
+        "memory_tip": "For a floor bounce, e = √(h₂/h₁) — heights, because speed goes as √h in free fall."
       },
       {
         "id": "s2_value",
@@ -113,7 +114,8 @@
             "point seven",
             "0.707"
           ]
-        }
+        },
+        "memory_tip": "h₂ = h/2 gives e = 1/√2. Notice the drop height cancels out of e."
       }
     ]
   }

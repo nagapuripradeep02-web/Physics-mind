@@ -93,7 +93,8 @@
             "A squared minus y squared",
             "kinetic energy"
           ]
-        }
+        },
+        "memory_tip": "Write v in terms of y, not t: v = ω√(A² − y²), so KE = ½mω²(A² − y²)."
       },
       {
         "id": "s2_potential",
@@ -135,7 +136,8 @@
             "potential energy",
             "integrate"
           ]
-        }
+        },
+        "memory_tip": "The force grows with y, so integrate — PE = ½mω²y². Using F × y directly gives twice the answer."
       },
       {
         "id": "s3_positions",
@@ -179,7 +181,8 @@
             "mean position",
             "extreme"
           ]
-        }
+        },
+        "memory_tip": "Three positions to quote: mean (all kinetic), extreme (all potential), in between (shared)."
       },
       {
         "id": "s4_graph",
@@ -320,7 +323,8 @@
             "graph",
             "curves"
           ]
-        }
+        },
+        "memory_tip": "Two mirror parabolas and one flat line on top — the flat line is the total energy."
       },
       {
         "id": "s5_total",
@@ -358,8 +362,10 @@
             "total energy",
             "cancel"
           ]
-        }
+        },
+        "memory_tip": "Add KE and PE: the y² terms cancel. That cancellation IS the proof."
       }
     ]
-  }
+  },
+  "insider_note": "The graph carries its own mark: two mirror curves and the flat total line."
 }

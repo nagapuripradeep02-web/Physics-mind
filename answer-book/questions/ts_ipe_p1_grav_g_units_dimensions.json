@@ -71,7 +71,8 @@
             "newton metre squared",
             "unit of G"
           ]
-        }
+        },
+        "memory_tip": "Do not memorise the unit — rearrange G = Fr²/m₁m₂ and read it off: N m² kg⁻²."
       },
       {
         "id": "s2_dimensions",
@@ -105,7 +106,8 @@
             "dimensional formula",
             "L cubed"
           ]
-        }
+        },
+        "memory_tip": "Same method with brackets: [M⁻¹ L³ T⁻²]."
       }
     ]
   }

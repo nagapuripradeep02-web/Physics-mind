@@ -70,7 +70,8 @@
             "centre of mass",
             "length decreases"
           ]
-        }
+        },
+        "memory_tip": "Standing raises the centre of mass, so the pendulum LENGTH becomes shorter."
       },
       {
         "id": "s2_frequency",
@@ -105,7 +106,8 @@
             "frequency increases",
             "root l"
           ]
-        }
+        },
+        "memory_tip": "T = 2π√(l/g): shorter l, smaller T, higher frequency."
       }
     ]
   }

@@ -290,7 +290,8 @@
             "figure",
             "diagram"
           ]
-        }
+        },
+        "memory_tip": "Draw first: bob at B, mean position O, string at angle θ, and mg split into two parts."
       },
       {
         "id": "s2_resolve",
@@ -331,7 +332,8 @@
             "mg cos theta",
             "mg sin theta"
           ]
-        }
+        },
+        "memory_tip": "mg cos θ is cancelled by the tension; mg sin θ survives as the restoring force."
       },
       {
         "id": "s3_small_angle",
@@ -372,7 +374,8 @@
             "small angle",
             "g by L"
           ]
-        }
+        },
+        "memory_tip": "The approximation lives here: for small θ, sin θ ≈ θ = x/L. Writing it is what makes the motion SHM."
       },
       {
         "id": "s4_period",
@@ -413,7 +416,8 @@
             "2 pi root L by g",
             "mass cancels"
           ]
-        }
+        },
+        "memory_tip": "Match a = −(g/L)x with a = −ω²x: T = 2π√(L/g). The mass never appears."
       },
       {
         "id": "s5_seconds",
@@ -449,8 +453,10 @@
             "seconds pendulum",
             "two seconds"
           ]
-        }
+        },
+        "memory_tip": "Seconds pendulum: T = 2 s, length close to 1 metre."
       }
     ]
-  }
+  },
+  "insider_note": "The small-angle line sin θ ≈ θ carries 2 marks — do not skip it on the way to the formula."
 }

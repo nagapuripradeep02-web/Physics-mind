@@ -81,7 +81,8 @@
             "sixty degrees",
             "cos sixty"
           ]
-        }
+        },
+        "memory_tip": "One substitution into R = √(P² + Q² + 2PQ cos θ). Write the working line — the mark sits on it."
       },
       {
         "id": "s2_value",
@@ -120,7 +121,8 @@
             "root forty nine",
             "7"
           ]
-        }
+        },
+        "memory_tip": "cos 60° = 1/2, so the cross term is 15. Then 9 + 25 + 15 = 49 — a perfect square is your check."
       }
     ]
   }

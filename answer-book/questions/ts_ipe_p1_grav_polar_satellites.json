@@ -70,7 +70,8 @@
             "polar",
             "poles"
           ]
-        }
+        },
+        "memory_tip": "Polar = passes over the poles: a low orbit running north to south."
       },
       {
         "id": "s2_use",
@@ -106,7 +107,8 @@
             "whole earth",
             "survey"
           ]
-        }
+        },
+        "memory_tip": "The earth turns underneath it, so strip by strip it photographs the WHOLE surface — mapping and weather."
       }
     ]
   }

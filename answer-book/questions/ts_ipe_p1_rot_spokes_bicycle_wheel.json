@@ -72,7 +72,8 @@
             "rim",
             "increases"
           ]
-        }
+        },
+        "memory_tip": "Spokes let the mass sit at the rim — in mr², a larger r means a larger moment of inertia."
       },
       {
         "id": "s2_result",
@@ -109,7 +110,8 @@
             "steady",
             "resists changes"
           ]
-        }
+        },
+        "memory_tip": "A large I resists changes in rotation, so the wheel turns steadily between pedal strokes."
       }
     ]
   }

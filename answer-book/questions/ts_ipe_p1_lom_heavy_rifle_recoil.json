@@ -75,7 +75,8 @@
             "equals",
             "conservation"
           ]
-        }
+        },
+        "memory_tip": "The cartridge fixes the bullet momentum mv — the rifle must carry the same mv backward."
       },
       {
         "id": "s2_conclude",
@@ -112,7 +113,8 @@
             "one by M",
             "slower"
           ]
-        }
+        },
+        "memory_tip": "Recoil speed = that momentum ÷ rifle mass. Heavier rifle, smaller speed."
       }
     ]
   }

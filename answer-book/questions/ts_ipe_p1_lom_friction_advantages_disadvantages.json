@@ -79,7 +79,8 @@
             "grip",
             "nails"
           ]
-        }
+        },
+        "memory_tip": "Remember five scenes: walking, holding, driving, braking, writing — each one needs friction."
       },
       {
         "id": "s2_disadvantages",
@@ -127,7 +128,8 @@
             "efficiency",
             "power loss"
           ]
-        }
+        },
+        "memory_tip": "All three losses are one loss: work done against friction leaves as heat and wear."
       }
     ]
   }

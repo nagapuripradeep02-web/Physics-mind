@@ -80,7 +80,8 @@
             "ellipse",
             "focus"
           ]
-        }
+        },
+        "memory_tip": "Orbits: an ellipse with the sun at ONE focus — the other focus is empty."
       },
       {
         "id": "s2_figure",
@@ -215,7 +216,8 @@
             "figure",
             "ellipse"
           ]
-        }
+        },
+        "memory_tip": "Shade two sectors: short and wide near the sun, long and thin far away — equal areas."
       },
       {
         "id": "s3_areas",
@@ -256,7 +258,8 @@
             "equal areas",
             "sweeps"
           ]
-        }
+        },
+        "memory_tip": "Areas: equal areas in equal times — conservation of angular momentum in different words."
       },
       {
         "id": "s4_periods",
@@ -295,8 +298,10 @@
             "T squared",
             "a cubed"
           ]
-        }
+        },
+        "memory_tip": "Periods: T² ∝ r³ — square of the time, cube of the distance. Learn the three names in order: orbits, areas, periods."
       }
     ]
-  }
+  },
+  "insider_note": "The law of areas is also asked ALONE as a 2-mark question — be ready to state it by itself."
 }

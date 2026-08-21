@@ -122,6 +122,14 @@ const stepSchema = z
          * Rail only, same reasoning as `why`.
          */
         common_mistakes: z.array(z.string().min(1)).max(3).optional(),
+        /**
+         * One line: how to REMEMBER this step (Vidi's "How to remember?" chip).
+         * Plain literal English (Rule 41) — a real memory device (order, contrast,
+         * a named anchor image), never decoration. Optional and sparse by design
+         * (like margin_note): the chip shows only where a tip exists. Authored
+         * 3-star + LAQ first (founder, 2026-08-22).
+         */
+        memory_tip: z.string().min(1).optional(),
     })
     .superRefine((step, ctx) => {
         if (step.kind === 'diagram') {
@@ -161,6 +169,8 @@ const cutStepSchema = z
          */
         margin_note: z.string().optional(),
         why: z.string().min(1).optional(),
+        /** Override the memory tip when the shorter step covers different ground. */
+        memory_tip: z.string().min(1).optional(),
     })
     .superRefine((cs, ctx) => {
         if (cs.marks === 0 && cs.mark_note) {
@@ -233,6 +243,13 @@ export const answerBookQuestionSchema = z
 
         /** What the student is asked to say aloud in the recall check. Required when steps carry `recall`. */
         recall_prompt: z.string().min(1).optional(),
+
+        /**
+         * One authored sentence of examiner insight for Vidi's greeting — what the
+         * template line (stars + asked years) cannot say: "most students lose the
+         * figure mark here". Optional and sparse; plain literal English (Rule 41).
+         */
+        insider_note: z.string().min(1).optional(),
 
         /**
          * Optional: the same answer offered at more than one length. cuts[0] is the

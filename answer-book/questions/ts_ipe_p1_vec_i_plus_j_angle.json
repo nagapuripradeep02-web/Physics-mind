@@ -74,7 +74,8 @@
             "one by one",
             "components"
           ]
-        }
+        },
+        "memory_tip": "tan α = y-component over x-component. Here both components are 1."
       },
       {
         "id": "s2_answer",
@@ -108,7 +109,8 @@
             "forty five",
             "45"
           ]
-        }
+        },
+        "memory_tip": "Equal pulls along x and y put the vector exactly midway: 45°."
       }
     ]
   }

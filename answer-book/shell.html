@@ -55,8 +55,24 @@
            placeholder="Search questions&hellip; (e.g. parallelogram, projectile, 45)">
   </div>
 
+  <!-- Vidi's chapter triage — filled when one chapter is filtered; lives OUTSIDE
+       the card DOM so the search blob and card-count gates never see it. -->
+  <div class="vidi-triage" id="vidiTriage" hidden></div>
+
   <div id="catSections"></div>
   <p class="cat-none" id="catNone" hidden>No questions match. Clear the search or the filter.</p>
+</main>
+
+<!-- ═══ EXAM-EVE VIEW — #/exam-eve/<unit> ═══════════════════════════════════
+     The 15-minute revision list Vidi builds for the night or morning before
+     the exam: weakest self-check scores first, then the most-asked questions.
+     Deterministic — rendered from PM_UNITS + localStorage history. -->
+<main class="catalog" id="examEveView" hidden>
+  <div class="cat-hero">
+    <h1 id="eveTitle"></h1>
+    <p class="cat-sub" id="eveSub"></p>
+  </div>
+  <div id="eveBody"></div>
 </main>
 
 <!-- ═══ NOTEBOOK VIEW ═══════════════════════════════════════════════════════ -->
@@ -100,8 +116,30 @@
     <div class="card verify-note" id="verifyNote" hidden></div>
 
 
-    <!-- AI assistant seam: slot only, no content, no fetch (see docs/patterns/answer_book.md) -->
-    <aside id="pm-assistant-slot" hidden></aside>
+    <!-- Vidi — the assistant panel (docs/ANSWER_BOOK_VIDI_DESIGN.md). Deterministic
+         chips always work; the free-text ask row exists only when the build was
+         given a chat base (PM_VIDI_BASE — empty in the default offline build). -->
+    <aside id="pm-assistant-slot" class="vidi-card" hidden>
+      <div class="vidi-head">
+        <span class="vidi-dot"></span>
+        <span class="vidi-name">Vidi</span>
+        <button class="vidi-min" id="vidiClose" type="button" aria-label="Close" hidden>&times;</button>
+      </div>
+      <div class="vidi-thread" id="vidiThread"></div>
+      <div class="vidi-chips" id="vidiChips"></div>
+      <div class="vidi-askrow" id="vidiAskRow" hidden>
+        <input type="text" id="vidiInput" maxlength="500" placeholder="Ask about this answer&hellip;">
+        <button class="btn" id="vidiSend" type="button">Ask</button>
+      </div>
+      <div class="vidi-rename" id="vidiRename" hidden>
+        <div class="vidi-rename-note" id="vidiRenameNote"></div>
+        <div class="vidi-rename-row">
+          <input type="text" id="vidiNameInput" maxlength="20" placeholder="Type a name">
+          <button class="btn" id="vidiNameSave" type="button">Save</button>
+          <button class="btn" id="vidiNameKeep" type="button">Keep Vidi</button>
+        </div>
+      </div>
+    </aside>
   </aside>
 
   <section class="notebook-col" id="notebookCol">
@@ -117,6 +155,10 @@
      of what you wrote, or say it aloud. The photo and mic paths appear only when
      their endpoint is configured; the self-check needs no server, so this panel
      always offers a way to be checked. NO CLOCK — see notebook.js openTest(). -->
+<!-- Vidi floating button — phones only (the rail sits below the notebook there).
+     Opens the same panel as a bottom sheet. -->
+<button class="vidi-fab nb-only" id="vidiFab" type="button" hidden aria-label="Open the assistant">&#128172;</button>
+
 <div class="overlay" id="testOverlay" hidden>
   <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="testTitle">
     <div class="overlay-head">

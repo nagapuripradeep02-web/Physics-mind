@@ -82,7 +82,8 @@
             "angular displacement",
             "rad per second"
           ]
-        }
+        },
+        "memory_tip": "ω = dθ/dt — the rotational version of velocity."
       },
       {
         "id": "s2_figure",
@@ -238,7 +239,8 @@
             "circle",
             "tangent"
           ]
-        }
+        },
+        "memory_tip": "One particle on a circle, moving from P₁ to P₂: arc Δs, angle Δθ."
       },
       {
         "id": "s3_derive",
@@ -282,7 +284,8 @@
             "r delta theta",
             "divide"
           ]
-        }
+        },
+        "memory_tip": "The radian definition does everything: Δθ = Δs/r. Divide both sides by Δt."
       },
       {
         "id": "s4_result",
@@ -320,7 +323,8 @@
             "v equals r omega",
             "limit"
           ]
-        }
+        },
+        "memory_tip": "v = rω. Same ω, larger radius → faster rim."
       }
     ]
   }

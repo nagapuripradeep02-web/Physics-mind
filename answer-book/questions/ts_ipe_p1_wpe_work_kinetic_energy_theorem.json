@@ -98,7 +98,8 @@
             "F S cos theta",
             "positive zero negative"
           ]
-        }
+        },
+        "memory_tip": "Work = F s cos θ — the cos θ is what makes zero and negative work possible."
       },
       {
         "id": "s2_kinetic",
@@ -138,7 +139,8 @@
             "motion",
             "half m v squared"
           ]
-        }
+        },
+        "memory_tip": "Define KE before the proof: ½mv², the energy a body has because it moves."
       },
       {
         "id": "s3_figure",
@@ -317,7 +319,8 @@
             "diagram",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "Draw the block pushed from A to B: force F, distance S, speeds u and v at the two ends."
       },
       {
         "id": "s4_theorem",
@@ -353,7 +356,8 @@
             "net force",
             "change in kinetic energy"
           ]
-        }
+        },
+        "memory_tip": "The statement needs the word NET: net work = change in kinetic energy."
       },
       {
         "id": "s5_proof",
@@ -398,7 +402,8 @@
             "m a S",
             "substitute"
           ]
-        }
+        },
+        "memory_tip": "Combine v² − u² = 2aS with F = ma. Multiply, and the S cancels."
       },
       {
         "id": "s6_result",
@@ -437,8 +442,10 @@
             "final minus initial",
             "proved"
           ]
-        }
+        },
+        "memory_tip": "Close the loop: FS = ½mv² − ½mu², then say in words what that equation states."
       }
     ]
-  }
+  },
+  "insider_note": "The word NET in the statement is checked — net work equals the change in kinetic energy."
 }

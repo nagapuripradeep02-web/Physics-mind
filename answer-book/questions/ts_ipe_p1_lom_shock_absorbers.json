@@ -83,7 +83,8 @@
             "impulse",
             "change of momentum"
           ]
-        }
+        },
+        "memory_tip": "Think impulse, not force: the bump fixes the momentum change Δp."
       },
       {
         "id": "s2_fixed",
@@ -118,7 +119,8 @@
             "only the time",
             "cannot change"
           ]
-        }
+        },
+        "memory_tip": "Δp cannot be changed — the only free quantity is the TIME it is spread over."
       },
       {
         "id": "s3_relation",
@@ -154,7 +156,8 @@
             "inversely proportional",
             "delta p by delta t"
           ]
-        }
+        },
+        "memory_tip": "F = Δp/Δt: same Δp, double the time, half the force."
       },
       {
         "id": "s4_conclusion",
@@ -193,7 +196,8 @@
             "smaller force",
             "safer"
           ]
-        }
+        },
+        "memory_tip": "The spring lengthens Δt, so the force on the rider drops. End the answer on that sentence."
       }
     ]
   }

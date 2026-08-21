@@ -83,7 +83,8 @@
             "mass into velocity",
             "p equals m v"
           ]
-        }
+        },
+        "memory_tip": "Momentum = mass × velocity — the quantity every later line of this answer conserves."
       },
       {
         "id": "s2_impulse",
@@ -122,7 +123,8 @@
             "change in momentum",
             "newton second"
           ]
-        }
+        },
+        "memory_tip": "Impulse = force × time = the change in momentum. A big force for a short time equals a small force for a long time."
       },
       {
         "id": "s3_law",
@@ -160,7 +162,8 @@
             "total momentum",
             "constant"
           ]
-        }
+        },
+        "memory_tip": "Say the condition with the law: the total momentum is constant WHEN no external force acts."
       },
       {
         "id": "s4_figure",
@@ -274,7 +277,8 @@
             "diagram",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "Draw the shell: one arrow left, one arrow right, with m₁v₁ = m₂v₂."
       },
       {
         "id": "s5_example",
@@ -313,7 +317,8 @@
             "opposite directions",
             "minus"
           ]
-        }
+        },
+        "memory_tip": "Start from zero: the total momentum is 0 before the burst, so the two pieces carry equal and opposite momenta."
       },
       {
         "id": "s6_notes",
@@ -350,7 +355,8 @@
             "rocket",
             "recoil"
           ]
-        }
+        },
+        "memory_tip": "Gun recoil and rocket motion are the same example with different names: start at rest, split, move apart."
       }
     ]
   }

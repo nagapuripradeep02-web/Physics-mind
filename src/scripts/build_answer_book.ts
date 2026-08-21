@@ -150,11 +150,22 @@ const browserQuestions = questions.map((q) => ({
 // dependency). One base; the client derives /recall-check and /photo-check.
 const apiBase = process.env.ANSWER_BOOK_API_BASE ?? '';
 
+// Vidi's live-chat endpoint — the SAME progressive-enhancement contract as the
+// checking API. Unset (the default) → the free-text ask row and the telemetry
+// flush never exist and the page stays fully offline (deterministic Vidi — the
+// chips, the verdict, the exam-eve view — works everywhere, file:// included).
+// `--hosted` bakes the deployed Edge Function base for the served copy.
+const VIDI_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-vidi-chat';
+const vidiBase = process.argv.includes('--hosted')
+    ? (process.env.ANSWER_BOOK_VIDI_BASE ?? VIDI_HOSTED_BASE)
+    : (process.env.ANSWER_BOOK_VIDI_BASE ?? '');
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
     `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
-    `window.PM_API_BASE = ${JSON.stringify(apiBase)};`;
+    `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
+    `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => css)
@@ -169,6 +180,7 @@ writeFileSync(outPath, html, 'utf8');
 // ── report ───────────────────────────────────────────────────────────────────
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
+console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
     const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';

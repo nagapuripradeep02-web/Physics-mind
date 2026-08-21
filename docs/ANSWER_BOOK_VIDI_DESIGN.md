@@ -1,6 +1,21 @@
 # Vidi — the AI companion for the IPE Answer Book (design)
 
-**Date:** 2026-08-22 · **Status:** DESIGN — approved in discussion, awaiting founder read-through
+**Date:** 2026-08-22 · **Status:** RUNGS 1+2 IMPLEMENTED (2026-08-22) — Rung 3 (voice/photo
+check) deliberately not built (founder call). Implementation notes: the deterministic layer +
+flag-gated chat live in `answer-book/notebook.js` (`Vidi`/`VidiPanel`), the Edge Function at
+`supabase/functions/answerbook-vidi-chat/`, memory tips authored for the 3★+LAQ subset
+(179 steps / 56 questions / 12 insider notes), hosting runbook at
+`docs/notes/answer_book_hosting.md`. Two one-line rulings still PENDING founder signature:
+
+> **Rule 18 amendment (proposed):** the Answer Book's live Vidi chat is a founder-approved
+> amendment in the spoken-recall precedent's shape — the model presents and explains the
+> authored bank, grounded in per-question ANSWER FACTS; it never writes a mark scheme, never
+> decides marks, and never exists in the default offline build.
+>
+> **Telugu code-mix carve-out (proposed):** Rule 30i's English-only scope is the TEACHER
+> product. The student-facing Vidi chat may reply in natural Telugu-English code-mix, TEXT
+> ONLY (no Telugu TTS — Telugu audio stays retired); physics terms stay in English, never
+> transliterated.
 **Scope:** the IPE Answer Book (student-facing) ONLY. Quick Learn stays shelved; this design
 *borrows* its built pieces (persona prompt, Edge Function pattern, usage logging) but builds no
 Quick Learn surface. The teacher product is untouched — **Vidi never appears in the teacher app**

@@ -74,7 +74,8 @@
             "greater than one",
             "can be"
           ]
-        }
+        },
+        "memory_tip": "Yes — μ is a measured ratio f/N, and nothing in the definition caps it at 1."
       },
       {
         "id": "s2_reason",
@@ -110,7 +111,8 @@
             "adhesion",
             "f by N"
           ]
-        }
+        },
+        "memory_tip": "Give the board reason: highly polished surfaces stick by adhesion, which pushes f above N."
       }
     ]
   }

@@ -76,7 +76,8 @@
             "G M m",
             "R squared"
           ]
-        }
+        },
+        "memory_tip": "A sphere pulls as if all its mass sat at the centre — that is why the distance is R."
       },
       {
         "id": "s2_weight",
@@ -111,7 +112,8 @@
             "m g",
             "weight"
           ]
-        }
+        },
+        "memory_tip": "Name the SAME force twice: once as GMm/R², once as mg."
       },
       {
         "id": "s3_relation",
@@ -152,7 +154,8 @@
             "G M by R squared",
             "cancels"
           ]
-        }
+        },
+        "memory_tip": "Equate and cancel m: g = GM/R². The cancelled m is why every body falls alike."
       }
     ]
   }

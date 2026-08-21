@@ -281,7 +281,8 @@
             "thrown at an angle",
             "under gravity"
           ]
-        }
+        },
+        "memory_tip": "Two facts to say: gravity is the only force, and the horizontal velocity never changes."
       },
       {
         "id": "s2_figure",
@@ -534,7 +535,8 @@
             "picture",
             "trajectory"
           ]
-        }
+        },
+        "memory_tip": "Mark three points as you draw: O at launch, A at the top, B at landing. The derivation visits them in that order."
       },
       {
         "id": "s3_components",
@@ -581,7 +583,8 @@
             "components",
             "resolve"
           ]
-        }
+        },
+        "memory_tip": "Split u once, use it twice: u cos θ runs every x-equation, u sin θ runs every y-equation."
       },
       {
         "id": "s4_trajectory",
@@ -645,7 +648,8 @@
             "eliminate t",
             "a x minus b x squared"
           ]
-        }
+        },
+        "memory_tip": "To get the path, write x and y in terms of t, then remove t. The result has the shape y = ax − bx² — a parabola."
       },
       {
         "id": "s5_time_of_flight",
@@ -694,7 +698,8 @@
             "two u sin theta by g",
             "T equals"
           ]
-        }
+        },
+        "memory_tip": "Landing means y = 0 again. T = 2u sin θ / g — twice the time to the top."
       },
       {
         "id": "s6_max_height",
@@ -744,7 +749,8 @@
             "H max",
             "u squared sin squared theta"
           ]
-        }
+        },
+        "memory_tip": "The top is where the vertical velocity is 0. Use v² = u² − 2gh with u sin θ: H = u² sin²θ / 2g."
       },
       {
         "id": "s7_range",
@@ -798,7 +804,8 @@
             "sine two theta",
             "u squared sin two theta by g"
           ]
-        }
+        },
+        "memory_tip": "Range = horizontal speed × time of flight. The identity 2 sin θ cos θ = sin 2θ compresses it to R = u² sin 2θ / g."
       },
       {
         "id": "s8_notes",
@@ -838,8 +845,10 @@
             "special cases",
             "complementary"
           ]
-        }
+        },
+        "memory_tip": "Two checks: range is largest at 45°, and θ and 90° − θ give the same range."
       }
     ]
-  }
+  },
+  "insider_note": "Three separate results are asked — time of flight, maximum height, range. Each carries its own mark; leave none out."
 }

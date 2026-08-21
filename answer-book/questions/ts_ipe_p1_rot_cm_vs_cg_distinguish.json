@@ -87,7 +87,8 @@
             "mass concentrated",
             "independent of g"
           ]
-        }
+        },
+        "memory_tip": "Centre of MASS: the mass average — it exists even in deep space, with no gravity at all."
       },
       {
         "id": "s2_cg",
@@ -141,7 +142,8 @@
             "depends on g",
             "coincide"
           ]
-        }
+        },
+        "memory_tip": "Centre of GRAVITY: the weight average — the two points separate only where g varies across the body."
       }
     ]
   }

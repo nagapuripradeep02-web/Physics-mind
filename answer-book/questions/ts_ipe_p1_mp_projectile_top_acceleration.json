@@ -73,7 +73,8 @@
             "gravity",
             "downward"
           ]
-        }
+        },
+        "memory_tip": "The acceleration at the top is g, downward — the same as everywhere else on the path."
       },
       {
         "id": "s2_reason",
@@ -107,7 +108,8 @@
             "still acts",
             "throughout"
           ]
-        }
+        },
+        "memory_tip": "What is zero at the top is the vertical VELOCITY, not the acceleration. Gravity never switches off."
       }
     ]
   }

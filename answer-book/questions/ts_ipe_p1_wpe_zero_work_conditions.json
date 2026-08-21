@@ -75,7 +75,8 @@
             "formula",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "Write W = F s cos θ first — the three zero cases are its three factors."
       },
       {
         "id": "s2_conditions",
@@ -118,7 +119,8 @@
             "perpendicular",
             "ninety"
           ]
-        }
+        },
+        "memory_tip": "Zero force, zero displacement, or θ = 90°. The porter on level ground is the 90° case."
       }
     ]
   }

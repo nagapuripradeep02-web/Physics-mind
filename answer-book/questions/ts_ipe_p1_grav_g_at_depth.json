@@ -72,7 +72,8 @@
             "one minus d by R",
             "depth"
           ]
-        }
+        },
+        "memory_tip": "g_d = g(1 − d/R): only the sphere below your feet still pulls."
       },
       {
         "id": "s2_centre",
@@ -110,7 +111,8 @@
             "zero",
             "centre"
           ]
-        }
+        },
+        "memory_tip": "At the centre d = R, so g = 0 — there is no sphere left below you."
       }
     ]
   }
