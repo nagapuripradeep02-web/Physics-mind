@@ -873,9 +873,25 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
             return {
                 clips: clips.length,
                 typeset: clips.filter((c) => c.querySelector('.katex')).length,
-                // overflow:hidden makes the wipe possible and truncation invisible
-                clipped: clips.filter((c) => c.scrollWidth > (c.closest('.line') as HTMLElement).clientWidth + 1)
-                    .map((c) => c.getAttribute('data-tex')),
+                // overflow:hidden makes the wipe possible and truncation invisible.
+                // Two DIFFERENT ways a typeset line loses its right edge, so assert both:
+                //  (a) the tree is wider than the space the line actually gives it. Measure
+                //      against the CONTENT box — clientWidth still includes the 56px
+                //      padding-left that .line.eq/.boxed add, and every matrix line is
+                //      eq-styled, so comparing against clientWidth alone silently allowed
+                //      anything up to 56px of overflow.
+                //  (b) the clip ended up NARROWER than the tree inside it — the frozen-width
+                //      bug that shaved the closing "]" off the Matrices answers.
+                clipped: clips.filter((c) => {
+                    const line = c.closest('.line') as HTMLElement;
+                    const cs = getComputedStyle(line);
+                    const avail = line.clientWidth
+                        - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+                    const kin = c.firstElementChild as HTMLElement | null;
+                    const natural = kin ? kin.getBoundingClientRect().width : c.scrollWidth;
+                    return natural > avail + 0.5                       // (a) genuinely too wide
+                        || natural > c.getBoundingClientRect().width + 0.5;  // (b) under-shown
+                }).map((c) => c.getAttribute('data-tex')),
                 rawTex: /\\(circ|therefore|because|begin\{|frac|text\{)/.test(
                     document.getElementById('notebookView')!.textContent || ''),
             };
@@ -885,4 +901,40 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
         expect(r.clipped, `${id}: typeset line(s) truncated by the wipe container`).toEqual([]);
         expect(r.rawTex, `${id}: raw TeX leaked onto the page`).toBe(false);
     }
+});
+
+// The sweep above reveals INSTANTLY, which never freezes a clip width — so it cannot
+// see the failure this test exists for. Stepping through with the real wipe measures
+// each clip and freezes that width; a matrix measured before its tall-delimiter KaTeX
+// Size font has loaded freezes SHORT, and the closing "]" is gone for good. That is
+// font-load dependent, so it hit the first matrix opened on a cold page and not the
+// rest — exactly the "sometimes there is no ]" a reader reported on 2026-08-21.
+test('an animated typeset reveal never leaves a clip narrower than its own ink', async ({ page }) => {
+    test.setTimeout(120_000);
+    await page.goto(URL);                       // cold: the Size fonts are not fetched yet
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const matrixQ = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[]).find((q) =>
+            q.answer.steps.some((s: any) => (s.lines || []).some((l: any) =>
+                l && l.render === 'katex' && /\\begin\{[bv]matrix\}/.test(l.text))))?.question_id);
+    if (!matrixQ) return;                       // a book with no matrix is legal
+
+    await page.evaluate((q) => (window as any).PM_ANSWER.openQuestion(q), matrixQ);
+    await page.waitForSelector('.page');
+    for (let i = 0; i < 3; i++) {
+        await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+        await page.waitForTimeout(2600);        // let the wipe finish and the clip settle
+    }
+
+    const short = await page.evaluate(() =>
+        [...document.querySelectorAll('.kx-clip')]
+            .map((c) => {
+                const ink = (c.firstElementChild as HTMLElement).getBoundingClientRect().width;
+                return { tex: c.getAttribute('data-tex') || '',
+                         missing: +(ink - c.getBoundingClientRect().width).toFixed(1) };
+            })
+            .filter((r) => r.missing > 0.5));
+    expect(short, `${matrixQ}: clip is narrower than its typeset ink — the closing ` +
+        `delimiter is being cut off`).toEqual([]);
 });

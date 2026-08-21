@@ -453,7 +453,12 @@ body {
    .kx-clip must stay inline-block with overflow hidden or the wipe has nothing to
    clip. The line's HEIGHT is snapped to whole rules in placeStep, not here. */
 .line[data-render="katex"] { white-space: nowrap; }
-.kx-clip { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: top; max-width: 100%; }
+.kx-clip { display: inline-block; white-space: nowrap; vertical-align: top; max-width: 100%; }
+/* Crop ONLY while the reveal wipe is running. At rest the clip sizes to its own ink.
+   A tall drawn delimiter's glyph overhangs its advance width by ~2px and sits flush at
+   the right edge, so a permanently-cropping clip shaved the closing "]" off a matrix —
+   invisible on prose, where the same 2px fall in trailing whitespace. */
+.kx-clip.kx-wiping { overflow: hidden; }
 .kx-in { display: inline-block; }
 .kx-clip .katex {
   color: var(--ink);

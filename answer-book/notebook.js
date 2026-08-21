@@ -788,6 +788,19 @@
 
   // ═══ typing (board-mvp.html L591-623 harvest, adapted) ═══════════════════
 
+  // A typeset line crops only while it is wiping; this hands the clip back its own
+  // size once the wipe ends. Releasing it matters because the resting width then comes
+  // from the tree's own ink rather than a frozen measurement — and a measurement taken
+  // before the delimiter's KaTeX Size font has loaded is short by the width of the
+  // closing bracket.
+  function kxRest(el, afterMs) {
+    setTimeout(function () {
+      el.classList.remove('kx-wiping');
+      el.style.transition = 'none';
+      el.style.width = '';
+    }, afterMs || 0);
+  }
+
   function typeLines(block, onDone) {
     var targets = [];                    // {el, text} — el receives the chars
     var lineEls = block.querySelectorAll('.line');
@@ -797,6 +810,7 @@
       if (clip) {
         // Freeze the natural width, then collapse it (scrollWidth still reports the
         // content width at width:0, the same trick the pencil wipe uses).
+        clip.classList.add('kx-wiping');       // crops only for the wipe; see kxRest
         targets.push({ el: clip, kx: true, w: clip.scrollWidth,
                        text: clip.getAttribute('data-tex') || '' });
         clip.style.width = '0px';
@@ -824,6 +838,7 @@
         var dur = Math.max(320, Math.min(2400, t.text.length * CHAR_MS));
         t.el.style.transition = 'width ' + dur + 'ms linear';
         t.el.style.width = t.w + 'px';
+        kxRest(t.el, dur);              // release the crop the moment the wipe ends
         li++; ci = 0;
         timer = setTimeout(tick, dur + LINE_GAP_MS);
         return;
@@ -845,7 +860,7 @@
       if (timer) clearTimeout(timer);
       cursor.remove();
       targets.forEach(function (t) {
-        if (t.kx) { t.el.style.transition = 'none'; t.el.style.width = t.w + 'px'; return; }
+        if (t.kx) { kxRest(t.el, 0); return; }
         t.el.textContent = t.text;
       });
       onDone();
@@ -879,10 +894,16 @@
       // to whole rules — the same thing buildFigure does with its height.
       if (lineEls[i].getAttribute('data-render') === 'katex') {
         lh = Math.ceil(lh / 32) * 32;
-        // .kx-clip is overflow:hidden so the wipe has something to clip — which means
-        // an over-wide typeset line would be TRUNCATED with no other symptom. Say so.
+        // A typeset line wider than the page body still overflows visibly and is an
+        // authoring error, so say so. Measure against the CONTENT box: clientWidth
+        // INCLUDES the 56px padding-left that .line.eq/.boxed add, and every matrix
+        // line is eq-styled, so comparing against clientWidth alone silently tolerated
+        // up to 56px of overflow.
         var kc = lineEls[i].querySelector('.kx-clip');
-        if (kc && kc.scrollWidth > lineEls[i].clientWidth + 1) {
+        var lcs = kc ? window.getComputedStyle(lineEls[i]) : null;
+        var avail = lcs ? lineEls[i].clientWidth
+          - parseFloat(lcs.paddingLeft) - parseFloat(lcs.paddingRight) : 0;
+        if (kc && kc.scrollWidth > avail + 1) {
           console.warn('answer-book: typeset line is wider than the page body and will be ' +
             'clipped — shorten the TeX: ' + (kc.getAttribute('data-tex') || ''));
         }

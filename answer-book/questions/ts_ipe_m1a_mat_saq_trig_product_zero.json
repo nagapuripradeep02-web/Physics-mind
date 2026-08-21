@@ -109,7 +109,12 @@
           "cos²θ = sin²φ,  sin²θ = cos²φ,",
           "cos θ sin θ = (−sin φ)(cos φ) = −sin φ cos φ",
           {
-            "text": "\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix} = \\begin{bmatrix} \\sin^2\\phi & -\\sin\\phi\\cos\\phi \\\\ -\\sin\\phi\\cos\\phi & \\cos^2\\phi \\end{bmatrix}",
+            "text": "\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} \\sin^2\\phi & -\\sin\\phi\\cos\\phi \\\\ -\\sin\\phi\\cos\\phi & \\cos^2\\phi \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           }
