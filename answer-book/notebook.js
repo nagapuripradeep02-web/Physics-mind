@@ -1739,8 +1739,22 @@
       for (var i = 0; i < els.length; i++) els[i].textContent = Vidi.getName();
     }
 
+    /** Bubbles render with textContent, so a stray markdown mark would appear on
+        screen as a literal star or hash. The persona forbids markdown; this is the
+        belt-and-braces strip, because a model slip must never reach a student. */
+    function plain(text) {
+      return String(text == null ? '' : text)
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/(^|\s)\*([^*\n]+)\*(?=\s|$|[.,!?])/g, '$1$2')
+        .replace(/`{1,3}([^`]*)`{1,3}/g, '$1')
+        .replace(/^\s{0,3}#{1,6}\s+/gm, '')
+        .replace(/^\s{0,3}[-*+]\s+/gm, '')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    }
+
     function bubble(text, who) {
-      var m = el('div', 'vidi-msg ' + (who || 'tutor'), text);
+      var m = el('div', 'vidi-msg ' + (who || 'tutor'), plain(text));
       threadEl().appendChild(m);
       threadEl().scrollTop = threadEl().scrollHeight;
       return m;
@@ -1959,7 +1973,7 @@
         if (g !== gen) return;
         typing.remove();
         var reply = res.ok && res.body && res.body.reply
-          ? String(res.body.reply)
+          ? plain(res.body.reply)
           : 'I cannot answer that right now. The book still works — keep going.';
         bubble(reply, 'tutor');
         recentMsgs.push({ role: 'tutor', text: reply });

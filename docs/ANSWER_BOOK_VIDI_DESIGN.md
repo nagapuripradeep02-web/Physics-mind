@@ -23,6 +23,38 @@ Quick Learn surface. The teacher product is untouched — **Vidi never appears i
 
 ---
 
+## 0. Persona shakedown — evidence (2026-08-22)
+
+The gates prove the panel renders and the page stays offline; only real model output proves
+the persona. `npm run vidi:server` (localhost mirror of the Edge Function, byte-identical
+PERSONA) + `npm run vidi:shakedown` (15 probes across the §3 question taxonomy) — transcripts
+in `.answerbook_logs/shakedown.md` (gitignored).
+
+**Run 1 found four real defects**, all fixed and re-verified in run 2:
+
+| Defect | Fix |
+|---|---|
+| English question answered in romanised Telugu (P13) | PERSONA: answer in the SAME language the student wrote in; Telugu only when asked in Telugu, and then in Telugu script |
+| Markdown (`**bold**`) leaking into bubbles that render as plain text | PERSONA: plain text only **+** a client-side `plain()` strip in `notebook.js` (defence in depth; unit-checked, does not mangle `3 * 4`) |
+| Replies up to 8 sentences vs the 2–4 rule | PERSONA: never more than 5, with the reason (a phone screen) |
+| Idioms: "the trick is", "you've got this" (Rule 41) | PERSONA: named and banned, with literal replacements |
+
+**Run 2 verdict — the safety-critical behaviours all hold:** out-of-bank question refused and
+noted (never answered) · mark questions answered ONLY from the authored split · a student
+claiming their teacher drops the minus sign is corrected from the bank without insulting the
+teacher · abuse handled calmly · off-topic redirected in one sentence · identity admitted ·
+Telugu code-mix correct (Telugu script, physics terms in English). Residual: 2 of 15 replies
+ran 6 sentences (soft cap 5) — monitored, not blocking. One checker flag on P5 is a FALSE
+POSITIVE: the model summed authored marks (2+1+1=4), which is legitimate; the checker only
+knows per-step values.
+
+**Measured economics (30 billed probes):** ₹0.021/question · prompt-cache hit 26/30 ·
+latency p50 2.0 s / p90 3.2 s · total spend for both runs ₹0.63.
+
+**Not yet proven:** the deployed Edge Function has never served a request (guards, ledger
+writes and `simulation_feedback` telemetry are verified in the local mirror and by code
+review only). That is the last gap before live chat is production-ready.
+
 ## 1. Positioning — one sentence
 
 **The bank is the brain; Vidi is the voice.** Every mark, step, star rank, `why` line, and rubric

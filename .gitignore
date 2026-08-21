@@ -118,3 +118,6 @@ nul
 
 # Answer-book build artifact (build:answers) — not tracked
 /answer-book/dist/
+
+# Vidi local dev logs (shakedown transcripts, usage JSONL, dev-server log)
+.answerbook_logs/

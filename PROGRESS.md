@@ -13,6 +13,21 @@
 - **Tests**: 7 new gates appended (panel+chips+zero-network · tip-chip only-where-authored · verdict math · rename/blocklist/persistence · exam-eve · triage exact counts · phone bottom-sheet). The 3 fleet sweeps were NOT touched (Vidi adds only trivial per-question string work).
 - **Docs**: `docs/patterns/answer_book.md` seam section rewritten as the landed layer; design doc → IMPLEMENTED + the two PENDING founder rulings (Rule 18 amendment · Telugu code-mix carve-out); hosting runbook `docs/notes/answer_book_hosting.md`.
 
+### The persona shakedown — the gap that unit tests cannot close (added same session)
+The founder asked the right question: **is it production ready?** The honest answer was half-yes — the deterministic layer was proven, but the PERSONA had never produced a single real reply. Closed WITHOUT a deploy: `src/scripts/answerbook_vidi_server.ts` is a localhost mirror of the Edge Function carrying a **byte-identical PERSONA** (verified mechanically, 2584 chars), and `src/scripts/vidi_shakedown.ts` drives 15 probes across the design doc's question taxonomy (importance · step-why · memory · how-much · a mark-scheme probe · out-of-bank · new numerical · ESL vocabulary · Telugu · confusion · exam-eve fear · off-topic · identity · abuse · "my sir says otherwise").
+
+**Run 1 found FOUR real defects** — every one invisible to the 33 gates:
+1. **Language mirroring failure** — an ENGLISH question answered in romanised Telugu. The nastiest one, and exactly the kind of thing only real output shows.
+2. **Markdown leaking** — `**bold**` in bubbles that render with `textContent`, so a student would see literal asterisks.
+3. **Length** — replies to 8 sentences against a 2–4 rule (a wall of text on a phone).
+4. **Register** — "the trick is", "you've got this" (Rule 41 idioms).
+
+Fixed in BOTH persona copies + a client-side `plain()` strip (defence in depth; unit-checked, and it does not mangle `3 * 4`). **Run 2: all four gone.** The safety-critical behaviours hold: out-of-bank refused-and-noted, marks answered only from the authored split, the "my sir drops the minus sign" probe corrected from the bank without insulting the teacher, abuse calm, identity admitted, Telugu code-mix in Telugu script with English physics terms. Residual: 2 of 15 replies ran 6 sentences (soft cap 5) — monitored. One P5 flag is a checker FALSE POSITIVE (the model summed authored marks 2+1+1=4; the checker only knows per-step values).
+
+**Measured, not estimated (30 billed probes): ₹0.021/question · prompt-cache hit 26/30 · latency p50 2.0 s / p90 3.2 s · ₹0.63 total for both runs.** Transcripts: `.answerbook_logs/shakedown.md` (gitignored).
+
+**Still unproven:** the DEPLOYED function has never served a request — its guards/ledger/telemetry are verified by the local mirror and code review only. Also recorded: this machine's supabase CLI is logged into `automation-copilot-dev` and cannot see `dxwpkjfypzxrzgbevfnx`, so deploy is dashboard-or-real-terminal (the `!` prefix is non-TTY — the standing scar).
+
 ### Founder steps (nothing deployed — Rule 17)
 (1) `supabase functions deploy answerbook-vidi-chat --no-verify-jwt` + `DEEPSEEK_API_KEY` secret; (2) verify locally per the runbook; (3) host the dist at a real URL + set `AB_ALLOWED_ORIGINS`; (4) review the 179 tips + 12 insider notes; (5) sign the two one-line rulings in the design doc.
 

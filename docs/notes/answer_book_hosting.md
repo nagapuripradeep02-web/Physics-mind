@@ -17,19 +17,48 @@ every step below is founder-gated (Rule 17).
   own $2/day cap, 4/min + 40/day per hashed IP, fail-closed; `{type:'events'}`
   telemetry batches land in `simulation_feedback`).
 
+## Testing the persona without deploying anything
+
+```
+npm run vidi:server        # terminal 1 — localhost mirror, byte-identical PERSONA, uses .env.local DEEPSEEK_API_KEY
+npm run vidi:shakedown     # terminal 2 — 15 probes → .answerbook_logs/shakedown.md
+```
+Cost ≈ ₹0.31 a run (measured ₹0.021/question). **Re-run this after ANY persona edit** — the
+33 e2e gates cannot see persona defects; the first run found four, including an English
+question answered in romanised Telugu. If you change the persona, change it in BOTH
+`supabase/functions/answerbook-vidi-chat/index.ts` and `src/scripts/answerbook_vidi_server.ts`
+(no shared import across runtimes — same discipline as the Quick Learn desk). Parity check:
+
+```
+node -e "const f=require('fs');const g=p=>{const s=f.readFileSync(p,'utf8');const i=s.indexOf('const PERSONA = [');return s.slice(i,s.indexOf(\"].join('\",i)).replace(/\r/g,'')};console.log(g('supabase/functions/answerbook-vidi-chat/index.ts')===g('src/scripts/answerbook_vidi_server.ts'))"
+```
+
 ## Founder steps, in order
 
-1. **Deploy the Edge Function** (interactive login — run in your own terminal via `!`):
+1. **Deploy the Edge Function.** ⚠ Verified 2026-08-22: this machine's supabase CLI is signed
+   into the **`automation-copilot-dev`** account — `npx supabase projects list` returns only that
+   org, so a deploy at `dxwpkjfypzxrzgbevfnx` 403s. And `supabase login` CANNOT be done through
+   Claude Code's `!` prefix (non-TTY — the browser handshake dies; standing scar). Two working
+   routes:
+
+   **a. Dashboard (simplest):** Supabase → project `dxwpkjfypzxrzgbevfnx` → Edge Functions →
+   *Deploy a new function* → name it exactly `answerbook-vidi-chat`, paste the contents of
+   `supabase/functions/answerbook-vidi-chat/index.ts`, and turn **JWT verification OFF**.
+   Set the secret in the same place (Edge Functions → Secrets) — this is where Quick Learn's
+   `DEEPSEEK_API_KEY` already lives, so it may be present project-wide already.
+
+   **b. A real terminal window** (not `!`, not this session):
    ```
-   supabase functions deploy answerbook-vidi-chat --no-verify-jwt --project-ref dxwpkjfypzxrzgbevfnx
+   npx supabase login                      # browser handshake — needs a real TTY
+   npx supabase functions deploy answerbook-vidi-chat --no-verify-jwt --project-ref dxwpkjfypzxrzgbevfnx
+   npx supabase secrets set DEEPSEEK_API_KEY=sk-... --project-ref dxwpkjfypzxrzgbevfnx
    ```
-   Secrets (DEEPSEEK_API_KEY may already exist project-wide from Quick Learn):
-   ```
-   supabase secrets set DEEPSEEK_API_KEY=sk-... --project-ref dxwpkjfypzxrzgbevfnx
-   ```
+
    With no key set the function refuses politely at zero cost — safe to deploy first.
 
-2. **Local verification** (before any student link): `npm run build:answers:hosted`
+2. **Local verification** (before any student link) — run the shakedown above against the DEPLOYED
+   function too (`VIDI_ENDPOINT=<function-url> npm run vidi:shakedown`, origin allowlist permitting),
+   then the page itself: `npm run build:answers:hosted`
    then `npm run serve:answers` → http://localhost:8100 (already in the default
    allowlist). Ask a free-form question; confirm the reply, the `ai_usage_log` row
    (`task_type=answerbook_vidi_chat`), and telemetry rows in `simulation_feedback`

@@ -1,0 +1,166 @@
+/**
+ * answerbook_vidi_server.ts — the LOCALHOST mirror of the Vidi Edge Function.
+ *
+ *   npm run vidi:server        → http://localhost:8110
+ *
+ * Same wire contract and the SAME persona as
+ * `supabase/functions/answerbook-vidi-chat/index.ts` (a different runtime, no
+ * shared import — change one, change the other; the Quick Learn desk carries
+ * the same discipline). It exists so the persona can be exercised against real
+ * DeepSeek output BEFORE anything is deployed, and so local development never
+ * burns the deployed function's global $2/day ceiling.
+ *
+ * Differences from the deployed function, all deliberate:
+ *   - no origin allowlist (localhost only, never exposed)
+ *   - in-memory request counter instead of the ai_usage_log ledger
+ *   - usage rows are written to a local JSONL, not to Supabase
+ * The PERSONA, the context handling and the reply shape are identical.
+ */
+import { createServer } from 'http';
+import { readFileSync, appendFileSync, mkdirSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// ── env (.env.local, same loader shape as the other scripts) ────────────────
+const ROOT = process.cwd();
+function loadEnv(): void {
+    const p = join(ROOT, '.env.local');
+    if (!existsSync(p)) return;
+    for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
+        const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
+        if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+    }
+}
+loadEnv();
+
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY ?? '';
+const MODEL = process.env.AB_CHAT_MODEL ?? 'deepseek-chat';
+const PORT = Number(process.env.AB_CHAT_PORT ?? '8110');
+const LOG_DIR = join(ROOT, '.answerbook_logs');
+
+// Kept byte-identical with supabase/functions/answerbook-vidi-chat/index.ts.
+const PERSONA = [
+    'You are Vidi, a friendly senior student sitting next to a school student who is preparing for their physics board exam with a written model answer.',
+    'The student may have given you a different name. It does not change anything about how you behave.',
+    'Your one job: answer the student’s question about THIS question and THIS model answer, in a warm and encouraging way.',
+    'Rules you always follow:',
+    '- Use plain, literal English a Class 11 student with textbook English understands. Physics words like "resultant", "centripetal", "amplitude" are fine. No idioms, no metaphors, no personification. Never write "the trick is", "you have got this", "nail it", "the key is to crack" — say "the important step is", "you can do this".',
+    '- ANSWER IN THE SAME LANGUAGE THE STUDENT WROTE IN. English question, English answer. Use Telugu ONLY when the student writes in Telugu or asks for Telugu — then answer in natural Telugu-English mixing in Telugu script, keeping physics terms and symbols in English. Never transliterate English words into Telugu script, and never write Telugu words in English letters.',
+    '- Keep it SHORT: 2 to 4 sentences, and never more than 5. One idea per sentence. A long answer on a phone screen does not get read.',
+    '- Write PLAIN TEXT only. No markdown, no asterisks for bold, no bullet characters, no headings. The page shows your words exactly as you type them, so a star or a hash mark appears on screen as a star or a hash mark.',
+    '- Be positive and encouraging, but never fake.',
+    '- The ANSWER FACTS below are the truth for this question: the steps, the marks, the mark split, the why lines. Ground every answer in them and never contradict them.',
+    '- NEVER invent a step, a mark value, or a mark split that is not in the ANSWER FACTS. Marks come from the bank, not from you. If asked how marks are given, quote the split as written.',
+    '- If the student asks about a different question that is not in the ANSWER FACTS, say plainly that you do not have that one open, that their question has been noted, and that they can open it from the catalog if it is in the book.',
+    '- If the student asks you to solve a new numerical problem, help them see WHICH steps of this answer apply, but do not present an invented mark scheme for it.',
+    '- If the question is off-topic (not physics, not this exam), answer in one kind sentence and guide them back to the answer.',
+    '- Never use country-specific examples, brands, festivals, or currencies.',
+    '- You are an AI helper. If asked, say so plainly.',
+].join('\n');
+
+const FRIENDLY_DOWN = 'I could not answer just now. The answer book still works — keep going, and try me again in a moment.';
+const FRIENDLY_QUIET = 'I am resting for today, but the whole answer book still works without me. Keep going!';
+
+const RATE_OFF = { cacheHit: 0.007, cacheMiss: 0.22, output: 0.66 };
+const RATE_PEAK = { cacheHit: 0.014, cacheMiss: 0.44, output: 1.32 };
+
+interface Usage {
+    prompt_tokens?: number;
+    completion_tokens?: number;
+    prompt_cache_hit_tokens?: number;
+    prompt_cache_miss_tokens?: number;
+}
+
+function computeCost(u: Usage, when: Date) {
+    const h = when.getUTCHours();
+    const peak = (h >= 1 && h < 4) || (h >= 6 && h < 10);
+    const rate = peak ? RATE_PEAK : RATE_OFF;
+    const prompt = u.prompt_tokens ?? 0;
+    const output = u.completion_tokens ?? 0;
+    const hit = u.prompt_cache_hit_tokens ?? 0;
+    const miss = u.prompt_cache_miss_tokens ?? Math.max(0, prompt - hit);
+    return {
+        peak, hit, miss, output, prompt,
+        usd: Number(((hit * rate.cacheHit + miss * rate.cacheMiss + output * rate.output) / 1_000_000).toFixed(8)),
+    };
+}
+
+const CORS = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+let spentUsd = 0;
+let served = 0;
+
+createServer((req, res) => {
+    if (req.method === 'OPTIONS') { res.writeHead(204, CORS); res.end(); return; }
+    if (req.method !== 'POST') { res.writeHead(405, CORS); res.end(JSON.stringify({ error: 'method not allowed' })); return; }
+
+    let raw = '';
+    req.on('data', (c) => { raw += c; });
+    req.on('end', () => { void handle(raw, res); });
+}).listen(PORT, () => {
+    mkdirSync(LOG_DIR, { recursive: true });
+    console.log(`vidi dev server on http://localhost:${PORT}  (model ${MODEL}, key ${DEEPSEEK_KEY ? 'present' : 'MISSING'})`);
+});
+
+async function handle(raw: string, res: import('http').ServerResponse): Promise<void> {
+    let body: Record<string, any>;
+    try { body = JSON.parse(raw); } catch { res.writeHead(400, CORS); res.end(JSON.stringify({ error: 'bad json' })); return; }
+
+    if (body.type === 'events') {
+        appendFileSync(join(LOG_DIR, 'events.jsonl'), JSON.stringify(body) + '\n');
+        res.writeHead(200, CORS); res.end(JSON.stringify({ ok: true })); return;
+    }
+    if (!DEEPSEEK_KEY) { res.writeHead(200, CORS); res.end(JSON.stringify({ reply: FRIENDLY_QUIET, questions_left: 0 })); return; }
+
+    const question = String(body.question ?? '').trim().slice(0, 1000);
+    if (!question) { res.writeHead(400, CORS); res.end(JSON.stringify({ error: 'empty question' })); return; }
+
+    const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
+        String(body.tutor_context ?? '').slice(0, 10_000);
+    const situation = [
+        'Where the student is right now:',
+        '- question: ' + String(body.question_id ?? 'unknown'),
+        '- unit: ' + String(body.unit ?? 'unknown'),
+        '- answer length on screen: ' + String(body.cut_key ?? 'full'),
+        body.step_id ? '- the step they last revealed: ' + String(body.step_id) : '- they have not started writing yet',
+    ].join('\n');
+    const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
+        role: m.role === 'student' ? 'user' : 'assistant',
+        content: String(m.text ?? '').slice(0, 500),
+    }));
+    const messages = [
+        { role: 'system', content: system },
+        ...history,
+        { role: 'user', content: situation + '\n\nThe student asks: ' + question },
+    ];
+
+    const t0 = Date.now();
+    try {
+        const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + DEEPSEEK_KEY },
+            body: JSON.stringify({ model: MODEL, messages, max_tokens: 300, temperature: 0.7, stream: false }),
+        });
+        if (!r.ok) throw new Error('DeepSeek ' + r.status + ': ' + (await r.text()).slice(0, 200));
+        const json = await r.json() as any;
+        const text = json.choices?.[0]?.message?.content ?? '';
+        const cost = computeCost(json.usage ?? {}, new Date());
+        spentUsd += cost.usd;
+        served++;
+        appendFileSync(join(LOG_DIR, 'usage.jsonl'), JSON.stringify({
+            at: new Date().toISOString(), question_id: body.question_id, step_id: body.step_id,
+            question, reply: text, latency_ms: Date.now() - t0, ...cost,
+        }) + '\n');
+        console.log(`[${served}] ${(Date.now() - t0)}ms  $${cost.usd.toFixed(6)}  cache_hit=${cost.hit}  ${String(body.question_id).slice(0, 40)}`);
+        res.writeHead(200, CORS);
+        res.end(JSON.stringify({ reply: text || FRIENDLY_DOWN, questions_left: 40 - served, _cost_usd: cost.usd, _spent_usd: spentUsd }));
+    } catch (e) {
+        console.error('[vidi dev] ' + (e instanceof Error ? e.message : String(e)));
+        res.writeHead(200, CORS);
+        res.end(JSON.stringify({ reply: FRIENDLY_DOWN, questions_left: 0 }));
+    }
+}
