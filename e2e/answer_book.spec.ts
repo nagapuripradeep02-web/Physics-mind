@@ -606,7 +606,12 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
                 .filter((c) => c.hasAttribute('href')).length,
             soonChips: [...document.querySelectorAll('.cat-card.soon .cc-chip')]
                 .every((c) => c.textContent === 'Not written yet'),
-            pill: document.querySelector('.cat-count')!.textContent,
+            // One pill per unit, each counting ITS OWN unit — the whole-book total
+            // lives in catSub. Reading only the first pill and comparing it to the
+            // global count passed by coincidence while there was exactly one unit.
+            expectedPills: units.map((u: any) =>
+                u.questions.filter((e: any) => e.question_id).length + ' of ' + u.questions.length + ' ready'),
+            pills: [...document.querySelectorAll('.cat-count')].map((p) => p.textContent),
             sub: document.getElementById('catSub')!.textContent,
         };
     });
@@ -616,8 +621,8 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
     expect(r.soon).toBe(r.entries - r.ready);           // unauthored render as coming-soon
     expect(r.soonHrefs).toBe(0);                        // and never as links
     expect(r.soonChips).toBe(true);
-    expect(r.pill).toContain(r.ready + ' of ' + r.entries + ' ready');
-    expect(r.sub).toContain(r.ready + ' answers ready');
+    expect(r.pills).toEqual(r.expectedPills);           // per-unit pills, one each, in order
+    expect(r.sub).toContain(r.ready + ' answers ready'); // whole-book total
 });
 
 test('qtype filter chips match on the section alone, with true counts', async ({ page }) => {

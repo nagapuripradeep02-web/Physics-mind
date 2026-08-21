@@ -158,8 +158,13 @@
       (question.verification && question.verification.needs_teacher_verification);
     vn.hidden = !unverified;
     if (unverified) {
+      // The subject word follows the question: this surface now serves physics and
+      // mathematics from one build, and 'the physics' on a maths page is a false
+      // statement about what was checked.
+      var subjectWord = question.subject === 'mathematics' ? 'mathematics'
+        : question.subject === 'chemistry' ? 'chemistry' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
-        'The physics and the method are checked; the exact split is a claim.';
+        'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
     }
   }
 
