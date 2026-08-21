@@ -118,3 +118,13 @@ nul
 
 # Answer-book build artifact (build:answers) — not tracked
 /answer-book/dist/
+
+# rbr probe outputs (desk A, rotmech): assembled sim HTML + captures. The
+# PROBES themselves are tracked under src/scripts/_scratch_rbr_*.ts — only
+# their generated artifacts are ignored.
+/.scratch_rbr_formula/
+/.scratch_rbr_e4/
+/.scratch_rbr_e5/
+/.scratch_rbr_narr/
+/.scratch_rbr_theta/
+/.scratch_rbr_a28/
