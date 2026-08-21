@@ -1,5 +1,49 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📘 SESSION — Answer Book: **UNIT 8 "OSCILLATIONS" (19/19) — and the AP paper caught a hole in yesterday's sweep** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: five chapters, 135 catalog entries, 130 files. Unit 8 ships 8 asked entries (3 LAQ + 2 SAQ + 3 VSAQ over 7 files, four new figures, one `cuts[]` pair) plus 11 predicted lean cards. Both source books were read page by page on the founder's instruction — and that instruction paid immediately: reading the March-2026 AP paper directly turned up a UNIT 4 question neither book lists and the Unit 4 sweep had dropped. The back-test as written was too weak, and is now corrected.**
+
+### The two-book check: Unit 8 is the Unit 6 shape
+The TSBIE BLM's Unit 8 (book pp.21–24) carries **exactly the three Long Answer questions and nothing else** — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the 3 VSAQ + 2 SAQ list is the Fastrack's alone (pp.23–27). The books also **number the LAQs differently** (Fastrack: 1 = pendulum, 2 = projection; BLM: the reverse) — same three questions, different order. The manifest follows the Fastrack, as every unit does, because the star ranks and section numbers are the Fastrack's.
+
+**A real `cuts[]` pair, the third in the book.** The Fastrack asks the SHM definition *alone* as Short Answer 1 (4M) and the definition *plus* the projection proof as Long Answer 2 (8M). One authored step list at two lengths — `ts_ipe_p1_osc_shm_definition_projection` is the root with `laq` and `saq` cuts, the `saq` cut carrying its own `question_text`. Coherence checked by hand: the 4-mark cut is definition + examples, self-contained, no dangling reference to the hidden proof.
+
+### The finding that matters: a back-test can pass and still be too weak
+Reading the AP March-2026 scan directly (rather than the transcription of it) surfaced **Section A question 7 — "When are two vectors said to be equal vectors?"** That is a **Unit 4** question. Neither source book lists it. And the Unit 4 enumeration sweep — run *earlier the same day* — had "equal vectors" in its object inventory and **dropped the cell when choosing what to author.**
+
+The archetype set held: define-X × equal-vectors is inside the grid. The **selection from the grid** was too tight. So:
+
+> **Back-testing the archetype set is not back-testing the output.** "Every asked question falls inside the grid" is a statement about the grid. When a real paper is in the corpus, diff the sweep's authored list against that paper question by question.
+
+Recorded in `docs/patterns/answer_book.md` as a standing step, and the card is authored: `ts_ipe_p1_vec_equal_vectors`, Unit 4 vsaq17.
+
+**It needed a third provenance.** That card is neither `blm` nor `enumerated` — it was *asked*, just not by either book. It ships as **`source: "ap_2026_paper"`** with `appearances: [{year: 2026, q_no: 7, board: 'ap_ipe'}]` and renders "Asked: AP 2026". `notebook.js` branches only on `source === 'enumerated'`, so an unknown source falls through to the asked-chip path and needed **no code change** — worth knowing before a fourth value is added.
+
+### PROBLEMS, deferred, keep turning out to have been examined
+Unit 8 has six Fastrack problems. Still deferred per the founder's 2026-08-20 call — but **problem 2 (energy when the amplitude is doubled) is the exact what-if the AP 2026 paper asked**, and is authored here as a predicted VSAQ rather than left in the pile. That is **two for two** (Unit 6 problem 3 carries printed years "Mar, May-14"). The deferral stands; the evidence against it is now a pattern rather than an anecdote.
+
+### The sweep
+11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory · amplitude doubled · where v and a are maximum · seconds pendulum standalone · the force law and its minus sign · resonance · the pendulum in a lift — and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. **Unit 8 has the thinnest asked core of any unit (8), so here the predicted tail is LARGER than the core** — a property of the chapter, not of the method.
+
+### The label gate caught two rounds the local pre-check called clean
+Four figures were authored (spring, pendulum, reference circle, energy graph). A local geometric pre-check reported no overlaps; the browser gate then caught `P`/`ω` on the reference circle and, after that fix, `mg sin θ` against both `O` and `x` on the pendulum. The reason is worth knowing: the gate measures `getBoundingClientRect()` on the **rendered** `<text>`, and the SVG is **scaled** to the page — a gap in figure units shrinks on screen while the font does not. **Empirical rule now recorded: ≥ 40 figure units of vertical clearance between labels whose horizontal extents overlap.** Pre-checks triage; the gate decides.
+
+### Verification (measured)
+`build:answers` → **32/32 · 29/29 · 22/22 · 33/33 · 19/19**, drift clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **26/26 across 130 questions (9.1 min)** · `npx tsc --noEmit` **0** · a Rule-41 register scan over the 19 new cards caught 8 more idioms ("so violent", "the body gives up its own frequency", "it answers", "as though gravity had become stronger") — all rewritten literally. **Sweep headroom: 126 s / 132 s / 144 s of their 240 s budgets** at 130 questions — roughly two more units before the next deliberate raise.
+
+### Files
+`answer-book/units.json` (Unit 8 block + 11 enumerated + Unit 4 vsaq17 + all findings in the comment) · 19 new `answer-book/questions/ts_ipe_p1_osc_*.json` + `ts_ipe_p1_vec_equal_vectors.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 3 — Unit 8"). **No platform file touched.** Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the four Unit-8 figures** — the pendulum with both weight components especially, and the reference circle (it carries the whole proof). `npm run serve:answers` → `http://localhost:8100`. Check **print** on all three LAQs.
+2. **The predicted ratio is now 55 of 135 entries (41%).** Open founder question from the last session, sharper now: does the predicted tail need its own filter chip so the asked core stays the default view?
+3. **Unit 9 "Gravitation"** next (BLM pp.25+ opens with SAQs; Fastrack pp.27+). Run the union check and the sweep together, and **diff the sweep's output against the AP 2026 paper** — Section A question 8 is "State Kepler's law of areas", so that chapter has a known asked cell waiting.
+4. **The full AP March-2026 paper is still wanted** — only page 1 of 3 is in the corpus, and page 1 alone just paid for itself twice.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap · the vault sync, still drafted and unwritten.
+
+---
+
 ## 📗 SESSION — Answer Book: **the ENUMERATION SWEEP reaches Units 4, 5 and 6 — and the union check FLIPS** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: the Session-89 doctrine has now been applied to every chapter in the book, not just the one it was invented on. The three already-complete chapters — Motion in a Plane, Laws of Motion, Work Power Energy — were re-sourced against both books and then swept: +11, +12 and +10 predicted lean cards, honestly badged. Four chapters, 115 catalog entries, 111 files, 44 of them predicted. The interesting finding is the SOURCING one: in these three units the TSBIE Basic Learning Material is a strict SUBSET of the Fastrack, the exact opposite of Unit 7 — so the two-book check earns its keep by giving a DIFFERENT answer per unit, not by always finding something.**

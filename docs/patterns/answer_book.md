@@ -547,6 +547,46 @@ and the grid for Unit 6 proposes the vector product, which is Unit 7 SAQ 2. Both
 the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own
 placement. **Sweep a chapter against the whole bank, not against its own unit.**
 
+### Run 3 — Unit 8 (2026-08-21): the back-test was too weak, and a real paper proved it
+
+Unit 8 Oscillations was built from both books read page by page (Fastrack pp.23–27, BLM pp.21–24).
+The union came back the **Unit 6 shape**: the BLM carries exactly the three LAQs and nothing else,
+so both books agree on the 8-mark set and the 3 VSAQ + 2 SAQ list is the Fastrack's alone. 8 asked
+entries — the thinnest asked core of any unit — plus 11 predicted, so here the tail is larger than
+the core. That is a property of the chapter, not of the method.
+
+**The correction this run forced.** The back-test as written asks: *does every question a real paper
+asked fall INSIDE the archetype grid?* Unit 8 passed it, as every unit has. But reading the March-2026
+AP paper directly turned up **Section A question 7, "When are two vectors said to be equal vectors?"** —
+a **Unit 4** question that neither source book lists, and that the Unit 4 sweep run *earlier the same
+day* did not author. "Equal vectors" was in that sweep's object inventory; the cell was dropped when
+selecting what to author. The archetype set held perfectly. The **selection from the grid** did not.
+
+> **Back-testing the archetype set is not back-testing the output.** When a real paper is in the
+> corpus, diff the sweep's authored list against that paper question by question. "Everything asked
+> falls inside the grid" is a statement about the grid; it says nothing about what you actually wrote.
+
+**A third provenance appeared with it.** That card is neither `blm` nor `enumerated` — it was *asked*,
+just not by either book. It ships as `source: "ap_2026_paper"` with a real `appearances` entry.
+`notebook.js` branches only on `source === 'enumerated'`, so an unknown source value falls through to
+the asked-chip path and needed no code change — but that is a property worth knowing before adding a
+fourth.
+
+**PROBLEMS, deferred, keep turning out to be examined.** Unit 6 problem 3 carries printed years;
+Unit 8 problem 2 (energy when the amplitude is doubled) is the what-if the AP 2026 paper asked, and is
+authored here as a predicted VSAQ rather than left in the deferred pile. Two for two. The founder's
+2026-08-20 deferral stands, but the evidence against it is now a pattern, not an anecdote.
+
+**The browser label gate earns its place on every new figure.** Four figures were authored for Unit 8
+(spring, pendulum, reference circle, energy graph) with a local geometric pre-check that reported
+clean. The browser gate still caught two rounds of collisions — `P`/`ω` on the reference circle, then
+`mg sin θ` against both `O` and `x` on the pendulum. The reason the pre-check was wrong is worth
+knowing: the gate measures `getBoundingClientRect()` on the RENDERED `<text>`, and the SVG is scaled
+to the notebook page, so a gap expressed in figure units shrinks on screen while the font does not.
+**Empirical rule: leave ≥ 40 figure units of vertical clearance between any two labels whose
+horizontal extents overlap** (28 was not enough at these figure widths). Pre-checks triage; the gate
+decides.
+
 ## The term-pack design (designed Session 89 — NOT built)
 
 The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE
