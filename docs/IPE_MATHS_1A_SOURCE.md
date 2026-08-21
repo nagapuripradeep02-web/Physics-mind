@@ -101,7 +101,9 @@ building twice.)
 5. **Products are written with the middle dot** (`1·2·3`, `3·5⁽²ⁿ⁺¹⁾`), not the book's period
    (`1.2.3`, `3.5^(2n+1)`). Both characters are in Kalam; the period reads as a decimal to a
    student who has not met the convention, and `3.5` is genuinely ambiguous. The exam paper uses
-   the period, so this is a deliberate clarification, not a transcription — worth a teacher's view.
+   the period, so this is a deliberate clarification, not a transcription.
+   **SETTLED — founder decision 2026-08-21: the middle dot stands, on student clarity.** No longer
+   an open teacher question; do not revert it to the book's period in any future unit.
 6. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
    there, unlike the physics Fastrack which starred every question. Do not imply per-question rank.
 7. **The book prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages.**

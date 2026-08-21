@@ -1,0 +1,327 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_square_cyclic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Show that the square of the determinant with rows (a, b, c), (b, c, a) and (c, a, b) equals the determinant with rows (2bc−a², c², b²), (c², 2ac−b², a²) and (b², a², 2ab−c²), and that both equal (a³+b³+c³−3abc)².",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand Δ and square it",
+      "marks": 3
+    },
+    {
+      "label": "Multiply Δ by Δ to reach the second determinant",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 3 Matrices, answer 16. The book labels it 'I'm different but not difficult' because it is the only determinant question in the chapter that is proved in two independent halves rather than one chain. The mark split is PRINTED in that book's margin as [3 Marks] against the first half and [4 Marks] against the second — a sourced 3+4. Appearances are printed board-split (AP 17,19 · TS 18; the book prints 'TS 18,18', read here as the single year 2018). Star rank is the CHAPTER's ★★★, not this question's. The book's own margin note calls the column interchange 'very crucial', and it is: the whole second half turns on it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this one — say what the two halves of the proof are, and what you do to one determinant before multiplying.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Name the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own, but it decides how readable the rest is. This question is proved in TWO separate halves that meet at the end, so both halves need a short name to refer back to.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let Δ be the given determinant:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the cyclic determinant is named Δ before anything else happens. Naming it is full credit.",
+          "accept": [
+            "let delta be the determinant with rows a b c then b c a then c a b",
+            "call the given determinant delta first",
+            "name the cyclic determinant delta",
+            "modata daanini delta ani peru pettali",
+            "take delta as the determinant in the question"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "delta",
+            "determinant",
+            "cyclic"
+          ]
+        },
+        "why": "Unlike every other determinant question in this chapter, this one does not run as a single chain of operations. It proves two things separately and joins them, so the notation has to carry that.",
+        "common_mistakes": [
+          "Trying to turn the left determinant into the right one by row operations; that route does not work here."
+        ]
+      },
+      {
+        "id": "s2_expand_delta",
+        "kind": "equation",
+        "label": "Expand Δ",
+        "marks": 3,
+        "mark_note": "Value of Δ",
+        "margin_note": "Three of the seven marks — the first half of the proof, complete on its own. Expand along the top row, collect the terms, and notice that abc appears three times. The minus sign in front matters less than you might expect, because Δ is about to be squared.",
+        "lines": [
+          "Expanding along R₁:",
+          "Δ = a(bc − a²) − b(b² − ac) + c(ab − c²)",
+          "= abc − a³ − b³ + abc + abc − c³",
+          "= −(a³ + b³ + c³ − 3abc)",
+          "Squaring both sides:",
+          "Δ² = (a³ + b³ + c³ − 3abc)²   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ is expanded to give −(a³+b³+c³−3abc), and that squaring it removes the minus sign to give (a³+b³+c³−3abc)². The three abc terms must be accounted for.",
+          "accept": [
+            "expand delta along the first row to get minus a cubed plus b cubed plus c cubed minus three abc then square it",
+            "delta comes out as minus of a cube plus b cube plus c cube minus three abc and squaring kills the minus",
+            "expanding gives three abc terms and the three cubes so delta is minus that expression and delta squared is that expression squared",
+            "expand cheste minus a cube plus b cube plus c cube minus three abc vasthundi, square cheste minus poddu",
+            "delta equals negative a cubed plus b cubed plus c cubed minus three abc so delta squared is the positive square"
+          ],
+          "reject": [
+            "expand the determinant",
+            "delta squared is the answer",
+            "square the determinant"
+          ],
+          "heard_as": [
+            "a cubed plus b cubed plus c cubed",
+            "three abc",
+            "delta squared",
+            "expand",
+            "minus"
+          ]
+        },
+        "why": "a³+b³+c³−3abc is a standard expression and this determinant is its usual disguise. Recognising it saves the whole first half of the question.",
+        "common_mistakes": [
+          "Collecting only one abc instead of three.",
+          "Dropping the minus sign before squaring, which happens to give the same answer and hides the error until the next question.",
+          "Expanding along a row other than the first and losing track of the sign pattern."
+        ]
+      },
+      {
+        "id": "s3_write_as_product",
+        "kind": "equation",
+        "label": "Write Δ² as Δ times Δ",
+        "marks": 0,
+        "margin_note": "The second half starts here. Δ² means the same determinant multiplied by itself — two determinants side by side, which is what lets the row-by-row multiplication rule be used.",
+        "lines": [
+          "Again, Δ² = Δ · Δ",
+          {
+            "text": "\\Delta^2 = \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ² is rewritten as the product of two copies of the same determinant, so the multiplication rule can be applied.",
+          "accept": [
+            "write delta squared as delta times delta two determinants side by side",
+            "delta squared means the determinant multiplied by itself",
+            "take delta into delta so we can use determinant multiplication",
+            "delta square ante delta into delta, rendu determinants",
+            "put two copies of the determinant next to each other"
+          ],
+          "reject": [
+            "square it",
+            "multiply the determinants",
+            "delta squared"
+          ],
+          "heard_as": [
+            "delta squared",
+            "delta into delta",
+            "product",
+            "multiply"
+          ]
+        },
+        "why": "Determinants multiply row-by-row. Nothing about the second half works until Δ² is written as an actual product of two determinants.",
+        "common_mistakes": [
+          "Squaring each entry of the determinant, which is not what Δ² means."
+        ]
+      },
+      {
+        "id": "s4_interchange",
+        "kind": "equation",
+        "label": "Interchange C₂ and C₃",
+        "marks": 2,
+        "mark_note": "Column interchange",
+        "margin_note": "The step the book itself calls crucial. Swapping two columns changes the SIGN of a determinant, so a minus appears — and that minus is then absorbed into column 1 as three −1s. Without this swap the multiplication gives the wrong entries.",
+        "lines": [
+          "Interchanging C₂ and C₃ in the first determinant",
+          "changes its sign:",
+          {
+            "text": "\\Delta^2 = -\\begin{vmatrix} a & c & b \\\\ b & a & c \\\\ c & b & a \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Taking the minus into C₁ of the first:",
+          {
+            "text": "\\Delta^2 = \\begin{vmatrix} -a & c & b \\\\ -b & a & c \\\\ -c & b & a \\end{vmatrix} \\cdot \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That columns 2 and 3 of the first determinant are swapped, that this changes its sign, and that the minus is then taken into the first column.",
+          "accept": [
+            "interchange column two and column three in the first determinant which changes the sign",
+            "swap the second and third columns so a minus sign comes out and put that minus into the first column",
+            "apply C two three on the first determinant, the sign flips, then absorb the minus in column one",
+            "column two and three swap cheste sign marutundi, aa minus ni first column loki teesukuntam",
+            "exchange the two columns and carry the resulting minus into the first column entries"
+          ],
+          "reject": [
+            "do a column operation",
+            "change the columns",
+            "swap the rows"
+          ],
+          "heard_as": [
+            "interchange",
+            "swap",
+            "column two and three",
+            "sign changes",
+            "minus"
+          ]
+        },
+        "why": "Interchanging two columns multiplies a determinant by −1. Here that is not a nuisance — it is deliberately introduced, because it is exactly what makes the products come out as 2bc−a² instead of something with the wrong sign.",
+        "common_mistakes": [
+          "Swapping the columns and forgetting the sign change.",
+          "Putting the minus outside and then forgetting it during the multiplication.",
+          "Swapping rows instead of columns; either works, but only if the sign is handled."
+        ]
+      },
+      {
+        "id": "s5_multiply",
+        "kind": "equation",
+        "label": "Multiply row by row",
+        "marks": 2,
+        "mark_note": "Product determinant",
+        "margin_note": "Multiply row 1 of the first by row 1 of the second for the top-left entry, and so on. First entry: (−a)(a) + c(b) + b(c) = −a² + 2bc. Every entry falls out the same way.",
+        "lines": [
+          "Multiplying row by row:",
+          "(−a)(a) + c(b) + b(c) = 2bc − a²",
+          "(−a)(b) + c(c) + b(a) = c²",
+          "(−a)(c) + c(a) + b(b) = b²",
+          "The other rows give the same pattern:",
+          {
+            "text": "\\Delta^2 = \\begin{vmatrix} 2bc-a^2 & c^2 & b^2 \\\\ c^2 & 2ac-b^2 & a^2 \\\\ b^2 & a^2 & 2ab-c^2 \\end{vmatrix} \\quad \\text{…(2)}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two determinants are multiplied row by row, and that this produces the second determinant given in the question. At least one entry should be traced.",
+          "accept": [
+            "multiply row by row so the first entry is minus a into a plus c into b plus b into c which is two bc minus a squared",
+            "use row into row multiplication and the product determinant is the one given in the question",
+            "multiply the rows of the first with the rows of the second to get two bc minus a square in the corner",
+            "row into row multiply cheste two bc minus a square vasthundi first entry",
+            "take each row against each row and you get the second determinant"
+          ],
+          "reject": [
+            "multiply them",
+            "get the product",
+            "multiply the determinants"
+          ],
+          "heard_as": [
+            "row by row",
+            "two bc minus a squared",
+            "product",
+            "multiply"
+          ]
+        },
+        "why": "Two determinants of the same size can be multiplied row by row exactly like matrices. The −a in column 1 is what turns −a² + bc + bc into 2bc − a².",
+        "common_mistakes": [
+          "Multiplying entry by entry instead of row by row.",
+          "Forgetting the minus signs put into column 1 in the previous step.",
+          "Collecting bc once instead of twice in the first entry."
+        ]
+      },
+      {
+        "id": "s6_conclude",
+        "kind": "boxed_final",
+        "label": "Join the two halves",
+        "marks": 0,
+        "margin_note": "No separate mark — the seven are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
+        "lines": [
+          "From (1) and (2), both equal Δ²:",
+          {
+            "text": "Δ² = (a³ + b³ + c³ − 3abc)² = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That results (1) and (2) are both equal to Δ², so the two right-hand sides are equal to each other and the question is answered.",
+          "accept": [
+            "from one and two both are equal to delta squared so the result is proved",
+            "the two results join because each of them equals delta squared",
+            "combining the first half and the second half gives the required equality",
+            "one and two rendu delta square ki equal so proved",
+            "both halves equal delta squared so all three expressions are equal"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so it is proved"
+          ],
+          "heard_as": [
+            "from one and two",
+            "delta squared",
+            "proved",
+            "both halves"
+          ]
+        },
+        "why": "The question asked for a chain of three equal things. Proving the two ends separately only answers it once you say out loud that they meet at Δ².",
+        "common_mistakes": [
+          "Ending after the multiplication and never referring back to result (1).",
+          "Writing 'hence proved' with no line naming what was joined."
+        ]
+      }
+    ]
+  }
+}
