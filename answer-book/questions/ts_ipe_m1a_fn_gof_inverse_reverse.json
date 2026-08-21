@@ -1,0 +1,168 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gof_inverse_reverse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 1, "name": "Functions" },
+  "chapter": "Functions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If f: A→B, g: B→C are two bijective functions then prove that (gof)⁻¹ = f⁻¹og⁻¹.",
+  "appearances": [
+    { "year": 2020, "board": "ts_ipe" },
+    { "year": 2016, "board": "ts_ipe" },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2016, "board": "ap_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Both sides have the same domain", "marks": 3 },
+    { "label": "Both sides give the same value", "marks": 4 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would prove the reverse law for inverses — the two things you have to check, and how each one goes.",
+  "answer": {
+    "page_header": ["Section C — Long Answer Question", "Functions · 7 marks"],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. It fixes the two sides you are comparing, so the examiner can see you know what has to match.",
+        "lines": [
+          { "text": "Given:", "style": "heading" },
+          "f: A→B and g: B→C are bijective functions.",
+          "To prove: (gof)⁻¹ = f⁻¹og⁻¹",
+          "Two functions are equal when they have the",
+          "same domain and the same value everywhere."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That proving two functions equal needs two things: the same domain, and the same value at every point. Naming only one is partial — confidence 0.5 or lower.",
+          "accept": [
+            "to show two functions are equal check they have the same domain and the same value at every point",
+            "given f and g are bijections and we prove the inverse of gof equals f inverse composed with g inverse",
+            "first the domains must match then the values must match for every c",
+            "rendu functions equal avvalante domain same undali and value same undali",
+            "we compare domain first and then the value at each element"
+          ],
+          "reject": ["first I write the given", "I write the question", "both are functions"],
+          "heard_as": ["domain", "bijective", "bijection", "inverse", "g inverse", "f inverse", "gof"]
+        },
+        "why": "Function equality is not obvious — two formulas can agree on values and still be different functions if their domains differ. Saying the test out loud is what makes the rest of the answer a proof.",
+        "common_mistakes": [
+          "Jumping straight to the algebra without saying what equality of functions means.",
+          "Checking only the values and never the domain."
+        ]
+      },
+      {
+        "id": "s2_domains",
+        "kind": "equation",
+        "label": "Same domain",
+        "marks": 3,
+        "mark_note": "Domains",
+        "margin_note": "Three of the seven marks. Show that each side is a bijection from C to A. Write both lines — one for each side.",
+        "lines": [
+          { "text": "Part 1 — the two sides have the same domain", "style": "heading" },
+          "gof: A→C is a bijection,",
+          "so (gof)⁻¹: C→A is also a bijection.",
+          "f⁻¹: B→A and g⁻¹: C→B are bijections,",
+          "so f⁻¹og⁻¹: C→A is also a bijection.",
+          "∴ (gof)⁻¹ and f⁻¹og⁻¹ both have domain C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof is a bijection so (gof)⁻¹ goes C to A, and that f⁻¹ and g⁻¹ are bijections so f⁻¹og⁻¹ also goes C to A — therefore both sides share the domain C.",
+          "accept": [
+            "gof is a bijection so its inverse goes from C to A and f inverse and g inverse compose to a map from C to A so both have domain C",
+            "both sides are bijections from C to A therefore the domains are the same",
+            "the inverse of gof is from C to A and f inverse g inverse is also from C to A same domain C",
+            "rendu sides C nunchi A ki velthai so domain same",
+            "check the arrows both sides start at C and end at A"
+          ],
+          "reject": ["the domains are the same", "I show the domains match", "both are from C to A because they are inverses"],
+          "heard_as": ["domain", "C to A", "bijection", "inverse of gof", "f inverse g inverse"]
+        },
+        "why": "The inverse of a bijection is itself a bijection, and it runs backwards. Tracking which set each map starts from is what makes both sides land on C.",
+        "common_mistakes": [
+          "Writing the composition in the wrong order, g⁻¹of⁻¹, which does not even have the right domain.",
+          "Asserting the domains match without showing each side is a bijection C→A."
+        ]
+      },
+      {
+        "id": "s3_values",
+        "kind": "equation",
+        "label": "Same value",
+        "marks": 4,
+        "mark_note": "Values",
+        "margin_note": "Four of the seven marks — the bigger half. Number your three facts (1), (2), (3) and quote the numbers when you use them. The examiner follows the numbers.",
+        "lines": [
+          { "text": "Part 2 — the two sides give the same value", "style": "heading" },
+          "f(a) = b ⇒ a = f⁻¹(b)   …(1)",
+          "g(b) = c ⇒ b = g⁻¹(c)   …(2)",
+          "(gof)(a) = c ⇒ a = (gof)⁻¹(c)   …(3)",
+          "Now (f⁻¹og⁻¹)(c) = f⁻¹[g⁻¹(c)]",
+          "        = f⁻¹(b)   (from (2))",
+          "        = a   (from (1))   …(4)",
+          "∴ (gof)⁻¹(c) = (f⁻¹og⁻¹)(c) for all c ∈ C,",
+          "   from (3) and (4)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Take any c in C, unwind g⁻¹ to b and f⁻¹ to a, and separately note that (gof)⁻¹(c) is that same a — so both sides give a. The two chains must be tied together at the end.",
+          "accept": [
+            "take c in C then g inverse of c is b and f inverse of b is a so f inverse g inverse of c is a and gof inverse of c is also a so they are equal",
+            "start from c work back to b then to a and show both sides give the same a",
+            "since f of a is b and g of b is c the inverse of gof sends c back to a and the composition of inverses also sends c to a",
+            "c teeskoni g inverse tho b vasthundi f inverse tho a vasthundi rendu sides a ne isthai",
+            "both sides evaluated at c give a therefore the functions are equal"
+          ],
+          "reject": ["then I show the values are equal", "the values match", "it follows from the definition of inverse"],
+          "heard_as": ["c in C", "f inverse", "g inverse", "gof inverse", "for all c", "equal"]
+        },
+        "why": "Applying f⁻¹og⁻¹ to c walks backwards along the same path that f then g walked forwards. That is why the composition of the inverses reverses the order.",
+        "common_mistakes": [
+          "Applying f⁻¹ before g⁻¹ — the outer function g must be undone first.",
+          "Never stating 'for all c ∈ C', which is what turns two values into an equality of functions.",
+          "Using facts (1), (2), (3) without saying which line each step came from."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 0,
+        "margin_note": "No separate mark, but the last line must be the thing the question asked for.",
+        "lines": [
+          "Same domain and same value everywhere.",
+          "∴ (gof)⁻¹ = f⁻¹og⁻¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both tests passed — same domain and same values — so the two functions are equal.",
+          "accept": [
+            "same domain and same values so the inverse of gof equals f inverse composed with g inverse",
+            "both conditions hold therefore the two functions are equal",
+            "hence gof inverse equals f inverse g inverse",
+            "domain same value same so equal",
+            "we proved both parts so the result follows"
+          ],
+          "reject": ["hence proved", "that is the answer", "so it is proved"],
+          "heard_as": ["equal", "hence", "therefore", "same domain", "same value"]
+        },
+        "why": "The question asked you to prove an equality of functions, so the final line should state that equality, not just the last calculation.",
+        "common_mistakes": ["Ending on the value calculation and never writing the equality."]
+      }
+    ]
+  }
+}

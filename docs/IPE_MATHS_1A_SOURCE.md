@@ -96,20 +96,23 @@ building twice.)
 5. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
    there, unlike the physics Fastrack which starred every question. Do not imply per-question rank.
 
-## Open — decide before these bite
+## Open items — status
 
-1. **The engine cannot draw a matrix.** `lineSchema` is a flat string with a
-   `heading|normal|indent|eq|boxed` style; there is no stacked layout and no KaTeX.
-   Matrices is **Q3, Q4, Q11, Q20, Q21 — 5 of 24 questions, ~22 of 75 marks** and every one needs a
-   3×3 array. `docs/patterns/answer_book.md` scoped the fix (per-line `render: "katex"` + width-clip
-   reveal) and deferred it with "Not before"; Maths-1A is where "before" arrives. Founder decision
-   2026-08-21: **author around it first** — Functions, Induction, Trig, Vectors, Properties of
-   Triangles need nothing new. Same family: capital-letter subscripts (`I_A`, `I_B`) have no Unicode
-   form, so the two pending identity-function LAQs will need this too.
-2. **The catalog has no subject dimension.** `units.json` is a flat `units[]`; maths Unit 1 and a
-   future physics Unit 1 would render as two "Unit 1" cards in one list, and the qtype chip counts
-   merge across subjects. The notebook header *does* show a `Mathematics` chip, so a question is
-   never ambiguous once opened — only the catalog is.
-3. **Coverage of this unit is partial.** `units.json` Unit 1 lists the four LAQs from book pp.14-15
-   only. The Functions VSAQs (book pp.79-81) are not read yet, so it is not the complete inventory
-   the manifest comment otherwise promises.
+1. ~~**The engine cannot draw a matrix.**~~ **RESOLVED 2026-08-21** (founder: use KaTeX).
+   Lines opt in with `render: "katex"`, typeset at build time and revealed by a width
+   wipe — `docs/patterns/answer_book.md` §Mechanism 3. This also solved the capital-letter
+   subscript problem, so the Functions identity LAQs are authored, not blocked. Matrices
+   (Q3, Q4, Q11, Q20, Q21) are now unblocked; they were never attempted before the
+   mechanism existed.
+2. ~~**The catalog has no subject dimension.**~~ **RESOLVED 2026-08-21** (founder: make a
+   mathematics dimension). Units carry `subject`; the chip row appears from the second
+   subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
+   is no longer a display problem — the two are filed under different subjects — though
+   they would still both read "Unit 1" under *All subjects*.
+3. **Coverage of Unit 1 is partial.** Its LAQ section is complete (4 of 4, book pp.14-15).
+   The Functions VSAQs (book pp.79-81) are not read yet, so the unit is not the full
+   inventory `units.json` otherwise promises.
+4. **Plain-text identity notation is `I_A`/`I_B`** in chrome fields (question_text,
+   manifest text, mark_split labels) — the chrome is Inter, not the hand, and the
+   underscore is the unambiguous plain-text convention. Real subscripts appear on the
+   notebook page via KaTeX.
