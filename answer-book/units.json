@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — they will COLLIDE with physics unit numbers once physics opens its Units 1-3, because this manifest has no subject dimension yet. Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). The SAQ chapter (answers 40-45, pp.51-55) and the VSAQ chapter (answers 99-112, pp.82-86) are NOT yet authored. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — they will COLLIDE with physics unit numbers once physics opens its Units 1-3, because this manifest has no subject dimension yet. Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS ALSO COMPLETE at 9 of 9 (book answers 40-45, pp.51-55): one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. The VSAQ chapter (answers 99-112, pp.82-86) is NOT yet authored. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form.",
   "units": [
     {
       "number": 4,
@@ -583,6 +583,78 @@
           "stars": 3,
           "text": "By the Gauss-Jordan method, solve 2x + 4y − z = 0, x + 2y + 2z = 5, 3x + 6y − 7z = 2.",
           "question_id": "ts_ipe_m1a_mat_gauss_no_solution"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If A is a non-singular matrix, then prove that A⁻¹ = (Adj A)/(det A).",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_formula_proof"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix A with rows (1, 3, 3), (1, 4, 3) and (1, 3, 4).",
+          "question_id": "ts_ipe_m1a_mat_saq_adj_inverse_1_3_3"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix A with rows (1, 0, 2), (2, 1, 0) and (3, 2, 1).",
+          "question_id": "ts_ipe_m1a_mat_saq_adj_inverse_1_0_2"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the matrix A with rows (1, 2, 1), (3, 2, 3) and (1, 1, 2) is non-singular, and find A⁻¹.",
+          "question_id": "ts_ipe_m1a_mat_saq_nonsingular_inverse_1_2_1"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the inverse of the matrix A with rows (2, 1, 2), (1, 0, 1) and (2, 2, 1).",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_2_1_2"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, 2, 2), (2, 1, 2) and (2, 2, 1), then show that A² − 4A − 5I = O.",
+          "question_id": "ts_ipe_m1a_mat_saq_a_squared_minus_4a_minus_5i"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, −2, 1), (0, 1, −1) and (3, −1, 1), then show that A³ − 3A² − A − 3I = O.",
+          "question_id": "ts_ipe_m1a_mat_saq_a_cubed_identity"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If I is the 2×2 unit matrix and E is the matrix with rows (0, 1) and (0, 0), then show that (aI + bE)³ = a³I + 3a²bE.",
+          "question_id": "ts_ipe_m1a_mat_saq_ai_plus_be_cubed"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If θ − φ = π/2, then show that the product of the matrix with rows (cos²θ, cosθ sinθ) and (cosθ sinθ, sin²θ) with the matrix with rows (cos²φ, cosφ sinφ) and (cosφ sinφ, sin²φ) is the zero matrix O.",
+          "question_id": "ts_ipe_m1a_mat_saq_trig_product_zero"
         }
       ]
     }

@@ -1,0 +1,210 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_ai_plus_be_cubed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If I is the 2×2 unit matrix and E is the matrix with rows (0, 1) and (0, 0), then show that (aI + bE)³ = a³I + 3a²bE.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form the matrix aI + bE",
+      "marks": 1
+    },
+    {
+      "label": "Cube it to find the left-hand side",
+      "marks": 2
+    },
+    {
+      "label": "Expand the right-hand side and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Matrices, answer 44. Printed appearances: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 1+2+1 above puts half the marks on cubing the matrix, which is the only computation in the question; forming aI + bE and expanding the right-hand side are each one line. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would show this — say what single matrix you build first, and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Form aI + bE",
+        "marks": 1,
+        "mark_note": "The matrix",
+        "margin_note": "First mark. aI puts a on the diagonal; bE puts b in the top-right corner only. Adding them gives one upper-triangular matrix, and from here the question is ordinary multiplication.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "aI + bE = a\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} + b\\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} a & 0 \\\\ 0 & a \\end{bmatrix} + \\begin{bmatrix} 0 & b \\\\ 0 & 0 \\end{bmatrix} = \\begin{bmatrix} a & b \\\\ 0 & a \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That aI + bE is worked out as a single 2×2 matrix with a on the diagonal and b in the top-right corner.",
+          "accept": [
+            "a I gives a on the diagonal and b E gives b in the top right so the sum is a b over zero a",
+            "add the two scalar multiples to get the matrix a b zero a",
+            "form one matrix with a on the diagonal and b in the corner",
+            "aI plus bE kalipithe a b zero a matrix vasthundi",
+            "combine them into a single upper triangular matrix"
+          ],
+          "reject": [
+            "form the matrix",
+            "add them",
+            "write aI plus bE"
+          ],
+          "heard_as": [
+            "aI plus bE",
+            "a b zero a",
+            "diagonal",
+            "top right",
+            "upper triangular"
+          ]
+        },
+        "why": "Cubing a sum of two matrices directly would need the binomial theorem, and matrices do not generally commute, so that is dangerous. Turning the sum into ONE matrix first avoids the whole question.",
+        "common_mistakes": [
+          "Trying to expand (aI + bE)³ by the binomial theorem without checking that I and E commute.",
+          "Writing aI as a matrix full of a.",
+          "Putting b in the wrong corner; E has its 1 in the top-right."
+        ]
+      },
+      {
+        "id": "s2_cube",
+        "kind": "equation",
+        "label": "Cube the matrix",
+        "marks": 2,
+        "mark_note": "Left-hand side",
+        "margin_note": "Half the marks. Square it first, then multiply by the matrix once more. The top-right entry grows a·b + b·a = 2ab, then a²b + 2ab·a = 3a²b — that 3 is the whole point of the question.",
+        "lines": [
+          {
+            "text": "\\begin{bmatrix} a & b \\\\ 0 & a \\end{bmatrix}^2 = \\begin{bmatrix} a^2 & 2ab \\\\ 0 & a^2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\begin{bmatrix} a^2 & 2ab \\\\ 0 & a^2 \\end{bmatrix}\\begin{bmatrix} a & b \\\\ 0 & a \\end{bmatrix} = \\begin{bmatrix} a^3 & 3a^2b \\\\ 0 & a^3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "L.H.S = the matrix above    …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the matrix is squared and then multiplied by itself once more, giving a³ on the diagonal and 3a²b in the top-right corner.",
+          "accept": [
+            "square it to get a squared and two ab then multiply by the matrix again to get a cubed and three a squared b",
+            "cube the matrix step by step and the corner entry becomes three a squared b",
+            "multiply it by itself twice, the diagonal is a cubed and the corner is three a squared b",
+            "square chesi malli multiply cheste a cube and three a square b vasthundi",
+            "the top right entry goes from two ab to three a squared b"
+          ],
+          "reject": [
+            "cube it",
+            "multiply three times",
+            "find the cube"
+          ],
+          "heard_as": [
+            "a cubed",
+            "three a squared b",
+            "two ab",
+            "square",
+            "corner"
+          ]
+        },
+        "why": "The 2ab at the squaring stage becomes 3a²b at the cubing stage — the corner entry counts how many ways one b can appear among three factors. That is why the coefficient is 3 and not 1 or 2.",
+        "common_mistakes": [
+          "Cubing each entry, which would give b³ in the corner.",
+          "Stopping at the square and comparing that with the right-hand side.",
+          "Getting 2a²b in the corner by using the wrong factor at the second multiplication."
+        ]
+      },
+      {
+        "id": "s3_rhs",
+        "kind": "boxed_final",
+        "label": "Expand the right-hand side",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "margin_note": "Last mark. Build a³I + 3a²bE the same way aI + bE was built, then say the two matrices are equal. Both sides must be written out — a proof compares two things, it does not just produce one.",
+        "lines": [
+          {
+            "text": "a^3I + 3a^2bE = \\begin{bmatrix} a^3 & 0 \\\\ 0 & a^3 \\end{bmatrix} + \\begin{bmatrix} 0 & 3a^2b \\\\ 0 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} a^3 & 3a^2b \\\\ 0 & a^3 \\end{bmatrix} \\quad \\text{…(2)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "From (1) and (2), the two matrices are equal.",
+          {
+            "text": "∴ (aI + bE)³ = a³I + 3a²bE",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right-hand side is also written out as a single matrix and found to be identical to the left-hand side.",
+          "accept": [
+            "expand a cubed I plus three a squared b E into one matrix and it is the same as the left hand side",
+            "work out the right hand side the same way and compare the two matrices",
+            "both sides give a cubed on the diagonal and three a squared b in the corner so they are equal",
+            "right hand side kuda expand cheste same matrix vasthundi, so rendu equal",
+            "the two matrices match entry for entry so the result is proved"
+          ],
+          "reject": [
+            "hence proved",
+            "they are equal",
+            "so LHS equals RHS"
+          ],
+          "heard_as": [
+            "right hand side",
+            "a cubed I",
+            "three a squared b E",
+            "equal",
+            "compare"
+          ]
+        },
+        "why": "Two matrices are equal only when every corresponding entry matches. Writing both sides out is what lets an examiner see that check has actually been made.",
+        "common_mistakes": [
+          "Computing only the left-hand side and writing \"hence proved\".",
+          "Writing a³I as a matrix full of a³.",
+          "Never stating that the two matrices are equal entry by entry."
+        ]
+      }
+    ]
+  }
+}
