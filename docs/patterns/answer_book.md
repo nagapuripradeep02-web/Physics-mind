@@ -587,6 +587,41 @@ to the notebook page, so a gap expressed in figure units shrinks on screen while
 horizontal extents overlap** (28 was not enough at these figure widths). Pre-checks triage; the gate
 decides.
 
+### Run 4 — Unit 9 (2026-08-21): the corrected back-test pays on its first use
+
+Unit 9 Gravitation, both books read directly. **The corrected back-test worked exactly as intended.**
+The Unit-8 run had recorded that AP March 2026 Section A question 8 is *"State Kepler's law of areas"*
+and flagged it as a Unit-9 cell waiting. The Fastrack asks all **three** Kepler laws together at 4
+marks; a standalone statement of the law of areas is a different cell, and it is the one the paper
+asked. Authored as `source: "ap_2026_paper"` — the second card with that provenance. **Diffing the
+sweep against a real paper is a standing step now, not an idea.**
+
+**The union check has produced three distinct outcomes in six units.** It is worth tabulating,
+because the lesson is that the answer is genuinely unpredictable:
+
+| Unit | What the two-book check found |
+|---|---|
+| 4, 5, 6 | BLM is a strict **subset** of the Fastrack — nothing added |
+| 7 | **Each book holds questions the other lacks** — BLM 2 VSAQs, Fastrack 6 SAQs |
+| 8 | BLM is **LAQ-only**; both books agree on the 8-mark set, short answers are the Fastrack's |
+| 9 | BLM adds **one SAQ** the Fastrack lacks (the 11.2 km/s question) |
+
+No unit so far has had a Section C in *both* books, and four of the six have no Section C in either —
+so the standing rule holds: **invent an 8-mark form only when a book sources one.**
+
+**What the sweep found missing keeps indicting the source books, and the pattern is now specific:
+whole NCERT SECTIONS go missing, not scattered questions.** Unit 9's gaps were the chapter's entire
+gravitational potential / potential-energy section and its entire satellite-energy section — neither
+book asks a single question from either. Compare Unit 5 (neither Newton's first nor third law) and
+Unit 6 (no scalar product at all). A question bank tracks what was asked; it inherits every section
+the examiners have happened to skip, and it inherits them *whole*.
+
+**Where the book is wrong, write the mark and put the truth in `why`.** The Fastrack's answer to
+Unit 9 VSAQ 2 gives the vector form of the law of gravitation **without the minus sign**. NCERT keeps
+it, and without it the formula describes a repulsion. The card writes the minus and records the
+discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws"
+and for "μ > 1 because polishing increases adhesion".
+
 ## The term-pack design (designed Session 89 — NOT built)
 
 The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE

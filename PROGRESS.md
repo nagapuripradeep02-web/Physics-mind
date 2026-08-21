@@ -1,5 +1,48 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🪐 SESSION — Answer Book: **UNIT 9 "GRAVITATION" (27/27) — the corrected back-test pays on its first use** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: six chapters, 162 catalog entries, 157 files. Unit 9 ships 16 asked entries (14 Fastrack + 1 BLM-only + 1 AP-paper) plus 11 predicted. The union check flipped BACK — the BLM carries an SAQ the Fastrack lacks — and the back-test correction written down last session found its cell on the very first run it governed.**
+
+### The union check has now produced three different answers in six units
+Both books read directly again. The Fastrack (pp.28–30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — **no Section C and no PROBLEMS section**, the first unit since Unit 5 with neither. The BLM (pp.25–26) lists **four** Short Answer questions and nothing else — and the fourth, *"An object projected with a velocity ≥ 11.2 km s⁻¹ will not return to earth. Explain the reason,"* **is not in the Fastrack at all.** It ships as `saq7`, `source: "blm"`.
+
+| Unit | What the two-book check found |
+|---|---|
+| 4, 5, 6 | BLM a strict **subset** — nothing added |
+| 7 | **Each book holds questions the other lacks** |
+| 8 | BLM **LAQ-only**; both agree on the 8-mark set |
+| 9 | BLM adds **one SAQ** the Fastrack lacks |
+
+Four of the six units have no Section C in **either** book, so the standing rule holds: invent an 8-mark form only when a book sources one.
+
+### The corrected back-test worked, first time
+The Unit-8 session recorded the correction — *back-testing the archetype set is not back-testing the output; diff the sweep against a real paper* — and flagged AP March 2026 Section A Q8, **"State Kepler's law of areas,"** as a Unit-9 cell waiting. It was there. The Fastrack asks all **three** Kepler laws together at 4 marks (`saq4`); a standalone statement of the law of areas is a different cell, and it is the one the paper asked. Authored as `vsaq9`, `source: "ap_2026_paper"`, `appearances: [{year: 2026, q_no: 8, board: 'ap_ipe'}]` — the **second** card with that provenance. The procedure is now a standing step rather than an idea.
+
+### The gaps keep coming in whole NCERT sections, not scattered questions
+Unit 9's sweep found the chapter's **entire gravitational-potential / potential-energy section** and its **entire satellite-energy section** absent from both books — not one question from either. Compare Unit 5 (neither Newton's first nor third law) and Unit 6 (no scalar product at all). A question bank tracks what was *asked*, so it inherits every section the examiners have skipped, and it inherits them **whole**. 11 predicted cells: potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness, inertial vs gravitational mass, field intensity, why total energy is negative — and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's.
+
+### Where the book is wrong, write the mark and put the truth in `why`
+The Fastrack's answer to VSAQ 2 gives the vector form of the law of gravitation **without the minus sign**. NCERT keeps it, and without it the formula describes a repulsion. The card writes the minus and records the discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws" and for "μ > 1 because polishing increases adhesion".
+
+### A red that named nothing — and was not a defect
+`smoke:answers` came back 25/26 with **"the PM_ANSWER seam follows a question switch"** failing. It was a **`page.goto` timeout at the 30 s default**, not an assertion. That test does *constant* work — it opens two questions — so fleet growth should not touch it. Measured instead of assumed: **2.9 s in isolation, 30.5 s in sequence.** It runs immediately after the two 2-minute fleet sweeps, and its page load inherits a browser that has just walked every question twice. Raised deliberately with `test.slow()` and the measurement recorded in a comment beside it. **Do not trim the sweeps to make it fit.**
+
+### Verification (measured)
+`build:answers` → **32/32 · 29/29 · 22/22 · 33/33 · 19/19 · 27/27**, drift clean both directions, every marks-sum and per-cut sum ✓ · `smoke:answers` **26/26 across 157 questions (8.8 min)** · `npx tsc --noEmit` **0** · a Rule-41 register scan over the 27 new cards caught 6 idioms ("the striking part", "the give-away", "the mark of a bound system", "an orbit IS a fall", "weigh the sun", "dropping straight out of") — all rewritten literally. **Sweep headroom: 132 s / 132 s / 168 s of their 240 s budgets** at 157 questions — gate 15 is at 70%, so roughly ONE more unit before the next deliberate raise.
+
+### Files
+`answer-book/units.json` (Unit 9 block, 27 entries + the findings in the comment) · 27 new `answer-book/questions/ts_ipe_p1_grav_*.json` · `docs/patterns/answer_book.md` (§enumeration → "Run 4 — Unit 9", with the union-outcome table) · `e2e/answer_book.spec.ts` (one deliberate timeout raise). **No platform file touched.** Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the two Unit-9 figures** — the satellite orbit (it fixes R + h, which is the whole derivation) and the Kepler ellipse with its two equal-area sectors. `npm run serve:answers` → `http://localhost:8100`.
+2. **The predicted ratio is 66 of 162 entries (41%)** — steady across three units now. The filter-chip question from two sessions ago is still open and is the last thing between this and a founder read-through.
+3. **Unit 10 "Mechanical Properties of Solids"** next (Fastrack pp.30+, BLM pp.27+ — both already sighted while reading Unit 9, and both have real content). Run the union check and diff the sweep against the AP paper: **Section A Q3 (highest elasticity), Q10 (J m⁻¹ and J m⁻² units)** are already-known cells in or near that chapter.
+4. **The full AP March-2026 paper is still the highest-value missing artifact** — page 1 of 3 has now paid for itself three times.
+5. **Standing blockers, unchanged (founder calls):** Google quota · grader hosting · the cost swap · the vault sync, still drafted and unwritten.
+
+---
+
 ## 📘 SESSION — Answer Book: **UNIT 8 "OSCILLATIONS" (19/19) — and the AP paper caught a hole in yesterday's sweep** (2026-08-21, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: five chapters, 135 catalog entries, 130 files. Unit 8 ships 8 asked entries (3 LAQ + 2 SAQ + 3 VSAQ over 7 files, four new figures, one `cuts[]` pair) plus 11 predicted lean cards. Both source books were read page by page on the founder's instruction — and that instruction paid immediately: reading the March-2026 AP paper directly turned up a UNIT 4 question neither book lists and the Unit 4 sweep had dropped. The back-test as written was too weak, and is now corrected.**

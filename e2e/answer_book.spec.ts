@@ -475,6 +475,12 @@ test('no two figure labels overlap, in any question', async ({ page }) => {
 });
 
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
+    // This test does CONSTANT work — it opens two questions — but it runs straight
+    // after the two 2-minute fleet sweeps, and its page.goto inherits a browser that
+    // has just walked every question twice. Measured: 2.9s in isolation, 30.5s (the
+    // 30s default, i.e. a TIMEOUT reported as a failure) in sequence at six units.
+    // Raised deliberately in the commit that grew the fleet - do not trim the sweeps.
+    test.slow();
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
     test.skip(count < 2, 'single-question build');
