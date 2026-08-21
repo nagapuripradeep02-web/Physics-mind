@@ -89,6 +89,24 @@
  *      reveals, ghosts, the grow-in ease and camera_steps stay un-wrapped),
  *      rewind determinism, drag-seize priority, byte-identity for every state
  *      that authors NO period, and the deriveStateMeta first-cycle decision.
+ *  30  THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obeys the equation
+ *      printed above it over the WHOLE range the state's own knob can reach.
+ *      The Δ5 line-line arc branch published the raw [0, 180] vector angle
+ *      under the formula surface cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖), so
+ *      lines_and_planes_in_space STATE_6 ended its authored sweep printing
+ *      "angle = 115.0°" where its own equation gives 65.0°. Swept over
+ *      θ ∈ [25, 115] against an independent evaluation of the printed
+ *      formula, with the ARC's drawn legs asserted acute alongside the
+ *      number, the two sibling branches asserted still-correct, and the
+ *      pre-fix build (the shipped body with the fold deleted) run as the
+ *      control. Products mode is asserted UNTOUCHED — its θ (a, b) is
+ *      between vectors and stays obtuse-capable. Clause (i) carries the
+ *      SECOND surface of the same symbol: the CONTROL ROW, which showed the
+ *      knob under the label "θ (d₁, d₂)" and so disagreed with the folded
+ *      HUD by up to 50°. It is read as TEXT in mode "lines_planes" (STATE_6
+ *      at the frozen pin / the dense probe / the ramp end / a trusted drag,
+ *      and STATE_9 group B, where there is no angle readout at all), which
+ *      is the read clause (h) made only for products.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -257,7 +275,7 @@ const SHIPPED_ROW_LABEL: Record<string, string> = {};
  * buildVgSandbox). It is never used by any positive assertion.
  */
 function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string,
-  rowPassSrc?: string) {
+  rowPassSrc?: string, thetaLabelSrc?: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function("window", "document", "ROW_RANGE", "ROW_LABEL", [
     labelSrcOverride || grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
@@ -270,7 +288,10 @@ function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?
     // document exactly like vgSyncRampedRows.
     "var VG_ROW_LABEL = ROW_LABEL;",
     grabFn("vgList"), grabFn("vgInGroup"),
-    grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
+    // `thetaLabelSrc` replaces exactly the vgThetaRowLabel body and nothing
+    // else, so §30's control can run the SHIPPED writer over the PRE-FIX
+    // (pair-naming) label — the mutate-one-body precedent of buildVgSandbox.
+    thetaLabelSrc || grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
     // §28 · the ROW-VISIBILITY pass, the one place that decides which rows are
     // on screen. Pulled out WITH a document for the same reason the label
     // writer is: the apply pass AND the scene-group picker both call it, and
@@ -327,9 +348,9 @@ const ROW_ID_KEYS: string[] = (() => {
  * buildVgSandbox and of §25's label control.
  */
 function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom(),
-  srcOverride?: string, rowPassSrc?: string) {
+  srcOverride?: string, rowPassSrc?: string, thetaLabelSrc?: string) {
   const win: Record<string, unknown> = {};
-  const T = vgTextFns(win, dom.document, undefined, rowPassSrc);
+  const T = vgTextFns(win, dom.document, undefined, rowPassSrc, thetaLabelSrc);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
     "vgShowAB", "vgWriteRowLabels", "vgApplyControlRows",
@@ -5063,7 +5084,7 @@ console.log("\n=== 24. THE LABEL IS PART OF THE NUMBER: a generic segment prints
   }
 }
 
-console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control label is not a compile-time string (bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_in_every_mode) ===");
+console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control label is not a compile-time string, and names the OBJECT the knob turns rather than any pair quantity (bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_in_every_mode + control_row_label_names_a_derived_quantity_the_knob_stops_equalling_once_a_convention_fold_lands) ===");
 {
   // The panel is built ONCE, before any state is applied, so every label baked
   // into it describes geometry the renderer has not yet selected. "θ (a, b)"
@@ -5071,6 +5092,17 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   // binds it, a and b are not drawn at all (§22 / vgShowAB), and #9 STATE_6 —
   // whose entire lesson is the angle between d₁ and d₂, and whose ONLY control
   // is this row — read "θ (a, b): 69°".
+  //
+  // THE ROW NAMES THE CONTROL, NOT A MEASURED QUANTITY. The first fix wrote the
+  // PAIR ("θ (d₁, d₂)"), which held only while the line-line angle was published
+  // RAW over [0, 180]; §30's acute fold ended that, and the row then disagreed
+  // with the HUD by up to 50° (bug_class control_row_label_names_a_derived_
+  // quantity_the_knob_stops_equalling_once_a_convention_fold_lands). The knob
+  // TURNS ONE OBJECT (vgObjRotate) on an authored scale, so the row names that
+  // object and nothing else — "turn d₂" — and the reference line is deliberately
+  // not named, because naming two objects is what reads as a pair angle. The
+  // CONTRADICTION half of this claim — the row against the readout beside it,
+  // at the far end of the state's own knob — is §30's clause (i).
   //
   // Measured in TEXT, through the SHIPPED apply pass and the SHIPPED writer
   // (runApplyPass injects the same vgWriteRowLabels the scene-group picker
@@ -5130,17 +5162,24 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     const dom = fakeDom();
     applyOn(LP_STATE, dom);
     const txt = labOf(dom);
-    assertTrue(`a lines_planes state whose knob rotates M2 against M1 labels the row from the AUTHORED lines — "${txt}"`,
-      txt === "θ (d₁, d₂)");
-    assertTrue("...it names d₁ and d₂", txt.indexOf("d₁") >= 0 && txt.indexOf("d₂") >= 0);
+    assertTrue(`a lines_planes state whose knob rotates M2 labels the row from the AUTHORED object it turns — "${txt}"`,
+      txt === "turn d₂");
+    assertTrue("...it names the rotated line, d₂", txt.indexOf("d₂") >= 0);
     assertTrue("...and the products pair is GONE from the row a teacher reads", txt.indexOf("(a, b)") < 0);
+    // The pair claim itself is gone: neither the reference line nor the symbol
+    // the formula surface owns appears, so there is no quantity here for the
+    // acute readout to contradict.
+    assertTrue(`...it does NOT name the reference line d₁ (naming two objects is what reads as a pair angle) — "${txt}"`,
+      txt.indexOf("d₁") < 0);
+    assertTrue(`...and does not reuse θ, which belongs to the state's one formula surface (Rule 34b) — "${txt}"`,
+      txt.indexOf("θ") < 0);
     // Reachability: the label is on a row that is actually on screen. A correct
     // label on a hidden row would pass a text check and teach nobody.
     assertTrue("the θ row is displayed and the panel is open on this state (the label is REACHABLE)",
       dom.get("vg_theta_deg_row").style.display === "block" && dom.get("vg_sliders").style.display === "block");
-    // Order: reference first, rotated second — the order the state's own
-    // formula and readout (angle_lines_deg, "d₁ and d₂") name them in.
-    assertTrue("the reference line is named FIRST and the rotated line second", txt === "θ (" + "d₁" + ", " + "d₂" + ")");
+    // The whole label, character for character: a verb naming what the control
+    // does, then the one object it does it to.
+    assertTrue("the row is exactly the action plus the rotated object", txt === "turn " + "d₂");
     // No OTHER row was renamed by the pass.
     const others = Object.keys(SHIPPED_ROW_LABEL).filter((k) => k !== "theta_deg");
     assertTrue(`the other ${others.length} rows still carry the labels they were built with`,
@@ -5172,17 +5211,17 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   {
     const dom = fakeDom();
     applyOn(LP_STATE, dom);
-    assertTrue(`entry to the lines_planes state derives the label ("${labOf(dom)}")`, labOf(dom) === "θ (d₁, d₂)");
+    assertTrue(`entry to the lines_planes state derives the label ("${labOf(dom)}")`, labOf(dom) === "turn d₂");
     runApplyPass([], PROD_STATE, dom);
     assertTrue(`...and the next mode-omitted state RESTORES it ("${labOf(dom)}")`, labOf(dom) === BUILT);
     runApplyPass([], LP_STATE, dom);
-    assertTrue("...and back again, with no residue in either direction", labOf(dom) === "θ (d₁, d₂)");
+    assertTrue("...and back again, with no residue in either direction", labOf(dom) === "turn d₂");
   }
 
   // (e) THE GROUP SWITCH — #9 STATE_9's shape. theta turns nothing in group A,
-  //     so the row names NOTHING there rather than naming group B's lines; the
+  //     so the row names NOTHING there rather than naming group B's line; the
   //     picker's own re-write (the shipped vgWriteRowLabels the change handler
-  //     calls) brings the pair back when group B is selected.
+  //     calls) names the turned line again when group B is selected.
   {
     const GROUPED = {
       show_sliders: true,
@@ -5202,18 +5241,18 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     const dom = fakeDom();
     const r = applyOn(GROUPED, dom);
     check("the state opens on the first authored group", r.win.PM_vgSceneGroup as string, "A", 0);
-    assertTrue(`group A turns no line with this knob, so the row names NO object — "${labOf(dom)}"`, labOf(dom) === "θ");
+    assertTrue(`group A turns no line with this knob, so the row names NO object — "${labOf(dom)}"`, labOf(dom) === "turn");
     assertTrue("...and in particular does not name group B's lines, which are not on screen",
       labOf(dom).indexOf("d₁") < 0 && labOf(dom).indexOf("d₂") < 0 && labOf(dom).indexOf("(a, b)") < 0);
     // The picker: write the live global and re-run the SHIPPED writer, exactly
     // as the <select>'s change handler does.
     r.win.PM_vgSceneGroup = "B";
     r.T.vgWriteRowLabels(GROUPED.vg);
-    assertTrue(`switching to group B re-derives the pair that group actually shows — "${labOf(dom)}"`,
-      labOf(dom) === "θ (d₁, d₂)");
+    assertTrue(`switching to group B re-derives the line that group actually turns — "${labOf(dom)}"`,
+      labOf(dom) === "turn d₂");
     r.win.PM_vgSceneGroup = "A";
     r.T.vgWriteRowLabels(GROUPED.vg);
-    assertTrue("...and switching back drops them again (the label follows the picker, not the entry)", labOf(dom) === "θ");
+    assertTrue("...and switching back drops it again (the label follows the picker, not the entry)", labOf(dom) === "turn");
     // The handler really does call the writer — a mechanism that exists but is
     // never called is the recorded discharge-against-a-mechanism-that-was-
     // never-built failure in miniature.
@@ -5224,13 +5263,12 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
   }
 
   // (f) NOTHING IS EVER INVENTED — every un-derivable case falls back to a bare
-  //     "θ", which names no object at all, and NEVER to the products pair.
+  //     "turn", which names no object at all, and NEVER to the products pair.
   {
     const T = vgTextFns({}, fakeDom().document);
     const lp = (lines: unknown[]) => T.vgThetaRowLabel({ mode: "lines_planes", lines }, null);
     const cases: Array<[string, string]> = [
       ["the rotated line carries no label", lp([{ id: "M1", label: "d₁" }, { id: "M2", rotate: M2_ROT }])],
-      ["the rotated line is the ONLY object (no reference to measure against)", lp([{ id: "M2", label: "d₂", rotate: M2_ROT }])],
       ["nothing in the scene binds theta_deg at all", lp([{ id: "M1", label: "d₁" }, { id: "M2", label: "d₂" }])],
       ["the rotate block binds a DIFFERENT knob", lp([{ id: "M1", label: "d₁" },
         { id: "M2", label: "d₂", rotate: { about: [0, 1, 0], knob: "line2_offset" } }])],
@@ -5240,8 +5278,15 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     ];
     for (const [why, got] of cases) {
       assertTrue(`fallback names no object when ${why} — got "${got}"`,
-        got === "θ" && got.indexOf("a") < 0 && got.indexOf("b") < 0 && got.indexOf("d") < 0);
+        got === "turn" && got.indexOf("a") < 0 && got.indexOf("b") < 0 && got.indexOf("d") < 0
+        && got.indexOf("θ") < 0);
     }
+    // A REFERENCE OBJECT IS NOT REQUIRED — the knob turns d₂ whether or not
+    // anything else is on screen, and the row says so. (Under the pair label
+    // this same scene fell back to a bare "θ": the row went quiet about a
+    // control that was working.)
+    assertTrue(`the rotated line alone, with no reference to measure against, is still named — got "${lp([{ id: "M2", label: "d₂", rotate: M2_ROT }])}"`,
+      lp([{ id: "M2", label: "d₂", rotate: M2_ROT }]) === "turn d₂");
     // A plane may bind the knob too (vgObjRotate turns a plane's normal on the
     // same code path), and then it is named on the same rule.
     assertTrue("a PLANE whose normal binds the knob is named like a line",
@@ -5249,7 +5294,7 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
         mode: "lines_planes",
         lines: [{ id: "L", label: "d" }],
         planes: [{ id: "P", label: "n", normal: [0, 1, 0], rotate: M2_ROT }],
-      }, null) === "θ (d, n)");
+      }, null) === "turn n");
   }
 
   // (g) THE NEGATIVE CONTROL — the pre-fix behaviour, reconstructed from the
@@ -5268,8 +5313,8 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       PRE_SRC.indexOf("vgWriteRowLabels(") < 0 && PRE_SRC !== APPLY_SRC);
     const dom = fakeDom();
     applyOn(LP_STATE, dom, PRE_SRC);
-    expectFail(`the pre-fix row names the objects the knob turns on a lines_planes state (it renders "${labOf(dom)}")`,
-      labOf(dom) === "θ (d₁, d₂)");
+    expectFail(`the pre-fix row names the object the knob turns on a lines_planes state (it renders "${labOf(dom)}")`,
+      labOf(dom) === "turn d₂");
     expectFail(`the pre-fix row keeps the products pair off a state that draws neither a nor b (it renders "${labOf(dom)}")`,
       labOf(dom).indexOf("(a, b)") < 0);
     assertTrue(`...it is exactly the shipped-today defect: the built products label, verbatim, on a lines_planes state ("${labOf(dom)}")`,
@@ -5298,7 +5343,7 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       id: "vg_theta_deg_row", getAttribute: () => null,
       querySelector: (sel: string) => (sel === "label" ? { textContent: text } : null),
     });
-    check("the ⚙ entry derived from the lines_planes row", W(rowEl("θ (d₁, d₂): 69°")), "θ (d₁, d₂) slider", 0);
+    check("the ⚙ entry derived from the lines_planes row", W(rowEl("turn d₂: 69°")), "turn d₂ slider", 0);
     check("...and from the products row, unchanged", W(rowEl("θ (a, b): 60°")), "θ (a, b) slider", 0);
   }
 
@@ -6195,13 +6240,13 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
       EXPECT_LIVE.A.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
     assertTrue("...the picker row stays on screen (a group that hid it would be a trap)",
       dom.get("vg_scene_group_row").style.display === "block");
-    assertTrue("...and the θ row is re-labelled for the lines group B actually shows (the two passes compose)",
-      dom.get("vg_theta_deg_lab").textContent === "θ (d₁, d₂)");
+    assertTrue("...and the θ row is re-labelled for the line group B actually turns (the two passes compose)",
+      dom.get("vg_theta_deg_lab").textContent === "turn d₂");
     pick("A");
     assertTrue(`switching back restores A's rows exactly (${shownRows(dom).join(", ")})`,
       JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
-    assertTrue("...and the θ label drops the pair again (it names nothing group A turns)",
-      dom.get("vg_theta_deg_lab").textContent === "θ");
+    assertTrue("...and the θ label names no object again (group A turns nothing with this knob)",
+      dom.get("vg_theta_deg_lab").textContent === "turn");
     // THE APPLY PASS DID NOT RE-RUN — the three side effects only it produces.
     assertTrue("the group switch did NOT re-run the apply pass: the teacher's drag-seize flag survives (Rule 39c)",
       r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
@@ -6724,6 +6769,492 @@ console.log("\n=== 29. A DRAWN LINE IS THICK ENOUGH TO SEE — unit pool geometr
     const pt = drawn.scene.filter((o: Stub) => o.userData.elementType === "vg_lp_point" && o.visible)[0];
     assertTrue(`a drawn point's world radius is its authored size, applied ONCE (${pt ? (pt.geometry._ctorR * pt._scale[0]).toFixed(4) : "none drawn"})`,
       !!pt && Math.abs(pt.geometry._ctorR * pt._scale[0] - pt._scale[0]) < 1e-12 && pt._scale[0] > 0.02);
+  }
+}
+
+console.log("\n=== 30. THE ANGLE BETWEEN TWO LINES IS ACUTE — the readout obeys the equation printed above it, over the WHOLE range the state can reach (bug_class formula_surface_carries_an_absolute_value_the_readout_never_applies_so_a_state_prints_an_angle_its_own_equation_forbids) ===");
+{
+  // CRITICAL. lines_and_planes_in_space STATE_6 prints the formula surface
+  //   cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)
+  // and then sweeps its own theta_deg knob from 69.3846° to 115° over nine
+  // seconds. The Δ5 line-line arc branch published the RAW [0, 180] vector
+  // angle, so the readout ended the sweep at "angle = 115.0°" — under an
+  // equation whose modulus makes 115° impossible. |cos 115°| = 0.4226, which
+  // is 65.0°. The frozen frame (pinned mid-rotation) read 92.2° where the
+  // equation gives 87.8°. A Class-12 student who copies the readout into a
+  // CBSE paper is marked wrong: the angle between two LINES is the acute one
+  // by definition (NCERT Cl.12 §11.4, and the same in IB HL / A-level FM),
+  // because a line has no direction and d/−d name the same line.
+  //
+  // THE DISCRIMINATING QUANTITY IS THE READOUT AT THE FAR END OF THE STATE'S
+  // OWN KNOB RANGE — not at the authored default. Every weaker sampling was
+  // green on the defect: at the default (69.3846°) the fold is a no-op, the
+  // arithmetic of the raw angle was always right, §19b's reveal gating was
+  // right, and THE EYE's frozen pin lands on a single frame with no equation
+  // to compare against. The state SHIPPED with the wrong number for the last
+  // nine seconds of its script.
+  //
+  // The two sibling branches (line-vs-normal, line-vs-plane) were always
+  // right — vgLinePlaneAngles folds inside itself with Math.abs — so this is
+  // the odd-one-out of a family of three, which is asserted below too.
+
+  // The SHIPPED STATE_6 vg block, verbatim (the rotation axis is chosen so
+  // the M1..M2 angle tracks theta_deg exactly, which is what lets the
+  // assertions below be stated against the KNOB).
+  const D1: V3 = [1, 0.15, 0.35];
+  const D2: V3 = [0.15, -0.5, 1];
+  const THETA0 = 69.3846;
+  const BLOCK: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 1, theta_deg: THETA0, aux_a: 0,
+    value_readouts: ["angle_lines_deg"],
+    controls: ["theta_deg"],
+    control_ranges: { theta_deg: { min: 25, max: 115 } },
+    lines: [
+      { id: "M1", point: [0, 0, 0], dir: D1, role: "dir1", label: "d₁", lambda_span: [-4.5, 4.5], reveal_at_ms: 0, grow_ms: 1200 },
+      { id: "M2", point: [0, 0, 0], dir: D2, role: "dir2", label: "d₂", lambda_span: [-4.5, 4.5], reveal_at_ms: 0, grow_ms: 1200,
+        rotate: { about: [0.287668, -0.838664, -0.462482], zero: THETA0, knob: "theta_deg" } },
+    ],
+    angle_arcs: [{ id: "arc1", between: ["M1", "M2"], readout: "angle_lines_deg", apex_at_origin: true }],
+    animate: [{ knob: "theta_deg", from: THETA0, to: 115, start_ms: 10500, duration_ms: 9000, easing: "linear" }],
+  };
+  const SETTLED = 3000;   // past the 1200 ms grow-in: every subject has arrived
+
+  /** THE EQUATION ON THE SCREEN, implemented independently of the renderer. */
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const rodrigues = (v: V3, axis: V3, deg: number): V3 => {
+    const k = nrm(axis), th = deg * Math.PI / 180, c = Math.cos(th), s = Math.sin(th);
+    const kv = cross3(k, v), kd = dot3(k, v);
+    return [v[0] * c + kv[0] * s + k[0] * kd * (1 - c),
+            v[1] * c + kv[1] * s + k[1] * kd * (1 - c),
+            v[2] * c + kv[2] * s + k[2] * kd * (1 - c)];
+  };
+  const d2At = (theta: number): V3 => rodrigues(D2, [0.287668, -0.838664, -0.462482], theta - THETA0);
+  /** cos θ = |d₁·d₂| / (‖d₁‖‖d₂‖) — the printed formula, evaluated. */
+  const FORMULA = (theta: number) => {
+    const b = d2At(theta);
+    return Math.acos(Math.min(1, Math.abs(dot3(D1, b)) / (len3(D1) * len3(b)))) * 180 / Math.PI;
+  };
+  /** The same WITHOUT the modulus — what the state used to print. */
+  const RAW = (theta: number) => {
+    const b = d2At(theta);
+    return Math.acos(Math.max(-1, Math.min(1, dot3(D1, b) / (len3(D1) * len3(b))))) * 180 / Math.PI;
+  };
+
+  /** The slack the authored 6-dp rotation axis costs, in degrees (measured). */
+  const AXIS_DP = 5e-5;
+
+  const resolveAt = (theta: number, src = E) => src.vgResolveLinesPlanes(BLOCK, { theta_deg: theta }, SETTLED);
+  const readoutAt = (theta: number, src = E) => resolveAt(theta, src).readouts.angle_lines_deg as number;
+  /** The panel TEXT a teacher reads, off the shipped label + precision table. */
+  const T30 = vgTextFns({}, fakeDom().document);
+  const rowAt = (theta: number, src = E) => T30.vgReadoutLine("angle_lines_deg", resolveAt(theta, src).readouts);
+
+  // ── (a) THE FIXTURE REALLY REACHES THE OBTUSE REGIME ─────────────────────
+  //   Asserted BEFORE the claim, so "never above 90" cannot pass vacuously on
+  //   a sweep that never crosses it.
+  {
+    check("the fixture reproduces the authored default: at the knob's zero the angle IS 69.3846°",
+      readoutAt(THETA0), 69.3846, 1e-4, "°");
+    assertTrue(`the raw vector angle DOES cross 90° inside the state's own control range (θ=115 → raw ${RAW(115).toFixed(1)}°) — the sweep is not vacuous`,
+      RAW(115) > 90 + 5);
+    // The authored rotation axis carries SIX decimal places, so the angle
+    // tracks the knob to ~2e-5°, not to machine epsilon. AXIS_DP is that
+    // budget, stated once: it is the only slack any assertion below is
+    // allowed, and it is four orders finer than the 1 dp the panel prints.
+    check("the knob is faithful — the raw angle tracks theta_deg one-for-one (the authored 6-dp rotation axis)",
+      RAW(115), 115, AXIS_DP, "°");
+  }
+
+  // ── (b) THE CLAIM: over θ ∈ [25, 115], the readout NEVER exceeds 90° ─────
+  {
+    let over = 0, worst = 0, worstAt = 0, samples = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      const v = readoutAt(th);
+      samples++;
+      if (!(v <= 90 + 1e-9)) { over++; if (v > worst) { worst = v; worstAt = th; } }
+    }
+    check(`over ${samples} sampled knob values across the state's WHOLE authored range [25, 115], the printed angle is never above 90°`
+      + (over ? ` (worst ${worst.toFixed(1)}° at θ=${worstAt})` : ""), over, 0, 0);
+  }
+
+  // ── (c) IT IS THE PRINTED EQUATION, NOT MERELY A CLAMP ──────────────────
+  //   min(v, 90) would also satisfy (b) and would be wrong everywhere past
+  //   90: the readout must equal |cos| evaluated, which FALLS.
+  {
+    let bad = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      if (Math.abs(readoutAt(th) - FORMULA(th)) > 1e-9) bad++;
+    }
+    check("...and at every one of those samples it EQUALS cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖) evaluated independently (not a clamp)", bad, 0, 0);
+    check("θ=115° (the end of the authored sweep): the readout is the equation's answer, 65.0°", readoutAt(115), 65, AXIS_DP, "°");
+    check("θ=92.2° (the frozen frame founder-proxy read as 92.2°): now 87.8°", readoutAt(92.2), 87.8, AXIS_DP, "°");
+    check("θ=90° exactly: the turning point reads 90.0°", readoutAt(90), 90, AXIS_DP, "°");
+    // The SHAPE of the fix, on the panel a teacher reads: up to 90, then back.
+    assertTrue(`the printed row rises and then FALLS — "${rowAt(80)}" → "${rowAt(90)}" → "${rowAt(110)}"`,
+      rowAt(80) === "angle = 80.0°" && rowAt(90) === "angle = 90.0°" && rowAt(110) === "angle = 70.0°");
+    // (The acute half is asserted BIT-IDENTICAL to the pre-fix build in (g),
+    // where that build exists — a comparison against this file's own
+    // implementation would only show that two implementations agree.)
+  }
+
+  // ── (d) THE ARC ON SCREEN AGREES WITH THE NUMBER ────────────────────────
+  //   A folded number beside an un-folded wedge is the same defect wearing
+  //   the other face: the picture would keep opening while the readout came
+  //   back down.
+  {
+    let mismatch = 0, obtuseWedge = 0;
+    for (let th = 25; th <= 115 + 1e-9; th += 1) {
+      const arc = resolveAt(th).arcs[0];
+      if (!arc || Math.abs((arc.value_deg as number) - readoutAt(th)) > 1e-12) mismatch++;
+      // The DRAWN wedge, from the two unit legs the arc mesh is built on.
+      if (dot3(arc.u0 as V3, arc.u1 as V3) < -1e-12) obtuseWedge++;
+    }
+    check("the arc's own value_deg is the same number as the readout at every sample", mismatch, 0, 0);
+    check("...and the DRAWN wedge (u0·u1 ≥ 0) is on the acute side at every sample", obtuseWedge, 0, 0);
+    // The apex is still the authored one — the fold moves the leg, not the arc.
+    const arc115 = resolveAt(115).arcs[0];
+    assertTrue("apex_at_origin still holds after the fold (the fix moves a leg, never the apex)",
+      (arc115.apex as V3).every((c: number) => Math.abs(c) < 1e-12));
+  }
+
+  // ── (e) THE ODD ONE OUT OF THREE: the sibling branches were always right ─
+  {
+    const RES = grabFn("vgResolveLinesPlanes");
+    const arcPass = RES.slice(RES.indexOf("var srcArcs = vgList(d.angle_arcs);"), RES.indexOf("if (projAngles) {"));
+    check("all THREE arc-subject branches now fold onto the acute side (line-normal, line-plane, line-line)",
+      (arcPass.match(/if \(vgDotVec\(u0, u1\) < 0\) u1 = vgScaleVec\(u1, -1\);/g) || []).length, 3, 0);
+    assertTrue("the line-line branch folds BEFORE it takes the value (the readout and the leg come from one decision)",
+      arcPass.indexOf("if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);\n                val = vgAngleDeg(u0, u1);") > 0);
+    // The siblings' fold is INSIDE their helper, which is why they never had
+    // this bug — asserted so a future edit to vgLinePlaneAngles cannot quietly
+    // widen their range.
+    const LPA = E.vgLinePlaneAngles([1, 0.2, 0.3], [-0.2, -1, 0.1]);
+    assertTrue(`vgLinePlaneAngles still returns both angles in [0, 90] even for an anti-aligned normal (to_normal ${LPA.to_normal.toFixed(2)}°, to_plane ${LPA.to_plane.toFixed(2)}°)`,
+      LPA.to_normal >= 0 && LPA.to_normal <= 90 && LPA.to_plane >= 0 && LPA.to_plane <= 90);
+    // vgAngleDeg itself is deliberately NOT folded — it is the general
+    // direction-vs-direction helper, and the fold belongs to the subject.
+    check("vgAngleDeg is still the raw [0, 180] helper (the fold is at the call site, not in the helper)",
+      E.vgAngleDeg([1, 0, 0], [-1, 0, 0]), 180, 1e-9, "°");
+    check("...and it has exactly ONE caller in the whole renderer (the branch fixed here)",
+      (SRC.match(/vgAngleDeg\(/g) || []).length, 2, 0);   // the declaration + the one call
+  }
+
+  // ── (f) THE AUTHORED SWEEP, THROUGH THE SHIPPED RAMP ────────────────────
+  //   (b) drives the knob directly (the teacher's slider). This drives it the
+  //   way the STATE does — vgAnimValue over state-local ms — because that is
+  //   the path that actually shipped the wrong number.
+  {
+    let over = 0, samples = 0; let last = -1;
+    for (let ms = 10500; ms <= 19500; ms += 250) {
+      const th = E.vgAnimValue(BLOCK.animate, "theta_deg", ms, THETA0);
+      const v = readoutAt(th);
+      samples++;
+      if (v > 90 + 1e-9) over++;
+      last = v;
+    }
+    check(`over ${samples} instants of the state's own 9 s theta ramp, the readout never exceeds 90°`, over, 0, 0);
+    check("...and the ramp's final instant prints the equation's answer", last, 65, AXIS_DP, "°");
+  }
+
+  // ── (g) THE NEGATIVE CONTROL: the shipped body with the fold removed ────
+  //   The SHIPPED resolver text with exactly the one added line deleted from
+  //   the line-line branch — the defect EXECUTED, not paraphrased. Guarded:
+  //   a control that cannot plant its defect THROWS.
+  {
+    const FOLD = "if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);\n                val = vgAngleDeg(u0, u1);";
+    const PRE_TEXT = "val = vgAngleDeg(u0, u1);";
+    const unfold = (name: string, src: string) => {
+      if (name !== "vgResolveLinesPlanes") return src;
+      if (src.indexOf(FOLD) < 0) {
+        throw new Error(
+          "§30 NEGATIVE CONTROL CANNOT BE BUILT: the line-line fold no longer matches "
+          + JSON.stringify(FOLD) + ". Re-anchor it and re-watch the control fail.");
+      }
+      return src.replace(FOLD, PRE_TEXT);
+    };
+    const PRE = buildVgSandbox(unfold) as any;
+    assertTrue("the pre-fix branch really was planted (θ=115 resolves through the un-folded body)",
+      typeof readoutAt(115, PRE) === "number");
+    expectFail(`the pre-fix readout stays at or below 90° across θ ∈ [25, 115] (it reaches ${readoutAt(115, PRE).toFixed(1)}° — the shipped defect)`,
+      (() => { for (let th = 25; th <= 115 + 1e-9; th += 1) if (readoutAt(th, PRE) > 90 + 1e-9) return false; return true; })());
+    expectFail(`the pre-fix readout obeys the formula surface printed above it at θ=115 (it prints ${readoutAt(115, PRE).toFixed(1)}°, the equation gives ${FORMULA(115).toFixed(1)}°)`,
+      Math.abs(readoutAt(115, PRE) - FORMULA(115)) < 1e-9);
+    expectFail(`the pre-fix frozen frame at θ=92.2° reads the equation's 87.8° (it reads ${readoutAt(92.2, PRE).toFixed(1)}° — the frame founder-proxy captured)`,
+      Math.abs(readoutAt(92.2, PRE) - 87.8) < 1e-9);
+    expectFail(`the pre-fix panel TEXT never prints an angle its own equation forbids (it prints "${T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).readouts)}")`,
+      (T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).readouts) || "").indexOf("115.0") < 0);
+    expectFail(`the pre-fix ARC is drawn on the acute side at θ=115 (u0·u1 = ${dot3(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u0, PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u1).toFixed(4)})`,
+      dot3(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u0,
+           PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 115 }, SETTLED).arcs[0].u1) >= -1e-12);
+
+    // THE BLAST RADIUS, measured: on the acute half of this state, and on a
+    // block with NO line-line arc at all, the two builds agree BIT FOR BIT.
+    // The acute half of this state's own range, swept: this fix may not move
+    // a single number the state was already right about. Stopped one degree
+    // SHORT of the crossing, because θ = 90 is not on the acute side — it is
+    // the boundary, and is asserted separately below.
+    let moved = 0, sweptBelow = 0;
+    for (let th = 25; th <= 89; th += 1) {
+      sweptBelow++;
+      if (JSON.stringify(PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: th }, SETTLED))
+        !== JSON.stringify(E.vgResolveLinesPlanes(BLOCK, { theta_deg: th }, SETTLED))) moved++;
+    }
+    check(`below 90° the fix moves NOTHING — the pre-fix and fixed resolvers agree BIT FOR BIT at all ${sweptBelow} sampled knob values`, moved, 0, 0);
+    // AT the crossing the two builds DO differ, and honestly so: the authored
+    // 6-dp axis puts the true angle at 90.0000190° when the knob says 90, so
+    // d₁·d₂ is -4.0e-7 and the fold correctly fires. The difference is one
+    // part in five million — four orders below the 1 dp the panel prints, so
+    // both builds render the same row. Asserted rather than hidden, because a
+    // sweep that quietly skipped its own boundary would be the same kind of
+    // partial sampling that let this bug ship.
+    {
+      const preTxt = T30.vgReadoutLine("angle_lines_deg", PRE.vgResolveLinesPlanes(BLOCK, { theta_deg: 90 }, SETTLED).readouts);
+      const fixTxt = rowAt(90);
+      const delta = Math.abs(readoutAt(90, PRE) - readoutAt(90));
+      assertTrue(`at θ=90 exactly the two builds differ by ${delta.toExponential(1)}° (the 6-dp axis overshoots the crossing) — inside the axis budget`,
+        delta > 0 && delta < AXIS_DP);
+      assertTrue(`...and the RENDERED row is identical either way ("${preTxt}" === "${fixTxt}") — no teacher can see the boundary`,
+        preTxt === fixTxt && fixTxt === "angle = 90.0°");
+    }
+    const noArc = JSON.parse(JSON.stringify(BLOCK));
+    delete noArc.angle_arcs;
+    let allSame = true;
+    for (const th of [25, 60, 92.2, 115]) {
+      if (JSON.stringify(PRE.vgResolveLinesPlanes(noArc, { theta_deg: th }, SETTLED))
+        !== JSON.stringify(E.vgResolveLinesPlanes(noArc, { theta_deg: th }, SETTLED))) allSame = false;
+    }
+    assertTrue("with no line-line arc authored, the two builds agree BIT FOR BIT at every θ (the change is exactly one branch)", allSame);
+  }
+
+  // ── (h) MODE "products" IS UNTOUCHED — θ (a, b) STAYS OBTUSE-CAPABLE ────
+  //   vector_products_in_space teaches the SIGN of a·b, so its θ row must be
+  //   free to read past 90°. Two independent gates say it cannot be affected,
+  //   and both are asserted rather than argued: the resolver is never entered
+  //   in products mode, and that row is the theta_deg KNOB, which never
+  //   reaches vgAngleDeg at all.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    for (const th of [115, 150]) {
+      const dom = fakeDom();
+      const win: Record<string, unknown> = {};
+      runFrame({ a_mag: 3, b_mag: 2, theta_deg: th, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+      assertTrue(`products mode at θ=${th}: the resolver is never entered (PM_vgLinesPlanes === null)`, win.PM_vgLinesPlanes === null);
+      const html = dom.get("vg_readout").innerHTML;
+      const m = new RegExp('<div id="vg_readout_theta_deg">([^<]*)</div>').exec(html);
+      assertTrue(`products mode at θ=${th}: the θ row still prints the OBTUSE value — "${m ? m[1] : "(no row)"}"`,
+        !!m && m[1] === "θ = " + th + "°");
+      // ...and the physics that depends on it is still signed.
+      const v = (win.PM_vgVectors as any);
+      assertTrue(`products mode at θ=${th}: a·b is still NEGATIVE (${dot3(v.a as V3, v.b as V3).toFixed(3)}) — the obtuse lesson survives`,
+        dot3(v.a as V3, v.b as V3) < 0);
+    }
+    // The static half of the same guarantee, off the SHIPPED source: the one
+    // vgAngleDeg call sits inside the resolver, which has one mode-gated call
+    // site — so no products path can reach the fold.
+    const RES = grabFn("vgResolveLinesPlanes");
+    assertTrue("the only vgAngleDeg call in the renderer is inside vgResolveLinesPlanes", RES.indexOf("vgAngleDeg(") > 0);
+    assertTrue("...and vgResolveLinesPlanes has exactly one call site, behind d.mode === \"lines_planes\"",
+      (SRC.match(/lpRes = vgResolveLinesPlanes\(/g) || []).length === 1
+      && SRC.indexOf('if (d.mode === "lines_planes") {\n            lpRes = vgResolveLinesPlanes(') > 0);
+    assertTrue("angle_lines_deg is a lines_planes token — it has no publish site outside the resolver",
+      (SRC.match(/out\.readouts\.angle_lines_deg =/g) || []).length === 2
+      && (SRC.match(/angle_lines_deg =/g) || []).length === 2);
+  }
+
+  // ── (i) THE CONTROL PANEL CARRIES THE SAME SYMBOL — the surface the fold
+  //     was never read against ────────────────────────────────────────────
+  //   bug_class control_row_label_names_a_derived_quantity_the_knob_stops_
+  //   equalling_once_a_convention_fold_lands (MAJOR). Clause (h) reads the θ
+  //   ROW AS TEXT — but only in mode "products", which is exactly why four
+  //   rounds of gating on this state missed the row a teacher actually drags.
+  //   In mode "lines_planes" the row was labelled "θ (d₁, d₂)" and shows the
+  //   KNOB, while the HUD one panel away shows the FOLDED angle: one symbol
+  //   pair, two numbers, 50° apart at the knob's own maximum (row 115°, HUD
+  //   65.0°) — on the state whose narration says the angle is never above
+  //   ninety and whose misconception_watch M4 is "the angle between two lines
+  //   can be more than 90 degrees". The control panel confirmed the belief the
+  //   narration denied.
+  //
+  //   AND IT IS WORSE ON #9 STATE_9's skew group, which no drive dump reaches:
+  //   that group publishes NO angle readout at all, so the row is the ONLY θ
+  //   surface there and nothing on screen contradicts it. That group is
+  //   asserted here, through the scene-group picker's own re-write.
+  //
+  //   THE DISCRIMINATING QUANTITY IS THE PAIR OF SURFACES READ TOGETHER, as
+  //   TEXT, at the state's OWN instants: the label from the SHIPPED writer
+  //   (vgWriteRowLabels — the apply pass and the picker both call it), the
+  //   row's number and the HUD from the SHIPPED frame at the frozen pin
+  //   (t=15000), the dense probe (t=19000), the ramp's end, and a trusted
+  //   teacher drag. Every one of those four instants is a number founder-proxy
+  //   measured on the shipped build, so this clause is pinned to evidence and
+  //   not to a re-derivation.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const ROT_AXIS: V3 = [0.287668, -0.838664, -0.462482];
+
+    // #9 STATE_9's group-B shape, verbatim in the parts that matter: the skew
+    // pair, the same rotate block, the group partition — and NO angle token in
+    // value_readouts, which is the whole reason this group is the dangerous one.
+    const S9: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 1, theta_deg: THETA0, line2_offset: 0,
+      scene_groups: [{ key: "A", label: "line + plane" }, { key: "B", label: "skew pair" }],
+      scene_group: "A",
+      value_readouts: ["skew_distance"],
+      controls: ["scene_group", "theta_deg", "line2_offset"],
+      group_controls: { A: [], B: ["theta_deg", "line2_offset"] },
+      control_ranges: { theta_deg: { min: 25, max: 115 } },
+      lines: [
+        { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d", groups: ["A"], reveal_at_ms: 0 },
+        { id: "M1", point: [-1.2, -0.9, 0.6], dir: D1, role: "dir1", label: "d₁", groups: ["B"], reveal_at_ms: 0 },
+        { id: "M2", point: [0.479887, -1.725775, -0.749677], dir: D2, role: "dir2", label: "d₂", groups: ["B"], reveal_at_ms: 0,
+          offset: { along: ROT_AXIS, zero: 0, knob: "line2_offset" },
+          rotate: { about: ROT_AXIS, zero: THETA0, knob: "theta_deg" } },
+      ],
+      common_perpendicular: { id: "common_perp", between: ["M1", "M2"], role: "derived", groups: ["B"], reveal_at_ms: 0 },
+    };
+
+    /**
+     * THE PRE-FIX LABEL BODY, verbatim from the build this clause convicts
+     * (commit f95347f0, the acute fold). The fix DELETED the reference half, so
+     * there is no shipped text left to mutate — the body is carried here
+     * instead, and guarded three ways below: it must differ from the shipped
+     * body, it must still contain the pair concatenation, and it must
+     * reproduce the exact strings founder-proxy read off the shipped build.
+     */
+    const PRE_THETA_SRC = [
+      'function vgThetaRowLabel(d, group) {',
+      '    d = d || {};',
+      '    if (d.mode !== "lines_planes") return null;',
+      '    var rotLab = null, refLab = null, pools = [vgList(d.lines), vgList(d.planes)];',
+      '    for (var pi = 0; pi < pools.length; pi++) {',
+      '        for (var i = 0; i < pools[pi].length; i++) {',
+      '            var o = pools[pi][i] || {};',
+      '            if (!vgInGroup(o, group)) continue;',
+      '            var lab = (typeof o.label === "string" && o.label !== "") ? o.label : null;',
+      '            var r = o.rotate || null;',
+      '            var turns = !!(r && r.about && r.about.length === 3 && r.knob === "theta_deg");',
+      '            if (turns) { if (rotLab === null) rotLab = lab; }',
+      '            else if (refLab === null && lab) refLab = lab;',
+      '        }',
+      '    }',
+      '    if (!rotLab || !refLab || rotLab === refLab) return "θ";',
+      '    return "θ (" + refLab + ", " + rotLab + ")";',
+      '}',
+    ].join("\n");
+    {
+      const SHIPPED_THETA = grabFn("vgThetaRowLabel");
+      assertTrue("the pre-fix label body differs from the shipped one (the control has something to plant)",
+        PRE_THETA_SRC.trim() !== SHIPPED_THETA.trim() && PRE_THETA_SRC.indexOf('"θ (" + refLab') > 0);
+      assertTrue("...and the SHIPPED body no longer builds a pair label at all (the defect cannot come back quietly)",
+        SHIPPED_THETA.indexOf("θ (") < 0 && SHIPPED_THETA.indexOf("refLab") < 0);
+    }
+
+    type Read = { lab: string; rowVal: number; hud: string | null; hudNum: number | null; row: string };
+    const seed = (dom: ReturnType<typeof fakeDom>) => {
+      for (const k of Object.keys(SHIPPED_ROW_LABEL)) dom.get("vg_" + k + "_lab").textContent = SHIPPED_ROW_LABEL[k];
+      return dom;
+    };
+    /**
+     * The two surfaces, read together off ONE dom: the apply pass writes the
+     * label (and the picker re-writes it on a group switch), the SHIPPED frame
+     * writes the row's number and the HUD.
+     */
+    const readAt = (vg: Record<string, unknown>, ms: number,
+      opts: { group?: string; dragTheta?: number; thetaSrc?: string } = {}): Read => {
+      const dom = seed(fakeDom());
+      const r = runApplyPass([], { show_sliders: true, vg }, dom, undefined, undefined, opts.thetaSrc);
+      if (opts.group) { r.win.PM_vgSceneGroup = opts.group; r.T.vgWriteRowLabels(vg); }
+      if (opts.dragTheta != null) { r.win.PM_vgTheta = opts.dragTheta; r.win.PM_vgThetaDragged = true; }
+      runFrame(vg, ms, dom, r.win, true);
+      const lab = dom.get("vg_theta_deg_lab").textContent;
+      // Under a trusted drag the range input's own handler owns the row's
+      // number (vgSyncRampedRows steps aside by contract), so the number on
+      // screen IS the knob the teacher dragged to.
+      const rowVal = opts.dragTheta != null ? opts.dragTheta : Number(dom.get("vg_theta_deg_val").textContent);
+      const m = /<div id="vg_readout_angle_lines_deg">([^<]*)<\/div>/.exec(dom.get("vg_readout").innerHTML);
+      const hud = m ? m[1] : null;
+      const hn = hud ? Number(/(-?[0-9.]+)°/.exec(hud)![1]) : null;
+      return { lab, rowVal, hud, hudNum: hn, row: lab + ": " + rowVal.toFixed(0) + "°" };
+    };
+    /**
+     * A row makes a PAIR CLAIM when it carries the symbol the state's formula
+     * surface owns (θ) or names two of the scene's objects at once: either way
+     * a teacher reads its number as "the angle between them". A row that makes
+     * that claim MUST agree with the angle readout — and a row that makes it
+     * where there is no readout at all is worse, not better, so the claim is
+     * banned outright rather than merely reconciled.
+     */
+    const OBJ = ["d₁", "d₂"];
+    const pairClaim = (lab: string) => lab.indexOf("θ") >= 0 || OBJ.filter((L) => lab.indexOf(L) >= 0).length >= 2;
+    /** The whole invariant, in one predicate — used by the assertions AND the controls. */
+    const honest = (r: Read) => !pairClaim(r.lab);
+
+    // ── the four instants founder-proxy measured on the shipped build ───────
+    const FROZEN = 15000, DENSE = 19000, RAMP_END = 19500, DRAG = 104;
+    const s6Frozen = readAt(BLOCK, FROZEN);
+    const s6Dense = readAt(BLOCK, DENSE);
+    const s6End = readAt(BLOCK, RAMP_END);
+    const s6Drag = readAt(BLOCK, FROZEN, { dragTheta: DRAG });
+
+    // The fixture reproduces the measured HUD/knob pairs BEFORE anything is
+    // claimed about the label — a clause asserting honesty on instants the
+    // shipped build never reached would prove nothing.
+    check("STATE_6 frozen pin t=15000: the knob is where founder-proxy read it", s6Frozen.rowVal, 92, 0);
+    check("...and the HUD beside it prints the folded angle", s6Frozen.hudNum as number, 87.8, 0.05, "°");
+    check("STATE_6 dense probe t=19000: the knob", s6Dense.rowVal, 112, 0);
+    check("...and the HUD", s6Dense.hudNum as number, 67.5, 0.05, "°");
+    check("STATE_6 ramp end t=19500: the knob reaches its authored maximum", s6End.rowVal, 115, 0);
+    check("...and the HUD prints the equation's answer", s6End.hudNum as number, 65.0, 0.05, "°");
+    check("STATE_6 trusted drag to 104°: the HUD", s6Drag.hudNum as number, 76.0, 0.05, "°");
+
+    // ── THE CLAIM: at every one of them the row names the CONTROL ───────────
+    for (const [why, r] of [["frozen pin t=15000", s6Frozen], ["dense probe t=19000", s6Dense],
+      ["ramp end t=19500", s6End], ["trusted drag to 104°", s6Drag]] as Array<[string, Read]>) {
+      assertTrue(`STATE_6 ${why}: the row names what the knob turns — "${r.row}" beside "${r.hud}"`,
+        r.lab === "turn d₂" && honest(r));
+      assertTrue(`...and makes NO claim the readout contradicts (row ${r.rowVal.toFixed(0)}° vs angle ${(r.hudNum as number).toFixed(1)}°, ${Math.abs(r.rowVal - (r.hudNum as number)).toFixed(1)}° apart)`,
+        !pairClaim(r.lab));
+    }
+
+    // ── STATE_9 GROUP B — the row is the ONLY θ surface there ───────────────
+    const s9a = readAt(S9, 4000);
+    const s9b = readAt(S9, 4000, { group: "B" });
+    const s9bMax = readAt(S9, 4000, { group: "B", dragTheta: 115 });
+    assertTrue(`group B publishes NO angle readout at all (hud: ${JSON.stringify(s9b.hud)}) — nothing on screen can contradict this row`,
+      s9b.hud === null && s9bMax.hud === null);
+    assertTrue(`group A turns nothing with this knob, so the row names no object — "${s9a.lab}"`, s9a.lab === "turn");
+    assertTrue(`group B, at the authored pose: the row names the line it turns — "${s9b.row}"`,
+      s9b.lab === "turn d₂" && s9b.rowVal === 69 && honest(s9b));
+    assertTrue(`group B, theta dragged to MAX: still the control, never a pair angle — "${s9bMax.row}"`,
+      s9bMax.lab === "turn d₂" && s9bMax.rowVal === 115 && !pairClaim(s9bMax.lab));
+
+    // ── THE NEGATIVE CONTROL: the shipped-today build, at the same instants ─
+    {
+      const pre = (vg: Record<string, unknown>, ms: number, o: { group?: string; dragTheta?: number } = {}) =>
+        readAt(vg, ms, { ...o, thetaSrc: PRE_THETA_SRC });
+      const p6Frozen = pre(BLOCK, FROZEN), p6Dense = pre(BLOCK, DENSE), p6End = pre(BLOCK, RAMP_END);
+      const p9b = pre(S9, 4000, { group: "B" }), p9bMax = pre(S9, 4000, { group: "B", dragTheta: 115 });
+      // The control really planted the defect: the exact strings founder-proxy
+      // read off the shipped build come back.
+      assertTrue(`the pre-fix label really was planted — STATE_6 renders "${p6Frozen.row}" (founder-proxy read "θ (d₁, d₂): 92°")`,
+        p6Frozen.lab === "θ (d₁, d₂)" && p6Frozen.row === "θ (d₁, d₂): 92°");
+      assertTrue(`...and STATE_9 group B renders "${p9b.row}" / "${p9bMax.row}" (founder-proxy read 69° and 115°)`,
+        p9b.row === "θ (d₁, d₂): 69°" && p9bMax.row === "θ (d₁, d₂): 115°");
+      expectFail(`the pre-fix STATE_6 frozen frame makes no claim its own readout contradicts (row "${p6Frozen.row}" vs "${p6Frozen.hud}")`,
+        !pairClaim(p6Frozen.lab));
+      expectFail(`the pre-fix STATE_6 at t=19000 agrees with the readout beside it (row ${p6Dense.rowVal}° vs angle ${(p6Dense.hudNum as number).toFixed(1)}°)`,
+        !pairClaim(p6Dense.lab) || Math.abs(p6Dense.rowVal - (p6Dense.hudNum as number)) <= 0.5);
+      expectFail(`the pre-fix STATE_6 at the knob's maximum agrees with the readout (row ${p6End.rowVal}° vs angle ${(p6End.hudNum as number).toFixed(1)}° — ${Math.abs(p6End.rowVal - (p6End.hudNum as number)).toFixed(1)}° apart)`,
+        !pairClaim(p6End.lab) || Math.abs(p6End.rowVal - (p6End.hudNum as number)) <= 0.5);
+      expectFail(`the pre-fix STATE_9 group B names no pair angle where there is no readout to check it against (row "${p9bMax.row}", hud ${JSON.stringify(p9bMax.hud)})`,
+        !pairClaim(p9bMax.lab));
+      // ...and the products row is BYTE-IDENTICAL across the two builds: this
+      // clause's fix cannot have reached mode "products" (clause (h)'s subject).
+      const prodPre = readAt({ a_mag: 3, b_mag: 2, theta_deg: 115, controls: ["theta_deg"], value_readouts: ["theta_deg"] }, 9000, { thetaSrc: PRE_THETA_SRC });
+      const prodNow = readAt({ a_mag: 3, b_mag: 2, theta_deg: 115, controls: ["theta_deg"], value_readouts: ["theta_deg"] }, 9000);
+      assertTrue(`a products row is unchanged by this fix — "${prodNow.lab}" (pre-fix "${prodPre.lab}"), and still the built label`,
+        prodNow.lab === prodPre.lab && prodNow.lab === SHIPPED_ROW_LABEL.theta_deg && prodNow.lab === "θ (a, b)");
+    }
   }
 }
 
