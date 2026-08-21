@@ -1648,3 +1648,54 @@ not closed by the arc fix as filed. The durable fix is either adding `vg_lp_plan
 making the peer-dim MULTIPLICATIVE against each material's own base opacity rather than an absolute
 constant — the second is the better shape, since an absolute constant is wrong for any element whose
 base is below it.
+
+### Glow bindings — AXIS 4, and the last two corrections (2026-08-21, quality_auditor 3rd narrow re-audit)
+
+The first three rounds checked **stampability**, **visibility at sentence time**, and **element type safe
+as a focal**. All three were binary. The fourth axis is not:
+
+> **Axis 4 — glow-window COVERAGE as a fraction, swept across the teacher's live Speed range.**
+
+Two mechanisms make partial coverage the normal case, not the exception:
+
+1. **`sendGlow` is sustained, not a pulse.** `applyReveal` fires it once at the sentence boundary
+   (`build_review_site.ts`, resolve by symbol) and it is only overwritten by the NEXT sentence — and
+   `sentenceAt` returns `held` through the 280 ms gap. The real window is `[start_i, start_{i+1})`.
+2. **That window scales with the Speed slider while `reveal_at_ms` does not.** `estSentenceMs` divides by
+   `WPM × rate`; the built page ships `rate` as `min 0.7 / max 1.1 / value 0.9`, and because this concept
+   has no audio manifest, `HAS_AUDIO` is false, so the estimate — and the slider — are live for all 37
+   sentences. Every `reveal_at_ms`/`hide_at_ms` is an **absolute constant**. This is the glow-channel twin
+   of a defect class already recorded against the REVEAL channel in `build_review_site.ts` (founder_proxy
+   CP-B cycle 2, where "at rate 1.0 STATE_2's Sₙ payoff never rendered at all"). The
+   `Math.max(narrationEnd, duration*1000)` floor added there protects MOTION; it does nothing for a
+   sentence-anchored glow.
+
+Measured coverage, verified independently:
+
+| binding | @0.9 | @1.0 | @1.1 | action |
+|---|---|---|---|---|
+| `s3_3` → `perp` (`reveal 15450`) | 20 % | **0 %** | **0 %** | **UNBOUND** — its successor `s3_4` → `perp` already holds 100/92/73 % |
+| `s4_3` → `X` (`reveal 15000`) | 17 % | **0 %** | **0 %** | **RE-POINTED to `Lcut`** (80–100 % across 0.7–1.1) — and `Lcut` is the sentence's own opening subject, "A second line arrives" |
+| `s2_2` → `test_v_inplane` | 57 % | 63 % | 69 % | **KEPT** — see below |
+
+Both 0 % cases sat on their state's **payoff** sentence, under a caption naming the very thing being
+glowed ("The perpendicular is shortest", "Crosses, or never touches"). And an absent focal is not inert:
+the loop skips the invisible object while `glowActive` stays true, so every visible peer still runs the
+peer branch — a **leaderless dim** in which points drop to 0.4 and the plane inverts 0.28 → 0.4, with
+nothing brightened.
+
+**`s2_2` kept, deliberately.** Its target is the sentence's true subject and leads the opening; it degrades
+to 33 % only at the SLOWEST speed (0.7), which is a different shape from vanishing entirely. The real
+defect underneath is a **pacing mismatch, not a binding**: the choreography hands off in-plane →
+off-plane at 11200 ms while the narration hands off at ~14.3 s, so `test_v_offplane` sits on screen
+un-glowed for ~3 s. Re-timing that hand-off is an `alex:architect` call and is flagged, not silently
+patched here.
+
+**21 bindings survive, verified on all four axes**, and the sweep is now automated across
+Speed 0.7–1.1. Corrected type census (the earlier "10/8/3/3 = 24" was wrong and did not sum to the
+binding count): **line 5 · seg 9 · normal 2 · vec 3 · point 2**.
+
+**Engine advisory, refined.** The multiplicative peer-dim recommendation should extend to the FOCAL branch
+too: `if (touchOp) { m.opacity = 1.0; }` is equally absolute and discards authored `ghost` state — and this
+concept ghosts deliberately (S1's plane, S4's `Lpar`). Both branches should scale against `_glowBaseOp`.
+Platform, Rule 40, founder call.

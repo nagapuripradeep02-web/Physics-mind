@@ -339,8 +339,7 @@
             },
             {
               "id": "s3_3",
-              "text_en": "It reaches its smallest value at the perpendicular, and locks.",
-              "glow": "perp"
+              "text_en": "It reaches its smallest value at the perpendicular, and locks."
             },
             {
               "id": "s3_4",
@@ -414,7 +413,7 @@
             {
               "id": "s4_3",
               "text_en": "A second line arrives, heading differently. It crosses, and a marker appears.",
-              "glow": "X"
+              "glow": "Lcut"
             },
             {
               "id": "s4_4",
