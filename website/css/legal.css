@@ -20,6 +20,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   box-shadow:0 6px 16px -6px rgba(203,104,67,.55);}
 .mark svg{width:20px;height:20px;}
 .brand{font-family:var(--font-disp);font-weight:600;font-size:19px;letter-spacing:-.01em;}
+/* the tagline under the wordmark (filled from js/brand.js — same source as the landing page).
+   Only "← Home" shares this bar, so it can show from 560px up. */
+.brand b{display:block;line-height:1;}
+.brand .promiseLine{display:none;font-family:var(--font-ui);font-size:9.5px;font-weight:500;
+  letter-spacing:0;line-height:1.4;color:var(--ink-faint);margin-top:4px;max-width:25ch;}
+@media (min-width:560px){ .brand .promiseLine{display:block;} }
 .top .home{margin-left:auto;color:var(--ink-dim);text-decoration:none;font-size:13.5px;}
 .top .home:hover{color:var(--clay-soft);}
 
