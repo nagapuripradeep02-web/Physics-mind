@@ -200,13 +200,14 @@
             },
             {
               "id": "s1_4",
-              "text_en": "One number names this line. A plane needs more than a direction."
+              "text_en": "One number names this line. A plane needs more than a direction.",
+              "glow": "L1_lambda"
             }
           ]
         }
       },
       "STATE_2": {
-        "title": "A Normal Direction Fixes a Whole Plane",
+        "title": "A Normal Direction Sets a Whole Plane",
         "duration": 18,
         "eye_capture_ms": 12000,
         "depth_ring": "core",
@@ -251,20 +252,23 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Naming a whole plane needs one more idea: a direction perpendicular to it, called the normal.",
+              "text_en": "Naming a plane needs one more idea: a perpendicular direction, called the normal.",
               "glow": "P1.normal"
             },
             {
               "id": "s2_2",
-              "text_en": "A vector lying in the plane gives zero dot product with the normal."
+              "text_en": "A vector in the plane gives zero dot product with the normal — also called the scalar product.",
+              "glow": "test_v_inplane"
             },
             {
               "id": "s2_3",
-              "text_en": "Tip it out of the plane, and the reading leaves zero."
+              "text_en": "Tip it out of the plane, and the reading leaves zero.",
+              "glow": "test_v_offplane"
             },
             {
               "id": "s2_4",
-              "text_en": "The plane is fully named. Take a point off it, how far away is it?"
+              "text_en": "The plane is named. Take a point off it: how far is it?",
+              "glow": "P1"
             }
           ]
         }
@@ -326,19 +330,23 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "A point sits off the plane. A segment to it shows length, live."
+              "text_en": "A point sits off the plane. A segment to it shows length, live.",
+              "glow": "q"
             },
             {
               "id": "s3_2",
-              "text_en": "Slide the landing spot, and the length changes: it falls, then rises."
+              "text_en": "Slide the landing spot, and the length changes: it falls, then rises.",
+              "glow": "cmp"
             },
             {
               "id": "s3_3",
-              "text_en": "It reaches its smallest value at the perpendicular, and locks."
+              "text_en": "It reaches its smallest value at the perpendicular, and locks.",
+              "glow": "perp"
             },
             {
               "id": "s3_4",
-              "text_en": "That perpendicular is the distance. Replace the point with a line: does it reach the plane, or miss it?"
+              "text_en": "That perpendicular is the distance. Replace the point with a line: does it reach the plane, or miss it?",
+              "glow": "perp"
             }
           ]
         }
@@ -396,11 +404,13 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "This line is perpendicular to the normal. Watch it slide sideways above the plane."
+              "text_en": "This line is perpendicular to the normal. Watch it slide sideways above the plane.",
+              "glow": "Lpar"
             },
             {
               "id": "s4_2",
-              "text_en": "Its height never changes, so it never touches."
+              "text_en": "Its height never changes, so it never touches.",
+              "glow": "Lpar"
             },
             {
               "id": "s4_3",
@@ -409,7 +419,7 @@
             },
             {
               "id": "s4_4",
-              "text_en": "A line meets a plane two ways. Two lines in space add a third, one only three dimensions allow."
+              "text_en": "A line meets a plane in two ways. Two lines in space have a third case, one only three dimensions allow."
             }
           ]
         }
@@ -475,7 +485,8 @@
             },
             {
               "id": "s5_3",
-              "text_en": "These two lines cross on screen, but not in space."
+              "text_en": "These two lines cross on screen, but not in space.",
+              "glow": "crossing_mark"
             },
             {
               "id": "s5_4",
@@ -494,12 +505,19 @@
         }
       },
       "STATE_6": {
-        "title": "Directions Alone Fix the Angle",
+        "title": "Directions Alone Set the Angle",
         "duration": 22,
         "eye_capture_ms": 15000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "arc1",
+        "misconception_watch": [
+          {
+            "belief": "The angle between two lines can be more than 90 degrees",
+            "visual_counter": "The second line keeps turning past perpendicular, but the angle readout rises to 90.0° and then falls back to 65.0°",
+            "one_line_fix": "The angle between two lines is the smaller of the two angles they make, so it is never more than 90°; that is why the formula takes the absolute value of d₁·d₂."
+          }
+        ],
         "scene_composition": [
           {
             "type": "line",
@@ -532,19 +550,22 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "The two directions return, from one shared point, with the angle between them."
+              "text_en": "Both directions return from one shared point, with the angle between them.",
+              "glow": "arc1"
             },
             {
               "id": "s6_2",
-              "text_en": "Slide one line along itself: the angle does not change."
+              "text_en": "Slide one line along itself: the angle does not change.",
+              "glow": "M1"
             },
             {
               "id": "s6_3",
-              "text_en": "Now turn one direction, and the angle tracks it, to one hundred fifteen degrees."
+              "text_en": "Turn one direction past perpendicular: the angle rises to ninety, then falls back to sixty-five."
             },
             {
               "id": "s6_4",
-              "text_en": "The angle came from the two directions alone: no point on either line mattered."
+              "text_en": "The angle between two lines is the smaller one, never above ninety, and comes from directions alone.",
+              "glow": "arc1"
             }
           ]
         }
@@ -599,19 +620,23 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "This line splits: one part flat in the plane, one along the normal."
+              "text_en": "This line splits: one part flat in the plane, one along the normal.",
+              "glow": "Lcut"
             },
             {
               "id": "s7_2",
-              "text_en": "The angle to the normal is fifty-five degrees."
+              "text_en": "The angle to the normal is fifty-five degrees.",
+              "glow": "arc_normal"
             },
             {
               "id": "s7_3",
-              "text_en": "The angle to the plane is the rest: thirty-five degrees."
+              "text_en": "The angle to the plane is the rest: thirty-five degrees.",
+              "glow": "arc_plane"
             },
             {
               "id": "s7_4",
-              "text_en": "Measure to the normal first, then subtract from ninety: that is the angle to the plane."
+              "text_en": "Measure to the normal first, then subtract from ninety: that is the angle to the plane.",
+              "glow": "arc_plane"
             }
           ]
         }
@@ -670,19 +695,23 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "The two lines return, gap already drawn."
+              "text_en": "The two lines return, gap already drawn.",
+              "glow": "common_perp"
             },
             {
               "id": "s8_2",
-              "text_en": "A new direction, perpendicular to both lines, is built here."
+              "text_en": "A new direction, perpendicular to both lines, is built here.",
+              "glow": "cross_vec"
             },
             {
               "id": "s8_3",
-              "text_en": "It slides onto the gap and lands exactly on top."
+              "text_en": "It slides onto the gap and lands exactly on top.",
+              "glow": "cross_vec"
             },
             {
               "id": "s8_4",
-              "text_en": "The gap's length: how far the lines start apart, over this direction's length."
+              "text_en": "The distance: the gap between the starting points, measured along this direction.",
+              "glow": "a2_minus_a1"
             },
             {
               "id": "s8_5",
@@ -913,8 +942,8 @@
         "curriculum": "CBSE / NCERT",
         "coverage": "full",
         "syllabus_unit": "Class 12 Mathematics, Chapter 11 — Three-Dimensional Geometry (equation of a line, equation of a plane, distance of a point from a plane, angle between two lines, angle between a line and a plane, shortest distance between two skew lines)",
-        "verified": true,
-        "needs_teacher_verification": false,
+        "verified": false,
+        "needs_teacher_verification": true,
         "evidence": "NCERT Class 12 Mathematics chapter index read at authoring time. This is a chapter-index reading, NOT a teacher confirmation — stated honestly."
       },
       {
@@ -987,7 +1016,7 @@
         "caption": "One point, one direction",
         "formula_overlay": "r = a + λd",
         "show_sliders": true,
-        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_dir", "vp_label_lambda"],
+        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_dir"],
         "camera_position": [0.0, 8.0, 13.8564],
         "vg": {
           "mode": "lines_planes",
@@ -1008,7 +1037,7 @@
               "show_normal": true,
               "normal_label": "n",
               "ghost_at_ms": 300,
-              "ghost_opacity": 0.25
+              "ghost_opacity": 0.4
             }
           ],
           "points": [
@@ -1045,7 +1074,7 @@
         }
       },
       "STATE_2": {
-        "label": "A normal direction fixes a whole plane",
+        "label": "A normal direction sets a whole plane",
         "caption": "One point, one normal",
         "formula_overlay": "n·(r − a) = 0",
         "show_sliders": true,
@@ -1211,7 +1240,7 @@
               "role": "dir2",
               "label": "d",
               "reveal_at_ms": 0,
-              "hide_at_ms": 9500,
+              "ghost_at_ms": 9500,
               "offset": { "along": [0.379337, 1.083821, -4.866357], "zero": 0.5, "knob": "aux_a" }
             },
             {
@@ -1318,7 +1347,7 @@
         }
       },
       "STATE_6": {
-        "label": "Directions alone fix the angle",
+        "label": "Directions alone set the angle",
         "caption": "Directions alone give the angle",
         "formula_overlay": "cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)",
         "show_sliders": true,
@@ -1407,7 +1436,7 @@
           "lines": [
             {
               "id": "Lcut",
-              "point": [-1.919561, -1.265952, -0.342383],
+              "point": [0.570142, -0.599551, 0.000118],
               "dir": [0.957580, 0.256298, 0.131726],
               "role": "dir1",
               "label": "d",
@@ -1529,7 +1558,7 @@
         "caption": "Move every part",
         "formula_overlay": "r = a + λd",
         "show_sliders": true,
-        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_point", "vg_lp_seg", "vg_lp_vec"],
+        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_point", "vg_lp_seg"],
         "camera_position": [-9.7766, 4.7883, 8.8029],
         "vg": {
           "mode": "lines_planes",

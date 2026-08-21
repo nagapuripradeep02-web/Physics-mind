@@ -1395,3 +1395,190 @@ method.**
 live (non-struck) animate block, `start_ms:7000` inside a live STATE_8 block, or a word-budget range
 that fails to bracket its state's own shipped `text_en` count**, per direct re-grep after every edit
 above.
+
+---
+
+## FIX ROUND 2026-08-21 — Checkpoint B (founder-proxy), fix cycle 0 — F2 / F7 / F9 (this desk's three)
+
+Routed via `founder_proxy`'s Checkpoint-B FIX on `lines_and_planes_in_space`. Three narration findings,
+all mathematics-side. `alex:json_author` applies the two "Final narration" tables below verbatim to
+`text_en` on the named sentence ids, plus the F7 glow table as new `glow` fields — this desk does not
+touch the concept JSON (out of tool scope). **S6's `s6_3` is untouched in this pass** — a concurrent
+`architect` pass owns its acute-fold directive separately; nothing below names it, and no glow was
+proposed for it.
+
+### 1 · F2 — `s8_4` named a labelled HUD number as a quantity the scene draws at a different length
+
+**Verified from the shipped `vg` config** (not the skeleton's numbers — recomputed in python3 from
+`M1.point=[-1.2,-0.9,0.6]`, `M1.dir=[1,0.15,0.35]`, `M2.point=[0.479887,-1.725775,-0.749677]`,
+`M2.dir=[0.15,-0.5,1]`, matching `vgCommonPerp`'s own normalize-before-cross behaviour): the magenta
+`a2_minus_a1` vector (`derive:"between", of:["M1","M2"], origin:"M1"`) is drawn at the TRUE separation
+`|a2−a1| = 2.308`, while the HUD's `shortest distance = 1.800` is the PROJECTION of that same
+separation onto the unit direction `d̂1×d̂2` — a strictly shorter number, and a different geometric
+operation ("how far apart, along one direction only") than "how far apart" read plain. The old sentence
+named the arrow's own quantity ("how far the lines start apart") then divided it by "this direction's
+length" as if producing the HUD number by that division — neither operation is what the resolver
+computes, and the phrasing is unspeakable as a ratio of two lengths in the first place (a length over a
+length is a pure number, not the 1.800 the HUD prints in the same units as everything else on this
+formula surface).
+
+**Chosen fix — reframes the HUD number as a projection, not a ratio, matching the founder's reading
+verbatim ("the gap between the starting points, measured along this perpendicular direction").** No
+neighbour sentence needed a word trade: STATE_8's total DROPS from 55 to 54 (one word under the old
+figure), because the replacement is one word shorter than the sentence it replaces.
+
+**Numerical check, run (not eyeballed) — the plain-English reading reproduces the printed number:**
+```
+gap = a2 - a1                                = [ 1.679887, -0.825775, -1.349677],  |gap| = 2.3077  (the drawn arrow's own length)
+d1_hat, d2_hat                                = normalize(M1.dir), normalize(M2.dir)
+cross = d1_hat x d2_hat                       = [0.26925, -0.78496, -0.43287],      |cross| = 0.93597
+projection of gap onto (cross/|cross|)        = 1.7999995988633581
+HUD "shortest distance"                       = 1.800                               <- MATCH to printed precision
+```
+"the gap between the starting points [=`a2_minus_a1`, 2.308], measured along this [perpendicular]
+direction [=`cross_vec`'s own direction]" is exactly `gap · (cross/|cross|)` — the projection — which
+computes to 1.7999995988633581, matching the shipped `shortest distance = 1.800` HUD row to every
+printed digit. The old sentence's claim (a length divided by a direction's length) has no such
+correspondence to any number the resolver ever prints.
+
+### Final narration — `text_en`, ready for `json_author` to paste verbatim (F2)
+
+| id | Final `text_en` | Words | State total |
+|---|---|---|---|
+| `s8_4` | "The distance: the gap between the starting points, measured along this direction." | 12 | STATE_8: **54** (was 55) |
+
+`s8_1`, `s8_2`, `s8_3`, `s8_5` are unchanged — not reproduced here to avoid `json_author` overwriting a
+correct sentence with a byte-identical "fix".
+
+### 2 · F9 — Rule 38d dialect: "dot product" dual-labelled once, then bare
+
+**First use across all `text_en`, in state order:** `s2_2` — "A vector lying in the plane gives zero dot
+product with the normal." (STATE_1 never says "dot product"; STATE_2's `s2_2` is the first occurrence
+in any `text_en` string in the concept.) Every later bare "dot product"/"n·v" mention (S2's own `s2_3`,
+S4's `n·d` narration, the mastery/assessment strings) stays bare, per the existing convention — dual-
+label ONCE at first appearance, matching this concept's own established pattern for "normal
+(perpendicular direction)" (S2) and "skew (never meeting, not parallel)" (S5).
+
+**STATE_2 was already AT the Rule-31 cap (55/55)** — the dual label ("dot product ... also called the
+scalar product") could not simply be inserted; it needed 5 words of room, traded from `s2_1` (−1, "a
+whole plane" → "a plane") and `s2_4` (−2, "fully named" → "named"; "how far away" → "how far") to hold
+the state at 55/55 with the new clause appended AFTER "dot product with the normal" rather than
+interrupting that phrase (interrupting reads as: "...gives zero dot product, also called the scalar
+product, with the normal." — grammatically legal but breaks the set phrase "dot product with the
+normal" apart; appending after is the cleaner spoken reading and matches this concept's own
+name-then-description convention, e.g. `s5_4`'s "called skew lines: not parallel, and never meeting").
+
+### Final narration — `text_en`, ready for `json_author` to paste verbatim (F9)
+
+| id | Final `text_en` | Words | State total |
+|---|---|---|---|
+| `s2_1` | "Naming a plane needs one more idea: a perpendicular direction, called the normal." | 13 | STATE_2: **55** (unchanged total — word traded out to make room for `s2_2`'s dual label) |
+| `s2_2` | "A vector in the plane gives zero dot product with the normal — also called the scalar product." | 18 | — |
+| `s2_3` | (unchanged) "Tip it out of the plane, and the reading leaves zero." | 11 | — |
+| `s2_4` | "The plane is named. Take a point off it: how far is it?" | 13 | — |
+
+`s2_3` is unchanged — listed here only for the state's word-total arithmetic, not for `json_author` to
+rewrite.
+
+### 3 · F7 — glow bindings, 21 new + 4 existing, S9 excluded
+
+**Method.** For every non-explore sentence naming exactly one on-screen object as its subject, the
+object's authored `id` — verified against the actual `stamp()` call sites in
+`field_3d_renderer.ts` (lines: `vg_lp_line`/`vg_lp_seg`/`vg_lp_vec`/`vg_lp_point` stamp with the
+object's OWN authored `id` verbatim, `:14552,14571,14606,14624,14636`; a plane's normal is the ONE
+exception, stamped `P.id + ".normal"` at `:14571`, matching `s2_1`'s already-shipped `glow:"P1.normal"`
+exactly — confirmed, not assumed). `L1`'s lambda marker is NOT `L1_lambda_marker` (the scene_composition
+doc-only label) — the resolver auto-generates it as `res.lines[li].id + "_lambda"` (`:14596`), i.e.
+`L1_lambda`; that is the id proposed below, not the doc label. Sentences whose subject is a real-world
+anchor (Rule 35 opening analogies, before any literal object is on screen — `s1_1`/`s1_2`/`s5_1`/`s5_2`),
+a pure forward-tease to a not-yet-drawn object in the NEXT state (`s4_4`, `s5_6`, `s8_5`), a
+definitional two-object sentence with no single subject (`s5_4`), or `s6_3` (concurrent architect
+pass, untouched) get NO binding, with the reason given inline.
+
+| Sentence | `text_en` (unchanged unless noted) | Glow target | Status |
+|---|---|---|---|
+| `s1_1` | "A straight track has a starting post and one heading." | — | no binding — Rule-35 anchor analogy, before any literal object is drawn |
+| `s1_2` | "After that, a single number, how far along you are, names every place on it." | — | no binding — same analogy beat as `s1_1` |
+| `s1_3` | "A line works like this: one point, one direction d, and lambda slides along it." | `L1` | EXISTING (unchanged) |
+| `s1_4` | "One number names this line. A plane needs more than a direction." | `L1_lambda` | NEW — subject is "one number", i.e. the λ marker, not the line itself (already glowed by `s1_3`) |
+| `s2_1` | see F9 above | `P1.normal` | EXISTING (unchanged target; text trimmed) |
+| `s2_2` | see F9 above | `test_v_inplane` | NEW |
+| `s2_3` | "Tip it out of the plane, and the reading leaves zero." | `test_v_offplane` | NEW |
+| `s2_4` | see F9 above | `P1` | NEW — "the plane is [fully] named" recaps `P1` before the forward tease |
+| `s3_1` | "A point sits off the plane. A segment to it shows length, live." | `q` | NEW — names two objects (point, segment); bound to the point since it is the state's newly-introduced noun |
+| `s3_2` | "Slide the landing spot, and the length changes: it falls, then rises." | `cmp` | NEW |
+| `s3_3` | "It reaches its smallest value at the perpendicular, and locks." | `perp` | NEW |
+| `s3_4` | "That perpendicular is the distance. Replace the point with a line: does it reach the plane, or miss it?" | `perp` | NEW — recap clause; the forward-tease half has no on-screen referent yet |
+| `s4_1` | "This line is perpendicular to the normal. Watch it slide sideways above the plane." | `Lpar` | NEW |
+| `s4_2` | "Its height never changes, so it never touches." | `Lpar` | NEW |
+| `s4_3` | "A second line arrives, heading differently. It crosses, and a marker appears." | `X` | EXISTING (unchanged) |
+| `s4_4` | "A line meets a plane two ways. Two lines in space add a third, one only three dimensions allow." | — | no binding — recap + forward tease, no single on-screen subject |
+| `s5_1` | "On a flat map, two straight roads cross." | — | no binding — Rule-35 anchor analogy |
+| `s5_2` | "On the ground, one runs over the other, and they never touch." | — | no binding — same analogy beat |
+| `s5_3` | "These two lines cross on screen, but not in space." | `crossing_mark` | NEW |
+| `s5_4` | "These are called skew lines: not parallel, and never meeting." | — | no binding — definitional statement about the class, no single object (also this state's own dual-label sentence, unrelated to F9) |
+| `s5_5` | "The true gap lies between their nearest points." | `common_perp` | EXISTING (unchanged) |
+| `s5_6` | "The angle must come from directions alone." | — | no binding — forward tease; `arc1` does not exist until STATE_6 |
+| `s6_1` | "The two directions return, from one shared point, with the angle between them." | `arc1` | NEW |
+| `s6_2` | "Slide one line along itself: the angle does not change." | `M1` | NEW — only `M1`'s anchor slides this state (§4 STATE_6, §2b) |
+| `s6_3` | — | — | **untouched this pass** — concurrent `architect` s6_3 directive owns this sentence |
+| `s6_4` | "The angle came from the two directions alone: no point on either line mattered." | `arc1` | NEW |
+| `s7_1` | "This line splits: one part flat in the plane, one along the normal." | `Lcut` | NEW |
+| `s7_2` | "The angle to the normal is fifty-five degrees." | `arc_normal` | NEW |
+| `s7_3` | "The angle to the plane is the rest: thirty-five degrees." | `arc_plane` | NEW |
+| `s7_4` | "Measure to the normal first, then subtract from ninety: that is the angle to the plane." | `arc_plane` | NEW — closing clause names the plane angle as the answer |
+| `s8_1` | "The two lines return, gap already drawn." | `common_perp` | NEW |
+| `s8_2` | "A new direction, perpendicular to both lines, is built here." | `cross_vec` | NEW |
+| `s8_3` | "It slides onto the gap and lands exactly on top." | `cross_vec` | NEW — "it" = `cross_vec`, sliding onto `common_perp` |
+| `s8_4` | see F2 above | `a2_minus_a1` | NEW — the sentence's whole subject, per F2's fix, is the magenta "gap between the starting points" arrow |
+| `s8_5` | "Every measurement is now a number you can change. The last state gives the controls." | — | no binding — forward tease to STATE_9, no single object |
+| `s9_1`, `s9_2` | — | — | **excluded per instruction** — explore state |
+
+**Count:** 4 existing (unchanged) + 21 new + 9 deliberate no-binding + 1 untouched (`s6_3`) + 2 excluded
+(`s9_1`/`s9_2`) = 37.
+
+### Founder-call note
+
+Three judgment calls in this round, none load-bearing, all flagged rather than silently decided:
+
+1. **`P1` (a whole plane, not a point/line/vector) as a glow-focal target (`s2_4`) is untested on this
+   concept** — every OTHER glow this desk proposed targets a line/point/segment/vector/arc, all thin
+   primitives where `applyGlowEmphasis`'s brighten-toward-white behaviour reads clearly against a dark
+   background. A translucent plane quad brightening is a different visual (a broad glow, not a focal
+   line lighting up) — mechanically identical code path, but nobody has looked at it on screen. Worth a
+   THE-EYE frame check on `s2_4`'s beat before trusting it renders legibly.
+2. **Binding a sentence that names two on-screen objects to only ONE of them (Rule 32e) is this desk's
+   own judgment every time it came up** (`s3_1`, `s7_1`, `s7_4`, `s8_1`) — the alternative (no binding
+   at all, on the grounds that a two-object sentence has no single "correct" focal) would have been
+   defensible too. `json_author`/`quality_auditor` should treat every "NEW" row above as a proposal to
+   verify against the actual narration cadence (which object is being described at the SECOND the
+   sentence plays), not a settled fact — this desk reasoned from grammar and object-reveal timing, not
+   from a frame-by-frame audio sync pass.
+3. **`s2_2`'s dual-label placement (appended after "with the normal" rather than inserted mid-clause)**
+   is a style call favouring spoken clarity over proximity to the term it renames — the alternative
+   (`"...zero dot product, also called the scalar product, with the normal."`) is also grammatically
+   correct and 1 word cheaper. Flagging in case the founder prefers matching `s2_1`'s/`s5_4`'s exact
+   syntactic shape (description-then-name) over this sentence's own (name-then-description, matching
+   `s5_4` instead) — both patterns already coexist in this concept, so either choice is precedented.
+
+### Source check
+
+Consulted no textbook for this round — all three findings are narration-accuracy and dialect fixes
+against the concept's own already-authored geometry and the shipped renderer's own `stamp()`/normalize
+behaviour, verified by direct source read and a `python3` numerical re-derivation (§1 above), not by
+citation.
+
+### s6_3 / s6_4 — final (2026-08-21, applied by the dispatching session after json_author's word count)
+
+The architect's s6_3 directive was **34 words**, not the 31 it cited, and it stated the rule that s6_4
+already states — STATE_6 landed at **69**. Fixed by letting each sentence do one job:
+
+| id | text_en | words |
+|---|---|---|
+| `s6_1` | "Both directions return from one shared point, with the angle between them." | 12 |
+| `s6_2` | "Slide one line along itself: the angle does not change." | 10 |
+| `s6_3` | "Turn one direction past perpendicular: the angle rises to ninety, then falls back to sixty-five." | 15 |
+| `s6_4` | "The angle between two lines is the smaller one, never above ninety, and comes from directions alone." | 17 |
+
+**STATE_6 = 54.** s6_3 narrates the beat (the number turns around); s6_4 states the rule and keeps the
+"directions alone" close. STATE_4 trimmed to 55 by dropping "that" from s4_4. No glow on s6_3.
