@@ -14,7 +14,13 @@
 > queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
 > the 2026-08-09 record, kept verbatim.
 >
-> **⚠ START AT §0.01 (2026-08-21) — it is the paste-and-go resume.** CP-B cycle 1's three P1s are
+> **⚠ START AT §0.00 (2026-08-21 late).** CP-B **cycle 2** returned FIX(engine) BLOCKING + one
+> authoring FIX; both were dispatched and TWO AGENTS WERE STILL IN FLIGHT when the session ended — their
+> EDITS ARE ON DISK, their reports are not. §0.00 says exactly where to find each and what to re-verify
+> before committing. Cycle 3 is the LAST before ESCALATE.
+>
+> ~~START AT §0.01~~ (superseded; still accurate for the cycle-1 record)
+> **⚠ §0.01 (2026-08-21) — it is the paste-and-go resume.** CP-B cycle 1's three P1s are
 > APPLIED and pushed; the next action is ONE quality-auditor dispatch, then a fresh founder_drive, then
 > founder-proxy Checkpoint B **cycle 2 of 3**. The engine half is **PR #133, CI green, unmerged — a
 > founder call.** ~~PR #133 unmerged~~ — **MERGED 2026-08-21 as `91c55b0f`; the engine half is on master.**
@@ -100,6 +106,109 @@ stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warni
 `parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
 drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
 sample that window).
+
+---
+
+## 0.00 RESUME 2026-08-21 (late) — CP-B cycle 2 verdict is in. TWO AGENTS WERE IN FLIGHT. Read this first.
+
+**Status: `founder_proxy` Checkpoint B cycle 2 returned `FIX(engine)` BLOCKING + one authoring FIX.
+Both were dispatched. The dispatching session ran out of context before their reports landed.**
+
+### ⚠ FIRST: recover the in-flight work
+
+Two agents were working when the session ended. **Their edits are on disk; their reports are lost.**
+
+**(a) `field3d-surgeon` — F1, the blocking engine fix.** Desk:
+`/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-fix/vg-readout-subject-label`
+(branch `fix/vg-readout-subject-label`, cut from `91c55b0f`). It was told to hand back **uncommitted**.
+```bash
+cd /Users/karthikyerragadda/Desktop/Viditra/Physics-mind-fix/vg-readout-subject-label
+git status --short && git diff --stat
+```
+Expect: a modified `src/lib/renderers/field_3d_renderer.ts`, a modified
+`src/scripts/check_vector_geometry_3d.ts` (new section + negative controls), a new
+`src/scripts/_seed_engine_bug_queue_vg_readout_subject_label.ts` and its migration, and **two untracked
+concept JSONs** (`mathematics/lines_and_planes_in_space.json`, `vector_products_in_space.json`) that are
+THE EYE fixtures — **never stage those.** Re-run the verify chain yourself before committing; do not
+trust an unseen report. Then commit, push, `gh pr create` against master (Rule 40: its own PR).
+
+**(b) `json-author` — F2, the authoring fix.** It edits
+`<CHAPTER DESK>/src/data/concepts/mathematics/lines_and_planes_in_space.json` **in place**, so its work is
+simply there. `git diff` in the chapter desk shows what landed. Re-verify (`tsc`,
+`validate:mathematics`, `check:vector-geometry-3d`, rebuild, re-seed, THE EYE) and commit.
+
+### State
+
+| | |
+|---|---|
+| Chapter branch | `feat/mathematics-lines-and-planes` @ **`4f8950e2`** + whatever json_author added, **0 behind master** |
+| Engine desk | `fix/vg-readout-subject-label` @ `91c55b0f` + uncommitted F1 work |
+| PR #133 | **MERGED** (`91c55b0f`) — the acute fold + the θ control row are on master |
+| Merged desk to close | `npm run desk:close -- fix/vg-acute-line-angle` (its job is done) |
+| THE EYE | `.visual_runs/lines_and_planes_in_space/20260821-181625/` — 39/40 (`STATE_9:D5` false positive) |
+| founder_drive | `.founder_runs/…/2026-08-21T15-20-21-596Z/` — 11/11 drags moved, 0 errors |
+| `quality_auditor` | **PASS** (on the pre-F1/F2 build) |
+
+### CP-B cycle 2 — what it found
+
+**F1 · BLOCKING · engine.** `field_3d_renderer.ts` hardcodes `d_dot_n: "n·d"`, and the comment above the
+resolver states the premise it rests on: *"on the state this exists for, both lines carry the same generic
+label d."* That was true until **cycle 1's own P1-B fix** renamed `Lpar` to `d′` (to fix two lines both
+called `d`). So for STATE_4's first 9.5 s the HUD prints `n·d = 0.000` while the only line on screen is
+`d′` — on the state whose declared misconception IS what `n·d = 0` means. Fix: derive the row label from
+the subject's authored label (`arrivedMeets[0].line` already carries it at the publish site).
+
+**F2 · P1 · authoring.** Rule 25 is scored **per state**, not per concept. S2/S3/S9's formula surfaces name
+`a` and none draws it; `r` is named by three surfaces and labelled nowhere (the λ marker IS `r` — label
+the marker, don't add an object); S3's formula says `D` while the HUD says `distance`; `par_tag` is
+**2.50 wu off** the line it tags.
+
+**F3 · ride-along · engine.** Label sprites are scaled in WORLD units (`pmCreateAutoLabel`), so on-screen
+glyph size is purely `1/distance`. The letter `d` renders **137 ink px in S1 and 7 in S4** — a 19× range
+for one glyph in one concept — and `par_tag` renders 411 px beside them. Every framing pass silently
+rescales every label. **This is why the interim matters:** if F1 lands without F3, STATE_4 prints a correct
+`n·d′` beside a 7-pixel `d′`.
+
+**F4–F7 · P2/P3.** 16 of 38 sentences carry no `glow` (S5 binds 1 of 6 — its whole skew-lines beat is
+unbound) · S7's `55°`/`35°` sit ~660 px from the arcs they describe · four Rule-41 register slips
+("return from", "leaves zero", "settles") · no `variable_choreography` in the JSON (all four sibling
+mathematics concepts have it; the Rule-31 table does exist in skeleton §3).
+
+**Tooling scar, worth fixing on its own:** `query_engine_bug_queue.ts --scenario` / `--field3d` return
+**zero rows** for every mathematics and chemistry concept, because `loadConceptIndex()` reads only
+top-level `src/data/concepts/*.json`. Query by concept id until fixed.
+
+### THE PATTERN THIS CONCEPT KEEPS PRODUCING — five instances now
+
+**A value in one file that is a function of a value in another, with the link recorded only in prose.**
+1. S5's crossing marker ← camera centre (broke when the camera moved; **31.4 px off an 11 px crossing**)
+2. the same marker again ← the second camera move
+3. S5's `camera_steps` target ← S8's entry pose (moving one end breaks the seam)
+4. S2 ↔ S7's shared entry camera ← a deliberate home-pose callback
+5. **F1**: the engine's readout constant ← the concept's line label
+
+**Nothing failed in any of them.** Not THE EYE, not the validator, not the scenario gate — every frame
+stayed internally consistent. All five are now recorded in `physics_engine_config.constraints` beside the
+values, with the rule: *a camera literal shared between two states is ONE value whichever fields hold it.*
+
+`founder_proxy` widened it correctly and it is worth carrying: my proposed `derived_from_camera` stamp is
+**too narrow** — F1's function is `engine constant ← concept label` and F3's is `legibility ← camera
+radius`, neither of which is a camera literal. The honest form is
+**`derived_from: {source, field, value_at_authoring}`**. Schema/founder call, does not gate this concept.
+
+### Next actions, in order
+1. Recover and commit both in-flight results (above). F1 gets its own PR.
+2. Re-run `quality_auditor` on the combined result.
+3. Re-dispatch `founder_proxy` **cycle 3 of 3** — it asked specifically for a fresh EYE run of STATE_4 and
+   said it will re-review that state; F3's ride-along and F4–F7 do **not** need another round from it.
+   **Cycle 3 is the last before ESCALATE.**
+
+### Standing constraints — treat as binding
+- **S5's radius is at its exact minimum.** 9.5 works; 9.4 loses 755 ms of label visibility. Any change to
+  S5's ease endpoints, `ease_ms`, `scene_radius`, or the `d₁`/`d₂` label strings re-opens F3.
+- **S8's `d₁×d₂` ↔ `a₂−a₁` gap is 13.5 px** — tightest in the concept, 1.5 px of margin. No further S8 pull-back.
+- **S2 ↔ S7 share one camera literal.** S2 is the second-widest state at 63.9%, i.e. what a framing pass
+  reaches for. Decide the pair together or the callback dies silently.
 
 ---
 
