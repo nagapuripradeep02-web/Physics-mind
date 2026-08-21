@@ -106,10 +106,19 @@ building twice.)
    an open teacher question; do not revert it to the book's period in any future unit.
 6. **Star rank in the LAQ section is the CHAPTER's**, not the question's — this book stars chapters
    there, unlike the physics Fastrack which starred every question. Do not imply per-question rank.
-7. **The book prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages.**
-   A VSAQ is 2 marks and the book gives no internal division, so the 1+1 across a VSAQ's two steps
-   is OURS, not the source's. Every VSAQ file says so in `verification.note`. This is the one place
-   in the mathematics track where a split is authored rather than read.
+7. **Where the book prints a per-step mark split — CORRECTED 2026-08-21 (Unit 3).**
+   The original note here read "the book prints a split on its LAQ and SAQ pages but NOT on its
+   VSAQ pages". That was drawn from the Functions VSAQ pages (book pp.79-81) and is **FALSE in
+   general**: the Matrices VSAQ chapter prints `[1 mark]` tags on book p.82, against answers 100
+   and 101. The accurate statement is that the book prints a split **inconsistently, page by page**,
+   and the pattern tracks the PAGE LAYOUT rather than the section: a question set alone on a full
+   page usually carries margin tags, and a question set two-to-a-page in two columns almost never
+   does, because the columns take the margin the tags would occupy. That explains every gap found
+   so far — the two determinant LAQs on p.24 (a "Tick Boxes" widget in the margin), all four
+   Cramer answers on pp.27-28, all four Gauss-Jordan on pp.33-34, and the whole Functions VSAQ run.
+   **Consequence for authoring:** never assume from the section. Look at the page. Where no split
+   is printed, infer it from the nearest printed split of the same shape and say so in
+   `verification.note` — never present an inferred split as sourced.
 
 ## What Kalam can and cannot draw (measured 2026-08-21)
 
@@ -139,7 +148,18 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1 and 2, 32 entries.**
+3. **Units complete so far: 1, 2 and 3 — 76 entries.**
+   **Unit 3 (Matrices) — COMPLETE at 44 of 44, book pp.22-34, 51-55, 82-86.** The largest unit on the
+   paper: two Section-C slots (Q20, Q21), one Section-B slot (Q11) and TWO Section-A slots (Q3, Q4),
+   so 22 of the 75 marks. 17 LAQ (four families: six determinant proofs, four Cramer, three matrix
+   inversion, four Gauss-Jordan) + 9 SAQ + 18 VSAQ. Two Gauss-Jordan answers do not fit the family
+   skeleton and are authored as a matched pair: 20.3 has an INFINITE solution set and 20.4 has NO
+   solution, and the only thing separating them is whether the constant beside the row of zeros is
+   itself zero. This is the unit that made typeset lines (`render: "katex"`) load-bearing — 195 lines
+   across the book, up from 2 — and twice a printed source line was too wide for the 624px page body
+   and had to be restated rather than transcribed (LAQ answer 13 on p.23, SAQ answer 40 on p.51);
+   both files record the change.
+
    **Unit 2 (Mathematical Induction) — 8 of 8, book pp.16-21, LAQ ONLY.** The book has no induction
    SAQ or VSAQ chapter and the paper has no induction question outside Section C, where it is
    always Q19 — the single most predictable 7 marks on the paper. All eight share ONE skeleton,

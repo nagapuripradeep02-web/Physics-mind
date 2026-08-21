@@ -850,6 +850,10 @@ test('the catalog filters by subject and each section shows its own mark value',
 });
 
 test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every typeset question; raised deliberately
+                                // when Maths-1A Unit 3 (Matrices) took the book from 2 typeset questions to 39.
+                                // NEVER trim the sweep instead: .kx-clip is overflow:hidden, so an over-wide
+                                // typeset line is truncated with NO other symptom, and this is the only guard.
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 

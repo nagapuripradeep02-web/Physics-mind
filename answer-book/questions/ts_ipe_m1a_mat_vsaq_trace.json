@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_trace",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the trace of a matrix. Find the trace of the matrix with rows (1, 3, −5), (2, −1, 5) and (2, 0, 1).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define the trace",
+      "marks": 1
+    },
+    {
+      "label": "Add the diagonal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 Matrices, answer 103, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17,20 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say what the trace of a matrix is and how you would find it here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "Define the trace",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and half the question — it says \"define\", so the definition must be written even though the number is easy.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Trace:",
+            "style": "heading"
+          },
+          "The trace of a square matrix is the sum of the",
+          "elements in its principal diagonal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the trace is the sum of the elements on the principal (main) diagonal of a SQUARE matrix.",
+          "accept": [
+            "the trace is the sum of the elements in the principal diagonal of a square matrix",
+            "trace means adding up the main diagonal entries",
+            "it is the sum of the diagonal elements",
+            "trace ante principal diagonal lo unna elements sum",
+            "add the entries running from top left to bottom right"
+          ],
+          "reject": [
+            "it is the diagonal",
+            "the trace of a matrix"
+          ],
+          "heard_as": [
+            "trace",
+            "principal diagonal",
+            "main diagonal",
+            "sum",
+            "square matrix"
+          ]
+        },
+        "why": "The word \"define\" is worth a mark on its own. A correct number with no definition answers only half of what was asked.",
+        "common_mistakes": [
+          "Giving the number and skipping the definition.",
+          "Defining it as the sum of ALL the elements."
+        ]
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Add the diagonal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The principal diagonal is 1, −1, 1 — top-left to bottom-right. Nothing off that line is used.",
+        "lines": [
+          "The principal diagonal is 1, −1, 1.",
+          "Tr(A) = 1 + (−1) + 1 = 1",
+          {
+            "text": "∴ Tr(A) = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diagonal entries 1, −1 and 1 are added to give a trace of 1.",
+          "accept": [
+            "the diagonal is one minus one and one so the trace is one",
+            "add one minus one plus one to get one",
+            "the trace comes to one",
+            "one minus one plus one equals one, trace one",
+            "summing the diagonal gives one"
+          ],
+          "reject": [
+            "add the diagonal",
+            "the trace is"
+          ],
+          "heard_as": [
+            "one",
+            "minus one",
+            "diagonal",
+            "trace"
+          ]
+        },
+        "why": "The principal diagonal runs top-left to bottom-right. The other diagonal has no name in this course and is not used.",
+        "common_mistakes": [
+          "Adding the other diagonal (−5, −1, 2).",
+          "Adding every element of the matrix."
+        ]
+      }
+    ]
+  }
+}

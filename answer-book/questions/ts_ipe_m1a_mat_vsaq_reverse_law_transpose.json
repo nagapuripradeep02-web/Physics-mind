@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_reverse_law_transpose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (2, −1, 2) and (1, 3, −4), and B is the matrix with rows (1, −2), (−3, 0) and (5, 4), then verify that (AB)′ = B′A′.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find (AB)′",
+      "marks": 1
+    },
+    {
+      "label": "Find B′A′ and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Matrices, answer 107. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would verify this — say what you work out on each side.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lhs",
+        "kind": "equation",
+        "label": "Find (AB)′",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiply A by B first — a 2×3 times a 3×2 gives a 2×2 — then transpose that result. Do not transpose before multiplying.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "AB = \\begin{bmatrix} 2 & -1 & 2 \\\\ 1 & 3 & -4 \\end{bmatrix}\\begin{bmatrix} 1 & -2 \\\\ -3 & 0 \\\\ 5 & 4 \\end{bmatrix} = \\begin{bmatrix} 15 & 4 \\\\ -28 & -18 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{L.H.S} = (AB)' = \\begin{bmatrix} 15 & -28 \\\\ 4 & -18 \\end{bmatrix} \\quad \\text{…(1)}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB is computed first (2×3 times 3×2 gives 2×2) and then transposed to give the left-hand side.",
+          "accept": [
+            "multiply A by B first to get a two by two then transpose it",
+            "find A B and then take its transpose for the left hand side",
+            "the product comes first and the transpose after",
+            "modata AB multiply chesi, tarvata transpose teeskovali",
+            "A B is two by two and its transpose is the LHS"
+          ],
+          "reject": [
+            "find AB",
+            "multiply them"
+          ],
+          "heard_as": [
+            "AB",
+            "transpose",
+            "left hand side",
+            "two by two"
+          ]
+        },
+        "why": "Transposing after multiplying is what the left-hand side literally says. Transposing first would be answering a different question.",
+        "common_mistakes": [
+          "Transposing A and B before multiplying.",
+          "Multiplying B by A, which here is a 3×3 and not comparable."
+        ]
+      },
+      {
+        "id": "s2_rhs",
+        "kind": "boxed_final",
+        "label": "Find B′A′ and compare",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Note the ORDER reverses — B′ comes first. B′ is 2×3 and A′ is 3×2, so the product is 2×2 and matches. Written the other way round the sizes would not even fit.",
+        "lines": [
+          {
+            "text": "B'A' = \\begin{bmatrix} 1 & -3 & 5 \\\\ -2 & 0 & 4 \\end{bmatrix}\\begin{bmatrix} 2 & 1 \\\\ -1 & 3 \\\\ 2 & -4 \\end{bmatrix} = \\begin{bmatrix} 15 & -28 \\\\ 4 & -18 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "…(2)   From (1) and (2), L.H.S = R.H.S.",
+          {
+            "text": "∴ (AB)′ = B′A′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B′A′ is computed with the order REVERSED, and that it equals (AB)′ so the result is verified.",
+          "accept": [
+            "multiply B dash by A dash in that reversed order and it gives the same matrix so the result is verified",
+            "the order reverses so B dash comes first, and both sides agree",
+            "B dash A dash equals the same two by two so LHS equals RHS",
+            "order reverse avthundi, B dash modata, rendu sides same",
+            "both sides give fifteen minus twenty eight and four minus eighteen"
+          ],
+          "reject": [
+            "find B dash A dash",
+            "compare them",
+            "hence proved"
+          ],
+          "heard_as": [
+            "B dash A dash",
+            "reverse",
+            "order",
+            "equal",
+            "verified"
+          ]
+        },
+        "why": "The reversal is the whole content of the rule. A′B′ is not even defined here — a 3×2 times a 2×3 gives a 3×3 — so the order is forced, not a convention.",
+        "common_mistakes": [
+          "Writing A′B′ instead of B′A′.",
+          "Verifying only that the two sides \"look similar\" without computing both."
+        ]
+      }
+    ]
+  }
+}
