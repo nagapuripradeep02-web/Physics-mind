@@ -20,13 +20,20 @@ Schema: `appearances[]` items gained optional `board` ('ts_ipe'|'ap_ipe'; absent
 The label-overlap gate caught r/Δθ (v=rω) and O/100g (CM triangle) in the browser; a local text-box scan caught A/150g; the browser caught P/y (perpendicular axes). All fixed by computed repositioning. The CM triangle is drawn TO SCALE so the computed (5/18, 1/(3√3)) visibly leans toward the 200 g vertex — a built-in sanity check.
 
 ### Verification (measured)
-`build:answers` → **20/20 · 17/17 · 12/12 · 33/33**, drift clean both directions, every marks-sum ✓ · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (the schema edit disturbed nothing) · built page re-parsed: 82 entries, 78 files, all 4 Unit-7 figures, all 6 AP tags, 11 enumerated, recall stripped, 383 KB · figure gates green across all 78 · badge gate green + 2 render-side negative controls · fleet sweeps under their raised 240s budgets (raise was deliberate, in the same commit that grew the fleet). Numericals hand-checked: CM (5/18, 1/(3√3)) m · τ = 2i+12j+10k · 0.471 N·m · 0.63 kg·m².
+`build:answers` → **20/20 · 17/17 · 12/12 · 33/33**, drift clean both directions, every marks-sum ✓ · **`smoke:answers` 26/26 across 78 questions (4.2 min)** — the three fleet sweeps ran inside their raised 240 s budgets (the raise was deliberate, in the same commit that grew the fleet), and the badge gate was negative-controlled twice on the RENDER side (drop the predicted chip → 11 named failures; drop the AP group from the asked line → 6 named failures) · `npx tsc --noEmit` **0** · `validate:concepts` **153 PASS / 0 FAIL** (the schema edit disturbed nothing) · built page re-parsed: 82 entries, 78 files, all 4 Unit-7 figures, all 6 AP tags, 11 enumerated, recall stripped, 383 KB · `serve:answers` HTTP 200. Numericals hand-checked: CM (5/18, 1/(3√3)) m · τ = 2i+12j+10k · 0.471 N·m · 0.63 kg·m².
+
+### Closing state
+Five commits this session — `3400b22` (Session 89 + pattern doc) · `f1cad1c` (board-tag schema + UI + AP backfill) · `b8b7908` (Unit 7 manifest + 11 VSAQs + sweep-timeout raise) · `bfc3be1` (11 SAQs, asked core 22/22) · `981cfeb` (enumeration pilot + badge gate). All pushed; remote verified at `981cfeb` by `git ls-remote` (the auto-push hook reports a false FAILED on the race — never trust its message, check the ref). **PR #132 retitled a second time** to "Units 5-7 + the Session-89 doctrine", 13 commits, body rewritten to match contents.
+
+**Vault sync drafted, awaiting founder confirm** (protocol: show before writing): a dated section for `wiki/projects/physicsmind.md`, a `log.md` synthesis entry, and a timeline fragment for `index.md` line 32 — the index DOES carry a dated PhysicsMind timeline, so the first draft's "no change needed" was wrong and is corrected in the draft. Local commit only, never pushed.
 
 ### NEXT
 1. **Founder eyes**: the four Unit-7 figures (both axes theorems especially — the proof-bearing constructions), a Predicted card (does the honesty read right?), the Asked chips, and **print** on the theorem SAQs. `npm run serve:answers` → localhost:8100.
 2. **Unit 8 "Oscillations"** next (book pp.23+; its BLM section opens WITH LAQs — SHM/projection and the simple pendulum — expect real Section-C forms, the Unit 6 shape). Run the two-book union check; run the enumeration sweep as standard practice now.
-3. **The teacher pass is now 82 entries deep** — including 11 predicted cells that need validation or deletion. The enumeration method makes teacher verification MORE valuable, not less.
-4. Standing blockers unchanged: Google quota · grader hosting · cost swap.
+3. **The teacher pass is now 82 entries deep** — including 11 predicted cells that need validation or deletion. The enumeration method makes teacher verification MORE valuable, not less: a teacher confirming a predicted cell promotes a lean card to a full one, and a teacher rejecting one deletes it. That is the loop the doctrine is waiting on.
+4. **Confirm the vault sync** (drafted, shown, unwritten — five strategy threads deep).
+5. **Watch triggers, unchanged**: TGBIE's revised theory model papers (→ confirm the 60M A/B/C structure verbatim) · the new TS NCERT textbooks (→ per-unit inventory diff, and re-run each unit's enumeration against the new object inventory) · the official AP model papers (→ the full 3-page March 2026 scan we still lack; only p1 of 3 is in the corpus).
+6. Standing blockers unchanged: Google quota · grader hosting · cost swap.
 
 ---
 
