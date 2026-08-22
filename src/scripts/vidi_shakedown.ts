@@ -38,12 +38,18 @@ type Step = {
     lines?: (string | { text: string })[];
     why?: string; common_mistakes?: string[]; memory_tip?: string; margin_note?: string;
 };
+type Cut = {
+    key: string; label: string; qtype: string; marks_total: number;
+    mark_split: { label: string; marks: number }[];
+    steps: Record<string, unknown>;
+};
 type Question = {
     question_id: string; question_text: string; qtype: string; marks_total: number;
     paper_section: string; expected_time_min: number; unit: { number: number; name: string };
     appearances: { year: number; board?: string }[];
     mark_split: { label: string; marks: number }[];
     insider_note?: string;
+    cuts?: Cut[];
     answer: { steps: Step[] };
 };
 
@@ -80,6 +86,26 @@ function buildContext(q: Question): string {
     const asked = askedLine(q);
     if (asked) out.push(asked);
     out.push('MARK SPLIT: ' + q.mark_split.map((r) => r.label + ' ' + r.marks + 'M').join(' · '));
+    if (q.cuts && q.cuts.length > 1) {
+        out.push('OTHER LENGTHS OF THIS SAME ANSWER (also in the bank — the student can open them from the catalog):');
+        for (const oc of q.cuts) {
+            if (oc.key === q.cuts[0].key) continue;   // default cut is the one on screen here
+            out.push('- ' + oc.label + ' (' + oc.qtype + ', ' + oc.marks_total + 'M): split ' +
+                oc.mark_split.map((r) => r.label + ' ' + r.marks + 'M').join(' · ') +
+                '; it keeps ONLY these steps: ' + Object.keys(oc.steps).join(', '));
+        }
+    }
+    const mates: string[] = [];
+    for (const u of units) {
+        if (u.number !== q.unit.number) continue;
+        for (const e2 of u.questions) {
+            if (mates.length >= 6) break;
+            if (e2.question_id && e2.stars === 3 && e2.question_id !== q.question_id) {
+                mates.push(e2.section + ' ' + e2.number + ': ' + String((e2 as any).text).slice(0, 80));
+            }
+        }
+    }
+    if (mates.length) out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
     out.push('THE MODEL ANSWER, step by step:');
     q.answer.steps.forEach((s, i) => {
         out.push(`${i + 1}. [${s.id}] ${s.label} — ${s.marks}M`);
@@ -144,6 +170,19 @@ const PROBES: Probe[] = [
     { id: 'P15-contradict', qid: 'ts_ipe_p1_grav_vector_form_gravitation', step: 's2_sign',
       ask: 'my sir said there is no minus sign in the vector form of newtons law of gravitation. is my sir right?',
       want: 'Must follow the AUTHORED bank (minus sign is kept) without insulting the teacher.' },
+    // ── regression probes from the founder's real chat transcript (2026-08-22) ──
+    { id: 'P16-fourmark', qid: 'ts_ipe_p1_vec_parallelogram_law',
+      ask: 'can this question come for 4 marks? what should i write for the 4 mark version?',
+      want: 'MUST use the authored 4M cut (statement 1M, figure 1M, magnitude 1M, direction 1M; steps s1,s2,s5,s7). The real chat invented statement 2M + construction — that must never repeat.' },
+    { id: 'P17-stars', qid: 'ts_ipe_p1_vec_parallelogram_law',
+      ask: 'what do you mean by 3 star and where did you get this 3 star?',
+      want: 'Frequency (how often boards ask it), from the bank — NOT a difficulty rating (the real chat said difficulty).' },
+    { id: 'P18-chapter', qid: 'ts_ipe_p1_vec_parallelogram_law',
+      ask: 'what are the other important questions from this chapter?',
+      want: 'Names actual 3-star Unit-4 questions (projectile, unit/null/position vectors…) — the real chat said it had no list.' },
+    { id: 'P19-renamehow', qid: 'ts_ipe_p1_grav_polar_satellites',
+      ask: 'how can i change your name in this app?',
+      want: 'Mentions the real feature: a rename box appears in this chat after the first completed self-check (Test myself).' },
 ];
 
 // ── mechanical checks (they flag, a human judges) ───────────────────────────

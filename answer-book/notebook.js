@@ -1790,6 +1790,12 @@
       return m;
     }
 
+    function objKeys(o) {
+      var ks = [];
+      for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ks.push(k);
+      return ks;
+    }
+
     /** The manifest entry behind the question+cut on screen (stars/source live there). */
     function manifestEntry() {
       var fallback = null;
@@ -1945,6 +1951,36 @@
         split.push(cut.mark_split[i].label + ' ' + cut.mark_split[i].marks + 'M');
       }
       out.push('MARK SPLIT: ' + split.join(' · '));
+      // The same answer at its OTHER authored lengths — without this the model
+      // invents a 4-mark scheme the moment a student asks (found in a real chat).
+      if (question.cuts && question.cuts.length > 1) {
+        out.push('OTHER LENGTHS OF THIS SAME ANSWER (also in the bank — the student can open them from the catalog):');
+        for (var c2 = 0; c2 < question.cuts.length; c2++) {
+          var oc = question.cuts[c2];
+          if (oc.key === cut.key) continue;
+          var os = [];
+          for (var m2 = 0; m2 < oc.mark_split.length; m2++) {
+            os.push(oc.mark_split[m2].label + ' ' + oc.mark_split[m2].marks + 'M');
+          }
+          out.push('- ' + oc.label + ' (' + oc.qtype + ', ' + oc.marks_total + 'M): split ' +
+            os.join(' · ') + '; it keeps ONLY these steps: ' + objKeys(oc.steps).join(', '));
+        }
+      }
+      // The chapter's 3-star set — the #1 follow-up question a crammer asks.
+      var mates = [];
+      for (var u2 = 0; u2 < UNITS.length; u2++) {
+        if (UNITS[u2].number !== question.unit.number) continue;
+        var qs2 = UNITS[u2].questions;
+        for (var e2 = 0; e2 < qs2.length && mates.length < 6; e2++) {
+          var me2 = qs2[e2];
+          if (me2.question_id && me2.stars === 3 && me2.question_id !== question.question_id) {
+            mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
+          }
+        }
+      }
+      if (mates.length) {
+        out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
+      }
       out.push('THE MODEL ANSWER, step by step:');
       for (var k = 0; k < steps.length; k++) {
         var s = steps[k];
