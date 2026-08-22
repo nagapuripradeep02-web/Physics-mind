@@ -310,10 +310,19 @@ test('the paper section and marks agree across header, chip and mark split', asy
 async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
     // Find the id from the DATA, then open only that one. This used to open every
     // question in turn and ask listCuts() — O(n) page renders — which timed out once
-    // Maths-1A Unit 6 took the book past 160 questions: the only multi-cut questions
-    // are the physics ones, and `ts_ipe_p1_*` now sorts behind 130+ `ts_ipe_m1a_*`.
-    // `cuts` is a top-level field on the question, so the scan needs no rendering at
-    // all. Raising the timeout would have worked today and failed again at Unit 7.
+    // Maths-1A Unit 6 took the book past 160 questions. `cuts` is a top-level field
+    // on the question, so the scan needs no rendering at all. Raising the timeout
+    // would have worked today and failed again at the next unit.
+    //
+    // ⚠ THIS BUILD HAS NO MULTI-CUT QUESTION, so the two tests below currently SKIP.
+    // The only ones the book ever had were physics (parallelogram law at LAQ+SAQ,
+    // projectile motion at LAQ+2xSAQ), and physics Unit 4 was removed from this
+    // mathematics-only book. Mathematics authors one length per question, so nothing
+    // here exercises cuts. The tests are KEPT, not deleted: the mechanism is still
+    // live in the router, the catalog and the PM_ANSWER seam, and it guards a real
+    // past bug (append-only chrome stacking duplicate renders). Coverage returns the
+    // moment any question is authored at two lengths — do NOT invent a two-cut
+    // question just to turn these green.
     const id = await page.evaluate(() =>
         ((window as any).PM_QUESTIONS as any[]).find((q) => (q.cuts || []).length >= 2)?.question_id
         ?? null);
@@ -697,7 +706,13 @@ test('qtype filter chips match on the section alone, with true counts', async ({
     }
 });
 
-test('an LAQ card opens the 8-mark answer, an SAQ card the 4-mark one', async ({ page }) => {
+test('a card opens the length it advertises, for both LAQ and SAQ', async ({ page }) => {
+    // This used to assert the literal 8 and 4 of a Physics-I paper. Those numbers
+    // are NOT universal — a Maths-1A long answer is 7 — so with physics removed the
+    // literal would have failed on a book that was correct. What the test is really
+    // for is that the card's advertised length is the length that opens, so it now
+    // reads the number OFF THE CARD and compares. That holds for every subject and
+    // catches a genuine mismatch the hardcoded pair would have missed.
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
@@ -712,31 +727,31 @@ test('an LAQ card opens the 8-mark answer, an SAQ card the 4-mark one', async ({
     });
     test.skip(!have.laq || !have.saq, 'need an authored LAQ and SAQ');
 
-    await page.click('#qtypeChips .cat-chip[data-qtype="LAQ"]');
-    await page.waitForTimeout(200);
-    await page.click('a.cat-card');
-    await page.waitForSelector('.page');
-    await page.waitForTimeout(300);
-    const laq = await page.evaluate(() => ({
-        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
-        total: (window as any).PM_ANSWER.getState().marksTotal,
-    }));
-    expect(laq.qtype).toBe('LAQ');
-    expect(laq.total).toBe(8);
+    for (const section of ['LAQ', 'SAQ'] as const) {
+        await page.click(`#qtypeChips .cat-chip[data-qtype="${section}"]`);
+        await page.waitForTimeout(200);
 
-    await page.click('#btnCatalog');
-    await page.waitForSelector('#catalogView:not([hidden])');
-    await page.click('#qtypeChips .cat-chip[data-qtype="SAQ"]');
-    await page.waitForTimeout(200);
-    await page.click('a.cat-card');
-    await page.waitForSelector('.page');
-    await page.waitForTimeout(300);
-    const saq = await page.evaluate(() => ({
-        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
-        total: (window as any).PM_ANSWER.getState().marksTotal,
-    }));
-    expect(saq.qtype).toBe('SAQ');
-    expect(saq.total).toBe(4);
+        // what the first card PROMISES, read off its own chip
+        const promised = await page.evaluate(() => {
+            const chip = document.querySelector('a.cat-card .cc-chip')?.textContent ?? '';
+            const m = /(\d+)\s*marks/.exec(chip);
+            return m ? Number(m[1]) : null;
+        });
+        expect(promised, `${section} card advertises a mark value`).not.toBeNull();
+
+        await page.click('a.cat-card');
+        await page.waitForSelector('.page');
+        await page.waitForTimeout(300);
+        const opened = await page.evaluate(() => ({
+            qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
+            total: (window as any).PM_ANSWER.getState().marksTotal,
+        }));
+        expect(opened.qtype, `${section} card opens a ${section}`).toBe(section);
+        expect(opened.total, `${section} card keeps its promise`).toBe(promised);
+
+        await page.click('#btnCatalog');
+        await page.waitForSelector('#catalogView:not([hidden])');
+    }
 });
 
 test('the notebook offers no length switch — the catalog choice is final', async ({ page }) => {
@@ -755,9 +770,21 @@ test('the notebook offers no length switch — the catalog choice is final', asy
 });
 
 test('deep link boots into the notebook and Back returns to the catalog', async ({ page }) => {
-    // the shareable path: a hash link opens a question + cut directly
-    const target = 'ts_ipe_p1_mp_projectile_motion';
-    await page.goto(URL + '#/q/' + target + '/saq_parabola');
+    // The shareable path: a hash link opens a question (+ cut, when it has one)
+    // directly. The target is taken FROM THE DATA — it used to name a physics id,
+    // which stopped existing when physics Unit 4 left this mathematics-only book.
+    // Prefer a question with a second cut so the /<cutKey> segment is exercised;
+    // fall back to the first question, whose default cut carries no segment.
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const multi = qs.find((q) => (q.cuts || []).length >= 2);
+        if (multi) return { id: multi.question_id, cut: multi.cuts[1].key };
+        return { id: qs[0].question_id, cut: null };
+    });
+    const target = pick.id;
+    await page.goto(URL + '#/q/' + target + (pick.cut ? '/' + pick.cut : ''));
     await page.waitForSelector('.page');
     await page.waitForTimeout(300);
 
@@ -769,7 +796,7 @@ test('deep link boots into the notebook and Back returns to the catalog', async 
     }));
     expect(nb.view).toBe('notebook');
     expect(nb.id).toBe(target);
-    expect(nb.cut).toBe('saq_parabola');
+    if (pick.cut) expect(nb.cut).toBe(pick.cut);
     expect(nb.backShown).toBe(true);
 
     await page.click('#btnCatalog');
