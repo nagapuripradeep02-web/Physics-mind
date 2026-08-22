@@ -1,5 +1,55 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — Answer Book: **VIDI ON EVERY QUESTION — four authored fields were never reaching the model, and three code copies had already drifted** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the founder asked whether every VSAQ/SAQ/LAQ is as strong as the parallelogram LAQ. The audit says the premise was half right and the real gap was somewhere else entirely. `why`, `common_mistakes`, `recall` and `mark_note` are already at 100% of all 423 steps — no question is thin on explanation. But FOUR authored fields were never sent to the model at all, `mark_note` (405 steps) worst among them: the per-step "what the examiner gives this mark for" line, absent from the grounding of the exact question class that made Vidi invent a mark scheme in the real chat. All four now ship. Separately, three copy-pasted implementations were found already drifted or unguarded, and each is now single-sourced or parity-tested. Verified: tsc 0 · build:answers green with two NEW gates · vitest 405/405 (36 files) · smoke:answers 36/36 (8.3m) · 383 real replies graded across 72 of 157 questions with ZERO critical flags.**
+
+### The finding: authored ≠ reaching the model
+`buildVidiContext()` (`answer-book/notebook.js`) emitted WHY / MISTAKES / REMEMBER / NOTE and nothing else. Now also sends **`EARNS THE MARK FOR` (`mark_note`, 405 of 423 steps)**, **`VERIFICATION`** (all 157 questions are `needs_teacher_verification: true` and the model could not know it, so it stated invented splits with full confidence), **`INSIDER POINT`** (`insider_note`, previously greeting-only), **`CHAPTER`**, and a diagram step's **figure LABELS** instead of the bare string `a labelled figure`. Context grew ~10%: max **7,687 chars** against the server's silent 10,000 slice (measured twice, independently — a Node model and a real browser dump, matching exactly). The slice now **logs past 9,000** instead of silently dropping tail steps.
+
+Two persona rules added to BOTH copies: say the split is the book's when asked whether it is official (never volunteer it), and **carry the chat** — a follow-up that depends on an earlier turn must be answered for that situation.
+
+### Three copies, each already drifted or unguarded — all closed
+1. **The shakedown re-implemented the context builder** and had drifted on **seven axes** (cut-projected steps, per-cut `mark_split`, cut-aware stars, the other-cuts skip, the cut's `question_text`, section/marks/time, and a hardcoded `cut_key:'full'` — a key no cut-bearing question has). Every probe was grounding the model in text no student ever sees, so "P16 passed" was evidence about a context that does not exist. Fixed by **`PM_ANSWER.vidiContext()`** (read-only) + **`npm run vidi:contexts`**, which dumps all 162 real contexts for the harness to consume. The copy is deleted.
+2. **The persona is copy-pasted** across the Edge Function and the local mirror; the only check was a manual `node -e` in a runbook. Now a vitest parity test — **proved by injecting drift and watching it fail**, with a line-level diff in the message.
+3. **The Rule 41 word list** is now imported from `src/lib/answerBook/vidiChecks.ts`, never copied — the same list grades the bank and the model.
+
+### Real bugs found and fixed
+- **`plain()` mangled arithmetic.** `"v = 3 * 4 * 5"` reached a student as `"v = 3  4  5"` — the italic rule ate the multiplication signs. Fixed with CommonMark-style non-space flanking. Found by mutation testing; the first test case was too weak (`3 * 4` has ONE asterisk, which no `*…*` rule can match) and only two-asterisk input exposed it.
+- **The mark checker was broken in BOTH directions at once**, which is why it read clean: blind to cut totals (so every correct answer about a 4-mark cut false-flagged — the documented "false positive") and its `\s*` never matched a hyphen (so `"the 4-mark version"` bypassed it entirely). P16, whose whole purpose is the 4-mark cut, was green for the wrong reason. Now reads marks out of the model's OWN grounding text and separates a legitimate SUM of authored step marks from an invention.
+- **Rule 41 was never mechanical** — every past session found idioms by hand. Now a build gate, and it caught a real violation on its first run: **"the whole trick" in the parallelogram's own `s3_construction.why`**, a WHY line the model had been grounded in since day one. Its other hit was a FALSE positive — `"ace it"` inside `"repl(ace it)"` — so the matcher is word-bounded, the same substring bug the romanised-Telugu check carried behind a comment claiming otherwise.
+- **The out-of-bank check fired on the REFUSAL.** It matched the phrases `"ideal gas equation is"` and `"derivation:"`, which appear in the correct refusal ("your ideal gas equation is a different chapter"). Fine on the one probe it was written for; across the fleet it produced **8 false criticals out of 69 probes — every one of which had refused properly, and zero of which contained the formula.** Now fires on the substance (`PV =` / `nRT`), not the wording.
+- **Multi-turn was untested** (`recent_messages: []` hardcoded). The first fix replayed PLACEHOLDER tutor turns, which proved nothing — the model saw `"(earlier reply)"` where its own words belonged and scored a hedge as a pass. Now runs the earlier turns for real and records the whole conversation in the transcript.
+- **`e2e` gate 28 would have silently disarmed itself.** Its negative control picks a question with no `memory_tip`; once tips are universal that becomes `null` and the assertion is skipped by an `if` — green while testing half of itself. Now strips the tips off the TIPPED question and re-renders (stripping an untipped one is a no-op that passes while proving nothing — verified by forcing both branches and by disabling the strip to watch it fail).
+
+### The verification that was salvaged, not lost
+The 810-probe fleet run was interrupted at 276. The shakedown writes its report only at completion, so the run appeared to be a total loss — but the mirror logs every question and reply to `usage.jsonl`, so **`npm run vidi:grade` now grades already-paid-for replies offline and free**. An interrupted run is still evidence.
+
+**Result on the salvaged half: 383 replies across 72 of 157 questions — 0 CRITICAL.** No mark inventions, no markdown leaks, no language slips, no out-of-bank answers. The one open quality signal is **length: median 4 sentences (inside the 2–4 rule) but p75 = 6, p90 = 7, and 29% over the 5-sentence hard cap.** The longest (13 sentences) is the mark-mapping answer, which is a legitimate enumeration — tightening the cap blindly would make that answer worse, so it is left as a **founder taste call**, with data rather than a unilateral tune.
+
+### Two new build gates (`build:answers`)
+`// ── 1c. completeness + Rule 41 ──` collects violations and fails ONCE (the existing `fail()` aborts on the first, which makes a 157-file pass unrunnable). Hard: `why` + `common_mistakes` on every step, `mark_note` on every marked step, and `memory_tip`/`margin_note` all-or-none per question (true for all 157 today — it locks the whole-question authoring discipline). Plus a per-unit **Vidi-depth readout** so the remaining authoring stays visible every build.
+
+### What did NOT happen
+**Phase 1 authoring is not started.** 101 questions have no `memory_tip`, 90 no `margin_note` — **Units 8 and 9 are at 0% margin_note (45 questions, 110 steps, 3 LAQs)** — and 145 have no `insider_note`. The build now prints this table every run. The founder-approved bar is **complete-for-its-size** (VSAQ ≥250 pedagogy chars/step, SAQ ≥300, LAQ ≥400): a 2-mark VSAQ is 2 steps against the parallelogram's 8 and is never padded to hit a number.
+
+### Ceilings enrichment does not move
+- **All 157 carry `needs_teacher_verification: true`.** Every mark split is a claim. Vidi can now SAY so; only a Telangana IPE teacher makes it verified.
+- **`appearances[]` is empty on 147 of 157**, the parallelogram included, so the "Asked: TS 2012" line is suppressed for 93.6% of the bank. Not authorable from the two source books — it needs real past papers.
+- **The DEPLOYED Edge Function still carries the OLD persona.** Context changes are client-side and ship with the next hosted build; the persona needs `supabase functions deploy`. Founder-only (Rule 17) — a partial deploy gives the new context with the old rules.
+
+### Files
+`answer-book/notebook.js` (context builder + `plain()` + `PM_ANSWER.vidiContext()`) · `src/lib/answerBook/vidiChecks.ts` (NEW, shared) · `src/lib/answerBook/__tests__/vidiSeam.test.ts` + `vidiChecker.test.ts` (NEW) · `src/scripts/dump_vidi_contexts.ts` + `vidi_grade_log.ts` (NEW) · `src/scripts/vidi_shakedown.ts` (rewritten: fleet driver, real cuts, real multi-turn, exit code) · `src/scripts/build_answer_book.ts` (gates + depth readout) · `supabase/functions/answerbook-vidi-chat/index.ts` + `src/scripts/answerbook_vidi_server.ts` (persona ×2, slice warning ×2) · `e2e/answer_book.spec.ts` (gate 28) · `answer-book/questions/ts_ipe_p1_vec_parallelogram_law.json` (Rule 41) · `docs/patterns/answer_book.md`. **No Rule-40 platform file touched.**
+
+### NEXT
+1. **Founder call on reply length** — 29% over the 5-sentence cap; tightening risks the enumeration answers.
+2. **Resume the fleet run** (`npm run vidi:server` then `npm run vidi:shakedown -- --fleet`) for the other 85 questions, or grade as it goes with `npm run vidi:grade`.
+3. **Phase 1 authoring**, per-unit, starting with margin_note on Units 8 + 9 (the only two units at zero).
+4. Redeploy the Edge Function to pick up the two new persona rules.
+
+---
+
+
 ## 🔎 SESSION — Answer Book: **THE FOUNDER'S REAL-CHAT AUDIT — five Vidi information gaps found and closed; live chat DEPLOYED and re-verified** (2026-08-22, same desk/branch, commits d79eb90 + 511cd9b)
 
 **Bottom line: the founder pasted a real conversation with Vidi and asked which replies were high-value and which were wrong. The audit found FIVE defects — every one an information gap in what the model was given, not model quality — and each is now fixed, verified, and locked as a permanent regression probe. Separately this session, the Edge Function went LIVE (deployed with the founder's access token from `.env.local`, `DEEPSEEK_API_KEY` set as a project secret — it had never been set, Quick Learn's included) and the paced live shakedown ran 15/15 clean.**

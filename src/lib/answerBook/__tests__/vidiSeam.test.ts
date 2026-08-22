@@ -1,0 +1,109 @@
+/**
+ * vidiSeam.test.ts — the two Vidi guards that no other gate can see.
+ *
+ * 1. PERSONA PARITY. The deployed Edge Function and the localhost mirror carry a
+ *    COPY-PASTED persona — no shared import, different runtimes. The shakedown
+ *    certifies the mirror's persona; if the two ever drift, every shakedown result
+ *    is certifying a persona that is not the one students talk to, and every
+ *    existing gate stays green while it happens. The only prior check was a manual
+ *    `node -e` pasted in docs/notes/answer_book_hosting.md.
+ *
+ * 2. plain(). Bubbles render with textContent, so a markdown slip from the model
+ *    reaches the student as a literal asterisk. plain() is the belt-and-braces
+ *    strip. It was described as "unit-checked" before any unit test existed.
+ *    Extracted from the SHIPPED notebook.js rather than reimplemented — a test of
+ *    a copy would pass while the real one rotted.
+ *
+ *   npx vitest run src/lib/answerBook/__tests__/vidiSeam.test.ts
+ */
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const root = process.cwd();
+const read = (...p: string[]) => readFileSync(join(root, ...p), 'utf8');
+
+/** The persona array literal, sliced the same way in both files. */
+function personaBlock(src: string, file: string): string {
+    const a = src.indexOf('const PERSONA = [');
+    expect(a, `no PERSONA array in ${file}`).toBeGreaterThan(-1);
+    const b = src.indexOf("].join('", a);
+    expect(b, `unterminated PERSONA array in ${file}`).toBeGreaterThan(a);
+    return src.slice(a, b);
+}
+
+describe('Vidi persona parity — the deployed function and the local mirror', () => {
+    const edgeFile = join('supabase', 'functions', 'answerbook-vidi-chat', 'index.ts');
+    const mirrorFile = join('src', 'scripts', 'answerbook_vidi_server.ts');
+    const edge = personaBlock(read(edgeFile), edgeFile);
+    const mirror = personaBlock(read(mirrorFile), mirrorFile);
+
+    it('are byte-identical', () => {
+        // Reported as a line diff, not a 4KB blob, so a failure is readable.
+        const a = edge.split('\n');
+        const b = mirror.split('\n');
+        const diffs: string[] = [];
+        for (let i = 0; i < Math.max(a.length, b.length); i++) {
+            if (a[i] !== b[i]) diffs.push(`line ${i}:\n  edge  : ${a[i] ?? '(absent)'}\n  mirror: ${b[i] ?? '(absent)'}`);
+        }
+        expect(diffs.join('\n'), 'persona drift — a shakedown against the mirror would certify the wrong persona').toBe('');
+    });
+
+    it('still carry the rules the founder audit added', () => {
+        // Each of these was a real defect in a real chat transcript. A persona
+        // rewrite that silently drops one must fail here, not in front of a student.
+        for (const rule of [
+            'ANSWER IN THE SAME LANGUAGE THE STUDENT WROTE IN',   // answered English in Telugu
+            'Stars are about exam frequency, never difficulty',   // called stars a difficulty rating
+            'Never promise that a question will appear',          // "very likely question"
+            'THE APP AROUND YOU',                                 // did not know its own rename box
+            'Write PLAIN TEXT only',                              // leaked **bold**
+            'NEVER invent a step, a mark value, or a mark split', // invented a 4-mark scheme
+            'EARNS THE MARK FOR',                                 // the step→mark mapping now in context
+            'not a rubric issued by the board',                   // every split is still unverified
+        ]) {
+            expect(edge, `persona lost: ${rule}`).toContain(rule);
+        }
+    });
+});
+
+describe('plain() — the markdown strip between the model and the student', () => {
+    // Extract the shipped function body and evaluate it. Testing a reimplementation
+    // would pass forever while the real one rotted.
+    const js = read('answer-book', 'notebook.js');
+    const start = js.indexOf('function plain(text) {');
+    expect(start, 'plain() not found in notebook.js').toBeGreaterThan(-1);
+    const end = js.indexOf('\n    }', start);
+    const source = js.slice(start, end + 6);
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const plain = new Function(`${source}; return plain;`)() as (t: unknown) => string;
+
+    it('strips the marks a model actually leaks', () => {
+        expect(plain('**Statement** carries 2 marks')).toBe('Statement carries 2 marks');
+        expect(plain('the *resultant* vector')).toBe('the resultant vector');
+        expect(plain('use `R = P + Q` here')).toBe('use R = P + Q here');
+        expect(plain('## How much to write')).toBe('How much to write');
+        expect(plain('- write the statement\n- draw the figure')).toBe('write the statement\ndraw the figure');
+    });
+
+    it('leaves real physics text alone', () => {
+        // The multiplication star is what makes this dangerous to write. A SINGLE
+        // star can never match a *...* rule, so "3 * 4" proves nothing — the real
+        // hazard is TWO stars in one line, where a greedy /\*([^*\n]+)\*/ eats the
+        // arithmetic and silently hands the student "3  4  5". Verified by mutation.
+        expect(plain('v = 3 * 4 * 5 units')).toBe('v = 3 * 4 * 5 units');
+        expect(plain('a * b * c * d')).toBe('a * b * c * d');
+        expect(plain('area is 3 * 4 = 12')).toBe('area is 3 * 4 = 12');
+        expect(plain('R = √(P² + Q² + 2PQ cos θ)')).toBe('R = √(P² + Q² + 2PQ cos θ)');
+        expect(plain('write T² ∝ a³ and stop')).toBe('write T² ∝ a³ and stop');
+        // Telugu code-mix must survive untouched (Rule 30 code-mix, text only).
+        expect(plain('ఉపగ్రహం లోపల effective g సున్నా')).toBe('ఉపగ్రహం లోపల effective g సున్నా');
+    });
+
+    it('never throws on what a broken response can hand it', () => {
+        expect(plain(null)).toBe('');
+        expect(plain(undefined)).toBe('');
+        expect(plain('')).toBe('');
+        expect(plain(42)).toBe('42');
+    });
+});

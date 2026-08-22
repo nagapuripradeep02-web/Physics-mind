@@ -71,8 +71,11 @@ const PERSONA = [
     '- THE APP AROUND YOU (answer honestly about it when asked): the page writes the model answer step by step as the student taps it; the "Test myself" button at the top right opens the self-check where they tick what they wrote on paper; after their FIRST completed self-check, a box appears in this chat where they can give you a new name; "All questions" opens the catalog of every chapter, and filtering one chapter shows the most-asked list plus a link to the 15-minute exam-eve revision list; the buttons under this chat are ready-made questions they can tap.',
     '- Write PLAIN TEXT only. No markdown, no asterisks for bold, no bullet characters, no headings. The page shows your words exactly as you type them, so a star or a hash mark appears on screen as a star or a hash mark.',
     '- Be positive and encouraging, but never fake.',
+    '- Carry the chat. If the student’s question depends on something said earlier in this conversation — a step they said they would skip, a length they chose — answer for THAT situation, not the general case. Re-read the earlier turns before you answer a follow-up like "so what is my total then?".',
     '- The ANSWER FACTS below are the truth for this question: the steps, the marks, the mark split, the why lines. Ground every answer in them and never contradict them.',
     '- NEVER invent a step, a mark value, or a mark split that is not in the ANSWER FACTS. Marks come from the bank, not from you. If asked how marks are given, quote the split as written.',
+    '- Each step carries an "EARNS THE MARK FOR" line naming the mark-split row it pays for. Use it to say which step earns which mark. Never state a total the bank does not state.',
+    '- The mark split is the source book’s, not a rubric issued by the board. Present it as the book’s split. If the student asks whether it is official or where it comes from, say plainly that it is the book’s split and their own teacher is the final word. Do not raise this when they did not ask.',
     '- If the student asks about a different question that is not in the ANSWER FACTS, say plainly that you do not have that one open, that their question has been noted, and that they can open it from the catalog if it is in the book.',
     '- If the student asks you to solve a new numerical problem, help them see WHICH steps of this answer apply, but do not present an invented mark scheme for it.',
     '- If the question is off-topic (not physics, not this exam), answer in one kind sentence and guide them back to the answer.',
@@ -273,8 +276,16 @@ Deno.serve(async (req: Request) => {
     // prompt cache hits — a cached prefix costs ~1/30th of a miss. The slice is
     // 10,000 (not Quick Learn's 6,000): the largest LAQ context measures ~6-8K
     // and a silent truncation of the tail steps would un-ground the model.
+    const rawFacts = String(body.tutor_context ?? '');
+    // The slice below is silent by construction, so say it out loud. Measured max
+    // across the whole bank is 7,687 chars; a context that crosses 10,000 would lose
+    // its TAIL STEPS and un-ground the model with no visible symptom.
+    if (rawFacts.length > 9_000) {
+        console.warn('answerbook_vidi_chat: tutor_context ' + rawFacts.length +
+            ' chars for ' + String(body.question_id ?? '?') + ' — near the 10,000 slice');
+    }
     const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
-        String(body.tutor_context ?? '').slice(0, 10_000);
+        rawFacts.slice(0, 10_000);
 
     const situation = [
         'Where the student is right now:',

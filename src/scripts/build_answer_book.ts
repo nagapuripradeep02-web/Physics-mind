@@ -23,6 +23,9 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { answerBookQuestionSchema, type AnswerBookQuestion } from '../schemas/answerBook';
+// The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
+// grades Vidi's replies with, so the bank and the model are held to one standard.
+import { idiomsIn } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
 const BOOK_DIR = join(ROOT, 'answer-book');
@@ -117,6 +120,66 @@ for (const u of manifest.units) {
 for (const q of questions) {
     if (!listedIds.has(q.question_id)) {
         fail(`${manifestPath}\n  authored question "${q.question_id}" is not listed in any unit — it would be invisible in the catalog`);
+    }
+}
+
+// ── 1c. completeness + plain-language (Rule 41) ──────────────────────────────
+// Four of these fields ARE the model's grounding text (notebook.js buildVidiContext
+// emits WHY / MISTAKES / EARNS THE MARK FOR / REMEMBER / NOTE), so a gap here is
+// not cosmetic — a MISSING mark fact is what made Vidi invent a mark scheme in a
+// real chat. Everything asserted below is ALREADY true across all 157 files, so
+// this locks the floor at zero cost rather than demanding new work.
+//
+// Violations are COLLECTED and reported once: fail() exits on its first call, and
+// an authoring pass over 157 files cannot be run one abort at a time.
+{
+    const bad: string[] = [];
+
+    // Rule 41: no idioms, metaphors or personification in anything a student reads.
+    // idiomsIn() is the house list, imported — NOT copied — from vidiChecks.ts,
+    // which until now only ever graded the MODEL's replies and never the bank.
+    // Every recorded authoring session found idioms BY HAND (0.3–0.6 per new
+    // card); this is the first time the check is mechanical.
+    for (const q of questions) {
+        const where = q.question_id;
+        const strings: [string, string][] = [];
+        if (q.insider_note) strings.push(['insider_note', q.insider_note]);
+
+        let tips = 0, notes = 0;
+        for (const s of q.answer.steps) {
+            const at = `${where} / ${s.id}`;
+            // The two fields carrying every explanation Vidi gives.
+            if (!s.why) bad.push(`${at}: no \`why\` — it is the model's WHY line`);
+            if (!s.common_mistakes?.length) bad.push(`${at}: no \`common_mistakes\``);
+            // The step→mark-split mapping. The schema forbids it on a 0-mark step.
+            if (s.marks > 0 && !s.mark_note) bad.push(`${at}: no \`mark_note\` on a ${s.marks}M step`);
+            if (s.memory_tip) tips++;
+            if (s.margin_note) notes++;
+
+            if (s.why) strings.push([`${s.id}.why`, s.why]);
+            if (s.memory_tip) strings.push([`${s.id}.memory_tip`, s.memory_tip]);
+            if (s.margin_note) strings.push([`${s.id}.margin_note`, s.margin_note]);
+            for (const [i, m] of (s.common_mistakes ?? []).entries()) {
+                strings.push([`${s.id}.common_mistakes[${i}]`, m]);
+            }
+        }
+
+        // memory_tip and margin_note are authored in WHOLE-QUESTION passes — all
+        // steps or none, true for all 157 files today. Locking that keeps a partial
+        // pass from shipping a question where one step's chip works and the next
+        // silently does not.
+        const n = q.answer.steps.length;
+        if (tips > 0 && tips < n) bad.push(`${where}: \`memory_tip\` on ${tips}/${n} steps — author all or none`);
+        if (notes > 0 && notes < n) bad.push(`${where}: \`margin_note\` on ${notes}/${n} steps — author all or none`);
+
+        for (const [field, text] of strings) {
+            const hit = idiomsIn(text);
+            if (hit.length) bad.push(`${where} / ${field}: Rule 41 — "${hit.join('", "')}"`);
+        }
+    }
+
+    if (bad.length) {
+        fail(`completeness / Rule 41 — ${bad.length} problem(s):\n` + bad.map((b) => '  - ' + b).join('\n'));
     }
 }
 
@@ -217,5 +280,38 @@ for (const u of manifest.units) {
         ? ` (pending: ${Object.entries(bySec).map(([s, n]) => `${n} ${s}`).join(', ')})`
         : '';
     console.log(`  Unit ${u.number} — ${u.name}: ${ready}/${u.questions.length} ready${pendingTxt}`);
+}
+
+// Vidi-depth coverage. `why` / `common_mistakes` / `mark_note` are gated hard in
+// §1c, so they are not repeated here; these three are the SPARSE ones and the
+// remaining authoring work, per unit. Report-only by design — the bar is
+// complete-for-its-size, and a 2-mark VSAQ is not padded to hit a number.
+console.log('\n  Vidi depth (the sparse fields — authoring, not a gate):');
+{
+    const byId = new Map(questions.map((q) => [q.question_id, q]));
+    let gTip = 0, gNote = 0, gIns = 0, gQ = 0;
+    for (const u of manifest.units) {
+        const seen = new Set<string>();
+        let tip = 0, note = 0, ins = 0, n = 0;
+        for (const e of u.questions) {
+            if (!e.question_id || seen.has(e.question_id)) continue;
+            seen.add(e.question_id);
+            const q = byId.get(e.question_id);
+            if (!q) continue;
+            n++;
+            if (q.answer.steps.some((s) => s.memory_tip)) tip++;
+            if (q.answer.steps.some((s) => s.margin_note)) note++;
+            if (q.insider_note) ins++;
+        }
+        gTip += tip; gNote += note; gIns += ins; gQ += n;
+        const pct = (x: number) => String(Math.round((100 * x) / Math.max(1, n)) + '%').padStart(4);
+        console.log(`    Unit ${u.number}: memory_tip ${pct(tip)} (${tip}/${n})` +
+            ` · margin_note ${pct(note)} (${note}/${n})` +
+            ` · insider_note ${pct(ins)} (${ins}/${n})`);
+    }
+    const g = (x: number) => String(Math.round((100 * x) / Math.max(1, gQ)) + '%').padStart(4);
+    console.log(`    ALL    : memory_tip ${g(gTip)} (${gTip}/${gQ})` +
+        ` · margin_note ${g(gNote)} (${gNote}/${gQ})` +
+        ` · insider_note ${g(gIns)} (${gIns}/${gQ})`);
 }
 console.log(`\nNext: npm run serve:answers → http://localhost:8100  (or open ${outPath} directly)`);

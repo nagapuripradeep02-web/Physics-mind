@@ -1749,7 +1749,12 @@
     function plain(text) {
       return String(text == null ? '' : text)
         .replace(/\*\*([^*]+)\*\*/g, '$1')
-        .replace(/(^|\s)\*([^*\n]+)\*(?=\s|$|[.,!?])/g, '$1$2')
+        // The italic span must be FLANKED by non-space, the way markdown is really
+        // written (*word*, never * word *). Without that guard this rule ate the
+        // multiplication signs out of a numerical: "v = 3 * 4 * 5" came back as
+        // "v = 3  4  5" — silently wrong arithmetic in front of a student. Found by
+        // mutation test 2026-08-22; covered in __tests__/vidiSeam.test.ts.
+        .replace(/(^|\s)\*(\S|\S[^*\n]*\S)\*(?=\s|$|[.,!?])/g, '$1$2')
         .replace(/`{1,3}([^`]*)`{1,3}/g, '$1')
         .replace(/^\s{0,3}#{1,6}\s+/gm, '')
         .replace(/^\s{0,3}[-*+]\s+/gm, '')
@@ -1942,6 +1947,7 @@
       out.push('QUESTION: ' + (cut.question_text || question.question_text));
       out.push('SECTION: ' + cut.paper_section + ' · ' + cut.qtype + ' · ' + marksTotal +
         ' marks · about ' + cut.expected_time_min + ' minutes');
+      if (question.chapter) out.push('CHAPTER: ' + question.chapter);
       var e = manifestEntry();
       if (e) out.push('STARS: ' + e.stars + (e.source === 'enumerated' ? ' · predicted, not asked yet' : ''));
       var asked = askedLine(question);
@@ -1951,6 +1957,16 @@
         split.push(cut.mark_split[i].label + ' ' + cut.mark_split[i].marks + 'M');
       }
       out.push('MARK SPLIT: ' + split.join(' · '));
+      // Every split in the bank is the source book's claim until a Telangana IPE
+      // teacher confirms it (verification.needs_teacher_verification is true on
+      // all 157). The model must be able to say so when asked instead of
+      // presenting the split as a board-issued rubric; the persona governs WHEN.
+      if (question.verification && question.verification.needs_teacher_verification) {
+        out.push('VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
+      }
+      // One examiner-insight sentence. It already opens the deterministic
+      // greeting; the model was never given it, so it could not build on it.
+      if (question.insider_note) out.push('INSIDER POINT: ' + question.insider_note);
       // The same answer at its OTHER authored lengths — without this the model
       // invents a 4-mark scheme the moment a student asks (found in a real chat).
       if (question.cuts && question.cuts.length > 1) {
@@ -1986,7 +2002,17 @@
         var s = steps[k];
         out.push(String(k + 1) + '. [' + s.id + '] ' + s.label + ' — ' + s.marks + 'M');
         if (s.kind === 'diagram') {
-          out.push('   WRITE: a labelled figure');
+          // Naming the labels lets the model answer "what goes in the figure?"
+          // from the bank instead of guessing a plausible diagram.
+          var figLabels = [];
+          if (s.figure && s.figure.elements) {
+            for (var fe = 0; fe < s.figure.elements.length; fe++) {
+              var elx = s.figure.elements[fe];
+              if (elx.type === 'label' && elx.text) figLabels.push(elx.text);
+            }
+          }
+          out.push('   WRITE: a labelled figure' +
+            (figLabels.length ? ', labelled: ' + figLabels.join(' · ') : ''));
         } else if (s.lines) {
           var lt = [];
           for (var j = 0; j < s.lines.length; j++) {
@@ -1995,6 +2021,10 @@
           }
           out.push('   WRITE: ' + lt.join(' / '));
         }
+        // Which mark-split row this step earns. Authored on all 405 marked steps
+        // and never sent before — it is the bank's own step→mark mapping, and a
+        // missing mark fact is what made the model invent a split in a real chat.
+        if (s.mark_note) out.push('   EARNS THE MARK FOR: ' + s.mark_note);
         if (s.why) out.push('   WHY: ' + s.why);
         if (s.common_mistakes && s.common_mistakes.length) out.push('   MISTAKES: ' + s.common_mistakes.join(' | '));
         if (s.memory_tip) out.push('   REMEMBER: ' + s.memory_tip);
@@ -2205,6 +2235,11 @@
         Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
       },
       onStep: function () { renderVidiChips(); },
+      // Read-only. The shakedown harness used to re-implement this builder in
+      // TypeScript and had drifted from it on seven axes (cut projection, cut
+      // mark_split, cut-aware stars, the other-cuts skip…), so it was probing the
+      // model with grounding text no student ever sees. One builder, exposed.
+      buildContext: buildVidiContext,
       onCheckClosed: function (offer) { if (offer) { openWin(); offerRename(); } },
       openWin: openWin,
       minWin: minWin,
@@ -2399,7 +2434,12 @@
       return false;
     },
     revealNext: advance,
-    revealAll: function () { renderUpTo(steps.length - 1, false); }
+    revealAll: function () { renderUpTo(steps.length - 1, false); },
+    /** The exact ANSWER FACTS string the model is grounded in for the question and
+        cut currently on screen. Read-only, and the reason it exists: the offline
+        shakedown must probe with the SAME grounding a student's chat sends, and a
+        second implementation of it had already drifted. */
+    vidiContext: function () { return VidiPanel.buildContext(); }
   });
 
   // ═══ boot — behind the web-font gate (measuring in fallback `cursive`

@@ -957,9 +957,31 @@ test('the memory-tip chip appears only where a tip is authored', async ({ page }
     await openQ(page, ids.tipped!);
     expect(await chipTexts()).toContain('How to remember?');
 
+    // The NEGATIVE control. It used to be a bare `if (ids.bare)`, which silently
+    // becomes a no-op the moment every question has a tip — an enrichment pass
+    // would disarm the only assertion proving the chip is conditional at all, and
+    // this gate would stay green while testing half of itself. So: use a real bare
+    // question when one exists, otherwise STRIP the tips off the loaded question in
+    // the page and re-render. Same branch exercised either way.
     if (ids.bare) {
         await openQ(page, ids.bare);
         expect(await chipTexts()).not.toContain('How to remember?');
+    } else {
+        // Strip the TIPPED question, not just any question: stripping one that had
+        // no tips to begin with is a no-op that passes while proving nothing.
+        await page.evaluate((qid) => {
+            const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === qid);
+            (window as any).__PM_TIPS_SAVED = q.answer.steps.map((s: any) => s.memory_tip);
+            q.answer.steps.forEach((s: any) => { delete s.memory_tip; });
+        }, ids.tipped!);
+        await openQ(page, ids.tipped!);
+        expect(await chipTexts(), 'the tip chip must disappear when no step carries a tip')
+            .not.toContain('How to remember?');
+        await page.evaluate((qid) => {
+            const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === qid);
+            const saved = (window as any).__PM_TIPS_SAVED as (string | undefined)[];
+            q.answer.steps.forEach((s: any, i: number) => { if (saved[i]) s.memory_tip = saved[i]; });
+        }, ids.tipped!);
     }
 });
 

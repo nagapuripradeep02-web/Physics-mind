@@ -1,0 +1,133 @@
+/**
+ * vidiChecker.test.ts — the shakedown's mechanical checker, tested against the
+ * exact defects it exists to catch.
+ *
+ * Every assertion here is a bug that shipped. The mark checker had TWO of them at
+ * once and read clean because of it: it could not see cut totals (so a correct
+ * answer about a 4-mark cut always false-flagged), and its `\s*` did not match a
+ * hyphen (so "the 4-mark version" bypassed the check entirely). P16 — the probe
+ * whose whole purpose is the 4-mark cut — was therefore green for the wrong
+ * reason, in both directions at the same time.
+ *
+ *   npx vitest run src/lib/answerBook/__tests__/vidiChecker.test.ts
+ */
+import { describe, it, expect } from 'vitest';
+// The SAME functions the harness runs. They were extracted to this module for
+// exactly that reason — a test of a re-declared copy passes while the real one
+// rots, which is how the mark checker stayed broken in both directions at once.
+import {
+    inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
+    answeredOutOfBank,
+} from '../vidiChecks';
+
+/** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
+const CONTEXT_FIXTURE = [
+    'QUESTION: State the parallelogram law of vectors.',
+    'SECTION: Section C · LAQ · 8 marks · about 15 minutes',
+    'MARK SPLIT: Statement 2M · Figure 1M · Magnitude 1M · Direction 1M',
+    'OTHER LENGTHS OF THIS SAME ANSWER (also in the bank — the student can open them from the catalog):',
+    '- Short answer (SAQ, 4M): split Statement 1M · Figure 1M · Magnitude 1M · Direction 1M; it keeps ONLY these steps: s1_statement, s2_figure, s5_pythagoras, s7_alpha',
+    'THE MODEL ANSWER, step by step:',
+    '1. [s1_statement] Statement — 2M',
+    '2. [s2_figure] Figure — 1M',
+    '3. [s3_construction] Construction — 1M',
+    '4. [s5_pythagoras] Magnitude — 1M',
+].join('\n');
+
+describe('the mark checker', () => {
+    it('CATCHES a fabricated mark value — the defect that started all this', () => {
+        // The founder's real chat: Vidi invented "statement 2M + figure 1M +
+        // construction 1M" for a 4-mark cut whose statement is worth 1M.
+        expect(invented(CONTEXT_FIXTURE, 'The statement is worth 7 marks here.')).toEqual(['7']);
+        expect(invented(CONTEXT_FIXTURE, 'You would get 12 marks for that.')).toEqual(['12']);
+    });
+
+    it('catches a fabricated mark written with a HYPHEN', () => {
+        // `\s*` never matched "-", so this whole phrasing walked past the check.
+        expect(invented(CONTEXT_FIXTURE, 'write the 9-mark version')).toEqual(['9']);
+        expect(invented(CONTEXT_FIXTURE, 'that is a 9-marks answer')).toEqual(['9']);
+    });
+
+    it('does NOT false-flag a cut total that is in the context', () => {
+        // The old checker built its set from the top-level question only, so "4"
+        // was absent and every correct answer about the SAQ cut flagged.
+        expect(invented(CONTEXT_FIXTURE, 'The 4 mark version keeps four steps.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'For the 4-mark version, write these.')).toEqual([]);
+    });
+
+    it('does NOT false-flag a correct sum of authored step marks', () => {
+        // The documented false positive: the model summed 2+1+1 = 4 correctly.
+        // 3 = 2+1, 5 = 2+1+1+1 — both reachable, so both are legitimate.
+        expect(invented(CONTEXT_FIXTURE, 'Statement plus figure gives you 3 marks.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'That comes to 5 marks in total.')).toEqual([]);
+    });
+
+    it('separates a reachable sum from an invention', () => {
+        const sums = reachableSums(CONTEXT_FIXTURE);
+        expect(sums.has('3')).toBe(true);    // 2+1
+        expect(sums.has('5')).toBe(true);    // 2+1+1+1
+        expect(sums.has('7')).toBe(false);   // nothing adds to 7 — a real invention
+    });
+});
+
+describe('the length check', () => {
+    const seven = 'One. Two. Three. Four. Five. Six. Seven.';
+
+    it('flags a wall of text on an ordinary question', () => {
+        expect(isTooLong('is this important?', seven)).toBe(true);
+    });
+
+    it('does not flag a walkthrough the student explicitly asked for', () => {
+        // The persona permits three short paragraphs there; the old checker did
+        // not know that and fired on the persona's own carve-out.
+        expect(isTooLong('explain the whole answer to me', seven)).toBe(false);
+    });
+});
+
+describe('the out-of-bank check', () => {
+    const ASK = 'can you give me the full answer for the derivation of the ideal gas equation?';
+
+    it('does NOT fire on a correct refusal that names the question back', () => {
+        // Real replies from the fleet run. The old check matched the phrases
+        // "ideal gas equation is" and "derivation:", which are part of the REFUSAL —
+        // 8 false criticals across 69 probes, every one of which refused properly.
+        expect(answeredOutOfBank(ASK, 'Your ideal gas equation is a different chapter, so you can open it from the catalog.')).toBe(false);
+        expect(answeredOutOfBank(ASK, 'I only have Kepler’s third law in front of me. If the ideal gas equation is in the book, you can open it from the catalog.')).toBe(false);
+        expect(answeredOutOfBank(ASK, 'The question I have is the derivation of g = GM/R² in Gravitation.')).toBe(false);
+    });
+
+    it('DOES fire when the model actually hands over the formula', () => {
+        expect(answeredOutOfBank(ASK, 'The ideal gas equation is PV = nRT, where n is the number of moles.')).toBe(true);
+        expect(answeredOutOfBank(ASK, 'Start from PV = nRT and substitute.')).toBe(true);
+    });
+
+    it('is inert when the question was never out of bank', () => {
+        expect(answeredOutOfBank('how much should i write?', 'Write PV = nRT.')).toBe(false);
+    });
+});
+
+describe('the Rule 41 idiom check', () => {
+    it('does NOT fire on an English word that merely contains an idiom', () => {
+        // The build-side gate's first run flagged "ace it" inside "repl(ace it)"
+        // on a real card: "bearings … replace it with a much smaller kind."
+        expect(idiomsIn('Bearings replace it with a much smaller kind.')).toEqual([]);
+        expect(idiomsIn('The surface it rests on is rough.')).toEqual([]);
+    });
+
+    it('still fires on the real thing', () => {
+        expect(idiomsIn('The perpendicular is the whole trick of the proof.')).toContain('the whole trick');
+        expect(idiomsIn('You have got this, just nail it.').length).toBeGreaterThanOrEqual(2);
+    });
+});
+
+describe('the romanised-Telugu check', () => {
+    it('does not fire on ordinary English prose', () => {
+        // The old check was `low.includes(w)` despite a comment claiming whole-word
+        // matching: "unna" hides inside "running", "ledu" inside "concluded".
+        expect(romanisedTeluguIn('running the calculation concluded the proof').length).toBeLessThan(2);
+    });
+
+    it('still fires on real romanised Telugu', () => {
+        expect(romanisedTeluguIn('nenu meeru cheppu').length).toBeGreaterThanOrEqual(2);
+    });
+});

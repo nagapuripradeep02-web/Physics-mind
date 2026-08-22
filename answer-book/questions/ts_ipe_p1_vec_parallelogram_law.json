@@ -378,7 +378,7 @@
             "raastha"
           ]
         },
-        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the whole trick of the proof: it turns the parallelogram into a right triangle.",
+        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the key step of the proof: it turns the parallelogram into a right triangle.",
         "common_mistakes": [
           "Dropping the perpendicular to OA instead of to OA extended.",
           "Not saying which angle is theta and which is alpha."

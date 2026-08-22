@@ -108,6 +108,29 @@ The seam grew into the layer. What exists now:
    `[hidden]`; the panel never uses `.card-title`; triage links never use `.cat-card`;
    every network path is build-flag-gated, default off. Hosting runbook:
    `docs/notes/answer_book_hosting.md`.
+6. **What actually reaches the model** (fixed 2026-08-22). `buildVidiContext()` emits
+   `WHY` / `MISTAKES` / `EARNS THE MARK FOR` / `REMEMBER` / `NOTE` per step, plus
+   `CHAPTER`, `STARS`, `MARK SPLIT`, `VERIFICATION`, `INSIDER POINT`, the other cuts and
+   the chapter's 3★ mates. **`mark_note` (405 of 423 steps), `insider_note`, `chapter`
+   and `verification` were authored and never sent** — and a *missing* mark fact is what
+   made Vidi invent a mark scheme in the founder's real chat. Context grew ~10% (max
+   7,687 chars against the server's silent 10,000 slice, which now logs past 9,000).
+   Still never sent: `recall` (stripped from the browser copy by design) and `figure`
+   geometry — a diagram step sends its LABELS only.
+7. **One builder, no copies.** The page owns `buildVidiContext()`; `PM_ANSWER.vidiContext()`
+   exposes it read-only and `npm run vidi:contexts` dumps all 162 contexts for the
+   shakedown to consume. The harness previously re-implemented the builder and had
+   drifted on seven axes (cut-projected steps, per-cut `mark_split`, cut-aware stars, the
+   other-cuts skip, the cut's `question_text`, section/marks/time, and the `cut_key` it
+   reported), so every probe grounded the model in text no student ever sees. Same rule
+   now holds for the persona (Edge Function ↔ local mirror, parity-tested) and the Rule 41
+   word list (imported from `src/lib/answerBook/vidiChecks.ts`, never copied).
+8. **Rule 41 is mechanical now.** `build:answers` scans every authored `why`,
+   `common_mistakes`, `memory_tip`, `margin_note` and `insider_note` with the same word
+   list the shakedown grades Vidi's replies with. It caught a real violation on its first
+   run — "the whole trick" in the parallelogram's own `s3_construction.why`, a WHY line
+   the model had been grounded in since day one. Match on WORD BOUNDARIES: a plain
+   `includes` finds "ace it" inside "repl**ace it**" (a false positive on a real card).
 
 ## Rule tensions — resolved, do not relitigate
 
