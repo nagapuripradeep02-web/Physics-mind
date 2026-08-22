@@ -1,0 +1,361 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_13_14_15",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find s",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ by Heron",
+      "marks": 1
+    },
+    {
+      "label": "Find R",
+      "marks": 1
+    },
+    {
+      "label": "Find r",
+      "marks": 1
+    },
+    {
+      "label": "Find r₁",
+      "marks": 1
+    },
+    {
+      "label": "Find r₂",
+      "marks": 1
+    },
+    {
+      "label": "Find r₃ and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 32, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,16,17,19 — five printed tags, the most-asked LAQ in this unit. The reverse of answers 31.x: the SIDES are given and the five radii are wanted. The book calls it \"Roc'king... Q! Superrrr...Q!\" and its split is printed in full. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of seven working lines — a fully sourced 1+1+1+1+1+1+1, and the only printed split in this chapter. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_s",
+        "kind": "equation",
+        "label": "Find s",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the book prints [1 Mark] for it. Everything downstream needs s, so it is computed and displayed on its own line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = 13, b = 14, c = 15",
+          "2s = a + b + c = 13 + 14 + 15 = 42",
+          "∴ s = 21"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2s = a + b + c = 42, so s = 21.",
+          "accept": [
+            "two s is the sum of the sides which is forty two so s is twenty one",
+            "the semi perimeter is twenty one",
+            "add the sides and halve to get s",
+            "a plus b plus c forty two, s twenty one",
+            "find the semi perimeter first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two s",
+            "forty two",
+            "twenty one",
+            "semi perimeter"
+          ]
+        },
+        "why": "s is the semi-perimeter — HALF the sum. Forgetting to halve is the single commonest slip, and it corrupts every value after it.",
+        "common_mistakes": [
+          "Taking s = 42 without halving.",
+          "Adding two sides only."
+        ]
+      },
+      {
+        "id": "s2_find_by_heron",
+        "kind": "equation",
+        "label": "Find Δ by Heron",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
+        "lines": [
+          "Δ = √(s(s−a)(s−b)(s−c))",
+          "= √(21(21−13)(21−14)(21−15)) = √(21 × 8 × 7 × 6)",
+          "= √((3×7)(4×2)(7)(3×2)) = √(3² × 4² × 7²)",
+          "= 3 × 4 × 7 = 84"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Heron's formula gives Δ = √(21×8×7×6) = 84.",
+          "accept": [
+            "use herons formula, root of s into s minus a s minus b s minus c which is eighty four",
+            "the area is eighty four",
+            "group the factors into squares to get three times four times seven",
+            "heron formula tho delta eighty four vasthundi",
+            "the area comes to eighty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "heron",
+            "eighty four",
+            "s minus a",
+            "area"
+          ]
+        },
+        "why": "Every one of the five radii below is a fraction with Δ on top. Getting Δ right is worth more than any single one of them.",
+        "common_mistakes": [
+          "Multiplying to 7056 and then struggling with the root.",
+          "Using s−a = 13 instead of 21−13."
+        ]
+      },
+      {
+        "id": "s3_find_r",
+        "kind": "equation",
+        "label": "Find R",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. R = abc/(4Δ) — the circumradius. The 65/8 does not simplify further.",
+        "lines": [
+          "(i) R = abc/(4Δ) = (13 × 14 × 15)/(4 × 84)",
+          "= 2730/336 = 65/8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R = abc/(4Δ) = 65/8.",
+          "accept": [
+            "R is a b c over four delta which is sixty five over eight",
+            "the circumradius is sixty five eighths",
+            "use R equals abc by four delta",
+            "R equals abc by four delta, sixty five by eight",
+            "the circumradius comes to sixty five over eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "abc over four delta",
+            "sixty five over eight",
+            "circumradius"
+          ]
+        },
+        "why": "R is the only one of the five that uses the product of the sides rather than Δ over something. It is worth memorising separately for that reason.",
+        "common_mistakes": [
+          "Using 2Δ instead of 4Δ.",
+          "Cancelling wrongly and getting 65/4."
+        ]
+      },
+      {
+        "id": "s4_find_r",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Fourth mark. r = Δ/s — the in-radius, and the simplest of the five.",
+        "lines": [
+          "(ii) r = Δ/s = 84/21 = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = Δ/s = 4.",
+          "accept": [
+            "r is delta over s which is eighty four over twenty one equals four",
+            "the in radius is four",
+            "use r equals delta by s",
+            "r equals delta by s, four",
+            "the in radius comes to four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "delta over s",
+            "four",
+            "in radius"
+          ]
+        },
+        "why": "r = Δ/s is the definition that all the others are built around — r₁ is the same with s−a in place of s.",
+        "common_mistakes": [
+          "Using s/Δ upside down.",
+          "Reusing R's formula."
+        ]
+      },
+      {
+        "id": "s5_find_r",
+        "kind": "equation",
+        "label": "Find r₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Fifth mark. r₁ = Δ/(s−a) — the same shape as r, with s−a underneath.",
+        "lines": [
+          "(iii) r₁ = Δ/(s−a) = 84/(21−13) = 84/8 = 21/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₁ = Δ/(s−a) = 21/2.",
+          "accept": [
+            "r one is delta over s minus a which is eighty four over eight equals twenty one halves",
+            "r one is twenty one over two",
+            "use delta over s minus a",
+            "r one equals twenty one by two",
+            "the first ex radius is twenty one halves"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus a",
+            "twenty one over two",
+            "r one"
+          ]
+        },
+        "why": "The three ex-radii differ only in which side is subtracted. Once one is written the other two are mechanical.",
+        "common_mistakes": [
+          "Using s − b under r₁.",
+          "Leaving 84/8 uncancelled."
+        ]
+      },
+      {
+        "id": "s6_find_r",
+        "kind": "equation",
+        "label": "Find r₂",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Sixth mark. Same again with s−b.",
+        "lines": [
+          "(iv) r₂ = Δ/(s−b) = 84/(21−14) = 84/7 = 12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₂ = Δ/(s−b) = 12.",
+          "accept": [
+            "r two is delta over s minus b which is eighty four over seven equals twelve",
+            "r two is twelve",
+            "use delta over s minus b",
+            "r two equals twelve",
+            "the second ex radius is twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus b",
+            "twelve",
+            "r two"
+          ]
+        },
+        "why": "Each ex-radius is larger when its side is larger, since s − side is then smaller. r₂ > r₁ here because b > a.",
+        "common_mistakes": [
+          "Using s − a again.",
+          "Arithmetic slip on 21 − 14."
+        ]
+      },
+      {
+        "id": "s7_find_r_and_conclude",
+        "kind": "boxed_final",
+        "label": "Find r₃ and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Same with s−c, then state all five together as the question asked.",
+        "lines": [
+          "(v) r₃ = Δ/(s−c) = 84/(21−15) = 84/6 = 14",
+          {
+            "text": "∴ R = 65/8, r = 4, r₁ = 21/2, r₂ = 12, r₃ = 14",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₃ = Δ/(s−c) = 14, and all five values are stated together.",
+          "accept": [
+            "r three is delta over s minus c which is fourteen, and then state all five values",
+            "r three is fourteen and the five answers are stated",
+            "the last ex radius is fourteen",
+            "r three equals fourteen, anni five values rasta",
+            "give all five results together"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus c",
+            "fourteen",
+            "r three",
+            "all five"
+          ]
+        },
+        "why": "The question named five quantities, so the last line must name all five. An examiner reading only the final line should see the whole answer.",
+        "common_mistakes": [
+          "Reporting only r₃ at the end.",
+          "Arithmetic slip on 21 − 15."
+        ]
+      }
+    ]
+  }
+}

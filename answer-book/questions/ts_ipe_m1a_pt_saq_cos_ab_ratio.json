@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_cos_ab_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, prove that (1 + cos(A−B) cos C)/(1 + cos(A−C) cos B) = (a² + b²)/(a² + c²).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Replace C and B using the angle sum",
+      "marks": 2
+    },
+    {
+      "label": "Use the product identity",
+      "marks": 1
+    },
+    {
+      "label": "Apply the sine rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 178, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: AP 19. The angle C appears only as cos C, and in a triangle cos C = −cos(A+B) — which turns each numerator into a difference of two cosines and then into a difference of squares. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_replace_c_and_b_using_the_",
+        "kind": "equation",
+        "label": "Replace C and B using the angle sum",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. In a triangle C = 180° − (A+B), so cos C = −cos(A+B). The same applies to cos B in the denominator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In a △ABC, A + B + C = 180°",
+          "⇒ C = 180° − (A+B) and B = 180° − (A+C)",
+          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))] / [1 + cos(A−C)cos(180°−(A+C))]",
+          "= [1 − cos(A+B)cos(A−B)] / [1 − cos(A+C)cos(A−C)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C = −cos(A+B) and cos B = −cos(A+C), turning both plus signs into minus signs.",
+          "accept": [
+            "in a triangle cos C is minus cos of A plus B so the plus becomes a minus in both numerator and denominator",
+            "use the angle sum to replace cos C and cos B",
+            "both signs flip because cosine changes sign across one eighty",
+            "cos C ante minus cos A plus B, so signs marutai",
+            "substitute using the angle sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus cos A plus B",
+            "one eighty minus",
+            "angle sum",
+            "sign flips"
+          ]
+        },
+        "why": "The whole identity depends on this substitution — without it there is no way to combine cos(A−B) with cos C at all.",
+        "common_mistakes": [
+          "Writing cos(180° − θ) = +cos θ.",
+          "Substituting in the numerator only."
+        ]
+      },
+      {
+        "id": "s2_use_the_product_identity",
+        "kind": "equation",
+        "label": "Use the product identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. cos(A+B)cos(A−B) = cos²A − sin²B — the standard product result, which turns each bracket into squares.",
+        "lines": [
+          "= [1 − (cos²A − sin²B)] / [1 − (cos²A − sin²C)]",
+          "  [∵ cos(A+B)cos(A−B) = cos²A − sin²B]",
+          "= (1 − cos²A + sin²B) / (1 − cos²A + sin²C)",
+          "= (sin²A + sin²B) / (sin²A + sin²C)   [∵ 1 − cos²A = sin²A]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A+B)cos(A−B) = cos²A − sin²B is applied and 1 − cos²A = sin²A, giving (sin²A+sin²B)/(sin²A+sin²C).",
+          "accept": [
+            "use cos A plus B times cos A minus B equals cos squared A minus sin squared B then one minus cos squared A is sin squared A",
+            "the brackets become sums of sine squares",
+            "it reduces to sin squared A plus sin squared B over sin squared A plus sin squared C",
+            "product identity vaadi, sines ga marchali",
+            "apply the product formula and the Pythagorean identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared A minus sin squared B",
+            "sin squared A",
+            "product identity"
+          ]
+        },
+        "why": "Two identities in one line: the product formula makes squares, and 1 − cos² makes them all sines. After this everything is in sines and the sine rule can finish it.",
+        "common_mistakes": [
+          "Using cos²A − cos²B instead.",
+          "Losing the sign when distributing the minus."
+        ]
+      },
+      {
+        "id": "s3_apply_the_sine_rule",
+        "kind": "boxed_final",
+        "label": "Apply the sine rule",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. a = 2R sinA, so sinA = a/(2R) — and the (2R)² cancels top and bottom, leaving the sides.",
+        "lines": [
+          "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
+          "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
+          "= (a² + b²)/(4R²) ÷ (a² + c²)/(4R²)",
+          {
+            "text": "= (a² + b²)/(a² + c²) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sine rule replaces each sine by side/(2R), and the 4R² cancels to leave (a²+b²)/(a²+c²).",
+          "accept": [
+            "use the sine rule so each sine is a side over two R and the four R squared cancels leaving the sides",
+            "the sine rule converts the sines into sides",
+            "four R squared cancels top and bottom",
+            "sine rule tho sines ni sides ga marchite four R square cancel avthundi",
+            "convert to sides and cancel"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sine rule",
+            "a over two R",
+            "four R squared cancels",
+            "sides"
+          ]
+        },
+        "why": "Both numerator and denominator carry the same 4R², so it cancels completely — which is why the answer has no R in it despite the sine rule being used.",
+        "common_mistakes": [
+          "Forgetting to square the 2R.",
+          "Cancelling only one of the two."
+        ]
+      }
+    ]
+  }
+}

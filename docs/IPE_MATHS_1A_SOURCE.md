@@ -148,7 +148,27 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1 to 9 — 193 entries.**
+3. **ALL TEN MATHS-1A UNITS COMPLETE — 216 entries.**
+   **Unit 10 (Properties of Triangles) — COMPLETE at 23 of 23**: 11 LAQ (book pp.43-49) + 9 SAQ
+   (pp.75-77) + 3 from the separate Star Questions Plus bank (p.111). With Q17 (SAQ) and Q24 (LAQ)
+   it is one of only TWO units holding two slots on the paper — Matrices is the other. Its LAQ answer
+   32 carries a fully printed 1×7 split, the only printed split in that chapter. Answers 33, 34.1 and
+   34.2 are the book's "Super Twin Baby Questions": three runs of the same four moves, where 34.2
+   differs only by a minus sign that carries all the way to a SINE half-angle where the other two end
+   in a cosine. The chapter-table on book p.50 independently CONFIRMED every SAQ boundary walked in
+   Units 3-10, which is a useful cross-check on the whole scoping method.
+
+   ⚠ **THE STAR QUESTIONS PLUS BANK IS BEING FOLDED IN (founder decision 2026-08-22).** The bank
+   (book pp.98-111, answers 142-180, 39 questions) is organised by chapter but sits after all the
+   numbered chapters. It is now being authored INTO the units its questions belong to. Two findings
+   from the survey: it contains genuine DUPLICATES of chapter questions (155 repeats Unit 4's VSAQ
+   113.1 with the same TS 17 tag; 166 repeats Unit 6's LAQ answer 29), which are skipped; and its
+   headings name the chapter but NOT the mark cut, so each question's section is classed by length
+   and shape, and every such classification is recorded in that file's verification note as ours.
+   Distribution: Unit 1 → 142,143 · Unit 2 → 144,145 · Unit 3 → 146-154 · Unit 4 → 157 · Unit 5 →
+   156,158-162 · Unit 6 → 163-165,167-174 · Unit 7 → 175,176 · Unit 8 → 177 · Unit 9 → none ·
+   Unit 10 → 178-180 (DONE, authored with the unit).
+
    **Unit 9 (Hyperbolic Functions) — COMPLETE at 10 of 10, VSAQ ONLY, book pp.96-97.** The paper gives
    it a single slot, Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ
    chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions

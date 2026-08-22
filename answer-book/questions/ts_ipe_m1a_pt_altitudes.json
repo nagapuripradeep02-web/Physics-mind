@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_altitudes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Express each altitude",
+      "marks": 2
+    },
+    {
+      "label": "Prove part (i)",
+      "marks": 2
+    },
+    {
+      "label": "Prove part (ii)",
+      "marks": 2
+    },
+    {
+      "label": "Prove part (iii)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_express_each_altitude",
+        "kind": "equation",
+        "label": "Express each altitude",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, and the whole setup. The area can be computed from any side and its altitude, so Δ = ½ a p₁ — which rearranges to p₁ = 2Δ/a. The other two follow by symmetry.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "p₁ is the altitude from A to BC, so",
+          "Δ = ½ (base)(height) = ½ (BC)(p₁) = ½ a p₁",
+          "⇒ p₁ = 2Δ/a.  Similarly p₂ = 2Δ/b, p₃ = 2Δ/c",
+          "Hence 1/p₁ = a/(2Δ), 1/p₂ = b/(2Δ), 1/p₃ = c/(2Δ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ = ½ a p₁ gives p₁ = 2Δ/a, so 1/p₁ = a/(2Δ), and similarly for the others.",
+          "accept": [
+            "the area is half base times height so p one is two delta over a and its reciprocal is a over two delta",
+            "each altitude is twice the area divided by its own base",
+            "one over p one is a over two delta",
+            "delta equals half a p one, so p one equals two delta by a",
+            "express the altitudes using the area"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two delta over a",
+            "half base times height",
+            "a over two delta",
+            "altitude"
+          ]
+        },
+        "why": "Taking the RECIPROCALS is what makes all three parts easy — 1/p is a simple multiple of the side, where p itself is a fraction.",
+        "common_mistakes": [
+          "Writing p₁ = Δ/a without the 2.",
+          "Pairing p₁ with the wrong side."
+        ]
+      },
+      {
+        "id": "s2_prove_part_i",
+        "kind": "equation",
+        "label": "Prove part (i)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The three reciprocals share 1/(2Δ), and a + b + c is 2s — so the sum becomes s/Δ, which is 1/r.",
+        "lines": [
+          "(i) 1/p₁ + 1/p₂ + 1/p₃ = a/(2Δ) + b/(2Δ) + c/(2Δ)",
+          "= (a+b+c)/(2Δ) = 2s/(2Δ) = s/Δ",
+          "= 1/r   [∵ r = Δ/s]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three reciprocals sum to (a+b+c)/(2Δ) = s/Δ = 1/r.",
+          "accept": [
+            "add the reciprocals to get a plus b plus c over two delta which is s over delta which is one over r",
+            "the sum is s over delta and r is delta over s so it is one over r",
+            "it comes to one over the in radius",
+            "a plus b plus c two s kabatti s by delta, ante one by r",
+            "the sum of the reciprocals is one over r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b plus c",
+            "two s",
+            "s over delta",
+            "one over r"
+          ]
+        },
+        "why": "r = Δ/s, so 1/r = s/Δ. Recognising the answer as a reciprocal rather than deriving it fresh is what makes this two lines.",
+        "common_mistakes": [
+          "Forgetting that a + b + c = 2s.",
+          "Writing r = s/Δ upside down."
+        ]
+      },
+      {
+        "id": "s3_prove_part_ii",
+        "kind": "equation",
+        "label": "Prove part (ii)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. The same sum with a minus on the third: a + b − c is 2s − 2c = 2(s−c), and Δ/(s−c) is r₃.",
+        "lines": [
+          "(ii) 1/p₁ + 1/p₂ − 1/p₃ = (a + b − c)/(2Δ)",
+          "= (a+b+c−2c)/(2Δ) = (2s − 2c)/(2Δ)",
+          "= (s−c)/Δ = 1/r₃   [∵ r₃ = Δ/(s−c)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + b − c = 2(s−c), so the expression is (s−c)/Δ = 1/r₃.",
+          "accept": [
+            "a plus b minus c is two s minus two c so it becomes s minus c over delta which is one over r three",
+            "add and subtract two c to reach two s minus two c",
+            "the answer is one over r three",
+            "a plus b minus c ante two s minus two c, so one by r three",
+            "the minus gives the third ex radius"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b minus c",
+            "s minus c",
+            "one over r three",
+            "two s minus two c"
+          ]
+        },
+        "why": "Writing a + b − c as a + b + c − 2c is the trick — it turns an awkward combination into 2s minus something, which is what the ex-radius formula needs.",
+        "common_mistakes": [
+          "Not spotting a + b − c = 2(s−c).",
+          "Pairing the minus with r₁ instead of r₃."
+        ]
+      },
+      {
+        "id": "s4_prove_part_iii",
+        "kind": "boxed_final",
+        "label": "Prove part (iii)",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
+        "lines": [
+          "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
+          "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
+          "= 8(abc)³/(abc · 64R³) = (abc)²/(8R³)",
+          {
+            "text": "∴ p₁p₂p₃ = 8Δ³/(abc) = (abc)²/(8R³)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is 8Δ³/(abc), and substituting Δ = abc/(4R) converts it to (abc)²/(8R³).",
+          "accept": [
+            "multiply the three altitudes to get eight delta cubed over a b c then substitute delta to get a b c squared over eight R cubed",
+            "the product is eight delta cubed over abc",
+            "use delta equals abc over four R to get the other form",
+            "moodintini multiply cheste eight delta cube by abc vasthundi",
+            "both forms of the answer follow"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight delta cubed",
+            "abc",
+            "eight R cubed",
+            "product"
+          ]
+        },
+        "why": "The question asked for BOTH forms, so the conversion is required, not optional. R = abc/(4Δ) rearranges to give Δ, which is what makes the swap possible.",
+        "common_mistakes": [
+          "Giving only one of the two forms.",
+          "Cubing 4R as 12R³ instead of 64R³."
+        ]
+      }
+    ]
+  }
+}

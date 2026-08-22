@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_sec_squared_equal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that (r₁ + r₂) sec²(C/2) = (r₂ + r₃) sec²(A/2) = (r₃ + r₁) sec²(B/2).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Simplify r₁ + r₂",
+      "marks": 2
+    },
+    {
+      "label": "Multiply by sec² and conclude",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 180, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: AP 19. A chain of three equal quantities, and the cleanest way to prove it is to show each one separately equals 4R — then they are equal to each other by transitivity. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_simplify_r_r",
+        "kind": "equation",
+        "label": "Simplify r₁ + r₂",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Both radii carry 4R cos(C/2), so it factors out — and the bracket left behind is sin((A+B)/2), which is cos(C/2).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "r₁ + r₂ = 4R sin(A/2)cos(B/2)cos(C/2) + 4R cos(A/2)sin(B/2)cos(C/2)",
+          "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
+          "= 4R cos(C/2) sin((A+B)/2)",
+          "= 4R cos(C/2) cos(C/2)   [∵ (A+B)/2 = 90° − C/2]",
+          "= 4R cos²(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4R cos(C/2) factors out, the bracket becomes sin((A+B)/2) = cos(C/2), giving r₁ + r₂ = 4R cos²(C/2).",
+          "accept": [
+            "take four R cos half C common and the bracket is sin of half A plus B which is cos half C so it is four R cos squared half C",
+            "the sum is four R cos squared half C",
+            "use the compound angle then the complementary angle",
+            "four R cos half C common teeste, bracket cos half C avthundi",
+            "r one plus r two is four R cos squared half C"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four R cos half C",
+            "sin half A plus B",
+            "cos squared half C",
+            "complementary"
+          ]
+        },
+        "why": "sin((A+B)/2) = cos(C/2) because the two half-angles are complementary in any triangle. That is what turns one cos(C/2) into two.",
+        "common_mistakes": [
+          "Grouping so that the C half-angle does not factor out.",
+          "Writing sin((A+B)/2) = sin(C/2)."
+        ]
+      },
+      {
+        "id": "s2_multiply_by_sec_and_conclu",
+        "kind": "boxed_final",
+        "label": "Multiply by sec² and conclude",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. sec²(C/2) is 1/cos²(C/2), so it cancels the cosine exactly, leaving 4R. The other two go the same way, so all three equal 4R.",
+        "lines": [
+          "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
+          "By the same working with the letters rotated,",
+          "(r₂ + r₃) sec²(A/2) = 4R  and  (r₃ + r₁) sec²(B/2) = 4R",
+          {
+            "text": "∴ all three are equal to 4R, hence equal to each other",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec²(C/2) cancels cos²(C/2) leaving 4R, that the same holds for the other two, and that all three are therefore equal.",
+          "accept": [
+            "sec squared is one over cos squared so it cancels leaving four R and the same happens for the other two so all three are equal",
+            "each expression comes to four R so they are all equal",
+            "the secant cancels the cosine exactly",
+            "sec square cos square ni cancel chesi four R migulutundi, moodu equal",
+            "all three equal four R"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec squared",
+            "cancels",
+            "four R",
+            "all three equal"
+          ]
+        },
+        "why": "Showing each equals the SAME thing is a cleaner proof than transforming one into another — and it is why 4R is worth computing rather than avoided.",
+        "common_mistakes": [
+          "Proving only the first equality and stopping.",
+          "Writing sec² as cos² and multiplying instead of cancelling."
+        ]
+      }
+    ]
+  }
+}

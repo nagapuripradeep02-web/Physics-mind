@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_cos_over_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that cosA/a + cosB/b + cosC/c = (a² + b² + c²)/(2abc).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute the cosine rule",
+      "marks": 2
+    },
+    {
+      "label": "Add and conclude",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 82, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute_the_cosine_rule",
+        "kind": "equation",
+        "label": "Substitute the cosine rule",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Each cosine goes in as the cosine rule, and the 1/a outside multiplies the 1/(2bc) inside — giving 1/(2abc) every time.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cosA/a + cosB/b + cosC/c",
+          "= (1/a)[(b²+c²−a²)/(2bc)] + (1/b)[(c²+a²−b²)/(2ca)] + (1/c)[(a²+b²−c²)/(2ab)]",
+          "Each denominator is 2abc:"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosine rule is substituted for each cosine and every denominator becomes 2abc.",
+          "accept": [
+            "substitute the cosine rule for each and the denominators all become two a b c",
+            "one over a times one over two b c gives one over two a b c",
+            "every term ends up over two a b c",
+            "cosine rule substitute cheste anni two abc meeda vasthai",
+            "all three denominators are the same"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosine rule",
+            "two a b c",
+            "denominators",
+            "substitute"
+          ]
+        },
+        "why": "a × 2bc = 2abc whichever term you take, so all three land on the same denominator without any extra work.",
+        "common_mistakes": [
+          "Getting different denominators and trying to find an LCM.",
+          "Using the sine rule instead."
+        ]
+      },
+      {
+        "id": "s2_add_and_conclude",
+        "kind": "boxed_final",
+        "label": "Add and conclude",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. Same cancellation as answer 81 — each squared term survives once.",
+        "lines": [
+          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
+          {
+            "text": "= (a² + b² + c²)/(2abc) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerators add to a² + b² + c², giving (a²+b²+c²)/(2abc).",
+          "accept": [
+            "add the numerators to get the sum of the squares over two a b c",
+            "each square survives once as before",
+            "the answer is a squared plus b squared plus c squared over two a b c",
+            "sum of squares by two abc vasthundi",
+            "the numerators give the sum of the squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum of the squares",
+            "two a b c",
+            "survives once"
+          ]
+        },
+        "why": "The numerator is identical to answer 81 — only the denominator differs, 2abc here against 4Δ there. Noticing that saves re-deriving it.",
+        "common_mistakes": [
+          "Cancelling the squares to zero.",
+          "Writing the denominator as abc."
+        ]
+      }
+    ]
+  }
+}

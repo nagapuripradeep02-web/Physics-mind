@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_a_sq_cot",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that a² cot A + b² cot B + c² cot C = abc/R.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Convert to sines by the sine rule",
+      "marks": 2
+    },
+    {
+      "label": "Use the identity and convert to abc/R",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 85. Printed appearances: AP 18.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_sines_by_the_si",
+        "kind": "equation",
+        "label": "Convert to sines by the sine rule",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. a = 2R sinA turns a² cotA into 4R² sin²A · cosA/sinA — and one sine cancels, leaving 2R²(2 sinA cosA), which is a double angle.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = a²cotA + b²cotB + c²cotC",
+          "= (2R sinA)²(cosA/sinA) + (2R sinB)²(cosB/sinB) + (2R sinC)²(cosC/sinC)",
+          "= 4R² sin²A · cosA/sinA + … = 2R²(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
+          "= 2R²(sin2A + sin2B + sin2C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 2R sinA is substituted, one sine cancels against the cotangent, and the result is 2R²(sin2A + sin2B + sin2C).",
+          "accept": [
+            "use a equals two R sin A so a squared cot A becomes four R squared sin A cos A which is two R squared sin two A",
+            "the sine rule and then the double angle formula",
+            "it becomes two R squared times the sum of sin two A sin two B sin two C",
+            "sine rule vaadi sin two A ga marchali",
+            "convert the sides and cancel one sine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two R sin A",
+            "sin two A",
+            "two R squared",
+            "cancels"
+          ]
+        },
+        "why": "sin²A divided by sinA leaves sinA, which pairs with the cosA to make a double angle. Spotting that cancellation is what keeps the working short.",
+        "common_mistakes": [
+          "Forgetting to square the 2R.",
+          "Cancelling both sines and losing the double angle."
+        ]
+      },
+      {
+        "id": "s2_use_the_identity_and_conve",
+        "kind": "boxed_final",
+        "label": "Use the identity and convert to abc/R",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle; then each sine goes back to a side through the sine rule.",
+        "lines": [
+          "= 2R²(4 sinA sinB sinC)   [∵ in a △, Σsin2A = 4 sinA sinB sinC]",
+          "= (1/R)(2R sinA)(2R sinB)(2R sinC)   [regrouping 8R³ as 8R³/R × 1]",
+          {
+            "text": "= abc/R = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Σsin2A = 4 sinA sinB sinC is quoted, and 8R³ sinA sinB sinC is regrouped as (2R sinA)(2R sinB)(2R sinC)/R = abc/R.",
+          "accept": [
+            "use the identity then regroup eight R cubed sines as a b c over R",
+            "each two R sin becomes a side so the product is abc over R",
+            "the answer is abc over R",
+            "identity vaadi, tarvata sides ga marchali, abc by R",
+            "regroup to get the three sides back"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four sin A sin B sin C",
+            "abc over R",
+            "regroup",
+            "identity"
+          ]
+        },
+        "why": "2R²·4 = 8R³/R, and 8R³ sinA sinB sinC is exactly (2R sinA)(2R sinB)(2R sinC) = abc. Splitting the R off is what produces the required form.",
+        "common_mistakes": [
+          "Leaving the answer as 8R³ sinA sinB sinC.",
+          "Re-proving the sin 2A identity instead of quoting it."
+        ]
+      }
+    ]
+  }
+}
