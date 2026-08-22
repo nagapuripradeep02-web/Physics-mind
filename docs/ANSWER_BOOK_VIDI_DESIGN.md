@@ -51,9 +51,21 @@ knows per-step values.
 **Measured economics (30 billed probes):** ₹0.021/question · prompt-cache hit 26/30 ·
 latency p50 2.0 s / p90 3.2 s · total spend for both runs ₹0.63.
 
-**Not yet proven:** the deployed Edge Function has never served a request (guards, ledger
-writes and `simulation_feedback` telemetry are verified in the local mirror and by code
-review only). That is the last gap before live chat is production-ready.
+**LIVE — deployed and verified 2026-08-22.** `answerbook-vidi-chat` is deployed to
+`dxwpkjfypzxrzgbevfnx` (JWT off, `--use-api`), `DEEPSEEK_API_KEY` set as a project secret
+(it did NOT already exist — Quick Learn had never set it). Verified against the live URL:
+foreign origin → **403** · empty question → **400** · telemetry batch → **200** and a row in
+`simulation_feedback` (`surface: answer_book`) · the 4/min per-IP burst limit fires exactly as
+designed (an unpaced 15-probe run trips it, which is why `VIDI_DELAY_MS` exists) · **paced
+shakedown 15/15 clean, zero flags** · **19 rows in `ai_usage_log`** (`task_type=answerbook_vidi_chat`,
+its own ledger) with **19/19 prompt-cache hits**, ip_hash 64-char SHA-256 and the raw IP never
+stored. **Live cost ₹0.0074/question** — 3x cheaper than the local mirror because the byte-stable
+context keeps the cache warm.
+
+**Remaining before students:** host the page at an allowlisted origin (the function already
+allows viditra.co / www.viditra.co / localhost:8100). Until then the chat-enabled build runs
+locally: `npm run build:answers:hosted` + `npm run serve:answers`. **Run `npm run build:answers`
+(default, offline) before `npm run smoke:answers`** — the offline gates assert `PM_VIDI_BASE === ""`.
 
 ## 1. Positioning — one sentence
 

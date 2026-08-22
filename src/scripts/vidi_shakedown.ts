@@ -21,6 +21,16 @@ import { join } from 'path';
 const ROOT = process.cwd();
 const BOOK = join(ROOT, 'answer-book');
 const ENDPOINT = process.env.VIDI_ENDPOINT ?? 'http://localhost:8110';
+// The deployed function enforces an origin allowlist and Node's fetch sends no
+// Origin header, so a bare request 403s (correct guard, useless probe). Send an
+// allowlisted origin; the local dev mirror accepts any.
+const ORIGIN = process.env.VIDI_ORIGIN ?? 'http://localhost:8100';
+// The deployed function allows 4 questions per minute per IP. Firing 15 probes
+// back to back trips it (correct guard, useless probe), so a live run must pace
+// itself: VIDI_DELAY_MS=16000 keeps one request per 15 s. The local mirror has
+// no limit, so it defaults to 0.
+const DELAY_MS = Number(process.env.VIDI_DELAY_MS ?? '0');
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const OUT = join(ROOT, '.answerbook_logs');
 
 type Step = {
@@ -186,9 +196,12 @@ async function main(): Promise<void> {
         `Endpoint: ${ENDPOINT} · ${PROBES.length} probes`, ''];
     let totalUsd = 0, flagged = 0;
 
+    let first = true;
     for (const p of PROBES) {
         const q = questions.get(p.qid);
         if (!q) { console.error('missing question ' + p.qid); continue; }
+        if (!first && DELAY_MS > 0) await sleep(DELAY_MS);
+        first = false;
         const body = {
             session_id: 'shakedown', question_id: q.question_id, unit: q.unit.number,
             cut_key: 'full', step_id: p.step ?? null, question: p.ask,
@@ -198,16 +211,21 @@ async function main(): Promise<void> {
         let reply = '', cost = 0;
         try {
             const r = await fetch(ENDPOINT, {
-                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Origin: ORIGIN },
+                body: JSON.stringify(body),
             });
-            const j = await r.json() as { reply?: string; _cost_usd?: number };
-            reply = j.reply ?? '(no reply)';
+            const j = await r.json() as { reply?: string; _cost_usd?: number; error?: string };
+            reply = j.reply ?? ('(no reply — HTTP ' + r.status + (j.error ? ': ' + j.error : '') + ')');
             cost = j._cost_usd ?? 0;
         } catch (e) {
             reply = 'REQUEST FAILED: ' + (e instanceof Error ? e.message : String(e));
         }
         totalUsd += cost;
-        const flags = checks(p, q, reply);
+        // A rate-limit or refusal reply is not persona output — judging it would be
+        // judging the guard, so it is called out instead of silently scored.
+        const refusal = /^(Give me a short moment|I am resting for today|I could not answer just now|You have asked a lot of good questions today)/.test(reply);
+        const flags = refusal ? ['GUARD REPLY (not persona output) — pace the run with VIDI_DELAY_MS'] : checks(p, q, reply);
         if (flags.length) flagged++;
         const ctxChars = body.tutor_context.length;
 
