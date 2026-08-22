@@ -1,5 +1,28 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔎 SESSION — Answer Book: **THE FOUNDER'S REAL-CHAT AUDIT — five Vidi information gaps found and closed; live chat DEPLOYED and re-verified** (2026-08-22, same desk/branch, commits d79eb90 + 511cd9b)
+
+**Bottom line: the founder pasted a real conversation with Vidi and asked which replies were high-value and which were wrong. The audit found FIVE defects — every one an information gap in what the model was given, not model quality — and each is now fixed, verified, and locked as a permanent regression probe. Separately this session, the Edge Function went LIVE (deployed with the founder's access token from .env.local, DEEPSEEK_API_KEY set as a project secret — it had never been set, Quick Learn's included) and the paced live shakedown ran 15/15 clean.**
+
+### The five transcript defects → fixes (commit 511cd9b)
+1. **Invented 4-mark scheme (the worst): "statement 2M + figure 1M + construction 1M"** — contradicts the authored 4M cut (statement 1M, construction dropped, formula steps required). Fix:  now sends OTHER LENGTHS of the same answer (every cut's split + kept steps). Verified reply now quotes the authored cut exactly.
+2. **"3 stars = difficulty rating" — factually wrong.** Stars are exam FREQUENCY (the Fastrack rank). Fix: persona defines stars; confirmed live on the redeployed function.
+3. **"I don't have the chapter's other questions"** — the page holds exactly that. Fix: context sends the chapter's 3★ most-asked list; Vidi now names them + points at the catalog.
+4. **Didn't know her own app** (rename question answered without mentioning the rename box). Fix: persona THE-APP-AROUND-YOU block (Test myself → first completed self-check → rename box; catalog; exam-eve list; chips).
+5. **"Very likely question" overpromise.** Fix: persona — never promise a question will appear.
+Plus one deliberate carve-out the audit motivated: full-walkthrough requests may run three short paragraphs (the transcript's best reply technically broke the 2–4-sentence cap).
+P16–P19 regression probes added; local mirror run 19 probes ₹0.87 — the four new ones answer from the bank; personas byte-identical (edge fn + dev mirror); function REDEPLOYED.
+
+### Also this session (commit d79eb90): live deploy + verification
+ deployed (npx supabase, , token in .env.local — the CLI's own login is a different account and  cannot login; runbook corrected with dashboard + real-terminal routes). Verified live: foreign origin 403 · empty question 400 · telemetry 200 →  row · 4/min per-IP limit fires (shakedown gained Origin header +  pacing + guard-reply detection) · paced live run **15/15 clean** · **19  rows, 19/19 prompt-cache hits · ₹0.0074/question live**.
+
+### NEXT
+1. Host the page at viditra.co (allowlist already carries it) → send the cohort link. The ONLY step left before students.
+2. Weekly: read  question texts +  events → author the common asks deterministic (the flywheel).
+3. Founder rulings still pending in the design doc: Rule 18 amendment · Telugu code-mix carve-out. Tips review (179) still open.
+
+---
+
 ## 🎨 SESSION — Answer Book: **WORLD-CLASS UI PASS — the answer-script identity + Vidi as a VS Code-style docked chat** (2026-08-22, same desk/branch)
 
 **Founder-driven redesign in three rounds, each screenshot-verified (Playwright captures read back before and after). (1) Identity: the whole product is now ONE stationery world — warm desk chrome (#F2EDE1), Source Serif 4 display voice, the examiner's red-margin rule as the signature motif (hero = an answer-script cover page, question card, catalog cards, eve cards), stars turned GOLD (importance, never danger), question text now 21px serif — the loudest thing on its screen; the ruled Kalam page itself untouched. (2) Vidi became a real chat: two-beat greeting ("Hi, I am Vidi — how can I help you today?" then the per-question insight), chip taps echo as the student's own message, mic dictation (on-device SpeechRecognition, en-IN pinned, auto-send; INPUT only — the grading rung stays unbuilt), always-visible ask row in hosted builds. (3) Layout: VS Code three-column — rail flush LEFT, page filling the MIDDLE, Vidi DOCKED full-height RIGHT (≥1180px, body.vidi-docked margins + fitNotebook re-fit); floating + draggable with position persistence at 721–1179px; bottom sheet ≤720px; minimize collapses to the "Ask Vidi" pill (red pulse when she has an unread reply).**
