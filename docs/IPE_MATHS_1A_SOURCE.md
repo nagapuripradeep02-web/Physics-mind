@@ -148,7 +148,18 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1 to 7 — 174 entries.**
+3. **Units complete so far: 1 to 8 — 183 entries.**
+   **Unit 8 (Inverse Trigonometric Functions) — COMPLETE at 9 of 9, SAQ ONLY, book pp.72-74.** The same
+   shape as Unit 7: the paper gives it a single slot, Q16, and the book has no Inverse Trig LAQ chapter
+   (LAQ chapters 1-6) and no VSAQ chapter (VSAQ chapters 14-19). Five families in nine questions —
+   name-the-angle plus a compound formula (74.x, 75), chaining the Tan⁻¹ addition formula (76.x), the
+   doubled-Tan⁻¹ conversion (77), evaluating both sides independently (78.x), and one fully general
+   proof with no numbers at all (79). Answer 77 carries the ONLY printed split in the chapter, 1+1+1+1.
+   PRESENTATION CHOICE recorded in every file: the book draws a small right triangle beside each answer
+   that needs a second ratio (sinα = 4/5 ⇒ cosα = 3/5). Those are authored as the one-line algebraic
+   step instead, with the triangle route named in the margin note — it keeps the nine consistent and
+   avoids three near-identical figures where the algebra is a single line.
+
    **Unit 7 (Trigonometric Equations) — COMPLETE at 8 of 8, SAQ ONLY, book pp.68-71.** The paper gives
    it a single slot, Q15, with no Section-A and no Section-C appearance — and the book agrees: there is
    no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ

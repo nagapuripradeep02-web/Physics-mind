@@ -1,0 +1,173 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_tan_three_quarters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Combine the first two",
+      "marks": 2
+    },
+    {
+      "label": "Subtract using the difference formula",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate Tan⁻¹(1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The twin of 76.1, but the third term is SUBTRACTED — so the second step uses the DIFFERENCE formula, whose denominator carries a plus where the addition one carries a minus. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine_the_first_two",
+        "kind": "equation",
+        "label": "Combine the first two",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Addition formula for the first pair. Both parts land over 20, giving Tan⁻¹(27/11).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Tan⁻¹(3/4) + Tan⁻¹(3/5)",
+          "= Tan⁻¹((3/4 + 3/5)/(1 − (3/4)(3/5)))",
+          "= Tan⁻¹((27/20)/(11/20)) = Tan⁻¹(27/11)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the addition formula gives Tan⁻¹(27/11) from the first two terms.",
+          "accept": [
+            "combine the first two with the addition formula to get tan inverse twenty seven over eleven",
+            "three quarters and three fifths give twenty seven over eleven",
+            "apply the addition formula first",
+            "modati rendu kalipithe tan inverse twenty seven by eleven vasthundi",
+            "the first pair gives twenty seven elevenths"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty seven over eleven",
+            "addition formula",
+            "twenty seven over twenty"
+          ]
+        },
+        "why": "This is the same first pair as answer 75 arrived at, by a different route — 27/11 turns up repeatedly in this chapter.",
+        "common_mistakes": [
+          "Using the difference formula on the first pair.",
+          "Getting the denominator as 1 + xy."
+        ]
+      },
+      {
+        "id": "s2_subtract_using_the_differe",
+        "kind": "equation",
+        "label": "Subtract using the difference formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, and the difference from the twin. Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy)) — note the PLUS in the denominator.",
+        "lines": [
+          "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
+          "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
+          "= Tan⁻¹((27/11 − 8/19)/(1 + (27/11)(8/19)))",
+          "= Tan⁻¹((513 − 88)/(209 + 216)) = Tan⁻¹(425/425)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the DIFFERENCE formula is used, with a plus in the denominator, giving Tan⁻¹(425/425).",
+          "accept": [
+            "use the difference formula with a plus in the denominator to get four twenty five over four twenty five",
+            "tan inverse x minus tan inverse y has one plus x y underneath",
+            "the subtraction formula gives four hundred twenty five over four hundred twenty five",
+            "difference formula lo denominator lo plus untundi",
+            "apply the subtraction formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference formula",
+            "one plus x y",
+            "four twenty five",
+            "plus in the denominator"
+          ]
+        },
+        "why": "The two formulas differ in BOTH signs — minus on top and plus underneath for a difference. Carrying the addition form across is the commonest error here.",
+        "common_mistakes": [
+          "Using 1 − xy in the denominator.",
+          "Subtracting in the wrong order."
+        ]
+      },
+      {
+        "id": "s3_evaluate_tan_1",
+        "kind": "boxed_final",
+        "label": "Evaluate Tan⁻¹(1)",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. 425/425 is 1, so the answer is Tan⁻¹(1) = π/4 — the same landing as the twin.",
+        "lines": [
+          "= Tan⁻¹(1) = π/4",
+          {
+            "text": "∴ Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 425/425 = 1, so the answer is Tan⁻¹(1) = π/4.",
+          "accept": [
+            "four twenty five over four twenty five is one so the answer is tan inverse one which is pi by four",
+            "the fraction is one giving pi by four",
+            "the answer is pi over four",
+            "four twenty five by four twenty five one, so pi by four",
+            "it comes to pi by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one",
+            "pi by four",
+            "tan inverse one"
+          ]
+        },
+        "why": "Both twins land on π/4 — these questions are built backwards from that value, which is why the fractions always cancel exactly.",
+        "common_mistakes": [
+          "Leaving the answer as Tan⁻¹(425/425).",
+          "Failing to simplify the fraction."
+        ]
+      }
+    ]
+  }
+}

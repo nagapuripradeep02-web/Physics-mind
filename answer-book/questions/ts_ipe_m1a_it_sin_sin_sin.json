@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_sin_sin_sin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Sin⁻¹(4/5) + Sin⁻¹(7/25) = Sin⁻¹(117/125).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the angles and find their other ratios",
+      "marks": 2
+    },
+    {
+      "label": "Apply the sin(A+B) formula",
+      "marks": 1
+    },
+    {
+      "label": "Convert back to an inverse",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 12 Inverse Trig Functions, answer 74.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16. The opening question of the chapter and the one that sets its habit: an inverse trig value is NOT something to evaluate — it is named as an angle, and the ordinary compound-angle formulas then do all the work. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_angles_and_find_t",
+        "kind": "equation",
+        "label": "Name the angles and find their other ratios",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Call each inverse an angle, then get the missing ratio from sin²+cos²=1. The fast exam route is to sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, so the third side is 3 and cosα = 3/5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take Sin⁻¹(4/5) = α and Sin⁻¹(7/25) = β",
+          "Required To Prove (RTP): α + β = Sin⁻¹(117/125),",
+          "that is, sin(α + β) = 117/125",
+          "Sin⁻¹(4/5) = α ⇒ sinα = 4/5 ⇒ cosα = 3/5",
+          "Sin⁻¹(7/25) = β ⇒ sinβ = 7/25 ⇒ cosβ = 24/25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each inverse is named as an angle and its other ratio found — sinα = 4/5 gives cosα = 3/5, and sinβ = 7/25 gives cosβ = 24/25.",
+          "accept": [
+            "name each inverse as an angle then find the cosine from the sine using the right triangle",
+            "let sin inverse four fifths be alpha so sin alpha is four fifths and cos alpha is three fifths",
+            "take them as alpha and beta and get the other ratios",
+            "prathi inverse ni angle ga peru petti, migatha ratio kanukovali",
+            "convert the inverses into angles and find their cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "alpha",
+            "beta",
+            "sin alpha",
+            "cos alpha",
+            "three fifths",
+            "twenty four"
+          ]
+        },
+        "why": "An inverse trig value cannot be added directly, but ANGLES can. Naming them turns the whole question into ordinary trigonometry.",
+        "common_mistakes": [
+          "Trying to add the fractions 4/5 and 7/25 directly.",
+          "Forgetting to restate what has to be proved in terms of sin(α+β)."
+        ]
+      },
+      {
+        "id": "s2_apply_the_sin_a_b_formula",
+        "kind": "equation",
+        "label": "Apply the sin(A+B) formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Both angles are given by their SINES, and the target is a Sin⁻¹ — so the sine addition formula is the right one to reach for.",
+        "lines": [
+          "sin(α + β) = sinα cosβ + cosα sinβ",
+          "= (4/5)(24/25) + (3/5)(7/25)",
+          "= 96/125 + 21/125 = 117/125"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(α+β) = sinα cosβ + cosα sinβ is applied, giving 117/125.",
+          "accept": [
+            "use sin A plus B equals sin A cos B plus cos A sin B to get one seventeen over one twenty five",
+            "apply the sine addition formula",
+            "ninety six over one twenty five plus twenty one over one twenty five is one seventeen over one twenty five",
+            "sin alpha cos beta plus cos alpha sin beta apply cheyyali",
+            "the sine of the sum is one seventeen by one twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin A plus B",
+            "ninety six",
+            "twenty one",
+            "one seventeen",
+            "one twenty five"
+          ]
+        },
+        "why": "The target tells you which formula to use. A Sin⁻¹ on the right means the sine of the sum is what must be computed.",
+        "common_mistakes": [
+          "Using cos(A+B) and computing the wrong thing.",
+          "Multiplying the wrong pairs — it is sinα with cosβ, not sinα with sinβ."
+        ]
+      },
+      {
+        "id": "s3_convert_back_to_an_inverse",
+        "kind": "boxed_final",
+        "label": "Convert back to an inverse",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. sin(α+β) = 117/125 means α+β is the angle whose sine is 117/125 — which is exactly Sin⁻¹(117/125). Write that line; the computation alone is not the proof.",
+        "lines": [
+          "sin(α + β) = 117/125",
+          "⇒ α + β = Sin⁻¹(117/125)",
+          {
+            "text": "∴ Sin⁻¹(4/5) + Sin⁻¹(7/25) = Sin⁻¹(117/125)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(α+β) = 117/125 is converted back to α + β = Sin⁻¹(117/125), and the original statement restated.",
+          "accept": [
+            "since the sine of the sum is one seventeen over one twenty five the sum is sin inverse of that",
+            "convert back to the inverse form to finish",
+            "alpha plus beta equals sin inverse one seventeen by one twenty five",
+            "sine value nunchi inverse ki malli marchali",
+            "write the result back in inverse form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse",
+            "alpha plus beta",
+            "one seventeen over one twenty five"
+          ]
+        },
+        "why": "The question was asked in inverse notation, so the answer must return to it. Stopping at a fraction answers a different question.",
+        "common_mistakes": [
+          "Ending at sin(α+β) = 117/125 without converting back.",
+          "Writing the answer as a decimal."
+        ]
+      }
+    ]
+  }
+}
