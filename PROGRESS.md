@@ -2,10 +2,10 @@
 
 ## 🔎 SESSION — Answer Book: **THE FOUNDER'S REAL-CHAT AUDIT — five Vidi information gaps found and closed; live chat DEPLOYED and re-verified** (2026-08-22, same desk/branch, commits d79eb90 + 511cd9b)
 
-**Bottom line: the founder pasted a real conversation with Vidi and asked which replies were high-value and which were wrong. The audit found FIVE defects — every one an information gap in what the model was given, not model quality — and each is now fixed, verified, and locked as a permanent regression probe. Separately this session, the Edge Function went LIVE (deployed with the founder's access token from .env.local, DEEPSEEK_API_KEY set as a project secret — it had never been set, Quick Learn's included) and the paced live shakedown ran 15/15 clean.**
+**Bottom line: the founder pasted a real conversation with Vidi and asked which replies were high-value and which were wrong. The audit found FIVE defects — every one an information gap in what the model was given, not model quality — and each is now fixed, verified, and locked as a permanent regression probe. Separately this session, the Edge Function went LIVE (deployed with the founder's access token from `.env.local`, `DEEPSEEK_API_KEY` set as a project secret — it had never been set, Quick Learn's included) and the paced live shakedown ran 15/15 clean.**
 
 ### The five transcript defects → fixes (commit 511cd9b)
-1. **Invented 4-mark scheme (the worst): "statement 2M + figure 1M + construction 1M"** — contradicts the authored 4M cut (statement 1M, construction dropped, formula steps required). Fix:  now sends OTHER LENGTHS of the same answer (every cut's split + kept steps). Verified reply now quotes the authored cut exactly.
+1. **Invented 4-mark scheme (the worst): "statement 2M + figure 1M + construction 1M"** — contradicts the authored 4M cut (statement 1M, construction dropped, formula steps required). Fix: `buildVidiContext` now sends OTHER LENGTHS of the same answer (every cut's split + kept steps). Verified reply now quotes the authored cut exactly.
 2. **"3 stars = difficulty rating" — factually wrong.** Stars are exam FREQUENCY (the Fastrack rank). Fix: persona defines stars; confirmed live on the redeployed function.
 3. **"I don't have the chapter's other questions"** — the page holds exactly that. Fix: context sends the chapter's 3★ most-asked list; Vidi now names them + points at the catalog.
 4. **Didn't know her own app** (rename question answered without mentioning the rename box). Fix: persona THE-APP-AROUND-YOU block (Test myself → first completed self-check → rename box; catalog; exam-eve list; chips).
@@ -14,11 +14,11 @@ Plus one deliberate carve-out the audit motivated: full-walkthrough requests may
 P16–P19 regression probes added; local mirror run 19 probes ₹0.87 — the four new ones answer from the bank; personas byte-identical (edge fn + dev mirror); function REDEPLOYED.
 
 ### Also this session (commit d79eb90): live deploy + verification
- deployed (npx supabase, , token in .env.local — the CLI's own login is a different account and  cannot login; runbook corrected with dashboard + real-terminal routes). Verified live: foreign origin 403 · empty question 400 · telemetry 200 →  row · 4/min per-IP limit fires (shakedown gained Origin header +  pacing + guard-reply detection) · paced live run **15/15 clean** · **19  rows, 19/19 prompt-cache hits · ₹0.0074/question live**.
+`answerbook-vidi-chat` deployed (`npx supabase`, `--use-api`, token in `.env.local` — the CLI's own login is a different account and the `!` prefix cannot login; runbook corrected with dashboard + real-terminal routes). Verified live: foreign origin 403 · empty question 400 · telemetry 200 → `simulation_feedback` row · the 4/min per-IP limit fires (the shakedown gained an Origin header, `VIDI_DELAY_MS` pacing and guard-reply detection) · paced live run **15/15 clean** · **19 `ai_usage_log` rows, 19/19 prompt-cache hits · ₹0.0074/question live**.
 
 ### NEXT
 1. Host the page at viditra.co (allowlist already carries it) → send the cohort link. The ONLY step left before students.
-2. Weekly: read  question texts +  events → author the common asks deterministic (the flywheel).
+2. Weekly: read `ai_usage_log` question texts + `simulation_feedback` events → author the common asks deterministic (the flywheel).
 3. Founder rulings still pending in the design doc: Rule 18 amendment · Telugu code-mix carve-out. Tips review (179) still open.
 
 ---
