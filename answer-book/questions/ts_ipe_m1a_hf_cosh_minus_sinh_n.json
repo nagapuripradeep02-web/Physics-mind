@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh_minus_sinh_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that (cosh x − sinh x)ⁿ = cosh(nx) − sinh(nx).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Simplify the left side",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the right side and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 140.2. Printed appearances: TS 15 · AP 20. The twin of 140.1 with a minus. This time the eˣ terms cancel and the e⁻ˣ ones survive, so both sides collapse to e to the MINUS nx. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Simplify the left side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the mirror of the twin.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = (cosh x − sinh x)ⁿ",
+          "= [(eˣ + e⁻ˣ)/2 − (eˣ − e⁻ˣ)/2]ⁿ",
+          "= [(2e⁻ˣ)/2]ⁿ = (e⁻ˣ)ⁿ = e⁻ⁿˣ   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh x − sinh x = e⁻ˣ because the eˣ terms cancel, so the left side is e⁻ⁿˣ.",
+          "accept": [
+            "cosh minus sinh is e to the minus x because the positive exponentials cancel so the left side is e to the minus n x",
+            "this time the e to the x terms cancel leaving e to the minus x",
+            "the left side becomes e to the minus n x",
+            "cosh minus sinh ante e power minus x",
+            "the minus makes the other pair cancel"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e to the minus x",
+            "e to the minus n x",
+            "cancel",
+            "minus"
+          ]
+        },
+        "why": "Which pair cancels depends on the sign between them. A plus kills the e⁻ˣ terms, a minus kills the eˣ ones — that is the entire difference between the twins.",
+        "common_mistakes": [
+          "Copying the twin and writing eˣ.",
+          "Distributing the minus over only one term of the second bracket."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Simplify the right side and compare",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The right side collapses the same way with nx, giving e⁻ⁿˣ, and the two agree.",
+        "lines": [
+          "R.H.S = cosh nx − sinh nx",
+          "= (eⁿˣ + e⁻ⁿˣ)/2 − (eⁿˣ − e⁻ⁿˣ)/2",
+          "= (2e⁻ⁿˣ)/2 = e⁻ⁿˣ   …(2)",
+          "From (1) and (2), L.H.S = R.H.S.",
+          {
+            "text": "∴ (cosh x − sinh x)ⁿ = cosh(nx) − sinh(nx)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side also collapses to e⁻ⁿˣ, so both sides agree.",
+          "accept": [
+            "the right side is also e to the minus n x so both sides agree",
+            "cosh n x minus sinh n x is e to the minus n x",
+            "both sides come to the same thing",
+            "right side kuda e power minus n x, rendu equal",
+            "from one and two they are equal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e to the minus n x",
+            "both sides",
+            "from one and two"
+          ]
+        },
+        "why": "Taken together the twins say (cosh x ± sinh x)ⁿ = e^(±nx) — a compact fact worth carrying, since it makes both proofs immediate.",
+        "common_mistakes": [
+          "Never stating that the two sides agree.",
+          "Losing the minus in the exponent."
+        ]
+      }
+    ]
+  }
+}

@@ -148,7 +148,23 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **Units complete so far: 1 to 8 — 183 entries.**
+3. **Units complete so far: 1 to 9 — 193 entries.**
+   **Unit 9 (Hyperbolic Functions) — COMPLETE at 10 of 10, VSAQ ONLY, book pp.96-97.** The paper gives
+   it a single slot, Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ
+   chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions
+   (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the
+   exponential DEFINITIONS (140.x, 141.x). The recurring trap the answers name explicitly is that the
+   hyperbolic identities differ from their circular twins by a sign — cosh²x − sinh²x = 1 has a MINUS
+   where sin² + cos² has a plus, and cosh 2x = cosh²x + sinh²x has a PLUS where cos 2x has a minus.
+
+   ⚠ **A SUPPLEMENTARY SECTION EXISTS AND IS NOT AUTHORED.** VSAQ chapter 19 is the last chapter, and
+   walking to its boundary at book p.98 turned up **"STAR QUESTIONS PLUS"** — a separate bank of extra
+   questions organised by chapter and mark cut (it opens with "FUNCTIONS LAQ" at answer 142), running
+   from p.98 to somewhere before the Bullet Model Paper. These are NOT part of any chapter inventory
+   and none has been authored. Whether they belong in the answer book is a founder call, not an
+   omission: they would add questions to units already recorded COMPLETE, so the completion counts in
+   this document mean "complete against the numbered chapters", which is what every unit was scoped to.
+
    **Unit 8 (Inverse Trigonometric Functions) — COMPLETE at 9 of 9, SAQ ONLY, book pp.72-74.** The same
    shape as Unit 7: the paper gives it a single slot, Q16, and the book has no Inverse Trig LAQ chapter
    (LAQ chapters 1-6) and no VSAQ chapter (VSAQ chapters 14-19). Five families in nine questions —
