@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_cos_s_minus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cos(S−C) + cos S = 4 cos(A/2) cos(B/2) cos(C/2).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Pair the four terms",
+      "marks": 2
+    },
+    {
+      "label": "Simplify the first pair",
+      "marks": 2
+    },
+    {
+      "label": "Simplify the second pair",
+      "marks": 1
+    },
+    {
+      "label": "Take 2 cos(C/2) common",
+      "marks": 1
+    },
+    {
+      "label": "Apply the formula again",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 170. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. FOUR terms, so they pair off — and the pairing is chosen so that the shared letter cancels. Pair the first two together and the last two together. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios upto Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_the_four_terms",
+        "kind": "equation",
+        "label": "Pair the four terms",
+        "marks": 2,
+        "mark_note": "Two pairs",
+        "margin_note": "Two of the seven marks. Bracket the first two and the last two, then apply cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2) to each.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 2S.",
+          "L.H.S = [cos(S−A) + cos(S−B)] + [cos(S−C) + cos S]",
+          "= 2 cos((2S−A−B)/2) cos((B−A)/2)",
+          "  + 2 cos((2S−C)/2) cos(−C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four terms are paired as (first two) and (last two), and cos C + cos D is applied to each.",
+          "accept": [
+            "pair the first two and the last two then apply the cos plus cos formula to each pair",
+            "bracket them two by two and use the sum to product formula",
+            "apply the formula twice, once to each pair",
+            "rendu rendu ga pair chesi formula apply cheyyali",
+            "pair the four terms and convert each"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pair",
+            "cos C plus cos D",
+            "two pairs",
+            "sum to product"
+          ]
+        },
+        "why": "Pairing the first with the third instead would leave A and C mixed, and neither half would simplify. The pairing is chosen for what cancels.",
+        "common_mistakes": [
+          "Pairing the first with the last.",
+          "Applying the formula to three terms at once."
+        ]
+      },
+      {
+        "id": "s2_simplify_the_first_pair",
+        "kind": "equation",
+        "label": "Simplify the first pair",
+        "marks": 2,
+        "mark_note": "First pair",
+        "margin_note": "Two marks. From A + B + C = 2S, 2S − A − B = C, so the first cosine is cos(C/2). The other is cos((B−A)/2), which equals cos((A−B)/2).",
+        "lines": [
+          "A + B + C = 2S ⇒ 2S − A − B = C",
+          "⇒ cos((2S − A − B)/2) = cos(C/2)",
+          "Also cos((B−A)/2) = cos((A−B)/2)  [cos(−θ) = cos θ]",
+          "First pair = 2 cos(C/2) cos((A−B)/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2S − A − B = C makes the first cosine cos(C/2), and cos((B−A)/2) = cos((A−B)/2).",
+          "accept": [
+            "two S minus A minus B is C so the first cosine is cos C by two, and the sign inside the other cosine does not matter",
+            "the condition turns the messy angle into C by two",
+            "cosine ignores the sign so B minus A is the same as A minus B",
+            "two S minus A minus B ante C, cos C by two",
+            "simplify the first pair using the condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos C by two",
+            "two S minus A minus B",
+            "ignores the sign"
+          ]
+        },
+        "why": "Rearranging the given condition is what makes the substitution possible — 2S − A − B is not obviously C until the condition is written the other way round.",
+        "common_mistakes": [
+          "Writing 2S − A − B as C/2 directly.",
+          "Keeping the minus inside the second cosine as if it mattered."
+        ]
+      },
+      {
+        "id": "s3_simplify_the_second_pair",
+        "kind": "equation",
+        "label": "Simplify the second pair",
+        "marks": 1,
+        "mark_note": "Second pair",
+        "margin_note": "Fifth mark. (2S − C)/2 = (A + B)/2, and cos(−C/2) = cos(C/2). Both pairs now carry cos(C/2).",
+        "lines": [
+          "2S − C = A + B ⇒ cos((2S − C)/2) = cos((A+B)/2)",
+          "and cos(−C/2) = cos(C/2)",
+          "Second pair = 2 cos((A+B)/2) cos(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (2S − C)/2 = (A+B)/2 and cos(−C/2) = cos(C/2), so the second pair is 2 cos((A+B)/2) cos(C/2).",
+          "accept": [
+            "two S minus C is A plus B so that cosine is cos of A plus B by two, and the minus inside the other drops",
+            "the second pair also carries cos C by two",
+            "both pairs now share cos C by two",
+            "two S minus C ante A plus B, so cos A plus B by two",
+            "simplify the second pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A plus B by two",
+            "cos C by two",
+            "both pairs"
+          ]
+        },
+        "why": "Both pairs ending with cos(C/2) is not luck — it is why this pairing was chosen, and it is what allows the next factoring.",
+        "common_mistakes": [
+          "Missing that cos(−C/2) = cos(C/2).",
+          "Writing 2S − C as A + B + C."
+        ]
+      },
+      {
+        "id": "s4_take_2_cos_c_2_common",
+        "kind": "equation",
+        "label": "Take 2 cos(C/2) common",
+        "marks": 1,
+        "mark_note": "Factor",
+        "margin_note": "Sixth mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
+        "lines": [
+          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
+          "      + 2 cos((A+B)/2) cos(C/2)",
+          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 cos(C/2) is factored out, leaving cos((A−B)/2) + cos((A+B)/2) inside.",
+          "accept": [
+            "both pairs have two cos C by two so take it out leaving a sum of two cosines",
+            "factor out two cos C by two",
+            "the bracket is cos of A minus B by two plus cos of A plus B by two",
+            "rendu pairs lo two cos C by two undi, bayata teeyali",
+            "take the common factor out"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos C by two",
+            "common factor",
+            "bracket"
+          ]
+        },
+        "why": "The right-hand side has cos(C/2) as one of its three factors — pulling it out now means the bracket only has to produce the other two.",
+        "common_mistakes": [
+          "Factoring only cos(C/2) and losing the 2.",
+          "Expanding the brackets back out."
+        ]
+      },
+      {
+        "id": "s5_apply_the_formula_again",
+        "kind": "boxed_final",
+        "label": "Apply the formula again",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. cos X + cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 cos(A/2) cos(B/2) — the same formula used in step 1.",
+        "lines": [
+          "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2)",
+          "L.H.S = 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
+          {
+            "text": "∴ The sum equals 4 cos(A/2) cos(B/2) cos(C/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is 2 cos(A/2) cos(B/2), giving 4 cos(A/2) cos(B/2) cos(C/2).",
+          "accept": [
+            "the bracket becomes two cos A by two into cos B by two so the total is four cos A by two cos B by two cos C by two",
+            "apply the cos plus cos formula a third time",
+            "the two twos give four",
+            "bracket two cos A by two cos B by two, rendu twos four",
+            "close the proof"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos A by two",
+            "cos B by two",
+            "four"
+          ]
+        },
+        "why": "The half-angles come out because the formula halves the sum and difference of two angles that were already halves. Three uses of one formula finish the whole proof.",
+        "common_mistakes": [
+          "Writing 2 sin(A/2) sin(B/2).",
+          "Reporting 2 instead of 4."
+        ]
+      }
+    ]
+  }
+}

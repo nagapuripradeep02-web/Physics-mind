@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_sqp_adj_three_at",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (−1, −2, −2), (2, 1, −2) and (2, −2, 1), then show that adj A = 3Aᵀ, and also find A⁻¹.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find det A",
+      "marks": 1
+    },
+    {
+      "label": "Find the adjoint",
+      "marks": 1
+    },
+    {
+      "label": "Compute 3Aᵀ and compare",
+      "marks": 1
+    },
+    {
+      "label": "Find A⁻¹",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.102 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 153. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape — comparable to Unit 3's SAQ answers 41-42 and 47. The bank heading gives no section, so this classification is OURS. Printed appearances: AP 19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_det_a",
+        "kind": "equation",
+        "label": "Find det A",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "margin_note": "First mark. Expand along the top row. It comes to 27, which is 3³ — a hint that the factor of 3 in the question is not accidental.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\det A = \\begin{vmatrix} -1 & -2 & -2 \\\\ 2 & 1 & -2 \\\\ 2 & -2 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= −1(1−4) + 2(2+4) − 2(−4−2)",
+          "= 3 + 12 + 12 = 27"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That det A = 27.",
+          "accept": [
+            "expand the determinant to get twenty seven",
+            "det A is twenty seven",
+            "the determinant comes to twenty seven",
+            "determinant twenty seven vasthundi",
+            "compute the determinant first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty seven",
+            "determinant",
+            "expand"
+          ]
+        },
+        "why": "27 is 3³, and the 3 in adj A = 3Aᵀ is the same 3. Noticing that early makes the rest feel less arbitrary.",
+        "common_mistakes": [
+          "Sign slip on the middle term.",
+          "Expanding along a row with no zeros unnecessarily."
+        ]
+      },
+      {
+        "id": "s2_find_the_adjoint",
+        "kind": "equation",
+        "label": "Find the adjoint",
+        "marks": 1,
+        "mark_note": "Adjoint",
+        "margin_note": "Second mark. Nine cofactors, then transpose. The result turns out symmetric, so the transpose changes nothing here.",
+        "lines": [
+          "Cofactor matrix, then transposing:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} -3 & 6 & 6 \\\\ -6 & 3 & -6 \\\\ -6 & -6 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adjoint is computed as the transposed cofactor matrix.",
+          "accept": [
+            "find the nine cofactors and transpose to get the adjoint",
+            "the adjoint is the transposed cofactor matrix",
+            "compute adj A",
+            "cofactors teeskoni transpose cheyyali",
+            "build the adjoint"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "adjoint",
+            "cofactors",
+            "transpose"
+          ]
+        },
+        "why": "Every entry of the adjoint is a multiple of 3, which is the first visible sign that the claimed identity will hold.",
+        "common_mistakes": [
+          "Skipping the transpose.",
+          "Losing a sign in the cofactor board."
+        ]
+      },
+      {
+        "id": "s3_compute_3a_and_compare",
+        "kind": "equation",
+        "label": "Compute 3Aᵀ and compare",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "margin_note": "Third mark. Transpose A, multiply every entry by 3, and set it beside the adjoint — the claim is an equality, so both sides must be shown.",
+        "lines": [
+          {
+            "text": "A^{T} = \\begin{bmatrix} -1 & 2 & 2 \\\\ -2 & 1 & -2 \\\\ -2 & -2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "3A^{T} = \\begin{bmatrix} -3 & 6 & 6 \\\\ -6 & 3 & -6 \\\\ -6 & -6 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "∴ Adj A = 3Aᵀ ✓"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3Aᵀ is computed and shown to be identical to the adjoint.",
+          "accept": [
+            "transpose A and multiply by three then compare with the adjoint, they match",
+            "three A transpose equals the adjoint",
+            "both sides are the same matrix",
+            "three A transpose adjoint tho same",
+            "compare the two matrices"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three A transpose",
+            "adjoint",
+            "match",
+            "equal"
+          ]
+        },
+        "why": "Showing two matrices are equal means displaying both. Computing only one and asserting the match is not a proof.",
+        "common_mistakes": [
+          "Computing 3Aᵀ but never comparing.",
+          "Multiplying only the diagonal by 3."
+        ]
+      },
+      {
+        "id": "s4_find_a",
+        "kind": "boxed_final",
+        "label": "Find A⁻¹",
+        "marks": 1,
+        "mark_note": "Inverse",
+        "margin_note": "Last mark. A⁻¹ = (Adj A)/det A = 3Aᵀ/27 = Aᵀ/9 — the identity just proved makes this one line instead of nine.",
+        "lines": [
+          "A⁻¹ = (Adj A)/(det A) = 3Aᵀ/27",
+          {
+            "text": "= \\tfrac{1}{9}A^{T} = \\tfrac{1}{9}\\begin{bmatrix} -1 & 2 & 2 \\\\ -2 & 1 & -2 \\\\ -2 & -2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A⁻¹ = (1/9) Aᵀ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A⁻¹ = (Adj A)/27 = 3Aᵀ/27 = Aᵀ/9.",
+          "accept": [
+            "A inverse is the adjoint over twenty seven which is three A transpose over twenty seven equals A transpose over nine",
+            "use the identity just proved to shortcut the inverse",
+            "the answer is one ninth of A transpose",
+            "adjoint by twenty seven, ante A transpose by nine",
+            "the inverse is one over nine times A transpose"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one ninth",
+            "A transpose",
+            "over twenty seven",
+            "inverse"
+          ]
+        },
+        "why": "The first part of the question was set up to make the second part immediate. Using it rather than starting again is what the two parts are for.",
+        "common_mistakes": [
+          "Recomputing the adjoint for the inverse.",
+          "Writing A⁻¹ = 3Aᵀ/27 without simplifying."
+        ]
+      }
+    ]
+  }
+}

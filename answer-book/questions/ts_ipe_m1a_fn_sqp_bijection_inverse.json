@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_sqp_bijection_inverse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If f: A→B and g: B→A are two functions such that gof = I_A and fog = I_B, then prove that (i) f is a bijection and (ii) g = f⁻¹.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quote the two composition results",
+      "marks": 2
+    },
+    {
+      "label": "Prove f is one one and onto",
+      "marks": 2
+    },
+    {
+      "label": "Show g and f⁻¹ share a domain",
+      "marks": 1
+    },
+    {
+      "label": "Show they agree at every point",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.98 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 142. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the heading reads \"FUNCTIONS LAQ\", so the mark cut here IS the book's, not ours — this is the one place in the bank that names a section. Printed appearances: TS 15 · AP 18. A pure theory proof, and the converse of Unit 1's answer 4 — there f was GIVEN bijective; here bijectivity is what has to be established. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Functions · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quote_the_two_composition_",
+        "kind": "equation",
+        "label": "Quote the two composition results",
+        "marks": 2,
+        "mark_note": "Two results",
+        "margin_note": "Two of the seven marks. Two standard results do all the work: if gof is one one then the FIRST function is one one, and if gof is onto then the SECOND is onto. Write both before using either.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(i) To show f is a bijection, we use:",
+          "(a) If gof is one one, then f is one one.",
+          "(b) If gof is onto, then g is onto.",
+          "I_A and I_B are identity functions, so both are",
+          "one one and onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two composition results are quoted, and that the identity functions are noted to be both one one and onto.",
+          "accept": [
+            "quote that if gof is one one the first function is one one and if it is onto the second is onto",
+            "the identity functions are bijections so gof and fog are one one and onto",
+            "state the two standard composition results first",
+            "rendu composition results rasta, identity functions bijections",
+            "note that the identities are one one and onto"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "gof is one one",
+            "first function",
+            "identity",
+            "one one and onto"
+          ]
+        },
+        "why": "The two results point in opposite directions — one gives information about f, the other about g. Both hypotheses are needed to pin f down completely.",
+        "common_mistakes": [
+          "Assuming f is a bijection rather than proving it.",
+          "Applying result (a) to g instead of f."
+        ]
+      },
+      {
+        "id": "s2_prove_f_is_one_one_and_ont",
+        "kind": "equation",
+        "label": "Prove f is one one and onto",
+        "marks": 2,
+        "mark_note": "Bijection",
+        "margin_note": "Two more marks. gof = I_A is one one, so by (a) f is one one. fog = I_B is onto, so by (b) f is onto — note it is fog, not gof, that gives this half.",
+        "lines": [
+          "gof = I_A is one one ⇒ f is one one   [by (a)]",
+          "fog = I_B is onto ⇒ f is onto   [by (b), with the",
+          "  roles of f and g exchanged in fog]",
+          "∴ f is both one one and onto, hence a bijection."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof being one one gives f one one, and fog being onto gives f onto — so f is a bijection.",
+          "accept": [
+            "gof is one one so f is one one and fog is onto so f is onto hence f is a bijection",
+            "use the first hypothesis for one one and the second for onto",
+            "f is both so it is a bijection",
+            "gof nunchi one one, fog nunchi onto, so f bijection",
+            "both halves give f is a bijection"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f is one one",
+            "f is onto",
+            "bijection",
+            "fog"
+          ]
+        },
+        "why": "In fog the FIRST function is g and the second is f — so result (b), which is about the second function, gives f onto. Reading which composition is which is the only thing to watch here.",
+        "common_mistakes": [
+          "Using gof for both halves.",
+          "Concluding g is a bijection instead of f."
+        ]
+      },
+      {
+        "id": "s3_show_g_and_f_share_a_domai",
+        "kind": "equation",
+        "label": "Show g and f⁻¹ share a domain",
+        "marks": 1,
+        "mark_note": "Domains",
+        "margin_note": "Fifth mark. Two functions are equal only if they have the same domain AND agree everywhere. This step settles the domain half.",
+        "lines": [
+          "(ii) To show g = f⁻¹:",
+          "Given g: B→A.  Since f: A→B is a bijection,",
+          "f⁻¹: B→A exists.",
+          "∴ g and f⁻¹ both have domain B."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g and f⁻¹ are both functions from B to A, so they share a domain.",
+          "accept": [
+            "g goes from B to A and since f is a bijection f inverse also goes from B to A so they share a domain",
+            "both have the same domain B",
+            "check the domains match first",
+            "rendintiki domain B okate",
+            "f inverse exists because f is a bijection"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "domain B",
+            "f inverse exists",
+            "same domain",
+            "bijection"
+          ]
+        },
+        "why": "f⁻¹ only exists because part (i) proved f bijective. The two parts of this question are not independent — the second needs the first.",
+        "common_mistakes": [
+          "Skipping the domain check.",
+          "Claiming f⁻¹ exists without reference to part (i)."
+        ]
+      },
+      {
+        "id": "s4_show_they_agree_at_every_p",
+        "kind": "boxed_final",
+        "label": "Show they agree at every point",
+        "marks": 2,
+        "mark_note": "Values agree",
+        "margin_note": "The last two marks. Take any b in B, let g(b) = a, and use fog = I_B to show f(a) = b — which is exactly what f⁻¹(b) = a means.",
+        "lines": [
+          "Let b ∈ B and g(b) = a, where a ∈ A.",
+          "Then f(a) = f(g(b)) = (fog)(b) = I_B(b) = b",
+          "⇒ f(a) = b ⇒ f⁻¹(b) = a",
+          "So g(b) = a = f⁻¹(b) for every b ∈ B.",
+          {
+            "text": "∴ g = f⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for any b, g(b) = a gives f(a) = b via fog = I_B, so f⁻¹(b) = a = g(b), hence g = f⁻¹.",
+          "accept": [
+            "take b in B with g of b equal a then f of a is fog of b which is b so f inverse of b is a which is g of b",
+            "show the two functions agree at every point of B",
+            "using fog equals I B gives f of a equals b",
+            "prathi b daggara rendu same value isthai",
+            "they agree everywhere so they are equal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "g of b",
+            "fog",
+            "f inverse of b",
+            "every b",
+            "equal"
+          ]
+        },
+        "why": "Two functions are equal when they agree at EVERY point, so the argument has to start with an arbitrary b — not a particular one.",
+        "common_mistakes": [
+          "Checking one particular b.",
+          "Using gof where fog is needed."
+        ]
+      }
+    ]
+  }
+}

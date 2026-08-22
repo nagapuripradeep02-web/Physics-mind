@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_squared_diff",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of sin² 82½° − sin² 22½°.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the difference of squares",
+      "marks": 1
+    },
+    {
+      "label": "Expand sin 105°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.106 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 165. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed VSAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 19. The awkward halves disappear the moment the difference-of-squares identity is used: the sum is 105° and the difference is 60°, both ordinary angles. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios upto Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_apply_the_difference_of_sq",
+        "kind": "equation",
+        "label": "Apply the difference of squares",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "First mark. sin²A − sin²B = sin(A+B) sin(A−B). The halves cancel: the sum is 105° and the difference is 60°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin²A − sin²B = sin(A + B) sin(A − B)",
+          "Here A = 82½°, B = 22½°:",
+          "A + B = 105°,  A − B = 60°",
+          "∴ Expression = sin 105° · sin 60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A − sin²B = sin(A+B) sin(A−B) turns the expression into sin 105° · sin 60°.",
+          "accept": [
+            "use sin squared A minus sin squared B equals sin of A plus B into sin of A minus B giving sin one oh five into sin sixty",
+            "the sum is one hundred and five and the difference is sixty",
+            "the halves cancel in both the sum and the difference",
+            "A plus B one oh five, A minus B sixty",
+            "apply the difference of squares identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin A plus B",
+            "one oh five",
+            "sixty",
+            "difference of squares"
+          ]
+        },
+        "why": "Both halves land on whole degrees — 82½ + 22½ = 105 and 82½ − 22½ = 60. That is why this identity is the intended route.",
+        "common_mistakes": [
+          "Expanding each square separately.",
+          "Using cos²A − cos²B, which has an extra minus sign."
+        ]
+      },
+      {
+        "id": "s2_expand_sin_105",
+        "kind": "boxed_final",
+        "label": "Expand sin 105°",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Second mark. 105° = 60° + 45°, so use the sine addition formula, then multiply by sin 60° = √3/2.",
+        "lines": [
+          "sin 105° = sin(60° + 45°)",
+          "= sin60 cos45 + cos60 sin45",
+          "= (√3/2)(1/√2) + (1/2)(1/√2) = (√3 + 1)/(2√2)",
+          "Expression = (√3 + 1)/(2√2) × √3/2",
+          {
+            "text": "∴ Value = √3(√3 + 1)/(4√2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin 105° = sin(60° + 45°) = (√3+1)/(2√2), so the value is √3(√3+1)/(4√2).",
+          "accept": [
+            "sin one oh five is sin of sixty plus forty five which gives root three plus one over two root two, and multiplying by root three over two gives the answer",
+            "split one oh five into sixty plus forty five",
+            "the value is root three into root three plus one over four root two",
+            "one oh five ni sixty plus forty five ga rasi expand cheyyali",
+            "expand and multiply out"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty plus forty five",
+            "root three plus one",
+            "two root two",
+            "four root two"
+          ]
+        },
+        "why": "105° is not a standard angle, but it splits into two that are. Choosing 60° + 45° rather than 30° + 75° keeps both parts standard.",
+        "common_mistakes": [
+          "Treating sin 105° as sin 60° + sin 45°.",
+          "Using 105° = 45° + 60° but mixing up which is which in the formula."
+        ]
+      }
+    ]
+  }
+}

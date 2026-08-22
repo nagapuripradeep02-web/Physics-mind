@@ -148,7 +148,8 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    subject on. Unit-number collision between a maths Unit 1 and a future physics Unit 1
    is no longer a display problem — the two are filed under different subjects — though
    they would still both read "Unit 1" under *All subjects*.
-3. **ALL TEN MATHS-1A UNITS COMPLETE — 216 entries.**
+3. **ALL TEN MATHS-1A UNITS COMPLETE — 250 entries** (216 chapter questions + the 34-question
+   Star Questions Plus backfill).
    **Unit 10 (Properties of Triangles) — COMPLETE at 23 of 23**: 11 LAQ (book pp.43-49) + 9 SAQ
    (pp.75-77) + 3 from the separate Star Questions Plus bank (p.111). With Q17 (SAQ) and Q24 (LAQ)
    it is one of only TWO units holding two slots on the paper — Matrices is the other. Its LAQ answer
@@ -158,16 +159,36 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    in a cosine. The chapter-table on book p.50 independently CONFIRMED every SAQ boundary walked in
    Units 3-10, which is a useful cross-check on the whole scoping method.
 
-   ⚠ **THE STAR QUESTIONS PLUS BANK IS BEING FOLDED IN (founder decision 2026-08-22).** The bank
+   ✅ **THE STAR QUESTIONS PLUS BANK IS FOLDED IN — COMPLETE (founder decision 2026-08-22).** The bank
    (book pp.98-111, answers 142-180, 39 questions) is organised by chapter but sits after all the
-   numbered chapters. It is now being authored INTO the units its questions belong to. Two findings
-   from the survey: it contains genuine DUPLICATES of chapter questions (155 repeats Unit 4's VSAQ
-   113.1 with the same TS 17 tag; 166 repeats Unit 6's LAQ answer 29), which are skipped; and its
-   headings name the chapter but NOT the mark cut, so each question's section is classed by length
-   and shape, and every such classification is recorded in that file's verification note as ours.
-   Distribution: Unit 1 → 142,143 · Unit 2 → 144,145 · Unit 3 → 146-154 · Unit 4 → 157 · Unit 5 →
-   156,158-162 · Unit 6 → 163-165,167-174 · Unit 7 → 175,176 · Unit 8 → 177 · Unit 9 → none ·
-   Unit 10 → 178-180 (DONE, authored with the unit).
+   numbered chapters, so it belongs to no chapter's own inventory. All 39 are now accounted for:
+   **3** went into Unit 10 when that unit was built (178-180), **34** are backfilled into Units 1-9,
+   and **2 are SKIPPED as genuine duplicates** of questions already authored — answer 155 repeats
+   Unit 4's VSAQ 113.1 with the same TS 17 tag, and answer 166 repeats Unit 6's LAQ answer 29.
+   Distribution of the 34: Unit 1 → 142,143 · Unit 2 → 144,145 · Unit 3 → 146-154 · Unit 4 → 157 ·
+   Unit 5 → 156,158-162 · Unit 6 → 163-165,167-174 · Unit 7 → 175,176 · Unit 8 → 177 · Unit 9 → none
+   (the bank has no hyperbolic-functions questions at all).
+
+   **SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S**, and every backfilled file says so in its
+   verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole
+   exception is p.98, which reads "FUNCTIONS LAQ". Two headings LOOK like section markers and are not:
+   p.100 reads "MATRICES-VSAQ" and p.102 reads plain "MATRICES", yet the p.102 run holds answers 151
+   and 152, which are plainly VSAQ shapes, while the p.100 run spills onto p.101 and swallows answer
+   150 — a full 3×3 inverse, which is Section-B work on the real paper. **They are chapter banners,
+   not section markers**, and answer 150 is the one place where we deliberately overrule the banner;
+   that overrule is written into its own verification note so a reviewing teacher sees both readings.
+   Everywhere else the question is classed by its own length and shape against the unit's existing
+   chapters, except where the unit itself fixes the section: Units 2 (LAQ-only), 7 (SAQ-only) and 8
+   (SAQ-only) admit no other answer, so those five questions carry no inference at all.
+
+   **MARK SPLITS ARE OURS THROUGHOUT** — the bank prints no [N Marks] tags anywhere, unlike the
+   numbered chapters, which print a handful. The shapes used follow the splits the book DOES print
+   elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ
+   (answers 58, 59 on p.63 and 61 on p.64), and a granular split for a 7-mark LAQ (answer 32 on p.44).
+
+   Every one of the 34 was re-read against a fresh render of book pp.98-110 before authoring, rather
+   than authored from the survey notes — the bank is dense with near-identical trigonometric identities
+   and the survey pass was a selection pass, not a transcription pass.
 
    **Unit 9 (Hyperbolic Functions) — COMPLETE at 10 of 10, VSAQ ONLY, book pp.96-97.** The paper gives
    it a single slot, Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ
@@ -177,13 +198,14 @@ and reach for a typeset line only for capital-letter subscripts and matrices.
    hyperbolic identities differ from their circular twins by a sign — cosh²x − sinh²x = 1 has a MINUS
    where sin² + cos² has a plus, and cosh 2x = cosh²x + sinh²x has a PLUS where cos 2x has a minus.
 
-   ⚠ **A SUPPLEMENTARY SECTION EXISTS AND IS NOT AUTHORED.** VSAQ chapter 19 is the last chapter, and
-   walking to its boundary at book p.98 turned up **"STAR QUESTIONS PLUS"** — a separate bank of extra
-   questions organised by chapter and mark cut (it opens with "FUNCTIONS LAQ" at answer 142), running
-   from p.98 to somewhere before the Bullet Model Paper. These are NOT part of any chapter inventory
-   and none has been authored. Whether they belong in the answer book is a founder call, not an
-   omission: they would add questions to units already recorded COMPLETE, so the completion counts in
-   this document mean "complete against the numbered chapters", which is what every unit was scoped to.
+   ⚠ **[SUPERSEDED 2026-08-22 — the bank is now folded in; see the ✅ block above.]** VSAQ chapter 19
+   is the last chapter, and walking to its boundary at book p.98 turned up **"STAR QUESTIONS PLUS"** —
+   a separate bank of extra questions organised by chapter, running from p.98 to just before the
+   Bullet Model Paper. It was flagged here as a founder call rather than an omission, because folding
+   it in would add questions to units already recorded COMPLETE. The founder called it: fold it in.
+   The per-unit completion counts in this document therefore now mean "complete against the numbered
+   chapters PLUS the bank", and the two are still distinguishable — every backfilled file names the
+   bank and its answer number in its verification note.
 
    **Unit 8 (Inverse Trigonometric Functions) — COMPLETE at 9 of 9, SAQ ONLY, book pp.72-74.** The same
    shape as Unit 7: the paper gives it a single slot, Q16, and the book has no Inverse Trig LAQ chapter

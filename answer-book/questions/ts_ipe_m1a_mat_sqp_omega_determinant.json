@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_sqp_omega_determinant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ω is a complex cube root of 1, then show that the determinant with rows (1, ω, ω²), (ω, ω², 1) and (ω², 1, ω) is 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add all three columns into C₁",
+      "marks": 1
+    },
+    {
+      "label": "Use 1 + ω + ω² = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.100 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 149. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank heading reads \"MATRICES-VSAQ\", so the mark cut is the book's. Printed appearances: none — this answer carries no year tag. Proved without expanding anything. The two standard facts about ω — that ω³ = 1 and 1 + ω + ω² = 0 — do the whole job through a single column operation. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_add_all_three_columns_into",
+        "kind": "equation",
+        "label": "Add all three columns into C₁",
+        "marks": 1,
+        "mark_note": "Column operation",
+        "margin_note": "First mark. Every row sums to 1 + ω + ω², because ω³ = 1 collapses every higher power back into the same three values.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "C₁ → C₁ + C₂ + C₃. Each row of C₁ becomes",
+          "Row 1: 1 + ω + ω²",
+          "Row 2: ω + ω² + 1",
+          "Row 3: ω² + 1 + ω",
+          "— the same sum in every row."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the three columns makes every entry of column 1 equal to 1 + ω + ω².",
+          "accept": [
+            "add the three columns and every row gives one plus omega plus omega squared",
+            "each row sums to the same thing",
+            "the first column becomes identical in all three rows",
+            "moodu columns kalipithe anni rows same sum ichhai",
+            "apply the column operation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus omega plus omega squared",
+            "column operation",
+            "same sum"
+          ]
+        },
+        "why": "The rows are cyclic rotations of each other, so they all contain the same three entries in different orders, and a sum does not depend on the order.",
+        "common_mistakes": [
+          "Adding rows instead of columns.",
+          "Expanding the determinant directly and getting lost in powers of ω."
+        ]
+      },
+      {
+        "id": "s2_use_1_0",
+        "kind": "boxed_final",
+        "label": "Use 1 + ω + ω² = 0",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. That sum is zero for a complex cube root of 1 — so column 1 is entirely zero, and a determinant with a zero column is zero.",
+        "lines": [
+          "For a complex cube root of unity, 1 + ω + ω² = 0.",
+          "So every entry of C₁ is 0.",
+          "A determinant with a whole column of zeros is 0.",
+          {
+            "text": "∴ The determinant = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 makes column 1 all zeros, so the determinant is 0.",
+          "accept": [
+            "one plus omega plus omega squared is zero so the whole column is zero and the determinant is zero",
+            "a determinant with a zero column is zero",
+            "the standard result makes the column vanish",
+            "aa sum zero kabatti column zero, determinant zero",
+            "the answer is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals zero",
+            "zero column",
+            "cube root of unity",
+            "determinant is zero"
+          ]
+        },
+        "why": "1 + ω + ω² = 0 holds for the COMPLEX cube roots but not for ω = 1 — which is why the question says complex, and why that word is not decoration.",
+        "common_mistakes": [
+          "Using ω = 1, for which the sum is 3 and the result fails.",
+          "Expanding after the operation instead of quoting the zero-column rule."
+        ]
+      }
+    ]
+  }
+}

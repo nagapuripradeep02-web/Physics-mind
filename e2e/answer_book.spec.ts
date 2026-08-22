@@ -507,8 +507,13 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
 test('every cut of every question totals exactly its own marks', async ({ page }) => {
     // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
     // 30 s default the moment a second unit doubled the book — a timeout, never an
-    // assertion, so the gate was reporting "failed" while nothing was wrong.
-    test.setTimeout(240_000);
+    // assertion, so the gate was reporting "failed" while nothing was wrong. It then
+    // hit 240 s at 270 entries, for the same reason. The floor is arithmetic: the
+    // waits below are 250 ms per question plus 650 ms per cut, so N entries need at
+    // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
+    // never trim the sweep or the waits to fit, because a shortened sweep silently
+    // stops checking the questions it drops.
+    test.setTimeout(900_000);
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -783,11 +788,16 @@ test('catalog search narrows the cards and can find nothing', async ({ page }) =
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
+    const all = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
     await page.fill('#catSearch', 'parallelogram');
     await page.waitForTimeout(200);
     const one = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
     expect(one).toBeGreaterThanOrEqual(1);
-    expect(one).toBeLessThan(5);
+    // NARROWS, measured against the unfiltered list — not an absolute card count.
+    // A fixed bound rots: "parallelogram" passed 5 cards the moment the Star
+    // Questions Plus backfill added a parallelogram-diagonals question, and the
+    // gate failed on a book that had grown, not on a book that had broken.
+    expect(one).toBeLessThan(all / 4);
 
     // a search that matches nothing shows the no-results row, not a blank page
     await page.fill('#catSearch', 'zzzz nothing');

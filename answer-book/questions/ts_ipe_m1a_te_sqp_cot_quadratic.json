@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_sqp_cot_quadratic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If 0 < x < π/2, then solve cot²x − (√3 + 1) cot x + √3 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the middle term",
+      "marks": 1
+    },
+    {
+      "label": "Factorise",
+      "marks": 1
+    },
+    {
+      "label": "Convert to tan",
+      "marks": 1
+    },
+    {
+      "label": "Pick the values in range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.110 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 176. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Trigonometric Equations is an SAQ-ONLY unit, so the section is fixed by the unit rather than inferred. Printed appearances: AP 19. A quadratic in cot x, and the given range means NO general solution is wanted — only the values inside (0, π/2). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_the_middle_term",
+        "kind": "equation",
+        "label": "Split the middle term",
+        "marks": 1,
+        "mark_note": "Splitting",
+        "margin_note": "First mark. The middle coefficient is −(√3 + 1), which splits as −√3 and −1 — and their product √3 matches the constant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cot²x − (√3 + 1) cot x + √3 = 0",
+          "⇒ cot²x − √3 cot x − cot x + √3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the middle term splits as −√3 cot x − cot x.",
+          "accept": [
+            "split the middle term into minus root three cot x and minus cot x",
+            "the two parts multiply to give the constant root three",
+            "break the middle coefficient into root three and one",
+            "middle term ni root three and one ga split cheyyali",
+            "split the middle term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "split",
+            "root three cot x",
+            "middle term"
+          ]
+        },
+        "why": "The coefficient is already written as (√3 + 1), which names the two parts. The question hands over the split rather than hiding it.",
+        "common_mistakes": [
+          "Using the quadratic formula on a surd coefficient.",
+          "Splitting as −√3 and +1."
+        ]
+      },
+      {
+        "id": "s2_factorise",
+        "kind": "equation",
+        "label": "Factorise",
+        "marks": 1,
+        "mark_note": "Factors",
+        "margin_note": "Second mark. Group in pairs and take out the common factor from each — both give (cot x − √3).",
+        "lines": [
+          "⇒ cot x(cot x − √3) − 1(cot x − √3) = 0",
+          "⇒ (cot x − 1)(cot x − √3) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That grouping gives (cot x − 1)(cot x − √3) = 0.",
+          "accept": [
+            "group in pairs and factor to get cot x minus one into cot x minus root three equals zero",
+            "both pairs share cot x minus root three",
+            "the factors are cot x minus one and cot x minus root three",
+            "pairs ga group chesi factor cheste rendu brackets vasthai",
+            "factorise the quadratic"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot x minus one",
+            "cot x minus root three",
+            "factorise"
+          ]
+        },
+        "why": "Both groups must leave the SAME bracket — if they do not, the split in step 1 was the wrong pair.",
+        "common_mistakes": [
+          "Writing (cot x + 1)(cot x + √3).",
+          "Cancelling cot x from both sides."
+        ]
+      },
+      {
+        "id": "s3_convert_to_tan",
+        "kind": "equation",
+        "label": "Convert to tan",
+        "marks": 1,
+        "mark_note": "Reciprocal",
+        "margin_note": "Third mark. cot x = 1 gives tan x = 1, and cot x = √3 gives tan x = 1/√3 — turn them over, because the standard angles are named in tan.",
+        "lines": [
+          "cot x − 1 = 0  or  cot x − √3 = 0",
+          "⇒ cot x = 1  or  cot x = √3",
+          "⇒ tan x = 1  or  tan x = 1/√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot x = 1 and cot x = √3 give tan x = 1 and tan x = 1/√3.",
+          "accept": [
+            "cot x equals one gives tan x equals one and cot x equals root three gives tan x equals one over root three",
+            "take the reciprocal of each value",
+            "convert both to tangent",
+            "cot ni tan ga marchali, reciprocal teeskovali",
+            "turn the cotangents into tangents"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan x equals one",
+            "one over root three",
+            "reciprocal"
+          ]
+        },
+        "why": "cot and tan are reciprocals, so cot x = √3 means tan x = 1/√3 — not tan x = √3. That inversion is where marks are most often lost.",
+        "common_mistakes": [
+          "Writing tan x = √3 from cot x = √3.",
+          "Leaving the answer in cot form."
+        ]
+      },
+      {
+        "id": "s4_pick_the_values_in_range",
+        "kind": "boxed_final",
+        "label": "Pick the values in range",
+        "marks": 1,
+        "mark_note": "Range",
+        "margin_note": "Last mark. The question fixes 0 < x < π/2, so give the two angles in that range only — no general solution.",
+        "lines": [
+          "Since 0 < x < π/2:",
+          "tan x = 1 = tan(π/4) ⇒ x = π/4",
+          "tan x = 1/√3 = tan(π/6) ⇒ x = π/6",
+          {
+            "text": "∴ x = π/4 or x = π/6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That within 0 < x < π/2 the solutions are x = π/4 and x = π/6.",
+          "accept": [
+            "in the given range the solutions are pi by four and pi by six",
+            "tan of pi by four is one and tan of pi by six is one over root three",
+            "no general solution is needed because the range is given",
+            "range lo pi by four and pi by six matrame",
+            "give only the values in the given range"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by four",
+            "pi by six",
+            "given range"
+          ]
+        },
+        "why": "A stated range replaces the general solution. Writing nπ + π/4 here would include angles outside (0, π/2) and answer a different question.",
+        "common_mistakes": [
+          "Writing the general solution nπ + α.",
+          "Giving only one of the two values."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sqp_box_product_square",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "For any three vectors a, b, c prove that [b×c  c×a  a×b] = [a b c]².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the box product as a dot",
+      "marks": 1
+    },
+    {
+      "label": "Expand with the triple product",
+      "marks": 2
+    },
+    {
+      "label": "Kill the repeated term",
+      "marks": 1
+    },
+    {
+      "label": "Dot with b×c",
+      "marks": 2
+    },
+    {
+      "label": "Use the cyclic property",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.104 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 159. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a general triple-product identity proof, matching Unit 5's own LAQ answer 56. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. A pure identity with no numbers. The whole proof rests on ONE expansion — the vector triple product — plus the fact that a box product with a repeated vector is zero. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_box_product_as_a",
+        "kind": "equation",
+        "label": "Write the box product as a dot",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. A box product [p q r] means p·(q×r). Apply that with p = b×c, q = c×a, r = a×b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "By definition, [p q r] = p·(q × r).",
+          "L.H.S = [b×c  c×a  a×b]",
+          "     = (b×c) · [(c×a) × (a×b)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the box product is rewritten as (b×c)·[(c×a) × (a×b)].",
+          "accept": [
+            "a box product is the first vector dotted with the cross of the other two",
+            "write it as b cross c dotted with c cross a crossed with a cross b",
+            "convert the box bracket into a dot and a cross",
+            "box product ante dot into cross",
+            "rewrite the left side using the definition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "box product",
+            "dot",
+            "cross",
+            "definition"
+          ]
+        },
+        "why": "The box bracket is only notation. Opening it into a dot and a cross is what exposes something the triple-product formula can act on.",
+        "common_mistakes": [
+          "Expanding all three cross products separately into components.",
+          "Treating [p q r] as a product of magnitudes."
+        ]
+      },
+      {
+        "id": "s2_expand_with_the_triple_pro",
+        "kind": "equation",
+        "label": "Expand with the triple product",
+        "marks": 2,
+        "mark_note": "Triple product",
+        "margin_note": "Two marks. Use (X × Y) = ... with X = c×a treated as a single vector: (c×a) × (a×b) = [(c×a)·b]a − [(c×a)·a]b.",
+        "lines": [
+          "Treating (c×a) as one vector and using",
+          "p × (q × r) type expansion:",
+          "(c×a) × (a×b) = [(c×a)·b] a − [(c×a)·a] b",
+          "= [c a b] a − [c a a] b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the triple product expansion gives [c a b]a − [c a a]b.",
+          "accept": [
+            "expand the cross of the two cross products to get c a b times a minus c a a times b",
+            "use the vector triple product with c cross a as one vector",
+            "the expansion gives two box products as coefficients",
+            "triple product tho expand cheste rendu box products vasthai",
+            "apply the vector triple product formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "triple product",
+            "c a b",
+            "c a a",
+            "expand"
+          ]
+        },
+        "why": "Each dot of (c×a) with another vector is itself a box product — that is what turns the expansion into scalars multiplying a and b.",
+        "common_mistakes": [
+          "Getting the two terms the wrong way round.",
+          "Forgetting that the coefficients are scalars, not vectors."
+        ]
+      },
+      {
+        "id": "s3_kill_the_repeated_term",
+        "kind": "equation",
+        "label": "Kill the repeated term",
+        "marks": 1,
+        "mark_note": "Zero term",
+        "margin_note": "Fourth mark, and the step the proof turns on. [c a a] has a REPEATED vector, so it is zero — the second term vanishes completely.",
+        "lines": [
+          "A box product with a repeated vector is zero.",
+          "∴ [c a a] = 0",
+          "⇒ (c×a) × (a×b) = [c a b] a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That [c a a] = 0 because a vector is repeated, so only the first term survives.",
+          "accept": [
+            "c a a is zero because a vector repeats so the second term disappears",
+            "a box product with a repeated vector is zero",
+            "only the first term survives",
+            "repeat aina box product zero, so rendo term poyindi",
+            "the second term vanishes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero",
+            "repeated",
+            "box product",
+            "second term"
+          ]
+        },
+        "why": "A box product measures a volume, and a box with two identical edges is flat — no volume. That is why any repeated vector makes it zero.",
+        "common_mistakes": [
+          "Cancelling both terms.",
+          "Writing [c a a] as [c a b] by mistake."
+        ]
+      },
+      {
+        "id": "s4_dot_with_b_c",
+        "kind": "equation",
+        "label": "Dot with b×c",
+        "marks": 2,
+        "mark_note": "Second box",
+        "margin_note": "Two marks. [c a b] is a scalar, so it comes straight out of the dot product, leaving (b×c)·a — which is another box product.",
+        "lines": [
+          "L.H.S = (b×c) · ([c a b] a)",
+          "= [c a b] · [(b×c)·a]   [scalar comes out]",
+          "= [c a b] [b c a]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the scalar [c a b] factors out, leaving (b×c)·a = [b c a], so the left side is [c a b][b c a].",
+          "accept": [
+            "the scalar comes out of the dot product leaving b cross c dotted with a which is the box product b c a",
+            "it becomes c a b times b c a",
+            "take the scalar outside and the rest is another box product",
+            "scalar bayata teesthe migilindi inko box product",
+            "the left side is a product of two box products"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "scalar",
+            "comes out",
+            "b c a",
+            "two box products"
+          ]
+        },
+        "why": "A scalar multiplying a vector inside a dot product can always be pulled outside. What is left, (b×c)·a, is a box product by the same definition used in step 1.",
+        "common_mistakes": [
+          "Leaving the scalar inside the dot.",
+          "Writing (b×c)·a as [a b c] without noting the order."
+        ]
+      },
+      {
+        "id": "s5_use_the_cyclic_property",
+        "kind": "boxed_final",
+        "label": "Use the cyclic property",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. A box product is unchanged by a cyclic shift, so [c a b] and [b c a] are BOTH equal to [a b c] — the product is [a b c]².",
+        "lines": [
+          "A box product is unchanged by a cyclic shift:",
+          "[c a b] = [a b c]  and  [b c a] = [a b c]",
+          "∴ L.H.S = [a b c] · [a b c]",
+          {
+            "text": "∴ [b×c  c×a  a×b] = [a b c]²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cyclic property makes [c a b] = [b c a] = [a b c], so the left side is [a b c]².",
+          "accept": [
+            "both box products equal a b c by the cyclic property so the answer is a b c squared",
+            "a cyclic shift does not change a box product",
+            "the product of the two equals a b c all squared",
+            "cyclic shift tho rendu a b c ye, so square vasthundi",
+            "the result is a b c squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cyclic",
+            "a b c squared",
+            "unchanged",
+            "shift"
+          ]
+        },
+        "why": "A CYCLIC shift leaves a box product alone; swapping just two of the three flips its sign. Both shifts here are cyclic, so no sign appears in the answer.",
+        "common_mistakes": [
+          "Treating any reordering as harmless and losing a sign.",
+          "Stopping at [c a b][b c a] without closing to [a b c]²."
+        ]
+      }
+    ]
+  }
+}

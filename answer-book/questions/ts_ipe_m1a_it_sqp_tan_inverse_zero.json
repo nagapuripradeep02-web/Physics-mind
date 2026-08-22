@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_sqp_tan_inverse_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quote the addition formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the values",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to Tan⁻¹(2/9)",
+      "marks": 1
+    },
+    {
+      "label": "Subtract the third term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.110 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 177. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it only Section B — so the section is fixed by the unit, not inferred. Printed appearances: AP 19. Prove the two positive terms add to the third, and the difference is then zero by inspection. Working with the whole left side at once is far harder. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quote_the_addition_formula",
+        "kind": "equation",
+        "label": "Quote the addition formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) holds when xy < 1. Here xy = 1/91, so the condition is met.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy)), when xy < 1",
+          "Here x = 1/7, y = 1/13, so xy = 1/91 < 1. ✓"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the addition formula is quoted and the condition xy < 1 is checked, with xy = 1/91.",
+          "accept": [
+            "quote the addition formula and check that x y is less than one, here it is one over ninety one",
+            "the formula holds when the product is less than one",
+            "state the formula and verify the condition first",
+            "formula rasi x y less than one ani check cheyyali",
+            "check the condition before using the formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "addition formula",
+            "x y less than one",
+            "one over ninety one"
+          ]
+        },
+        "why": "The formula has a DIFFERENT right-hand side when xy > 1 — a π has to be added. Checking the condition is what makes this version valid.",
+        "common_mistakes": [
+          "Using the formula without checking xy < 1.",
+          "Writing the denominator as 1 + xy."
+        ]
+      },
+      {
+        "id": "s2_substitute_the_values",
+        "kind": "equation",
+        "label": "Substitute the values",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "margin_note": "Second mark. Put x = 1/7 and y = 1/13 into the formula and write both parts over 91.",
+        "lines": [
+          "Tan⁻¹(1/7) + Tan⁻¹(1/13)",
+          "= Tan⁻¹[(1/7 + 1/13) / (1 − (1/7)(1/13))]",
+          "= Tan⁻¹[((13 + 7)/91) / ((91 − 1)/91)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives ((13+7)/91) over ((91−1)/91).",
+          "accept": [
+            "substitute one seventh and one thirteenth and write both parts over ninety one",
+            "the numerator is thirteen plus seven over ninety one and the denominator is ninety one minus one over ninety one",
+            "put the values into the formula",
+            "values substitute chesi ninety one meeda rasali",
+            "substitute into the addition formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirteen plus seven",
+            "ninety one",
+            "ninety one minus one"
+          ]
+        },
+        "why": "Putting both the top and the bottom over 91 means the 91s cancel in the next step. Combining them separately makes the same cancellation harder to see.",
+        "common_mistakes": [
+          "Adding the fractions without a common denominator.",
+          "Multiplying 1/7 and 1/13 as 1/20."
+        ]
+      },
+      {
+        "id": "s3_simplify_to_tan_2_9",
+        "kind": "equation",
+        "label": "Simplify to Tan⁻¹(2/9)",
+        "marks": 1,
+        "mark_note": "Simplify",
+        "margin_note": "Third mark. The 91s cancel, leaving 20/90 — which reduces to 2/9.",
+        "lines": [
+          "= Tan⁻¹(20/90)   [the 91s cancel]",
+          "= Tan⁻¹(2/9)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 91s cancel to give Tan⁻¹(20/90) = Tan⁻¹(2/9).",
+          "accept": [
+            "the ninety ones cancel leaving twenty over ninety which reduces to two ninths",
+            "twenty by ninety is two by nine",
+            "the sum of the first two is tan inverse of two ninths",
+            "ninety one cancel avthundi, twenty by ninety ante two by nine",
+            "simplify to two ninths"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty over ninety",
+            "two ninths",
+            "cancel"
+          ]
+        },
+        "why": "20/90 reducing to exactly 2/9 is the whole point — it matches the third term in the question, which is what makes the difference zero.",
+        "common_mistakes": [
+          "Leaving the answer as 20/90.",
+          "Reducing 20/90 to 2/10."
+        ]
+      },
+      {
+        "id": "s4_subtract_the_third_term",
+        "kind": "boxed_final",
+        "label": "Subtract the third term",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. The first two terms equal the third, so subtracting it leaves 0.",
+        "lines": [
+          "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) = Tan⁻¹(2/9)",
+          "L.H.S = Tan⁻¹(2/9) − Tan⁻¹(2/9) = 0",
+          {
+            "text": "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first two terms equal Tan⁻¹(2/9), so subtracting the third gives 0.",
+          "accept": [
+            "the first two add to tan inverse of two ninths so subtracting the third gives zero",
+            "the two sides cancel leaving zero",
+            "the left hand side is zero",
+            "modati rendu third term tho same, teesthe zero",
+            "subtract and close"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals",
+            "zero",
+            "subtract",
+            "two ninths"
+          ]
+        },
+        "why": "The proof works because the sum of the first two IS the third — the statement is an identity, not a coincidence of decimals.",
+        "common_mistakes": [
+          "Trying to combine all three terms at once.",
+          "Stating the answer without showing the subtraction."
+        ]
+      }
+    ]
+  }
+}
