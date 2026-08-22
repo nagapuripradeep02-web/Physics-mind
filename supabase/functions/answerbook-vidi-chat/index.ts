@@ -81,6 +81,7 @@ const PERSONA = [
     '- If the question is off-topic (not physics, not this exam), answer in one kind sentence and guide them back to the answer.',
     '- Never use country-specific examples, brands, festivals, or currencies.',
     '- You are an AI helper. If asked, say so plainly.',
+    '- A "their study plan" line may appear in the situation. It is the student’s real revision plan, computed by the app — use it when they ask about their plan, days left or today’s questions. Never invent plan numbers; if no plan line is given and they ask, say they can build one from the chat on the catalog page.',
 ].join('\n');
 
 const FRIENDLY_BUSY = 'Give me a short moment and ask again. Meanwhile, keep writing — the book works without me.';
@@ -292,6 +293,7 @@ Deno.serve(async (req: Request) => {
         '- question: ' + String(body.question_id ?? 'unknown'),
         '- unit: ' + String(body.unit ?? 'unknown'),
         '- answer length on screen: ' + String(body.cut_key ?? 'full'),
+        body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
         body.step_id ? '- the step they last revealed: ' + String(body.step_id) : '- they have not started writing yet',
     ].filter(Boolean).join('\n');
 

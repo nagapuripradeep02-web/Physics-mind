@@ -1237,3 +1237,195 @@ test('the ask field and the mic exist exactly when the build has a chat base', a
     expect(r.micExists).toBe(true);
     expect(r.sendExists).toBe(true);
 });
+
+// ═══ the study planner — deterministic, offline, personal ═══════════════════
+// The clock is injectable (pm_today_override) so every date-dependent behavior
+// is testable byte-for-byte. All five gates run with zero network, like the
+// rest of the offline suite.
+
+/** Seed the injectable clock (and optional state) BEFORE the page boots. */
+async function bootPlanner(page: any, today: string, seed: Record<string, string> = {}) {
+    await page.addInitScript((args: { today: string; seed: Record<string, string> }) => {
+        try {
+            localStorage.setItem('pm_today_override', args.today);
+            for (const k of Object.keys(args.seed)) localStorage.setItem(k, args.seed[k]);
+        } catch { /* file:// storage may be blocked; the page has its own fallback */ }
+    }, { today, seed });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+}
+
+/** Drive the whole onboarding conversation and return the stored plan. */
+async function buildPlanViaChat(page: any, examDate: string) {
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    // intro not done → the intro widget; done → the offer chip
+    const introBtn = page.locator('.vw-btn', { hasText: 'Plan my exam prep' });
+    if (await introBtn.count()) await introBtn.click();
+    else await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('input[type=date]').waitFor({ timeout: 4000 });
+    await lastW().locator('input[type=date]').fill(examDate);
+    await lastW().locator('.vw-btn.primary').click();                       // Set date
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-check input').nth(0).check();
+    await lastW().locator('.vw-check input').nth(1).check();
+    await lastW().locator('.vw-btn.primary').click();                       // These chapters →
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).waitFor({ timeout: 5000 });
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).waitFor({ timeout: 4000 });
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 4000 });
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
+    await page.waitForFunction(() => {
+        try { const p = JSON.parse(localStorage.getItem('pm_plan_v1') || 'null'); return p && p.implemented; }
+        catch { return false; }
+    }, undefined, { timeout: 4000 });
+    return page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+}
+
+test('the first open is the Viditra intro — no stars, and the whole onboarding runs offline', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r: any) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await bootPlanner(page, '2026-09-01');
+
+    // the chat lives on the CATALOG now, pulsing until the intro has been seen
+    await expect(page.locator('#vidiFab')).toBeVisible();
+    expect(await page.evaluate(() => document.getElementById('vidiFab')!.classList.contains('vf-unread'))).toBe(true);
+
+    await page.click('#vidiFab');
+    await page.waitForSelector('#vidiThread .vidi-msg.tutor:not(.vidi-typing)', { timeout: 4000 });
+    await page.locator('.vw-btn', { hasText: 'Plan my exam prep' }).waitFor({ timeout: 4000 });
+    const intro = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
+        (els) => els.map((e) => e.textContent || ''));
+    // the founder's requirement, locked: the first experience never talks stars
+    expect(intro.join(' ')).not.toMatch(/star/i);
+    expect(intro.join(' ')).toContain('Viditra');
+
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+    expect(plan.totalDays).toBe(20);
+    expect(plan.implemented).toBe(true);
+    expect(external).toEqual([]);   // the planner has NO network path at all
+
+    // countdown strip live, outside the thread
+    const strip = await page.$eval('#vidiPlanStrip', (e) => ({ hidden: (e as HTMLElement).hidden, text: e.textContent || '' }));
+    expect(strip.hidden).toBe(false);
+    expect(strip.text).toContain('Day 1 of 20');
+});
+
+test('the plan math is deterministic: priority first, revision next day, and re-runs agree', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+
+    // day 1 learns are the 3-star core first — never a 0-star predicted card
+    const stars = await page.evaluate((qids: string[]) => {
+        const units = (window as any).PM_UNITS as any[];
+        return qids.map((qid) => {
+            for (const u of units) for (const e of u.questions) if (e.question_id === qid) return e.stars;
+            return -1;
+        });
+    }, plan.days[0].learn);
+    expect(Math.min(...stars)).toBeGreaterThanOrEqual(2);
+
+    // every day-1 learn is a day-2 revision: learn today, revise tomorrow
+    expect(plan.days[1].revise).toEqual(plan.days[0].learn);
+
+    // the final ~15% of days are the revision block
+    expect(plan.revBlockStart).toBe(18);
+
+    // same inputs ⇒ an identical schedule on a fresh run
+    const firstDays = plan.days;
+    await page.evaluate(() => localStorage.removeItem('pm_plan_v1'));
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const plan2 = await buildPlanViaChat(page, '2026-09-21');
+    expect(plan2.days).toEqual(firstDays);
+});
+
+test('Understand and Practice tick themselves; Revise completes the green tick and the catalog shows it', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+    const qid = plan.days[0].learn[0];
+
+    // revealing every step IS the Understand stage
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForFunction((q: string) => {
+        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
+    }, qid, { timeout: 3000 });
+
+    // a completed self-check IS the Practice stage (a touched check, closed)
+    await page.click('#btnTest');
+    await page.click('#btnSelf');
+    await page.waitForSelector('#recallResult .confirm-row');
+    await page.click('#recallResult .confirm-row');
+    await page.keyboard.press('Escape');
+    await page.waitForFunction((q: string) => {
+        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.p; } catch { return false; }
+    }, qid, { timeout: 3000 });
+
+    // next day: the revise chip appears on that question; ticking it goes green
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).waitFor({ timeout: 4000 });
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).click();
+    const st = await page.evaluate((q: string) =>
+        JSON.parse(localStorage.getItem('pm_stage_v1')!)[q], qid);
+    expect(st.u && st.p && st.r).toBeTruthy();
+
+    // the catalog card shows the green tick — and the card-count gates stay true
+    await page.evaluate(() => { location.hash = '#/'; });
+    await page.waitForSelector('.cc-chip.pm-upr');
+    const done = await page.$$eval('.cc-chip.pm-upr', (els) => els.map((e) => e.textContent));
+    expect(done).toContain('✓ done');
+    const counts = await page.evaluate(() => ({
+        cards: document.querySelectorAll('.cat-card').length,
+        entries: ((window as any).PM_UNITS as any[]).reduce((n: number, u: any) => n + u.questions.length, 0),
+    }));
+    expect(counts.cards).toBe(counts.entries);
+});
+
+test('behind pace, Vidi proposes a re-plan and the student must accept it', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+
+    // a week passes with nothing done → reopen the chat. NOTE addInitScript
+    // re-runs on reload and would reset the clock override, so the day is
+    // advanced in-page and the window is re-opened, not the page.
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-08'));
+    await page.click('#vidiClose');
+    await page.click('#vidiFab');
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).waitFor({ timeout: 6000 });
+    const msgs = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
+        (els) => els.map((e) => e.textContent || ''));
+    expect(msgs.join(' ')).toContain('will not cover everything');
+    // the strip carries the honest lag
+    expect(await page.$eval('#vidiPlanStrip', (e) => e.textContent || '')).toContain('behind by');
+
+    // nothing changes silently: the OLD plan stands until the student accepts
+    const before = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!).start);
+    expect(before).toBe(plan.start);
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).click();
+    await page.waitForFunction(() =>
+        JSON.parse(localStorage.getItem('pm_plan_v1')!).start === '2026-09-08', undefined, { timeout: 4000 });
+    const replanned = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+    expect(replanned.totalDays).toBe(13);
+});
+
+test('without a plan a question opens silently — chips only, and a quiet offer', async ({ page }) => {
+    // intro already seen, no plan: the founder's "no 3-star talk" rule, locked
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    await openFirst(page);
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await page.waitForTimeout(1500);
+    const bubbles = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
+        (els) => els.map((e) => e.textContent || ''));
+    expect(bubbles).toEqual([]);                       // silent open
+    const chips = await page.$$eval('#vidiChips .vidi-chip', (els) => els.map((e) => e.textContent || ''));
+    expect(chips.length).toBeGreaterThanOrEqual(3);    // the bank chips still answer
+    expect(chips).toContain('Want a study plan?');     // the quiet offer, appended last
+    expect(chips[0]).toBe('Will this come?');          // gate 27's first-chip click stays truthful
+});

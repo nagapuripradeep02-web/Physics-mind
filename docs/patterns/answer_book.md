@@ -132,6 +132,40 @@ The seam grew into the layer. What exists now:
    the model had been grounded in since day one. Match on WORD BOUNDARIES: a plain
    `includes` finds "ace it" inside "repl**ace it**" (a false positive on a real card).
 
+## The study planner (landed 2026-08-22 — personalized, deterministic, offline)
+
+Vidi's first experience is now the STUDENT'S, not the bank's (founder direction): no stars, no
+asked-years in any greeting. The planner is a chat-guided onboarding — exam date (native date
+input in a bubble) → chapter checklist → deterministic analysis → hours-per-day → day-by-day plan
+→ [Implement this plan] → countdown. Everything computes from PM_UNITS/PM_QUESTIONS +
+localStorage; the LLM is never in the plan path.
+
+- **Scheduling**: cost = authored `expected_time_min`; learn books 2× on its learn day, revision
+  ½× the NEXT day (learn-today-revise-tomorrow); priority = stars → LAQ>SAQ>VSAQ → asked before
+  predicted; the final ~15% of days are a full-revision block (weakest self-check first); overflow
+  falls off the BOTTOM into an honest `optional` bucket. Module `Plan` in notebook.js.
+- **Stages**: Understand auto-ticks on full reveal (the `completed = true` sites), Practice on a
+  touched self-check close (beside `Vidi.recordCheck`), Revise via the [Mark revised ✓] chip on
+  its revision day or a second completed check on a later day. Ticks are DATE STRINGS via
+  `todayStr()`, which honours the test-only `pm_today_override` key — the whole feature is
+  clock-injectable.
+- **Keys**: `pm_plan_v1` (the plan), `pm_stage_v1` (ticks), `pm_intro_done`/`pm_intro_seen`,
+  `pm_today_override` (tests only). All through the Vidi lsGet/lsSet wrapper.
+- **Nudges**: once a day (`lastNudgeDay`), on home-open or question-open: on-pace / behind /
+  exam-day-archive. Behind ⇒ a PROPOSED re-plan card — [Use this plan] / [Keep the old plan];
+  nothing ever changes silently.
+- **Chrome**: the window + pill now live on the CATALOG too (`syncView`/`minWin` know the view);
+  the countdown strip `#vidiPlanStrip` sits OUTSIDE the thread so question switches never wipe
+  it; onboarding widgets are `.vidi-widget` bubbles whose controls FREEZE after use (no replay);
+  planner chips are APPENDED to #vidiChips, never prepended (the offline gate clicks chips[0]);
+  catalog cards get a `.cc-chip.pm-upr` badge + `.pm-done` green margin on the authored branch
+  only. The model sees the plan via `body.plan_status` folded into the per-request situation
+  block — deliberately NOT tutor_context, which is byte-stable for the DeepSeek prefix cache.
+- **Gates**: five planner tests (intro-no-stars + offline onboarding · deterministic math ·
+  auto-tick U/P + green tick + card counts · behind → proposal → accept · silent no-plan open).
+  Caveat for test authors: `addInitScript` re-runs on reload and resets the clock override —
+  advance the day in-page and re-open the window instead of reloading.
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

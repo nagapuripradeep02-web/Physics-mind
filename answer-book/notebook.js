@@ -257,6 +257,7 @@
     var only = document.querySelectorAll('.nb-only');
     for (var i = 0; i < only.length; i++) only[i].hidden = !nb;
     VidiPanel.syncView(nb);
+    VidiPanel.onView(v);
   }
 
   /** ONE CARD = ONE QUESTION AT ONE LENGTH (founder, 2026-08-20 review). An
@@ -454,6 +455,19 @@
                 ak.textContent = asked;
                 badges.appendChild(ak);
               }
+            }
+            // Study progress: the three stage marks, green tick when all done.
+            // Authored branch only — the soon-card gate asserts its chips
+            // verbatim. A class on the card turns the red margin rule green.
+            var stg = Vidi.stageFor(e.question_id);
+            if (stg.u || stg.p || stg.r) {
+              var done = stg.u && stg.p && stg.r;
+              var pb = document.createElement('span');
+              pb.className = 'cc-chip pm-upr';
+              pb.textContent = done ? '✓ done'
+                : (stg.u ? '●' : '○') + (stg.p ? '●' : '○') + (stg.r ? '●' : '○');
+              badges.appendChild(pb);
+              if (done) card.className += ' pm-done';
             }
           } else {
             var soon = document.createElement('span');
@@ -923,6 +937,15 @@
 
   // ═══ flow ═════════════════════════════════════════════════════════════════
 
+  /** A fully revealed answer IS the Understand stage of the study plan
+      (auto-tick, manual override stays — founder, 2026-08-22). */
+  function markUnderstood() {
+    if (Vidi.stageFor(question.question_id).u) return;
+    Vidi.setStage(question.question_id, 'u', true);
+    Vidi.log('stage', { qid: question.question_id, k: 'u' });
+    VidiPanel.onStageTick();
+  }
+
   function advance() {
     if (revealing) {                     // impatience: finish the current step
       if (finishCurrent) finishCurrent();
@@ -942,6 +965,7 @@
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
+        markUnderstood();
       }
       updateChrome();
       document.dispatchEvent(new CustomEvent('pm:step-revealed', {
@@ -974,6 +998,7 @@
     if (stepIndex === steps.length - 1) {
       completed = true;
       placeTotalBlock();
+      markUnderstood();
     }
     updateChrome();
     // The page geometry is fixed but its HEIGHT is not: a cut with fewer steps
@@ -1051,6 +1076,16 @@
     if (lastSelfCheck && lastSelfCheck.touched) {
       Vidi.recordCheck(lastSelfCheck.qid, lastSelfCheck.score, lastSelfCheck.total);
       Vidi.log('self_check', { qid: lastSelfCheck.qid, score: lastSelfCheck.score, total: lastSelfCheck.total });
+      // A completed self-check IS the Practice stage. A second one on a LATER
+      // day than the practice tick counts as the revision (auto-tick + manual
+      // override — founder, 2026-08-22).
+      var st = Vidi.stageFor(lastSelfCheck.qid);
+      if (!st.p) {
+        Vidi.setStage(lastSelfCheck.qid, 'p', true);
+      } else if (!st.r && st.p < Vidi.todayStr()) {
+        Vidi.setStage(lastSelfCheck.qid, 'r', true);
+      }
+      VidiPanel.onStageTick();
       var offer = !Vidi.renameOffered();
       lastSelfCheck = null;
       VidiPanel.onCheckClosed(offer);
@@ -1677,6 +1712,21 @@
     var history = {};
     try { history = JSON.parse(lsGet('pm_vidi_history') || '{}') || {}; } catch (e) { history = {}; }
 
+    // ── planner storage ─────────────────────────────────────────────────────
+    // Stage ticks are DATE STRINGS, not epoch ms: the planner's whole clock is
+    // todayStr(), which honours the test-only pm_today_override key — so a tick
+    // and the day it happened on always agree, in tests and in life.
+    var stages = {};
+    try { stages = JSON.parse(lsGet('pm_stage_v1') || '{}') || {}; } catch (e) { stages = {}; }
+
+    function todayStr() {
+      var o = lsGet('pm_today_override');
+      if (o && /^\d{4}-\d{2}-\d{2}$/.test(o)) return o;
+      var d = new Date();
+      return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) +
+        '-' + ('0' + d.getDate()).slice(-2);
+    }
+
     var session = lsGet('pm_vidi_session');
     if (!session) {
       session = 'ab_' + Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
@@ -1726,8 +1776,235 @@
       /** Window state {open, x, y} — position + open/minimized, per device. */
       getWin: function () { try { return JSON.parse(lsGet('pm_vidi_win') || 'null'); } catch (e) { return null; } },
       setWin: function (w) { lsSet('pm_vidi_win', JSON.stringify(w)); },
+      // ── the study plan (per device, like every other Vidi key) ────────────
+      todayStr: todayStr,
+      getPlan: function () { try { return JSON.parse(lsGet('pm_plan_v1') || 'null'); } catch (e) { return null; } },
+      setPlan: function (p) { lsSet('pm_plan_v1', JSON.stringify(p)); },
+      /** The Viditra intro: shown until answered, but never nags past 2 shows. */
+      introDone: function () { return lsGet('pm_intro_done') === '1'; },
+      markIntroDone: function () { lsSet('pm_intro_done', '1'); },
+      introSeen: function () {
+        var n = parseInt(lsGet('pm_intro_seen') || '0', 10) + 1;
+        lsSet('pm_intro_seen', String(n));
+        return n;
+      },
+      /** Understand / Practice / Revise per question: '' = not done, else the
+          date string of the day it happened. First tick wins; untick clears. */
+      stageFor: function (qid) {
+        var s = stages[qid];
+        return { u: (s && s.u) || '', p: (s && s.p) || '', r: (s && s.r) || '' };
+      },
+      setStage: function (qid, k, on) {
+        var s = stages[qid] || { u: '', p: '', r: '' };
+        if (on && s[k]) return;                    // first tick wins
+        s[k] = on ? todayStr() : '';
+        stages[qid] = s;
+        lsSet('pm_stage_v1', JSON.stringify(stages));
+      },
       log: log,
       flush: flush
+    };
+  })();
+
+  // ═══ The study plan — deterministic scheduling over the bank ══════════════
+  // The bank is the brain: every number here is computed from PM_UNITS /
+  // PM_QUESTIONS + localStorage. No model is ever asked to plan. A question's
+  // study cost is its authored expected_time_min: learn (understand + practice)
+  // books 2× on its learn day, revision books ½× on the NEXT day — that spacing
+  // is the founder's "learn two today, revise them tomorrow" rule.
+  var Plan = (function () {
+
+    function parseDay(s) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+      return Date.UTC(+m[1], +m[2] - 1, +m[3]);
+    }
+    function diffDays(a, b) { return Math.round((parseDay(a) - parseDay(b)) / 86400000); }
+
+    var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
+
+    /** Every distinct question in the chosen chapters, in crammer priority:
+        stars first, LAQ before SAQ before VSAQ, asked before predicted. */
+    function itemsFor(unitNums) {
+      var seen = {}, items = [];
+      for (var u = 0; u < UNITS.length; u++) {
+        if (unitNums.indexOf(UNITS[u].number) < 0) continue;
+        var qs = UNITS[u].questions;
+        for (var i = 0; i < qs.length; i++) {
+          var e = qs[i];
+          if (!e.question_id || seen[e.question_id]) continue;
+          seen[e.question_id] = true;
+          var q = questions[qIndexById[e.question_id]];
+          if (!q) continue;
+          items.push({
+            qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
+            qtype: q.qtype, mins: q.expected_time_min,
+            ref: e.section + ' ' + e.number, text: e.text,
+            unit: UNITS[u].number, predicted: e.source === 'enumerated'
+          });
+        }
+      }
+      items.sort(function (a, b) {
+        if (b.stars !== a.stars) return b.stars - a.stars;
+        if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
+        if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
+        if (a.unit !== b.unit) return a.unit - b.unit;
+        return 0;
+      });
+      return items;
+    }
+
+    function itemInfo(qid) {
+      var q = questions[qIndexById[qid]];
+      if (!q) return null;
+      return { qid: qid, qtype: q.qtype, mins: q.expected_time_min,
+               text: q.question_text, unit: q.unit.number };
+    }
+
+    /** The scheduler. Day 1 = startDate; the last plan day is exam-eve. The
+        final ~15% of days are a full-revision block (weakest first, the
+        exam-eve logic). Items that do not fit fall off the BOTTOM of the
+        priority list into `optional` — and the plan says so, honestly. */
+    function build(examDate, unitNums, minsPerDay, startDate, itemsOverride) {
+      var D = diffDays(examDate, startDate);
+      if (D < 1) return null;
+      var R = Math.max(1, Math.ceil(D * 0.15));
+      if (R >= D) R = D > 1 ? 1 : 0;
+      var L = D - R;
+      var queue = (itemsOverride || itemsFor(unitNums)).slice();
+      var learnDay = {}, byDay = [], reviseNext = [];
+      for (var day = 1; day <= L; day++) {
+        var budget = minsPerDay;
+        var row = { learn: [], revise: [] };
+        for (var r = 0; r < reviseNext.length; r++) {
+          budget -= Math.ceil(reviseNext[r].mins / 2);
+          row.revise.push(reviseNext[r].qid);
+        }
+        reviseNext = [];
+        while (queue.length && queue[0].mins * 2 <= budget) {
+          var nx = queue.shift();
+          budget -= nx.mins * 2;
+          row.learn.push(nx.qid);
+          learnDay[nx.qid] = day;
+          reviseNext.push(nx);
+        }
+        byDay.push(row);
+      }
+      return {
+        v: 1, start: startDate, examDate: examDate,
+        units: unitNums.slice(), minsPerDay: minsPerDay,
+        days: byDay, learnDay: learnDay,
+        optional: queue.map(function (x) { return x.qid; }),
+        revBlockStart: L + 1, totalDays: D,
+        implemented: false, lastNudgeDay: '', archived: false
+      };
+    }
+
+    function dayN(plan, today) { return diffDays(today, plan.start) + 1; }
+    function daysLeft(plan, today) { return diffDays(plan.examDate, today); }
+
+    function green(qid) {
+      var s = Vidi.stageFor(qid);
+      return !!(s.u && s.p && s.r);
+    }
+    function learned(qid) {
+      var s = Vidi.stageFor(qid);
+      return !!(s.u && s.p);
+    }
+
+    /** Today's work, catch-up included: learns scheduled up to today and not
+        yet learned; revisions = anything learned on an EARLIER day and not yet
+        revised. In the final block everything unfinished revises, weakest
+        self-check first. */
+    function todays(plan, today) {
+      var n = dayN(plan, today);
+      var out = { day: n, learn: [], revise: [], finalBlock: n >= plan.revBlockStart };
+      var qid;
+      for (qid in plan.learnDay) {
+        if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
+        if (plan.learnDay[qid] <= Math.min(n, plan.revBlockStart - 1) && !learned(qid)) {
+          out.learn.push(qid);
+        }
+        var s = Vidi.stageFor(qid);
+        if (s.u && s.p && !s.r && s.p < today) out.revise.push(qid);
+      }
+      if (out.finalBlock) {
+        // weakest first: lowest self-check ratio, then anything not green
+        var rest = [];
+        for (qid in plan.learnDay) {
+          if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
+          if (green(qid)) continue;
+          if (out.learn.indexOf(qid) >= 0 || out.revise.indexOf(qid) >= 0) continue;
+          rest.push(qid);
+        }
+        rest.sort(function (a, b) {
+          var ha = Vidi.checkFor(a), hb = Vidi.checkFor(b);
+          var ra = ha && ha.total ? ha.best / ha.total : 1.01;
+          var rb = hb && hb.total ? hb.best / hb.total : 1.01;
+          return ra - rb;
+        });
+        out.revise = out.revise.concat(rest);
+      }
+      // keep the scheduler's priority order for learns
+      out.learn.sort(function (a, b) { return plan.learnDay[a] - plan.learnDay[b]; });
+      return out;
+    }
+
+    function progress(plan) {
+      var total = 0, done = 0, learnedN = 0, qid;
+      for (qid in plan.learnDay) {
+        if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
+        total++;
+        if (green(qid)) done++;
+        if (learned(qid)) learnedN++;
+      }
+      return { total: total, done: done, learned: learnedN };
+    }
+
+    /** Behind = at least one full planned day of learning has slipped. */
+    function behindBy(plan, today) {
+      var n = Math.min(dayN(plan, today), plan.revBlockStart - 1);
+      var expected = 0;
+      for (var d = 0; d < n - 1 && d < plan.days.length; d++) expected += plan.days[d].learn.length;
+      var p = progress(plan);
+      var perDay = Math.max(1, Math.ceil(expected / Math.max(1, n - 1)));
+      var gap = expected - p.learned;
+      return gap >= perDay ? gap : 0;
+    }
+
+    /** A fresh schedule over what is NOT yet green, from today, same pace. */
+    function replan(plan, today) {
+      var remaining = [];
+      var all = itemsFor(plan.units);
+      for (var i = 0; i < all.length; i++) {
+        var inPlan = Object.prototype.hasOwnProperty.call(plan.learnDay, all[i].qid);
+        if (inPlan && !green(all[i].qid)) remaining.push(all[i]);
+      }
+      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining);
+    }
+
+    /** A compact factual block for the hosted model — read, never generated. */
+    function modelStatus(qid) {
+      var plan = Vidi.getPlan();
+      if (!plan || !plan.implemented || plan.archived) return null;
+      var today = Vidi.todayStr();
+      var p = progress(plan);
+      var t = todays(plan, today);
+      var lines = 'exam on ' + plan.examDate + ', ' + daysLeft(plan, today) +
+        ' days left; finished ' + p.done + ' of ' + p.total + ' planned questions' +
+        '; today: learn ' + t.learn.length + ', revise ' + t.revise.length;
+      if (qid && Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
+        var s = Vidi.stageFor(qid);
+        lines += '; THIS question is in the plan (understood ' + (s.u ? 'yes' : 'no') +
+          ', practised ' + (s.p ? 'yes' : 'no') + ', revised ' + (s.r ? 'yes' : 'no') + ')';
+      }
+      return lines;
+    }
+
+    return {
+      itemsFor: itemsFor, itemInfo: itemInfo, build: build, replan: replan,
+      todays: todays, progress: progress, behindBy: behindBy,
+      dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
+      green: green, learned: learned, modelStatus: modelStatus
     };
   })();
 
@@ -1826,21 +2103,398 @@
       return null;
     }
 
+    /** The per-question greeting is about the STUDENT'S plan, never the bank
+        (founder, 2026-08-22): no stars, no asked-years, no insider line here —
+        the chips still answer all of that on demand. Without a plan a question
+        opens silently. */
     function greet() {
-      // Two beats, like a person: hello first, then what she knows about THIS one.
-      say('Hi, I am ' + Vidi.getName() + ' — your answer helper. How can I help you today?');
-      var e = manifestEntry();
-      var parts = [];
-      var st = starsLine(e);
-      if (st) parts.push(st);
-      if (e && e.source === 'enumerated') {
-        parts.push('It has not been asked yet — it is predicted from the syllabus.');
-      } else {
-        var asked = askedLine(question);
-        if (asked) parts.push(asked + '.');
+      var plan = Vidi.getPlan();
+      if (!plan || !plan.implemented || plan.archived) return;
+      var today = Vidi.todayStr();
+      if (Plan.daysLeft(plan, today) < 0) return;
+      var qid = question.question_id;
+      if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) return;
+      var t = Plan.todays(plan, today);
+      var s = Vidi.stageFor(qid);
+      var li = t.learn.indexOf(qid);
+      if (s.u && s.p && !s.r && t.revise.indexOf(qid) >= 0) {
+        say('This one is up for revision today. Go through it once more, then tap "Mark revised" below — that is what makes it stick.');
+      } else if (li >= 0) {
+        say('This one is on today’s list — ' + (li + 1) + ' of ' + t.learn.length +
+          '. Read every step, then run "Test myself". Tomorrow I will ask you to revise it.');
+      } else if (Plan.green(qid)) {
+        say('You have finished this one — understood, practised and revised. It will come back in the final revision days.');
       }
-      if (question.insider_note) parts.push(question.insider_note);
-      if (parts.length) say(parts.join(' '), 800);
+    }
+
+    // ═══ the onboarding conversation — Viditra first, then the plan ═════════
+    // Chat-guided, click by click: date → chapters → hours → plan → implement.
+    // Widgets are tutor bubbles that hold controls (.vidi-widget, never
+    // .vidi-chip — the chip gates count #vidiChips only). All deterministic.
+
+    var ob = { active: false, step: '', date: '', units: [], mins: 0, draft: null };
+
+    function widget(build) {
+      var w = el('div', 'vidi-msg tutor vidi-widget');
+      build(w);
+      threadEl().appendChild(w);
+      threadEl().scrollTop = threadEl().scrollHeight;
+      return w;
+    }
+    function wBtn(label, primary, fn) {
+      var b = el('button', 'vw-btn' + (primary ? ' primary' : ''), label);
+      b.type = 'button';
+      b.addEventListener('click', function () {
+        if (b.disabled) return;
+        // A used widget goes quiet: every control in it freezes, so an old
+        // bubble can never replay a step of the conversation. A handler that
+        // re-asks (failed validation) renders a FRESH widget instead.
+        var w = b.parentNode;
+        while (w && w !== document.body && (' ' + w.className + ' ').indexOf(' vidi-widget ') < 0) w = w.parentNode;
+        if (w && w !== document.body) {
+          var cs = w.querySelectorAll('button, input');
+          for (var i = 0; i < cs.length; i++) cs[i].disabled = true;
+        }
+        bubble(label, 'student');
+        fn();
+      });
+      return b;
+    }
+
+    function startIntro() {
+      say('Hi, I am ' + Vidi.getName() + ' — welcome to Viditra.');
+      say('This book holds the questions your Physics exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
+      var g = gen;
+      setTimeout(function () {
+        if (g !== gen) return;
+        widget(function (w) {
+          w.appendChild(document.createTextNode('Shall we plan your exam preparation?'));
+          var row = el('div', 'vw-row');
+          row.appendChild(wBtn('Plan my exam prep', true, function () {
+            Vidi.markIntroDone(); startOnboarding();
+          }));
+          row.appendChild(wBtn('I will just browse', false, function () {
+            Vidi.markIntroDone();
+            say('No problem. Open any question and I will help you with it. When you are ready, tap "Want a study plan?" below.');
+          }));
+          w.appendChild(row);
+        });
+      }, 1800);
+      if (Vidi.introSeen() >= 2) Vidi.markIntroDone();   // never nag past 2 shows
+    }
+
+    function startOnboarding() {
+      ob = { active: true, step: 'date', date: '', units: [], mins: 0, draft: null };
+      askDate();
+    }
+
+    function askDate() {
+      ob.step = 'date';
+      say('When is your exam?');
+      widget(function (w) {
+        var inp = document.createElement('input');
+        inp.type = 'date';
+        var t = Vidi.todayStr();
+        inp.min = t;
+        inp.value = ob.date || '';
+        var row = el('div', 'vw-row');
+        row.appendChild(inp);
+        row.appendChild(wBtn('Set date', true, function () {
+          var v = inp.value;
+          if (!v || Plan.diffDays(v, Vidi.todayStr()) < 1) {
+            say('Pick a date after today — the plan needs at least one day.');
+            askDate();
+            return;
+          }
+          ob.date = v;
+          bubble('My exam is on ' + v, 'student');
+          askUnits();
+        }));
+        w.appendChild(row);
+      });
+    }
+
+    function askUnits() {
+      ob.step = 'units';
+      say('Which chapters are in this exam? Tick every one.');
+      widget(function (w) {
+        var boxes = [];
+        for (var i = 0; i < UNITS.length; i++) {
+          (function (u) {
+            var lab = el('label', 'vw-check');
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.value = String(u.number);
+            if (ob.units.indexOf(u.number) >= 0) cb.checked = true;
+            lab.appendChild(cb);
+            lab.appendChild(document.createTextNode(
+              u.number + '. ' + u.name + ' (' + u.questions.length + ' questions)'));
+            w.appendChild(lab);
+            boxes.push(cb);
+          })(UNITS[i]);
+        }
+        var row = el('div', 'vw-row');
+        row.appendChild(wBtn('These chapters →', true, function () {
+          var picked = [];
+          for (var b = 0; b < boxes.length; b++) if (boxes[b].checked) picked.push(parseInt(boxes[b].value, 10));
+          if (!picked.length) { say('Tick at least one chapter.'); askUnits(); return; }
+          ob.units = picked;
+          analyze();
+        }));
+        w.appendChild(row);
+      });
+    }
+
+    function analyze() {
+      ob.step = 'analyze';
+      var items = Plan.itemsFor(ob.units);
+      var n = { LAQ: 0, SAQ: 0, VSAQ: 0 }, mins = 0;
+      for (var i = 0; i < items.length; i++) {
+        n[items[i].qtype]++;
+        mins += Math.ceil(items[i].mins * 2.5);
+      }
+      var hours = Math.round(mins / 30) / 2;      // half-hour precision
+      var D = Plan.diffDays(ob.date, Vidi.todayStr());
+      say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. Those chapters hold ' +
+        n.LAQ + ' long answers, ' + n.SAQ + ' short answers and ' + n.VSAQ +
+        ' very short answers — about ' + hours + ' hours of work including revision.');
+      say('Let us turn that into a day-by-day plan.', 700);
+      var g = gen;
+      setTimeout(function () {
+        if (g !== gen) return;
+        widget(function (w) {
+          var row = el('div', 'vw-row');
+          row.appendChild(wBtn('Generate my plan', true, askHours));
+          w.appendChild(row);
+        });
+      }, 1500);
+    }
+
+    function askHours() {
+      ob.step = 'hours';
+      say('How long will you study each day?');
+      widget(function (w) {
+        var row = el('div', 'vw-row');
+        var opts = [[30, '30 min'], [60, '1 hour'], [90, '1½ hours'], [120, '2 hours']];
+        for (var i = 0; i < opts.length; i++) {
+          (function (m, label) {
+            row.appendChild(wBtn(label, false, function () { ob.mins = m; preview(); }));
+          })(opts[i][0], opts[i][1]);
+        }
+        w.appendChild(row);
+      });
+    }
+
+    function preview() {
+      ob.step = 'preview';
+      var plan = Plan.build(ob.date, ob.units, ob.mins, Vidi.todayStr());
+      if (!plan) { askDate(); return; }
+      ob.draft = plan;
+      var total = 0; for (var q in plan.learnDay) if (Object.prototype.hasOwnProperty.call(plan.learnDay, q)) total++;
+      say('Here is your plan — ' + plan.totalDays + ' days, ' + total + ' questions, revision built in.');
+      widget(function (w) {
+        w.appendChild(document.createTextNode(plan.totalDays + ' days · ' +
+          (plan.minsPerDay >= 60 ? (plan.minsPerDay / 60) + ' hour' + (plan.minsPerDay > 60 ? 's' : '') : plan.minsPerDay + ' min') + ' a day'));
+        var box = el('div', 'vw-plan');
+        var show = Math.min(4, plan.days.length);
+        for (var d = 0; d < show; d++) {
+          var row = el('div', 'vw-day');
+          row.appendChild(el('span', 'vwd-n', 'Day ' + (d + 1)));
+          var parts = [];
+          if (plan.days[d].revise.length) parts.push('revise ' + plan.days[d].revise.length);
+          if (plan.days[d].learn.length) parts.push('learn ' + plan.days[d].learn.length);
+          row.appendChild(el('span', '', parts.join(' · ') || 'catch-up'));
+          box.appendChild(row);
+        }
+        if (plan.days.length > show) {
+          var dots = el('div', 'vw-day');
+          dots.appendChild(el('span', 'vwd-n', '…'));
+          box.appendChild(dots);
+        }
+        var rb = el('div', 'vw-day');
+        rb.appendChild(el('span', 'vwd-n', 'Day ' + plan.revBlockStart + '–' + plan.totalDays));
+        rb.appendChild(el('span', '', 'full revision, weakest first'));
+        box.appendChild(rb);
+        w.appendChild(box);
+        if (plan.optional.length) {
+          w.appendChild(el('div', 'vw-warn', 'At this pace ' + plan.optional.length +
+            ' lower-priority questions do not fit — they are optional. The most-asked set fits.'));
+        }
+        var row2 = el('div', 'vw-row');
+        row2.appendChild(wBtn('Implement this plan', true, implementPlan));
+        row2.appendChild(wBtn('Change hours', false, askHours));
+        w.appendChild(row2);
+      });
+    }
+
+    function implementPlan() {
+      var plan = ob.draft;
+      if (!plan) return;
+      plan.implemented = true;
+      plan.lastNudgeDay = Vidi.todayStr();
+      Vidi.setPlan(plan);
+      ob = { active: false, step: '', date: '', units: [], mins: 0, draft: null };
+      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay, units: plan.units.join(',') });
+      say('Done — ' + Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock. Here is today:');
+      renderTodayCard(plan);
+      updatePlanStrip();
+      renderVidiChips();
+      if (currentView === 'catalog') renderCatalog();
+    }
+
+    function resumeOnboarding() {
+      if (ob.step === 'date') askDate();
+      else if (ob.step === 'units') askUnits();
+      else if (ob.step === 'analyze' || ob.step === 'hours') askHours();
+      else if (ob.step === 'preview') preview();
+      else startOnboarding();
+    }
+
+    /** Today's work as tappable rows with the three stage marks. */
+    function renderTodayCard(plan) {
+      var today = Vidi.todayStr();
+      var t = Plan.todays(plan, today);
+      widget(function (w) {
+        var any = false;
+        var mk = function (qid, what) {
+          var info = Plan.itemInfo(qid);
+          if (!info) return;
+          any = true;
+          var a = document.createElement('a');
+          a.className = 'vw-item';
+          a.href = '#/q/' + encodeURIComponent(qid);
+          a.appendChild(uprMark(qid));
+          a.appendChild(el('span', '', info.text.length > 46 ? info.text.slice(0, 44) + '…' : info.text));
+          a.appendChild(el('span', 'vwi-what', info.qtype + ' · ' + what));
+          w.appendChild(a);
+        };
+        var i;
+        for (i = 0; i < t.revise.length && i < 5; i++) mk(t.revise[i], 'revise');
+        for (i = 0; i < t.learn.length && i < 6; i++) mk(t.learn[i], 'learn');
+        if (!any) w.appendChild(document.createTextNode(
+          t.finalBlock ? 'Everything is revised — you are ready.' : 'Nothing due today — you are ahead.'));
+      });
+    }
+
+    /** ●●○ marks; solid green tick when all three stages are done. */
+    function uprMark(qid) {
+      var s = Vidi.stageFor(qid);
+      var n = (s.u ? 1 : 0) + (s.p ? 1 : 0) + (s.r ? 1 : 0);
+      if (n === 3) return el('span', 'upr done', '✓');
+      var span = el('span', 'upr');
+      var dots = [s.u, s.p, s.r];
+      for (var i = 0; i < 3; i++) {
+        span.appendChild(dots[i] ? el('b', '', '●') : document.createTextNode('○'));
+      }
+      return span;
+    }
+
+    /** The countdown strip above the thread — outside it, so question switches
+        never wipe it. */
+    function updatePlanStrip() {
+      var strip = $('vidiPlanStrip');
+      var plan = Vidi.getPlan();
+      if (!plan || !plan.implemented || plan.archived) { strip.hidden = true; return; }
+      var today = Vidi.todayStr();
+      var left = Plan.daysLeft(plan, today);
+      if (left < 0) { strip.hidden = true; return; }
+      var p = Plan.progress(plan);
+      strip.innerHTML = '';
+      strip.appendChild(document.createTextNode(
+        'Day ' + Math.min(Plan.dayN(plan, today), plan.totalDays) + ' of ' + plan.totalDays +
+        ' · ' + (left === 0 ? 'exam tomorrow' : left + ' days left') +
+        ' · done ' + p.done + ' of ' + p.total));
+      var behind = Plan.behindBy(plan, today);
+      if (behind) strip.appendChild(el('span', 'vps-late', ' · behind by ' + behind));
+      strip.hidden = false;
+    }
+
+    /** The once-a-day check-in: progress, pace, and — when the pace shows the
+        plan cannot finish — a proposed re-plan the student must accept. */
+    function planCheckin(plan) {
+      var today = Vidi.todayStr();
+      if (plan.lastNudgeDay === today) return;
+      plan.lastNudgeDay = today;
+      Vidi.setPlan(plan);
+      var left = Plan.daysLeft(plan, today);
+      if (left < 0) {
+        plan.archived = true;
+        Vidi.setPlan(plan);
+        say('Your exam day has come — all the best. When the next exam is announced, I can plan for it too.');
+        updatePlanStrip();
+        return;
+      }
+      var p = Plan.progress(plan);
+      var behind = Plan.behindBy(plan, today);
+      if (!behind) {
+        var t = Plan.todays(plan, today);
+        say('You are on schedule — ' + p.done + ' of ' + p.total + ' done, ' +
+          (left === 0 ? 'exam tomorrow.' : left + ' days left.') +
+          (t.revise.length ? ' Revise ' + t.revise.length + ' first, then learn ' + t.learn.length + '.' :
+            (t.learn.length ? ' Today: learn ' + t.learn.length + '.' : '')), 600);
+        return;
+      }
+      say('You planned more than you are finishing — ' + behind +
+        ' questions have slipped, and at this pace the old plan will not cover everything.', 600);
+      var draft = Plan.replan(plan, today);
+      if (!draft) return;
+      var g = gen;
+      setTimeout(function () {
+        if (g !== gen) return;
+        say('I have made a new plan for the ' + (left === 0 ? 'last day' : left + ' days left') +
+          (draft.optional.length ? ' — the most-asked core stays, ' + draft.optional.length + ' lower-priority questions become optional.' : '.'));
+        widget(function (w) {
+          var row = el('div', 'vw-row');
+          row.appendChild(wBtn('Use this plan', true, function () {
+            draft.implemented = true;
+            draft.lastNudgeDay = Vidi.todayStr();
+            Vidi.setPlan(draft);
+            say('Updated. Here is today:');
+            renderTodayCard(draft);
+            updatePlanStrip();
+          }));
+          row.appendChild(wBtn('Keep the old plan', false, function () {
+            say('Keeping it. The slipped questions join today’s list until they are done.');
+          }));
+          w.appendChild(row);
+        });
+      }, 1400);
+    }
+
+    /** The window's content when opened from the CATALOG — no question context,
+        so the conversation is about the student, not a question. */
+    function renderHome() {
+      gen++;
+      threadEl().innerHTML = '';
+      recentMsgs = [];
+      var chips = $('vidiChips');
+      chips.innerHTML = '';
+      var plan = Vidi.getPlan();
+      if (ob.active) { resumeOnboarding(); return; }
+      if (!Vidi.introDone()) { startIntro(); return; }
+      if (plan && plan.implemented && !plan.archived) {
+        updatePlanStrip();
+        planCheckin(plan);
+        // the check-in may have just archived the plan (exam day passed)
+        plan = Vidi.getPlan();
+        if (!plan || plan.archived) {
+          chips.appendChild(chipBtn('Plan my next exam', startOnboarding));
+          return;
+        }
+        renderTodayCard(plan);
+        chips.appendChild(chipBtn('Show today’s plan', function () { renderTodayCard(Vidi.getPlan()); }));
+        chips.appendChild(chipBtn('Change my plan', function () {
+          widget(function (w) {
+            w.appendChild(document.createTextNode('Start a fresh plan? Your progress ticks are kept.'));
+            var row = el('div', 'vw-row');
+            row.appendChild(wBtn('Start over', true, startOnboarding));
+            w.appendChild(row);
+          });
+        }));
+        return;
+      }
+      say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
+      chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
     }
 
     function currentStep() {
@@ -1868,6 +2522,36 @@
       var s = currentStep();
       if (s && s.memory_tip) row.appendChild(chipBtn('How to remember?', chipTip));
       row.appendChild(chipBtn('How much to write?', chipHowMuch));
+      // Planner chips are APPENDED, never prepended: the offline gate clicks the
+      // FIRST chip and expects the deterministic bank answer.
+      var plan = Vidi.getPlan();
+      var qid = question.question_id;
+      if (plan && plan.implemented && !plan.archived &&
+          Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
+        var st = Vidi.stageFor(qid);
+        if (st.u && st.p && !st.r) {
+          row.appendChild(chipBtn('Mark revised ✓', function () {
+            Vidi.setStage(qid, 'r', true);
+            Vidi.log('stage', { qid: qid, k: 'r' });
+            say('Revised and done — full green tick. ' + progressLine());
+            updatePlanStrip();
+            renderVidiChips();
+          }));
+        }
+      }
+      if (!plan || !plan.implemented || plan.archived) {
+        row.appendChild(chipBtn('Want a study plan?', function () {
+          Vidi.markIntroDone();
+          startOnboarding();
+        }));
+      }
+    }
+
+    function progressLine() {
+      var plan = Vidi.getPlan();
+      if (!plan || !plan.implemented) return '';
+      var p = Plan.progress(plan);
+      return p.done + ' of ' + p.total + ' finished.';
     }
 
     function chipCome() {
@@ -2054,6 +2738,10 @@
         step_id: stepIndex >= 0 ? steps[stepIndex].id : null,
         question: txt,
         recent_messages: recentMsgs.slice(-6),
+        // NOT in tutor_context: that string is byte-stable per question+cut so
+        // the model's prompt-prefix cache hits; plan facts change daily, so
+        // they ride the per-request situation block server-side instead.
+        plan_status: Plan.modelStatus(question.question_id) || undefined,
         tutor_context: buildVidiContext()
       };
       postAsk(body, 1).then(function (res) {
@@ -2119,14 +2807,18 @@
     function minWin() {
       winOpen = false;
       winEl().hidden = true;
-      if (currentView === 'notebook') $('vidiFab').hidden = false;
+      // the pill returns wherever the window itself lives (notebook + catalog)
+      if (currentView === 'notebook' || currentView === 'catalog') $('vidiFab').hidden = false;
       saveWin(null);
       syncDock();
     }
 
-    /** showView calls this: the window and the pill exist only in the notebook. */
+    /** showView calls this. The window lives in the notebook AND the catalog —
+        the catalog is where the study-plan conversation happens (the planner,
+        2026-08-22). Exam-eve stays chrome-free. */
     function syncView(nb) {
-      if (!nb) { winEl().hidden = true; $('vidiFab').hidden = true; syncDock(); return; }
+      var here = nb || currentView === 'catalog';
+      if (!here) { winEl().hidden = true; $('vidiFab').hidden = true; syncDock(); return; }
       if (winOpen) { winEl().hidden = false; $('vidiFab').hidden = true; }
       else { winEl().hidden = true; $('vidiFab').hidden = false; }
       syncDock();
@@ -2226,13 +2918,39 @@
         threadEl().innerHTML = '';
         recentMsgs = [];
         $('vidiAskRow').hidden = !VIDI_BASE || !online;
-        greet();
+        updatePlanStrip();
+        if (ob.active) {
+          resumeOnboarding();                    // mid-onboarding navigation
+        } else if (!Vidi.introDone()) {
+          startIntro();                          // first experience = Viditra, never stars
+        } else {
+          var plan = Vidi.getPlan();
+          if (plan && plan.implemented && !plan.archived) planCheckin(plan);
+          greet();                               // plan-aware; silent without a plan
+        }
         renderVidiChips();
         // First question ever on this device: open the window once so the
         // student MEETS Vidi. After that, respect what they chose.
         var w = Vidi.getWin();
         if (!w || w.open) openWin(); else minWin();
         Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
+      },
+      /** View change (catalog / exam-eve). Keeps the strip current, and on the
+          catalog pulses the pill until the intro has been seen. */
+      onView: function (v) {
+        updatePlanStrip();
+        if (v === 'catalog' && !Vidi.introDone()) markUnread();
+      },
+      /** The fab on the CATALOG opens the home conversation (plan status /
+          onboarding). On the notebook it re-opens the question thread as-is. */
+      openHome: function () {
+        openWin();
+        if (currentView !== 'notebook') renderHome();
+      },
+      /** Called after a stage auto-tick so visible progress stays current. */
+      onStageTick: function () {
+        updatePlanStrip();
+        renderVidiChips();
       },
       onStep: function () { renderVidiChips(); },
       // Read-only. The shakedown harness used to re-implement this builder in
@@ -2367,7 +3085,7 @@
     VidiPanel.syncName();
     VidiPanel.initDrag();
     VidiPanel.initMic();
-    $('vidiFab').addEventListener('click', VidiPanel.openWin);
+    $('vidiFab').addEventListener('click', VidiPanel.openHome);
     $('vidiClose').addEventListener('click', VidiPanel.minWin);
     $('vidiSend').addEventListener('click', VidiPanel.ask);
     $('vidiInput').addEventListener('keydown', function (e) {

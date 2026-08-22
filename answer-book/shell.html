@@ -145,6 +145,11 @@
     <span class="vidi-role">answer helper</span>
     <button class="vidi-min" id="vidiClose" type="button" aria-label="Minimize">&#8211;</button>
   </div>
+  <!-- The study-plan countdown strip. Lives OUTSIDE the thread (the thread is
+       wiped on every question open) and inside the window, so gate 223's
+       no-clock rule for #testChoose never sees it. Hidden until a plan is
+       implemented. -->
+  <div class="vidi-plan-strip" id="vidiPlanStrip" hidden></div>
   <div class="vidi-thread" id="vidiThread"></div>
   <div class="vidi-chips" id="vidiChips"></div>
   <div class="vidi-askrow" id="vidiAskRow" hidden>

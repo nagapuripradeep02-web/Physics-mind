@@ -1,5 +1,45 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🗓️ SESSION — Answer Book: **THE STUDY PLANNER — Vidi becomes the student's, not the bank's** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: the founder's personalization direction is live. The first thing a new student ever sees is a Viditra introduction — no "this is a 3-star question", locked by a gate — followed by a chat-guided onboarding: exam date (calendar in a bubble) → chapter checklist → deterministic analysis ("20 days away, 0 LAQ + 9 SAQ + 33 VSAQ ≈ 8.5 hours") → hours-per-day chips → a day-by-day plan with revision built in → [Implement this plan] → countdown. Per-question completion is three stages — Understand · Practice · Revise — with the green tick only after revision; U and P tick THEMSELVES off actions the product already records. Every open gets a once-a-day check-in; falling behind produces a PROPOSED re-plan the student must accept. 100% deterministic and offline (localStorage; the bank is the brain); the LLM only ever READS a plan-status line. Verified: 41/41 gates (36 + 5 new) · vitest 405/405 · tsc 0 · every probe path green with zero page errors.**
+
+### The founder's three design calls (AskUserQuestion, all recommended options)
+1. **Stage ticks = auto-detect + manual override.** Understand auto-ticks when every step is revealed (the `completed = true` sites in `advance`/`renderUpTo`); Practice auto-ticks when a touched self-check closes (beside `Vidi.recordCheck` in `closeTest`); Revise ticks via the [Mark revised ✓] chip on its revision day, or a second completed check on a later day.
+2. **Plan-aware greeting.** With a plan: "This one is on today's list — 1 of 5. Tomorrow I will ask you to revise it." Without one: a question opens SILENTLY (chips only + a quiet "Want a study plan?" appended chip). Stars never lead; the "Will this come?" chip still answers them.
+3. **Re-plan by proposal.** "You planned more than you are finishing — 31 questions have slipped… I have made a new plan for the 13 days left. [Use this plan] [Keep the old plan]." Nothing changes silently.
+
+### The scheduler (module `Plan`, notebook.js — pure, deterministic)
+Cost = authored `expected_time_min` (VSAQ 4 · SAQ 8 · LAQ 15). Learn books 2× on its learn day; revision books ½× the NEXT day — the founder's learn-today-revise-tomorrow rule as arithmetic. Priority: stars → LAQ>SAQ>VSAQ → asked before predicted. The final ~15% of days are a full-revision block (weakest self-check first, the exam-eve logic). Overflow falls off the BOTTOM into an honest `optional` bucket ("At this pace 14 lower-priority questions do not fit — the most-asked set fits"). Measured on the real bank: Units 2+3 at 1 h/day = 42 questions over 20 days, day 1 = the five 3★ items, day 2 = revise those five + learn three.
+
+### The clock is injectable — the whole feature is testable
+Stage ticks are DATE STRINGS from one `todayStr()` helper honouring the test-only `pm_today_override` key. Five new gates run the feature at four injected dates: intro-no-stars + full onboarding offline (zero network asserted) · deterministic math (day-2 revise === day-1 learn; identical schedule on a re-run; 3★-first day 1) · U/P auto-tick + green tick + the card-count gates stay exact · behind → proposal → accept (old plan stands until the click) · silent no-plan question open. **Test-author caveat found the hard way: `addInitScript` RE-RUNS on reload and resets the override — advance the day in-page and re-open the window, never reload.**
+
+### Chrome facts worth knowing
+- The window + pill now live on the **catalog** too (`syncView` and `minWin` know the view — minWin previously stranded the catalog with no pill, found by probe). Exam-eve stays chrome-free.
+- The countdown strip `#vidiPlanStrip` sits OUTSIDE the thread (question switches wipe the thread) and inside the window (gate 223's no-clock rule for `#testChoose` never sees it).
+- Onboarding widgets are `.vidi-widget` bubbles whose controls FREEZE after use — an old bubble can never replay a step; failed validation renders a fresh ask instead.
+- Planner chips are APPENDED to `#vidiChips`, never prepended: the offline gate clicks `chips[0]` and must keep hitting "Will this come?".
+- Catalog cards get a `.cc-chip.pm-upr` badge (●●○ / "✓ done") + a `.pm-done` green margin — authored branch only, so the soon-card verbatim-chip gate holds; card counts unchanged.
+- The intro never nags: `pm_intro_seen` caps it at 2 unanswered shows.
+
+### The model reads the plan; it never writes it
+`vidiAsk` sends `body.plan_status` (≤400 chars: days left, done counts, today's quotas, this question's three ticks). Server-side it folds into the per-request **situation** block — deliberately NOT `tutor_context`, which is byte-stable per question+cut so the DeepSeek prefix cache hits (a mutable plan line there would 30× the token cost). One persona rule added: use the plan line when asked, never invent plan numbers. Both copies patched by one script; the persona parity vitest stayed green.
+
+### Verification (measured)
+`smoke:answers` **41/41** (36 existing — including rename, zero-network, card-count and chip gates — plus the 5 planner gates) · `npx vitest run` **405/405** · `npx tsc --noEmit` **0** · `vidi:contexts` 204 contexts, max 7,684 (the plan block rides the situation, not the context) · three hand probes (onboarding end-to-end · day-2 revision + Mark-revised → green · behind → re-plan → accept · exam-day archive) all clean with zero page errors.
+
+### Files
+`answer-book/notebook.js` (+~600: `Plan` module, onboarding conversation, plan-aware `greet`, stage APIs on `Vidi`, catalog badges, `syncView`/`minWin`/`openHome`, strip) · `answer-book/notebook.css` (+60: planner section) · `answer-book/shell.html` (`#vidiPlanStrip`) · `e2e/answer_book.spec.ts` (5 gates + helpers) · `supabase/functions/answerbook-vidi-chat/index.ts` + `src/scripts/answerbook_vidi_server.ts` (situation plan line + one persona rule, parity kept) · `docs/patterns/answer_book.md` (§study planner). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **Founder walk** (`npm run serve:answers` → localhost:8100, a fresh browser profile): tap the pulsing "Ask Vidi" pill → the intro → build a plan for ~20 days out → open a today-list question → reveal all steps (first dot fills) → Test myself (second dot) → set `pm_today_override` to tomorrow in devtools → reopen → "Mark revised ✓" → the catalog card turns green.
+2. The deployed Edge Function needs a redeploy to carry the plan-aware persona + situation line (founder-only, Rule 17). Until then hosted chats simply lack plan awareness — everything else works.
+3. Later rungs when wanted: plan sync across devices (needs accounts), a visible plan page (`#/plan` route — the exam-eve pattern is ready), WhatsApp-style reminders (needs hosting).
+
+---
+
+
 ## 📐 SESSION — Answer Book: **UNITS 2 + 3 OPEN THE BOOK BACKWARDS — 43 new cards, both at the full depth bar, and the first RE-HOME** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: eight chapters, 204 catalog entries, 198 files. Unit 2 "Units and Measurements" ships 22 entries and Unit 3 "Motion in a Straight Line" ships 21 — authored backwards from the Unit-10 roadmap on founder request. Both units ship at the FULL complete-for-its-size bar (founder call this session): `memory_tip`, `margin_note` and `insider_note` at 100%, against 25–48% / 0–67% / 3–17% in Units 4–9. They are the first units in the bank that are born finished. Both source books were READ DIRECTLY (Fastrack pp.4-8, TSBIE BLM pp.2-5) — no transcription of these units existed — and the two-book union check produced TWO more shapes. Verified: `build:answers` green · tsc 0 · vitest 405/405 · `smoke:answers` 36/36 at 198 questions · 204 Vidi contexts all clear the 10,000-char slice.**
