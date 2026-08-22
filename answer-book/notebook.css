@@ -18,12 +18,17 @@
   --red: #C62828;            /* examiner's red pen */
   --pencil: #7D8CA8;         /* construction-line pencil */
   --paper: #FDFBF4;
-  --chrome-bg: #F1F3F7;
-  --chrome-card: #FFFFFF;
-  --chrome-ink: #22283A;
-  --chrome-dim: #6A7186;
-  --chrome-line: #E2E6EE;
+  /* The chrome is the same stationery world as the page: a warm desk, warm
+     hairlines, one serif voice for headings. The page owns Kalam; the chrome
+     owns Source Serif 4; Inter does the quiet work. */
+  --chrome-bg: #F2EDE1;      /* the desk */
+  --chrome-card: #FFFEFA;
+  --chrome-ink: #2E2B24;
+  --chrome-dim: #857B67;
+  --chrome-line: #E4DBC6;
   --accent: #2A5DB0;
+  --gold: #B8860B;           /* star ranks — importance, never danger */
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,9 +54,9 @@ body {
   border-bottom: 1px solid var(--chrome-line);
   position: sticky; top: 0; z-index: 20;
 }
-.brand { display: flex; align-items: baseline; gap: 10px; }
-.brand-mark { font-size: 18px; }
-.brand-name { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { display: block; flex: none; }
+.brand-name { font-family: var(--serif); font-weight: 700; font-size: 18.5px; letter-spacing: 0; }
 .brand-sub { font-size: 12.5px; color: var(--chrome-dim); }
 .topbar-actions { display: flex; gap: 8px; }
 
@@ -66,27 +71,47 @@ body {
 
 /* ── chrome: question card ─────────────────────────────────────────────── */
 
+/* The QUESTION is the loudest thing on this screen — serif, large, black-ink.
+   The metadata is one quiet small-caps line; only the marks keep their red. */
 .question-card {
-  max-width: 1220px; margin: 18px auto 0; padding: 16px 20px;
+  position: relative;
+  max-width: none; margin: 18px 18px 0; padding: 15px 22px 16px 34px;
   background: var(--chrome-card); border: 1px solid var(--chrome-line);
   border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(62, 50, 25, 0.06);
+}
+.question-card::before {
+  content: ""; position: absolute; left: 16px; top: 13px; bottom: 13px;
+  width: 2px; border-radius: 1px; background: rgba(198, 40, 40, 0.5);
 }
 .question-meta {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
-  font-size: 12px; font-weight: 600; color: var(--chrome-dim);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0;
+  margin-bottom: 7px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--chrome-dim);
 }
-.question-meta .chip {
-  padding: 3px 9px; border-radius: 999px; background: var(--chrome-bg);
-  border: 1px solid var(--chrome-line);
+.question-meta .chip { padding: 0; background: none; border: none; }
+.question-meta .chip + .chip::before { content: "·"; margin: 0 8px; color: var(--chrome-line); }
+.question-meta .chip-marks {
+  text-transform: none; letter-spacing: 0.02em;
+  padding: 2px 10px; margin-left: 8px; border-radius: 999px;
+  background: #FBEAE7; border: 1px solid #EEC6BF; color: var(--red);
+  font-size: 11.5px; font-weight: 700;
 }
-.question-meta .chip-marks { background: #FDECEC; border-color: #F2C4C4; color: var(--red); }
-.question-text { font-size: 16.5px; font-weight: 600; line-height: 1.45; }
+.question-meta .chip-marks::before { content: none !important; }
+.question-text {
+  font-family: var(--serif); font-size: 21px; font-weight: 600;
+  line-height: 1.4; color: var(--chrome-ink);
+}
 
 /* ── chrome: layout + rail ─────────────────────────────────────────────── */
 
+/* VS Code shape: rail flush LEFT, the page in the middle, Vidi docked RIGHT
+   (the docked block near the end of this file). No centring max-width — the
+   three parts share the whole screen. */
 .layout {
-  display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px;
-  max-width: 1220px; margin: 18px auto 60px; padding: 0 16px;
+  display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 18px;
+  max-width: none; margin: 18px 0 60px; padding: 0 18px;
   align-items: start;
 }
 .rail { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 66px; }
@@ -94,9 +119,10 @@ body {
 .card {
   background: var(--chrome-card); border: 1px solid var(--chrome-line);
   border-radius: 12px; padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(62, 50, 25, 0.05);
 }
 .card-title {
-  font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 10px;
 }
 
@@ -144,10 +170,34 @@ body {
    deliberate signature: every card carries a thin red left rule, the
    examiner's margin line from the notebook. */
 
-.catalog { max-width: 780px; margin: 0 auto; padding: 30px 20px 60px; }
+.catalog { max-width: 800px; margin: 0 auto; padding: 26px 20px 60px; }
 
-.cat-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.015em; }
-.cat-sub { font-size: 13.5px; color: var(--chrome-dim); margin-top: 5px; }
+/* THE SIGNATURE: the hero is the cover page of an answer script — ruled lines,
+   the examiner's red margin, the title written large. Everything else on the
+   surface stays quiet so this one thing carries the identity. */
+.cat-hero {
+  position: relative;
+  padding: 26px 28px 24px 58px;
+  background:
+    linear-gradient(to right, transparent 0 38px, rgba(198, 40, 40, 0.5) 38px 40px, transparent 40px),
+    repeating-linear-gradient(to bottom, transparent 0 30px, rgba(26, 47, 107, 0.10) 30px 31px);
+  background-color: var(--paper);
+  border: 1px solid var(--chrome-line); border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(30, 40, 60, 0.10), 0 12px 30px rgba(30, 40, 60, 0.07);
+}
+.cat-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--red); margin-bottom: 8px;
+}
+.cat-hero h1 {
+  font-family: var(--serif); font-size: 40px; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.1; color: var(--ink);
+}
+.cat-tag {
+  font-family: var(--serif); font-size: 16px; color: var(--chrome-ink);
+  margin-top: 9px; line-height: 1.45;
+}
+.cat-sub { font-size: 12.5px; color: var(--chrome-dim); margin-top: 5px; }
 
 .cat-filters { margin: 20px 0 6px; }
 .cat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -171,8 +221,9 @@ body {
 .cat-search:focus { outline: none; border-color: var(--accent); }
 
 .cat-section h2 {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 15px; font-weight: 700; margin: 26px 0 12px;
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--chrome-ink); margin: 30px 0 12px;
 }
 .cat-count {
   font-size: 11px; font-weight: 600; color: var(--chrome-dim);
@@ -196,7 +247,10 @@ body {
   content: ""; position: absolute; left: 13px; top: 12px; bottom: 12px;
   width: 2px; border-radius: 1px; background: rgba(198, 40, 40, 0.5);
 }
-.cat-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
+.cat-card:hover {
+  border-color: rgba(26, 47, 107, 0.35); background: #FFFEF9;
+  box-shadow: 0 3px 10px rgba(62, 50, 25, 0.09);
+}
 .cat-card:hover .cc-arrow { color: var(--accent); transform: translateX(3px); }
 
 .cc-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
@@ -205,9 +259,9 @@ body {
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--chrome-dim);
 }
-.cc-stars { font-size: 12px; letter-spacing: 2px; color: var(--red); }
+.cc-stars { font-size: 12px; letter-spacing: 2px; color: var(--gold); }
 .cc-text {
-  font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--chrome-ink);
+  font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--chrome-ink);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .cc-badges { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -250,7 +304,7 @@ body {
   padding: 20px 22px 22px;
 }
 .overlay-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.overlay-head h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.overlay-head h2 { font-family: var(--serif); font-size: 20px; font-weight: 700; letter-spacing: 0; }
 .overlay-close {
   font: inherit; font-size: 26px; line-height: 1; cursor: pointer;
   background: none; border: none; color: var(--chrome-dim); padding: 0 4px;
@@ -389,62 +443,107 @@ body {
 
 @media print { .overlay, .btn-test { display: none !important; } }
 
-/* ── Vidi — the assistant panel ──────────────────────────────────────────
-   A rail card on desktop; a bottom sheet behind a floating button on phones
-   (≤1020px the rail sits BELOW the notebook, where nobody scrolls mid-answer).
-   Deliberately NOT .card/.card-title: the rail-order e2e gate pins that set.
-   All display rules respect [hidden]'s !important (the .btn-mic scar). */
+/* ── Vidi — the chat WINDOW ──────────────────────────────────────────────
+   A real window, unmistakable for a rail card: floating and draggable on
+   desktop (grab the ink-blue header), a bottom sheet on phones (the media
+   block below overrides any dragged position), minimized to the "Ask Vidi"
+   pill. Position + open state persist in localStorage (pm_vidi_win).
+   Every display rule respects [hidden]'s !important (the .btn-mic scar). */
 
-#pm-assistant-slot { display: block; min-height: 0; }
-
-.vidi-card {
-  background: var(--chrome-card); border: 1px solid var(--chrome-line);
-  border-radius: 12px; padding: 12px 14px;
+.vidi-win {
+  position: fixed; right: 20px; bottom: 20px; z-index: 39;
+  width: 358px; max-height: min(560px, calc(100vh - 90px));
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--chrome-line); border-radius: 14px;
+  box-shadow: 0 14px 44px rgba(26, 47, 107, 0.24), 0 2px 8px rgba(62, 50, 25, 0.10);
+  overflow: hidden;
 }
-.vidi-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.vidi-head {
+  display: flex; align-items: baseline; gap: 8px; flex: none;
+  padding: 10px 12px;
+  background: var(--ink); color: #fff;
+  cursor: grab; user-select: none; touch-action: none;
+}
+.vidi-head:active { cursor: grabbing; }
 .vidi-dot {
-  width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(42, 93, 176, 0.15); flex: none;
+  width: 9px; height: 9px; border-radius: 50%; background: #7EE2A8;
+  box-shadow: 0 0 0 3px rgba(126, 226, 168, 0.22); flex: none; align-self: center;
 }
-.vidi-name { font-weight: 700; font-size: 13px; }
+.vidi-name { font-weight: 700; font-size: 13.5px; }
+.vidi-head .vidi-name { color: #fff; }
+.vidi-role { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
 .vidi-min {
-  margin-left: auto; font: inherit; font-size: 22px; line-height: 1;
-  border: none; background: none; color: var(--chrome-dim); cursor: pointer; padding: 0 4px;
+  margin-left: auto; align-self: center;
+  font: inherit; font-size: 20px; line-height: 1;
+  width: 26px; height: 26px; border-radius: 7px;
+  border: none; background: none; color: rgba(255, 255, 255, 0.8); cursor: pointer;
 }
-.vidi-min:hover { color: var(--chrome-ink); }
+.vidi-min:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
 
-.vidi-thread { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; }
-.vidi-msg {
-  font-size: 13px; line-height: 1.5; padding: 8px 10px; border-radius: 10px;
-  white-space: pre-wrap; word-break: break-word;
+.vidi-thread {
+  flex: 1 1 auto; min-height: 70px; overflow-y: auto;
+  padding: 12px; display: flex; flex-direction: column; gap: 7px;
 }
-.vidi-msg.tutor { background: var(--chrome-bg); border: 1px solid var(--chrome-line); align-self: flex-start; }
-.vidi-msg.student { background: #EEF3FC; border: 1px solid #D5E2F7; align-self: flex-end; }
+.vidi-msg {
+  font-size: 13px; line-height: 1.5; padding: 8px 11px; border-radius: 11px;
+  white-space: pre-wrap; word-break: break-word; max-width: 92%;
+}
+.vidi-msg.tutor {
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  align-self: flex-start; border-top-left-radius: 4px;
+}
+.vidi-msg.student {
+  background: #E9EFFB; border: 1px solid #D2DEF4;
+  align-self: flex-end; border-top-right-radius: 4px;
+}
 .vidi-msg.vidi-typing { color: var(--chrome-dim); letter-spacing: 3px; animation: vidiBlink 0.9s ease-in-out infinite; }
 @keyframes vidiBlink { 50% { opacity: 0.35; } }
 
-.vidi-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.vidi-chips {
+  flex: none; display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 9px 12px 3px; border-top: 1px dashed var(--chrome-line);
+}
 .vidi-chip {
   font: 600 12px Inter, system-ui, sans-serif; cursor: pointer;
-  padding: 5px 10px; border-radius: 999px;
-  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-ink);
+  padding: 5px 11px; border-radius: 999px;
+  border: 1px solid rgba(26, 47, 107, 0.3); background: var(--chrome-card); color: var(--ink);
 }
-.vidi-chip:hover { border-color: var(--accent); color: var(--accent); }
+.vidi-chip:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
 
-.vidi-askrow { display: flex; gap: 6px; margin-top: 8px; }
+.vidi-askrow { flex: none; display: flex; align-items: center; gap: 6px; padding: 9px 12px 12px; }
+.vidi-mic {
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card);
+  color: var(--ink); cursor: pointer;
+}
+.vidi-mic:hover { border-color: var(--ink); }
+.vidi-mic.rec {
+  background: var(--red); border-color: var(--red); color: #fff;
+  animation: vidiMicPulse 1.1s ease-in-out infinite;
+}
+@keyframes vidiMicPulse { 50% { box-shadow: 0 0 0 6px rgba(198, 40, 40, 0.18); } }
 .vidi-askrow input {
   flex: 1 1 auto; min-width: 0; font: inherit; font-size: 13px; color: var(--chrome-ink);
-  padding: 7px 9px; border: 1px solid var(--chrome-line); border-radius: 8px; background: var(--chrome-card);
+  padding: 8px 11px; border: 1px solid var(--chrome-line); border-radius: 999px;
+  background: var(--chrome-card);
 }
-.vidi-askrow input:focus { outline: none; border-color: var(--accent); }
-.vidi-askrow .btn { padding: 7px 12px; }
+.vidi-askrow input:focus { outline: none; border-color: var(--ink); }
+.vidi-send {
+  font: 700 13px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 8px 16px; border-radius: 999px;
+  background: var(--ink); color: #fff; border: none;
+}
+.vidi-send:hover { background: #24418f; }
 
-.vidi-rename { margin-top: 10px; border-top: 1px solid var(--chrome-line); padding-top: 10px; }
+.vidi-rename { flex: none; padding: 10px 12px 12px; border-top: 1px dashed var(--chrome-line); }
 .vidi-rename-note { font-size: 12.5px; line-height: 1.5; color: var(--chrome-ink); margin-bottom: 7px; }
 .vidi-rename-row { display: flex; gap: 6px; flex-wrap: wrap; }
 .vidi-rename-row input {
   flex: 1 1 90px; min-width: 0; font: inherit; font-size: 13px;
-  padding: 7px 9px; border: 1px solid var(--chrome-line); border-radius: 8px;
+  padding: 7px 10px; border: 1px solid var(--chrome-line); border-radius: 8px;
+  background: var(--chrome-card);
 }
 .vidi-rename-row .btn { padding: 7px 10px; font-size: 12.5px; }
 
@@ -468,7 +567,7 @@ a.vidi-tri-link {
   padding: 4px 0;
 }
 a.vidi-tri-link:hover { text-decoration: underline; }
-.vidi-tri-link .vt-m { font-weight: 500; color: var(--chrome-dim); }
+.vidi-tri-link .vt-m { font-weight: 500; color: var(--gold); }
 a.vidi-eve-link {
   display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 600;
   color: var(--chrome-dim); text-decoration: none;
@@ -491,36 +590,67 @@ a.eve-card::before {
   content: ""; position: absolute; left: 13px; top: 12px; bottom: 12px;
   width: 2px; border-radius: 1px; background: rgba(198, 40, 40, 0.5);
 }
-a.eve-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
+a.eve-card:hover { border-color: rgba(26, 47, 107, 0.35); background: #FFFEF9; }
 .eve-card .ev-main { flex: 1 1 auto; min-width: 0; }
 .eve-card .ev-top { display: flex; align-items: baseline; gap: 9px; margin-bottom: 3px; }
 .eve-card .ev-ref {
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--chrome-dim);
 }
-.eve-card .ev-stars { font-size: 12px; letter-spacing: 2px; color: var(--red); }
+.eve-card .ev-stars { font-size: 12px; letter-spacing: 2px; color: var(--gold); }
 .eve-card .ev-score { font-size: 11.5px; font-weight: 700; color: var(--red); }
 .eve-card .ev-text { font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--chrome-ink); }
 .eve-empty { font-size: 13.5px; color: var(--chrome-dim); line-height: 1.55; margin-top: 10px; }
 
-/* floating Vidi button — phones only */
+/* the launcher pill — how a student finds Vidi when the window is minimized */
 .vidi-fab {
-  display: none; position: fixed; right: 14px; bottom: 16px; z-index: 44;
-  width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--chrome-line);
-  background: var(--ink); color: #fff; font-size: 22px; cursor: pointer;
-  box-shadow: 0 6px 18px rgba(26, 47, 107, 0.35);
-  align-items: center; justify-content: center;
+  position: fixed; right: 20px; bottom: 20px; z-index: 38;
+  display: flex; align-items: center; gap: 9px;
+  padding: 12px 19px; border-radius: 999px; border: none; cursor: pointer;
+  background: var(--ink); color: #fff;
+  font: 700 14px Inter, system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(26, 47, 107, 0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.vidi-fab:hover { transform: translateY(-1px); background: #24418f; }
+.vf-dot {
+  width: 9px; height: 9px; border-radius: 50%; background: #7EE2A8;
+  box-shadow: 0 0 0 3px rgba(126, 226, 168, 0.22); flex: none;
+}
+.vidi-fab.vf-unread .vf-dot {
+  background: #FF6B5E; box-shadow: 0 0 0 3px rgba(255, 107, 94, 0.28);
+  animation: vfPulse 1.4s ease-in-out infinite;
+}
+@keyframes vfPulse { 50% { opacity: 0.45; } }
+.vf-label .vidi-name { color: #fff; font-size: 14px; }
+
+/* wide screens: the window DOCKS as the third column — files left, page middle,
+   Vidi right, the VS Code shape. The !important overrides beat any dragged
+   inline position; body.vidi-docked is JS-managed (open + notebook view only). */
+@media (min-width: 1180px) {
+  .vidi-win {
+    top: 61px !important; right: 0 !important; bottom: 0 !important; left: auto !important;
+    width: 344px !important; max-height: none;
+    border-radius: 0; border-top: none; border-right: none; border-bottom: none;
+    box-shadow: -6px 0 24px rgba(62, 50, 25, 0.10);
+  }
+  .vidi-head { cursor: default; }
+  body.vidi-docked #notebookView { margin-right: 344px; }
 }
 
-@media (max-width: 1020px) {
-  .vidi-fab { display: flex; }
-  #pm-assistant-slot.vidi-sheet {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
-    max-height: 70vh; overflow-y: auto;
-    border-radius: 14px 14px 0 0; border-bottom: none;
-    box-shadow: 0 -8px 30px rgba(20, 26, 42, 0.28);
+/* phones: the window is a bottom sheet — the !important overrides beat any
+   inline left/top a desktop drag may have stored */
+@media (max-width: 720px) {
+  .vidi-win {
+    left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
+    width: 100% !important; max-height: 74vh;
+    border-radius: 16px 16px 0 0;
+    border-left: none; border-right: none; border-bottom: none;
+    box-shadow: 0 -10px 34px rgba(20, 26, 42, 0.30);
   }
+  .vidi-head { cursor: default; }
 }
+
 
 /* ── notebook column ───────────────────────────────────────────────────── */
 
@@ -640,6 +770,10 @@ a.eve-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
   .topbar { flex-wrap: wrap; gap: 8px; row-gap: 10px; }
   .topbar-actions { width: 100%; justify-content: flex-end; }
   .btn { padding: 7px 11px; font-size: 13px; }
+  .brand-sub { display: none; }        /* one line: the name IS the brand on a phone */
+  .brand-name { white-space: nowrap; }
+  .cat-hero h1 { font-size: 32px; }
+  .question-text { font-size: 19px; }
 }
 
 @media (max-width: 1020px) {
@@ -653,7 +787,7 @@ a.eve-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
 @media print {
   @page { size: A4; margin: 0; }
   body { background: #fff; }
-  .topbar, .rail, .btn-next, .question-card, .catalog, .vidi-fab { display: none !important; }
+  .topbar, .rail, .btn-next, .question-card, .catalog, .vidi-fab, .vidi-win { display: none !important; }
   .layout { display: block; margin: 0; padding: 0; max-width: none; }
   .notebook { transform: none !important; gap: 0; }
   .page {

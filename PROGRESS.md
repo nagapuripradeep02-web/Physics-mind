@@ -1,5 +1,13 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🎨 SESSION — Answer Book: **WORLD-CLASS UI PASS — the answer-script identity + Vidi as a VS Code-style docked chat** (2026-08-22, same desk/branch)
+
+**Founder-driven redesign in three rounds, each screenshot-verified (Playwright captures read back before and after). (1) Identity: the whole product is now ONE stationery world — warm desk chrome (#F2EDE1), Source Serif 4 display voice, the examiner's red-margin rule as the signature motif (hero = an answer-script cover page, question card, catalog cards, eve cards), stars turned GOLD (importance, never danger), question text now 21px serif — the loudest thing on its screen; the ruled Kalam page itself untouched. (2) Vidi became a real chat: two-beat greeting ("Hi, I am Vidi — how can I help you today?" then the per-question insight), chip taps echo as the student's own message, mic dictation (on-device SpeechRecognition, en-IN pinned, auto-send; INPUT only — the grading rung stays unbuilt), always-visible ask row in hosted builds. (3) Layout: VS Code three-column — rail flush LEFT, page filling the MIDDLE, Vidi DOCKED full-height RIGHT (≥1180px, body.vidi-docked margins + fitNotebook re-fit); floating + draggable with position persistence at 721–1179px; bottom sheet ≤720px; minimize collapses to the "Ask Vidi" pill (red pulse when she has an unread reply).**
+
+Gates grew 33 → **36** (docked-column geometry · drag-and-persist · ask-row/mic contract: absent in the offline file, present in every hosted build) — all 36 green on the final build. The founder's "missing chat field" was the OFFLINE build being served after a test run — the new gate pins that contract so it reads as design, not defect. Files: answer-book/shell.html · notebook.css · notebook.js · e2e/answer_book.spec.ts. Page geometry, schema, Edge Function untouched.
+
+---
+
 ## 🤖 SESSION — Answer Book: **VIDI LANDS — Rungs 1+2 (deterministic companion + flag-gated live chat)** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: the Answer Book's AI companion went from design doc (`1e8835d`) to working code in one session. The bank stays the brain; Vidi is the voice. Everything a student sees by default is deterministic and offline — greeting, four chips, chapter triage, exam-eve view, the honest check verdict, rename-after-first-value — rendered from `PM_QUESTIONS`/`PM_UNITS` + localStorage with ZERO network. Live chat exists only in a `build:answers:hosted` build against a new fail-closed Edge Function with its own ledger. Photo/mic verification deliberately NOT built (founder call). All 26 existing e2e gates passed with the layer live; 7 new Vidi gates added.**

@@ -1101,23 +1101,113 @@ test('the triage strip appears under a chapter filter and card counts stay exact
     expect(searched).toBe(true);
 });
 
-test('on a phone the Vidi button opens the panel as a bottom sheet without sideways scroll', async ({ page }) => {
+test('the Vidi window minimizes to the launcher pill and comes back, no sideways scroll on a phone', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openFirst(page);
 
-    await page.waitForSelector('#vidiFab:not([hidden])');
-    await page.click('#vidiFab');
-    const r = await page.evaluate(() => ({
-        sheet: document.getElementById('pm-assistant-slot')!.classList.contains('vidi-sheet'),
-        closeShown: !document.getElementById('vidiClose')!.hidden,
+    // first question on a fresh device: the window opens once so the student meets her
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    const open = await page.evaluate(() => ({
+        fabHidden: document.getElementById('vidiFab')!.hidden,
         hScroll: document.documentElement.scrollWidth > window.innerWidth + 1,
     }));
-    expect(r.sheet).toBe(true);
-    expect(r.closeShown).toBe(true);
-    expect(r.hScroll).toBe(false);
+    expect(open.fabHidden).toBe(true);      // pill hides while the window is up
+    expect(open.hScroll).toBe(false);
 
+    // minimize → the pill returns, carrying the assistant's name
     await page.click('#vidiClose');
-    const closed = await page.evaluate(
-        () => document.getElementById('pm-assistant-slot')!.classList.contains('vidi-sheet'));
-    expect(closed).toBe(false);
+    const min = await page.evaluate(() => ({
+        winHidden: document.getElementById('pm-assistant-slot')!.hidden,
+        fabHidden: document.getElementById('vidiFab')!.hidden,
+        fabText: document.getElementById('vidiFab')!.textContent || '',
+    }));
+    expect(min.winHidden).toBe(true);
+    expect(min.fabHidden).toBe(false);
+    expect(min.fabText).toContain('Vidi');
+
+    // the pill re-opens it
+    await page.click('#vidiFab');
+    const back = await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden);
+    expect(back).toBe(false);
+});
+
+test('at desktop width Vidi docks as the third column and minimize collapses it', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await openFirst(page);
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+
+    const docked = await page.evaluate(() => {
+        const win = document.getElementById('pm-assistant-slot')!.getBoundingClientRect();
+        return {
+            bodyClass: document.body.classList.contains('vidi-docked'),
+            rightEdge: window.innerWidth - win.right,
+            fullHeight: win.bottom >= window.innerHeight - 2,
+            nbMargin: parseInt(getComputedStyle(document.getElementById('notebookView')!).marginRight, 10),
+            hScroll: document.documentElement.scrollWidth > window.innerWidth + 1,
+        };
+    });
+    expect(docked.bodyClass).toBe(true);
+    expect(docked.rightEdge).toBeLessThanOrEqual(2);      // flush with the screen edge
+    expect(docked.fullHeight).toBe(true);                 // runs to the bottom
+    expect(docked.nbMargin).toBe(344);                    // the notebook yields the column
+    expect(docked.hScroll).toBe(false);
+
+    // minimize: the column collapses and the middle takes the space back
+    await page.click('#vidiClose');
+    const min = await page.evaluate(() => ({
+        bodyClass: document.body.classList.contains('vidi-docked'),
+        nbMargin: parseInt(getComputedStyle(document.getElementById('notebookView')!).marginRight, 10),
+        fabShown: !document.getElementById('vidiFab')!.hidden,
+    }));
+    expect(min.bodyClass).toBe(false);
+    expect(min.nbMargin).toBe(0);
+    expect(min.fabShown).toBe(true);
+});
+
+test('the Vidi window drags by its header and the place sticks', async ({ page }) => {
+    // 1100px sits in the FLOATING band (721–1179): docked above it never drags
+    await page.setViewportSize({ width: 1100, height: 800 });
+    await openFirst(page);
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+
+    const before = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    const head = (await page.locator('#vidiHead').boundingBox())!;
+    await page.mouse.move(head.x + head.width / 2, head.y + head.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(head.x + head.width / 2 - 260, head.y + head.height / 2 - 220, { steps: 6 });
+    await page.mouse.up();
+
+    const after = (await page.locator('#pm-assistant-slot').boundingBox())!;
+    expect(before.x - after.x).toBeGreaterThan(180);
+    expect(before.y - after.y).toBeGreaterThan(150);
+
+    // the position persists in localStorage (guarded — file:// may block it)
+    const storageWorks = await page.evaluate(() => {
+        try { localStorage.setItem('pm_vidi_t', '1'); localStorage.removeItem('pm_vidi_t'); return true; }
+        catch { return false; }
+    });
+    if (storageWorks) {
+        await openFirst(page);
+        await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+        const kept = (await page.locator('#pm-assistant-slot').boundingBox())!;
+        expect(Math.abs(kept.x - after.x)).toBeLessThan(8);
+        expect(Math.abs(kept.y - after.y)).toBeLessThan(8);
+    }
+});
+
+test('the ask field and the mic exist exactly when the build has a chat base', async ({ page }) => {
+    await openFirst(page);
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    const r = await page.evaluate(() => ({
+        base: (window as any).PM_VIDI_BASE,
+        askRowHidden: document.getElementById('vidiAskRow')!.hidden,
+        micExists: document.getElementById('vidiMic') !== null,
+        sendExists: document.getElementById('vidiSend') !== null,
+    }));
+    // this suite runs the OFFLINE build: the row (mic + field + send inside it)
+    // must be absent here and present in any hosted build — same base, same row
+    expect(r.base).toBe('');
+    expect(r.askRowHidden).toBe(true);
+    expect(r.micExists).toBe(true);
+    expect(r.sendExists).toBe(true);
 });

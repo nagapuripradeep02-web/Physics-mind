@@ -256,6 +256,7 @@
     $('btnCatalog').hidden = !(nb || ee);
     var only = document.querySelectorAll('.nb-only');
     for (var i = 0; i < only.length; i++) only[i].hidden = !nb;
+    VidiPanel.syncView(nb);
   }
 
   /** ONE CARD = ONE QUESTION AT ONE LENGTH (founder, 2026-08-20 review). An
@@ -1722,6 +1723,9 @@
         lsSet('pm_vidi_history', JSON.stringify(history));
       },
       checkFor: function (qid) { return history[qid] || null; },
+      /** Window state {open, x, y} — position + open/minimized, per device. */
+      getWin: function () { try { return JSON.parse(lsGet('pm_vidi_win') || 'null'); } catch (e) { return null; } },
+      setWin: function (w) { lsSet('pm_vidi_win', JSON.stringify(w)); },
       log: log,
       flush: flush
     };
@@ -1760,18 +1764,29 @@
       return m;
     }
 
-    /** Tutor bubble with a short typing beat first. */
-    function say(text) {
+    /** Tutor bubble with a short typing beat first. extraDelay staggers a second
+        bubble so two messages land in order, like a person typing twice. */
+    function say(text, extraDelay) {
       var g = gen;
       var m = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
+      var hold = extraDelay || 0;
+      m.hidden = hold > 0;
       threadEl().appendChild(m);
       threadEl().scrollTop = threadEl().scrollHeight;
+      markUnread();
+      if (hold > 0) {
+        setTimeout(function () {
+          if (g !== gen) return;
+          m.hidden = false;
+          threadEl().scrollTop = threadEl().scrollHeight;
+        }, hold);
+      }
       setTimeout(function () {
         if (g !== gen) return;
         m.classList.remove('vidi-typing');
         m.textContent = text;
         threadEl().scrollTop = threadEl().scrollHeight;
-      }, Math.min(900, 250 + text.length * 3));
+      }, hold + Math.min(900, 250 + text.length * 3));
       return m;
     }
 
@@ -1801,6 +1816,8 @@
     }
 
     function greet() {
+      // Two beats, like a person: hello first, then what she knows about THIS one.
+      say('Hi, I am ' + Vidi.getName() + ' — your answer helper. How can I help you today?');
       var e = manifestEntry();
       var parts = [];
       var st = starsLine(e);
@@ -1812,8 +1829,7 @@
         if (asked) parts.push(asked + '.');
       }
       if (question.insider_note) parts.push(question.insider_note);
-      parts.push('Tap the page to start writing, or tap a button below.');
-      say(parts.join(' '));
+      if (parts.length) say(parts.join(' '), 800);
     }
 
     function currentStep() {
@@ -1824,7 +1840,12 @@
     function chipBtn(label, fn) {
       var b = el('button', 'vidi-chip', label);
       b.type = 'button';
-      b.addEventListener('click', fn);
+      // A tapped suggestion becomes the student's own message, then Vidi answers —
+      // the conversation reads back like a real chat, not a control panel.
+      b.addEventListener('click', function () {
+        bubble(label, 'student');
+        fn();
+      });
       return b;
     }
 
@@ -1984,6 +2005,127 @@
       });
     }
 
+    // ── the window: open/minimize + drag + persistence ──────────────────────
+    // The window is a body-level fixed element (never inside the rail), so the
+    // nb-only sweep in showView cannot manage it — syncView does, per view.
+
+    var winOpen = false;
+
+    function winEl() { return $('pm-assistant-slot'); }
+
+    function saveWin(patch) {
+      var w = Vidi.getWin() || {};
+      if (patch) for (var k in patch) if (Object.prototype.hasOwnProperty.call(patch, k)) w[k] = patch[k];
+      w.open = winOpen ? 1 : 0;
+      Vidi.setWin(w);
+    }
+
+    /** Re-apply a dragged position, clamped so the header can never leave reach. */
+    function applyStoredPos() {
+      var w = Vidi.getWin();
+      var el2 = winEl();
+      if (w && typeof w.x === 'number' && typeof w.y === 'number') {
+        el2.style.left = Math.max(6, Math.min(w.x, window.innerWidth - 90)) + 'px';
+        el2.style.top = Math.max(6, Math.min(w.y, window.innerHeight - 60)) + 'px';
+        el2.style.right = 'auto'; el2.style.bottom = 'auto';
+      }
+    }
+
+    /** ≥1180px the window docks as the third column and the notebook view yields
+        margin — the class drives that CSS, and the page column must re-fit since
+        no real resize event fires on a class toggle. */
+    function syncDock() {
+      document.body.classList.toggle('vidi-docked', winOpen && currentView === 'notebook');
+      fitNotebook();
+    }
+
+    function openWin() {
+      winOpen = true;
+      winEl().hidden = false;
+      $('vidiFab').hidden = true;
+      $('vidiFab').classList.remove('vf-unread');
+      applyStoredPos();
+      var t = threadEl(); t.scrollTop = t.scrollHeight;
+      saveWin(null);
+      syncDock();
+    }
+
+    function minWin() {
+      winOpen = false;
+      winEl().hidden = true;
+      if (currentView === 'notebook') $('vidiFab').hidden = false;
+      saveWin(null);
+      syncDock();
+    }
+
+    /** showView calls this: the window and the pill exist only in the notebook. */
+    function syncView(nb) {
+      if (!nb) { winEl().hidden = true; $('vidiFab').hidden = true; syncDock(); return; }
+      if (winOpen) { winEl().hidden = false; $('vidiFab').hidden = true; }
+      else { winEl().hidden = true; $('vidiFab').hidden = false; }
+      syncDock();
+    }
+
+    function markUnread() {
+      if (!winOpen) $('vidiFab').classList.add('vf-unread');
+    }
+
+    /** Dictation into the ask field — on-device SpeechRecognition, en-IN pinned
+        (Rule 30i), auto-sends on a final result. This is INPUT only: grading by
+        voice (the recall check) is a separate, deliberately unbuilt rung. */
+    function initMic() {
+      var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      var btn = $('vidiMic');
+      if (!SR) { btn.hidden = true; return; }
+      var rec = null;
+      var active = false;
+      btn.addEventListener('click', function () {
+        if (active) { try { rec.stop(); } catch (e) {} return; }
+        rec = new SR();
+        rec.lang = 'en-IN';
+        rec.interimResults = false;
+        rec.maxAlternatives = 1;
+        active = true;
+        btn.classList.add('rec');
+        rec.onresult = function (ev) {
+          var t = ev.results && ev.results[0] && ev.results[0][0] ? ev.results[0][0].transcript : '';
+          if (t) { $('vidiInput').value = t; vidiAsk(); }
+        };
+        rec.onend = function () { active = false; btn.classList.remove('rec'); };
+        rec.onerror = function () { active = false; btn.classList.remove('rec'); };
+        try { rec.start(); } catch (e) { active = false; btn.classList.remove('rec'); }
+      });
+    }
+
+    /** Drag by the header (desktop only — the phone sheet ignores position). */
+    function initDrag() {
+      var head = $('vidiHead');
+      var sx = 0, sy = 0, ox = 0, oy = 0, dragging = false;
+      head.addEventListener('pointerdown', function (e) {
+        if (e.target && e.target.id === 'vidiClose') return;
+        if (window.innerWidth <= 720) return;        // sheet: no drag
+        if (window.innerWidth >= 1180) return;       // docked column: no drag
+        var r = winEl().getBoundingClientRect();
+        dragging = true; sx = e.clientX; sy = e.clientY; ox = r.left; oy = r.top;
+        try { head.setPointerCapture(e.pointerId); } catch (err) {}
+        e.preventDefault();
+      });
+      head.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var el2 = winEl();
+        var x = Math.max(6, Math.min(ox + e.clientX - sx, window.innerWidth - el2.offsetWidth - 6));
+        var y = Math.max(6, Math.min(oy + e.clientY - sy, window.innerHeight - 52));
+        el2.style.left = x + 'px'; el2.style.top = y + 'px';
+        el2.style.right = 'auto'; el2.style.bottom = 'auto';
+      });
+      head.addEventListener('pointerup', function () {
+        if (!dragging) return;
+        dragging = false;
+        var r = winEl().getBoundingClientRect();
+        saveWin({ x: Math.round(r.left), y: Math.round(r.top) });
+      });
+    }
+
     // ── rename — offered ONCE, after the first completed self-check ─────────
 
     function offerRename() {
@@ -2015,19 +2157,24 @@
       syncName: syncName,
       onQuestion: function () {
         gen++;
-        var slot = $('pm-assistant-slot');
-        slot.hidden = false;
-        slot.classList.remove('vidi-sheet');
-        $('vidiClose').hidden = true;
         threadEl().innerHTML = '';
         recentMsgs = [];
         $('vidiAskRow').hidden = !VIDI_BASE || !online;
         greet();
         renderVidiChips();
+        // First question ever on this device: open the window once so the
+        // student MEETS Vidi. After that, respect what they chose.
+        var w = Vidi.getWin();
+        if (!w || w.open) openWin(); else minWin();
         Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
       },
       onStep: function () { renderVidiChips(); },
-      onCheckClosed: function (offer) { if (offer) offerRename(); },
+      onCheckClosed: function (offer) { if (offer) { openWin(); offerRename(); } },
+      openWin: openWin,
+      minWin: minWin,
+      syncView: syncView,
+      initDrag: initDrag,
+      initMic: initMic,
       ask: vidiAsk,
       saveRename: saveRename,
       keepRename: keepRename
@@ -2147,17 +2294,10 @@
 
   function initVidi() {
     VidiPanel.syncName();
-    $('vidiFab').addEventListener('click', function () {
-      var slot = $('pm-assistant-slot');
-      var open = !slot.classList.contains('vidi-sheet');
-      slot.classList.toggle('vidi-sheet', open);
-      $('vidiClose').hidden = !open;
-      if (open) slot.hidden = false;
-    });
-    $('vidiClose').addEventListener('click', function () {
-      $('pm-assistant-slot').classList.remove('vidi-sheet');
-      $('vidiClose').hidden = true;
-    });
+    VidiPanel.initDrag();
+    VidiPanel.initMic();
+    $('vidiFab').addEventListener('click', VidiPanel.openWin);
+    $('vidiClose').addEventListener('click', VidiPanel.minWin);
     $('vidiSend').addEventListener('click', VidiPanel.ask);
     $('vidiInput').addEventListener('keydown', function (e) {
       if (e.key === 'Enter') VidiPanel.ask();
