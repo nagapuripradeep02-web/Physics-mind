@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_si_base_quantities",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the seven fundamental quantities in the SI system and write their units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The seven quantities",
+      "marks": 1
+    },
+    {
+      "label": "Their units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quantities",
+        "kind": "text",
+        "label": "The seven quantities",
+        "marks": 1,
+        "mark_note": "The quantities",
+        "lines": [
+          "The seven fundamental quantities are length,",
+          "mass, time, electric current, temperature,",
+          "amount of substance and luminous intensity."
+        ],
+        "why": "These seven are independent of one another, so no one of them can be built from the rest. Every other unit in the SI system is built from these.",
+        "common_mistakes": [
+          "Including force or energy. Both are derived, not fundamental."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the seven are length, mass, time, current, temperature, amount of substance and luminous intensity.",
+          "accept": [
+            "length mass time",
+            "current temperature",
+            "amount of substance",
+            "luminous intensity"
+          ],
+          "reject": [
+            "force",
+            "energy"
+          ],
+          "heard_as": [
+            "seven",
+            "luminous intensity"
+          ]
+        },
+        "memory_tip": "Three mechanical (length, mass, time) then four more: current, temperature, mole, candela.",
+        "margin_note": "Count to seven before you stop writing."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "Their units",
+        "marks": 1,
+        "mark_note": "The units",
+        "lines": [
+          {
+            "text": "metre · kilogram · second · ampere",
+            "style": "boxed"
+          },
+          "kelvin · mole · candela",
+          "These seven are the SI base units."
+        ],
+        "why": "Pairing each unit with its quantity in the same order is what shows the list was understood rather than remembered as loose words.",
+        "common_mistakes": [
+          "Writing degree Celsius for temperature. The base unit is the kelvin.",
+          "Writing gram instead of kilogram. The base unit carries the kilo."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the units are metre, kilogram, second, ampere, kelvin, mole and candela.",
+          "accept": [
+            "metre kilogram second ampere",
+            "kelvin mole candela"
+          ],
+          "reject": [
+            "celsius",
+            "gram"
+          ],
+          "heard_as": [
+            "ampere",
+            "candela",
+            "kelvin"
+          ]
+        },
+        "memory_tip": "Kelvin not Celsius, kilogram not gram. Those are the two that get dropped marks.",
+        "margin_note": "Keep the order the same as the quantities above."
+      }
+    ]
+  },
+  "insider_note": "Seven pairs, two marks. Write them as a list of quantity and unit — a missing unit costs the second mark."
+}

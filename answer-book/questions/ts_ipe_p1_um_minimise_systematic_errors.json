@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_minimise_systematic_errors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How can systematic errors be minimised or eliminated?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why they need removing",
+      "marks": 1
+    },
+    {
+      "label": "The remedies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why",
+        "kind": "text",
+        "label": "Why they need removing",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "A systematic error shifts every reading in the",
+          "same direction, so taking more readings and",
+          "averaging does not remove it."
+        ],
+        "why": "Averaging cancels errors that change sign. A systematic error never changes sign, so the average carries the same shift as every single reading.",
+        "common_mistakes": [
+          "Saying they are removed by taking many readings. That reduces random errors, not systematic ones."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a systematic error shifts every reading the same way, so averaging cannot remove it.",
+          "accept": [
+            "same direction",
+            "averaging does not help",
+            "every reading shifted"
+          ],
+          "reject": [
+            "take more readings"
+          ],
+          "heard_as": [
+            "systematic",
+            "same direction"
+          ]
+        },
+        "memory_tip": "Averaging kills random errors only. A systematic error survives the average.",
+        "margin_note": "Say why first. It makes the remedies make sense."
+      },
+      {
+        "id": "s2_remedies",
+        "kind": "boxed_final",
+        "label": "The remedies",
+        "marks": 1,
+        "mark_note": "The remedies",
+        "lines": [
+          {
+            "text": "Improve the technique and the instrument",
+            "style": "boxed"
+          },
+          "Correct for a known zero error, choose a",
+          "better instrument, and remove personal bias",
+          "in reading the scale."
+        ],
+        "why": "Each remedy attacks the source rather than the readings: a zero error is corrected, a coarse instrument is replaced, an observer bias is trained out.",
+        "common_mistakes": [
+          "Giving only one remedy when the question says \"minimised or eliminated\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That they are reduced by better technique, better instruments, correcting zero error and removing personal bias.",
+          "accept": [
+            "better instrument",
+            "zero error",
+            "personal bias",
+            "improve technique"
+          ],
+          "reject": [
+            "average the readings"
+          ],
+          "heard_as": [
+            "zero error",
+            "better instrument"
+          ]
+        },
+        "memory_tip": "Fix the SOURCE: zero error, instrument, observer. Not the arithmetic.",
+        "margin_note": "Three short remedies are plenty at 2 marks."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. Systematic errors are the ones averaging cannot remove — say that, then list the remedies."
+}

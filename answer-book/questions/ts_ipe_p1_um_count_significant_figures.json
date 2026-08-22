@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_count_significant_figures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the number of significant figures in the following: a) 6729  b) 0.024  c) 0.08240  d) 6.032  e) 4.57 × 10⁸",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rules used",
+      "marks": 1
+    },
+    {
+      "label": "The five answers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rules used",
+        "marks": 1,
+        "mark_note": "The rules",
+        "lines": [
+          "Zeros before the first non-zero digit are not",
+          "significant. Zeros after it are significant.",
+          "In a × 10ⁿ form only the digits of a count."
+        ],
+        "why": "A leading zero only places the decimal point, so it carries no information about the measurement. A trailing zero was actually read off the instrument, so it does.",
+        "common_mistakes": [
+          "Counting the leading zeros in 0.024 and calling it four significant figures."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That leading zeros are not significant, trailing zeros after a non-zero digit are, and in scientific notation only the digits of the number count.",
+          "accept": [
+            "leading zeros not significant",
+            "trailing zeros significant",
+            "only the digits before the power"
+          ],
+          "reject": [
+            "all zeros count"
+          ],
+          "heard_as": [
+            "leading zeros",
+            "significant"
+          ]
+        },
+        "memory_tip": "Leading zeros only place the point. Trailing zeros were really measured.",
+        "margin_note": "One rule line covers all five parts."
+      },
+      {
+        "id": "s2_answers",
+        "kind": "boxed_final",
+        "label": "The five answers",
+        "marks": 1,
+        "mark_note": "The answers",
+        "lines": [
+          "a) 6729 → 4      b) 0.024 → 2",
+          "c) 0.08240 → 4   d) 6.032 → 4",
+          {
+            "text": "e) 4.57 × 10⁸ → 3",
+            "style": "boxed"
+          }
+        ],
+        "why": "In 0.08240 the two leading zeros do not count but the final zero does, which is why it is four and not three or six.",
+        "common_mistakes": [
+          "Counting the power of ten in 4.57 × 10⁸ as extra significant figures."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answers are four, two, four, four and three.",
+          "accept": [
+            "four two four four three"
+          ],
+          "reject": [
+            "four four four four four"
+          ],
+          "heard_as": [
+            "four",
+            "two",
+            "three"
+          ]
+        },
+        "memory_tip": "0.08240 is the tricky one: leading zeros out, the last zero in — four.",
+        "margin_note": "Write all five. Each one is quick."
+      }
+    ]
+  },
+  "insider_note": "Five sub-parts, two marks. Write the rule once, then answer all five — do not spend the space explaining each one."
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_uniform_vs_nonuniform_motion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between uniform and non-uniform motion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Uniform motion",
+      "marks": 1
+    },
+    {
+      "label": "Non-uniform motion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_uniform",
+        "kind": "text",
+        "label": "Uniform motion",
+        "marks": 1,
+        "mark_note": "Uniform",
+        "lines": [
+          "In uniform motion a body covers equal",
+          "distances in equal intervals of time,",
+          "however small those intervals are.",
+          "Its x–t graph is a straight line."
+        ],
+        "why": "The phrase \"however small the interval\" is what rules out a body that averages the same speed while speeding up and slowing down within each interval.",
+        "common_mistakes": [
+          "Leaving out \"equal intervals of time\", which is what makes the definition precise."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in uniform motion equal distances are covered in equal intervals of time and the position time graph is a straight line.",
+          "accept": [
+            "equal distances in equal times",
+            "straight line graph"
+          ],
+          "reject": [
+            "moves in a straight path"
+          ],
+          "heard_as": [
+            "uniform",
+            "equal intervals"
+          ]
+        },
+        "memory_tip": "Uniform is about equal distances in equal TIMES, not about a straight path.",
+        "margin_note": "The words \"however small\" are worth including."
+      },
+      {
+        "id": "s2_nonuniform",
+        "kind": "boxed_final",
+        "label": "Non-uniform motion",
+        "marks": 1,
+        "mark_note": "Non-uniform",
+        "lines": [
+          {
+            "text": "Non-uniform motion covers unequal distances",
+            "style": "boxed"
+          },
+          "in equal intervals of time. Its x–t graph is a",
+          "curve, and its velocity changes, so it has an",
+          "acceleration."
+        ],
+        "why": "A curved position–time graph means the slope is changing, and the slope is the velocity, so a curve is the signature of acceleration.",
+        "common_mistakes": [
+          "Saying non-uniform motion means the body moves along a curved path. The path and the graph are different things."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That non-uniform motion covers unequal distances in equal times, has a curved position time graph and has acceleration.",
+          "accept": [
+            "unequal distances",
+            "curved graph",
+            "acceleration"
+          ],
+          "reject": [
+            "curved path"
+          ],
+          "heard_as": [
+            "non-uniform",
+            "curve"
+          ]
+        },
+        "memory_tip": "Curved x–t graph means changing slope, and slope is velocity — so there is acceleration.",
+        "margin_note": "Graph shape, not path shape."
+      }
+    ]
+  },
+  "insider_note": "Equal distances in equal intervals is the phrase the examiner wants. Give the graph shape for each."
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_roof_jump_range",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A man runs across the roof of a tall building and jumps horizontally on to the lower roof of an adjacent building. If his speed is 9 m s⁻¹, the horizontal distance between the buildings is 10 m and the height difference between the roofs is 9 m, will he be able to land on the next building? (take g = 10 m s⁻²)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The fall time",
+      "marks": 2
+    },
+    {
+      "label": "The horizontal range",
+      "marks": 1
+    },
+    {
+      "label": "The verdict",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. SECTION NOTE: the Fastrack files this as PROBLEM 3 in its problems section, but the TSBIE Basic Learning Material lists it as Short Answer question 5 (p.5). A book sources it as an SAQ, so it ships as one — the same promotion precedent as the Unit 8 problem the AP paper asked. The other three Fastrack problems for this unit stay deferred."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_time",
+        "kind": "equation",
+        "label": "The fall time",
+        "marks": 2,
+        "mark_note": "Fall time",
+        "lines": [
+          "He leaves horizontally, so his initial vertical",
+          "velocity is zero and he falls h = 9 m.",
+          "h = ½g t²  ⇒  9 = ½ × 10 × t²",
+          {
+            "text": "t = √(2h/g) = √(18/10) = √1.8 s",
+            "style": "eq"
+          }
+        ],
+        "why": "The horizontal speed plays no part in the fall, so the time in the air is fixed entirely by the 9 m drop.",
+        "common_mistakes": [
+          "Using the 9 m s⁻¹ speed in the vertical equation. The 9 m and the 9 m s⁻¹ are different quantities that happen to share a number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fall time comes from h equals half g t squared, giving t as root 1.8 seconds.",
+          "accept": [
+            "half g t squared",
+            "root two h by g",
+            "root one point eight"
+          ],
+          "reject": [
+            "use nine metres per second"
+          ],
+          "heard_as": [
+            "t equals",
+            "root"
+          ]
+        },
+        "memory_tip": "The drop sets the clock. 9 m and 9 m s⁻¹ share a digit and nothing else.",
+        "margin_note": "Two marks. Keep √1.8 rather than rounding early."
+      },
+      {
+        "id": "s2_range",
+        "kind": "equation",
+        "label": "The horizontal range",
+        "marks": 1,
+        "mark_note": "Range",
+        "lines": [
+          "Horizontally he moves at a constant 9 m s⁻¹:",
+          "R = u t = 9 × √1.8",
+          {
+            "text": "R = 9 × 1.34 = 12.06 m",
+            "style": "eq"
+          }
+        ],
+        "why": "There is no horizontal acceleration, so the horizontal distance is simply speed multiplied by the time already found.",
+        "common_mistakes": [
+          "Applying an acceleration horizontally. Nothing pushes him forward or back once he leaves the roof."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the horizontal range is u times t, which is 9 times root 1.8, about 12.06 metres.",
+          "accept": [
+            "u t",
+            "twelve point zero six",
+            "about twelve metres"
+          ],
+          "reject": [
+            "horizontal acceleration"
+          ],
+          "heard_as": [
+            "range",
+            "twelve"
+          ]
+        },
+        "memory_tip": "No horizontal force, so R = u × t. Nothing more.",
+        "margin_note": "Carry the number to two decimals before comparing."
+      },
+      {
+        "id": "s3_verdict",
+        "kind": "boxed_final",
+        "label": "The verdict",
+        "marks": 1,
+        "mark_note": "Verdict",
+        "lines": [
+          "Required distance = 10 m, available R = 12.06 m",
+          {
+            "text": "R > 10 m, so yes, he lands on the roof",
+            "style": "boxed"
+          }
+        ],
+        "why": "The comparison is the answer to the question. A range without a comparison leaves the question unanswered.",
+        "common_mistakes": [
+          "Stopping at R = 12.06 m and never comparing it with the 10 m gap."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range of about 12 metres exceeds the 10 metre gap, so he does land on the next building.",
+          "accept": [
+            "greater than ten",
+            "yes he lands",
+            "R exceeds the gap"
+          ],
+          "reject": [
+            "he falls short"
+          ],
+          "heard_as": [
+            "yes",
+            "greater than"
+          ]
+        },
+        "memory_tip": "Always compare with the 10 m gap. The comparison IS the answer.",
+        "margin_note": "Write both numbers side by side, then the verdict."
+      }
+    ]
+  },
+  "insider_note": "The TSBIE material lists this as a Short Answer question, so it is worth full working. Compare the range with 10 m and give a verdict."
+}

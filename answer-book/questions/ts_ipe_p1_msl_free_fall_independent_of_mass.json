@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that in free fall the acceleration of a body does not depend on its mass.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two forces",
+      "marks": 1
+    },
+    {
+      "label": "The cancellation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_force",
+        "kind": "equation",
+        "label": "The force and the law",
+        "marks": 1,
+        "mark_note": "The force",
+        "lines": [
+          "In free fall the only force is the weight:",
+          {
+            "text": "F = m g",
+            "style": "eq"
+          },
+          "and by Newton’s second law F = m a."
+        ],
+        "why": "The same m appears on both sides because the mass that feels gravity and the mass that resists acceleration are the same quantity.",
+        "common_mistakes": [
+          "Including air resistance. Free fall means gravity alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in free fall the only force is m g and Newton’s second law gives F equals m a.",
+          "accept": [
+            "m g",
+            "F equals m a",
+            "only gravity"
+          ],
+          "reject": [
+            "air resistance"
+          ],
+          "heard_as": [
+            "m g",
+            "m a"
+          ]
+        },
+        "memory_tip": "The same m sits on both sides. That is why it can cancel.",
+        "margin_note": "Write both expressions before equating them."
+      },
+      {
+        "id": "s2_cancel",
+        "kind": "boxed_final",
+        "label": "The cancellation",
+        "marks": 1,
+        "mark_note": "Cancellation",
+        "lines": [
+          "m a = m g, and m is not zero, so",
+          {
+            "text": "a = g, independent of the mass m",
+            "style": "boxed"
+          },
+          "A heavy body and a light body dropped",
+          "together reach the ground at the same time."
+        ],
+        "why": "Because m divides out, the acceleration is the same number for every body, which is why a coin and a feather fall together once air is removed.",
+        "common_mistakes": [
+          "Saying heavier bodies fall faster. They feel a larger force but also resist it more, and the two effects cancel exactly."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m cancels, so a equals g and the acceleration does not depend on the mass.",
+          "accept": [
+            "m cancels",
+            "a equals g",
+            "independent of mass"
+          ],
+          "reject": [
+            "heavier falls faster"
+          ],
+          "heard_as": [
+            "cancels",
+            "a equals g"
+          ]
+        },
+        "memory_tip": "Bigger mass means bigger pull AND bigger resistance. They cancel exactly.",
+        "margin_note": "Say \"m is not zero\" before dividing."
+      }
+    ]
+  },
+  "insider_note": "The mass cancels in one line. Write that cancellation out — it is the whole answer."
+}

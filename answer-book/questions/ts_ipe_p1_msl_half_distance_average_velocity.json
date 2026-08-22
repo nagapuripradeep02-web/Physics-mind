@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_half_distance_average_velocity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A vehicle travels half the distance L with speed V₁ and the other half with speed V₂. What is its average velocity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two times",
+      "marks": 1
+    },
+    {
+      "label": "The average",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_times",
+        "kind": "equation",
+        "label": "The two times",
+        "marks": 1,
+        "mark_note": "The times",
+        "lines": [
+          "Each half covers a distance L/2, so",
+          {
+            "text": "t₁ = L/(2V₁)   and   t₂ = L/(2V₂)",
+            "style": "eq"
+          },
+          "Average speed = total distance ÷ total time."
+        ],
+        "why": "The two halves take different times, so the slower half occupies more of the journey. That is why the two speeds cannot simply be averaged.",
+        "common_mistakes": [
+          "Assuming each half takes the same time, which leads to the wrong answer (V₁+V₂)/2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each half is L over two, so the times are L over two V one and L over two V two.",
+          "accept": [
+            "L by 2 V one",
+            "total distance by total time"
+          ],
+          "reject": [
+            "equal times"
+          ],
+          "heard_as": [
+            "t one",
+            "t two",
+            "total time"
+          ]
+        },
+        "memory_tip": "Equal DISTANCES, not equal times. The slower half takes more time.",
+        "margin_note": "Write both times before combining them."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The average",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          "⟨v⟩ = L / (t₁ + t₂) = L / [L/(2V₁) + L/(2V₂)]",
+          {
+            "text": "⟨v⟩ = 2V₁V₂ / (V₁ + V₂)",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the harmonic mean of the two speeds, and it always comes out smaller than the ordinary average, because more time is spent at the slower speed.",
+        "common_mistakes": [
+          "Writing (V₁+V₂)/2, which would be right only if the two halves took equal TIMES."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the average velocity is two V one V two divided by V one plus V two.",
+          "accept": [
+            "two V one V two by V one plus V two",
+            "harmonic mean"
+          ],
+          "reject": [
+            "V one plus V two by two"
+          ],
+          "heard_as": [
+            "two V one V two",
+            "harmonic"
+          ]
+        },
+        "memory_tip": "Equal distances give 2V₁V₂/(V₁+V₂). Equal times would give (V₁+V₂)/2.",
+        "margin_note": "L cancels. Show it cancelling."
+      }
+    ]
+  },
+  "insider_note": "A 3-star cell. The answer is the harmonic mean, not (V₁+V₂)/2 — equal DISTANCES, not equal times."
+}

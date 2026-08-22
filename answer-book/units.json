@@ -1,6 +1,386 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it.",
   "units": [
+    {
+      "number": 2,
+      "name": "Units and Measurements",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Distinguish between accuracy and precision.",
+          "question_id": "ts_ipe_p1_um_accuracy_vs_precision"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "What are the different types of errors that can occur in a measurement?",
+          "question_id": "ts_ipe_p1_um_types_of_errors"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Distinguish between fundamental units and derived units.",
+          "question_id": "ts_ipe_p1_um_fundamental_vs_derived_units"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Express unified atomic mass unit in kg.",
+          "question_id": "ts_ipe_p1_um_unified_atomic_mass_unit"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "What is dimensional analysis?",
+          "question_id": "ts_ipe_p1_um_dimensional_analysis"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "The velocity of a body is given by v = At² + Bt + C. If v and t are expressed in SI units, what are the units of A, B and C?",
+          "question_id": "ts_ipe_p1_um_units_of_a_b_c"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 1,
+          "text": "State the number of significant figures in the following: a) 6729  b) 0.024  c) 0.08240  d) 6.032  e) 4.57 × 10⁸",
+          "question_id": "ts_ipe_p1_um_count_significant_figures"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "How can systematic errors be minimised or eliminated?",
+          "question_id": "ts_ipe_p1_um_minimise_systematic_errors"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The error in the measurement of the radius of a sphere is 1%. What is the error in the measurement of its volume?",
+          "question_id": "ts_ipe_p1_um_sphere_volume_error"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
+          "question_id": "ts_ipe_p1_um_kinetic_energy_error"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What are significant figures and what do they represent when reporting the result of a measurement?",
+          "question_id": "ts_ipe_p1_um_significant_figures_meaning"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Why do we have different units for the same physical quantity?",
+          "question_id": "ts_ipe_p1_um_different_units_same_quantity",
+          "source": "blm"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Which of the following physical quantities has no dimensions: angular velocity, angular acceleration, angular displacement, stress?",
+          "question_id": "ts_ipe_p1_um_dimensionless_quantity",
+          "source": "ap_2026_paper"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write the physical quantities that have J m⁻¹ and J m⁻² as their units.",
+          "question_id": "ts_ipe_p1_um_quantities_jm1_jm2",
+          "source": "ap_2026_paper"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Name the seven fundamental quantities in the SI system and write their units.",
+          "question_id": "ts_ipe_p1_um_si_base_quantities",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Write the dimensional formulae of work, power and pressure.",
+          "question_id": "ts_ipe_p1_um_dimensional_formulae_set",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "State the principle of homogeneity of dimensions.",
+          "question_id": "ts_ipe_p1_um_principle_of_homogeneity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Check the correctness of the equation v² = u² + 2as using dimensional analysis.",
+          "question_id": "ts_ipe_p1_um_check_equation_by_dimensions",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Using dimensional analysis, derive an expression for the time period of a simple pendulum.",
+          "question_id": "ts_ipe_p1_um_derive_pendulum_period",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "What are the limitations of dimensional analysis?",
+          "question_id": "ts_ipe_p1_um_limitations_dimensional_analysis",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "State the rules for rounding off a measurement to the correct number of significant figures.",
+          "question_id": "ts_ipe_p1_um_rounding_rules",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define the astronomical unit, the light year and the parsec.",
+          "question_id": "ts_ipe_p1_um_units_of_large_distances",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Motion in a Straight Line",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 1,
+          "text": "The states of rest and motion are relative. Explain.",
+          "question_id": "ts_ipe_p1_msl_rest_and_motion_relative"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "How is average velocity different from instantaneous velocity?",
+          "question_id": "ts_ipe_p1_mp_average_instantaneous_velocity",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Give an example where the velocity of an object is zero but the acceleration is not zero.",
+          "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A vehicle travels half the distance L with speed V₁ and the other half with speed V₂. What is its average velocity?",
+          "question_id": "ts_ipe_p1_msl_half_distance_average_velocity"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is the value of the acceleration of a freely falling body?",
+          "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
+          "source": "ap_2026_paper"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Derive the equation s = ut + ½at² using the graphical method.",
+          "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "A particle moves in a straight line with uniform acceleration. Its velocity at time t = 0 is v₁ and at time t = t is v₂. The average velocity of the particle in this time interval is (v₁ + v₂)/2. Is this statement true or false? Substantiate your answer.",
+          "question_id": "ts_ipe_p1_msl_average_velocity_uniform_acceleration"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Can the velocity of an object be in a direction other than the direction of acceleration of the object? Explain.",
+          "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "The instantaneous speed is always equal to the magnitude of the instantaneous velocity. Why?",
+          "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 1,
+          "text": "A ball is dropped from the roof of a tall building and simultaneously another ball is thrown horizontally with some velocity from the same roof. Which ball lands first? Explain your answer.",
+          "question_id": "ts_ipe_p1_msl_dropped_vs_horizontal_ball"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "A parachutist flying in an aeroplane jumps when it is at a height of 3 km above the ground. He opens his parachute when he is about 1 km above the ground. Describe his motion.",
+          "question_id": "ts_ipe_p1_msl_parachutist_motion"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Explain the terms average velocity and instantaneous velocity. When are they equal?",
+          "question_id": "ts_ipe_p1_mp_average_instantaneous_velocity",
+          "cut": "saq",
+          "source": "blm"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "A man runs across the roof of a tall building and jumps horizontally on to the lower roof of an adjacent building. If his speed is 9 m s⁻¹, the horizontal distance between the buildings is 10 m and the height difference between the roofs is 9 m, will he be able to land on the next building? (take g = 10 m s⁻²)",
+          "question_id": "ts_ipe_p1_msl_roof_jump_range",
+          "source": "blm"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Distinguish between distance and displacement.",
+          "question_id": "ts_ipe_p1_msl_distance_vs_displacement",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Distinguish between speed and velocity.",
+          "question_id": "ts_ipe_p1_msl_speed_vs_velocity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Distinguish between uniform and non-uniform motion.",
+          "question_id": "ts_ipe_p1_msl_uniform_vs_nonuniform_motion",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Show that in free fall the acceleration of a body does not depend on its mass.",
+          "question_id": "ts_ipe_p1_msl_free_fall_independent_of_mass",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Derive the equation v = u + at using the graphical method.",
+          "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "When is the average speed of a body equal to the magnitude of its average velocity?",
+          "question_id": "ts_ipe_p1_msl_average_speed_equals_velocity_when",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is stopping distance? On what factors does it depend?",
+          "question_id": "ts_ipe_p1_msl_stopping_distance",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Derive the equation v² = u² + 2as.",
+          "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+          "source": "enumerated"
+        }
+      ]
+    },
     {
       "number": 4,
       "name": "Motion in a Plane",
@@ -81,14 +461,6 @@
           "stars": 0,
           "text": "Two balls are projected from the same point in directions 30° and 60° with respect to the horizontal. What is the ratio of their initial velocities if they (a) attain the same height (b) have the same range?",
           "question_id": "ts_ipe_p1_mp_two_balls_30_60"
-        },
-        {
-          "ref": "saq8",
-          "section": "SAQ",
-          "number": 8,
-          "stars": 0,
-          "text": "Explain the terms average velocity and instantaneous velocity. When are they equal?",
-          "question_id": "ts_ipe_p1_mp_average_instantaneous_velocity"
         },
         {
           "ref": "saq9",

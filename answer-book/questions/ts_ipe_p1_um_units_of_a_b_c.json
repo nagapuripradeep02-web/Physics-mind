@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_units_of_a_b_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The velocity of a body is given by v = At² + Bt + C. If v and t are expressed in SI units, what are the units of A, B and C?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The three units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "By the principle of homogeneity, every term",
+          "added together must have the same units:",
+          {
+            "text": "[v] = [At²] = [Bt] = [C]",
+            "style": "eq"
+          },
+          "and v is in m s⁻¹, t is in s."
+        ],
+        "why": "Only quantities of the same kind can be added, so each term of the sum must carry the units of v. That single statement turns the problem into three small divisions.",
+        "common_mistakes": [
+          "Trying to find A, B and C from the numbers instead of from the units."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by the principle of homogeneity each term has the same units as v.",
+          "accept": [
+            "principle of homogeneity",
+            "each term same units",
+            "same dimensions"
+          ],
+          "reject": [
+            "substitute numbers"
+          ],
+          "heard_as": [
+            "homogeneity",
+            "same units"
+          ]
+        },
+        "memory_tip": "Only like terms add. Every term in the sum must have the units of v.",
+        "margin_note": "Name the principle. It is the reason the rest works."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "The three units",
+        "marks": 1,
+        "mark_note": "The units",
+        "lines": [
+          "[At²] = m s⁻¹ ⇒ [A] = m s⁻³",
+          "[Bt] = m s⁻¹ ⇒ [B] = m s⁻²",
+          {
+            "text": "[C] = m s⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each line divides the units of v by the units of the t attached to it, so A has two fewer seconds than v, B has one fewer, and C has the same.",
+        "common_mistakes": [
+          "Giving all three the same unit. Each term carries a different power of t.",
+          "Writing A as m s⁻² and B as m s⁻³, which is the two swapped."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is metre per second cubed, B is metre per second squared, and C is metre per second.",
+          "accept": [
+            "m s minus three",
+            "m s minus two",
+            "m s minus one"
+          ],
+          "reject": [
+            "all the same unit"
+          ],
+          "heard_as": [
+            "A is",
+            "B is",
+            "C is"
+          ]
+        },
+        "memory_tip": "A is divided by t², so its unit has two fewer seconds. B has one fewer. C has the same as v.",
+        "margin_note": "Three short lines. Show the division each time."
+      }
+    ]
+  },
+  "insider_note": "This is the principle of homogeneity used as a tool. Name the principle in the first line — it is what the examiner is checking."
+}

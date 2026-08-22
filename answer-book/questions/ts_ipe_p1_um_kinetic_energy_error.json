@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_kinetic_energy_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation used",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation used",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Kinetic energy K = ½ m v², so K ∝ m v².",
+          "For a maximum error the terms are added:",
+          {
+            "text": "(ΔK/K)×100 = (Δm/m)×100 + 2(Δv/v)×100",
+            "style": "eq"
+          }
+        ],
+        "why": "The worst case is when both errors push the answer the same way, so the maximum is found by adding, never by subtracting.",
+        "common_mistakes": [
+          "Subtracting the two errors, which gives the smallest error rather than the maximum.",
+          "Forgetting the factor 2 on the speed term."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That kinetic energy goes as m v squared, so the error is the mass error plus twice the speed error.",
+          "accept": [
+            "m v squared",
+            "twice the speed error",
+            "add them"
+          ],
+          "reject": [
+            "subtract"
+          ],
+          "heard_as": [
+            "twice",
+            "add"
+          ]
+        },
+        "memory_tip": "v is squared, so its error is doubled. Maximum error means ADD.",
+        "margin_note": "The word \"maximum\" is why the terms add."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          "= 2% + 2 × 3% = 2% + 6%",
+          {
+            "text": "∴ maximum error in K = 8%",
+            "style": "boxed"
+          }
+        ],
+        "why": "The speed contributes 6 of the 8 percent, which shows why a careful speed measurement matters more here than a careful mass measurement.",
+        "common_mistakes": [
+          "Getting 5% by leaving out the factor 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum error in the kinetic energy is eight percent.",
+          "accept": [
+            "eight percent",
+            "8%"
+          ],
+          "reject": [
+            "five percent"
+          ],
+          "heard_as": [
+            "eight percent"
+          ]
+        },
+        "memory_tip": "2% + 6% = 8%. The 6 is the doubled speed error.",
+        "margin_note": "Show the 2 × 3% step so the 6% is visible."
+      }
+    ]
+  },
+  "insider_note": "Speed is squared, so its error doubles. Errors always add for a maximum — never subtract."
+}

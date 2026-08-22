@@ -1,0 +1,298 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_dropped_vs_horizontal_ball",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A ball is dropped from the roof of a tall building and simultaneously another ball is thrown horizontally with some velocity from the same roof. Which ball lands first? Explain your answer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The figure",
+      "marks": 1
+    },
+    {
+      "label": "The dropped ball",
+      "marks": 1
+    },
+    {
+      "label": "The thrown ball",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "fig_two_balls",
+          "width": 360,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "tower",
+              "d": "M 70 50 L 70 250",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 30 250 L 340 250",
+              "ms": 380
+            },
+            {
+              "type": "label",
+              "id": "lbl_ground",
+              "x": 292,
+              "y": 268,
+              "text": "ground",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_roof",
+              "x": 34,
+              "y": 44,
+              "text": "roof",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "path_a",
+              "d": "M 70 50 L 70 244",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "head_a",
+              "d": "M 64 234 L 70 244 L 76 234",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 44,
+              "y": 150,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_u0",
+              "x": 84,
+              "y": 96,
+              "text": "u = 0",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "path_b",
+              "d": "M 70 50 Q 200 60 268 244",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "head_b",
+              "d": "M 258 232 L 268 244 L 272 230",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 276,
+              "y": 192,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_ux",
+              "x": 128,
+              "y": 40,
+              "text": "u horizontal",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 20,
+              "y": 214,
+              "text": "h",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Drawing both paths from the same roof to the same ground makes it visible that the two share the same height h and the same vertical start.",
+        "common_mistakes": [
+          "Drawing the thrown ball starting lower than the dropped one. Both leave the same roof."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That both balls leave the same roof at height h, one falling straight down and one following a curved path.",
+          "accept": [
+            "same roof",
+            "height h",
+            "curved path"
+          ],
+          "reject": [
+            "different heights"
+          ],
+          "heard_as": [
+            "figure",
+            "roof",
+            "h"
+          ]
+        },
+        "memory_tip": "Same roof, same h, two paths. The shared h is the point of the picture.",
+        "margin_note": "Label h once, on the tower."
+      },
+      {
+        "id": "s2_dropped",
+        "kind": "equation",
+        "label": "The dropped ball",
+        "marks": 1,
+        "mark_note": "Ball A",
+        "lines": [
+          "For the dropped ball, initial vertical velocity",
+          "u = 0, acceleration a = g, displacement = h.",
+          "From s = ut + ½at²:  h = ½g t₁²",
+          {
+            "text": "t₁ = √(2h/g)",
+            "style": "eq"
+          }
+        ],
+        "why": "Starting from rest removes the ut term, so the whole height is covered by the ½gt² term alone.",
+        "common_mistakes": [
+          "Using v² = u² + 2as when the question asks for a TIME. That equation has no t in it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for the dropped ball h equals half g t one squared, so t one is root two h by g.",
+          "accept": [
+            "half g t squared",
+            "root two h by g"
+          ],
+          "reject": [
+            "v squared equals u squared plus two a s"
+          ],
+          "heard_as": [
+            "t one",
+            "root two h by g"
+          ]
+        },
+        "memory_tip": "Dropped means u = 0, so h = ½gt² and t = √(2h/g).",
+        "margin_note": "Write u = 0 explicitly. It is why the first term vanishes."
+      },
+      {
+        "id": "s3_thrown",
+        "kind": "equation",
+        "label": "The thrown ball",
+        "marks": 1,
+        "mark_note": "Ball B",
+        "lines": [
+          "For the thrown ball the VERTICAL motion is",
+          "the same: initial vertical velocity uᵧ = 0,",
+          "acceleration g, displacement h.",
+          {
+            "text": "h = ½g t₂²  so  t₂ = √(2h/g)",
+            "style": "eq"
+          }
+        ],
+        "why": "A horizontal throw gives the ball horizontal velocity only, so its vertical motion starts from rest exactly like the dropped ball.",
+        "common_mistakes": [
+          "Including the horizontal speed u in the vertical equation. The two directions are independent."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the thrown ball has zero initial vertical velocity, so t two is also root two h by g.",
+          "accept": [
+            "vertical velocity is zero",
+            "root two h by g",
+            "independent"
+          ],
+          "reject": [
+            "horizontal speed affects the fall"
+          ],
+          "heard_as": [
+            "t two",
+            "vertical",
+            "zero"
+          ]
+        },
+        "memory_tip": "Horizontal and vertical are independent. The throw is all horizontal, so the fall is unchanged.",
+        "margin_note": "The word \"vertical\" must appear here."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "t₁ = t₂, so both balls land at the same time",
+            "style": "boxed"
+          },
+          "The thrown ball travels further, but it does",
+          "not stay in the air any longer."
+        ],
+        "why": "Landing together while covering different distances is what makes this a memorable result, and it is the point the examiner is testing.",
+        "common_mistakes": [
+          "Answering that the dropped ball lands first because its path is shorter. Path length does not set the fall time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two times are equal, so both balls land at the same time.",
+          "accept": [
+            "same time",
+            "t one equals t two",
+            "together"
+          ],
+          "reject": [
+            "dropped ball lands first"
+          ],
+          "heard_as": [
+            "same time",
+            "together"
+          ]
+        },
+        "memory_tip": "Different distances, same time. Only the vertical motion sets the clock.",
+        "margin_note": "Answer the question asked: which lands first."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. The answer is that they land together — the horizontal throw does not change the vertical fall."
+}

@@ -1,5 +1,55 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📐 SESSION — Answer Book: **UNITS 2 + 3 OPEN THE BOOK BACKWARDS — 43 new cards, both at the full depth bar, and the first RE-HOME** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: eight chapters, 204 catalog entries, 198 files. Unit 2 "Units and Measurements" ships 22 entries and Unit 3 "Motion in a Straight Line" ships 21 — authored backwards from the Unit-10 roadmap on founder request. Both units ship at the FULL complete-for-its-size bar (founder call this session): `memory_tip`, `margin_note` and `insider_note` at 100%, against 25–48% / 0–67% / 3–17% in Units 4–9. They are the first units in the bank that are born finished. Both source books were READ DIRECTLY (Fastrack pp.4-8, TSBIE BLM pp.2-5) — no transcription of these units existed — and the two-book union check produced TWO more shapes. Verified: `build:answers` green · tsc 0 · vitest 405/405 · `smoke:answers` 36/36 at 198 questions · 204 Vidi contexts all clear the 10,000-char slice.**
+
+### The union check found two new shapes, taking the tally to six across eight units
+- **Unit 2 — both books VSAQ-ONLY.** The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new ("Why do we have different units for the same physical quantity?" → `source:"blm"`). Neither book has a Short Answer or Long Answer section, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form was invented.
+- **Unit 3 — each book holds a whole SECTION the other lacks.** The Fastrack (pp.6-8) has VSAQ + SAQ + PROBLEMS and no LAQ; the BLM (pp.4-5) has a Short Answer section **only**, with no VSAQ section at all.
+- **Four of eight units now have no Section C in either book.** The standing rule holds: invent an 8-mark form only when a book sources one.
+
+### The AP March 2026 paper paid for itself a fourth and fifth time
+Page 1 of 3 is still the only page available, and it yielded **four** Unit 2/3 cells neither book lists: Q1 (which quantity has no dimensions), Q4 (value of g in free fall), Q10 (quantities with units J m⁻¹ and J m⁻²) — all authored as `source:"ap_2026_paper"` — and Q11 (rest and motion are relative), which turned out to be exactly Fastrack Unit 3 VSAQ 1, so it ships as a Fastrack card carrying an `appearances[]` record instead.
+
+### A PROBLEM was promoted for the second time
+The BLM lists the roof-jump (9 m s⁻¹, 10 m gap, 9 m drop) as **Short Answer 5**; the Fastrack files the same question as **PROBLEM 3**. A book sources it as an SAQ, so it ships as one — the same precedent as the Unit 8 problem the AP paper asked. Fastrack problems 1, 2 and 4 stay deferred per the standing founder rule. **That is two for two**: every time a deferred problem has been cross-checked, another source has turned out to ask it as a real question.
+
+### The first RE-HOME, and why the id did not change
+`ts_ipe_p1_mp_average_instantaneous_velocity` was filed under **Unit 4** by the AP-paper session, before Unit 3 existed. Both books put it in Unit 3 — and they **disagree on its section**: Fastrack VSAQ 2 (3 stars, p.6) against BLM Short Answer 1 (p.4). It moved to Unit 3 and gained `cuts[]`, so it now appears **twice in one unit at two lengths** (vsaq2 at 2 marks, saq7 at 4 marks `source:"blm"`) — the bank's 5th multi-cut question, and the first where the cut exists because two books disagree rather than because one book asks twice. **The `question_id` keeps its `mp_` prefix**: ids are stable forever, and renaming would have broken its AP-2026 appearance record. A stale prefix is history, not a defect — the same reasoning as the `peter_parker:renderer_primitives` DB tag. Unit 4 dropped 32 → 31 entries.
+
+### Catalog order is ARRAY order — a trap found before it shipped
+`notebook.js` builds the chapter chips by iterating `UNITS` with **no sort**, so the new low-numbered units had to be `unshift`ed into `units.json`. Appending — the obvious move — would have shown a student chapters 4, 5, 6, 7, 8, 9, 2, 3.
+
+### The hand register pass still earns its place
+The build-time Rule 41 gate landed earlier this same session and caught two real hits across the existing bank. On the 41 NEW cards it caught **zero** — while a hand scan for personification and metaphor found **six** no fixed word list can see: displacement that *"knows"* its end points, a slow half that *"eats more of the clock"*, a term that must *"wear"* the units of v, a constant that *"loses two seconds"* (twice), and an equation omitting an unknown *"you do not care about"*. All rewritten literally. The scan also produced 8 false positives worth recording as NOT violations — a "journey" is a literal trip, a student "loses a mark" literally, "like terms" is standard mathematics vocabulary, and an examiner may literally "want" something. **Automate what is mechanical; keep reading everything else.**
+
+### Sweep budgets raised deliberately
+The fleet grew 157 → 198 files. Gate 15 projected 168 s + 41×1.17 ≈ 216 s against its 240 s wall — inside the budget but close enough that a slower machine would time out and report a failure naming nothing. All three fleet sweeps raised **240 s → 360 s** in the same commit that grew the fleet, per the recorded deliberate-raise procedure. Never trimmed. `smoke:answers` now ~11 min.
+
+### Source discrepancies recorded, not resolved
+- **Types of errors**: the Fastrack says THREE (systematic, random, gross); the BLM says TWO (systematic, random). The card writes the Fastrack's three and records the BLM's two in that step's `why` — the house rule already used for the rolling-friction "laws".
+- The BLM skips numbers in its own lists (Unit 1 shows items 1 and 3; Unit 2 shows 1, 2, 3, 5, 6, 7, 8, 9) because it carries the 70% syllabus while keeping the textbook's original numbering. Not a gap in the reading.
+
+### The sweep deliberately skipped cells the bank already holds
+No Unit 2 predicted card duplicates the units-and-dimensions cells living in other units — G (Unit 9), impulse (Unit 5), torque (Unit 7). No Unit 3 predicted card duplicates relative velocity, which the Fastrack files in Unit 4 and the bank already holds as `ts_ipe_p1_mp_relative_velocity_plane`. Both skips are recorded in the `units.json` comment.
+
+### Verification (measured)
+`build:answers` → 22/22 · 21/21 · 31/31 · 29/29 · 22/22 · 33/33 · 19/19 · 27/27, drift clean both directions, every marks-sum and per-cut sum ✓, completeness + Rule 41 gates green · `npx tsc --noEmit` **0** · `npx vitest run` **405/405 across 36 files** · `smoke:answers` **36/36 at 198 questions (~11 min)** — including gate 13, the pairwise figure-label overlap sweep, which passed on both new figures · `vidi:contexts` **204 contexts, max 7,684 chars, widest uses 77% of the 10,000 slice**. Composition: 204 entries = 122 asked + 82 predicted (40%, in line with the 41% norm); 125 VSAQ, 70 SAQ, 9 LAQ.
+
+### Files
+`answer-book/units.json` (Unit 2 + Unit 3 blocks unshifted to the front, Unit 4 entry removed, both union checks in the comment) · 41 new `answer-book/questions/ts_ipe_p1_um_*.json` and `ts_ipe_p1_msl_*.json` · `ts_ipe_p1_mp_average_instantaneous_velocity.json` (re-homed + cuts + brought to the full bar) · `e2e/answer_book.spec.ts` (three sweep budgets) · `docs/patterns/answer_book.md` (§enumeration → "Run 5 — Units 2 and 3"). **No platform file touched.** Rule 40 does not apply.
+
+### NEXT
+1. **Founder eyes on the two new figures** — the v–t graph for the s = ut + ½at² derivation, and the two-ball drop. `npm run serve:answers` → `http://localhost:8100`, chapter 3.
+2. **Unit 1 "Physical World"** is the only chapter now missing below Unit 10 — 5 Fastrack + 2 BLM VSAQs, the smallest unit in the book. The catalog currently shows chapters 2–9 with no 1.
+3. **Unit 10 "Mechanical Properties of Solids"** resumes the forward roadmap (Fastrack pp.30-32, BLM pp.27+). AP 2026 Q3 (highest elasticity) is a known cell waiting there.
+4. The remaining ~101 Unit 4–9 questions still lack memory tips; Units 8 and 9 still have **zero** margin notes. The build prints that table every run.
+5. Standing blockers unchanged: every mark split is still a CLAIM (`needs_teacher_verification: true` on all 198), the AP paper is still page 1 of 3, and the Edge Function still carries the pre-audit persona.
+
+---
+
+
 ## 🧠 SESSION — Answer Book: **VIDI ON EVERY QUESTION — four authored fields were never reaching the model, and three code copies had already drifted** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: the founder asked whether every VSAQ/SAQ/LAQ is as strong as the parallelogram LAQ. The audit says the premise was half right and the real gap was somewhere else entirely. `why`, `common_mistakes`, `recall` and `mark_note` are already at 100% of all 423 steps — no question is thin on explanation. But FOUR authored fields were never sent to the model at all, `mark_note` (405 steps) worst among them: the per-step "what the examiner gives this mark for" line, absent from the grounding of the exact question class that made Vidi invent a mark scheme in the real chat. All four now ship. Separately, three copy-pasted implementations were found already drifted or unguarded, and each is now single-sourced or parity-tested. Verified: tsc 0 · build:answers green with two NEW gates · vitest 405/405 (36 files) · smoke:answers 36/36 (8.3m) · 383 real replies graded across 72 of 157 questions with ZERO critical flags.**

@@ -403,7 +403,8 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
+    test.setTimeout(360_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units, again at 8 (never trim the sweep)
+    // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -436,7 +437,8 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(240_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units (never trim the sweep)
+    test.setTimeout(360_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units, again at 8 (never trim the sweep)
+    // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -509,7 +511,9 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
     // 30 s default the moment a second unit doubled the book — a timeout, never an
     // assertion, so the gate was reporting "failed" while nothing was wrong.
-    test.setTimeout(240_000);
+    test.setTimeout(360_000);   // the WIDEST sweep: questions x cuts. Raised 240s -> 360s at 8 units.
+    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question,
+    // so 360s holds to roughly 370 questions. Raise deliberately; never trim the sweep.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 

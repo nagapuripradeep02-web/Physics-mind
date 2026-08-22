@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_units_of_large_distances",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the astronomical unit, the light year and the parsec.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Astronomical unit and light year",
+      "marks": 1
+    },
+    {
+      "label": "The parsec",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_au_ly",
+        "kind": "text",
+        "label": "Astronomical unit and light year",
+        "marks": 1,
+        "mark_note": "AU and light year",
+        "lines": [
+          "One astronomical unit is the mean distance",
+          "between the earth and the sun.",
+          "1 AU = 1.496 × 10¹¹ m",
+          "One light year is the distance light travels",
+          "in vacuum in one year."
+        ],
+        "why": "A light year is a distance, not a time, even though the word year appears in it. Saying \"the distance light travels\" makes that unmistakable.",
+        "common_mistakes": [
+          "Calling the light year a unit of time because of the word year."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the astronomical unit is the mean earth to sun distance and the light year is the distance light travels in one year.",
+          "accept": [
+            "earth to sun",
+            "distance light travels in a year"
+          ],
+          "reject": [
+            "unit of time"
+          ],
+          "heard_as": [
+            "astronomical unit",
+            "light year"
+          ]
+        },
+        "memory_tip": "A light year is a DISTANCE. The word year names the travel time, not the quantity.",
+        "margin_note": "Write \"distance\" in the light year line explicitly."
+      },
+      {
+        "id": "s2_parsec",
+        "kind": "boxed_final",
+        "label": "The parsec",
+        "marks": 1,
+        "mark_note": "Parsec",
+        "lines": [
+          {
+            "text": "A parsec is the distance at which 1 AU",
+            "style": "boxed"
+          },
+          {
+            "text": "subtends 1 second of arc",
+            "style": "boxed"
+          },
+          "1 parsec = 3.26 light years, the largest of",
+          "the three units."
+        ],
+        "why": "The name is built from parallax and second, which is exactly what the definition says, so the name itself is the reminder.",
+        "common_mistakes": [
+          "Saying a parsec is smaller than a light year. It is about 3.26 times larger."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a parsec is the distance at which one astronomical unit subtends one second of arc, and equals about 3.26 light years.",
+          "accept": [
+            "one second of arc",
+            "three point two six light years"
+          ],
+          "reject": [
+            "smaller than a light year"
+          ],
+          "heard_as": [
+            "parsec",
+            "arc second"
+          ]
+        },
+        "memory_tip": "PARallax + SECond = parsec. The name is the definition.",
+        "margin_note": "Order them AU, light year, parsec — smallest to largest."
+      }
+    ]
+  },
+  "insider_note": "Three definitions, two marks. Keep each to one line and give at least one value."
+}

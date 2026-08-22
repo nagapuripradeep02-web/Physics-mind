@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_fundamental_vs_derived_units",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between fundamental units and derived units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fundamental units",
+      "marks": 1
+    },
+    {
+      "label": "Derived units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fundamental",
+        "kind": "text",
+        "label": "Fundamental units",
+        "marks": 1,
+        "mark_note": "Fundamental",
+        "lines": [
+          "The units of the fundamental quantities are",
+          "called fundamental units. They are",
+          "independent of each other.",
+          "Examples: metre, kilogram, second."
+        ],
+        "why": "Independent means no fundamental unit can be built from the others. That independence is why exactly seven of them are enough to define every other unit.",
+        "common_mistakes": [
+          "Giving newton or joule as a fundamental unit. Both are built from metre, kilogram and second."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That fundamental units are the units of the fundamental quantities and are independent, such as metre, kilogram and second.",
+          "accept": [
+            "independent",
+            "metre kilogram second",
+            "fundamental quantities"
+          ],
+          "reject": [
+            "newton",
+            "joule"
+          ],
+          "heard_as": [
+            "fundamental units",
+            "independent"
+          ]
+        },
+        "memory_tip": "Fundamental units stand alone. Metre, kilogram, second — nothing builds them.",
+        "margin_note": "Write the examples. They carry the mark as much as the definition."
+      },
+      {
+        "id": "s2_derived",
+        "kind": "boxed_final",
+        "label": "Derived units",
+        "marks": 1,
+        "mark_note": "Derived",
+        "lines": [
+          {
+            "text": "Derived units are built from fundamental units",
+            "style": "boxed"
+          },
+          "They are the units of derived quantities.",
+          "Examples: newton, joule, erg.",
+          "newton = kg m s⁻²"
+        ],
+        "why": "Writing newton as kg m s⁻² shows the derivation in one line, which is exactly what \"derived\" means.",
+        "common_mistakes": [
+          "Naming a derived unit without showing what it is built from."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That derived units are the units of derived quantities, built from fundamental units, such as newton and joule.",
+          "accept": [
+            "derived quantities",
+            "newton",
+            "joule",
+            "built from fundamental"
+          ],
+          "reject": [
+            "metre",
+            "kilogram"
+          ],
+          "heard_as": [
+            "derived units",
+            "newton"
+          ]
+        },
+        "memory_tip": "Write newton = kg m s⁻². One line proves the word \"derived\".",
+        "margin_note": "The kg m s⁻² line is worth writing — it is the proof."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. Give one example with each definition — the example is what shows you understood it."
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_derive_pendulum_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Using dimensional analysis, derive an expression for the time period of a simple pendulum.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the powers",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the powers",
+        "marks": 1,
+        "mark_note": "Set up",
+        "lines": [
+          "Assume T depends on length l, mass m and g:",
+          {
+            "text": "T = k lᵃ mᵇ gᶜ",
+            "style": "eq"
+          },
+          "[T] = [L]ᵃ [M]ᵇ [L T⁻²]ᶜ",
+          "Comparing: M: b = 0,  L: a + c = 0,  T: −2c = 1"
+        ],
+        "why": "Comparing the power of each fundamental quantity on both sides turns one equation into three simple ones, which is the whole method.",
+        "common_mistakes": [
+          "Leaving mass out of the assumed form. Getting b = 0 is a result worth showing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T is assumed to be k times l to the a, m to the b, g to the c, and comparing powers gives b zero, a plus c zero and minus two c equal to one.",
+          "accept": [
+            "k l to the a",
+            "compare powers",
+            "b equals zero"
+          ],
+          "reject": [
+            "assume the answer"
+          ],
+          "heard_as": [
+            "powers",
+            "compare"
+          ]
+        },
+        "memory_tip": "Write the assumed product, then match M, L and T one at a time.",
+        "margin_note": "Show b = 0. It is the result that the period does not depend on mass."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "c = −½ and a = ½, b = 0, so",
+          {
+            "text": "T = k √(l/g)",
+            "style": "boxed"
+          },
+          "Experiment gives k = 2π, which dimensional",
+          "analysis cannot supply."
+        ],
+        "why": "The method fixes every power but leaves the pure number k undetermined, because a pure number has no dimensions to compare.",
+        "common_mistakes": [
+          "Claiming the method gives T = 2π√(l/g). The 2π must come from experiment or from a full derivation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T equals k root l over g, and that the constant 2 pi cannot come from dimensional analysis.",
+          "accept": [
+            "root l by g",
+            "k cannot be found",
+            "two pi from experiment"
+          ],
+          "reject": [
+            "dimensional analysis gives two pi"
+          ],
+          "heard_as": [
+            "root l by g",
+            "two pi"
+          ]
+        },
+        "memory_tip": "The powers come out; the 2π never does. Say that and the answer is complete.",
+        "margin_note": "The last line about k is worth a mark on its own."
+      }
+    ]
+  },
+  "insider_note": "The method gives the powers but never the 2π. Say so at the end — it is the honest close and often the mark."
+}

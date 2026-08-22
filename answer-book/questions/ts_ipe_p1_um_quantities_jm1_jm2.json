@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_quantities_jm1_jm2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the physical quantities that have J m⁻¹ and J m⁻² as their units.",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 10,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "J m⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "J m⁻²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. This cell is not listed by either source book. It was asked in the AP March 2026 paper, Section A question 10, and is authored from that paper."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_jm1",
+        "kind": "equation",
+        "label": "J m⁻¹",
+        "marks": 1,
+        "mark_note": "J per metre",
+        "lines": [
+          "J m⁻¹ is energy divided by length.",
+          "Work = force × distance, so",
+          {
+            "text": "J m⁻¹ = N  ⇒ the quantity is FORCE",
+            "style": "boxed"
+          }
+        ],
+        "why": "Rearranging W = F s gives F = W/s, so joule per metre is only another way of writing the newton.",
+        "common_mistakes": [
+          "Answering \"energy\" or \"work\". Those have the unit J, not J m⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That joule per metre is the newton, so the quantity is force.",
+          "accept": [
+            "force",
+            "newton"
+          ],
+          "reject": [
+            "work",
+            "energy"
+          ],
+          "heard_as": [
+            "force",
+            "newton"
+          ]
+        },
+        "memory_tip": "Work = force × distance, so energy ÷ length is force.",
+        "margin_note": "Show W = F s. The rearrangement is the reason."
+      },
+      {
+        "id": "s2_jm2",
+        "kind": "boxed_final",
+        "label": "J m⁻²",
+        "marks": 1,
+        "mark_note": "J per square metre",
+        "lines": [
+          "J m⁻² is energy divided by area.",
+          {
+            "text": "The quantity is SURFACE ENERGY",
+            "style": "boxed"
+          },
+          "Its value equals the surface tension of the",
+          "liquid, whose unit N m⁻¹ is the same thing."
+        ],
+        "why": "J m⁻² and N m⁻¹ are the same combination written two ways, which is exactly why surface energy and surface tension have equal numerical values.",
+        "common_mistakes": [
+          "Answering \"pressure\". Pressure is N m⁻², not J m⁻²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That joule per square metre is surface energy, equal in value to surface tension.",
+          "accept": [
+            "surface energy",
+            "surface tension"
+          ],
+          "reject": [
+            "pressure",
+            "stress"
+          ],
+          "heard_as": [
+            "surface energy",
+            "surface tension"
+          ]
+        },
+        "memory_tip": "J m⁻² = N m⁻¹, which is why surface energy and surface tension share a number.",
+        "margin_note": "Naming both surface energy and surface tension is safest."
+      }
+    ]
+  },
+  "insider_note": "Asked in AP March 2026. Energy per length is force; energy per area is surface tension’s partner, surface energy."
+}

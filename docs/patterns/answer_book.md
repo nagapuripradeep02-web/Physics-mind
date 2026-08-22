@@ -666,6 +666,46 @@ it, and without it the formula describes a repulsion. The card writes the minus 
 discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws"
 and for "μ > 1 because polishing increases adhesion".
 
+### Run 5 — Units 2 and 3 (2026-08-22): the book opens BACKWARDS, and the union check finds two more shapes
+
+Authored on founder request, going backwards from the Unit-10 roadmap. Both source books were read
+directly (Fastrack pp.4-8, TSBIE BLM pp.2-5) — no prior transcription of these units existed.
+
+**Two NEW union-check outcomes, taking the tally to six distinct shapes across eight units:**
+
+| Unit | Shape |
+|---|---|
+| 2 | **Both books VSAQ-only.** No Short Answer and no Long Answer section in either. The BLM adds ONE cell the Fastrack lacks (different units for one quantity). |
+| 3 | **Each book holds a whole SECTION the other lacks** — the Fastrack has VSAQ + SAQ + PROBLEMS and no LAQ; the BLM has SAQ *only*, with no VSAQ section at all. |
+
+Four of eight units now have no Section C in either book, so the standing rule holds firmly: invent an
+8-mark form only when a book sources one.
+
+**A PROBLEM was promoted for the second time.** The BLM lists the roof-jump (9 m s⁻¹) as Short Answer 5;
+the Fastrack files the same question as PROBLEM 3. A book sources it as an SAQ, so it ships as one —
+the same precedent as the Unit 8 problem the AP paper asked. The deferral stands for the other three.
+
+**The first RE-HOME.** `ts_ipe_p1_mp_average_instantaneous_velocity` was filed under Unit 4 by the
+AP-paper session, before Unit 3 existed. Both books put it in Unit 3 — and they disagree on its
+SECTION (Fastrack VSAQ 2 at 3 stars; BLM Short Answer 1). It moved to Unit 3 and gained `cuts[]`, so it
+now appears twice in one unit at two lengths. **The `question_id` kept its `mp_` prefix**: ids are
+stable forever, and renaming would have broken its AP-2026 appearance record. A stale prefix is
+history, not a defect — the same reasoning as the `peter_parker:renderer_primitives` DB tag.
+
+**Catalog order is ARRAY order.** `notebook.js` builds the chapter chips by iterating `UNITS` with no
+sort, so new low-numbered units must be `unshift`ed into `units.json`, never appended. Appending would
+have shown a student chapters 4, 5, 6, 7, 8, 9, 2, 3.
+
+**The hand register pass still earns its place.** The build-time Rule 41 gate landed the same session
+and caught two hits across the existing bank — but on 41 NEW cards it caught **zero**, while a hand
+scan for personification and metaphor found **six** the fixed word list cannot see: displacement that
+"knows" its end points, a slow half that "eats more of the clock", a term that must "wear" the units of
+v, a constant that "loses two seconds". No word list finds those. Automate what is mechanical; keep
+reading everything else.
+
+**Sweep budgets raised** 240s → 360s on all three fleet sweeps, in the same commit that grew the fleet
+157 → 198 files (the deliberate-raise procedure; never trim). `smoke:answers` 36/36 in ~11 min.
+
 ## The term-pack design (designed Session 89 — NOT built)
 
 The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE

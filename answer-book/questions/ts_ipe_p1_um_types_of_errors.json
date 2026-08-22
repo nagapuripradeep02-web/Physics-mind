@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_types_of_errors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the different types of errors that can occur in a measurement?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the types",
+      "marks": 1
+    },
+    {
+      "label": "What each one is",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE DISAGREEMENT, recorded not resolved: the Fastrack (p.4) lists THREE types — systematic, random and gross. The TSBIE BLM (p.2) lists TWO — systematic and random. This card writes the Fastrack’s three and records the BLM’s two in the step’s why line."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "Name the types",
+        "marks": 1,
+        "mark_note": "The types",
+        "lines": [
+          "Errors in a measurement are of three types:",
+          "1. Systematic errors",
+          "2. Random errors",
+          "3. Gross errors"
+        ],
+        "why": "The Fastrack lists three. The TSBIE Basic Learning Material lists only systematic and random, treating gross errors as mistakes by the observer. Write all three; systematic and random are the two both books agree on.",
+        "common_mistakes": [
+          "Listing only one type when the question says \"types\", which is plural.",
+          "Writing \"least count error\" as a fourth type. It is one kind of systematic error."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the types are systematic, random and gross errors.",
+          "accept": [
+            "systematic",
+            "random",
+            "gross"
+          ],
+          "reject": [
+            "least count error only"
+          ],
+          "heard_as": [
+            "systematic",
+            "random",
+            "gross"
+          ]
+        },
+        "memory_tip": "Three types: systematic, random, gross. Systematic and random are the two both books list.",
+        "margin_note": "Number them. A numbered list reads as three separate points."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What each one is",
+        "marks": 1,
+        "mark_note": "What they mean",
+        "lines": [
+          {
+            "text": "Systematic errors repeat in the same direction",
+            "style": "boxed"
+          },
+          "Random errors vary in size and sign from",
+          "one reading to the next.",
+          "Gross errors come from the observer, such",
+          "as reading or recording a value wrongly."
+        ],
+        "why": "The difference is direction. A systematic error pushes every reading the same way, so averaging never removes it; a random error changes sign, so averaging does reduce it.",
+        "common_mistakes": [
+          "Saying random errors can be removed by taking a better instrument. Averaging reduces them; a better instrument does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That systematic errors repeat in one direction, random errors vary, and gross errors are the observer’s.",
+          "accept": [
+            "same direction",
+            "vary from reading to reading",
+            "observer"
+          ],
+          "reject": [
+            "all errors are the same"
+          ],
+          "heard_as": [
+            "systematic error",
+            "random error"
+          ]
+        },
+        "memory_tip": "Systematic pushes ONE way every time. Random changes direction, so averaging shrinks it.",
+        "margin_note": "One line for each type is enough at 2 marks."
+      }
+    ]
+  },
+  "insider_note": "The two source books disagree on the count. Write the three the Fastrack lists; naming systematic and random first is what earns the marks."
+}

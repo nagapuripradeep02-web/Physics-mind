@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_average_velocity_uniform_acceleration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A particle moves in a straight line with uniform acceleration. Its velocity at time t = 0 is v₁ and at time t = t is v₂. The average velocity of the particle in this time interval is (v₁ + v₂)/2. Is this statement true or false? Substantiate your answer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The verdict",
+      "marks": 1
+    },
+    {
+      "label": "The displacement",
+      "marks": 2
+    },
+    {
+      "label": "The average",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_verdict",
+        "kind": "text",
+        "label": "The verdict",
+        "marks": 1,
+        "mark_note": "Verdict",
+        "lines": [
+          "The statement is TRUE, but only because the",
+          "acceleration is uniform.",
+          "For non-uniform acceleration it fails."
+        ],
+        "why": "With uniform acceleration the velocity changes at a steady rate, so the velocity spends as much time above the midpoint as below it. That symmetry is what makes the simple average correct.",
+        "common_mistakes": [
+          "Answering \"true\" with no condition attached. The uniformity is the whole reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the statement is true, and true because the acceleration is uniform.",
+          "accept": [
+            "true",
+            "uniform acceleration",
+            "only for uniform"
+          ],
+          "reject": [
+            "false"
+          ],
+          "heard_as": [
+            "true",
+            "uniform"
+          ]
+        },
+        "memory_tip": "True — but only for UNIFORM acceleration. Say the condition.",
+        "margin_note": "Commit to true or false in the first line."
+      },
+      {
+        "id": "s2_displacement",
+        "kind": "equation",
+        "label": "The displacement",
+        "marks": 2,
+        "mark_note": "Displacement",
+        "lines": [
+          "Acceleration a = (v₂ − v₁)/t",
+          "Displacement s = v₁t + ½at²",
+          {
+            "text": "s = v₁t + ½[(v₂ − v₁)/t] t²",
+            "style": "eq"
+          },
+          {
+            "text": "s = [(v₁ + v₂)/2] t",
+            "style": "eq"
+          }
+        ],
+        "why": "Substituting a in terms of v₁, v₂ and t removes the acceleration from the expression, leaving the displacement written only in terms of the two velocities.",
+        "common_mistakes": [
+          "Leaving a in the final expression, so the average velocity cannot be read off."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting a equals v two minus v one over t into s equals v one t plus half a t squared gives s equal to v one plus v two over two, times t.",
+          "accept": [
+            "v one t plus half a t squared",
+            "substitute a",
+            "v one plus v two by two times t"
+          ],
+          "reject": [
+            "leave a in the answer"
+          ],
+          "heard_as": [
+            "substitute",
+            "displacement"
+          ]
+        },
+        "memory_tip": "Replace a by (v₂ − v₁)/t. One t cancels and the average appears.",
+        "margin_note": "This is the two-mark step. Show the substitution in full."
+      },
+      {
+        "id": "s3_average",
+        "kind": "boxed_final",
+        "label": "The average",
+        "marks": 1,
+        "mark_note": "Average",
+        "lines": [
+          "Average velocity = s / t",
+          {
+            "text": "⟨v⟩ = (v₁ + v₂)/2   ∴ the statement is true",
+            "style": "boxed"
+          }
+        ],
+        "why": "Dividing the displacement by t leaves exactly the arithmetic mean, which is the statement that had to be tested.",
+        "common_mistakes": [
+          "Stopping at s and never dividing by t, which leaves the claim unproved."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by t gives the average velocity as v one plus v two over two, so the statement is true.",
+          "accept": [
+            "divide by t",
+            "v one plus v two by two",
+            "true"
+          ],
+          "reject": [
+            "not proved"
+          ],
+          "heard_as": [
+            "average velocity",
+            "true"
+          ]
+        },
+        "memory_tip": "Divide by t at the end. That last division IS the proof.",
+        "margin_note": "Close by answering the question that was asked."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. The answer is TRUE, but only because the acceleration is uniform — say that condition or the proof is incomplete."
+}
