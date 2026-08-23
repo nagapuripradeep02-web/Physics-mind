@@ -1,5 +1,26 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔒 SESSION — Answer Book: **P3 — THE CHAPTER GATE, built + server-live, PARKED off the site** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `9f572e8e`, branch + master PUSHED)
+
+**Bottom line: the paywall's skeleton exists and works end-to-end. `build:answers:gated` → `answer-book/dist-gated` (1.5 MB vs 4 MB): the full catalog ships — question texts, stars, marks, the sell — and NOT ONE answer byte (gate-asserted with positive controls against the full build). Answers live in `ab_content` (18 units / 448 questions pushed) behind the `answerbook-content` Edge Function + `ab_entitlements`; every device gets ONE free chapter via an EXPLICIT tap on the lock sheet (founder decision — a stray tap can never burn the slot). `ab_skus.full_book` exists with price NULL — the sheet says "coming soon" and never a number the founder has not set (P4 fills it). THE LIVE SITE IS UNCHANGED — answers.viditra.co still serves the full free book; the flip recipe is written into wrangler.answers.toml and pairs with the P4 price call. Verified: tsc 0 · vitest 416/416 · gated gates 6/6 · full suite 48/48 CLEAN (23.1 m, no flake — the offline build untouched by construction AND by measurement) · live endpoint probes all green · advisors: ab_* deny-by-default, `ab_claim_free` not anon-callable.**
+
+### The design in one paragraph
+notebook.js reads `question.answer.steps` at exactly TWO sites, one at module init — so the gated projection keeps every metadata field plus a BOOT-SAFE skeleton (steps `{id, marks}`, cut-step overrides `{marks}`), and the whole gate is ONE line at the top of `loadQuestion` (both routes funnel there). The `Gate` module (sibling of Sync, inert without `PM_CONTENT_BASE` — every full build) makes one boot `list` call (catalog lock chips appear only after the truth arrives), merges unlocked bundles into `questions` in memory (re-fetch per session — 550 KB bundles are localStorage roulette), and drives the sheet: free claim / coming-soon / retry. Identity = `Sync.deviceId()`. The free slot's atomicity is an INDEX (partial unique `where source='free_chapter'`), not code: a lost race → `free_used`, a same-unit replay → idempotent ok.
+
+### Also landed
+`subject` enum gains `mathematics_1b` in the QUESTION schema (the build guard covered units only — 1B files would have failed validation on their first card); a build check that each question's derived unit key equals its manifest unit's key (the gated fetch keys on it); `content:push` uses the recorded CURL bypass — node/undici to Supabase REST TransformError'd on a 550 KB jsonb upsert, row one.
+
+### Files
+`src/scripts/build_answer_book.ts` (--gated: projection, dist-gated, bundles, PM_CONTENT_BASE, key check) · `answer-book/notebook.js` (Gate module + one-line loadQuestion gate + catalog 🔒 chips; Sync exports deviceId) · `answer-book/shell.html` (#lockOverlay, pm-ask clone) · `supabase/functions/answerbook-content/index.ts` (NEW, deployed) · `supabase_migrations/supabase_2026_08_23_answerbook_gate.sql` (NEW, applied) · `src/scripts/push_answer_content.ts` (NEW) · `e2e/answer_book_gated.spec.ts` (NEW, 6 gates) · `src/schemas/answerBook.ts` · package.json (4 scripts) · wrangler.answers.toml (flip recipe) · docs/patterns/answer_book.md (§chapter gate). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **P4 — payments + OTP**: Razorpay webhook (copy signature/idempotency from `supabase/functions/razorpay-webhook/index.ts`), `apply_ab_payment`, device merge, phone OTP. **Founder sets the price here** — it drops straight into `ab_skus.price_inr` and the sheet starts quoting it.
+2. The launch flip (founder): gated to answers.viditra.co per the wrangler.answers.toml recipe.
+3. Still pending: AB_ALLOWED_ORIGINS + chat persona redeploy · SMS/DLT registration (long lead).
+
+---
+
+
 ## 🔗 SESSION — Answer Book: **P2 — ANONYMOUS SYNC, built, deployed server-side, live site untouched** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `1a7e7f91`, branch + master PUSHED)
 
 **Bottom line: a student's ticks and plan can now follow them across devices with no login — identity is a random UUID in localStorage (`pm_device_id`), no PII anywhere. The whole feature is OFFLINE-FIRST BY CONSTRUCTION: `PM_SYNC_BASE` unset (every non-hosted build) leaves the Sync module inert — no device id minted, no timer, zero requests — so all 45 pre-existing gates ran untouched. The `answerbook-sync` Edge Function is DEPLOYED to the dev project and live-verified (403 foreign origin · earliest-wins merge through the real stack · 400 bad device · stale-plan refusal · mint quota); the three `ab_*` tables are RLS-on/zero-policy/service-role-only and the `ab_sync` RPC is not anon-callable (advisor-confirmed). THE LIVE SITE IS UNCHANGED — sync goes live only on the next founder-directed `npm run deploy:answers` (the hosted default is baked, so that one command is the whole flip). Verified: tsc 0 · vitest 416/416 (+11) · e2e 48/48 CLEAN full run, 31.8 m, no flake · live endpoint probes green.**

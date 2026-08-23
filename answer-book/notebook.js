@@ -224,6 +224,11 @@
   /** Full question load — the mechanism behind the router. Always re-renders,
       even for the already-active question, so a route can be trusted blindly. */
   function loadQuestion(i, cutKey) {
+    // The chapter gate (P3). A gated question has no answer body in the
+    // page — Gate fetches the unit's bundle (or shows the lock sheet) and
+    // re-enters here once the real question object is in place. Both
+    // routes funnel through loadQuestion, so this is the WHOLE gate.
+    if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
     loadCuts();
@@ -525,6 +530,15 @@
             // says WHEN revision is due; green chip = done. Authored branch only
             // — the soon-card gate asserts its chips verbatim. A class turns the
             // red margin rule green.
+            // The chapter gate's lock cue. Only in the GATED build, only
+            // once the entitlement list has answered (no flicker), and
+            // appended after the other chips so no first-chip gate moves.
+            if (Gate.locked(unitKey(u))) {
+              var lk = document.createElement('span');
+              lk.className = 'cc-chip pm-lock';
+              lk.textContent = '🔒';
+              badges.appendChild(lk);
+            }
             var stg = Vidi.stageFor(e.question_id);
             if (stg.u || stg.r) {
               var done = stg.u && stg.r;
@@ -2421,6 +2435,7 @@
     }
 
     return {
+      deviceId: deviceId,
       init: function () {
         if (!BASE) return;                 // inert: no id, no timer, no request
         syncTouch = schedule;
@@ -2428,6 +2443,171 @@
         window.addEventListener('pagehide', function () {
           if (timer) { clearTimeout(timer); timer = null; }
           push();
+        });
+      }
+    };
+  })();
+
+
+  // ═══ Gate — the chapter gate of the GATED build (P3, 2026-08-23) ════════
+  // In the gated build a question ships as metadata plus a boot-safe skeleton
+  // (steps as {id, marks} only) with `gated: true`; the written answer lives
+  // server-side in ab_content and leaves only for an entitled device. Every
+  // device gets ONE free chapter, claimed by an EXPLICIT tap on the sheet —
+  // never spent by a plain open (founder decision).
+  //
+  // With no PM_CONTENT_BASE (every full build) this module is INERT: no call,
+  // no sheet, no lock chips — the same guarantee Sync makes.
+  //
+  // Unlocked bundles merge into `questions` IN MEMORY only. A new session
+  // re-fetches — deliberate for now: a 550 KB bundle is localStorage-quota
+  // roulette, and the fetch is one fast call.
+  var Gate = (function () {
+    var BASE = (window.PM_CONTENT_BASE || '').trim();
+    var unlockedUnits = {};            // unit_key -> true
+    var hasAll = false;
+    var listLoaded = false;            // lock chips wait for the truth (no flicker)
+    var freeAvailable = null;
+    var skuLine = 'Unlocking every chapter is coming soon.';
+
+    function keyOfQ(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
+
+    function post(body, cb) {
+      body.device_id = Sync.deviceId();
+      try {
+        fetch(BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) { cb(out || null); })
+          .catch(function () { cb(null); });
+      } catch (e) { cb(null); }
+    }
+
+    function adoptStanding(out) {
+      if (!out) return;
+      if (typeof out.free_available === 'boolean') freeAvailable = out.free_available;
+      if (out.sku) {
+        // The price is the founder's to set (P4); until a number exists the
+        // sheet promises nothing it cannot deliver.
+        skuLine = out.sku.price_inr
+          ? 'Unlock every chapter for ₹' + out.sku.price_inr + ' — payments are coming soon.'
+          : 'Unlocking every chapter is coming soon.';
+      }
+    }
+
+    /** Fold a fetched bundle into the live question list. */
+    function mergeBundle(bundle) {
+      if (!bundle || !bundle.questions || !bundle.questions.length) return false;
+      var got = false;
+      for (var i = 0; i < bundle.questions.length; i++) {
+        var fq = bundle.questions[i];
+        var idx = qIndexById[fq.question_id];
+        if (idx === undefined) continue;
+        delete fq.gated;
+        questions[idx] = fq;
+        got = true;
+      }
+      if (bundle.unit_key) unlockedUnits[bundle.unit_key] = true;
+      return got;
+    }
+
+    // ── the sheet ───────────────────────────────────────────────────────────
+    function sheet(text, buttons) {
+      $('lockText').textContent = text;
+      var row = $('lockRow');
+      row.innerHTML = '';
+      for (var i = 0; i < buttons.length; i++) {
+        (function (b) {
+          var el2 = document.createElement('button');
+          el2.type = 'button';
+          el2.className = 'vw-btn' + (b.primary ? ' primary' : '');
+          el2.textContent = b.label;
+          el2.addEventListener('click', function () {
+            if (el2.disabled) return;
+            var all = row.querySelectorAll('button');
+            for (var j = 0; j < all.length; j++) all[j].disabled = true;
+            b.fn();
+          });
+          row.appendChild(el2);
+        })(buttons[i]);
+      }
+      $('lockOverlay').hidden = false;
+    }
+    function hideSheet() { $('lockOverlay').hidden = true; }
+    function backBtn() {
+      return { label: 'Back to all questions', fn: function () { hideSheet(); location.hash = '#/'; } };
+    }
+
+    function open(i, cutKey, bundle) {
+      if (!mergeBundle(bundle)) {
+        sheet('Something went wrong while opening this chapter. Try again.',
+          [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+        return;
+      }
+      hideSheet();
+      if (currentView === 'catalog') renderCatalog();
+      loadQuestion(i, cutKey);
+    }
+
+    function showLocked(i, cutKey, k) {
+      if (freeAvailable) {
+        sheet('This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?', [
+          { label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } },
+          backBtn()
+        ]);
+      } else {
+        sheet('This chapter is locked. You have already used your free chapter. ' + skuLine, [backBtn()]);
+      }
+    }
+
+    function claimFree(i, cutKey, k) {
+      sheet('Opening your free chapter…', []);
+      post({ unit_key: k, claim_free: true }, function (out) {
+        adoptStanding(out);
+        if (out && out.ok && out.bundle) { open(i, cutKey, out.bundle); return; }
+        if (out && out.locked) { showLocked(i, cutKey, k); return; }   // slot was already spent
+        showError(i, cutKey);
+      });
+    }
+
+    function showError(i, cutKey) {
+      sheet('Could not reach the server. Check your connection and try again.',
+        [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+    }
+
+    function showLockFlow(i, cutKey) {
+      var q = questions[i];
+      if (!BASE || !q) { location.hash = '#/'; return; }
+      var k = keyOfQ(q);
+      sheet('Opening this chapter…', []);
+      post({ unit_key: k }, function (out) {
+        adoptStanding(out);
+        if (out && out.ok && out.bundle) { open(i, cutKey, out.bundle); return; }
+        if (out && out.locked) { showLocked(i, cutKey, k); return; }
+        showError(i, cutKey);
+      });
+    }
+
+    return {
+      showLockFlow: showLockFlow,
+      /** True only when the LIST has answered and says this unit is locked —
+          before that the catalog shows no lock cue rather than a wrong one. */
+      locked: function (k) {
+        if (!BASE || !listLoaded || hasAll) return false;
+        return !unlockedUnits[k];
+      },
+      init: function () {
+        if (!BASE) return;               // inert in every full build
+        post({ list: true }, function (out) {
+          if (!out || !out.ok) return;   // no list = no chips; opens still work
+          adoptStanding(out);
+          var u = out.unlocked || [];
+          for (var i = 0; i < u.length; i++) {
+            if (u[i] === 'all') hasAll = true; else unlockedUnits[u[i]] = true;
+          }
+          listLoaded = true;
+          if (currentView === 'catalog') renderCatalog();
         });
       }
     };
@@ -3787,6 +3967,7 @@
     initTest();
     initVidi();
     Sync.init();
+    Gate.init();
     route();
     window.addEventListener('hashchange', route);
   });

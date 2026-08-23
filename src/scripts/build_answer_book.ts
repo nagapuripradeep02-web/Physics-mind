@@ -31,7 +31,14 @@ import { idiomsIn } from '../lib/answerBook/vidiChecks';
 const ROOT = process.cwd();
 const BOOK_DIR = join(ROOT, 'answer-book');
 const QUESTIONS_DIR = join(BOOK_DIR, 'questions');
-const OUT_DIR = join(BOOK_DIR, 'dist');
+// --gated (P3): the page ships the full CATALOG but answer bodies are a
+// server-side entitlement (answerbook-content). Its dist is SEPARATE so the
+// offline build, the hosted full build and every existing gate are untouched
+// by construction. Gated also writes the per-unit content bundles that
+// content:push uploads.
+const GATED = process.argv.includes('--gated');
+const OUT_DIR = join(BOOK_DIR, GATED ? 'dist-gated' : 'dist');
+const CONTENT_DIR = join(BOOK_DIR, 'content');
 
 function fail(msg: string): never {
     console.error(`\n✗ build:answers failed\n${msg}`);
@@ -134,6 +141,13 @@ for (const u of manifest.units) {
         if (e.question_id) {
             const q = questionById.get(e.question_id);
             if (!q) fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: question_id "${e.question_id}" has no authored file`);
+            // The gated client fetches content by the key it derives from the
+            // QUESTION's own fields — so the question and its manifest unit
+            // must agree, or an unlock fetches the wrong (or no) bundle.
+            const qKey = `${q.subject}-${q.unit.number}`;
+            if (qKey !== key) {
+                fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: ${e.question_id} derives unit key "${qKey}" but is listed under "${key}" — subject/unit fields disagree with the manifest`);
+            }
             listedIds.add(e.question_id);
             if (e.cut && !(q.cuts ?? []).some((c) => c.key === e.cut)) {
                 fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: cut "${e.cut}" does not exist on ${e.question_id}`);
@@ -290,6 +304,55 @@ const browserQuestions = questions.map((q) => ({
     })),
 }));
 
+// ── gated projection + content bundles (P3) ─────────────────────────────────
+// The gated page keeps every METADATA field (catalog, planner, search, Vidi
+// chips and exam-eve all work unmodified) and reduces the answer to a
+// boot-safe SKELETON: notebook.js reads question.answer.steps at module init
+// (applyCut(0)), so steps must EXIST — as {id, marks} only, which is exactly
+// what applyCut's filter and the cut maps need and nothing a student would
+// pay for. Cut-step override bodies reduce to {marks} the same way. The
+// `gated: true` flag is what the client's loadQuestion gate keys on.
+type AnyRec = Record<string, unknown>;
+const gatedQuestions = !GATED ? browserQuestions : browserQuestions.map((q) => ({
+    ...q,
+    gated: true,
+    answer: {
+        page_header: q.answer.page_header,
+        steps: q.answer.steps.map((s) => ({ id: (s as AnyRec).id, marks: (s as AnyRec).marks })),
+    },
+    cuts: q.cuts?.map((c) => ({
+        ...c,
+        steps: Object.fromEntries(
+            Object.entries(c.steps).map(([id, cs]) => [id, { marks: (cs as AnyRec).marks }])
+        ),
+    })),
+}));
+
+if (GATED) {
+    // The bundles the answerbook-content endpoint serves: the FULL projection
+    // (typeset, recall-stripped — byte-what the full build ships), grouped by
+    // unit key. content:push uploads these to ab_content.
+    const byId = new Map(browserQuestions.map((q) => [q.question_id, q]));
+    mkdirSync(CONTENT_DIR, { recursive: true });
+    let bundleBytes = 0;
+    for (const u of manifest.units) {
+        const key = `${u.subject || 'physics'}-${u.number}`;
+        const ids: string[] = [];
+        for (const e of u.questions) {
+            if (e.question_id && !ids.includes(e.question_id)) ids.push(e.question_id);
+        }
+        const bundle = {
+            unit_key: key,
+            name: u.name,
+            questions: ids.map((id) => byId.get(id)!),
+        };
+        const text = JSON.stringify(bundle);
+        bundleBytes += text.length;
+        writeFileSync(join(CONTENT_DIR, `${key}.json`), text, 'utf8');
+    }
+    console.log(`  content bundles: ${manifest.units.length} units → ${CONTENT_DIR} (${(bundleBytes / 1024).toFixed(0)} KB) — run npm run content:push`);
+}
+
 // The checking API is optional. Unset → the page offers neither photo nor mic and
 // makes zero network calls, exactly as it shipped (progressive enhancement, not a
 // dependency). One base; the client derives /recall-check and /photo-check.
@@ -300,8 +363,11 @@ const apiBase = process.env.ANSWER_BOOK_API_BASE ?? '';
 // flush never exist and the page stays fully offline (deterministic Vidi — the
 // chips, the verdict, the exam-eve view — works everywhere, file:// included).
 // `--hosted` bakes the deployed Edge Function base for the served copy.
+// Gated is hosted by nature — it cannot work without its endpoint, so it
+// bakes every hosted base.
+const HOSTED = process.argv.includes('--hosted') || GATED;
 const VIDI_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-vidi-chat';
-const vidiBase = process.argv.includes('--hosted')
+const vidiBase = HOSTED
     ? (process.env.ANSWER_BOOK_VIDI_BASE ?? VIDI_HOSTED_BASE)
     : (process.env.ANSWER_BOOK_VIDI_BASE ?? '');
 
@@ -311,18 +377,27 @@ const vidiBase = process.argv.includes('--hosted')
 // is the answerbook-sync function deployed + live-verified 2026-08-23 (403 on a
 // foreign origin, earliest-tick-wins merge, 400 on a malformed device id).
 const SYNC_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-sync';
-const syncBase = process.argv.includes('--hosted')
+const syncBase = HOSTED
     ? (process.env.ANSWER_BOOK_SYNC_BASE ?? SYNC_HOSTED_BASE)
+    : '';
+
+// P3: the content endpoint. Set ONLY in the gated build — the full builds
+// carry every answer already, and an empty base keeps the client Gate module
+// inert there, the same guarantee Sync makes.
+const CONTENT_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-content';
+const contentBase = GATED
+    ? (process.env.ANSWER_BOOK_CONTENT_BASE ?? CONTENT_HOSTED_BASE)
     : '';
 
 // </script> inside any string can never break out of the data block:
 const dataJs =
-    `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
+    `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
     `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
     `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
     `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
 ` +
-    `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};`;
+    `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};\n` +
+    `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
@@ -339,6 +414,7 @@ console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixe
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
 console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage only, zero network)'}`);
+console.log(`  content gate:  ${contentBase || '(unset — every answer embedded, Gate inert)'}${GATED ? ' [GATED — answer bodies NOT in the page]' : ''}`);
 console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
