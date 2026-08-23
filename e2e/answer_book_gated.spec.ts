@@ -235,7 +235,16 @@ test('every unit has a bundle and every bundle question is the full projection',
             expect(JSON.stringify(q)).not.toContain('"recall"');                        // grader rubric never ships
         }
     }
-    expect(total).toBe(448);
+    // Derived, never hardcoded: the bank grows (448 -> 652 the day chemistry
+    // opened) and a literal here would turn a correct book red.
+    const manifestTotal = manifest.units.reduce(
+        (n: number, u: any) => n + u.questions.filter((e: any) => e.question_id).length, 0);
+    const distinctIds = new Set<string>();
+    for (const u of manifest.units) {
+        for (const e of u.questions) if (e.question_id) distinctIds.add(e.question_id);
+    }
+    expect(total).toBe(distinctIds.size);
+    expect(manifestTotal).toBeGreaterThanOrEqual(total);   // cuts share one file
 });
 
 // -- P4: the paywall ---------------------------------------------------------
