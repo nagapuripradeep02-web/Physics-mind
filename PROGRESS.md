@@ -1,5 +1,38 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## MONEY SESSION — Answer Book: **P4 — PAYMENTS, founding price grandfathered, awaiting keys** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `483996ee`/`0504b976`, branch + master PUSHED as `89ae57fc`)
+
+**Bottom line: the book can take money. RS99/31 days for the first 500 devices, RS249 after — and the founding price is GRANDFATHERED FOREVER (a device that has ever paid RS99 renews at RS99). Proven in SQL: with slots exhausted, the existing founder is still quoted RS99 while a new device is quoted RS249. The client NEVER names a price — `ab_price_for(device)` decides on the server and `answerbook-pay` re-reads it when minting the Razorpay link; the pay request carries no amount at all (gate-asserted). Three functions deployed (`answerbook-pay`, `ab-razorpay-webhook`, updated `answerbook-content`). NOTHING CHARGES until the founder sets the Razorpay secrets — verified live: no keys → `payments_unconfigured` and NO pay button. Verified: tsc 0 — vitest 416/416 — gated gates 12/12 (6 new paywall) — full suite 48/48 CLEAN twice (26.0m pre-merge, 33.5m post-chemistry).**
+
+### The money path, and what was proven rather than assumed
+[Unlock — RS99] → `answerbook-pay` prices THIS device and mints a Razorpay link carrying `notes.device_id` (30-min expiry) → UPI → `ab-razorpay-webhook` HMAC-verifies the RAW body → `ab_apply_payment`. Sequential SQL (CTEs share a snapshot — the recorded scar): first payment → founding, 31 days; SAME payment_id again → `duplicate`, still ONE entitlement row; renewal → Sep 23 → Oct 24, i.e. extended from the EXISTING expiry so paying early never burns paid days. The 500th/501st payer cannot both take the last slot — `ab_apply_payment` reads the price BEFORE writing the payment row. Live probes: foreign origin 403; unsigned AND wrongly-signed webhooks 401 (a forged payment grants nothing); money with no device_id is banked with `applied_at` null, attachable by hand.
+
+### `expires_at` is what makes a renewal mean anything
+NULL = permanent (the free chapter is a gift, not a rental); a date = a paid pass the content endpoint refuses once lapsed.
+
+### CHEMISTRY LANDED MID-BUILD — and cost almost nothing
+Master gained 204 chemistry entries (PR #135) while P4 was in flight; the push was rejected, the merge was CLEAN (zero conflicts). The P3 subject dimension absorbed a THIRD subject with no code changes — which is the entire reason it exists. Cost: a rebuild (gated 1.5 → 1.9 MB), `content:push` (18 → 25 units, 644 questions), and a label fix (the SKU said "both subjects"). A chemistry chapter correctly shows the RS99 offer. Also de-hardcoded the bundle-count gate — it asserted 448 and would have gone red on a CORRECT book the day chemistry opened (the recorded lesson: a test must never encode fleet size).
+
+### FIRST REAL STUDENTS — unprompted
+`ab_devices` holds **10 real devices** from 2026-08-23 19:53—21:47 UTC across android/ios/windows/mac/linux, two with progress ticks (4 and 1 questions). Nobody was told; P2 sync recorded them. Rows untouched.
+
+### FOUNDER STEPS — nothing charges until all three
+1. `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` (dashboard → API Keys).
+2. Webhook: `https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/ab-razorpay-webhook`, events payment.captured / payment_link.paid / order.paid, + `AB_RAZORPAY_WEBHOOK_SECRET`. **Do 1 and 2 together or neither** — keys without the webhook = money taken, access not granted.
+3. **`AB_DAILY_USD_CAP` $2 → $15 BEFORE launch.** Pilot-sized; 500 paying students hit "Vidi is resting" by mid-morning. The worst bug to learn about from a customer.
+Full runbook incl. go-live order + operator queries: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md`.
+
+### Files
+`supabase_migrations/supabase_2026_08_24_answerbook_payments.sql` (NEW, applied) — `supabase/functions/answerbook-pay/` + `ab-razorpay-webhook/` (NEW, deployed) — `answerbook-content` (expiry + per-device price) — `answer-book/notebook.js` (offer line, unlock tap, return-to-chapter) — `src/scripts/build_answer_book.ts` (`PM_PAY_BASE`) — `e2e/answer_book_gated.spec.ts` (12) — `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md` (NEW) — `docs/patterns/answer_book.md`. **No Rule-40 platform file touched.**
+
+### NEXT
+1. Founder: the three steps above, then a real RS99 payment on your own phone (the only end-to-end proof), refund + expire it.
+2. The launch flip: gated build → answers.viditra.co (`wrangler.answers.toml` recipe).
+3. P5 hardening. Still open: AB_ALLOWED_ORIGINS + chat persona redeploy; SMS/DLT (second-device restore).
+
+---
+
+
 ## 🧪 SESSION — Answer Book: **CHEMISTRY OPENS — Junior Chapters 1–7, 204 entries** (2026-08-23, desk `physics-mind-ipe-chemistry`, branch `feat/ipe-answerbook-chemistry`)
 
 **Bottom line: the Answer Book has a third subject. Seven units / 204 catalog entries / 196 files take the book from 448 files·454 entries to 644 files·658 entries. A NEW SUBJECT NEEDED ZERO ENGINE WORK — `chemistry` was already whitelisted at every site the Maths-1B work generalised (build `SUBJECTS`, the zod `subject` enum, `SUBJ_LABEL`, `subjectOf`/`unitKey`, the subject chips, the data-derived e2e subject gate), so opening a paper is data plus one doc. Zero katex growth (272 lines, unchanged): chemical notation is Unicode. All seven units are at 100% `memory_tip` and `margin_note` — the full completeness bar from card one, unlike physics Units 4–9. Verified: build green · tsc 0 · vitest 416/416 · validate:chemistry 16/16 · figure-label sweep PASS (384 s at 477 q, 43% of its 900 s budget, slope ~0.80 s/q).**
