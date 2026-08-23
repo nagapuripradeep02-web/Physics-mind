@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_entropy_explained",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is entropy? Explain with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    },
+    {
+      "label": "Quantitative form",
+      "marks": 1
+    },
+    {
+      "label": "Spontaneity link",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book attaches ΔS(total) = ΔS(system) + ΔS(surroundings) to 'any isolated system'; this card states it for any process, since an isolated system exchanges nothing with its surroundings. NOTE: the book also asks entropy at VSAQ 4a as one of three definitions in a bundle; that bundle is a separate card (ts_ipe_c1_td_define_entropy_terms), not a cut of this one, because its two other definitions cannot come from this step list."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Entropy S is a measure of the randomness or",
+          "disorder of a system.",
+          "It is a state function and an extensive",
+          "property.",
+          "The greater the disorder, the greater the",
+          "entropy."
+        ],
+        "why": "Entropy turns disorder from a word into a measurable quantity, and being a state function makes ΔS depend only on the initial and final states.",
+        "common_mistakes": [
+          "Calling entropy a form of energy — its unit J K⁻¹ shows it is heat divided by temperature, not heat.",
+          "Leaving out state function."
+        ],
+        "memory_tip": "S for scatter: the more the particles are scattered, the larger S.",
+        "margin_note": "Disorder, state function, extensive — three checked words."
+      },
+      {
+        "id": "s2_example",
+        "kind": "text",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "When ice melts, the ordered crystal becomes",
+          "a liquid whose molecules move about freely:",
+          "the entropy increases.",
+          "For any substance:",
+          {
+            "text": "S(gas) > S(liquid) > S(solid)",
+            "style": "eq"
+          }
+        ],
+        "why": "The question says explain with an example, so one concrete change (ice to water) plus the general ordering of the three states is the expected content.",
+        "common_mistakes": [
+          "Writing the ordering backwards — the gas is the most disordered, so it has the highest entropy."
+        ],
+        "memory_tip": "Solid, liquid, gas: order decreases and entropy increases in that sequence.",
+        "margin_note": "One concrete example plus the S(g) > S(l) > S(s) line."
+      },
+      {
+        "id": "s3_quantitative",
+        "kind": "equation",
+        "label": "Quantitative form",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "For a reversible change at temperature T:",
+          {
+            "text": "ΔS = q(rev) / T",
+            "style": "eq"
+          },
+          "Units of ΔS: J K⁻¹ mol⁻¹ (per mole)."
+        ],
+        "why": "The same amount of heat disturbs a cold system more than a hot one, so the entropy change is the heat divided by the temperature at which it is transferred.",
+        "common_mistakes": [
+          "Multiplying instead of dividing by T.",
+          "Writing the unit as J mol⁻¹, dropping the K⁻¹."
+        ],
+        "memory_tip": "Heat over temperature: q on top, T below, units J K⁻¹.",
+        "margin_note": "The reversible q and the unit both matter here."
+      },
+      {
+        "id": "s4_total",
+        "kind": "boxed_final",
+        "label": "Spontaneity link",
+        "marks": 1,
+        "mark_note": "Criterion",
+        "lines": [
+          "For any process:",
+          {
+            "text": "ΔS(total) = ΔS(system) + ΔS(surroundings)",
+            "style": "eq"
+          },
+          "A spontaneous process increases the total:",
+          {
+            "text": "ΔS(total) > 0 for a spontaneous process",
+            "style": "boxed"
+          }
+        ],
+        "why": "Spontaneity is judged by the total entropy, not the system's alone. The book writes this sum for an isolated system; an isolated system exchanges nothing, so the sharper statement is system plus surroundings for any process.",
+        "common_mistakes": [
+          "Testing spontaneity with ΔS(system) alone — freezing water lowers the system's entropy yet is spontaneous below 0 °C."
+        ],
+        "memory_tip": "Always add the two entropy changes: system plus surroundings, then check the sign.",
+        "margin_note": "Box the criterion; it connects this answer to the second law."
+      }
+    ]
+  },
+  "insider_note": "The word explain moves this beyond the two-mark definition: the example, the formula ΔS = q(rev)/T and the total-entropy criterion each carry a mark of their own."
+}

@@ -106,9 +106,9 @@
             {
               "type": "label",
               "id": "dxy_lbl_name",
-              "x": 118,
+              "x": 122,
               "y": 238,
-              "text": "dxy — four lobes",
+              "text": "dxy",
               "ms": 220,
               "em": true
             },
@@ -121,7 +121,7 @@
             {
               "type": "stroke",
               "id": "dz2_axis_x",
-              "d": "M 300 150 L 420 150",
+              "d": "M 322 150 L 398 150",
               "ms": 320
             },
             {
@@ -139,7 +139,7 @@
             {
               "type": "stroke",
               "id": "dz2_ring",
-              "d": "M 314 150 A 46 14 0 1 0 406 150 A 46 14 0 1 0 314 150",
+              "d": "M 316 150 A 44 10 0 1 0 404 150 A 44 10 0 1 0 316 150",
               "ms": 520
             },
             {
@@ -154,7 +154,7 @@
             {
               "type": "label",
               "id": "dz2_lbl_x",
-              "x": 426,
+              "x": 406,
               "y": 154,
               "text": "x",
               "ms": 180,
@@ -163,9 +163,9 @@
             {
               "type": "label",
               "id": "dz2_lbl_name",
-              "x": 330,
+              "x": 344,
               "y": 238,
-              "text": "dz² — lobes and ring",
+              "text": "dz²",
               "ms": 220,
               "em": true
             }
@@ -194,7 +194,7 @@
           "dx²−y² lies along the x and y axes.",
           "dz² has two lobes along z and a ring in",
           "the xy plane.",
-          "Shape: double dumb-bell. Each has 2 nodal planes."
+          "Shape: double dumb-bell. Angular nodes = l = 2."
         ],
         "why": "For d orbitals l = 2, so m takes five values and there are five orbitals. Four of them are four-lobed and differ only in how they sit relative to the axes; dz² is the fifth and the odd one.",
         "common_mistakes": [

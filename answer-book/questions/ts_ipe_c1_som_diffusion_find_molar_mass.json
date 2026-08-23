@@ -1,0 +1,112 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_diffusion_find_molar_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "360 cm³ of CH₄ gas diffused through a porous membrane in 15 minutes. Under similar conditions, 120 cm³ of another gas diffused in 10 minutes. Find the molar mass of the gas.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two rates",
+      "marks": 1
+    },
+    {
+      "label": "Graham's law and substitution",
+      "marks": 2
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: r₁ = 24, r₂ = 12 cm³ min⁻¹; M₂ = 4 × 16 = 64 g mol⁻¹, matching the book. A cross-check: 64 g mol⁻¹ is the molar mass of SO₂, a plausible unknown gas."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rates",
+        "kind": "equation",
+        "label": "The two rates",
+        "marks": 1,
+        "mark_note": "Rates",
+        "lines": [
+          "Rate of diffusion = volume diffused / time taken",
+          "r₁ (CH₄) = 360 cm³ / 15 min = 24 cm³ min⁻¹",
+          "r₂ (unknown gas) = 120 cm³ / 10 min = 12 cm³ min⁻¹",
+          "M₁ (CH₄) = 16 g mol⁻¹"
+        ],
+        "why": "Graham's law compares rates, but the data gives volumes and times — so each gas's volume-per-time must be computed first. The unequal times are the trap: the volumes alone cannot be compared.",
+        "common_mistakes": [
+          "Comparing the volumes 360 and 120 directly. The times differ, so only the RATES compare.",
+          "Mixing units between the two rates — keep both in cm³ min⁻¹."
+        ],
+        "memory_tip": "Rate first, law second: divide each volume by its own time before anything else.",
+        "margin_note": "Two divisions and the known molar mass set up the whole problem."
+      },
+      {
+        "id": "s2_graham",
+        "kind": "equation",
+        "label": "Graham's law and substitution",
+        "marks": 2,
+        "mark_note": "Law and substitution",
+        "lines": [
+          {
+            "text": "r₁ / r₂ = √( M₂ / M₁ )",
+            "style": "eq"
+          },
+          "24 / 12 = √( M₂ / 16 )",
+          "2 = √( M₂ / 16 )",
+          "Squaring both sides:  4 = M₂ / 16"
+        ],
+        "why": "The faster gas is the lighter one, so the unknown (slower) gas's molar mass sits on top inside the root. Squaring both sides removes the root and leaves one linear equation for M₂.",
+        "common_mistakes": [
+          "Writing √(M₁/M₂) with the known mass on top. The subscripts swap between rates and masses.",
+          "Forgetting to square, and solving 2 = M₂/16 to get 32."
+        ],
+        "memory_tip": "The slower gas is the heavier gas: the unknown here diffuses at half the rate, so it must be heavier than CH₄.",
+        "margin_note": "Both marks live here: the law stated and the substitution squared."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "M₂ = 4 × 16",
+          {
+            "text": "M₂ = 64 g mol⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying out gives 64 g mol⁻¹. A rate ratio of 2 means a mass ratio of 4 — the square relationship is the central content of Graham's law.",
+        "common_mistakes": [
+          "Writing 64 with no unit. The molar mass needs g mol⁻¹.",
+          "Reporting 4 g mol⁻¹ — 4 is the mass RATIO, not the mass."
+        ],
+        "memory_tip": "Half the rate, four times the mass: 16 × 4 = 64.",
+        "margin_note": "64 g mol⁻¹ is the molar mass of SO₂ — a quick reasonableness check."
+      }
+    ]
+  },
+  "insider_note": "The unequal diffusion times are the planted trap — students who compare 360 with 120 directly get a rate ratio of 3 and never recover the marks."
+}

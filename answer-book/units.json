@@ -2035,6 +2035,1512 @@
       ]
     },
     {
+      "number": 2,
+      "name": "Classification of Elements – Periodic Properties (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "What is screening effect? How is it related to ionisation enthalpy?",
+          "question_id": "ts_ipe_c1_cp_screening_effect"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Electron affinity of chlorine is more than that of fluorine. Explain.",
+          "question_id": "ts_ipe_c1_cp_ea_chlorine_fluorine"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "What is diagonal relationship?",
+          "question_id": "ts_ipe_c1_cp_diagonal_relationship"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Among N³⁻, O²⁻, F⁻, Na⁺, Mg²⁺ and Al³⁺ (a) what is common in them? (b) arrange them in the increasing order of ionic radii.",
+          "question_id": "ts_ipe_c1_cp_isoelectronic_ionic_radii"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "An element X has atomic number 34. Give its position in the periodic table.",
+          "question_id": "ts_ipe_c1_cp_element_z34_position"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Name the element with the highest electron affinity (E.A) and the element with the highest electronegativity (E.N) in the periodic table.",
+          "question_id": "ts_ipe_c1_cp_highest_ea_en"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Give any four characteristic properties of transition elements.",
+          "question_id": "ts_ipe_c1_cp_transition_elements_properties"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "What is lanthanide contraction? What are its consequences?",
+          "question_id": "ts_ipe_c1_cp_lanthanide_contraction"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is a periodic property? How do the following properties vary in a group and in a period? Explain. (a) Ionisation enthalpy (b) Electronegativity (c) Atomic radius (d) Electron gain enthalpy (e) Nature of oxides (f) Metallic nature",
+          "question_id": "ts_ipe_c1_cp_periodic_properties_trends"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Define IE₁ and IE₂. Why is IE₂ > IE₁ for a given atom? Discuss the factors that affect the ionisation enthalpy of an element.",
+          "question_id": "ts_ipe_c1_cp_ie1_ie2_factors"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Write an essay on s, p, d and f block elements.",
+          "question_id": "ts_ipe_c1_cp_s_p_d_f_blocks"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State the modern periodic law. Who proposed it?",
+          "question_id": "ts_ipe_c1_cp_modern_periodic_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "State Dobereiner's law of triads. Give one example.",
+          "question_id": "ts_ipe_c1_cp_dobereiner_triads",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the IUPAC name and symbol of the element with atomic number 120.",
+          "question_id": "ts_ipe_c1_cp_iupac_name_z120",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define covalent radius and van der Waals radius. Which of the two is larger?",
+          "question_id": "ts_ipe_c1_cp_covalent_vs_vanderwaals_radius",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Why is the electron gain enthalpy of noble gases positive?",
+          "question_id": "ts_ipe_c1_cp_noble_gas_egh_positive",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "The first ionisation enthalpy of nitrogen is greater than that of oxygen. Explain.",
+          "question_id": "ts_ipe_c1_cp_ie_nitrogen_oxygen",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are the differences between electron gain enthalpy and electronegativity?",
+          "question_id": "ts_ipe_c1_cp_egh_vs_electronegativity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How does the valence of an element vary across a period and down a group?",
+          "question_id": "ts_ipe_c1_cp_valence_period_group",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Chemical Bonding (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is octet rule?",
+          "question_id": "ts_ipe_c1_cb_octet_rule"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Which of the two ions Ca²⁺ or Zn²⁺ is more stable? Why?",
+          "question_id": "ts_ipe_c1_cb_ca_vs_zn_stability"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Cl⁻ ion is more stable than Cl atom. Why?",
+          "question_id": "ts_ipe_c1_cb_cl_ion_stability"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "How many sigma and π bonds are present in (a) C₂H₂ (b) C₂H₄?",
+          "question_id": "ts_ipe_c1_cb_sigma_pi_count_c2h2_c2h4"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Give the differences between σ and π bonds.",
+          "question_id": "ts_ipe_c1_cb_sigma_vs_pi",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Explain the hybridization involved in the PCl₅ molecule.",
+          "question_id": "ts_ipe_c1_cb_pcl5_hybridisation"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Explain the hybridization involved in the SF₆ molecule.",
+          "question_id": "ts_ipe_c1_cb_sf6_hybridisation"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is hydrogen bond? Explain the types of hydrogen bonds with example.",
+          "question_id": "ts_ipe_c1_cb_hydrogen_bond_types"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "State Fajan's rules and give suitable examples.",
+          "question_id": "ts_ipe_c1_cb_fajans_rules"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give the differences between σ and π bonds.",
+          "question_id": "ts_ipe_c1_cb_sigma_vs_pi",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Compare the dipole moment of NH₃ molecule with that of NF₃ molecule.",
+          "question_id": "ts_ipe_c1_cb_nh3_vs_nf3_dipole"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Explain the formation of coordinate covalent bond with one example.",
+          "question_id": "ts_ipe_c1_cb_coordinate_covalent_bond"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Define dipole moment and write its applications.",
+          "question_id": "ts_ipe_c1_cb_dipole_moment_applications"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define the dipole moment. Why is the dipole moment of the BF₃ molecule zero?",
+          "question_id": "ts_ipe_c1_cb_bf3_dipole_zero"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write the general properties of ionic compounds.",
+          "question_id": "ts_ipe_c1_cb_ionic_compound_properties"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What do you understand by hybridization? Explain different types of hybridizations involving s and p orbitals.",
+          "question_id": "ts_ipe_c1_cb_hybridisation_types_s_p"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Give the molecular orbital energy diagram of N₂ and O₂. Calculate the respective bond order and write the magnetic nature of N₂ and O₂ molecules.",
+          "question_id": "ts_ipe_c1_cb_mo_diagram_n2_o2"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Give an account of VSEPR theory and its applications.",
+          "question_id": "ts_ipe_c1_cb_vsepr_theory"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What are Lewis dot symbols? What is their significance?",
+          "question_id": "ts_ipe_c1_cb_lewis_dot_symbols",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Define formal charge. Write the formula used to calculate it.",
+          "question_id": "ts_ipe_c1_cb_formal_charge",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Define bond length, bond angle and bond enthalpy.",
+          "question_id": "ts_ipe_c1_cb_bond_parameters",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define bond order. Show that the He₂ molecule does not exist.",
+          "question_id": "ts_ipe_c1_cb_bond_order_he2",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define lattice enthalpy. What does a high lattice enthalpy indicate?",
+          "question_id": "ts_ipe_c1_cb_lattice_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Using VSEPR theory, predict the shapes of the CO₂ and SO₂ molecules.",
+          "question_id": "ts_ipe_c1_cb_vsepr_shapes_co2_so2",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What is resonance? Explain it with the ozone molecule as an example.",
+          "question_id": "ts_ipe_c1_cb_resonance",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is an ionic bond? Which conditions favour its formation? Explain the formation of sodium chloride.",
+          "question_id": "ts_ipe_c1_cb_ionic_bond_formation",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "States of Matter (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Which of the gases N₂, O₂ and CH₄ diffuses faster? Why?",
+          "question_id": "ts_ipe_c1_som_fastest_diffusing_gas"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "How many times does methane diffuse faster than sulphur dioxide?",
+          "question_id": "ts_ipe_c1_som_ch4_vs_so2_diffusion"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is Boltzmann's constant? Give its value.",
+          "question_id": "ts_ipe_c1_som_boltzmann_constant"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "What is compressibility factor?",
+          "question_id": "ts_ipe_c1_som_compressibility_factor"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Calculate the kinetic energy of 5 moles of nitrogen at 27 °C.",
+          "question_id": "ts_ipe_c1_som_ke_5mol_nitrogen"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "What is coefficient of viscosity? Give its units.",
+          "question_id": "ts_ipe_c1_som_coefficient_of_viscosity"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the RMS speed of CO₂ gas at 27 °C.",
+          "question_id": "ts_ipe_c1_som_rms_avg_mp_co2",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Write the van der Waals equation.",
+          "question_id": "ts_ipe_c1_som_van_der_waals_equation"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Calculate the kinetic energy (in SI units) of 4 g of methane at −73 °C.",
+          "question_id": "ts_ipe_c1_som_ke_4g_methane"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Calculate the ratio of kinetic energies of 3 g of hydrogen and 4 g of oxygen at a given temperature.",
+          "question_id": "ts_ipe_c1_som_ke_ratio_h2_o2"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Why is a pressure cooker used for cooking food on hills?",
+          "question_id": "ts_ipe_c1_som_pressure_cooker_hills"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "What are isotherms?",
+          "question_id": "ts_ipe_c1_som_isotherms"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 1,
+          "text": "What are isobars?",
+          "question_id": "ts_ipe_c1_som_isobars"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 1,
+          "text": "What are isochores?",
+          "question_id": "ts_ipe_c1_som_isochores"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 1,
+          "text": "Why is the gas constant R called the universal gas constant?",
+          "question_id": "ts_ipe_c1_som_universal_gas_constant"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 1,
+          "text": "What is critical temperature? Give its value for CO₂.",
+          "question_id": "ts_ipe_c1_som_critical_temperature"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 2,
+          "text": "What is surface tension?",
+          "question_id": "ts_ipe_c1_som_surface_tension"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 2,
+          "text": "What is gram molar volume (GMV)?",
+          "question_id": "ts_ipe_c1_som_gram_molar_volume"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 2,
+          "text": "Give the ratio of RMS, average and most probable speeds of gas molecules.",
+          "question_id": "ts_ipe_c1_som_speed_ratio"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Calculate the kinetic energy of 2 moles of nitrogen at 27 °C.",
+          "question_id": "ts_ipe_c1_som_ke_2mol_nitrogen"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Write the effect of temperature on surface tension and viscosity. Give the reason for it.",
+          "question_id": "ts_ipe_c1_som_temp_surface_tension_viscosity"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "State Graham's law of diffusion.",
+          "question_id": "ts_ipe_c1_som_grahams_law",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "State Dalton's law of partial pressures.",
+          "question_id": "ts_ipe_c1_som_daltons_law",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "What is RMS speed?",
+          "question_id": "ts_ipe_c1_som_rms_speed_definition"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What is most probable speed?",
+          "question_id": "ts_ipe_c1_som_most_probable_speed"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Calculate the amount of carbon dioxide that could be produced when one mole of carbon is burnt in 16 g of dioxygen.",
+          "question_id": "ts_ipe_c1_som_co2_from_carbon_o2"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "What is Boyle temperature?",
+          "question_id": "ts_ipe_c1_som_boyle_temperature"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State and explain Graham's law of diffusion. Give its applications.",
+          "question_id": "ts_ipe_c1_som_grahams_law",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "State and explain Dalton's law of partial pressures.",
+          "question_id": "ts_ipe_c1_som_daltons_law",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Deduce (a) Boyle's law (b) Charles' law (c) Graham's law (d) Dalton's law from the kinetic gas equation.",
+          "question_id": "ts_ipe_c1_som_deduce_laws_from_kge"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Write the postulates of the kinetic molecular theory of gases.",
+          "question_id": "ts_ipe_c1_som_kinetic_theory_postulates"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the RMS speed, average speed and most probable speed of CO₂ gas at 27 °C.",
+          "question_id": "ts_ipe_c1_som_rms_avg_mp_co2",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write an expression for the kinetic energy of a gas molecule.",
+          "question_id": "ts_ipe_c1_som_ke_expression_per_mole"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "360 cm³ of CH₄ gas diffused through a porous membrane in 15 minutes. Under similar conditions, 120 cm³ of another gas diffused in 10 minutes. Find the molar mass of the gas.",
+          "question_id": "ts_ipe_c1_som_diffusion_find_molar_mass"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Derive the ideal gas equation.",
+          "question_id": "ts_ipe_c1_som_ideal_gas_equation"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "State Boyle's law. Write its mathematical form.",
+          "question_id": "ts_ipe_c1_som_boyles_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "State Charles' law. Write its mathematical form.",
+          "question_id": "ts_ipe_c1_som_charles_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "State Avogadro's law.",
+          "question_id": "ts_ipe_c1_som_avogadros_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "What is aqueous tension?",
+          "question_id": "ts_ipe_c1_som_aqueous_tension",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "What is vapour pressure? How is it related to the boiling point?",
+          "question_id": "ts_ipe_c1_som_vapour_pressure_boiling",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the different types of intermolecular forces.",
+          "question_id": "ts_ipe_c1_som_intermolecular_forces",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Why do real gases deviate from ideal behaviour?",
+          "question_id": "ts_ipe_c1_som_real_gas_deviation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Describe the Maxwell distribution of molecular speeds. What happens to the distribution when the temperature is raised?",
+          "question_id": "ts_ipe_c1_som_maxwell_distribution",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Stoichiometry (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What are disproportionation reactions? Give example.",
+          "question_id": "ts_ipe_c1_st_disproportionation"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "What are comproportionation reaction? Give an example?",
+          "question_id": "ts_ipe_c1_st_comproportionation"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "How many number of moles of glucose are present in 540 grams of glucose.",
+          "question_id": "ts_ipe_c1_st_moles_in_540g_glucose"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How many molecules of glucose are present in 5.23gm of glucose",
+          "question_id": "ts_ipe_c1_st_molecules_in_glucose"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "The empirical formula of a compound is CH2O it molecular weight is 90 calculate the molecular formula of the compound.",
+          "question_id": "ts_ipe_c1_st_ch2o_molecular_formula"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Calculate the volume of O2 at STP required to completely burn 100 ml of acetylene.",
+          "question_id": "ts_ipe_c1_st_o2_for_acetylene"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Calculate the molarity of NaOH in the solution prepared dissolving 4gr in enough water to from 250 ml of the solution?",
+          "question_id": "ts_ipe_c1_st_molarity_naoh"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Calculate the normality of oxalic acid solution containing 6.3 gr H2C2O4.2H2O in 500 ml of solution?",
+          "question_id": "ts_ipe_c1_st_normality_oxalic_acid"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Calculate the mass of Na2CO3 required to prepare 250 ml of 0.5 N solution.",
+          "question_id": "ts_ipe_c1_st_mass_na2co3_for_normality"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Calculate the weight of 0.1 mole of sodium carbonate (Na2CO3)?",
+          "question_id": "ts_ipe_c1_st_weight_na2co3"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "A solution is prepared by adding 2 gr of a substance A to 18 gr H2O. Calculate the mass percentage of solute?",
+          "question_id": "ts_ipe_c1_st_mass_percent_solute"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Assign oxidation number of the underlined element NaHSO4 (S underlined).",
+          "question_id": "ts_ipe_c1_st_ox_number_nahso4"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Calculate the oxidation number on chromium atom in Cr2O7 2-.",
+          "question_id": "ts_ipe_c1_st_ox_number_cr2o7"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Assign oxiation number to the underlined elements in each of the following species. a) K2MnO4 (Mn) b) H2S2O7 (S)",
+          "question_id": "ts_ipe_c1_st_ox_numbers_k2mno4_h2s2o7"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What do you mean by significant figures.",
+          "question_id": "ts_ipe_c1_st_significant_figures"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is a redox concept? Give an example.",
+          "question_id": "ts_ipe_c1_st_redox_concept"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Balance the reaction MnO4- + SO3 2- -> Mn2+ + SO4 2- in acid medium (or) Write the balanced equation for the oxidation of sulphite ions to sulphate ions in acid medium by permanganate ion.",
+          "question_id": "ts_ipe_c1_st_bal_mno4_so3_acid"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Balancing the following equation Cr(OH)3 + IO3- -> I- + CrO4 2- (or) Balance the above equation basic medium.",
+          "question_id": "ts_ipe_c1_st_bal_croh3_io3_basic"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Chemical analysis of a carbon compound gave the following percentage composition by weight of the elements present carbon = 10.06%; Hydrogen = 0.84%; chlorine = 89.10% Calculate the empirical formula of the compound?",
+          "question_id": "ts_ipe_c1_st_ef_chcl3"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A carbon compound contains 12.8% carbon 2.1% Hydrogen 85.1% bromine. The molecular weight of the compound is 187.9 calculate the molecular formula.",
+          "question_id": "ts_ipe_c1_st_mf_c2h4br2"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Calculate the oxidation state of following compounds. a) KMnO4 b) K2Cr2O7 c) MnO4- d) C12H22O11 e) OF2 f) O2F2",
+          "question_id": "ts_ipe_c1_st_ox_states_six_species"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Balance the reaction Cr2O7 2- + NO2- -> Cr3+ + NO3- in acid medium",
+          "question_id": "ts_ipe_c1_st_bal_cr2o7_no2_acid"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Write the balanced Ionic equation which represents the oxidation of Iodide (I-) Ion by permanganate ion in basic medium to give iodine (I2) and manganese dioxide (MnO2)",
+          "question_id": "ts_ipe_c1_st_bal_mno4_iodide_basic"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "A carbon compound catains 4.07% hydrogen, 24.27 % carbon and 71.65% chlorine. Its nuclear mass is 98.96 gm. What are its empirical and molecular formulas?",
+          "question_id": "ts_ipe_c1_st_ef_mf_c2h4cl2"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Balance the following redox reactions by ion electron method. MnO4-(aq) + SO2(g) -> Mn2+(aq) + HSO4- (in acidic medium) [March-09]",
+          "question_id": "ts_ipe_c1_st_bal_mno4_so2_acid"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Balance the following redox reactions by ion electron method. (in acidic medium) [March-09] Cr2O7 2-(aq) + SO2(g) -> Cr3+(aq) + SO4 2-(aq)",
+          "question_id": "ts_ipe_c1_st_bal_cr2o7_so2_acid"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 1,
+          "text": "A carbon compound on analysis gave the following percentage composition carbon 14.5%; Hydrogen 1.8%; Chlorine 64.46%; Oxygen 19.24%; Calculate the empirical formula of the compound.",
+          "question_id": "ts_ipe_c1_st_ef_c2h3cl3o2"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "Calculate the empirical formula of a compound having percentage composition K = 26.57%, Cr = 35.36%, O = 38.07%. (Mar 07)",
+          "question_id": "ts_ipe_c1_st_ef_k2cr2o7"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "State the law of conservation of mass.",
+          "question_id": "ts_ipe_c1_st_law_conservation_mass",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "State the law of definite proportions.",
+          "question_id": "ts_ipe_c1_st_law_definite_proportions",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State the law of multiple proportions with an example.",
+          "question_id": "ts_ipe_c1_st_law_multiple_proportions",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State Gay-Lussac's law of combining volumes and Avogadro's law.",
+          "question_id": "ts_ipe_c1_st_gay_lussac_avogadro_laws",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define the mole. What is Avogadro's number?",
+          "question_id": "ts_ipe_c1_st_mole_avogadro_number",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define molality and mole fraction.",
+          "question_id": "ts_ipe_c1_st_molality_mole_fraction",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What is a limiting reagent?",
+          "question_id": "ts_ipe_c1_st_limiting_reagent",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain oxidation and reduction in terms of (a) oxygen, (b) hydrogen and (c) electron transfer, with one example each.",
+          "question_id": "ts_ipe_c1_st_oxidation_reduction_three_senses",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Thermodynamics (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Define system. Give an example.",
+          "question_id": "ts_ipe_c1_td_define_system"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "What are extensive and intensive properties? Give examples.",
+          "question_id": "ts_ipe_c1_td_extensive_intensive"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Give the equation that gives the relationship between ΔU and ΔH.",
+          "question_id": "ts_ipe_c1_td_dh_du_relation"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Define the following terms: a) Entropy b) Heat capacity c) Absolute entropy",
+          "question_id": "ts_ipe_c1_td_define_entropy_terms"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What are the ΔH sign conventions for exothermic and endothermic reactions?",
+          "question_id": "ts_ipe_c1_td_dh_sign_convention"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "State the second law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_second_law"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State the third law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_third_law"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Explain Gibbs energy.",
+          "question_id": "ts_ipe_c1_td_gibbs_energy"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "What is an isolated system? Give an example.",
+          "question_id": "ts_ipe_c1_td_isolated_system"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "What are exothermic and endothermic reactions?",
+          "question_id": "ts_ipe_c1_td_exo_endo_reactions"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Write the relation between Cp and Cv for an ideal gas.",
+          "question_id": "ts_ipe_c1_td_cp_cv_relation",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "The equilibrium constant for a reaction is 10. What will be the value of ΔG°? (R = 8.314 J K⁻¹ mol⁻¹, T = 300 K)",
+          "question_id": "ts_ipe_c1_td_dg_from_k"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 1,
+          "text": "Define lattice enthalpy.",
+          "question_id": "ts_ipe_c1_td_lattice_enthalpy"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State and explain Hess law of constant heat summation with example.",
+          "question_id": "ts_ipe_c1_td_hess_law"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Give the mathematical form of the first law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_first_law_math"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 1,
+          "text": "Write a short note on enthalpies for different types of reactions.",
+          "question_id": "ts_ipe_c1_td_reaction_enthalpies"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define heat capacity. What are Cp and Cv? Show that Cp − Cv = R.",
+          "question_id": "ts_ipe_c1_td_cp_cv_relation",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is entropy? Explain with an example.",
+          "question_id": "ts_ipe_c1_td_entropy_explained"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What are open and closed systems? Give one example of each.",
+          "question_id": "ts_ipe_c1_td_open_closed_systems",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is a state function? Give examples.",
+          "question_id": "ts_ipe_c1_td_state_function",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "State the first law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_first_law_statement",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Define enthalpy of a system.",
+          "question_id": "ts_ipe_c1_td_define_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Define enthalpy of neutralisation. What is its value for a strong acid and a strong base?",
+          "question_id": "ts_ipe_c1_td_neutralisation_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Define bond enthalpy. Give an example.",
+          "question_id": "ts_ipe_c1_td_bond_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "What is a spontaneous process? Give an example.",
+          "question_id": "ts_ipe_c1_td_spontaneous_process",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Using ΔG = ΔH − TΔS, explain how the signs of ΔH and ΔS and the temperature decide whether a process is spontaneous.",
+          "question_id": "ts_ipe_c1_td_dg_sign_spontaneity",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Chemical Equilibrium, Acids and Bases (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Define dynamic equilibrium.",
+          "question_id": "ts_ipe_c1_ce_dynamic_equilibrium"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Write the relationship between Kp and Kc.",
+          "question_id": "ts_ipe_c1_ce_kp_kc_relation",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is a conjugate acid-base pair?",
+          "question_id": "ts_ipe_c1_ce_conjugate_pair",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "What is meant by ionic product of water? Give its value at 25 °C.",
+          "question_id": "ts_ipe_c1_ce_ionic_product_water"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "What is meant by salt hydrolysis?",
+          "question_id": "ts_ipe_c1_ce_salt_hydrolysis"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is a Lewis acid? Give one example.",
+          "question_id": "ts_ipe_c1_ce_lewis_theory",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is the effect of pressure on a gaseous chemical equilibrium?",
+          "question_id": "ts_ipe_c1_ce_pressure_effect"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is Le Chatelier's principle? Discuss briefly the factors which can influence the equilibrium.",
+          "question_id": "ts_ipe_c1_ce_lechatelier_principle"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Discuss the application of Le Chatelier's principle for the industrial synthesis of NH₃ and SO₃.",
+          "question_id": "ts_ipe_c1_ce_lechatelier_industrial"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Explain Lewis acid-base theory with examples.",
+          "question_id": "ts_ipe_c1_ce_lewis_theory",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Define pH. Calculate the pH of a) 10⁻³ M HCl, b) 10⁻³ M H₂SO₄, c) 0.001 M NaOH, d) 0.0008 M Ba(OH)₂.",
+          "question_id": "ts_ipe_c1_ce_ph_calculations"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "What are homogeneous and heterogeneous equilibria? Give suitable examples.",
+          "question_id": "ts_ipe_c1_ce_homo_hetero_equilibrium"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Write a short note on Brønsted–Lowry acid-base theory.",
+          "question_id": "ts_ipe_c1_ce_bronsted_lowry_theory"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "What are buffer solutions? Explain the types of buffer solutions.",
+          "question_id": "ts_ipe_c1_ce_buffer_solutions"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Derive the relation between Kp and Kc for the following reactions: (i) 2HI(g) ⇌ H₂(g) + I₂(g), (ii) N₂(g) + 3H₂(g) ⇌ 2NH₃(g), (iii) 2SO₂(g) + O₂(g) ⇌ 2SO₃(g), (iv) CaCO₃(s) ⇌ CaO(s) + CO₂(g).",
+          "question_id": "ts_ipe_c1_ce_kp_kc_four_reactions"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is a conjugate acid-base pair? Write the conjugate acid and conjugate base of each of the following: (a) OH⁻ (b) HCO₃⁻",
+          "question_id": "ts_ipe_c1_ce_conjugate_pair",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Derive the relation between Kp and Kc for an equilibrium reaction.",
+          "question_id": "ts_ipe_c1_ce_kp_kc_relation",
+          "cut": "saq"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "State the law of mass action.",
+          "question_id": "ts_ipe_c1_ce_law_of_mass_action",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define the reaction quotient Q. How is it used to predict the direction of a reaction?",
+          "question_id": "ts_ipe_c1_ce_reaction_quotient",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the effect of a catalyst on a chemical equilibrium?",
+          "question_id": "ts_ipe_c1_ce_catalyst_effect",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What is the effect of temperature on the value of the equilibrium constant?",
+          "question_id": "ts_ipe_c1_ce_temperature_effect_kc",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is an Arrhenius acid and an Arrhenius base? Give one example of each.",
+          "question_id": "ts_ipe_c1_ce_arrhenius_theory",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What is the common ion effect? Give one example.",
+          "question_id": "ts_ipe_c1_ce_common_ion_effect",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Define solubility product. Write the solubility product expression for AgCl.",
+          "question_id": "ts_ipe_c1_ce_solubility_product",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define degree of dissociation and derive Ostwald's dilution law for a weak acid.",
+          "question_id": "ts_ipe_c1_ce_ostwald_dilution_law",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
       "number": 1,
       "name": "Functions (Maths-1A)",
       "subject": "mathematics",

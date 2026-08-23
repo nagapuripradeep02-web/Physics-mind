@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_fastest_diffusing_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which of the gases N₂, O₂ and CH₄ diffuses faster? Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Graham's law and the molar masses",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "By Graham's law, at the same temperature and",
+          "pressure the rate of diffusion of a gas is",
+          "inversely proportional to the square root of",
+          "its molar mass: r ∝ 1/√M.",
+          "Molar masses: N₂ = 28, O₂ = 32, CH₄ = 16 g mol⁻¹"
+        ],
+        "why": "The question asks why, so the answer must rest on the law that connects diffusion rate to molar mass, with the three molar masses written down for comparison.",
+        "common_mistakes": [
+          "Naming CH₄ with no reason. The why carries one full mark.",
+          "Comparing the sizes of the molecules instead of their molar masses."
+        ],
+        "memory_tip": "Lighter gas, faster diffusion: r ∝ 1/√M.",
+        "margin_note": "The three molar masses on one line are the evidence the examiner looks for."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The fastest gas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "CH₄ diffuses fastest, because its molar mass (16 g mol⁻¹) is the lowest",
+            "style": "boxed"
+          },
+          "The lowest molar mass gives the highest rate,",
+          "since r ∝ 1/√M."
+        ],
+        "why": "Among 28, 32 and 16 g mol⁻¹, the smallest molar mass belongs to CH₄, and the law says the smallest molar mass diffuses at the highest rate.",
+        "common_mistakes": [
+          "Picking O₂ because it is the heaviest. The heaviest gas diffuses slowest, not fastest."
+        ],
+        "memory_tip": "Methane is the lightest of the three, so it is the fastest.",
+        "margin_note": "Box the gas and its molar mass together."
+      }
+    ]
+  },
+  "insider_note": "Write the three molar masses before naming CH₄ — the comparison is the reason the question asks for."
+}

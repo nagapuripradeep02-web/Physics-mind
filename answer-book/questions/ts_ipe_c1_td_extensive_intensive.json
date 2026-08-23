@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_extensive_intensive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are extensive and intensive properties? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Extensive properties",
+      "marks": 1
+    },
+    {
+      "label": "Intensive properties",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_extensive",
+        "kind": "text",
+        "label": "Extensive properties",
+        "marks": 1,
+        "mark_note": "Definition + examples",
+        "lines": [
+          "Extensive properties depend on the amount",
+          "of matter present in the system.",
+          "Examples: mass, volume, internal energy,",
+          "enthalpy, entropy, heat capacity."
+        ],
+        "why": "Doubling the sample doubles these values, so they measure the sample as a whole, not the substance itself.",
+        "common_mistakes": [
+          "Giving only the definition. The examples carry part of the mark.",
+          "Listing density or temperature here — those do not change with amount."
+        ],
+        "memory_tip": "Extensive follows the extent of the sample: more matter, larger value.",
+        "margin_note": "Definition plus at least two examples."
+      },
+      {
+        "id": "s2_intensive",
+        "kind": "boxed_final",
+        "label": "Intensive properties",
+        "marks": 1,
+        "mark_note": "Definition + examples",
+        "lines": [
+          "Intensive properties do not depend on the",
+          "amount of matter present in the system.",
+          "Examples: temperature, pressure, density,",
+          "viscosity, specific heat capacity.",
+          {
+            "text": "Extensive: depends on amount. Intensive: does not.",
+            "style": "boxed"
+          }
+        ],
+        "why": "These values describe the substance and its condition, so a drop of water and a bucket of water at the same temperature share them.",
+        "common_mistakes": [
+          "Writing heat capacity as intensive — heat capacity is extensive; SPECIFIC heat capacity (per gram) is intensive."
+        ],
+        "memory_tip": "Cut the sample in half: mass halves (extensive), temperature stays the same (intensive).",
+        "margin_note": "Heat capacity vs specific heat capacity is the pair the examiner watches."
+      }
+    ]
+  },
+  "insider_note": "A three-star definition pair. The pair the examiner watches is heat capacity: plain heat capacity is extensive, specific heat capacity is intensive — one word changes the answer."
+}

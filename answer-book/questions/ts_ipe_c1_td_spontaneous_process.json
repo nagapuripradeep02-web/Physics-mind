@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_spontaneous_process",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a spontaneous process? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and criterion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the book uses the word spontaneous in its second-law and Gibbs-energy answers (VSAQ 6, VSAQ 8) but never asks what a spontaneous process is. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A spontaneous process is one that takes",
+          "place on its own, without continuous",
+          "outside help.",
+          "It has a definite natural direction and",
+          "does not reverse on its own."
+        ],
+        "why": "The one-way character is the point: the reverse change is possible, but only when work is supplied from outside.",
+        "common_mistakes": [
+          "Writing that spontaneous means fast — rusting is spontaneous and slow; speed is a separate question."
+        ],
+        "memory_tip": "Spontaneous says which way, never how fast.",
+        "margin_note": "On its own and one direction are the two ideas."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and criterion",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Examples: heat flows from a hot body to a",
+          "cold body; a gas expands into an empty",
+          "vessel; iron rusts in moist air.",
+          "At constant T and p the test is ΔG < 0.",
+          {
+            "text": "Spontaneous: proceeds on its own; ΔG is negative",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each example runs in one direction only, and none of them needs outside work to proceed — that is what the definition describes.",
+        "common_mistakes": [
+          "Giving a driven process as the example — charging a battery or pumping water uphill needs outside work, so neither is spontaneous."
+        ],
+        "memory_tip": "Three stock examples: hot to cold, gas into vacuum, iron to rust.",
+        "margin_note": "One example earns the mark; the ΔG line connects it to Gibbs energy."
+      }
+    ]
+  }
+}

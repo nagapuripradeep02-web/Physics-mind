@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_coefficient_of_viscosity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is coefficient of viscosity? Give its units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The coefficient of viscosity η is the viscous",
+          "force between two liquid layers when the",
+          "velocity gradient between them and their area",
+          "of contact are both unity.",
+          "From F = η A (du/dx): η = F when A = 1 and du/dx = 1"
+        ],
+        "why": "The viscous force grows with the contact area and with how fast the speed changes between layers. Setting both to one isolates the constant η, which measures the liquid's own resistance to flow.",
+        "common_mistakes": [
+          "Leaving out one of the two unit conditions. Both the velocity gradient and the area must be unity.",
+          "Calling η the friction between the liquid and the container wall. It acts between layers of the liquid itself."
+        ],
+        "memory_tip": "Two conditions set to one: unit area, unit velocity gradient. What is left of the force is η.",
+        "margin_note": "Writing F = ηA(du/dx) beside the words makes the definition exact."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "The units",
+        "marks": 1,
+        "mark_note": "Units",
+        "lines": [
+          {
+            "text": "Units of η: N s m⁻² = Pa s",
+            "style": "boxed"
+          },
+          "CGS unit: poise (1 Pa s = 10 poise)"
+        ],
+        "why": "Force (N) divided by area (m²) and by velocity gradient (s⁻¹) leaves N s m⁻². A pascal is one newton per square metre, so N s m⁻² is the same as Pa s.",
+        "common_mistakes": [
+          "Writing N m⁻² without the s. That is pressure, not viscosity.",
+          "Writing Pa s⁻¹ instead of Pa s."
+        ],
+        "memory_tip": "Pressure times time: pascal second. The CGS cousin is the poise.",
+        "margin_note": "Either N s m⁻² or Pa s earns the mark; showing both is safest."
+      }
+    ]
+  },
+  "insider_note": "The units carry a full mark of the two, and Pa s is the expected form — a correct definition with missing units drops half the question."
+}

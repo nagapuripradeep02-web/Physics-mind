@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_dh_du_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the equation that gives the relationship between ΔU and ΔH.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "What Δn(g) counts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines Δn = nP − nR without restricting it to gaseous moles; this card writes the NCERT form, Δn(g) = gaseous product moles − gaseous reactant moles."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation + terms",
+        "lines": [
+          {
+            "text": "ΔH = ΔU + Δn(g)RT",
+            "style": "eq"
+          },
+          "ΔH = enthalpy change",
+          "ΔU = internal energy change",
+          "R = universal gas constant, T = temperature"
+        ],
+        "why": "Enthalpy is H = U + pV, so ΔH differs from ΔU by Δ(pV). For ideal gases pV = nRT, and at constant temperature Δ(pV) = Δn(g)RT.",
+        "common_mistakes": [
+          "Writing ΔU = ΔH + Δn(g)RT — the gas term adds to ΔU, giving ΔH.",
+          "Leaving the symbols unexplained. The meanings carry part of the mark."
+        ],
+        "memory_tip": "H carries the extra pV term, so ΔH equals ΔU plus the gas term Δn(g)RT.",
+        "margin_note": "The equation with symbol meanings earns this mark."
+      },
+      {
+        "id": "s2_delta_n",
+        "kind": "boxed_final",
+        "label": "What Δn(g) counts",
+        "marks": 1,
+        "mark_note": "Δn(g) meaning",
+        "lines": [
+          "Δn(g) counts gaseous moles only:",
+          "moles of gaseous products minus moles of",
+          "gaseous reactants.",
+          "Solids and liquids are not counted.",
+          {
+            "text": "Δn(g) = n(gaseous products) − n(gaseous reactants)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Only gases contribute a pV term of size nRT; the volume of solids and liquids is too small to matter. The source book writes Δn = nP − nR without the word gaseous — the gaseous restriction is the part the examiner checks.",
+        "common_mistakes": [
+          "Counting solid or liquid moles in Δn(g).",
+          "Subtracting products from reactants instead of reactants from products."
+        ],
+        "memory_tip": "Only gas moles change the pV term. Count gases; ignore solids and liquids.",
+        "margin_note": "Say gaseous. Δn without the word gaseous is the common error."
+      }
+    ]
+  },
+  "insider_note": "The mark that separates answers is the word gaseous in the meaning of Δn — the book's own answer omits it."
+}

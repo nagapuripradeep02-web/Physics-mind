@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ox_number_nahso4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Assign the oxidation number of the underlined element in NaHSO₄ (sulphur).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rules and the equation",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. The book underlines S in NaHSO₄; underlining cannot be reproduced here, so the element is named in brackets instead. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Rules and the equation",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Rules applied: Na = +1, H = +1, O = −2,",
+          "and the oxidation numbers in a neutral",
+          "compound add up to 0.",
+          "Let the oxidation number of S be x.",
+          {
+            "text": "(+1) + (+1) + x + 4(−2) = 0",
+            "style": "eq"
+          }
+        ],
+        "why": "Every atom except sulphur has a fixed rule value here, so one equation in x follows from the sum rule for a neutral compound.",
+        "common_mistakes": [
+          "Multiplying oxygen by 3 instead of 4. NaHSO₄ has four oxygen atoms.",
+          "Setting the sum equal to −1. NaHSO₄ is neutral, so the sum is 0."
+        ],
+        "memory_tip": "Fix the known values first: metal +1, hydrogen +1, oxygen −2. Only the asked element stays as x.",
+        "margin_note": "Naming the rule values and setting the sum to 0 earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "2 + x − 8 = 0",
+          {
+            "text": "x = +6, so the oxidation number of S in NaHSO₄ is +6",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two +1 values add to +2 and the four oxygens add to −8, so x must be +6 for the total to be zero.",
+        "common_mistakes": [
+          "Sign slip: writing x = −6 after moving terms across.",
+          "Writing 6 without the + sign. Oxidation numbers carry their sign."
+        ],
+        "memory_tip": "Sulphur reaches its maximum +6 in sulphates and hydrogen sulphates.",
+        "margin_note": "Box +6 with the plus sign."
+      }
+    ]
+  },
+  "insider_note": "State the rule values before the algebra — the examiner marks the set-up line, and the + sign on the final 6 is checked."
+}

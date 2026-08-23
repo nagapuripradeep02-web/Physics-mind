@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_egh_vs_electronegativity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the differences between electron gain enthalpy and electronegativity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Electron gain enthalpy",
+      "marks": 1
+    },
+    {
+      "label": "Electronegativity",
+      "marks": 1
+    },
+    {
+      "label": "The differences",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the compare archetype between these two neighbouring properties is a standard board ask that the book skips — it defines both inside the trends LAQ but never asks them against each other. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Classification of Elements – Periodic Properties · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_egh",
+        "kind": "equation",
+        "label": "Electron gain enthalpy",
+        "marks": 1,
+        "mark_note": "E.G.E",
+        "lines": [
+          "Electron gain enthalpy: the enthalpy change",
+          "when an electron is added to an isolated",
+          "neutral gaseous atom.",
+          {
+            "text": "X(g) + e⁻ → X⁻(g)",
+            "style": "eq"
+          },
+          "It is a measurable energy, expressed in",
+          "kJ mol⁻¹."
+        ],
+        "why": "The comparison can only be marked if each property is first defined on its own; the equation pins electron gain enthalpy to a single free atom and a real energy change.",
+        "common_mistakes": [
+          "Defining it for an atom inside a molecule. It belongs to an isolated gaseous atom.",
+          "Leaving out the unit kJ mol⁻¹, which becomes one of the differences below."
+        ],
+        "memory_tip": "One free gas atom takes in one electron; the energy change of that event is the electron gain enthalpy.",
+        "margin_note": "Definition plus equation; the differences table below reuses both."
+      },
+      {
+        "id": "s2_en",
+        "kind": "text",
+        "label": "Electronegativity",
+        "marks": 1,
+        "mark_note": "E.N",
+        "lines": [
+          "Electronegativity: the ability of a bonded",
+          "atom to attract the shared pair of electrons",
+          "towards itself.",
+          "It is a relative number on a chosen scale",
+          "(fluorine = 4.0 on the Pauling scale) and has",
+          "no units."
+        ],
+        "why": "Electronegativity only exists inside a bond — there is no shared pair to attract in a free atom — and that single fact generates every difference listed below.",
+        "common_mistakes": [
+          "Defining electronegativity for a free atom. It is a property of an atom in a molecule.",
+          "Giving electronegativity units. It is a pure number on a relative scale."
+        ],
+        "memory_tip": "No bond, no electronegativity: the property lives on the shared pair.",
+        "margin_note": "The Pauling value 4.0 for fluorine anchors the scale."
+      },
+      {
+        "id": "s3_differences",
+        "kind": "boxed_final",
+        "label": "The differences",
+        "marks": 2,
+        "mark_note": "Differences",
+        "lines": [
+          "Differences:",
+          "1. Electron gain enthalpy belongs to an",
+          "    isolated gaseous atom; electronegativity",
+          "    belongs to a bonded atom in a molecule.",
+          "2. Electron gain enthalpy is a measured",
+          "    energy in kJ mol⁻¹; electronegativity is a",
+          "    relative number with no units.",
+          "3. Electron gain enthalpy has one value for",
+          "    an element; electronegativity changes with",
+          "    the oxidation state and the bonding",
+          "    partner.",
+          {
+            "text": "Isolated atom, measured energy — bonded atom, relative number",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each difference contrasts the same feature of both properties in one sentence — whose atom, what kind of quantity, how fixed — which is the pattern examiners can tick.",
+        "common_mistakes": [
+          "Writing facts about each property separately instead of point-by-point contrasts.",
+          "Giving only one difference for the two marks. Two clear contrasts is the minimum."
+        ],
+        "memory_tip": "Contrast the same three features: whose atom, what quantity, how fixed.",
+        "margin_note": "Number the differences; each numbered contrast is tickable on its own."
+      }
+    ]
+  }
+}

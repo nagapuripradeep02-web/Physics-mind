@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_sigma_pi_count_c2h2_c2h4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many sigma and π bonds are present in (a) C₂H₂ (b) C₂H₄?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "C₂H₂",
+      "marks": 1
+    },
+    {
+      "label": "C₂H₄",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_c2h2",
+        "kind": "text",
+        "label": "(a) C₂H₂",
+        "marks": 1,
+        "mark_note": "C₂H₂ count",
+        "lines": [
+          "(a) Structure: H−C≡C−H",
+          "Each C−H bond is one σ bond → 2 σ bonds.",
+          "The C≡C triple bond is one σ bond and",
+          "two π bonds.",
+          "C₂H₂ has 3 σ bonds and 2 π bonds."
+        ],
+        "why": "In any multiple bond the first bond is a σ bond and every additional bond is a π bond, so the count is read straight off the drawn structure.",
+        "common_mistakes": [
+          "Counting the triple bond as 3 σ bonds. Only the first bond of it is σ; the other two are π.",
+          "Forgetting the two C−H bonds in the σ count."
+        ],
+        "memory_tip": "First bond σ, every extra bond π. A triple bond is one σ plus two π.",
+        "margin_note": "Draw the structure first. The count comes from the picture, not from memory."
+      },
+      {
+        "id": "s2_c2h4",
+        "kind": "boxed_final",
+        "label": "(b) C₂H₄",
+        "marks": 1,
+        "mark_note": "C₂H₄ count",
+        "lines": [
+          "(b) Structure: H₂C=CH₂",
+          "Four C−H bonds → 4 σ bonds.",
+          "The C=C double bond is one σ bond and",
+          "one π bond.",
+          {
+            "text": "C₂H₂: 3 σ, 2 π   ·   C₂H₄: 5 σ, 1 π",
+            "style": "boxed"
+          }
+        ],
+        "why": "The same first-bond-is-σ rule applied to a double bond: one σ and one π, added to the four C−H σ bonds.",
+        "common_mistakes": [
+          "Writing 4 σ for C₂H₄ by forgetting the C−C σ bond inside the double bond."
+        ],
+        "memory_tip": "Count single lines for σ: four C−H plus one C−C makes five. One line of the double bond is the π.",
+        "margin_note": "Box both final counts together so neither part is missed in marking."
+      }
+    ]
+  },
+  "insider_note": "Count from the drawn structure, never from the formula: every single line is one σ bond, and each extra line of a double or triple bond is one π bond."
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_cp_cv_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define heat capacity. What are Cp and Cv? Show that Cp − Cv = R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Heat capacity defined",
+      "marks": 1
+    },
+    {
+      "label": "Cp and Cv",
+      "marks": 1
+    },
+    {
+      "label": "Derivation",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. CUTS: the book asks this content at two lengths — SAQ 4 asks the definition plus the derivation (4 marks), and VSAQ 11 asks only the relation between Cp and Cv (2 marks) — so this one file carries both cuts of one step list. The book derives the relation by differentiating H = E + PV; this card uses the equivalent NCERT algebra route with ΔT, which needs no calculus."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_heat_capacity",
+        "kind": "text",
+        "label": "Heat capacity defined",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Heat capacity C of a system is the amount",
+          "of heat required to raise its temperature",
+          "through one degree.",
+          {
+            "text": "C = q / ΔT",
+            "style": "eq"
+          }
+        ],
+        "why": "The derivation compares two heat capacities, so the answer must first state what a heat capacity is.",
+        "common_mistakes": [
+          "Defining it per gram (specific heat capacity) or per mole (molar heat capacity) when the plain definition is asked."
+        ],
+        "memory_tip": "Heat capacity answers one question: how much heat for one degree?",
+        "margin_note": "One sentence and the defining equation."
+      },
+      {
+        "id": "s2_cp_cv",
+        "kind": "text",
+        "label": "Cp and Cv",
+        "marks": 1,
+        "mark_note": "Meanings",
+        "lines": [
+          "Cp = heat capacity at constant pressure.",
+          "Cv = heat capacity at constant volume.",
+          "For one mole of a gas these are the molar",
+          "heat capacities."
+        ],
+        "why": "A gas can be heated with its volume held fixed or its pressure held fixed, and the two ways need different amounts of heat — at constant pressure part of the heat becomes expansion work.",
+        "common_mistakes": [
+          "Swapping the two — p stands for pressure, v for volume.",
+          "Forgetting that Cp is larger than Cv for a gas."
+        ],
+        "memory_tip": "Cp is larger than Cv because at constant pressure part of the heat becomes expansion work.",
+        "margin_note": "Both meanings in words earn this mark."
+      },
+      {
+        "id": "s3_derivation",
+        "kind": "equation",
+        "label": "Derivation",
+        "marks": 1,
+        "mark_note": "Derivation",
+        "lines": [
+          "At constant volume:  qv = Cv ΔT = ΔU",
+          "At constant pressure: qp = Cp ΔT = ΔH",
+          "For one mole of an ideal gas, pV = RT, so",
+          {
+            "text": "ΔH = ΔU + Δ(pV) = ΔU + R ΔT",
+            "style": "eq"
+          },
+          "Cp ΔT = Cv ΔT + R ΔT",
+          "Divide every term by ΔT:"
+        ],
+        "why": "Enthalpy exceeds internal energy by pV, and for one mole of an ideal gas pV rises by R for every one-degree rise in temperature. The source book reaches the same result by differentiating H = E + PV with respect to T.",
+        "common_mistakes": [
+          "Not stating one mole — for n moles the pV term is nRT and the relation reads Cp − Cv = nR in total heat capacities.",
+          "Skipping the pV = RT line, which is where the ideal gas enters."
+        ],
+        "memory_tip": "One mole, one degree: the extra heat needed at constant pressure is exactly R.",
+        "margin_note": "Each line follows from the one before; the pV = RT line must appear."
+      },
+      {
+        "id": "s4_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          {
+            "text": "Cp − Cv = R  (one mole of an ideal gas)",
+            "style": "boxed"
+          },
+          "R is the universal gas constant,",
+          "8.314 J K⁻¹ mol⁻¹."
+        ],
+        "why": "The difference between the two molar heat capacities of an ideal gas is the gas constant itself — this is the result the question asks for.",
+        "common_mistakes": [
+          "Writing Cv − Cp = R. Cp is the larger one, so Cp − Cv is positive."
+        ],
+        "memory_tip": "The relation is a subtraction that leaves R: Cp minus Cv equals R.",
+        "margin_note": "Box this line. Adding the value of R shows the unit is known."
+      }
+    ]
+  },
+  "insider_note": "Asked at two lengths: Section A wants only the relation, Section B wants the definition and the derivation. Check which section the paper puts it in before deciding how much to write.",
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "4-mark answer",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "Heat capacity defined",
+          "marks": 1
+        },
+        {
+          "label": "Cp and Cv",
+          "marks": 1
+        },
+        {
+          "label": "Derivation",
+          "marks": 1
+        },
+        {
+          "label": "The relation",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_heat_capacity": {
+          "marks": 1,
+          "mark_note": "Definition"
+        },
+        "s2_cp_cv": {
+          "marks": 1,
+          "mark_note": "Meanings"
+        },
+        "s3_derivation": {
+          "marks": 1,
+          "mark_note": "Derivation"
+        },
+        "s4_relation": {
+          "marks": 1,
+          "mark_note": "Relation"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+    },
+    {
+      "key": "vsaq",
+      "label": "2-mark answer",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "Write the relation between Cp and Cv for an ideal gas.",
+      "mark_split": [
+        {
+          "label": "Cp and Cv",
+          "marks": 1
+        },
+        {
+          "label": "The relation",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s2_cp_cv": {
+          "marks": 1,
+          "mark_note": "Meanings"
+        },
+        "s4_relation": {
+          "marks": 1,
+          "mark_note": "Relation"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "VSAQ 11 asks only the relation: say what Cp and Cv are and box Cp − Cv = R. The definition and the derivation belong to the 4-mark form."
+    }
+  ]
+}

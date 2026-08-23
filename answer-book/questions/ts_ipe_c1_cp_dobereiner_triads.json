@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_dobereiner_triads",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Dobereiner's law of triads. Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing from the historical-development section (Dobereiner, Newlands, Mendeleev, Moseley), so the whole section is a gap. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Dobereiner's law of triads: when elements",
+          "with similar properties are arranged in",
+          "groups of three in the increasing order of",
+          "their atomic weights, the atomic weight of",
+          "the middle element is nearly the arithmetic",
+          "mean of the other two."
+        ],
+        "why": "The law is a numerical pattern, so its statement must contain the numbers' rule: three similar elements, increasing atomic weight, middle equals the mean of the outer two.",
+        "common_mistakes": [
+          "Writing atomic numbers. Dobereiner worked long before atomic numbers; the law uses atomic weights.",
+          "Leaving out that the three elements have similar properties. Any three elements do not form a triad."
+        ],
+        "memory_tip": "A triad is three similar elements where the middle one averages the outer two by weight.",
+        "margin_note": "Three parts: similar elements, groups of three, middle equals the mean."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Li (7), Na (23), K (39): (7 + 39) / 2 = 23",
+            "style": "boxed"
+          },
+          "The properties of sodium are intermediate",
+          "between those of lithium and potassium."
+        ],
+        "why": "The alkali metal triad is the standard example because the mean works out exactly: the average of 7 and 39 is 23, sodium's atomic weight.",
+        "common_mistakes": [
+          "Quoting the triad without the arithmetic. The calculation (7 + 39)/2 = 23 is the evidence.",
+          "Mixing elements from different families into one triad."
+        ],
+        "memory_tip": "7, 23, 39 — each step is 16, so the middle is the exact average.",
+        "margin_note": "Ca, Sr, Ba and Cl, Br, I are equally accepted triads."
+      }
+    ]
+  }
+}

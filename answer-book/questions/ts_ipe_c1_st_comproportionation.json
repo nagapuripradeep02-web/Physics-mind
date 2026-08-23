@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_comproportionation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are comproportionation reactions? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A comproportionation reaction is a redox",
+          "reaction in which two species containing the",
+          "same element in two different oxidation states",
+          "form a single product in which that element is",
+          "in an intermediate oxidation state."
+        ],
+        "why": "This is the reverse of disproportionation: two oxidation states of one element combine into one state that lies between them.",
+        "common_mistakes": [
+          "Mixing this up with disproportionation, where one state splits into two.",
+          "Leaving out the word intermediate. The product state must lie between the two starting states."
+        ],
+        "memory_tip": "Com- means coming together: two oxidation states join into one middle state. Dis- is the opposite direction.",
+        "margin_note": "Same element, two different states, one intermediate state — all three parts are needed."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ag²⁺ + Ag → 2Ag⁺",
+            "style": "boxed"
+          },
+          "Silver starts at +2 (in Ag²⁺) and at 0 (in Ag).",
+          "Both end at the intermediate state +1 (in Ag⁺).",
+          "Ag²⁺ is reduced (+2 → +1); Ag is oxidised (0 → +1)."
+        ],
+        "why": "The example must show the two starting oxidation numbers (+2 and 0) and the single intermediate product number (+1). Writing the three numbers is what proves comproportionation.",
+        "common_mistakes": [
+          "Writing the equation without the oxidation numbers +2, 0 and +1.",
+          "Forgetting the charge check: total charge is +2 on both sides."
+        ],
+        "memory_tip": "Silver: +2 and 0 meet at +1.",
+        "margin_note": "Mark +2, 0 and +1 above the three species — that display earns the mark."
+      }
+    ]
+  },
+  "insider_note": "This question is almost always paired with disproportionation, and the examiner checks that the two definitions point in opposite directions — one state splitting apart against two states combining."
+}

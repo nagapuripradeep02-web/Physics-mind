@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_reaction_quotient",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the reaction quotient Q. How is it used to predict the direction of a reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Comparison with Kc",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the reaction quotient Q and its comparison with K is a standard NCERT syllabus object the Fastrack chemistry section (book pp.75-79) skips entirely. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The reaction quotient Q has the same",
+          "expression as the equilibrium constant Kc,",
+          "but the concentrations in it are the values",
+          "at ANY moment of the reaction, not only at",
+          "equilibrium.",
+          {
+            "text": "Q = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ  (at any moment)",
+            "style": "eq"
+          }
+        ],
+        "why": "Kc is fixed for a given temperature, but Q changes as the reaction runs — the single difference between the two is WHEN the concentrations are measured.",
+        "common_mistakes": [
+          "Writing a different expression for Q. The expression is identical to Kc; only the moment of measurement differs.",
+          "Calling Q a constant. Q changes as the reaction proceeds."
+        ],
+        "memory_tip": "Same fraction, different moment: Kc at equilibrium, Q at any time.",
+        "margin_note": "The words 'at any moment' are the definition."
+      },
+      {
+        "id": "s2_compare",
+        "kind": "boxed_final",
+        "label": "Comparison with Kc",
+        "marks": 1,
+        "mark_note": "Prediction rule",
+        "lines": [
+          "If Q < Kc, the reaction proceeds in the",
+          "forward direction.",
+          "If Q > Kc, the reaction proceeds in the",
+          "backward direction.",
+          {
+            "text": "Q = Kc means the system is at equilibrium",
+            "style": "boxed"
+          }
+        ],
+        "why": "Q moves towards Kc as the reaction runs: a small Q needs more products (forward), a large Q needs fewer products (backward), and equality means no further net change.",
+        "common_mistakes": [
+          "Swapping the two cases. Small Q means too few products yet, so the reaction goes forward.",
+          "Forgetting the third case Q = Kc, which defines equilibrium."
+        ],
+        "memory_tip": "Q climbs or falls until it reaches Kc. Below means forward, above means backward.",
+        "margin_note": "Write all three cases — the equality case is the definition of equilibrium."
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_modern_periodic_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the modern periodic law. Who proposed it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "Who proposed it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing from the historical-development section (periodic laws, Dobereiner, Newlands, Mendeleev, Moseley), so the whole section is a gap. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Modern periodic law: the physical and",
+          "chemical properties of the elements are",
+          "periodic functions of their atomic numbers."
+        ],
+        "why": "The law replaces Mendeleev's atomic weight with atomic number, because atomic number — the proton count — is what fixes the electronic configuration and therefore the properties.",
+        "common_mistakes": [
+          "Writing atomic weights in place of atomic numbers. That is Mendeleev's law, not the modern law.",
+          "Saying only chemical properties. The law covers physical properties as well."
+        ],
+        "memory_tip": "Mendeleev sorted by weight; the modern law sorts by atomic number.",
+        "margin_note": "The phrase periodic functions of their atomic numbers carries the mark."
+      },
+      {
+        "id": "s2_proposer",
+        "kind": "boxed_final",
+        "label": "Who proposed it",
+        "marks": 1,
+        "mark_note": "Proposer",
+        "lines": [
+          {
+            "text": "Proposed by Moseley (1913)",
+            "style": "boxed"
+          },
+          "His X-ray studies showed that the atomic",
+          "number, not the atomic weight, is the",
+          "fundamental property of an element.",
+          "The long form of the periodic table is built",
+          "on this law."
+        ],
+        "why": "Moseley measured X-ray frequencies of the elements and found they follow the atomic number exactly — the experimental proof that atomic number is the right ordering quantity.",
+        "common_mistakes": [
+          "Crediting the modern law to Mendeleev. Mendeleev's law used atomic weights; Moseley's work gave the modern law."
+        ],
+        "memory_tip": "Moseley, X-rays, atomic number — the three go together.",
+        "margin_note": "The year 1913 is extra detail; the name Moseley is the marked word."
+      }
+    ]
+  }
+}

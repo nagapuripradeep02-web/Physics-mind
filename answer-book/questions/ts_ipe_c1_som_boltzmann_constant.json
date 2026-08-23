@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_boltzmann_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Boltzmann's constant? Give its value.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NOTATION: the book writes K = R/N; this card uses the standard symbols k_B = R/N_A with the same meaning and the same value."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Boltzmann's constant is the gas constant per",
+          "molecule: the universal gas constant R divided",
+          "by the Avogadro number N.",
+          "k = R / N   (N = 6.022 \u00d7 10\u00b2\u00b3 molecules per mole)"
+        ],
+        "why": "R belongs to one mole of gas. Dividing by the number of molecules in a mole gives the same constant scaled down to one molecule, and that per-molecule constant is Boltzmann's constant.",
+        "common_mistakes": [
+          "Writing k = R × N instead of R divided by N.",
+          "Calling it the gas constant per mole. Per mole is R itself; per molecule is k."
+        ],
+        "memory_tip": "R is per mole, k is per molecule. Divide by the Avogadro number to go from mole to molecule.",
+        "margin_note": "The words per molecule must appear; k = R/N alone is not the definition."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "Value with unit",
+        "lines": [
+          {
+            "text": "k = 1.38 × 10⁻²³ J K⁻¹ molecule⁻¹",
+            "style": "boxed"
+          },
+          "In CGS units: k = 1.38 × 10⁻¹⁶ erg K⁻¹ molecule⁻¹"
+        ],
+        "why": "Dividing R = 8.314 J mol⁻¹ K⁻¹ by N = 6.022 \u00d7 10\u00b2\u00b3 mol\u207b\u00b9 gives 1.38 × 10⁻²³ J K⁻¹ for one molecule. The value is checkable, not a number to take on trust.",
+        "common_mistakes": [
+          "Writing the power as 10⁻²² or 10⁻²⁴. The exponent is part of the mark.",
+          "Leaving out the unit J K⁻¹."
+        ],
+        "memory_tip": "8.314 divided by 6.022 × 10²³ comes to about 1.4 × 10⁻²³. The SI value ends in ⁻²³, the CGS value in ⁻¹⁶.",
+        "margin_note": "The SI value in the box is enough; the erg value is extra."
+      }
+    ]
+  },
+  "insider_note": "Both halves are asked by name — the definition and the value — so leaving either out gives away a full mark."
+}

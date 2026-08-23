@@ -1,0 +1,303 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_hydrogen_bond_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is hydrogen bond? Explain the types of hydrogen bonds with example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The diagram",
+      "marks": 1
+    },
+    {
+      "label": "Intermolecular type",
+      "marks": 1
+    },
+    {
+      "label": "Intramolecular type",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. TWO corrections to the book: (1) its definition omits that the hydrogen atom must already be covalently bonded to the electronegative atom; (2) it defines the intermolecular type as 'between two different polar molecules' while its own examples (H₂O, HF, NH₃) are chains of ONE substance — the card says two separate molecules, of the same or of different substances."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Hydrogen bond: the weak electrostatic force",
+          "of attraction between a hydrogen atom that",
+          "is covalently bonded to a highly",
+          "electronegative atom (F, O or N) and",
+          "another highly electronegative atom.",
+          "It is weaker than a covalent bond."
+        ],
+        "why": "The H atom gets a partial positive charge only because it is already bonded to F, O or N. That charge is what the second electronegative atom attracts, so both halves of the sentence are needed.",
+        "common_mistakes": [
+          "Writing a bond between hydrogen and any atom. Only F, O and N are electronegative enough.",
+          "Calling it a covalent bond. It is a weak electrostatic attraction."
+        ],
+        "memory_tip": "Remember the three letters F, O, N — the only partners electronegative enough.",
+        "margin_note": "Naming F, O, N in brackets is expected in the definition."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "hf_chain",
+          "width": 460,
+          "height": 210,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bond_hf1",
+              "d": "M 72 112 L 104 112",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "hbond_1",
+              "d": "M 130 112 L 176 112",
+              "ms": 260,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "bond_hf2",
+              "d": "M 202 112 L 234 112",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "hbond_2",
+              "d": "M 260 112 L 306 112",
+              "ms": 260,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "bond_hf3",
+              "d": "M 332 112 L 364 112",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_h1",
+              "x": 55,
+              "y": 118,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_f1",
+              "x": 112,
+              "y": 118,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_h2",
+              "x": 185,
+              "y": 118,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_f2",
+              "x": 242,
+              "y": 118,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_h3",
+              "x": 315,
+              "y": 118,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_f3",
+              "x": 372,
+              "y": 118,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_d1",
+              "x": 50,
+              "y": 70,
+              "text": "δ⁺",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d2",
+              "x": 108,
+              "y": 70,
+              "text": "δ⁻",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d3",
+              "x": 180,
+              "y": 70,
+              "text": "δ⁺",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d4",
+              "x": 238,
+              "y": 70,
+              "text": "δ⁻",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d5",
+              "x": 310,
+              "y": 70,
+              "text": "δ⁺",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d6",
+              "x": 368,
+              "y": 70,
+              "text": "δ⁻",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_line",
+              "d": "M 168 172 L 152 128",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_head_a",
+              "d": "M 152 128 L 149 140",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_head_b",
+              "d": "M 152 128 L 160 137",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_hbond",
+              "x": 150,
+              "y": 192,
+              "text": "hydrogen bond (dotted)",
+              "ms": 240,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The chain of HF molecules shows exactly which link is the hydrogen bond: the dotted line from the δ⁺ hydrogen of one molecule to the δ⁻ fluorine of the next. The solid lines are ordinary covalent bonds.",
+        "common_mistakes": [
+          "Drawing the hydrogen bond as a solid line. Solid is covalent; the hydrogen bond is the dotted link.",
+          "Leaving off the δ⁺ and δ⁻ charges, which are the cause of the attraction."
+        ],
+        "memory_tip": "Solid line inside a molecule, dotted line between molecules.",
+        "margin_note": "Three H−F units with two dotted links is the standard exam sketch."
+      },
+      {
+        "id": "s3_inter",
+        "kind": "text",
+        "label": "Intermolecular type",
+        "marks": 1,
+        "mark_note": "Intermolecular",
+        "lines": [
+          "1. Intermolecular hydrogen bond — formed",
+          "between two separate molecules, of the",
+          "same substance or of different substances.",
+          "Ex: H₂O, HF and NH₃ — in liquid HF the",
+          "molecules join as H−F···H−F···H−F chains."
+        ],
+        "why": "This is the type in the diagram above: the bond crosses from one molecule to another, which is why it raises boiling points of liquids such as water and HF.",
+        "common_mistakes": [
+          "Writing that the two molecules must be of different substances. Water bonded to water is the standard example.",
+          "Giving no example. H₂O or HF is expected."
+        ],
+        "memory_tip": "Inter means between: the bond runs between two separate molecules.",
+        "margin_note": "Point back to the chain diagram — it is the example drawn out."
+      },
+      {
+        "id": "s4_intra",
+        "kind": "boxed_final",
+        "label": "Intramolecular type",
+        "marks": 1,
+        "mark_note": "Intramolecular",
+        "lines": [
+          {
+            "text": "Intramolecular hydrogen bond: within one molecule",
+            "style": "boxed"
+          },
+          "2. Formed between the hydrogen atom and an",
+          "electronegative atom present in the SAME",
+          "molecule.",
+          "Ex: o-nitrophenol and o-hydroxybenzaldehyde."
+        ],
+        "why": "The contrast with the first type is the point: the same attraction, but both ends sit inside a single molecule, forming a ring within it.",
+        "common_mistakes": [
+          "Swapping the two names: intra is within one molecule, inter is between molecules.",
+          "Giving H₂O as the example here. Water's hydrogen bonds are intermolecular."
+        ],
+        "memory_tip": "Intra means inside: both ends of the bond are in one molecule. The two standard examples are the ortho compounds.",
+        "margin_note": "The two ortho examples are the ones the paper expects by name."
+      }
+    ]
+  },
+  "insider_note": "Name both types with one example each — and keep the examples on the correct sides: H₂O and HF are INTERmolecular, the two ortho compounds are INTRAmolecular."
+}

@@ -1,0 +1,253 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_kp_kc_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the relation between Kp and Kc for an equilibrium reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kp and Kc expressions",
+      "marks": 1
+    },
+    {
+      "label": "p = CRT link",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "The relation with Δn",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 2 (state the relation) and as its unstarred SAQ 10 (derive it) — so the 2-mark form is authored as a cut of this card. The book's SAQ answer derives the relation only for the ammonia equilibrium N₂ + 3H₂ ⇌ 2NH₃, reaching Kp = Kc(RT)⁻²; this card derives the general form for aA + bB ⇌ cC + dD, which is what 'for an equilibrium reaction' asks, and its Δn cases match the book's VSAQ answer."
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "4-mark answer (Section B)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "Kp and Kc expressions",
+          "marks": 1
+        },
+        {
+          "label": "p = CRT link",
+          "marks": 1
+        },
+        {
+          "label": "Substitution",
+          "marks": 1
+        },
+        {
+          "label": "The relation with Δn",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_expressions": {
+          "marks": 1,
+          "mark_note": "Expressions"
+        },
+        "s2_gas_link": {
+          "marks": 1,
+          "mark_note": "p = CRT"
+        },
+        "s3_substitute": {
+          "marks": 1,
+          "mark_note": "Substitution"
+        },
+        "s4_relation": {
+          "marks": 1,
+          "mark_note": "Relation"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 4-mark form is the book's SAQ 10; the split is a claim until a teacher confirms it."
+    },
+    {
+      "key": "vsaq",
+      "label": "2-mark answer (Section A)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "Write the relationship between Kp and Kc.",
+      "mark_split": [
+        {
+          "label": "The relation",
+          "marks": 1
+        },
+        {
+          "label": "The terms and the sign of Δn",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s4_relation": {
+          "marks": 2,
+          "mark_note": "Relation and terms",
+          "label": "The relation and every term",
+          "lines": [
+            {
+              "text": "Kp = Kc (RT)^Δn",
+              "style": "boxed"
+            },
+            "Kp, Kc = equilibrium constants in terms of",
+            "partial pressure and of concentration,",
+            "R = gas constant, T = absolute temperature,",
+            "Δn = moles of gaseous products − moles of",
+            "gaseous reactants.",
+            "If Δn = 0, Kp = Kc. If Δn is positive,",
+            "Kp > Kc. If Δn is negative, Kp < Kc."
+          ],
+          "why": "At two marks the derivation is not asked — the relation with every symbol named, plus the three Δn sign cases, is the complete answer.",
+          "margin_note": "The relation is one mark; naming every term and the Δn sign cases is the other.",
+          "memory_tip": "One line, five symbols. Name all five: Kp, Kc, R, T, Δn."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 2-mark form is the book's three-star VSAQ 2. The split into relation + terms is a claim until a teacher confirms it."
+    }
+  ],
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expressions",
+        "kind": "equation",
+        "label": "Kp and Kc expressions",
+        "marks": 1,
+        "mark_note": "Expressions",
+        "lines": [
+          "For a general gaseous equilibrium",
+          {
+            "text": "aA(g) + bB(g) ⇌ cC(g) + dD(g)",
+            "style": "eq"
+          },
+          {
+            "text": "Kc = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ",
+            "style": "eq"
+          },
+          {
+            "text": "Kp = (pC)ᶜ(pD)ᵈ / (pA)ᵃ(pB)ᵇ",
+            "style": "eq"
+          },
+          "where pA, pB, pC, pD are the partial",
+          "pressures of the gases."
+        ],
+        "why": "Kc and Kp describe the same equilibrium with two different measures — concentration and partial pressure — so the derivation starts by writing both expressions for one general reaction.",
+        "common_mistakes": [
+          "Writing the reactants on top. Products go in the numerator of both expressions.",
+          "Dropping the powers a, b, c, d. Each term is raised to its coefficient in the balanced equation."
+        ],
+        "memory_tip": "Products over reactants, each raised to its own coefficient — same shape for Kc and Kp.",
+        "margin_note": "One general reaction, two expressions. This is the frame the marks hang on."
+      },
+      {
+        "id": "s2_gas_link",
+        "kind": "equation",
+        "label": "Replace pressure by concentration",
+        "marks": 1,
+        "mark_note": "p = CRT",
+        "lines": [
+          "For an ideal gas, PV = nRT, so",
+          {
+            "text": "p = (n/V)RT = CRT",
+            "style": "eq"
+          },
+          "The partial pressure of each gas equals its",
+          "molar concentration multiplied by RT:",
+          {
+            "text": "pA = [A]RT,  pB = [B]RT,  pC = [C]RT,  pD = [D]RT",
+            "style": "eq"
+          }
+        ],
+        "why": "The ideal gas equation is the bridge between the two measures: n/V is the molar concentration, so every partial pressure is that concentration times RT. This one line makes the substitution possible.",
+        "common_mistakes": [
+          "Writing p = nRT and forgetting the volume. It is p = (n/V)RT.",
+          "Using Celsius temperature. T in PV = nRT is the absolute temperature in kelvin."
+        ],
+        "memory_tip": "n over V is concentration, so pressure is concentration times RT.",
+        "margin_note": "The whole derivation rests on p = CRT — write it as its own line."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitute and collect RT",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          "Substituting the partial pressures into Kp:",
+          {
+            "text": "Kp = [C]ᶜ[D]ᵈ(RT)ᶜ⁺ᵈ / [A]ᵃ[B]ᵇ(RT)ᵃ⁺ᵇ",
+            "style": "eq"
+          },
+          {
+            "text": "Kp = Kc (RT)⁽ᶜ⁺ᵈ⁾⁻⁽ᵃ⁺ᵇ⁾",
+            "style": "eq"
+          },
+          "and (c + d) − (a + b) = Δn."
+        ],
+        "why": "Every substituted pressure brings one factor of RT with the same power as its concentration, so the RT factors collect into one power: products contribute c + d, reactants a + b, and the difference is Δn.",
+        "common_mistakes": [
+          "Adding the RT powers instead of subtracting. The reactant power (a + b) is subtracted from the product power (c + d).",
+          "Losing a power of RT by substituting into only some of the pressure terms."
+        ],
+        "memory_tip": "Each gas carries one RT to its own power. Products minus reactants leaves RT to the Δn.",
+        "margin_note": "Show the exponent subtraction — it is the algebra this mark checks."
+      },
+      {
+        "id": "s4_relation",
+        "kind": "boxed_final",
+        "label": "The relation and the sign of Δn",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          {
+            "text": "Kp = Kc (RT)^Δn",
+            "style": "boxed"
+          },
+          "Δn = moles of gaseous products − moles of",
+          "gaseous reactants (count gases only).",
+          "If Δn = 0, Kp = Kc. If Δn is positive,",
+          "Kp > Kc. If Δn is negative, Kp < Kc."
+        ],
+        "why": "The boxed relation is the result, but Δn must be defined with it — products minus reactants, gases only — because the sign of Δn decides whether Kp is larger than, equal to or smaller than Kc.",
+        "common_mistakes": [
+          "Writing Δn as reactants minus products. It is gaseous products minus gaseous reactants.",
+          "Counting solids or liquids in Δn. Only gaseous moles are counted.",
+          "Leaving out the three sign cases."
+        ],
+        "memory_tip": "Δn reads left to right as the reaction is written: products first, minus reactants, gases only.",
+        "margin_note": "Box the relation; the Δn definition and sign cases sit under it."
+      }
+    ]
+  },
+  "insider_note": "Asked at both lengths — the two-mark form asks for the relation with every symbol named, the four-mark form asks for the derivation. The sign of Δn is where the marks are lost: write products minus reactants, gases only, every time."
+}

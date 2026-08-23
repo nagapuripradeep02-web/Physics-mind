@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_define_entropy_terms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the following terms: a) Entropy b) Heat capacity c) Absolute entropy",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Entropy and heat capacity",
+      "marks": 1
+    },
+    {
+      "label": "Absolute entropy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split over three definitions is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines absolute entropy in the standard state at 273 K and 1 atm; standard thermodynamic data are reported at 298 K, and this card writes 298 K."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_entropy_heat",
+        "kind": "text",
+        "label": "Entropy and heat capacity",
+        "marks": 1,
+        "mark_note": "Two definitions",
+        "lines": [
+          "a) Entropy (S): a measure of the randomness",
+          "or disorder of a system. It is a state",
+          "function.",
+          "b) Heat capacity (C): the amount of heat",
+          "required to raise the temperature of a",
+          "system through one degree."
+        ],
+        "why": "Both are definitions the examiner checks word by word: entropy needs disorder of a system, and heat capacity needs one degree.",
+        "common_mistakes": [
+          "Defining heat capacity per gram — that is specific heat capacity.",
+          "Writing that entropy is a form of energy. It is a measure of disorder, with units J K⁻¹."
+        ],
+        "memory_tip": "S for scatter: the more scattered the particles, the higher the entropy. C answers one question: how much heat for one degree?",
+        "margin_note": "Two short definitions; one or two lines each is enough."
+      },
+      {
+        "id": "s2_absolute",
+        "kind": "boxed_final",
+        "label": "Absolute entropy",
+        "marks": 1,
+        "mark_note": "Third definition",
+        "lines": [
+          "c) Absolute entropy: the entropy of one mole",
+          "of a pure substance in its standard state",
+          "at 298 K (25 °C).",
+          "It is counted from the true zero fixed by",
+          "the third law: S = 0 at 0 K.",
+          {
+            "text": "Absolute entropy: entropy of one mole at 298 K, standard state",
+            "style": "boxed"
+          }
+        ],
+        "why": "The third law fixes S = 0 for a perfect crystal at 0 K, so a real total (absolute) entropy can be counted from that zero. The source book prints the standard state as 273 K; standard thermodynamic data are reported at 298 K, so this card writes 298 K.",
+        "common_mistakes": [
+          "Writing 273 K for the standard state — thermodynamic tables use 298 K.",
+          "Leaving out per mole."
+        ],
+        "memory_tip": "Absolute means counted from a true zero: S = 0 at 0 K for a perfect crystal.",
+        "margin_note": "298 K and one mole are the two details to include."
+      }
+    ]
+  },
+  "insider_note": "Three definitions share two marks, so each must be one tight line — long answers here cost time, not marks."
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ox_numbers_k2mno4_h2s2o7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Assign oxidation numbers to the underlined elements in each of the following species: (a) K₂MnO₄ (manganese) (b) H₂S₂O₇ (sulphur).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mn in K₂MnO₄",
+      "marks": 1
+    },
+    {
+      "label": "S in H₂S₂O₇",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. The book underlines Mn and S; underlining cannot be reproduced here, so the elements are named in brackets instead. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_k2mno4",
+        "kind": "equation",
+        "label": "Mn in K₂MnO₄",
+        "marks": 1,
+        "mark_note": "Part (a)",
+        "lines": [
+          "Rules: K = +1, O = −2, sum = 0 (neutral).",
+          "Let the oxidation number of Mn be x.",
+          {
+            "text": "2(+1) + x + 4(−2) = 0",
+            "style": "eq"
+          },
+          "2 + x − 8 = 0",
+          "x = +6, so Mn in K₂MnO₄ is +6"
+        ],
+        "why": "Potassium and oxygen have fixed rule values, so the sum rule for a neutral compound gives one equation in x.",
+        "common_mistakes": [
+          "Reporting +7 from memory of KMnO₄. K₂MnO₄ (manganate) is a different compound: Mn is +6 here.",
+          "Counting one K instead of two."
+        ],
+        "memory_tip": "One K means permanganate and +7; two K means manganate and +6.",
+        "margin_note": "The full equation with x = +6 earns this mark."
+      },
+      {
+        "id": "s2_h2s2o7",
+        "kind": "boxed_final",
+        "label": "S in H₂S₂O₇",
+        "marks": 1,
+        "mark_note": "Part (b)",
+        "lines": [
+          "Rules: H = +1, O = −2, sum = 0 (neutral).",
+          "Let the oxidation number of S be x.",
+          "2(+1) + 2x + 7(−2) = 0",
+          "2 + 2x − 14 = 0  ⟹  2x = +12",
+          {
+            "text": "Mn in K₂MnO₄ = +6 ;  S in H₂S₂O₇ = +6",
+            "style": "boxed"
+          }
+        ],
+        "why": "The same sum rule applies; here two sulphur atoms share 2x, so 2x = 12 must be halved to +6 for one atom.",
+        "common_mistakes": [
+          "Reporting +12 for sulphur without dividing by the two S atoms.",
+          "Multiplying oxygen by 6 instead of 7."
+        ],
+        "memory_tip": "H₂S₂O₇ is two H₂SO₄ units minus one water — sulphur stays at +6, the same as in sulphuric acid.",
+        "margin_note": "Box both results together, each with its + sign."
+      }
+    ]
+  },
+  "insider_note": "Part (a) is a deliberate trap beside KMnO₄: the extra potassium drops manganese from +7 to +6, and quoting +7 from memory is the common lost mark."
+}

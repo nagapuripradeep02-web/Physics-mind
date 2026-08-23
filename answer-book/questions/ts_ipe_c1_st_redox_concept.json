@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_redox_concept",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the redox concept? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A redox reaction is a chemical reaction in",
+          "which oxidation and reduction take place",
+          "simultaneously: one species loses electrons",
+          "(oxidation) while another gains those",
+          "electrons (reduction)."
+        ],
+        "why": "Electrons lost by one species must be gained by another, so oxidation can never happen without reduction. That pairing is the redox concept.",
+        "common_mistakes": [
+          "Defining only oxidation or only reduction. The concept is the two happening together.",
+          "Leaving out the word simultaneously."
+        ],
+        "memory_tip": "Red-ox: REDuction and OXidation in one word because they happen in one reaction.",
+        "margin_note": "Both half-processes and the word simultaneously must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Zn + Cu²⁺ → Zn²⁺ + Cu",
+            "style": "boxed"
+          },
+          "Zn (0 → +2) loses two electrons: oxidation.",
+          "Cu²⁺ (+2 → 0) gains two electrons: reduction.",
+          "Charge check: +2 on each side."
+        ],
+        "why": "The zinc-copper reaction shows both halves in one line: the two electrons zinc loses are exactly the two copper gains.",
+        "common_mistakes": [
+          "Writing the equation without labelling which species is oxidised and which is reduced.",
+          "Reversing the labels: the electron LOSER is oxidised."
+        ],
+        "memory_tip": "OIL RIG — Oxidation Is Loss of electrons, Reduction Is Gain.",
+        "margin_note": "Label oxidation and reduction on the equation; the labels carry the mark."
+      }
+    ]
+  },
+  "insider_note": "The example earns its mark only when the two oxidation-number changes are labelled on the equation — the bare equation is treated as half an answer."
+}

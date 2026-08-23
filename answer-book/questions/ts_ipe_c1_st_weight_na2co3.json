@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_weight_na2co3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the weight of 0.1 mole of sodium carbonate (Na₂CO₃).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and molar mass",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and molar mass",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Weight = number of moles × GMW",
+            "style": "eq"
+          },
+          "GMW of Na₂CO₃ = (2 × 23) + 12 + (3 × 16)",
+          "= 46 + 12 + 48 = 106 g mol⁻¹",
+          "Weight = 0.1 × 106"
+        ],
+        "why": "This is the mole relation used in reverse: moles multiplied by molar mass gives grams. The molar mass of Na₂CO₃ must be computed from atomic weights on the page.",
+        "common_mistakes": [
+          "Using 23 once instead of twice for the two sodium atoms.",
+          "Dividing 0.1 by 106 instead of multiplying."
+        ],
+        "memory_tip": "Moles to grams: multiply by the molar mass. Grams to moles: divide.",
+        "margin_note": "The computed GMW 106 g mol⁻¹ earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          {
+            "text": "Weight = 10.6 g",
+            "style": "boxed"
+          }
+        ],
+        "why": "One tenth of a mole weighs one tenth of the molar mass: 0.1 × 106 = 10.6 g.",
+        "common_mistakes": [
+          "Writing 10.6 without the unit g.",
+          "Misplacing the decimal and writing 1.06 g or 106 g."
+        ],
+        "memory_tip": "A tenth of a mole is a tenth of 106: shift the decimal one place.",
+        "margin_note": "Box 10.6 g with the unit."
+      }
+    ]
+  },
+  "insider_note": "The mark sits in the molar-mass sum 46 + 12 + 48 = 106 written on the page, not in the one-line multiplication that follows it."
+}

@@ -137,7 +137,7 @@
               "type": "label",
               "id": "px_lbl",
               "x": 84,
-              "y": 312,
+              "y": 322,
               "text": "px",
               "ms": 200,
               "em": true
@@ -203,7 +203,7 @@
               "type": "label",
               "id": "pz_lbl",
               "x": 396,
-              "y": 312,
+              "y": 322,
               "text": "pz",
               "ms": 200,
               "em": true

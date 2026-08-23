@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_lattice_enthalpy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define lattice enthalpy. What does a high lattice enthalpy indicate?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What a high value indicates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: lattice enthalpy belongs to the ionic bonding section of NCERT Chemical Bonding, which the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Lattice enthalpy: the energy required to",
+          "completely separate one mole of a solid",
+          "ionic compound into its gaseous ions.",
+          "Ex: the lattice enthalpy of NaCl is",
+          "788 kJ mol⁻¹."
+        ],
+        "why": "The definition fixes both the amount (one mole) and the end state (separate gaseous ions) — without those two conditions the energy value is not defined.",
+        "common_mistakes": [
+          "Ending at separate atoms. The lattice breaks into IONS, and they must be gaseous.",
+          "Leaving out one mole, which the unit kJ mol⁻¹ depends on."
+        ],
+        "memory_tip": "One mole of crystal taken apart into gas-phase ions — that energy is the lattice enthalpy.",
+        "margin_note": "The NaCl value 788 kJ mol⁻¹ is the standard quoted example."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What a high value indicates",
+        "marks": 1,
+        "mark_note": "Indication",
+        "lines": [
+          {
+            "text": "High lattice enthalpy → a more stable ionic solid",
+            "style": "boxed"
+          },
+          "The ions are held more strongly in the",
+          "crystal, so more energy is needed to",
+          "separate them."
+        ],
+        "why": "Lattice enthalpy measures the strength of the electrostatic attraction holding the ions in the crystal, so a larger value directly means a more strongly bound, more stable solid.",
+        "common_mistakes": [
+          "Reading a high value as easier to dissolve. A high lattice enthalpy makes the lattice HARDER to take apart."
+        ],
+        "memory_tip": "Bigger energy to break it means it was held more strongly.",
+        "margin_note": "One boxed line plus its reason completes the mark."
+      }
+    ]
+  }
+}

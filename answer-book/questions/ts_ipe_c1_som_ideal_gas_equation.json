@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ideal_gas_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the ideal gas equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three laws",
+      "marks": 1
+    },
+    {
+      "label": "Combining them",
+      "marks": 2
+    },
+    {
+      "label": "R and its values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. NAMING: the book labels V ∝ T at constant P as Gay-Lussac's law (or Charles' law). The standard modern names are Charles' law for V ∝ T at constant P and Gay-Lussac's law for P ∝ T at constant V; the card uses Charles' law and records the book's labelling here."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_laws",
+        "kind": "equation",
+        "label": "The three laws",
+        "marks": 1,
+        "mark_note": "Three laws",
+        "lines": [
+          "For V (volume), P (pressure), T (absolute",
+          "temperature) and n (moles) of an ideal gas:",
+          "V ∝ 1/P  (T, n constant) — Boyle's law",
+          "V ∝ T   (P, n constant) — Charles' law",
+          "V ∝ n   (P, T constant) — Avogadro's law"
+        ],
+        "why": "The ideal gas equation is not a new law — it is three experimental laws about V combined into one, so the derivation must begin by writing all three with their constancy conditions.",
+        "common_mistakes": [
+          "Leaving out Avogadro's law and deriving only PV/T = constant, which loses the n.",
+          "Writing the laws without their constant quantities in brackets."
+        ],
+        "memory_tip": "Three laws, one variable each: P from Boyle, T from Charles, n from Avogadro — all acting on V.",
+        "margin_note": "Each proportionality with its bracket earns credit; the brackets are part of the law."
+      },
+      {
+        "id": "s2_combine",
+        "kind": "equation",
+        "label": "Combining them",
+        "marks": 2,
+        "mark_note": "Combination",
+        "lines": [
+          "Combining the three proportionalities:",
+          {
+            "text": "V ∝ nT / P",
+            "style": "eq"
+          },
+          "Introducing the constant of proportionality R:",
+          {
+            "text": "V = R nT / P   ⟹   PV = nRT",
+            "style": "eq"
+          },
+          "R is the same for all gases — the universal",
+          "(molar) gas constant. Hence PV = nRT is the",
+          "ideal gas equation."
+        ],
+        "why": "When one quantity is proportional to several others separately, it is proportional to their product. Naming the single constant R and clearing the fraction produces PV = nRT in two lines.",
+        "common_mistakes": [
+          "Writing V ∝ nTP with P multiplied instead of divided.",
+          "Introducing a different constant for each law. One combined proportionality takes ONE constant."
+        ],
+        "memory_tip": "One fraction holds all three laws: n and T on top, P below, R in front.",
+        "margin_note": "The jump from three proportionalities to one is the marked move — write V ∝ nT/P before inserting R."
+      },
+      {
+        "id": "s3_r_values",
+        "kind": "boxed_final",
+        "label": "R and its values",
+        "marks": 1,
+        "mark_note": "Values of R",
+        "lines": [
+          {
+            "text": "PV = nRT ,  R = 8.314 J mol⁻¹ K⁻¹",
+            "style": "boxed"
+          },
+          "R = 0.0821 L atm mol⁻¹ K⁻¹",
+          "R is independent of the amount and the nature",
+          "of the gas, so it is called the universal gas",
+          "constant."
+        ],
+        "why": "The derivation ends by identifying its constant: R takes the same value for every gas, and quoting it in both common unit systems makes the equation ready for numericals.",
+        "common_mistakes": [
+          "Pairing 0.0821 with J mol⁻¹ K⁻¹. That number belongs to L atm units.",
+          "Omitting the closing statement that R is the same for all gases."
+        ],
+        "memory_tip": "Finish with the values of the constant: 8.314 with joules, 0.0821 with litre-atmospheres.",
+        "margin_note": "Boxing the equation with one correct R value closes the derivation."
+      }
+    ]
+  },
+  "insider_note": "Three proportionalities, one combination, one constant — the two middle marks are for the visible jump from V ∝ nT/P to PV = nRT, not for restating the laws."
+}
