@@ -352,6 +352,46 @@ P4's price): point `wrangler.answers.toml` assets at `dist-gated` + deploy, afte
   routed endpoint serving the REAL bundle files; the main 48-gate suite still runs
   the untouched offline full build.
 
+## Payments (P4, landed 2026-08-24 — built + deployed, awaiting keys)
+
+RS99/31 days for the first 500 devices, RS249 after — and **the founding price is
+grandfathered forever**: a device that has ever paid RS99 renews at RS99. Nobody's
+price ever rises; January's step-up reaches only students who never saw RS99. That
+is the trust story, it is enforced in `ab_price_for` (not the client), and the
+sheet says it out loud ("Once you join at this price, it stays yours") with a gate
+on that sentence. Full operator doc: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md`.
+
+- **The client never names a price.** `ab_price_for(device)` returns the number,
+  the label, the slots left and `founding_locked`; the page only renders what it
+  was told, and `answerbook-pay` re-reads the price server-side when it mints the
+  link. A client that posts its own amount is ignored — gate-asserted (the pay
+  request carries no amount at all).
+- **The device id is the whole identity.** `answerbook-pay` puts it in Razorpay
+  `notes.device_id`; the webhook reads it back and grants that device. No login,
+  no OTP, nothing typed — which is also why nothing here waits on SMS/DLT.
+- **Idempotent on payment_id** (Razorpay retries any non-2xx for 24h): a repeat
+  returns `duplicate` and the entitlement is EXTENDED, never stacked — proven in
+  SQL (same id twice → one row; a renewal moved Sep 23 → Oct 24, i.e. from the
+  existing expiry, so paying early never burns paid days).
+- **The founder slot cannot be double-spent**: `ab_apply_payment` reads
+  `ab_price_for` BEFORE writing the payment row, so the 500th and 501st payer
+  cannot both take the last place.
+- **Money is never lost.** A payment with no `notes.device_id` is banked in
+  `ab_payments` with `applied_at = null` and a note, attachable by hand.
+- **`expires_at` on entitlements**: NULL = permanent (the free chapter is a gift,
+  not a rental); a paid pass stops opening the book the moment it lapses, which is
+  what makes a renewal mean anything. The content endpoint filters on it.
+- **Fail-closed everywhere, verified live**: no Razorpay keys → `payments_unconfigured`
+  and NO pay button (never a button that leads nowhere); foreign origin → 403;
+  unsigned or wrongly-signed webhook → 401 (so a forged "payment" grants nothing).
+- **The operational trap**: the Vidi spend ceiling is $2/day, sized for a pilot.
+  500 paying students would hit it by mid-morning and the function fails closed —
+  paying customers seeing "Vidi is resting". `AB_DAILY_USD_CAP=15` is step 2.3 of
+  the runbook and must happen BEFORE launch.
+- **Not built, deliberately**: autopay mandates (friction kills student
+  conversion — they re-tap), phone OTP / second-device restore (needs SMS/DLT,
+  weeks of lead), in-app refunds (dashboard + expire the pass).
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

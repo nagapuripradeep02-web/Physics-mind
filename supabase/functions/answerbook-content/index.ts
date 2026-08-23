@@ -75,20 +75,32 @@ async function rest(path: string, init?: RequestInit): Promise<Response> {
     });
 }
 
-interface EntRow { unit_key: string; source: string }
+interface EntRow { unit_key: string; source: string; expires_at: string | null }
 
 /** The device's standing: which units it may read, and whether the free slot is spent. */
 async function entitlementsOf(deviceId: string): Promise<{ rows: EntRow[] } | null> {
-    const res = await rest(`ab_entitlements?select=unit_key,source&device_id=eq.${deviceId}`);
+    const res = await rest(`ab_entitlements?select=unit_key,source,expires_at&device_id=eq.${deviceId}`);
     if (!res.ok) return null;
     return { rows: await res.json() as EntRow[] };
 }
 
-async function skuLine(): Promise<Record<string, unknown> | null> {
-    const res = await rest(`ab_skus?select=sku,label,price_inr&active=eq.true&sku=eq.full_book`);
+/** A row unlocks only while it is LIVE. expires_at null = permanent (the free
+    chapter is a gift, not a rental); a paid pass stops opening the book the
+    moment it lapses — which is what makes a renewal mean anything. */
+function live(r: EntRow): boolean {
+    return !r.expires_at || Date.parse(r.expires_at) > Date.now();
+}
+
+/** THIS device's price: founding ₹99 while slots remain or if it already holds a
+    founding payment (grandfathered forever), list ₹249 otherwise. Computed by
+    ab_price_for on the server — the client never names a price. */
+async function priceFor(deviceId: string): Promise<Record<string, unknown> | null> {
+    const res = await rest('rpc/ab_price_for', {
+        method: 'POST',
+        body: JSON.stringify({ p_device: deviceId }),
+    });
     if (!res.ok) return null;
-    const rows = await res.json() as Record<string, unknown>[];
-    return rows[0] ?? null;
+    return await res.json() as Record<string, unknown> | null;
 }
 
 async function bundleOf(unitKey: string): Promise<unknown | null> {
@@ -127,16 +139,20 @@ Deno.serve(async (req: Request) => {
         console.error('[answerbook-content] entitlement read failed — refusing (fail closed)');
         return reply(origin, 502, { ok: false, error: 'store' });
     }
-    const unlocked = new Set(ents.rows.map((r) => r.unit_key));
+    const liveRows = ents.rows.filter(live);
+    const unlocked = new Set(liveRows.map((r) => r.unit_key));
     const hasAll = unlocked.has('all');
+    // The free chapter is spent even after a paid pass lapses — it was used.
     const freeSpent = ents.rows.some((r) => r.source === 'free_chapter');
+    const paidRow = liveRows.find((r) => r.source === 'paid');
 
     if (body.list === true) {
         return reply(origin, 200, {
             ok: true,
             unlocked: hasAll ? ['all'] : Array.from(unlocked),
             free_available: !freeSpent,
-            sku: await skuLine(),
+            paid_until: paidRow?.expires_at ?? null,
+            sku: await priceFor(deviceId),
         });
     }
 
@@ -164,7 +180,7 @@ Deno.serve(async (req: Request) => {
         const out = await res.json() as { ok: boolean; error?: string };
         if (out.ok) entitled = true;
         else if (out.error === 'free_used') {
-            return reply(origin, 200, { ok: true, locked: true, free_available: false, sku: await skuLine() });
+            return reply(origin, 200, { ok: true, locked: true, free_available: false, sku: await priceFor(deviceId) });
         } else {
             return reply(origin, out.error === 'device_quota' ? 429 : 400, { ok: false, error: out.error ?? 'claim' });
         }
@@ -172,7 +188,7 @@ Deno.serve(async (req: Request) => {
 
     if (!entitled) {
         // Locked. Never an answer byte in this branch.
-        return reply(origin, 200, { ok: true, locked: true, free_available: !freeSpent, sku: await skuLine() });
+        return reply(origin, 200, { ok: true, locked: true, free_available: !freeSpent, sku: await priceFor(deviceId) });
     }
 
     const bundle = await bundleOf(unitKey);

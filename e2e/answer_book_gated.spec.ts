@@ -237,3 +237,166 @@ test('every unit has a bundle and every bundle question is the full projection',
     }
     expect(total).toBe(448);
 });
+
+// -- P4: the paywall ---------------------------------------------------------
+// The price is ALWAYS the server's (ab_price_for): founding while slots remain
+// or if this device already paid it (grandfathered), list price after. The page
+// never names a number, so these gates assert it RENDE₹ what it was told --
+// including the two different truths two students can be shown.
+
+const PAY = 'https://pay.test/functions/v1/answerbook-pay';
+
+/** Boot gated with BOTH endpoints routed. */
+async function bootPaid(page: any, contentHandler: (b: any) => any, payHandler?: (b: any) => any) {
+    await page.addInitScript((bases: { c: string; p: string }) => {
+        Object.defineProperty(window, 'PM_CONTENT_BASE', { get: () => bases.c, set: () => {}, configurable: true });
+        Object.defineProperty(window, 'PM_PAY_BASE', { get: () => bases.p, set: () => {}, configurable: true });
+    }, { c: CONTENT, p: PAY });
+    const routes: [string, ((b: any) => any) | undefined][] = [
+        ['https://content.test/**', contentHandler],
+        ['https://pay.test/**', payHandler],
+    ];
+    for (const [host, handler] of routes) {
+        if (!handler) continue;
+        await page.route(host, async (route: any) => {
+            const req = route.request();
+            if (req.method() === 'OPTIONS') {
+                return route.fulfill({ status: 204, headers: {
+                    'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type' } });
+            }
+            return route.fulfill({
+                status: 200,
+                headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+                body: JSON.stringify(handler(JSON.parse(req.postData() || '{}'))),
+            });
+        });
+    }
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+}
+
+const FOUNDING_SKU = {
+    sku: 'full_book', label: 'Every chapter, both subjects',
+    price_inr: 99, list_price_inr: 249, founding: true, founding_locked: false,
+    founding_slots_left: 500, period_days: 31,
+};
+const LIST_SKU = { ...FOUNDING_SKU, price_inr: 249, founding: false, founding_slots_left: 0 };
+const LOCKED_IN_SKU = { ...FOUNDING_SKU, founding_locked: true, founding_slots_left: 0 };
+
+test('a founding student is quoted ₹99, told places are limited, and that the price stays theirs', async ({ page }) => {
+    await bootPaid(page, (b) => {
+        if (b.list) return { ok: true, unlocked: [], free_available: false, paid_until: null, sku: FOUNDING_SKU };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+
+    const r = await page.evaluate(() => ({
+        text: document.getElementById('lockText')!.textContent || '',
+        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+    }));
+    expect(r.text).toContain('₹99 for 31 days');
+    expect(r.text).toContain('founding price');
+    expect(r.text).toContain('500 places left');
+    expect(r.text).toContain('stays yours');       // the grandfather promise, said out loud
+    expect(r.text).toContain('₹249');             // and what it costs later
+    expect(r.buttons.some((b) => b.includes('₹99'))).toBe(true);
+});
+
+test('a later student is quoted ₹249 and never sees the founding pitch', async ({ page }) => {
+    await bootPaid(page, (b) => {
+        if (b.list) return { ok: true, unlocked: [], free_available: false, paid_until: null, sku: LIST_SKU };
+        return { ok: true, locked: true, free_available: false, sku: LIST_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+
+    const r = await page.evaluate(() => ({
+        text: document.getElementById('lockText')!.textContent || '',
+        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+    }));
+    expect(r.text).toContain('₹249 for 31 days');
+    expect(r.text).not.toContain('founding');
+    expect(r.text).not.toContain('places left');
+    expect(r.buttons.some((b) => b.includes('₹249'))).toBe(true);
+});
+
+test('a renewing founder is still quoted their own ₹99', async ({ page }) => {
+    await bootPaid(page, (b) => {
+        if (b.list) return { ok: true, unlocked: [], free_available: false, paid_until: null, sku: LOCKED_IN_SKU };
+        return { ok: true, locked: true, free_available: false, sku: LOCKED_IN_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+    const text = await page.evaluate(() => document.getElementById('lockText')!.textContent || '');
+    expect(text).toContain('₹99');
+    expect(text).toContain('your founding price');
+    expect(text).not.toContain('places left');     // the slot race is over for them
+});
+
+test('the unlock tap asks the server for a link and carries the device id', async ({ page }) => {
+    const asked: any[] = [];
+    await bootPaid(page,
+        (b) => b.list
+            ? { ok: true, unlocked: [], free_available: false, paid_until: null, sku: FOUNDING_SKU }
+            : { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU },
+        (b) => { asked.push(b); return { ok: true, url: 'https://rzp.test/paid', price: FOUNDING_SKU }; });
+    await page.route('https://rzp.test/**', (route: any) => route.fulfill({
+        status: 200, contentType: 'text/html', body: '<html><body>paid</body></html>' }));
+
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+    await page.click('#lockRow .vw-btn.primary');
+    await page.waitForFunction(() => location.href.indexOf('rzp.test') >= 0, undefined, { timeout: 8000 });
+
+    expect(asked.length).toBe(1);
+    expect(asked[0].device_id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
+    expect(asked[0].price_inr).toBeUndefined();    // the client never proposes an amount
+    expect(asked[0].amount).toBeUndefined();
+});
+
+test('with a live pass every chapter opens and no lock chip is drawn', async ({ page }) => {
+    const until = new Date(Date.now() + 20 * 86400000).toISOString();
+    await bootPaid(page, (b) => {
+        if (b.list) return { ok: true, unlocked: ['all'], free_available: false, paid_until: until, sku: LOCKED_IN_SKU };
+        return { ok: true, unlocked: true, bundle: bundleFor(b.unit_key) };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.waitForTimeout(400);
+    expect(await page.evaluate(() => document.querySelectorAll('.cc-chip.pm-lock').length)).toBe(0);
+
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const st = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        return (window as any).PM_ANSWER.getState();
+    });
+    expect(st.marksEarned).toBe(st.marksTotal);
+});
+
+test('a payment endpoint that is down never traps the student', async ({ page }) => {
+    await bootPaid(page,
+        (b) => b.list
+            ? { ok: true, unlocked: [], free_available: false, paid_until: null, sku: FOUNDING_SKU }
+            : { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU });
+    await page.route('https://pay.test/**', (route: any) => route.abort('failed'));
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('#lockOverlay:not([hidden])');
+    await page.click('#lockRow .vw-btn.primary');
+    await page.waitForFunction(() => (document.getElementById('lockText')!.textContent || '').indexOf('try again') >= 0,
+        undefined, { timeout: 8000 });
+
+    // and Back still works -- no dead end
+    await page.click('#lockRow .vw-btn:not(.primary)');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(errors).toEqual([]);
+});

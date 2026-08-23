@@ -389,6 +389,14 @@ const contentBase = GATED
     ? (process.env.ANSWER_BOOK_CONTENT_BASE ?? CONTENT_HOSTED_BASE)
     : '';
 
+// P4: the payment-link endpoint. Gated builds only — and even there the sheet
+// only offers to buy when this is set AND the server quotes a price, so a build
+// can never show a pay button that leads nowhere.
+const PAY_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-pay';
+const payBase = GATED
+    ? (process.env.ANSWER_BOOK_PAY_BASE ?? PAY_HOSTED_BASE)
+    : '';
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
@@ -397,7 +405,9 @@ const dataJs =
     `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
 ` +
     `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};\n` +
-    `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};`;
+    `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};
+` +
+    `window.PM_PAY_BASE = ${JSON.stringify(payBase)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
@@ -415,6 +425,7 @@ console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page sta
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
 console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage only, zero network)'}`);
 console.log(`  content gate:  ${contentBase || '(unset — every answer embedded, Gate inert)'}${GATED ? ' [GATED — answer bodies NOT in the page]' : ''}`);
+console.log(`  payments:      ${payBase || '(unset — no pay button)'}`);
 console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);

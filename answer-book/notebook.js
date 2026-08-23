@@ -2467,8 +2467,11 @@
     var unlockedUnits = {};            // unit_key -> true
     var hasAll = false;
     var listLoaded = false;            // lock chips wait for the truth (no flicker)
+    var pendingUnlock = null;          // where the student was headed before paying
     var freeAvailable = null;
-    var skuLine = 'Unlocking every chapter is coming soon.';
+    var priceInfo = null;              // what THIS device pays (server-decided)
+    var paidUntil = null;
+    var PAY_BASE = (window.PM_PAY_BASE || '').trim();
 
     function keyOfQ(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
 
@@ -2487,13 +2490,57 @@
     function adoptStanding(out) {
       if (!out) return;
       if (typeof out.free_available === 'boolean') freeAvailable = out.free_available;
-      if (out.sku) {
-        // The price is the founder's to set (P4); until a number exists the
-        // sheet promises nothing it cannot deliver.
-        skuLine = out.sku.price_inr
-          ? 'Unlock every chapter for ₹' + out.sku.price_inr + ' — payments are coming soon.'
-          : 'Unlocking every chapter is coming soon.';
+      if (typeof out.paid_until !== 'undefined') paidUntil = out.paid_until;
+      if (out.sku) priceInfo = out.sku;
+    }
+
+    /** The offer line. The price ALWAYS comes from the server (ab_price_for) —
+        the client never names a number, so a founding student and a later one
+        each see their own truth without the page knowing the rule. */
+    function offerLine() {
+      if (!priceInfo || !priceInfo.price_inr) return 'Unlocking every chapter is coming soon.';
+      var p = '₹' + priceInfo.price_inr + ' for ' + priceInfo.period_days + ' days';
+      if (priceInfo.founding_locked) {
+        return 'Unlock every chapter again — ' + p + ', your founding price.';
       }
+      if (priceInfo.founding) {
+        var left = priceInfo.founding_slots_left;
+        return 'Unlock every chapter — ' + p + '. That is the founding price'
+          + (typeof left === 'number' && left > 0 ? ' (' + left + ' places left)' : '')
+          + '; it later costs ₹' + priceInfo.list_price_inr + '. Once you join at this price, it stays yours.';
+      }
+      return 'Unlock every chapter — ' + p + '.';
+    }
+
+    function payable() { return !!(PAY_BASE && priceInfo && priceInfo.price_inr); }
+
+    /** Ask the server for a payment link for THIS device and hand the student
+        over to Razorpay. The device id rides the payment, so the webhook can
+        unlock this very phone seconds after the UPI confirmation. */
+    function startPayment(i, cutKey) {
+      pendingUnlock = { i: i, cutKey: cutKey };
+      sheet('Opening the payment page…', []);
+      var body = { device_id: Sync.deviceId() };
+      try {
+        fetch(PAY_BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) {
+            if (out && out.ok && out.url) {
+              // Same tab: the callback_url brings them back to the book, and a
+              // popup would be eaten by a phone browser's blocker.
+              location.href = out.url;
+              return;
+            }
+            sheet('Could not open the payment page just now. Please try again in a moment.',
+              [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+          })
+          .catch(function () {
+            sheet('Could not reach the payment page. Check your connection and try again.',
+              [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+          });
+      } catch (e) { /* nothing to do — the sheet already says what happened */ }
     }
 
     /** Fold a fetched bundle into the live question list. */
@@ -2551,14 +2598,24 @@
     }
 
     function showLocked(i, cutKey, k) {
+      var buttons = [];
+      var text;
       if (freeAvailable) {
-        sheet('This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?', [
-          { label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } },
-          backBtn()
-        ]);
+        text = 'This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?';
+        buttons.push({ label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } });
+        // The paid option sits BESIDE the free one: a student who already knows
+        // they want the whole book should not have to spend the gift first.
+        if (payable()) {
+          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, fn: function () { startPayment(i, cutKey); } });
+        }
       } else {
-        sheet('This chapter is locked. You have already used your free chapter. ' + skuLine, [backBtn()]);
+        text = 'This chapter is locked. You have already used your free chapter. ' + offerLine();
+        if (payable()) {
+          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
+        }
       }
+      buttons.push(backBtn());
+      sheet(text, buttons);
     }
 
     function claimFree(i, cutKey, k) {
@@ -2608,6 +2665,12 @@
           }
           listLoaded = true;
           if (currentView === 'catalog') renderCatalog();
+          // Coming back from a successful payment: the pass is live, so drop the
+          // student straight into the chapter they were trying to open.
+          if (hasAll && pendingUnlock) {
+            var pu = pendingUnlock; pendingUnlock = null;
+            showLockFlow(pu.i, pu.cutKey);
+          }
         });
       }
     };
