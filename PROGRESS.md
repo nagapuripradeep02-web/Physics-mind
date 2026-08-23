@@ -1,5 +1,32 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔗 SESSION — Answer Book: **P2 — ANONYMOUS SYNC, built, deployed server-side, live site untouched** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `1a7e7f91`, branch + master PUSHED)
+
+**Bottom line: a student's ticks and plan can now follow them across devices with no login — identity is a random UUID in localStorage (`pm_device_id`), no PII anywhere. The whole feature is OFFLINE-FIRST BY CONSTRUCTION: `PM_SYNC_BASE` unset (every non-hosted build) leaves the Sync module inert — no device id minted, no timer, zero requests — so all 45 pre-existing gates ran untouched. The `answerbook-sync` Edge Function is DEPLOYED to the dev project and live-verified (403 foreign origin · earliest-wins merge through the real stack · 400 bad device · stale-plan refusal · mint quota); the three `ab_*` tables are RLS-on/zero-policy/service-role-only and the `ab_sync` RPC is not anon-callable (advisor-confirmed). THE LIVE SITE IS UNCHANGED — sync goes live only on the next founder-directed `npm run deploy:answers` (the hosted default is baked, so that one command is the whole flip). Verified: tsc 0 · vitest 416/416 (+11) · e2e 48/48 CLEAN full run, 31.8 m, no flake · live endpoint probes green.**
+
+### The design in one paragraph
+One POST does both directions: the client sends every tick + its plan, the atomic `ab_sync` RPC merges and returns the merged truth. A stage tick is a DATE and the EARLIEST wins (`LEAST()` in SQL, the same comparison in `Vidi.mergeStages`) — commutative, associative, idempotent, so two devices converge in any order, a retry is free, and there is no locking, versioning, or conflict UI. The plan is the one last-write-wins blob, ordered by CLIENT `saved_at` (stamped in `setPlan`); a stale push is refused by a `where` on the upsert, and sync adopts a remote plan via `storePlanRaw` (a `setPlan` re-stamp would make the adopted copy out-rank its own source and ping-pong forever). Only device MINTING is IP-capped (20/day, in the RPC) — an existing device is never IP-limited, because students share school networks.
+
+### Deviation from the plan, founder-approved
+The free tier caps at 2 active projects (dev + pilot), so the planned `physicsmind-students` project was impossible without paying. Founder chose: land in the dev project (`dxwpkjfypzxrzgbevfnx`). Namespaced tables + deny-by-default RLS keep it separable; moving later = dump/restore + one env var (`ANSWER_BOOK_SYNC_BASE`).
+
+### Tests that bite
+`syncMerge.test.ts` (11) proves the merge properties against the SHIPPED notebook.js by extract-and-evaluate, mutation-checked — inverting earliest→latest fails 3 — and greps the migration for `least(...)` so the browser and SQL copies cannot drift silently. Three new e2e gates: sync-off mints nothing and calls nothing · a routed fake endpoint proves the real merge + persistent device id · endpoint down changes nothing (no pageerror, progress still recorded). Two of them were first written against the RETIRED reveal-auto-tick and failed honestly — the U tick is the P1 leave-question ask now; repointed.
+
+### Scars
+(1) Multi-call RPC tests cannot share one SQL statement: CTEs share a snapshot and evaluate in unspecified order — a phantom "stale plan won" cost 20 minutes. Sequential statements only. (2) The explicit `git push` after commit races the auto-push hook — a "cannot lock ref … is at <the new sha>" rejection means the hook WON, not that the push failed; verify with ls-remote before re-pushing.
+
+### Files
+`answer-book/notebook.js` (+~170: Sync module · `mergeStages`/`allStages`/`storePlanRaw` · `syncTouch` hook in setStage/setPlan · `VidiPanel.onSynced` repaint · boot) · `src/scripts/build_answer_book.ts` (`PM_SYNC_BASE`, hosted default baked) · `supabase/functions/answerbook-sync/index.ts` (NEW) · `supabase_migrations/supabase_2026_08_23_answerbook_student_sync.sql` (NEW — applied to dev) · `src/lib/answerBook/__tests__/syncMerge.test.ts` (NEW) · `e2e/answer_book.spec.ts` (48 gates) · `docs/patterns/answer_book.md` (§Anonymous progress sync). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **Founder go/no-go: flip the live site to sync-on** — one command, `npm run deploy:answers` (hosted build now bakes both bases). Until then answers.viditra.co behaves exactly as before.
+2. Still pending from earlier today: `AB_ALLOWED_ORIGINS` + the chat-function persona redeploy · **SMS/DLT registration (weeks of lead — start now)**.
+3. Then P3 gated build + free chapter → P4 Razorpay + OTP (price decision) → P5 hardening.
+
+---
+
+
 ## 🌐 SESSION — Answer Book: **THE MERGE AND THE DEPLOY — physics + maths live at answers.viditra.co** (2026-08-23, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`, merge `2b5fe9eb`, PUSHED)
 
 **Bottom line: the founder's decided next task is done. `origin/feat/ipe-mathematics-answerbook` (250 Maths-1A questions, the subject dimension, build-time KaTeX) is merged — as a TRUE two-parent merge, so future merges of that branch are no-ops — with cb6abc8a's deletion of the 17 physics Unit-4 files deliberately NOT taken (its own commit message sanctions exactly that) while its genuine test improvements (fixture-owned recallGrader, length-agnostic LAQ gate, data-derived deep link) are all kept. units.json is the union: 8 physics units (untagged = physics) + 10 maths units (subject:mathematics) = 448 question files, 454 catalog entries, 272 KaTeX lines. A new Worker `viditra-answers` (wrangler.answers.toml; `npm run deploy:answers` chains build:answers:hosted so the offline test dist can never reach the domain) is DEPLOYED and verified: https://answers.viditra.co serves 200 / 4.2 MB with both subjects and the hosted chat base baked in.**
