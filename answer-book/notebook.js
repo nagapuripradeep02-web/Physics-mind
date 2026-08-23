@@ -1874,6 +1874,11 @@
   var VIDI_BASE = (window.PM_VIDI_BASE || '').trim().replace(/\/$/, '');
   var lastSelfCheck = null;
 
+  // Announced by Vidi whenever stored study data changes. Sync replaces it at
+  // init; with no sync endpoint it stays a no-op forever, which is what keeps
+  // the offline build free of even a dormant timer.
+  var syncTouch = function () {};
+
   var Vidi = (function () {
     var mem = {};                       // fallback when localStorage is blocked
     function lsGet(k) {
@@ -1970,7 +1975,14 @@
       // ── the study plan (per device, like every other Vidi key) ────────────
       todayStr: todayStr,
       getPlan: function () { try { return JSON.parse(lsGet('pm_plan_v1') || 'null'); } catch (e) { return null; } },
-      setPlan: function (p) { lsSet('pm_plan_v1', JSON.stringify(p)); },
+      setPlan: function (p) {
+        // saved_at is what lets two devices agree on WHICH plan is current
+        // (the plan is one blob, so it is last-write-wins — unlike the stage
+        // ticks, which merge). Stamped here so every write is comparable.
+        if (p && typeof p === 'object') p.saved_at = new Date().toISOString();
+        lsSet('pm_plan_v1', JSON.stringify(p));
+        syncTouch();
+      },
       /** The Viditra intro: shown until answered, but never nags past 2 shows. */
       introDone: function () { return lsGet('pm_intro_done') === '1'; },
       markIntroDone: function () { lsSet('pm_intro_done', '1'); },
@@ -1994,6 +2006,40 @@
         s[k] = on ? todayStr() : '';
         stages[qid] = s;
         lsSet('pm_stage_v1', JSON.stringify(stages));
+        syncTouch();
+      },
+      /** The raw tick map, for the sync push. */
+      allStages: function () { return stages; },
+      /** Store a plan EXACTLY as given — no saved_at re-stamp. Only sync uses
+          this, to adopt another device's plan without making it look newer
+          than the device it came from. */
+      storePlanRaw: function (p) { lsSet('pm_plan_v1', JSON.stringify(p)); },
+      /** Merge ticks that came back from another device.
+
+          The SAME first-tick-wins rule as setStage, but applied to the remote
+          DATE instead of today: the earliest date either device saw is the
+          truth. That makes the merge commutative and idempotent, so two
+          devices converge no matter which syncs first and a replayed response
+          changes nothing. Returns true when anything actually moved, so the
+          caller only repaints on a real change. */
+      mergeStages: function (rows) {
+        if (!rows || !rows.length) return false;
+        var changed = false;
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var qid = row && row.q;
+          if (!qid) continue;
+          var s = stages[qid] || { u: '', p: '', r: '' };
+          var keys = ['u', 'r'], j;
+          for (j = 0; j < keys.length; j++) {
+            var k = keys[j], remote = row[k] || '';
+            if (!remote) continue;
+            if (!s[k] || remote < s[k]) { s[k] = remote; changed = true; }
+          }
+          stages[qid] = s;
+        }
+        if (changed) lsSet('pm_stage_v1', JSON.stringify(stages));
+        return changed;
       },
       log: log,
       flush: flush
@@ -2272,6 +2318,118 @@
       dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
       green: green, learned: learned, modelStatus: modelStatus,
       dueWithoutPlan: dueWithoutPlan
+    };
+  })();
+
+  // ═══ Sync — the same progress on the student's other device ════════════
+  // Anonymous by design: identity is a random UUID minted here and kept in
+  // localStorage (`pm_device_id`). No login, no account, no PII — the founder's
+  // journey is "open a WhatsApp link and start reading".
+  //
+  // OFFLINE FIRST, ALWAYS. localStorage stays the source of truth and every
+  // feature works with the network down; sync is an accelerator, never a
+  // dependency. With no PM_SYNC_BASE the whole module is inert — no timer, no
+  // device id minted, not one request — so the file:// build and every gate
+  // that asserts zero network are untouched by construction.
+  //
+  // One POST does both directions: we send what we have, the server merges and
+  // returns the merged truth (see ab_sync in the migration). Stage ticks merge
+  // by earliest-date-wins, so the call is idempotent and order-independent — a
+  // retry after a dropped connection costs nothing and can never lose a tick.
+  var Sync = (function () {
+    var BASE = (window.PM_SYNC_BASE || '').trim();
+    var PUSH_DEBOUNCE_MS = 2500;
+    var timer = null, inFlight = false, again = false;
+
+    function deviceId() {
+      var id = null;
+      try { id = localStorage.getItem('pm_device_id'); } catch (e) {}
+      if (id && /^[0-9a-f-]{36}$/i.test(id)) return id;
+      id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0;
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+          });
+      try { localStorage.setItem('pm_device_id', id); } catch (e) {}
+      return id;
+    }
+
+    /** Only ticks worth sending: an empty pair carries no information. */
+    function rows() {
+      var all = Vidi.allStages(), out = [], qid;
+      for (qid in all) {
+        if (!Object.prototype.hasOwnProperty.call(all, qid)) continue;
+        var s = all[qid] || {};
+        if (!s.u && !s.r) continue;
+        out.push({ q: qid, u: s.u || '', r: s.r || '' });
+      }
+      return out;
+    }
+
+    function push() {
+      if (!BASE || inFlight) { again = again || !!BASE; return; }
+      inFlight = true;
+      var plan = Vidi.getPlan();
+      // A plan with no saved_at predates sync entirely, so no other device can
+      // hold a competing copy — stamping it now is safe, and without a stamp
+      // the server cannot tell it from a stale push and would ignore it.
+      if (plan && !plan.saved_at) { plan.saved_at = new Date().toISOString(); Vidi.storePlanRaw(plan); }
+      var body = {
+        device_id: deviceId(),
+        stages: rows(),
+        plan: plan || null,
+        plan_saved_at: (plan && plan.saved_at) || null
+      };
+      var done = function () {
+        inFlight = false;
+        if (again) { again = false; schedule(); }
+      };
+      try {
+        fetch(BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) { if (out && out.ok) adopt(out); done(); })
+          .catch(done);          // offline is normal, never an error to show
+      } catch (e) { done(); }
+    }
+
+    /** Take what the server merged. Ticks merge; the plan is last-write-wins. */
+    function adopt(out) {
+      var changed = Vidi.mergeStages(out.stages || []);
+      var mine = Vidi.getPlan();
+      var theirs = out.plan;
+      if (theirs && typeof theirs === 'object') {
+        var t = out.plan_saved_at || theirs.saved_at || '';
+        var m = (mine && mine.saved_at) || '';
+        if (t && (!m || t > m)) {
+          theirs.saved_at = t;
+          // Written straight to storage: Vidi.setPlan would re-stamp saved_at
+          // with NOW and the adopted plan would then out-rank the very device
+          // it came from, ping-ponging the two forever.
+          Vidi.storePlanRaw(theirs);
+          changed = true;
+        }
+      }
+      if (changed) VidiPanel.onSynced();
+    }
+
+    function schedule() {
+      if (!BASE) return;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { timer = null; push(); }, PUSH_DEBOUNCE_MS);
+    }
+
+    return {
+      init: function () {
+        if (!BASE) return;                 // inert: no id, no timer, no request
+        syncTouch = schedule;
+        push();                            // the boot pull doubles as the first push
+        window.addEventListener('pagehide', function () {
+          if (timer) { clearTimeout(timer); timer = null; }
+          push();
+        });
+      }
     };
   })();
 
@@ -3350,6 +3508,14 @@
     }
 
     return {
+      /** Another device's progress just landed. Repaint what is on screen —
+          never a bubble: a student who did not ask for a sync should not be
+          interrupted by one. */
+      onSynced: function () {
+        updatePlanStrip();
+        if (currentView === 'catalog') renderCatalog();
+        else if (currentView === 'notebook') renderVidiChips();
+      },
       syncName: syncName,
       onQuestion: function () {
         gen++;
@@ -3620,6 +3786,7 @@
   ]).then(function () {
     initTest();
     initVidi();
+    Sync.init();
     route();
     window.addEventListener('hashchange', route);
   });

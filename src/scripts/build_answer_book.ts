@@ -305,12 +305,24 @@ const vidiBase = process.argv.includes('--hosted')
     ? (process.env.ANSWER_BOOK_VIDI_BASE ?? VIDI_HOSTED_BASE)
     : (process.env.ANSWER_BOOK_VIDI_BASE ?? '');
 
+// Progress sync (P2). Same shape as the chat base and the same guarantee: unset
+// means the Sync module is inert — no device id, no timer, no request — so the
+// offline build and every zero-network gate are unaffected. The hosted default
+// is the answerbook-sync function deployed + live-verified 2026-08-23 (403 on a
+// foreign origin, earliest-tick-wins merge, 400 on a malformed device id).
+const SYNC_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-sync';
+const syncBase = process.argv.includes('--hosted')
+    ? (process.env.ANSWER_BOOK_SYNC_BASE ?? SYNC_HOSTED_BASE)
+    : '';
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
     `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
     `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
-    `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};`;
+    `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
+` +
+    `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};`;
 
 const html = shell
     .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
@@ -326,6 +338,7 @@ writeFileSync(outPath, html, 'utf8');
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
+console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage only, zero network)'}`);
 console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);

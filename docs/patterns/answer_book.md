@@ -268,6 +268,53 @@ localStorage; the LLM is never in the plan path.
   and resets the clock override — advance the day in-page and re-open the window instead of
   reloading.
 
+## Anonymous progress sync (P2, landed 2026-08-23)
+
+No login, ever, at this rung: identity is a random UUIDv4 minted in the browser
+(`pm_device_id`). Unguessable (122 bits) but deliberately NOT a security boundary
+— it protects progress ticks, nothing more. Phone numbers arrive in P4 and get
+their own table; no PII lives anywhere in this feature.
+
+- **Offline first, always.** localStorage stays the source of truth; sync is an
+  accelerator, never a dependency. `PM_SYNC_BASE` unset (every non-hosted build)
+  ⇒ the `Sync` module is INERT — no device id minted, no timer armed, zero
+  requests — asserted by its own gate, because every other gate in the suite
+  runs in that configuration.
+- **One POST, both directions.** The client sends all its ticks + its plan; the
+  server merges and returns the merged truth. Endpoint: `answerbook-sync`
+  (sibling of the chat function — same origin allowlist, same salted-IP
+  discipline, no spend ceiling because there is no model call). The whole merge
+  is ONE atomic RPC (`ab_sync`).
+- **The merge rule is the safety story**: a stage tick is a DATE and the
+  EARLIEST wins — `LEAST()` in SQL, the same comparison in `Vidi.mergeStages`.
+  Commutative + associative + idempotent ⇒ two devices converge in any order and
+  a retried request can never lose or move a tick; no locking, no versioning, no
+  conflict UI. The rule exists twice ON PURPOSE (browser + SQL); vitest
+  (`syncMerge.test.ts`) proves the properties against the SHIPPED notebook.js
+  (mutation-checked: inverting earliest→latest fails 3 tests) and greps the
+  migration for `least(...)` so the two copies cannot drift apart silently.
+- **The plan is the one last-write-wins value** (a single blob the student can
+  rebuild wholesale), ordered by CLIENT `saved_at` — stamped in `Vidi.setPlan`.
+  A stale push is REFUSED by a `where` on the upsert, never merged. Sync adopts
+  a remote plan via `Vidi.storePlanRaw` (no re-stamp): using setPlan would mark
+  the adopted plan newer than the device it came from and ping-pong forever.
+- **Only device MINTING is IP-limited** (default 20/day/IP, enforced in the
+  RPC). An existing device is never IP-limited: students share school and cafe
+  networks, and locking one out of their own progress is worse than the abuse
+  it prevents.
+- **Tables** (`ab_devices`/`ab_progress`/`ab_plans`, currently in the dev
+  project `dxwpkjfypzxrzgbevfnx` — the free tier's 2-project cap made the
+  planned `physicsmind-students` project impossible without paying; founder
+  accepted, and moving later is a dump/restore + one env var): RLS on, ZERO
+  policies — service-role only, and `ab_sync` has execute revoked from
+  public/anon/authenticated (the advisor confirms it is not anon-callable).
+- **Live-verified 2026-08-23**: 403 foreign origin · earliest-wins merge through
+  the real endpoint · 400 malformed device · stale-plan refusal · mint quota —
+  all against the deployed function, then the probe rows deleted.
+- **Test-author scar**: multi-step RPC tests CANNOT share one SQL statement —
+  CTEs share a snapshot and evaluate in unspecified order, which produced a
+  phantom "stale plan won" result. Sequential statements only.
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

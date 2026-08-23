@@ -1745,3 +1745,124 @@ test('an animated typeset reveal never leaves a clip narrower than its own ink',
     expect(short, `${matrixQ}: clip is narrower than its typeset ink — the closing ` +
         `delimiter is being cut off`).toEqual([]);
 });
+
+// ── P2: anonymous progress sync ─────────────────────────────────────────
+// The offline guarantee is the one that regresses silently: sync must be INERT
+// with no endpoint — not merely quiet, but never minting a device id and never
+// arming a timer. Everything else in this suite runs in that configuration, so
+// a regression here would show up as mysterious network flakes everywhere.
+
+test('with no sync base the page mints no device id and makes no sync call', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    await openFirst(page);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);          // the leave-question ask IS the U tick (P1)
+    await page.waitForTimeout(3200);     // past the sync debounce
+
+    const r = await page.evaluate(() => ({
+        base: (window as any).PM_SYNC_BASE,
+        deviceId: localStorage.getItem('pm_device_id'),
+        stages: localStorage.getItem('pm_stage_v1'),
+    }));
+    expect(r.base).toBe('');
+    expect(r.deviceId).toBe(null);       // no identity is minted when sync is off
+    expect(r.stages).toBeTruthy();       // ...but progress is still stored locally
+    expect(external).toEqual([]);
+});
+
+test('with a sync base the device syncs once, and a remote tick merges in earliest-first', async ({ page }) => {
+    const SYNC = 'https://sync.test/functions/v1/answerbook-sync';
+    const posted: any[] = [];
+
+    // The data block assigns PM_SYNC_BASE before notebook.js reads it, so the
+    // override has to be a getter that swallows that write.
+    await page.addInitScript((base: string) => {
+        Object.defineProperty(window, 'PM_SYNC_BASE', {
+            get: () => base, set: () => {}, configurable: true,
+        });
+        try { localStorage.setItem('pm_today_override', '2026-09-10'); } catch { /* file:// */ }
+    }, SYNC);
+
+    await page.route('https://sync.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') {
+            return route.fulfill({ status: 204, headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+            } });
+        }
+        posted.push(JSON.parse(req.postData() || '{}'));
+        // The server answers with a tick this device has never seen, plus an
+        // EARLIER date for one it has — both must land, the second by winning.
+        return route.fulfill({
+            status: 200,
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ok: true, plan: null, plan_saved_at: null, stages: [
+                { q: 'from-other-device', u: '2026-08-01', r: '2026-08-02' },
+                { q: 'seeded', u: '2026-08-05', r: '' },
+            ] }),
+        });
+    });
+
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    // a local tick the remote will beat with an earlier date
+    await page.evaluate(() => localStorage.setItem('pm_stage_v1',
+        JSON.stringify({ seeded: { u: '2026-09-09', p: '', r: '' } })));
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+
+    await page.waitForFunction(() => {
+        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')['from-other-device']; }
+        catch { return false; }
+    }, undefined, { timeout: 8000 });
+
+    const st = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_stage_v1')!));
+    expect(st['from-other-device'].u).toBe('2026-08-01');   // adopted
+    expect(st['from-other-device'].r).toBe('2026-08-02');
+    expect(st.seeded.u).toBe('2026-08-05');                 // EARLIEST wins, not newest
+
+    // the push carried a real device id, and the id persists across reloads
+    const id = await page.evaluate(() => localStorage.getItem('pm_device_id'));
+    expect(id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
+    expect(posted.length).toBeGreaterThan(0);
+    expect(posted[posted.length - 1].device_id).toBe(id);
+    expect(Array.isArray(posted[posted.length - 1].stages)).toBe(true);
+});
+
+test('a sync endpoint that is down never breaks the book', async ({ page }) => {
+    // Offline-first is the promise: the student must not be able to tell.
+    const SYNC = 'https://sync.test/functions/v1/answerbook-sync';
+    await page.addInitScript((base: string) => {
+        Object.defineProperty(window, 'PM_SYNC_BASE', {
+            get: () => base, set: () => {}, configurable: true,
+        });
+    }, SYNC);
+    await page.route('https://sync.test/**', (route) => route.abort('failed'));
+
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await openFirst(page);
+    const marks = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        return (window as any).PM_ANSWER.getState();
+    });
+    await leaveAndAnswer(page);          // the leave-question ask IS the U tick (P1)
+    await page.waitForTimeout(3200);     // the failed push must change nothing
+
+    const r = await page.evaluate(() => ({
+        stages: localStorage.getItem('pm_stage_v1'),
+    }));
+    expect(errors).toEqual([]);                        // no unhandled rejection
+    expect(marks.marksEarned).toBe(marks.marksTotal);
+    expect(r.stages).toBeTruthy();                     // progress still recorded
+});
