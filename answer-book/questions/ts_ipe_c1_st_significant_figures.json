@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_significant_figures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you mean by significant figures?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meaning",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it (the book prints the definition alone); the question itself is sourced, not invented. OVERLAP: the physics book asks this same definition in Units and Measurements (card ts_ipe_p1_um_significant_figures_meaning). Both source books ask it, so both cards exist — flagged for founder review."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The significant figures in a measured number",
+          "are all the digits known with certainty,",
+          "plus one last digit that is uncertain",
+          "(doubtful)."
+        ],
+        "why": "A measurement can never be exact; the last digit read from any instrument is an estimate. Significant figures record exactly how far the certainty goes — every certain digit plus that one doubtful digit.",
+        "common_mistakes": [
+          "Writing only the digits known with certainty and leaving out the one uncertain digit.",
+          "Confusing significant figures with decimal places. 1.06 has three significant figures but two decimal places."
+        ],
+        "memory_tip": "Certain digits plus ONE doubtful digit — the doubtful one still counts.",
+        "margin_note": "The words certain and uncertain (or doubtful) must both appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "In 11.2 mL, the digits 1 and 1 are certain and 2 is uncertain — three significant figures",
+            "style": "boxed"
+          },
+          "The volume lies between 11.1 mL and 11.3 mL;",
+          "the certainty ends at the last digit."
+        ],
+        "why": "A worked reading shows the definition doing its job: two certain digits and one estimated digit make three significant figures in total.",
+        "common_mistakes": [
+          "Counting only the certain digits and reporting two significant figures for 11.2."
+        ],
+        "memory_tip": "Read a burette: the printed marks give the certain digits, the eye estimates the last one.",
+        "margin_note": "Any measured value works as the example; state which digit is the doubtful one."
+      }
+    ]
+  },
+  "insider_note": "The word doubtful (or uncertain) is what the examiner scans for — a definition that stops at the certain digits reads as incomplete."
+}

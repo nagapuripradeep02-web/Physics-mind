@@ -1,0 +1,383 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_hybridisation_types_s_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What do you understand by hybridization? Explain different types of hybridizations involving s and p orbitals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "sp hybridisation with BeCl₂",
+      "marks": 2
+    },
+    {
+      "label": "sp² hybridisation with BF₃",
+      "marks": 2
+    },
+    {
+      "label": "sp³ hybridisation with CH₄",
+      "marks": 2
+    },
+    {
+      "label": "The diagrams",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+2+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book presents the three types in the order sp³, sp², sp; the card orders them sp, sp², sp³ so the p-orbital count climbs one at a time — the content is identical."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Bonding · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Hybridisation: the process of intermixing",
+          "of two or more atomic orbitals of nearly",
+          "equal energy to form the same number of",
+          "identical hybrid orbitals.",
+          "Types involving s and p orbitals:",
+          "sp, sp² and sp³."
+        ],
+        "why": "The definition carries three checkable phrases — nearly equal energy, same number, identical orbitals — and listing the three types up front sets the structure of the whole essay.",
+        "common_mistakes": [
+          "Leaving out same number. Mixing four orbitals gives exactly four hybrids.",
+          "Writing equal energy instead of NEARLY equal energy."
+        ],
+        "memory_tip": "Three phrases to keep: nearly equal energy, same number, identical.",
+        "margin_note": "Name the three types here; each gets its own section below."
+      },
+      {
+        "id": "s2_sp",
+        "kind": "text",
+        "label": "sp hybridisation — BeCl₂",
+        "marks": 2,
+        "mark_note": "sp + BeCl₂",
+        "lines": [
+          "sp hybridisation:",
+          "One s orbital and one p orbital mix to give",
+          "two sp hybrid orbitals.",
+          "Each sp hybrid has 50% s and 50% p",
+          "character. Bond angle 180°; shape linear.",
+          "Example — BeCl₂:",
+          "Excited Be : 1s² 2s¹ 2px¹",
+          "The two sp hybrids of Be axially overlap",
+          "the half-filled 3p orbitals of two Cl",
+          "atoms, forming two σ(sp–p) bonds.",
+          "Cl−Be−Cl is linear with 180°."
+        ],
+        "why": "Each type follows one template: which orbitals mix, the s character, the angle and shape, then one molecule built with it. BeCl₂ needs exactly two bonds, which is why beryllium stops at sp.",
+        "common_mistakes": [
+          "Writing the ground state 2s² for Be and still claiming two bonds. The excited state 2s¹ 2px¹ supplies the two unpaired electrons.",
+          "Giving the angle as 90°. The two hybrids point exactly opposite: 180°."
+        ],
+        "memory_tip": "Two hybrids can only point opposite ways — that is the 180° line.",
+        "margin_note": "Template per type: mixing, % character, angle and shape, example."
+      },
+      {
+        "id": "s3_sp2",
+        "kind": "text",
+        "label": "sp² hybridisation — BF₃",
+        "marks": 2,
+        "mark_note": "sp² + BF₃",
+        "lines": [
+          "sp² hybridisation:",
+          "One s orbital and two p orbitals mix to",
+          "give three sp² hybrid orbitals.",
+          "Each sp² hybrid has 33.3% s and 66.7% p",
+          "character. Bond angle 120°; shape trigonal",
+          "planar.",
+          "Example — BF₃:",
+          "Excited B : 1s² 2s¹ 2px¹ 2py¹",
+          "The three sp² hybrids of B axially overlap",
+          "the half-filled 2p orbitals of three F",
+          "atoms, forming three σ(sp²–p) bonds.",
+          "BF₃ is trigonal planar with 120°."
+        ],
+        "why": "The same template with one more p orbital: three hybrids spread evenly in a plane, so the angle drops from 180° to 120°.",
+        "common_mistakes": [
+          "Writing 33.3% p character. The s character is 33.3%; the p character is 66.7%.",
+          "Calling the shape pyramidal. With no lone pair on B the three bonds stay in one plane."
+        ],
+        "memory_tip": "One s among three hybrids: one third s character. Three directions in a plane: 120°.",
+        "margin_note": "The % character pair is a favourite one-mark probe inside this question."
+      },
+      {
+        "id": "s4_sp3",
+        "kind": "text",
+        "label": "sp³ hybridisation — CH₄",
+        "marks": 2,
+        "mark_note": "sp³ + CH₄",
+        "lines": [
+          "sp³ hybridisation:",
+          "One s orbital and three p orbitals mix to",
+          "give four sp³ hybrid orbitals.",
+          "Each sp³ hybrid has 25% s and 75% p",
+          "character. Bond angle 109°28′; shape",
+          "tetrahedral.",
+          "Example — CH₄:",
+          "Excited C : 1s² 2s¹ 2px¹ 2py¹ 2pz¹",
+          "The four sp³ hybrids of C axially overlap",
+          "the 1s orbitals of four H atoms, forming",
+          "four σ(sp³–s) bonds.",
+          "CH₄ is tetrahedral with 109°28′."
+        ],
+        "why": "Four hybrids cannot stay in a plane; they point to the corners of a tetrahedron, which is where 109°28′ comes from.",
+        "common_mistakes": [
+          "Writing 109.28°. The angle is 109°28′ — degrees and minutes, not a decimal.",
+          "Writing σ(sp³–p) for methane. Hydrogen bonds through its 1s orbital: σ(sp³–s)."
+        ],
+        "memory_tip": "One s among four hybrids: one quarter s character. Four directions in space: 109°28′.",
+        "margin_note": "Methane's partner orbital is hydrogen 1s — the only s-overlap example of the three."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "The diagrams",
+        "marks": 1,
+        "mark_note": "Diagrams",
+        "figure": {
+          "id": "s_p_hybrid_shapes",
+          "width": 660,
+          "height": 235,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "becl2_bond1",
+              "d": "M 58 110 L 88 110",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "becl2_bond2",
+              "d": "M 128 110 L 158 110",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "cl_a1",
+              "x": 28,
+              "y": 115,
+              "text": "Cl",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "be_a",
+              "x": 95,
+              "y": 115,
+              "text": "Be",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "cl_a2",
+              "x": 166,
+              "y": 115,
+              "text": "Cl",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "cap_a",
+              "x": 30,
+              "y": 210,
+              "text": "sp — linear, 180°",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "bf3_up",
+              "d": "M 325 100 L 325 62",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bf3_ll",
+              "d": "M 315 118 L 287 146",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bf3_lr",
+              "d": "M 335 118 L 363 146",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "b_lbl",
+              "x": 319,
+              "y": 115,
+              "text": "B",
+              "ms": 160,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "f_b_top",
+              "x": 318,
+              "y": 48,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "f_b_ll",
+              "x": 268,
+              "y": 160,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "f_b_lr",
+              "x": 370,
+              "y": 160,
+              "text": "F",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "cap_b",
+              "x": 240,
+              "y": 210,
+              "text": "sp² — trigonal planar, 120°",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ch4_up",
+              "d": "M 545 100 L 545 64",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ch4_ll",
+              "d": "M 535 118 L 510 146",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ch4_lr",
+              "d": "M 555 118 L 580 146",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ch4_back",
+              "d": "M 553 104 L 586 80",
+              "ms": 200,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "c_lbl",
+              "x": 536,
+              "y": 115,
+              "text": "C",
+              "ms": 160,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "h_top",
+              "x": 538,
+              "y": 50,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_back",
+              "x": 592,
+              "y": 72,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_ll",
+              "x": 494,
+              "y": 162,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_lr",
+              "x": 586,
+              "y": 162,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "cap_c",
+              "x": 460,
+              "y": 210,
+              "text": "sp³ — tetrahedral, 109°28′",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "One small sketch per type shows the three shapes side by side: two bonds on a straight line, three in a flat triangle, four toward the corners of a tetrahedron (the dashed C−H bond points behind the page).",
+        "common_mistakes": [
+          "Drawing CH₄ as a flat cross of four bonds at 90°. Methane is three-dimensional; use the dashed bond for depth.",
+          "Leaving the shape names and angles off the sketches."
+        ],
+        "memory_tip": "Two, three, four bonds: line, triangle, tetrahedron.",
+        "margin_note": "Small labelled sketches are enough; the angle captions carry the mark with them."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "Summary",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "sp → linear · sp² → trigonal planar · sp³ → tetrahedral",
+            "style": "boxed"
+          },
+          "Angles: 180°, 120°, 109°28′ — each added",
+          "p orbital adds one more bond direction."
+        ],
+        "why": "A closing summary line lets the examiner see the three results together, and it is the one line worth memorising for very short answer forms of this topic.",
+        "common_mistakes": [
+          "Mixing the angle with the wrong type when writing fast. Pair them as sp-180, sp²-120, sp³-109."
+        ],
+        "memory_tip": "Count hybrids two, three, four, and pair each count with its angle: 180°, 120°, 109°28′.",
+        "margin_note": "Unmarked closing line — it costs one line and makes the essay easy to mark."
+      }
+    ]
+  },
+  "insider_note": "Three hybridisations, one fixed template each — mixing, percent character, angle and shape, then the example with its excited state configuration. The template repeated three times is the full eight marks."
+}

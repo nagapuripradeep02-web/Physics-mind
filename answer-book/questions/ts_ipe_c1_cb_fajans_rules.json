@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_fajans_rules",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State Fajan's rules and give suitable examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cation size rule",
+      "marks": 1
+    },
+    {
+      "label": "Anion size rule",
+      "marks": 1
+    },
+    {
+      "label": "Charge rule",
+      "marks": 1
+    },
+    {
+      "label": "Configuration rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book states each rule in its ionic-increase direction; the card states both directions of each rule, which is the form the comparison questions use."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cation_size",
+        "kind": "text",
+        "label": "Cation size rule",
+        "marks": 1,
+        "mark_note": "Cation size",
+        "lines": [
+          "Fajan's rules predict the nature (ionic or",
+          "covalent) of the bond between two atoms.",
+          "1. As the size of the cation increases, the",
+          "ionic nature of the bond increases.",
+          "A small cation gives more covalent nature.",
+          "Ex: cation size Li⁺ < Na⁺ < K⁺ < Rb⁺ < Cs⁺,",
+          "so ionic nature",
+          "LiCl < NaCl < KCl < RbCl < CsCl."
+        ],
+        "why": "A small cation has a concentrated positive charge, so it distorts (polarises) the anion's electron cloud more, pulling shared character into the bond. A large cation distorts less, so the bond stays more ionic.",
+        "common_mistakes": [
+          "Reversing the series: LiCl is the MOST covalent chloride here, CsCl the most ionic.",
+          "Stating the rule without its example series. The series is half the mark."
+        ],
+        "memory_tip": "Small cation, strong distortion, covalent. Large cation, weak distortion, ionic.",
+        "margin_note": "Open with the one-line purpose of the rules, then number each rule."
+      },
+      {
+        "id": "s2_anion_size",
+        "kind": "text",
+        "label": "Anion size rule",
+        "marks": 1,
+        "mark_note": "Anion size",
+        "lines": [
+          "2. As the size of the anion decreases, the",
+          "ionic nature of the bond increases.",
+          "A large anion gives more covalent nature.",
+          "Ex: anion size F⁻ < Cl⁻ < Br⁻ < I⁻,",
+          "so ionic nature",
+          "CaF₂ > CaCl₂ > CaBr₂ > CaI₂."
+        ],
+        "why": "A large anion's outer electrons are far from its nucleus and easily distorted toward the cation, so the bond gains covalent character. A small anion is distorted least.",
+        "common_mistakes": [
+          "Writing the calcium series with < signs. Ionic nature DECREASES from fluoride to iodide, so the signs are >.",
+          "Mixing this up with the cation rule: for anions, SMALL means more ionic."
+        ],
+        "memory_tip": "For anions it is the reverse of cations: the small anion keeps the bond ionic.",
+        "margin_note": "Give both series: the ion sizes and the resulting ionic order."
+      },
+      {
+        "id": "s3_charge",
+        "kind": "text",
+        "label": "Charge rule",
+        "marks": 1,
+        "mark_note": "Charge",
+        "lines": [
+          "3. As the charge on the cation or the anion",
+          "decreases, the ionic nature of the bond",
+          "increases; high charge gives covalent",
+          "nature.",
+          "Ex: NaCl is ionic (small charge on Na⁺),",
+          "but AlCl₃ is covalent (high charge on Al³⁺)."
+        ],
+        "why": "A highly charged cation polarises the anion strongly, so charge acts the same way as small size: more distortion, more covalent character.",
+        "common_mistakes": [
+          "Saying higher charge means more ionic. Higher charge means MORE polarisation, so more covalent.",
+          "Writing the aluminium ion as Al⁺. It is Al³⁺, and the 3 is the point of the example."
+        ],
+        "memory_tip": "High charge acts like small size: both distort the anion, and distortion gives covalent character.",
+        "margin_note": "NaCl against AlCl₃ is the expected pair."
+      },
+      {
+        "id": "s4_config",
+        "kind": "boxed_final",
+        "label": "Configuration rule",
+        "marks": 1,
+        "mark_note": "Configuration",
+        "lines": [
+          "4. A cation with an inert gas configuration",
+          "forms an ionic compound; a cation with a",
+          "pseudo inert gas configuration forms a",
+          "covalent compound.",
+          "Ex: NaCl is ionic — Na⁺ is (2, 8);",
+          "ZnCl₂ is covalent — Zn²⁺ is (2, 8, 18).",
+          {
+            "text": "Small cation, large anion, high charge → covalent",
+            "style": "boxed"
+          }
+        ],
+        "why": "The 18 outer electrons of a pseudo inert gas cation shield its nucleus poorly, so it polarises the anion more than a true noble gas cation of similar size and charge.",
+        "common_mistakes": [
+          "Writing Zn²⁺ as (2, 8, 8, 2). The ion is (2, 8, 18).",
+          "Leaving out the boxed summary line, which is the one-line version examiners reward."
+        ],
+        "memory_tip": "This rule reuses the Ca²⁺ against Zn²⁺ comparison: true noble gas ionic, pseudo covalent.",
+        "margin_note": "Close with the boxed one-line summary of all four rules."
+      }
+    ]
+  },
+  "insider_note": "Each rule earns its mark only with its example series — learn the four pairs, rule with example, as single units."
+}

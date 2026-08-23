@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_ie_nitrogen_oxygen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The first ionisation enthalpy of nitrogen is greater than that of oxygen. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nitrogen's half-filled stability",
+      "marks": 1
+    },
+    {
+      "label": "Oxygen's paired repulsion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book states the half-filled/full-filled stability factor inside the ionisation enthalpy LAQ but never asks its standard application, the N-versus-O comparison — the explain-with-a-reason cell for that factor. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nitrogen",
+        "kind": "text",
+        "label": "Nitrogen's half-filled stability",
+        "marks": 1,
+        "mark_note": "Nitrogen",
+        "lines": [
+          "Nitrogen (2s² 2p³) has an exactly half-filled",
+          "2p subshell — one electron in each of the",
+          "three 2p orbitals.",
+          "A half-filled subshell has extra stability, so",
+          "removing an electron from it needs more",
+          "energy."
+        ],
+        "why": "The general period trend says oxygen, one place to the right, should have the higher ionisation enthalpy — the half-filled 2p³ arrangement of nitrogen is what overrides the trend.",
+        "common_mistakes": [
+          "Arguing from atomic size. Size favours oxygen; the half-filled configuration is what decides this pair.",
+          "Writing 2p³ as a pair plus a single electron. It is one electron in each of the three orbitals."
+        ],
+        "memory_tip": "2p³ is one electron per orbital — a settled arrangement that costs extra energy to break.",
+        "margin_note": "Write the configurations first; the whole answer reads off them."
+      },
+      {
+        "id": "s2_oxygen",
+        "kind": "boxed_final",
+        "label": "Oxygen's paired repulsion",
+        "marks": 1,
+        "mark_note": "Oxygen",
+        "lines": [
+          "In oxygen (2s² 2p⁴) one 2p orbital holds a",
+          "pair of electrons.",
+          "The repulsion between the paired electrons",
+          "makes one of them easier to remove.",
+          {
+            "text": "IE₁ of N > IE₁ of O",
+            "style": "boxed"
+          }
+        ],
+        "why": "The fourth 2p electron of oxygen has no empty orbital left and must pair up; the pair's mutual repulsion raises that electron's energy, so less outside energy is needed to remove it.",
+        "common_mistakes": [
+          "Explaining only nitrogen and never saying why oxygen loses its electron more easily.",
+          "Writing the final comparison the wrong way. Nitrogen has the higher first ionisation enthalpy."
+        ],
+        "memory_tip": "Oxygen's fourth p electron must share an orbital; the sharing repulsion makes it the easy one to remove.",
+        "margin_note": "Both halves are needed: nitrogen's stability and oxygen's repulsion, then the boxed comparison."
+      }
+    ]
+  }
+}

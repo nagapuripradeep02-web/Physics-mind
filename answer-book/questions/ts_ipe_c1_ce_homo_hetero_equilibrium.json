@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_homo_hetero_equilibrium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are homogeneous and heterogeneous equilibria? Give suitable examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Homogeneous — definition",
+      "marks": 1
+    },
+    {
+      "label": "Homogeneous — examples",
+      "marks": 1
+    },
+    {
+      "label": "Heterogeneous — definition",
+      "marks": 1
+    },
+    {
+      "label": "Heterogeneous — examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_homo_def",
+        "kind": "text",
+        "label": "Homogeneous — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Chemical equilibria are classified into two",
+          "types: homogeneous and heterogeneous.",
+          "Homogeneous equilibrium: all the substances",
+          "of the reversible reaction are present in a",
+          "single phase."
+        ],
+        "why": "The classification runs on one test only — how many phases are present — so each definition is one sentence about the phase count.",
+        "common_mistakes": [
+          "Writing 'same substance' instead of 'same phase'. The test is the phase, not the identity.",
+          "Confusing phase with physical state written per substance — all gases is ONE phase."
+        ],
+        "memory_tip": "Homo = same. All substances in the same phase.",
+        "margin_note": "The word phase must appear in the definition."
+      },
+      {
+        "id": "s2_homo_examples",
+        "kind": "equation",
+        "label": "Homogeneous — examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "H₂(g) + I₂(g) ⇌ 2HI(g)",
+            "style": "eq"
+          },
+          {
+            "text": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g)",
+            "style": "eq"
+          },
+          "All the substances are gases — one phase."
+        ],
+        "why": "Both examples are all-gas equilibria, so every substance is in one phase; writing (g) under each substance is the evidence for that.",
+        "common_mistakes": [
+          "Writing the equations without the (g) labels. The phase labels are what the example proves.",
+          "Using a one-way arrow. Both examples are equilibria, so the arrow is ⇌."
+        ],
+        "memory_tip": "HI and NH₃ — the two all-gas equilibria every textbook uses.",
+        "margin_note": "Phase label (g) under every substance earns this mark."
+      },
+      {
+        "id": "s3_hetero_def",
+        "kind": "text",
+        "label": "Heterogeneous — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Heterogeneous equilibrium: the substances",
+          "of the reversible reaction are present in",
+          "more than one phase."
+        ],
+        "why": "This is the complement of the first definition — the same phase test, failed: at least two phases are present at equilibrium.",
+        "common_mistakes": [
+          "Writing 'different substances' instead of 'different phases'.",
+          "Claiming a heterogeneous equilibrium needs a liquid. Any two phases qualify — solid and gas is the common case."
+        ],
+        "memory_tip": "Hetero = different. More than one phase present.",
+        "margin_note": "One sentence — the mirror of the homogeneous definition."
+      },
+      {
+        "id": "s4_hetero_examples",
+        "kind": "boxed_final",
+        "label": "Heterogeneous — examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "CaCO₃(s) ⇌ CaO(s) + CO₂(g)",
+            "style": "eq"
+          },
+          {
+            "text": "NH₄HS(s) ⇌ NH₃(g) + H₂S(g)",
+            "style": "eq"
+          },
+          "Solid and gas phases are present together.",
+          {
+            "text": "One phase = homogeneous; more than one phase = heterogeneous",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both examples mix a solid with gases, so two phases stand in the same equilibrium — exactly what the definition requires; the boxed line closes the answer with the one-line test.",
+        "common_mistakes": [
+          "Writing the phase labels wrong (CaCO₃ and CaO are solids, CO₂ is the gas).",
+          "Giving a second all-gas example here. A heterogeneous example must show two phases."
+        ],
+        "memory_tip": "Limestone in a kiln: solid in, solid plus gas out — the standard two-phase equilibrium.",
+        "margin_note": "Box the one-line test; it summarises both definitions."
+      }
+    ]
+  },
+  "insider_note": "Definitions earn half, phase-labelled equations earn the rest — write (s) and (g) under every substance, because the labels are the evidence of the phase."
+}

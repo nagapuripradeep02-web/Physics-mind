@@ -1,0 +1,378 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_bohr_postulates_hydrogen_spectrum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are the postulates of Bohr's model of the hydrogen atom? Discuss the importance of this model in explaining the various series of line spectra in the hydrogen atom.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The postulates",
+      "marks": 3
+    },
+    {
+      "label": "The two conditions",
+      "marks": 1
+    },
+    {
+      "label": "How the spectrum forms",
+      "marks": 1
+    },
+    {
+      "label": "The five series",
+      "marks": 2
+    },
+    {
+      "label": "Energy level diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 3+1+1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book's diagram draws all five series. This card's diagram draws Lyman, Balmer and Paschen, because five arrow groups on one page cannot be labelled legibly; the table in the previous step lists all five. REGION NAMES: the book's table marks Paschen, Brackett and Pfund all as infrared, and its prose calls Pfund far infrared; this card follows the table and names all three infrared."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Atomic Structure · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_postulates",
+        "kind": "text",
+        "label": "The postulates",
+        "marks": 3,
+        "mark_note": "Postulates",
+        "lines": [
+          "Postulates of Bohr's model:",
+          "1. The electron revolves round the nucleus in",
+          "    certain fixed circular paths called orbits",
+          "    or shells.",
+          "2. Each orbit has a fixed energy and is called",
+          "    an energy level. They are numbered",
+          "    1, 2, 3, … and named K, L, M, …",
+          "3. While the electron stays in a permitted",
+          "    orbit it neither loses nor gains energy.",
+          "    These are called stationary orbits."
+        ],
+        "why": "The three postulates answer three separate questions: where the electron is, what energy it has there, and why it does not spiral into the nucleus. The third one is the boldest, because classical physics says a circling charge must radiate energy.",
+        "common_mistakes": [
+          "Writing only that electrons move in orbits. Three marks need the full numbered list.",
+          "Leaving out the stationary orbit postulate, which is the one that answers why the atom is stable."
+        ],
+        "memory_tip": "Fixed paths, fixed energies, no energy lost while it stays put. Then the two equations.",
+        "margin_note": "Number every postulate. Three marks means the examiner is counting points."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "equation",
+        "label": "The two conditions",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          "4. Energy is absorbed when the electron jumps",
+          "    to a higher orbit and emitted when it falls",
+          "    to a lower orbit:",
+          {
+            "text": "ΔE = E₂ − E₁ = hν",
+            "style": "eq"
+          },
+          "5. The angular momentum of the electron is",
+          "    quantised:",
+          {
+            "text": "mvr = nh / 2π",
+            "style": "eq"
+          },
+          "m = mass, v = velocity, r = radius of orbit,",
+          "n = principal quantum number, h = Planck's constant"
+        ],
+        "why": "These two equations are what make the model produce numbers rather than a picture. The first fixes the frequency of every emitted line, and the second is the rule that allows only certain orbits to exist.",
+        "common_mistakes": [
+          "Writing mvr = nh without the 2π.",
+          "Writing ΔE = E₁ − E₂, which makes the emitted energy negative."
+        ],
+        "memory_tip": "One equation for the jump, one for the orbit. ΔE = hν and mvr = nh/2π.",
+        "margin_note": "Name every symbol under the second equation. It costs two lines and secures the mark."
+      },
+      {
+        "id": "s3_spectrum_forms",
+        "kind": "text",
+        "label": "How the spectrum forms",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "Hydrogen spectrum:",
+          "When hydrogen gas is subjected to a silent",
+          "electric discharge, the electron is excited to",
+          "higher energy levels.",
+          "It then falls back to lower levels and emits",
+          "the energy difference as light of a fixed",
+          "frequency, giving a line spectrum."
+        ],
+        "why": "Every line in the spectrum is one particular fall from one level to another. Because the levels are fixed, only certain energy differences are possible, so the spectrum is a set of separate lines and not a continuous band.",
+        "common_mistakes": [
+          "Saying hydrogen gives a continuous spectrum. Fixed levels give separate lines.",
+          "Leaving out the excitation step. The electron must be raised before it can fall."
+        ],
+        "memory_tip": "Excite, then fall. Each different fall gives a different line.",
+        "margin_note": "Two sentences: how it is excited, and what happens when it falls back."
+      },
+      {
+        "id": "s4_series",
+        "kind": "text",
+        "label": "The five series",
+        "marks": 2,
+        "mark_note": "The series",
+        "lines": [
+          "The lines fall into five series, named by the",
+          "level the electron lands on:",
+          "Lyman:      n₁ = 1,  n₂ = 2, 3, 4 …   ultraviolet",
+          "Balmer:     n₁ = 2,  n₂ = 3, 4, 5 …   visible",
+          "Paschen:  n₁ = 3,  n₂ = 4, 5, 6 …   infrared",
+          "Brackett:  n₁ = 4,  n₂ = 5, 6, 7 …   infrared",
+          "Pfund:       n₁ = 5,  n₂ = 6, 7, 8 …   infrared"
+        ],
+        "why": "The series is decided by where the electron lands, not by where it started. Falls to n = 1 release the most energy, which is why the Lyman series lies in the ultraviolet, and each series further out is of lower energy.",
+        "common_mistakes": [
+          "Naming the series by the starting level instead of the landing level.",
+          "Putting the Balmer series in the ultraviolet. Balmer is the visible one, which is why it was found first."
+        ],
+        "memory_tip": "Landing level 1 to 5 in order: Lyman, Balmer, Paschen, Brackett, Pfund. Only Balmer is visible.",
+        "margin_note": "A five-row table with n₁, n₂ and region is the fastest full-mark form."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "Energy level diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "hydrogen_energy_levels",
+          "width": 470,
+          "height": 315,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "level_5",
+              "d": "M 80 50 L 400 50",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "level_4",
+              "d": "M 80 95 L 400 95",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "level_3",
+              "d": "M 80 140 L 400 140",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "level_2",
+              "d": "M 80 185 L 400 185",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "level_1",
+              "d": "M 80 270 L 400 270",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_n5",
+              "x": 34,
+              "y": 54,
+              "text": "n = 5",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n4",
+              "x": 34,
+              "y": 99,
+              "text": "n = 4",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n3",
+              "x": 34,
+              "y": 144,
+              "text": "n = 3",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n2",
+              "x": 34,
+              "y": 189,
+              "text": "n = 2",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n1",
+              "x": 34,
+              "y": 274,
+              "text": "n = 1",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_a",
+              "d": "M 110 185 L 110 268",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_a_head",
+              "d": "M 104 258 L 110 268 L 116 258",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_b",
+              "d": "M 130 140 L 130 268",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_b_head",
+              "d": "M 124 258 L 130 268 L 136 258",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_c",
+              "d": "M 150 95 L 150 268",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "lyman_c_head",
+              "d": "M 144 258 L 150 268 L 156 258",
+              "ms": 100
+            },
+            {
+              "type": "label",
+              "id": "lbl_lyman",
+              "x": 96,
+              "y": 292,
+              "text": "Lyman — ultraviolet",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_a",
+              "d": "M 230 140 L 230 183",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_a_head",
+              "d": "M 224 173 L 230 183 L 236 173",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_b",
+              "d": "M 250 95 L 250 183",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_b_head",
+              "d": "M 244 173 L 250 183 L 256 173",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_c",
+              "d": "M 270 50 L 270 183",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "balmer_c_head",
+              "d": "M 264 173 L 270 183 L 276 173",
+              "ms": 100
+            },
+            {
+              "type": "label",
+              "id": "lbl_balmer",
+              "x": 214,
+              "y": 212,
+              "text": "Balmer — visible",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_a",
+              "d": "M 340 95 L 340 138",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_a_head",
+              "d": "M 334 128 L 340 138 L 346 128",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_b",
+              "d": "M 360 50 L 360 138",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "paschen_b_head",
+              "d": "M 354 128 L 360 138 L 366 128",
+              "ms": 100
+            },
+            {
+              "type": "label",
+              "id": "lbl_paschen",
+              "x": 326,
+              "y": 164,
+              "text": "Paschen — infrared",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The diagram makes the pattern visible: all the arrows of one series end on the same level. It also shows why the Lyman arrows are the longest, since a fall to n = 1 releases the most energy.",
+        "common_mistakes": [
+          "Drawing the arrows pointing upward. Emission is a fall, so the arrows point down.",
+          "Ending the arrows of one series on different levels."
+        ],
+        "memory_tip": "All arrows of one series land on the same line. Longest arrow means highest energy.",
+        "margin_note": "Three series drawn clearly is enough. Brackett and Pfund are covered by the table above."
+      }
+    ]
+  },
+  "insider_note": "Two questions in one, so plan the page: postulates first, then the spectrum. Students who write only the postulates lose four marks even when the postulates are perfect."
+}

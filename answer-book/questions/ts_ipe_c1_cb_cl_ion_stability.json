@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_cl_ion_stability",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Cl⁻ ion is more stable than Cl atom. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two configurations",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configs",
+        "kind": "text",
+        "label": "The two configurations",
+        "marks": 1,
+        "mark_note": "Configurations",
+        "lines": [
+          "Cl atom : 1s² 2s² 2p⁶ 3s² 3p⁵",
+          "Cl⁻ ion : 1s² 2s² 2p⁶ 3s² 3p⁶",
+          "The ion has one electron more than the",
+          "atom, gained into the 3p subshell."
+        ],
+        "why": "The stability argument is read directly off the two configurations, so both must be on the page before the reason is written.",
+        "common_mistakes": [
+          "Writing the ion with one electron fewer instead of one more. Cl⁻ has GAINED an electron.",
+          "Writing 3p⁷ for the ion. The 3p subshell holds at most six electrons."
+        ],
+        "memory_tip": "The minus charge means one extra electron: 3p⁵ becomes 3p⁶.",
+        "margin_note": "Write both configurations one under the other so the 3p⁵ to 3p⁶ change is visible."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Cl⁻ has the stable inert gas configuration of argon",
+            "style": "boxed"
+          },
+          "Its outermost shell holds eight electrons",
+          "(a complete octet), so Cl⁻ is more stable",
+          "than the Cl atom, which has only seven."
+        ],
+        "why": "A complete octet in the outermost shell is the noble gas arrangement, which is the most stable one. The atom is one electron short of it; the ion has reached it.",
+        "common_mistakes": [
+          "Saying the ion is stable because it is negative. The charge is not the reason; the completed octet is."
+        ],
+        "memory_tip": "Seven outer electrons in the atom, eight in the ion. Eight is the argon count.",
+        "margin_note": "Name argon (or write inert gas configuration). The bare word octet also earns it."
+      }
+    ]
+  },
+  "insider_note": "Write both configurations — the examiner marks the pair, then the one sentence naming the inert gas configuration of the ion."
+}

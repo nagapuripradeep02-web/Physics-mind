@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_disproportionation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are disproportionation reactions? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A disproportionation reaction is a redox",
+          "reaction in which the same element, in one",
+          "oxidation state, is simultaneously oxidised",
+          "and reduced."
+        ],
+        "why": "The defining point is one element starting in one oxidation state and ending in two — one higher (oxidation) and one lower (reduction) — in the same reaction.",
+        "common_mistakes": [
+          "Writing only that oxidation and reduction happen together. That is every redox reaction. Here the SAME element does both.",
+          "Leaving out that the element starts in a single oxidation state."
+        ],
+        "memory_tip": "Dis- means splitting apart: one oxidation state splits into a higher one and a lower one.",
+        "margin_note": "The words same element, oxidised and reduced must all appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "3Cl₂ + 6OH⁻ → 5Cl⁻ + ClO₃⁻ + 3H₂O",
+            "style": "boxed"
+          },
+          "Chlorine in Cl₂ has oxidation number 0.",
+          "It decreases to −1 in Cl⁻ (reduction) and",
+          "increases to +5 in ClO₃⁻ (oxidation)."
+        ],
+        "why": "The example must show the one starting oxidation number (0 in Cl₂) and the two products with a lower number (−1) and a higher number (+5). Writing the three numbers is what proves disproportionation.",
+        "common_mistakes": [
+          "Writing the equation without the oxidation numbers 0, −1 and +5.",
+          "Copying the equation unbalanced. Check: 6 Cl, 6 O and 6 H on each side, charge −6 on each side."
+        ],
+        "memory_tip": "Chlorine in alkali: 0 splits into −1 and +5.",
+        "margin_note": "Mark the oxidation numbers above Cl₂, Cl⁻ and ClO₃⁻ — that display earns the mark."
+      }
+    ]
+  },
+  "insider_note": "The definition alone earns only one mark. The examiner looks for the three oxidation numbers 0, −1 and +5 written over the example equation."
+}

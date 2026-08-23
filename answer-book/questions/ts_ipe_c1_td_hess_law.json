@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_hess_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Hess law of constant heat summation with example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "Path picture",
+      "marks": 1
+    },
+    {
+      "label": "Worked example",
+      "marks": 1
+    },
+    {
+      "label": "The check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book credits the law to the first law of thermodynamics; the direct reason is that enthalpy is a state function — this card says so and records the book's position."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Hess law of constant heat summation: the",
+          "total enthalpy change of a reaction is the",
+          "same whether the reaction takes place in a",
+          "single step or in several steps."
+        ],
+        "why": "Enthalpy is a state function: ΔH depends only on the initial and final states, not on the path between them. The source book credits the first law; the state-function property is the direct reason.",
+        "common_mistakes": [
+          "Writing heat instead of enthalpy change — the law is about ΔH.",
+          "Leaving out in one step or in several steps, which is the whole content of the law."
+        ],
+        "memory_tip": "Same start, same end, same total ΔH — the number of steps in between does not matter.",
+        "margin_note": "The statement must mention both the single step and the several steps."
+      },
+      {
+        "id": "s2_paths",
+        "kind": "text",
+        "label": "Path picture",
+        "marks": 1,
+        "mark_note": "Explanation",
+        "lines": [
+          "Let D form from A directly, or through",
+          "B and C:",
+          "Direct path:   A → D,  ΔH = Q",
+          "Stepwise path: A → B,  ΔH = q₁",
+          {
+            "text": "B → C,  ΔH = q₂",
+            "style": "indent"
+          },
+          {
+            "text": "C → D,  ΔH = q₃",
+            "style": "indent"
+          },
+          {
+            "text": "By Hess law:  Q = q₁ + q₂ + q₃",
+            "style": "eq"
+          }
+        ],
+        "why": "Writing both paths between the same two states shows exactly what the law compares: the sum of the step enthalpies must equal the direct enthalpy.",
+        "common_mistakes": [
+          "Comparing paths that do not start and end at the same states — the law applies only between the same initial and final states."
+        ],
+        "memory_tip": "Two paths between the same start and end give one total ΔH.",
+        "margin_note": "A labelled path diagram is equally accepted here."
+      },
+      {
+        "id": "s3_example",
+        "kind": "equation",
+        "label": "Worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Carbon burns to CO₂ by two routes.",
+          "Direct:",
+          {
+            "text": "C(graphite) + O₂(g) → CO₂(g)  ΔH = −393.5 kJ",
+            "style": "eq"
+          },
+          "In two steps:",
+          {
+            "text": "C(graphite) + ½O₂(g) → CO(g)  ΔH = −110.5 kJ",
+            "style": "eq"
+          },
+          {
+            "text": "CO(g) + ½O₂(g) → CO₂(g)  ΔH = −283.0 kJ",
+            "style": "eq"
+          }
+        ],
+        "why": "CO₂ can form from carbon directly or through carbon monoxide, and both routes have measured enthalpies, so the law can be checked with real numbers.",
+        "common_mistakes": [
+          "Dropping the ½ before O₂ — the equations must stay balanced for the enthalpies to add.",
+          "Adding the sizes and losing the negative signs."
+        ],
+        "memory_tip": "The CO route: −110.5 and −283.0 add to −393.5, the direct value.",
+        "margin_note": "Any correct example is accepted; the CO₂ one is the standard."
+      },
+      {
+        "id": "s4_check",
+        "kind": "boxed_final",
+        "label": "The check",
+        "marks": 1,
+        "mark_note": "Sum shown",
+        "lines": [
+          "Sum of the two steps:",
+          "(−110.5) + (−283.0) = −393.5 kJ,",
+          "equal to the direct value.",
+          {
+            "text": "Total ΔH is the same by both paths: −393.5 kJ",
+            "style": "boxed"
+          }
+        ],
+        "why": "Actually adding the two step values and matching the direct value is the explanation the question asks for — it shows the law working, not just stated.",
+        "common_mistakes": [
+          "Stating the law and the equations but never adding the numbers — the sum line is the mark."
+        ],
+        "memory_tip": "End every Hess answer with the addition written out and compared.",
+        "margin_note": "Box the matched total. This line completes the explain part."
+      }
+    ]
+  },
+  "insider_note": "A three-star staple. The statement plus a worked numerical example with the sum written out carries the marks; a statement alone is half an answer."
+}

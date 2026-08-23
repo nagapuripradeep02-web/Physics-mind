@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_gibbs_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain Gibbs energy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What G is",
+      "marks": 1
+    },
+    {
+      "label": "Spontaneity criterion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question (as 'Explain Gibb's energy'), its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What G is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Gibbs energy G is a thermodynamic quantity",
+          "of a system: the energy available to do",
+          "useful work at constant temperature and",
+          "pressure.",
+          "It is a state function, defined as G = H − TS."
+        ],
+        "why": "Of a system's total enthalpy, the part TS is tied to disorder and cannot be turned into work; what remains, H − TS, is the usable part — the Gibbs energy.",
+        "common_mistakes": [
+          "Leaving out at constant temperature and pressure — those are the conditions that make G the right quantity.",
+          "Writing G = H + TS. The TS term is subtracted."
+        ],
+        "memory_tip": "G is the work-usable part of the enthalpy: H minus the tied-up part TS.",
+        "margin_note": "Definition plus G = H − TS."
+      },
+      {
+        "id": "s2_criterion",
+        "kind": "boxed_final",
+        "label": "Spontaneity criterion",
+        "marks": 1,
+        "mark_note": "ΔG test",
+        "lines": [
+          "The change in G decides spontaneity at",
+          "constant T and p:",
+          {
+            "text": "ΔG = ΔH − TΔS",
+            "style": "eq"
+          },
+          "ΔG < 0 : the process is spontaneous",
+          "ΔG > 0 : the process is non-spontaneous",
+          "ΔG = 0 : the system is at equilibrium",
+          {
+            "text": "ΔG negative: spontaneous. ΔG zero: equilibrium.",
+            "style": "boxed"
+          }
+        ],
+        "why": "ΔG combines the enthalpy change and the entropy change into one number whose sign gives the direction of the process, using system quantities only.",
+        "common_mistakes": [
+          "Writing ΔG = ΔH + TΔS — the entropy term is subtracted.",
+          "Giving the signs without the equation, or the equation without the signs. Both halves are needed."
+        ],
+        "memory_tip": "Negative ΔG, natural direction: the three cases are minus, plus, zero for go, no, and balanced.",
+        "margin_note": "The equation and all three sign cases complete the answer."
+      }
+    ]
+  },
+  "insider_note": "Explain here means three things in order: what G is, the equation ΔG = ΔH − TΔS, and the three sign cases. Answers that give only the equation lose the first mark."
+}

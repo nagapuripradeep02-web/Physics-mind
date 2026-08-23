@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_law_conservation_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of conservation of mass.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) skips the laws of chemical combination entirely, though they open the syllabus chapter. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Law of conservation of mass (Lavoisier):",
+          "matter can neither be created nor destroyed",
+          "in a chemical reaction. The total mass of the",
+          "products equals the total mass of the reactants."
+        ],
+        "why": "Atoms are only rearranged in a chemical reaction, never made or removed, so the total mass on the two sides of an equation must be equal.",
+        "common_mistakes": [
+          "Writing only 'mass is conserved' without the created-nor-destroyed sentence.",
+          "Stating it for physical changes only. The law is about chemical reactions."
+        ],
+        "memory_tip": "Both halves of the statement: neither created nor destroyed, and products equal reactants in mass.",
+        "margin_note": "Naming Lavoisier is expected but the statement carries the mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "C + O₂ → CO₂ : 12 g + 32 g = 44 g",
+            "style": "boxed"
+          },
+          "Total mass of reactants (44 g) equals the",
+          "mass of the product (44 g)."
+        ],
+        "why": "One numerical example shows the law working: the masses on the left add to exactly the mass on the right.",
+        "common_mistakes": [
+          "Giving an example equation without the masses. The numbers are what show conservation."
+        ],
+        "memory_tip": "12 + 32 = 44 — the carbon dioxide sum is the easiest mass check to remember.",
+        "margin_note": "Any balanced reaction with its masses added works as the example."
+      }
+    ]
+  }
+}

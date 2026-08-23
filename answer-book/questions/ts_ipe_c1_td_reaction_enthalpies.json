@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_reaction_enthalpies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on enthalpies for different types of reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formation",
+      "marks": 1
+    },
+    {
+      "label": "Fusion and vapourisation",
+      "marks": 1
+    },
+    {
+      "label": "Sublimation",
+      "marks": 1
+    },
+    {
+      "label": "Combustion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer covering formation, fusion, vapourisation, sublimation and combustion. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split over five definitions is a CLAIM until a Telangana IPE teacher confirms it. DISCREPANCY: the book defines heat of combustion as burning at constant volume; enthalpy is a constant-pressure quantity (heat at constant volume measures ΔU), so this card writes constant pressure and records the book's version."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formation",
+        "kind": "text",
+        "label": "Enthalpy of formation",
+        "marks": 1,
+        "mark_note": "Definition + example",
+        "lines": [
+          "Enthalpy of formation: the enthalpy change",
+          "when one mole of a compound forms from its",
+          "elements in their standard states.",
+          {
+            "text": "C(s) + O₂(g) → CO₂(g)  ΔH = −393.5 kJ mol⁻¹",
+            "style": "eq"
+          }
+        ],
+        "why": "Formation enthalpies give every compound one reference number, from which reaction enthalpies can be calculated by Hess law.",
+        "common_mistakes": [
+          "Leaving out one mole of the compound.",
+          "Leaving out from its elements — formation is always from elements, not from other compounds."
+        ],
+        "memory_tip": "Formation: elements combine into one mole of compound.",
+        "margin_note": "One line of definition plus one balanced equation each."
+      },
+      {
+        "id": "s2_fusion_vap",
+        "kind": "text",
+        "label": "Fusion and vapourisation",
+        "marks": 1,
+        "mark_note": "Two definitions",
+        "lines": [
+          "Enthalpy of fusion: the enthalpy change",
+          "when one mole of a solid melts at its",
+          "melting point.",
+          {
+            "text": "H₂O(s) → H₂O(l)  ΔH = +6.0 kJ mol⁻¹",
+            "style": "eq"
+          },
+          "Enthalpy of vapourisation: the enthalpy",
+          "change when one mole of a liquid becomes",
+          "vapour at its boiling point.",
+          {
+            "text": "H₂O(l) → H₂O(g)  ΔH = +40.8 kJ mol⁻¹",
+            "style": "eq"
+          }
+        ],
+        "why": "Melting and boiling are physical changes rather than reactions, but each still has a definite heat per mole at constant pressure. Both absorb heat, so both values are positive.",
+        "common_mistakes": [
+          "Writing negative signs — fusion and vapourisation both absorb heat.",
+          "Swapping the two values: boiling needs far more heat than melting."
+        ],
+        "memory_tip": "Water: 6 to melt, about 41 to boil — boiling costs about seven times more heat.",
+        "margin_note": "Both definitions with the water values."
+      },
+      {
+        "id": "s3_sublimation",
+        "kind": "text",
+        "label": "Sublimation",
+        "marks": 1,
+        "mark_note": "Definition + relation",
+        "lines": [
+          "Enthalpy of sublimation: the enthalpy",
+          "change when one mole of a solid changes",
+          "directly into its vapour, without melting.",
+          "By Hess law it equals the sum of the other",
+          "two:",
+          {
+            "text": "ΔH(sub) = ΔH(fus) + ΔH(vap)",
+            "style": "eq"
+          }
+        ],
+        "why": "Solid to vapour directly, and solid to liquid to vapour, connect the same two states — so by Hess law their enthalpies must be equal.",
+        "common_mistakes": [
+          "Defining sublimation with decomposition — the substance must reach the vapour unchanged.",
+          "Writing ΔH(sub) = ΔH(vap) − ΔH(fus). The two are added."
+        ],
+        "memory_tip": "Sublimation skips the liquid stage but its enthalpy still counts both steps: fusion plus vapourisation.",
+        "margin_note": "The Hess relation is the detail that earns this mark."
+      },
+      {
+        "id": "s4_combustion",
+        "kind": "boxed_final",
+        "label": "Combustion",
+        "marks": 1,
+        "mark_note": "Definition + example",
+        "lines": [
+          "Enthalpy of combustion: the enthalpy change",
+          "when one mole of a substance burns",
+          "completely in excess oxygen at constant",
+          "pressure.",
+          {
+            "text": "CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l)",
+            "style": "eq"
+          },
+          {
+            "text": "ΔH = −890.3 kJ mol⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "Combustion is always exothermic: ΔH is negative",
+            "style": "boxed"
+          }
+        ],
+        "why": "Enthalpy is the heat at constant pressure, so the definition must say constant pressure. The source book prints at constant volume — heat at constant volume measures ΔU, not ΔH — so this card corrects it and records the book's version.",
+        "common_mistakes": [
+          "Writing at constant volume in the definition — the enthalpy of combustion is a constant-pressure quantity.",
+          "Giving a positive ΔH for combustion."
+        ],
+        "memory_tip": "Complete burning, excess oxygen, constant pressure, negative ΔH — four checks for one definition.",
+        "margin_note": "Box the sign rule: every combustion value is negative."
+      }
+    ]
+  },
+  "insider_note": "Five definitions in four marks: one tight line each plus one balanced equation with a real value is what a full-mark answer looks like."
+}

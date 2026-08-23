@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_law_of_mass_action",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of mass action.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "Applied to equilibrium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the law of mass action is the foundation the chapter's Kp/Kc questions stand on, yet the Fastrack chemistry section (book pp.75-79) never asks it as its own question. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Law of mass action: at constant",
+          "temperature, the rate of a chemical",
+          "reaction is proportional to the product of",
+          "the active masses (molar concentrations)",
+          "of the reactants, each raised to the power",
+          "of its coefficient in the balanced equation."
+        ],
+        "why": "The law connects rate to concentration; applied to both directions of a reversible reaction at equilibrium, it produces the equilibrium constant expression.",
+        "common_mistakes": [
+          "Leaving out 'at constant temperature'. The proportionality constant changes with temperature.",
+          "Writing a sum of concentrations. The law uses their product, with coefficient powers."
+        ],
+        "memory_tip": "Product of concentrations, powers from coefficients, temperature held constant.",
+        "margin_note": "Active mass means molar concentration — say both."
+      },
+      {
+        "id": "s2_k_expression",
+        "kind": "boxed_final",
+        "label": "Applied to equilibrium",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          "Applying the law to both directions of",
+          {
+            "text": "aA + bB ⇌ cC + dD",
+            "style": "eq"
+          },
+          "and setting the two rates equal gives, at",
+          "equilibrium,",
+          {
+            "text": "Kc = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ",
+            "style": "boxed"
+          }
+        ],
+        "why": "At equilibrium the forward and backward rates are equal; dividing the two rate expressions gives one constant — the equilibrium constant Kc.",
+        "common_mistakes": [
+          "Putting reactants in the numerator. Products go on top.",
+          "Dropping the coefficient powers a, b, c, d."
+        ],
+        "memory_tip": "Products over reactants, each with its coefficient as the power.",
+        "margin_note": "The Kc expression is the law's most-used consequence — box it."
+      }
+    ]
+  }
+}

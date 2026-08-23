@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_oxidation_reduction_three_senses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain oxidation and reduction in terms of (a) oxygen, (b) hydrogen and (c) electron transfer, with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Oxygen and hydrogen senses",
+      "marks": 2
+    },
+    {
+      "label": "Electron-transfer sense",
+      "marks": 1
+    },
+    {
+      "label": "The summary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) asks the redox-reaction definition (VSAQ 16) but never the classical oxygen, hydrogen and electron-transfer definitions of oxidation and reduction, which the syllabus develops before the oxidation-number concept. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classical",
+        "kind": "text",
+        "label": "Oxygen and hydrogen senses",
+        "marks": 2,
+        "mark_note": "Classical senses",
+        "lines": [
+          "(a) Oxygen sense:",
+          "Oxidation is the addition of oxygen:",
+          "C + O₂ → CO₂ (carbon is oxidised).",
+          "Reduction is the removal of oxygen:",
+          "CuO + H₂ → Cu + H₂O (CuO is reduced).",
+          "(b) Hydrogen sense:",
+          "Oxidation is the removal of hydrogen:",
+          "H₂S + Cl₂ → 2HCl + S (H₂S is oxidised).",
+          "Reduction is the addition of hydrogen:",
+          "in the same reaction Cl₂ gains hydrogen,",
+          "so Cl₂ is reduced."
+        ],
+        "why": "The classical definitions describe redox by what is visibly gained or lost — oxygen or hydrogen — and each definition needs its own example equation to earn its mark.",
+        "common_mistakes": [
+          "Swapping the hydrogen sense: LOSING hydrogen is oxidation.",
+          "Giving definitions with no example equations.",
+          "Labelling the wrong species — in CuO + H₂, the CuO is reduced while H₂ is oxidised."
+        ],
+        "memory_tip": "Oxygen and hydrogen run opposite ways: gaining oxygen is oxidation, gaining hydrogen is reduction.",
+        "margin_note": "Four short definitions, each with a labelled example — one mark per sense."
+      },
+      {
+        "id": "s2_electron",
+        "kind": "equation",
+        "label": "Electron-transfer sense",
+        "marks": 1,
+        "mark_note": "Electron sense",
+        "lines": [
+          "(c) Electron sense:",
+          "Oxidation is the LOSS of electrons:",
+          {
+            "text": "Zn → Zn²⁺ + 2e⁻",
+            "style": "eq"
+          },
+          "Reduction is the GAIN of electrons:",
+          {
+            "text": "Cu²⁺ + 2e⁻ → Cu",
+            "style": "eq"
+          }
+        ],
+        "why": "The electron definition is the modern, general one: it covers reactions where no oxygen or hydrogen appears at all, and it is the basis of the ion-electron balancing method.",
+        "common_mistakes": [
+          "Reversing loss and gain.",
+          "Writing the half equations without the electrons shown."
+        ],
+        "memory_tip": "OIL RIG — Oxidation Is Loss, Reduction Is Gain (of electrons).",
+        "margin_note": "The two half equations with visible electrons earn this mark."
+      },
+      {
+        "id": "s3_summary",
+        "kind": "boxed_final",
+        "label": "The summary",
+        "marks": 1,
+        "mark_note": "Summary",
+        "lines": [
+          {
+            "text": "Oxidation = loss of electrons ; Reduction = gain of electrons",
+            "style": "boxed"
+          },
+          "The electron definition includes the oxygen",
+          "and hydrogen definitions as special cases,",
+          "so it is the definition used for all redox",
+          "reactions."
+        ],
+        "why": "Closing with the electron definition states which of the three senses is general — that judgment is what lifts the answer above three disconnected definitions.",
+        "common_mistakes": [
+          "Ending without saying the electron sense is the general one."
+        ],
+        "memory_tip": "Three senses, one survivor: the electron definition covers every case.",
+        "margin_note": "Box the electron-sense pair; the closing sentence completes the answer."
+      }
+    ]
+  }
+}

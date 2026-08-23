@@ -1,0 +1,282 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_s_p_d_f_blocks",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write an essay on s, p, d and f block elements.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "s-block",
+      "marks": 2
+    },
+    {
+      "label": "p-block",
+      "marks": 2
+    },
+    {
+      "label": "d-block",
+      "marks": 2
+    },
+    {
+      "label": "f-block",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2+2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's group counts use the old A/B labels (p-block: IIIA to VIIA and the zero group; d-block: IB to VIIB and VIII as three vertical columns); the card keeps them and adds the modern group numbers. Exceptions the book does not mention (helium sitting over the p-block with an s² configuration; the d-block configurations of Cr and Cu) are left to their own cards rather than loaded into this essay."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Classification of Elements – Periodic Properties · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basis",
+        "kind": "text",
+        "label": "Basis of the classification",
+        "marks": 0,
+        "lines": [
+          "Based on the sublevel into which the",
+          "differentiating electron (the last added",
+          "electron) enters, the elements are classified",
+          "into four blocks:",
+          "s-block, p-block, d-block and f-block."
+        ],
+        "why": "The whole essay rests on one idea — where the last electron goes — so stating that basis first tells the examiner every block that follows is defined the same way.",
+        "common_mistakes": [
+          "Starting the four blocks without stating the basis of the classification.",
+          "Writing valence electron for differentiating electron. The differentiating electron is the last one added."
+        ],
+        "memory_tip": "One question sorts every element: which sublevel did the last electron enter?",
+        "margin_note": "An opening line, not a marked point — the eight marks sit on the four blocks below."
+      },
+      {
+        "id": "s2_block_map",
+        "kind": "diagram",
+        "label": "Position sketch",
+        "marks": 0,
+        "figure": {
+          "id": "block_positions",
+          "width": 440,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "s_box",
+              "d": "M 40 40 L 100 40 L 100 160 L 40 160 Z",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "d_box",
+              "d": "M 100 70 L 260 70 L 260 160 L 100 160 Z",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "p_box",
+              "d": "M 260 40 L 400 40 L 400 160 L 260 160 Z",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "f_box",
+              "d": "M 120 190 L 340 190 L 340 232 L 120 232 Z",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "lbl_groups_s",
+              "x": 46,
+              "y": 30,
+              "text": "1–2",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_groups_d",
+              "x": 158,
+              "y": 62,
+              "text": "3–12",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_groups_p",
+              "x": 302,
+              "y": 30,
+              "text": "13–18",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 48,
+              "y": 105,
+              "text": "s-block",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 150,
+              "y": 120,
+              "text": "d-block",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 298,
+              "y": 105,
+              "text": "p-block",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 198,
+              "y": 216,
+              "text": "f-block",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        },
+        "why": "Each block's answer says where it lies — left, right, middle, bottom — and one small sketch shows all four positions at once instead of four separate sentences being imagined.",
+        "common_mistakes": [
+          "Placing the d-block at the edge. It sits between the s-block and the p-block.",
+          "Attaching the f-block to the main table. It is drawn separately at the bottom."
+        ],
+        "memory_tip": "Left, middle, right, bottom: s, d, p across the table and f below it.",
+        "margin_note": "An unmarked sketch, but it makes the four position sentences below checkable at a glance."
+      },
+      {
+        "id": "s3_s_block",
+        "kind": "text",
+        "label": "s-block",
+        "marks": 2,
+        "mark_note": "s-block",
+        "lines": [
+          "1. s-block elements:",
+          "The differentiating electron enters the",
+          "outermost s orbital.",
+          "General configuration: ns¹⁻²",
+          "An s orbital holds two electrons, so the",
+          "s-block has two groups: IA and IIA",
+          "(groups 1 and 2).",
+          "They lie on the left side of the periodic",
+          "table; they are metals and form ionic",
+          "compounds."
+        ],
+        "why": "The group count is not memorised, it is computed: an s orbital holds at most two electrons, so exactly two columns of the table fill it. The same electron-capacity argument gives every block's group count.",
+        "common_mistakes": [
+          "Writing the configuration as ns² only. Group IA has ns¹, so the range is ns¹⁻².",
+          "Leaving out either the position or the property. Each block needs its place and one property."
+        ],
+        "memory_tip": "Two electrons fit in s, so two groups: the alkali and alkaline earth metals.",
+        "margin_note": "Same four lines for every block: where the electron goes, the configuration, the groups, the position with a property."
+      },
+      {
+        "id": "s4_p_block",
+        "kind": "text",
+        "label": "p-block",
+        "marks": 2,
+        "mark_note": "p-block",
+        "lines": [
+          "2. p-block elements:",
+          "The differentiating electron enters the",
+          "outermost p orbital.",
+          "General configuration: ns² np¹⁻⁶",
+          "The p orbitals hold six electrons, so the",
+          "p-block has six groups: IIIA to VIIA and the",
+          "zero group (groups 13 to 18).",
+          "They lie on the right side of the table; most",
+          "are non-metals and form covalent compounds."
+        ],
+        "why": "Six electrons fit in the three p orbitals, so six columns fill them — from np¹ at group IIIA to the complete np⁶ of the noble gases in the zero group.",
+        "common_mistakes": [
+          "Counting five groups by stopping at VIIA. The zero group (noble gases, np⁶) belongs to the p-block.",
+          "Writing that all p-block elements are non-metals. Most are; the block also holds metalloids and metals such as Al, Sn and Pb."
+        ],
+        "memory_tip": "Six seats in the p orbitals, six groups, ending at the noble gases with all six filled.",
+        "margin_note": "The word most before non-metals is deliberate; the block is mixed."
+      },
+      {
+        "id": "s5_d_block",
+        "kind": "text",
+        "label": "d-block",
+        "marks": 2,
+        "mark_note": "d-block",
+        "lines": [
+          "3. d-block elements:",
+          "The differentiating electron enters the",
+          "penultimate (n−1)d orbital.",
+          "General configuration: ns¹⁻² (n−1)d¹⁻¹⁰",
+          "The d orbitals hold ten electrons, so the",
+          "d-block has ten groups: IB to VIIB and VIII",
+          "(groups 3 to 12).",
+          "They lie in the middle of the table and show",
+          "variable oxidation states."
+        ],
+        "why": "Penultimate means last but one: the d electrons enter the shell inside the outermost one, which is why these metals sit between the s- and p-blocks and share properties across the row.",
+        "common_mistakes": [
+          "Writing outermost d orbital. The d electrons enter the penultimate, (n−1), shell.",
+          "Counting eight groups by treating VIII as one. VIII spans three vertical columns, giving ten in all."
+        ],
+        "memory_tip": "Ten seats in the d orbitals, ten columns in the middle of the table.",
+        "margin_note": "Variable oxidation states links this block to the short answer question on transition elements."
+      },
+      {
+        "id": "s6_f_block",
+        "kind": "boxed_final",
+        "label": "f-block",
+        "marks": 2,
+        "mark_note": "f-block",
+        "lines": [
+          "4. f-block elements:",
+          "The differentiating electron enters the",
+          "anti-penultimate (n−2)f orbital.",
+          {
+            "text": "General configuration: ns² (n−1)d⁰⁻¹ (n−2)f¹⁻¹⁴",
+            "style": "boxed"
+          },
+          "The 4f series is the lanthanide series and",
+          "the 5f series is the actinide series.",
+          "They are placed separately at the bottom of",
+          "the periodic table."
+        ],
+        "why": "Anti-penultimate means two shells inside the outermost: the f electrons lie deep inside the atom, which is why the fourteen elements of each series are so alike and are placed in two rows below the main table.",
+        "common_mistakes": [
+          "Writing (n−1)f for the configuration. The f electrons enter the (n−2) shell.",
+          "Swapping the series names. 4f is the lanthanides, 5f the actinides."
+        ],
+        "memory_tip": "s outermost, d one shell in, f two shells in — each block one level deeper than the last.",
+        "margin_note": "The boxed configuration is the hardest line of the essay; writing it correctly is what distinguishes the answer."
+      }
+    ]
+  },
+  "insider_note": "Examiners mark this essay two marks a block, and the same four lines answer each one — where the differentiating electron enters, the general configuration, the number of groups with the reason, and the position with one property."
+}

@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_kp_kc_four_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the relation between Kp and Kc for the following reactions: (i) 2HI(g) ⇌ H₂(g) + I₂(g), (ii) N₂(g) + 3H₂(g) ⇌ 2NH₃(g), (iii) 2SO₂(g) + O₂(g) ⇌ 2SO₃(g), (iv) CaCO₃(s) ⇌ CaO(s) + CO₂(g).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "(i) 2HI ⇌ H₂ + I₂",
+      "marks": 1
+    },
+    {
+      "label": "(ii) N₂ + 3H₂ ⇌ 2NH₃",
+      "marks": 1
+    },
+    {
+      "label": "(iii) 2SO₂ + O₂ ⇌ 2SO₃",
+      "marks": 1
+    },
+    {
+      "label": "(iv) CaCO₃ ⇌ CaO + CO₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. All four of the book's Δn values (0, −2, −1, +1) were re-checked independently and are correct. This card is authored SEPARATELY from ts_ipe_c1_ce_kp_kc_relation because applying the relation to four named reactions is a different question from deriving the relation in general."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The working relation",
+        "marks": 0,
+        "lines": [
+          "For every gaseous equilibrium,",
+          {
+            "text": "Kp = Kc (RT)^Δn",
+            "style": "eq"
+          },
+          "Δn = moles of gaseous products − moles of",
+          "gaseous reactants (gases only)."
+        ],
+        "why": "All four parts substitute their own Δn into this one relation, so it is written once at the top instead of four times.",
+        "common_mistakes": [
+          "Recomputing the relation from PV = nRT in every part. State it once and substitute.",
+          "Defining Δn as reactants minus products. It is gaseous products minus gaseous reactants."
+        ],
+        "memory_tip": "One relation, four values of Δn. The whole question is counting gas moles.",
+        "margin_note": "No separate mark here — the four substitutions below carry the marks."
+      },
+      {
+        "id": "s2_hi",
+        "kind": "equation",
+        "label": "(i) 2HI ⇌ H₂ + I₂",
+        "marks": 1,
+        "mark_note": "(i) Δn = 0",
+        "lines": [
+          {
+            "text": "2HI(g) ⇌ H₂(g) + I₂(g)",
+            "style": "eq"
+          },
+          "Δn = (1 + 1) − 2 = 0",
+          {
+            "text": "Kp = Kc (RT)⁰ = Kc",
+            "style": "eq"
+          }
+        ],
+        "why": "Two gas moles on each side, so Δn = 0 and the factor (RT)⁰ equals 1 — the two constants are equal for this reaction.",
+        "common_mistakes": [
+          "Counting HI once instead of twice. The coefficient 2 counts.",
+          "Writing Kp > Kc from habit. Here Δn = 0, so Kp = Kc exactly."
+        ],
+        "memory_tip": "2 on the left, 1 + 1 on the right: Δn = 0 and the RT factor disappears.",
+        "margin_note": "Write Δn with its arithmetic shown, then substitute."
+      },
+      {
+        "id": "s3_nh3",
+        "kind": "equation",
+        "label": "(ii) N₂ + 3H₂ ⇌ 2NH₃",
+        "marks": 1,
+        "mark_note": "(ii) Δn = −2",
+        "lines": [
+          {
+            "text": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g)",
+            "style": "eq"
+          },
+          "Δn = 2 − (1 + 3) = −2",
+          {
+            "text": "Kp = Kc (RT)⁻²,  so Kp < Kc",
+            "style": "eq"
+          }
+        ],
+        "why": "Four gas moles become two, so Δn is negative; a negative power of RT makes Kp smaller than Kc.",
+        "common_mistakes": [
+          "Writing Δn = +2 by subtracting products from reactants. The order is products minus reactants: 2 − 4 = −2.",
+          "Leaving out the comparison Kp < Kc, which the sign of Δn gives."
+        ],
+        "memory_tip": "Fewer gas moles on the product side pulls Δn negative, and negative Δn means Kp below Kc.",
+        "margin_note": "The SIGN of Δn is the mark. Show 2 − 4 = −2."
+      },
+      {
+        "id": "s4_so3",
+        "kind": "equation",
+        "label": "(iii) 2SO₂ + O₂ ⇌ 2SO₃",
+        "marks": 1,
+        "mark_note": "(iii) Δn = −1",
+        "lines": [
+          {
+            "text": "2SO₂(g) + O₂(g) ⇌ 2SO₃(g)",
+            "style": "eq"
+          },
+          "Δn = 2 − (2 + 1) = −1",
+          {
+            "text": "Kp = Kc (RT)⁻¹,  so Kp < Kc",
+            "style": "eq"
+          }
+        ],
+        "why": "Three gas moles become two, so Δn = −1 — the same direction as the ammonia case but one unit smaller in size.",
+        "common_mistakes": [
+          "Counting O₂ as two moles. Its coefficient is 1; the count is 2 + 1 = 3 on the left.",
+          "Writing (RT)¹ by dropping the minus sign."
+        ],
+        "memory_tip": "3 in, 2 out: Δn = −1. Same pattern as ammonia, one step milder.",
+        "margin_note": "Show 2 − 3 = −1 before substituting."
+      },
+      {
+        "id": "s5_caco3",
+        "kind": "boxed_final",
+        "label": "(iv) CaCO₃ ⇌ CaO + CO₂",
+        "marks": 1,
+        "mark_note": "(iv) Δn = +1",
+        "lines": [
+          {
+            "text": "CaCO₃(s) ⇌ CaO(s) + CO₂(g)",
+            "style": "eq"
+          },
+          "CaCO₃ and CaO are solids, so they are not",
+          "counted. Only CO₂ is a gas.",
+          "Δn = 1 − 0 = +1",
+          {
+            "text": "Kp = Kc (RT)¹ = Kc (RT),  so Kp > Kc",
+            "style": "eq"
+          },
+          {
+            "text": "(i) Kp = Kc  (ii) Kc(RT)⁻²  (iii) Kc(RT)⁻¹  (iv) Kc(RT)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Δn counts gaseous moles only. The two solids drop out, leaving one gas mole on the right and none on the left, so Δn = +1 and Kp is larger than Kc.",
+        "common_mistakes": [
+          "Counting the solids and writing Δn = 2 − 1 = 1 by accident, or Δn = 0. The correct count uses CO₂ alone.",
+          "Forgetting the comparison: positive Δn means Kp > Kc."
+        ],
+        "memory_tip": "Solids are silent in Δn. Here only the CO₂ speaks: Δn = +1.",
+        "margin_note": "Part (iv) is the trap of the question — say in words why the solids are not counted."
+      }
+    ]
+  },
+  "insider_note": "The mark in each part is the sign of Δn. Count gaseous moles only — part (iv) is the trap, where the two solids are not counted and Δn comes out +1."
+}

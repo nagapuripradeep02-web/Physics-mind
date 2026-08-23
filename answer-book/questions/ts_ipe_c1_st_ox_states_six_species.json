@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ox_states_six_species",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Calculate the oxidation state of the underlined element in the following species: (a) KMnO₄ (Mn) (b) K₂Cr₂O₇ (Cr) (c) MnO₄⁻ (Mn) (d) C₁₂H₂₂O₁₁ (C) (e) OF₂ (O) (f) O₂F₂ (O).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Parts (a), (b), (c)",
+      "marks": 2
+    },
+    {
+      "label": "Parts (d), (e)",
+      "marks": 1
+    },
+    {
+      "label": "Part (f) and the summary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split across six parts is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK SLIP: the book's working for part (c) prints 'x − 8 = 1' where the ion's charge requires x − 8 = −1; the book still reaches the correct +7. This card writes the correct line."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_abc",
+        "kind": "equation",
+        "label": "Parts (a), (b), (c)",
+        "marks": 2,
+        "mark_note": "(a) (b) (c)",
+        "lines": [
+          "Rules: K = +1, O = −2, F = −1; the sum equals 0",
+          "for a neutral compound and the charge for an ion.",
+          {
+            "text": "(a) KMnO₄: (+1) + x + 4(−2) = 0 ⟹ x = +7 (Mn = +7)",
+            "style": "eq"
+          },
+          {
+            "text": "(b) K₂Cr₂O₇: 2(+1) + 2x + 7(−2) = 0 ⟹ 2x = 12 ⟹ x = +6 (Cr = +6)",
+            "style": "eq"
+          },
+          {
+            "text": "(c) MnO₄⁻: x + 4(−2) = −1 ⟹ x = +7 (Mn = +7)",
+            "style": "eq"
+          }
+        ],
+        "why": "The same sum rule answers all three: fixed values for K and O, one unknown x, and the total set to 0 for the neutral salts but to −1 for the permanganate ion.",
+        "common_mistakes": [
+          "Setting part (c) equal to 0. MnO₄⁻ is an ion, so the sum is −1.",
+          "Reporting +12 for chromium in (b) without halving 2x = 12.",
+          "Sign slips when moving −8 or −14 across the equals sign."
+        ],
+        "memory_tip": "Neutral species sum to 0; ions sum to their charge. Check the top-right corner of the formula before writing the equation.",
+        "margin_note": "One line of algebra per part; all three lines share these two marks."
+      },
+      {
+        "id": "s2_de",
+        "kind": "equation",
+        "label": "Parts (d), (e)",
+        "marks": 1,
+        "mark_note": "(d) (e)",
+        "lines": [
+          {
+            "text": "(d) C₁₂H₂₂O₁₁: 12x + 22(+1) + 11(−2) = 0 ⟹ 12x = 0 ⟹ x = 0 (C = 0)",
+            "style": "eq"
+          },
+          {
+            "text": "(e) OF₂: x + 2(−1) = 0 ⟹ x = +2 (O = +2)",
+            "style": "eq"
+          },
+          "In OF₂ fluorine is more electronegative than",
+          "oxygen, so F stays −1 and oxygen turns positive."
+        ],
+        "why": "Sucrose gives 12x + 22 − 22 = 0, so carbon averages exactly 0. In OF₂ the usual −2 rule for oxygen is set aside: fluorine always takes −1, forcing oxygen to +2.",
+        "common_mistakes": [
+          "Applying O = −2 inside OF₂. With fluorine present, oxygen takes the positive value.",
+          "Arithmetic slip in 22 − 22, giving a nonzero carbon value."
+        ],
+        "memory_tip": "Fluorine is −1 in every compound, with no exceptions — every other rule bends around it.",
+        "margin_note": "Both parts on this line share the one mark; the O = +2 exception is the point of (e)."
+      },
+      {
+        "id": "s3_f_summary",
+        "kind": "boxed_final",
+        "label": "Part (f) and the summary",
+        "marks": 1,
+        "mark_note": "(f) + summary",
+        "lines": [
+          "(f) O₂F₂: 2x + 2(−1) = 0 ⟹ 2x = 2 ⟹ x = +1 (O = +1)",
+          {
+            "text": "Mn = +7 · Cr = +6 · Mn = +7 · C = 0 · O = +2 · O = +1",
+            "style": "boxed"
+          }
+        ],
+        "why": "O₂F₂ repeats the fluorine logic with two oxygen atoms sharing 2x = 2, so each oxygen is +1. The boxed line collects all six answers in question order.",
+        "common_mistakes": [
+          "Reporting +2 for O₂F₂ by copying part (e). The two oxygens share the +2, giving +1 each.",
+          "Missing a + sign in the summary. Oxidation states carry their signs."
+        ],
+        "memory_tip": "OF₂ gives oxygen +2; O₂F₂ splits it to +1 — double the oxygen, half the state.",
+        "margin_note": "Box the six values in order (a) to (f), each with its sign."
+      }
+    ]
+  },
+  "insider_note": "Parts (e) and (f) are the discriminators: the examiner is testing whether the fluorine rule overrides the oxygen rule, and +2 copied into part (f) is the classic slip."
+}

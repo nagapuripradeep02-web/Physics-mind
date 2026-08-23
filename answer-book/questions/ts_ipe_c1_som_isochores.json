@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_isochores",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isochores?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The constant quantity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Isochores are the curves obtained when the",
+          "pressure of a gas is plotted against its",
+          "temperature at constant volume."
+        ],
+        "why": "Iso means same and chore comes from the Greek word for space: one curve collects all the P–T states of the gas that share one volume.",
+        "common_mistakes": [
+          "Naming the wrong pair of axes. Isochores are P against T.",
+          "Leaving out at constant volume."
+        ],
+        "memory_tip": "The three constants cover the three variables once each: isotherm holds T, isobar holds P, isochore holds V. Whatever is held constant, the other two are plotted.",
+        "margin_note": "Axes (P against T) plus constant volume make the definition."
+      },
+      {
+        "id": "s2_detail",
+        "kind": "boxed_final",
+        "label": "The constant quantity",
+        "marks": 1,
+        "mark_note": "Constant V",
+        "lines": [
+          {
+            "text": "Isochore: a P–T curve of a gas at constant volume",
+            "style": "boxed"
+          },
+          "Along one isochore P ∝ T for an ideal gas,",
+          "so the curve is a straight line."
+        ],
+        "why": "At fixed volume the pressure of an ideal gas grows in step with the absolute temperature (P ∝ T), so an ideal-gas isochore is a straight line, exactly as the isobar is on the V–T plot.",
+        "common_mistakes": [
+          "Assigning PV = constant here. That is the isotherm's law, not the isochore's."
+        ],
+        "memory_tip": "Fixed box, rising temperature: the pressure climbs in a straight line.",
+        "margin_note": "P ∝ T at constant V is sometimes named Amontons' law or Gay-Lussac's pressure law; the relation matters more than the name."
+      }
+    ]
+  },
+  "insider_note": "Of the three curve definitions, isochore is the one students mix up most — fix it as the LAST pairing left over: V constant, P against T."
+}

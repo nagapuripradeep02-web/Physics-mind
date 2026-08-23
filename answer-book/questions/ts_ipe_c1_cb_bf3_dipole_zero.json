@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_bf3_dipole_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the dipole moment. Why is the dipole moment of the BF₃ molecule zero?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Geometry of BF₃",
+      "marks": 1
+    },
+    {
+      "label": "The cancellation",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. This is the second of the book's two dipole-moment SAQs (SAQ 9); it shares only the definition with the applications form (SAQ 8), so the two are separate cards, not cuts."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Dipole moment (μ): the product of the",
+          "magnitude of the charge on either pole and",
+          "the distance between the two poles of a",
+          "polar molecule.",
+          {
+            "text": "μ = δ × d",
+            "style": "eq"
+          },
+          "It is a vector quantity, so bond moments",
+          "add as vectors."
+        ],
+        "why": "The vector sentence is what connects the definition to the BF₃ argument: only vectors can cancel, and cancellation is the whole answer.",
+        "common_mistakes": [
+          "Leaving out the vector line. Without it the cancellation argument in the next steps has no basis."
+        ],
+        "memory_tip": "Charge times distance, and it is a vector — the vector part is what this question uses.",
+        "margin_note": "End the definition with the vector sentence; the rest of the answer stands on it."
+      },
+      {
+        "id": "s2_geometry",
+        "kind": "text",
+        "label": "Geometry of BF₃",
+        "marks": 1,
+        "mark_note": "Geometry",
+        "lines": [
+          "BF₃ is trigonal planar: the three B−F",
+          "bonds lie in one plane at 120° to each",
+          "other.",
+          "Each B−F bond is polar (F is more",
+          "electronegative than B), so each bond has",
+          "its own bond moment pointing toward F."
+        ],
+        "why": "The zero total is a property of the symmetric arrangement, so the geometry — planar, 120° — must be stated before the cancellation can be argued.",
+        "common_mistakes": [
+          "Calling BF₃ pyramidal. Boron has NO lone pair, so the molecule is flat.",
+          "Saying the B−F bonds are non-polar. Each bond IS polar; it is the sum that is zero."
+        ],
+        "memory_tip": "No lone pair on boron, so BF₃ is flat with three equal arrows at 120°.",
+        "margin_note": "Three polar bonds at 120° — both facts feed the next step."
+      },
+      {
+        "id": "s3_cancellation",
+        "kind": "text",
+        "label": "The cancellation",
+        "marks": 1,
+        "mark_note": "Cancellation",
+        "lines": [
+          "The three bond moments are equal in",
+          "magnitude and at 120° to each other.",
+          "The resultant of any two of them is equal",
+          "in magnitude and opposite in direction to",
+          "the third.",
+          "So the vector sum of all three is zero."
+        ],
+        "why": "This is the actual mechanism: two moments at 120° add to a resultant that exactly opposes the third, so the three sum to zero.",
+        "common_mistakes": [
+          "Saying the moments are zero. Each moment is non-zero; only their SUM is zero.",
+          "Asserting cancellation without the any-two-oppose-the-third sentence, which is the reason."
+        ],
+        "memory_tip": "Any two arrows at 120° add up to the exact opposite of the third.",
+        "margin_note": "The any-two-against-the-third sentence is the mark here."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "μ(BF₃) = 0 — the three bond moments cancel",
+            "style": "boxed"
+          },
+          "Each B−F bond is polar, but the symmetric",
+          "trigonal planar shape makes the molecule",
+          "as a whole non-polar."
+        ],
+        "why": "The closing sentence resolves the apparent contradiction the question is built on: polar bonds, yet a non-polar molecule, because of symmetry.",
+        "common_mistakes": [
+          "Concluding that BF₃ has non-polar bonds. The bonds stay polar; the molecule is non-polar."
+        ],
+        "memory_tip": "Polar bonds, symmetric shape, zero total.",
+        "margin_note": "Box the equation with its five-word reason."
+      }
+    ]
+  },
+  "insider_note": "The reason must be a vector argument — any two bond moments add to the exact opposite of the third. Polar bonds, non-polar molecule is the sentence to write."
+}

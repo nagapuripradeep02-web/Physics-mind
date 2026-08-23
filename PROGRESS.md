@@ -1,5 +1,39 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Answer Book: **CHEMISTRY OPENS — Junior Chapters 1–7, 204 entries** (2026-08-23, desk `physics-mind-ipe-chemistry`, branch `feat/ipe-answerbook-chemistry`)
+
+**Bottom line: the Answer Book has a third subject. Seven units / 204 catalog entries / 196 files take the book from 448 files·454 entries to 644 files·658 entries. A NEW SUBJECT NEEDED ZERO ENGINE WORK — `chemistry` was already whitelisted at every site the Maths-1B work generalised (build `SUBJECTS`, the zod `subject` enum, `SUBJ_LABEL`, `subjectOf`/`unitKey`, the subject chips, the data-derived e2e subject gate), so opening a paper is data plus one doc. Zero katex growth (272 lines, unchanged): chemical notation is Unicode. All seven units are at 100% `memory_tip` and `margin_note` — the full completeness bar from card one, unlike physics Units 4–9. Verified: build green · tsc 0 · vitest 416/416 · validate:chemistry 16/16 · figure-label sweep PASS (384 s at 477 q, 43% of its 900 s budget, slope ~0.80 s/q).**
+
+### How it was built
+Chapter 1 was authored by hand to set the standard, then **six parallel agents took Chapters 2–7, one each**. Every agent read its OWN pages from the Fastrack PDF rather than any prior transcription (the founder's standing rule), and **every chapter's independently transcribed count matched** the earlier inventory exactly. Each agent wrote only its own question files plus a manifest FRAGMENT to the scratchpad; `units.json` was merged by this session alone, sequentially, through a script that validates drift BOTH ways plus cross-unit `question_id` claims before writing. Parallel writes to one manifest would have collided.
+
+### What the chemistry half of the Fastrack actually is (book pp.48–96, 13 chapters, PDF = book + 2)
+**Only ch.1–3 carry a Long Answer section** (8 LAQs total); ch.4–7 stop at SAQ, so no 8-mark form was invented — the standing rule is that an LAQ is authored only where a book asks one. Content that IS Section-C-grade elsewhere (the kinetic gas equation, Hess's law, Le Chatelier across both industrial processes, the three acid-base theories compared) is **flagged for founder review, not authored**. **There is no PROBLEMS section anywhere in chemistry** — numericals sit inside the VSAQ/SAQ lists, so they ARE the asked bank and were authored; the physics "PROBLEMS deferred" decision does not arise. Stars are front-loaded per section; year citations are rare (only ch.4 VSAQ 23/24/25 and ch.5 SAQ 9/10/12). **Cuts are far commoner than in physics** — 7 cut-pairs across the seven chapters.
+
+### The gap that cannot be closed, and must not read as closed
+**The two-book union check is structurally impossible for chemistry** — the TSBIE Basic Learning Material on hand is physics only — **and so is the back-test**, since no chemistry board paper is in the corpus. Founder call: proceed Fastrack-only and RECORD both gaps rather than wait. Written into the `units.json` comment and `docs/CHEMISTRY_START_HERE.md`. Every chemistry card carries `needs_teacher_verification`.
+
+### The source is wrong more often than the physics half — recorded, never silently followed or silently fixed
+A ΔG° answer printing −5774.14 J/mol where the arithmetic gives −5744.1 · combustion enthalpy defined at constant VOLUME · absolute entropy referenced to 273 K · molar mass called "nuclear mass" · a hydrogen-bond definition omitting that H must be bonded to F/O/N · an oxidation-number line printing `x − 8 = 1` for an ion needing −1 · `n − l − 1` called "the number of nodes" (that is the RADIAL count) · the magnetic quantum number credited to Lande · a general Kp/Kc derivation whose printed answer only does the ammonia case. **Ch.6's book uses the OLDER sign convention (w = work done BY the system); every card uses NCERT `ΔU = q + w`** — a deliberate whole-chapter departure and the one judgement call worth a founder confirm.
+
+### Figure gates catch overlap, NOT clipping or wrong semantics
+The label-collision gate passed a `dz²` label that ran off the canvas edge, and a dz² ring that (with a full-width x-axis through it) read as four lobes along the axes — i.e. dx²−y², the wrong orbital. Both found only by rendering every figure to a standalone SVG page and screenshotting it. **That visual pass is now part of the per-chapter recipe.** The 12 chemistry figures were all checked this way; both MO diagrams are correct (N₂ π2p below σ2px, bond order 3, diamagnetic; O₂ σ2px below π2p, bond order 2, two unpaired π* → paramagnetic).
+
+### Also landed
+`answer-book/shell.html` — the catalog eyebrow read "Telangana IPE · **Physics** · First year" on a book that has held three subjects since Maths-1A; now subject-neutral (the subject chips below carry live counts and cannot go stale). `docs/CHEMISTRY_START_HERE.md` — the next-chapter playbook, mirroring `MATHS_1B_START_HERE.md`.
+
+### Concurrency note
+This work ran in a SEPARATE worktree because another session was live in `physics-mind-ipe-answerbook` (its P3 chapter gate) when this started — its files were 60 seconds old. That session's work landed on master mid-job; `origin/master` was merged in cleanly here and the whole chain re-verified against the merged code rather than a stale base.
+
+### NEXT
+1. **A Telangana IPE chemistry teacher must verify** every invented mark split and the recorded source departures — especially the Ch.6 sign convention.
+2. Chapters 8–13 (Hydrogen, s-block, p-block 13/14, Environmental, Organic) continue in this desk per `docs/CHEMISTRY_START_HERE.md`.
+3. Founder call: ch.5 VSAQ 15 "significant figures" genuinely duplicates physics `ts_ipe_p1_um_significant_figures_meaning` — both books ask it; authored in both, duplication recorded.
+4. If a TSBIE chemistry BLM or a TS/AP chemistry paper ever arrives, the union check and back-test become worth running retroactively.
+
+---
+
+
 ## 🔒 SESSION — Answer Book: **P3 — THE CHAPTER GATE, built + server-live, PARKED off the site** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `9f572e8e`, branch + master PUSHED)
 
 **Bottom line: the paywall's skeleton exists and works end-to-end. `build:answers:gated` → `answer-book/dist-gated` (1.5 MB vs 4 MB): the full catalog ships — question texts, stars, marks, the sell — and NOT ONE answer byte (gate-asserted with positive controls against the full build). Answers live in `ab_content` (18 units / 448 questions pushed) behind the `answerbook-content` Edge Function + `ab_entitlements`; every device gets ONE free chapter via an EXPLICIT tap on the lock sheet (founder decision — a stray tap can never burn the slot). `ab_skus.full_book` exists with price NULL — the sheet says "coming soon" and never a number the founder has not set (P4 fills it). THE LIVE SITE IS UNCHANGED — answers.viditra.co still serves the full free book; the flip recipe is written into wrangler.answers.toml and pairs with the P4 price call. Verified: tsc 0 · vitest 416/416 · gated gates 6/6 · full suite 48/48 CLEAN (23.1 m, no flake — the offline build untouched by construction AND by measurement) · live endpoint probes all green · advisors: ab_* deny-by-default, `ab_claim_free` not anon-callable.**

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_co2_from_carbon_o2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the amount of carbon dioxide that could be produced when one mole of carbon is burnt in 16 g of dioxygen.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equation and limiting reagent",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. PLACEMENT: this is a limiting-reagent stoichiometry calculation (it is also an NCERT Chapter 1 example) printed inside the States of Matter question list; it is authored here because the book asks it here. The book solves it by mass proportion without naming the limiting reagent; the card makes the same chemistry explicit. Arithmetic checked: 0.5 mol × 44 g mol⁻¹ = 22 g, matching the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "Equation and limiting reagent",
+        "marks": 1,
+        "mark_note": "Limiting reagent",
+        "lines": [
+          {
+            "text": "C(s) + O₂(g) → CO₂(g)",
+            "style": "eq"
+          },
+          "Given: C = 1 mol ; O₂ = 16 g / 32 g mol⁻¹ = 0.5 mol",
+          "The equation needs 1 mol O₂ per mol C, so O₂",
+          "(only 0.5 mol) is the limiting reagent."
+        ],
+        "why": "The product amount is fixed by whichever reactant runs out first. Carbon is in excess here; only 0.5 mol of O₂ is available, so at most 0.5 mol of CO₂ can form.",
+        "common_mistakes": [
+          "Answering 44 g by following the 1 mol of carbon. The oxygen runs out first.",
+          "Using 16 g mol⁻¹ for O₂. Dioxygen is O₂, molar mass 32 g mol⁻¹."
+        ],
+        "memory_tip": "Convert every reactant to moles first; the smaller mole supply against the equation determines the product.",
+        "margin_note": "Naming O₂ as the limiting reagent is the marked reasoning; the book's mass proportion hides it."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "Moles of CO₂ formed = moles of O₂ used = 0.5 mol",
+          "Mass of CO₂ = 0.5 × 44 g mol⁻¹",
+          {
+            "text": "Mass of CO₂ = 22 g",
+            "style": "boxed"
+          }
+        ],
+        "why": "The equation converts O₂ to CO₂ one-for-one, so 0.5 mol of O₂ gives 0.5 mol of CO₂, and 0.5 mol times the molar mass 44 g mol⁻¹ is 22 g.",
+        "common_mistakes": [
+          "Reporting 0.5 mol as the final answer when the question asks the amount in grams — write 22 g.",
+          "Using 28 or 32 g mol⁻¹ for CO₂. Its molar mass is 12 + 2 × 16 = 44."
+        ],
+        "memory_tip": "Half the oxygen means half a mole of CO₂ — and half of 44 is 22.",
+        "margin_note": "Box the mass with its unit. 22 g is the expected answer."
+      }
+    ]
+  },
+  "insider_note": "The 16 g of dioxygen is the whole question — it is half a mole, and spotting that oxygen limits the product is what the examiner is testing."
+}

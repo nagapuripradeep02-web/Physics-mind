@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_lattice_enthalpy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define lattice enthalpy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book gives the definition only; the NaCl example with the NCERT value +788 kJ mol⁻¹ is added on this card."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Lattice enthalpy of an ionic compound: the",
+          "enthalpy change when one mole of the solid",
+          "compound dissociates completely into its",
+          "ions in the gaseous state."
+        ],
+        "why": "Separating oppositely charged ions needs energy, so in this dissociation form the lattice enthalpy is positive. Some books define it for lattice formation instead; the same number then carries a negative sign.",
+        "common_mistakes": [
+          "Writing ions in solution instead of ions in the gaseous state — dissolving in water is a different process.",
+          "Dropping one mole from the definition."
+        ],
+        "memory_tip": "Lattice enthalpy takes the crystal apart completely: one mole of solid to separate gaseous ions.",
+        "margin_note": "Gaseous state and one mole are the two checked phrases."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example:",
+          {
+            "text": "NaCl(s) → Na⁺(g) + Cl⁻(g)",
+            "style": "eq"
+          },
+          {
+            "text": "ΔH(lattice) = +788 kJ mol⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "One mole of ionic solid → separate gaseous ions",
+            "style": "boxed"
+          }
+        ],
+        "why": "NaCl is the standard example; the large positive value shows how strongly the ions attract each other in the crystal.",
+        "common_mistakes": [
+          "Writing the value with a negative sign while using the dissociation definition — breaking the lattice absorbs energy."
+        ],
+        "memory_tip": "NaCl and +788 kJ mol⁻¹: a large positive number, because the crystal must be pulled apart into gaseous ions.",
+        "margin_note": "The sign must match the definition used: dissociation gives plus."
+      }
+    ]
+  },
+  "insider_note": "The two-word phrase gaseous state is the whole question — answers that end at dissociates into its ions lose the definition mark."
+}

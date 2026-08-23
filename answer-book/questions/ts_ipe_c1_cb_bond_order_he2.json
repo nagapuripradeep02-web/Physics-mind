@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_bond_order_he2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define bond order. Show that the He₂ molecule does not exist.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "He₂ calculation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book uses bond order inside its MO long answer but never asks the definition or the standard He₂ non-existence check that NCERT teaches with it. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Bond order: half the difference between",
+          "the number of electrons in bonding",
+          "molecular orbitals (Nb) and in antibonding",
+          "molecular orbitals (Na).",
+          {
+            "text": "Bond order = ½ (Nb − Na)",
+            "style": "eq"
+          }
+        ],
+        "why": "Each bonding pair adds a bond and each antibonding pair cancels one, so halving the difference counts the net number of bonds.",
+        "common_mistakes": [
+          "Forgetting the half. Two electrons make one bond, so the difference is halved.",
+          "Subtracting the wrong way: bonding minus antibonding."
+        ],
+        "memory_tip": "Net electrons that bond, divided by two per bond.",
+        "margin_note": "Define Nb and Na in words beside the formula."
+      },
+      {
+        "id": "s2_he2",
+        "kind": "boxed_final",
+        "label": "He₂ calculation",
+        "marks": 1,
+        "mark_note": "He₂",
+        "lines": [
+          "He₂ would have 4 electrons: σ1s² σ*1s²",
+          "Nb = 2 and Na = 2.",
+          "Bond order = ½ (2 − 2) = 0.",
+          {
+            "text": "Bond order zero — He₂ does not exist",
+            "style": "boxed"
+          }
+        ],
+        "why": "The antibonding pair cancels the bonding pair completely, so there is no net bond to hold the two atoms together.",
+        "common_mistakes": [
+          "Filling all four electrons into σ1s. The orbital holds two; the next two go to σ*1s.",
+          "Concluding a weak bond. Bond order zero means NO bond, not a weak one."
+        ],
+        "memory_tip": "Two in, two against, nothing left — no molecule.",
+        "margin_note": "Write the configuration, the two counts, then the boxed conclusion."
+      }
+    ]
+  }
+}

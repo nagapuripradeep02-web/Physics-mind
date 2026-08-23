@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_isobars",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isobars?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The constant quantity and the law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NAME CLASH, recorded for the teacher: in Atomic Structure isobars means atoms of equal mass number; here it means constant-pressure V–T curves. Both uses are standard."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Isobars are the curves obtained when the volume",
+          "of a gas is plotted against its temperature at",
+          "constant pressure."
+        ],
+        "why": "Iso means same and bar means pressure: one curve collects all the V–T states of the gas that share one pressure.",
+        "common_mistakes": [
+          "Confusing this isobar with the isobars of Atomic Structure (equal mass number). In this chapter isobar is a constant-pressure curve.",
+          "Leaving out at constant pressure."
+        ],
+        "memory_tip": "Bar is a unit of pressure, so iso-bar means same pressure.",
+        "margin_note": "Axes (V against T) plus constant pressure make the definition."
+      },
+      {
+        "id": "s2_detail",
+        "kind": "boxed_final",
+        "label": "The constant quantity and the law",
+        "marks": 1,
+        "mark_note": "Constant P",
+        "lines": [
+          {
+            "text": "Isobar: a V–T curve of a gas at constant pressure",
+            "style": "boxed"
+          },
+          "Charles' law (V ∝ T) is the behaviour along one",
+          "isobar: for an ideal gas it is a straight line."
+        ],
+        "why": "Along an isobar V ∝ T, which is Charles' law, so the ideal-gas isobar is a straight line on the V–T plot. Naming the law shows the curve is understood, not memorised.",
+        "common_mistakes": [
+          "Attaching Boyle's law here. Boyle's law belongs to constant temperature."
+        ],
+        "memory_tip": "Constant P goes with Charles' law: V grows in step with T along every isobar.",
+        "margin_note": "The straight-line remark is the detail an examiner rewards."
+      }
+    ]
+  },
+  "insider_note": "The word isobar appears in two chapters with two meanings — the examiner in THIS chapter expects the constant-pressure V–T curve, not equal mass numbers."
+}

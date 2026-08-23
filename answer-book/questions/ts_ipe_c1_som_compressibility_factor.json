@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_compressibility_factor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is compressibility factor?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The ideal-gas value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book defines Z only as V(actual)/V(perfect); this card adds the equivalent NCERT form Z = PV/nRT, which is the form other questions use."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The compressibility factor Z of a gas is the",
+          "ratio of the actual molar volume of the gas to",
+          "the molar volume of a perfect (ideal) gas at the",
+          "same temperature and pressure.",
+          "Z = V(actual) / V(ideal) = PV / nRT"
+        ],
+        "why": "Z compares the real gas against the ideal gas under the same conditions, so the definition must say a ratio of the two molar volumes at the same temperature and pressure.",
+        "common_mistakes": [
+          "Leaving out at the same temperature and pressure. Without the same conditions the ratio has no meaning.",
+          "Inverting the ratio: the actual volume goes on top."
+        ],
+        "memory_tip": "Z = real over ideal. The real gas is on top.",
+        "margin_note": "Either form of Z earns the mark; PV/nRT is the form used in calculations."
+      },
+      {
+        "id": "s2_ideal",
+        "kind": "boxed_final",
+        "label": "The ideal-gas value",
+        "marks": 1,
+        "mark_note": "Ideal value",
+        "lines": [
+          {
+            "text": "For an ideal gas Z = 1 at all temperatures and pressures",
+            "style": "boxed"
+          },
+          "Z < 1: attractive forces dominate (the gas is more",
+          "compressible than ideal).",
+          "Z > 1: molecular volume dominates (less compressible)."
+        ],
+        "why": "For an ideal gas PV = nRT exactly, so PV/nRT is exactly 1. Any measured Z different from 1 is a direct measure of non-ideal behaviour.",
+        "common_mistakes": [
+          "Saying Z = 0 for an ideal gas. The ideal value is 1.",
+          "Swapping the Z < 1 and Z > 1 cases."
+        ],
+        "memory_tip": "Attraction pulls the gas inward, so the volume and Z drop below 1. Molecular size keeps the volume larger, so Z rises above 1.",
+        "margin_note": "Z = 1 is the marked point; the two inequality lines show understanding."
+      }
+    ]
+  },
+  "insider_note": "Z = 1 for the ideal gas is the second mark — a definition that stops before the ideal value is only half an answer here."
+}

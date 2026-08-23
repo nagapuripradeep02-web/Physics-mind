@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_bal_mno4_iodide_basic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the balanced ionic equation for the oxidation of iodide ion (I⁻) by permanganate ion in basic medium to give iodine (I₂) and manganese dioxide (MnO₂).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identifying the two half reactions",
+      "marks": 1
+    },
+    {
+      "label": "Balanced oxidation half",
+      "marks": 1
+    },
+    {
+      "label": "Balanced reduction half",
+      "marks": 1
+    },
+    {
+      "label": "Adding and the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The final equation was independently re-checked: atoms Mn 2=2, I 6=6, O 12=12, H 8=8; charge −8 on each side."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halves",
+        "kind": "equation",
+        "label": "Identifying the two half reactions",
+        "marks": 1,
+        "mark_note": "Half reactions",
+        "lines": [
+          "I in I⁻ is −1 → 0 in I₂ : oxidation",
+          "Mn in MnO₄⁻ is +7 → +4 in MnO₂ : reduction",
+          {
+            "text": "Oxidation half: I⁻ → I₂",
+            "style": "eq"
+          },
+          {
+            "text": "Reduction half: MnO₄⁻ → MnO₂",
+            "style": "eq"
+          }
+        ],
+        "why": "In basic medium permanganate stops at MnO₂ (+4), not Mn²⁺. Reading the products from the question fixes both halves before balancing.",
+        "common_mistakes": [
+          "Writing Mn²⁺ as the product. In basic medium the product is MnO₂.",
+          "Treating iodine in I₂ as −1. The element is 0."
+        ],
+        "memory_tip": "The product of permanganate depends on the medium: acid gives Mn²⁺ (+2), basic gives MnO₂ (+4).",
+        "margin_note": "Both skeleton halves with the −1→0 and +7→+4 changes earn this mark."
+      },
+      {
+        "id": "s2_oxidation_half",
+        "kind": "equation",
+        "label": "Balanced oxidation half",
+        "marks": 1,
+        "mark_note": "Oxidation half",
+        "lines": [
+          "Two iodide ions join into one I₂ molecule:",
+          {
+            "text": "2I⁻ → I₂ + 2e⁻ … (1)",
+            "style": "eq"
+          },
+          "Charge check: −2 = 0 + (−2) ✓"
+        ],
+        "why": "No oxygen or hydrogen appears in this half, so only the iodine atoms and the charge need balancing: two I⁻ give one I₂ and release two electrons.",
+        "common_mistakes": [
+          "Writing I⁻ → I₂ + e⁻ with the iodine atoms unbalanced.",
+          "Placing the electrons on the reactant side."
+        ],
+        "memory_tip": "Elemental products pair up first: 2I⁻ before touching the charge.",
+        "margin_note": "Equation (1) with its charge check earns this mark."
+      },
+      {
+        "id": "s3_reduction_half",
+        "kind": "equation",
+        "label": "Balanced reduction half",
+        "marks": 1,
+        "mark_note": "Reduction half",
+        "lines": [
+          "Basic medium: balance O and H with H₂O and OH⁻.",
+          "MnO₄⁻ + 2H₂O → MnO₂ + 4OH⁻",
+          "(O: 4 + 2 = 6 = 2 + 4 ; H: 4 = 4)",
+          {
+            "text": "MnO₄⁻ + 2H₂O + 3e⁻ → MnO₂ + 4OH⁻ … (2)",
+            "style": "eq"
+          },
+          "Charge check: (−1) + (−3) = −4 = 4(−1) ✓"
+        ],
+        "why": "Manganese falls from +7 to +4, a gain of three electrons; in basic medium water supplies hydrogen and the excess oxygen leaves as OH⁻.",
+        "common_mistakes": [
+          "Balancing with H⁺ in a basic-medium question.",
+          "Writing 5e⁻ from the acid-medium habit. Here the change is +7 to +4, three electrons."
+        ],
+        "memory_tip": "MnO₄⁻ to MnO₂ in base: 2H₂O in, 4OH⁻ out, 3e⁻ gained.",
+        "margin_note": "Equation (2) with its charge check earns this mark."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Adding and the final equation",
+        "marks": 1,
+        "mark_note": "Final equation",
+        "lines": [
+          "Equalise electrons: (1) × 3 and (2) × 2 (6e⁻ each).",
+          "6I⁻ → 3I₂ + 6e⁻",
+          "2MnO₄⁻ + 4H₂O + 6e⁻ → 2MnO₂ + 8OH⁻",
+          "Add the two halves:",
+          {
+            "text": "2MnO₄⁻ + 6I⁻ + 4H₂O → 2MnO₂ + 3I₂ + 8OH⁻",
+            "style": "boxed"
+          },
+          "Check: Mn 2=2, I 6=6, O 12=12, H 8=8; charge −8 = −8"
+        ],
+        "why": "Electron counts 2 and 3 need the cross-multipliers 3 and 2 to reach six each; the halves then add with nothing left to cancel.",
+        "common_mistakes": [
+          "Cross-multiplying the wrong way (2 on the iodide half, 3 on the permanganate half).",
+          "Skipping the final atom-and-charge check."
+        ],
+        "memory_tip": "Cross-multiply by the electron numbers: 2e⁻ and 3e⁻ swap into coefficients 3 and 2.",
+        "margin_note": "The boxed equation with the atom and charge check earns this mark."
+      }
+    ]
+  },
+  "insider_note": "The medium is the trap: MnO₂ and 3e⁻, not Mn²⁺ and 5e⁻. The examiner reads the reduction half's product before anything else on the page."
+}
