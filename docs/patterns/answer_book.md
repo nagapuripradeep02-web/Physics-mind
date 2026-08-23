@@ -315,6 +315,43 @@ their own table; no PII lives anywhere in this feature.
   CTEs share a snapshot and evaluate in unspecified order, which produced a
   phantom "stale plan won" result. Sequential statements only.
 
+## The chapter gate (P3, landed 2026-08-23 — PARKED, not live)
+
+The gated build (`npm run build:answers:gated` → `answer-book/dist-gated/`, 1.5 MB vs
+4 MB) ships the full CATALOG — question texts, stars, marks, the sell — and NO answer
+bodies. Answers live in `ab_content` and leave through `answerbook-content` only for a
+device `ab_entitlements` allows. Every device gets ONE free chapter, claimed by an
+EXPLICIT tap on the lock sheet (founder: a stray tap must never burn the slot).
+**The live site still serves the full book** — the founder flips at launch (pairs with
+P4's price): point `wrangler.answers.toml` assets at `dist-gated` + deploy, after
+`content:push`.
+
+- **The projection**: everything metadata stays; the answer reduces to a BOOT-SAFE
+  skeleton — steps as `{id, marks}` only, cut-step overrides to `{marks}` — because
+  notebook.js dereferences `question.answer.steps` at module init (`applyCut(0)`).
+  The gate itself is ONE line at the top of `loadQuestion` (both routes funnel
+  there): `gated: true` → `Gate.showLockFlow`.
+- **The Gate module** (sibling of Sync, inert without `PM_CONTENT_BASE` — every full
+  build): boot `list` call → lock chips on the catalog (only AFTER the list answers —
+  no flicker) + accurate sheet copy; unlock → bundle merges into `questions` IN
+  MEMORY (re-fetched per session — 550 KB bundles are localStorage roulette);
+  identity = `Sync.deviceId()` (one identity, both doors).
+- **The free-slot atomicity is an INDEX, not code**: partial unique on
+  `ab_entitlements(device_id) where source='free_chapter'`; `ab_claim_free` turns a
+  lost race into `free_used` and a same-unit replay into idempotent success. Only
+  device MINTING is IP-capped, same as sync.
+- **A locked reply never carries an answer byte** — asserted by gates on the built
+  page (probe: a real physics answer line + a maths TeX source, positive-controlled
+  against the full build) and on the endpoint (curl).
+- **The price is data**: `ab_skus.price_inr` NULL → the sheet says "coming soon" and
+  never a number the founder has not set. P4 fills it.
+- **Scar**: node/undici to Supabase REST dies on large bodies (a 550 KB jsonb upsert
+  TransformError'd on row one) — `content:push` uses the recorded curl bypass
+  (temp file → `curl -H "Expect:"` → retry until 2xx).
+- **Gates**: own spec (`e2e/answer_book_gated.spec.ts`, 6) against dist-gated with a
+  routed endpoint serving the REAL bundle files; the main 48-gate suite still runs
+  the untouched offline full build.
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

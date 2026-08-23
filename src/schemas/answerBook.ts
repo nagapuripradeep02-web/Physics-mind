@@ -223,7 +223,10 @@ export const answerBookQuestionSchema = z
         // identity: the only board-specific block in the file
         board: z.string().min(1), // e.g. "ts_ipe"
         board_label: z.string().min(1),
-        subject: z.enum(['physics', 'chemistry', 'mathematics']),
+        // One PAPER = one subject value (same list as build_answer_book.ts
+        // SUBJECTS): mathematics = Maths-1A (predates 1B), mathematics_1b =
+        // Maths-1B. Unit numbers namespace per subject.
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),
