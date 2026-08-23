@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_det_of_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the determinant of the matrix with rows (1², 2², 3²), (2², 3², 4²) and (3², 4², 5²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write out the squares",
+      "marks": 1
+    },
+    {
+      "label": "Expand along the first row",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Matrices, answer 110, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find this determinant.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_out",
+        "kind": "equation",
+        "label": "Write out the squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Replace every square with its value before doing anything else — the pattern in the question is a distraction, not a shortcut.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\begin{vmatrix} 1^2 & 2^2 & 3^2 \\\\ 2^2 & 3^2 & 4^2 \\\\ 3^2 & 4^2 & 5^2 \\end{vmatrix} = \\begin{vmatrix} 1 & 4 & 9 \\\\ 4 & 9 & 16 \\\\ 9 & 16 & 25 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every squared entry is replaced by its numerical value before expanding.",
+          "accept": [
+            "work out all the squares first so the matrix becomes one four nine, four nine sixteen, nine sixteen twenty five",
+            "replace each square with its number then expand",
+            "write the numerical matrix before doing the determinant",
+            "modata squares ni numbers ga rasi tarvata expand cheyyali",
+            "turn the squares into numbers first"
+          ],
+          "reject": [
+            "write the squares",
+            "square them"
+          ],
+          "heard_as": [
+            "one four nine",
+            "sixteen",
+            "twenty five",
+            "squares"
+          ]
+        },
+        "why": "The squares are just numbers dressed up. Trying to spot a pattern in 1², 2², 3² wastes time — there is no shortcut here, only careful arithmetic.",
+        "common_mistakes": [
+          "Expanding with the squares still written as powers and losing track.",
+          "Reading 2² as 4² somewhere in the grid."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "boxed_final",
+        "label": "Expand along the first row",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. No zeros here, so all three terms are needed. The middle term carries a minus sign, and all three minors come out negative.",
+        "lines": [
+          "Expanding along R₁:",
+          "= 1(225 − 256) − 4(100 − 144) + 9(64 − 81)",
+          "= −31 + 176 − 153 = −8",
+          {
+            "text": "∴ The determinant is −8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant is expanded along the first row with the plus-minus-plus signs, giving −8.",
+          "accept": [
+            "expand along the first row with plus minus plus and it comes to minus eight",
+            "the three terms are minus thirty one plus one seventy six minus one fifty three which is minus eight",
+            "expanding gives minus eight",
+            "first row expand cheste minus eight vasthundi",
+            "the answer is negative eight"
+          ],
+          "reject": [
+            "expand it",
+            "get the answer"
+          ],
+          "heard_as": [
+            "minus eight",
+            "negative eight",
+            "expand",
+            "first row"
+          ]
+        },
+        "why": "The sign pattern along the top row is plus, minus, plus. With every minor negative, dropping the middle minus flips the answer entirely.",
+        "common_mistakes": [
+          "Forgetting the minus in front of the middle term.",
+          "Computing 9 × 25 − 16 × 16 as a positive number."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_r1_over_bc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "In a △ABC, prove that r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write one term in half angles",
+      "marks": 2
+    },
+    {
+      "label": "Cancel to a sum of squares",
+      "marks": 2
+    },
+    {
+      "label": "Use the half-angle sum identity",
+      "marks": 2
+    },
+    {
+      "label": "Expand and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.48 — LAQ chapter 6 Properties of Triangles, answer 37. Printed appearances: the printed tags are 'IPE 14,09,07' — all PRE-BIFURCATION papers, before the 2014 TS/AP split. appearances[].board has no value for that era, so the years are recorded here in prose and appearances[] is left empty. The longest answer in the chapter. It is worked entirely in half angles, and the sigma notation is used to write one term and let the other two follow by symmetry. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_one_term_in_half_ang",
+        "kind": "equation",
+        "label": "Write one term in half angles",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Substitute r₁ = 4R sin(A/2)cos(B/2)cos(C/2) and b, c by the sine rule, then cancel. Write ONE term with a sigma; the other two follow by symmetry.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = Σ r₁/(bc)",
+          "= Σ [4R sin(A/2)cos(B/2)cos(C/2)] / [(2R sinB)(2R sinC)]",
+          "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R sinB sinC]",
+          "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R(2 sin(B/2)cos(B/2))(2 sin(C/2)cos(C/2))]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r₁ = 4R sin(A/2)cos(B/2)cos(C/2) and b = 2R sinB are substituted, and sinB expanded into half angles.",
+          "accept": [
+            "substitute r one as four R sin half A cos half B cos half C and the sides by the sine rule then expand the sines into half angles",
+            "write everything in half angles and cancel",
+            "use the standard form of r one and the sine rule",
+            "r one ni half angles lo rasi, sides ni sine rule tho marchali",
+            "convert one term into half angles"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four R sin half A",
+            "sine rule",
+            "half angles",
+            "sigma"
+          ]
+        },
+        "why": "The whole identity lives in half angles, so converting everything at once is cheaper than converting piecemeal. The sigma is what stops the working tripling in length.",
+        "common_mistakes": [
+          "Writing r₁ with cos(A/2) instead of sin(A/2).",
+          "Expanding all three terms in full and running out of space."
+        ]
+      },
+      {
+        "id": "s2_cancel_to_a_sum_of_squares",
+        "kind": "equation",
+        "label": "Cancel to a sum of squares",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. The cos(B/2) and cos(C/2) cancel top and bottom, and what is left has sin(A/2) over 4R sin(B/2)sin(C/2) — which becomes sin²(A/2)/r.",
+        "lines": [
+          "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
+          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]   [multiplying by sin(A/2)]",
+          "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
+          "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosines cancel and the denominator becomes r = 4R sin(A/2)sin(B/2)sin(C/2), leaving (1/r)Σsin²(A/2).",
+          "accept": [
+            "the cosines cancel and the denominator becomes r so it is one over r times the sum of sin squared half angles",
+            "multiply by sin half A so the denominator is exactly r",
+            "it becomes one over r times the sum of the three sine squares",
+            "cosines cancel ayi denominator r avthundi",
+            "the denominator turns into the in radius"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "r equals four R",
+            "sin squared half A",
+            "one over r"
+          ]
+        },
+        "why": "Multiplying by sin(A/2) top and bottom is deliberate — it manufactures the exact product that equals r, and nothing else in the expression would.",
+        "common_mistakes": [
+          "Cancelling the sines rather than the cosines.",
+          "Not spotting that the denominator is r."
+        ]
+      },
+      {
+        "id": "s3_use_the_half_angle_sum_ide",
+        "kind": "equation",
+        "label": "Use the half-angle sum identity",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2) — the Unit 6 identity, quoted.",
+        "lines": [
+          "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
+          "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
+          "= (1/r)[1 − 2(r/(4R))]   [∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
+          "= (1/r)[1 − r/(2R)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Unit 6 identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is quoted, and the product replaced by r/(4R).",
+          "accept": [
+            "quote the identity that the sum of the sine squares is one minus twice the product then replace the product by r over four R",
+            "use the transformations identity then the standard product result",
+            "it becomes one over r times one minus r over two R",
+            "aa identity vaadi, product ni r by four R ga marchali",
+            "apply the half angle sum identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus two",
+            "r over four R",
+            "identity",
+            "product"
+          ]
+        },
+        "why": "This is exactly Unit 6 answer 27.1, quoted rather than re-proved — and r = 4R sin(A/2)sin(B/2)sin(C/2) rearranges to give the product directly.",
+        "common_mistakes": [
+          "Re-proving the identity from scratch.",
+          "Writing the product as r/(2R)."
+        ]
+      },
+      {
+        "id": "s4_expand_and_conclude",
+        "kind": "boxed_final",
+        "label": "Expand and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Multiply the 1/r through the bracket; the r in the second term cancels, leaving 1/(2R).",
+        "lines": [
+          "= 1/r − (1/r)(r/(2R))",
+          "= 1/r − 1/(2R)",
+          {
+            "text": "∴ r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying out gives 1/r − 1/(2R), with the r cancelling in the second term.",
+          "accept": [
+            "multiply through and the r cancels in the second term leaving one over r minus one over two R",
+            "expanding gives the required right hand side",
+            "the r cancels so it is one by r minus one by two R",
+            "r cancel ayi one by r minus one by two R vasthundi",
+            "the answer is one over r minus one over two R"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one over r",
+            "one over two R",
+            "cancels",
+            "expand"
+          ]
+        },
+        "why": "The r cancelling in the second term is what leaves a pure 1/(2R) with no r in it — which is exactly the form the question asked for.",
+        "common_mistakes": [
+          "Leaving the answer as (1/r)(1 − r/2R).",
+          "Cancelling the r in the wrong term."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_roots_tan_theta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a cos2θ + b sin2θ = c has θ₁, θ₂ as its solutions, then show that (i) tanθ₁ + tanθ₂ = 2b/(c+a), (ii) tanθ₁ · tanθ₂ = (c−a)/(c+a), and hence show that tan(θ₁+θ₂) = b/a.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form a quadratic in tanθ",
+      "marks": 2
+    },
+    {
+      "label": "Read off the sum of roots",
+      "marks": 1
+    },
+    {
+      "label": "Read off the product and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,16,19 · AP 17 — four printed tags, the most-asked question in this unit. Nothing is SOLVED here. The equation is turned into a quadratic and the sum and product of its roots are read straight off the coefficients — the two solutions θ₁ and θ₂ are never found individually. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form_a_quadratic_in_tan",
+        "kind": "equation",
+        "label": "Form a quadratic in tanθ",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Substitute the tangent forms of cos2θ and sin2θ, clear the denominator, and collect. What comes out is a quadratic in tanθ — which is the whole idea.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a cos2θ + b sin2θ = c",
+          "Using cos2θ = (1 − tan²θ)/(1 + tan²θ) and",
+          "sin2θ = 2tanθ/(1 + tan²θ):",
+          "⇒ a(1 − tan²θ) + b(2tanθ) = c(1 + tan²θ)",
+          "⇒ a − a tan²θ + 2b tanθ = c + c tan²θ",
+          "⇒ (c + a) tan²θ − 2b tanθ + (c − a) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent forms of cos2θ and sin2θ are substituted and the equation collected into the quadratic (c+a)tan²θ − 2b tanθ + (c−a) = 0.",
+          "accept": [
+            "substitute the tan forms of cos two theta and sin two theta then clear the denominator and collect into a quadratic in tan theta",
+            "turn it into c plus a tan squared minus two b tan plus c minus a equals zero",
+            "use the half angle tangent substitutions to get a quadratic",
+            "cos two theta and sin two theta ni tan lo rasi quadratic ga marchali",
+            "form a quadratic equation in tan theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus tan squared",
+            "two tan theta",
+            "quadratic in tan",
+            "c plus a"
+          ]
+        },
+        "why": "θ₁ and θ₂ are the two solutions, so tanθ₁ and tanθ₂ are the two ROOTS of this quadratic. That is what makes the sum and product available without solving anything.",
+        "common_mistakes": [
+          "Trying to solve the original equation for θ.",
+          "Sign slip when moving the c terms across."
+        ]
+      },
+      {
+        "id": "s2_read_off_the_sum_of_roots",
+        "kind": "equation",
+        "label": "Read off the sum of roots",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. For ax² + bx + c = 0 the sum of the roots is −b/a. Here that is −(−2b)/(c+a), which is 2b/(c+a).",
+        "lines": [
+          "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
+          "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
+          {
+            "text": "∴ tanθ₁ + tanθ₂ = 2b/(c + a)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of the roots is −B/A = 2b/(c+a).",
+          "accept": [
+            "the sum of the roots is minus B over A which gives two b over c plus a",
+            "sum of roots formula gives two b by c plus a",
+            "tan theta one plus tan theta two is two b over c plus a",
+            "sum of roots minus B by A, two b by c plus a vasthundi",
+            "read the sum off the coefficients"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum of roots",
+            "minus B over A",
+            "two b over c plus a"
+          ]
+        },
+        "why": "The two minus signs cancel: the coefficient of tanθ is −2b, and the formula puts a minus in front of it. Missing one of them flips the sign.",
+        "common_mistakes": [
+          "Writing −2b/(c+a) and keeping the minus.",
+          "Using B/A without the minus."
+        ]
+      },
+      {
+        "id": "s3_read_off_the_product_and_f",
+        "kind": "boxed_final",
+        "label": "Read off the product and finish",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The product is C/A. Then tan(θ₁+θ₂) uses the compound formula, and the (c+a) cancels top and bottom, leaving b/a.",
+        "lines": [
+          "Product of the roots is C/A:",
+          "tanθ₁ · tanθ₂ = (c − a)/(c + a)",
+          "Now tan(θ₁+θ₂) = (tanθ₁ + tanθ₂)/(1 − tanθ₁tanθ₂)",
+          "= [2b/(c+a)] / [1 − (c−a)/(c+a)]",
+          "= [2b/(c+a)] / [2a/(c+a)]",
+          {
+            "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of roots is (c−a)/(c+a), and that tan(θ₁+θ₂) simplifies to b/a.",
+          "accept": [
+            "the product is C over A which is c minus a over c plus a then the compound formula gives two b over two a which is b over a",
+            "product of roots then tan of the sum simplifies to b over a",
+            "the c plus a cancels leaving b over a",
+            "product c minus a by c plus a, tarvata tan sum formula tho b by a vasthundi",
+            "finish with the compound angle formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product of roots",
+            "C over A",
+            "b over a",
+            "cancels"
+          ]
+        },
+        "why": "The denominator 1 − (c−a)/(c+a) becomes ((c+a) − (c−a))/(c+a) = 2a/(c+a). Both fractions share (c+a), so it cancels — which is why the answer is so simple.",
+        "common_mistakes": [
+          "Failing to put the 1 over a common denominator.",
+          "Cancelling before combining, and losing the 2a."
+        ]
+      }
+    ]
+  }
+}

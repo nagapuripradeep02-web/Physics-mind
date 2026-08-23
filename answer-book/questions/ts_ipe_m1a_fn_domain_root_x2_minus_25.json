@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_root_x2_minus_25",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function √(x² − 25).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 95.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when x² − 25 ≥ 0",
+          "⇒ (x − 5)(x + 5) ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 25 ≥ 0 is the condition, because the inside of a square root cannot be negative.",
+          "accept": [
+            "x squared minus twenty five must be greater than or equal to zero",
+            "the inside of the root is non negative so x squared minus twenty five at least zero",
+            "set x squared minus twenty five greater than or equal to zero",
+            "root lo x square minus twenty five non negative undali",
+            "the expression under the root must be at least zero"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "x squared minus twenty five",
+            "non negative",
+            "minus five",
+            "five",
+            "outside"
+          ]
+        },
+        "why": "This time the product of the two factors must be positive, and that happens outside the roots, not between them.",
+        "common_mistakes": [
+          "Writing x² ≥ 25 as x ≥ 5 only, which loses the whole negative half of the domain.",
+          "Treating it like 25 − x² and taking the inside interval."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ (−∞, −5] ∪ [5, ∞)",
+          "∴ Domain = (−∞, −5] ∪ [5, ∞)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the OUTSIDE: minus infinity to minus 5, union 5 to infinity, both endpoints included.",
+          "accept": [
+            "minus infinity to minus five union five to infinity",
+            "x is less than or equal to minus five or greater than or equal to five",
+            "the outside intervals with both endpoints included",
+            "minus five kanna takkuva or five kanna ekkuva",
+            "domain is everything outside minus five and five including them"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "x squared minus twenty five",
+            "non negative",
+            "minus five",
+            "five",
+            "outside",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "A product of two factors is greater than or equal to zero when both have the same sign — which is outside the interval between the roots.",
+        "common_mistakes": [
+          "Giving [−5, 5], which is the answer to the opposite inequality.",
+          "Writing the union with round brackets at ±5, where equality is allowed."
+        ]
+      }
+    ]
+  }
+}

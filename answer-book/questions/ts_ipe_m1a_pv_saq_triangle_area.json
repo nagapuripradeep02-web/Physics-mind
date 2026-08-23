@@ -1,0 +1,221 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_saq_triangle_area",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the area of the triangle formed with the points A(1,2,3), B(2,3,1) and C(3,1,2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the two side vectors from A",
+      "marks": 1
+    },
+    {
+      "label": "Find AB×AC",
+      "marks": 1
+    },
+    {
+      "label": "Find its magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Halve it for the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 Product of Vectors, answer 58. Printed appearances: the single tag 'IPE 14' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the area of a triangle from three points.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sides",
+        "kind": "equation",
+        "label": "Find AB and AC",
+        "marks": 1,
+        "mark_note": "Side vectors",
+        "margin_note": "First mark. Both vectors must start at the SAME vertex — A here. Two sides from one corner is what spans the triangle.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "OA = i + 2j + 3k, OB = 2i + 3j + k, OC = 3i + j + 2k",
+          "AB = OB − OA = i + j − 2k",
+          "AC = OC − OA = 2i − j − k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two side vectors AB and AC are built from the same vertex A by subtracting position vectors.",
+          "accept": [
+            "find AB and AC by subtracting OA, both starting from A",
+            "take two sides from the same corner A",
+            "AB is OB minus OA and AC is OC minus OA",
+            "A nunchi rendu sides AB and AC teeskovali",
+            "build two edge vectors from the same vertex"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB",
+            "AC",
+            "same vertex",
+            "subtract",
+            "OA"
+          ]
+        },
+        "why": "The cross product of two vectors gives the area of the PARALLELOGRAM they span. Both must start at one point for that parallelogram to sit on the triangle.",
+        "common_mistakes": [
+          "Using AB and BC, which do not share a start point.",
+          "Subtracting the wrong way round."
+        ]
+      },
+      {
+        "id": "s2_cross",
+        "kind": "equation",
+        "label": "Find AB×AC",
+        "marks": 1,
+        "mark_note": "Cross product",
+        "margin_note": "Second mark. All three components come out as −3, which is a good sign the arithmetic is right.",
+        "lines": [
+          {
+            "text": "AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -2 \\\\ 2 & -1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−1 − 2) − j(−1 + 4) + k(−1 − 2)",
+          "= −3i − 3j − 3k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB×AC is computed as a determinant and comes to −3i − 3j − 3k.",
+          "accept": [
+            "cross AB with AC to get minus three i minus three j minus three k",
+            "the cross product has all components minus three",
+            "take the cross product of the two sides",
+            "AB cross AC anni components minus three",
+            "compute the determinant for AB cross AC"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB cross AC",
+            "minus three",
+            "determinant"
+          ]
+        },
+        "why": "The magnitude of this cross product is the area of the parallelogram on AB and AC — and the triangle is exactly half of it.",
+        "common_mistakes": [
+          "Taking a dot product instead.",
+          "Reversing the order, which flips the sign but not the magnitude."
+        ]
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "equation",
+        "label": "Find the magnitude",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "Third mark. √27 is not final — 27 = 9 × 3, so it simplifies to 3√3. Leaving a surd unsimplified costs marks.",
+        "lines": [
+          "|AB × AC| = √((−3)² + (−3)² + (−3)²)",
+          "= √(9 + 9 + 9) = √27 = 3√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude is √27, which simplifies to 3√3.",
+          "accept": [
+            "the magnitude is root twenty seven which simplifies to three root three",
+            "nine plus nine plus nine is twenty seven so the modulus is three root three",
+            "root twenty seven equals three root three",
+            "root twenty seven, simplify cheste three root three",
+            "take the modulus and simplify the surd"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root twenty seven",
+            "three root three",
+            "magnitude",
+            "simplify"
+          ]
+        },
+        "why": "Every square in a magnitude is positive, so the minus signs disappear before the root is taken.",
+        "common_mistakes": [
+          "Leaving the answer as √27.",
+          "Forgetting to square the negatives, giving a negative sum."
+        ]
+      },
+      {
+        "id": "s4_area",
+        "kind": "boxed_final",
+        "label": "Halve for the area",
+        "marks": 1,
+        "mark_note": "Area",
+        "margin_note": "Last mark. The cross product gives the parallelogram; the triangle is half of it. And the answer is an AREA, so say square units.",
+        "lines": [
+          "Area of △ABC = ½ |AB × AC|",
+          {
+            "text": "= 3√3⁄2 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the triangle area is half the magnitude of the cross product, giving 3√3/2 square units.",
+          "accept": [
+            "the triangle is half the parallelogram so the area is three root three over two square units",
+            "halve the magnitude to get three root three by two",
+            "area is half of AB cross AC which is three root three over two",
+            "half teeste three root three by two square units",
+            "the area is three root three divided by two square units"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "half",
+            "three root three by two",
+            "square units",
+            "area"
+          ]
+        },
+        "why": "A parallelogram splits into two congruent triangles along its diagonal, which is exactly why the factor is one half and not something else.",
+        "common_mistakes": [
+          "Forgetting the half and giving the parallelogram area.",
+          "Omitting the units."
+        ]
+      }
+    ]
+  }
+}

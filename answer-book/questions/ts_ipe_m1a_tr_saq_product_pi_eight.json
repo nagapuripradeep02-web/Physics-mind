@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_product_pi_eight",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that (1 + cos(π/8))(1 + cos(3π/8))(1 + cos(5π/8))(1 + cos(7π/8)) = 1/8.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce the last two angles",
+      "marks": 1
+    },
+    {
+      "label": "Pair into differences of squares",
+      "marks": 1
+    },
+    {
+      "label": "Reduce sin(3π/8)",
+      "marks": 1
+    },
+    {
+      "label": "Use the double angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 67. Printed appearances: none — this answer carries no year tag. A PRODUCT, not a sum. The four brackets pair up into two differences of squares, which is what makes it collapse. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce_the_last_two_angl",
+        "kind": "equation",
+        "label": "Reduce the last two angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cos(5π/8) and cos(7π/8) both come out NEGATIVE, which turns two of the brackets from (1 + …) into (1 − …).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cos(5π/8) = cos(π − 3π/8) = −cos(3π/8)",
+          "cos(7π/8) = cos(π − π/8) = −cos(π/8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(5π/8) = −cos(3π/8) and cos(7π/8) = −cos(π/8), turning two brackets into differences.",
+          "accept": [
+            "the last two cosines are negative so those brackets become one minus",
+            "cos five pi by eight is minus cos three pi by eight and similarly for the last",
+            "reduce so two brackets turn into one minus",
+            "chivari rendu cosines minus vasthai, so one minus brackets avthai",
+            "the reductions give negative cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus cos",
+            "one minus",
+            "five pi by eight",
+            "reduce"
+          ]
+        },
+        "why": "Two brackets with a plus and two with a minus is exactly the shape a difference of squares needs. The reduction is what creates it.",
+        "common_mistakes": [
+          "Missing the minus and leaving all four as sums.",
+          "Reducing to the wrong angle."
+        ]
+      },
+      {
+        "id": "s2_pair_into_differences_of",
+        "kind": "equation",
+        "label": "Pair into differences of squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Pair each (1 + x) with its matching (1 − x). Each pair gives 1 − x², and 1 − cos² is sin².",
+        "lines": [
+          "L.H.S = (1 + cos(π/8))(1 + cos(3π/8))(1 − cos(3π/8))(1 − cos(π/8))",
+          "= (1 − cos²(π/8))(1 − cos²(3π/8))",
+          "= sin²(π/8) sin²(3π/8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets are paired into (1 − cos²) forms, which become sin².",
+          "accept": [
+            "pair each plus bracket with its minus partner to get one minus cos squared which is sin squared",
+            "the pairs give differences of squares equal to sine squared",
+            "each pair becomes sin squared",
+            "prathi pair one minus cos square avthundi, ante sin square",
+            "pair them up into differences of squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of squares",
+            "one minus cos squared",
+            "sin squared",
+            "pair"
+          ]
+        },
+        "why": "Pairing the RIGHT brackets matters — pairing π/8 with 3π/8 would give nothing. Each bracket must meet its own negative.",
+        "common_mistakes": [
+          "Pairing the brackets in the order written.",
+          "Writing 1 − cos² as cos²."
+        ]
+      },
+      {
+        "id": "s3_reduce_sin_3_8",
+        "kind": "equation",
+        "label": "Reduce sin(3π/8)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. sin(3π/8) is cos(π/8), so the product becomes sin² times cos² of the SAME angle — which the double-angle formula can handle.",
+        "lines": [
+          "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
+          "= sin²(π/8) cos²(π/8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(3π/8) = cos(π/8), so the product is sin²(π/8) cos²(π/8) in one angle.",
+          "accept": [
+            "sin three pi by eight is cos pi by eight so both are in the same angle",
+            "reduce so the product is sin squared times cos squared of pi by eight",
+            "the second sine becomes a cosine of the same angle",
+            "sin three pi by eight ante cos pi by eight, so okate angle",
+            "both terms end up in pi by eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos pi by eight",
+            "same angle",
+            "sin squared cos squared"
+          ]
+        },
+        "why": "A product of a sine and cosine of the SAME angle is a double angle in disguise. Getting both into one angle is what unlocks the last step.",
+        "common_mistakes": [
+          "Leaving the two different angles and being unable to finish.",
+          "Writing sin(3π/8) = sin(π/8)."
+        ]
+      },
+      {
+        "id": "s4_use_the_double_angle",
+        "kind": "boxed_final",
+        "label": "Use the double angle",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Introduce a 1/4 so that 2 sin cos can be formed, then sin(π/4) = 1/√2.",
+        "lines": [
+          "= (1/4)[2 sin(π/8) cos(π/8)]²",
+          "= (1/4)[sin(π/4)]² = (1/4)(1/√2)²",
+          {
+            "text": "= (1/4)(1/2) = 1/8 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²cos² is written as (1/4)(2 sin cos)² = (1/4)sin²(π/4) = 1/8.",
+          "accept": [
+            "write it as a quarter of two sin cos all squared which is a quarter of a half equal to one eighth",
+            "introduce the quarter so the double angle appears, giving one eighth",
+            "the answer is one over eight",
+            "quarter techi two sin cos square ga rasthe one eighth vasthundi",
+            "a quarter times a half is an eighth"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one quarter",
+            "sin pi by four",
+            "one eighth",
+            "double angle"
+          ]
+        },
+        "why": "The 1/4 is manufactured on purpose so that the 2 sin cos pattern can appear. Nothing forces it — it is a choice that makes the last line work.",
+        "common_mistakes": [
+          "Not introducing the 1/4 and being unable to form the double angle.",
+          "Finishing at 1/2."
+        ]
+      }
+    ]
+  }
+}

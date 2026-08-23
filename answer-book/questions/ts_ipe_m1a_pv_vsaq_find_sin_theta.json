@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_find_sin_theta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let a = 2i − j + k and b = 3i + 4j − k. If θ is the angle between a and b, then find sin θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a×b and the magnitudes",
+      "marks": 1
+    },
+    {
+      "label": "Apply the sine formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 122.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find sin of the angle between two vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a×b and the magnitudes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. SINE comes from the CROSS product, where cosine came from the dot — that is the one thing to get right here.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -1 & 1 \\\\ 3 & 4 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(1 − 4) − j(−2 − 3) + k(8 + 3)",
+          "= −3i + 5j + 11k",
+          "|a × b| = √(9 + 25 + 121) = √155",
+          "|a| = √6,  |b| = √26"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ comes from the CROSS product, and that |a×b| = √155 with |a| = √6 and |b| = √26.",
+          "accept": [
+            "sine uses the cross product so find a cross b, its magnitude is root one fifty five",
+            "take the cross product because sine goes with cross, dot is for cosine",
+            "the cross product magnitude is root one hundred fifty five and the two lengths are root six and root twenty six",
+            "sine ki cross product vaadali, magnitude root one fifty five",
+            "find a cross b and the two magnitudes"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cross product",
+            "root one fifty five",
+            "root six",
+            "root twenty six",
+            "sine"
+          ]
+        },
+        "why": "A cross product has magnitude |a||b| sin θ, exactly as a dot product has |a||b| cos θ. Choosing the right product is choosing the right trig ratio.",
+        "common_mistakes": [
+          "Using the dot product, which gives cos θ instead.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the sine formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide by the product of the two magnitudes. √6 times √26 is √156, so the surds combine into one fraction under a single root.",
+        "lines": [
+          {
+            "text": "\\sin\\theta = \\frac{|a \\times b|}{|a|\\,|b|}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= √155/(√6 · √26) = √155/√156",
+          {
+            "text": "∴ sin θ = √(155/156)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ = |a×b|/(|a||b|), which combines to √(155/156).",
+          "accept": [
+            "sine theta is the cross product magnitude over the two lengths, root one fifty five over root one fifty six",
+            "divide to get root of one fifty five over one fifty six",
+            "sin theta equals root one fifty five by root one fifty six",
+            "sin theta root 155 by root 156 vasthundi",
+            "combine the surds into one root"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin theta",
+            "root one fifty five",
+            "one fifty six",
+            "divide"
+          ]
+        },
+        "why": "Two square roots multiplied become the root of the product, so √6·√26 = √156 — which lets the whole answer sit under one root.",
+        "common_mistakes": [
+          "Adding the magnitudes instead of multiplying.",
+          "Leaving the answer as a decimal."
+        ]
+      }
+    ]
+  }
+}

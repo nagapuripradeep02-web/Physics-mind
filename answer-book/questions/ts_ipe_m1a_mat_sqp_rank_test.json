@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_sqp_rank_test",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Apply the test of rank to examine whether the system x + y + z = 6, x − y + z = 2, 2x − y + 3z = 9 is consistent, and if consistent find the complete solution.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix",
+      "marks": 1
+    },
+    {
+      "label": "Reduce to echelon form",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two ranks",
+      "marks": 1
+    },
+    {
+      "label": "Read off the solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.103 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 154. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank heading gives no section, so this classification is OURS. It is a genuinely different TECHNIQUE from Unit 3's LAQ system-solving — the rank test decides consistency BEFORE any solution is attempted. Printed appearances: AP 19. The rank test answers a question the other methods cannot: whether a solution EXISTS at all. Comparing rank(A) with rank[A D] is what decides it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_augmented_matrix",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. Same opening as Gauss-Jordan — the coefficient matrix with the constants attached.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ 2 & -1 & 3 \\end{bmatrix}, \\ D = \\begin{bmatrix} 6 \\\\ 2 \\\\ 9 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 1 & -1 & 1 & 2 \\\\ 2 & -1 & 3 & 9 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written.",
+          "accept": [
+            "write the augmented matrix with the constants attached",
+            "form A given D",
+            "set up the augmented matrix",
+            "augmented matrix rasta",
+            "attach the constants to the coefficient matrix"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants"
+          ]
+        },
+        "why": "The rank test needs BOTH matrices — A and [A D] — so the augmented form is what carries them together.",
+        "common_mistakes": [
+          "Writing A alone.",
+          "Putting the constants in as a row."
+        ]
+      },
+      {
+        "id": "s2_reduce_to_echelon_form",
+        "kind": "equation",
+        "label": "Reduce to echelon form",
+        "marks": 1,
+        "mark_note": "Echelon form",
+        "margin_note": "Second mark. Row-reduce until the shape is triangular. The operations are the same as Gauss-Jordan, but the purpose is different — this is about counting, not solving.",
+        "lines": [
+          "R₂ → R₂ − R₁,  R₃ → R₃ − 2R₁:",
+          {
+            "text": "\\sim \\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -2 & 0 & -4 \\\\ 0 & -3 & 1 & -3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → −½R₂, then R₃ → R₃ + 3R₂:",
+          {
+            "text": "\\sim \\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & 1 & 0 & 2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right] \\quad \\text{…(1)}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row operations reduce the augmented matrix to echelon form with 1s down the diagonal.",
+          "accept": [
+            "row reduce to echelon form with ones on the diagonal",
+            "apply the row operations until it is triangular",
+            "reduce the augmented matrix",
+            "row operations tho echelon form ki teeskuravali",
+            "get it into echelon form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "row operations",
+            "echelon form",
+            "triangular",
+            "reduce"
+          ]
+        },
+        "why": "Rank is read off the echelon form, so reducing is not optional — the ranks of the original matrices are invisible until it is done.",
+        "common_mistakes": [
+          "Trying to read the rank off the original matrix.",
+          "Stopping before the form is triangular."
+        ]
+      },
+      {
+        "id": "s3_compare_the_two_ranks",
+        "kind": "equation",
+        "label": "Compare the two ranks",
+        "marks": 1,
+        "mark_note": "Rank test",
+        "margin_note": "Third mark, and the actual test. The coefficient part has a non-zero 3×3 determinant, so rank(A) = 3; the augmented matrix has no extra non-zero row, so rank[A D] = 3 too.",
+        "lines": [
+          "From (1), the coefficient part has",
+          {
+            "text": "\\det \\begin{bmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = 1 \\neq 0 \\Rightarrow \\text{Rank}(A) = 3",
+            "render": "katex",
+            "style": "eq"
+          },
+          "and [A D] also has rank 3.",
+          "∴ Rank(A) = Rank[A D] = 3 = number of unknowns,",
+          "so the system is CONSISTENT with a unique solution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rank(A) = rank[A D] = 3 = the number of unknowns, so the system is consistent with a unique solution.",
+          "accept": [
+            "both ranks are three which equals the number of unknowns so it is consistent with a unique solution",
+            "rank A equals rank of the augmented matrix so it is consistent",
+            "three equals three equals the number of unknowns",
+            "rendu ranks three, unknowns moodu, so consistent unique solution",
+            "compare the ranks to decide consistency"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "rank",
+            "consistent",
+            "unique solution",
+            "three"
+          ]
+        },
+        "why": "Equal ranks mean consistent; equal to the number of unknowns means the solution is unique. If the ranks differed the system would have NO solution, and no amount of solving would find one.",
+        "common_mistakes": [
+          "Concluding consistency without comparing the two ranks.",
+          "Forgetting to compare against the number of unknowns."
+        ]
+      },
+      {
+        "id": "s4_read_off_the_solution",
+        "kind": "boxed_final",
+        "label": "Read off the solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The echelon form is already three equations — read z and y directly, then back-substitute for x.",
+        "lines": [
+          "From (1): x + y + z = 6, y = 2, z = 3",
+          "∴ x + 2 + 3 = 6 ⇒ x = 1",
+          {
+            "text": "∴ x = 1, y = 2, z = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the echelon rows give y = 2, z = 3 and back-substitution gives x = 1.",
+          "accept": [
+            "the rows give y equals two and z equals three then back substitute to get x equals one",
+            "read off y and z then find x",
+            "the solution is one two three",
+            "y two, z three, x one vasthundi",
+            "back substitute for x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y equals two",
+            "z equals three",
+            "x equals one",
+            "back substitute"
+          ]
+        },
+        "why": "This form stops at echelon rather than going all the way to the identity, so one back-substitution is still needed — unlike Gauss-Jordan, which clears upwards too.",
+        "common_mistakes": [
+          "Reading x straight off without substituting.",
+          "Reporting the ranks as the answer."
+        ]
+      }
+    ]
+  }
+}

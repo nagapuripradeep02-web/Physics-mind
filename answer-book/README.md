@@ -7,8 +7,12 @@ character — with the examiner's **marks shown in red per step**. Required diag
 themselves **stroke by stroke** in the same blue ink. When page 1 fills, page 2 is created,
 like a real answer booklet.
 
-First board: **Telangana IPE** (Intermediate Public Examination). First question: the
-Physics-I 8-mark LAQ on the parallelogram law of vectors.
+First board: **Telangana IPE** (Intermediate Public Examination). The book opened on a
+Physics-I 8-mark LAQ (the parallelogram law of vectors), but **this desk is now
+mathematics-only**: it holds Maths-1A Units 1-10 and nothing else. The physics track
+lives on `feat/ipe-answerbook`, on the other machine. The surface itself is
+subject-agnostic — the `subject` field, its `|| 'physics'` fallback and the catalog's
+subject chip row are all still here, and the physics desk relies on them.
 
 ## Build · serve · test
 
@@ -38,7 +42,8 @@ from `file://`.
 
 ## How to add question #2
 
-1. Copy `questions/ts_ipe_p1_vec_parallelogram_law.json` to a new file. The filename must
+1. Copy an existing `questions/*.json` to a new file — `ts_ipe_m1a_fn_gof_bijective.json`
+   is a good 7-mark LAQ to start from. The filename must
    equal `question_id`.
 2. Rewrite the header (board, unit, qtype, marks_total, mark_split, question_text) and the
    `answer.steps[]`. Rules of thumb:

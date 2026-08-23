@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_r1_r2_r3_minus_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that r₁ + r₂ + r₃ − r = 4R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group into two pairs",
+      "marks": 2
+    },
+    {
+      "label": "Apply the compound formulas",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 84.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. Paired in the book with 84.2. Both are proved by grouping the four radii into TWO pairs and collapsing each pair with a compound-angle formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_into_two_pairs",
+        "kind": "equation",
+        "label": "Group into two pairs",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks, and the choice that makes it work. Group (r₁ + r₂) and (r₃ − r), so each pair shares a factor — 4R cos(C/2) for the first, 4R sin(C/2) for the second.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = (r₁ + r₂) + (r₃ − r)",
+          "= [4R sin(A/2)cos(B/2)cos(C/2) + 4R cos(A/2)sin(B/2)cos(C/2)]",
+          "  + [4R cos(A/2)cos(B/2)sin(C/2) − 4R sin(A/2)sin(B/2)sin(C/2)]",
+          "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
+          "  + 4R sin(C/2)[cos(A/2)cos(B/2) − sin(A/2)sin(B/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four radii are grouped as (r₁+r₂) and (r₃−r), with 4R cos(C/2) and 4R sin(C/2) factored out.",
+          "accept": [
+            "group r one plus r two and r three minus r then take four R cos half C and four R sin half C common",
+            "pair them so each pair has a common factor",
+            "the first pair shares cos half C and the second shares sin half C",
+            "rendu pairs ga group chesi common factors teeyyali",
+            "group into two pairs and factorise"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r one plus r two",
+            "r three minus r",
+            "four R cos half C",
+            "common factor"
+          ]
+        },
+        "why": "Grouping the OTHER way — (r₁ + r₃) and (r₂ − r) — leaves no common factor. Choosing the pairs so the half-angle of C is shared is the whole skill here.",
+        "common_mistakes": [
+          "Grouping the wrong pairs.",
+          "Writing r₁ with cos(A/2) instead of sin(A/2)."
+        ]
+      },
+      {
+        "id": "s2_apply_the_compound_formula",
+        "kind": "boxed_final",
+        "label": "Apply the compound formulas",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. The first bracket is sin((A+B)/2) and the second cos((A+B)/2); then (A+B)/2 = 90° − C/2 converts both into C, and the two terms combine.",
+        "lines": [
+          "= 4R cos(C/2) sin((A+B)/2) + 4R sin(C/2) cos((A+B)/2)",
+          "= 4R sin((A+B)/2 + C/2)   [∵ sinX cosY + cosX sinY = sin(X+Y)]",
+          "= 4R sin((A+B+C)/2) = 4R sin(180°/2)",
+          {
+            "text": "= 4R sin90° = 4R = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets become sin((A+B)/2) and cos((A+B)/2), which combine to sin((A+B+C)/2) = sin90° = 1.",
+          "accept": [
+            "the brackets are sin and cos of half A plus B which combine to sin of half the angle sum which is sin ninety equals one",
+            "apply the compound angle formula to get four R sin ninety",
+            "A plus B plus C over two is ninety degrees so the sine is one",
+            "sin ninety one kabatti four R vasthundi",
+            "combine to sin of half the total angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin ninety",
+            "A plus B plus C over two",
+            "four R",
+            "compound angle"
+          ]
+        },
+        "why": "A + B + C = 180° in any triangle, so half of it is 90° and its sine is exactly 1. That is why the answer is a clean 4R with no angles left in it.",
+        "common_mistakes": [
+          "Using sin(X−Y) and getting sin((A+B−C)/2).",
+          "Writing sin 90° = 0."
+        ]
+      }
+    ]
+  }
+}

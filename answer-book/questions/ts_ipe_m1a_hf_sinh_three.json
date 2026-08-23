@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_sinh_three",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sinh x = 3, then show that x = logₑ(3 + √10).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the logarithmic form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 16 · AP 22.  ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "State the logarithmic form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Every inverse hyperbolic function has a logarithmic form, and writing the right one is the mark. For Sinh⁻¹ the surd carries a PLUS one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the logarithmic form Sinh⁻¹x = logₑ(x + √(x²+1)) is stated, with +1 under the root.",
+          "accept": [
+            "sinh inverse x is log of x plus root x squared plus one",
+            "state the logarithmic form with plus one under the root",
+            "write the formula for sinh inverse",
+            "sinh inverse ki log form rasta, x plus root x square plus one",
+            "quote the log formula for sinh inverse"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh inverse",
+            "log",
+            "x squared plus one",
+            "root"
+          ]
+        },
+        "why": "Sinh⁻¹ has +1 under the root and Cosh⁻¹ has −1. Getting that sign wrong is the difference between a real answer and an impossible one.",
+        "common_mistakes": [
+          "Writing √(x² − 1), which is the Cosh⁻¹ form.",
+          "Omitting the logarithm entirely."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute x = 3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sinh x = 3 means x is Sinh⁻¹(3). Substitute and simplify the surd: 9 + 1 = 10.",
+        "lines": [
+          "Given sinh x = 3, so x = Sinh⁻¹(3)",
+          "= logₑ(3 + √(3² + 1))",
+          "= logₑ(3 + √(9 + 1))",
+          {
+            "text": "∴ x = logₑ(3 + √10)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = Sinh⁻¹(3) is substituted into the formula to give logₑ(3 + √10).",
+          "accept": [
+            "x is sinh inverse three so substitute to get log of three plus root ten",
+            "nine plus one is ten so the answer is log three plus root ten",
+            "substitute three into the formula",
+            "three substitute cheste log of three plus root ten vasthundi",
+            "the answer is log e of three plus root ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh inverse three",
+            "root ten",
+            "nine plus one",
+            "log"
+          ]
+        },
+        "why": "sinh x = 3 and x = Sinh⁻¹(3) say the same thing. Reading the given equation as an inverse is what lets the formula be used at all.",
+        "common_mistakes": [
+          "Trying to solve the exponential definition from scratch.",
+          "Writing √10 as √9 + √1 = 4."
+        ]
+      }
+    ]
+  }
+}

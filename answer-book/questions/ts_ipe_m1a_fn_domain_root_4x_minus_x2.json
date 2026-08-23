@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_root_4x_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function f(x) = √(4x − x²).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 97.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when 4x − x² ≥ 0",
+          "⇒ x² − 4x ≤ 0",
+          "⇒ x(x − 4) ≤ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4x − x² ≥ 0, and that taking out the common x factors it as x(x − 4).",
+          "accept": [
+            "four x minus x squared greater than or equal to zero and it factors as x into x minus four",
+            "take x common so x times x minus four is less than or equal to zero",
+            "the inside of the root is non negative then factorise by taking x out",
+            "x common teeskoni x into x minus four ≤ 0",
+            "set four x minus x squared at least zero and factorise"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "four x minus x squared",
+            "take x common",
+            "zero",
+            "four",
+            "non negative"
+          ]
+        },
+        "why": "There is no constant term, so the factor is x itself — the roots are 0 and 4 rather than a matched pair like ±3.",
+        "common_mistakes": [
+          "Cancelling the x instead of factorising it out, which loses the root at 0.",
+          "Forgetting to flip the inequality when multiplying through by −1."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ [0, 4]",
+          "∴ Domain = [0, 4]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the closed interval from 0 to 4.",
+          "accept": [
+            "zero to four closed interval",
+            "x between zero and four including both",
+            "the closed interval from zero to four",
+            "zero nunchi four varaku both included",
+            "domain is zero to four with square brackets"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "four x minus x squared",
+            "take x common",
+            "zero",
+            "four",
+            "non negative",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "The product is negative or zero between the roots, so the answer is the interval between them, endpoints included.",
+        "common_mistakes": [
+          "Writing the outside intervals, which is the opposite inequality.",
+          "Starting the interval at 1 or excluding 0, which is in the domain."
+        ]
+      }
+    ]
+  }
+}

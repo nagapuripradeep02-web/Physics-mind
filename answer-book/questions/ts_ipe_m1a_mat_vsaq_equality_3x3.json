@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_equality_3x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the matrix with rows (x−1, 2, 5−y), (0, z−1, 7) and (1, 0, a−5) equals the matrix with rows (1, 2, 3), (0, 4, 7) and (1, 0, 0), then find the values of x, y, z and a.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equate corresponding elements",
+      "marks": 1
+    },
+    {
+      "label": "Solve each equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 15 Matrices, answer 99.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find the four unknowns from this matrix equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equate",
+        "kind": "equation",
+        "label": "Equate corresponding elements",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Only four of the nine positions carry an unknown — find those four and ignore the rest, which already agree.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Equating corresponding elements:",
+          "x − 1 = 1,  5 − y = 3,",
+          "z − 1 = 4,  a − 5 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal matrices have equal corresponding entries, and only the four positions holding an unknown need to be written out.",
+          "accept": [
+            "equal matrices means corresponding entries are equal so pick the four positions with unknowns",
+            "equate the entries that contain x y z and a",
+            "compare each position and take the four with letters in them",
+            "corresponding elements equate cheste, letters unna four positions teeskuntam",
+            "match the positions and only four give equations"
+          ],
+          "reject": [
+            "equate them",
+            "compare the matrices"
+          ],
+          "heard_as": [
+            "corresponding elements",
+            "equate",
+            "four equations"
+          ]
+        },
+        "why": "Matrix equality is defined entry by entry. Positions with no unknown are already true and carry no information.",
+        "common_mistakes": [
+          "Writing out all nine equations and losing time.",
+          "Matching entries in the wrong positions."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve each equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Watch 5 − y = 3: the unknown is being SUBTRACTED, so y = 5 − 3 = 2, not 3 − 5.",
+        "lines": [
+          "x = 1 + 1 = 2",
+          "5 − y = 3  ⇒  y = 5 − 3 = 2",
+          "z = 4 + 1 = 5",
+          "a = 0 + 5 = 5",
+          {
+            "text": "∴ x = 2, y = 2, z = 5, a = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four equations are solved to give x = 2, y = 2, z = 5 and a = 5.",
+          "accept": [
+            "solve each to get x is two y is two z is five and a is five",
+            "x equals two, y equals two, z equals five, a equals five",
+            "work out the four values",
+            "four equations solve cheste x two y two z five a five vasthai",
+            "each equation gives one unknown"
+          ],
+          "reject": [
+            "solve them",
+            "find the values"
+          ],
+          "heard_as": [
+            "two",
+            "five"
+          ]
+        },
+        "why": "When the unknown is subtracted, rearranging flips which way round the subtraction goes. That single line is where this question is lost.",
+        "common_mistakes": [
+          "Solving 5 − y = 3 as y = −2.",
+          "Solving a − 5 = 0 as a = −5."
+        ]
+      }
+    ]
+  }
+}

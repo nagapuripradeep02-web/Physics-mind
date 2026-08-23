@@ -1,0 +1,284 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_triple_product_pair",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "If a = i−2j+k, b = 2i+j+k and c = i+2j−k, then find a×(b×c) and |(a×b)×c|.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find b×c",
+      "marks": 2
+    },
+    {
+      "label": "Find a×(b×c)",
+      "marks": 2
+    },
+    {
+      "label": "Find a×b",
+      "marks": 2
+    },
+    {
+      "label": "Find |(a×b)×c|",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16. The mirror of answer 22.1 on the same page: it asks for the two triple products in the OPPOSITE order, and one answer is a vector while the other is a magnitude. Read which is which before starting.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find both of these — and say what is asked for in each.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "a = i − 2j + k,  b = 2i + j + k,",
+          "c = i + 2j − k"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the given vectors are written out before any product is computed. Naming the step is full credit.",
+          "accept": [
+            "write the given vectors out first",
+            "copy down a b and c before starting",
+            "note the given vectors in i j k form",
+            "ichina vectors ni modata rasta",
+            "start by writing what is given"
+          ],
+          "reject": [
+            "write the question",
+            "start the sum"
+          ],
+          "heard_as": [
+            "given",
+            "vectors",
+            "write down"
+          ]
+        },
+        "why": "A cross product is a determinant whose rows ARE these vectors. Laying them out once, aligned, is what makes each determinant readable.",
+        "common_mistakes": [
+          "Missing a zero component and shifting a whole row.",
+          "Copying a sign wrongly and carrying it through every product."
+        ]
+      },
+      {
+        "id": "s2_first",
+        "kind": "equation",
+        "label": "Find b×c",
+        "marks": 2,
+        "mark_note": "First product",
+        "margin_note": "Two of the seven marks. The first thing asked for is a×(b×c), whose bracket is on the RIGHT — so b×c comes first.",
+        "lines": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & 1 \\\\ 1 & 2 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−1 − 2) − j(−2 − 1) + k(4 − 1)",
+          "= −3i + 3j + 3k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first part needs the inner bracket b×c, which is −3i + 3j + 3k.",
+          "accept": [
+            "the first part has the bracket on the right so compute b cross c, minus three i plus three j plus three k",
+            "work out b cross c first",
+            "the inner bracket for part one is b cross c",
+            "modata b cross c, minus three i plus three j plus three k",
+            "compute the right hand bracket first"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "inner bracket",
+            "minus three i",
+            "right"
+          ]
+        },
+        "why": "Whichever product sits inside the bracket is computed first. The rest of the question follows from reading that correctly.",
+        "common_mistakes": [
+          "Computing a×b for the first part.",
+          "Sign slip on the i term."
+        ]
+      },
+      {
+        "id": "s3_second",
+        "kind": "equation",
+        "label": "Find a×(b×c)",
+        "marks": 2,
+        "mark_note": "Second product",
+        "margin_note": "Two more marks. Cross a into that. This part asks for the VECTOR, not its magnitude — so stop at the vector.",
+        "lines": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 1 \\\\ -3 & 3 & 3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−6 − 3) − j(3 + 3) + k(3 − 6)",
+          "= −9i − 6j − 3k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is crossed into b×c to give the VECTOR −9i − 6j − 3k, and that no magnitude is wanted here.",
+          "accept": [
+            "cross a into that to get minus nine i minus six j minus three k as a vector",
+            "the first answer is the vector minus nine i minus six j minus three k",
+            "this part wants the vector not the magnitude",
+            "a tho cross cheste minus nine i minus six j minus three k, vector ga",
+            "the answer stays a vector"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus nine i",
+            "vector",
+            "a cross",
+            "not magnitude"
+          ]
+        },
+        "why": "The question asks for two different KINDS of answer — a vector here, a number below. Giving a magnitude where a vector was asked loses the mark even with correct arithmetic.",
+        "common_mistakes": [
+          "Taking the magnitude when the vector was asked for.",
+          "Reversing the order of the cross product."
+        ]
+      },
+      {
+        "id": "s4_combine",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 2,
+        "mark_note": "Combine",
+        "margin_note": "One mark. Second part now, and the bracket has moved to the LEFT — so this time a×b is the inner product.",
+        "lines": [
+          "For the second part the bracket is a×b:",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 1 \\\\ 2 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 − 1) − j(1 − 2) + k(1 + 4)",
+          "= −3i + j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second part uses the other bracket, a×b, giving −3i + j + 5k.",
+          "accept": [
+            "for the second part the bracket moves to the left so compute a cross b, minus three i plus j plus five k",
+            "now the inner bracket is a cross b",
+            "the bracket changes side so a cross b comes first",
+            "rendo part lo bracket a cross b avthundi",
+            "compute a cross b for the second answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "second part",
+            "bracket on the left",
+            "minus three i"
+          ]
+        },
+        "why": "Both halves of this question use the same three vectors; only the bracket moves. Keeping the two inner products clearly labelled is what stops them being mixed up.",
+        "common_mistakes": [
+          "Reusing b×c from the first part.",
+          "Sign slip on the k term."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Find |(a×b)×c|",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last two marks together. Cross that by c, then take the magnitude — this part DOES want a number. √174 has no square factor, so it stands.",
+        "lines": [
+          {
+            "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ -3 & 1 & 5 \\\\ 1 & 2 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−1 − 10) − j(3 − 5) + k(−6 − 1)",
+          "= −11i + 2j − 7k",
+          "|(a×b)×c| = √(121 + 4 + 49) = √174",
+          {
+            "text": "a×(b×c) = −9i − 6j − 3k,  |(a×b)×c| = √174",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second result is crossed by c and its MAGNITUDE taken, giving √174.",
+          "accept": [
+            "cross by c and take the magnitude to get root one seventy four",
+            "the second answer is root one hundred seventy four",
+            "this part wants the magnitude so take the modulus",
+            "c tho cross chesi magnitude teeste root one seventy four",
+            "the modulus comes to root one hundred and seventy four"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root one seventy four",
+            "magnitude",
+            "one hundred seventy four",
+            "modulus"
+          ]
+        },
+        "why": "Squaring the three components and adding is the whole of a magnitude. 121 + 4 + 49 has no square factor, so √174 is the final form.",
+        "common_mistakes": [
+          "Trying to simplify √174.",
+          "Giving the vector where the magnitude was asked for."
+        ]
+      }
+    ]
+  }
+}

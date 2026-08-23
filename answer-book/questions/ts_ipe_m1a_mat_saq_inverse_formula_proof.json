@@ -1,0 +1,306 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_inverse_formula_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is a non-singular matrix, then prove that A⁻¹ = (Adj A)/(det A).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write Adj A as the transpose of the cofactor matrix",
+      "marks": 1
+    },
+    {
+      "label": "Form the product A·(Adj A)",
+      "marks": 1
+    },
+    {
+      "label": "Identify the diagonal entries as det A and the rest as 0",
+      "marks": 1
+    },
+    {
+      "label": "Conclude A⁻¹ = (Adj A)/(det A)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 7 Matrices, answer 40, the chapter's opening question and on a ★★★ SSP (Super Scoring Page). The mark split is PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1. FOUR printed appearance tags (TS 18 · AP 16,17,19) make it the most-asked matrices SAQ in the book, and it is the only PROOF in the SAQ chapter — every other question there computes with numbers. It is also the theorem the four 'find the inverse' SAQs and the three matrix-inversion LAQs in this unit all use, which is why it is worth learning first rather than last. ONE PRESENTATION CHANGE, made deliberately: the book prints the full 3×3 product A·(Adj A) with entries such as a₁A₁+b₁B₁+c₁C₁ written out in all nine positions. That matrix is several times wider than this page's body, so the pattern is stated in words and the RESULT shown instead. Same mathematics, same four marked steps, one fewer unreadable line — the same choice made for LAQ answer 13 on book p.23. Star rank is the CHAPTER's ★★★. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would prove this formula — say what product you form, what that product turns out to be, and how the formula follows from it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the notation",
+        "marks": 0,
+        "margin_note": "No mark of its own, but the proof is unreadable without it. Small letters are the entries of A; the matching CAPITAL letters are their cofactors. Every line after this depends on that pairing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\text{Let } A = \\begin{bmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Let A₁, B₁, C₁, … be the cofactors of",
+          "a₁, b₁, c₁, … respectively.",
+          "A is non-singular, so det A ≠ 0."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a general 3×3 matrix A is written down and the capital letters are named as the cofactors of the matching small letters. Naming the setup is full credit.",
+          "accept": [
+            "take a general three by three matrix A and let the capital letters be the cofactors of the small letters",
+            "write A with entries a one b one c one and call their cofactors A one B one C one",
+            "set up a general matrix and name the cofactors",
+            "general matrix A rasi, small letters ki cofactors capital letters ani anukuntam",
+            "let A be any three by three matrix with cofactors written in capitals"
+          ],
+          "reject": [
+            "write the matrix",
+            "start the proof",
+            "take a matrix A"
+          ],
+          "heard_as": [
+            "cofactor",
+            "capital",
+            "a one b one c one",
+            "general matrix",
+            "non singular"
+          ]
+        },
+        "why": "This is a proof about EVERY non-singular matrix, so it cannot use particular numbers. The letters are the whole reason the result applies to any matrix you meet later.",
+        "common_mistakes": [
+          "Proving it for one numerical example, which proves nothing in general.",
+          "Never saying that det A ≠ 0, which is the one thing 'non-singular' means."
+        ]
+      },
+      {
+        "id": "s2_adj",
+        "kind": "equation",
+        "label": "Write Adj A",
+        "marks": 1,
+        "mark_note": "Adjoint",
+        "margin_note": "First mark. The adjoint is the cofactor matrix TRANSPOSED. Notice how the subscripts turn: the first ROW of the cofactor matrix becomes the first COLUMN of Adj A.",
+        "lines": [
+          "Adj A is the transpose of the cofactor matrix:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} A_1 & B_1 & C_1 \\\\ A_2 & B_2 & C_2 \\\\ A_3 & B_3 & C_3 \\end{bmatrix}^{T} = \\begin{bmatrix} A_1 & A_2 & A_3 \\\\ B_1 & B_2 & B_3 \\\\ C_1 & C_2 & C_3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Adj A is defined as the TRANSPOSE of the matrix of cofactors.",
+          "accept": [
+            "adj A is the transpose of the cofactor matrix so rows become columns",
+            "write the cofactor matrix and transpose it to get the adjoint",
+            "the adjoint is the cofactor matrix with rows and columns exchanged",
+            "cofactor matrix ni transpose cheste adj A vasthundi",
+            "take the transpose of the matrix of cofactors"
+          ],
+          "reject": [
+            "write adj A",
+            "find the adjoint",
+            "take the cofactors"
+          ],
+          "heard_as": [
+            "adjoint",
+            "adj A",
+            "transpose",
+            "cofactor matrix",
+            "rows become columns"
+          ]
+        },
+        "why": "The transpose is not decoration. It is exactly what makes the next product come out diagonal — without it the sums would not line up as det A.",
+        "common_mistakes": [
+          "Calling the cofactor matrix itself the adjoint.",
+          "Transposing A instead of the cofactor matrix."
+        ]
+      },
+      {
+        "id": "s3_product",
+        "kind": "equation",
+        "label": "Form A·(Adj A)",
+        "marks": 1,
+        "mark_note": "The product",
+        "margin_note": "Second mark. Multiply row by column. The top-left entry is row 1 of A against column 1 of Adj A, which is a₁A₁ + b₁B₁ + c₁C₁ — a row of A paired with its OWN cofactors.",
+        "lines": [
+          "Multiplying row by column, the entry in row i,",
+          "column j of A·(Adj A) is",
+          "aᵢAⱼ + bᵢBⱼ + cᵢCⱼ",
+          "So the diagonal entries pair each row of A with",
+          "its OWN cofactors; the others pair a row with a",
+          "DIFFERENT row's cofactors."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is multiplied by Adj A row against column, and that the resulting entries are sums of a row's entries against cofactors — the same row's on the diagonal, a different row's off it.",
+          "accept": [
+            "multiply A by adj A row into column so each entry is a row of A times a set of cofactors",
+            "the product entries are a i A j plus b i B j plus c i C j, same row on the diagonal and different rows off it",
+            "form the product and each entry is a row paired with cofactors",
+            "A ni adj A tho multiply cheste prathi entry oka row and cofactors product avthundi",
+            "row into column multiplication gives sums of entries times cofactors"
+          ],
+          "reject": [
+            "multiply them",
+            "form the product",
+            "do the multiplication"
+          ],
+          "heard_as": [
+            "A into adj A",
+            "row by column",
+            "cofactors",
+            "same row",
+            "different row"
+          ]
+        },
+        "why": "Everything turns on whether a row is paired with its own cofactors or with another row's. Those two cases have completely different answers, and that is the next step.",
+        "common_mistakes": [
+          "Multiplying entry by entry instead of row by column.",
+          "Forming (Adj A)·A and treating it as a different problem; it gives the same result.",
+          "Losing track of which subscript is the row and which the column."
+        ]
+      },
+      {
+        "id": "s4_diagonal",
+        "kind": "equation",
+        "label": "Identify the entries",
+        "marks": 1,
+        "mark_note": "Properties of determinants",
+        "margin_note": "Third mark, and the heart of the proof. A row paired with its own cofactors IS the expansion of det A. A row paired with another row's cofactors is the expansion of a determinant with two identical rows, and that is always 0.",
+        "lines": [
+          "a₁A₁ + b₁B₁ + c₁C₁ = det A   (expansion of det A)",
+          "a₁A₂ + b₁B₂ + c₁C₂ = 0   (two identical rows)",
+          "So every diagonal entry is det A and every",
+          "other entry is 0:",
+          {
+            "text": "A \\cdot (\\text{Adj } A) = \\begin{bmatrix} \\det A & 0 & 0 \\\\ 0 & \\det A & 0 \\\\ 0 & 0 & \\det A \\end{bmatrix} = (\\det A) I",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a row against its own cofactors gives det A (that IS the expansion), and a row against another row's cofactors gives 0 because it expands a determinant with two identical rows. Hence the product is (det A)I.",
+          "accept": [
+            "a row with its own cofactors is the expansion of det A and a row with another row's cofactors is zero because two rows would be identical so the product is det A times the identity",
+            "the diagonal entries are det A and the off diagonal ones are zero giving det A into I",
+            "same row cofactors give the determinant, different row cofactors give zero, so we get a scalar matrix",
+            "same row aithe det A vasthundi, vere row aithe zero, so det A times identity",
+            "the product comes out as det A on the diagonal and zeros elsewhere"
+          ],
+          "reject": [
+            "we get det A",
+            "the product is the identity",
+            "it becomes a diagonal matrix"
+          ],
+          "heard_as": [
+            "det A",
+            "identical rows",
+            "zero",
+            "diagonal",
+            "det A into I",
+            "expansion"
+          ]
+        },
+        "why": "Both halves come from the same fact. Expanding along a row uses that row's cofactors — so using a DIFFERENT row's cofactors is expanding a matrix in which that row has been copied over another, and a determinant with two equal rows is zero.",
+        "common_mistakes": [
+          "Stating the diagonal result and never explaining why the other entries vanish.",
+          "Saying the off-diagonal entries are zero 'by definition'; they are zero by a property of determinants.",
+          "Writing the product as I instead of (det A)I."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude the formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Divide by det A — legal precisely because A is non-singular — and the bracket that multiplies A to give I must BE the inverse. That last sentence is what turns the calculation into a proof.",
+        "lines": [
+          "A·(Adj A) = (det A)I. Since det A ≠ 0, divide by it:",
+          {
+            "text": "A\\left(\\frac{\\text{Adj } A}{\\det A}\\right) = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          "If AB = I then B = A⁻¹, so",
+          {
+            "text": "A⁻¹ = (Adj A)/(det A)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by det A is allowed because it is non-zero, that this gives A times something equal to I, and that this something is therefore A⁻¹ by the definition of an inverse.",
+          "accept": [
+            "divide both sides by det A which is allowed since it is non zero, then A times adj A over det A is the identity so that is the inverse",
+            "since det A is not zero we can divide and get A times something equals I which means that something is A inverse",
+            "dividing by the determinant gives A into adj A over det A equals I so A inverse is adj A over det A",
+            "det A zero kaadu kabatti divide cheyyochu, appudu A inverse equals adj A by det A vasthundi",
+            "because AB equals I means B is the inverse, the bracket is A inverse"
+          ],
+          "reject": [
+            "hence proved",
+            "so we get the formula",
+            "divide by det A"
+          ],
+          "heard_as": [
+            "divide by det A",
+            "non zero",
+            "AB equals I",
+            "A inverse",
+            "adj A by det A"
+          ]
+        },
+        "why": "The definition of A⁻¹ is the matrix that multiplies A to give I. Having produced exactly such a matrix, you have not just computed something — you have identified it.",
+        "common_mistakes": [
+          "Dividing by det A without saying why that is allowed.",
+          "Stopping at A·(Adj A) = (det A)I, which is a true statement but not the thing asked for.",
+          "Writing A⁻¹ = det A / Adj A, which is upside down and meaningless for matrices."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh_five_halves",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If cosh x = 5/2, then find cosh(2x) and sinh(2x).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find sinh x",
+      "marks": 1
+    },
+    {
+      "label": "Apply the double-angle formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 139.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,18 (the book prints TS 17 twice). The twin of 139.1 run the other way: the COSH is given, so the identity is rearranged the other way and the surd does not come out whole. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find sinh x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Rearranged the other way this time: sinh x = √(cosh²x − 1) — a MINUS, because the identity is cosh² − sinh² = 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given cosh x = 5/2",
+          "sinh x = √(cosh²x − 1)   [∵ cosh²x − sinh²x = 1]",
+          "= √((5/2)² − 1) = √(25/4 − 1)",
+          "= √(21/4) = √21/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinh x = √(cosh²x − 1) = √21/2, with a minus under the root this time.",
+          "accept": [
+            "sinh x is root of cosh squared minus one which gives root twenty one over two",
+            "rearrange the identity the other way, minus one this time",
+            "sinh x is root twenty one by two",
+            "cosh square minus one, root twenty one by two vasthundi",
+            "find sinh x from the identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh x",
+            "root twenty one",
+            "cosh squared minus one",
+            "minus"
+          ]
+        },
+        "why": "The same identity gives a plus under the root when solving for cosh and a minus when solving for sinh. Which one you need depends on what was given.",
+        "common_mistakes": [
+          "Using √(cosh²x + 1) by copying the twin.",
+          "Getting 25/4 − 1 as 24/4."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the double-angle formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Same two formulas as the twin. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
+        "lines": [
+          "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
+          "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
+          {
+            "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh2x = 23/2 and sinh2x = 5√21/2.",
+          "accept": [
+            "cosh two x is twenty three over two and sinh two x is five root twenty one over two",
+            "apply both formulas, the surd survives only in sinh two x",
+            "the answers are twenty three halves and five root twenty one over two",
+            "cosh two x twenty three by two, sinh two x five root twenty one by two",
+            "use the double angle formulas"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty three over two",
+            "five root twenty one",
+            "cosh two x",
+            "sinh two x"
+          ]
+        },
+        "why": "cosh2x uses only the SQUARES, so the root disappears there; sinh2x uses sinh itself, so the surd stays. That is why one answer is rational and the other is not.",
+        "common_mistakes": [
+          "Squaring √21/2 as √21/4.",
+          "Giving only cosh 2x."
+        ]
+      }
+    ]
+  }
+}

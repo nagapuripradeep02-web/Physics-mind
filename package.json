@@ -32,6 +32,7 @@
     "deploy:review": "npm run deploy:app",
     "deploy:cf-site": "npx wrangler deploy",
     "deploy:app": "npx wrangler deploy -c wrangler.app.toml",
+    "deploy:answers": "npm run build:answers:hosted && npx wrangler deploy -c wrangler.answers.toml",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "check:renderer-syntax": "npx tsx src/scripts/check-renderer-syntax.ts",
     "check:motion-registry": "npx tsx src/scripts/audit_motion_registry.ts",

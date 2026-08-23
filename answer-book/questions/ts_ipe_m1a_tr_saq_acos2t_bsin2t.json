@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_acos2t_bsin2t",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the condition",
+      "marks": 1
+    },
+    {
+      "label": "Expand sin2θ and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Expand cos2θ and cancel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 65, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 10' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. undefined ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_the_condition",
+        "kind": "equation",
+        "label": "Rewrite the condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. tanθ = b/a is a ratio of sine to cosine, so cross-multiplying gives a relation with no fraction in it — much easier to substitute.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given tanθ = b/a",
+          "⇒ sinθ/cosθ = b/a",
+          "⇒ b cosθ = a sinθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = b/a is rewritten as sinθ/cosθ = b/a and cross-multiplied to b cosθ = a sinθ.",
+          "accept": [
+            "write tan as sin over cos and cross multiply to get b cos theta equals a sin theta",
+            "turn the condition into b cos theta equals a sin theta",
+            "cross multiply the given ratio",
+            "tan theta ni sin by cos ga rasi cross multiply cheyyali",
+            "the condition becomes b cos theta equals a sin theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b cos theta",
+            "a sin theta",
+            "cross multiply",
+            "tan theta"
+          ]
+        },
+        "why": "A condition with a fraction is awkward to substitute. Clearing it first is what makes the substitution below a single clean swap.",
+        "common_mistakes": [
+          "Leaving the condition as a fraction.",
+          "Cross-multiplying the wrong way to a cosθ = b sinθ."
+        ]
+      },
+      {
+        "id": "s2_expand_sin2_and_substitu",
+        "kind": "equation",
+        "label": "Expand sin2θ and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Expand sin2θ as 2 sinθ cosθ, then spot the b cosθ inside it and swap it for a sinθ using the condition.",
+        "lines": [
+          "L.H.S = a cos2θ + b sin2θ",
+          "= a cos2θ + b(2 sinθ cosθ)",
+          "= a cos2θ + 2 sinθ (b cosθ)",
+          "= a cos2θ + 2 sinθ (a sinθ)",
+          "  [∵ b cosθ = a sinθ]",
+          "= a cos2θ + 2a sin²θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin2θ is expanded to 2 sinθ cosθ, and that b cosθ inside it is replaced by a sinθ using the condition.",
+          "accept": [
+            "expand sin two theta as two sin cos then replace b cos theta by a sin theta",
+            "use the double angle and then substitute the condition",
+            "the b cos theta becomes a sin theta so everything is in a",
+            "sin two theta expand chesi, b cos theta ni a sin theta ga marchali",
+            "substitute the condition inside the expansion"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin theta cos theta",
+            "b cos theta",
+            "a sin theta",
+            "substitute"
+          ]
+        },
+        "why": "The b has to disappear because the answer is just a. Grouping the expansion so that b cosθ appears as a unit is what lets the condition remove it.",
+        "common_mistakes": [
+          "Expanding sin2θ but never grouping b with cosθ.",
+          "Substituting for the wrong factor."
+        ]
+      },
+      {
+        "id": "s3_expand_cos2_and_cancel",
+        "kind": "boxed_final",
+        "label": "Expand cos2θ and cancel",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Choose cos2θ = 1 − 2sin²θ, not the other forms — it is the one whose second term cancels what is already there.",
+        "lines": [
+          "= a(1 − 2sin²θ) + 2a sin²θ",
+          "  [∵ cos2θ = 1 − 2sin²θ]",
+          "= a − 2a sin²θ + 2a sin²θ",
+          {
+            "text": "= a = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos2θ = 1 − 2sin²θ is used, and that the two sin²θ terms cancel to leave a.",
+          "accept": [
+            "use cos two theta equals one minus two sin squared so the sine terms cancel leaving a",
+            "expand cos two theta and the two terms cancel",
+            "choose the form that cancels and the answer is a",
+            "cos two theta ni one minus two sin square ga rasthe cancel ayi a vasthundi",
+            "the sin squared terms cancel leaving just a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus two sin squared",
+            "cancel",
+            "a",
+            "cos two theta"
+          ]
+        },
+        "why": "cos2θ has three standard forms and only one of them cancels here. Choosing the right one is the whole skill of the last line.",
+        "common_mistakes": [
+          "Using cos2θ = 2cos²θ − 1 and being left with a mixture.",
+          "Cancelling before substituting."
+        ]
+      }
+    ]
+  }
+}

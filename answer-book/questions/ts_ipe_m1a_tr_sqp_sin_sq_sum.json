@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_sq_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A, B, C are angles in a triangle, then prove that sin²A + sin²B − sin²C = 2 sin A sin B cos C.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Group the last two terms",
+      "marks": 2
+    },
+    {
+      "label": "Replace B + C by 180° − A",
+      "marks": 1
+    },
+    {
+      "label": "Take sin A common",
+      "marks": 1
+    },
+    {
+      "label": "Replace sin A inside the bracket",
+      "marks": 2
+    },
+    {
+      "label": "Apply the sum formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.107 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 167. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. The condition A + B + C = 180° is used TWICE — once to turn sin(B+C) into sin A, and once to turn sin A back into sin(B+C). Those are not the same move, and both are needed. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios upto Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_last_two_terms",
+        "kind": "equation",
+        "label": "Group the last two terms",
+        "marks": 2,
+        "mark_note": "Difference of squares",
+        "margin_note": "Two of the seven marks. Bracket sin²B − sin²C — the two that differ in sign — and apply sin²A − sin²B = sin(A+B) sin(A−B).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 180°.",
+          "L.H.S = sin²A + (sin²B − sin²C)",
+          "= sin²A + sin(B + C) sin(B − C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²B − sin²C is grouped and turned into sin(B+C) sin(B−C).",
+          "accept": [
+            "group the last two terms and use sin squared B minus sin squared C equals sin of B plus C into sin of B minus C",
+            "bracket the two terms that differ in sign",
+            "apply the difference of squares to the last pair",
+            "chivari rendu group chesi difference of squares apply cheyyali",
+            "group and use the identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin B plus C",
+            "sin B minus C",
+            "group",
+            "difference of squares"
+          ]
+        },
+        "why": "The minus sign sits between the second and third terms, so those two are the pair. Grouping the first two instead gives a sum, not a difference.",
+        "common_mistakes": [
+          "Grouping sin²A + sin²B.",
+          "Using cos²B − cos²C, which carries an extra minus."
+        ]
+      },
+      {
+        "id": "s2_replace_b_c_by_180_a",
+        "kind": "equation",
+        "label": "Replace B + C by 180° − A",
+        "marks": 1,
+        "mark_note": "Angle sum",
+        "margin_note": "Third mark. From A + B + C = 180°, B + C = 180° − A, and sin(180° − A) = sin A.",
+        "lines": [
+          "B + C = 180° − A",
+          "⇒ sin(B + C) = sin(180° − A) = sin A",
+          "L.H.S = sin²A + sin A sin(B − C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B + C = 180° − A gives sin(B+C) = sin A.",
+          "accept": [
+            "B plus C is one eighty minus A and sine of one eighty minus A is sine A",
+            "use the angle sum to replace sin of B plus C by sin A",
+            "sin of one eighty minus A equals sin A",
+            "B plus C ante one eighty minus A, sin same",
+            "apply the triangle angle sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one eighty minus A",
+            "sin A",
+            "angle sum"
+          ]
+        },
+        "why": "sin(180° − A) = sin A but cos(180° − A) = −cos A. Only the sine is unchanged by the shift, which is why this route uses sines.",
+        "common_mistakes": [
+          "Writing sin(180° − A) = −sin A.",
+          "Replacing B + C by 90° − A."
+        ]
+      },
+      {
+        "id": "s3_take_sin_a_common",
+        "kind": "equation",
+        "label": "Take sin A common",
+        "marks": 1,
+        "mark_note": "Factor",
+        "margin_note": "Fourth mark. Both terms now carry sin A, so factor it out — everything that follows happens inside the bracket.",
+        "lines": [
+          "L.H.S = sin A [sin A + sin(B − C)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A is taken out as a common factor, leaving sin A + sin(B − C) inside.",
+          "accept": [
+            "both terms have sin A so take it outside leaving sin A plus sin of B minus C",
+            "factor out sin A",
+            "take the common factor out",
+            "rendu terms lo sin A undi, bayata teeyali",
+            "pull sin A out as a common factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common factor",
+            "sin A",
+            "bracket"
+          ]
+        },
+        "why": "The right-hand side has 2 sin A sin B cos C — one sin A outside is exactly what is wanted, and the rest of the work is on the bracket.",
+        "common_mistakes": [
+          "Factoring sin²A instead.",
+          "Expanding the bracket back out."
+        ]
+      },
+      {
+        "id": "s4_replace_sin_a_inside_the_b",
+        "kind": "equation",
+        "label": "Replace sin A inside the bracket",
+        "marks": 2,
+        "mark_note": "Second substitution",
+        "margin_note": "Two marks. Inside the bracket, write sin A back as sin(B+C) — the reverse of step 2, so both terms become sines of B and C.",
+        "lines": [
+          "Inside the bracket, sin A = sin(180° − (B + C))",
+          "= sin(B + C)",
+          "Bracket = sin(B + C) + sin(B − C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A inside the bracket is written as sin(B + C), so the bracket is sin(B+C) + sin(B−C).",
+          "accept": [
+            "write sin A inside the bracket as sin of B plus C so both terms involve B and C",
+            "reverse the earlier substitution inside the bracket only",
+            "the bracket becomes sin B plus C plus sin B minus C",
+            "bracket lo sin A ni sin B plus C ga marchali",
+            "substitute back inside the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin B plus C",
+            "inside the bracket",
+            "sin B minus C"
+          ]
+        },
+        "why": "The sin A outside is kept and the sin A inside is converted — the same quantity treated two different ways, because the bracket needs a sum-to-product shape.",
+        "common_mistakes": [
+          "Converting both sin A terms.",
+          "Leaving the bracket as sin A + sin(B − C) and trying to close from there."
+        ]
+      },
+      {
+        "id": "s5_apply_the_sum_formula",
+        "kind": "boxed_final",
+        "label": "Apply the sum formula",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. sin(X+Y) + sin(X−Y) = 2 sin X cos Y with X = B, Y = C gives 2 sin B cos C.",
+        "lines": [
+          "sin(B + C) + sin(B − C) = 2 sin B cos C",
+          "L.H.S = sin A · 2 sin B cos C",
+          {
+            "text": "∴ sin²A + sin²B − sin²C = 2 sin A sin B cos C",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(B+C) + sin(B−C) = 2 sin B cos C, closing the proof.",
+          "accept": [
+            "sin of B plus C plus sin of B minus C is two sin B cos C which closes the proof",
+            "the bracket becomes two sin B cos C",
+            "multiply by the sin A outside to reach the right hand side",
+            "bracket two sin B cos C, sin A tho multiply cheste answer",
+            "apply the sum to product formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin B cos C",
+            "sum formula",
+            "right hand side"
+          ]
+        },
+        "why": "The pair sin(X+Y) + sin(X−Y) always collapses to 2 sin X cos Y. It is the same identity used in step 1, run in the other direction.",
+        "common_mistakes": [
+          "Writing 2 cos B sin C instead.",
+          "Stopping before multiplying by the outside sin A."
+        ]
+      }
+    ]
+  }
+}

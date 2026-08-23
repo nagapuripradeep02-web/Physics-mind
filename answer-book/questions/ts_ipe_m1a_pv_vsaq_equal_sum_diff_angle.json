@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_equal_sum_diff_angle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If |a + b| = |a − b|, then find the angle between a and b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Square both sides",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 118.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the angle from this condition.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Square both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Magnitudes are awkward to work with directly; squaring turns them into dot products, where the algebra is easy.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given |a + b| = |a − b|",
+          "⇒ |a + b|² = |a − b|²",
+          "⇒ a² + b² + 2a·b = a² + b² − 2a·b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are squared, turning the magnitudes into dot products and expanding.",
+          "accept": [
+            "square both sides so the magnitudes become dot products and expand",
+            "squaring gives a squared plus b squared plus two a dot b on one side and minus on the other",
+            "square both sides to remove the modulus",
+            "rendu sides square cheste dot products vasthai",
+            "expand both squared magnitudes"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "square both sides",
+            "a dot b",
+            "expand",
+            "modulus"
+          ]
+        },
+        "why": "The square of a magnitude is the vector dotted with itself, so squaring converts a statement about lengths into ordinary algebra.",
+        "common_mistakes": [
+          "Cancelling the moduli directly to a + b = a − b, which is false.",
+          "Forgetting the cross term 2a·b."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for the angle",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Everything cancels except the cross terms, and 4a·b = 0 forces the dot product to zero.",
+        "lines": [
+          "⇒ 4a·b = 0  ⇒  a·b = 0",
+          "A zero dot product means the vectors are",
+          "perpendicular.",
+          {
+            "text": "∴ The angle between a and b is 90°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms cancel to give a·b = 0, so the angle is 90°.",
+          "accept": [
+            "everything cancels leaving four a dot b equals zero so the angle is ninety degrees",
+            "a dot b is zero so they are perpendicular, ninety degrees",
+            "the angle comes out as ninety degrees",
+            "a dot b zero, angle ninety degrees",
+            "the dot product vanishes so the angle is a right angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "ninety degrees",
+            "a dot b zero",
+            "perpendicular",
+            "right angle"
+          ]
+        },
+        "why": "Geometrically |a+b| = |a−b| says the two diagonals of the parallelogram on a and b are equal — and that happens exactly when the parallelogram is a rectangle.",
+        "common_mistakes": [
+          "Giving the answer as 0° or 180°.",
+          "Stopping at a·b = 0 without naming the angle."
+        ]
+      }
+    ]
+  }
+}

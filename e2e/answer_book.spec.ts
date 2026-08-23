@@ -246,13 +246,27 @@ test('the paper section and marks agree across header, chip and mark split', asy
  * if the build genuinely has none.
  */
 async function selectMultiCutQuestion(page: any): Promise<any[] | null> {
-    const ids = await page.evaluate(() => (window as any).PM_ANSWER.questionIds);
-    for (const id of ids) {
-        await openQ(page, id);
-        const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
-        if (cuts.length >= 2) return cuts;
-    }
-    return null;
+    // Find the id from the DATA, then open only that one. This used to open every
+    // question in turn and ask listCuts() — O(n) page renders — which timed out once
+    // Maths-1A Unit 6 took the book past 160 questions. `cuts` is a top-level field
+    // on the question, so the scan needs no rendering at all. Raising the timeout
+    // would have worked today and failed again at the next unit.
+    //
+    // ⚠ THIS BUILD HAS NO MULTI-CUT QUESTION, so the two tests below currently SKIP.
+    // The only ones the book ever had were physics (parallelogram law at LAQ+SAQ,
+    // projectile motion at LAQ+2xSAQ), and physics Unit 4 was removed from this
+    // mathematics-only book. Mathematics authors one length per question, so nothing
+    // here exercises cuts. The tests are KEPT, not deleted: the mechanism is still
+    // live in the router, the catalog and the PM_ANSWER seam, and it guards a real
+    // past bug (append-only chrome stacking duplicate renders). Coverage returns the
+    // moment any question is authored at two lengths — do NOT invent a two-cut
+    // question just to turn these green.
+    const id = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[]).find((q) => (q.cuts || []).length >= 2)?.question_id
+        ?? null);
+    if (id === null) return null;
+    await openQ(page, id);
+    return await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
 }
 
 // ── cuts: the same question at two lengths ──────────────────────────────────
@@ -341,8 +355,8 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(360_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units, again at 8 (never trim the sweep)
-    // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q.
+    test.setTimeout(900_000);   // fleet sweep — raised deliberately at 4 units, at 8, and at the physics+maths merge (448 questions). Never trim the sweep.
+    // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -375,8 +389,8 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(360_000);   // fleet sweep — cost grows with every unit; raised deliberately at 4 units, again at 8 (never trim the sweep)
-    // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q.
+    test.setTimeout(900_000);   // fleet sweep — raised deliberately at 4 units, at 8, and at the physics+maths merge (448 questions). Never trim the sweep.
+    // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -448,10 +462,14 @@ test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
 test('every cut of every question totals exactly its own marks', async ({ page }) => {
     // Fleet sweep, and the widest one: every question TIMES every cut. It hit the
     // 30 s default the moment a second unit doubled the book — a timeout, never an
-    // assertion, so the gate was reporting "failed" while nothing was wrong.
-    test.setTimeout(360_000);   // the WIDEST sweep: questions x cuts. Raised 240s -> 360s at 8 units.
-    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question,
-    // so 360s holds to roughly 370 questions. Raise deliberately; never trim the sweep.
+    // assertion, so the gate was reporting "failed" while nothing was wrong. It then
+    // hit 240 s at 270 entries, for the same reason. The floor is arithmetic: the
+    // waits below are 250 ms per question plus 650 ms per cut, so N entries need at
+    // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
+    // never trim the sweep or the waits to fit, because a shortened sweep silently
+    // stops checking the questions it drops.
+    test.setTimeout(900_000);   // the WIDEST sweep: questions x cuts. 454 entries after the physics+maths merge.
+    // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~0.9 s/question.
     await openFirst(page);
     const qCount = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
 
@@ -499,17 +517,28 @@ test('no written line wraps past its own height, in either cut', async ({ page }
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
         await page.waitForTimeout(500);
 
-        const wrapped = await page.evaluate(() => {
+        const r = await page.evaluate(() => {
             const bad: string[] = [];
+            const offRule: string[] = [];
             document.querySelectorAll('.step-block .line').forEach((el) => {
                 const e = el as HTMLElement;
                 const lh = parseFloat(getComputedStyle(e).lineHeight || '0');
                 if (!lh || !e.textContent) return;
-                if (e.getBoundingClientRect().height > lh * 1.6) bad.push(e.textContent.trim());
+                const h = e.getBoundingClientRect().height;
+                // A typeset line (render: "katex") is legitimately several rules tall —
+                // a 3×3 matrix is three. The wrap rule cannot apply to it, but the
+                // STRONGER invariant does: it must occupy a whole number of rules, or
+                // every line after it walks off the ruled paper.
+                if (e.getAttribute('data-render') === 'katex') {
+                    if (Math.round(h) % 32 !== 0) offRule.push(e.textContent.trim() + ` [h=${h}]`);
+                    return;
+                }
+                if (h > lh * 1.6) bad.push(e.textContent.trim());
             });
-            return bad;
+            return { bad, offRule };
         });
-        expect(wrapped, `cut "${cuts[i].key}" has wrapped line(s)`).toEqual([]);
+        expect(r.bad, `cut "${cuts[i].key}" has wrapped line(s)`).toEqual([]);
+        expect(r.offRule, `cut "${cuts[i].key}" has typeset line(s) off the rule`).toEqual([]);
     }
 });
 
@@ -689,7 +718,7 @@ test('chapter chips appear from the second unit and filter to their own chapter'
             unitCount: units.length,
             hidden: row.hidden,
             chips: [...row.querySelectorAll('.cat-chip')].map((c) => c.getAttribute('data-unit')),
-            want: ['ALL', ...units.map((u: any) => String(u.number))],
+            want: ['ALL', ...units.map((u: any) => ((u.subject || 'physics') + '-' + u.number))],
         };
     });
     expect(shape.unitCount).toBeGreaterThanOrEqual(2);   // else this gate proves nothing
@@ -703,7 +732,7 @@ test('chapter chips appear from the second unit and filter to their own chapter'
         await page.waitForTimeout(200);
         const r = await page.evaluate((k) => {
             const units = (window as any).PM_UNITS as any[];
-            const mine = k === 'ALL' ? units : units.filter((u: any) => String(u.number) === k);
+            const mine = k === 'ALL' ? units : units.filter((u: any) => ((u.subject || 'physics') + '-' + u.number) === k);
             const chip = document.querySelector('#unitChips .cat-chip[data-unit="' + k + '"]')!;
             return {
                 visible: document.querySelectorAll('.cat-card').length,
@@ -721,7 +750,13 @@ test('chapter chips appear from the second unit and filter to their own chapter'
     }
 });
 
-test('an LAQ card opens the 8-mark answer, an SAQ card the 4-mark one', async ({ page }) => {
+test('a card opens the length it advertises, for both LAQ and SAQ', async ({ page }) => {
+    // This used to assert the literal 8 and 4 of a Physics-I paper. Those numbers
+    // are NOT universal — a Maths-1A long answer is 7 — so with physics removed the
+    // literal would have failed on a book that was correct. What the test is really
+    // for is that the card's advertised length is the length that opens, so it now
+    // reads the number OFF THE CARD and compares. That holds for every subject and
+    // catches a genuine mismatch the hardcoded pair would have missed.
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
@@ -736,31 +771,31 @@ test('an LAQ card opens the 8-mark answer, an SAQ card the 4-mark one', async ({
     });
     test.skip(!have.laq || !have.saq, 'need an authored LAQ and SAQ');
 
-    await page.click('#qtypeChips .cat-chip[data-qtype="LAQ"]');
-    await page.waitForTimeout(200);
-    await page.click('a.cat-card');
-    await page.waitForSelector('.page');
-    await page.waitForTimeout(300);
-    const laq = await page.evaluate(() => ({
-        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
-        total: (window as any).PM_ANSWER.getState().marksTotal,
-    }));
-    expect(laq.qtype).toBe('LAQ');
-    expect(laq.total).toBe(8);
+    for (const section of ['LAQ', 'SAQ'] as const) {
+        await page.click(`#qtypeChips .cat-chip[data-qtype="${section}"]`);
+        await page.waitForTimeout(200);
 
-    await page.click('#btnCatalog');
-    await page.waitForSelector('#catalogView:not([hidden])');
-    await page.click('#qtypeChips .cat-chip[data-qtype="SAQ"]');
-    await page.waitForTimeout(200);
-    await page.click('a.cat-card');
-    await page.waitForSelector('.page');
-    await page.waitForTimeout(300);
-    const saq = await page.evaluate(() => ({
-        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
-        total: (window as any).PM_ANSWER.getState().marksTotal,
-    }));
-    expect(saq.qtype).toBe('SAQ');
-    expect(saq.total).toBe(4);
+        // what the first card PROMISES, read off its own chip
+        const promised = await page.evaluate(() => {
+            const chip = document.querySelector('a.cat-card .cc-chip')?.textContent ?? '';
+            const m = /(\d+)\s*marks/.exec(chip);
+            return m ? Number(m[1]) : null;
+        });
+        expect(promised, `${section} card advertises a mark value`).not.toBeNull();
+
+        await page.click('a.cat-card');
+        await page.waitForSelector('.page');
+        await page.waitForTimeout(300);
+        const opened = await page.evaluate(() => ({
+            qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
+            total: (window as any).PM_ANSWER.getState().marksTotal,
+        }));
+        expect(opened.qtype, `${section} card opens a ${section}`).toBe(section);
+        expect(opened.total, `${section} card keeps its promise`).toBe(promised);
+
+        await page.click('#btnCatalog');
+        await page.waitForSelector('#catalogView:not([hidden])');
+    }
 });
 
 test('the notebook offers no length switch — the catalog choice is final', async ({ page }) => {
@@ -779,9 +814,21 @@ test('the notebook offers no length switch — the catalog choice is final', asy
 });
 
 test('deep link boots into the notebook and Back returns to the catalog', async ({ page }) => {
-    // the shareable path: a hash link opens a question + cut directly
-    const target = 'ts_ipe_p1_mp_projectile_motion';
-    await page.goto(URL + '#/q/' + target + '/saq_parabola');
+    // The shareable path: a hash link opens a question (+ cut, when it has one)
+    // directly. The target is taken FROM THE DATA — it used to name a physics id,
+    // which stopped existing when physics Unit 4 left this mathematics-only book.
+    // Prefer a question with a second cut so the /<cutKey> segment is exercised;
+    // fall back to the first question, whose default cut carries no segment.
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const pick = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const multi = qs.find((q) => (q.cuts || []).length >= 2);
+        if (multi) return { id: multi.question_id, cut: multi.cuts[1].key };
+        return { id: qs[0].question_id, cut: null };
+    });
+    const target = pick.id;
+    await page.goto(URL + '#/q/' + target + (pick.cut ? '/' + pick.cut : ''));
     await page.waitForSelector('.page');
     await page.waitForTimeout(300);
 
@@ -793,7 +840,7 @@ test('deep link boots into the notebook and Back returns to the catalog', async 
     }));
     expect(nb.view).toBe('notebook');
     expect(nb.id).toBe(target);
-    expect(nb.cut).toBe('saq_parabola');
+    if (pick.cut) expect(nb.cut).toBe(pick.cut);
     expect(nb.backShown).toBe(true);
 
     await page.click('#btnCatalog');
@@ -812,11 +859,16 @@ test('catalog search narrows the cards and can find nothing', async ({ page }) =
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
+    const all = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
     await page.fill('#catSearch', 'parallelogram');
     await page.waitForTimeout(200);
     const one = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
     expect(one).toBeGreaterThanOrEqual(1);
-    expect(one).toBeLessThan(5);
+    // NARROWS, measured against the unfiltered list — not an absolute card count.
+    // A fixed bound rots: "parallelogram" passed 5 cards the moment the Star
+    // Questions Plus backfill added a parallelogram-diagonals question, and the
+    // gate failed on a book that had grown, not on a book that had broken.
+    expect(one).toBeLessThan(all / 4);
 
     // a search that matches nothing shows the no-results row, not a blank page
     await page.fill('#catSearch', 'zzzz nothing');
@@ -1019,10 +1071,10 @@ test('the triage strip appears under a chapter filter and card counts stay exact
     }));
     expect(landing.triageHidden).toBe(true);     // no chapter filter → no strip
 
-    await page.click('.cat-chip[data-unit="4"]');
+    await page.click('.cat-chip[data-unit="physics-4"]');
     await page.waitForTimeout(150);
     const filtered = await page.evaluate(() => {
-        const u4 = ((window as any).PM_UNITS as any[]).find((u) => u.number === 4);
+        const u4 = ((window as any).PM_UNITS as any[]).find((u) => ((u.subject || 'physics') + '-' + u.number) === 'physics-4');
         return {
             triageHidden: document.getElementById('vidiTriage')!.hidden,
             links: document.querySelectorAll('#vidiTriage .vidi-tri-link').length,
@@ -1548,4 +1600,148 @@ test('plan-less revision: the next day queues yesterday\'s questions, and revisi
     await page.waitForSelector('.cc-chip.pm-upr.g');
     expect(await page.$$eval('.cc-chip.pm-upr.g', (els) => els.map((e) => e.textContent)))
         .toContain('✓ done');
+});
+
+// ── mathematics: the subject dimension + typeset lines ───────────────────────
+// Both mechanisms landed with the Maths-1A track. They are asserted here because
+// each one fails SILENTLY: a broken subject filter just shows the wrong cards, and
+// a build that stops typesetting shows raw TeX that still "renders".
+
+test('the catalog filters by subject and each section shows its own mark value', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const subjects = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        const by: Record<string, number> = {};
+        units.forEach((u) => {
+            const s = u.subject || 'physics';
+            by[s] = (by[s] ?? 0) + u.questions.length;
+        });
+        return by;
+    });
+    const names = Object.keys(subjects);
+    const row = page.locator('#subjectChips');
+    // One subject = no row at all; the physics-only build must look untouched.
+    if (names.length < 2) {
+        await expect(row).toBeHidden();
+        return;
+    }
+    await expect(row).toBeVisible();
+
+    for (const s of names) {
+        await page.click(`#subjectChips [data-subject="${s}"]`);
+        await page.waitForTimeout(200);
+        const shown = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
+        expect(shown, `cards shown for ${s}`).toBe(subjects[s]);
+    }
+
+    // The section heading's mark value is read off the questions, never hardcoded:
+    // a Physics-I long answer is 8 marks and a Maths-1A long answer is 7.
+    await page.click('#subjectChips [data-subject="ALL"]');
+    await page.waitForTimeout(200);
+    const heads = await page.evaluate(() =>
+        [...document.querySelectorAll('#catSections .cat-subhead')].map((h) => h.textContent || ''));
+    for (const h of heads) {
+        const m = /·\s*(\d+)\s*marks/.exec(h);
+        if (!m) continue;
+        const card = await page.evaluate((label) => {
+            const hs = [...document.querySelectorAll('#catSections .cat-subhead')];
+            const el = hs.find((x) => x.textContent === label)!;
+            let n: Element | null = el.nextElementSibling;
+            while (n && !n.classList.contains('cat-card')) n = n.nextElementSibling;
+            return n ? (n.querySelector('.cc-chip')?.textContent ?? '') : '';
+        }, h);
+        expect(card, `first card under "${h}"`).toContain(m[1] + ' marks');
+    }
+});
+
+test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
+    test.setTimeout(240_000);   // fleet sweep — cost grows with every typeset question; raised deliberately
+                                // when Maths-1A Unit 3 (Matrices) took the book from 2 typeset questions to 39.
+                                // NEVER trim the sweep instead: .kx-clip is overflow:hidden, so an over-wide
+                                // typeset line is truncated with NO other symptom, and this is the only guard.
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const withKatex = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[])
+            .filter((q) => q.answer.steps.some((s: any) =>
+                (s.lines || []).some((l: any) => l && l.render === 'katex')))
+            .map((q) => q.question_id));
+    if (!withKatex.length) return;              // a book with no typeset line is legal
+
+    for (const id of withKatex) {
+        await openQ(page, id);
+        await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+        await page.waitForTimeout(700);
+        const r = await page.evaluate(() => {
+            const clips = [...document.querySelectorAll('.kx-clip')] as HTMLElement[];
+            return {
+                clips: clips.length,
+                typeset: clips.filter((c) => c.querySelector('.katex')).length,
+                // overflow:hidden makes the wipe possible and truncation invisible.
+                // Two DIFFERENT ways a typeset line loses its right edge, so assert both:
+                //  (a) the tree is wider than the space the line actually gives it. Measure
+                //      against the CONTENT box — clientWidth still includes the 56px
+                //      padding-left that .line.eq/.boxed add, and every matrix line is
+                //      eq-styled, so comparing against clientWidth alone silently allowed
+                //      anything up to 56px of overflow.
+                //  (b) the clip ended up NARROWER than the tree inside it — the frozen-width
+                //      bug that shaved the closing "]" off the Matrices answers.
+                clipped: clips.filter((c) => {
+                    const line = c.closest('.line') as HTMLElement;
+                    const cs = getComputedStyle(line);
+                    const avail = line.clientWidth
+                        - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+                    const kin = c.firstElementChild as HTMLElement | null;
+                    const natural = kin ? kin.getBoundingClientRect().width : c.scrollWidth;
+                    return natural > avail + 0.5                       // (a) genuinely too wide
+                        || natural > c.getBoundingClientRect().width + 0.5;  // (b) under-shown
+                }).map((c) => c.getAttribute('data-tex')),
+                rawTex: /\\(circ|therefore|because|begin\{|frac|text\{)/.test(
+                    document.getElementById('notebookView')!.textContent || ''),
+            };
+        });
+        expect(r.clips, `${id} has typeset lines`).toBeGreaterThan(0);
+        expect(r.typeset, `${id}: every clip holds real KaTeX output`).toBe(r.clips);
+        expect(r.clipped, `${id}: typeset line(s) truncated by the wipe container`).toEqual([]);
+        expect(r.rawTex, `${id}: raw TeX leaked onto the page`).toBe(false);
+    }
+});
+
+// The sweep above reveals INSTANTLY, which never freezes a clip width — so it cannot
+// see the failure this test exists for. Stepping through with the real wipe measures
+// each clip and freezes that width; a matrix measured before its tall-delimiter KaTeX
+// Size font has loaded freezes SHORT, and the closing "]" is gone for good. That is
+// font-load dependent, so it hit the first matrix opened on a cold page and not the
+// rest — exactly the "sometimes there is no ]" a reader reported on 2026-08-21.
+test('an animated typeset reveal never leaves a clip narrower than its own ink', async ({ page }) => {
+    test.setTimeout(120_000);
+    await page.goto(URL);                       // cold: the Size fonts are not fetched yet
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const matrixQ = await page.evaluate(() =>
+        ((window as any).PM_QUESTIONS as any[]).find((q) =>
+            q.answer.steps.some((s: any) => (s.lines || []).some((l: any) =>
+                l && l.render === 'katex' && /\\begin\{[bv]matrix\}/.test(l.text))))?.question_id);
+    if (!matrixQ) return;                       // a book with no matrix is legal
+
+    await page.evaluate((q) => (window as any).PM_ANSWER.openQuestion(q), matrixQ);
+    await page.waitForSelector('.page');
+    for (let i = 0; i < 3; i++) {
+        await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+        await page.waitForTimeout(2600);        // let the wipe finish and the clip settle
+    }
+
+    const short = await page.evaluate(() =>
+        [...document.querySelectorAll('.kx-clip')]
+            .map((c) => {
+                const ink = (c.firstElementChild as HTMLElement).getBoundingClientRect().width;
+                return { tex: c.getAttribute('data-tex') || '',
+                         missing: +(ink - c.getBoundingClientRect().width).toFixed(1) };
+            })
+            .filter((r) => r.missing > 0.5));
+    expect(short, `${matrixQ}: clip is narrower than its typeset ink — the closing ` +
+        `delimiter is being cut off`).toEqual([]);
 });

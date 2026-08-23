@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_cot_ratio_357",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, if cot(A/2) : cot(B/2) : cot(C/2) = 3 : 5 : 7, then show that a : b : c = 6 : 5 : 4.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce to a ratio of (s−a)",
+      "marks": 2
+    },
+    {
+      "label": "Find s, then the sides",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.76 — SAQ chapter 13 Properties of Triangles, answer 83, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. A ratio question run backwards: the cotangent ratio is given and the side ratio wanted. The common s/Δ cancels out of the given ratio immediately. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce_to_a_ratio_of_s_a",
+        "kind": "equation",
+        "label": "Reduce to a ratio of (s−a)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Each cotangent is s(s−a)/Δ, and every term carries the same s/Δ — so it cancels straight out of the ratio, leaving the brackets.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given cot(A/2) : cot(B/2) : cot(C/2) = 3 : 5 : 7",
+          "⇒ s(s−a)/Δ : s(s−b)/Δ : s(s−c)/Δ = 3 : 5 : 7",
+          "⇒ (s−a) : (s−b) : (s−c) = 3 : 5 : 7   [s/Δ cancels]",
+          "Take s − a = 3k, s − b = 5k, s − c = 7k  (k ≠ 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That s/Δ cancels from the ratio, leaving (s−a) : (s−b) : (s−c) = 3 : 5 : 7, and a constant k is introduced.",
+          "accept": [
+            "the s over delta cancels from every term leaving s minus a to s minus b to s minus c as three to five to seven",
+            "write s minus a as three k and so on",
+            "the common factor cancels out of a ratio",
+            "s by delta cancel avthundi, s minus a three k ani rasta",
+            "reduce to a ratio of the brackets"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s over delta cancels",
+            "s minus a",
+            "three k",
+            "ratio"
+          ]
+        },
+        "why": "A factor common to every term of a ratio cancels completely. Spotting that turns a cotangent question into a purely algebraic one in one line.",
+        "common_mistakes": [
+          "Trying to evaluate the cotangents.",
+          "Forgetting the constant k."
+        ]
+      },
+      {
+        "id": "s2_find_s_then_the_sides",
+        "kind": "boxed_final",
+        "label": "Find s, then the sides",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. Adding the three gives 3s − 2s = s = 15k; then each side follows by subtracting from s.",
+        "lines": [
+          "Adding: (s−a)+(s−b)+(s−c) = 3s − (a+b+c) = 3s − 2s = s",
+          "⇒ s = 3k + 5k + 7k = 15k",
+          "a = s − 3k = 15k − 3k = 12k",
+          "b = s − 5k = 10k,  c = s − 7k = 8k",
+          {
+            "text": "∴ a : b : c = 12 : 10 : 8 = 6 : 5 : 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding gives s = 15k, so a = 12k, b = 10k, c = 8k, and the ratio reduces to 6 : 5 : 4.",
+          "accept": [
+            "adding gives s equals fifteen k then a is twelve k b is ten k c is eight k which reduces to six five four",
+            "the three brackets add to s so s is fifteen k",
+            "the sides are twelve ten eight which is six five four",
+            "add cheste s fifteen k, sides twelve ten eight, ratio six five four",
+            "find s then each side then reduce"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fifteen k",
+            "twelve k",
+            "six five four",
+            "reduce"
+          ]
+        },
+        "why": "12 : 10 : 8 all share a factor of 2, so the ratio reduces. Leaving it unreduced would not match the form the question asked for.",
+        "common_mistakes": [
+          "Leaving the answer as 12 : 10 : 8.",
+          "Forgetting that the brackets add to s, not to 3s."
+        ]
+      }
+    ]
+  }
+}

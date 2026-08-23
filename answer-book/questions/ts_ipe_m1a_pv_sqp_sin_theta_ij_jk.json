@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sqp_sin_theta_ij_jk",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If θ is the angle between the vectors i + j and j + k, then find sin θ.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the magnitudes and a×b",
+      "marks": 1
+    },
+    {
+      "label": "Use |a×b| = |a||b| sin θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.104 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 158. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed VSAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. sin θ comes from the CROSS product, not the dot product — |a×b| = |a||b| sin θ. A dot-product route would give cos θ and then need an extra conversion. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_magnitudes_and_a_",
+        "kind": "equation",
+        "label": "Find the magnitudes and a×b",
+        "marks": 1,
+        "mark_note": "Cross product",
+        "margin_note": "First mark. Both vectors have length √2. Then the cross product, laid out as a determinant with i, j, k on top.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = i + j ⇒ |a| = √(1² + 1²) = √2",
+          "b = j + k ⇒ |b| = √(1² + 1²) = √2",
+          {
+            "text": "\\begin{vmatrix} i & j & k \\\\ 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(1 − 0) − j(1 − 0) + k(1 − 0) = i − j + k",
+          "|a × b| = √(1 + 1 + 1) = √3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a| = |b| = √2, a×b = i − j + k and |a×b| = √3.",
+          "accept": [
+            "both lengths are root two and the cross product is i minus j plus k with magnitude root three",
+            "compute the cross product as a determinant then take its magnitude",
+            "the cross product comes to i minus j plus k",
+            "rendu magnitudes root two, cross product magnitude root three",
+            "find the magnitudes and the cross product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root two",
+            "i minus j plus k",
+            "root three",
+            "cross product"
+          ]
+        },
+        "why": "Each vector has a zero component, so one column of the determinant carries a 0 — write it in rather than shortening the row.",
+        "common_mistakes": [
+          "Writing a as i + j + 0k but forgetting the 0 in the determinant row.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s2_use_a_b_a_b_sin",
+        "kind": "boxed_final",
+        "label": "Use |a×b| = |a||b| sin θ",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Rearrange to sin θ = |a×b| / (|a||b|), then substitute.",
+        "lines": [
+          "sin θ = |a × b| / (|a| |b|)",
+          "= √3 / (√2 · √2) = √3 / 2",
+          {
+            "text": "∴ sin θ = √3/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ = |a×b|/(|a||b|) = √3/2.",
+          "accept": [
+            "sin theta is root three over root two times root two which is root three over two",
+            "divide the cross product magnitude by the product of the lengths",
+            "sin theta comes to root three by two",
+            "sin theta root three by two vasthundi",
+            "the answer is root three over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three over two",
+            "sin theta",
+            "divide"
+          ]
+        },
+        "why": "sin θ = √3/2 corresponds to θ = 60°, which is what two edge-vectors of a cube meeting at a vertex actually make.",
+        "common_mistakes": [
+          "Using the dot product and reporting cos θ.",
+          "Writing √2·√2 as 2√2."
+        ]
+      }
+    ]
+  }
+}

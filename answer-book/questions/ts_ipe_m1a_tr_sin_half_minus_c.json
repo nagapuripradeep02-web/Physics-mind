@@ -1,0 +1,278 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_half_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) − sin²(C/2) = 1 − 2 cos(A/2) cos(B/2) sin(C/2).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 2
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.40 — LAQ chapter 5 T-Ratios upto Transformations, answer 27.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 15 · AP 18 · AP 22 — four printed tags, the most-asked LAQ in this chapter. The twin of 27.1, with a MINUS before the third term. That one sign changes the bracket from a difference of cosines to a SUM, and so the answer from two sines to two cosines. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. Same halved condition as the twin question — the difference between the two proofs is one sign, not one method.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = 180°  ⇒  (A+B)/2 = 90° − C/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first in the form the proof needs",
+            "state the given condition and rearrange it",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "rearrange",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "lines": [
+          "L.H.S = sin²(A/2) + sin²(B/2) − sin²(C/2)",
+          "= sin²(A/2) + (1 − cos²(B/2)) − sin²(C/2)",
+          "= 1 + (sin²(A/2) − cos²(B/2)) − sin²(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one squared term is converted to 1 − cos² so a difference of squares appears, leaving the 1 the answer needs.",
+          "accept": [
+            "convert sin squared B over two to one minus cos squared so a difference of squares appears",
+            "make a one by rewriting one of the squares",
+            "replace the second term with one minus cosine squared",
+            "rendo term ni one minus cos square ga marchali",
+            "turn one square into one minus the other square"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus cos squared",
+            "difference of squares",
+            "one"
+          ]
+        },
+        "why": "The 1 on the right-hand side has to come from somewhere. Converting a sin² into 1 − cos² is where it is manufactured, exactly as in the twin.",
+        "common_mistakes": [
+          "Converting the wrong term and getting a sum of squares instead.",
+          "Losing the minus before sin²(C/2)."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "lines": [
+          "= 1 + (−cos((A+B)/2) cos((A−B)/2)) − sin²(C/2)",
+          "  [∵ sin²A − cos²B = −cos(A+B) cos(A−B)]",
+          "= 1 − cos(90° − C/2) cos((A−B)/2) − sin²(C/2)",
+          "= 1 − sin(C/2) cos((A−B)/2) − sin²(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A − cos²B = −cos(A+B)cos(A−B) is applied, and cos((A+B)/2) becomes sin(C/2).",
+          "accept": [
+            "use sin squared minus cos squared equals minus cos of the sum times cos of the difference then convert to sin C over two",
+            "apply the identity and use the halved condition",
+            "cos of ninety minus C over two is sin C over two",
+            "identity apply chesi, cos ninety minus C by two ni sin C by two ga marchali",
+            "convert the half angle sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin squared minus cos squared",
+            "minus cos",
+            "sin C over two",
+            "ninety minus"
+          ]
+        },
+        "why": "Note the identity carries its own minus sign here, where the twin question had none. Missing it flips the whole answer.",
+        "common_mistakes": [
+          "Using the twin question’s identity, which has no leading minus.",
+          "Writing cos(90° − C/2) = cos(C/2)."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "lines": [
+          "= 1 − sin(C/2) [cos((A−B)/2) + sin(C/2)]",
+          "= 1 − sin(C/2) [cos((A−B)/2) + cos((A+B)/2)]",
+          "  [∵ sin(C/2) = cos((A+B)/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(C/2) is factored out and the bracket becomes a SUM of two cosines — not a difference, as in the twin.",
+          "accept": [
+            "take sin C over two common and the bracket becomes a sum of two cosines",
+            "factor out sin C over two, the bracket adds this time",
+            "the bracket is cos A minus B over two plus cos A plus B over two",
+            "sin C by two common teeste bracket lo sum vasthundi",
+            "this time the bracket is a sum not a difference"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C over two",
+            "sum of cosines",
+            "plus",
+            "common factor"
+          ]
+        },
+        "why": "The minus in the question became a plus inside the bracket. That is the single structural difference from the twin, and it decides the final formula.",
+        "common_mistakes": [
+          "Writing a difference and finishing with sines instead of cosines.",
+          "Losing the leading 1."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "lines": [
+          "= 1 − sin(C/2) (2 cos(A/2) cos(B/2))",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          {
+            "text": "= 1 − 2 cos(A/2) cos(B/2) sin(C/2) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SUM of the two cosines becomes 2 cos(A/2) cos(B/2), giving 1 − 2 cos(A/2) cos(B/2) sin(C/2).",
+          "accept": [
+            "the sum of cosines gives two cos A over two cos B over two so the answer has cosines not sines",
+            "apply the cosine sum formula to get two cos half A cos half B",
+            "the bracket becomes two cos A by two cos B by two",
+            "cos sum formula tho two cos A by two cos B by two vasthundi",
+            "the answer is one minus two cos half A cos half B sin half C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos A over two",
+            "cos B over two",
+            "sum formula",
+            "cosines"
+          ]
+        },
+        "why": "A sum of cosines gives cosines; a difference gives sines. That is the whole reason this answer has cos(A/2)cos(B/2) where its twin had sin(A/2)sin(B/2).",
+        "common_mistakes": [
+          "Using the difference formula and finishing with sines.",
+          "Forgetting the leading 1."
+        ]
+      }
+    ]
+  }
+}

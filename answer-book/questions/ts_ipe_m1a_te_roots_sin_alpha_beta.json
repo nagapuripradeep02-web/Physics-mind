@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_roots_sin_alpha_beta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If α, β are the solutions of the equation a cosθ + b sinθ = c, where a, b, c ∈ R, then show that (i) sinα + sinβ = 2bc/(a²+b²), (ii) sinα · sinβ = (c²−a²)/(a²+b²).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Isolate and square",
+      "marks": 2
+    },
+    {
+      "label": "Collect into a quadratic",
+      "marks": 1
+    },
+    {
+      "label": "Read off the sum and product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.71 — SAQ chapter 11 Trigonometric Equations, answer 73.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 19. The twin of 73.1, but the quadratic is formed by SQUARING rather than by substitution — because the equation is in θ, not 2θ, so the tangent forms do not apply. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isolate_and_square",
+        "kind": "equation",
+        "label": "Isolate and square",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Move the sine term across so only the cosine is on one side, then square — which turns cos²θ into 1 − sin²θ and leaves everything in sine.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a cosθ + b sinθ = c",
+          "⇒ a cosθ = c − b sinθ",
+          "Squaring both sides:",
+          "⇒ a² cos²θ = (c − b sinθ)²",
+          "⇒ a²(1 − sin²θ) = c² + b² sin²θ − 2bc sinθ",
+          "⇒ a² − a² sin²θ = c² + b² sin²θ − 2bc sinθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosine is isolated and both sides squared, so cos²θ becomes 1 − sin²θ and the equation is in sine alone.",
+          "accept": [
+            "isolate a cos theta then square both sides so cos squared becomes one minus sin squared",
+            "move the sine across and square to get everything in sine",
+            "squaring removes the cosine",
+            "a cos theta ni veru chesi square cheste sine lo vasthundi",
+            "isolate and square both sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "isolate",
+            "square both sides",
+            "one minus sin squared",
+            "cos squared"
+          ]
+        },
+        "why": "Squaring is what removes the cosine, and it is legitimate here because the roots are being characterised, not found — any extraneous root introduced would still satisfy the squared equation.",
+        "common_mistakes": [
+          "Squaring the equation as it stands, leaving a cross term in sinθcosθ.",
+          "Forgetting the middle term of (c − b sinθ)²."
+        ]
+      },
+      {
+        "id": "s2_collect_into_a_quadratic",
+        "kind": "equation",
+        "label": "Collect into a quadratic",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Bring everything to one side. The sin²θ terms combine to (a²+b²), which is where the denominator of both answers comes from.",
+        "lines": [
+          "Transposing all terms to one side:",
+          "⇒ a² sin²θ + b² sin²θ − 2bc sinθ + c² − a² = 0",
+          "⇒ (a² + b²) sin²θ − 2bc sinθ + (c² − a²) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms collect into (a²+b²)sin²θ − 2bc sinθ + (c²−a²) = 0.",
+          "accept": [
+            "collect everything to get a squared plus b squared sin squared minus two b c sin plus c squared minus a squared equals zero",
+            "transpose and combine the sin squared terms",
+            "the quadratic is a squared plus b squared sin squared minus two bc sin plus c squared minus a squared",
+            "anni okate vaipuki teesi collect cheyyali",
+            "form the quadratic in sine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared plus b squared",
+            "two b c",
+            "c squared minus a squared",
+            "quadratic"
+          ]
+        },
+        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the twin, reached by a different route.",
+        "common_mistakes": [
+          "Sign slip on the c² − a² term.",
+          "Failing to gather both sin²θ terms."
+        ]
+      },
+      {
+        "id": "s3_read_off_the_sum_and_produ",
+        "kind": "boxed_final",
+        "label": "Read off the sum and product",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Sum of roots is −B/A and product is C/A. Both denominators are (a²+b²), and the two minus signs on the sum cancel.",
+        "lines": [
+          "This is a quadratic in sinθ with roots sinα, sinβ.",
+          "Sum of roots = −B/A:",
+          "  sinα + sinβ = 2bc/(a² + b²)",
+          "Product of roots = C/A:",
+          {
+            "text": "  sinα · sinβ = (c² − a²)/(a² + b²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of roots is 2bc/(a²+b²) and the product is (c²−a²)/(a²+b²).",
+          "accept": [
+            "the sum is minus B over A which is two b c over a squared plus b squared and the product is c squared minus a squared over a squared plus b squared",
+            "read the sum and product off the coefficients",
+            "sum two b c by a square plus b square and product c square minus a square by a square plus b square",
+            "sum of roots and product of roots formulas vaadali",
+            "both come straight from the coefficients"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum of roots",
+            "product of roots",
+            "two b c",
+            "c squared minus a squared"
+          ]
+        },
+        "why": "Neither α nor β is ever found. The whole method is to recognise them as roots and read the two symmetric functions off the coefficients — which is faster and exact.",
+        "common_mistakes": [
+          "Trying to solve for α and β individually.",
+          "Keeping the minus on the sum."
+        ]
+      }
+    ]
+  }
+}

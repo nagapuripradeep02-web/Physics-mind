@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_root3_sin_minus_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve √3 sinθ − cosθ = √2.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide by √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Recognise the standard angles",
+      "marks": 1
+    },
+    {
+      "label": "Collapse to one function",
+      "marks": 1
+    },
+    {
+      "label": "Write the general solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Trigonometric Equations, answer 70.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · TS 20. The book pairs it with 70.2 and notes \"First 2 same. Next 2 same. The next 2 are also same. Last 2 are also same.\" — the whole chapter is four matched pairs. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_a_b",
+        "kind": "equation",
+        "label": "Divide by √(a²+b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the move that makes the whole family work. Dividing by √(a²+b²) forces the two coefficients to become a cosine and a sine of the same angle, so the left side collapses to ONE trig function.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given equation is √3 sinθ − cosθ = √2",
+          "Divide by √((√3)² + (−1)²) = √(3+1) = √4 = 2:",
+          "(√3/2) sinθ − (1/2) cosθ = √2/2 = 1/√2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are divided by √(a²+b²) = 2, so the coefficients become √3/2 and 1/2.",
+          "accept": [
+            "divide throughout by root of a squared plus b squared which is two",
+            "divide by two so the coefficients become root three over two and a half",
+            "divide by the root of three plus one which is two",
+            "root a square plus b square ante two, aa tho divide cheyyali",
+            "divide both sides by two first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by two",
+            "root a squared plus b squared",
+            "root three over two"
+          ]
+        },
+        "why": "a sinθ + b cosθ can never be solved directly, but divided by √(a²+b²) its coefficients always become the cosine and sine of some angle — and then one compound-angle formula finishes it.",
+        "common_mistakes": [
+          "Dividing by a + b instead of √(a²+b²).",
+          "Dividing only the left side."
+        ]
+      },
+      {
+        "id": "s2_recognise_the_standard_ang",
+        "kind": "equation",
+        "label": "Recognise the standard angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. √3/2 is cos30° and 1/2 is sin30°, so the left side is exactly the sin(A−B) pattern. The right side, 1/√2, is sin45°.",
+        "lines": [
+          "⇒ sinθ cos30° − cosθ sin30° = sin45°",
+          "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √3/2 = cos30°, 1/2 = sin30° and 1/√2 = sin45°, matching the sin(A−B) pattern.",
+          "accept": [
+            "root three over two is cos thirty and a half is sin thirty and one over root two is sin forty five",
+            "recognise the coefficients as cos thirty and sin thirty",
+            "the right side is sin forty five",
+            "root three by two cos thirty, half sin thirty, one by root two sin forty five",
+            "match the values to known angles"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos thirty",
+            "sin thirty",
+            "sin forty five",
+            "standard angles"
+          ]
+        },
+        "why": "The two coefficients always square-and-add to 1 after the division, which is exactly the condition for them to be a cosine and a sine of one angle.",
+        "common_mistakes": [
+          "Matching √3/2 to sin30° instead of cos30°.",
+          "Writing 1/√2 as cos45° and then using the wrong formula."
+        ]
+      },
+      {
+        "id": "s3_collapse_to_one_function",
+        "kind": "equation",
+        "label": "Collapse to one function",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the equation becomes a single sine equal to a single sine. The principal value is then read off directly.",
+        "lines": [
+          "⇒ sin(θ − π/6) = sin(π/4)",
+          "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
+          "Here the principal value is α = π/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side becomes sin(θ − π/6) and the principal value is π/4.",
+          "accept": [
+            "it becomes sin of theta minus pi by six equals sin pi by four so the principal value is pi by four",
+            "collapse to a single sine and the P V is pi by four",
+            "apply sin A minus B so the equation is one sine equals another",
+            "sin theta minus pi by six equals sin pi by four, P V pi by four",
+            "the principal value is pi by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta minus pi by six",
+            "principal value",
+            "pi by four",
+            "sin A minus B"
+          ]
+        },
+        "why": "Once the equation reads sin(something) = sin(α), the general solution formula applies mechanically. Getting to that form is the whole difficulty.",
+        "common_mistakes": [
+          "Using sin(A+B) and getting θ + π/6.",
+          "Taking the principal value as π/6."
+        ]
+      },
+      {
+        "id": "s4_write_the_general_solution",
+        "kind": "boxed_final",
+        "label": "Write the general solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. For a SINE equation the general solution is nπ + (−1)ⁿα. Solve for θ, and leave the answer with n ∈ Z — an equation like this has infinitely many solutions.",
+        "lines": [
+          "For sinθ = sinα, the general solution is",
+          "θ = nπ + (−1)ⁿ α,  n ∈ Z",
+          "⇒ θ − π/6 = nπ + (−1)ⁿ (π/4)",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/4) + π/6,  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sine general solution θ = nπ + (−1)ⁿα is used, giving θ = nπ + (−1)ⁿ(π/4) + π/6 with n ∈ Z.",
+          "accept": [
+            "for sine the general solution is n pi plus minus one to the n alpha so theta is n pi plus minus one to the n pi by four plus pi by six",
+            "use the sine general solution and add pi by six back",
+            "the answer is n pi plus minus one power n pi by four plus pi by six",
+            "sine ki general solution n pi plus minus one power n alpha",
+            "write the general solution with n belongs to Z"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n pi",
+            "minus one to the n",
+            "general solution",
+            "belongs to Z",
+            "pi by six"
+          ]
+        },
+        "why": "Sine, cosine and tangent each have their own general solution formula, and using the wrong one is the commonest error in the chapter. Sine gets nπ + (−1)ⁿα.",
+        "common_mistakes": [
+          "Using the cosine form 2nπ ± α for a sine equation.",
+          "Forgetting to add π/6 back.",
+          "Omitting n ∈ Z."
+        ]
+      }
+    ]
+  }
+}

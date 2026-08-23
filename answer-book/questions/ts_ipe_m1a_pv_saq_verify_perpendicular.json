@@ -1,0 +1,195 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_saq_verify_perpendicular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a = 2i+3j+4k, b = i+j−k and c = i−j+k, then compute a×(b×c) and verify that it is perpendicular to a.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find b×c",
+      "marks": 1
+    },
+    {
+      "label": "Find a×(b×c)",
+      "marks": 2
+    },
+    {
+      "label": "Verify the dot product with a is zero",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 Product of Vectors, answer 57, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19. Two things are asked: a computation and a VERIFICATION. The verification is a separate mark and needs its own line of working — asserting it is not enough.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would compute this and then check it is perpendicular to a.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bracket",
+        "kind": "equation",
+        "label": "Find b×c",
+        "marks": 1,
+        "mark_note": "Inner bracket",
+        "margin_note": "First mark. The i component comes out as 0 here — write the 0 rather than leaving a gap, or the next determinant will be misaligned.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = 2i + 3j + 4k, b = i + j − k, c = i − j + k",
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -1 \\\\ 1 & -1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(1 − 1) − j(1 + 1) + k(−1 − 1)",
+          "= 0i − 2j − 2k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b×c is computed first and comes to −2j − 2k, with a zero i component.",
+          "accept": [
+            "b cross c gives zero i minus two j minus two k",
+            "the bracket comes to minus two j minus two k with no i term",
+            "compute b cross c first, the i component is zero",
+            "b cross c lo i component zero, minus two j minus two k",
+            "find the inner bracket first"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "zero i",
+            "minus two j",
+            "bracket"
+          ]
+        },
+        "why": "A zero component is still a component. Writing it keeps the rows of the next determinant lined up under i, j and k.",
+        "common_mistakes": [
+          "Omitting the zero and writing a two-component vector.",
+          "Sign slip on the k term."
+        ]
+      },
+      {
+        "id": "s2_outer",
+        "kind": "equation",
+        "label": "Find a×(b×c)",
+        "marks": 2,
+        "mark_note": "The product",
+        "margin_note": "Half the marks. a on the first row, the bracket result on the second. The zero in the second row kills one product in each expansion.",
+        "lines": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 2 & 3 & 4 \\\\ 0 & -2 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−6 + 8) − j(−4 − 0) + k(−4 − 0)",
+          "= 2i + 4j − 4k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is crossed into the bracket result to give 2i + 4j − 4k.",
+          "accept": [
+            "cross a into that to get two i plus four j minus four k",
+            "the product is two i plus four j minus four k",
+            "a cross the bracket gives two i plus four j minus four k",
+            "a tho cross cheste two i plus four j minus four k",
+            "the answer vector is two i plus four j minus four k"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two i",
+            "four j",
+            "minus four k",
+            "a cross"
+          ]
+        },
+        "why": "The vector triple product a×(b×c) is always perpendicular to a — this computation is what the next step will confirm on these particular numbers.",
+        "common_mistakes": [
+          "Reversing the rows.",
+          "Forgetting that the j term already carries a minus from the expansion."
+        ]
+      },
+      {
+        "id": "s3_verify",
+        "kind": "boxed_final",
+        "label": "Verify perpendicular",
+        "marks": 1,
+        "mark_note": "Verification",
+        "margin_note": "Last mark, and it needs real working. Two vectors are perpendicular exactly when their dot product is zero — so compute the dot product and show it vanishes.",
+        "lines": [
+          "Two vectors are perpendicular when their dot",
+          "product is zero.",
+          "(a×(b×c))·a = (2i + 4j − 4k)·(2i + 3j + 4k)",
+          "= 4 + 12 − 16 = 0",
+          {
+            "text": "∴ a×(b×c) is perpendicular to a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dot product of the result with a is computed and comes to zero, which is what proves they are perpendicular.",
+          "accept": [
+            "dot the answer with a and it comes to zero so they are perpendicular",
+            "four plus twelve minus sixteen is zero so the vectors are perpendicular",
+            "perpendicular means the dot product is zero and it is",
+            "dot product zero vasthundi kabatti perpendicular",
+            "the scalar product vanishes so they are at right angles"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "dot product",
+            "zero",
+            "perpendicular",
+            "four plus twelve minus sixteen"
+          ]
+        },
+        "why": "a×(b×c) is a combination of b and c, and crossing anything with a leaves a result perpendicular to a. The dot product is the check that turns that fact into a marked step.",
+        "common_mistakes": [
+          "Asserting perpendicularity without computing anything.",
+          "Taking a cross product instead of a dot product."
+        ]
+      }
+    ]
+  }
+}

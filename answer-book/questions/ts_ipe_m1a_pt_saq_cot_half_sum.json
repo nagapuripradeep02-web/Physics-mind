@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_cot_half_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, prove that cot(A/2) + cot(B/2) + cot(C/2) = s²/Δ.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write each cotangent as a standard form",
+      "marks": 2
+    },
+    {
+      "label": "Add the brackets and conclude",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 80, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_cotangent_as_a_",
+        "kind": "equation",
+        "label": "Write each cotangent as a standard form",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. cot(A/2) = s(s−a)/Δ is a standard result — quote it rather than deriving it. All three terms then share s/Δ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cot(A/2) + cot(B/2) + cot(C/2)",
+          "= s(s−a)/Δ + s(s−b)/Δ + s(s−c)/Δ",
+          "= s[(s−a) + (s−b) + (s−c)]/Δ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot(A/2) = s(s−a)/Δ is used for each term and s/Δ taken out as a common factor.",
+          "accept": [
+            "cot half A is s into s minus a over delta and the three share s over delta",
+            "write each cotangent in the standard form and factor",
+            "take s over delta common from the three terms",
+            "cot half A ante s into s minus a by delta",
+            "use the standard cot half angle result"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s into s minus a",
+            "over delta",
+            "common factor",
+            "cot half A"
+          ]
+        },
+        "why": "All three cotangents have the same shape, so factoring s/Δ out immediately leaves only the brackets to add.",
+        "common_mistakes": [
+          "Using cot A instead of cot(A/2).",
+          "Forgetting the s in the numerator."
+        ]
+      },
+      {
+        "id": "s2_add_the_brackets_and_concl",
+        "kind": "boxed_final",
+        "label": "Add the brackets and conclude",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. (s−a) + (s−b) + (s−c) is 3s − (a+b+c), and a+b+c is 2s — so the brackets collapse to s.",
+        "lines": [
+          "= s[3s − (a + b + c)]/Δ",
+          "= s[3s − 2s]/Δ   [∵ a + b + c = 2s]",
+          "= s[s]/Δ",
+          {
+            "text": "= s²/Δ = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets add to 3s − 2s = s, giving s²/Δ.",
+          "accept": [
+            "the brackets give three s minus two s which is s so it becomes s squared over delta",
+            "a plus b plus c is two s so three s minus two s leaves s",
+            "the answer is s squared over delta",
+            "three s minus two s equals s, so s square by delta",
+            "the brackets collapse to s"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three s minus two s",
+            "s squared over delta",
+            "two s"
+          ]
+        },
+        "why": "a + b + c = 2s by definition of the semi-perimeter. Writing s instead of 2s is the single commonest error in this whole unit.",
+        "common_mistakes": [
+          "Writing a + b + c = s and getting 2s²/Δ.",
+          "Cancelling the Δ wrongly."
+        ]
+      }
+    ]
+  }
+}

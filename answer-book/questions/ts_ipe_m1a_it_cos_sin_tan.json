@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cos_sin_tan",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the angles and find their tangents",
+      "marks": 2
+    },
+    {
+      "label": "Apply the tan(A+B) formula",
+      "marks": 1
+    },
+    {
+      "label": "Convert back to an inverse",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 12 Inverse Trig Functions, answer 75, on a ★★★ SSP (Super Scoring Page). Printed appearances: the single tag 'IPE 13' — a PRE-BIFURCATION paper, before the 2014 TS/AP split. appearances[].board has no value for that era, so the year is recorded here in prose and appearances[] is left empty rather than guessing a board. Three DIFFERENT inverse functions in one statement. The target is a Tan⁻¹, so both given angles have to be converted into TANGENTS before the tan addition formula can be used. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_angles_and_find_t",
+        "kind": "equation",
+        "label": "Name the angles and find their tangents",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. The target is a Tan⁻¹, so what is needed from each angle is its TANGENT — not its sine or cosine. Get the third side first, then form the ratio.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take Cos⁻¹(4/5) = α and Sin⁻¹(3/√34) = β",
+          "RTP: α + β = Tan⁻¹(27/11), that is, tan(α+β) = 27/11",
+          "cosα = 4/5 ⇒ sinα = 3/5 ⇒ tanα = 3/4",
+          "sinβ = 3/√34 ⇒ cosβ = 5/√34 ⇒ tanβ = 3/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both angles are converted to TANGENTS: tanα = 3/4 and tanβ = 3/5.",
+          "accept": [
+            "name them alpha and beta and find the tangent of each, three quarters and three fifths",
+            "convert both to tangents because the answer is a tan inverse",
+            "tan alpha is three by four and tan beta is three by five",
+            "rendintiki tangent kanukovali, three by four and three by five",
+            "get the tangents since the target is a tan inverse"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan alpha",
+            "tan beta",
+            "three by four",
+            "three by five",
+            "root thirty four"
+          ]
+        },
+        "why": "The formula you will use decides which ratio to extract. A Tan⁻¹ target means tangents, whatever function the question happened to state each angle in.",
+        "common_mistakes": [
+          "Finding sines and cosines and then being unable to use them.",
+          "Getting cosβ wrong: √34 − 9 is not the third side, √(34−9) = 5 is."
+        ]
+      },
+      {
+        "id": "s2_apply_the_tan_a_b_formula",
+        "kind": "equation",
+        "label": "Apply the tan(A+B) formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Substitute and simplify. The denominator 1 − (3/4)(3/5) becomes 1 − 9/20 = 11/20, which is where the 11 in the answer comes from.",
+        "lines": [
+          "tan(α + β) = (tanα + tanβ)/(1 − tanα tanβ)",
+          "= (3/4 + 3/5)/(1 − (3/4)(3/5))",
+          "= (27/20)/(1 − 9/20)",
+          "= (27/20)/(11/20) = 27/11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(α+β) = (tanα + tanβ)/(1 − tanα tanβ) gives (27/20)/(11/20) = 27/11.",
+          "accept": [
+            "use tan A plus B equals tan A plus tan B over one minus tan A tan B to get twenty seven over eleven",
+            "apply the tangent addition formula",
+            "the numerator is twenty seven over twenty and the denominator eleven over twenty so they give twenty seven over eleven",
+            "tan addition formula apply cheste twenty seven by eleven vasthundi",
+            "both twentieths cancel leaving twenty seven over eleven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan A plus B",
+            "twenty seven over twenty",
+            "eleven over twenty",
+            "twenty seven over eleven"
+          ]
+        },
+        "why": "Both numerator and denominator come out over 20, so the 20s cancel and the answer is exact. That is why the fractions were left uncancelled until the end.",
+        "common_mistakes": [
+          "Adding the tangents without the denominator.",
+          "Getting the denominator as 1 + tanα tanβ."
+        ]
+      },
+      {
+        "id": "s3_convert_back_to_an_inverse",
+        "kind": "boxed_final",
+        "label": "Convert back to an inverse",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. tan(α+β) = 27/11 means α+β = Tan⁻¹(27/11).",
+        "lines": [
+          "tan(α + β) = 27/11",
+          "⇒ α + β = Tan⁻¹(27/11)",
+          {
+            "text": "∴ Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(α+β) = 27/11 is converted back to α + β = Tan⁻¹(27/11).",
+          "accept": [
+            "since the tangent of the sum is twenty seven over eleven the sum is tan inverse of that",
+            "convert back to tan inverse to finish",
+            "alpha plus beta is tan inverse twenty seven by eleven",
+            "tan value nunchi tan inverse ki marchali",
+            "write the answer in inverse form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan inverse",
+            "twenty seven over eleven",
+            "alpha plus beta"
+          ]
+        },
+        "why": "Three different inverse functions appeared, but only one had to be produced — and the choice of compound formula is what produced it.",
+        "common_mistakes": [
+          "Stopping at 27/11.",
+          "Writing Sin⁻¹(27/11)."
+        ]
+      }
+    ]
+  }
+}

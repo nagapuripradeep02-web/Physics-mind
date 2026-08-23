@@ -1,0 +1,309 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_inverse_2x_y_3z_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "By using the matrix inversion method, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the system as AX = D and X = A⁻¹D",
+      "marks": 1
+    },
+    {
+      "label": "Find det A and check it is not zero",
+      "marks": 1
+    },
+    {
+      "label": "Find the cofactor matrix",
+      "marks": 2
+    },
+    {
+      "label": "Transpose to Adj A and write A⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "Multiply A⁻¹ by D and state the solution",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 Matrices, answer 19.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP 15. THE 4+3 SPLIT IS THE BOOK'S, though not in its usual form: no [N Marks] tags are printed against these answers, but a margin note on book p.30 states it in words — \"Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks!\". The five steps here honour that exactly: det A, the cofactor matrix and the adjoint/inverse total 4, and the matrix form plus the multiplication total 3. The finer 1/2/1 and 1/2 division INSIDE each half is ours, not the book's. The SAME split and the SAME step ids are used on all three matrix-inversion answers in this unit, deliberately: the three questions are one method over different numbers. Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this by the matrix inversion method — say what you have to find first, how you build the inverse, and what you multiply at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_matrix_form",
+        "kind": "equation",
+        "label": "Write it as AX = D",
+        "marks": 1,
+        "mark_note": "Matrix form",
+        "margin_note": "First mark. Write the plan as well as the matrices: the solution of AX = D is X = A⁻¹D, so everything after this line is about building A⁻¹.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 9 \\\\ 6 \\\\ 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The solution of AX = D is X = A⁻¹D."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the system is written as AX = D and that its solution is X = A⁻¹D — so the inverse is what has to be found.",
+          "accept": [
+            "write it as A X equals D so the solution is X equals A inverse D",
+            "put the system in matrix form and then X is A inverse times D",
+            "form A X and D and say the solution is A inverse into D",
+            "AX equals D form lo rasi, solution X equals A inverse D ani rasta",
+            "the coefficient matrix times the unknowns equals the constants so multiply by the inverse"
+          ],
+          "reject": [
+            "write the matrix",
+            "put it in matrix form",
+            "find the inverse"
+          ],
+          "heard_as": [
+            "AX equals D",
+            "A inverse D",
+            "coefficient matrix",
+            "X equals"
+          ]
+        },
+        "why": "AX = D is solved by multiplying both sides on the LEFT by A⁻¹. Writing X = A⁻¹D at the start states the plan, and the plan is what the remaining marks pay for.",
+        "common_mistakes": [
+          "Writing X = DA⁻¹; matrix multiplication does not commute, and that order does not even have matching sizes.",
+          "Writing the coefficients in the order they appear rather than in x, y, z order.",
+          "Missing a coefficient of 1 or −1 written with no number in front."
+        ]
+      },
+      {
+        "id": "s2_det",
+        "kind": "equation",
+        "label": "Find det A",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "margin_note": "Second mark. det A is −2. It has to be non-zero or A has no inverse at all and this method cannot start — so write the check, do not just compute the number.",
+        "lines": [
+          {
+            "text": "\\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(1+1) + 1(1−1) + 3(−1−1)",
+          "= 2(2) + 1(0) + 3(−2) = 4 + 0 − 6 = −2",
+          "det A = −2 ≠ 0, so A⁻¹ exists."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That det A is computed, comes to −2, and that being non-zero is what guarantees A⁻¹ exists.",
+          "accept": [
+            "find the determinant of A which is minus 2 and since it is not zero the inverse exists",
+            "compute det A and check it is non zero so A is non singular",
+            "expand the determinant of the coefficient matrix, it is not zero so the inverse exists",
+            "det A kanukoni, zero kaadu kabatti inverse untundi",
+            "the determinant must be non zero for A inverse to exist"
+          ],
+          "reject": [
+            "find the determinant",
+            "calculate det A",
+            "expand it"
+          ],
+          "heard_as": [
+            "det A",
+            "determinant",
+            "non singular",
+            "not equal to zero",
+            "inverse exists"
+          ]
+        },
+        "why": "A⁻¹ is Adj A divided by det A. A zero determinant would mean dividing by zero — which is exactly why a singular matrix has no inverse and this method would stop here.",
+        "common_mistakes": [
+          "Computing det A but never writing that it is non-zero.",
+          "Getting the sign pattern wrong: plus, minus, plus along the top row.",
+          "Confusing det A with the trace or with the sum of a row."
+        ]
+      },
+      {
+        "id": "s3_cofactors",
+        "kind": "equation",
+        "label": "Find the cofactor matrix",
+        "marks": 2,
+        "mark_note": "Cofactors",
+        "margin_note": "Two marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
+        "lines": [
+          "Delete each entry’s row and column, take the 2×2",
+          "determinant, and apply the sign board + − + / − + − / + − +:",
+          {
+            "text": "\\text{Cofactor matrix} = \\begin{bmatrix} 2 & 0 & -2 \\\\ -2 & -1 & 1 \\\\ -4 & 1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each cofactor is the 2×2 determinant left after deleting that entry’s row and column, with the alternating plus-minus sign applied.",
+          "accept": [
+            "for each entry delete its row and column take the two by two determinant and put the plus minus sign",
+            "find the nine cofactors using the minors with the alternating sign pattern",
+            "cross out the row and column of each entry and take the determinant of what is left with the correct sign",
+            "prathi entry ki row column teesesi, two by two determinant teeskoni sign pettali",
+            "build the cofactor matrix from the nine minors with signs plus minus plus"
+          ],
+          "reject": [
+            "find the cofactors",
+            "make the cofactor matrix",
+            "take the minors"
+          ],
+          "heard_as": [
+            "cofactor",
+            "minor",
+            "two by two",
+            "sign",
+            "plus minus plus"
+          ]
+        },
+        "why": "A minor is just the smaller determinant. A cofactor is that minor with a sign attached, and the sign depends only on the position — which is why the board is worth memorising once rather than deriving nine times.",
+        "common_mistakes": [
+          "Writing the minors and forgetting the sign board entirely.",
+          "Applying the signs to the wrong positions; the corners are all plus.",
+          "Deleting the wrong row or column for the off-diagonal entries."
+        ]
+      },
+      {
+        "id": "s4_adj_inverse",
+        "kind": "equation",
+        "label": "Transpose to get Adj A",
+        "marks": 1,
+        "mark_note": "Adjoint and inverse",
+        "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "lines": [
+          "Adj A is the transpose of the cofactor matrix:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} 2 & -2 & -4 \\\\ 0 & -1 & 1 \\\\ -2 & 1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\frac{1}{\\det A}(\\text{Adj } A) = \\frac{1}{−2} \\begin{bmatrix} 2 & -2 & -4 \\\\ 0 & -1 & 1 \\\\ -2 & 1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adjoint is the TRANSPOSE of the cofactor matrix, and that A⁻¹ is the adjoint divided by det A.",
+          "accept": [
+            "take the transpose of the cofactor matrix to get adj A then divide by det A to get the inverse",
+            "adjoint is the transpose of the cofactors and A inverse is adj A over det A",
+            "transpose the cofactor matrix and divide by the determinant",
+            "cofactor matrix transpose teeste adj A vasthundi, det A tho divide cheste inverse",
+            "A inverse equals one by det A times the adjoint"
+          ],
+          "reject": [
+            "find adj A",
+            "divide by the determinant",
+            "get the inverse"
+          ],
+          "heard_as": [
+            "adjoint",
+            "adj A",
+            "transpose",
+            "A inverse",
+            "one by det A"
+          ]
+        },
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. On a symmetric cofactor matrix the transpose changes nothing — which is exactly why the habit has to be written down every time.",
+        "common_mistakes": [
+          "Using the cofactor matrix directly as the adjoint without transposing.",
+          "Dividing only one row by det A instead of the whole matrix.",
+          "Multiplying by det A instead of dividing."
+        ]
+      },
+      {
+        "id": "s5_multiply",
+        "kind": "boxed_final",
+        "label": "Multiply A⁻¹ by D",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Multiply row by column, then divide every entry by det A. Here det A is −2 and all three products are negative, so all three answers come out positive.",
+        "lines": [
+          "X = A⁻¹D. Multiplying row by column:",
+          "2(9) − 2(6) − 4(2) = 18 − 12 − 8 = −2",
+          "0(9) − 1(6) + 1(2) = −6 + 2 = −4",
+          "−2(9) + 1(6) + 3(2) = −18 + 6 + 6 = −6",
+          {
+            "text": "X = \\frac{1}{−2} \\begin{bmatrix} −2 \\\\ −4 \\\\ −6 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 2 \\\\ 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ x = 1, y = 2, z = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A⁻¹ is multiplied by D row against column, and that dividing by det A gives x = 1, y = 2, z = 3.",
+          "accept": [
+            "multiply A inverse by D row into column and divide by det A to get the three values",
+            "do the matrix multiplication and then divide each entry by the determinant",
+            "X equals A inverse D so multiply out and read off x y and z",
+            "A inverse ni D tho multiply chesi det A tho divide cheste x y z vasthai",
+            "row into column multiplication gives the column matrix and that is the solution"
+          ],
+          "reject": [
+            "multiply them",
+            "get the answer",
+            "that is the solution"
+          ],
+          "heard_as": [
+            "A inverse D",
+            "row into column",
+            "multiply",
+            "x equals",
+            "y equals"
+          ]
+        },
+        "why": "X comes out as a single column matrix, and its three entries ARE x, y and z in that order. Reading them off in the wrong order is the last thing that can go wrong.",
+        "common_mistakes": [
+          "Multiplying column by row instead of row by column.",
+          "Dividing by det A only once instead of on every entry.",
+          "Never substituting back to check — x=1, y=2, z=3 in the first equation gives 2−2+9 = 9."
+        ]
+      }
+    ]
+  }
+}

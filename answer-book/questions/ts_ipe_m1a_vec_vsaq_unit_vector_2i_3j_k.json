@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_unit_vector_2i_3j_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the unit vector in the direction of the vector a = 2i + 3j + k.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 113.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would find a unit vector in a given direction.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find the magnitude",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Square each component, add, take the root. √14 does not simplify, and leaving it as a surd is the expected answer — not a decimal.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = 2i + 3j + k, then",
+          "|a| = √(2² + 3² + 1²)",
+          "  = √(4 + 9 + 1) = √14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude of a is found as √(4+9+1) = √14.",
+          "accept": [
+            "find the magnitude, square root of four plus nine plus one which is root fourteen",
+            "the modulus of a is root fourteen",
+            "square the components add them and take the root",
+            "magnitude root fourteen vasthundi",
+            "first find mod a which is root fourteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "magnitude",
+            "root fourteen",
+            "modulus",
+            "square root"
+          ]
+        },
+        "why": "A unit vector has length 1, so the only thing needed is the length you must divide by. That is why the magnitude always comes first.",
+        "common_mistakes": [
+          "Adding the components instead of their squares.",
+          "Turning √14 into a decimal, which loses exactness."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The unit vector is the vector over its own length. Leave the surd in the denominator — rationalising is not expected here.",
+        "lines": [
+          "∴ Unit vector = a/|a|",
+          {
+            "text": "= (2i + 3j + k)/√14",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unit vector is a divided by |a|, giving (2i+3j+k)/√14.",
+          "accept": [
+            "divide the vector by its magnitude to get two i plus three j plus k over root fourteen",
+            "the unit vector is a over mod a",
+            "divide each component by root fourteen",
+            "vector ni magnitude tho divide cheste unit vector vasthundi",
+            "answer is two i plus three j plus k by root fourteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "unit vector",
+            "a by mod a",
+            "root fourteen",
+            "divide"
+          ]
+        },
+        "why": "Dividing by the length scales the vector to length 1 without turning it, which is exactly what \"unit vector in the same direction\" means.",
+        "common_mistakes": [
+          "Dividing only one component by the magnitude.",
+          "Writing |a|/a, which is upside down."
+        ]
+      }
+    ]
+  }
+}

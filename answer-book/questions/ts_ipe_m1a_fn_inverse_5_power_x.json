@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_inverse_5_power_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the inverse function of f(x) = 5ˣ.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take logarithms and solve",
+      "marks": 1
+    },
+    {
+      "label": "The inverse function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 92.1. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would invert 5 to the power x — the move that frees the exponent, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Take logarithms",
+        "marks": 1,
+        "mark_note": "Take logarithms and solve",
+        "margin_note": "One mark. The unknown is in the exponent, so a logarithm is the only way to bring it down.",
+        "lines": [
+          "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "5ˣ = y ⇒ log 5ˣ = log y",
+          "⇒ x log 5 = log y",
+          "⇒ x = log y / log 5 = log₅ y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unknown is an exponent, so you take logarithms of both sides, bring x down, and get x = log y / log 5 = log₅ y.",
+          "accept": [
+            "take log on both sides so x log five equals log y then x is log y by log five which is log base five of y",
+            "logarithm brings the exponent down giving x equals log y over log five",
+            "since x is in the power take logs and use log base five",
+            "power lo x undi so log teeskuntam x equals log y by log five",
+            "apply log to both sides and solve for x"
+          ],
+          "reject": [
+            "I take log",
+            "solve for x",
+            "use logarithms"
+          ],
+          "heard_as": [
+            "log",
+            "logarithm",
+            "five to the x",
+            "log base five",
+            "exponent"
+          ]
+        },
+        "why": "A logarithm is what undoes a power, so the inverse of an exponential is a logarithm — that is the whole content of the question.",
+        "common_mistakes": [
+          "Writing the inverse as ˣ√5 or 1/5ˣ instead of a logarithm.",
+          "Forgetting the change-of-base step log y / log 5 = log₅ y."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Write the inverse",
+        "marks": 1,
+        "mark_note": "The inverse function",
+        "margin_note": "The second mark is the finished function, renamed in x.",
+        "lines": [
+          "⇒ f⁻¹(y) = log₅ y",
+          "∴ f⁻¹(x) = log₅ x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(x) = log₅ x — logarithm to base 5, the same base as the exponential.",
+          "accept": [
+            "f inverse of x is log base five of x",
+            "the inverse is the logarithm of x to base five",
+            "log to the base five of x",
+            "f inverse ante log base five x",
+            "the answer is log base 5 x"
+          ],
+          "reject": [
+            "it is a log",
+            "the inverse is a logarithm",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "log base five",
+            "log five x",
+            "logarithm",
+            "base five"
+          ]
+        },
+        "why": "The base carries over unchanged: the inverse of 5ˣ is log base 5, not the natural log.",
+        "common_mistakes": [
+          "Writing log x with no base, or ln x.",
+          "Using base 10 out of habit."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_gauss_2x_y_3z_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "By the Gauss-Jordan method, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Clear column 1 below the leading entry",
+      "marks": 2
+    },
+    {
+      "label": "Reach a leading 1 in the last row",
+      "marks": 1
+    },
+    {
+      "label": "Clear upwards to the identity",
+      "marks": 2
+    },
+    {
+      "label": "Read off the solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Matrices, answer 20.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.33 sets two Gauss-Jordan questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere, so no split is printed for any Gauss-Jordan answer. The 1+2+1+2+1 above follows the only split this book states for a solving-a-system question — the note on book p.30 reading 'Just finding A⁻¹ gives u 4 Marks. For remaining steps u get 3 Marks' — by weighting the bulk row-reduction (4 marks across clearing down and clearing up) against the setup and the finish (3 marks). The row-operation chain here is the book's own. The SAME split and the SAME step ids are used on both unique-solution Gauss-Jordan answers in this unit. The two remaining Gauss-Jordan answers, 20.3 and 20.4, do NOT share this skeleton: their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — say what matrix you write down first, which direction you clear in, and how you get the answer at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_augmented",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. The augmented matrix is A with the constants column joined on. The rule down the middle is not decoration — it marks where the equals sign was, and every row operation acts across it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 9 \\\\ 6 \\\\ 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The augmented matrix is",
+          {
+            "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 2 & -1 & 3 & 9 \\\\ 1 & 1 & 1 & 6 \\\\ 1 & -1 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written — the coefficient matrix with the constants column attached.",
+          "accept": [
+            "write the augmented matrix A D with the constants joined on to the coefficient matrix",
+            "form A given D by putting the right hand side as a fourth column",
+            "write the coefficient matrix together with the constants column",
+            "augmented matrix rasta, coefficients tho patu constants column kuda",
+            "attach the constants to A to make the augmented matrix"
+          ],
+          "reject": [
+            "write the matrix",
+            "make the augmented matrix",
+            "write A and D"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants column",
+            "fourth column"
+          ]
+        },
+        "why": "Every row of the augmented matrix IS one of the original equations. That is why a row operation is legal — adding one equation to another never changes the solution set.",
+        "common_mistakes": [
+          "Writing A alone and doing the row operations without the constants.",
+          "Putting the constants in as a fourth ROW instead of a fourth column.",
+          "Writing the coefficients in the order they appear rather than in x, y, z order."
+        ]
+      },
+      {
+        "id": "s2_forward",
+        "kind": "equation",
+        "label": "Clear column 1",
+        "marks": 2,
+        "mark_note": "Forward elimination",
+        "margin_note": "Two marks. The top-left entry is 2, so swap rows 1 and 2 first — row 2 already starts with a 1, and a leading 1 keeps every later operation free of fractions.",
+        "lines": [
+          "R₁ ↔ R₂  (to get a leading 1)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 2 & -1 & 3 & 9 \\\\ 1 & -1 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -3 & 1 & -3 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & -2 & 0 & -4 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a leading 1 is obtained in the top-left position and then used to make the rest of column 1 zero.",
+          "accept": [
+            "get a one in the top left corner then subtract multiples of row one to make the rest of the first column zero",
+            "use the leading one to clear column one below it",
+            "make the first column zeros under the leading entry using row operations",
+            "first column lo leading one techi, kinda unna entries ni zero chestham",
+            "swap or subtract to get a one on top then knock out the entries below it"
+          ],
+          "reject": [
+            "do row operations",
+            "clear the column",
+            "reduce the matrix"
+          ],
+          "heard_as": [
+            "leading one",
+            "first column",
+            "zeros below",
+            "row operations",
+            "eliminate"
+          ]
+        },
+        "why": "Gauss-Jordan works one column at a time, and it always wants a 1 at the pivot first. Chasing zeros before you have that 1 is what forces fractions into the working.",
+        "common_mistakes": [
+          "Starting to clear the column before securing a leading 1 and drowning in fractions.",
+          "Applying an operation to only part of a row — every entry moves, including the constant.",
+          "Changing the pivot row while using it to clear the others."
+        ]
+      },
+      {
+        "id": "s3_pivot",
+        "kind": "equation",
+        "label": "Reach a leading 1 in R₃",
+        "marks": 1,
+        "mark_note": "Last pivot",
+        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is bookkeeping to get x and y out.",
+        "lines": [
+          "R₃ → R₃ − 2R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & -2 & -6 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × (−½)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -1 & 1 & 1 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the last row is reduced to 0, 0, 1 with the value of z after the rule — that is, the third pivot is made 1.",
+          "accept": [
+            "reduce the last row to zero zero one so that z is read directly",
+            "make the third pivot a one by dividing the row",
+            "get the bottom row to zero zero one which gives z",
+            "last row ni zero zero one ga marchali, appudu z telustundi",
+            "divide the bottom row so the pivot becomes one and z is known"
+          ],
+          "reject": [
+            "do more row operations",
+            "clear the second column",
+            "divide the row"
+          ],
+          "heard_as": [
+            "zero zero one",
+            "pivot",
+            "last row",
+            "z equals",
+            "bottom row"
+          ]
+        },
+        "why": "This is the point where Gauss elimination would stop and back-substitute. Gauss-Jordan carries on and clears upwards too, which is why the answer needs no substitution at all.",
+        "common_mistakes": [
+          "Dividing the row by the wrong entry.",
+          "Dividing the coefficients but not the constant after the rule.",
+          "Stopping here and calling it the answer; only z is known so far."
+        ]
+      },
+      {
+        "id": "s4_backward",
+        "kind": "equation",
+        "label": "Clear upwards",
+        "marks": 2,
+        "mark_note": "Backward elimination",
+        "margin_note": "Two more marks. Row 2 is left as −1 rather than normalised to 1; that is allowed, and the last step simply reads −y = −2. Normalising it costs an extra line and gains nothing.",
+        "lines": [
+          "R₁ → R₁ − R₃,  R₂ → R₂ − R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 0 & 3 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₁ → R₁ + R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 1 \\\\ 0 & -1 & 0 & -2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the elimination is then run upwards — using the lower rows to clear the entries ABOVE the pivots, until only the diagonal is left.",
+          "accept": [
+            "now clear upwards using the bottom row to remove the entries above the pivots",
+            "work from the bottom up making the entries above each pivot zero",
+            "eliminate above the diagonal so only the pivots are left",
+            "ippudu paina unna entries ni kuda zero chestham, kinda nunchi paiki",
+            "use row three then row two to clear everything above them"
+          ],
+          "reject": [
+            "do more row operations",
+            "reduce it fully",
+            "clear the matrix"
+          ],
+          "heard_as": [
+            "clear upwards",
+            "above the pivot",
+            "bottom up",
+            "diagonal",
+            "identity"
+          ]
+        },
+        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. It buys you an answer you can read straight off, with no back-substitution.",
+        "common_mistakes": [
+          "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
+          "Clearing upwards before the pivots are 1, which reintroduces fractions.",
+          "Forgetting to carry the operation across the rule into the constant."
+        ]
+      },
+      {
+        "id": "s5_read",
+        "kind": "boxed_final",
+        "label": "Read off the solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Each row is now a one-letter equation, so the answer is read straight off with no substitution.",
+        "lines": [
+          "Each row is now a single equation:",
+          "Row 1: x = 1",
+          "Row 2: −y = −2  ⇒  y = 2",
+          "Row 3: z = 3",
+          {
+            "text": "∴ x = 1, y = 2, z = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each row of the reduced matrix reads as one equation, giving x = 1, y = 2, z = 3.",
+          "accept": [
+            "each row is now one equation so read x y and z straight off",
+            "the reduced matrix gives the values directly with no substitution",
+            "read the answers from the last column",
+            "prathi row oke equation kabatti x y z direct ga chadavachu",
+            "the three rows give the three unknowns immediately"
+          ],
+          "reject": [
+            "then I get the answer",
+            "that is the solution",
+            "read the matrix"
+          ],
+          "heard_as": [
+            "read off",
+            "each row",
+            "x equals",
+            "y equals",
+            "z equals"
+          ]
+        },
+        "why": "A row reading 0 0 1 | 3 is literally the equation z = 3. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a trick.",
+        "common_mistakes": [
+          "Reading the values in the wrong order.",
+          "Forgetting a row left with a −1 pivot, which needs one sign flip.",
+          "Never substituting back to check — x=1, y=2, z=3 in the first equation gives 2−2+9 = 9."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_identity_composition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If f: A→B is a function and I_A, I_B are identity functions on A, B respectively then prove that foI_A = f = I_Bof.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Proof that foI_A = f",
+      "marks": 3
+    },
+    {
+      "label": "Proof that I_Bof = f",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md)."
+  },
+  "recall_prompt": "Say how you would prove that composing f with the identity on either side leaves f unchanged — the two parts, and how each part goes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Functions · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. Write down what each identity function does before you use it — the whole proof is one line of algebra once that is on the page.",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f: A→B is a function.",
+          "Identity functions:",
+          {
+            "text": "I_A : A \\to A, \\quad I_B : B \\to B",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\text{To prove: } f \\circ I_A = f = I_B \\circ f",
+            "render": "katex",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity on A sends every element of A to itself, and the identity on B does the same on B. If only the name 'identity function' is spoken with no statement of what it does, confidence 0.5 or lower.",
+          "accept": [
+            "the identity on A sends every a to itself and the identity on B sends every b to itself",
+            "I A of a equals a and I B of b equals b",
+            "given f from A to B and the two identity functions which leave every element unchanged",
+            "identity function ante prathi element ni ade return chestundi",
+            "we have f and the identities on A and on B that fix every element"
+          ],
+          "reject": [
+            "identity functions are given",
+            "first I write the given",
+            "I A and I B are identities"
+          ],
+          "heard_as": [
+            "identity",
+            "I A",
+            "I B",
+            "I sub A",
+            "sends it to itself",
+            "unchanged"
+          ]
+        },
+        "why": "Both halves of this proof are the single fact that an identity function changes nothing. Writing that fact down first turns the rest into one substitution.",
+        "common_mistakes": [
+          "Naming the identity function without saying what it does to an element.",
+          "Mixing up which identity acts on A and which on B."
+        ]
+      },
+      {
+        "id": "s2_right_identity",
+        "kind": "equation",
+        "label": "Identity on the right",
+        "marks": 3,
+        "mark_note": "First part",
+        "margin_note": "Three of the seven marks. Two things earn them: that both sides have domain A, and the one-line substitution. Do not skip the domain line.",
+        "lines": [
+          {
+            "text": "\\text{(i) To prove } f \\circ I_A = f",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "I_A : A \\to A \\text{ and } f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ I_A : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (f \\circ I_A)(a) = f[I_A(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because I_A(a) = a)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ I_A = f",
+            "render": "katex"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f o I_A maps A to B like f does, and that applying it to a gives f of I_A of a, which is f of a because the identity leaves a alone.",
+          "accept": [
+            "f composed with I A goes from A to B same as f then f of I A of a is f of a because I A of a is a",
+            "apply it to a the identity gives back a so you get f of a hence the composition equals f",
+            "both have domain A and the value is f of a so they are the same function",
+            "I A of a equals a kabatti f of a vasthundi so f o I A equals f",
+            "the identity on the inside does nothing so the composition is just f"
+          ],
+          "reject": [
+            "I prove the first part",
+            "it is obvious",
+            "the identity does nothing so it is equal"
+          ],
+          "heard_as": [
+            "I A",
+            "f of a",
+            "composition",
+            "domain A",
+            "identity"
+          ]
+        },
+        "why": "The identity sits on the input side here, so it acts first and hands a straight back to f. Nothing about f is used except that it is a function.",
+        "common_mistakes": [
+          "Proving only the values match and never the domains.",
+          "Writing I_B where I_A belongs — the inner function must accept elements of A."
+        ]
+      },
+      {
+        "id": "s3_left_identity",
+        "kind": "equation",
+        "label": "Identity on the left",
+        "marks": 4,
+        "mark_note": "Second part",
+        "margin_note": "Four of the seven marks. Same shape as part (i), but the identity now acts on the OUTPUT, so it is I_B and it uses I_B(b) = b.",
+        "lines": [
+          {
+            "text": "\\text{(ii) To prove } I_B \\circ f = f",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f : A \\to B \\text{ and } I_B : B \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore I_B \\circ f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (I_B \\circ f)(a) = I_B[f(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because I_B(b) = b)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore I_B \\circ f = f",
+            "render": "katex"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I_B o f also maps A to B, and applying it to a gives I_B of f(a), which is f(a) because the identity on B leaves f(a) alone. The identity must be I_B here, acting after f.",
+          "accept": [
+            "I B composed with f goes from A to B and I B of f of a is f of a because I B fixes every element of B",
+            "here the identity acts after f so it takes f of a and returns f of a",
+            "f of a is in B and the identity on B leaves it alone so the composition is f",
+            "f of a B lo untundi so I B daanini marchadu hence equal",
+            "same argument on the other side with I B instead of I A"
+          ],
+          "reject": [
+            "same as before",
+            "I prove the second part",
+            "by symmetry it is equal"
+          ],
+          "heard_as": [
+            "I B",
+            "f of a",
+            "after f",
+            "domain A",
+            "identity on B"
+          ]
+        },
+        "why": "Here the identity acts on the output, which lives in B — that is why it must be I_B and not I_A. The two parts are not the same statement; they are the two sides of the composition.",
+        "common_mistakes": [
+          "Writing 'by symmetry' instead of doing the second part — the examiner marks it separately.",
+          "Using I_A on the output side, where the elements are f(a) ∈ B.",
+          "Dropping the domain line in part (ii) after writing it in part (i)."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 0,
+        "margin_note": "No separate mark. Write the double equality exactly as the question stated it.",
+        "lines": [
+          {
+            "text": "f \\circ I_A = f = I_B \\circ f",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both compositions equal f, stated as the single double equality the question asked for.",
+          "accept": [
+            "f composed with I A equals f equals I B composed with f",
+            "both compositions give f so the double equality holds",
+            "hence f o I A equals f equals I B o f",
+            "rendu vaipula identity vaadina f ye vastundi",
+            "the identity on either side leaves f unchanged"
+          ],
+          "reject": [
+            "hence proved",
+            "both are equal",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "equals f",
+            "double equality",
+            "I A",
+            "I B",
+            "hence"
+          ]
+        },
+        "why": "The question asked for a chain of two equalities. Writing it as one line shows both halves were proved, not just one.",
+        "common_mistakes": [
+          "Writing only one of the two equalities in the final line."
+        ]
+      }
+    ]
+  }
+}

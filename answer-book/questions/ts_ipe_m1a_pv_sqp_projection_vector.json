@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sqp_projection_vector",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a = i − j − k and b = 2i − 3j + k, then find the projection VECTOR of b on a.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a·b and |a|",
+      "marks": 1
+    },
+    {
+      "label": "Apply the projection formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.104 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 156. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed VSAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 17. The projection VECTOR, not the projection length. The length is (a·b)/|a|; the vector keeps the direction of a, so it divides by |a|² and multiplies by a itself. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_a_b_and_a",
+        "kind": "equation",
+        "label": "Find a·b and |a|",
+        "marks": 1,
+        "mark_note": "Ingredients",
+        "margin_note": "First mark. Two ingredients: the dot product on top, and the SQUARE of the length of a underneath.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a·b = 1(2) + (−1)(−3) + (−1)(1)",
+          "   = 2 + 3 − 1 = 4",
+          "|a| = √(1² + (−1)² + (−1)²) = √3",
+          "so |a|² = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·b = 4 and |a|² = 3.",
+          "accept": [
+            "the dot product is four and the length of a squared is three",
+            "a dot b comes to four and mod a is root three",
+            "find the dot product and the square of the length",
+            "a dot b four, mod a square three",
+            "compute both ingredients first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four",
+            "root three",
+            "a dot b",
+            "mod a squared"
+          ]
+        },
+        "why": "It is |a|², not |a|, that goes underneath — because one factor of |a| turns a into a unit vector and the other scales the projection.",
+        "common_mistakes": [
+          "Computing b·b instead of a·b.",
+          "Using |b| in the denominator."
+        ]
+      },
+      {
+        "id": "s2_apply_the_projection_formu",
+        "kind": "boxed_final",
+        "label": "Apply the projection formula",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. Projection vector of b on a = (a·b / |a|²) a. The direction is a, so a stays in the answer.",
+        "lines": [
+          "Projection vector of b on a = (a·b / |a|²) a",
+          "= (4/3)(i − j − k)",
+          {
+            "text": "∴ Projection vector = (4/3)(i − j − k)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the projection vector is (a·b/|a|²)a = (4/3)(i − j − k).",
+          "accept": [
+            "the projection vector is four thirds times i minus j minus k",
+            "multiply the scalar four over three by the vector a",
+            "the answer keeps the direction of a",
+            "four by three into a vector",
+            "projection vector is four thirds of a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four thirds",
+            "i minus j minus k",
+            "direction of a"
+          ]
+        },
+        "why": "A projection VECTOR must be a vector, so a has to appear in the answer. A bare number would be the projection length instead.",
+        "common_mistakes": [
+          "Stopping at 4/√3 and calling it the projection vector.",
+          "Projecting a on b by mistake."
+        ]
+      }
+    ]
+  }
+}

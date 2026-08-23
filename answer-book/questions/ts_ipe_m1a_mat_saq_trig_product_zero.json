@@ -1,0 +1,202 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_trig_product_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If θ − φ = π/2, then show that the product of the matrix with rows (cos²θ, cosθ sinθ) and (cosθ sinθ, sin²θ) with the matrix with rows (cos²φ, cosφ sinφ) and (cosφ sinφ, sin²φ) is the zero matrix O.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use θ − φ = π/2 to write cos θ and sin θ in terms of φ",
+      "marks": 1
+    },
+    {
+      "label": "Rewrite the first matrix entirely in φ",
+      "marks": 1
+    },
+    {
+      "label": "Multiply and show every entry is zero",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Matrices, answer 45. Printed appearances: TS 17 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (the only SAQ in the chapter that carries them is answer 40 on book p.51, printed 1+1+1+1). The 1+1+2 above puts half the marks on the multiplication itself and one mark each on the two trigonometric conversions that make it possible. The book calls this question \"What a mixup! Trigonometry in Algebra\", and the trigonometry really is where it is won or lost. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would show this product is zero — say what you do with the given angle condition before multiplying anything.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_angles",
+        "kind": "equation",
+        "label": "Convert θ into φ",
+        "marks": 1,
+        "mark_note": "Angle condition",
+        "margin_note": "First mark, and the idea of the whole question. Two different angles cannot be multiplied together usefully — so use the given condition to write everything in ONE angle before touching the matrices.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given θ − φ = π/2, so θ = π/2 + φ.",
+          "cos θ = cos(π/2 + φ) = −sin φ",
+          "sin θ = sin(π/2 + φ) = cos φ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ = π/2 + φ is used to get cos θ = −sin φ and sin θ = cos φ, so everything can be written in one angle. The minus sign on cos θ must be spoken.",
+          "accept": [
+            "theta equals pi by two plus phi so cos theta is minus sin phi and sin theta is cos phi",
+            "use the given condition to convert theta into phi, cos becomes minus sin and sin becomes cos",
+            "write theta as ninety degrees plus phi then cos theta is negative sin phi",
+            "theta equals pi by two plus phi, appudu cos theta minus sin phi and sin theta cos phi",
+            "convert everything to one angle using the allied angle formulas"
+          ],
+          "reject": [
+            "use the given condition",
+            "convert the angles",
+            "theta minus phi is pi by two"
+          ],
+          "heard_as": [
+            "pi by two plus phi",
+            "minus sin phi",
+            "cos phi",
+            "allied angles",
+            "ninety degrees"
+          ]
+        },
+        "why": "The two matrices are in different angles, and nothing cancels while that is true. Turning θ into φ is what makes every entry comparable — the algebra afterwards is routine.",
+        "common_mistakes": [
+          "Writing cos(π/2 + φ) = sin φ and losing the minus sign, which makes the product non-zero.",
+          "Using θ = π/2 − φ instead of π/2 + φ.",
+          "Multiplying the matrices first and hoping the condition helps later."
+        ]
+      },
+      {
+        "id": "s2_rewrite",
+        "kind": "equation",
+        "label": "Rewrite the first matrix",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "margin_note": "Second mark. cos²θ becomes sin²φ, sin²θ becomes cos²φ, and the off-diagonal cosθ sinθ becomes (−sin φ)(cos φ) — negative. That single minus is what makes the whole product vanish.",
+        "lines": [
+          "cos²θ = sin²φ,  sin²θ = cos²φ,",
+          "cos θ sin θ = (−sin φ)(cos φ) = −sin φ cos φ",
+          {
+            "text": "\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} \\sin^2\\phi & -\\sin\\phi\\cos\\phi \\\\ -\\sin\\phi\\cos\\phi & \\cos^2\\phi \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first matrix is rewritten entirely in φ, with the off-diagonal entries becoming NEGATIVE sin φ cos φ.",
+          "accept": [
+            "substitute so the first matrix becomes sin squared phi and minus sin phi cos phi and cos squared phi",
+            "rewrite the first matrix in terms of phi with the off diagonal entries negative",
+            "replace cos theta by minus sin phi throughout so the corner entries turn negative",
+            "first matrix ni phi lo rasi, off diagonal entries minus avthai",
+            "convert every entry of the first matrix into phi"
+          ],
+          "reject": [
+            "substitute the values",
+            "rewrite it",
+            "put in the values"
+          ],
+          "heard_as": [
+            "sin squared phi",
+            "minus sin phi cos phi",
+            "cos squared phi",
+            "substitute"
+          ]
+        },
+        "why": "The diagonal entries swap places — cos² becomes sin² and sin² becomes cos² — and the off-diagonal entries change sign. Both effects are needed for the cancellation, so the substitution has to be done on all four entries.",
+        "common_mistakes": [
+          "Substituting into the diagonal but leaving the off-diagonal entries in θ.",
+          "Losing the minus sign on the off-diagonal entries.",
+          "Substituting into the SECOND matrix, which is already in φ and must be left alone."
+        ]
+      },
+      {
+        "id": "s3_multiply",
+        "kind": "boxed_final",
+        "label": "Multiply the matrices",
+        "marks": 2,
+        "mark_note": "Product is O",
+        "margin_note": "Half the marks. Multiply row by column. Each entry is a difference of two identical products, so each cancels to zero — write at least two of them out in full to show it is cancellation and not luck.",
+        "lines": [
+          "Multiplying row by column:",
+          "Entry (1,1):  sin²φ cos²φ − sin²φ cos²φ = 0",
+          "Entry (1,2):  sin³φ cos φ − sin³φ cos φ = 0",
+          "Entry (2,1):  −sin φ cos³φ + sin φ cos³φ = 0",
+          "Entry (2,2):  −sin²φ cos²φ + sin²φ cos²φ = 0",
+          {
+            "text": "∴ The product is the zero matrix O.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two matrices are multiplied row against column and every entry is a difference of two equal terms, so all four entries are zero and the product is O.",
+          "accept": [
+            "multiply row by column and each entry is a difference of two identical terms so every entry is zero",
+            "the four entries all cancel to zero giving the null matrix",
+            "each product entry has two equal terms with opposite signs so it vanishes",
+            "row into column multiply cheste prathi entry lo rendu terms cancel ayi zero avthundi",
+            "all four entries come to zero so the product is the zero matrix"
+          ],
+          "reject": [
+            "multiply them",
+            "we get zero",
+            "hence proved"
+          ],
+          "heard_as": [
+            "zero matrix",
+            "null matrix",
+            "O",
+            "cancel",
+            "row into column",
+            "every entry"
+          ]
+        },
+        "why": "The minus sign introduced in the last step is what makes each pair of terms cancel instead of double. Without it every entry would be twice something rather than zero.",
+        "common_mistakes": [
+          "Writing \"= 0\" instead of \"= O\" — the answer is a matrix.",
+          "Showing one entry is zero and asserting the other three.",
+          "Multiplying entry by entry instead of row by column."
+        ]
+      }
+    ]
+  }
+}

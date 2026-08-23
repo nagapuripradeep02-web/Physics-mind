@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_inverse_ax_plus_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the inverse of the real function f(x) = ax + b, a ≠ 0.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Solve for x",
+      "marks": 1
+    },
+    {
+      "label": "The inverse function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 91.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would invert a general linear function, and where a ≠ 0 is used.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Swap and solve",
+        "marks": 1,
+        "mark_note": "Solve for x",
+        "margin_note": "One mark. Identical method to the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
+        "lines": [
+          "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "ax + b = y ⇒ ax = y − b",
+          "⇒ x = (y − b)/a   (a ≠ 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(x) = y is solved for x, giving (y − b)/a, and that dividing by a is allowed because a ≠ 0.",
+          "accept": [
+            "set a x plus b equal to y then a x is y minus b so x is y minus b over a",
+            "make x the subject and divide by a which is allowed since a is not zero",
+            "solve for x to get y minus b by a",
+            "a x plus b equals y anukoni x solve chesthe y minus b by a",
+            "rearrange giving x equals y minus b over a"
+          ],
+          "reject": [
+            "same as before",
+            "I solve for x",
+            "swap and solve"
+          ],
+          "heard_as": [
+            "a x plus b",
+            "y minus b",
+            "over a",
+            "a not equal to zero"
+          ]
+        },
+        "why": "a ≠ 0 is in the question because dividing by a is the step that finds the inverse. If a were 0 the function would be constant and have no inverse.",
+        "common_mistakes": [
+          "Not using or mentioning a ≠ 0, which is the condition the whole method rests on.",
+          "Writing (y − b)/a as y − b/a, which means something different."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Write the inverse",
+        "marks": 1,
+        "mark_note": "The inverse function",
+        "margin_note": "The second mark is the finished function, renamed in x.",
+        "lines": [
+          "⇒ f⁻¹(y) = (y − b)/a",
+          "∴ f⁻¹(x) = (x − b)/a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(x) = (x − b)/a.",
+          "accept": [
+            "f inverse of x is x minus b over a",
+            "the inverse is x minus b by a",
+            "rename y as x giving x minus b over a",
+            "f inverse of x ante x minus b by a",
+            "the answer is x minus b divided by a"
+          ],
+          "reject": [
+            "that is the inverse",
+            "so it is done",
+            "the answer follows"
+          ],
+          "heard_as": [
+            "f inverse of x",
+            "x minus b",
+            "over a",
+            "by a"
+          ]
+        },
+        "why": "This is the general form of the previous question — every linear function's inverse is this, which is why it is worth memorising as a shape.",
+        "common_mistakes": [
+          "Leaving the answer in y.",
+          "Writing (x + b)/a."
+        ]
+      }
+    ]
+  }
+}

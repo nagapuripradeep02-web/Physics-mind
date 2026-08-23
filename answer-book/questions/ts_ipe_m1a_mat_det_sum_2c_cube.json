@@ -1,0 +1,332 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_sum_2c_cube",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Show that the determinant with rows (a+b+2c, a, b), (c, b+c+2a, b) and (c, a, c+a+2b) is equal to 2(a+b+c)³.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Column operation C₁ → C₁+C₂+C₃",
+      "marks": 2
+    },
+    {
+      "label": "Take 2(a+b+c) common from C₁",
+      "marks": 1
+    },
+    {
+      "label": "Row operations R₂−R₁ and R₃−R₁",
+      "marks": 2
+    },
+    {
+      "label": "Expand along the first column",
+      "marks": 1
+    },
+    {
+      "label": "State the final result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 14, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.2 in Dets'. The four printed appearance tags (TS 16,19 · AP 16,18) make it the most-asked determinant in the chapter. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. This page carries a 'Tick Boxes' widget in the margin where the [N Marks] tags would normally sit, so no split is printed for this question. The 2+1+2+1+1 above is inferred from the split the same book DOES print for answer 17 on book p.26 — a structurally identical proof (sum a row or column, take the common factor out, two row operations, expand) which is printed as 1+1+1+2+1+1. The two marks on the opening column operation reflect that spotting C₁+C₂+C₃ is the whole question; a teacher may well weight it differently. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own. Before writing anything else, add the three entries of any row in your head — each row sums to 2(a+b+c). That is the whole question in one observation.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} a+b+2c & a & b \\\\ c & b+c+2a & b \\\\ c & a & c+a+2b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the given determinant. Naming it is full credit.",
+          "accept": [
+            "write the given determinant first",
+            "take delta as the determinant in the question",
+            "start with the LHS determinant",
+            "modata ichina determinant rasta",
+            "write down the determinant we have to prove"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "LHS"
+          ]
+        },
+        "why": "Every entry is built from a, b and c, and the answer is a power of (a+b+c). That match is the signal to add rows or columns together rather than to expand.",
+        "common_mistakes": [
+          "Expanding the 3×3 determinant directly, which produces a page of terms.",
+          "Trying row subtraction first; there is nothing to cancel yet."
+        ]
+      },
+      {
+        "id": "s2_column_sum",
+        "kind": "equation",
+        "label": "Add all three columns into C₁",
+        "marks": 2,
+        "mark_note": "Column operation",
+        "margin_note": "Two of the seven marks, and the only idea in the question. Adding C₂ and C₃ into C₁ makes every entry of column 1 the same: 2a+2b+2c. Nothing else in the proof is hard.",
+        "lines": [
+          "C₁ → C₁ + C₂ + C₃",
+          "Each row of C₁ becomes 2a + 2b + 2c:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 2a{+}2b{+}2c & a & b \\\\ 2a{+}2b{+}2c & b+c+2a & b \\\\ 2a{+}2b{+}2c & a & c+a+2b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That columns 2 and 3 are added into column 1, and that this makes all three entries of column 1 equal to 2a+2b+2c.",
+          "accept": [
+            "add column two and column three to column one so every entry becomes two a plus two b plus two c",
+            "apply C one goes to C one plus C two plus C three and the first column becomes identical",
+            "sum all three columns into the first column and each entry is two into a plus b plus c",
+            "C1 ki C2 and C3 kalipithe anni entries two a plus two b plus two c avthai",
+            "add the columns together and the first column becomes the same value three times"
+          ],
+          "reject": [
+            "do a column operation",
+            "add the columns",
+            "apply C one plus C two"
+          ],
+          "heard_as": [
+            "C1 plus C2 plus C3",
+            "column one",
+            "two a plus two b plus two c",
+            "add the columns"
+          ]
+        },
+        "why": "Adding other columns into one column never changes a determinant's value. It is worth doing when it makes a whole column identical — because an identical column can be taken out as a common factor.",
+        "common_mistakes": [
+          "Adding rows instead of columns; here the columns are what sum to the same value.",
+          "Adding into C₂ or C₃ instead of C₁, which works but makes the next step harder to see.",
+          "Writing a+b+c instead of 2a+2b+2c — check the sum, every row has a 2 in it."
+        ]
+      },
+      {
+        "id": "s3_take_common",
+        "kind": "equation",
+        "label": "Take 2(a+b+c) common",
+        "marks": 1,
+        "mark_note": "Common factor",
+        "margin_note": "Third mark. Column 1 is now 2(a+b+c) three times over, so that factor comes out and column 1 becomes 1, 1, 1.",
+        "lines": [
+          "Taking 2(a+b+c) common from C₁:",
+          {
+            "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 1 & b+c+2a & b \\\\ 1 & a & c+a+2b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2(a+b+c) is taken common out of column 1, leaving 1, 1, 1 in that column.",
+          "accept": [
+            "take two into a plus b plus c common from the first column leaving ones",
+            "pull out two a plus b plus c so the first column becomes one one one",
+            "the common factor two into a plus b plus c comes outside",
+            "first column nunchi two into a plus b plus c common teeste ones migulutai",
+            "take the two and the a plus b plus c out in front of the determinant"
+          ],
+          "reject": [
+            "take common",
+            "take a plus b plus c common",
+            "take out the factor"
+          ],
+          "heard_as": [
+            "two a plus b plus c",
+            "common",
+            "first column",
+            "one one one"
+          ]
+        },
+        "why": "The 2 that comes out here is the 2 in the answer 2(a+b+c)³. Losing it is the commonest way to finish this question with (a+b+c)³ and drop marks.",
+        "common_mistakes": [
+          "Taking only (a+b+c) out and leaving the 2 behind.",
+          "Taking the factor out of a row instead of the column.",
+          "Cubing the factor here; it comes out once."
+        ]
+      },
+      {
+        "id": "s4_row_ops",
+        "kind": "equation",
+        "label": "Do R₂−R₁ and R₃−R₁",
+        "marks": 2,
+        "mark_note": "Row operations",
+        "margin_note": "Two more marks. Column 1 is all 1s now, so subtracting row 1 clears it. What is left is a triangular determinant — zeros below the diagonal — and those are read straight off.",
+        "lines": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          {
+            "text": "\\Delta = 2(a{+}b{+}c) \\begin{vmatrix} 1 & a & b \\\\ 0 & a+b+c & 0 \\\\ 0 & 0 & a+b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 1 is subtracted from rows 2 and 3, and that this leaves (a+b+c) on the diagonal with zeros elsewhere in those rows.",
+          "accept": [
+            "subtract row one from row two and row three leaving a plus b plus c on the diagonal",
+            "apply R two minus R one and R three minus R one and the determinant becomes diagonal",
+            "do the row subtractions and you get a plus b plus c twice down the diagonal with zeros",
+            "R2 minus R1 and R3 minus R1 cheste diagonal lo a plus b plus c vasthundi",
+            "take row one away from the lower two rows and only the diagonal entries are left"
+          ],
+          "reject": [
+            "do row operations",
+            "subtract the rows",
+            "apply R two minus R one"
+          ],
+          "heard_as": [
+            "R two minus R one",
+            "R three minus R one",
+            "a plus b plus c",
+            "diagonal",
+            "zeros"
+          ]
+        },
+        "why": "b − b = 0 in row 2 and a − a = 0 in row 3. Those cancellations are why the middle and last entries collapse, and they only happen because the first row was subtracted, not added.",
+        "common_mistakes": [
+          "Subtracting in the wrong order and picking up minus signs on the diagonal.",
+          "Missing that the off-diagonal entries cancel to zero and carrying them along.",
+          "Changing row 1 as well."
+        ]
+      },
+      {
+        "id": "s5_expand",
+        "kind": "equation",
+        "label": "Expand along the first column",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Sixth mark. Column 1 is 1, 0, 0 so only one term survives, and its minor is a 2×2 with zeros off the diagonal — its value is just the product of the diagonal.",
+        "lines": [
+          "Expanding along C₁:",
+          "Δ = 2(a+b+c)[(a+b+c)(a+b+c) − 0]",
+          "Δ = 2(a+b+c)·(a+b+c)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding along the first column leaves one term, whose 2×2 minor is (a+b+c) times (a+b+c).",
+          "accept": [
+            "expand along the first column and the two by two minor is a plus b plus c squared",
+            "only the one contributes so we get a plus b plus c into a plus b plus c",
+            "the minor is diagonal so its value is the product of the diagonal entries",
+            "first column lo one zero zero kabatti oke term vasthundi",
+            "expand and the small determinant gives a plus b plus c whole squared"
+          ],
+          "reject": [
+            "expand the determinant",
+            "solve it",
+            "multiply the diagonal"
+          ],
+          "heard_as": [
+            "expand",
+            "first column",
+            "minor",
+            "a plus b plus c squared"
+          ]
+        },
+        "why": "A determinant with zeros below the diagonal is the product of its diagonal entries. Every operation before this line existed to reach that shape.",
+        "common_mistakes": [
+          "Expanding along a row instead of the column of zeros and doing three times the work.",
+          "Forgetting the 2(a+b+c) already standing outside."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "State the result",
+        "marks": 1,
+        "mark_note": "Final answer",
+        "margin_note": "Last mark. One factor of (a+b+c) came from the column, two more from the diagonal — three in all, and the 2 that came out with them.",
+        "lines": [
+          "One (a+b+c) from C₁ and two from the minor:",
+          {
+            "text": "Δ = 2(a+b+c)³ = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three factors of (a+b+c) multiply to the cube and the 2 stays in front, giving 2(a+b+c)³.",
+          "accept": [
+            "three factors of a plus b plus c give the cube and the two stays outside so it is two into a plus b plus c cubed",
+            "one from the column and two from the minor make a plus b plus c cubed times two",
+            "the answer is two a plus b plus c whole cubed",
+            "moodu a plus b plus c factors kalipithe cube avthundi and two bayata untundi",
+            "multiply the factors to get two into a plus b plus c cube which is the RHS"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so LHS equals RHS"
+          ],
+          "heard_as": [
+            "a plus b plus c cubed",
+            "two",
+            "cube",
+            "RHS"
+          ]
+        },
+        "why": "Counting where each (a+b+c) came from is the check that catches a dropped factor. If you can only account for two, the 2 or a diagonal entry went missing.",
+        "common_mistakes": [
+          "Writing (a+b+c)³ and losing the 2.",
+          "Writing 2(a+b+c)² by forgetting the factor that came out of the column."
+        ]
+      }
+    ]
+  }
+}

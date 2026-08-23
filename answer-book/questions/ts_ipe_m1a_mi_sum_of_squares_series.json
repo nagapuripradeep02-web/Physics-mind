@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_of_squares_series",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Using the principle of finite Mathematical Induction prove that 1² + (1² + 2²) + (1² + 2² + 3²) + … n terms = n(n+1)²(n+2)/12, ∀ n ∈ N.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "nth term and the statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 2, question 6. The 1+1+1+3+1 split is PRINTED in that book's margin. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would prove this by induction — what the nth term is, and how the third step finishes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Find the nth term",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark. Each term is itself a sum of squares, so the nth term needs the standard sum-of-squares formula before S(n) can be written.",
+        "lines": [
+          "nth term = 1² + 2² + … + n²",
+          "        = n(n+1)(2n+1)/6",
+          "Let S(n): 1² + (1² + 2²) + …",
+          "        + n(n+1)(2n+1)/6 = n(n+1)²(n+2)/12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the nth term is itself the sum of the first n squares, n(n+1)(2n+1)/6, and that S(n) is then written in full.",
+          "accept": [
+            "each term is the sum of squares so the nth term is n into n plus one into two n plus one over six",
+            "use the standard sum of squares formula for the general term",
+            "the nth term is the sum of the first n squares which is n n plus one two n plus one by six",
+            "sum of squares formula vaadi nth term rastam"
+          ],
+          "reject": [
+            "I write the nth term",
+            "the general term",
+            "use the formula"
+          ],
+          "heard_as": [
+            "sum of squares",
+            "two n plus one",
+            "over six",
+            "nth term"
+          ]
+        },
+        "why": "The terms are nested sums, so the nth term is a formula rather than a product. Getting it wrong makes every later line wrong.",
+        "common_mistakes": [
+          "Using n² as the nth term instead of the SUM of squares up to n.",
+          "Misremembering the sum of squares as n(n+1)/2, which is the sum of the first n numbers."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Both sides at n = 1 come to 1.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1² = 1",
+          "R.H.S of S(1) = 1(2)²(3)/12 = 12/12 = 1",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 1² = 1 and the right side is 1(2)²(3)/12 = 1, so S(1) holds.",
+          "accept": [
+            "left side is one squared which is one and right side is one into two squared into three over twelve which is one",
+            "both sides give one at n equals one",
+            "twelve over twelve is one so the first case is true",
+            "n equals one ki rendu sides one vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the first case",
+            "verify n equals one"
+          ],
+          "heard_as": [
+            "one squared",
+            "twelve",
+            "l h s",
+            "r h s",
+            "s of one"
+          ]
+        },
+        "why": "The base case is cheap here but it is a full mark, and without it the chain has no first link.",
+        "common_mistakes": [
+          "Skipping the arithmetic and writing 'clearly true'.",
+          "Substituting into the nth-term formula instead of the statement."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1² + (1² + 2²) + …",
+          "        + k(k+1)(2k+1)/6",
+          "        = k(k+1)²(k+2)/12   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is ASSUMED true for some k in N, written out as the sum up to k terms equals k(k+1)²(k+2)/12, and labelled (1) for later use.",
+          "accept": [
+            "assume the statement is true for k so the sum up to k terms equals k(k+1)²(k+2)/12",
+            "suppose s of k holds and call it equation one",
+            "take it as true for some k in the naturals and number that line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "then I assume s of k",
+            "let it be true for k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "for k in n",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three marks. Write the (k+1)th term first, add it to (1), put everything over 12, then factorise out (k+1)(k+2).",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = (k+1)(k+2)(2k+3)/6",
+          "L.H.S = k(k+1)²(k+2)/12 + (k+1)(k+2)(2k+3)/6",
+          "= [k(k+1)²(k+2) + 2(k+1)(k+2)(2k+3)]/12",
+          "= (k+1)(k+2)[k(k+1) + 2(2k+3)]/12",
+          "= (k+1)(k+2)(k² + 5k + 6)/12",
+          "= (k+1)(k+2)²(k+3)/12 = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the (k+1)th term is (k+1)(k+2)(2k+3)/6, that both fractions go over 12, and that factoring out (k+1)(k+2) leaves k² + 5k + 6 = (k+2)(k+3), giving (k+1)(k+2)²(k+3)/12.",
+          "accept": [
+            "the next term is k plus one k plus two two k plus three over six then take everything over twelve and factor out k plus one k plus two",
+            "the bracket becomes k squared plus five k plus six which factors as k plus two into k plus three",
+            "after factorising you get k plus one into k plus two squared into k plus three over twelve",
+            "common factor teeste k square plus five k plus six vasthundi adi k plus two k plus three"
+          ],
+          "reject": [
+            "I add the next term",
+            "then simplify",
+            "it works out"
+          ],
+          "heard_as": [
+            "k plus one",
+            "k plus two",
+            "two k plus three",
+            "over twelve",
+            "k squared plus five k plus six"
+          ]
+        },
+        "why": "The quadratic k² + 5k + 6 factorising as (k+2)(k+3) is the moment the answer appears — the second (k+2) is what makes the square in the formula.",
+        "common_mistakes": [
+          "Getting the (k+1)th term wrong: replace n by k+1 in n(n+1)(2n+1)/6, which gives 2k+3, not 2k+1.",
+          "Failing to bring both fractions to the same denominator before adding.",
+          "Leaving k² + 5k + 6 unfactorised, so R.H.S never appears."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because S(1) is true AND S(k) implies S(k+1), the principle of mathematical induction gives the result for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k implies s of k plus one by the principle of mathematical induction it is true for all n",
+            "hence by p m i the statement holds for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two earlier parts prove single statements. Only the principle turns them into a claim about every n, so the examiner marks the sentence that names it.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ]
+      }
+    ]
+  }
+}

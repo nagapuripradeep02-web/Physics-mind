@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_saq_unit_normal_plane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the unit vector perpendicular to the plane passing through the points (1,2,3), (2,−1,1) and (1,2,−4).",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find two vectors in the plane",
+      "marks": 1
+    },
+    {
+      "label": "Cross them to get a normal",
+      "marks": 1
+    },
+    {
+      "label": "Find its magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Divide, keeping the ± sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 Product of Vectors, answer 59. Printed appearances: AP 17 · TS 22. The answer carries a ± sign, and that is not optional: a plane has two unit normals, one on each side, and both are correct.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of four working lines — a sourced 1+1+1+1 — a sourced split, not an inference. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find a unit vector perpendicular to a plane through three points.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_vectors",
+        "kind": "equation",
+        "label": "Find two vectors in the plane",
+        "marks": 1,
+        "mark_note": "In-plane vectors",
+        "margin_note": "First mark. Both from the same point A. AC comes out as a pure k vector here, which makes the cross product short.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "OA = i + 2j + 3k, OB = 2i − j + k, OC = i + 2j − 4k",
+          "AB = OB − OA = i − 3j − 2k",
+          "AC = OC − OA = −7k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two vectors lying in the plane, AB and AC, are built from the same point A.",
+          "accept": [
+            "find AB and AC from the same point A, both lie in the plane",
+            "take two vectors in the plane from one of the points",
+            "AB is OB minus OA and AC is OC minus OA which is minus seven k",
+            "A nunchi rendu vectors, avi plane lo untai",
+            "build two in plane vectors from one vertex"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "AB",
+            "AC",
+            "in the plane",
+            "minus seven k"
+          ]
+        },
+        "why": "Any two non-parallel vectors lying in the plane determine its direction completely — which is what makes their cross product a normal to it.",
+        "common_mistakes": [
+          "Using the position vectors themselves rather than differences.",
+          "Missing that AC has only a k component."
+        ]
+      },
+      {
+        "id": "s2_normal",
+        "kind": "equation",
+        "label": "Cross them",
+        "marks": 1,
+        "mark_note": "Normal vector",
+        "margin_note": "Second mark. The cross product of two vectors in the plane is perpendicular to the plane. Taking 7 out makes the next two steps easy.",
+        "lines": [
+          {
+            "text": "AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 1 & -3 & -2 \\\\ 0 & 0 & -7 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(21 − 0) − j(−7 − 0) + k(0 − 0)",
+          "= 21i + 7j = 7(3i + j)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product AB×AC gives a normal to the plane, here 21i + 7j = 7(3i + j).",
+          "accept": [
+            "cross them to get twenty one i plus seven j which is seven times three i plus j",
+            "the cross product is perpendicular to the plane",
+            "AB cross AC gives the normal, take seven out",
+            "cross product plane ki perpendicular, seven common teeyyochu",
+            "the normal vector is seven into three i plus j"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cross product",
+            "normal",
+            "twenty one i",
+            "seven",
+            "perpendicular"
+          ]
+        },
+        "why": "A cross product is perpendicular to both its factors. Since both factors lie in the plane, the result is perpendicular to the whole plane.",
+        "common_mistakes": [
+          "Taking a dot product, which gives a number and no direction.",
+          "Missing that the k component is zero."
+        ]
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "equation",
+        "label": "Find its magnitude",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "Third mark. With the 7 already outside, only 3² + 1² has to be squared — a much smaller sum than 21² + 7².",
+        "lines": [
+          "|AB × AC| = 7√(3² + 1²)",
+          "= 7√(9 + 1) = 7√10"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude is 7√10, with the 7 kept outside the root.",
+          "accept": [
+            "the magnitude is seven root ten",
+            "with seven outside it is seven times root of nine plus one",
+            "seven root ten is the modulus",
+            "seven root ten vasthundi",
+            "take the magnitude keeping the seven outside"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "seven root ten",
+            "magnitude",
+            "nine plus one"
+          ]
+        },
+        "why": "A positive factor outside a vector comes straight outside its magnitude, which is why factoring first is worth the extra line.",
+        "common_mistakes": [
+          "Squaring 21 and 7 and then failing to simplify √490.",
+          "Losing the factor of 7 entirely."
+        ]
+      },
+      {
+        "id": "s4_unit",
+        "kind": "boxed_final",
+        "label": "Divide, keeping ±",
+        "marks": 1,
+        "mark_note": "Unit normal",
+        "margin_note": "Last mark. The 7 cancels top and bottom. Keep the ± — a plane has a normal on each side and the question did not say which.",
+        "lines": [
+          "Required unit vector = ± (AB × AC)/|AB × AC|",
+          "= ± 7(3i + j) / (7√10)",
+          {
+            "text": "= ± (3i + j)/√10",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the normal by its magnitude gives ±(3i + j)/√10, and that the ± must be kept.",
+          "accept": [
+            "divide to get plus or minus three i plus j over root ten, and keep the plus minus",
+            "the unit normal is plus or minus three i plus j by root ten",
+            "a plane has two unit normals so the answer carries plus or minus",
+            "plus or minus three i plus j by root ten, rendu vaipula normals untai",
+            "the seven cancels leaving plus minus three i plus j over root ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "three i plus j",
+            "root ten",
+            "unit vector",
+            "two normals"
+          ]
+        },
+        "why": "Reversing a normal still leaves it perpendicular to the plane, so both signs are genuine answers. Dropping the ± gives only half the answer.",
+        "common_mistakes": [
+          "Omitting the ± sign.",
+          "Forgetting to cancel the 7."
+        ]
+      }
+    ]
+  }
+}

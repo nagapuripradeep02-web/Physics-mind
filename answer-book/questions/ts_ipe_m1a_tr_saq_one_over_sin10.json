@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_one_over_sin10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that 1/sin10° − √3/cos10° = 4.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Combine over one denominator",
+      "marks": 1
+    },
+    {
+      "label": "Take 2 out to make known angles",
+      "marks": 1
+    },
+    {
+      "label": "Apply sin(A−B)",
+      "marks": 1
+    },
+    {
+      "label": "Expand sin20° and cancel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16 · TS 16. The √3 is not decoration — it is there so that after halving, the coefficients become cos 30° and sin 30°, which is what lets the numerator collapse into a single sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine_over_one_denomin",
+        "kind": "equation",
+        "label": "Combine over one denominator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. One fraction, so the numerator can be worked on as a single expression.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = 1/sin10° − √3/cos10°",
+          "= (cos10° − √3 sin10°)/(sin10° cos10°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions are combined over the common denominator sin10° cos10°.",
+          "accept": [
+            "put both over the common denominator sin ten cos ten",
+            "combine into a single fraction",
+            "take the common denominator first",
+            "common denominator teeskoni okate fraction ga rayali",
+            "combine the two terms over one denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "sin ten cos ten",
+            "combine",
+            "single fraction"
+          ]
+        },
+        "why": "Nothing can be simplified while the expression is two separate fractions. Combining is what makes the numerator attackable.",
+        "common_mistakes": [
+          "Subtracting the numerators without a common denominator.",
+          "Losing the √3 when combining."
+        ]
+      },
+      {
+        "id": "s2_take_2_out_to_make_known",
+        "kind": "equation",
+        "label": "Take 2 out to make known angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark, and the idea of the question. Taking 2 out turns the coefficients into 1/2 and √3/2 — which are sin 30° and cos 30°.",
+        "lines": [
+          "= 2[(1/2)cos10° − (√3/2)sin10°] / (sin10° cos10°)",
+          "= 2[sin30° cos10° − cos30° sin10°] / (sin10° cos10°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 is factored out so the coefficients become 1/2 and √3/2, recognised as sin30° and cos30°.",
+          "accept": [
+            "take two out so the coefficients become half and root three over two which are sin thirty and cos thirty",
+            "factor a two so the numbers turn into known trig values",
+            "half is sin thirty and root three by two is cos thirty",
+            "two common teeste half and root three by two vasthundi, avi sin thirty cos thirty",
+            "recognise the coefficients as thirty degree values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin thirty",
+            "cos thirty",
+            "half",
+            "root three by two",
+            "take two out"
+          ]
+        },
+        "why": "A stray √3 almost always signals a 30° or 60° angle in disguise. Spotting that is what turns a messy numerator into a single sine.",
+        "common_mistakes": [
+          "Failing to take the 2 out and never seeing the known values.",
+          "Matching 1/2 to cos 30° instead of sin 30°."
+        ]
+      },
+      {
+        "id": "s3_apply_sin_a_b",
+        "kind": "equation",
+        "label": "Apply sin(A−B)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the whole numerator collapses to 2 sin20°.",
+        "lines": [
+          "= 2 sin(30° − 10°) / (sin10° cos10°)",
+          "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
+          "= 2 sin20° / (sin10° cos10°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinA cosB − cosA sinB = sin(A−B) is applied, giving 2 sin20°.",
+          "accept": [
+            "use sin A cos B minus cos A sin B equals sin A minus B to get two sin twenty",
+            "the numerator collapses to two sin twenty degrees",
+            "apply the compound angle formula",
+            "sin A minus B formula tho two sin twenty vasthundi",
+            "the top becomes two sin twenty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin A minus B",
+            "two sin twenty",
+            "compound angle"
+          ]
+        },
+        "why": "The numerator was built to match that formula exactly — which is why the 2 had to come out first.",
+        "common_mistakes": [
+          "Using sin(A+B) and getting sin 40°.",
+          "Getting the order backwards as sin(10° − 30°)."
+        ]
+      },
+      {
+        "id": "s4_expand_sin20_and_cancel",
+        "kind": "boxed_final",
+        "label": "Expand sin20° and cancel",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. sin20° is 2 sin10° cos10°, which is exactly the denominator — so everything cancels and only the numbers survive.",
+        "lines": [
+          "= 2(2 sin10° cos10°) / (sin10° cos10°)",
+          "  [∵ sin2θ = 2 sinθ cosθ]",
+          {
+            "text": "= 4 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin20° = 2 sin10° cos10°, which cancels the denominator entirely and leaves 4.",
+          "accept": [
+            "sin twenty is two sin ten cos ten which cancels the denominator leaving four",
+            "expand sin twenty and everything cancels to give four",
+            "the denominator cancels and the answer is four",
+            "sin twenty ni two sin ten cos ten ga rasthe anni cancel ayi four vasthundi",
+            "after cancelling only four is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin ten cos ten",
+            "cancel",
+            "four",
+            "sin twenty"
+          ]
+        },
+        "why": "The answer is a whole number because the denominator was always a disguised copy of the numerator. Every step was arranging for that cancellation.",
+        "common_mistakes": [
+          "Cancelling before expanding sin 20°.",
+          "Getting 2 instead of 4 by dropping one of the twos."
+        ]
+      }
+    ]
+  }
+}

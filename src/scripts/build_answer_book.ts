@@ -20,8 +20,9 @@
  * call, no network at runtime (Google Fonts CSS is the single exception,
  * with a cursive fallback).
  */
-import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
+import katex from 'katex';
 import { answerBookQuestionSchema, type AnswerBookQuestion } from '../schemas/answerBook';
 // The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
 // grades Vidi's replies with, so the bank and the model are held to one standard.
@@ -81,7 +82,7 @@ type ManifestEntry = {
     question_id?: string;
     cut?: string;
 };
-type ManifestUnit = { number: number; name: string; questions: ManifestEntry[] };
+type ManifestUnit = { number: number; name: string; subject?: string; questions: ManifestEntry[] };
 
 const manifestPath = join(BOOK_DIR, 'units.json');
 let manifest: { units: ManifestUnit[] };
@@ -96,7 +97,13 @@ if (!Array.isArray(manifest.units) || manifest.units.length === 0) {
 
 const questionById = new Map(questions.map((q) => [q.question_id, q]));
 const listedIds = new Set<string>();
+const SUBJECTS = ['physics', 'chemistry', 'mathematics'];
 for (const u of manifest.units) {
+    // Absent = physics (the historical meaning). A TYPO must fail the build: it would
+    // silently mint a fourth subject chip rather than filing the unit where it belongs.
+    if (u.subject !== undefined && !SUBJECTS.includes(u.subject)) {
+        fail(`${manifestPath}\n  unit ${u.number}: subject "${u.subject}" is not one of ${SUBJECTS.join('/')}`);
+    }
     const refs = new Set<string>();
     for (const e of u.questions) {
         if (refs.has(e.ref)) fail(`${manifestPath}\n  unit ${u.number}: duplicate ref "${e.ref}"`);
@@ -183,6 +190,53 @@ for (const q of questions) {
     }
 }
 
+// ── 1d. typeset every katex line AT BUILD TIME ───────────────────────────────
+// A `render: "katex"` line carries TeX source, not text. It is typeset here, never
+// in the browser: the page ships zero JS libraries and makes zero runtime decisions
+// (Rule 18), and a bad macro must fail the BUILD, loudly, naming the step — not
+// render as a red error string on a student's answer page.
+let katexLineCount = 0;
+
+type LineObj = { text: string; render?: string; html?: string };
+
+function typesetLines(lines: unknown[] | undefined, where: string): unknown[] | undefined {
+    if (!lines) return lines;
+    return lines.map((raw, i) => {
+        if (typeof raw === 'string' || (raw as LineObj).render !== 'katex') return raw;
+        const line = raw as LineObj;
+        try {
+            const html = katex.renderToString(line.text, {
+                throwOnError: true,
+                displayMode: false,
+                output: 'html',   // no MathML twin: it would land in textContent and in the reveal
+                strict: 'ignore',
+            });
+            katexLineCount++;
+            return { ...line, html };
+        } catch (e) {
+            fail(`${where} line ${i}\n  KaTeX could not typeset: ${line.text}\n  ${(e as Error).message}`);
+        }
+    });
+}
+
+// KaTeX's own stylesheet, with every @font-face rewritten to an embedded woff2 data
+// URI — the page must stay ONE self-contained file that works from file:// (same
+// constraint that forces the CSS/JS inlining below). Emitted only when a katex line
+// exists, so a book without one stays byte-for-byte as small as it was.
+function katexCss(): string {
+    const dist = join(ROOT, 'node_modules', 'katex', 'dist');
+    const raw = readFileSync(join(dist, 'katex.min.css'), 'utf8');
+    return raw.replace(/@font-face\{([^}]*)\}/g, (block, body: string) => {
+        const m = /url\(fonts\/([A-Za-z0-9_-]+\.woff2)\)/.exec(body);
+        if (!m) return '';
+        const fontPath = join(dist, 'fonts', m[1]);
+        if (!existsSync(fontPath)) return '';   // drop, never leave a dead url() behind
+        const b64 = readFileSync(fontPath).toString('base64');
+        const src = `src:url(data:font/woff2;base64,${b64}) format("woff2")`;
+        return `@font-face{${body.replace(/src:[^;]*$/, src).replace(/src:.*/, src)}}`;
+    });
+}
+
 // ── 2. read the engine files ─────────────────────────────────────────────────
 const shell = readFileSync(join(BOOK_DIR, 'shell.html'), 'utf8');
 const css = readFileSync(join(BOOK_DIR, 'notebook.css'), 'utf8');
@@ -203,9 +257,20 @@ const browserQuestions = questions.map((q) => ({
         ...q.answer,
         steps: q.answer.steps.map(({ recall, ...step }) => {
             void recall;
-            return step;
+            return { ...step, lines: typesetLines(step.lines, `${q.question_id} ${step.id}`) };
         }),
     },
+    // A cut may substitute shorter `lines` for a step, so those need typesetting too —
+    // missing them would ship a cut whose matrix silently arrived as raw TeX.
+    cuts: q.cuts?.map((c) => ({
+        ...c,
+        steps: Object.fromEntries(
+            Object.entries(c.steps).map(([id, cs]) => [
+                id,
+                { ...cs, lines: typesetLines(cs.lines, `${q.question_id} cut:${c.key} ${id}`) },
+            ])
+        ),
+    })),
 }));
 
 // The checking API is optional. Unset → the page offers neither photo nor mic and
@@ -231,7 +296,7 @@ const dataJs =
     `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};`;
 
 const html = shell
-    .replace('/*__CSS__*/', () => css)
+    .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
     .replace('/*__DATA__*/', () => dataJs)
     .replace('/*__JS__*/', () => js)
     .replace('<!--__BUILT_AT__-->', () => `<!-- built ${new Date().toISOString()} -->`);
@@ -244,6 +309,7 @@ writeFileSync(outPath, html, 'utf8');
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
+console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
     const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';

@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere.",
   "units": [
     {
       "number": 2,
@@ -1782,6 +1782,2076 @@
           "text": "Derive Kepler’s third law of planetary motion from Newton’s law of gravitation, for a planet moving in a circular orbit.",
           "question_id": "ts_ipe_p1_grav_keplers_third_law_derive",
           "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "name": "Functions (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If f: A→B, g: B→C are two bijective functions then prove that gof: A→C is also a bijective function.",
+          "question_id": "ts_ipe_m1a_fn_gof_bijective"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If f: A→B, g: B→C are two bijective functions then prove that (gof)⁻¹ = f⁻¹og⁻¹.",
+          "question_id": "ts_ipe_m1a_fn_gof_inverse_reverse"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If f: A→B is a function and I_A, I_B are identity functions on A, B respectively then prove that foI_A = f = I_Bof.",
+          "question_id": "ts_ipe_m1a_fn_identity_composition"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If f: A→B is a bijective function then prove that (i) fof⁻¹ = I_B (ii) f⁻¹of = I_A.",
+          "question_id": "ts_ipe_m1a_fn_f_finverse_identity"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If f: A→B and g: B→A are two functions such that gof = I_A and fog = I_B, then prove that (i) f is a bijection and (ii) g = f⁻¹.",
+          "question_id": "ts_ipe_m1a_fn_sqp_bijection_inverse"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If f = {(4,5), (5,6), (6,−4)} and g = {(4,−4), (6,5), (8,5)}, then find (i) f+g (ii) f−g (iii) 2f+4g (iv) fg (v) √f (vi) f² (vii) |f|.",
+          "question_id": "ts_ipe_m1a_fn_sqp_seven_operations"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If f: R→R, g: R→R are defined by f(x) = 3x − 1 and g(x) = x² + 1, then find (fog)(2).",
+          "question_id": "ts_ipe_m1a_fn_fog_at_2"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If f(x) = 2x − 1, g(x) = (x + 1)/2 for all x ∈ R, find (i) (gof)(x) (ii) (fog)(x).",
+          "question_id": "ts_ipe_m1a_fn_gof_fog_identity"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If A = {−2, −1, 0, 1, 2} and f: A→B is a surjection defined by f(x) = x² + x + 1 then find B.",
+          "question_id": "ts_ipe_m1a_fn_surjection_range_quadratic"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If A = {0, π/6, π/4, π/3, π/2} and f: A→B is a surjection defined by f(x) = cos x then find B.",
+          "question_id": "ts_ipe_m1a_fn_surjection_range_cos"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If f: Q→Q is defined by f(x) = 5x + 4, find f⁻¹.",
+          "question_id": "ts_ipe_m1a_fn_inverse_5x_plus_4"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the inverse of the real function f(x) = ax + b, a ≠ 0.",
+          "question_id": "ts_ipe_m1a_fn_inverse_ax_plus_b"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the inverse function of f(x) = 5ˣ.",
+          "question_id": "ts_ipe_m1a_fn_inverse_5_power_x"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the inverse function of f(x) = log₂x.",
+          "question_id": "ts_ipe_m1a_fn_inverse_log2_x"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If f = {(1,2), (2,−3), (3,−1)} then find (i) 2 + f (ii) √f.",
+          "question_id": "ts_ipe_m1a_fn_set_two_plus_f_and_root_f"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If f = {(1,2), (2,−3), (3,−1)} then find (i) 2f (ii) f².",
+          "question_id": "ts_ipe_m1a_fn_set_two_f_and_f_squared"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the domain of the real function √(9 − x²).",
+          "question_id": "ts_ipe_m1a_fn_domain_root_9_minus_x2"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the domain of the real function √(16 − x²).",
+          "question_id": "ts_ipe_m1a_fn_domain_root_16_minus_x2"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the domain of the real function √(x² − 25).",
+          "question_id": "ts_ipe_m1a_fn_domain_root_x2_minus_25"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the domain of the real function √(x² − 3x + 2).",
+          "question_id": "ts_ipe_m1a_fn_domain_root_x2_minus_3x_plus_2"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Find the domain of the real function log(x² − 4x + 3).",
+          "question_id": "ts_ipe_m1a_fn_domain_log_x2_minus_4x_plus_3"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Find the domain of the real function 1/√(x² − a²).",
+          "question_id": "ts_ipe_m1a_fn_domain_one_over_root_x2_minus_a2"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find the domain of the real function f(x) = √(4x − x²).",
+          "question_id": "ts_ipe_m1a_fn_domain_root_4x_minus_x2"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find the domain of the real function 1/√(1 − x²).",
+          "question_id": "ts_ipe_m1a_fn_domain_one_over_root_1_minus_x2"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Find the domain of the real function 1/((x² − 1)(x + 3)).",
+          "question_id": "ts_ipe_m1a_fn_domain_rational_x2_minus_1_x_plus_3"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Find the domain of the real function (2x² − 5x + 7)/((x − 1)(x − 2)(x − 3)).",
+          "question_id": "ts_ipe_m1a_fn_domain_rational_three_factors"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Mathematical Induction (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Using the principle of finite Mathematical Induction prove that 1·2·3 + 2·3·4 + 3·4·5 + … upto n terms = n(n+1)(n+2)(n+3)/4, ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sum_n_np1_np2"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Using the principle of finite Mathematical Induction prove that 1² + (1² + 2²) + (1² + 2² + 3²) + … n terms = n(n+1)²(n+2)/12, ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sum_of_squares_series"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + n terms = n/(2n+1), ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sum_reciprocal_odd_pairs"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that 1/(1·4) + 1/(4·7) + 1/(7·10) + … + n terms = n/(3n+1), ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sum_reciprocal_step_three"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that 1³/1 + (1³ + 2³)/(1 + 3) + (1³ + 2³ + 3³)/(1 + 3 + 5) + … n terms = (n/24)(2n² + 9n + 13), ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sum_cubes_over_odds"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "By Mathematical Induction, show that 49ⁿ + 16n − 1 is divisible by 64 for all positive integers n.",
+          "question_id": "ts_ipe_m1a_mi_divisible_49n_16n_minus_1"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Using the principle of Mathematical Induction, prove that 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ is divisible by 17, ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_divisible_3_5_2n1_2_3n1"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Using P.M.I, show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_divisible_2_4_2n1_3_3n1"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Using the principle of finite Mathematical Induction, prove that a + ar + ar² + … upto n terms = a(rⁿ − 1)/(r − 1), for r ≠ 1.",
+          "question_id": "ts_ipe_m1a_mi_sqp_gp_sum"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Using the principle of finite Mathematical Induction, prove that (1 + 3/1)(1 + 5/4)(1 + 7/9) … (1 + (2n+1)/n²) = (n+1)², for all n ∈ N.",
+          "question_id": "ts_ipe_m1a_mi_sqp_product_squares"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Matrices (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Show that the determinant with rows (a, b, c), (a², b², c²) and (a³, b³, c³) is equal to abc(a−b)(b−c)(c−a).",
+          "question_id": "ts_ipe_m1a_mat_det_powers_abc"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Show that the determinant with rows (1, a², a³), (1, b², b³) and (1, c², c³) is equal to (a−b)(b−c)(c−a)(ab+bc+ca).",
+          "question_id": "ts_ipe_m1a_mat_det_1_a2_a3"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Show that the determinant with rows (a+b+2c, a, b), (c, b+c+2a, b) and (c, a, c+a+2b) is equal to 2(a+b+c)³.",
+          "question_id": "ts_ipe_m1a_mat_det_sum_2c_cube"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the determinant with rows (a−b−c, 2a, 2a), (2b, b−c−a, 2b) and (2c, 2c, c−a−b) is equal to (a+b+c)³.",
+          "question_id": "ts_ipe_m1a_mat_det_a_minus_b_minus_c"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that the square of the determinant with rows (a, b, c), (b, c, a) and (c, a, b) equals the determinant with rows (2bc−a², c², b²), (c², 2ac−b², a²) and (b², a², 2ab−c²), and that both equal (a³+b³+c³−3abc)².",
+          "question_id": "ts_ipe_m1a_mat_det_square_cyclic"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Show that the determinant with rows (b+c, c+a, a+b), (c+a, a+b, b+c) and (a+b, b+c, c+a) is equal to twice the determinant with rows (a, b, c), (b, c, a) and (c, a, b).",
+          "question_id": "ts_ipe_m1a_mat_det_bc_ca_ab_twice"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "By using Cramer's rule, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
+          "question_id": "ts_ipe_m1a_mat_cramer_2x_y_3z_9"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "By using Cramer's rule, solve 3x + 4y + 5z = 18, 2x − y + 8z = 13, 5x − 2y + 7z = 20.",
+          "question_id": "ts_ipe_m1a_mat_cramer_3x_4y_5z_18"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "By using Cramer's rule, solve x + y + z = 1, 2x + 2y + 3z = 6, x + 4y + 9z = 3.",
+          "question_id": "ts_ipe_m1a_mat_cramer_x_y_z_1"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "By using Cramer's rule, solve x − y + 3z = 5, 4x + 2y − z = 0, x + 3y + z = 5.",
+          "question_id": "ts_ipe_m1a_mat_cramer_x_minus_y_3z_5"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "By using the matrix inversion method, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
+          "question_id": "ts_ipe_m1a_mat_inverse_2x_y_3z_9"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "By using the matrix inversion method, solve 2x − y + 3z = 8, −x + 2y + z = 4, 3x + y − 4z = 0.",
+          "question_id": "ts_ipe_m1a_mat_inverse_2x_y_3z_8"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "By using the matrix inversion method, solve 3x + 4y + 5z = 18, 2x − y + 8z = 13, 5x − 2y + 7z = 20.",
+          "question_id": "ts_ipe_m1a_mat_inverse_3x_4y_5z_18"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "By the Gauss-Jordan method, solve 2x − y + 3z = 9, x + y + z = 6, x − y + z = 2.",
+          "question_id": "ts_ipe_m1a_mat_gauss_2x_y_3z_9"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "By the Gauss-Jordan method, solve 3x + 4y + 5z = 18, 2x − y + 8z = 13, 5x − 2y + 7z = 20.",
+          "question_id": "ts_ipe_m1a_mat_gauss_3x_4y_5z_18"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "By the Gauss-Jordan method, solve x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1.",
+          "question_id": "ts_ipe_m1a_mat_gauss_infinite_solutions"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "By the Gauss-Jordan method, solve 2x + 4y − z = 0, x + 2y + 2z = 5, 3x + 6y − 7z = 2.",
+          "question_id": "ts_ipe_m1a_mat_gauss_no_solution"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If A is a non-singular matrix, then prove that A⁻¹ = (Adj A)/(det A).",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_formula_proof"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix A with rows (1, 3, 3), (1, 4, 3) and (1, 3, 4).",
+          "question_id": "ts_ipe_m1a_mat_saq_adj_inverse_1_3_3"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix A with rows (1, 0, 2), (2, 1, 0) and (3, 2, 1).",
+          "question_id": "ts_ipe_m1a_mat_saq_adj_inverse_1_0_2"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the matrix A with rows (1, 2, 1), (3, 2, 3) and (1, 1, 2) is non-singular, and find A⁻¹.",
+          "question_id": "ts_ipe_m1a_mat_saq_nonsingular_inverse_1_2_1"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the inverse of the matrix A with rows (2, 1, 2), (1, 0, 1) and (2, 2, 1).",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_2_1_2"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, 2, 2), (2, 1, 2) and (2, 2, 1), then show that A² − 4A − 5I = O.",
+          "question_id": "ts_ipe_m1a_mat_saq_a_squared_minus_4a_minus_5i"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, −2, 1), (0, 1, −1) and (3, −1, 1), then show that A³ − 3A² − A − 3I = O.",
+          "question_id": "ts_ipe_m1a_mat_saq_a_cubed_identity"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If I is the 2×2 unit matrix and E is the matrix with rows (0, 1) and (0, 0), then show that (aI + bE)³ = a³I + 3a²bE.",
+          "question_id": "ts_ipe_m1a_mat_saq_ai_plus_be_cubed"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If θ − φ = π/2, then show that the product of the matrix with rows (cos²θ, cosθ sinθ) and (cosθ sinθ, sin²θ) with the matrix with rows (cos²φ, cosφ sinφ) and (cosφ sinφ, sin²φ) is the zero matrix O.",
+          "question_id": "ts_ipe_m1a_mat_saq_trig_product_zero"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If A is the matrix with rows (3, −3, 4), (2, −3, 4) and (0, −1, 1), then show that A⁻¹ = A³.",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_equals_a_cubed"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If 3A is the matrix with rows (1, 2, 2), (2, 1, −2) and (−2, 2, −1), then show that A⁻¹ = Aᵀ.",
+          "question_id": "ts_ipe_m1a_mat_saq_inverse_equals_transpose"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, −2, 3), (0, −1, 4) and (−2, 2, 1), then find (A′)⁻¹.",
+          "question_id": "ts_ipe_m1a_mat_sqp_transpose_inverse"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "If A is the matrix with rows (−1, −2, −2), (2, 1, −2) and (2, −2, 1), then show that adj A = 3Aᵀ, and also find A⁻¹.",
+          "question_id": "ts_ipe_m1a_mat_sqp_adj_three_at"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Apply the test of rank to examine whether the system x + y + z = 6, x − y + z = 2, 2x − y + 3z = 9 is consistent, and if consistent find the complete solution.",
+          "question_id": "ts_ipe_m1a_mat_sqp_rank_test"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If the matrix with rows (x−3, 2y−8) and (z+2, 6) equals the matrix with rows (5, 2) and (−2, a−4), then find the values of x, y, z and a.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_equality_2x2"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If the matrix with rows (x−1, 2, 5−y), (0, z−1, 7) and (1, 0, a−5) equals the matrix with rows (1, 2, 3), (0, 4, 7) and (1, 0, 0), then find the values of x, y, z and a.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_equality_3x3"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, 2, 3) and (3, 2, 1), and B is the matrix with rows (3, 2, 1) and (1, 2, 3), then find 3B − 2A.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_3b_minus_2a"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, 2) and (3, 4), B is the matrix with rows (3, 8) and (7, 2), and 2X + A = B, then find X.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_solve_for_x"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If A is the matrix with rows (2, 3, −1) and (7, 8, 5), and B is the matrix with rows (1, 0, 1) and (2, −4, −1), then find A + B.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_matrix_addition"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Define the trace of a matrix. Find the trace of the matrix with rows (1, 3, −5), (2, −1, 5) and (2, 0, 1).",
+          "question_id": "ts_ipe_m1a_mat_vsaq_trace"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If A is the matrix with rows (i, 0) and (0, i), then find A².",
+          "question_id": "ts_ipe_m1a_mat_vsaq_i_squared"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "If A is the matrix with rows (2, 4) and (−1, k), and A² = O, then find the value of k.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_find_k_nilpotent"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If A is the matrix with rows (2, −4) and (−5, 3), then find A + A′ and AA′.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_a_plus_transpose"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If A is the matrix with rows (2, −1, 2) and (1, 3, −4), and B is the matrix with rows (1, −2), (−3, 0) and (5, 4), then verify that (AB)′ = B′A′.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_reverse_law_transpose"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Define a symmetric matrix. If the matrix with rows (−1, 2, 3), (2, 5, 6) and (3, x, 7) is symmetric, find the value of x.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_symmetric_find_x"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Define a skew symmetric matrix. If the matrix with rows (0, 2, 1), (−2, 0, −2) and (−1, x, 0) is skew symmetric, find the value of x.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_skew_symmetric_find_x"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "If A is the matrix with rows (1, 0, 0), (2, 3, 4) and (5, −6, x), and det A = 45, then find x.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_det_equals_45"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the determinant of the matrix with rows (1², 2², 3²), (2², 3², 4²) and (3², 4², 5²).",
+          "question_id": "ts_ipe_m1a_mat_vsaq_det_of_squares"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix A with rows (2, −3) and (4, 6).",
+          "question_id": "ts_ipe_m1a_mat_vsaq_adj_inverse_2x2"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Find the inverse of the matrix A with rows (1, 2) and (3, −5).",
+          "question_id": "ts_ipe_m1a_mat_vsaq_inverse_1_2_3_minus5"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find the rank of the matrix with all nine entries equal to 1.",
+          "question_id": "ts_ipe_m1a_mat_vsaq_rank_one"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find the rank of the matrix with rows (1, 2, 3), (2, 3, 4) and (0, 1, 2).",
+          "question_id": "ts_ipe_m1a_mat_vsaq_rank_two"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "If A is the matrix with rows (i, 0) and (0, −i), then show that A² = −I.",
+          "question_id": "ts_ipe_m1a_mat_sqp_i_squared_minus_i"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "If A is the 3×3 matrix with 3 on every diagonal entry and 0 elsewhere, then find A⁴.",
+          "question_id": "ts_ipe_m1a_mat_sqp_scalar_fourth_power"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "If A is the matrix with rows (2, 0, 1) and (−1, 1, 5), and B is the matrix with rows (−1, 1, 0) and (0, 1, −2), then find (AB′)′.",
+          "question_id": "ts_ipe_m1a_mat_sqp_ab_transpose"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "If ω is a complex cube root of 1, then show that the determinant with rows (1, ω, ω²), (ω, ω², 1) and (ω², 1, ω) is 0.",
+          "question_id": "ts_ipe_m1a_mat_sqp_omega_determinant"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Construct a 3×2 matrix whose elements are defined by aᵢⱼ = ½|i − 3j|.",
+          "question_id": "ts_ipe_m1a_mat_sqp_construct_3x2"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Find the adjoint and the inverse of the matrix with rows (cos α, −sin α) and (sin α, cos α).",
+          "question_id": "ts_ipe_m1a_mat_sqp_rotation_inverse"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Addition of Vectors (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Show that the four points −a+4b−3c, 3a+2b−5c, −3a+8b−5c and −3a+2b+c are coplanar, where a, b, c are non-coplanar vectors.",
+          "question_id": "ts_ipe_m1a_vec_coplanar_four_points_abc"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Show that the four points 6a+2b−c, 2a−b+3c, −a+2b−4c and −12a−b−3c are coplanar, where a, b, c are non-coplanar vectors.",
+          "question_id": "ts_ipe_m1a_vec_coplanar_6a_2b_minus_c"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If i, j, k are unit vectors along the positive directions of the coordinate axes, then show that the four points 4i+5j+k, −j−k, 3i+9j+4k and −4i+4j+4k are coplanar.",
+          "question_id": "ts_ipe_m1a_vec_coplanar_four_points_ijk"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the points with position vectors 3i−2j−k, 2i+3j−4k, −i+j+2k and 4i+5j+λk are coplanar, then show that λ = −146/17.",
+          "question_id": "ts_ipe_m1a_vec_coplanar_find_lambda"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If a, b, c are non-coplanar, then prove that the points with position vectors 2a+3b−c, a−2b+3c, 3a+4b−2c and a−6b+6c are coplanar.",
+          "question_id": "ts_ipe_m1a_vec_coplanar_2a_3b_minus_c"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If ABCDEF is a regular hexagon with centre O, then prove that AB + AC + AD + AE + AF = 3AD = 6AO.",
+          "question_id": "ts_ipe_m1a_vec_hexagon_sum"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Show that the points A(2i−j+k), B(i−3j−5k) and C(3i−4j−4k) are the vertices of a right-angled triangle.",
+          "question_id": "ts_ipe_m1a_vec_right_angled_triangle"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Show that the points (5, −1, 1), (7, −4, 7), (1, −6, 10) and (−1, −3, 4) are the vertices of a rhombus.",
+          "question_id": "ts_ipe_m1a_vec_rhombus_vertices"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If a, b, c are non-coplanar, find the point of intersection of the line passing through the points 2a+3b−c and 3a+4b−2c with the line joining the points a−2b+3c and a−6b+6c.",
+          "question_id": "ts_ipe_m1a_vec_lines_intersect_a_plus_2b"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Show that the line joining the pair of points 6a−4b+4c and −4c, and the line joining the pair of points −a−2b−3c and a+2b−5c, intersect at the point −4c, where a, b, c are non-coplanar vectors.",
+          "question_id": "ts_ipe_m1a_vec_lines_intersect_minus_4c"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the unit vector in the direction of the vector a = 2i + 3j + k.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_unit_vector_2i_3j_k"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find a vector in the direction of the vector a = i − 2j that has magnitude 7 units.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_magnitude_seven"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Let a = i + 2j + 3k and b = 3i + j. Find a unit vector in the direction of a + b.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_unit_vector_a_plus_b"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Let a = 2i + 4j − 5k, b = i + j + k and c = j + 2k. Find the unit vector in the opposite direction of a + b + c.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_opposite_unit_vector"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If a = 2i + 5j + k and b = 4i + mj + nk are collinear vectors, then find m and n.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_collinear_m_n"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If −3i + 4j + λk and μi + 8j + 6k are collinear vectors, then find λ and μ.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_collinear_lambda_mu"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the vector equation of the line passing through the point 2i + j + 3k and parallel to the vector 4i − 2j + 3k.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_line_point_parallel"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the vector equation of the line passing through the points 2i + j + 3k and −4i + 3j − k.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_line_two_points"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the vector equation of the plane passing through the points i − 2j + 5k, −5j − k and −3i + 5j.",
+          "question_id": "ts_ipe_m1a_vec_vsaq_plane_three_points"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the vector equation of the plane passing through the points (0, 0, 0), (0, 5, 0) and (2, 0, 1).",
+          "question_id": "ts_ipe_m1a_vec_vsaq_plane_origin_points"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If OA = i + j + k, AB = 3i − 2j + k, BC = i + 2j − 2k and CD = 2i + j + 3k, then find the vector OD.",
+          "question_id": "ts_ipe_m1a_av_sqp_chain_od"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Product of Vectors (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = 2i+j−k, b = −i+2j−4k and c = i+j+k, then find (a×b)·(b×c).",
+          "question_id": "ts_ipe_m1a_pv_axb_dot_bxc"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If a = 2i+j−3k, b = i−2j+k, c = −i+j−4k and d = i+j+k, then compute |(a×b)×(c×d)|.",
+          "question_id": "ts_ipe_m1a_pv_axb_cross_cxd"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If a = i−2j+3k, b = 2i+j+k and c = i+j+2k, then find |(a×b)×c| and |a×(b×c)|.",
+          "question_id": "ts_ipe_m1a_pv_two_triple_products"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If a = i−2j+k, b = 2i+j+k and c = i+2j−k, then find a×(b×c) and |(a×b)×c|.",
+          "question_id": "ts_ipe_m1a_pv_triple_product_pair"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the shortest distance between the skew lines r = (6i+2j+2k) + t(i−2j+2k) and r = (−4i−k) + s(3i−2j−2k).",
+          "question_id": "ts_ipe_m1a_pv_skew_lines_distance"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If A = (1, −2, −1), B = (4, 0, −3), C = (1, 2, −1) and D = (2, −4, −5), then find the distance between the lines AB and CD.",
+          "question_id": "ts_ipe_m1a_pv_distance_ab_cd"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If a, b, c are three vectors, then prove that (a×b)×c = (c·a)b − (c·b)a.",
+          "question_id": "ts_ipe_m1a_pv_triple_product_identity"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "For any three vectors a, b, c prove that [b×c  c×a  a×b] = [a b c]².",
+          "question_id": "ts_ipe_m1a_pv_sqp_box_product_square"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = (1, −1, −6), b = (1, −3, 4) and c = (2, −5, 3), then compute a×(b×c).",
+          "question_id": "ts_ipe_m1a_pv_saq_a_cross_bxc"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If a = 2i+3j+4k, b = i+j−k and c = i−j+k, then compute a×(b×c) and verify that it is perpendicular to a.",
+          "question_id": "ts_ipe_m1a_pv_saq_verify_perpendicular"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the area of the triangle formed with the points A(1,2,3), B(2,3,1) and C(3,1,2).",
+          "question_id": "ts_ipe_m1a_pv_saq_triangle_area"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the unit vector perpendicular to the plane passing through the points (1,2,3), (2,−1,1) and (1,2,−4).",
+          "question_id": "ts_ipe_m1a_pv_saq_unit_normal_plane"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the volume of the tetrahedron having the edges i+j+k, i−j and i+2j+k.",
+          "question_id": "ts_ipe_m1a_pv_saq_tetrahedron_edges"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the volume of the tetrahedron whose vertices are (1,2,1), (3,2,5), (2,−1,0) and (−1,0,1).",
+          "question_id": "ts_ipe_m1a_pv_saq_tetrahedron_vertices"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Prove that the smaller angle θ between any two diagonals of a cube is given by cos θ = 1/3.",
+          "question_id": "ts_ipe_m1a_pv_saq_cube_diagonals"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, −1).",
+          "question_id": "ts_ipe_m1a_pv_sqp_unit_normal_pqr"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If a, b and c represent the vertices A, B and C respectively of triangle ABC, then prove that |(a×b) + (b×c) + (c×a)| is twice the area of triangle ABC.",
+          "question_id": "ts_ipe_m1a_pv_sqp_twice_triangle_area"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "The vectors AB = 3i − 2j + 2k and AD = i − 2k represent adjacent sides of a parallelogram ABCD. Find the angle between the diagonals.",
+          "question_id": "ts_ipe_m1a_pv_sqp_parallelogram_diagonals"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If a = i + 2j − 3k and b = 3i − j + 2k, then show that a+b and a−b are perpendicular to each other.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_sum_diff_perpendicular"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If |a + b| = |a − b|, then find the angle between a and b.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_equal_sum_diff_angle"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If the vectors 2i + λj − k and 4i − 2j + 2k are perpendicular to each other, then find λ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_find_lambda"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the vectors λi − 3j + 5k and 2λi − λj − k are perpendicular to each other, then find λ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_quadratic"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the angle between the vectors i + 2j + 3k and 3i − j + 2k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_angle_between_vectors"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the angle between the planes r·(2i − j + 2k) = 3 and r·(3i + 6j + k) = 4.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_angle_between_planes"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the area of the parallelogram whose adjacent sides are a = 2j − k and b = −i + k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_sides"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the area of the parallelogram whose diagonals are 3i + j − 2k and i − 3j + 4k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_parallelogram_diagonals"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find a unit vector perpendicular to the plane containing the vectors a = 4i + 3j − k and b = 2i − 6j − 3k.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_unit_normal_two_vectors"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Let a = 2i − j + k and b = 3i + 4j − k. If θ is the angle between a and b, then find sin θ.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_find_sin_theta"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the area of the triangle having 3i + 4j and −5i + 7j as adjacent sides.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_triangle_area_sides"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If a = 2i − j + k and b = i − 3j − 5k, then find |a × b|.",
+          "question_id": "ts_ipe_m1a_pv_vsaq_magnitude_cross_product"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "If a = i − j − k and b = 2i − 3j + k, then find the projection VECTOR of b on a.",
+          "question_id": "ts_ipe_m1a_pv_sqp_projection_vector"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "If θ is the angle between the vectors i + j and j + k, then find sin θ.",
+          "question_id": "ts_ipe_m1a_pv_sqp_sin_theta_ij_jk"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Trigonometric Ratios upto Transformations (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "If A + B + C = 180°, then show that sin2A + sin2B + sin2C = 4 sinA sinB sinC.",
+          "question_id": "ts_ipe_m1a_tr_sin2a_sum"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that cos2A + cos2B + cos2C = −1 − 4 cosA cosB cosC.",
+          "question_id": "ts_ipe_m1a_tr_cos2a_sum"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2) sin(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_half_squares"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) − sin²(C/2) = 1 − 2 cos(A/2) cos(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_half_minus_c"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "If A + B + C = π, then prove that cos²(A/2) + cos²(B/2) + cos²(C/2) = 2(1 + sin(A/2) sin(B/2) sin(C/2)).",
+          "question_id": "ts_ipe_m1a_tr_cos_half_squares"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "If A, B, C are angles in a triangle, then prove that cosA + cosB − cosC = −1 + 4 cos(A/2) cos(B/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_cosa_cosb_minus_cosc"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "If A + B + C = 2S, then prove that sin(S−A) + sin(S−B) + sinC = 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sin_s_minus_a"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cosC = −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2).",
+          "question_id": "ts_ipe_m1a_tr_cos_s_minus_a"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If A, B, C are angles in a triangle, then prove that sin²A + sin²B − sin²C = 2 sin A sin B cos C.",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_sq_sum"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If A + B + C = π/2, then prove that cos 2A + cos 2B + cos 2C = 1 + 4 sin A sin B sin C.",
+          "question_id": "ts_ipe_m1a_tr_sqp_cos_double_half_pi"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If A + B + C = 0, then prove that sin 2A + sin 2B + sin 2C = −4 sin A sin B sin C.",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_double_zero_sum"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cos(S−C) + cos S = 4 cos(A/2) cos(B/2) cos(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sqp_cos_s_minus"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "If A, B, C are angles in a triangle, prove that sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2).",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_a_b_minus_c"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Prove that tanA + cotA = 2 cosec2A.",
+          "question_id": "ts_ipe_m1a_tr_saq_tan_plus_cot"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Prove that cotA − tanA = 2 cot2A.",
+          "question_id": "ts_ipe_m1a_tr_saq_cot_minus_tan"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Show that 1/sin10° − √3/cos10° = 4.",
+          "question_id": "ts_ipe_m1a_tr_saq_one_over_sin10"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Show that √3 cosec20° − sec20° = 4.",
+          "question_id": "ts_ipe_m1a_tr_saq_root3_csc20"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.",
+          "question_id": "ts_ipe_m1a_tr_saq_acos2t_bsin2t"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Show that sin⁴(π/8) + sin⁴(3π/8) + sin⁴(5π/8) + sin⁴(7π/8) = 3/2.",
+          "question_id": "ts_ipe_m1a_tr_saq_sin_fourth_powers"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Show that cos⁴(π/8) + cos⁴(3π/8) + cos⁴(5π/8) + cos⁴(7π/8) = 3/2.",
+          "question_id": "ts_ipe_m1a_tr_saq_cos_fourth_powers"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Show that (1 + cos(π/8))(1 + cos(3π/8))(1 + cos(5π/8))(1 + cos(7π/8)) = 1/8.",
+          "question_id": "ts_ipe_m1a_tr_saq_product_pi_eight"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.",
+          "question_id": "ts_ipe_m1a_tr_saq_product_pi_ten"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).",
+          "question_id": "ts_ipe_m1a_tr_saq_cos_a_2a_4a_8a"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Show that cot(π/16) · cot(2π/16) · cot(3π/16) · … · cot(7π/16) = 1.",
+          "question_id": "ts_ipe_m1a_tr_sqp_cot_product_one"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Show that cos²(π/10) + cos²(4π/10) + cos²(6π/10) + cos²(9π/10) = 2.",
+          "question_id": "ts_ipe_m1a_tr_sqp_cos_sq_tenths"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Prove that cos²(π/8) + cos²(3π/8) + cos²(5π/8) + cos²(7π/8) = 2.",
+          "question_id": "ts_ipe_m1a_tr_sqp_cos_sq_eighths"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the period of the function f(x) = cos(3x + 5) + 7.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_period_cos_3x"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find the period of the function f(x) = cos((4x + 9)/5).",
+          "question_id": "ts_ipe_m1a_tr_vsaq_period_cos_fraction"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the period of tan5x.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_period_tan5x"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Find the period of tan(x + 4x + 9x + … + n²x).",
+          "question_id": "ts_ipe_m1a_tr_vsaq_period_sum_squares"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Find a cosine function whose period is 7.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cosine_period_seven"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Find a sine function whose period is 2/3.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_sine_period_two_thirds"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Find the maximum and minimum values of f(x) = 3cosx + 4sinx.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_maxmin_3cos_4sin"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Find the maximum and minimum values of f(x) = 3sinx − 4cosx.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_maxmin_3sin_4cos"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Find the maximum and minimum values of f(x) = 5sinx + 12cosx − 13.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_maxmin_with_constant"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Find the range of 7cosx − 24sinx + 5.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_range_7cos_24sin"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Find the value of sin330° · cos120° + cos210° · sin300°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_sin330_cos120"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 2,
+          "text": "Show that cos340° · cos40° + sin200° · sin140° = 1/2.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cos340_cos40"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 2,
+          "text": "Prove that (cos9° + sin9°)/(cos9° − sin9°) = cot36°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cos9_sin9_cot36"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 2,
+          "text": "If tanθ = (cos11° + sin11°)/(cos11° − sin11°) and θ is in the third quadrant, then find θ.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_theta_third_quadrant"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 2,
+          "text": "Prove that sin50° − sin70° + sin10° = 0.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_sin50_sin70_sin10"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 2,
+          "text": "Show that cos42° + cos78° + cos162° = 0.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cos42_cos78_cos162"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 2,
+          "text": "Prove that tan50° − tan40° = 2 tan10°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_tan50_tan40"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 2,
+          "text": "Prove that tan70° − tan20° = 2 tan50°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_tan70_tan20"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 2,
+          "text": "If tan20° = λ, then show that (tan160° − tan110°)/(1 + tan160° · tan110°) = (1 − λ²)/(2λ).",
+          "question_id": "ts_ipe_m1a_tr_vsaq_tan160_tan110"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 2,
+          "text": "Find the value of cos48° · cos12°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cos48_cos12"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 2,
+          "text": "Prove that sin²42° − cos²78° = (√5 + 1)/8.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_sin42_cos78"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 2,
+          "text": "Find the value of cos²52½° − sin²22½°.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_cos52_sin22"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 2,
+          "text": "If a cosθ − b sinθ = c, then show that a sinθ + b cosθ = ±√(a² + b² − c²).",
+          "question_id": "ts_ipe_m1a_tr_vsaq_acos_bsin_c"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 2,
+          "text": "If 3sinθ + 4cosθ = 5, then find the value of 4sinθ − 3cosθ.",
+          "question_id": "ts_ipe_m1a_tr_vsaq_3sin_4cos_five"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "If sin θ = −1/3 and θ does not lie in the third quadrant, find the value of (i) cos θ (ii) cot θ.",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_minus_third"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "If sin θ = 4/5 and θ is not in the first quadrant, find the value of cos θ.",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_four_fifths"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "Find the value of sin² 82½° − sin² 22½°.",
+          "question_id": "ts_ipe_m1a_tr_sqp_sin_squared_diff"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Trigonometric Equations (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Solve √3 sinθ − cosθ = √2.",
+          "question_id": "ts_ipe_m1a_te_root3_sin_minus_cos"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Solve √2(sinx + cosx) = √3.",
+          "question_id": "ts_ipe_m1a_te_root2_sin_plus_cos"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Solve 2cos²θ − √3 sinθ + 1 = 0.",
+          "question_id": "ts_ipe_m1a_te_two_cos_sq_minus_root3"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Solve 1 + sin²θ = 3 sinθ cosθ.",
+          "question_id": "ts_ipe_m1a_te_one_plus_sin_sq"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Solve cos2θ + cos8θ = cos5θ.",
+          "question_id": "ts_ipe_m1a_te_cos2t_cos8t_cos5t"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Solve sinθ + sin5θ = sin3θ, given 0 < θ < π.",
+          "question_id": "ts_ipe_m1a_te_sin_sin5_sin3"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "If a cos2θ + b sin2θ = c has θ₁, θ₂ as its solutions, then show that (i) tanθ₁ + tanθ₂ = 2b/(c+a), (ii) tanθ₁ · tanθ₂ = (c−a)/(c+a), and hence show that tan(θ₁+θ₂) = b/a.",
+          "question_id": "ts_ipe_m1a_te_roots_tan_theta"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "If α, β are the solutions of the equation a cosθ + b sinθ = c, where a, b, c ∈ R, then show that (i) sinα + sinβ = 2bc/(a²+b²), (ii) sinα · sinβ = (c²−a²)/(a²+b²).",
+          "question_id": "ts_ipe_m1a_te_roots_sin_alpha_beta"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Solve sin x + √3 cos x = √2.",
+          "question_id": "ts_ipe_m1a_te_sqp_sin_plus_root3_cos"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If 0 < x < π/2, then solve cot²x − (√3 + 1) cot x + √3 = 0.",
+          "question_id": "ts_ipe_m1a_te_sqp_cot_quadratic"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Inverse Trigonometric Functions (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Prove that Sin⁻¹(4/5) + Sin⁻¹(7/25) = Sin⁻¹(117/125).",
+          "question_id": "ts_ipe_m1a_it_sin_sin_sin"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Prove that Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65).",
+          "question_id": "ts_ipe_m1a_it_sin_cos_cos"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Prove that Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11).",
+          "question_id": "ts_ipe_m1a_it_cos_sin_tan"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Prove that Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4.",
+          "question_id": "ts_ipe_m1a_it_tan_half_fifth_eighth"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Prove that Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4.",
+          "question_id": "ts_ipe_m1a_it_tan_three_quarters"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Prove that Sin⁻¹(4/5) + 2Tan⁻¹(1/3) = π/2.",
+          "question_id": "ts_ipe_m1a_it_sin_plus_two_tan"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Prove that cos(2 Tan⁻¹(1/7)) = sin(2 Tan⁻¹(3/4)).",
+          "question_id": "ts_ipe_m1a_it_cos_two_tan_seventh"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Prove that cos(2 Tan⁻¹(1/7)) = sin(4 Tan⁻¹(1/3)).",
+          "question_id": "ts_ipe_m1a_it_cos_two_tan_four_tan"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "If Tan⁻¹x + Tan⁻¹y + Tan⁻¹z = π/2, then prove that xy + yz + zx = 1.",
+          "question_id": "ts_ipe_m1a_it_xy_yz_zx_one"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Prove that Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0.",
+          "question_id": "ts_ipe_m1a_it_sqp_tan_inverse_zero"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Hyperbolic Functions (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If sinh x = 3, then show that x = logₑ(3 + √10).",
+          "question_id": "ts_ipe_m1a_hf_sinh_three"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If sinh x = 5, then show that x = log(5 + √26).",
+          "question_id": "ts_ipe_m1a_hf_sinh_five"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Show that Tanh⁻¹(1/2) = (1/2) logₑ 3.",
+          "question_id": "ts_ipe_m1a_hf_tanh_half"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that Tanh⁻¹(1/4) = (1/2) logₑ(5/3).",
+          "question_id": "ts_ipe_m1a_hf_tanh_quarter"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If sinh x = 3/4, then find cosh 2x and sinh 2x.",
+          "question_id": "ts_ipe_m1a_hf_sinh_three_quarters"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If cosh x = 5/2, then find cosh(2x) and sinh(2x).",
+          "question_id": "ts_ipe_m1a_hf_cosh_five_halves"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Prove that (cosh x + sinh x)ⁿ = cosh(nx) + sinh(nx).",
+          "question_id": "ts_ipe_m1a_hf_cosh_plus_sinh_n"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Prove that (cosh x − sinh x)ⁿ = cosh(nx) − sinh(nx).",
+          "question_id": "ts_ipe_m1a_hf_cosh_minus_sinh_n"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Prove that cosh²x − sinh²x = 1.",
+          "question_id": "ts_ipe_m1a_hf_cosh_sq_minus_sinh_sq"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Prove that cosh 2x = 2 cosh²x − 1.",
+          "question_id": "ts_ipe_m1a_hf_cosh_2x_form"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Properties of Triangles (Maths-1A)",
+      "subject": "mathematics",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "In a △ABC, if r₁ = 8, r₂ = 12 and r₃ = 24, then find a, b and c.",
+          "question_id": "ts_ipe_m1a_pt_find_abc_from_r"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "In a △ABC, if r₁ = 2, r₂ = 3, r₃ = 6 and r = 1, then prove that a = 3, b = 4 and c = 5.",
+          "question_id": "ts_ipe_m1a_pt_prove_345"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
+          "question_id": "ts_ipe_m1a_pt_13_14_15"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If a = (b + c) cos θ, then prove that sin θ = (2√(bc)/(b+c)) cos(A/2).",
+          "question_id": "ts_ipe_m1a_pt_a_eq_b_plus_c_cos"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If sin θ = a/(b + c), then show that cos θ = (2√(bc)/(b+c)) cos(A/2).",
+          "question_id": "ts_ipe_m1a_pt_sin_theta_a_over_b_plus_c"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If a = (b − c) sec θ, then prove that tan θ = (2√(bc)/(b−c)) sin(A/2).",
+          "question_id": "ts_ipe_m1a_pt_a_eq_b_minus_c_sec"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "In a △ABC, show that (a+b+c)²/(a²+b²+c²) = (cot(A/2) + cot(B/2) + cot(C/2))/(cotA + cotB + cotC).",
+          "question_id": "ts_ipe_m1a_pt_cot_half_ratio"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "In a △ABC, prove that a cos²(A/2) + b cos²(B/2) + c cos²(C/2) = s + Δ/R.",
+          "question_id": "ts_ipe_m1a_pt_a_cos_sq_half"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "In a △ABC, prove that r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R).",
+          "question_id": "ts_ipe_m1a_pt_r1_over_bc"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "In a △ABC, if a : b : c = 7 : 8 : 9, then show that cos A : cos B : cos C = 14 : 11 : 6.",
+          "question_id": "ts_ipe_m1a_pt_ratio_789"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
+          "question_id": "ts_ipe_m1a_pt_altitudes"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "In a △ABC, prove that cot(A/2) + cot(B/2) + cot(C/2) = s²/Δ.",
+          "question_id": "ts_ipe_m1a_pt_saq_cot_half_sum"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "In a △ABC, prove that cot A + cot B + cot C = (a² + b² + c²)/(4Δ).",
+          "question_id": "ts_ipe_m1a_pt_saq_cot_sum"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "In a △ABC, show that cosA/a + cosB/b + cosC/c = (a² + b² + c²)/(2abc).",
+          "question_id": "ts_ipe_m1a_pt_saq_cos_over_a"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "In a △ABC, if cot(A/2) : cot(B/2) : cot(C/2) = 3 : 5 : 7, then show that a : b : c = 6 : 5 : 4.",
+          "question_id": "ts_ipe_m1a_pt_saq_cot_ratio_357"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "In a △ABC, show that r₁ + r₂ + r₃ − r = 4R.",
+          "question_id": "ts_ipe_m1a_pt_saq_r1_r2_r3_minus_r"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "In a △ABC, show that r + r₃ + r₁ − r₂ = 4R cos B.",
+          "question_id": "ts_ipe_m1a_pt_saq_r_r3_r1_minus_r2"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "In a △ABC, show that a² cot A + b² cot B + c² cot C = abc/R.",
+          "question_id": "ts_ipe_m1a_pt_saq_a_sq_cot"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "In a △ABC, if 1/(a+c) + 1/(b+c) = 3/(a+b+c), then show that C = 60°.",
+          "question_id": "ts_ipe_m1a_pt_saq_c_is_60"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "In a △ABC, show that 1/r² + 1/r₁² + 1/r₂² + 1/r₃² = (a² + b² + c²)/Δ².",
+          "question_id": "ts_ipe_m1a_pt_saq_reciprocal_squares"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "In a △ABC, prove that (1 + cos(A−B) cos C)/(1 + cos(A−C) cos B) = (a² + b²)/(a² + c²).",
+          "question_id": "ts_ipe_m1a_pt_saq_cos_ab_ratio"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "In a △ABC, prove that 4(r₁r₂ + r₂r₃ + r₃r₁) = (a + b + c)².",
+          "question_id": "ts_ipe_m1a_pt_saq_four_r1r2_sum"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "In a △ABC, show that (r₁ + r₂) sec²(C/2) = (r₂ + r₃) sec²(A/2) = (r₃ + r₁) sec²(B/2).",
+          "question_id": "ts_ipe_m1a_pt_saq_sec_squared_equal"
         }
       ]
     }

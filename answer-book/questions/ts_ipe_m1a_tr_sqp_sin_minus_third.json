@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_minus_third",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sin θ = −1/3 and θ does not lie in the third quadrant, find the value of (i) cos θ (ii) cot θ.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Fix the quadrant",
+      "marks": 1
+    },
+    {
+      "label": "Find cos θ and cot θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.106 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 163. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed VSAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 19. The quadrant clause is the whole question. sin θ is negative in the third and fourth quadrants; ruling out the third leaves the fourth, where cos θ is positive. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios upto Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fix_the_quadrant",
+        "kind": "equation",
+        "label": "Fix the quadrant",
+        "marks": 1,
+        "mark_note": "Quadrant",
+        "margin_note": "First mark. sin θ negative means Q3 or Q4. The question rules out Q3, so θ is in Q4 — and cos θ is positive there.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin θ is negative in Q₃ and Q₄.",
+          "Since θ is not in Q₃, θ lies in Q₄.",
+          "In Q₄, cos θ is positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ negative gives Q3 or Q4, the clause rules out Q3, so θ is in Q4 where cos θ is positive.",
+          "accept": [
+            "sine is negative in the third and fourth quadrants and the third is ruled out so theta is in the fourth where cosine is positive",
+            "the quadrant decides the sign of the cosine",
+            "theta lies in the fourth quadrant so cos theta is positive",
+            "Q three ruled out kabatti Q four, akkada cos positive",
+            "fix the quadrant before taking the square root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "fourth quadrant",
+            "cosine is positive",
+            "negative sine",
+            "Q4"
+          ]
+        },
+        "why": "The square root that follows has two signs. The quadrant is the only thing that chooses between them, so it has to be settled first.",
+        "common_mistakes": [
+          "Taking cos θ negative.",
+          "Ignoring the quadrant clause entirely and writing ±."
+        ]
+      },
+      {
+        "id": "s2_find_cos_and_cot",
+        "kind": "boxed_final",
+        "label": "Find cos θ and cot θ",
+        "marks": 1,
+        "mark_note": "Values",
+        "margin_note": "Second mark. Use cos²θ = 1 − sin²θ with the positive root, then cot θ = cos θ / sin θ. The 1/3 cancels.",
+        "lines": [
+          "(i) cos θ = √(1 − sin²θ) = √(1 − 1/9)",
+          "   = √(8/9) = √8/3",
+          "(ii) cot θ = cos θ / sin θ = (√8/3)/(−1/3)",
+          {
+            "text": "∴ cos θ = √8/3 and cot θ = −√8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = √8/3 and cot θ = cos θ/sin θ = −√8.",
+          "accept": [
+            "cos theta is root eight over three and cot theta is minus root eight",
+            "one minus one ninth is eight ninths so the cosine is root eight by three",
+            "the thirds cancel in the cotangent leaving minus root eight",
+            "cos theta root eight by three, cot theta minus root eight",
+            "compute both values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root eight over three",
+            "minus root eight",
+            "eight ninths",
+            "cot theta"
+          ]
+        },
+        "why": "Both denominators are 3, so they cancel in the ratio. cot θ comes out as a whole surd with no fraction left.",
+        "common_mistakes": [
+          "Leaving cot θ as a fraction with 3s still in it.",
+          "Making cot θ positive."
+        ]
+      }
+    ]
+  }
+}

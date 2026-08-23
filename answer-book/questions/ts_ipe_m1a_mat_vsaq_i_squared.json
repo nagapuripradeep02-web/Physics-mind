@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_i_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (i, 0) and (0, i), then find A².",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply A by A",
+      "marks": 1
+    },
+    {
+      "label": "Use i² = −1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 Matrices, answer 104, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find A squared here, and what the answer turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply A by A",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A² means A × A. The matrix is diagonal, so each diagonal entry simply squares and the off-diagonal entries stay 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A^2 = A \\times A = \\begin{bmatrix} i & 0 \\\\ 0 & i \\end{bmatrix}\\begin{bmatrix} i & 0 \\\\ 0 & i \\end{bmatrix} = \\begin{bmatrix} i^2 & 0 \\\\ 0 & i^2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A² is A multiplied by A, and that for this diagonal matrix the result has i² on the diagonal.",
+          "accept": [
+            "A squared is A times A and since it is diagonal the entries become i squared",
+            "multiply the matrix by itself to get i squared on the diagonal",
+            "row into column multiplication gives i squared in both diagonal places",
+            "A into A cheste diagonal lo i square vasthundi",
+            "the off diagonal entries stay zero and the diagonal squares"
+          ],
+          "reject": [
+            "square it",
+            "find A squared"
+          ],
+          "heard_as": [
+            "A squared",
+            "A into A",
+            "i squared",
+            "diagonal"
+          ]
+        },
+        "why": "Even with complex entries, matrix multiplication is unchanged — row against column. Only the arithmetic inside the entries is new.",
+        "common_mistakes": [
+          "Squaring the entries without doing the multiplication.",
+          "Assuming a diagonal matrix cannot be multiplied."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Use i² = −1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and the point of the question. i² = −1, so the matrix becomes −1 on the diagonal — which is exactly −I.",
+        "lines": [
+          "Since i² = −1:",
+          {
+            "text": "A^2 = \\begin{bmatrix} -1 & 0 \\\\ 0 & -1 \\end{bmatrix} = (-1)\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A² = −I",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That i² = −1, so A² becomes −1 on the diagonal, which is −I.",
+          "accept": [
+            "i squared is minus one so the matrix is minus one on the diagonal which is minus I",
+            "using i squared equals minus one the answer is negative the identity matrix",
+            "A squared comes out as minus I",
+            "i square minus one kabatti A square equals minus I",
+            "the result is minus the identity matrix"
+          ],
+          "reject": [
+            "simplify it",
+            "get the answer"
+          ],
+          "heard_as": [
+            "i squared",
+            "minus one",
+            "minus I",
+            "identity"
+          ]
+        },
+        "why": "Writing the answer as −I rather than as a grid of −1s shows you recognised the identity matrix, which is what the question is really testing.",
+        "common_mistakes": [
+          "Writing i² = 1.",
+          "Leaving the answer as a matrix of −1s without naming it −I."
+        ]
+      }
+    ]
+  }
+}

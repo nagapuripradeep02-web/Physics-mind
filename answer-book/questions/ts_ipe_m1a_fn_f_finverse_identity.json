@@ -1,0 +1,303 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_f_finverse_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If f: A→B is a bijective function then prove that (i) fof⁻¹ = I_B (ii) f⁻¹of = I_A.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Proof that fof⁻¹ = I_B",
+      "marks": 3
+    },
+    {
+      "label": "Proof that f⁻¹of = I_A",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 4. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,18,19 and AP 15,17 — the most-asked question in this chapter across both boards. Publisher's claims until a Telangana IPE teacher confirms them. Lines naming an identity function use render:'katex' (a capital-letter subscript has no Unicode form)."
+  },
+  "recall_prompt": "Say how you would prove that f composed with its inverse gives the identity — both ways round, and how each one goes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Functions · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. The one fact both parts need is that f is a bijection, so f⁻¹ exists and is itself a bijection. Write that before either part.",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f: A→B is a bijective function,",
+          "so f⁻¹: B→A is also a bijection.",
+          {
+            "text": "I_A : A \\to A, \\quad I_B : B \\to B",
+            "render": "katex",
+            "style": "normal"
+          },
+          {
+            "text": "\\text{To prove: } f \\circ f^{-1} = I_B \\text{ and } f^{-1} \\circ f = I_A",
+            "render": "katex",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a bijection, which is why f⁻¹ exists at all and is also a bijection from B to A. Naming f⁻¹ without saying it exists because f is a bijection is partial.",
+          "accept": [
+            "f is a bijection so the inverse exists and goes from B to A and is also a bijection",
+            "since f is one one and onto f inverse is defined from B back to A",
+            "given f is bijective therefore f inverse exists as a bijection",
+            "f bijection kabatti f inverse untundi B nunchi A ki",
+            "the inverse function exists because f is a bijection"
+          ],
+          "reject": [
+            "f inverse is given",
+            "first I write the given",
+            "f is a function"
+          ],
+          "heard_as": [
+            "bijective",
+            "bijection",
+            "f inverse",
+            "B to A",
+            "exists"
+          ]
+        },
+        "why": "Only a bijection has an inverse function. If f were not onto, some b in B would have nothing to send back, and f⁻¹(b) would be undefined.",
+        "common_mistakes": [
+          "Using f⁻¹ without first saying it exists because f is a bijection.",
+          "Writing f⁻¹: A→B — the inverse runs the other way."
+        ]
+      },
+      {
+        "id": "s2_right",
+        "kind": "equation",
+        "label": "f after f inverse",
+        "marks": 3,
+        "mark_note": "First part",
+        "margin_note": "Three of the seven marks. This side starts at B, so the element you take is b, not a. Get the domain line down, then the substitution.",
+        "lines": [
+          {
+            "text": "\\text{(i) To prove } f \\circ f^{-1} = I_B",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f^{-1} : B \\to A \\text{ and } f : A \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ f^{-1} : B \\to B, \\ I_B : B \\to B",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain B.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } b \\in B, \\ (f \\circ f^{-1})(b) = f[f^{-1}(b)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f(a) \\quad (\\because f(a) = b \\Rightarrow f^{-1}(b) = a)",
+            "render": "katex"
+          },
+          {
+            "text": "= b = I_B(b)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f \\circ f^{-1} = I_B",
+            "render": "katex"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Take b in B, f⁻¹ sends it to the a with f(a) = b, then f sends that a back to b — which is exactly what I_B does. The starting element must be b.",
+          "accept": [
+            "take b in B then f inverse of b is a and f of a is b so the composition gives b which is I B of b",
+            "start from b go back with f inverse and forward with f and you return to b",
+            "f of f inverse of b equals b so the composition is the identity on B",
+            "b teeskoni f inverse tho a vasthundi f tho malli b vasthundi so identity on B",
+            "it returns every b to itself so it is I B"
+          ],
+          "reject": [
+            "I prove the first part",
+            "f and f inverse cancel",
+            "obviously it is the identity"
+          ],
+          "heard_as": [
+            "b in B",
+            "f inverse of b",
+            "identity on B",
+            "I B",
+            "returns b"
+          ]
+        },
+        "why": "f⁻¹ undoes f, so doing f⁻¹ then f returns you to where you started. Which identity you land on depends on which set you started in — here you started in B.",
+        "common_mistakes": [
+          "Starting from a in A on this side, which lands on the wrong identity.",
+          "Writing I_A instead of I_B for a composition whose domain is B.",
+          "Saying 'they cancel' instead of showing f[f⁻¹(b)] = b."
+        ]
+      },
+      {
+        "id": "s3_left",
+        "kind": "equation",
+        "label": "f inverse after f",
+        "marks": 4,
+        "mark_note": "Second part",
+        "margin_note": "Four of the seven marks. The mirror of part (i): this side starts at A, so take a, and it lands on I_A. Write it out fully, never 'by symmetry'.",
+        "lines": [
+          {
+            "text": "\\text{(ii) To prove } f^{-1} \\circ f = I_A",
+            "render": "katex",
+            "style": "heading"
+          },
+          {
+            "text": "f : A \\to B \\text{ and } f^{-1} : B \\to A",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f^{-1} \\circ f : A \\to A, \\ I_A : A \\to A",
+            "render": "katex"
+          },
+          {
+            "text": "So both sides have the same domain A.",
+            "style": "eq"
+          },
+          {
+            "text": "\\text{For } a \\in A, \\ (f^{-1} \\circ f)(a) = f^{-1}[f(a)]",
+            "render": "katex"
+          },
+          {
+            "text": "= f^{-1}(b) \\quad (\\because f(a) = b)",
+            "render": "katex"
+          },
+          {
+            "text": "= a = I_A(a)",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore f^{-1} \\circ f = I_A",
+            "render": "katex"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Take a in A, f sends it to b, then f⁻¹ sends b back to a — which is what I_A does. The starting element must be a, and the result must be I_A, not I_B.",
+          "accept": [
+            "take a in A then f of a is b and f inverse of b is a so the composition gives a which is I A of a",
+            "start from a go forward with f and back with f inverse and you return to a",
+            "f inverse of f of a equals a so this composition is the identity on A",
+            "a teeskoni f tho b vasthundi f inverse tho malli a vasthundi so identity on A",
+            "every a comes back to itself so it is I A"
+          ],
+          "reject": [
+            "by symmetry",
+            "same as the first part",
+            "I prove the second part"
+          ],
+          "heard_as": [
+            "a in A",
+            "f inverse of f",
+            "identity on A",
+            "I A",
+            "returns a"
+          ]
+        },
+        "why": "Same undoing, opposite order — and the order decides which set you start and finish in, so this half lands on I_A. That is why the two parts are marked separately.",
+        "common_mistakes": [
+          "Writing 'by symmetry' and stopping — the examiner marks this part on its own.",
+          "Ending at f⁻¹(b) without saying it equals a, so the identity is never reached.",
+          "Swapping I_A and I_B between the two parts."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude",
+        "marks": 0,
+        "margin_note": "No separate mark. Both results on the final line, in the order the question asked.",
+        "lines": [
+          {
+            "text": "f \\circ f^{-1} = I_B, \\quad f^{-1} \\circ f = I_A",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Both results together: f after f⁻¹ is the identity on B, and f⁻¹ after f is the identity on A.",
+          "accept": [
+            "f composed with f inverse is I B and f inverse composed with f is I A",
+            "both compositions are identities one on B and one on A",
+            "hence we get the identity on B and the identity on A",
+            "rendu results I B and I A",
+            "the two compositions give the two identity functions"
+          ],
+          "reject": [
+            "hence proved",
+            "both are identities",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "I B",
+            "I A",
+            "identity",
+            "hence",
+            "both"
+          ]
+        },
+        "why": "The question asked for two results. Writing both on the last line shows you finished the second part, which is where four of the seven marks are.",
+        "common_mistakes": [
+          "Writing only one of the two results."
+        ]
+      }
+    ]
+  }
+}

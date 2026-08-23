@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_a_cos_sq_half",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "In a △ABC, prove that a cos²(A/2) + b cos²(B/2) + c cos²(C/2) = s + Δ/R.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand the half angles",
+      "marks": 2
+    },
+    {
+      "label": "Convert the sides by the sine rule",
+      "marks": 2
+    },
+    {
+      "label": "Use the sin2A identity",
+      "marks": 2
+    },
+    {
+      "label": "Convert to Δ/R",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.47 — LAQ chapter 6 Properties of Triangles, answer 36. Printed appearances: TS 15, plus the pre-bifurcation tag 'IPE 13' which appearances[] cannot carry. The right-hand side has two pieces and the proof produces them separately: the s comes from the constant half of the half-angle expansion, the Δ/R from the rest. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_the_half_angles",
+        "kind": "equation",
+        "label": "Expand the half angles",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. cos²(A/2) = (1 + cos A)/2 splits every term into a plain side and a side-times-cosine — and the plain sides are what become s.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = a cos²(A/2) + b cos²(B/2) + c cos²(C/2)",
+          "= a(1+cosA)/2 + b(1+cosB)/2 + c(1+cosC)/2",
+          "= (a+b+c)/2 + (a cosA + b cosB + c cosC)/2",
+          "= s + (a cosA + b cosB + c cosC)/2   [∵ (a+b+c)/2 = s]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²(A/2) = (1 + cos A)/2 is used and the constant part collects to s.",
+          "accept": [
+            "cos squared half A is one plus cos A over two so the plain sides give a plus b plus c over two which is s",
+            "split each term and the sides add to s",
+            "the s comes from the halves of the sides",
+            "cos square half A ni one plus cos A by two ga rasi split cheyyali",
+            "expand the half angles and collect the constant part"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus cos A over two",
+            "s",
+            "a plus b plus c over two",
+            "split"
+          ]
+        },
+        "why": "The s on the right-hand side appears immediately and never changes again. Separating it out early leaves only one thing left to prove.",
+        "common_mistakes": [
+          "Using cos²(A/2) = (1 − cos A)/2, which is the sine form.",
+          "Forgetting that (a+b+c)/2 is s, not 2s."
+        ]
+      },
+      {
+        "id": "s2_convert_the_sides_by_the_s",
+        "kind": "equation",
+        "label": "Convert the sides by the sine rule",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. a = 2R sinA turns each term into 2R sinA cosA, which is R sin2A — bringing double angles in.",
+        "lines": [
+          "a cosA + b cosB + c cosC",
+          "= 2R sinA cosA + 2R sinB cosB + 2R sinC cosC   [∵ a = 2R sinA]",
+          "= R(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
+          "= R(sin2A + sin2B + sin2C)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 2R sinA is used and each term becomes R sin 2A.",
+          "accept": [
+            "use a equals two R sin A so each term becomes two R sin A cos A which is R sin two A",
+            "the sine rule turns the sides into sines and the double angle appears",
+            "it becomes R times the sum of sin two A sin two B sin two C",
+            "a equals two R sin A vaadi sin two A ga marchali",
+            "convert the sides using the sine rule"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two R sin A",
+            "sine rule",
+            "sin two A",
+            "double angle"
+          ]
+        },
+        "why": "The sine rule is the only bridge between sides and angles here. Once every side is a sine, the double-angle formula does the rest.",
+        "common_mistakes": [
+          "Using a = R sinA without the 2.",
+          "Forgetting to factor the R out."
+        ]
+      },
+      {
+        "id": "s3_use_the_sin2a_identity",
+        "kind": "equation",
+        "label": "Use the sin2A identity",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Unit 6 identity, quoted here rather than re-proved.",
+        "lines": [
+          "= R(4 sinA sinB sinC)   [∵ in a △, sin2A+sin2B+sin2C = 4 sinA sinB sinC]",
+          "∴ L.H.S = s + (R · 4 sinA sinB sinC)/2",
+          "= s + 2R sinA sinB sinC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin2A + sin2B + sin2C = 4 sinA sinB sinC is quoted, giving s + 2R sinA sinB sinC.",
+          "accept": [
+            "in a triangle sin two A plus sin two B plus sin two C is four sin A sin B sin C",
+            "quote the identity from the transformations chapter",
+            "it becomes s plus two R sin A sin B sin C",
+            "triangle lo aa identity vaadali, four sin A sin B sin C",
+            "use the standard sum identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four sin A sin B sin C",
+            "sin two A",
+            "identity",
+            "two R"
+          ]
+        },
+        "why": "This is exactly the identity proved as Unit 6 answer 26.1. Quoting a proved result rather than re-deriving it is what keeps a 7-mark answer inside its time.",
+        "common_mistakes": [
+          "Trying to re-prove the identity and running out of time.",
+          "Halving wrongly and losing the factor of 2."
+        ]
+      },
+      {
+        "id": "s4_convert_to_r",
+        "kind": "boxed_final",
+        "label": "Convert to Δ/R",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
+        "lines": [
+          "= s + (2R² sinA sinB sinC)/R   [multiplying and dividing by R]",
+          "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",
+          {
+            "text": "∴ L.H.S = s + Δ/R = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying and dividing by R gives 2R² sinA sinB sinC = Δ, so the term is Δ/R.",
+          "accept": [
+            "multiply and divide by R so two R squared sin A sin B sin C is delta giving delta over R",
+            "use delta equals two R squared sin A sin B sin C",
+            "the last term becomes delta over R",
+            "R tho multiply and divide cheste delta by R vasthundi",
+            "convert the product into delta over R"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two R squared",
+            "delta",
+            "delta over R",
+            "multiply and divide"
+          ]
+        },
+        "why": "Δ = 2R² sinA sinB sinC is another standard result. Manufacturing the second R is the only way to reach it from 2R sinA sinB sinC.",
+        "common_mistakes": [
+          "Not introducing the second R and being unable to finish.",
+          "Writing Δ = R² sinA sinB sinC without the 2."
+        ]
+      }
+    ]
+  }
+}
