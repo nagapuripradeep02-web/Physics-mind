@@ -18,7 +18,7 @@ The smoke suite REQUIRES the offline build (`PM_VIDI_BASE === ''` gates), so eve
 
 ### NEXT
 1. Founder: `npm run serve:answers` — the dist is now the hosted build; the chat field is there on both surfaces.
-2. The Edge Function redeploy (plan persona + situation line) is still pending — founder-only.
+2. ~~The Edge Function redeploy is still pending~~ **DEPLOYED, founder-directed, same day**: npx supabase --use-api with the .env.local token. Verified live: a plan_status probe against the real endpoint answered with the exact plan numbers ("exam on 2026-09-21… 20 days left… learn 4 new questions and revise 2"), plain text, and a foreign origin still 403s. Hosted chat is plan-aware.
 
 ---
 
