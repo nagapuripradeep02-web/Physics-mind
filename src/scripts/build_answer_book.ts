@@ -97,8 +97,25 @@ if (!Array.isArray(manifest.units) || manifest.units.length === 0) {
 
 const questionById = new Map(questions.map((q) => [q.question_id, q]));
 const listedIds = new Set<string>();
-const SUBJECTS = ['physics', 'chemistry', 'mathematics'];
+// One PAPER = one subject value. Maths-1A and Maths-1B are different papers with
+// their own unit 1, so they cannot share a subject: unit numbers namespace per
+// SUBJECT, and two papers under one value would collide (see the unitKey guard
+// below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
+// same way an absent subject means physics. Physics-II will need the same
+// treatment when it opens.
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b'];
+const unitKeys = new Set<string>();
 for (const u of manifest.units) {
+    // Unit identity is subject-number EVERYWHERE (catalog chips, triage, the
+    // exam-eve route, and the study planner). Two units sharing one key silently
+    // merge into each other: on 2026-08-23 physics Unit 3 and maths Unit 3 keyed
+    // alike and Matrices' 17 LAQs were scheduled into physics study plans.
+    const key = `${u.subject || 'physics'}-${u.number}`;
+    if (unitKeys.has(key)) {
+        fail(`${manifestPath}
+  two units share the key "${key}" — unit numbers namespace per subject, so a second paper needs its own subject value (e.g. mathematics_1b)`);
+    }
+    unitKeys.add(key);
     // Absent = physics (the historical meaning). A TYPO must fail the build: it would
     // silently mint a fourth subject chip rather than filing the unit where it belongs.
     if (u.subject !== undefined && !SUBJECTS.includes(u.subject)) {

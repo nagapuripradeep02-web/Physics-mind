@@ -170,7 +170,9 @@
       // The subject word follows the question: this surface now serves physics and
       // mathematics from one build, and 'the physics' on a maths page is a false
       // statement about what was checked.
-      var subjectWord = question.subject === 'mathematics' ? 'mathematics'
+      // The SUBJECT word, not the paper: 'the mathematics and the method are
+      // checked' reads right for 1A and 1B alike.
+      var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
         : question.subject === 'chemistry' ? 'chemistry' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
@@ -333,7 +335,9 @@
     });
     subjRow.hidden = subjects.length < 2;
     if (subjects.length >= 2) {
-      var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry', mathematics: 'Mathematics' };
+      // The chip names the PAPER, which is what a student picks by.
+      var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
+                         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B' };
       var subjChips = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
       subjects.forEach(function (sName) {
         var n = 0;
