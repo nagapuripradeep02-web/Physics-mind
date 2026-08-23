@@ -1,0 +1,574 @@
+{
+  "concept_id": "tau_eq_i_alpha",
+  "concept_name": "The Rotational Second Law — τ = Iα",
+  "chapter": 7,
+  "section": "7.9",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 11 Physics Ch.7 System of Particles and Rotational Motion — table-of-contents scope only (tau = I alpha is a named NCERT-section topic); teaching authored from first principles. The atomic concept: a net external torque produces angular acceleration in proportion, tau_net = I alpha — torque sets how quickly the spin rate CHANGES, never the spin rate itself, and the same torque produces less alpha when I is larger. Does NOT cover what torque is or the moment arm (torque, not yet shipped), how I is computed or its axis-dependence (moment_of_inertia, not yet shipped), the kinematics omega = omega0 + alpha t as its own subject (rotational_kinematics), rotational work/energy (rotational_work_energy), or angular momentum L and its conservation (angular_momentum / conservation_of_angular_momentum — L, KE, dL/dt and F_pull readouts are never shown in this concept). Built on the rigid_body_rotation field_3d engine (build 0c-3, docs/loop_runs/rotmech/_engine/findings_d.md), pure configuration, zero renderer edits.",
+
+  "prerequisites": [
+    "rotational_kinematics",
+    "torque",
+    "moment_of_inertia",
+    "rigid_body_rotation"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "rigid_body_rotation"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "Pushing a playground merry-go-round: hold a steady push on the rail and it does not turn at one speed — it keeps speeding up for as long as you keep pushing.",
+    "secondary": "The same merry-go-round with riders sitting near the edge: the same steady push speeds it up more slowly, because the riders sitting farther out add more inertia."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "r": { "name": "Radius of each sliding mass from the axle — a restart-seed-only pose in every guided state (never ramps concurrently with an engaged torque in S1-S7); live-drivable only in S8", "unit": "m", "min": 0.15, "max": 0.90, "default": 0.80, "step": 0.01 },
+      "m": { "name": "Mass of each sliding mass (two, symmetric about the axle) — fixed at 2.0 kg in every guided state; live-drivable only in S8", "unit": "kg", "min": 0.5, "max": 5.0, "default": 2.0, "step": 0.1 },
+      "omega0": { "name": "Seed angular speed magnitude at state entry / restart — sets omega at t=0 for a state or an S5 run-cut / S8 restart; never applied as a continuous drive (that is tau_app's job)", "unit": "rad/s", "min": 0, "max": 3.0, "default": 1.5, "step": 0.1 },
+      "omega": { "name": "Live angular speed — the derived quantity omega = L/I, recomputed every step; never itself an independent variable or slider", "unit": "rad/s", "derived": "omega = L / I" },
+      "tau_app": { "name": "Applied drive torque magnitude via the motor drive wheel at the rim — the TAUGHT variable; the wheel translates in and its rim arrow tracks this value; contact = the engage instant. Core-ring control at S8 (engine token tau_applied)", "unit": "N*m", "min": 0, "max": 2.0, "default": 1.53, "step": 0.01 },
+      "tau_brake": { "name": "Brake torque MAGNITUDE while the pad is engaged against the drum rim — frictional: opposes the EXISTING sign of omega, decelerates only, never reverses at any reachable value", "unit": "N*m", "min": 0, "max": 2.0, "default": 1.53, "step": 0.01 },
+      "I_frame": { "name": "Fixed inertia of the turntable + rod, excluding the two sliding masses", "unit": "kg*m^2", "constant": 0.50 },
+      "R_drum": { "name": "Braked / driven radius — where the pad and the motor drive wheel both contact the turntable's rim", "unit": "m", "constant": 0.55 },
+      "rod_half_length": { "name": "Rod half-length — apparatus geometry only, not a formula input", "unit": "m", "constant": 1.0 },
+      "rod_height_above_pad": { "name": "Vertical clearance of the rod plane above the drum's pad plane — apparatus geometry only", "unit": "m", "constant": 0.25 },
+      "alpha": { "name": "Angular acceleration — the per-step finite difference (omega_k - omega_k_minus_1)/h on the fixed 16 ms grid, published from the SAME post-step snapshot as I/omega/tau, blanked across every re-pin/restart window. The shared chapter definition (findings_d.md section 1); equal to tau_net/I exactly whenever I is constant (every guided beat here)", "unit": "rad/s^2", "derived": "alpha = (omega_k - omega_k_minus_1) / h" },
+      "tau": { "name": "Net torque displayed on the HUD — the NET RESOLVED torque the integrator actually used at t, never the authored schedule value (P1-A). Satisfies tau = I*alpha identically at every instant, including S6's rest clamp (tau -> 0.00 with alpha -> 0.00 while the pad stays engaged) and S8's static hold", "unit": "N*m", "derived": "tau = I * alpha (identically, at every instant, by construction of the P1-A remedy)" }
+    },
+    "computed_outputs": {
+      "I": { "formula": "I(t) = I_frame + 2*m*r(t)^2 — recomputed live; held fixed for the duration of any engaged torque" },
+      "F_drive": { "formula": "F_drive = tau_app / R_drum — the rim tangential force arrow's printed label" }
+    },
+    "formulas": {
+      "newtons_second_law_rotational": "tau_net = I*alpha — the ONE law this concept teaches. Closed form: L(t+h) = L(t) + tau_net_resolved(t)*h; omega(t) = L(t)/I(t) recomputed every step; alpha(t) = (omega_k - omega_k_minus_1)/h on the fixed 16 ms grid",
+      "drive_torque_source": "tau_drive_term = +tau_app while the motor drive wheel is in contact (engage = contact); 0 otherwise. Never authored against the existing spin direction in this concept — the sign law is taught by the BRAKE (S6), not by a reversed drive",
+      "brake_torque_source": "tau_brake_term = -sign(omega)*tau_brake while the pad is engaged (frictional, opposes the EXISTING spin only); 0 otherwise. Decelerates toward rest; never reverses spin at any reachable tau_brake value",
+      "net_torque_resolved": "tau_net_resolved(t) = sum of every currently-engaged source's signed contribution, including the S8 static-hold case: while the brake is engaged and the drive magnitude is at most tau_brake, tau_net_resolved = 0 exactly",
+      "drive_force_at_rim": "F_drive = tau_app / R_drum. S2: 2.78 N at R_drum = 0.55 m gives 2.78*0.55 = 1.53 N*m. S4: 1.09 N gives 1.09*0.55 = 0.60 N*m",
+      "moment_of_inertia": "I(t) = I_frame + 2*m*r(t)^2 — two symmetric sliding masses, algebra-only. r=0.80: I = 0.50 + 2*2.0*0.64 = 3.06. r=0.50: I = 0.50 + 2*2.0*0.25 = 1.50. r=0.20: I = 0.50 + 2*2.0*0.04 = 0.66",
+      "predicted_speed_kinematics_patch": "omega = omega0 + alpha*t — the one-breath S4 kinematics patch, spoken only, never a second formula surface",
+      "per_particle_derivation": "S7 only: F_t = m*r*alpha = 2.0*0.80*0.50 = 0.80 N per mass, equal by symmetry; tau_per_mass = m*r^2*alpha = 2.0*0.64*0.50 = 0.64 N*m; tau_frame_term = I_frame*alpha = 0.50*0.50 = 0.25 N*m; tau = (Sigma m*r^2 + I_frame)*alpha = 0.64+0.64+0.25 = 1.53 = I*alpha exactly"
+    },
+    "constraints": [
+      "tau_net = I times alpha identically, at every instant — including the rest clamp and the S8 static hold. The tau readout displays the RESOLVED value the integrator used, never the authored schedule value (P1-A, binding)",
+      "alpha is the per-step finite difference of omega on the fixed 16 ms grid, blanked across every re-pin/restart window — never an independently integrated quantity",
+      "The brake is frictional: opposes the existing sign of omega, decelerates only, never reverses spin at any reachable tau_brake value. A sustained DRIVEN opposing torque genuinely CAN reverse a spin (real physics, out of this concept's scope, owned by the sibling sandbox) — never plant the belief that an opposing torque can never reverse a spin",
+      "I(t) = I_frame + 2*m*r(t)^2 is held fixed for the duration of any engaged torque in every guided state — r changes only between drives, never concurrently with an engaged torque",
+      "omega = 0 with both drive and brake engaged (S8) is a static hold with breakaway, not a limit case: while the brake magnitude is at least the drive, L is held at exactly 0 and sign(L) is never consulted",
+      "r is in the range 0.15 to 0.90 m; every authored pose (0.20, 0.50, 0.80) sits strictly inside it",
+      "The taught law is a proportion, never an equality of magnitude across states — the SAME tau (1.53 N.m) produces different alpha depending on I; no narration states or implies same torque, same acceleration",
+      "KE, L, dL/dt and F_pull readouts are NEVER shown in this concept — showing L would pre-spoil angular_momentum / conservation_of_angular_momentum"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 24
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "A steady torque does not set the speed — it sets how the speed changes.",
+    "visual_confirmation": "The drive wheel presses in at a constant force while omega climbs past 2.00, 3.00, past 5.00 and never settles; alpha stays constant at +0.50."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "opposing_torque": { "start": "STATE_6", "end": "STATE_6" },
+    "derivation": { "start": "STATE_7", "end": "STATE_7" }
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      { "curriculum": "CBSE/NCERT", "coverage": "full", "syllabus_unit": "Class 11 Physics Ch.7 System of Particles and Rotational Motion — tau = I alpha", "verified": true, "needs_teacher_verification": false },
+      { "curriculum": "JEE Main/Advanced", "coverage": "full", "syllabus_unit": "Rotational Dynamics — Newton's second law for rotation, torque and moment of inertia", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "NEET", "coverage": "partial", "syllabus_unit": "Rotational Motion — torque and angular acceleration (core/extended only)", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "IB DP Physics", "coverage": "partial", "syllabus_unit": "Angular acceleration and the rotational form of Newton's second law", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "A-level Physics", "coverage": "partial", "syllabus_unit": "Rotational dynamics — torque and moment of inertia", "verified": false, "needs_teacher_verification": true },
+      { "curriculum": "AP Physics C: Mechanics", "coverage": "full", "syllabus_unit": "Rotation — Newton's second law for rotation, calculus-based derivation", "verified": false, "needs_teacher_verification": true }
+    ]
+  },
+
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+
+      "STATE_1": {
+        "title": "No Torque: Spin Rate Unchanged",
+        "duration": 8,
+        "focal_primitive_id": "s1_watch_omega",
+        "advance_mode": "manual_click",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "No torque: spin rate unchanged",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "s1_head", "position": { "x": 380, "y": 60 }, "text": "The turntable spins steadily, no torque acting", "color": "#FFF176" },
+          { "type": "annotation", "id": "s1_watch_omega", "position": { "x": 200, "y": 250 }, "text": "tau reads 0.00, alpha reads 0.00, omega never changes", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s1_anchor", "position": { "x": 560, "y": 400 }, "text": "a turning push about the axle — right now there is none", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This turntable spins steadily, with two equal masses out on the rod." },
+            { "id": "s1_2", "text_en": "Torque tau is a turning push about the axle — right now there is none." },
+            { "id": "s1_3", "text_en": "Angular acceleration alpha is how quickly the spin rate changes each second." },
+            { "id": "s1_4", "text_en": "With no torque, alpha stays at zero, and the spin rate omega never changes." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A spinning object slows and stops on its own; keeping it spinning needs a torque.",
+            "visual_counter": "Torque tau reads 0.00 the whole state, and the spin-rate omega readout sits pinned at 1.50 rad/s for the whole state, never once dipping.",
+            "one_line_fix": "With no net torque, alpha is zero — the spin neither grows nor dies; it continues."
+          }
+        ]
+      },
+
+      "STATE_2": {
+        "title": "Torque On: Spin Rate Keeps Rising",
+        "duration": 13,
+        "focal_primitive_id": "s2_climb",
+        "advance_mode": "manual_click",
+        "motion_archetype": "steady-drive",
+        "delta_cue": "Torque on: spin rate climbs",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "constant_torque_constant_speed",
+          "why_it_keeps_speeding_up",
+          "torque_off_no_stop"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "s2_head", "position": { "x": 380, "y": 60 }, "text": "The motor drive wheel presses onto the rim", "color": "#FFF176" },
+          { "type": "annotation", "id": "s2_climb", "position": { "x": 200, "y": 250 }, "text": "omega climbs past 2, past 3, never settling — alpha stays constant", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s2_anchor", "position": { "x": 560, "y": 400 }, "text": "like steadily pushing a playground merry-go-round", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The drive wheel touches the rim, turning." },
+            { "id": "s2_2", "text_en": "Two point seven eight newtons at zero point five five metres gives one point five three newton-metres." },
+            { "id": "s2_3", "text_en": "The push stays constant, but the spin rate keeps climbing — never settling." },
+            { "id": "s2_4", "text_en": "That steady number is angular acceleration alpha, not the spin rate." },
+            { "id": "s2_5", "text_en": "Like pushing a playground merry-go-round." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A constant torque makes it turn at a constant speed.",
+            "visual_counter": "The drive wheel presses steadily and its rim arrow holds perfectly constant while omega climbs past 2.00, 3.00, 4.00 and never settles; the CONSTANT readout is alpha, not omega.",
+            "one_line_fix": "Torque sets the rate of CHANGE of spin — constant torque means constantly increasing speed."
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "Torque Off: Spin Rate Stays",
+        "duration": 8,
+        "focal_primitive_id": "s3_hold",
+        "advance_mode": "manual_click",
+        "motion_archetype": "null-result-hold (declared contrast pair of STATE_1)",
+        "delta_cue": "Torque off: spin rate stays",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "s3_head", "position": { "x": 380, "y": 60 }, "text": "The drive wheel is still pressing on, at first", "color": "#FFF176" },
+          { "type": "annotation", "id": "s3_hold", "position": { "x": 200, "y": 250 }, "text": "wheel pulls back, tau and alpha drop to zero, omega holds", "color": "#4DD0E1" },
+          { "type": "annotation", "id": "s3_anchor", "position": { "x": 560, "y": 400 }, "text": "removing torque removes the change, not the motion", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The drive wheel is still pressing on, and the spin rate omega climbs toward six point five six." },
+            { "id": "s3_2", "text_en": "Now the wheel pulls back — the push is gone." },
+            { "id": "s3_3", "text_en": "Torque tau and angular acceleration alpha both drop to zero." },
+            { "id": "s3_4", "text_en": "The spin rate omega does not fall — it holds exactly where the push left it." }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "The Equation Predicts the Speed",
+        "duration": 14,
+        "focal_primitive_id": "s4_match",
+        "advance_mode": "manual_click",
+        "motion_archetype": "converge-on-mark",
+        "delta_cue": "Equation predicts the speed",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "s4_head", "position": { "x": 380, "y": 60 }, "text": "A fresh run, from rest, masses moved in", "color": "#FFF176" },
+          { "type": "annotation", "id": "s4_i", "position": { "x": 200, "y": 250 }, "text": "I = 1.50: half for the frame, half for each mass", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s4_match", "position": { "x": 560, "y": 400 }, "text": "tau = I alpha predicts omega = 1.20 after 3 s — and it does", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "A fresh run, from rest, masses moved in." },
+            { "id": "s4_2", "text_en": "I is one point five oh: half for the frame, half for each mass." },
+            { "id": "s4_3", "text_en": "One point oh nine newtons at the rim gives zero point six oh newton-metres." },
+            { "id": "s4_4", "text_en": "Tau equals I times alpha: alpha is zero point four oh; omega reaches one point two oh." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "More Inertia: Less Acceleration",
+        "duration": 14,
+        "focal_primitive_id": "s5_compare",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "two-run-compare",
+        "delta_cue": "More inertia: less acceleration",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "same_torque_different_alpha",
+          "mass_position_matters",
+          "alpha_formula_use"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "s5_head", "position": { "x": 380, "y": 60 }, "text": "Run A: from rest, omega reaches 1.25", "color": "#FFF176" },
+          { "type": "annotation", "id": "s5_compare", "position": { "x": 200, "y": 250 }, "text": "same torque, masses moved in — run B reaches 5.80 in the same time", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s5_anchor", "position": { "x": 560, "y": 400 }, "text": "like riders near a merry-go-round's edge", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "From rest, run A reaches omega of one point two five." },
+            { "id": "s5_2", "text_en": "Masses move in to point two oh; same torque, again." },
+            { "id": "s5_3", "text_en": "In the same two point five seconds, run B reaches omega of five point eight oh." },
+            { "id": "s5_4", "text_en": "Smaller I means alpha is four point six four times larger." },
+            { "id": "s5_5", "text_en": "Like riders near a merry-go-round's edge." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The same torque always produces the same acceleration — only how much mass, not where it sits.",
+            "visual_counter": "Identical drive wheel, identical tau = 1.53, equal 2.5 s drives — run B (masses near the axle) reaches 5.80 in the time run A reached 1.25; alpha reads 2.32 versus run A's 0.50.",
+            "one_line_fix": "alpha = tau/I, and I depends on where the mass sits — 4.64x less inertia, 4.64x more acceleration."
+          }
+        ]
+      },
+
+      "STATE_6": {
+        "title": "Friction Brake: Negative Alpha",
+        "duration": 10,
+        "focal_primitive_id": "s6_sign",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Brake on: negative alpha",
+        "depth_ring": "extended",
+        "scene_composition": [
+          { "type": "annotation", "id": "s6_head", "position": { "x": 380, "y": 60 }, "text": "The brake pad presses in, touching the rim", "color": "#FFF176" },
+          { "type": "annotation", "id": "s6_sign", "position": { "x": 200, "y": 250 }, "text": "alpha turns negative, omega falls to zero, then holds", "color": "#4DD0E1" },
+          { "type": "annotation", "id": "s6_anchor", "position": { "x": 560, "y": 400 }, "text": "friction only slows a spin, never reverses it", "color": "#66BB6A" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "The brake pad presses in, touching the rim." },
+            { "id": "s6_2", "text_en": "Torque tau now opposes the spin: alpha turns negative, and omega falls steadily to zero." },
+            { "id": "s6_3", "text_en": "At rest, the pad holds the wheel still — tau reads zero, matching alpha." },
+            { "id": "s6_4", "text_en": "This brake is friction: it only slows a spin, never reverses it — a driven torque could." }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "title": "Adding Up Every Particle",
+        "duration": 15,
+        "focal_primitive_id": "s7_ledger",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "motion_archetype": "equation-build",
+        "delta_cue": "Adding up every particle",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          { "type": "annotation", "id": "s7_head", "position": { "x": 380, "y": 60 }, "text": "Newton's second law, per particle", "color": "#FFF176" },
+          { "type": "annotation", "id": "s7_ledger", "position": { "x": 200, "y": 250 }, "text": "each mass needs 0.80 N; torque per mass 0.64 N*m; frame 0.25 N*m", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_sum", "position": { "x": 560, "y": 400 }, "text": "0.64 + 0.64 + 0.25 = 1.53, exactly I alpha", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Newton's second law, per particle: force equals mass times r times alpha." },
+            { "id": "s7_2", "text_en": "Each mass needs zero point eight oh newtons of tangential force." },
+            { "id": "s7_3", "text_en": "That torque is zero point six four newton-metres for each mass." },
+            { "id": "s7_4", "text_en": "The frame adds zero point two five the same way — total one point five three, exactly I alpha." }
+          ]
+        }
+      },
+
+      "STATE_8": {
+        "title": "Try It Yourself",
+        "duration": 0,
+        "focal_primitive_id": "s8_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Try it yourself",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "s8_head", "position": { "x": 380, "y": 60 }, "text": "Everything is live now", "color": "#FFF176" },
+          { "type": "annotation", "id": "s8_try", "position": { "x": 380, "y": 250 }, "text": "drag torque, r, mass, starting speed — watch alpha follow instantly", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s8_key", "position": { "x": 380, "y": 440 }, "text": "tau_net = I alpha", "color": "#D4D4D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Now drag the torque, the radius, the mass or the starting speed yourself — watch alpha and omega answer live, and try the brake against the drive together." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "potters_wheel_spin_up",
+      "type": "B",
+      "label": "Spinning Up a Potter's Wheel",
+      "physical_world": "A potter's foot keeps a steady push on the flywheel — the wheel does not settle at one speed, it keeps speeding up for as long as the push continues.",
+      "same_physics": "Identical proportion: the same steady torque produces a constant angular acceleration, never a constant speed; moving clay farther from the centre raises I and slows the spin-up for the same push.",
+      "scene_hint": "Same turntable rig, same physics — the motor drive wheel is relabeled as a foot pedal driving a potter's flywheel."
+    },
+    {
+      "variant_id": "bicycle_pedal_torque",
+      "type": "B",
+      "label": "Pedalling a Bicycle Wheel on a Stand",
+      "physical_world": "A steady pedal force on a bicycle wheel mounted on a stand makes the wheel speed up continuously, not settle at one rate — and the same pedal force spins a wheel with a heavier rim more slowly.",
+      "same_physics": "Same rotational second law: torque sets the rate of change of spin, and moment of inertia (mass distribution) modulates how much a given torque changes the spin rate.",
+      "scene_hint": "Same rig, same physics — the drive wheel is relabeled as a pedal chain-ring driving a mounted bicycle wheel."
+    }
+  ],
+
+  "field_3d_config": {
+    "scenario_type": "rigid_body_rotation",
+    "slider_controls": {
+      "tau_applied": { "min": 0, "max": 2.0, "step": 0.01, "default": 1.53, "label": "Drive torque τ", "unit": " N·m" },
+      "tau_brake": { "min": 0, "max": 2.0, "step": 0.01, "default": 1.53, "label": "Brake torque τ", "unit": " N·m" }
+    },
+    "states": {
+
+      "STATE_1": {
+        "label": "No torque acting: alpha = 0, so the spin rate omega never changes",
+        "visible_elements": [],
+        "caption": "No torque: spin rate unchanged",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "readout_at_ms": { "I": 0, "omega": 1000, "tau": 2000, "alpha": 3000 },
+          "hold_glow": ["omega"],
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_2": {
+        "label": "A constant drive torque does not set the speed — it sets how fast the speed changes",
+        "visible_elements": [],
+        "caption": "Torque on: spin rate climbs",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.53,
+            "engage_at_ms": 4890,
+            "pad_travel_ms": 700
+          },
+          "show_drive_force": true,
+          "glow_focal": "rbr_drive_wheel",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "hold_glow": ["omega"],
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_3": {
+        "label": "Removing the torque removes the change, not the motion — omega holds where the push left it",
+        "visible_elements": [],
+        "caption": "Torque off: spin rate stays",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 5.56,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.53,
+            "engage_at_ms": 0,
+            "release_at_ms": 2000,
+            "pad_travel_ms": 700
+          },
+          "show_drive_force": true,
+          "glow_focal": "rbr_drive_wheel",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "hold_glow": ["omega"],
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_4": {
+        "label": "The equation tau = I alpha predicts the outcome before the run, exactly",
+        "visible_elements": [],
+        "caption": "Equation predicts the speed",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.50 },
+          "omega0_rad_s": 0,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 0.60,
+            "engage_at_ms": 3900,
+            "pad_travel_ms": 700
+          },
+          "show_drive_force": true,
+          "show_r_line": true,
+          "glow_focal": "rbr_drive_wheel",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "readout_at_ms": { "I": 1200 },
+          "hold_glow": ["omega"],
+          "formula_lines": [
+            { "text": "τ = Iα", "at_ms": 2200 }
+          ],
+          "reference_marks": [
+            { "id": "predicted_omega_chip", "surface": "omega", "form": "chip", "value": 1.20, "label": "predicted ω = 1.20 after 3 s", "at_ms": 2800, "match_tolerance": 0.01 }
+          ],
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_5": {
+        "label": "The same torque gives less alpha when I is bigger — two runs, same tau, different r",
+        "visible_elements": [],
+        "caption": "More inertia: less acceleration",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 0,
+          "external_torque": {
+            "pad_travel_ms": 700,
+            "sources": [
+              { "id": "drive_run_a", "kind": "drive", "torque_Nm": 1.53, "engage_at_ms": 500, "release_at_ms": 3000, "travel_ms": 700 },
+              { "id": "drive_run_b", "kind": "drive", "torque_Nm": 1.53, "engage_at_ms": 4700, "release_at_ms": 7200, "travel_ms": 700 }
+            ]
+          },
+          "show_drive_force": true,
+          "show_r_line": true,
+          "glow_focal": "rbr_drive_wheel",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "hold_glow": ["omega"],
+          "reference_marks": [
+            { "id": "run_a_chip", "surface": "omega", "form": "chip", "value": 1.25, "label": "run A: ω = 1.25", "at_ms": 3000 }
+          ],
+          "restart": {
+            "at_ms": 3500,
+            "flip_spin": false,
+            "runs": [
+              { "at_ms": 3500, "r_m": 0.20, "omega0": 0 }
+            ]
+          },
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_6": {
+        "label": "A friction brake torque is a negative alpha: omega falls at a steady rate, then friction holds it at rest",
+        "visible_elements": [],
+        "caption": "Brake on: negative alpha",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "external_torque": {
+            "source": "brake",
+            "tau_brake_Nm": 1.53,
+            "engage_at_ms": 1500,
+            "pad_travel_ms": 700
+          },
+          "show_r_line": true,
+          "show_drum_line": true,
+          "glow_focal": "rbr_brake_pad",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "hold_glow": ["alpha", "tau"],
+          "formula": "τ = Iα",
+          "controls_visible": [
+            "r", "m", "omega0",
+            { "id": "tau_brake", "min_ring": "extended" }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "label": "The law is Newton's second law summed over the body's particles: tau = (Sigma m r^2) alpha = I alpha",
+        "visible_elements": [],
+        "caption": "Adding up every particle",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 0,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.53,
+            "engage_at_ms": 4500,
+            "pad_travel_ms": 700
+          },
+          "show_drive_force": true,
+          "show_r_line": true,
+          "glow_focal": "rbr_drive_wheel",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "hold_glow": ["alpha", "tau"],
+          "formula_lines": [
+            { "text": "F = m (r α)", "at_ms": 0 },
+            { "text": "τ = m r² α", "at_ms": 1300 },
+            { "text": "Σ m r² α = 0.64 + 0.64 + 0.25", "at_ms": 2600 },
+            { "text": "τ = (Σ m r²) α = I α = 1.53 N·m", "at_ms": 3800 }
+          ],
+          "controls_visible": ["r", "m", "omega0"]
+        }
+      },
+
+      "STATE_8": {
+        "label": "Sandbox — drag torque, brake, r, mass and starting speed; watch alpha and omega respond live",
+        "visible_elements": [],
+        "caption": "Try it yourself",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "sandbox",
+          "apparatus": { "body_shape": "turntable_rod", "i_frame_kgm2": 0.50, "rod_half_length_m": 1.00, "brake_drum_radius_m": 0.55, "rod_height_above_pad_m": 0.25, "r_min_m": 0.15, "r_max_m": 0.90 },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "show_drive_force": true,
+          "show_r_line": true,
+          "show_drum_line": true,
+          "formula": "τ_net = Iα",
+          "readouts": ["I", "omega", "alpha", "tau"],
+          "trusted_drag_seizes": true,
+          "controls_visible": [
+            "tau_applied", "r", "m", "omega0",
+            { "id": "tau_brake", "min_ring": "extended" }
+          ]
+        }
+      }
+    }
+  }
+}

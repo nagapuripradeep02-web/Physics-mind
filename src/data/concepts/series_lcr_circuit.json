@@ -193,12 +193,12 @@
             { "id": "s1_1", "text_en": "Three familiar elements dock into one loop — heater first.", "glow": "circuit", "scenario_cue": "dock_r" },
             { "id": "s1_2", "text_en": "Now the coil, then the capacitor plates, close the same loop.", "glow": "circuit", "scenario_cue": "dock_l" },
             { "id": "s1_3", "text_en": "One amber current threads all three in lockstep — never splitting, never pooling.", "glow": "circuit" },
-            { "id": "s1_4", "text_en": "The meter reads two point zero zero amps — exactly the bare heater's value. Park that.", "glow": "circuit" }
+            { "id": "s1_4", "text_en": "The meter reads two point zero zero amps — exactly the bare heater's value. Remember that value.", "glow": "circuit" }
           ]
         }
       },
       "STATE_2": {
-        "title": "Off the home frequency, hidden machinery wakes",
+        "title": "Off the home frequency, hidden opposition appears",
         "duration": 14,
         "depth_ring": "core",
         "focal_primitive_id": "s2_focal_label",
@@ -213,7 +213,7 @@
             { "id": "s2_1", "text_en": "Slide the frequency off its home setting, and watch the beads slow down.", "glow": "trace" },
             { "id": "s2_2", "text_en": "Current shrinks from two amps to about one point one one amps.", "glow": "trace" },
             { "id": "s2_3", "text_en": "And in the trace, the current's crest now drifts visibly late behind the voltage's.", "glow": "trace" },
-            { "id": "s2_4", "text_en": "Something in this loop fights back — try the frequency yourself.", "glow": "trace" }
+            { "id": "s2_4", "text_en": "Something in this loop opposes the current — try the frequency yourself.", "glow": "trace" }
           ]
         }
       },
@@ -231,9 +231,9 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s3_1", "text_en": "The disc returns — one amber current arrow, our shared clock.", "glow": "i_phasor" },
-            { "id": "s3_2", "text_en": "The heater's voltage rides right along it — same phase you proved already.", "glow": "vr_phasor" },
+            { "id": "s3_2", "text_en": "The heater's voltage stays in phase with it — you proved that already.", "glow": "vr_phasor" },
             { "id": "s3_3", "text_en": "The coil's voltage sits a quarter turn ahead; the plates' voltage a quarter behind.", "glow": "vl_phasor" },
-            { "id": "s3_4", "text_en": "The source arrow itself matches none of them — hold that thought.", "glow": "v_phasor" }
+            { "id": "s3_4", "text_en": "The source arrow itself matches none of them — we look at this next.", "glow": "v_phasor" }
           ]
         }
       },
@@ -283,7 +283,7 @@
             { "id": "s5_1", "text_en": "Freeze the clock — the angles can't change, you proved that.", "glow": "chain" },
             { "id": "s5_2", "text_en": "The resistor's voltage lays out first, from the root.", "glow": "chain", "scenario_cue": "chain_vr" },
             { "id": "s5_3", "text_en": "The coil's voltage climbs from its tip.", "glow": "chain", "scenario_cue": "chain_vl" },
-            { "id": "s5_4", "text_en": "The capacitor's voltage bites straight back down the same line.", "glow": "chain", "scenario_cue": "chain_vc" },
+            { "id": "s5_4", "text_en": "The capacitor's voltage reverses straight back down the same line.", "glow": "chain", "scenario_cue": "chain_vc" },
             { "id": "s5_5", "text_en": "The chain's tip lands exactly on the source arrow — closed.", "glow": "chain" }
           ]
         }
@@ -306,12 +306,12 @@
             { "id": "s6_1", "text_en": "Stop the spin. Divide this whole triangle by the one shared current.", "glow": "triangle", "scenario_cue": "morph_start" },
             { "id": "s6_2", "text_en": "Volts become ohms — resistance five, net reactance seven point five, impedance nine.", "glow": "triangle" },
             { "id": "s6_3", "text_en": "Divide the source voltage by impedance and you get one point one one amps — exactly what we measured.", "glow": "triangle" },
-            { "id": "s6_4", "text_en": "This triangle doesn't spin — it's the circuit's own fingerprint.", "glow": "triangle" }
+            { "id": "s6_4", "text_en": "This triangle doesn't spin — it stays fixed for this circuit.", "glow": "triangle" }
           ]
         }
       },
       "STATE_7": {
-        "title": "The winning reactance sets who leads, who lags",
+        "title": "The larger reactance sets who leads, who lags",
         "duration": 14,
         "depth_ring": "core",
         "focal_primitive_id": "s7_focal_label",
@@ -325,13 +325,13 @@
           "tts_sentences": [
             { "id": "s7_1", "text_en": "That angle has a name — phase angle phi, fifty six point three degrees.", "glow": "triangle" },
             { "id": "s7_2", "text_en": "Now step the frequency down — watch the reactances swap places.", "glow": "fan", "scenario_cue": "f_step" },
-            { "id": "s7_3", "text_en": "The impedance triangle flips sides — same size fight, opposite winner.", "glow": "triangle" },
+            { "id": "s7_3", "text_en": "The impedance triangle flips sides — same size, opposite direction.", "glow": "triangle" },
             { "id": "s7_4", "text_en": "The current now leads the source instead of lagging it — impedance and current stay exactly the same.", "glow": "i_phasor" }
           ]
         }
       },
       "STATE_8": {
-        "title": "The crossing — reactances cancel, resonance, current roars back",
+        "title": "The crossing — reactances cancel, resonance, current climbs back to peak",
         "duration": 18,
         "depth_ring": "core",
         "focal_primitive_id": "s8_focal_label",
@@ -374,8 +374,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s9_1", "text_en": "Resistance sets how sharp this peak is — watch the resistor shrink.", "glow": "reso_plot" },
-            { "id": "s9_2", "text_en": "The curve grows taller and narrower — five amps, choosy about frequency.", "glow": "reso_plot" },
-            { "id": "s9_3", "text_en": "Now a bigger resistor — low and wide, one amp, far less picky.", "glow": "reso_plot" },
+            { "id": "s9_2", "text_en": "The curve grows taller and narrower — five amps, selective about frequency.", "glow": "reso_plot" },
+            { "id": "s9_3", "text_en": "Now a bigger resistor — low and wide, one amp, far less selective.", "glow": "reso_plot" },
             { "id": "s9_4", "text_en": "The crossing point never moves — resistance changes the shape, never where.", "glow": "reso_plot" }
           ]
         }
@@ -415,7 +415,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s11_1", "text_en": "It's all yours — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the crossing itself slide.", "glow": "formula" }
+            { "id": "s11_1", "text_en": "Explore the whole circuit — drag peak voltage, frequency, resistance, inductance, and capacitance, and watch the crossing itself slide.", "glow": "formula" }
           ]
         }
       }
@@ -651,7 +651,7 @@
         "label": "Off the home frequency, the current shrinks and its crest slips late",
         "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_strip"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "Off home, machinery wakes",
+        "caption": "Off home, opposition appears",
         "show_sliders": true,
         "formula_overlay": "",
         "variable_overrides": { "vm": 10.0, "R": 5.0, "L": 3.1831, "C": 0.1273 },
@@ -770,10 +770,10 @@
         }
       },
       "STATE_7": {
-        "label": "The triangle's own angle is phase angle phi — reactance winner sets lead or lag",
+        "label": "The triangle's own angle is phase angle phi — the larger reactance sets lead or lag",
         "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_arc", "slcr_triangle", "slcr_chips", "slcr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "Reactance winner sets lead",
+        "caption": "Larger reactance sets lead",
         "show_sliders": true,
         "formula_overlay": "tan φ = (X_L − X_C)/R",
         "variable_overrides": { "vm": 10.0, "f_demo": 0.50, "R": 5.0, "L": 3.1831, "C": 0.1273 },
@@ -880,7 +880,7 @@
         "label": "Explore — the whole LCR machine under the teacher's hands",
         "visible_elements": ["slcr_circuit", "slcr_beads", "slcr_fan", "slcr_arc", "slcr_triangle", "slcr_chips", "slcr_reso_plot", "slcr_formula"],
         "camera_position": [1.3, 1.6, 12.0],
-        "caption": "All yours",
+        "caption": "Explore",
         "show_sliders": true,
         "formula_overlay": "Z = √(R² + (X_L − X_C)²)",
         "ac_series_lcr": {

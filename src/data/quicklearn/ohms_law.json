@@ -1,0 +1,136 @@
+{
+  "concept_id": "ohms_law",
+  "title": "Ohm's Law in about 10 minutes",
+  "intro": {
+    "heading": "What makes current flow?",
+    "lines": [
+      "A battery gives a push. The push is called voltage, measured in volts.",
+      "The push makes charge move through the wire. That flow is called current, measured in amperes.",
+      "The wire opposes the flow. That opposition is called resistance, measured in ohms.",
+      "Ohm's law connects the three: current = voltage ÷ resistance. Double the push, double the flow."
+    ],
+    "what_changes": [
+      { "you_change": "Voltage V", "you_see": "The current grows or shrinks with it" },
+      { "you_change": "Resistance R", "you_see": "The line on the graph gets steeper, and the current drops" }
+    ]
+  },
+  "readings": [
+    { "label": "voltage", "source": "fn", "name": "realVoltage", "round": 2, "unit": "V" },
+    { "label": "resistance", "source": "fn", "name": "plotR", "round": 2, "unit": "ohm" },
+    { "label": "the current meter reads", "source": "fn", "name": "realCurrent", "round": 3, "unit": "A" }
+  ],
+  "missions": [
+    {
+      "id": "m1",
+      "state": "STATE_1",
+      "kind": "observe",
+      "instruction": "Watch the meter. The battery switches on, the push spreads through the wire, and the current climbs to a steady value.",
+      "min_watch_ms": 8000,
+      "done_label": "I saw it"
+    },
+    {
+      "id": "m2",
+      "state": "STATE_2",
+      "kind": "set_param",
+      "instruction": "Drag the Voltage slider to 5 V or more. Watch the bright dot climb the straight line.",
+      "success": { "param": "V", "op": "gte", "value": 5 },
+      "hint": "The V slider is on the right side of the simulation.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m3",
+      "state": "STATE_2",
+      "kind": "change_param",
+      "instruction": "Now push the voltage up by at least 3 more volts. The dot slides along the SAME straight line — that straight line is Ohm's law.",
+      "success": { "param": "V", "delta": 3 }
+    },
+    {
+      "id": "m4",
+      "state": "STATE_3",
+      "kind": "set_param",
+      "instruction": "Raise the Resistance to 15 Ω or more. Watch the line get steeper — steeper means more resistance.",
+      "success": { "param": "R", "op": "gte", "value": 15 },
+      "hint": "The R slider is on the right side of the simulation.",
+      "hint_after_ms": 20000
+    },
+    {
+      "id": "m5",
+      "state": "STATE_4",
+      "kind": "observe",
+      "instruction": "Watch the two counting meters, one before the resistor and one after it. The counts stay equal. Nothing is used up.",
+      "min_watch_ms": 8000,
+      "done_label": "Same in, same out"
+    },
+    {
+      "id": "m6",
+      "state": "STATE_5",
+      "kind": "set_param",
+      "instruction": "This wire is a glowing filament bulb. Push the voltage to 10 V and watch the line bend — the hot filament does not follow the straight line.",
+      "success": { "param": "V", "op": "gte", "value": 10 }
+    }
+  ],
+  "remember": {
+    "key_ideas": [
+      "Current rises in step with voltage, when resistance stays the same.",
+      "Current falls when resistance rises, when voltage stays the same.",
+      "Always check which quantity is held constant before you predict."
+    ],
+    "formula": {
+      "plain": "V = I × R",
+      "reading": "Voltage equals current times resistance. So current I = V ÷ R."
+    },
+    "common_mistake": {
+      "wrong": "Current gets used up inside a resistor.",
+      "right": "The same current flows in and out. The resistor drops voltage, not current."
+    }
+  },
+  "quiz": {
+    "question_ids": [
+      "ql_concept_v_double",
+      "ql_calc_basic",
+      "ql_graph_slope",
+      "ql_conservation",
+      "ql_non_ohmic"
+    ]
+  },
+  "diagnosis_overrides": {
+    "ql_conservation": {
+      "replay_state": "STATE_4",
+      "replay_prompt": "Watch the two counting meters — the count going in and the count coming out stay equal the whole time."
+    },
+    "ql_non_ohmic": {
+      "replay_state": "STATE_5",
+      "replay_prompt": "Push the voltage high and watch the bright trace bend away from the straight reference line."
+    }
+  },
+  "skills": {
+    "concept": ["ql_concept_v_double"],
+    "calculation": ["ql_calc_basic"],
+    "graph": ["ql_graph_slope"],
+    "misconception": ["ql_conservation", "ql_non_ohmic"]
+  },
+  "stage": {
+    "extends": "ohms_law",
+    "elements": [
+      { "looks_like": "a graph in the lower right, appearing from the second state onward", "means": "the V–I graph. Current I is on the horizontal axis and voltage V on the vertical axis, so the steepness of the line is the resistance R. A straight line through the origin is Ohm's law; a line that curves upward means the resistance is rising." },
+      { "looks_like": "two counting meters, one before and one after a marked band of the wire, shown in the conservation state only", "means": "tallies of how many electrons cross each second. They stay equal, which is how you can see that current is not used up." },
+      { "looks_like": "a faint straight reference line behind a brighter curving line, in the filament state only", "means": "the straight line the wire would have followed if its resistance had stayed constant. The bright line peeling away from it is the hot filament." }
+    ]
+  },
+  "tutor": {
+    "welcome": [
+      "Hi! I am Vidi, your guide for this lesson.",
+      "We will learn Ohm's law on a real moving simulation, one small step at a time. Ask me anything, any time, in the box below."
+    ],
+    "celebrations": {
+      "m1": "You saw it! The battery gave the push, and the current climbed to a steady value. That push is called voltage.",
+      "m2": "Nice work! You raised the voltage and the bright dot climbed the straight line. More push, more current.",
+      "m3": "Exactly! The dot stayed on the same straight line. That straight line through zero IS Ohm's law.",
+      "m4": "You did it! You raised the resistance and the line became steeper. A steeper line means more resistance.",
+      "m5": "Right! The count going in and the count coming out stayed equal the whole time. Current is never used up.",
+      "m6": "You found the limit! The hot filament bends the line — its resistance rises as it heats. The straight line only holds at constant temperature."
+    },
+    "quiz_intro": "Now let us check what you learned. 5 questions. Take your time — you have seen every answer with your own eyes.",
+    "summary_line": "Great work today. Every step you took and every question you asked is saved, so you can pick up where you left off."
+  }
+}

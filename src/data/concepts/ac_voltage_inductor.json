@@ -171,13 +171,13 @@
         "scene_composition": [
           { "type": "annotation", "id": "s1_source_label", "position": { "x": 380, "y": 60 }, "text": "same alternating source as before", "color": "#FFCC80" },
           { "type": "annotation", "id": "s1_beads_pause_label", "position": { "x": 200, "y": 250 }, "text": "charges pause exactly at the voltage peak", "color": "#4FC3F7" },
-          { "type": "annotation", "id": "s1_field_peak_label", "position": { "x": 560, "y": 400 }, "text": "coil field swells brightest at zero voltage", "color": "#80DEEA" }
+          { "type": "annotation", "id": "s1_field_peak_label", "position": { "x": 560, "y": 400 }, "text": "coil field grows brightest at zero voltage", "color": "#80DEEA" }
         ],
         "teacher_script": {
           "tts_sentences": [
             { "id": "s1_1", "text_en": "Same alternating source, but now it feeds a coil instead of a heater — everything still swings.", "glow": "source" },
             { "id": "s1_2", "text_en": "Watch the charges pause and turn exactly when the voltage peaks, not when it's zero.", "glow": "beads" },
-            { "id": "s1_3", "text_en": "The coil's field swells brightest exactly when the voltage crosses zero instead — hold that thought.", "glow": "bfield" }
+            { "id": "s1_3", "text_en": "The coil's field grows brightest exactly when the voltage crosses zero instead.", "glow": "bfield" }
           ]
         }
       },
@@ -197,7 +197,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s2_1", "text_en": "Here's what a resistor's current would do — the dashed guess, copying voltage instantly.", "glow": "ghost_trace" },
-            { "id": "s2_2", "text_en": "But this coil's charges won't obey — they pause where the guess claims maximum flow.", "glow": "beads" },
+            { "id": "s2_2", "text_en": "But this coil's charges move differently — they pause where the guess claims maximum flow.", "glow": "beads" },
             { "id": "s2_3", "text_en": "Watch the real current sweep in — same size, but arriving late.", "glow": "i_trace", "scenario_cue": "real_sweep_start" },
             { "id": "s2_4", "text_en": "It peaks a full quarter cycle after the voltage — ninety degrees behind, always.", "glow": "lag_bracket", "scenario_cue": "lag_bracket_land" }
           ]
@@ -211,7 +211,7 @@
         ]
       },
       "STATE_3": {
-        "title": "The coil fights every change with an opposing back-emf",
+        "title": "The coil opposes every change with a back-emf",
         "duration": 14,
         "depth_ring": "core",
         "focal_primitive_id": "s3_mirror_label",
@@ -224,8 +224,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s3_1", "text_en": "Zoom into the coil: as current rises, its own field induces a back voltage opposing the rise.", "glow": "coil" },
-            { "id": "s3_2", "text_en": "As current falls, that back voltage flips — now it props the current up instead.", "glow": "backemf" },
-            { "id": "s3_3", "text_en": "The back voltage always mirrors the source, equal and opposite — fighting the change, never the current itself.", "glow": "backemf" }
+            { "id": "s3_2", "text_en": "As current falls, that back voltage flips — now it adds to the current instead.", "glow": "backemf" },
+            { "id": "s3_3", "text_en": "The back voltage always mirrors the source, equal and opposite — opposing the change, never the current itself.", "glow": "backemf" }
           ]
         }
       },
@@ -260,14 +260,14 @@
         "scene_composition": [
           { "type": "annotation", "id": "s5_reactance_label", "position": { "x": 380, "y": 60 }, "text": "reactance equals angular frequency times inductance", "color": "#80DEEA" },
           { "type": "annotation", "id": "s5_shrink_label", "position": { "x": 200, "y": 250 }, "text": "faster swing: current shrinks", "color": "#EF9A9A" },
-          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current swells", "color": "#A5D6A7" }
+          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current grows", "color": "#A5D6A7" }
         ],
         "teacher_script": {
           "tts_sentences": [
             { "id": "s5_1", "text_en": "The coil's opposition isn't fixed like a resistor's — frequency makes it: reactance equals angular frequency times inductance.", "glow": "xl_readout" },
             { "id": "s5_2", "text_en": "Watch faster swings choke harder: current shrinks and the beads barely move before turning back.", "glow": "xl_readout", "scenario_cue": "ramp_window_start" },
-            { "id": "s5_3", "text_en": "Slow it back down and the current swells right back up.", "glow": "coil" },
-            { "id": "s5_4", "text_en": "Same trick lets a speaker coil pass bass, choke treble.", "glow": "xl_readout" }
+            { "id": "s5_3", "text_en": "Slow it back down and the current grows right back up.", "glow": "coil" },
+            { "id": "s5_4", "text_en": "The same principle lets a speaker coil pass bass, choke treble.", "glow": "xl_readout" }
           ]
         },
         "misconception_watch": [
@@ -292,8 +292,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s6_1", "text_en": "Multiply voltage by current — power swings both positive and negative.", "glow": "p_strip" },
-            { "id": "s6_2", "text_en": "When they share a sign, power is positive — energy pours into the field, the gauge fills.", "glow": "u_gauge", "scenario_cue": "product_walk_start" },
-            { "id": "s6_3", "text_en": "When they disagree, power turns negative — the field gives that energy back.", "glow": "u_gauge" },
+            { "id": "s6_2", "text_en": "When they have the same sign, power is positive — energy pours into the field, the gauge fills.", "glow": "u_gauge", "scenario_cue": "product_walk_start" },
+            { "id": "s6_3", "text_en": "When they have opposite signs, power turns negative — the field returns that energy.", "glow": "u_gauge" },
             { "id": "s6_4", "text_en": "That shaded area equals what the gauge just filled — nothing lost.", "glow": "p_strip", "scenario_cue": "area_label" }
           ]
         }
@@ -307,15 +307,15 @@
         "has_prebuilt_deep_dive": true,
         "drill_downs": ["reactance_vs_resistance_heating", "where_stored_energy_goes", "zero_power_but_current_flows"],
         "scene_composition": [
-          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: dead at zero", "color": "#66BB6A" },
-          { "type": "annotation", "id": "s7_alive_label", "position": { "x": 200, "y": 250 }, "text": "current still flows, field still breathes", "color": "#4FC3F7" },
+          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: reads zero", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_alive_label", "position": { "x": 200, "y": 250 }, "text": "current still flows, field still oscillates", "color": "#4FC3F7" },
           { "type": "annotation", "id": "s7_cold_label", "position": { "x": 560, "y": 400 }, "text": "coil body: never warms", "color": "#90A4AE" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it stay dead at zero, cycle after cycle.", "glow": "meter" },
-            { "id": "s7_2", "text_en": "Current is clearly flowing, the field keeps breathing, and the gauge keeps filling and draining.", "glow": "coil" },
-            { "id": "s7_3", "text_en": "But the coil never warms — it borrows energy and hands back every joule; only resistance actually eats it.", "glow": "meter" }
+            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it stay at zero, cycle after cycle.", "glow": "meter" },
+            { "id": "s7_2", "text_en": "Current is clearly flowing, the field keeps oscillating, and the gauge keeps filling and draining.", "glow": "coil" },
+            { "id": "s7_3", "text_en": "But the coil never warms — it stores energy and returns every joule; only resistance actually dissipates it.", "glow": "meter" }
           ]
         },
         "misconception_watch": [
@@ -360,7 +360,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "It's all yours now — drag peak voltage, frequency, and inductance, and watch the lag, the field, and the current respond live.", "glow": "formula" }
+            { "id": "s9_1", "text_en": "Explore now — drag peak voltage, frequency, and inductance, and watch the lag, the field, and the current respond live.", "glow": "formula" }
           ]
         }
       }
@@ -581,10 +581,10 @@
         }
       },
       "STATE_3": {
-        "label": "The coil fights every change — back-emf opposes rise, props up fall",
+        "label": "The coil opposes every change — back-emf opposes the rise, adds to the fall",
         "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield", "acl_emf_arrows"],
         "camera_position": [2.3, 0.6, 5.0],
-        "caption": "Coil fights every change",
+        "caption": "Coil opposes every change",
         "show_sliders": true,
         "formula_overlay": "",
         "variable_overrides": { "vm": 10.0, "L": 3.1831, "f_demo": 0.25 },
@@ -689,7 +689,7 @@
         }
       },
       "STATE_7": {
-        "label": "Nothing consumed — the meter sits dead at zero while current visibly flows",
+        "label": "Nothing consumed — the meter reads zero while current visibly flows",
         "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield", "acl_meter", "acl_u_gauge"],
         "camera_position": [1.0, 1.2, 9.0],
         "caption": "Average power: exactly zero",
@@ -746,7 +746,7 @@
         "label": "Explore — the whole inductor circuit, live",
         "visible_elements": ["acl_source", "acl_beads", "acl_arrow", "acl_coil", "acl_bfield"],
         "camera_position": [1.0, 1.2, 9.0],
-        "caption": "All yours",
+        "caption": "Explore",
         "show_sliders": true,
         "formula_overlay": "i lags v by ¼ cycle (90°)",
         "ac_inductor": {

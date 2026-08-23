@@ -556,6 +556,6 @@ function expectedChecksForCategory(
         case 'F': return ['F2', 'F3'];
         case 'G': return ['G1', 'G2', 'G3', 'G4', 'G5', 'G6'];
         case 'H': throw new Error('Category H is deterministic (pixelGate.ts) — never dispatched here.');
-        case 'I': return ['I1', 'I2'];
+        case 'I': return ['I1', 'I2', 'I3'];
     }
 }

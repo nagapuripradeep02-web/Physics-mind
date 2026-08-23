@@ -1,0 +1,39 @@
+{
+  "approved_at": "2026-08-11T10:42:03.545Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\phasors\\20260811-114406",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

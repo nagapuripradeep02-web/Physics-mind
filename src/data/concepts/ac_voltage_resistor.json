@@ -22,7 +22,7 @@
     "ac_generator"
   ],
   "real_world_anchor": {
-    "primary": "A heating element — inside a kettle, a toaster, a room heater — glows the same steady orange even though the current running through it reverses direction many times every second. The glow never betrays the reversals, because heating doesn't care which way the charge moves. And the number printed near a wall socket, or on an appliance's nameplate, is never the peak of that swing — it is the RMS value, the DC-equivalent rating; the true peak sits the square root of two higher.",
+    "primary": "A heating element — inside a kettle, a toaster, a room heater — glows the same steady orange even though the current running through it reverses direction many times every second. The glow never changes with the reversals, because heating does not depend on which way the charge moves. And the number printed near a wall socket, or on an appliance's nameplate, is never the peak of that swing — it is the RMS value, the DC-equivalent rating; the true peak sits the square root of two higher.",
     "secondary": "Point a phone's slow-motion camera at a row of mains-powered lamps and they visibly blink — at exactly twice the mains frequency. That is the same sin-squared power pulse this diamond builds, made visible with a device almost everyone already carries."
   },
   "physics_engine_config": {
@@ -219,7 +219,7 @@
             { "id": "s3_1", "text_en": "Current flows one way, and the heater glows steadily bright.", "glow": "arrow" },
             { "id": "s3_2", "text_en": "Now the current reverses — same glow, same heat, just the flow direction flipped.", "glow": "heater" },
             { "id": "s3_3", "text_en": "Every half cycle deposits more energy; the counter climbs through both halves, never back down.", "glow": "energy_counter" },
-            { "id": "s3_4", "text_en": "Heating doesn't care which way charge moves — reversing the current is not undoing it.", "glow": "heater" }
+            { "id": "s3_4", "text_en": "Heating happens regardless of which way charge moves — reversing the current does not undo it.", "glow": "heater" }
           ]
         },
         "misconception_watch": [
@@ -246,12 +246,12 @@
             { "id": "s4_1", "text_en": "Multiply voltage by current at every instant and watch power appear.", "glow": "p_strip" },
             { "id": "s4_2", "text_en": "It rises, touches zero, rises again — twice each cycle, never below the line.", "glow": "p_strip" },
             { "id": "s4_3", "text_en": "Even with both voltage and current negative, two minus signs still make power positive.", "glow": "p_strip", "scenario_cue": "product_walk_highlight" },
-            { "id": "s4_4", "text_en": "A resistor only ever eats energy — later components will learn to hand some back.", "glow": "energy_counter" }
+            { "id": "s4_4", "text_en": "A resistor only ever dissipates energy — later components return some of it.", "glow": "energy_counter" }
           ]
         }
       },
       "STATE_5": {
-        "title": "The zero-average paradox — a dead meter, a glowing heater",
+        "title": "The zero-average paradox — a zero-reading meter, a glowing heater",
         "duration": 18,
         "depth_ring": "extended",
         "focal_primitive_id": "s5_zero_label",
@@ -343,7 +343,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s8_1", "text_en": "Nothing moves here — just this power curve, folding.", "glow": "p_strip", "scenario_cue": "fold_start" },
-            { "id": "s8_2", "text_en": "Each hump rotates into the trough beside it and the curve flattens dead level at half the peak.", "glow": "p_strip", "scenario_cue": "fold_end" },
+            { "id": "s8_2", "text_en": "Each hump rotates into the trough beside it and the curve flattens exactly level at half the peak.", "glow": "p_strip", "scenario_cue": "fold_end" },
             { "id": "s8_3", "text_en": "That's the identity: sine squared equals one minus cosine of twice the angle, over two — the same double-frequency pulse you've seen since it started.", "glow": "formula", "scenario_cue": "identity_dock" }
           ]
         }
@@ -362,7 +362,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Now it's yours — set the peak voltage, the frequency, and the resistance, and watch voltage, current, and power respond live.", "glow": "formula" }
+            { "id": "s9_1", "text_en": "Explore now — set the peak voltage, the frequency, and the resistance, and watch voltage, current, and power respond live.", "glow": "formula" }
           ]
         }
       }
@@ -652,7 +652,7 @@
         }
       },
       "STATE_5": {
-        "label": "The zero-average paradox — a dead meter, a glowing heater",
+        "label": "The zero-average paradox — a zero-reading meter, a glowing heater",
         "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater", "acr_meter"],
         "camera_position": [1.2, 1.6, 9.5],
         "caption": "Average current: exactly zero",
@@ -754,7 +754,7 @@
         "label": "Explore — your resistor circuit, live",
         "visible_elements": ["acr_source", "acr_beads", "acr_arrow", "acr_heater"],
         "camera_position": [1.2, 1.3, 8.5],
-        "caption": "All yours",
+        "caption": "Explore the resistor circuit",
         "show_sliders": true,
         "formula_overlay": "i = v/R",
         "ac_resistor": {

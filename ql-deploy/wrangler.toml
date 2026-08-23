@@ -1,0 +1,24 @@
+# Cloudflare Worker for the DEPLOYED Quick Learn student demo (Vidi tutor).
+# Separate from wrangler.toml (marketing site) and wrangler.app.toml (teacher
+# app) — app.viditra.co is untouched. workers.dev URL only; a custom domain
+# (e.g. learn.viditra.co) can be mapped later.
+#
+# Assemble the site first:  node ql-deploy/prepare_site.mjs
+# Deploy:                   npx --yes wrangler deploy -c ql-deploy/wrangler.toml
+# Secrets (once):           npx --yes wrangler secret put DEEPSEEK_API_KEY -c ql-deploy/wrangler.toml
+#                           npx --yes wrangler secret put QL_ACCESS_CODE  -c ql-deploy/wrangler.toml
+#                           npx --yes wrangler secret put SUPABASE_URL    -c ql-deploy/wrangler.toml
+#                           npx --yes wrangler secret put SUPABASE_SERVICE_KEY -c ql-deploy/wrangler.toml
+# Kill switch:              npx wrangler kv key put kill 1 --binding TUTOR_KV -c ql-deploy/wrangler.toml --remote
+#                           npx wrangler kv key delete kill --binding TUTOR_KV -c ql-deploy/wrangler.toml --remote
+name = "physicsmind-quicklearn"
+main = "worker.js"
+compatibility_date = "2026-06-01"
+
+[assets]
+directory = "./site"
+binding = "ASSETS"
+
+[[kv_namespaces]]
+binding = "TUTOR_KV"
+id = "c73e84a2e8474a66b86bfe348020e1c3"
