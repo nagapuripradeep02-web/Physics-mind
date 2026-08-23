@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_orbit_vs_orbital",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the differences between an orbit and an orbital?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What each one is",
+      "marks": 2
+    },
+    {
+      "label": "The remaining differences",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints this as a five-row comparison table, which is fully accepted in the examination."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "What each one is",
+        "marks": 2,
+        "mark_note": "Definitions",
+        "lines": [
+          "Orbit",
+          "1. A well defined circular path around the",
+          "    nucleus.",
+          "2. It represents motion in a plane.",
+          "Orbital",
+          "1. A region around the nucleus where the",
+          "    electron is most likely to be found.",
+          "2. It represents motion in three dimensions."
+        ],
+        "why": "An orbit is a path, so it says exactly where the electron is. An orbital is a region of probability, so it says only where the electron is likely to be. That difference between a path and a probability is the heart of the answer.",
+        "common_mistakes": [
+          "Describing an orbital as a path too. An orbital is a region, never a line.",
+          "Writing only the definitions when the question asks for differences."
+        ],
+        "memory_tip": "Orbit is a path and tells you where. Orbital is a region and tells you where it is likely.",
+        "margin_note": "Put the two side by side in a table. It reads faster and marks faster."
+      },
+      {
+        "id": "s2_differences",
+        "kind": "boxed_final",
+        "label": "The remaining differences",
+        "marks": 2,
+        "mark_note": "Differences",
+        "lines": [
+          {
+            "text": "Orbit holds 2n² electrons; an orbital holds 2",
+            "style": "boxed"
+          },
+          "3. Orbits are non-directional;",
+          "    orbitals are directional, except s.",
+          "4. Orbits cannot explain the shapes of",
+          "    molecules; orbitals can.",
+          "5. An orbit disagrees with Heisenberg's",
+          "    uncertainty principle; an orbital does not."
+        ],
+        "why": "The electron capacity is the difference most often tested, because 2n² and 2 are easy to state and easy to check. The directional property is what lets orbitals explain molecular shape, which orbits cannot do at all.",
+        "common_mistakes": [
+          "Writing 2n² for the orbital. Any single orbital holds a maximum of two electrons.",
+          "Saying all orbitals are directional. The s orbital is spherical, so it has no direction."
+        ],
+        "memory_tip": "2n² for the whole shell, 2 for one orbital. s is the one orbital with no direction.",
+        "margin_note": "Five rows is the full answer. Four written clearly earns the marks."
+      }
+    ]
+  },
+  "insider_note": "Write this as a two-column table. The capacity row, 2n² against 2, is the one the examiner looks for first, so put it early rather than last."
+}

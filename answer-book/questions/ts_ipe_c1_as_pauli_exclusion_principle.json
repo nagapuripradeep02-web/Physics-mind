@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_pauli_exclusion_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Pauli's exclusion principle? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Pauli's exclusion principle: no two electrons",
+          "in an atom can have the same set of all",
+          "four quantum numbers.",
+          "Two electrons in one orbital must differ in s."
+        ],
+        "why": "The first three quantum numbers n, l and m describe the orbital. Two electrons in the same orbital already share all three, so only the spin quantum number is left to make them different.",
+        "common_mistakes": [
+          "Writing three quantum numbers instead of four.",
+          "Saying no two electrons can have the same quantum numbers, without the words all four."
+        ],
+        "memory_tip": "Same orbital means n, l and m already match. Only the spin can differ.",
+        "margin_note": "The phrase all four quantum numbers is the whole mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Helium (Z = 2): 1s²",
+            "style": "boxed"
+          },
+          "First electron:  n = 1, l = 0, m = 0, s = +½",
+          "Second electron: n = 1, l = 0, m = 0, s = −½",
+          "They differ only in the spin quantum number."
+        ],
+        "why": "Helium is the smallest atom with a filled orbital, so it shows the principle with the fewest electrons. Writing the two sets side by side makes the single difference visible.",
+        "common_mistakes": [
+          "Giving both electrons s = +½, which is the arrangement the principle forbids.",
+          "Naming an element but not writing out the four quantum numbers."
+        ],
+        "memory_tip": "Write the two rows one under the other. Only the last column changes sign.",
+        "margin_note": "A small table of n, l, m, s for the two electrons is the fastest way to write this."
+      }
+    ]
+  },
+  "insider_note": "The question asks for an example in its own wording, so a statement alone can only score half. Helium with the two quantum-number sets written out is the complete answer."
+}

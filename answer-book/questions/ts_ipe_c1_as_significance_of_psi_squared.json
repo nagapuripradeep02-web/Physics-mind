@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_significance_of_psi_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the significance of ψ and ψ²?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "ψ",
+      "marks": 1
+    },
+    {
+      "label": "ψ²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_psi",
+        "kind": "text",
+        "label": "ψ",
+        "marks": 1,
+        "mark_note": "ψ",
+        "lines": [
+          "ψ is the wave function of the electron.",
+          "It is the solution of Schrödinger's wave",
+          "equation and has no direct physical meaning",
+          "by itself.",
+          "It describes the amplitude of the electron wave."
+        ],
+        "why": "The wave function is a mathematical description of the electron wave, and its value can be positive or negative. A negative amplitude cannot be a physical quantity on its own, which is why ψ itself is not measurable.",
+        "common_mistakes": [
+          "Saying ψ gives the probability. That is ψ², not ψ.",
+          "Calling ψ the path of the electron. It is a wave function, not a path."
+        ],
+        "memory_tip": "ψ is the wave itself and can be negative. Square it to make it mean something.",
+        "margin_note": "Naming Schrödinger's equation is worth one line here."
+      },
+      {
+        "id": "s2_psi_squared",
+        "kind": "boxed_final",
+        "label": "ψ²",
+        "marks": 1,
+        "mark_note": "ψ²",
+        "lines": [
+          {
+            "text": "ψ² gives the probability of finding the electron",
+            "style": "boxed"
+          },
+          "It is the probability density at a point",
+          "around the nucleus.",
+          "The region where ψ² is large is the orbital.",
+          "Where ψ² = 0, that region is a node."
+        ],
+        "why": "Squaring removes the sign, so ψ² is always positive and can stand for a probability. This is the step that turns the mathematics into the picture of an orbital that the rest of the chapter uses.",
+        "common_mistakes": [
+          "Saying ψ² gives the position of the electron. It gives only the probability.",
+          "Leaving out the link to the orbital, which is what the question is really testing."
+        ],
+        "memory_tip": "Square the wave function to get probability. High ψ² means the orbital, zero ψ² means a node.",
+        "margin_note": "Mentioning the node connects this to the node and nodal plane question."
+      }
+    ]
+  }
+}

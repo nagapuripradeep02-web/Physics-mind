@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_black_body",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a black body?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How it is realised",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A black body is a body that absorbs",
+          "completely all the radiation falling on it,",
+          "and on heating emits radiation of all",
+          "wavelengths."
+        ],
+        "why": "The definition has two halves, absorption and emission, and the examiner looks for both. A perfect absorber must also be a perfect emitter, otherwise the body would keep heating up without limit.",
+        "common_mistakes": [
+          "Writing only the absorption half and stopping there.",
+          "Saying a black body looks black. It is defined by what it absorbs and emits, not by its colour."
+        ],
+        "memory_tip": "Two halves in one line: absorbs everything, emits everything.",
+        "margin_note": "One sentence carries this mark. Do not write a paragraph."
+      },
+      {
+        "id": "s2_realisation",
+        "kind": "boxed_final",
+        "label": "How it is realised",
+        "marks": 1,
+        "mark_note": "Practical form",
+        "lines": [
+          {
+            "text": "Radiation emitted by it is black body radiation",
+            "style": "boxed"
+          },
+          "No perfect black body exists in nature.",
+          "A hollow sphere coated inside with lamp",
+          "black, with a small hole, acts as one."
+        ],
+        "why": "Radiation entering the small hole is reflected again and again inside and cannot come out, so the hole absorbs everything. This is why the hollow sphere is the standard laboratory model of a black body.",
+        "common_mistakes": [
+          "Naming a black-coloured object as a perfect black body. No real surface absorbs every wavelength."
+        ],
+        "memory_tip": "Picture the small hole in a hollow sphere. Radiation goes in and never comes back out.",
+        "margin_note": "Naming the hollow sphere with a small hole is what earns this second mark."
+      }
+    ]
+  },
+  "insider_note": "A three-star question that is asked in one line. Write the absorb half and the emit half as one sentence, then name the hollow sphere. Nothing more is needed at 2 marks."
+}
