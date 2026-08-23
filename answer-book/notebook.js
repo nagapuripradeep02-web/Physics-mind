@@ -456,16 +456,16 @@
                 badges.appendChild(ak);
               }
             }
-            // Study progress: the three stage marks, green tick when all done.
-            // Authored branch only — the soon-card gate asserts its chips
-            // verbatim. A class on the card turns the red margin rule green.
+            // Study progress: the two stage marks (Understand → Revise), green
+            // tick when both are done. Authored branch only — the soon-card gate
+            // asserts its chips verbatim. A class turns the red margin rule green.
             var stg = Vidi.stageFor(e.question_id);
-            if (stg.u || stg.p || stg.r) {
-              var done = stg.u && stg.p && stg.r;
+            if (stg.u || stg.r) {
+              var done = stg.u && stg.r;
               var pb = document.createElement('span');
               pb.className = 'cc-chip pm-upr';
               pb.textContent = done ? '✓ done'
-                : (stg.u ? '●' : '○') + (stg.p ? '●' : '○') + (stg.r ? '●' : '○');
+                : (stg.u ? '●' : '○') + (stg.r ? '●' : '○');
               badges.appendChild(pb);
               if (done) card.className += ' pm-done';
             }
@@ -1045,7 +1045,13 @@
   }
   window.addEventListener('resize', fitNotebook);
 
-  // ═══ test yourself (overlay) ═════════════════════════════════════════════
+  // ═══ test yourself (overlay) — DORMANT (founder, 2026-08-23) ═════════
+  // The "Test myself" entry is removed for now: #btnTest in shell.html lost its
+  // nb-only class, so the view sweep never un-hides it and this whole surface
+  // is unreachable. The code stays for when the founder brings the self-check
+  // back. Completion is two stages now: Understand (every step revealed) →
+  // Revise ("Mark revised ✓" on a later day) — see Plan.green/learned.
+  // ═════════════════════════════════════════════
   // Three ways to be checked, all converging on renderCheck(): tick it yourself,
   // a photo/PDF of what the student wrote, or saying the steps aloud. The photo
   // and mic paths appear only when their endpoint is configured; the self-check
@@ -1821,10 +1827,18 @@
     function diffDays(a, b) { return Math.round((parseDay(a) - parseDay(b)) / 86400000); }
 
     var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
+    var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers' };
+    /** ['SAQ','VSAQ'] → 'short answers and very short answers'. */
+    function scopeWords(scope) {
+      var out = [];
+      for (var i = 0; i < scope.length; i++) out.push(QT_WORDS[scope[i]]);
+      return out.join(' and ');
+    }
 
     /** Every distinct question in the chosen chapters, in crammer priority:
-        stars first, LAQ before SAQ before VSAQ, asked before predicted. */
-    function itemsFor(unitNums) {
+        stars first, LAQ before SAQ before VSAQ, asked before predicted.
+        scope = a qtype list ('I only need SAQs and VSAQs'); null = every type. */
+    function itemsFor(unitNums, scope) {
       var seen = {}, items = [];
       for (var u = 0; u < UNITS.length; u++) {
         if (unitNums.indexOf(UNITS[u].number) < 0) continue;
@@ -1835,6 +1849,7 @@
           seen[e.question_id] = true;
           var q = questions[qIndexById[e.question_id]];
           if (!q) continue;
+          if (scope && scope.indexOf(q.qtype) < 0) continue;
           items.push({
             qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
             qtype: q.qtype, mins: q.expected_time_min,
@@ -1864,13 +1879,13 @@
         final ~15% of days are a full-revision block (weakest first, the
         exam-eve logic). Items that do not fit fall off the BOTTOM of the
         priority list into `optional` — and the plan says so, honestly. */
-    function build(examDate, unitNums, minsPerDay, startDate, itemsOverride) {
+    function build(examDate, unitNums, minsPerDay, startDate, itemsOverride, scope) {
       var D = diffDays(examDate, startDate);
       if (D < 1) return null;
       var R = Math.max(1, Math.ceil(D * 0.15));
       if (R >= D) R = D > 1 ? 1 : 0;
       var L = D - R;
-      var queue = (itemsOverride || itemsFor(unitNums)).slice();
+      var queue = (itemsOverride || itemsFor(unitNums, scope)).slice();
 
       // ── CRUNCH MODE (founder, 2026-08-23) ─────────────────────────────────
       // When the time left cannot fit the work — the student who ignored a
@@ -1915,6 +1930,7 @@
       return {
         v: 1, start: startDate, examDate: examDate,
         units: unitNums.slice(), minsPerDay: minsPerDay,
+        scope: scope || null,
         days: byDay, learnDay: learnDay,
         optional: queue.map(function (x) { return x.qid; }),
         revBlockStart: L + 1, totalDays: D,
@@ -1926,13 +1942,16 @@
     function dayN(plan, today) { return diffDays(today, plan.start) + 1; }
     function daysLeft(plan, today) { return diffDays(plan.examDate, today); }
 
+    // Two stages since 2026-08-23 (founder): the p tick is vestigial — the
+    // self-check that set it is dormant. Understand alone completes learning;
+    // green = understood + revised.
     function green(qid) {
       var s = Vidi.stageFor(qid);
-      return !!(s.u && s.p && s.r);
+      return !!(s.u && s.r);
     }
     function learned(qid) {
       var s = Vidi.stageFor(qid);
-      return !!(s.u && s.p);
+      return !!s.u;
     }
 
     /** Today's work, catch-up included: learns scheduled up to today and not
@@ -1949,7 +1968,7 @@
           out.learn.push(qid);
         }
         var s = Vidi.stageFor(qid);
-        if (s.u && s.p && !s.r && s.p < today) out.revise.push(qid);
+        if (s.u && !s.r && s.u < today) out.revise.push(qid);
       }
       if (out.finalBlock) {
         // weakest first: lowest self-check ratio, then anything not green
@@ -1998,12 +2017,26 @@
     /** A fresh schedule over what is NOT yet green, from today, same pace. */
     function replan(plan, today) {
       var remaining = [];
-      var all = itemsFor(plan.units);
+      var all = itemsFor(plan.units, plan.scope || null);
       for (var i = 0; i < all.length; i++) {
         var inPlan = Object.prototype.hasOwnProperty.call(plan.learnDay, all[i].qid);
         if (inPlan && !green(all[i].qid)) remaining.push(all[i]);
       }
-      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining);
+      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, plan.scope || null);
+    }
+
+    /** A fresh schedule from today with a NEW qtype scope — everything in the
+        chosen chapters and the new scope that is not yet green. Widening the
+        scope brings questions in; narrowing drops the finished-elsewhere types.
+        Null = nothing left to plan (the caller says so, honestly). */
+    function rescope(plan, today, scope) {
+      var remaining = [];
+      var all = itemsFor(plan.units, scope);
+      for (var i = 0; i < all.length; i++) {
+        if (!green(all[i].qid)) remaining.push(all[i]);
+      }
+      if (!remaining.length) return null;
+      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, scope);
     }
 
     /** A compact factual block for the hosted model — read, never generated. */
@@ -2019,16 +2052,20 @@
       if (plan.crunch) {
         lines += '; time is SHORT so the plan does long and short answers first, very short answers on exam-eve';
       }
+      if (plan.scope && plan.scope.length) {
+        lines += '; the plan covers only ' + scopeWords(plan.scope) + ' — the student chose to skip the other types';
+      }
       if (qid && Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
         var s = Vidi.stageFor(qid);
         lines += '; THIS question is in the plan (understood ' + (s.u ? 'yes' : 'no') +
-          ', practised ' + (s.p ? 'yes' : 'no') + ', revised ' + (s.r ? 'yes' : 'no') + ')';
+          ', revised ' + (s.r ? 'yes' : 'no') + ')';
       }
       return lines;
     }
 
     return {
       itemsFor: itemsFor, itemInfo: itemInfo, build: build, replan: replan,
+      rescope: rescope, scopeWords: scopeWords,
       todays: todays, progress: progress, behindBy: behindBy,
       dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
       green: green, learned: learned, modelStatus: modelStatus
@@ -2148,9 +2185,9 @@
         say('This one is up for revision today. Go through it once more, then tap "Mark revised" below — that is what makes it stick.');
       } else if (li >= 0) {
         say('This one is on today’s list — ' + (li + 1) + ' of ' + t.learn.length +
-          '. Read every step, then run "Test myself". Tomorrow I will ask you to revise it.');
+          '. Read every step. Tomorrow I will ask you to revise it.');
       } else if (Plan.green(qid)) {
-        say('You have finished this one — understood, practised and revised. It will come back in the final revision days.');
+        say('You have finished this one — understood and revised. It will come back in the final revision days.');
       }
     }
 
@@ -2159,7 +2196,7 @@
     // Widgets are tutor bubbles that hold controls (.vidi-widget, never
     // .vidi-chip — the chip gates count #vidiChips only). All deterministic.
 
-    var ob = { active: false, step: '', date: '', units: [], mins: 0, draft: null };
+    var ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
 
     function widget(build) {
       var w = el('div', 'vidi-msg tutor vidi-widget');
@@ -2211,7 +2248,7 @@
     }
 
     function startOnboarding() {
-      ob = { active: true, step: 'date', date: '', units: [], mins: 0, draft: null };
+      ob = { active: true, step: 'date', date: '', units: [], mins: 0, scope: null, draft: null };
       askDate();
     }
 
@@ -2266,6 +2303,53 @@
           for (var b = 0; b < boxes.length; b++) if (boxes[b].checked) picked.push(parseInt(boxes[b].value, 10));
           if (!picked.length) { say('Tick at least one chapter.'); askUnits(); return; }
           ob.units = picked;
+          askScope();
+        }));
+        w.appendChild(row);
+      });
+    }
+
+    // ── the qtype scope — the founder's mid-prep student (2026-08-23) ───────
+    // "I finished all long answers elsewhere — plan only SAQs and VSAQs."
+    // A deterministic plan dimension, never the model's: all three ticked =
+    // null scope = everything, so the default student never notices the step.
+    var SCOPE_OPTS = [['LAQ', 'Long answers (8 marks)'], ['SAQ', 'Short answers (4 marks)'], ['VSAQ', 'Very short answers (2 marks)']];
+
+    function scopeBoxes(w, current) {
+      var boxes = [];
+      for (var i = 0; i < SCOPE_OPTS.length; i++) {
+        (function (key, label) {
+          var lab = el('label', 'vw-check');
+          var cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.className = 'vw-scope-box';
+          cb.value = key;
+          cb.checked = !current || current.indexOf(key) >= 0;
+          lab.appendChild(cb);
+          lab.appendChild(document.createTextNode(label));
+          w.appendChild(lab);
+          boxes.push(cb);
+        })(SCOPE_OPTS[i][0], SCOPE_OPTS[i][1]);
+      }
+      return boxes;
+    }
+    /** null = every type ticked (no filter); [] = nothing ticked (invalid). */
+    function pickedScope(boxes) {
+      var picked = [];
+      for (var b = 0; b < boxes.length; b++) if (boxes[b].checked) picked.push(boxes[b].value);
+      return picked.length === SCOPE_OPTS.length ? null : picked;
+    }
+
+    function askScope() {
+      ob.step = 'scope';
+      say('Which of these do you still need to prepare? Tick what to keep.');
+      widget(function (w) {
+        var boxes = scopeBoxes(w, ob.scope);
+        var row = el('div', 'vw-row');
+        row.appendChild(wBtn('These types →', true, function () {
+          var sc = pickedScope(boxes);
+          if (sc && !sc.length) { say('Tick at least one type.'); askScope(); return; }
+          ob.scope = sc;
           analyze();
         }));
         w.appendChild(row);
@@ -2274,7 +2358,7 @@
 
     function analyze() {
       ob.step = 'analyze';
-      var items = Plan.itemsFor(ob.units);
+      var items = Plan.itemsFor(ob.units, ob.scope);
       var n = { LAQ: 0, SAQ: 0, VSAQ: 0 }, mins = 0;
       for (var i = 0; i < items.length; i++) {
         n[items[i].qtype]++;
@@ -2282,9 +2366,22 @@
       }
       var hours = Math.round(mins / 30) / 2;      // half-hour precision
       var D = Plan.diffDays(ob.date, Vidi.todayStr());
-      say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. Those chapters hold ' +
-        n.LAQ + ' long answers, ' + n.SAQ + ' short answers and ' + n.VSAQ +
-        ' very short answers — about ' + hours + ' hours of work including revision.');
+      if (!ob.scope) {
+        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. Those chapters hold ' +
+          n.LAQ + ' long answers, ' + n.SAQ + ' short answers and ' + n.VSAQ +
+          ' very short answers — about ' + hours + ' hours of work including revision.');
+      } else {
+        // Scoped: count only what the student keeps, and say what is left out.
+        var parts = [], skipped = [], allT = ['LAQ', 'SAQ', 'VSAQ'];
+        for (var t = 0; t < allT.length; t++) {
+          if (ob.scope.indexOf(allT[t]) >= 0) parts.push(n[allT[t]] + ' ' + Plan.scopeWords([allT[t]]));
+          else skipped.push(allT[t]);
+        }
+        var list = parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1] : parts[0];
+        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. You are keeping ' + list +
+          ' — about ' + hours + ' hours of work including revision.');
+        say('The plan skips ' + Plan.scopeWords(skipped) + ' because you did not tick them.', 400);
+      }
       say('Let us turn that into a day-by-day plan.', 700);
       var g = gen;
       setTimeout(function () {
@@ -2314,7 +2411,7 @@
 
     function preview() {
       ob.step = 'preview';
-      var plan = Plan.build(ob.date, ob.units, ob.mins, Vidi.todayStr());
+      var plan = Plan.build(ob.date, ob.units, ob.mins, Vidi.todayStr(), null, ob.scope);
       if (!plan) { askDate(); return; }
       ob.draft = plan;
       var total = 0; for (var q in plan.learnDay) if (Object.prototype.hasOwnProperty.call(plan.learnDay, q)) total++;
@@ -2365,8 +2462,8 @@
       plan.implemented = true;
       plan.lastNudgeDay = Vidi.todayStr();
       Vidi.setPlan(plan);
-      ob = { active: false, step: '', date: '', units: [], mins: 0, draft: null };
-      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay, units: plan.units.join(',') });
+      ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
+      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay, units: plan.units.join(','), scope: (plan.scope || []).join(',') || 'all' });
       say('Done — ' + Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock. Here is today:');
       renderTodayCard(plan);
       updatePlanStrip();
@@ -2377,12 +2474,13 @@
     function resumeOnboarding() {
       if (ob.step === 'date') askDate();
       else if (ob.step === 'units') askUnits();
+      else if (ob.step === 'scope') askScope();
       else if (ob.step === 'analyze' || ob.step === 'hours') askHours();
       else if (ob.step === 'preview') preview();
       else startOnboarding();
     }
 
-    /** Today's work as tappable rows with the three stage marks. */
+    /** Today's work as tappable rows with the stage marks. */
     function renderTodayCard(plan) {
       var today = Vidi.todayStr();
       var t = Plan.todays(plan, today);
@@ -2408,14 +2506,13 @@
       });
     }
 
-    /** ●●○ marks; solid green tick when all three stages are done. */
+    /** ●○ marks (Understand → Revise); solid green tick when both are done. */
     function uprMark(qid) {
       var s = Vidi.stageFor(qid);
-      var n = (s.u ? 1 : 0) + (s.p ? 1 : 0) + (s.r ? 1 : 0);
-      if (n === 3) return el('span', 'upr done', '✓');
+      if (s.u && s.r) return el('span', 'upr done', '✓');
       var span = el('span', 'upr');
-      var dots = [s.u, s.p, s.r];
-      for (var i = 0; i < 3; i++) {
+      var dots = [s.u, s.r];
+      for (var i = 0; i < 2; i++) {
         span.appendChild(dots[i] ? el('b', '', '●') : document.createTextNode('○'));
       }
       return span;
@@ -2439,6 +2536,60 @@
       var behind = Plan.behindBy(plan, today);
       if (behind) strip.appendChild(el('span', 'vps-late', ' · behind by ' + behind));
       strip.hidden = false;
+    }
+
+    /** "Change my plan" — two honest paths: start over (full onboarding), or
+        keep everything and change WHICH question types the plan covers (the
+        founder's mid-prep student, 2026-08-23: "I finished all long answers
+        elsewhere"). Either way nothing changes until the student accepts. */
+    function changePlanWidget() {
+      var plan = Vidi.getPlan();
+      if (!plan || !plan.implemented || plan.archived) { startOnboarding(); return; }
+      widget(function (w) {
+        w.appendChild(document.createTextNode('Change what? Your progress ticks are kept either way.'));
+        var row = el('div', 'vw-row');
+        row.appendChild(wBtn('Change question types', true, function () { askScopeChange(plan); }));
+        row.appendChild(wBtn('Start over', false, startOnboarding));
+        w.appendChild(row);
+      });
+    }
+
+    function askScopeChange(plan) {
+      say('Which of these do you still need to prepare? Tick what to keep.');
+      widget(function (w) {
+        var boxes = scopeBoxes(w, plan.scope);
+        var row = el('div', 'vw-row');
+        row.appendChild(wBtn('Re-plan with these →', true, function () {
+          var sc = pickedScope(boxes);
+          if (sc && !sc.length) { say('Tick at least one type.'); askScopeChange(plan); return; }
+          var today = Vidi.todayStr();
+          var draft = Plan.rescope(plan, today, sc);
+          if (!draft) {
+            say('Everything in those types is already done — there is nothing left to plan. The old plan stands.');
+            return;
+          }
+          var total = 0; for (var q in draft.learnDay) if (Object.prototype.hasOwnProperty.call(draft.learnDay, q)) total++;
+          say('Here is the new plan — ' + draft.totalDays + ' days, ' + total + ' questions' +
+            (sc ? ', only ' + Plan.scopeWords(sc) : '') + '. Nothing changes until you accept it.');
+          widget(function (w2) {
+            var r2 = el('div', 'vw-row');
+            r2.appendChild(wBtn('Use this plan', true, function () {
+              draft.implemented = true;
+              draft.lastNudgeDay = Vidi.todayStr();
+              Vidi.setPlan(draft);
+              Vidi.log('plan_rescoped', { scope: (sc || []).join(',') || 'all' });
+              say('Updated. Here is today:');
+              renderTodayCard(draft);
+              updatePlanStrip();
+            }));
+            r2.appendChild(wBtn('Keep the old plan', false, function () {
+              say('Keeping it. Nothing changed.');
+            }));
+            w2.appendChild(r2);
+          });
+        }));
+        w.appendChild(row);
+      });
     }
 
     /** The once-a-day check-in: progress, pace, and — when the pace shows the
@@ -2521,14 +2672,7 @@
         }
         renderTodayCard(plan);
         chips.appendChild(chipBtn('Show today’s plan', function () { renderTodayCard(Vidi.getPlan()); }));
-        chips.appendChild(chipBtn('Change my plan', function () {
-          widget(function (w) {
-            w.appendChild(document.createTextNode('Start a fresh plan? Your progress ticks are kept.'));
-            var row = el('div', 'vw-row');
-            row.appendChild(wBtn('Start over', true, startOnboarding));
-            w.appendChild(row);
-          });
-        }));
+        chips.appendChild(chipBtn('Change my plan', changePlanWidget));
         return;
       }
       say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
@@ -2567,15 +2711,21 @@
       if (plan && plan.implemented && !plan.archived &&
           Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
         var st = Vidi.stageFor(qid);
-        if (st.u && st.p && !st.r) {
+        if (st.u && !st.r) {
           row.appendChild(chipBtn('Mark revised ✓', function () {
             Vidi.setStage(qid, 'r', true);
             Vidi.log('stage', { qid: qid, k: 'r' });
             say('Revised and done — full green tick. ' + progressLine());
             updatePlanStrip();
             renderVidiChips();
+            // The FIRST finished revision is the rename moment now that the
+            // self-check is dormant (it used to ride the first completed check).
+            if (!Vidi.renameOffered()) offerRename();
           }));
         }
+      }
+      if (plan && plan.implemented && !plan.archived) {
+        row.appendChild(chipBtn('Change my plan', changePlanWidget));
       }
       if (!plan || !plan.implemented || plan.archived) {
         row.appendChild(chipBtn('Want a study plan?', function () {
@@ -2946,7 +3096,7 @@
       Vidi.markRenameOffered();
       $('vidiRename').hidden = false;
       $('vidiRenameNote').textContent = 'You can give me your own name if you want. Type a name, or keep Vidi.';
-      say('Good work checking your answer. You can give me your own name if you want — see the box below.');
+      say('Good work finishing this one. You can give me your own name if you want — see the box below.');
       Vidi.log('rename_offered', {});
     }
 

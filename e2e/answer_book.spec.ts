@@ -194,84 +194,11 @@ test('the answer still earns the full mark total with the recall feature present
     expect(r.pageCount).toBeGreaterThanOrEqual(1);
 });
 
-// ── Test yourself (top-right entry: self-check, photo, mic) ──────────────────
-// The offline guarantee is the one that regresses silently: with no API base the
-// two SERVER paths must stay absent and the page must make zero network calls.
-// The self-check needs no server, so it is always offered — which is why there
-// is no longer an empty state to show.
-
-test('with no checking API the page offers the self-check but neither photo nor mic', async ({ page }) => {
-    await openFirst(page);
-    await page.click('#btnTest');
-
-    const r = await page.evaluate(() => ({
-        apiBase: (window as any).PM_API_BASE,
-        overlayOpen: !document.getElementById('testOverlay')!.hidden,
-        selfHidden: document.getElementById('btnSelf')!.hidden,
-        photoHidden: document.getElementById('btnPhoto')!.hidden,
-        micHidden: document.getElementById('btnMic')!.hidden,
-        noticeShown: !document.getElementById('testNone')!.hidden,
-    }));
-    expect(r.apiBase).toBe('');
-    expect(r.overlayOpen).toBe(true);
-    expect(r.selfHidden).toBe(false);        // always available — costs nothing
-    expect(r.photoHidden).toBe(true);        // the server paths stay absent
-    expect(r.micHidden).toBe(true);
-    expect(r.noticeShown).toBe(false);       // no dead end left to announce
-});
-
-test('the test panel carries no clock', async ({ page }) => {
-    await openFirst(page);
-    await page.click('#btnTest');
-    await page.waitForTimeout(1500);         // long enough for a 1 s tick to have fired
-
-    const r = await page.evaluate(() => ({
-        timerEl: document.getElementById('assessTimer') !== null,
-        clockText: /\d:\d\d/.test(document.getElementById('testChoose')!.textContent || ''),
-        examMention: (document.getElementById('testChoose')!.textContent || '')
-            .includes('minutes in the exam'),
-    }));
-    expect(r.timerEl).toBe(false);
-    expect(r.clockText).toBe(false);
-    expect(r.examMention).toBe(false);
-});
-
-test('the self-check scores from authored marks with no network', async ({ page }) => {
-    const external: string[] = [];
-    page.on('request', (req) => {
-        const u = req.url();
-        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
-    });
-    await openFirst(page);
-    await page.click('#btnTest');
-    await page.click('#btnSelf');
-
-    // Read the expected numbers from the AUTHORED question, never hardcode them:
-    // this question was reclassified LAQ/8 -> SAQ/4 and a literal would have made
-    // a correct reclassification look like a scoring regression.
-    const authored = await page.evaluate(() => {
-        const q = (window as any).PM_ANSWER.question;
-        return { total: q.marks_total, firstMarks: q.answer.steps[0].marks };
-    });
-
-    // every row starts unticked: this path makes no claim about the page
-    const start = await page.evaluate(() => ({
-        rows: document.querySelectorAll('#recallResult .confirm-row').length,
-        ticked: document.querySelectorAll('#recallResult input:checked').length,
-        score: document.querySelector('#recallResult .recall-score')!.textContent,
-    }));
-    expect(start.rows).toBeGreaterThan(0);
-    expect(start.ticked).toBe(0);
-    expect(start.score).toContain(`0 out of ${authored.total}`);
-
-    // ticking the first step must move the score by exactly that step's marks
-    await page.click('#recallResult .confirm-row');
-    const after = await page.evaluate(
-        () => document.querySelector('#recallResult .recall-score')!.textContent);
-    expect(after).toContain(`${authored.firstMarks} out of ${authored.total}`);
-
-    expect(external).toEqual([]);            // scored entirely in the browser
-});
+// ── Test yourself — DORMANT (founder, 2026-08-23) ────────────────────────────
+// The "Test myself" entry is removed for now: completion is two stages
+// (Understand → Revise) and the self-check/photo/mic code stays in the page but
+// unreachable. The gates that exercised the overlay went with it; the dormancy
+// gate at the end of the suite asserts the entry stays hidden.
 
 test('the paper section and marks agree across header, chip and mark split', async ({ page }) => {
     await openFirst(page);
@@ -582,7 +509,7 @@ test('the modes and the rail teaching cards are gone', async ({ page }) => {
         why: document.getElementById('whyCard') !== null,
         mistakes: document.getElementById('mistakeCard') !== null,
         railTitles: Array.from(document.querySelectorAll('.rail .card-title')).map((e) => e.textContent),
-        testEntryInTopBar: document.querySelector('.topbar-actions #btnTest') !== null,
+        testEntryHidden: (() => { const b = document.getElementById('btnTest'); return !!b && b.hidden; })(),
     }));
     expect(r.modeCard).toBe(false);
     expect(r.why).toBe(false);
@@ -595,21 +522,7 @@ test('the modes and the rail teaching cards are gone', async ({ page }) => {
     expect(r.railTitles.indexOf('Answer plan')).toBeLessThan(r.railTitles.indexOf('Mark split'));
     expect(r.railTitles).not.toContain('Study');       // the three-mode toggle is gone
     expect(r.railTitles).not.toContain('Why this step');
-    expect(r.testEntryInTopBar).toBe(true);   // the entry lives top-right now
-});
-
-test('the overlay closes on Escape and on a backdrop click', async ({ page }) => {
-    await openFirst(page);
-    const hidden = () => page.evaluate(() => document.getElementById('testOverlay')!.hidden);
-
-    await page.click('#btnTest');
-    expect(await hidden()).toBe(false);
-    await page.keyboard.press('Escape');
-    expect(await hidden()).toBe(true);
-
-    await page.click('#btnTest');
-    await page.click('#testOverlay', { position: { x: 8, y: 8 } });   // backdrop
-    expect(await hidden()).toBe(true);
+    expect(r.testEntryHidden).toBe(true);     // Test myself is dormant (founder, 2026-08-23)
 });
 
 // ── catalog: the landing view ────────────────────────────────────────────────
@@ -989,38 +902,23 @@ test('the memory-tip chip appears only where a tip is authored', async ({ page }
     }
 });
 
-test('the self-check verdict line updates live and the score math is untouched', async ({ page }) => {
-    await openFirst(page);
-    await page.click('#btnTest');
-    await page.click('#btnSelf');
+test('rename is offered once after the first Mark revised, blocklist holds, name persists', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+    const qid = plan.days[0].learn[0];
+    const qid2 = plan.days[0].learn[1];
 
-    const authored = await page.evaluate(() => {
-        const q = (window as any).PM_ANSWER.question;
-        return { total: q.marks_total, firstMarks: q.answer.steps[0].marks };
-    });
-
-    // the verdict exists, names the assistant, and starts from zero
-    const v0 = await page.evaluate(() => document.querySelector('#recallResult .vidi-verdict')!.textContent || '');
-    expect(v0).toContain('0 out of ' + authored.total);
-
-    // ticking the first row moves BOTH the score and the verdict by the same marks
-    await page.click('#recallResult .confirm-row');
-    const after = await page.evaluate(() => ({
-        score: document.querySelector('#recallResult .recall-score')!.textContent || '',
-        verdict: document.querySelector('#recallResult .vidi-verdict')!.textContent || '',
-    }));
-    expect(after.score).toContain(`${authored.firstMarks} out of ${authored.total}`);
-    expect(after.verdict).toContain(`${authored.firstMarks} out of ${authored.total}`);
-});
-
-test('rename is offered once after the first completed self-check, blocklist holds, name persists', async ({ page }) => {
-    await openFirst(page);
-
-    // complete a self-check (one tick = a touched check), then close the overlay
-    await page.click('#btnTest');
-    await page.click('#btnSelf');
-    await page.click('#recallResult .confirm-row');
-    await page.click('#btnCloseTest');
+    // learn today, revise tomorrow — the FIRST finished revision is the rename
+    // moment now that the self-check is dormant (founder, 2026-08-23)
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForFunction((q: string) => {
+        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
+    }, qid, { timeout: 3000 });
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).click();
 
     await page.waitForSelector('#vidiRename:not([hidden])', { timeout: 4000 });
 
@@ -1046,6 +944,16 @@ test('rename is offered once after the first completed self-check, blocklist hol
     expect(renamed.name).toBe('Chintu');
     expect(renamed.renameOpen).toBe(false);
 
+    // a SECOND finished revision must not offer the rename again
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid2);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-03'));
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid2);
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).click();
+    await page.waitForTimeout(400);
+    expect(await page.evaluate(() => !document.getElementById('vidiRename')!.hidden)).toBe(false);
+
     // persistence is a localStorage property — file:// may block it; assert only when it works
     const storageWorks = await page.evaluate(() => {
         try { localStorage.setItem('pm_vidi_t', '1'); localStorage.removeItem('pm_vidi_t'); return true; }
@@ -1056,15 +964,6 @@ test('rename is offered once after the first completed self-check, blocklist hol
         const kept = await page.evaluate(
             () => document.querySelector('#pm-assistant-slot .vidi-name')!.textContent);
         expect(kept).toBe('Chintu');
-
-        // …and the rename is NOT offered a second time
-        await page.click('#btnTest');
-        await page.click('#btnSelf');
-        await page.click('#recallResult .confirm-row');
-        await page.click('#btnCloseTest');
-        await page.waitForTimeout(400);
-        const reOffered = await page.evaluate(() => !document.getElementById('vidiRename')!.hidden);
-        expect(reOffered).toBe(false);
     }
 });
 
@@ -1256,7 +1155,7 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
 }
 
 /** Drive the whole onboarding conversation and return the stored plan. */
-async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] = [0, 1], hoursLabel = '1 hour') {
+async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] = [0, 1], hoursLabel = '1 hour', scopeUntick: string[] = []) {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
     // intro not done → the intro widget; done → the offer chip
@@ -1269,6 +1168,9 @@ async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] =
     await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
     for (const i of unitIdx) await lastW().locator('.vw-check input').nth(i).check();
     await lastW().locator('.vw-btn.primary').click();                       // These chapters →
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });   // the qtype scope step
+    for (const t of scopeUntick) await lastW().locator(`.vw-scope-box[value="${t}"]`).uncheck();
+    await lastW().locator('.vw-btn.primary').click();                       // These types →
     await page.locator('.vw-btn', { hasText: 'Generate my plan' }).waitFor({ timeout: 5000 });
     await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
     await page.locator('.vw-btn', { hasText: hoursLabel }).waitFor({ timeout: 4000 });
@@ -1343,27 +1245,18 @@ test('the plan math is deterministic: priority first, revision next day, and re-
     expect(plan2.days).toEqual(firstDays);
 });
 
-test('Understand and Practice tick themselves; Revise completes the green tick and the catalog shows it', async ({ page }) => {
+test('Understand ticks itself; Revise completes the green tick and the catalog shows it', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildPlanViaChat(page, '2026-09-21');
     const qid = plan.days[0].learn[0];
 
-    // revealing every step IS the Understand stage
+    // revealing every step IS the Understand stage — and, since the self-check
+    // is dormant (founder, 2026-08-23), it completes the learning stage alone
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
     await page.waitForTimeout(400);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
     await page.waitForFunction((q: string) => {
         try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
-    }, qid, { timeout: 3000 });
-
-    // a completed self-check IS the Practice stage (a touched check, closed)
-    await page.click('#btnTest');
-    await page.click('#btnSelf');
-    await page.waitForSelector('#recallResult .confirm-row');
-    await page.click('#recallResult .confirm-row');
-    await page.keyboard.press('Escape');
-    await page.waitForFunction((q: string) => {
-        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.p; } catch { return false; }
     }, qid, { timeout: 3000 });
 
     // next day: the revise chip appears on that question; ticking it goes green
@@ -1373,7 +1266,7 @@ test('Understand and Practice tick themselves; Revise completes the green tick a
     await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).click();
     const st = await page.evaluate((q: string) =>
         JSON.parse(localStorage.getItem('pm_stage_v1')!)[q], qid);
-    expect(st.u && st.p && st.r).toBeTruthy();
+    expect(st.u && st.r).toBeTruthy();
 
     // the catalog card shows the green tick — and the card-count gates stay true
     await page.evaluate(() => { location.hash = '#/'; });
@@ -1468,4 +1361,81 @@ test('crunch mode: one week and too much work flips the plan to marks-first — 
         JSON.parse(localStorage.getItem('pm_plan_v1')!).start === '2026-09-05', undefined, { timeout: 4000 });
     const replanned = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
     expect(replanned.crunch).toBe(true);
+});
+
+// ── Test myself dormant + the qtype scope (founder, 2026-08-23) ──────────────
+
+test('Test myself is dormant: the entry stays hidden and Understand alone completes learning', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21');
+    const qid = plan.days[0].learn[0];
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+
+    // the top-right entry keeps its dormant markup but is never shown
+    const t = await page.evaluate(() => ({
+        exists: document.querySelector('.topbar-actions #btnTest') !== null,
+        hidden: (document.getElementById('btnTest') as any).hidden,
+        overlayHidden: (document.getElementById('testOverlay') as any).hidden,
+    }));
+    expect(t.exists).toBe(true);      // dormant, not deleted — reversible by design
+    expect(t.hidden).toBe(true);
+    expect(t.overlayHidden).toBe(true);
+
+    // with no self-check anywhere, revealing every step completes the learning stage
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForFunction((q: string) => {
+        try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
+    }, qid, { timeout: 3000 });
+    const st = await page.evaluate((q: string) => JSON.parse(localStorage.getItem('pm_stage_v1')!)[q], qid);
+    expect(st.p).toBeFalsy();         // nothing can set the vestigial practice tick
+});
+
+test('the plan can skip question types: unticked LAQs never appear anywhere in the plan', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    // Units 4+5 hold real LAQs (the crunch gate uses them for the same reason)
+    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3], '1 hour', ['LAQ']);
+    expect(plan.scope).toEqual(['SAQ', 'VSAQ']);
+
+    const qids: string[] = Object.keys(plan.learnDay).concat(plan.optional);
+    expect(qids.length).toBeGreaterThan(0);
+    const qtypes = await page.evaluate((ids: string[]) => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        return ids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
+    }, qids);
+    expect(qtypes).not.toContain('LAQ');
+
+    // and the analysis said so out loud, honestly
+    const msgs = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
+        (els) => els.map((e) => e.textContent || '').join(' '));
+    expect(msgs).toContain('The plan skips long answers');
+});
+
+test('mid-plan "Change my plan" re-scopes by proposal — nothing changes until the student accepts', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3]);
+    expect(plan.scope).toBe(null);
+
+    // the student has finished the very short answers elsewhere
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Change my plan' }).click();
+    await page.locator('.vw-btn', { hasText: 'Change question types' }).click();
+    await page.locator('.vw-scope-box[value="VSAQ"]').last().uncheck();
+    await page.locator('.vw-btn', { hasText: 'Re-plan with these' }).click();
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).waitFor({ timeout: 5000 });
+
+    // nothing changes silently: the OLD scope stands until the click
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!).scope)).toBe(null);
+
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).click();
+    await page.waitForFunction(() => {
+        try { const p = JSON.parse(localStorage.getItem('pm_plan_v1')!); return Array.isArray(p.scope) && p.scope.join(',') === 'LAQ,SAQ'; }
+        catch { return false; }
+    }, undefined, { timeout: 4000 });
+    const next = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+    const qids: string[] = Object.keys(next.learnDay).concat(next.optional);
+    const qtypes = await page.evaluate((ids: string[]) => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        return ids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
+    }, qids);
+    expect(qtypes).not.toContain('VSAQ');
 });

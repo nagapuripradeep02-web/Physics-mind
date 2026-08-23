@@ -32,7 +32,10 @@
     <a class="btn btn-ghost btn-back" id="btnCatalog" href="#/" hidden>&#8592; All questions</a>
     <button class="btn btn-ghost nb-only" id="btnRestart" type="button" hidden>Restart</button>
     <button class="btn btn-ghost nb-only" id="btnPrint" type="button" hidden>Print</button>
-    <button class="btn btn-test nb-only" id="btnTest" type="button" hidden>Test myself</button>
+    <!-- DORMANT (founder, 2026-08-23): "Test myself" is removed for now. The
+         button keeps its markup but lost nb-only, so the view sweep never
+         un-hides it; the overlay + self-check code below stay unreachable. -->
+    <button class="btn btn-test" id="btnTest" type="button" hidden>Test myself</button>
   </div>
 </header>
 

@@ -144,11 +144,16 @@ localStorage; the LLM is never in the plan path.
   ½× the NEXT day (learn-today-revise-tomorrow); priority = stars → LAQ>SAQ>VSAQ → asked before
   predicted; the final ~15% of days are a full-revision block (weakest self-check first); overflow
   falls off the BOTTOM into an honest `optional` bucket. Module `Plan` in notebook.js.
-- **Stages**: Understand auto-ticks on full reveal (the `completed = true` sites), Practice on a
-  touched self-check close (beside `Vidi.recordCheck`), Revise via the [Mark revised ✓] chip on
-  its revision day or a second completed check on a later day. Ticks are DATE STRINGS via
-  `todayStr()`, which honours the test-only `pm_today_override` key — the whole feature is
-  clock-injectable.
+- **Stages (TWO since 2026-08-23 — founder removed "Test myself" for now)**: Understand
+  auto-ticks on full reveal (the `completed = true` sites); Revise via the [Mark revised ✓]
+  chip on a later day (`s.u < today` — the revision anchor moved from the p-date to the
+  u-date). Green tick = u && r. The `p` tick in `pm_stage_v1` is VESTIGIAL: the self-check
+  that set it is dormant, the stored shape is unchanged, no migration. The rename offer moved
+  from the first completed self-check to the FIRST [Mark revised ✓] — which means rename is
+  now only reachable by a student with a plan (accepted trade-off). Exam-eve's
+  "weakest self-check first" list stays empty forever and its most-asked fallback renders
+  (verified graceful). Ticks are DATE STRINGS via `todayStr()`, which honours the test-only
+  `pm_today_override` key — the whole feature is clock-injectable.
 - **Keys**: `pm_plan_v1` (the plan), `pm_stage_v1` (ticks), `pm_intro_done`/`pm_intro_seen`,
   `pm_today_override` (tests only). All through the Vidi lsGet/lsSet wrapper.
 - **Nudges**: once a day (`lastNudgeDay`), on home-open or question-open: on-pace / behind /
@@ -169,6 +174,17 @@ localStorage; the LLM is never in the plan path.
   (Σ2.5×mins) > capacity ×1.15. The revision block shrinks to 1 day so learning days survive.
   Applies to fresh builds AND re-plans, so the ignored plan replans INTO crunch. `plan.crunch`
   rides the model's plan-status line too.
+- **QTYPE SCOPE** (founder, 2026-08-23): "I finished all LAQs elsewhere — plan only SAQs and
+  VSAQs." A deterministic plan dimension, never the model's. Onboarding gained a scope step
+  between chapters and analysis (three pre-checked `.vw-scope-box` checkboxes; all ticked =
+  `scope: null` = everything, so the default student never notices); `Plan.itemsFor/build/replan`
+  all carry it; the plan object stores `scope` (old plans lack it → null, no migration).
+  Mid-plan: the [Change my plan] chip (home AND question view) opens `changePlanWidget` —
+  [Change question types] runs `Plan.rescope` over everything not-yet-green in the NEW scope
+  (widening brings questions in) and presents the standard [Use this plan] / [Keep the old plan]
+  proposal; nothing changes until accept. Crunch computes over the already-scoped queue. The
+  persona ROUTES free-text "I only need VSAQs" statements to the chip — it never edits the
+  plan. `plan_status` says what the scope excludes so hosted answers stay honest.
 - **The chat field ships only in hosted builds — and the smoke suite OVERWRITES dist with the
   offline build.** "There is no chat field" (founder, twice now: 2026-08-22 and 2026-08-23) has
   both times meant the offline `build:answers` dist was being served after a test run. After any
@@ -176,10 +192,13 @@ localStorage; the LLM is never in the plan path.
   2026-08-23: `renderHome` never set `#vidiAskRow`, so the CATALOG home chat had no input even
   when hosted — fixed; a home ask sends `question_id:'home'` with a byte-stable catalog context,
   never PM_QUESTIONS[0]'s.
-- **Gates**: five planner tests (intro-no-stars + offline onboarding · deterministic math ·
-  auto-tick U/P + green tick + card counts · behind → proposal → accept · silent no-plan open).
-  Caveat for test authors: `addInitScript` re-runs on reload and resets the clock override —
-  advance the day in-page and re-open the window instead of reloading.
+- **Gates**: the planner tests (intro-no-stars + offline onboarding · deterministic math ·
+  U auto-tick + green tick + card counts · behind → proposal → accept · silent no-plan open ·
+  crunch · Test-myself dormancy · scope-at-onboarding · mid-plan re-scope proposal · rename on
+  first Mark-revised). The five self-check overlay gates were REMOVED with the feature
+  (2026-08-23): suite went 42 → 40. Caveat for test authors: `addInitScript` re-runs on reload
+  and resets the clock override — advance the day in-page and re-open the window instead of
+  reloading.
 
 ## Rule tensions — resolved, do not relitigate
 
@@ -395,6 +414,12 @@ and it caught three over-packed lines in the first SAQ draft that no other gate 
 ---
 
 # Test yourself — photo + mic (2026-08-20, replaces the three-mode toggle)
+
+> **DORMANT since 2026-08-23 (founder): the "Test myself" entry is removed for now.** #btnTest
+> lost its `nb-only` class so the view sweep never un-hides it; the overlay, self-check, photo
+> and mic code all stay in the page, unreachable — reversible by restoring the class. Completion
+> is two stages (Understand → Revise); the rename offer moved to the first [Mark revised ✓].
+> Everything below describes the dormant surface as built.
 
 The Study / Exam / Test-myself toggle is **removed**. There is one entry — a **Test myself**
 button in the top-right corner — opening an overlay with two ways to be checked:
