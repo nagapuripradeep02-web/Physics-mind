@@ -1256,7 +1256,7 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
 }
 
 /** Drive the whole onboarding conversation and return the stored plan. */
-async function buildPlanViaChat(page: any, examDate: string) {
+async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] = [0, 1], hoursLabel = '1 hour') {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
     // intro not done → the intro widget; done → the offer chip
@@ -1267,13 +1267,12 @@ async function buildPlanViaChat(page: any, examDate: string) {
     await lastW().locator('input[type=date]').fill(examDate);
     await lastW().locator('.vw-btn.primary').click();                       // Set date
     await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
-    await lastW().locator('.vw-check input').nth(0).check();
-    await lastW().locator('.vw-check input').nth(1).check();
+    for (const i of unitIdx) await lastW().locator('.vw-check input').nth(i).check();
     await lastW().locator('.vw-btn.primary').click();                       // These chapters →
     await page.locator('.vw-btn', { hasText: 'Generate my plan' }).waitFor({ timeout: 5000 });
     await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
-    await page.locator('.vw-btn', { hasText: '1 hour' }).waitFor({ timeout: 4000 });
-    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: hoursLabel }).waitFor({ timeout: 4000 });
+    await page.locator('.vw-btn', { hasText: hoursLabel }).click();
     await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 4000 });
     await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
     await page.waitForFunction(() => {
@@ -1428,4 +1427,45 @@ test('without a plan a question opens silently — chips only, and a quiet offer
     expect(chips.length).toBeGreaterThanOrEqual(3);    // the bank chips still answer
     expect(chips).toContain('Want a study plan?');     // the quiet offer, appended last
     expect(chips[0]).toBe('Will this come?');          // gate 27's first-chip click stays truthful
+});
+
+test('crunch mode: one week and too much work flips the plan to marks-first — LAQ and SAQ before any VSAQ', async ({ page }) => {
+    // The founder's scenario, 2026-08-23: a plan was ignored and the student
+    // opens the book with a week to go. The plan must NOT show all 200
+    // questions — it puts long and short answers first (they carry the marks)
+    // and says so; very short answers wait for exam-eve.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    // Units 4+5 (they hold real LAQs) · 7 days · 30 min/day — cannot fit
+    const plan = await buildPlanViaChat(page, '2026-09-08', [2, 3], '30 min');
+    expect(plan.crunch).toBe(true);
+
+    // in the learn order, no VSAQ is ever scheduled before an LAQ or SAQ
+    const flat: string[] = plan.days.reduce((a: string[], d: any) => a.concat(d.learn), []);
+    const qtypes = await page.evaluate((qids: string[]) => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        return qids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
+    }, flat);
+    const firstVsaq = qtypes.indexOf('VSAQ');
+    const lastBig = Math.max(qtypes.lastIndexOf('LAQ'), qtypes.lastIndexOf('SAQ'));
+    if (firstVsaq >= 0) expect(firstVsaq).toBeGreaterThan(lastBig);
+
+    // day 1 starts with the biggest marks on the table
+    expect(['LAQ', 'SAQ']).toContain(qtypes[0]);
+
+    // the overflow is named honestly, and the strategy is said out loud
+    expect(plan.optional.length).toBeGreaterThan(0);
+    const preview = await page.$$eval('#vidiThread .vidi-msg',
+        (els) => els.map((e) => e.textContent || '').join(' '));
+    expect(preview).toContain('long answers and short answers first');
+
+    // the same flip happens on a RE-PLAN: an ignored plan replans into crunch
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-05'));
+    await page.click('#vidiClose');
+    await page.click('#vidiFab');
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).waitFor({ timeout: 6000 });
+    await page.locator('.vw-btn', { hasText: 'Use this plan' }).click();
+    await page.waitForFunction(() =>
+        JSON.parse(localStorage.getItem('pm_plan_v1')!).start === '2026-09-05', undefined, { timeout: 4000 });
+    const replanned = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+    expect(replanned.crunch).toBe(true);
 });

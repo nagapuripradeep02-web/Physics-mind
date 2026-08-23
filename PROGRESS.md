@@ -1,5 +1,28 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## ⏱️ SESSION — Answer Book: **CRUNCH MODE + the chat field found twice-lost** (2026-08-23, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
+
+**Bottom line: two founder items. (1) "There is no chat field" had TWO causes — the served dist was the offline test build again (the smoke suite always overwrites `dist` with `build:answers`; re-run `build:answers:hosted` before serving a person — now written down as a standing rule), AND a real gap: `renderHome` never set `#vidiAskRow`, so the new CATALOG home chat had no input even in hosted builds. Both fixed; a home ask now sends `question_id:'home'` with a byte-stable catalog context instead of silently grounding the model in PM_QUESTIONS[0]. (2) The founder's ignored-plan question became CRUNCH MODE: when the time left cannot fit the work, the plan flips from stars-first to marks-first — LAQs, then SAQs, and every VSAQ moves behind them regardless of stars, mostly into `optional` with the strategy said out loud. Verified: 42/42 gates · tsc 0 · hosted-build probe shows the field on both surfaces with the right context per surface.**
+
+### Crunch mode — the ignored-45-day-plan answer
+Trigger: demand (Σ2.5×`expected_time_min`) > capacity ×1.15 — a 7-day, 30-min/day student facing Units 4+5 trips it; a healthy 20-day plan does not (the deterministic gate still asserts stars-first day 1 there). Under crunch: the revision block shrinks to one day, the queue re-sorts LAQ → SAQ (stars within, asked before predicted) with VSAQs last, and the messages change — preview: *"Time is short, so this plan puts long answers and short answers first — they carry the marks. N questions, mostly very short answers, are left for exam-eve — do not start with them."* Re-plans run through the same builder, so an ignored plan REPLANS INTO crunch — the founder's exact scenario, locked as gate 42 (fresh crunch build + behind→replan→accept→`crunch:true`, and the flattened learn order never schedules a VSAQ before the last LAQ/SAQ). `plan.crunch` also rides the model's plan-status line.
+
+### The chat-field double cause
+The smoke suite REQUIRES the offline build (`PM_VIDI_BASE === ''` gates), so every test run leaves `dist` chat-less — second founder report of the same symptom, now a recorded rule: **after smoke, rebuild hosted before serving.** The real bug underneath: the planner's home conversation (catalog) never un-hid the ask row. Fixed in `renderHome`; `vidiAsk` gained a home mode (`buildHomeContext()` — the chapter list, byte-stable for the prefix cache) because the module globals still hold `PM_QUESTIONS[0]` as a boot fallback and grounding a home question in an answer the student cannot see would be worse than saying so.
+
+### Verification (measured)
+`smoke:answers` **42/42** · `npx tsc --noEmit` 0 · hosted probe: ask row visible on catalog home AND question view; home ask sends `question_id:'home'` + catalog context; question ask sends the real qid. The repo `dist` is left as the **hosted** build this time.
+
+### Files
+`answer-book/notebook.js` (crunch in `Plan.build` + messages + home-mode ask + `renderHome` ask-row) · `e2e/answer_book.spec.ts` (gate 42 + unit/hour-parameterized helper) · `docs/patterns/answer_book.md` (crunch + the twice-lost chat field). No platform file touched.
+
+### NEXT
+1. Founder: `npm run serve:answers` — the dist is now the hosted build; the chat field is there on both surfaces.
+2. The Edge Function redeploy (plan persona + situation line) is still pending — founder-only.
+
+---
+
+
 ## 🗓️ SESSION — Answer Book: **THE STUDY PLANNER — Vidi becomes the student's, not the bank's** (2026-08-22, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
 **Bottom line: the founder's personalization direction is live. The first thing a new student ever sees is a Viditra introduction — no "this is a 3-star question", locked by a gate — followed by a chat-guided onboarding: exam date (calendar in a bubble) → chapter checklist → deterministic analysis ("20 days away, 0 LAQ + 9 SAQ + 33 VSAQ ≈ 8.5 hours") → hours-per-day chips → a day-by-day plan with revision built in → [Implement this plan] → countdown. Per-question completion is three stages — Understand · Practice · Revise — with the green tick only after revision; U and P tick THEMSELVES off actions the product already records. Every open gets a once-a-day check-in; falling behind produces a PROPOSED re-plan the student must accept. 100% deterministic and offline (localStorage; the bank is the brain); the LLM only ever READS a plan-status line. Verified: 41/41 gates (36 + 5 new) · vitest 405/405 · tsc 0 · every probe path green with zero page errors.**

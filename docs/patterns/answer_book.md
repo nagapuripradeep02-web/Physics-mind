@@ -161,6 +161,21 @@ localStorage; the LLM is never in the plan path.
   catalog cards get a `.cc-chip.pm-upr` badge + `.pm-done` green margin on the authored branch
   only. The model sees the plan via `body.plan_status` folded into the per-request situation
   block — deliberately NOT tutor_context, which is byte-stable for the DeepSeek prefix cache.
+- **CRUNCH MODE** (founder, 2026-08-23): when the time left cannot fit the work — the classic
+  ignored-45-day-plan, one-week-left student — the priority FLIPS from stars-first to marks-first:
+  LAQs, then SAQs (stars within), and every VSAQ goes to the back regardless of stars, mostly
+  landing in `optional` with the strategy said out loud ("long answers and short answers first —
+  they carry the marks; the very short answers wait for exam-eve"). Trigger: demand
+  (Σ2.5×mins) > capacity ×1.15. The revision block shrinks to 1 day so learning days survive.
+  Applies to fresh builds AND re-plans, so the ignored plan replans INTO crunch. `plan.crunch`
+  rides the model's plan-status line too.
+- **The chat field ships only in hosted builds — and the smoke suite OVERWRITES dist with the
+  offline build.** "There is no chat field" (founder, twice now: 2026-08-22 and 2026-08-23) has
+  both times meant the offline `build:answers` dist was being served after a test run. After any
+  smoke run, re-run `npm run build:answers:hosted` before serving to a person. Second cause found
+  2026-08-23: `renderHome` never set `#vidiAskRow`, so the CATALOG home chat had no input even
+  when hosted — fixed; a home ask sends `question_id:'home'` with a byte-stable catalog context,
+  never PM_QUESTIONS[0]'s.
 - **Gates**: five planner tests (intro-no-stars + offline onboarding · deterministic math ·
   auto-tick U/P + green tick + card counts · behind → proposal → accept · silent no-plan open).
   Caveat for test authors: `addInitScript` re-runs on reload and resets the clock override —

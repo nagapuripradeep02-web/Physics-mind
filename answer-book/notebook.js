@@ -1871,6 +1871,29 @@
       if (R >= D) R = D > 1 ? 1 : 0;
       var L = D - R;
       var queue = (itemsOverride || itemsFor(unitNums)).slice();
+
+      // ── CRUNCH MODE (founder, 2026-08-23) ─────────────────────────────────
+      // When the time left cannot fit the work — the student who ignored a
+      // 45-day plan and opens the book with one week to go — the priority
+      // FLIPS from stars-first to marks-first: long answers, then short
+      // answers, carry the paper; the very short answers move to the back and
+      // mostly land in `optional` ("do them on exam-eve"). The revision block
+      // shrinks to one day so learning days survive.
+      var demand = 0;
+      for (var di = 0; di < queue.length; di++) demand += Math.ceil(queue[di].mins * 2.5);
+      var crunch = demand > minsPerDay * L * 1.15;
+      if (crunch) {
+        if (D > 1) { R = 1; L = D - R; }
+        queue.sort(function (a, b) {
+          var av = a.qtype === 'VSAQ' ? 1 : 0, bv = b.qtype === 'VSAQ' ? 1 : 0;
+          if (av !== bv) return av - bv;                     // VSAQs last, whatever their stars
+          if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
+          if (b.stars !== a.stars) return b.stars - a.stars;
+          if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
+          return a.unit - b.unit;
+        });
+      }
+
       var learnDay = {}, byDay = [], reviseNext = [];
       for (var day = 1; day <= L; day++) {
         var budget = minsPerDay;
@@ -1895,6 +1918,7 @@
         days: byDay, learnDay: learnDay,
         optional: queue.map(function (x) { return x.qid; }),
         revBlockStart: L + 1, totalDays: D,
+        crunch: crunch,
         implemented: false, lastNudgeDay: '', archived: false
       };
     }
@@ -1992,6 +2016,9 @@
       var lines = 'exam on ' + plan.examDate + ', ' + daysLeft(plan, today) +
         ' days left; finished ' + p.done + ' of ' + p.total + ' planned questions' +
         '; today: learn ' + t.learn.length + ', revise ' + t.revise.length;
+      if (plan.crunch) {
+        lines += '; time is SHORT so the plan does long and short answers first, very short answers on exam-eve';
+      }
       if (qid && Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
         var s = Vidi.stageFor(qid);
         lines += '; THIS question is in the plan (understood ' + (s.u ? 'yes' : 'no') +
@@ -2316,7 +2343,12 @@
         rb.appendChild(el('span', '', 'full revision, weakest first'));
         box.appendChild(rb);
         w.appendChild(box);
-        if (plan.optional.length) {
+        if (plan.crunch) {
+          // The founder's crunch strategy, said out loud: with little time,
+          // long and short answers score the marks; very short answers wait.
+          w.appendChild(el('div', 'vw-warn', 'Time is short, so this plan puts long answers and short answers first — they carry the marks.' +
+            (plan.optional.length ? ' ' + plan.optional.length + ' questions, mostly very short answers, are left for exam-eve — do not start with them.' : '')));
+        } else if (plan.optional.length) {
           w.appendChild(el('div', 'vw-warn', 'At this pace ' + plan.optional.length +
             ' lower-priority questions do not fit — they are optional. The most-asked set fits.'));
         }
@@ -2442,7 +2474,9 @@
       setTimeout(function () {
         if (g !== gen) return;
         say('I have made a new plan for the ' + (left === 0 ? 'last day' : left + ' days left') +
-          (draft.optional.length ? ' — the most-asked core stays, ' + draft.optional.length + ' lower-priority questions become optional.' : '.'));
+          (draft.crunch
+            ? '. In this time the long answers and short answers are what score — they come first, and the very short answers wait for exam-eve.'
+            : (draft.optional.length ? ' — the most-asked core stays, ' + draft.optional.length + ' lower-priority questions become optional.' : '.')));
         widget(function (w) {
           var row = el('div', 'vw-row');
           row.appendChild(wBtn('Use this plan', true, function () {
@@ -2467,6 +2501,10 @@
       gen++;
       threadEl().innerHTML = '';
       recentMsgs = [];
+      // The free-text field exists in hosted builds on the catalog too — the
+      // founder's "there is no chat field" report, 2026-08-23: renderHome never
+      // set the row, so the home conversation had no input even when hosted.
+      $('vidiAskRow').hidden = !VIDI_BASE || !online;
       var chips = $('vidiChips');
       chips.innerHTML = '';
       var plan = Vidi.getPlan();
@@ -2604,6 +2642,19 @@
 
     // ── free-text ask (exists only when the build has a chat base) ──────────
 
+    /** What the model sees when the student asks from the CATALOG: the page
+        itself, byte-stable so the prefix cache still hits in home mode. */
+    function buildHomeContext() {
+      var out = ['THE STUDENT IS ON THE CATALOG PAGE — no question is open on screen.',
+        'The book’s chapters:'];
+      for (var i = 0; i < UNITS.length; i++) {
+        out.push('- ' + UNITS[i].number + '. ' + UNITS[i].name +
+          ' (' + UNITS[i].questions.length + ' questions)');
+      }
+      out.push('If they ask about one specific question, ask them to open it from the catalog so you can see it.');
+      return out.join('\n');
+    }
+
     function friendlyOffline() {
       online = false;
       $('vidiAskRow').hidden = true;
@@ -2730,19 +2781,24 @@
       var typing = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
       threadEl().appendChild(typing);
       threadEl().scrollTop = threadEl().scrollHeight;
+      // On the CATALOG there is no question on screen — the module globals
+      // still hold PM_QUESTIONS[0] as a boot fallback, and grounding the model
+      // in a question the student cannot see would be worse than saying so.
+      // Home mode sends the catalog itself as the context.
+      var home = currentView !== 'notebook';
       var body = {
         session_id: Vidi.session,
-        question_id: question.question_id,
-        unit: question.unit.number,
-        cut_key: cut.key,
-        step_id: stepIndex >= 0 ? steps[stepIndex].id : null,
+        question_id: home ? 'home' : question.question_id,
+        unit: home ? 0 : question.unit.number,
+        cut_key: home ? 'home' : cut.key,
+        step_id: (!home && stepIndex >= 0) ? steps[stepIndex].id : null,
         question: txt,
         recent_messages: recentMsgs.slice(-6),
         // NOT in tutor_context: that string is byte-stable per question+cut so
         // the model's prompt-prefix cache hits; plan facts change daily, so
         // they ride the per-request situation block server-side instead.
-        plan_status: Plan.modelStatus(question.question_id) || undefined,
-        tutor_context: buildVidiContext()
+        plan_status: Plan.modelStatus(home ? null : question.question_id) || undefined,
+        tutor_context: home ? buildHomeContext() : buildVidiContext()
       };
       postAsk(body, 1).then(function (res) {
         if (g !== gen) return;
