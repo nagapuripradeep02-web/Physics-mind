@@ -20,7 +20,7 @@ The free tier caps at 2 active projects (dev + pilot), so the planned `physicsmi
 `answer-book/notebook.js` (+~170: Sync module · `mergeStages`/`allStages`/`storePlanRaw` · `syncTouch` hook in setStage/setPlan · `VidiPanel.onSynced` repaint · boot) · `src/scripts/build_answer_book.ts` (`PM_SYNC_BASE`, hosted default baked) · `supabase/functions/answerbook-sync/index.ts` (NEW) · `supabase_migrations/supabase_2026_08_23_answerbook_student_sync.sql` (NEW — applied to dev) · `src/lib/answerBook/__tests__/syncMerge.test.ts` (NEW) · `e2e/answer_book.spec.ts` (48 gates) · `docs/patterns/answer_book.md` (§Anonymous progress sync). **No Rule-40 platform file touched.**
 
 ### NEXT
-1. **Founder go/no-go: flip the live site to sync-on** — one command, `npm run deploy:answers` (hosted build now bakes both bases). Until then answers.viditra.co behaves exactly as before.
+1. ~~Founder go/no-go: flip the live site to sync-on~~ **DONE same session (founder: "deploy it")** — `npm run deploy:answers` shipped the sync-enabled build; live page carries both bases, a sync round-trip from the site origin verified against the deployed endpoint, probe rows deleted, tables at zero for real students.
 2. Still pending from earlier today: `AB_ALLOWED_ORIGINS` + the chat-function persona redeploy · **SMS/DLT registration (weeks of lead — start now)**.
 3. Then P3 gated build + free chapter → P4 Razorpay + OTP (price decision) → P5 hardening.
 
