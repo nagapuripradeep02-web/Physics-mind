@@ -36,7 +36,7 @@ alter table ab_skus add column if not exists founding_limit     int;
 alter table ab_skus add column if not exists period_days        int not null default 31;
 
 update ab_skus
-   set label              = 'Every chapter, both subjects',
+   set label              = 'Every chapter, every subject',
        price_inr          = 249,     -- the list price (from student 501 on)
        founding_price_inr = 99,      -- the founding price, grandfathered forever
        founding_limit     = 500,
