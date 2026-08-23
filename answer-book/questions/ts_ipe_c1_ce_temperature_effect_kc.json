@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_temperature_effect_kc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of temperature on the value of the equilibrium constant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Only temperature changes K",
+      "marks": 1
+    },
+    {
+      "label": "The direction of the change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book's Le Chatelier SAQ describes how temperature shifts the equilibrium POSITION, but never asks the sharper point that temperature is the only factor that changes the equilibrium CONSTANT. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_only_temperature",
+        "kind": "text",
+        "label": "Only temperature changes K",
+        "marks": 1,
+        "mark_note": "The rule",
+        "lines": [
+          "Changes of concentration or pressure, and",
+          "the addition of a catalyst, shift or speed",
+          "the reaction but do NOT change the value of",
+          "the equilibrium constant.",
+          "Temperature is the only factor that changes",
+          "the value of K."
+        ],
+        "why": "K is defined at a stated temperature. Concentration and pressure changes move the system along the same K; only a temperature change moves K itself.",
+        "common_mistakes": [
+          "Writing that adding reactant increases K. It shifts the position; K stays the same.",
+          "Quoting a K value without its temperature."
+        ],
+        "memory_tip": "K carries a temperature label. Change the label, change the constant — nothing else touches it.",
+        "margin_note": "Position can shift for many reasons; the CONSTANT moves for one."
+      },
+      {
+        "id": "s2_direction",
+        "kind": "boxed_final",
+        "label": "The direction of the change",
+        "marks": 1,
+        "mark_note": "Endo vs exo",
+        "lines": [
+          "For an endothermic reaction, K increases",
+          "when the temperature is raised.",
+          "For an exothermic reaction, K decreases",
+          "when the temperature is raised.",
+          {
+            "text": "Only a temperature change changes K — up for endothermic, down for exothermic",
+            "style": "boxed"
+          }
+        ],
+        "why": "Raising the temperature favours the direction that absorbs heat, so an endothermic forward reaction gains products and its K grows; an exothermic one loses products and its K falls.",
+        "common_mistakes": [
+          "Writing that heating always increases K. The sign of ΔH decides the direction.",
+          "Mixing up the shift of position with the change of K — at a new temperature BOTH change."
+        ],
+        "memory_tip": "Heat helps the heat-absorbing direction: endothermic K rises with temperature.",
+        "margin_note": "Two lines, one for each sign of ΔH."
+      }
+    ]
+  }
+}

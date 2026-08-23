@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_temp_surface_tension_viscosity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the effect of temperature on surface tension and viscosity. Give the reason for it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The effect",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect",
+        "kind": "text",
+        "label": "The effect",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          "As the temperature of a liquid increases, BOTH",
+          "its surface tension and its viscosity decrease."
+        ],
+        "why": "Both properties are produced by intermolecular attractive forces, so they respond to temperature in the same direction — downward as the liquid gets hotter.",
+        "common_mistakes": [
+          "Splitting the two: saying one increases and the other decreases. Both decrease.",
+          "Answering for a gas. Gas viscosity behaves differently; this question is about liquids."
+        ],
+        "memory_tip": "Hot liquids pour easily and spread easily: both viscosity and surface tension have dropped.",
+        "margin_note": "One clear sentence covering BOTH properties earns the mark."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Raising the temperature increases the kinetic",
+          "energy of the molecules, so the intermolecular",
+          "attractive forces become less effective.",
+          {
+            "text": "Weaker effective attractions → lower surface tension and lower viscosity",
+            "style": "boxed"
+          }
+        ],
+        "why": "Surface tension comes from the inward pull on surface molecules, and viscosity from attractions between flowing layers. Faster-moving molecules overcome both attractions more easily, so both properties fall together.",
+        "common_mistakes": [
+          "Saying the forces themselves disappear. The attractions remain; the faster motion makes them less effective.",
+          "Giving the effect again as the reason. The reason is the kinetic-energy argument."
+        ],
+        "memory_tip": "One cause, two effects: more kinetic energy makes the same attractions count for less, so both properties drop.",
+        "margin_note": "The chain KE up → attractions less effective → both down is the full reason."
+      }
+    ]
+  },
+  "insider_note": "The word both is the trap — scripts that treat only surface tension, or only viscosity, are marked as half answers."
+}

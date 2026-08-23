@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_limitations_rutherford_model",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the limitations of Rutherford's model of the atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stability problem",
+      "marks": 2
+    },
+    {
+      "label": "The spectrum problem",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 2+2 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stability",
+        "kind": "text",
+        "label": "The stability problem",
+        "marks": 2,
+        "mark_note": "Stability",
+        "lines": [
+          "1. It cannot explain the stability of the atom.",
+          "    An electron moving in a circular path is",
+          "    accelerating, and classical physics says an",
+          "    accelerating charge must radiate energy.",
+          "2. Losing energy, the electron would spiral",
+          "    into the nucleus in about 10⁻⁸ seconds.",
+          "    Atoms would not exist."
+        ],
+        "why": "This is the strongest objection, because it does not merely leave something unexplained; it predicts that matter cannot exist. Bohr's stationary orbit postulate was written specifically to answer it.",
+        "common_mistakes": [
+          "Saying the electron would fly away from the nucleus. It would spiral inward.",
+          "Writing that the model has no nucleus. Rutherford is the model that discovered the nucleus."
+        ],
+        "memory_tip": "A circling charge radiates, so it must fall in. Rutherford's atom collapses.",
+        "margin_note": "Give the reason as well as the failure. The reason is where the marks are."
+      },
+      {
+        "id": "s2_spectrum",
+        "kind": "boxed_final",
+        "label": "The spectrum problem",
+        "marks": 2,
+        "mark_note": "Spectrum",
+        "lines": [
+          {
+            "text": "3. It cannot explain the line spectrum of hydrogen",
+            "style": "boxed"
+          },
+          "A spiralling electron would radiate at every",
+          "frequency, giving a continuous spectrum.",
+          "What is observed is a set of separate lines.",
+          "4. It says nothing about how the electrons",
+          "    are arranged around the nucleus."
+        ],
+        "why": "The model gives no fixed energy levels, so there are no fixed energy differences and therefore no reason for separate lines. The observed line spectrum is direct evidence that the energies are quantised.",
+        "common_mistakes": [
+          "Saying the model predicts no spectrum at all. It predicts a continuous one, which is the wrong kind.",
+          "Repeating the stability point in different words instead of giving a new limitation."
+        ],
+        "memory_tip": "Rutherford predicts a continuous spectrum. Hydrogen gives separate lines.",
+        "margin_note": "Four numbered points fill this answer. Two well explained will earn most of it."
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_de_broglie_wavelength_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the de Broglie wavelength of an electron moving with a velocity of 2.5 × 10⁶ m s⁻¹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them. The mass of the electron is taken as 9.1 × 10⁻³¹ kg and h as 6.626 × 10⁻³⁴ J s."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "λ = h / mv",
+            "style": "eq"
+          },
+          "h = 6.626 × 10⁻³⁴ J s",
+          "m = 9.1 × 10⁻³¹ kg",
+          "v = 2.5 × 10⁶ m s⁻¹",
+          "λ = 6.626 × 10⁻³⁴ / (9.1 × 10⁻³¹ × 2.5 × 10⁶)"
+        ],
+        "why": "Every quantity is already in SI units, so the answer comes out in metres with no conversion. Writing the substitution on its own line separates the setting up from the arithmetic.",
+        "common_mistakes": [
+          "Using the mass of a proton instead of an electron.",
+          "Writing λ = mv/h, which inverts the relation."
+        ],
+        "memory_tip": "h on top, momentum below. Momentum is mass times velocity.",
+        "margin_note": "The formula with the values substituted earns this mark on its own."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "Denominator = 2.275 × 10⁻²⁴ kg m s⁻¹",
+          "λ = 6.626 × 10⁻³⁴ / 2.275 × 10⁻²⁴",
+          {
+            "text": "λ = 2.91 × 10⁻¹⁰ m  (291 pm)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The result is close to the size of an atom, which is exactly why electron waves matter in chemistry at all. A wavelength of this size can be diffracted by a crystal, and that is how the wave nature was confirmed.",
+        "common_mistakes": [
+          "Making a sign error in the powers of ten. Dividing 10⁻³⁴ by 10⁻²⁴ gives 10⁻¹⁰.",
+          "Writing the answer without the unit."
+        ],
+        "memory_tip": "An electron wavelength near 10⁻¹⁰ m is about one atom wide. That is the right size.",
+        "margin_note": "Box the answer and write m. The unit is part of the mark."
+      }
+    ]
+  }
+}

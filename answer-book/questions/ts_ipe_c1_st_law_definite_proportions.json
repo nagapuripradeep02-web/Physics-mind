@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_law_definite_proportions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of definite proportions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) skips the laws of chemical combination entirely, though they open the syllabus chapter. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Law of definite proportions (Proust): a given",
+          "chemical compound always contains the same",
+          "elements combined in the same fixed ratio by",
+          "mass, whatever its source or method of",
+          "preparation."
+        ],
+        "why": "A compound has one fixed formula, so the mass ratio of its elements cannot depend on where the sample came from or how it was made.",
+        "common_mistakes": [
+          "Leaving out 'by mass'. The fixed ratio is a mass ratio.",
+          "Leaving out 'whatever its source' — that clause is the content of the law."
+        ],
+        "memory_tip": "Definite means the ratio is fixed by the compound, not by the sample.",
+        "margin_note": "The phrases by mass and whatever its source both carry weight."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Pure water always has H : O = 1 : 8 by mass",
+            "style": "boxed"
+          },
+          "Water from a river, a well or a laboratory",
+          "gives the same 1 : 8 ratio: 2 g of H for",
+          "every 16 g of O in 18 g of water."
+        ],
+        "why": "Water is the standard example because its 1 : 8 hydrogen-to-oxygen mass ratio follows directly from the formula H₂O: 2 g of hydrogen against 16 g of oxygen.",
+        "common_mistakes": [
+          "Writing the ATOM ratio 2 : 1 in place of the MASS ratio 1 : 8."
+        ],
+        "memory_tip": "H₂O: 2 g against 16 g simplifies to 1 : 8.",
+        "margin_note": "State the ratio as a mass ratio and say the source does not change it."
+      }
+    ]
+  }
+}

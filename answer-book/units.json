@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere. CHEMISTRY OPENS (2026-08-23), Unit 1 Atomic Structure. SOURCE: the Sri Chaitanya Junior Fastrack chemistry section, book pp.48-52 (PDF pp.50-54; the chemistry half runs book pp.48-96 over 13 chapters). THE TWO-BOOK UNION CHECK CANNOT BE RUN FOR CHEMISTRY AND IS PENDING: the TSBIE Basic Learning Material PDF in hand is PHYSICS ONLY, so chemistry has exactly one source book. Founder decision 2026-08-23: proceed Fastrack-only and record the gap rather than wait. Every chemistry card therefore carries needs_teacher_verification. Chapter 1 as printed: 10 VSAQ, 7 SAQ, 2 LAQ. Stars are front-loaded, exactly as in the physics half — VSAQ 1-8 are three-star and 9-10 unranked, SAQ 1-5 three-star, SAQ 6 unranked, SAQ 7 two-star, both LAQs three-star. NO exam-year citations appear anywhere in chapter 1, so appearances[] is empty throughout; in the chemistry half years are printed only at ch.4 VSAQ 23/24/25 and ch.5 SAQ 9/10/12. There is NO Problems section anywhere in chemistry: numericals sit inside the VSAQ and SAQ lists (ch.1 VSAQ 2 is one), so the physics 'PROBLEMS deferred' decision does not arise here. Chapter 1 has no cuts — no question in it is asked at two lengths. TWO SOURCE DISCREPANCIES, recorded not resolved: (a) VSAQ 9, the book prints 'number of nodes = n - l - 1', which is the count of RADIAL nodes, the total being n - 1 and the nodal planes l; the card writes radial nodes = n - l - 1 plus the total, so the worked 3d count still agrees with the book; (b) LAQ 2, the book credits the magnetic quantum number to Lande, which is the attribution the paper marks, though it is more usually traced to Sommerfeld and Zeeman. Also: the book works VSAQ 2 in CGS and the card works it in SI, reaching the same 5 x 10^14 Hz, and the book prints h = 6.625e-34 J s where the card writes the accepted 6.626e-34. ENUMERATION SWEEP: 10 predicted lean cards (7 VSAQ, 3 SAQ) source:'enumerated', numbered after the book's own list. Their objects are the syllabus sections the Fastrack skips entirely — the whole of atomic number/mass number/isotopes, the Rutherford model and its limitations, the Rydberg equation, wave number, and psi-squared — the same whole-section pattern seen in physics Units 5, 6 and 9. Swept against the WHOLE bank, not just this unit: nothing collides with the physics or mathematics units. BACK-TEST: no chemistry board paper is held in the corpus, so the diff-against-a-real-paper step is PENDING for chemistry, exactly like the union check. NOTATION: Unicode has a subscript x but no subscript y or z, so the p and d orbitals are written px, py, pz and dxy, dz2 in plain letters — the same call as the plain i, j, k axis vectors in the mathematics cards. Ids are ts_ipe_c1_as_<slug>: c1 = Chemistry paper 1, as = Atomic Structure.",
   "units": [
     {
       "number": 2,
@@ -1781,6 +1781,1761 @@
           "stars": 0,
           "text": "Derive Kepler’s third law of planetary motion from Newton’s law of gravitation, for a planet moving in a circular orbit.",
           "question_id": "ts_ipe_p1_grav_keplers_third_law_derive",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "name": "Atomic Structure (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is a black body?",
+          "question_id": "ts_ipe_c1_as_black_body"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "What is the frequency of radiation of wavelength 600 nm?",
+          "question_id": "ts_ipe_c1_as_frequency_600nm"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What are the Zeeman effect and the Stark effect?",
+          "question_id": "ts_ipe_c1_as_zeeman_stark_effect"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "What is Hund's rule?",
+          "question_id": "ts_ipe_c1_as_hunds_rule"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "What is the Aufbau principle?",
+          "question_id": "ts_ipe_c1_as_aufbau_principle"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Draw the shapes of s and p orbitals.",
+          "question_id": "ts_ipe_c1_as_shapes_s_p_orbitals"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Draw the shape of a d orbital.",
+          "question_id": "ts_ipe_c1_as_shape_d_orbital"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "What is Pauli's exclusion principle? Give an example.",
+          "question_id": "ts_ipe_c1_as_pauli_exclusion_principle"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What are a node and a nodal plane?",
+          "question_id": "ts_ipe_c1_as_node_and_nodal_plane"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write the electronic configuration of Cr and Cu.",
+          "question_id": "ts_ipe_c1_as_configuration_cr_cu"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define atomic number and mass number.",
+          "question_id": "ts_ipe_c1_as_atomic_number_mass_number",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What are isotopes and isobars? Give one example of each.",
+          "question_id": "ts_ipe_c1_as_isotopes_and_isobars",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Define wave number. Give its unit.",
+          "question_id": "ts_ipe_c1_as_wave_number_definition",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Define threshold frequency and work function.",
+          "question_id": "ts_ipe_c1_as_threshold_frequency_work_function",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What are degenerate orbitals? Give an example.",
+          "question_id": "ts_ipe_c1_as_degenerate_orbitals",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Calculate the de Broglie wavelength of an electron moving with a velocity of 2.5 × 10⁶ m s⁻¹.",
+          "question_id": "ts_ipe_c1_as_de_broglie_wavelength_numerical",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What is the significance of ψ and ψ²?",
+          "question_id": "ts_ipe_c1_as_significance_of_psi_squared",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Explain the photoelectric effect.",
+          "question_id": "ts_ipe_c1_as_photoelectric_effect"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Explain the difference between emission and absorption spectra.",
+          "question_id": "ts_ipe_c1_as_emission_vs_absorption_spectra"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Explain Planck's quantum theory.",
+          "question_id": "ts_ipe_c1_as_plancks_quantum_theory"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "State and explain Heisenberg's uncertainty principle.",
+          "question_id": "ts_ipe_c1_as_heisenberg_uncertainty_principle"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "State and explain de Broglie's wave theory.",
+          "question_id": "ts_ipe_c1_as_de_broglie_wave_theory"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What are the limitations of Bohr's model of an atom?",
+          "question_id": "ts_ipe_c1_as_limitations_bohr_model"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "What are the differences between an orbit and an orbital?",
+          "question_id": "ts_ipe_c1_as_orbit_vs_orbital"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What are the limitations of Rutherford's model of the atom?",
+          "question_id": "ts_ipe_c1_as_limitations_rutherford_model",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "State the Rydberg equation for the hydrogen spectrum and explain the terms in it.",
+          "question_id": "ts_ipe_c1_as_rydberg_equation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Describe Rutherford's alpha-ray scattering experiment and the conclusions drawn from it.",
+          "question_id": "ts_ipe_c1_as_rutherford_scattering_experiment",
+          "source": "enumerated"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What are the postulates of Bohr's model of the hydrogen atom? Discuss the importance of this model in explaining the various series of line spectra in the hydrogen atom.",
+          "question_id": "ts_ipe_c1_as_bohr_postulates_hydrogen_spectrum"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Explain the quantum numbers and give their significance.",
+          "question_id": "ts_ipe_c1_as_quantum_numbers_significance"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Classification of Elements – Periodic Properties (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "What is screening effect? How is it related to ionisation enthalpy?",
+          "question_id": "ts_ipe_c1_cp_screening_effect"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Electron affinity of chlorine is more than that of fluorine. Explain.",
+          "question_id": "ts_ipe_c1_cp_ea_chlorine_fluorine"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "What is diagonal relationship?",
+          "question_id": "ts_ipe_c1_cp_diagonal_relationship"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Among N³⁻, O²⁻, F⁻, Na⁺, Mg²⁺ and Al³⁺ (a) what is common in them? (b) arrange them in the increasing order of ionic radii.",
+          "question_id": "ts_ipe_c1_cp_isoelectronic_ionic_radii"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "An element X has atomic number 34. Give its position in the periodic table.",
+          "question_id": "ts_ipe_c1_cp_element_z34_position"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Name the element with the highest electron affinity (E.A) and the element with the highest electronegativity (E.N) in the periodic table.",
+          "question_id": "ts_ipe_c1_cp_highest_ea_en"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Give any four characteristic properties of transition elements.",
+          "question_id": "ts_ipe_c1_cp_transition_elements_properties"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "What is lanthanide contraction? What are its consequences?",
+          "question_id": "ts_ipe_c1_cp_lanthanide_contraction"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is a periodic property? How do the following properties vary in a group and in a period? Explain. (a) Ionisation enthalpy (b) Electronegativity (c) Atomic radius (d) Electron gain enthalpy (e) Nature of oxides (f) Metallic nature",
+          "question_id": "ts_ipe_c1_cp_periodic_properties_trends"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Define IE₁ and IE₂. Why is IE₂ > IE₁ for a given atom? Discuss the factors that affect the ionisation enthalpy of an element.",
+          "question_id": "ts_ipe_c1_cp_ie1_ie2_factors"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Write an essay on s, p, d and f block elements.",
+          "question_id": "ts_ipe_c1_cp_s_p_d_f_blocks"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State the modern periodic law. Who proposed it?",
+          "question_id": "ts_ipe_c1_cp_modern_periodic_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "State Dobereiner's law of triads. Give one example.",
+          "question_id": "ts_ipe_c1_cp_dobereiner_triads",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the IUPAC name and symbol of the element with atomic number 120.",
+          "question_id": "ts_ipe_c1_cp_iupac_name_z120",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define covalent radius and van der Waals radius. Which of the two is larger?",
+          "question_id": "ts_ipe_c1_cp_covalent_vs_vanderwaals_radius",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Why is the electron gain enthalpy of noble gases positive?",
+          "question_id": "ts_ipe_c1_cp_noble_gas_egh_positive",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "The first ionisation enthalpy of nitrogen is greater than that of oxygen. Explain.",
+          "question_id": "ts_ipe_c1_cp_ie_nitrogen_oxygen",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What are the differences between electron gain enthalpy and electronegativity?",
+          "question_id": "ts_ipe_c1_cp_egh_vs_electronegativity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How does the valence of an element vary across a period and down a group?",
+          "question_id": "ts_ipe_c1_cp_valence_period_group",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Chemical Bonding (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is octet rule?",
+          "question_id": "ts_ipe_c1_cb_octet_rule"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Which of the two ions Ca²⁺ or Zn²⁺ is more stable? Why?",
+          "question_id": "ts_ipe_c1_cb_ca_vs_zn_stability"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Cl⁻ ion is more stable than Cl atom. Why?",
+          "question_id": "ts_ipe_c1_cb_cl_ion_stability"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "How many sigma and π bonds are present in (a) C₂H₂ (b) C₂H₄?",
+          "question_id": "ts_ipe_c1_cb_sigma_pi_count_c2h2_c2h4"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Give the differences between σ and π bonds.",
+          "question_id": "ts_ipe_c1_cb_sigma_vs_pi",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Explain the hybridization involved in the PCl₅ molecule.",
+          "question_id": "ts_ipe_c1_cb_pcl5_hybridisation"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Explain the hybridization involved in the SF₆ molecule.",
+          "question_id": "ts_ipe_c1_cb_sf6_hybridisation"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is hydrogen bond? Explain the types of hydrogen bonds with example.",
+          "question_id": "ts_ipe_c1_cb_hydrogen_bond_types"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "State Fajan's rules and give suitable examples.",
+          "question_id": "ts_ipe_c1_cb_fajans_rules"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give the differences between σ and π bonds.",
+          "question_id": "ts_ipe_c1_cb_sigma_vs_pi",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Compare the dipole moment of NH₃ molecule with that of NF₃ molecule.",
+          "question_id": "ts_ipe_c1_cb_nh3_vs_nf3_dipole"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Explain the formation of coordinate covalent bond with one example.",
+          "question_id": "ts_ipe_c1_cb_coordinate_covalent_bond"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Define dipole moment and write its applications.",
+          "question_id": "ts_ipe_c1_cb_dipole_moment_applications"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define the dipole moment. Why is the dipole moment of the BF₃ molecule zero?",
+          "question_id": "ts_ipe_c1_cb_bf3_dipole_zero"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write the general properties of ionic compounds.",
+          "question_id": "ts_ipe_c1_cb_ionic_compound_properties"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What do you understand by hybridization? Explain different types of hybridizations involving s and p orbitals.",
+          "question_id": "ts_ipe_c1_cb_hybridisation_types_s_p"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Give the molecular orbital energy diagram of N₂ and O₂. Calculate the respective bond order and write the magnetic nature of N₂ and O₂ molecules.",
+          "question_id": "ts_ipe_c1_cb_mo_diagram_n2_o2"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Give an account of VSEPR theory and its applications.",
+          "question_id": "ts_ipe_c1_cb_vsepr_theory"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What are Lewis dot symbols? What is their significance?",
+          "question_id": "ts_ipe_c1_cb_lewis_dot_symbols",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Define formal charge. Write the formula used to calculate it.",
+          "question_id": "ts_ipe_c1_cb_formal_charge",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Define bond length, bond angle and bond enthalpy.",
+          "question_id": "ts_ipe_c1_cb_bond_parameters",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define bond order. Show that the He₂ molecule does not exist.",
+          "question_id": "ts_ipe_c1_cb_bond_order_he2",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define lattice enthalpy. What does a high lattice enthalpy indicate?",
+          "question_id": "ts_ipe_c1_cb_lattice_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Using VSEPR theory, predict the shapes of the CO₂ and SO₂ molecules.",
+          "question_id": "ts_ipe_c1_cb_vsepr_shapes_co2_so2",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What is resonance? Explain it with the ozone molecule as an example.",
+          "question_id": "ts_ipe_c1_cb_resonance",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is an ionic bond? Which conditions favour its formation? Explain the formation of sodium chloride.",
+          "question_id": "ts_ipe_c1_cb_ionic_bond_formation",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "States of Matter (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Which of the gases N₂, O₂ and CH₄ diffuses faster? Why?",
+          "question_id": "ts_ipe_c1_som_fastest_diffusing_gas"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "How many times does methane diffuse faster than sulphur dioxide?",
+          "question_id": "ts_ipe_c1_som_ch4_vs_so2_diffusion"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is Boltzmann's constant? Give its value.",
+          "question_id": "ts_ipe_c1_som_boltzmann_constant"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "What is compressibility factor?",
+          "question_id": "ts_ipe_c1_som_compressibility_factor"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Calculate the kinetic energy of 5 moles of nitrogen at 27 °C.",
+          "question_id": "ts_ipe_c1_som_ke_5mol_nitrogen"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "What is coefficient of viscosity? Give its units.",
+          "question_id": "ts_ipe_c1_som_coefficient_of_viscosity"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the RMS speed of CO₂ gas at 27 °C.",
+          "question_id": "ts_ipe_c1_som_rms_avg_mp_co2",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Write the van der Waals equation.",
+          "question_id": "ts_ipe_c1_som_van_der_waals_equation"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Calculate the kinetic energy (in SI units) of 4 g of methane at −73 °C.",
+          "question_id": "ts_ipe_c1_som_ke_4g_methane"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Calculate the ratio of kinetic energies of 3 g of hydrogen and 4 g of oxygen at a given temperature.",
+          "question_id": "ts_ipe_c1_som_ke_ratio_h2_o2"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Why is a pressure cooker used for cooking food on hills?",
+          "question_id": "ts_ipe_c1_som_pressure_cooker_hills"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "What are isotherms?",
+          "question_id": "ts_ipe_c1_som_isotherms"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 1,
+          "text": "What are isobars?",
+          "question_id": "ts_ipe_c1_som_isobars"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 1,
+          "text": "What are isochores?",
+          "question_id": "ts_ipe_c1_som_isochores"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 1,
+          "text": "Why is the gas constant R called the universal gas constant?",
+          "question_id": "ts_ipe_c1_som_universal_gas_constant"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 1,
+          "text": "What is critical temperature? Give its value for CO₂.",
+          "question_id": "ts_ipe_c1_som_critical_temperature"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 2,
+          "text": "What is surface tension?",
+          "question_id": "ts_ipe_c1_som_surface_tension"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 2,
+          "text": "What is gram molar volume (GMV)?",
+          "question_id": "ts_ipe_c1_som_gram_molar_volume"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 2,
+          "text": "Give the ratio of RMS, average and most probable speeds of gas molecules.",
+          "question_id": "ts_ipe_c1_som_speed_ratio"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Calculate the kinetic energy of 2 moles of nitrogen at 27 °C.",
+          "question_id": "ts_ipe_c1_som_ke_2mol_nitrogen"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Write the effect of temperature on surface tension and viscosity. Give the reason for it.",
+          "question_id": "ts_ipe_c1_som_temp_surface_tension_viscosity"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "State Graham's law of diffusion.",
+          "question_id": "ts_ipe_c1_som_grahams_law",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "State Dalton's law of partial pressures.",
+          "question_id": "ts_ipe_c1_som_daltons_law",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "What is RMS speed?",
+          "question_id": "ts_ipe_c1_som_rms_speed_definition"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What is most probable speed?",
+          "question_id": "ts_ipe_c1_som_most_probable_speed"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Calculate the amount of carbon dioxide that could be produced when one mole of carbon is burnt in 16 g of dioxygen.",
+          "question_id": "ts_ipe_c1_som_co2_from_carbon_o2"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "What is Boyle temperature?",
+          "question_id": "ts_ipe_c1_som_boyle_temperature"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State and explain Graham's law of diffusion. Give its applications.",
+          "question_id": "ts_ipe_c1_som_grahams_law",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "State and explain Dalton's law of partial pressures.",
+          "question_id": "ts_ipe_c1_som_daltons_law",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Deduce (a) Boyle's law (b) Charles' law (c) Graham's law (d) Dalton's law from the kinetic gas equation.",
+          "question_id": "ts_ipe_c1_som_deduce_laws_from_kge"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Write the postulates of the kinetic molecular theory of gases.",
+          "question_id": "ts_ipe_c1_som_kinetic_theory_postulates"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the RMS speed, average speed and most probable speed of CO₂ gas at 27 °C.",
+          "question_id": "ts_ipe_c1_som_rms_avg_mp_co2",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write an expression for the kinetic energy of a gas molecule.",
+          "question_id": "ts_ipe_c1_som_ke_expression_per_mole"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "360 cm³ of CH₄ gas diffused through a porous membrane in 15 minutes. Under similar conditions, 120 cm³ of another gas diffused in 10 minutes. Find the molar mass of the gas.",
+          "question_id": "ts_ipe_c1_som_diffusion_find_molar_mass"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Derive the ideal gas equation.",
+          "question_id": "ts_ipe_c1_som_ideal_gas_equation"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "State Boyle's law. Write its mathematical form.",
+          "question_id": "ts_ipe_c1_som_boyles_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "State Charles' law. Write its mathematical form.",
+          "question_id": "ts_ipe_c1_som_charles_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "State Avogadro's law.",
+          "question_id": "ts_ipe_c1_som_avogadros_law",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "What is aqueous tension?",
+          "question_id": "ts_ipe_c1_som_aqueous_tension",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "What is vapour pressure? How is it related to the boiling point?",
+          "question_id": "ts_ipe_c1_som_vapour_pressure_boiling",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the different types of intermolecular forces.",
+          "question_id": "ts_ipe_c1_som_intermolecular_forces",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Why do real gases deviate from ideal behaviour?",
+          "question_id": "ts_ipe_c1_som_real_gas_deviation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Describe the Maxwell distribution of molecular speeds. What happens to the distribution when the temperature is raised?",
+          "question_id": "ts_ipe_c1_som_maxwell_distribution",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Stoichiometry (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What are disproportionation reactions? Give example.",
+          "question_id": "ts_ipe_c1_st_disproportionation"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "What are comproportionation reaction? Give an example?",
+          "question_id": "ts_ipe_c1_st_comproportionation"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "How many number of moles of glucose are present in 540 grams of glucose.",
+          "question_id": "ts_ipe_c1_st_moles_in_540g_glucose"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How many molecules of glucose are present in 5.23gm of glucose",
+          "question_id": "ts_ipe_c1_st_molecules_in_glucose"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "The empirical formula of a compound is CH2O it molecular weight is 90 calculate the molecular formula of the compound.",
+          "question_id": "ts_ipe_c1_st_ch2o_molecular_formula"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Calculate the volume of O2 at STP required to completely burn 100 ml of acetylene.",
+          "question_id": "ts_ipe_c1_st_o2_for_acetylene"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Calculate the molarity of NaOH in the solution prepared dissolving 4gr in enough water to from 250 ml of the solution?",
+          "question_id": "ts_ipe_c1_st_molarity_naoh"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Calculate the normality of oxalic acid solution containing 6.3 gr H2C2O4.2H2O in 500 ml of solution?",
+          "question_id": "ts_ipe_c1_st_normality_oxalic_acid"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Calculate the mass of Na2CO3 required to prepare 250 ml of 0.5 N solution.",
+          "question_id": "ts_ipe_c1_st_mass_na2co3_for_normality"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Calculate the weight of 0.1 mole of sodium carbonate (Na2CO3)?",
+          "question_id": "ts_ipe_c1_st_weight_na2co3"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "A solution is prepared by adding 2 gr of a substance A to 18 gr H2O. Calculate the mass percentage of solute?",
+          "question_id": "ts_ipe_c1_st_mass_percent_solute"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Assign oxidation number of the underlined element NaHSO4 (S underlined).",
+          "question_id": "ts_ipe_c1_st_ox_number_nahso4"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Calculate the oxidation number on chromium atom in Cr2O7 2-.",
+          "question_id": "ts_ipe_c1_st_ox_number_cr2o7"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Assign oxiation number to the underlined elements in each of the following species. a) K2MnO4 (Mn) b) H2S2O7 (S)",
+          "question_id": "ts_ipe_c1_st_ox_numbers_k2mno4_h2s2o7"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What do you mean by significant figures.",
+          "question_id": "ts_ipe_c1_st_significant_figures"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is a redox concept? Give an example.",
+          "question_id": "ts_ipe_c1_st_redox_concept"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Balance the reaction MnO4- + SO3 2- -> Mn2+ + SO4 2- in acid medium (or) Write the balanced equation for the oxidation of sulphite ions to sulphate ions in acid medium by permanganate ion.",
+          "question_id": "ts_ipe_c1_st_bal_mno4_so3_acid"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Balancing the following equation Cr(OH)3 + IO3- -> I- + CrO4 2- (or) Balance the above equation basic medium.",
+          "question_id": "ts_ipe_c1_st_bal_croh3_io3_basic"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Chemical analysis of a carbon compound gave the following percentage composition by weight of the elements present carbon = 10.06%; Hydrogen = 0.84%; chlorine = 89.10% Calculate the empirical formula of the compound?",
+          "question_id": "ts_ipe_c1_st_ef_chcl3"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A carbon compound contains 12.8% carbon 2.1% Hydrogen 85.1% bromine. The molecular weight of the compound is 187.9 calculate the molecular formula.",
+          "question_id": "ts_ipe_c1_st_mf_c2h4br2"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Calculate the oxidation state of following compounds. a) KMnO4 b) K2Cr2O7 c) MnO4- d) C12H22O11 e) OF2 f) O2F2",
+          "question_id": "ts_ipe_c1_st_ox_states_six_species"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Balance the reaction Cr2O7 2- + NO2- -> Cr3+ + NO3- in acid medium",
+          "question_id": "ts_ipe_c1_st_bal_cr2o7_no2_acid"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Write the balanced Ionic equation which represents the oxidation of Iodide (I-) Ion by permanganate ion in basic medium to give iodine (I2) and manganese dioxide (MnO2)",
+          "question_id": "ts_ipe_c1_st_bal_mno4_iodide_basic"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "A carbon compound catains 4.07% hydrogen, 24.27 % carbon and 71.65% chlorine. Its nuclear mass is 98.96 gm. What are its empirical and molecular formulas?",
+          "question_id": "ts_ipe_c1_st_ef_mf_c2h4cl2"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Balance the following redox reactions by ion electron method. MnO4-(aq) + SO2(g) -> Mn2+(aq) + HSO4- (in acidic medium) [March-09]",
+          "question_id": "ts_ipe_c1_st_bal_mno4_so2_acid"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Balance the following redox reactions by ion electron method. (in acidic medium) [March-09] Cr2O7 2-(aq) + SO2(g) -> Cr3+(aq) + SO4 2-(aq)",
+          "question_id": "ts_ipe_c1_st_bal_cr2o7_so2_acid"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 1,
+          "text": "A carbon compound on analysis gave the following percentage composition carbon 14.5%; Hydrogen 1.8%; Chlorine 64.46%; Oxygen 19.24%; Calculate the empirical formula of the compound.",
+          "question_id": "ts_ipe_c1_st_ef_c2h3cl3o2"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "Calculate the empirical formula of a compound having percentage composition K = 26.57%, Cr = 35.36%, O = 38.07%. (Mar 07)",
+          "question_id": "ts_ipe_c1_st_ef_k2cr2o7"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "State the law of conservation of mass.",
+          "question_id": "ts_ipe_c1_st_law_conservation_mass",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "State the law of definite proportions.",
+          "question_id": "ts_ipe_c1_st_law_definite_proportions",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State the law of multiple proportions with an example.",
+          "question_id": "ts_ipe_c1_st_law_multiple_proportions",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State Gay-Lussac's law of combining volumes and Avogadro's law.",
+          "question_id": "ts_ipe_c1_st_gay_lussac_avogadro_laws",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define the mole. What is Avogadro's number?",
+          "question_id": "ts_ipe_c1_st_mole_avogadro_number",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define molality and mole fraction.",
+          "question_id": "ts_ipe_c1_st_molality_mole_fraction",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What is a limiting reagent?",
+          "question_id": "ts_ipe_c1_st_limiting_reagent",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain oxidation and reduction in terms of (a) oxygen, (b) hydrogen and (c) electron transfer, with one example each.",
+          "question_id": "ts_ipe_c1_st_oxidation_reduction_three_senses",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Thermodynamics (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Define system. Give an example.",
+          "question_id": "ts_ipe_c1_td_define_system"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "What are extensive and intensive properties? Give examples.",
+          "question_id": "ts_ipe_c1_td_extensive_intensive"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Give the equation that gives the relationship between ΔU and ΔH.",
+          "question_id": "ts_ipe_c1_td_dh_du_relation"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Define the following terms: a) Entropy b) Heat capacity c) Absolute entropy",
+          "question_id": "ts_ipe_c1_td_define_entropy_terms"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What are the ΔH sign conventions for exothermic and endothermic reactions?",
+          "question_id": "ts_ipe_c1_td_dh_sign_convention"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "State the second law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_second_law"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State the third law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_third_law"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Explain Gibbs energy.",
+          "question_id": "ts_ipe_c1_td_gibbs_energy"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "What is an isolated system? Give an example.",
+          "question_id": "ts_ipe_c1_td_isolated_system"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "What are exothermic and endothermic reactions?",
+          "question_id": "ts_ipe_c1_td_exo_endo_reactions"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Write the relation between Cp and Cv for an ideal gas.",
+          "question_id": "ts_ipe_c1_td_cp_cv_relation",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 1,
+          "text": "The equilibrium constant for a reaction is 10. What will be the value of ΔG°? (R = 8.314 J K⁻¹ mol⁻¹, T = 300 K)",
+          "question_id": "ts_ipe_c1_td_dg_from_k"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 1,
+          "text": "Define lattice enthalpy.",
+          "question_id": "ts_ipe_c1_td_lattice_enthalpy"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "State and explain Hess law of constant heat summation with example.",
+          "question_id": "ts_ipe_c1_td_hess_law"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Give the mathematical form of the first law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_first_law_math"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 1,
+          "text": "Write a short note on enthalpies for different types of reactions.",
+          "question_id": "ts_ipe_c1_td_reaction_enthalpies"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define heat capacity. What are Cp and Cv? Show that Cp − Cv = R.",
+          "question_id": "ts_ipe_c1_td_cp_cv_relation",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is entropy? Explain with an example.",
+          "question_id": "ts_ipe_c1_td_entropy_explained"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What are open and closed systems? Give one example of each.",
+          "question_id": "ts_ipe_c1_td_open_closed_systems",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is a state function? Give examples.",
+          "question_id": "ts_ipe_c1_td_state_function",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "State the first law of thermodynamics.",
+          "question_id": "ts_ipe_c1_td_first_law_statement",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Define enthalpy of a system.",
+          "question_id": "ts_ipe_c1_td_define_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Define enthalpy of neutralisation. What is its value for a strong acid and a strong base?",
+          "question_id": "ts_ipe_c1_td_neutralisation_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Define bond enthalpy. Give an example.",
+          "question_id": "ts_ipe_c1_td_bond_enthalpy",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "What is a spontaneous process? Give an example.",
+          "question_id": "ts_ipe_c1_td_spontaneous_process",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Using ΔG = ΔH − TΔS, explain how the signs of ΔH and ΔS and the temperature decide whether a process is spontaneous.",
+          "question_id": "ts_ipe_c1_td_dg_sign_spontaneity",
+          "source": "enumerated"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Chemical Equilibrium, Acids and Bases (Chemistry)",
+      "subject": "chemistry",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Define dynamic equilibrium.",
+          "question_id": "ts_ipe_c1_ce_dynamic_equilibrium"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Write the relationship between Kp and Kc.",
+          "question_id": "ts_ipe_c1_ce_kp_kc_relation",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "What is a conjugate acid-base pair?",
+          "question_id": "ts_ipe_c1_ce_conjugate_pair",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "What is meant by ionic product of water? Give its value at 25 °C.",
+          "question_id": "ts_ipe_c1_ce_ionic_product_water"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "What is meant by salt hydrolysis?",
+          "question_id": "ts_ipe_c1_ce_salt_hydrolysis"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is a Lewis acid? Give one example.",
+          "question_id": "ts_ipe_c1_ce_lewis_theory",
+          "cut": "vsaq"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is the effect of pressure on a gaseous chemical equilibrium?",
+          "question_id": "ts_ipe_c1_ce_pressure_effect"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "What is Le Chatelier's principle? Discuss briefly the factors which can influence the equilibrium.",
+          "question_id": "ts_ipe_c1_ce_lechatelier_principle"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Discuss the application of Le Chatelier's principle for the industrial synthesis of NH₃ and SO₃.",
+          "question_id": "ts_ipe_c1_ce_lechatelier_industrial"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Explain Lewis acid-base theory with examples.",
+          "question_id": "ts_ipe_c1_ce_lewis_theory",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Define pH. Calculate the pH of a) 10⁻³ M HCl, b) 10⁻³ M H₂SO₄, c) 0.001 M NaOH, d) 0.0008 M Ba(OH)₂.",
+          "question_id": "ts_ipe_c1_ce_ph_calculations"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "What are homogeneous and heterogeneous equilibria? Give suitable examples.",
+          "question_id": "ts_ipe_c1_ce_homo_hetero_equilibrium"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Write a short note on Brønsted–Lowry acid-base theory.",
+          "question_id": "ts_ipe_c1_ce_bronsted_lowry_theory"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "What are buffer solutions? Explain the types of buffer solutions.",
+          "question_id": "ts_ipe_c1_ce_buffer_solutions"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Derive the relation between Kp and Kc for the following reactions: (i) 2HI(g) ⇌ H₂(g) + I₂(g), (ii) N₂(g) + 3H₂(g) ⇌ 2NH₃(g), (iii) 2SO₂(g) + O₂(g) ⇌ 2SO₃(g), (iv) CaCO₃(s) ⇌ CaO(s) + CO₂(g).",
+          "question_id": "ts_ipe_c1_ce_kp_kc_four_reactions"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is a conjugate acid-base pair? Write the conjugate acid and conjugate base of each of the following: (a) OH⁻ (b) HCO₃⁻",
+          "question_id": "ts_ipe_c1_ce_conjugate_pair",
+          "cut": "saq"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Derive the relation between Kp and Kc for an equilibrium reaction.",
+          "question_id": "ts_ipe_c1_ce_kp_kc_relation",
+          "cut": "saq"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "State the law of mass action.",
+          "question_id": "ts_ipe_c1_ce_law_of_mass_action",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Define the reaction quotient Q. How is it used to predict the direction of a reaction?",
+          "question_id": "ts_ipe_c1_ce_reaction_quotient",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the effect of a catalyst on a chemical equilibrium?",
+          "question_id": "ts_ipe_c1_ce_catalyst_effect",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What is the effect of temperature on the value of the equilibrium constant?",
+          "question_id": "ts_ipe_c1_ce_temperature_effect_kc",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What is an Arrhenius acid and an Arrhenius base? Give one example of each.",
+          "question_id": "ts_ipe_c1_ce_arrhenius_theory",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What is the common ion effect? Give one example.",
+          "question_id": "ts_ipe_c1_ce_common_ion_effect",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Define solubility product. Write the solubility product expression for AgCl.",
+          "question_id": "ts_ipe_c1_ce_solubility_product",
+          "source": "enumerated"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define degree of dissociation and derive Ostwald's dilution law for a weak acid.",
+          "question_id": "ts_ipe_c1_ce_ostwald_dilution_law",
           "source": "enumerated"
         }
       ]

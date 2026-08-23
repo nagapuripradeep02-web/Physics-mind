@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ch2o_molecular_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The empirical formula of a compound is CH₂O and its molecular weight is 90. Calculate the molecular formula of the compound.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Finding n",
+      "marks": 1
+    },
+    {
+      "label": "The molecular formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_n",
+        "kind": "equation",
+        "label": "Finding n",
+        "marks": 1,
+        "mark_note": "Formula for n",
+        "lines": [
+          "Empirical formula weight of CH₂O",
+          "= 12 + (2 × 1) + 16 = 30",
+          {
+            "text": "n = molecular weight / empirical formula weight",
+            "style": "eq"
+          },
+          "n = 90 / 30 = 3"
+        ],
+        "why": "The molecular formula is a whole-number multiple of the empirical formula. Dividing the molecular weight by the empirical formula weight gives that multiple n.",
+        "common_mistakes": [
+          "Using 12 + 1 + 16 = 29 for CH₂O. There are TWO hydrogen atoms: 12 + 2 + 16 = 30.",
+          "Inverting the ratio and writing n = 30 / 90."
+        ],
+        "memory_tip": "n asks how many empirical units fit inside one molecule: big weight divided by small weight.",
+        "margin_note": "The empirical formula weight 30 with its sum shown earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The molecular formula",
+        "marks": 1,
+        "mark_note": "Molecular formula",
+        "lines": [
+          "Molecular formula = (empirical formula) × n",
+          "= (CH₂O) × 3",
+          {
+            "text": "Molecular formula = C₃H₆O₃",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying every subscript of CH₂O by n = 3 gives the molecular formula. A check: C₃H₆O₃ weighs 36 + 6 + 48 = 90, which matches the given molecular weight.",
+        "common_mistakes": [
+          "Writing (CH₂O)₃ and stopping. Expand it to C₃H₆O₃.",
+          "Multiplying only the carbon subscript by 3."
+        ],
+        "memory_tip": "Multiply every subscript by n, then confirm the formula weighs 90.",
+        "margin_note": "Box C₃H₆O₃. The weight check 36 + 6 + 48 = 90 is a free safety line."
+      }
+    ]
+  },
+  "insider_note": "A three-star staple. The examiner looks for the empirical formula weight 30 computed on the page — the answer C₃H₆O₃ with no visible n = 90/30 loses the first mark."
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_boyles_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Boyle's law. Write its mathematical form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) deduces Boyle's law from the kinetic gas equation and uses it in the ideal-gas derivation, but never asks its plain statement — a standard board archetype for a named law. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Boyle's law: at constant temperature, the volume",
+          "of a fixed mass of gas is inversely proportional",
+          "to its pressure."
+        ],
+        "why": "The law compares states of ONE sample at ONE temperature, so fixed mass and constant temperature are part of the statement, not extra detail.",
+        "common_mistakes": [
+          "Leaving out at constant temperature.",
+          "Saying directly proportional. Squeeze a gas to higher pressure and its volume FALLS."
+        ],
+        "memory_tip": "Boyle holds temperature; when pressure rises, volume falls.",
+        "margin_note": "Fixed mass and constant temperature are the two marked conditions."
+      },
+      {
+        "id": "s2_math",
+        "kind": "boxed_final",
+        "label": "The mathematical form",
+        "marks": 1,
+        "mark_note": "Mathematical form",
+        "lines": [
+          "V ∝ 1/P, so PV = constant (at constant T, n)",
+          {
+            "text": "P₁V₁ = P₂V₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "If PV is one constant for the sample, any two states of that sample share it — which gives the two-state form P₁V₁ = P₂V₂ that numericals use.",
+        "common_mistakes": [
+          "Writing P₁V₂ = P₂V₁. Each subscript pairs a pressure with ITS OWN volume.",
+          "Forgetting the condition (constant T) beside the boxed form."
+        ],
+        "memory_tip": "Same state, same subscript: 1 with 1, 2 with 2.",
+        "margin_note": "Either PV = constant or P₁V₁ = P₂V₂ earns the mark; the boxed two-state form is the working tool."
+      }
+    ]
+  }
+}

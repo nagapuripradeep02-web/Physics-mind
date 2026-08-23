@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_law_multiple_proportions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of multiple proportions with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) skips the laws of chemical combination entirely, though they open the syllabus chapter. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "text",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Law of multiple proportions (Dalton): when two",
+          "elements combine to form more than one compound,",
+          "the masses of one element that combine with a",
+          "fixed mass of the other element are in a simple",
+          "whole-number ratio."
+        ],
+        "why": "Atoms combine in whole numbers, so if the same pair of elements forms two compounds, the second element's masses against a fixed first mass must relate as small whole numbers.",
+        "common_mistakes": [
+          "Confusing this with the law of definite proportions, which is about ONE compound.",
+          "Leaving out 'fixed mass of the other element' — without it the ratio has no meaning."
+        ],
+        "memory_tip": "Definite: one compound, one ratio. Multiple: two compounds, whole-number ratio between them.",
+        "margin_note": "The phrase fixed mass of the other element must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "In CO and CO₂, oxygen masses per 12 g of carbon are 16 g and 32 g — ratio 1 : 2",
+            "style": "boxed"
+          },
+          "Carbon and oxygen form two compounds;",
+          "16 : 32 = 1 : 2, a simple whole-number ratio."
+        ],
+        "why": "CO and CO₂ show the law with the smallest numbers: fixing carbon at 12 g, the combining oxygen doubles from 16 g to 32 g.",
+        "common_mistakes": [
+          "Quoting the two compounds without the fixed 12 g of carbon and the two oxygen masses."
+        ],
+        "memory_tip": "CO to CO₂: one more oxygen atom, so exactly double the oxygen mass.",
+        "margin_note": "H₂O and H₂O₂ (8 g and 16 g of O per 1 g of H) is an equally accepted example."
+      }
+    ]
+  }
+}

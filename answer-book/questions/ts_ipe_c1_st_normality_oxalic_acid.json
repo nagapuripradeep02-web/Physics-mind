@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_normality_oxalic_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the normality of an oxalic acid solution containing 6.3 g of H₂C₂O₄·2H₂O in 500 mL of solution.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equivalent weight and formula",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Equivalent weight and formula",
+        "marks": 1,
+        "mark_note": "GEW and formula",
+        "lines": [
+          "GMW of H₂C₂O₄·2H₂O = 90 + 36 = 126 g mol⁻¹",
+          "Basicity of oxalic acid = 2 (two acidic H)",
+          {
+            "text": "GEW = GMW / basicity = 126 / 2 = 63",
+            "style": "eq"
+          },
+          {
+            "text": "Normality N = (weight / GEW) × (1000 / V in mL)",
+            "style": "eq"
+          },
+          "N = (6.3 / 63) × (1000 / 500)"
+        ],
+        "why": "Normality counts gram equivalents per litre. Oxalic acid gives two H⁺ per molecule, so its equivalent weight is half its molar mass — and the molar mass must include the two water molecules of crystallisation.",
+        "common_mistakes": [
+          "Using 90 (anhydrous H₂C₂O₄) instead of 126 for the hydrated acid.",
+          "Dividing by basicity 1. Oxalic acid is dibasic: GEW = 126/2 = 63."
+        ],
+        "memory_tip": "Hydrated oxalic acid: 90 for the acid plus 36 for the two waters gives 126, and dibasic halves it to 63.",
+        "margin_note": "GEW = 63 with the basicity shown earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "N = 0.1 × 2",
+          {
+            "text": "N = 0.2 N",
+            "style": "boxed"
+          }
+        ],
+        "why": "6.3/63 = 0.1 gram equivalent in 500 mL; one litre is twice 500 mL, so one litre holds 0.2 gram equivalents.",
+        "common_mistakes": [
+          "Forgetting the 1000/500 = 2 factor and answering 0.1 N.",
+          "Writing the answer without the unit N."
+        ],
+        "memory_tip": "Half a litre holds 0.1 equivalent, so the full litre holds 0.2.",
+        "margin_note": "Box 0.2 N. The unit N (gram equivalents per litre) is part of the mark."
+      }
+    ]
+  },
+  "insider_note": "Two traps in one two-marker: the water of crystallisation inside 126, and the basicity 2 inside 63. The examiner reads the GEW line before anything else."
+}

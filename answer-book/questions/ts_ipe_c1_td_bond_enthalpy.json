@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_bond_enthalpy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define bond enthalpy. Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: bond enthalpy is a standard enthalpy type in the syllabus that the book's enthalpy-types SAQ (formation, fusion, vapourisation, sublimation, combustion) skips entirely. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Bond enthalpy: the enthalpy change when",
+          "one mole of bonds of a given type is",
+          "broken, with all species in the gaseous",
+          "state.",
+          "Breaking a bond absorbs energy, so bond",
+          "enthalpy is always positive."
+        ],
+        "why": "A bond holds two atoms together, so pulling them apart needs energy from outside — bond breaking is endothermic by definition.",
+        "common_mistakes": [
+          "Leaving out the gaseous state — in a liquid or solid, other interactions mix into the value.",
+          "Writing a negative bond enthalpy. Breaking absorbs; forming releases."
+        ],
+        "memory_tip": "Breaking costs energy, forming returns it — bond enthalpy is the breaking side, so it is positive.",
+        "margin_note": "One mole of bonds, gaseous state, positive sign."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example:",
+          {
+            "text": "H₂(g) → 2H(g)   ΔH = +435.9 kJ mol⁻¹",
+            "style": "eq"
+          },
+          "In molecules with several equal bonds,",
+          "such as CH₄, the mean (average) bond",
+          "enthalpy is used.",
+          {
+            "text": "Bond breaking absorbs energy: ΔH(bond) > 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "H₂ is the cleanest example because it has exactly one bond. In CH₄ the four C−H bonds break one after another with different values, so their average is quoted.",
+        "common_mistakes": [
+          "Using a solid or a solution in the example equation — every species must be gaseous."
+        ],
+        "memory_tip": "H₂ to 2H costs about 436 kJ per mole — one bond, one clean number.",
+        "margin_note": "The mean-bond-enthalpy line covers the polyatomic case."
+      }
+    ]
+  }
+}

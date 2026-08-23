@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_lechatelier_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is Le Chatelier's principle? Discuss briefly the factors which can influence the equilibrium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "Concentration",
+      "marks": 1
+    },
+    {
+      "label": "Pressure",
+      "marks": 1
+    },
+    {
+      "label": "Temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book spells the name Lechatelier; this card uses the standard spelling Le Chatelier. The book's factor list omits the catalyst; this card adds one unmarked line stating that a catalyst does not shift the equilibrium."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Le Chatelier's principle: when a change in",
+          "concentration, pressure or temperature is",
+          "applied to a system at equilibrium, the",
+          "equilibrium shifts in the direction that",
+          "reduces that change."
+        ],
+        "why": "The one sentence names the three changes and states the single rule; the three paragraphs below are this sentence applied to each factor in turn.",
+        "common_mistakes": [
+          "Writing that the system opposes or resists the change, as if it acted on purpose. State it literally: the equilibrium shifts in the direction that reduces the change.",
+          "Naming only one factor in the statement. Concentration, pressure and temperature all belong in it."
+        ],
+        "memory_tip": "One rule, three knobs: change something, and the shift goes the way that reduces that change.",
+        "margin_note": "One literal sentence. Each factor below is this rule applied once."
+      },
+      {
+        "id": "s2_concentration",
+        "kind": "text",
+        "label": "Concentration",
+        "marks": 1,
+        "mark_note": "Concentration",
+        "lines": [
+          "Concentration: increasing the concentration",
+          "of a reactant shifts the equilibrium in the",
+          "forward direction.",
+          "Increasing the concentration of a product",
+          "shifts it in the backward direction."
+        ],
+        "why": "Adding a substance raises its concentration; the shift that reduces this change is the one that uses that substance up — forward for an added reactant, backward for an added product.",
+        "common_mistakes": [
+          "Writing that adding a reactant shifts the equilibrium backward. The shift consumes what was added, so it goes forward.",
+          "Forgetting the product half of the statement."
+        ],
+        "memory_tip": "The shift eats the added substance: add reactant, go forward; add product, go backward.",
+        "margin_note": "Both halves — added reactant and added product — carry this mark."
+      },
+      {
+        "id": "s3_pressure",
+        "kind": "text",
+        "label": "Pressure",
+        "marks": 1,
+        "mark_note": "Pressure",
+        "lines": [
+          "Pressure: increasing the pressure shifts a",
+          "gaseous equilibrium towards the side with",
+          "the smaller number of gas moles.",
+          "Decreasing the pressure shifts it towards",
+          "the side with the larger number of gas",
+          "moles. (No effect when Δn = 0.)"
+        ],
+        "why": "Fewer gas moles occupy less volume and give a lower pressure, so moving to the smaller side is the shift that reduces a pressure increase.",
+        "common_mistakes": [
+          "Leaving out the Δn = 0 exception, where pressure changes nothing.",
+          "Counting solids and liquids in the mole count. Only gaseous moles decide the shift."
+        ],
+        "memory_tip": "Higher pressure pushes the reaction to the smaller side — fewer gas moles, less volume.",
+        "margin_note": "Write the Δn = 0 exception; it is the detail this factor is marked on."
+      },
+      {
+        "id": "s4_temperature",
+        "kind": "boxed_final",
+        "label": "Temperature",
+        "marks": 1,
+        "mark_note": "Temperature",
+        "lines": [
+          {
+            "text": "Raising the temperature shifts the equilibrium in the endothermic direction; lowering it shifts it in the exothermic direction",
+            "style": "boxed"
+          },
+          "A catalyst does not shift the equilibrium;",
+          "it only reduces the time needed to reach",
+          "equilibrium."
+        ],
+        "why": "The endothermic direction absorbs the added heat, so it is the direction that reduces a temperature rise. The catalyst line closes the factor list: rate changes, position does not.",
+        "common_mistakes": [
+          "Writing that heating always shifts the reaction forward. It shifts it in whichever direction is endothermic for that reaction.",
+          "Listing the catalyst as a factor that shifts the equilibrium. It does not; it changes only the time taken."
+        ],
+        "memory_tip": "Heat is treated like a substance: add heat, and the shift goes in the direction that absorbs heat.",
+        "margin_note": "The catalyst line is unmarked here but shows the factor list is complete."
+      }
+    ]
+  },
+  "insider_note": "Write the principle as one sentence, then give each factor its own labelled paragraph — the examiner marks the three factors separately."
+}

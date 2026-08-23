@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_lechatelier_industrial",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss the application of Le Chatelier's principle for the industrial synthesis of NH₃ and SO₃.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ammonia — reaction and reasoning",
+      "marks": 2
+    },
+    {
+      "label": "SO₃ — reaction and reasoning",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's heading prints 'application application' (a printing repeat) and spells the name Lechateliers; both are cleaned here. The book prints the enthalpies as -92.3KJ and -189KJ/mol; this card writes both as kJ."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ammonia_reaction",
+        "kind": "equation",
+        "label": "Ammonia — the reaction",
+        "marks": 1,
+        "mark_note": "Reaction and its nature",
+        "lines": [
+          "a) Industrial synthesis of ammonia",
+          "(Haber process):",
+          {
+            "text": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g)   ΔH = −92.3 kJ",
+            "style": "eq"
+          },
+          "The forward reaction is exothermic, and it",
+          "reduces the gas moles from 4 to 2."
+        ],
+        "why": "The two facts written under the equation — exothermic, and fewer gas moles on the right — are the only inputs Le Chatelier's principle needs; every condition in the next step follows from them.",
+        "common_mistakes": [
+          "Writing the equation without ΔH. The sign of ΔH is what decides the temperature condition.",
+          "Not counting the gas moles (4 on the left, 2 on the right). The count decides the pressure condition."
+        ],
+        "memory_tip": "Read two things off the equation: the sign of ΔH and the gas-mole count. The conditions follow.",
+        "margin_note": "Balanced equation with ΔH and the 4-to-2 mole count earns this mark."
+      },
+      {
+        "id": "s2_ammonia_conditions",
+        "kind": "text",
+        "label": "Ammonia — conditions",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "Temperature: low temperature gives a higher",
+          "yield of NH₃ (forward reaction is",
+          "exothermic), but the reaction is then too",
+          "slow. An optimum of about 725 − 775 K is",
+          "used.",
+          "Pressure: high pressure shifts the",
+          "equilibrium to the side with fewer gas",
+          "moles, so 200 − 300 atm is used.",
+          "Catalyst: finely divided iron; promoter: Mo."
+        ],
+        "why": "Yield and rate ask for different temperatures — low for yield, high for speed — so industry settles on an optimum. Pressure has no such conflict: high pressure helps both.",
+        "common_mistakes": [
+          "Writing simply 'low temperature is used'. The plant uses an optimum temperature because low temperature is too slow.",
+          "Leaving out the catalyst and promoter. They are part of the optimum conditions."
+        ],
+        "memory_tip": "Optimum temperature, high pressure, iron catalyst — the three-part answer for the Haber process.",
+        "margin_note": "The word optimum, with the reason for it, is what the examiner reads for."
+      },
+      {
+        "id": "s3_so3_reaction",
+        "kind": "equation",
+        "label": "SO₃ — the reaction",
+        "marks": 1,
+        "mark_note": "Reaction and its nature",
+        "lines": [
+          "b) Industrial synthesis of SO₃",
+          "(Contact process):",
+          {
+            "text": "2SO₂(g) + O₂(g) ⇌ 2SO₃(g)   ΔH = −189 kJ",
+            "style": "eq"
+          },
+          "This forward reaction is also exothermic,",
+          "and the gas moles decrease from 3 to 2."
+        ],
+        "why": "The SO₃ synthesis has the same two features as the ammonia one — exothermic and fewer gas moles on the right — so the same reasoning gives its conditions.",
+        "common_mistakes": [
+          "Writing the equation unbalanced as SO₂ + O₂ ⇌ SO₃. The balanced form is 2SO₂ + O₂ ⇌ 2SO₃.",
+          "Omitting ΔH or the mole count, which the conditions are argued from."
+        ],
+        "memory_tip": "Same pattern as ammonia: exothermic, and 3 gas moles become 2.",
+        "margin_note": "Balance the equation first — 2, 1, 2 are the coefficients."
+      },
+      {
+        "id": "s4_so3_conditions",
+        "kind": "boxed_final",
+        "label": "SO₃ — conditions",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "Temperature: low temperature gives more",
+          "SO₃ but is too slow, so an optimum of about",
+          "673 K is used.",
+          "Pressure: increase of pressure shifts the",
+          "equilibrium towards SO₃ (fewer gas moles).",
+          {
+            "text": "Optimum: about 673 K, 1.5 − 1.7 atm, catalyst V₂O₅",
+            "style": "boxed"
+          }
+        ],
+        "why": "The same yield-against-rate reasoning fixes the optimum temperature; the mole-count reasoning fixes the pressure; V₂O₅ is the named catalyst of the Contact process.",
+        "common_mistakes": [
+          "Writing the Haber conditions here. The Contact process runs near 673 K and only 1.5 − 1.7 atm.",
+          "Naming iron as the catalyst. The Contact process uses V₂O₅."
+        ],
+        "memory_tip": "Contact process: V₂O₅ — V for vanadium, the catalyst that separates it from Haber's iron.",
+        "margin_note": "Temperature, pressure and catalyst for SO₃ complete the four marks."
+      }
+    ]
+  },
+  "insider_note": "Both syntheses follow the same two-line logic — exothermic so an optimum temperature, fewer gas moles so raised pressure. Name the catalyst for each; that is where the last mark sits."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_o2_for_acetylene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the volume of O₂ at STP required to completely burn 100 mL of acetylene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Balanced equation and volume ratio",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book reaches the same 250 mL through a 22400 mL molar-volume detour; this card uses the direct Gay-Lussac volume ratio, which is the shorter exam route."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "Balanced equation and volume ratio",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          {
+            "text": "C₂H₂(g) + 5/2 O₂(g) → 2CO₂(g) + H₂O(l)",
+            "style": "eq"
+          },
+          "Atom check: C 2 = 2, H 2 = 2, O 5 = 4 + 1.",
+          "Gases at the same temperature and pressure react",
+          "in the mole ratio by volume (Gay-Lussac's law):",
+          "1 volume C₂H₂ needs 5/2 volumes O₂."
+        ],
+        "why": "For gases, mole ratio equals volume ratio at the same temperature and pressure. The balanced equation gives that ratio, so it must be written and checked first.",
+        "common_mistakes": [
+          "Using an unbalanced equation such as C₂H₂ + O₂ → CO₂ + H₂O.",
+          "Balancing with whole numbers as 2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O and then forgetting the ratio is still 5 O₂ per 2 C₂H₂."
+        ],
+        "memory_tip": "Acetylene C₂H₂ needs 5/2 O₂: two O for the two CO₂ pairs and half an O₂ for the single H₂O.",
+        "margin_note": "The balanced equation with the 1 : 5/2 volume ratio earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "V(O₂) = 5/2 × 100 mL",
+          {
+            "text": "V(O₂) = 250 mL at STP",
+            "style": "boxed"
+          }
+        ],
+        "why": "The volume ratio 5/2 applies directly to the given 100 mL of acetylene, so the oxygen volume is 5/2 × 100 = 250 mL.",
+        "common_mistakes": [
+          "Multiplying by 5 instead of 5/2 and writing 500 mL.",
+          "Dropping the unit mL from the final line."
+        ],
+        "memory_tip": "Two and a half times the acetylene volume: 100 mL becomes 250 mL.",
+        "margin_note": "Box 250 mL. No molar-volume conversion is needed when both substances are gases."
+      }
+    ]
+  },
+  "insider_note": "The whole question is the balanced equation. Once 5/2 is on the page the arithmetic is one multiplication, and an unbalanced equation loses both marks at once."
+}

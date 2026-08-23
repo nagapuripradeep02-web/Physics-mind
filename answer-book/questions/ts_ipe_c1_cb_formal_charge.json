@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_formal_charge",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define formal charge. Write the formula used to calculate it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula with example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: formal charge is an NCERT Chemical Bonding section that the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Formal charge: the charge assigned to an",
+          "atom in a Lewis structure, calculated by",
+          "taking the difference between the valence",
+          "electrons of the free atom and the",
+          "electrons assigned to that atom in the",
+          "structure."
+        ],
+        "why": "The definition is a counting rule, not a real charge: it assumes every shared pair is split equally between the two bonded atoms.",
+        "common_mistakes": [
+          "Calling formal charge the real charge on the atom. It is a counting device for comparing Lewis structures.",
+          "Leaving out in a Lewis structure — formal charge has no meaning outside one."
+        ],
+        "memory_tip": "What the free atom had, minus what the structure gives it.",
+        "margin_note": "The phrase in a Lewis structure anchors the definition."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula with example",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Formal charge = V − N − ½B",
+            "style": "boxed"
+          },
+          "V = valence electrons of the free atom,",
+          "N = non-bonding (lone pair) electrons,",
+          "B = bonding (shared) electrons.",
+          "Ex: central O of ozone: 6 − 2 − ½(6) = +1."
+        ],
+        "why": "The three symbols split the atom's electrons into kept and shared; halving B is the equal-sharing assumption from the definition.",
+        "common_mistakes": [
+          "Forgetting the half on B. Only half of each shared pair is assigned to the atom.",
+          "Swapping N and B when reading a structure quickly."
+        ],
+        "memory_tip": "Keep all lone electrons, keep half the shared ones, subtract both from V.",
+        "margin_note": "Name each symbol under the boxed formula, then show one worked value."
+      }
+    ]
+  }
+}

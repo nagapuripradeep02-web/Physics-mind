@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ch4_vs_so2_diffusion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many times does methane diffuse faster than sulphur dioxide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: √(64/16) = √4 = 2, matching the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Graham's law and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "r(CH₄) / r(SO₂) = √( M(SO₂) / M(CH₄) )",
+            "style": "eq"
+          },
+          "M(SO₂) = 32 + 2 × 16 = 64 g mol⁻¹",
+          "M(CH₄) = 12 + 4 × 1 = 16 g mol⁻¹",
+          "r(CH₄) / r(SO₂) = √(64 / 16)"
+        ],
+        "why": "Graham's law compares two rates as the inverse square root of the molar masses. The molar mass of the SLOWER gas sits on top inside the root, so the faster gas gets the ratio greater than 1.",
+        "common_mistakes": [
+          "Writing √(M(CH₄)/M(SO₂)) and getting ½. The heavier gas goes in the numerator inside the root.",
+          "Using wrong molar masses. Work them out from atomic masses on the page."
+        ],
+        "memory_tip": "Rates and molar masses swap places: rate of A over rate of B equals root of M of B over M of A.",
+        "margin_note": "Showing the two molar masses worked out earns this mark even before the arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "r(CH₄) / r(SO₂) = √4 = 2",
+          {
+            "text": "Methane diffuses 2 times faster than sulphur dioxide",
+            "style": "boxed"
+          }
+        ],
+        "why": "64 divided by 16 is 4, and the square root of 4 is 2. The ratio of two rates has no unit, so the answer is stated as a number of times.",
+        "common_mistakes": [
+          "Stopping at √4 without writing 2.",
+          "Answering 4 times by forgetting the square root."
+        ],
+        "memory_tip": "SO₂ is 4 times heavier than CH₄, and √4 = 2. A factor of 4 in mass is a factor of 2 in rate.",
+        "margin_note": "State the answer in words, as the question asks: 2 times faster."
+      }
+    ]
+  },
+  "insider_note": "The examiner checks whether the heavier molar mass sits inside the square root on top. That one placement is the whole question."
+}

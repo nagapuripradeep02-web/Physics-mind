@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_pcl5_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the hybridization involved in the PCl₅ molecule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "sp³d hybridisation of P",
+      "marks": 1
+    },
+    {
+      "label": "Overlap with chlorine",
+      "marks": 1
+    },
+    {
+      "label": "The diagram",
+      "marks": 1
+    },
+    {
+      "label": "Shape and bond angles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists the bond angles as 90°, 180° and 120°; the card states 120° (equatorial) and 90° (axial-equatorial), with 180° recorded as the axial-axial angle."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "sp³d hybridisation of P",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "lines": [
+          "In PCl₅ the central atom P undergoes sp³d",
+          "hybridisation.",
+          "Ground state of P :",
+          "1s² 2s² 2p⁶ 3s² 3p³",
+          "Excited state of P :",
+          "1s² 2s² 2p⁶ 3s¹ 3px¹ 3py¹ 3pz¹ 3d¹",
+          "One 3s, three 3p and one 3d orbital mix to",
+          "give five identical sp³d hybrid orbitals."
+        ],
+        "why": "Phosphorus has only three unpaired electrons in the ground state, but PCl₅ needs five bonds. Excitation of one 3s electron into 3d gives five half-filled orbitals, which then mix into five sp³d hybrids.",
+        "common_mistakes": [
+          "Writing sp³d² instead of sp³d. Five bonds need five hybrid orbitals, so only ONE d orbital joins.",
+          "Skipping the excited state line. The excitation is what creates the five unpaired electrons."
+        ],
+        "memory_tip": "Count the bonds first: five bonds means five hybrids, so s + three p + one d.",
+        "margin_note": "Write the excited state configuration before naming the hybrids."
+      },
+      {
+        "id": "s2_overlap",
+        "kind": "text",
+        "label": "Overlap with chlorine",
+        "marks": 1,
+        "mark_note": "Overlap",
+        "lines": [
+          "Chlorine :",
+          "1s² 2s² 2p⁶ 3s² 3px² 3py² 3pz¹",
+          "Each half-filled sp³d hybrid orbital of P",
+          "axially overlaps the half-filled 3p orbital",
+          "of one Cl atom.",
+          "Five σ(sp³d–p) bonds are formed."
+        ],
+        "why": "The bond count follows from the overlap: five hybrids on P, one half-filled 3p orbital on each Cl, so five axial overlaps and five σ bonds.",
+        "common_mistakes": [
+          "Calling the P–Cl bonds π bonds. Axial overlap gives σ bonds.",
+          "Leaving out chlorine's configuration, which shows WHY each Cl brings exactly one half-filled orbital."
+        ],
+        "memory_tip": "Each Cl brings one half-filled 3p orbital; each P hybrid meets one of them.",
+        "margin_note": "Name the bond type in full: σ(sp³d–p)."
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pcl5_trigonal_bipyramid",
+          "width": 500,
+          "height": 350,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bond_axial_top",
+              "d": "M 250 165 L 250 78",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bond_axial_bottom",
+              "d": "M 250 195 L 250 282",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bond_eq_right",
+              "d": "M 266 180 L 372 180",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bond_eq_back",
+              "d": "M 236 172 L 140 142",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "bond_eq_front",
+              "d": "M 238 190 L 158 242",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 255,
+              "y": 205,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_cl_top",
+              "x": 238,
+              "y": 60,
+              "text": "Cl",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_cl_bottom",
+              "x": 238,
+              "y": 316,
+              "text": "Cl",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_cl_right",
+              "x": 382,
+              "y": 186,
+              "text": "Cl",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_cl_back",
+              "x": 108,
+              "y": 136,
+              "text": "Cl",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_cl_front",
+              "x": 130,
+              "y": 262,
+              "text": "Cl",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_angle_90",
+              "x": 283,
+              "y": 122,
+              "text": "90°",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_angle_120",
+              "x": 172,
+              "y": 228,
+              "text": "120°",
+              "ms": 180,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The shape mark needs the drawn arrangement: two axial bonds on the vertical line and three equatorial bonds in the middle plane. The dashed bond shows one equatorial Cl behind the plane of the page.",
+        "common_mistakes": [
+          "Drawing all five Cl atoms at equal angles around P. Two are axial and three are equatorial, and they are not equivalent.",
+          "Leaving the angle labels off. The 90° and 120° labels carry part of the mark."
+        ],
+        "memory_tip": "Draw the vertical axis first (two Cl), then the triangle around the middle (three Cl).",
+        "margin_note": "A neat small diagram is enough. Label at least one 90° and one 120° angle."
+      },
+      {
+        "id": "s4_shape",
+        "kind": "boxed_final",
+        "label": "Shape and bond angles",
+        "marks": 1,
+        "mark_note": "Shape + angles",
+        "lines": [
+          {
+            "text": "Shape: trigonal bipyramidal — bond angles 120° and 90°",
+            "style": "boxed"
+          },
+          "Three equatorial bonds lie in one plane at",
+          "120° to each other; the two axial bonds",
+          "are at 90° to that plane.",
+          "The axial–axial angle is 180°."
+        ],
+        "why": "Naming the shape and giving the two distinct bond angles shows the geometry is understood, not just the hybrid count.",
+        "common_mistakes": [
+          "Writing a single bond angle. Trigonal bipyramidal has two different angles, 120° and 90°.",
+          "Calling the shape triangular bipyramidal or pentagonal. The name is trigonal bipyramidal."
+        ],
+        "memory_tip": "Five positions split as 3 + 2: three in the triangle (120°), two on the axis (90° to it).",
+        "margin_note": "Shape name plus both angles closes the answer."
+      }
+    ]
+  },
+  "insider_note": "Write the excited state configuration before naming the five hybrid orbitals — that line is where this question's method mark sits."
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_deduce_laws_from_kge",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Deduce (a) Boyle's law (b) Charles' law (c) Graham's law (d) Dalton's law from the kinetic gas equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Boyle's law",
+      "marks": 1
+    },
+    {
+      "label": "Charles' law",
+      "marks": 1
+    },
+    {
+      "label": "Graham's law",
+      "marks": 1
+    },
+    {
+      "label": "Dalton's law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented; this four-part deduction is dense for 4 marks and is flagged in the build report as Section-C-scale material for founder review. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. NOTATION: in the book's Boyle/Charles working, K is a proportionality constant from E ∝ T, not Boltzmann's constant; the card writes it as k (a constant) to keep the two apart."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_boyle",
+        "kind": "equation",
+        "label": "Boyle's law",
+        "marks": 1,
+        "mark_note": "Boyle",
+        "lines": [
+          {
+            "text": "PV = ⅓ mnU² = ⅔ (½ mnU²) = ⅔ E",
+            "style": "eq"
+          },
+          "(E = kinetic energy of the gas, U = RMS speed)",
+          "Kinetic energy is proportional to absolute",
+          "temperature: E = kT (k = a constant).",
+          "So PV = ⅔ kT. At constant T: PV = constant.",
+          "This is Boyle's law."
+        ],
+        "why": "The kinetic gas equation ties PV to the kinetic energy, and the kinetic theory postulate ties kinetic energy to T. Chaining the two makes PV a function of T alone — so fixing T fixes PV.",
+        "common_mistakes": [
+          "Skipping the E ∝ T postulate and jumping to PV = constant. The postulate is the marked link.",
+          "Reading k here as Boltzmann's constant. It is only a proportionality constant."
+        ],
+        "memory_tip": "All four deductions start the same way: PV = ⅓mnU², then bring in E ∝ T. For Boyle, hold T.",
+        "margin_note": "The factor split ⅓ = ⅔ × ½ turns mnU² into kinetic energy — write it explicitly."
+      },
+      {
+        "id": "s2_charles",
+        "kind": "equation",
+        "label": "Charles' law",
+        "marks": 1,
+        "mark_note": "Charles",
+        "lines": [
+          "From the same working: PV = ⅔ kT",
+          {
+            "text": "V = (2k / 3P) T",
+            "style": "eq"
+          },
+          "At constant P: V = constant × T, so V ∝ T.",
+          "This is Charles' law."
+        ],
+        "why": "The same equation PV = ⅔kT serves both laws — the deduction only changes which variable is held constant. Holding P instead of T leaves V proportional to T.",
+        "common_mistakes": [
+          "Re-deriving PV = ⅔kT from scratch and losing time. Refer to the Boyle working and continue.",
+          "Ending at V ∝ T without saying at constant pressure."
+        ],
+        "memory_tip": "Same equation, different constant: T held gives Boyle, P held gives Charles.",
+        "margin_note": "One rearrangement plus the constant-P condition earns this mark."
+      },
+      {
+        "id": "s3_graham",
+        "kind": "equation",
+        "label": "Graham's law",
+        "marks": 1,
+        "mark_note": "Graham",
+        "lines": [
+          "For one mole: PV = ⅓ MU² (M = molar mass)",
+          {
+            "text": "U = √(3PV / M) = √(3P / d)",
+            "style": "eq"
+          },
+          "(d = M/V, the density of the gas)",
+          "At constant pressure: U ∝ 1/√d.",
+          "Rate of diffusion ∝ molecular speed, so",
+          "r ∝ 1/√d. This is Graham's law."
+        ],
+        "why": "Solving the kinetic gas equation for the speed brings the density under a square root, and diffusion rate follows molecular speed — which is exactly the content of Graham's law.",
+        "common_mistakes": [
+          "Forgetting the step d = M/V that turns molar mass into density.",
+          "Dropping the constant-pressure condition before writing U ∝ 1/√d."
+        ],
+        "memory_tip": "Solve for the speed and density appears under the root — Graham's law is the kinetic equation read for U.",
+        "margin_note": "The linking sentence rate follows speed closes the deduction; without it the algebra is not yet the law."
+      },
+      {
+        "id": "s4_dalton",
+        "kind": "boxed_final",
+        "label": "Dalton's law",
+        "marks": 1,
+        "mark_note": "Dalton",
+        "lines": [
+          "Gas 1 alone in a vessel of volume V:",
+          "P₁ = ⅓ m₁n₁U₁² / V",
+          "Gas 2 alone in the same vessel:",
+          "P₂ = ⅓ m₂n₂U₂² / V",
+          "Both gases together (no reaction, no mutual",
+          "forces): each contributes its own term, so",
+          {
+            "text": "P = P₁ + P₂  —  Dalton's law of partial pressures",
+            "style": "boxed"
+          }
+        ],
+        "why": "Kinetic theory assumes molecules exert no forces on one another, so each gas strikes the walls exactly as it would alone. The wall pressure is then the sum of the separate contributions.",
+        "common_mistakes": [
+          "Using one shared U for both gases. Each gas keeps its own mass and its own RMS speed.",
+          "Forgetting the no-interaction assumption — it is the reason the pressures simply add."
+        ],
+        "memory_tip": "No forces between molecules means each gas presses on the walls as if alone — so the pressures add.",
+        "margin_note": "Two one-gas equations plus one addition line complete all four deductions."
+      }
+    ]
+  },
+  "insider_note": "Four deductions in one 4-mark question means one mark each — write each in three or four lines and label them (a) to (d) so the examiner can tick all four fast."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_isotopes_and_isobars",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isotopes and isobars? Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Isotopes",
+      "marks": 1
+    },
+    {
+      "label": "Isobars",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isotopes",
+        "kind": "text",
+        "label": "Isotopes",
+        "marks": 1,
+        "mark_note": "Isotopes",
+        "lines": [
+          "Isotopes: atoms of the same element having",
+          "the same atomic number but different mass",
+          "numbers.",
+          "Example: ¹H, ²H and ³H (hydrogen)"
+        ],
+        "why": "Isotopes have the same proton count, so they are the same element and behave the same chemically. They differ only in the number of neutrons, which changes the mass and nothing else.",
+        "common_mistakes": [
+          "Saying isotopes have different atomic numbers. Then they would be different elements.",
+          "Giving no example. The question asks for one."
+        ],
+        "memory_tip": "Isotopes: same element, different mass. Same Z, different A.",
+        "margin_note": "Carbon-12 and carbon-14 is also accepted as the example."
+      },
+      {
+        "id": "s2_isobars",
+        "kind": "boxed_final",
+        "label": "Isobars",
+        "marks": 1,
+        "mark_note": "Isobars",
+        "lines": [
+          {
+            "text": "Isobars: same mass number, different atomic numbers",
+            "style": "boxed"
+          },
+          "They are atoms of different elements.",
+          "Example: ⁴⁰Ar (Z = 18), ⁴⁰K (Z = 19) and",
+          "⁴⁰Ca (Z = 20)"
+        ],
+        "why": "Isobars have the same total nucleon count but a different split between protons and neutrons, so they are different elements that happen to weigh the same. This is the exact opposite of isotopes.",
+        "common_mistakes": [
+          "Swapping the two definitions. Isotopes share Z; isobars share A.",
+          "Giving isotopes of one element as the isobar example."
+        ],
+        "memory_tip": "Isotopes share the element. Isobars share the mass.",
+        "margin_note": "Write the atomic numbers beside the isobar example. It shows they are different elements."
+      }
+    ]
+  }
+}

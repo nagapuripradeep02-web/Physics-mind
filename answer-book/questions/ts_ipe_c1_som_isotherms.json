@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_isotherms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are isotherms?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The constant quantity and the law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Isotherms are the curves obtained when the",
+          "pressure of a gas is plotted against its volume",
+          "at constant temperature."
+        ],
+        "why": "Iso means same and therm means temperature: one curve collects all the P–V states of the gas that share one temperature.",
+        "common_mistakes": [
+          "Naming the wrong pair of axes. Isotherms are P against V.",
+          "Leaving out at constant temperature — that condition is the definition."
+        ],
+        "memory_tip": "Iso-therm: same temperature. The plotted pair is the other two variables, P and V.",
+        "margin_note": "Axes plus the constant quantity make the complete definition."
+      },
+      {
+        "id": "s2_detail",
+        "kind": "boxed_final",
+        "label": "The constant quantity and the law",
+        "marks": 1,
+        "mark_note": "Constant T",
+        "lines": [
+          {
+            "text": "Isotherm: a P–V curve of a gas at constant temperature",
+            "style": "boxed"
+          },
+          "Each temperature gives its own curve; Boyle's law",
+          "(PV = constant) is the behaviour along one isotherm."
+        ],
+        "why": "Connecting the curve to Boyle's law shows what the curve says: along it PV stays constant, which is why an ideal-gas isotherm bends like a rectangular hyperbola.",
+        "common_mistakes": [
+          "Attaching Charles' law here. Charles' law belongs to constant pressure, not constant temperature."
+        ],
+        "memory_tip": "Constant T goes with Boyle's law: PV = constant along every isotherm.",
+        "margin_note": "The Boyle's law link is the detail that separates a full answer from a bare definition."
+      }
+    ]
+  },
+  "insider_note": "The three cousin terms — isotherm, isobar, isochore — are asked as a set; keeping the constant quantity straight for each is the whole task."
+}

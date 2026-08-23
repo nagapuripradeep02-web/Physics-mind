@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_ionic_compound_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the general properties of ionic compounds.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State, melting and boiling points",
+      "marks": 1
+    },
+    {
+      "label": "Solubility",
+      "marks": 1
+    },
+    {
+      "label": "Electrical conductivity",
+      "marks": 1
+    },
+    {
+      "label": "Reactivity and isomerism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties; the card groups them into four marked lines (state with melting points, solubility, conductivity, reactivity with isomerism), each carrying its reason."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_mp",
+        "kind": "text",
+        "label": "State, melting and boiling points",
+        "marks": 1,
+        "mark_note": "State + m.p.",
+        "lines": [
+          "1. Physical state: ionic compounds are",
+          "crystalline solids at room temperature.",
+          "2. Melting and boiling points are high,",
+          "because strong electrostatic forces hold",
+          "the ions in the crystal lattice."
+        ],
+        "why": "Both properties come from the same cause: strong electrostatic attraction between oppositely charged ions holds them in fixed positions in a rigid lattice that needs much energy to break.",
+        "common_mistakes": [
+          "Stating high melting point without the reason. The electrostatic-forces sentence is part of the mark."
+        ],
+        "memory_tip": "Strong forces between ions: solid crystals, high melting point — one cause, two properties.",
+        "margin_note": "Attach the reason to the property in the same sentence."
+      },
+      {
+        "id": "s2_solubility",
+        "kind": "text",
+        "label": "Solubility",
+        "marks": 1,
+        "mark_note": "Solubility",
+        "lines": [
+          "3. Solubility: ionic compounds are soluble",
+          "in polar solvents such as water and liquid",
+          "ammonia, and insoluble in non-polar",
+          "solvents such as benzene."
+        ],
+        "why": "Polar solvent molecules attract the ions and separate them from the lattice; non-polar solvents cannot attract charged particles, so the lattice stays intact.",
+        "common_mistakes": [
+          "Writing soluble in all solvents. The polar or non-polar distinction IS the property.",
+          "Giving no example solvent. Water is expected."
+        ],
+        "memory_tip": "Charged ions dissolve in polar solvents; polar dissolves polar.",
+        "margin_note": "Name one polar and one non-polar solvent."
+      },
+      {
+        "id": "s3_conductivity",
+        "kind": "text",
+        "label": "Electrical conductivity",
+        "marks": 1,
+        "mark_note": "Conductivity",
+        "lines": [
+          "4. Electrical conductivity: bad conductors",
+          "in the solid state, because the ions are",
+          "fixed in the lattice.",
+          "Good conductors in the molten state and in",
+          "aqueous solution, because the ions are",
+          "then free to move."
+        ],
+        "why": "Conduction needs mobile charge carriers. The same ions are present in both states; only their freedom to move changes, which is why the property flips.",
+        "common_mistakes": [
+          "Writing that ionic solids conduct. In the solid the ions cannot move, so it does not conduct.",
+          "Saying electrons carry the current. In molten and dissolved ionic compounds the IONS carry it."
+        ],
+        "memory_tip": "Fixed ions, no current. Free ions (molten or dissolved), current flows.",
+        "margin_note": "The property is in two halves — solid against molten or dissolved. Write both."
+      },
+      {
+        "id": "s4_reactivity_isomerism",
+        "kind": "boxed_final",
+        "label": "Reactivity and isomerism",
+        "marks": 1,
+        "mark_note": "Reactivity + isomerism",
+        "lines": [
+          "5. Reactions between ionic compounds in",
+          "aqueous solution are very fast, because",
+          "the free ions combine directly.",
+          {
+            "text": "Fast reactions in solution; no isomerism",
+            "style": "boxed"
+          },
+          "6. The ionic bond is non-directional, so",
+          "ionic compounds do not show isomerism."
+        ],
+        "why": "The last two book properties share one theme: what the ionic bond is (a non-directional attraction between free ions) fixes both the reaction speed and the absence of isomerism.",
+        "common_mistakes": [
+          "Writing that ionic compounds show isomerism. The bond has no fixed direction, so there are no distinct arrangements.",
+          "Giving the isomerism fact without its non-directional reason."
+        ],
+        "memory_tip": "No direction to the bond, so no different arrangements — no isomerism.",
+        "margin_note": "Six properties in total across the four lines matches the book's list."
+      }
+    ]
+  },
+  "insider_note": "Attach the reason to each property — high melting point BECAUSE of strong electrostatic forces. A property without its reason is half the mark."
+}

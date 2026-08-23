@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_degenerate_orbitals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are degenerate orbitals? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Degenerate orbitals are orbitals of the same",
+          "subshell that have equal energy.",
+          "They differ only in the magnetic quantum",
+          "number m, that is, in their orientation."
+        ],
+        "why": "Orbitals of one subshell share n and l, so they share the energy as well. Only the orientation differs, and orientation costs no energy unless a magnetic or electric field is applied.",
+        "common_mistakes": [
+          "Saying orbitals of the same shell are degenerate. 2s and 2p share n but have different energies.",
+          "Leaving out the words equal energy, which is the whole definition."
+        ],
+        "memory_tip": "Same subshell means same energy. Only the direction changes.",
+        "margin_note": "Name the quantum number m. It shows why the energies are equal."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "The three 2p orbitals: 2px, 2py, 2pz",
+            "style": "boxed"
+          },
+          "All three have n = 2 and l = 1, so their",
+          "energies are equal.",
+          "The five 3d orbitals are degenerate in the",
+          "same way."
+        ],
+        "why": "The p subshell is the smallest clear example, with three orbitals of equal energy. Hund's rule applies to exactly this set, which is why the term is defined before that rule is stated.",
+        "common_mistakes": [
+          "Giving 2s and 2p as the example. Their energies are not equal.",
+          "Giving only the name of a subshell without saying how many orbitals it holds."
+        ],
+        "memory_tip": "Three p orbitals, five d orbitals. Each set is degenerate within itself.",
+        "margin_note": "Writing n and l for the example proves the energies match."
+      }
+    ]
+  }
+}

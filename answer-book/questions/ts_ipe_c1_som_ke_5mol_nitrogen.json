@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ke_5mol_nitrogen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the kinetic energy of 5 moles of nitrogen at 27 °C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 4500 cal using R = 2 cal mol⁻¹ K⁻¹, a rounding of 1.987. This card works in SI (R = 8.314 J mol⁻¹ K⁻¹ → 1.87 × 10⁴ J) and shows the book's calorie form beside it; the two agree within the rounding of R."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "KE = (3/2) nRT",
+            "style": "eq"
+          },
+          "n = 5 mol",
+          "T = 27 + 273 = 300 K",
+          "R = 8.314 J mol⁻¹ K⁻¹",
+          "KE = (3/2) × 5 × 8.314 × 300"
+        ],
+        "why": "The kinetic energy of n moles of any gas depends only on n and the absolute temperature: KE = (3/2)nRT. The Celsius temperature must become kelvin before substitution.",
+        "common_mistakes": [
+          "Substituting T = 27 instead of 300 K. The conversion to kelvin is where this mark is usually lost.",
+          "Using (1/2) or (2/3) in place of (3/2)."
+        ],
+        "memory_tip": "Three halves n R T. Convert to kelvin first, substitute second.",
+        "margin_note": "The formula with T = 300 K on its own line earns this mark before any arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "KE = 1.5 × 5 × 8.314 × 300 = 18 706.5 J",
+          {
+            "text": "KE ≈ 1.87 × 10⁴ J",
+            "style": "boxed"
+          },
+          "With R ≈ 2 cal mol⁻¹ K⁻¹: KE = (3/2) × 5 × 2 × 300",
+          "= 4500 cal (the same energy in calories)"
+        ],
+        "why": "Multiplying out: 5 × 8.314 = 41.57; times 300 gives 12 471; times 1.5 gives 18 706.5 J. The calorie line matches the model answer many examiners expect, using the rounded R = 2 cal mol⁻¹ K⁻¹.",
+        "common_mistakes": [
+          "Writing the answer without a unit. J (or cal) is part of this mark.",
+          "Mixing units: R in J mol⁻¹ K⁻¹ gives joules, R in cal mol⁻¹ K⁻¹ gives calories. Pick one and say which."
+        ],
+        "memory_tip": "One mole near room temperature carries about 3.7 kJ; five moles carry about five times that, near 19 kJ.",
+        "margin_note": "Box the SI value; the calorie line is the same answer in the book's units."
+      }
+    ]
+  },
+  "insider_note": "Model answers to this question use R = 2 cal mol⁻¹ K⁻¹ and reach 4500 cal — write whichever system you start with clearly, and never mix the two R values in one calculation."
+}

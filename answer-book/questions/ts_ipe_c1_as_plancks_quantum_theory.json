@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_plancks_quantum_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Planck's quantum theory.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Quanta",
+      "marks": 2
+    },
+    {
+      "label": "Energy of a quantum",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. CONSTANT: the book prints h = 6.625 × 10⁻³⁴ J s. The accepted value is 6.626 × 10⁻³⁴ J s and this card writes that; either value is marked correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quanta",
+        "kind": "text",
+        "label": "Quanta",
+        "marks": 2,
+        "mark_note": "Quanta",
+        "lines": [
+          "1. A substance absorbs or emits energy not",
+          "    continuously but in small packets.",
+          "2. The smallest packet of energy is called a",
+          "    quantum. For light it is called a photon.",
+          "3. The emitted radiation travels as waves."
+        ],
+        "why": "Before Planck, energy was taken to flow continuously in any amount. The theory's central claim is that energy comes in fixed smallest amounts, and every later result in this chapter rests on it.",
+        "common_mistakes": [
+          "Writing that energy is emitted continuously, which is the idea the theory replaced.",
+          "Using quantum and photon as if they were different things. A photon is the quantum of light."
+        ],
+        "memory_tip": "Energy comes in packets, like coins. There is a smallest coin and no half coins.",
+        "margin_note": "Number the points. Four numbered points fill this answer neatly."
+      },
+      {
+        "id": "s2_energy_of_quantum",
+        "kind": "boxed_final",
+        "label": "Energy of a quantum",
+        "marks": 2,
+        "mark_note": "E = hν",
+        "lines": [
+          "4. The energy of a quantum is directly",
+          "    proportional to the frequency:  E ∝ ν",
+          {
+            "text": "E = hν = hc / λ",
+            "style": "boxed"
+          },
+          "h = Planck's constant = 6.626 × 10⁻³⁴ J s",
+          "5. A body absorbs or emits energy only in",
+          "    whole numbers of quanta:  E = nhν,",
+          "    where n = 1, 2, 3, …"
+        ],
+        "why": "E = hν turns the idea of a packet into a number, and E = nhν says the total is always a whole-number multiple of that packet. Together they are what makes the theory usable.",
+        "common_mistakes": [
+          "Writing E = hλ. Energy rises with frequency and falls with wavelength.",
+          "Leaving out E = nhν, which is the part that says only whole quanta are exchanged."
+        ],
+        "memory_tip": "Higher frequency means a bigger packet. Whole packets only, never a fraction.",
+        "margin_note": "Both E = hν and E = nhν are expected. Write the value of h with its unit."
+      }
+    ]
+  },
+  "insider_note": "A five-point answer that students often cut to two. The two equations E = hν and E = nhν are what separate a full answer from half marks."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_second_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the second law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Entropy statement",
+      "marks": 1
+    },
+    {
+      "label": "Heat flow statement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it (the book prints two equivalent statements joined by 'or', so either one alone may earn full marks); the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_entropy_form",
+        "kind": "text",
+        "label": "Entropy statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "In every spontaneous process, the total",
+          "entropy of the universe increases:",
+          {
+            "text": "ΔS(total) = ΔS(system) + ΔS(surroundings) > 0",
+            "style": "eq"
+          }
+        ],
+        "why": "The entropy form is the one the rest of the chapter uses: it turns spontaneity into a measurable test.",
+        "common_mistakes": [
+          "Writing that the entropy of the system alone always increases — the system's entropy can fall while the total still rises."
+        ],
+        "memory_tip": "Second law: total entropy rises. Count the system and the surroundings together.",
+        "margin_note": "The word total (or universe) must appear."
+      },
+      {
+        "id": "s2_heat_form",
+        "kind": "boxed_final",
+        "label": "Heat flow statement",
+        "marks": 1,
+        "mark_note": "Equivalent form",
+        "lines": [
+          "Equivalent statement: heat cannot flow on",
+          "its own from a colder body to a hotter",
+          "body.",
+          {
+            "text": "Total entropy increases in every spontaneous process",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both statements say the same thing: natural change runs in the direction of rising total entropy, and cold-to-hot heat flow would lower it.",
+        "common_mistakes": [
+          "Reversing the direction — heat flows on its own from hot to cold, never from cold to hot."
+        ],
+        "memory_tip": "On its own, heat goes hot to cold. The reverse needs outside work, as in a refrigerator.",
+        "margin_note": "The book prints both forms; writing both is the safe answer."
+      }
+    ]
+  },
+  "insider_note": "Two equivalent statements exist and the printed answer gives both joined by or. Writing both costs one extra line and covers whichever form the marking scheme names."
+}

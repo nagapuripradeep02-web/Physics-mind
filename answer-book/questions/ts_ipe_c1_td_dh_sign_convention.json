@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_dh_sign_convention",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the ΔH sign conventions for exothermic and endothermic reactions?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Exothermic sign",
+      "marks": 1
+    },
+    {
+      "label": "Endothermic sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_exothermic",
+        "kind": "text",
+        "label": "Exothermic sign",
+        "marks": 1,
+        "mark_note": "Sign + reason",
+        "lines": [
+          "Exothermic reaction: heat is released to",
+          "the surroundings.",
+          "The products have lower enthalpy than the",
+          "reactants, so ΔH is negative (ΔH < 0)."
+        ],
+        "why": "ΔH = H(products) − H(reactants). When heat is released the products hold less enthalpy than the reactants, so the difference is negative.",
+        "common_mistakes": [
+          "Writing ΔH positive for heat released — released heat means the system's enthalpy has decreased, so ΔH < 0."
+        ],
+        "memory_tip": "Heat out means enthalpy down, so the sign is negative.",
+        "margin_note": "Sign plus one line of reason."
+      },
+      {
+        "id": "s2_endothermic",
+        "kind": "boxed_final",
+        "label": "Endothermic sign",
+        "marks": 1,
+        "mark_note": "Sign + reason",
+        "lines": [
+          "Endothermic reaction: heat is absorbed from",
+          "the surroundings.",
+          "The products have higher enthalpy than the",
+          "reactants, so ΔH is positive (ΔH > 0).",
+          {
+            "text": "Exothermic: ΔH < 0.  Endothermic: ΔH > 0.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Absorbed heat is stored as extra enthalpy in the products, so H(products) − H(reactants) comes out positive.",
+        "common_mistakes": [
+          "Swapping the two signs.",
+          "Giving the sign with no reason — the enthalpy comparison is what shows understanding."
+        ],
+        "memory_tip": "Endo, energy enters: the sign is plus. Exo, energy exits: the sign is minus.",
+        "margin_note": "Box the two signs together as the final line."
+      }
+    ]
+  },
+  "insider_note": "Write both the sign and the reason — products lower or higher in enthalpy — because the sign alone reads as a guess."
+}

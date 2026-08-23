@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_frequency_600nm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the frequency of radiation of wavelength 600 nm?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and conversion",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. UNITS: the book works this in the CGS system (c = 3 × 10¹⁰ cm/s, λ = 600 × 10⁻⁷ cm) and reaches the same 5 × 10¹⁴ Hz. This card works it in SI, which is the system the rest of the paper uses."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and conversion",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "ν = c / λ",
+            "style": "eq"
+          },
+          "c = 3 × 10⁸ m s⁻¹",
+          "λ = 600 nm = 600 × 10⁻⁹ m = 6 × 10⁻⁷ m"
+        ],
+        "why": "Frequency and wavelength are two ways of describing the same wave, joined by the speed of light. The nanometre must become metres before the numbers are divided, or the power of ten comes out wrong.",
+        "common_mistakes": [
+          "Forgetting that 1 nm = 10⁻⁹ m and using 600 × 10⁻⁶ m.",
+          "Writing ν = λ / c. The larger the wavelength, the smaller the frequency."
+        ],
+        "memory_tip": "Convert first, divide second. Nano means 10⁻⁹.",
+        "margin_note": "The formula alone with the converted wavelength earns this mark, even before the arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "ν = (3 × 10⁸) / (6 × 10⁻⁷)",
+          "ν = 0.5 × 10¹⁵",
+          {
+            "text": "ν = 5 × 10¹⁴ Hz",
+            "style": "boxed"
+          }
+        ],
+        "why": "Dividing the powers of ten gives 10⁸⁻⁽⁻⁷⁾ = 10¹⁵, and 3 ÷ 6 = 0.5, so the result is 0.5 × 10¹⁵. Written in standard form that is 5 × 10¹⁴.",
+        "common_mistakes": [
+          "Leaving the answer as 0.5 × 10¹⁵ instead of 5 × 10¹⁴.",
+          "Writing the answer without the unit Hz."
+        ],
+        "memory_tip": "Visible light sits near 10¹⁴ Hz. An answer near 10¹⁴ for a 600 nm wave is the right size.",
+        "margin_note": "Box the final value and write Hz. The unit is part of this mark."
+      }
+    ]
+  },
+  "insider_note": "A one-step numerical worth two marks. Show the converted wavelength on its own line, because the conversion is where the mark is usually lost."
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_photoelectric_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the photoelectric effect.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Einstein's equation",
+      "marks": 2
+    },
+    {
+      "label": "Threshold frequency and metals",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Photoelectric effect: when light of suitable",
+          "frequency falls on a metal surface, electrons",
+          "are ejected from the surface.",
+          "The ejected electrons are called photoelectrons."
+        ],
+        "why": "The effect is named for what happens, so the statement must contain light falling on a metal and electrons coming out. Naming the ejected electrons photoelectrons shows the term is understood.",
+        "common_mistakes": [
+          "Writing that the metal glows or heats up. Electrons are ejected.",
+          "Leaving out the condition of suitable frequency, which is the whole point of the effect."
+        ],
+        "memory_tip": "Photo means light, electric means electrons. Light in, electrons out.",
+        "margin_note": "One sentence. The marks below are for the equation."
+      },
+      {
+        "id": "s2_einstein_equation",
+        "kind": "equation",
+        "label": "Einstein's equation",
+        "marks": 2,
+        "mark_note": "Equation and terms",
+        "lines": [
+          {
+            "text": "hν = W₀ + KE",
+            "style": "eq"
+          },
+          "hν = energy of the incident photon",
+          "W₀ = work function = hν₀",
+          "KE = kinetic energy of the electron = ½mv²",
+          {
+            "text": "hν = hν₀ + ½mv²   ⟹   KE = h(ν − ν₀)",
+            "style": "eq"
+          }
+        ],
+        "why": "The photon's energy is spent in two ways: part of it frees the electron from the metal, and whatever is left becomes the electron's kinetic energy. Writing the equation as an energy balance is what makes the last line follow.",
+        "common_mistakes": [
+          "Writing KE = hν and forgetting the work function.",
+          "Not saying what each symbol means. The terms carry marks here, not only the equation."
+        ],
+        "memory_tip": "Energy in equals energy to escape plus energy left over.",
+        "margin_note": "Both marks are here. Write the equation, then the meaning of every symbol."
+      },
+      {
+        "id": "s3_threshold",
+        "kind": "boxed_final",
+        "label": "Threshold frequency and metals",
+        "marks": 1,
+        "mark_note": "Threshold",
+        "lines": [
+          {
+            "text": "Below the threshold frequency ν₀ no electron is ejected",
+            "style": "boxed"
+          },
+          "This is true however intense the light is.",
+          "Alkali metals such as K, Rb and Cs show the",
+          "effect readily, because their work function",
+          "is low."
+        ],
+        "why": "Intensity sets how many photons arrive, not how much energy each one carries. One photon frees one electron, so if a single photon has less than the work function nothing is ejected no matter how many arrive.",
+        "common_mistakes": [
+          "Saying bright enough light will always eject electrons. Frequency decides, not brightness.",
+          "Naming no metal at all. The alkali metals are the expected example."
+        ],
+        "memory_tip": "Brightness sends more photons. Frequency makes each photon stronger. Only the second one matters here.",
+        "margin_note": "Naming the threshold frequency and one alkali metal completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A three-star question that appears in almost every model paper. The energy balance hν = W₀ + KE with every symbol explained is where three of the four marks sit."
+}

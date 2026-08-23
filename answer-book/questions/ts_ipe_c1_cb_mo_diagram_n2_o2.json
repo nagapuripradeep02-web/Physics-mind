@@ -1,0 +1,1164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_mo_diagram_n2_o2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the molecular orbital energy diagram of N₂ and O₂. Calculate the respective bond order and write the magnetic nature of N₂ and O₂ molecules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "N₂ configuration",
+      "marks": 1
+    },
+    {
+      "label": "N₂ energy diagram",
+      "marks": 2
+    },
+    {
+      "label": "N₂ bond order and magnetism",
+      "marks": 1
+    },
+    {
+      "label": "O₂ configuration",
+      "marks": 1
+    },
+    {
+      "label": "O₂ energy diagram",
+      "marks": 2
+    },
+    {
+      "label": "O₂ bond order and magnetism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1+1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AXIS NOTE: the book labels the internuclear axis x, so the σ bonding MO from 2p is written σ2px; NCERT labels the axis z and writes σ2pz. The card follows the book's axis. The book's energy orderings (π2p below σ2p for N₂; σ2p below π2p for O₂), bond orders (N₂ = 3, O₂ = 2) and magnetic natures (N₂ diamagnetic, O₂ paramagnetic) are all CORRECT and are kept. The figures show the 2s and 2p levels; the σ1s and σ*1s levels are completely filled, cancel each other, and are written in the configuration lines instead of drawn."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Bonding · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_n2_config",
+        "kind": "equation",
+        "label": "N₂ configuration",
+        "marks": 1,
+        "mark_note": "N₂ config",
+        "lines": [
+          "N (Z = 7): 1s² 2s² 2px¹ 2py¹ 2pz¹",
+          "N₂ has 14 electrons. In N₂ the π2p levels",
+          "lie BELOW σ2px. The configuration is:",
+          {
+            "text": "σ1s² σ*1s² σ2s² σ*2s² π2py² π2pz² σ2px²",
+            "style": "eq"
+          }
+        ],
+        "why": "The filling order is the whole content of the diagram, so it is written first as one line. For N₂ (and lighter molecules) the π2p pair fills before σ2px — this reversed order is what the examiner checks.",
+        "common_mistakes": [
+          "Using the O₂ order (σ2px before π2p) for N₂. For N₂ the π2p levels come FIRST.",
+          "Losing count of electrons. The superscripts must add to 14."
+        ],
+        "memory_tip": "Fourteen electrons or fewer: π before σ in the 2p block.",
+        "margin_note": "Add the superscripts aloud — 2+2+2+2+2+2+2 = 14 — before moving on."
+      },
+      {
+        "id": "s2_n2_diagram",
+        "kind": "diagram",
+        "label": "N₂ energy diagram",
+        "marks": 2,
+        "mark_note": "N₂ diagram",
+        "figure": {
+          "id": "n2_mo_energy_diagram",
+          "width": 520,
+          "height": 575,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "energy_axis",
+              "d": "M 22 530 L 22 55",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "energy_head_a",
+              "d": "M 22 55 L 16 69",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "energy_head_b",
+              "d": "M 22 55 L 28 69",
+              "ms": 100
+            },
+            {
+              "type": "label",
+              "id": "lbl_energy",
+              "x": 8,
+              "y": 40,
+              "text": "Energy",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2s",
+              "d": "M 70 460 L 130 460",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2s",
+              "d": "M 380 460 L 440 460",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_2s_left",
+              "x": 34,
+              "y": 466,
+              "text": "2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_2s_right",
+              "x": 470,
+              "y": 466,
+              "text": "2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2s",
+              "x": 91,
+              "y": 452,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2s",
+              "x": 401,
+              "y": 452,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_1",
+              "d": "M 60 250 L 84 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_2",
+              "d": "M 92 250 L 116 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_3",
+              "d": "M 124 250 L 148 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_1",
+              "d": "M 372 250 L 396 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_2",
+              "d": "M 404 250 L 428 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_3",
+              "d": "M 436 250 L 460 250",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_2p_left",
+              "x": 34,
+              "y": 256,
+              "text": "2p",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_2p_right",
+              "x": 470,
+              "y": 256,
+              "text": "2p",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_1",
+              "x": 68,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_2",
+              "x": 100,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_3",
+              "x": 132,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_1",
+              "x": 380,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_2",
+              "x": 412,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_3",
+              "x": 444,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma2s",
+              "d": "M 230 500 L 290 500",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigma2s",
+              "x": 298,
+              "y": 506,
+              "text": "σ2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigma2s",
+              "x": 249,
+              "y": 492,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma_star_2s",
+              "d": "M 230 415 L 290 415",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigmastar2s",
+              "x": 298,
+              "y": 421,
+              "text": "σ*2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigmastar2s",
+              "x": 249,
+              "y": 407,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pi2py",
+              "d": "M 208 340 L 252 340",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pi2pz",
+              "d": "M 268 340 L 312 340",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "n_pi2py",
+              "x": 152,
+              "y": 346,
+              "text": "π2py",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_pi2pz",
+              "x": 320,
+              "y": 346,
+              "text": "π2pz",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pi2py",
+              "x": 219,
+              "y": 332,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pi2pz",
+              "x": 279,
+              "y": 332,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma2px",
+              "d": "M 230 290 L 290 290",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigma2px",
+              "x": 298,
+              "y": 296,
+              "text": "σ2px",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigma2px",
+              "x": 249,
+              "y": 282,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pistar2py",
+              "d": "M 208 165 L 252 165",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pistar2pz",
+              "d": "M 268 165 L 312 165",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "n_pistar2py",
+              "x": 144,
+              "y": 171,
+              "text": "π*2py",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_pistar2pz",
+              "x": 320,
+              "y": 171,
+              "text": "π*2pz",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigmastar2px",
+              "d": "M 230 85 L 290 85",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigmastar2px",
+              "x": 298,
+              "y": 91,
+              "text": "σ*2px",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2s_sigma",
+              "d": "M 130 460 L 230 500",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2s_sigmastar",
+              "d": "M 130 460 L 230 415",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2s_sigma",
+              "d": "M 380 460 L 290 500",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2s_sigmastar",
+              "d": "M 380 460 L 290 415",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_pi",
+              "d": "M 148 250 L 208 340",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_sigma",
+              "d": "M 148 250 L 230 290",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_pistar",
+              "d": "M 148 250 L 208 165",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_sigmastar",
+              "d": "M 148 250 L 230 85",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_pi",
+              "d": "M 372 250 L 312 340",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_sigma",
+              "d": "M 372 250 L 290 290",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_pistar",
+              "d": "M 372 250 L 312 165",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_sigmastar",
+              "d": "M 372 250 L 290 85",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "cap_left",
+              "x": 72,
+              "y": 552,
+              "text": "N atom",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_mid",
+              "x": 250,
+              "y": 552,
+              "text": "N₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_right",
+              "x": 385,
+              "y": 552,
+              "text": "N atom",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The diagram mark is for the level ORDER in the middle column: for N₂ the two π2p levels sit below σ2px, all bonding levels are full up to σ2px, and both π* levels are empty. Every electron is paired.",
+        "common_mistakes": [
+          "Drawing σ2px below the π2p pair. That is the O₂ order; for N₂ the π levels are lower.",
+          "Putting electrons in the π* levels. N₂ stops exactly at σ2px."
+        ],
+        "memory_tip": "N₂ diagram: fill to the top of σ2px and stop; the star levels above 2p stay empty.",
+        "margin_note": "Draw levels first, then fill electrons bottom to top while counting to 14."
+      },
+      {
+        "id": "s3_n2_bond_order",
+        "kind": "equation",
+        "label": "N₂ bond order and magnetism",
+        "marks": 1,
+        "mark_note": "N₂ result",
+        "lines": [
+          "Bond order = ½ (Nb − Na), where Nb and Na",
+          "are the electrons in bonding and",
+          "antibonding molecular orbitals.",
+          {
+            "text": "Bond order of N₂ = ½ (10 − 4) = 3   (N≡N)",
+            "style": "eq"
+          },
+          "N₂ is diamagnetic — it has no unpaired",
+          "electrons."
+        ],
+        "why": "Ten electrons sit in bonding MOs and four in antibonding, so the net bonding is three pairs — the triple bond. With every electron paired, the molecule is repelled weakly by a magnet: diamagnetic.",
+        "common_mistakes": [
+          "Counting σ1s² and σ*1s² on one side only. Both are counted: σ1s in Nb, σ*1s in Na.",
+          "Writing paramagnetic. N₂ has zero unpaired electrons."
+        ],
+        "memory_tip": "10 bonding, 4 antibonding: half of six is three. All paired means diamagnetic.",
+        "margin_note": "Always define Nb and Na once before using the formula."
+      },
+      {
+        "id": "s4_o2_config",
+        "kind": "equation",
+        "label": "O₂ configuration",
+        "marks": 1,
+        "mark_note": "O₂ config",
+        "lines": [
+          "O (Z = 8): 1s² 2s² 2px² 2py¹ 2pz¹",
+          "O₂ has 16 electrons. In O₂ the σ2px level",
+          "lies BELOW the π2p levels. The",
+          "configuration is:",
+          {
+            "text": "σ1s² σ*1s² σ2s² σ*2s² σ2px² π2py² π2pz² π*2py¹ π*2pz¹",
+            "style": "eq"
+          },
+          "By Hund's rule the last two electrons",
+          "occupy π*2py and π*2pz singly."
+        ],
+        "why": "O₂ uses the normal order (σ2px first), and its last two electrons land one each in the two degenerate π* orbitals — the single fact that makes O₂ paramagnetic.",
+        "common_mistakes": [
+          "Pairing the last two electrons in one π* orbital. Hund's rule puts one in each.",
+          "Carrying the N₂ order into O₂. For O₂, σ2px fills before the π2p pair."
+        ],
+        "memory_tip": "Sixteen electrons: σ first in the 2p block, and the last two sit apart, one in each π* orbital.",
+        "margin_note": "The two superscript 1s at the end are the answer's key detail."
+      },
+      {
+        "id": "s5_o2_diagram",
+        "kind": "diagram",
+        "label": "O₂ energy diagram",
+        "marks": 2,
+        "mark_note": "O₂ diagram",
+        "figure": {
+          "id": "o2_mo_energy_diagram",
+          "width": 520,
+          "height": 575,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "energy_axis",
+              "d": "M 22 530 L 22 55",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "energy_head_a",
+              "d": "M 22 55 L 16 69",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "energy_head_b",
+              "d": "M 22 55 L 28 69",
+              "ms": 100
+            },
+            {
+              "type": "label",
+              "id": "lbl_energy",
+              "x": 8,
+              "y": 40,
+              "text": "Energy",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2s",
+              "d": "M 70 460 L 130 460",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2s",
+              "d": "M 380 460 L 440 460",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_2s_left",
+              "x": 34,
+              "y": 466,
+              "text": "2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_2s_right",
+              "x": 470,
+              "y": 466,
+              "text": "2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2s",
+              "x": 91,
+              "y": 452,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2s",
+              "x": 401,
+              "y": 452,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_1",
+              "d": "M 60 250 L 84 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_2",
+              "d": "M 92 250 L 116 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_left_2p_3",
+              "d": "M 124 250 L 148 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_1",
+              "d": "M 372 250 L 396 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_2",
+              "d": "M 404 250 L 428 250",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ao_right_2p_3",
+              "d": "M 436 250 L 460 250",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_2p_left",
+              "x": 34,
+              "y": 256,
+              "text": "2p",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_2p_right",
+              "x": 470,
+              "y": 256,
+              "text": "2p",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_1",
+              "x": 66,
+              "y": 242,
+              "text": "↑↓",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_2",
+              "x": 100,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_l2p_3",
+              "x": 132,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_1",
+              "x": 374,
+              "y": 242,
+              "text": "↑↓",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_2",
+              "x": 412,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_r2p_3",
+              "x": 444,
+              "y": 242,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma2s",
+              "d": "M 230 500 L 290 500",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigma2s",
+              "x": 298,
+              "y": 506,
+              "text": "σ2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigma2s",
+              "x": 249,
+              "y": 492,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma_star_2s",
+              "d": "M 230 415 L 290 415",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigmastar2s",
+              "x": 298,
+              "y": 421,
+              "text": "σ*2s",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigmastar2s",
+              "x": 249,
+              "y": 407,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigma2px",
+              "d": "M 230 340 L 290 340",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigma2px",
+              "x": 298,
+              "y": 346,
+              "text": "σ2px",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_sigma2px",
+              "x": 249,
+              "y": 332,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pi2py",
+              "d": "M 208 290 L 252 290",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pi2pz",
+              "d": "M 268 290 L 312 290",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "n_pi2py",
+              "x": 152,
+              "y": 296,
+              "text": "π2py",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_pi2pz",
+              "x": 320,
+              "y": 296,
+              "text": "π2pz",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pi2py",
+              "x": 219,
+              "y": 282,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pi2pz",
+              "x": 279,
+              "y": 282,
+              "text": "↑↓",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pistar2py",
+              "d": "M 208 165 L 252 165",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "mo_pistar2pz",
+              "d": "M 268 165 L 312 165",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "n_pistar2py",
+              "x": 144,
+              "y": 171,
+              "text": "π*2py",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_pistar2pz",
+              "x": 320,
+              "y": 171,
+              "text": "π*2pz",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pistar2py",
+              "x": 227,
+              "y": 157,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "e_pistar2pz",
+              "x": 287,
+              "y": 157,
+              "text": "↑",
+              "ms": 120,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sigmastar2px",
+              "d": "M 230 85 L 290 85",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_sigmastar2px",
+              "x": 298,
+              "y": 91,
+              "text": "σ*2px",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2s_sigma",
+              "d": "M 130 460 L 230 500",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2s_sigmastar",
+              "d": "M 130 460 L 230 415",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2s_sigma",
+              "d": "M 380 460 L 290 500",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2s_sigmastar",
+              "d": "M 380 460 L 290 415",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_sigma",
+              "d": "M 148 250 L 230 340",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_pi",
+              "d": "M 148 250 L 208 290",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_pistar",
+              "d": "M 148 250 L 208 165",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_l2p_sigmastar",
+              "d": "M 148 250 L 230 85",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_sigma",
+              "d": "M 372 250 L 290 340",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_pi",
+              "d": "M 372 250 L 312 290",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_pistar",
+              "d": "M 372 250 L 312 165",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "conn_r2p_sigmastar",
+              "d": "M 372 250 L 290 85",
+              "ms": 150,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "cap_left",
+              "x": 72,
+              "y": 552,
+              "text": "O atom",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_mid",
+              "x": 250,
+              "y": 552,
+              "text": "O₂",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_right",
+              "x": 385,
+              "y": 552,
+              "text": "O atom",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Two differences from the N₂ diagram carry this mark: σ2px now sits BELOW the π2p pair, and the two π* levels each hold ONE unpaired electron (single up arrows).",
+        "common_mistakes": [
+          "Copying the N₂ level order. For O₂ the σ2px level is the lower one in the 2p block.",
+          "Drawing the two π* electrons as one pair on one level. They sit singly, one on each π* level."
+        ],
+        "memory_tip": "O₂ diagram is N₂'s with two changes: σ below π, and two single arrows in the star levels.",
+        "margin_note": "The two single arrows at π* are the first thing the examiner checks."
+      },
+      {
+        "id": "s6_o2_bond_order",
+        "kind": "boxed_final",
+        "label": "O₂ bond order and magnetism",
+        "marks": 1,
+        "mark_note": "O₂ result",
+        "lines": [
+          {
+            "text": "Bond order of O₂ = ½ (10 − 6) = 2   (O=O)",
+            "style": "eq"
+          },
+          {
+            "text": "O₂ is paramagnetic — two unpaired π* electrons",
+            "style": "boxed"
+          },
+          "N₂: bond order 3, diamagnetic.",
+          "O₂: bond order 2, paramagnetic.",
+          "The unpaired π* electrons make liquid O₂",
+          "attracted by a magnet."
+        ],
+        "why": "Ten bonding and six antibonding electrons leave a net double bond, and the two unpaired π* electrons make the molecule paramagnetic — the experimental fact molecular orbital theory is credited with explaining.",
+        "common_mistakes": [
+          "Writing O₂ as diamagnetic. The two single π* electrons make it PARAMAGNETIC.",
+          "Computing ½(10 − 4) = 3 for O₂ by forgetting the two π* electrons in Na."
+        ],
+        "memory_tip": "The two star electrons reduce the bond order to 2, and the same two electrons make O₂ magnetic.",
+        "margin_note": "Close with the two-line comparison; it answers every part of the question in four phrases."
+      }
+    ]
+  },
+  "insider_note": "The single fact the examiner checks first: O₂ paramagnetic with two unpaired π* electrons, N₂ diamagnetic with bond order 3. Get those two lines right before drawing anything."
+}

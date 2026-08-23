@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_gay_lussac_avogadro_laws",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Gay-Lussac's law of combining volumes and Avogadro's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Gay-Lussac's law",
+      "marks": 1
+    },
+    {
+      "label": "Avogadro's law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) skips the laws of chemical combination entirely, though the acetylene volume VSAQ silently uses Gay-Lussac's law. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gay_lussac",
+        "kind": "text",
+        "label": "Gay-Lussac's law",
+        "marks": 1,
+        "mark_note": "First law",
+        "lines": [
+          "Gay-Lussac's law of combining volumes: when",
+          "gases react, the volumes of the reacting gases",
+          "and of the gaseous products are in a simple",
+          "whole-number ratio, at the same temperature",
+          "and pressure.",
+          "Example: H₂ + Cl₂ → 2HCl has volumes 1 : 1 : 2."
+        ],
+        "why": "This law is the volume counterpart of the mass laws, and it holds only when every volume is measured at one temperature and pressure — that condition is part of the statement.",
+        "common_mistakes": [
+          "Leaving out 'at the same temperature and pressure'.",
+          "Applying the law to solids or liquids. It is a law about gases only."
+        ],
+        "memory_tip": "Combining VOLUMES, gases only, same T and P — three conditions in one sentence.",
+        "margin_note": "The volume ratio in the example (1 : 1 : 2) makes the statement concrete."
+      },
+      {
+        "id": "s2_avogadro",
+        "kind": "boxed_final",
+        "label": "Avogadro's law",
+        "marks": 1,
+        "mark_note": "Second law",
+        "lines": [
+          {
+            "text": "Avogadro's law: equal volumes of all gases, at the same temperature and pressure, contain equal numbers of molecules",
+            "style": "boxed"
+          },
+          "This is why the mole ratio of gases equals",
+          "their volume ratio."
+        ],
+        "why": "Avogadro's law explains Gay-Lussac's observation: if equal volumes hold equal numbers of molecules, then whole-number molecule ratios appear as whole-number volume ratios.",
+        "common_mistakes": [
+          "Writing equal MASSES instead of equal VOLUMES.",
+          "Writing atoms instead of molecules."
+        ],
+        "memory_tip": "Equal volumes, equal molecules — with T and P held the same.",
+        "margin_note": "The closing line linking mole ratio to volume ratio shows the two laws connect."
+      }
+    ]
+  }
+}

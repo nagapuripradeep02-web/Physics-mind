@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_atomic_number_mass_number",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define atomic number and mass number.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Atomic number",
+      "marks": 1
+    },
+    {
+      "label": "Mass number",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_atomic_number",
+        "kind": "text",
+        "label": "Atomic number",
+        "marks": 1,
+        "mark_note": "Atomic number",
+        "lines": [
+          "Atomic number (Z): the number of protons",
+          "present in the nucleus of an atom.",
+          "In a neutral atom it is also the number of",
+          "electrons."
+        ],
+        "why": "The proton count is what fixes the element, so the atomic number is the identity of the atom. The electron count matches it only while the atom is neutral, which is why that condition is stated.",
+        "common_mistakes": [
+          "Defining the atomic number as the number of electrons without the word neutral. An ion has a different electron count.",
+          "Confusing Z with the mass number."
+        ],
+        "memory_tip": "Z counts protons. Protons decide which element it is.",
+        "margin_note": "Give the symbol Z along with the definition."
+      },
+      {
+        "id": "s2_mass_number",
+        "kind": "boxed_final",
+        "label": "Mass number",
+        "marks": 1,
+        "mark_note": "Mass number",
+        "lines": [
+          {
+            "text": "Mass number A = number of protons + number of neutrons",
+            "style": "boxed"
+          },
+          "Protons and neutrons together are called",
+          "nucleons, so A is the number of nucleons.",
+          "Number of neutrons = A − Z"
+        ],
+        "why": "Almost all the mass of an atom sits in the nucleus, so counting the nucleons gives the mass number. Writing A − Z for the neutrons shows the two definitions working together.",
+        "common_mistakes": [
+          "Including the electrons in the mass number. Their mass is too small to count.",
+          "Writing the mass number as the atomic mass in grams. A is a whole-number count."
+        ],
+        "memory_tip": "A counts everything in the nucleus. Subtract Z and the neutrons are left.",
+        "margin_note": "The line neutrons = A − Z is worth adding. It costs one line."
+      }
+    ]
+  }
+}
