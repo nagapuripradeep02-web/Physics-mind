@@ -456,16 +456,17 @@
                 badges.appendChild(ak);
               }
             }
-            // Study progress: the two stage marks (Understand → Revise), green
-            // tick when both are done. Authored branch only — the soon-card gate
-            // asserts its chips verbatim. A class turns the red margin rule green.
+            // Study progress (founder, 2026-08-23): yellow chip = understood,
+            // says WHEN revision is due; green chip = done. Authored branch only
+            // — the soon-card gate asserts its chips verbatim. A class turns the
+            // red margin rule green.
             var stg = Vidi.stageFor(e.question_id);
             if (stg.u || stg.r) {
               var done = stg.u && stg.r;
               var pb = document.createElement('span');
-              pb.className = 'cc-chip pm-upr';
+              pb.className = 'cc-chip pm-upr ' + (done ? 'g' : 'y');
               pb.textContent = done ? '✓ done'
-                : (stg.u ? '●' : '○') + (stg.r ? '●' : '○');
+                : (stg.u < Vidi.todayStr() ? '✓ revise today' : '✓ revise tomorrow');
               badges.appendChild(pb);
               if (done) card.className += ' pm-done';
             }
@@ -507,7 +508,54 @@
     if (location.hash !== h) location.hash = h;
   }
 
+  // ═══ the leave-question ask — the student, not the product, claims the tick ═
+  // (founder, 2026-08-23: supersedes the 2026-08-22 auto-tick.) Navigating away
+  // from a fully revealed answer asks "Did you understand and practice this?";
+  // Yes = the yellow Understand tick. A question already understood on an
+  // EARLIER day asks the revision form instead; Yes = the green tick.
+  var askConsumed = false;             // one navigation passes after an answer
+
+  function askGuard() {
+    if (askConsumed) { askConsumed = false; return false; }
+    if (currentView !== 'notebook' || !question || !completed) return false;
+    var qid = question.question_id;
+    if (location.hash.indexOf('#/q/' + encodeURIComponent(qid)) === 0) return false;
+    var s = Vidi.stageFor(qid);
+    var kind = !s.u ? 'u' : (!s.r && s.u < Vidi.todayStr() ? 'r' : null);
+    if (!kind) return false;
+    showAsk(qid, kind);
+    return true;
+  }
+
+  function showAsk(qid, kind) {
+    var ov = $('askOverlay'), yes = $('askYes'), no = $('askNo');
+    $('askText').textContent = kind === 'u'
+      ? 'Did you understand and practice this answer?'
+      : 'Did you revise this answer once more?';
+    yes.textContent = kind === 'u' ? 'Yes — understood & practiced' : 'Yes — revised';
+    yes.hidden = false; no.hidden = false;
+    ov.hidden = false;
+    yes.onclick = function () {
+      Vidi.setStage(qid, kind, true);
+      Vidi.log('stage', { qid: qid, k: kind });
+      VidiPanel.onStageTick();
+      $('askText').textContent = kind === 'u'
+        ? 'Marked in yellow — we will revise this one tomorrow.'
+        : 'Full green tick — this one is done.';
+      yes.hidden = true; no.hidden = true;
+      setTimeout(function () {
+        ov.hidden = true;
+        askConsumed = true; route();
+      }, 1100);
+    };
+    no.onclick = function () {
+      ov.hidden = true;
+      askConsumed = true; route();
+    };
+  }
+
   function route() {
+    if (askGuard()) return;
     var ee = location.hash.match(/^#\/exam-eve\/(\d+)$/);
     if (ee) { showExamEve(parseInt(ee[1], 10)); return; }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
@@ -937,14 +985,9 @@
 
   // ═══ flow ═════════════════════════════════════════════════════════════════
 
-  /** A fully revealed answer IS the Understand stage of the study plan
-      (auto-tick, manual override stays — founder, 2026-08-22). */
-  function markUnderstood() {
-    if (Vidi.stageFor(question.question_id).u) return;
-    Vidi.setStage(question.question_id, 'u', true);
-    Vidi.log('stage', { qid: question.question_id, k: 'u' });
-    VidiPanel.onStageTick();
-  }
+  // The 2026-08-22 auto-tick is retired (founder, 2026-08-23): a full reveal no
+  // longer sets Understand by itself. The leave-question ask (askGuard above)
+  // owns the tick — the student claims it, the product never does.
 
   function advance() {
     if (revealing) {                     // impatience: finish the current step
@@ -965,7 +1008,6 @@
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
-        markUnderstood();
       }
       updateChrome();
       document.dispatchEvent(new CustomEvent('pm:step-revealed', {
@@ -998,7 +1040,6 @@
     if (stepIndex === steps.length - 1) {
       completed = true;
       placeTotalBlock();
-      markUnderstood();
     }
     updateChrome();
     // The page geometry is fixed but its HEIGHT is not: a cut with fewer steps
@@ -1796,6 +1837,9 @@
       },
       /** Understand / Practice / Revise per question: '' = not done, else the
           date string of the day it happened. First tick wins; untick clears. */
+      /** Every question that carries any stage tick — the plan-less revision
+          queue walks this (there is no plan.learnDay to walk without a plan). */
+      stageIds: function () { return Object.keys(stages); },
       stageFor: function (qid) {
         var s = stages[qid];
         return { u: (s && s.u) || '', p: (s && s.p) || '', r: (s && s.r) || '' };
@@ -1954,6 +1998,18 @@
       return !!s.u;
     }
 
+    /** The plan-less revision queue (founder, 2026-08-23): anything understood
+        on an EARLIER day and not yet revised, whether or not a plan exists.
+        Guarded by qIndexById so a stale stage for a removed question is inert. */
+    function dueWithoutPlan(today) {
+      var ids = Vidi.stageIds(), out = [];
+      for (var i = 0; i < ids.length; i++) {
+        var s = Vidi.stageFor(ids[i]);
+        if (s.u && !s.r && s.u < today && qIndexById[ids[i]] !== undefined) out.push(ids[i]);
+      }
+      return out;
+    }
+
     /** Today's work, catch-up included: learns scheduled up to today and not
         yet learned; revisions = anything learned on an EARLIER day and not yet
         revised. In the final block everything unfinished revises, weakest
@@ -2068,7 +2124,8 @@
       rescope: rescope, scopeWords: scopeWords,
       todays: todays, progress: progress, behindBy: behindBy,
       dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
-      green: green, learned: learned, modelStatus: modelStatus
+      green: green, learned: learned, modelStatus: modelStatus,
+      dueWithoutPlan: dueWithoutPlan
     };
   })();
 
@@ -2169,19 +2226,26 @@
 
     /** The per-question greeting is about the STUDENT'S plan, never the bank
         (founder, 2026-08-22): no stars, no asked-years, no insider line here —
-        the chips still answer all of that on demand. Without a plan a question
-        opens silently. */
+        the chips still answer all of that on demand. Without a plan, only a
+        revision-due question greets (founder, 2026-08-23) — the rest open
+        silently. */
     function greet() {
-      var plan = Vidi.getPlan();
-      if (!plan || !plan.implemented || plan.archived) return;
       var today = Vidi.todayStr();
-      if (Plan.daysLeft(plan, today) < 0) return;
       var qid = question.question_id;
-      if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) return;
-      var t = Plan.todays(plan, today);
       var s = Vidi.stageFor(qid);
+      var plan = Vidi.getPlan();
+      var planned = plan && plan.implemented && !plan.archived &&
+        Plan.daysLeft(plan, today) >= 0 &&
+        Object.prototype.hasOwnProperty.call(plan.learnDay, qid);
+      if (!planned) {
+        if (s.u && !s.r && s.u < today) {
+          say('This one is up for revision. Go through it once more, then tap "Mark revised" below — that is what makes it stick.');
+        }
+        return;
+      }
+      var t = Plan.todays(plan, today);
       var li = t.learn.indexOf(qid);
-      if (s.u && s.p && !s.r && t.revise.indexOf(qid) >= 0) {
+      if (s.u && !s.r && t.revise.indexOf(qid) >= 0) {
         say('This one is up for revision today. Go through it once more, then tap "Mark revised" below — that is what makes it stick.');
       } else if (li >= 0) {
         say('This one is on today’s list — ' + (li + 1) + ' of ' + t.learn.length +
@@ -2232,14 +2296,14 @@
       setTimeout(function () {
         if (g !== gen) return;
         widget(function (w) {
-          w.appendChild(document.createTextNode('Shall we plan your exam preparation?'));
+          w.appendChild(document.createTextNode('Shall we plan your exam preparation, or jump straight in?'));
           var row = el('div', 'vw-row');
-          row.appendChild(wBtn('Plan my exam prep', true, function () {
+          row.appendChild(wBtn('Plan my first-term exam', true, function () {
             Vidi.markIntroDone(); startOnboarding();
           }));
-          row.appendChild(wBtn('I will just browse', false, function () {
+          row.appendChild(wBtn('Start learning now', false, function () {
             Vidi.markIntroDone();
-            say('No problem. Open any question and I will help you with it. When you are ready, tap "Want a study plan?" below.');
+            say('Great — open any question and start. Each answer writes itself step by step, the way the examiner wants it. When you move on from a question I will ask how it went; anything you understood comes back tomorrow for one revision. That is what makes it stick.');
           }));
           w.appendChild(row);
         });
@@ -2506,16 +2570,13 @@
       });
     }
 
-    /** ●○ marks (Understand → Revise); solid green tick when both are done. */
+    /** Stage badge (founder, 2026-08-23): yellow tick = understood, revision
+        pending; green tick = understood + revised, done. Circle = untouched. */
     function uprMark(qid) {
       var s = Vidi.stageFor(qid);
-      if (s.u && s.r) return el('span', 'upr done', '✓');
-      var span = el('span', 'upr');
-      var dots = [s.u, s.r];
-      for (var i = 0; i < 2; i++) {
-        span.appendChild(dots[i] ? el('b', '', '●') : document.createTextNode('○'));
-      }
-      return span;
+      if (s.u && s.r) return el('span', 'upr g', '✓');
+      if (s.u) return el('span', 'upr y', '✓');
+      return el('span', 'upr', '○');
     }
 
     /** The countdown strip above the thread — outside it, so question switches
@@ -2675,6 +2736,29 @@
         chips.appendChild(chipBtn('Change my plan', changePlanWidget));
         return;
       }
+      // No plan — but revision still runs (founder, 2026-08-23): anything
+      // understood on an earlier day queues here before anything new.
+      var due = Plan.dueWithoutPlan(Vidi.todayStr());
+      if (due.length) {
+        say('Before anything new: ' + due.length +
+          (due.length === 1 ? ' question' : ' questions') + ' you understood earlier ' +
+          (due.length === 1 ? 'is' : 'are') + ' due for revision. Go through each once more — that is what makes it stick.');
+        widget(function (w) {
+          for (var i = 0; i < due.length && i < 6; i++) (function (qid) {
+            var info = Plan.itemInfo(qid);
+            if (!info) return;
+            var a = document.createElement('a');
+            a.className = 'vw-item';
+            a.href = '#/q/' + encodeURIComponent(qid);
+            a.appendChild(uprMark(qid));
+            a.appendChild(el('span', '', info.text.length > 46 ? info.text.slice(0, 44) + '…' : info.text));
+            a.appendChild(el('span', 'vwi-what', info.qtype + ' · revise'));
+            w.appendChild(a);
+          })(due[i]);
+        });
+        chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+        return;
+      }
       say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
       chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
     }
@@ -2708,21 +2792,23 @@
       // FIRST chip and expects the deterministic bank answer.
       var plan = Vidi.getPlan();
       var qid = question.question_id;
-      if (plan && plan.implemented && !plan.archived &&
-          Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) {
-        var st = Vidi.stageFor(qid);
-        if (st.u && !st.r) {
-          row.appendChild(chipBtn('Mark revised ✓', function () {
-            Vidi.setStage(qid, 'r', true);
-            Vidi.log('stage', { qid: qid, k: 'r' });
-            say('Revised and done — full green tick. ' + progressLine());
-            updatePlanStrip();
-            renderVidiChips();
-            // The FIRST finished revision is the rename moment now that the
-            // self-check is dormant (it used to ride the first completed check).
-            if (!Vidi.renameOffered()) offerRename();
-          }));
-        }
+      var inPlan = plan && plan.implemented && !plan.archived &&
+          Object.prototype.hasOwnProperty.call(plan.learnDay, qid);
+      var st = Vidi.stageFor(qid);
+      // Plan questions revise any time after Understand; plan-less ones only
+      // once a day has passed (founder, 2026-08-23 — learn today, revise
+      // tomorrow holds even without a plan).
+      if (st.u && !st.r && (inPlan || st.u < Vidi.todayStr())) {
+        row.appendChild(chipBtn('Mark revised ✓', function () {
+          Vidi.setStage(qid, 'r', true);
+          Vidi.log('stage', { qid: qid, k: 'r' });
+          say('Revised and done — full green tick.' + (inPlan ? ' ' + progressLine() : ''));
+          updatePlanStrip();
+          renderVidiChips();
+          // The FIRST finished revision is the rename moment now that the
+          // self-check is dormant (it used to ride the first completed check).
+          if (!Vidi.renameOffered()) offerRename();
+        }));
       }
       if (plan && plan.implemented && !plan.archived) {
         row.appendChild(chipBtn('Change my plan', changePlanWidget));

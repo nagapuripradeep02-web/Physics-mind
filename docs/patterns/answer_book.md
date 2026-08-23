@@ -145,9 +145,15 @@ localStorage; the LLM is never in the plan path.
   predicted; the final ~15% of days are a full-revision block (weakest self-check first); overflow
   falls off the BOTTOM into an honest `optional` bucket. Module `Plan` in notebook.js.
 - **Stages (TWO since 2026-08-23 — founder removed "Test myself" for now)**: Understand
-  auto-ticks on full reveal (the `completed = true` sites); Revise via the [Mark revised ✓]
-  chip on a later day (`s.u < today` — the revision anchor moved from the p-date to the
-  u-date). Green tick = u && r. The `p` tick in `pm_stage_v1` is VESTIGIAL: the self-check
+  is CLAIMED, never auto-ticked (founder, 2026-08-23, superseding the same-day auto-tick):
+  navigating away from a fully revealed answer raises the leave-question ask
+  ("Did you understand and practice this?" — `askGuard()`/`#askOverlay`); Yes = the YELLOW
+  tick + "we will revise this one tomorrow". A question understood on an EARLIER day asks
+  the revision form on the way out instead ("Did you revise this answer once more?"); Yes —
+  or the [Mark revised ✓] chip (now also plan-less once `s.u < today`) — completes the GREEN
+  tick. Green = u && r. The catalog chip is day-aware: "✓ revise tomorrow" → "✓ revise today"
+  → "✓ done". Without a plan the home chat still queues yesterday's understood questions
+  (`Plan.dueWithoutPlan`) before anything new — learn-today-revise-tomorrow holds planless. The `p` tick in `pm_stage_v1` is VESTIGIAL: the self-check
   that set it is dormant, the stored shape is unchanged, no migration. The rename offer moved
   from the first completed self-check to the FIRST [Mark revised ✓] — which means rename is
   now only reachable by a student with a plan (accepted trade-off). Exam-eve's
@@ -193,10 +199,11 @@ localStorage; the LLM is never in the plan path.
   when hosted — fixed; a home ask sends `question_id:'home'` with a byte-stable catalog context,
   never PM_QUESTIONS[0]'s.
 - **Gates**: the planner tests (intro-no-stars + offline onboarding · deterministic math ·
-  U auto-tick + green tick + card counts · behind → proposal → accept · silent no-plan open ·
-  crunch · Test-myself dormancy · scope-at-onboarding · mid-plan re-scope proposal · rename on
+  the leave-question ask (Yes→yellow / Not-yet→unmarked) + green tick + card counts · behind
+  → proposal → accept · silent no-plan open · plan-less next-day revision queue · crunch ·
+  Test-myself dormancy · scope-at-onboarding · mid-plan re-scope proposal · rename on
   first Mark-revised). The five self-check overlay gates were REMOVED with the feature
-  (2026-08-23): suite went 42 → 40. Caveat for test authors: `addInitScript` re-runs on reload
+  (2026-08-23): suite went 42 → 40; the ask + plan-less revision took it back to 42. Caveat for test authors: `addInitScript` re-runs on reload
   and resets the clock override — advance the day in-page and re-open the window instead of
   reloading.
 

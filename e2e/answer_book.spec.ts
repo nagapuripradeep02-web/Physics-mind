@@ -10,13 +10,24 @@
  */
 import { test, expect } from '@playwright/test';
 import { join } from 'path';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 const DIST = join(process.cwd(), 'answer-book', 'dist', 'index.html');
 const URL = 'file:///' + DIST.replace(/\\/g, '/');
 
 test.beforeAll(() => {
     if (!existsSync(DIST)) throw new Error('answer-book/dist/index.html missing — run npm run build:answers first');
+    // These gates assert the OFFLINE build (PM_VIDI_BASE === ''). Serving a
+    // person needs the HOSTED one, so dist flips back and forth — and a hosted
+    // dist used to fail three unrelated gates with a confusing diff instead of
+    // saying so. Name the problem and the fix. (scar, 2026-08-23)
+    const base = /PM_VIDI_BASE\s*=\s*"([^"]*)"/.exec(readFileSync(DIST, 'utf8'));
+    if (base && base[1]) {
+        throw new Error(
+            'answer-book/dist is the HOSTED build (PM_VIDI_BASE=' + base[1] + '). ' +
+            'The smoke suite asserts the offline build. Run: npm run build:answers ' +
+            '(then npm run build:answers:hosted again before serving it to a person).');
+    }
 });
 
 /**
@@ -908,11 +919,16 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
     const qid = plan.days[0].learn[0];
     const qid2 = plan.days[0].learn[1];
 
-    // learn today, revise tomorrow — the FIRST finished revision is the rename
-    // moment now that the self-check is dormant (founder, 2026-08-23)
+    // learn today (tick claimed in the leave-question ask), revise tomorrow —
+    // the FIRST finished revision is the rename moment (founder, 2026-08-23)
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
     await page.waitForTimeout(400);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    // a full reveal alone sets nothing (founder, 2026-08-23) — the tick is
+    // claimed on the way out, in the leave-question ask
+    expect(await page.evaluate((q: string) =>
+        !JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u, qid)).toBe(true);
+    await leaveAndAnswer(page);
     await page.waitForFunction((q: string) => {
         try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
     }, qid, { timeout: 3000 });
@@ -948,6 +964,7 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid2);
     await page.waitForTimeout(400);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
     await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-03'));
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid2);
     await page.locator('#vidiChips .vidi-chip', { hasText: 'Mark revised' }).click();
@@ -1159,7 +1176,7 @@ async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] =
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
     // intro not done → the intro widget; done → the offer chip
-    const introBtn = page.locator('.vw-btn', { hasText: 'Plan my exam prep' });
+    const introBtn = page.locator('.vw-btn', { hasText: 'Plan my first-term exam' });
     if (await introBtn.count()) await introBtn.click();
     else await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
     await lastW().locator('input[type=date]').waitFor({ timeout: 4000 });
@@ -1184,6 +1201,17 @@ async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] =
     return page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
 }
 
+/** Navigate away from a fully revealed answer and answer the leave-question
+    ask (founder, 2026-08-23) — Yes claims the tick, Not-yet leaves it clean. */
+async function leaveAndAnswer(page: any, yes = true, target = '#/') {
+    await page.evaluate((h: string) => { location.hash = h; }, target);
+    await page.waitForSelector('.pm-ask:not([hidden])', { timeout: 4000 });
+    await page.click(yes ? '#askYes' : '#askNo');
+    // NOTE state:'hidden' — the default is 'visible', and a [hidden] element
+    // never becomes visible, so the default silently hangs for the full timeout.
+    await page.waitForSelector('.pm-ask', { state: 'hidden', timeout: 4000 });
+}
+
 test('the first open is the Viditra intro — no stars, and the whole onboarding runs offline', async ({ page }) => {
     const external: string[] = [];
     page.on('request', (r: any) => {
@@ -1198,11 +1226,14 @@ test('the first open is the Viditra intro — no stars, and the whole onboarding
 
     await page.click('#vidiFab');
     await page.waitForSelector('#vidiThread .vidi-msg.tutor:not(.vidi-typing)', { timeout: 4000 });
-    await page.locator('.vw-btn', { hasText: 'Plan my exam prep' }).waitFor({ timeout: 4000 });
+    await page.locator('.vw-btn', { hasText: 'Plan my first-term exam' }).waitFor({ timeout: 4000 });
     const intro = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
         (els) => els.map((e) => e.textContent || ''));
     // the founder's requirement, locked: the first experience never talks stars
-    expect(intro.join(' ')).not.toMatch(/star/i);
+    // word-boundary, not substring: the founder's own "Start learning now" label
+    // contains s-t-a-r. This still catches "3-star question" / "star rank",
+    // which is what the rule is actually about. (2026-08-23)
+    expect(intro.join(' ')).not.toMatch(/\bstars?\b/i);
     expect(intro.join(' ')).toContain('Viditra');
 
     const plan = await buildPlanViaChat(page, '2026-09-21');
@@ -1245,19 +1276,28 @@ test('the plan math is deterministic: priority first, revision next day, and re-
     expect(plan2.days).toEqual(firstDays);
 });
 
-test('Understand ticks itself; Revise completes the green tick and the catalog shows it', async ({ page }) => {
+test('the leave-question ask claims Understand; Revise completes the green tick the catalog shows', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     const plan = await buildPlanViaChat(page, '2026-09-21');
     const qid = plan.days[0].learn[0];
 
-    // revealing every step IS the Understand stage — and, since the self-check
-    // is dormant (founder, 2026-08-23), it completes the learning stage alone
+    // reveal, then claim the tick in the leave-question ask (founder, 2026-08-23)
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
     await page.waitForTimeout(400);
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    // a full reveal alone sets nothing (founder, 2026-08-23) — the tick is
+    // claimed on the way out, in the leave-question ask
+    expect(await page.evaluate((q: string) =>
+        !JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u, qid)).toBe(true);
+    await leaveAndAnswer(page);
     await page.waitForFunction((q: string) => {
         try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
     }, qid, { timeout: 3000 });
+
+    // the Yes landed us on the catalog: the yellow chip says when revision is due
+    await page.waitForSelector('.cc-chip.pm-upr.y');
+    expect(await page.$$eval('.cc-chip.pm-upr.y', (els) => els.map((e) => e.textContent)))
+        .toContain('✓ revise tomorrow');
 
     // next day: the revise chip appears on that question; ticking it goes green
     await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
@@ -1382,8 +1422,13 @@ test('Test myself is dormant: the entry stays hidden and Understand alone comple
     expect(t.hidden).toBe(true);
     expect(t.overlayHidden).toBe(true);
 
-    // with no self-check anywhere, revealing every step completes the learning stage
+    // with no self-check anywhere, the leave-question ask is the only path to a tick
     await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    // a full reveal alone sets nothing (founder, 2026-08-23) — the tick is
+    // claimed on the way out, in the leave-question ask
+    expect(await page.evaluate((q: string) =>
+        !JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u, qid)).toBe(true);
+    await leaveAndAnswer(page);
     await page.waitForFunction((q: string) => {
         try { return !!JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q]?.u; } catch { return false; }
     }, qid, { timeout: 3000 });
@@ -1438,4 +1483,69 @@ test('mid-plan "Change my plan" re-scopes by proposal — nothing changes until 
         return ids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
     }, qids);
     expect(qtypes).not.toContain('VSAQ');
+});
+
+test('the leave-question ask: Not yet leaves the question unmarked, Yes marks it yellow', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const qid = await page.evaluate(() => (window as any).PM_QUESTIONS[0].question_id);
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+
+    // Not yet → nothing recorded, and the navigation still lands on the catalog
+    await leaveAndAnswer(page, false);
+    await page.waitForSelector('.cat-card');
+    expect(await page.evaluate((q: string) =>
+        !JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q], qid)).toBe(true);
+    expect(await page.$$('.cc-chip.pm-upr')).toHaveLength(0);
+
+    // back in, reveal again, Yes → the yellow chip names the revision day
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
+    await page.waitForSelector('.cc-chip.pm-upr.y');
+    expect(await page.$$eval('.cc-chip.pm-upr.y', (els) => els.map((e) => e.textContent)))
+        .toContain('✓ revise tomorrow');
+});
+
+test('plan-less revision: the next day queues yesterday\'s questions, and revising completes green', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const qid = await page.evaluate(() => (window as any).PM_QUESTIONS[0].question_id);
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
+
+    // next day, NO plan: the catalog chip flips to today, and the home chat
+    // queues the revision with a tappable link
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
+    await page.evaluate(() => (window as any).PM_ANSWER.openCatalog());
+    await page.waitForSelector('.cc-chip.pm-upr.y');
+    expect(await page.$$eval('.cc-chip.pm-upr.y', (els) => els.map((e) => e.textContent)))
+        .toContain('✓ revise today');
+    // The thread only re-reads the clock when the window is OPENED, so a window
+    // left open by the leave-question ask still shows yesterday. Close it if it
+    // is open, then open it — the move the behind-pace gate already makes.
+    if (!(await page.isVisible('#vidiFab'))) await page.click('#vidiClose');
+    await page.click('#vidiFab');
+    await page.waitForSelector('.vidi-widget .vw-item', { timeout: 4000 });
+    await page.waitForFunction(() => /due for revision/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 6000 });
+
+    // the queued link opens the question; the plan-less greeting names revision
+    await page.click('.vidi-widget .vw-item');
+    await page.waitForFunction(() => /up for revision/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 4000 });
+
+    // reveal once more and claim the revise tick on the way out → full green
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
+    const st = await page.evaluate((q: string) =>
+        JSON.parse(localStorage.getItem('pm_stage_v1')!)[q], qid);
+    expect(st.u && st.r).toBeTruthy();
+    await page.waitForSelector('.cc-chip.pm-upr.g');
+    expect(await page.$$eval('.cc-chip.pm-upr.g', (els) => els.map((e) => e.textContent)))
+        .toContain('✓ done');
 });
