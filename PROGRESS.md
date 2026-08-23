@@ -2,13 +2,26 @@
 
 ## ⏱️ SESSION — Answer Book: **CRUNCH MODE + the chat field found twice-lost** (2026-08-23, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`)
 
-**Bottom line: two founder items. (1) "There is no chat field" had TWO causes — the served dist was the offline test build again (the smoke suite always overwrites `dist` with `build:answers`; re-run `build:answers:hosted` before serving a person — now written down as a standing rule), AND a real gap: `renderHome` never set `#vidiAskRow`, so the new CATALOG home chat had no input even in hosted builds. Both fixed; a home ask now sends `question_id:'home'` with a byte-stable catalog context instead of silently grounding the model in PM_QUESTIONS[0]. (2) The founder's ignored-plan question became CRUNCH MODE: when the time left cannot fit the work, the plan flips from stars-first to marks-first — LAQs, then SAQs, and every VSAQ moves behind them regardless of stars, mostly into `optional` with the strategy said out loud. Verified: 42/42 gates · tsc 0 · hosted-build probe shows the field on both surfaces with the right context per surface.**
+**Bottom line: two founder items. (1) "There is no chat field" had TWO causes — the served dist was the offline test build again (the smoke suite always overwrites `dist` with `build:answers`; re-run `build:answers:hosted` before serving a person — now written down as a standing rule), AND a real gap: `renderHome` never set `#vidiAskRow`, so the new CATALOG home chat had no input even in hosted builds. Both fixed; a home ask now sends `question_id:'home'` with a byte-stable catalog context instead of silently grounding the model in PM_QUESTIONS[0]. (2) The founder's ignored-plan question became CRUNCH MODE: when the time left cannot fit the work, the plan flips from stars-first to marks-first — LAQs, then SAQs, and every VSAQ moves behind them regardless of stars, mostly into `optional` with the strategy said out loud. Verified: 42/42 gates · tsc 0 · hosted-build probe shows the field on both surfaces with the right context per surface. (3) Founder-directed the same day: the Edge Function was DEPLOYED and verified against the live endpoint, so hosted free-text chat is now plan-aware — the loop from onboarding to a real AI reply that knows the student’s own numbers is closed.**
 
 ### Crunch mode — the ignored-45-day-plan answer
 Trigger: demand (Σ2.5×`expected_time_min`) > capacity ×1.15 — a 7-day, 30-min/day student facing Units 4+5 trips it; a healthy 20-day plan does not (the deterministic gate still asserts stars-first day 1 there). Under crunch: the revision block shrinks to one day, the queue re-sorts LAQ → SAQ (stars within, asked before predicted) with VSAQs last, and the messages change — preview: *"Time is short, so this plan puts long answers and short answers first — they carry the marks. N questions, mostly very short answers, are left for exam-eve — do not start with them."* Re-plans run through the same builder, so an ignored plan REPLANS INTO crunch — the founder's exact scenario, locked as gate 42 (fresh crunch build + behind→replan→accept→`crunch:true`, and the flattened learn order never schedules a VSAQ before the last LAQ/SAQ). `plan.crunch` also rides the model's plan-status line.
 
 ### The chat-field double cause
 The smoke suite REQUIRES the offline build (`PM_VIDI_BASE === ''` gates), so every test run leaves `dist` chat-less — second founder report of the same symptom, now a recorded rule: **after smoke, rebuild hosted before serving.** The real bug underneath: the planner's home conversation (catalog) never un-hid the ask row. Fixed in `renderHome`; `vidiAsk` gained a home mode (`buildHomeContext()` — the chapter list, byte-stable for the prefix cache) because the module globals still hold `PM_QUESTIONS[0]` as a boot fallback and grounding a home question in an answer the student cannot see would be worse than saying so.
+
+### The deploy — hosted chat is plan-aware
+Founder-directed after the fixes landed, so Rule 17 is satisfied by an explicit instruction.
+`npx supabase functions deploy answerbook-vidi-chat --no-verify-jwt --use-api --project-ref
+dxwpkjfypzxrzgbevfnx` with `SUPABASE_ACCESS_TOKEN` read from `.env.local` — the route the
+2026-08-22 session recorded after finding this machine’s CLI signed into the wrong org (that
+scar stands: `supabase login` still cannot be done through the `!` prefix).
+
+**Verified against the REAL endpoint, not the mirror.** A `plan_status` probe came back with
+the exact plan numbers — *"Your exam is on 2026-09-21, and today you have 20 days left. Today
+you need to learn 4 new questions and revise 2 from earlier."* — plain text, no markdown. The
+per-IP ledger decremented (`questions_left` 39), so the reply travelled the full guard +
+DeepSeek path rather than a cache. Negative control: a foreign `Origin` still 403s.
 
 ### Verification (measured)
 `smoke:answers` **42/42** · `npx tsc --noEmit` 0 · hosted probe: ask row visible on catalog home AND question view; home ask sends `question_id:'home'` + catalog context; question ask sends the real qid. The repo `dist` is left as the **hosted** build this time.
@@ -18,7 +31,7 @@ The smoke suite REQUIRES the offline build (`PM_VIDI_BASE === ''` gates), so eve
 
 ### NEXT
 1. Founder: `npm run serve:answers` — the dist is now the hosted build; the chat field is there on both surfaces.
-2. ~~The Edge Function redeploy is still pending~~ **DEPLOYED, founder-directed, same day**: npx supabase --use-api with the .env.local token. Verified live: a plan_status probe against the real endpoint answered with the exact plan numbers ("exam on 2026-09-21… 20 days left… learn 4 new questions and revise 2"), plain text, and a foreign origin still 403s. Hosted chat is plan-aware.
+2. **Done this session** — the Edge Function is deployed and live-verified (see above). Nothing is pending on the build side.
 
 ---
 
