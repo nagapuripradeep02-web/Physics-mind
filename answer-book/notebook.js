@@ -2775,7 +2775,9 @@
 
     function startIntro() {
       say('Hi, I am ' + Vidi.getName() + ' — welcome to Viditra.');
-      say('This book holds the questions your Physics exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
+      // Subject-neutral: the book has held physics, chemistry AND mathematics
+      // since 2026-08-23, and this line greets a student on any of them.
+      say('This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
       var g = gen;
       setTimeout(function () {
         if (g !== gen) return;
