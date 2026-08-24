@@ -313,6 +313,34 @@
       never the bare number. */
   function unitKey(u) { return subjectOf(u) + '-' + u.number; }
 
+  /** A QUESTION's unit key. A question carries its subject at the TOP level, and its
+      unit as {number, name} with no subject of its own (src/schemas/answerBook.ts:232),
+      so unitKey(question.unit) would read EVERY card as physics. Build it from the
+      question's own subject instead — same absent-means-physics rule as subjectOf. */
+  function questionUnitKey(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
+
+  /** The chapter's 3-star set, for Vidi's grounding text. Keyed on subject-number,
+      never the bare number: keying on the number told a Maths Unit 3 (Matrices) card
+      that its chapter-mates were Physics Unit 3 (Motion in a Straight Line) questions,
+      and physics sorts first in UNITS, so the maths mates were never reached at all. */
+  function chapterMates(q, limit) {
+    var mates = [];
+    var want = questionUnitKey(q);
+    var cap = limit || 6;
+    for (var u2 = 0; u2 < UNITS.length; u2++) {
+      if (unitKey(UNITS[u2]) !== want) continue;
+      var qs2 = UNITS[u2].questions;
+      for (var e2 = 0; e2 < qs2.length && mates.length < cap; e2++) {
+        var me2 = qs2[e2];
+        if (me2.question_id && me2.stars === 3 && me2.question_id !== q.question_id) {
+          mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
+        }
+      }
+    }
+    return mates;
+  }
+  // --- end of the Vidi context key helpers ---
+
   function entryMatches(e, u) {
     if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return false;
     if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
@@ -3506,17 +3534,7 @@
         }
       }
       // The chapter's 3-star set — the #1 follow-up question a crammer asks.
-      var mates = [];
-      for (var u2 = 0; u2 < UNITS.length; u2++) {
-        if (UNITS[u2].number !== question.unit.number) continue;
-        var qs2 = UNITS[u2].questions;
-        for (var e2 = 0; e2 < qs2.length && mates.length < 6; e2++) {
-          var me2 = qs2[e2];
-          if (me2.question_id && me2.stars === 3 && me2.question_id !== question.question_id) {
-            mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
-          }
-        }
-      }
+      var mates = chapterMates(question, 6);
       if (mates.length) {
         out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
       }

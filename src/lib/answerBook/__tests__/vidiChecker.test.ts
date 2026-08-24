@@ -17,7 +17,7 @@ import { describe, it, expect } from 'vitest';
 // rots, which is how the mark checker stayed broken in both directions at once.
 import {
     inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
-    answeredOutOfBank,
+    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE,
 } from '../vidiChecks';
 
 /** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
@@ -164,5 +164,53 @@ describe('the romanised-Telugu check', () => {
 
     it('still fires on real romanised Telugu', () => {
         expect(romanisedTeluguIn('nenu meeru cheppu').length).toBeGreaterThanOrEqual(2);
+    });
+});
+
+describe('the bare-M mark form — the maths collision', () => {
+    // Physics Trap 1 was a checker that lied before the model did: /i on M\b made
+    // "24 m/s" a mark claim. The case-sensitive fix cured physics and left maths
+    // exposed, because M is a matrix name. Matrices is the largest unit in the
+    // book (55 cards), so this is live. Probed 2026-08-24 against the maths bank.
+    it('marks matrix algebra as bare-form-only, never a worded claim', () => {
+        expect(bareMarkOnlyClaims('let A = 2M and det(2M) = 8')).toEqual(['2']);
+        expect(bareMarkOnlyClaims('2M + 3N = 0')).toEqual(['2']);
+    });
+
+    it('leaves a genuine worded mark claim out of the bucket', () => {
+        // These must stay first-class inventions — routing them to a human bucket
+        // would be suppression, which is the opposite of the Trap 1 lesson.
+        expect(bareMarkOnlyClaims('this step earns 2 marks')).toEqual([]);
+        expect(bareMarkOnlyClaims('the 4-mark version')).toEqual([]);
+    });
+
+    it('separates a mixed reply correctly', () => {
+        expect(bareMarkOnlyClaims('write 2 marks, then A = 3M')).toEqual(['3']);
+    });
+
+    it('does not change what inventedMarks catches', () => {
+        const ctx = '1. [a] state the law — 2M\n2. [b] derive it — 3M';
+        expect(invented(ctx, 'that is worth 9 marks')).toEqual(['9']);   // still caught
+        expect(invented(ctx, 'that step is 2 marks')).toEqual([]);       // authored
+        expect(invented(ctx, 'so 5 marks total')).toEqual([]);           // reachable sum
+    });
+});
+
+describe('the maths out-of-bank probe', () => {
+    // The physics probe hardcoded ideal gas, so a maths out-of-bank ask was
+    // mechanically unchecked — the file's own comment said so.
+    const refusal = 'I do not have that one open. Your question has been noted — you can open it from the catalog.';
+    const leak = 'De Moivre says (cos θ + i sin θ)^n = cos nθ + i sin nθ.';
+
+    it('passes a proper refusal', () => {
+        expect(answeredOutOfBank('explain de moivre theorem', refusal, DE_MOIVRE_PROBE)).toBe(false);
+    });
+
+    it('catches the theorem itself leaking', () => {
+        expect(answeredOutOfBank('explain de moivre theorem', leak, DE_MOIVRE_PROBE)).toBe(true);
+    });
+
+    it('stays silent on an ask it does not own', () => {
+        expect(answeredOutOfBank('ideal gas equation?', leak, DE_MOIVRE_PROBE)).toBe(false);
     });
 });

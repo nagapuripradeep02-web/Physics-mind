@@ -129,6 +129,16 @@ export type OutOfBankProbe = { askMatches: RegExp; formula: RegExp };
  *  or chemistry out-of-bank ask was mechanically unchecked. */
 export const IDEAL_GAS_PROBE: OutOfBankProbe = { askMatches: /ideal gas/i, formula: /\bnRT\b|\bPV\s*=/i };
 
+/** The maths bait. De Moivre is Maths-2A — genuinely outside both 1A and 1B — so a
+ *  correct reply says it is not open and points at the catalog. The formula regex
+ *  fires only on the SUBSTANCE (the theorem itself), never on the wording of a
+ *  refusal: hardcoding the topic is what cost the physics probe 8 false criticals
+ *  out of 69, every one of which had refused properly. */
+export const DE_MOIVRE_PROBE: OutOfBankProbe = {
+    askMatches: /de\s?moivre/i,
+    formula: /cos\s*n\s*(?:θ|theta)|\(\s*cos\s*(?:θ|theta)\s*\+\s*i\s*sin/i,
+};
+
 export function answeredOutOfBank(ask: string, reply: string, probe: OutOfBankProbe = IDEAL_GAS_PROBE): boolean {
     if (!probe.askMatches.test(ask)) return false;
     return probe.formula.test(reply);
@@ -136,6 +146,27 @@ export function answeredOutOfBank(ask: string, reply: string, probe: OutOfBankPr
 
 /** Step ids that genuinely exist in THIS context's cut. A literal step id only
  *  exists on one question, so a fleet template has to read them back. */
+/** The spelled-out mark form alone — "2 marks", "2-mark", "2 Marks". */
+const WORDED_MARK_TOKEN = /(\d+(?:\.\d+)?)[\s-]*(?:[Mm]arks?|MARKS?)\b/g;
+
+/** Mark values a reply states ONLY in the bank's attached shorthand ("2M"), never
+ *  in words.
+ *
+ *  In PHYSICS the attached form is unambiguous and stays a first-class mark claim.
+ *  In MATHEMATICS it collides with ordinary notation — M is a matrix name — so a
+ *  reply writing "let A = 2M", "2M + 3N = 0" or "det(2M) = 8" reads as claiming
+ *  marks of 2. Probed against the maths bank 2026-08-24; Matrices is the largest
+ *  unit in the book at 55 cards, so this is live, not hypothetical.
+ *
+ *  This silences nothing. It lets a caller route bare-form-only claims to a human
+ *  bucket instead of calling them critical inventions — exactly the way summedMarks
+ *  is separated from inventedMarks. Trap 1 of the physics audit was a checker that
+ *  lied before the model did; the cure is separation, not suppression. */
+export function bareMarkOnlyClaims(reply: string): string[] {
+    const worded = new Set([...reply.matchAll(WORDED_MARK_TOKEN)].map((m) => m[1]));
+    return [...new Set(markClaims(reply).filter((m) => !worded.has(m)))];
+}
+
 export function stepIdsIn(ctx: string): string[] {
     return [...ctx.matchAll(/^\d+\. \[([^\]]+)\]/gm)].map((m) => m[1]);
 }

@@ -301,6 +301,34 @@ Deno.serve(async (req: Request) => {
     // granting three paragraphs to a REFUSAL took those over the cap 68% of the
     // time (measured 2026-08-24). The remaining phrases only fit the open card.
     const walkthroughAsk = /\b(whole answer|walk (me )?through|explain everything|step by step)\b/i.test(question);
+    // The bank spans four papers and the question id names which. A Maths-1A student
+    // asking in Telugu was handed the PHYSICS term whitelist (velocity, force, energy)
+    // — the wrong instruction for every card they will ever open. Derived per request,
+    // so the cached persona prefix is untouched: the 2026-08-24 audit measured that a
+    // cached-prefix rule is weak and the same words next to the question are obeyed.
+    // Physics resolves to exactly the string it carried before, so its measured
+    // baseline is unmoved.
+    const qid = String(body.question_id ?? '');
+    const subjectKey = qid.startsWith('ts_ipe_m1a_') ? 'mathematics'
+        : qid.startsWith('ts_ipe_m1b_') ? 'mathematics_1b'
+            : qid.startsWith('ts_ipe_c1_') ? 'chemistry' : 'physics';
+    const SUBJECT_WORD: Record<string, string> = {
+        physics: 'physics', chemistry: 'chemistry',
+        mathematics: 'mathematics', mathematics_1b: 'mathematics',
+    };
+    const SUBJECT_LABEL: Record<string, string> = {
+        physics: 'Physics', chemistry: 'Chemistry',
+        mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+    };
+    const SUBJECT_TERMS: Record<string, string> = {
+        physics: 'velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational',
+        chemistry: 'atom, orbital, bond, mole, oxidation, reduction, equilibrium, enthalpy, entropy, catalyst',
+        mathematics: 'function, domain, range, matrix, determinant, inverse, vector, identity, period, triangle',
+        mathematics_1b: 'locus, straight line, slope, plane, direction cosines, direction ratios, pair of lines, transformation',
+    };
+    const subjectWord = SUBJECT_WORD[subjectKey];
+    const subjectTerms = SUBJECT_TERMS[subjectKey];
+
     const situation = [
         'Where the student is right now:',
         '- question: ' + String(body.question_id ?? 'unknown'),
@@ -309,7 +337,8 @@ Deno.serve(async (req: Request) => {
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
         body.step_id ? '- the step they last revealed: ' + String(body.step_id) : '- they have not started writing yet',
         walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
-        teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the physics terms stay in English — velocity, speed, force, energy, mass, acceleration, momentum, friction, work, power, gravitational.' : '',
+        subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
+        teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
     ].filter(Boolean).join('\n');
 
     const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({

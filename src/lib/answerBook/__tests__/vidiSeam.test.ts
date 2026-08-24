@@ -114,3 +114,77 @@ describe('plain() — the markdown strip between the model and the student', () 
         expect(plain(42)).toBe('42');
     });
 });
+
+describe('chapterMates() - the chapter 3-star set in Vidi grounding text', () => {
+    // Extracted from the SHIPPED notebook.js, like plain() above. subjectOf, unitKey,
+    // questionUnitKey and chapterMates are contiguous and end at a sentinel comment;
+    // chapterMates closes over UNITS, so the block is evaluated with UNITS injected.
+    const js = read('answer-book', 'notebook.js');
+    const start = js.indexOf('function subjectOf(u)');
+    expect(start, 'subjectOf() not found in notebook.js').toBeGreaterThan(-1);
+    const end = js.indexOf('// --- end of the Vidi context key helpers ---', start);
+    expect(end, 'helper sentinel not found in notebook.js').toBeGreaterThan(start);
+    const source = js.slice(start, end).split(String.fromCharCode(13)).join('');
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const make = new Function('UNITS', source + '; return chapterMates;') as
+        (u: unknown) => (q: unknown, limit?: number) => string[];
+
+    // Physics Unit 3 and Maths Unit 3 are different chapters sharing a bare number,
+    // and physics sorts first in UNITS - the exact collision this guards.
+    const UNITS = [
+        {
+            number: 3, name: 'Motion in a Straight Line', questions: [
+                { question_id: 'ts_ipe_p1_msl_a', stars: 3, section: 'LAQ', number: 1, text: 'derive v = u + at' },
+                { question_id: 'ts_ipe_p1_msl_b', stars: 3, section: 'SAQ', number: 2, text: 'stopping distance' },
+            ],
+        },
+        {
+            number: 3, name: 'Matrices', subject: 'mathematics', questions: [
+                { question_id: 'ts_ipe_m1a_mat_a', stars: 3, section: 'LAQ', number: 1, text: 'solve by Cramer rule' },
+                { question_id: 'ts_ipe_m1a_mat_self', stars: 3, section: 'VSAQ', number: 2, text: 'find the trace' },
+            ],
+        },
+        {
+            number: 3, name: 'The Straight Line', subject: 'mathematics_1b', questions: [
+                { question_id: 'ts_ipe_m1b_sl_a', stars: 3, section: 'LAQ', number: 1, text: 'find the orthocentre' },
+            ],
+        },
+    ];
+    const chapterMates = make(UNITS);
+
+    it('gives a maths card its OWN chapter, never the physics unit of the same number', () => {
+        // Before the subject-key fix this returned the two PHYSICS questions: the loop
+        // compared bare .number and physics is reached first, so 227 of 250 Maths-1A
+        // cards were grounded in a chapter the student had never opened.
+        const mates = chapterMates({
+            question_id: 'ts_ipe_m1a_mat_self', subject: 'mathematics', unit: { number: 3, name: 'Matrices' },
+        }).join(' | ');
+        expect(mates).toContain('Cramer');
+        expect(mates).not.toContain('u + at');
+        expect(mates).not.toContain('stopping distance');
+    });
+
+    it('separates the two maths PAPERS, which also share unit numbers', () => {
+        const mates = chapterMates({
+            question_id: 'ts_ipe_m1b_other', subject: 'mathematics_1b', unit: { number: 3, name: 'The Straight Line' },
+        }).join(' | ');
+        expect(mates).toContain('orthocentre');
+        expect(mates).not.toContain('Cramer');
+    });
+
+    it('still reads an absent subject as physics', () => {
+        // Physics units carry no subject field - the absent-means-physics rule.
+        const mates = chapterMates({
+            question_id: 'ts_ipe_p1_msl_a', unit: { number: 3, name: 'Motion in a Straight Line' },
+        }).join(' | ');
+        expect(mates).toContain('stopping distance');
+        expect(mates).not.toContain('Cramer');
+    });
+
+    it('never lists the open question as its own chapter-mate', () => {
+        const mates = chapterMates({
+            question_id: 'ts_ipe_m1a_mat_self', subject: 'mathematics', unit: { number: 3, name: 'Matrices' },
+        }).join(' | ');
+        expect(mates).not.toContain('find the trace');
+    });
+});
