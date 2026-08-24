@@ -1,0 +1,368 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_area_triangle_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) : |am²−2hlm+bl²|.",
+  "appearances": [
+    {
+      "year": 2019
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the pair and match coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Find vertex A",
+      "marks": 2
+    },
+    {
+      "label": "Find vertex B and write the area",
+      "marks": 2
+    },
+    {
+      "label": "Convert to a, h, b",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.20 — LAQ chapter 2 Pair of Straight Lines, answer 7. Printed appearances: TS 19 · AP,TS M 17 · TS J-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say where the third vertex is, and how you handle the difference of the two slopes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_match",
+        "kind": "equation",
+        "label": "Split the pair and match coefficients",
+        "marks": 1,
+        "margin_note": "First mark. The pair passes through the origin, so the triangle has O as one vertex and the two meeting points with the line as the other two. Split the pair in slope form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ax² + 2hxy + by² ≡ (m₁x − y)(m₂x − y)",
+          "On equating like term coeff., we get",
+          "m₁ + m₂ = −2h/b,   m₁m₂ = a/b  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair is split as (m₁x − y)(m₂x − y) with m₁ + m₂ = −2h/b and m₁m₂ = a/b.",
+          "accept": [
+            "split the pair into two slope form lines and equate coefficients",
+            "the sum of the slopes is minus two h over b and the product is a over b",
+            "write the pair as m one x minus y into m two x minus y",
+            "slopes sum and product teesukovali",
+            "match the coefficients"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m one plus m two",
+            "minus two h over b",
+            "m one m two",
+            "a over b"
+          ]
+        },
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "common_mistakes": [
+          "Writing m₁ + m₂ = 2h/b without the minus sign.",
+          "Dividing by a instead of b."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the pair and the cutting line",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. Both lines of the pair pass through the ORIGIN, so O is one vertex for free — the picture is what makes that visible, and it is why only two vertices have to be found.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the two lines through the origin and the cutting line are sketched, forming triangle OAB. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the two lines through the origin and the line that cuts them",
+            "sketch the triangle O A B formed by the pair and the line",
+            "show that both lines of the pair pass through the origin",
+            "pair rendu lines origin gundaa vellthaayi, line cut chesthundi",
+            "draw the triangle formed by the pair and the line"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "through the origin",
+            "triangle O A B",
+            "cutting line"
+          ]
+        },
+        "why": "A homogeneous second-degree equation always represents two lines through the ORIGIN, so the third vertex is free — which is what shortens the area formula to ½|x₁y₂ − x₂y₁|.",
+        "common_mistakes": [
+          "Drawing the pair away from the origin, which a homogeneous equation cannot represent.",
+          "Drawing the cutting line through the origin too, which would collapse the triangle."
+        ],
+        "figure": {
+          "id": "pair_and_cutting_line",
+          "width": 280,
+          "height": 224,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ray_1",
+              "d": "M 42 202 L 218 42",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "ray_1_head",
+              "d": "M 208 44 L 218 42 L 214 52",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "ray_2",
+              "d": "M 42 202 L 250 122",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "ray_2_head",
+              "d": "M 240 120 L 250 122 L 242 130",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "cut_line",
+              "d": "M 152 20 L 244 186",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "dot_b",
+              "d": "M 191 63 A 3 3 0 1 0 197 63 A 3 3 0 1 0 191 63",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "dot_a",
+              "d": "M 218 110 A 3 3 0 1 0 224 110 A 3 3 0 1 0 218 110",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 26,
+              "y": 216,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 178,
+              "y": 58,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 224,
+              "y": 102,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_cut",
+              "x": 192,
+              "y": 206,
+              "text": "lx+my+n=0",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_pair",
+              "x": 40,
+              "y": 120,
+              "text": "ax²+2hxy+by²=0",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_find_vertex_a",
+        "kind": "equation",
+        "label": "Find vertex A",
+        "marks": 2,
+        "margin_note": "Two marks. One vertex is where the given line meets the first of the two lines — solve that pair by cross-multiplication, keeping everything in letters.",
+        "lines": [
+          "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
+          "lx + my + n = 0",
+          "m₁x − y + 0 = 0",
+          "⇒ x / [m(0) − (−1)(n)] = y / [n(m₁) − l(0)] = 1 / [l(−1) − mm₁]",
+          "⇒ x/n = y/(nm₁) = 1/(−l − mm₁)",
+          "⇒ A = (−n/(l + mm₁),  −nm₁/(l + mm₁))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the given line with m₁x − y = 0 gives A = (−n/(l+mm₁), −nm₁/(l+mm₁)).",
+          "accept": [
+            "solve the given line with the first line of the pair by cross multiplication",
+            "this gives the first vertex A in letters",
+            "A is minus n over l plus m m one and so on",
+            "modati line tho solve chesthe A vasthundi",
+            "find the first vertex"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiplication",
+            "vertex A",
+            "minus n over",
+            "l plus m m one"
+          ]
+        },
+        "why": "The third vertex is the ORIGIN, since both lines of the pair pass through it — so only two vertices need finding, and the area formula for a triangle with a vertex at O is short.",
+        "common_mistakes": [
+          "Solving the given line against itself.",
+          "Sign slip in one of the three cross-multiplication denominators."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_vertex_b_and_area",
+        "kind": "equation",
+        "label": "Find vertex B and write the area",
+        "marks": 2,
+        "margin_note": "Two marks. B comes from the same working with m₂ in place of m₁. With O at the origin, the area reduces to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
+        "lines": [
+          "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
+          "The area of the triangle with vertices O(0,0), A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
+          "∴ Area of △OAB = ½ |[−n/(l+mm₁)][−nm₂/(l+mm₂)] − [−n/(l+mm₂)][−nm₁/(l+mm₁)]|",
+          "= ½ |(n²m₂ − n²m₁) / [(l + mm₁)(l + mm₂)]|",
+          "= ½ |n²(m₂ − m₁) / [l² + lmm₂ + lmm₁ + m²m₁m₂]|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B is found the same way and the area is ½|x₁y₂ − x₂y₁| with O at the origin.",
+          "accept": [
+            "B is the same with m two instead of m one",
+            "the area with a vertex at the origin is half mod x one y two minus x two y one",
+            "substitute both vertices into the area formula",
+            "B ni same ga teesukoni area formula vaadali",
+            "write the area of the triangle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "vertex B",
+            "half mod",
+            "x one y two",
+            "area of the triangle"
+          ]
+        },
+        "why": "Putting one vertex at the origin removes two of the six terms in the general area determinant, which is why the pair-through-the-origin setting keeps this manageable.",
+        "common_mistakes": [
+          "Using the full three-vertex determinant and mis-expanding it.",
+          "Losing the n² when multiplying the two numerators."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_convert",
+        "kind": "boxed_final",
+        "label": "Convert to a, h, b",
+        "marks": 2,
+        "margin_note": "The last two marks. m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "lines": [
+          "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
+          "  [∵ (a − b) = √((a + b)² − 4ab)]",
+          "= ½ · n²√((−2h/b)² − 4(a/b)) / |l² + lm(−2h/b) + m²(a/b)|",
+          "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
+          "= ½ · n²(2√(h² − ab)/b) / (|bl² − 2hlm + am²|/b)",
+          {
+            "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|  sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (m₂ − m₁)² = (m₁+m₂)² − 4m₁m₂ lets (1) be substituted, giving the stated area.",
+          "accept": [
+            "square the difference of the slopes so the sum and product can be used",
+            "m two minus m one is the root of the sum squared minus four times the product",
+            "substitute from one and the b denominators cancel",
+            "difference of slopes ni sum and product tho rayali",
+            "this gives the required area"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of the slopes",
+            "sum squared minus four",
+            "substitute",
+            "the b cancels"
+          ]
+        },
+        "why": "Only the SUM and PRODUCT of the slopes are known, never the slopes themselves — so any expression in them must first be written through those two, which is what the identity does.",
+        "common_mistakes": [
+          "Writing m₂ − m₁ = (m₁+m₂) − 2m₁m₂.",
+          "Forgetting that b appears in both numerator and denominator and cancels."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

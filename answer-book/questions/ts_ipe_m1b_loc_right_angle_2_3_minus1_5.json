@@ -1,0 +1,310 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_right_angle_2_3_minus1_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of P, if the line segment joining (2,3) and (−1,5) subtends a right angle at P.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.53 — SAQ chapter 7 Locus, answer 42.3, on a ★★★ SSP (Super Scoring Page). Printed appearance: AP M 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins. FIGURE: the book prints one against this answer — triangle APB with the right angle marked at P and the fixed segment AB as the hypotenuse (book p.53). It is the ONLY figure in the Locus chapter: answers 42.1 and 42.2 pose the same right-angle condition in the two columns above and carry none, so the figure is this answer's own and is not generalised across the family."
+  },
+  "recall_prompt": "Say how you would solve this — name the condition you would write for the right angle, and say what shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (2, 3), B = (−1, 5)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the right angle at P",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The right angle sits at P, so AB is the HYPOTENUSE — that is the whole reason the condition becomes PA² + PB² = AB² with AB alone on the right.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That triangle APB is sketched with the right angle marked at P and AB as the hypotenuse. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw triangle A P B with the right angle at P",
+            "sketch the two given points and the moving point P with a square corner at P",
+            "show that AB is the hypotenuse",
+            "A P B triangle geesi P daggara right angle mark cheyyali",
+            "draw the right angled triangle at P"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "triangle",
+            "right angle",
+            "hypotenuse",
+            "subtends"
+          ]
+        },
+        "why": "Pythagoras puts the side OPPOSITE the right angle alone on one side of the equation. The sketch is how you see that the right angle is at P, so the fixed segment AB is the hypotenuse and PA and PB are the two legs.",
+        "common_mistakes": [
+          "Putting a distance from P on the right-hand side instead of AB.",
+          "Forgetting that AB is fixed, so AB² is a number and not an expression in x and y."
+        ],
+        "figure": {
+          "id": "locus_right_angle_apb",
+          "width": 272,
+          "height": 190,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "leg_pa",
+              "d": "M 66 146 L 66 40",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "leg_pb",
+              "d": "M 66 146 L 226 146",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "hyp_ab",
+              "d": "M 66 40 L 226 146",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "rt_mark",
+              "d": "M 66 134 L 78 134 L 78 146",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 44,
+              "y": 30,
+              "text": "A(2, 3)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 8,
+              "y": 172,
+              "text": "P(x, y)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 198,
+              "y": 172,
+              "text": "B(−1, 5)",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A right angle at P means the triangle APB is right angled AT P, so AB is its hypotenuse and Pythagoras applies as PA² + PB² = AB². Writing this line earns the mark on its own.",
+        "lines": [
+          "Given condition: ∠APB = 90°",
+          "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right angle at P is turned into PA² + PB² = AB².",
+          "accept": [
+            "angle A P B is ninety so P A squared plus P B squared equals A B squared",
+            "use pythagoras with A B as the hypotenuse",
+            "right angle at P means P A square plus P B square is A B square",
+            "ninety degrees kabatti P A square plus P B square equals A B square",
+            "apply pythagoras theorem to the triangle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P A squared plus P B squared",
+            "A B squared",
+            "pythagoras",
+            "right angle at P"
+          ]
+        },
+        "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
+        "common_mistakes": [
+          "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
+          "Trying to use the slope condition m₁m₂ = −1 and then losing the sign."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
+        "lines": [
+          "⇒ [(x−2)² + (y−3)²] + [(x+1)² + (y−5)²] = (2+1)² + (3−5)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each distance is replaced by its coordinate form using the distance formula, squared.",
+          "accept": [
+            "substitute the distance formula for each of P A, P B and A B",
+            "put x minus x one whole squared plus y minus y one whole squared for each distance",
+            "write every distance in coordinates without the root",
+            "distance formula apply chesi coordinates lo rasukovali",
+            "replace the distances with the coordinate expressions"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "x minus",
+            "whole squared",
+            "substitute"
+          ]
+        },
+        "why": "PA² is written straight from the distance formula as (x−x₁)² + (y−y₁)², with no root sign, because the condition was stated in squares.",
+        "common_mistakes": [
+          "Leaving a square root in, then having to square the whole line again.",
+          "Subtracting the coordinates the wrong way round inside a bracket that is not squared yet."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "lines": [
+          "⇒ (x² − 4x + 4) + (y² − 6y + 9) + (x² + 2x + 1) + (y² − 10y + 25) = 9 + 4",
+          "⇒ 2x² + 2y² − 2x − 16y + 39 = 13",
+          "⇒ 2x² + 2y² − 2x − 16y + 26 = 0",
+          "⇒ 2(x² + y² − x − 8y + 13) = 0",
+          {
+            "text": "∴ Locus of P is x² + y² − x − 8y + 13 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and cancelling gives the circle x² + y² − x − 8y + 13 = 0.",
+          "accept": [
+            "expand everything and cancel to get the circle",
+            "simplify and divide by two to get the equation of the locus",
+            "after cancelling the constants the x squared and y squared coefficients match so it is a circle",
+            "expand chesi simplify chesthe circle equation vasthundi",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand",
+            "cancel",
+            "divide by two",
+            "locus of P is",
+            "circle"
+          ]
+        },
+        "why": "The locus of a point that sees a fixed segment at a right angle is the circle on that segment as diameter, so a circle is the expected shape and a check on the algebra.",
+        "common_mistakes": [
+          "Forgetting to divide by the common factor 2 at the end.",
+          "Losing a sign when expanding a bracket like (y − 4)²."
+        ]
+      }
+    ]
+  }
+}

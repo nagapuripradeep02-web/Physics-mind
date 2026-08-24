@@ -39,7 +39,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 162. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. Both diagonals must be written in terms of the two GIVEN sides first. In parallelogram ABCD the vertices go round in order, so BC equals AD — that is the fact that unlocks AC. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 162. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. Both diagonals must be written in terms of the two GIVEN sides first. In parallelogram ABCD the vertices go round in order, so BC equals AD — that is the fact that unlocks AC. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. FIGURE: the book prints one against this answer — parallelogram ABCD with arrows on the two given sides, both diagonals drawn and the angle θ marked where they cross (book p.105). It is the ONLY figure anywhere in the Star Questions Plus bank (book pp.98-111), and it is redrawn as its own step because the question asks about diagonals while the data given are sides."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
@@ -92,6 +92,145 @@
           "Using AB + BC without noticing BC = AD.",
           "Adding the k components instead of cancelling them."
         ]
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the parallelogram",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The two dashed lines are the DIAGONALS, AC and BD — the angle asked for is θ where they cross, not the angle between the sides AB and AD that were given.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That parallelogram ABCD is sketched with both diagonals drawn and the angle between them marked. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the parallelogram A B C D and both its diagonals",
+            "sketch the parallelogram and mark the angle where the diagonals cross",
+            "show the diagonals AC and BD meeting at theta",
+            "parallelogram geesi rendu diagonals geeyali",
+            "draw the parallelogram with its diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "parallelogram",
+            "diagonals",
+            "angle",
+            "theta"
+          ]
+        },
+        "why": "The two vectors given are SIDES, and the answer is about diagonals. The picture is what turns the lettering into the two additions that follow — AC runs A to C across the figure, BD runs B to D the other way — so the signs in AC = AB + AD and BD = AD − AB are read, not guessed.",
+        "common_mistakes": [
+          "Taking the angle between the given sides AB and AD instead of between the diagonals.",
+          "Writing BD as AB − AD, which reverses the diagonal and flips the sign of the cosine."
+        ],
+        "figure": {
+          "id": "parallelogram_abcd_diagonals",
+          "width": 280,
+          "height": 196,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 36 156 L 178 156",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 178 156 L 238 52",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_dc",
+              "d": "M 96 52 L 238 52",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "side_ad",
+              "d": "M 36 156 L 96 52",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_ab",
+              "d": "M 103 151 L 113 156 L 103 161",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_ad",
+              "d": "M 69 108 L 70 97 L 61 103",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ac",
+              "d": "M 36 156 L 238 52",
+              "ms": 640,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_bd",
+              "d": "M 178 156 L 96 52",
+              "ms": 640,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 18,
+              "y": 176,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 184,
+              "y": 176,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 244,
+              "y": 46,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 78,
+              "y": 46,
+              "text": "D",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 146,
+              "y": 96,
+              "text": "θ",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
       },
       {
         "id": "s2_find_the_diagonal_bd",

@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ta_rotate_45_find_original",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Transformation of Axes"
+  },
+  "chapter": "Transformation of Axes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "When the axes are rotated through an angle 45°, the transformed equation of a curve is 17x²−16xy+17y²=225. Find the original equation of the curve.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    },
+    {
+      "year": 2020
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the given equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the change of axes",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Transformation of Axes, answer 53, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 15 · TS 20 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). ⚠ The question text prints the transformed equation in SMALL letters (17x²−16xy+17y²=225); the answer's own first line restates it in capitals, and this file follows the answer so the two sets of axes stay distinguishable. This answer's page also prints the boxed 'SOLUTION STEPS' panel that the mark split above is cut on. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+  },
+  "recall_prompt": "Say how you would solve this — say which rotation formulas you need when the ORIGINAL equation is wanted, and what happens to the xy term.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transformation of Axes · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_given_equation",
+        "kind": "text",
+        "label": "Take the given equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The equation handed over is the NEW one, so it is written in capital X and capital Y before anything else happens.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given transformed (new) equation is taken as",
+          "17X² − 16XY + 17Y² = 225  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given equation is named as the new equation, in capital X and Y.",
+          "accept": [
+            "the given equation is the new one so write it in capitals",
+            "take seventeen X squared minus sixteen X Y plus seventeen Y squared as the new equation",
+            "this is the transformed equation, number it one",
+            "ichchina equation new equation, capitals lo rayali",
+            "the given equation is the transformed one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "new equation",
+            "transformed",
+            "capital X",
+            "number it one"
+          ]
+        },
+        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "common_mistakes": [
+          "Treating it as the original and rotating the wrong way.",
+          "Losing the minus sign on the XY term."
+        ]
+      },
+      {
+        "id": "s2_write_the_change_of_axes",
+        "kind": "equation",
+        "label": "Write the change of axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Going back to the original needs the REVERSE rotation formulas: X = xcosθ + ysinθ and Y = ycosθ − xsinθ. Note where the minus sign sits — it moves to Y.",
+        "lines": [
+          "Angle of rotation θ = 45°, then",
+          "X = xcosθ + ysinθ = xcos45° + ysin45°  ⇒  X = (x + y)/√2",
+          "Y = ycosθ − xsinθ = ycos45° − xsin45°  ⇒  Y = (y − x)/√2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reverse rotation formulas X = xcosθ + ysinθ, Y = ycosθ − xsinθ are used with θ = 45°.",
+          "accept": [
+            "capital X equals x cos theta plus y sin theta and capital Y equals y cos theta minus x sin theta",
+            "the reverse rotation formulas, the minus sign moves to Y",
+            "X is x plus y over root two and Y is y minus x over root two",
+            "original ki vellali ante reverse formulas vaadali",
+            "write the reverse rotation formulas at forty five degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x cos theta plus y sin theta",
+            "y cos theta minus x sin theta",
+            "reverse",
+            "root two"
+          ]
+        },
+        "why": "Finding the original reverses the rotation, so the roles of the two formulas swap and the minus sign moves from the x-formula to the Y-formula. Using the forward pair here gives the wrong curve.",
+        "common_mistakes": [
+          "Using x = Xcosθ − Ysinθ when the ORIGINAL equation is wanted.",
+          "Writing Y = (x − y)/√2 with the subtraction the wrong way round."
+        ]
+      },
+      {
+        "id": "s3_substitute_into_the_equation",
+        "kind": "equation",
+        "label": "Substitute into the equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Put both into equation (1). The middle term is a product of two brackets, and (x+y)(y−x) is a difference of two squares — worth spotting before expanding.",
+        "lines": [
+          "From (1), original equation is",
+          "17((x + y)/√2)² − 16((x + y)/√2)((y − x)/√2) + 17((y − x)/√2)² = 225",
+          "⇒ 17(x² + y² + 2xy)/2 − 16(y² − x²)/2 + 17(y² + x² − 2xy)/2 = 225",
+          "  [∵ (x + y)(y − x) = y² − x²]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both reverse expressions are substituted, and (x+y)(y−x) is recognised as y² − x².",
+          "accept": [
+            "substitute both into the given equation and use the difference of two squares on the middle term",
+            "put X and Y into equation one",
+            "x plus y into y minus x is y squared minus x squared",
+            "middle term difference of squares vasthundi",
+            "substitute the reverse formulas into the equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "difference of two squares",
+            "middle term",
+            "over two"
+          ]
+        },
+        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "common_mistakes": [
+          "Expanding (x+y)(y−x) as x² − y².",
+          "Squaring only the numerator and forgetting the 2 underneath."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to the answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The xy terms are equal and opposite and cancel; multiply through by 2 at the end.",
+        "lines": [
+          "⇒ [17x² + 17y² + 34xy − 16y² + 16x² + 17y² + 17x² − 34xy] / 2 = 225",
+          "⇒ (50x² + 18y²)/2 = 225   ⇒   50x² + 18y² = 450",
+          {
+            "text": "∴ Original equation is 25x² + 9y² = 225",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the xy terms cancel and the equation simplifies to 25x² + 9y² = 225.",
+          "accept": [
+            "the x y terms cancel and it becomes twenty five x squared plus nine y squared equals two twenty five",
+            "collect the terms and multiply through by two",
+            "plus thirty four x y and minus thirty four x y cancel",
+            "x y terms cancel avuthaayi, twenty five x square plus nine y square",
+            "the original equation is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "thirty four x y",
+            "twenty five x squared",
+            "nine y squared"
+          ]
+        },
+        "why": "The cross term vanishing is the check: 45° was chosen to remove it, so it must be absent both ways round.",
+        "common_mistakes": [
+          "Leaving an xy term in the answer.",
+          "Dividing by 2 instead of multiplying at the last step."
+        ]
+      }
+    ]
+  }
+}

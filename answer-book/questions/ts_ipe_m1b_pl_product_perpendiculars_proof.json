@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_product_perpendiculars_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    },
+    {
+      "year": 2022
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the pair and match coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Write both perpendicular distances",
+      "marks": 2
+    },
+    {
+      "label": "Multiply them together",
+      "marks": 2
+    },
+    {
+      "label": "Convert to a, h, b",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say what form you split the pair into, and what the numerator turns into.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_match",
+        "kind": "equation",
+        "label": "Split the pair and match coefficients",
+        "marks": 1,
+        "margin_note": "First mark. Split the pair in the general homogeneous form l₁x + m₁y, which is the form the perpendicular-distance formula expects.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ax² + 2hxy + by² ≡ (l₁x + m₁y)(l₂x + m₂y)",
+          "On equating like term coeff., we get",
+          "a = l₁l₂,   b = m₁m₂,   2h = l₁m₂ + l₂m₁"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair is split as (l₁x + m₁y)(l₂x + m₂y) with a = l₁l₂, b = m₁m₂, 2h = l₁m₂ + l₂m₁.",
+          "accept": [
+            "split the pair into two lines through the origin and equate coefficients",
+            "a is l one l two, b is m one m two, two h is the cross sum",
+            "write the pair as a product of two general lines",
+            "pair ni product ga rasi coefficients equate cheyyali",
+            "match a b and two h"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "l one l two",
+            "m one m two",
+            "two h",
+            "equate coefficients"
+          ]
+        },
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "common_mistakes": [
+          "Using the slope form, which cannot handle a line with no y-term.",
+          "Writing 2h = l₁m₁ + l₂m₂ instead of the cross pairing."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_both_distances",
+        "kind": "equation",
+        "label": "Write both perpendicular distances",
+        "marks": 2,
+        "margin_note": "Two marks. Each line passes through the origin, so its equation has no constant — the perpendicular distance from (α, β) is just |l α + m β| over the root of the squares.",
+        "lines": [
+          "Perpendicular distance from (α, β) to l₁x + m₁y = 0 is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
+          "Perpendicular distance from (α, β) to l₂x + m₂y = 0 is  p₂ = |l₂α + m₂β| / √(l₂² + m₂²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both perpendicular distances are written using |lα + mβ|/√(l² + m²).",
+          "accept": [
+            "write the perpendicular distance from the point to each of the two lines",
+            "mod l alpha plus m beta over root l squared plus m squared",
+            "both lines pass through the origin so there is no constant term",
+            "rendu lines nunchi perpendicular distance rayali",
+            "both distances first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perpendicular distance",
+            "l alpha plus m beta",
+            "root l squared plus m squared"
+          ]
+        },
+        "why": "The lines pass through the origin, so c = 0 in the distance formula — which is what keeps both numerators to two terms.",
+        "common_mistakes": [
+          "Including a constant term that is not there.",
+          "Putting α and β into the denominator."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_multiply",
+        "kind": "equation",
+        "label": "Multiply them together",
+        "marks": 2,
+        "margin_note": "Two marks. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products the dictionary knows.",
+        "lines": [
+          "∴ Product of perpendiculars is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)] · [|l₂α + m₂β| / √(l₂² + m₂²)]",
+          "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
+          "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²| / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying and expanding gives |l₁l₂α² + (l₁m₂ + l₂m₁)αβ + m₁m₂β²| over the expanded root.",
+          "accept": [
+            "multiply the two distances and expand both top and bottom",
+            "the numerator becomes l one l two alpha squared plus the cross terms plus m one m two beta squared",
+            "expand the product under the root as well",
+            "rendu multiply chesi expand cheyyali",
+            "multiply the two perpendicular distances"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply",
+            "expand",
+            "cross terms",
+            "under the root"
+          ]
+        },
+        "why": "The numerator's three groups are exactly a, 2h and b from the dictionary — that correspondence is the whole point of expanding rather than leaving it factored.",
+        "common_mistakes": [
+          "Adding the two distances instead of multiplying.",
+          "Forgetting that the two middle terms combine into the 2h group."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_convert",
+        "kind": "boxed_final",
+        "label": "Convert to a, h, b",
+        "marks": 2,
+        "margin_note": "The last two marks. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
+        "lines": [
+          "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
+          "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "∴ p₁·p₂ = |aα² + 2hαβ + bβ²| / √((a − b)² + 4h²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives |aα² + 2hαβ + bβ²| over √((a − b)² + 4h²).",
+          "accept": [
+            "substitute a b and two h into both the numerator and the denominator",
+            "the denominator becomes a minus b squared plus four h squared",
+            "the numerator is a alpha squared plus two h alpha beta plus b beta squared",
+            "a b two h substitute chesthe result vasthundi",
+            "this gives the required product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "a minus b squared",
+            "four h squared",
+            "the numerator"
+          ]
+        },
+        "why": "The two extra terms added and subtracted cancel exactly, and what is left regroups as (a − b)² and (2h)² — which is why the answer's denominator has that shape.",
+        "common_mistakes": [
+          "Writing the denominator as (a + b)² + 4h².",
+          "Forgetting the modulus on the numerator."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

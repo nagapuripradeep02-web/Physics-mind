@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ta_shift_2_3_find_original",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Transformation of Axes"
+  },
+  "chapter": "Transformation of Axes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "When the origin is shifted to the point (2,3), the transformed equation of a curve is x²+3xy−2y²+17x−7y−11=0, find the original equation of the curve.",
+  "appearances": [
+    {
+      "year": 2016
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the given equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the change of axes",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Transformation of Axes, answer 50, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16 · AP 17,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The question text prints the transformed equation in SMALL letters; it is written here in capitals (X² + 3XY − 2Y² + 17X − 7Y − 11 = 0) from the answer's own first line, which is what the book's own solution does, so the two sets of axes stay distinguishable on the page. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+  },
+  "recall_prompt": "Say how you would solve this — say which way the shift goes when you want the original equation, and which letters the answer is written in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transformation of Axes · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_given_equation",
+        "kind": "text",
+        "label": "Take the given equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This time the equation you are handed is the NEW one, so it is written in capital X and capital Y. Number it (1).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given transformed (new) equation is taken as",
+          "X² + 3XY − 2Y² + 17X − 7Y − 11 = 0  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given equation is named as the new (transformed) equation, in capital X and Y.",
+          "accept": [
+            "the given equation is the new one so write it in capital X and Y",
+            "take the given equation as the transformed equation",
+            "this is the new equation, call it one",
+            "ichchina equation ni new equation ga teesukovali",
+            "the given equation is the transformed equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "new equation",
+            "transformed equation",
+            "capital X",
+            "given equation"
+          ]
+        },
+        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "common_mistakes": [
+          "Treating the given equation as the original and shifting the wrong way.",
+          "Writing it in small letters and then losing track of which is which."
+        ]
+      },
+      {
+        "id": "s2_write_the_change_of_axes",
+        "kind": "equation",
+        "label": "Write the change of axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark, and the one that separates this from its facing question. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round.",
+        "lines": [
+          "We take origin (h, k) = (2, 3), then",
+          "X = x − h  ⇒  X = x − 2",
+          "Y = y − k  ⇒  Y = y − 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reverse change of axes X = x − h, Y = y − k is written with the given shift.",
+          "accept": [
+            "capital X equals x minus h and capital Y equals y minus k",
+            "going back to the original the signs reverse",
+            "X is x minus two and Y is y minus three",
+            "original ki vellali ante X equals x minus h",
+            "write the reverse translation formulas"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus h",
+            "y minus k",
+            "reverse",
+            "original"
+          ]
+        },
+        "why": "Finding the original is the reverse journey, so the shift is subtracted rather than added. Using the forward formulas here is the single commonest error in the chapter.",
+        "common_mistakes": [
+          "Using x = X + h when the question asks for the ORIGINAL equation.",
+          "Reversing only one of the two formulas."
+        ]
+      },
+      {
+        "id": "s3_substitute_into_the_equation",
+        "kind": "equation",
+        "label": "Substitute into the equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Put those two lines into equation (1) — every capital X and capital Y is replaced by its small-letter expression.",
+        "lines": [
+          "From (1), original equation is",
+          "(x−2)² + 3(x−2)(y−3) − 2(y−3)² + 17(x−2) − 7(y−3) − 11 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reverse change-of-axes lines are put into the given equation.",
+          "accept": [
+            "substitute the capital X and Y expressions into the given equation",
+            "put x minus two and y minus three into equation one",
+            "replace every capital X and capital Y",
+            "equation one lo substitute cheyyali",
+            "put these into the given equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "from one",
+            "original equation",
+            "put these"
+          ]
+        },
+        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "common_mistakes": [
+          "Substituting into only some of the terms.",
+          "Forgetting to substitute inside a product like XY."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to the answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Expand, collect and write the original equation in small x and small y. A capital letter left in the answer means a term was missed.",
+        "lines": [
+          "⇒ (x² + 4 − 4x) + 3(xy − 3x − 2y + 6) − 2(y² + 9 − 6y) + 17x − 34 − 7y + 21 − 11 = 0",
+          "⇒ x² − 4x + 4 + 3xy − 9x − 6y + 18 − 2y² + 12y − 18 + 17x − 34 − 7y + 21 − 11 = 0",
+          {
+            "text": "∴ Original equation is x² + 3xy − 2y² + 4x − y − 20 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and collecting gives x² + 3xy − 2y² + 4x − y − 20 = 0.",
+          "accept": [
+            "expand and collect to get the original equation",
+            "simplify and write the answer in small x and y",
+            "after expanding and collecting this is what is left",
+            "expand chesi simplify chesthe original equation vasthundi",
+            "the original equation is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand",
+            "collect",
+            "original equation",
+            "small x",
+            "small y"
+          ]
+        },
+        "why": "The answer describes the curve on the ORIGINAL axes, so it must contain only x and y.",
+        "common_mistakes": [
+          "Leaving a capital X or Y in the final line.",
+          "Sign slip when expanding a product of two brackets."
+        ]
+      }
+    ]
+  }
+}

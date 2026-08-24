@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_equilateral_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Show that the points (1,2,3), (2,3,1) and (3,1,2) form an equilateral triangle.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the three distances",
+      "marks": 1
+    },
+    {
+      "label": "Compare them for equality",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 3-D Coordinates, answer 100.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what you compute, and what makes the triangle equilateral.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_three_distances",
+        "kind": "equation",
+        "label": "Find the three distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (1,2,3), B = (2,3,1), C = (3,1,2), then",
+          "AB = √((2−1)² + (3−2)² + (1−3)²) = √(1 + 1 + 4) = √6",
+          "BC = √((3−2)² + (1−3)² + (2−1)²) = √(1 + 4 + 1) = √6",
+          "AC = √((3−1)² + (1−2)² + (2−3)²) = √(4 + 1 + 1) = √6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three pairwise distances AB, BC and AC are computed with the 3D distance formula.",
+          "accept": [
+            "compute all three distances with the three dimensional distance formula",
+            "root of x difference squared plus y difference squared plus z difference squared",
+            "find A B, B C and A C",
+            "moodu distances teesukovali",
+            "apply the distance formula three times"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "three distances",
+            "A B",
+            "B C",
+            "A C",
+            "surd"
+          ]
+        },
+        "why": "Both questions on this page are answered by computing the SAME three distances. Only the conclusion drawn from them differs, which is why the book prints the note 'Questioning is different but Answering is similar' underneath.",
+        "common_mistakes": [
+          "Forgetting the third squared difference and using the 2D formula.",
+          "Simplifying a surd wrongly, which hides the pattern in the three answers."
+        ]
+      },
+      {
+        "id": "s2_draw_the_conclusion",
+        "kind": "boxed_final",
+        "label": "Compare them for equality",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. All three distances come out the SAME, which is the definition of an equilateral triangle. Nothing further needs computing.",
+        "lines": [
+          "∴ AB = BC = AC",
+          {
+            "text": "Hence, A, B, C form an equilateral triangle",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three distances are equal to √6, so the triangle is equilateral.",
+          "accept": [
+            "all three distances are root six so the triangle is equilateral",
+            "A B equals B C equals A C",
+            "the three sides are the same length",
+            "moodu sides same kabatti equilateral",
+            "hence equilateral"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "all three equal",
+            "root six",
+            "equilateral",
+            "same length"
+          ]
+        },
+        "why": "Equal distances is the whole definition — no angles need finding, which is what keeps this to two marks.",
+        "common_mistakes": [
+          "Checking only two of the three distances.",
+          "Concluding isosceles when all three match."
+        ]
+      }
+    ]
+  }
+}

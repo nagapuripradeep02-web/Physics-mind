@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_sqp_product_perpendiculars_origin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Prove that the product of the perpendicular distances from the origin to the pair of straight lines represented by ax²+2hxy+by²+2gx+2fy+c=0 is |c| : √((a−b)²+4h²).",
+  "appearances": [
+    {
+      "year": 2019
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the pair and match coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Write both perpendicular distances",
+      "marks": 2
+    },
+    {
+      "label": "Multiply them together",
+      "marks": 2
+    },
+    {
+      "label": "Convert to a, h, b and c",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 185, under its 'PAIR OF LINES' heading. Printed appearances: TS 19 · AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It mirrors chapter answer 8 (book p.21), which proves the same product for a general point (α,β) on a pair through the ORIGIN; this bank question inverts that — a general pair, and the perpendiculars taken FROM the origin. The two answers share their skeleton, and the chapter answer's 1+2+2+2 shape is used here. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say what the distance from the ORIGIN simplifies to, and what the numerator becomes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_match",
+        "kind": "equation",
+        "label": "Split the pair and match coefficients",
+        "marks": 1,
+        "margin_note": "First mark. A general pair splits into two general lines, each carrying its own constant — and those constants are what the perpendicular distances from the origin will use.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the separate equations of ax² + 2hxy + by² + 2gx + 2fy + c = 0 be",
+          "l₁x + m₁y + n₁ = 0  ……(1)  and  l₂x + m₂y + n₂ = 0  ……(2)",
+          "∴ ax² + 2hxy + by² + 2gx + 2fy + c ≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
+          "Comparing both sides we get  l₁l₂ = a,  m₁m₂ = b,  n₁n₂ = c,",
+          "l₁m₂ + l₂m₁ = 2h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair splits into two general lines and the coefficients are matched, including n₁n₂ = c.",
+          "accept": [
+            "split into two general lines and match the coefficients",
+            "l one l two is a, m one m two is b and n one n two is c",
+            "the constants multiply to give c",
+            "rendu lines ga split chesi coefficients match cheyyali",
+            "n one n two equals c is the one that matters here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "l one l two",
+            "m one m two",
+            "n one n two equals c",
+            "match coefficients"
+          ]
+        },
+        "why": "n₁n₂ = c is the key entry: the perpendicular from the ORIGIN to a line is just its constant over the root, so the product of the two perpendiculars will carry n₁n₂ — which is c.",
+        "common_mistakes": [
+          "Forgetting that the constants also have to be matched.",
+          "Pairing the cross terms with the same subscript."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_both_distances",
+        "kind": "equation",
+        "label": "Write both perpendicular distances",
+        "marks": 2,
+        "margin_note": "Two marks. From the ORIGIN the distance formula collapses: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
+        "lines": [
+          "The perpendicular distance from O(0,0) to line (1) is  p₁ = |n₁| / √(l₁² + m₁²)",
+          "The perpendicular distance from O(0,0) to line (2) is  p₂ = |n₂| / √(l₂² + m₂²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That from the origin each perpendicular distance is |n|/√(l² + m²).",
+          "accept": [
+            "from the origin the distance is just mod n over the root",
+            "putting zero zero into the formula leaves only the constant",
+            "p one is mod n one over root l one squared plus m one squared",
+            "origin nunchi distance ante n matrame",
+            "both distances from the origin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "from the origin",
+            "mod n",
+            "over the root",
+            "perpendicular distance"
+          ]
+        },
+        "why": "This is what makes the origin version SHORTER than the general-point version in chapter answer 8: the numerator has one term instead of two.",
+        "common_mistakes": [
+          "Carrying α and β through when the point is the origin.",
+          "Forgetting the modulus signs."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_multiply",
+        "kind": "equation",
+        "label": "Multiply them together",
+        "marks": 2,
+        "margin_note": "Two marks. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
+        "lines": [
+          "∴ The product of the perpendiculars is",
+          "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
+          "= |n₁n₂| / √((l₁² + m₁²)(l₂² + m₂²))",
+          "= |c| / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying gives |n₁n₂| = |c| over the expanded product of the two roots.",
+          "accept": [
+            "multiply the two distances so the numerator becomes n one n two which is c",
+            "the numerator is mod c straight away",
+            "expand the product under the root",
+            "multiply chesthe numerator c avuthundi",
+            "the numerator is done, only the denominator is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply",
+            "mod c",
+            "expand the root",
+            "numerator"
+          ]
+        },
+        "why": "The numerator finishes in one step because c was matched directly — all the remaining work is in the denominator, exactly as in chapter answer 8.",
+        "common_mistakes": [
+          "Adding rather than multiplying the two distances.",
+          "Forgetting to multiply the two roots under one square root."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_convert",
+        "kind": "boxed_final",
+        "label": "Convert to a, h, b and c",
+        "marks": 2,
+        "margin_note": "The last two marks. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
+        "lines": [
+          "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
+          "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "∴ Product of perpendiculars = |c| / √((a − b)² + 4h²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator regroups as (a − b)² + (2h)², giving |c|/√((a − b)² + 4h²).",
+          "accept": [
+            "add and subtract the same term so the denominator regroups",
+            "it becomes a minus b squared plus four h squared",
+            "substitute the dictionary into the denominator",
+            "denominator ni a minus b square plus four h square ga rayali",
+            "this gives the required result"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a minus b squared",
+            "four h squared",
+            "regroup",
+            "substitute"
+          ]
+        },
+        "why": "The added and subtracted terms cancel exactly, and (l₁m₂ + l₂m₁)² is (2h)² = 4h² — which is where the 4 in the answer comes from.",
+        "common_mistakes": [
+          "Writing (a + b)² instead of (a − b)².",
+          "Writing 2h² instead of 4h²."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_transform_4x_minus_3y_12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Transform the equation 4x−3y+12=0 into (i) slope intercept form (ii) intercept form.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Slope intercept form",
+      "marks": 1
+    },
+    {
+      "label": "Intercept form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 90.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,20. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what each of the two forms must look like when you are finished.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_intercept_form",
+        "kind": "equation",
+        "label": "Slope intercept form",
+        "marks": 1,
+        "margin_note": "First mark. Slope-intercept form is y = mx + c, so make y the subject and read off the slope and the y-intercept.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(i) Slope intercept form is  y = mx + c",
+          "∴ 4x − 3y + 12 = 0  ⇒  3y = 4x + 12",
+          "⇒ y = (4/3)x + 12/3",
+          "⇒ y = (4/3)x + 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is rearranged into y = mx + c.",
+          "accept": [
+            "make y the subject to get y equals m x plus c",
+            "rearrange into slope intercept form",
+            "divide through so y is alone",
+            "y ni subject ga cheyyali",
+            "slope intercept form is y equals m x plus c"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope intercept",
+            "y equals m x plus c",
+            "make y the subject"
+          ]
+        },
+        "why": "Slope-intercept form shows the slope and the y-intercept directly, which is what makes it the form asked for first.",
+        "common_mistakes": [
+          "Leaving the equation with y on the wrong side.",
+          "Dividing only some terms by the coefficient of y."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_intercept_form",
+        "kind": "boxed_final",
+        "label": "Intercept form",
+        "marks": 1,
+        "margin_note": "Second mark. Intercept form is x/a + y/b = 1, so move the constant to the right and divide everything by it — the two denominators are then the intercepts.",
+        "lines": [
+          "(ii) Intercept form is  x/a + y/b = 1",
+          "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
+          "⇒ 4x/(−12) − 3y/(−12) = 1",
+          {
+            "text": "⇒ x/(−3) + y/4 = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That moving the constant across and dividing gives x/(−3) + y/4 = 1.",
+          "accept": [
+            "move the constant to the right and divide everything by it",
+            "intercept form is x over a plus y over b equals one",
+            "divide through by the constant to get one on the right",
+            "constant ni right side ki teesi divide cheyyali",
+            "this gives the intercept form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "divide by the constant",
+            "equals one",
+            "x over a"
+          ]
+        },
+        "why": "Intercept form must have 1 on the right-hand side — that is the whole definition, and dividing by the constant is the only way to arrange it.",
+        "common_mistakes": [
+          "Leaving a number other than 1 on the right.",
+          "Forgetting to divide one of the two terms."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

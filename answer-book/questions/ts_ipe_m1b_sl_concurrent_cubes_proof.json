@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_concurrent_cubes_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Solve the first two lines",
+      "marks": 1
+    },
+    {
+      "label": "Write the point of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the third",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 60. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would prove this — say what concurrency lets you substitute, and what the three mixed terms combine into.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_solve_two_lines",
+        "kind": "equation",
+        "label": "Solve the first two lines",
+        "marks": 1,
+        "margin_note": "First mark. Nothing here has numbers, but the method is unchanged: solve two of the three lines by cross-multiplication, carrying the letters through.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given lines  ax + by + c = 0 ……(1),  bx + cy + a = 0 ……(2)",
+          "Solving (1) and (2), we get P,",
+          "x / (ba − (c)(c)) = y / (cb − (a)(a)) = 1 / (ac − (b)(b))",
+          "⇒ x/(ab − c²) = y/(bc − a²) = 1/(ca − b²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first two lines are solved by cross-multiplication, keeping the letters.",
+          "accept": [
+            "solve the first two lines by cross multiplication in letters",
+            "the same method as with numbers but everything stays algebraic",
+            "x over a b minus c squared equals y over b c minus a squared",
+            "cross multiplication letters tho cheyyali",
+            "solve one and two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiplication",
+            "a b minus c squared",
+            "b c minus a squared",
+            "solve"
+          ]
+        },
+        "why": "A proof and a numerical question use the same machinery here — only the arithmetic is replaced by algebra.",
+        "common_mistakes": [
+          "Mismatching which coefficient pairs with which in the cross-multiplication.",
+          "Losing a sign in one of the three denominators."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_point_of_intersection",
+        "kind": "equation",
+        "label": "Write the point of intersection",
+        "marks": 1,
+        "margin_note": "Second mark. Read off the point. Both coordinates share the denominator ca − b², which will clear when the point is substituted.",
+        "lines": [
+          "⇒ x = (ab − c²)/(ca − b²)  and  y = (bc − a²)/(ca − b²)",
+          "∴ Point of intersection  P = ((ab − c²)/(ca − b²), (bc − a²)/(ca − b²))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point of intersection is written with the common denominator ca − b².",
+          "accept": [
+            "write the point with both coordinates over c a minus b squared",
+            "state the point of intersection in letters",
+            "P is a b minus c squared over c a minus b squared and so on",
+            "point of intersection ni rayali",
+            "the common denominator is c a minus b squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point of intersection",
+            "common denominator",
+            "c a minus b squared"
+          ]
+        },
+        "why": "Writing the point explicitly makes the substitution mechanical, and the shared denominator means it disappears in one move.",
+        "common_mistakes": [
+          "Assigning the numerators to the wrong coordinates.",
+          "Cancelling the denominator too early."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_substitute_third",
+        "kind": "equation",
+        "label": "Substitute into the third",
+        "marks": 1,
+        "margin_note": "Third mark. Concurrent means P lies on the third line as well, so substituting must give zero — and multiplying through by the denominator clears every fraction at once.",
+        "lines": [
+          "Given lines are concurrent, so P lies on cx + ay + b = 0",
+          "⇒ c[(ab − c²)/(ca − b²)] + a[(bc − a²)/(ca − b²)] + b = 0",
+          "⇒ c(ab − c²) + a(bc − a²) + b(ca − b²) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is substituted into the third line and the common denominator cleared.",
+          "accept": [
+            "put the point into the third line and multiply through by the denominator",
+            "concurrency means the point lies on the third line so this equals zero",
+            "clear the fractions in one move",
+            "third line lo substitute chesi denominator clear cheyyali",
+            "substitute into c x plus a y plus b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "third line",
+            "clear the denominator",
+            "equals zero"
+          ]
+        },
+        "why": "The whole proof is one substitution — concurrency is the only hypothesis, and this is where it is used.",
+        "common_mistakes": [
+          "Substituting into (1) or (2), which gives 0 = 0 and proves nothing.",
+          "Forgetting to multiply the standalone b by the denominator."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the result",
+        "marks": 1,
+        "margin_note": "Last mark. Expand the three brackets; the three mixed terms are all abc, and the three cubes collect on the other side.",
+        "lines": [
+          "⇒ cab − c³ + abc − a³ + bca − b³ = 0",
+          "⇒ 3abc − (a³ + b³ + c³) = 0",
+          {
+            "text": "∴ a³ + b³ + c³ = 3abc",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives 3abc − (a³ + b³ + c³) = 0, so a³ + b³ + c³ = 3abc.",
+          "accept": [
+            "expand and the three mixed terms are each a b c so you get three a b c",
+            "the cubes collect and the result follows",
+            "three a b c minus the sum of cubes is zero",
+            "expand chesthe moodu a b c terms vasthaayi",
+            "hence a cubed plus b cubed plus c cubed equals three a b c"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three a b c",
+            "sum of cubes",
+            "expand",
+            "hence proved"
+          ]
+        },
+        "why": "cab, abc and bca are the same product written three ways, which is what makes the three mixed terms combine into 3abc.",
+        "common_mistakes": [
+          "Treating cab, abc and bca as different terms.",
+          "Leaving the answer as 3abc − (a³+b³+c³) = 0 without stating the required form."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

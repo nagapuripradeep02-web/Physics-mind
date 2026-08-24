@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_parametric_distance_slope_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "A straight line with slope 1 passes through Q(−3,5) meets the line x+y−6=0 at P. Find the distance PQ.",
+  "appearances": [
+    {
+      "year": 2022
+    },
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the angle",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric point",
+      "marks": 1
+    },
+    {
+      "label": "Put it on the line",
+      "marks": 1
+    },
+    {
+      "label": "Solve for r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22 · TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what the parametric form gives you, and what r means at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_angle",
+        "kind": "equation",
+        "label": "Find the angle",
+        "marks": 1,
+        "margin_note": "First mark. The parametric form needs an ANGLE, not a slope, so convert whatever the question gives into θ before anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given slope m = 1  ⇒  tanθ = tan45°",
+          "⇒ θ = 45°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given information is converted into the angle θ the line makes with the X-axis.",
+          "accept": [
+            "convert the given slope or direction into the angle theta",
+            "the parametric form needs the angle not the slope",
+            "find theta from tan theta equals the slope",
+            "slope nunchi theta teesukovali",
+            "get the angle with the X axis"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "angle theta",
+            "tan theta",
+            "with the X axis",
+            "parametric"
+          ]
+        },
+        "why": "The parametric form measures distance ALONG the line, and distance needs a direction — which is what θ supplies.",
+        "common_mistakes": [
+          "Using the slope directly in place of cosθ and sinθ.",
+          "Taking θ as the angle with the Y-axis."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_parametric_point",
+        "kind": "equation",
+        "label": "Write the parametric point",
+        "marks": 1,
+        "margin_note": "Second mark. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
+        "lines": [
+          "Given point Q(x₁, y₁) = (−3, 5) and distance PQ = r, then",
+          "P = (x₁ + r cosθ, y₁ + r sinθ)",
+          "= (−3 + r cos45°, 5 + r sin45°)",
+          "= (−3 + r(1/√2), 5 + r(1/√2))",
+          "∴ P = (−3 + r/√2, 5 + r/√2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is written as (x₁ + r cosθ, y₁ + r sinθ) with the given point and angle.",
+          "accept": [
+            "P is x one plus r cos theta comma y one plus r sin theta",
+            "write the point in parametric form with distance r",
+            "the parametric point at distance r from Q",
+            "parametric form lo P ni rayali",
+            "use x one plus r cos theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r cos theta",
+            "r sin theta",
+            "parametric point",
+            "distance r"
+          ]
+        },
+        "why": "One unknown r replaces two unknown coordinates, which is the whole advantage of the parametric form over the ordinary one.",
+        "common_mistakes": [
+          "Swapping cosθ and sinθ between the two coordinates.",
+          "Leaving r out of one of the two coordinates."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_put_on_the_line",
+        "kind": "equation",
+        "label": "Put it on the line",
+        "marks": 1,
+        "margin_note": "Third mark. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
+        "lines": [
+          "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
+          "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
+          "⇒ 2 + 2r/√2 = 6   ⇒   2r/√2 = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P's parametric coordinates are substituted into the line P lies on.",
+          "accept": [
+            "substitute the parametric point into the line equation",
+            "P lies on the line so put its coordinates in",
+            "this gives one equation in r",
+            "P line meeda undi kabatti substitute cheyyali",
+            "put the parametric point into the given line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "lies on the line",
+            "equation in r"
+          ]
+        },
+        "why": "Everything before this was setting up; this is the step that actually uses the line P sits on.",
+        "common_mistakes": [
+          "Substituting into the wrong line.",
+          "Forgetting to distribute a coefficient across both parts of a coordinate."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_solve_for_r",
+        "kind": "boxed_final",
+        "label": "Solve for r",
+        "marks": 1,
+        "margin_note": "Last mark. The distance PQ IS r, so solving for r finishes the question with no extra work.",
+        "lines": [
+          {
+            "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving gives 2√2, which is the distance PQ.",
+          "accept": [
+            "solve for r and that is the distance P Q",
+            "r is the distance so the answer comes straight out",
+            "simplify to get r",
+            "r ye distance kabatti answer adi",
+            "the distance P Q is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve for r",
+            "distance P Q",
+            "the answer is"
+          ]
+        },
+        "why": "r was DEFINED as the distance along the line, so no distance formula is ever needed — that is why the parametric form is the right tool here.",
+        "common_mistakes": [
+          "Finding P's coordinates and then applying the distance formula, which wastes time.",
+          "Leaving r negative when the question asks for a distance."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

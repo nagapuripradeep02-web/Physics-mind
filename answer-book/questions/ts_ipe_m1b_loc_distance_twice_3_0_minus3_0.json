@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_distance_twice_3_0_minus3_0",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of a point P, if the distance of P from A(3,0) is twice the distance of P from B(−3,0).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Locus, answer 48. Printed appearance: AP 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+  },
+  "recall_prompt": "Say how you would solve this — say what 'twice the distance' becomes as an equation, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. 'Twice' is a ratio in words — PA:PB = 2:1 — so this is the ratio family with the numbers hidden in a sentence.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (3, 0), B = (−3, 0)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Square both sides immediately. A ratio needs no isolating and no ±, which makes this the shortest answer in the chapter.",
+        "lines": [
+          "Given condition: PA = 2 PB",
+          "⇒ PA² = 4 PB²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PA = 2PB is squared to PA² = 4PB².",
+          "accept": [
+            "P A equals two P B so P A squared equals four P B squared",
+            "square both sides remembering to square the two as well",
+            "twice the distance means the ratio is two to one",
+            "P A equals two P B, square chesthe four P B square",
+            "write the condition and square it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P A squared",
+            "four P B squared",
+            "twice",
+            "square both sides"
+          ]
+        },
+        "why": "'Twice the distance' is a ratio, and a ratio squares in one move with no cross term — quite unlike the sum and difference families on the facing pages.",
+        "common_mistakes": [
+          "Squaring to PA² = 2PB² and forgetting to square the 2.",
+          "Reading it backwards as PB = 2PA."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both distances go in squared, with the 4 multiplying the whole of the B bracket — its y² included, which is the step most often dropped.",
+        "lines": [
+          "⇒ (x−3)² + (y−0)² = 4[(x+3)² + (y−0)²]",
+          "⇒ (x² − 6x + 9) + y² = 4[(x² + 6x + 9) + y²]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both squared distances are substituted, with 4 multiplying the entire B bracket.",
+          "accept": [
+            "substitute the distance formula on both sides with four outside the B bracket",
+            "put x minus three whole squared plus y squared equals four times x plus three whole squared plus y squared",
+            "expand both sides in coordinates",
+            "distance formula substitute chesi four ni whole bracket ki apply cheyyali",
+            "four multiplies the whole of the second bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "whole squared",
+            "four into",
+            "substitute"
+          ]
+        },
+        "why": "The 4 multiplies a bracket holding both x and y terms, so it reaches the y² as well — that is what makes the y² coefficients differ across the equals sign and leaves a circle rather than a line.",
+        "common_mistakes": [
+          "Multiplying only the x-part of the right bracket by 4.",
+          "Sign slip on (x + 3)², which expands with +6x."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Collect on the side that keeps the squared terms positive, then divide by 3. Equal x² and y² coefficients — a circle again, as every ratio condition gives.",
+        "lines": [
+          "⇒ x² − 6x + 9 + y² = 4x² + 24x + 36 + 4y²",
+          "⇒ 0 = 3x² + 3y² + 30x + 27",
+          "⇒ 3(x² + y² + 10x + 9) = 0",
+          {
+            "text": "∴ Locus of P is x² + y² + 10x + 9 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collecting and dividing by 3 gives the circle x² + y² + 10x + 9 = 0.",
+          "accept": [
+            "collect everything on one side and divide by three to get x squared plus y squared plus ten x plus nine equals zero",
+            "the x squared and y squared coefficients are equal so it is a circle",
+            "bring all the terms across and take out the common three",
+            "anni terms okavaipuku teesi three tho divide cheyyali",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by three",
+            "ten x",
+            "plus nine",
+            "circle",
+            "locus of P is"
+          ]
+        },
+        "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic held.",
+        "common_mistakes": [
+          "Forgetting to divide through by the common factor 3.",
+          "Collecting 9 − 36 as +27 on the wrong side."
+        ]
+      }
+    ]
+  }
+}

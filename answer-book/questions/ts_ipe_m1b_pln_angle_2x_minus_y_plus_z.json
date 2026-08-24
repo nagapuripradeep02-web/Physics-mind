@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_angle_2x_minus_y_plus_z",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the angle between the planes 2x−y+z=6 and x+y+2z=7.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Read off both sets of coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Apply the cosθ formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 106.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what the angle between two planes really is, and which formula you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_off_the_coefficients",
+        "kind": "equation",
+        "label": "Read off both sets of coefficients",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The angle between two planes IS the angle between their normals, and each normal's direction ratios are simply that plane's coefficients.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given planes are  2x − y + z = 6,  x + y + 2z = 7",
+          "⇒ a₁ = 2, b₁ = −1, c₁ = 1;",
+          "   a₂ = 1, b₂ = 1,  c₂ = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients of both planes are read off as the direction ratios of their normals.",
+          "accept": [
+            "the angle between planes is the angle between their normals",
+            "the coefficients are the normals' direction ratios",
+            "read off a one b one c one and a two b two c two",
+            "coefficients ye normals ki d r's",
+            "write both sets of coefficients"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "angle between the normals",
+            "coefficients",
+            "direction ratios",
+            "both planes"
+          ]
+        },
+        "why": "Two planes lean apart by exactly the angle their normals make, so a plane problem reduces to the line formula from the previous chapter with no extra work.",
+        "common_mistakes": [
+          "Using the constant terms as coefficients.",
+          "Reading one plane's coefficients before rearranging it to = 0 form."
+        ]
+      },
+      {
+        "id": "s2_apply_the_formula",
+        "kind": "boxed_final",
+        "label": "Apply the cosθ formula",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
+        "lines": [
+          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
+          "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
+          "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",
+          {
+            "text": "∴ cosθ = 1/2  ⇒  θ = 60°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosθ formula gives  θ = 60°.",
+          "accept": [
+            "use cos theta equals mod a one a two plus b one b two plus c one c two over the roots",
+            "apply the angle formula to the two normals",
+            "substitute and simplify",
+            "angle formula apply cheyyali",
+            "this gives the angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a one a two",
+            "over the roots",
+            "the angle"
+          ]
+        },
+        "why": "The modulus is what fixes the answer as the acute angle — without it the same two planes could report an obtuse one, since a normal points both ways.",
+        "common_mistakes": [
+          "Forgetting the modulus and reporting an obtuse angle.",
+          "Multiplying the two roots separately instead of keeping them under one root."
+        ]
+      }
+    ]
+  }
+}

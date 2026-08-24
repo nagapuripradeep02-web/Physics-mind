@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_check_3x2_7xy_2y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Compare the coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Test Δ = 0",
+      "marks": 2
+    },
+    {
+      "label": "Test the three inequalities",
+      "marks": 2
+    },
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 2 Pair of Straight Lines, answer 11. Printed appearance: AP J-16 (June 2016). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer. This split follows the answer's own printed lettering instead: the book sets it out as part (a) with four numbered checks (i)-(iv) and part (b) for the point of intersection, and the cut here gives the four checks four marks between them and part (b) the rest. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — name the four conditions you must check, and how you get the point without factorising.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_compare_coefficients",
+        "kind": "equation",
+        "label": "Compare the coefficients",
+        "marks": 1,
+        "margin_note": "First mark. Every test that follows is written in a, h, b, g, f, c — so read all six off the given equation first, halving the ones the standard form doubles.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given equation is 3x² + 7xy + 2y² + 5x + 5y + 2 = 0",
+          "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0 we get",
+          "a = 3, 2h = 7 ⇒ h = 7/2, b = 2, 2g = 5 ⇒ g = 5/2, 2f = 5 ⇒ f = 5/2, c = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all six coefficients are read off, halving those the standard form writes doubled.",
+          "accept": [
+            "compare with the standard form and read off all six coefficients",
+            "two h is seven so h is seven over two",
+            "halve the coefficients that the standard form doubles",
+            "standard form tho compare chesi coefficients teesukovali",
+            "read off a h b g f and c"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "compare",
+            "standard form",
+            "two h",
+            "halve",
+            "six coefficients"
+          ]
+        },
+        "why": "The standard form writes the xy, x and y coefficients DOUBLED, so the numbers read straight off the question have to be halved to become h, g and f. Skipping that halving is the commonest error in the question type.",
+        "common_mistakes": [
+          "Taking h as the whole xy coefficient instead of half of it.",
+          "Getting the sign of a negative coefficient wrong."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_delta",
+        "kind": "equation",
+        "label": "Test Δ = 0",
+        "marks": 2,
+        "margin_note": "Two marks. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "lines": [
+          "(i) Δ = abc + 2fgh − af² − bg² − ch²",
+          "= 3(2)(2) + 2(5/2)(5/2)(7/2) − 3(5/2)² − 2(5/2)² − 2(7/2)²",
+          "= 12 + 175/4 − 75/4 − 50/4 − 98/4",
+          "= (48 + 175 − 75 − 50 − 98)/4 = 0/4 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ = abc + 2fgh − af² − bg² − ch² is computed and comes out zero.",
+          "accept": [
+            "compute the determinant condition and show it is zero",
+            "delta is a b c plus two f g h minus a f squared minus b g squared minus c h squared",
+            "substituting gives zero",
+            "delta zero ani chupinchali",
+            "the master test is delta equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "delta",
+            "a b c plus two f g h",
+            "equals zero",
+            "master test"
+          ]
+        },
+        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the condition proved in answer 10 of this same chapter.",
+        "common_mistakes": [
+          "Dropping one of the five terms of Δ.",
+          "Arithmetic slip with the quarters that come from halved coefficients."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_inequalities",
+        "kind": "equation",
+        "label": "Test the three inequalities",
+        "marks": 2,
+        "margin_note": "Two marks. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "lines": [
+          "(ii) h² − ab = (7/2)² − 3(2) = 49/4 − 6 = (49 − 24)/4 = 25/4 > 0",
+          "(iii) f² − bc = (5/2)² − 2(2) = 25/4 − 4 = (25 − 16)/4 = 9/4 > 0",
+          "(iv) g² − ac = (5/2)² − 3(2) = 25/4 − 6 = (25 − 24)/4 = 1/4 > 0",
+          "All the four conditions of a pair of lines are satisfied. So, the given equation represents a pair of straight lines."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h² − ab, f² − bc and g² − ac are all computed and found non-negative.",
+          "accept": [
+            "check h squared minus a b, f squared minus b c and g squared minus a c",
+            "all three must be greater than or equal to zero",
+            "these confirm the lines are real",
+            "moodu inequalities check cheyyali",
+            "all four conditions are satisfied"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "h squared minus a b",
+            "f squared minus b c",
+            "g squared minus a c",
+            "all four conditions"
+          ]
+        },
+        "why": "Δ = 0 says the equation factors; the inequalities say it factors over the REALS. An equation can satisfy Δ = 0 and still describe no real lines at all.",
+        "common_mistakes": [
+          "Stopping at Δ = 0 and declaring the answer.",
+          "Testing only one of the three inequalities."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_point",
+        "kind": "boxed_final",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "margin_note": "The last two marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
+        "lines": [
+          "(b) Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          "(hf − bg)/(ab − h²) = [(7/2)(5/2) − 2(5/2)] / [3(2) − (7/2)²]",
+          "= (35/4 − 10/2) / (6 − 49/4) = (35/4 − 20/4) / ((24 − 49)/4) = (15/4)/(−25/4) = −3/5",
+          "(gh − af)/(ab − h²) = [(5/2)(7/2) − 3(5/2)] / [3(2) − (7/2)²]",
+          "= (35/4 − 15/2) / (6 − 49/4) = (35/4 − 30/4) / ((24 − 49)/4) = (5/4)/(−25/4) = −1/5",
+          {
+            "text": "∴ Point of intersection = (−3/5, −1/5)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point of intersection is ((hf − bg)/(ab − h²), (gh − af)/(ab − h²)).",
+          "accept": [
+            "the point of intersection is h f minus b g over a b minus h squared and g h minus a f over the same",
+            "use the point of intersection formula in the coefficients",
+            "no factorising is needed, the formula gives it directly",
+            "point of intersection formula vaadali",
+            "this gives the point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point of intersection",
+            "h f minus b g",
+            "a b minus h squared",
+            "g h minus a f"
+          ]
+        },
+        "why": "Both coordinates share the denominator ab − h², which is non-zero precisely because the lines are not parallel — so the formula is safe exactly when the point exists.",
+        "common_mistakes": [
+          "Swapping the two numerators between x and y.",
+          "Using ab + h² in the denominator."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

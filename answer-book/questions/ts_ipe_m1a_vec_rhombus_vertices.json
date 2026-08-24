@@ -96,6 +96,148 @@
         ]
       },
       {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the rhombus",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The four tick marks say all four SIDES are equal; the two dashed diagonals are what must come out UNEQUAL. Equal sides alone would allow a square, so both halves of the check are in the picture.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That rhombus ABCD is sketched with its four equal sides marked and both diagonals drawn. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the rhombus with all four sides equal and both diagonals",
+            "sketch A B C D with tick marks on the sides and the diagonals crossing",
+            "show the four equal sides and the two unequal diagonals",
+            "rhombus geesi naalugu sides equal ani mark chesi diagonals geeyali",
+            "draw the rhombus with its diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "rhombus",
+            "four equal sides",
+            "diagonals",
+            "unequal"
+          ]
+        },
+        "why": "A rhombus needs BOTH facts: four equal sides, and diagonals that are not equal. Four equal sides on their own describe a square just as well, so the diagonals are what rule it out.",
+        "common_mistakes": [
+          "Checking only that the four sides are equal, which a square also satisfies.",
+          "Taking AB and CD as diagonals — they are opposite sides."
+        ],
+        "figure": {
+          "id": "rhombus_abcd",
+          "width": 260,
+          "height": 192,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 58 160 L 156 160",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 156 160 L 208 58",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_cd",
+              "d": "M 208 58 L 110 58",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_da",
+              "d": "M 110 58 L 58 160",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ac",
+              "d": "M 58 160 L 208 58",
+              "ms": 620,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_bd",
+              "d": "M 156 160 L 110 58",
+              "ms": 620,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "tick_ab",
+              "d": "M 104 154 L 109 166",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick_bc",
+              "d": "M 177 106 L 188 111",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick_cd",
+              "d": "M 156 52 L 161 64",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick_da",
+              "d": "M 78 106 L 89 111",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 44,
+              "y": 176,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 160,
+              "y": 176,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 214,
+              "y": 50,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 94,
+              "y": 50,
+              "text": "D",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
         "id": "s2_equal",
         "kind": "equation",
         "label": "Show the sides are equal",

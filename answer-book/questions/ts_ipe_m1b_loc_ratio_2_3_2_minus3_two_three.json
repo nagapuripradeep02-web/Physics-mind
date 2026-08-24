@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_ratio_2_3_2_minus3_two_three",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the distance from 'P' to the points (2,3) and (2,−3) are in the ratio 2:3, then find the equation of locus of P.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015
+    },
+    {
+      "year": 2022
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 46, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J-16 (June 2016) · TS 15 · TS 22. The mark split 1+1+2 IS THE BOOK'S: this answer sits alone on its page and carries printed margin tags — '1 Mark' beside the given condition, '1 Mark' beside the substitution, and '2 Marks' beside the final locus. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+  },
+  "recall_prompt": "Say how you would solve this — say what you would do with the ratio first, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. A ratio question, not a sum — and a ratio is far easier, because it squares away in one move.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (2, 3), B = (2, −3)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, printed in the book's margin. Cross-multiply the ratio, then square BOTH sides at once — a ratio has no cross term, so one squaring clears both roots.",
+        "lines": [
+          "Given condition: PA / PB = 2 / 3",
+          "⇒ 3 PA = 2 PB",
+          "⇒ 9 PA² = 4 PB²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio is cross-multiplied to 3PA = 2PB and squared to 9PA² = 4PB².",
+          "accept": [
+            "cross multiply to get three P A equals two P B then square to nine P A squared equals four P B squared",
+            "P A by P B is two by three so three P A is two P B",
+            "square both sides to get nine P A square equals four P B square",
+            "ratio ni cross multiply chesi square cheyyali",
+            "nine times P A squared equals four times P B squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three P A",
+            "two P B",
+            "nine P A squared",
+            "four P B squared",
+            "cross multiply"
+          ]
+        },
+        "why": "A ratio of distances squares cleanly in one step, unlike a sum — there is no cross term to worry about, which is why this family is shorter than the ellipse family.",
+        "common_mistakes": [
+          "Writing 2PA = 3PB, which inverts the ratio.",
+          "Squaring to 3PA² = 2PB² and forgetting to square the numbers too."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark, also printed. Both distances go in squared. Note the two brackets differ only in the sign inside the y-term, because A and B differ only in the sign of their y-coordinate.",
+        "lines": [
+          "⇒ 9[(x−2)² + (y−3)²] = 4[(x−2)² + (y+3)²]",
+          "⇒ 9[(x² + 4 − 4x) + (y² + 9 − 6y)] = 4[(x² + 4 − 4x) + (y² + 9 + 6y)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both squared distances are written in coordinates, with 9 multiplying the A bracket and 4 the B bracket.",
+          "accept": [
+            "substitute the distance formula into both sides keeping the nine and the four outside",
+            "put x minus two whole squared plus y minus three whole squared on the left",
+            "expand both brackets in coordinates",
+            "distance formula substitute chesi rendu brackets expand cheyyali",
+            "nine into the A bracket and four into the B bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "whole squared",
+            "nine into",
+            "four into",
+            "substitute"
+          ]
+        },
+        "why": "The two brackets are near-twins, differing only where the fixed points differ, so most of the expansion is the same work done twice.",
+        "common_mistakes": [
+          "Multiplying the bracket contents by 9 and 4 unevenly.",
+          "Sign slip on (y + 3)², which expands with +6y."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks, printed as '2 Marks'. The x² and y² coefficients survive EQUAL (both 5), so this locus is a circle — the circle of Apollonius for the ratio 2:3.",
+        "lines": [
+          "⇒ 9x² + 36 − 36x + 9y² + 81 − 54y = 4x² + 16 − 16x + 4y² + 36 + 24y",
+          "⇒ 9x² − 4x² + 9y² − 4y² − 36x + 16x − 54y − 24y + 117 − 52 = 0",
+          "⇒ 5x² + 5y² − 20x − 78y + 65 = 0",
+          {
+            "text": "∴ Locus of P is 5x² + 5y² − 20x − 78y + 65 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collecting terms gives the circle 5x² + 5y² − 20x − 78y + 65 = 0.",
+          "accept": [
+            "collect all the terms to get five x squared plus five y squared minus twenty x minus seventy eight y plus sixty five equals zero",
+            "the x squared and y squared coefficients are both five so it is a circle",
+            "bring everything to one side and simplify",
+            "anni terms okavaipuku teesukoni simplify chesthe circle vasthundi",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five x squared",
+            "five y squared",
+            "seventy eight y",
+            "sixty five",
+            "circle"
+          ]
+        },
+        "why": "When two distances are in a fixed ratio that is not 1:1, the locus is always a circle — the circle of Apollonius. Equal x² and y² coefficients confirm the algebra landed right.",
+        "common_mistakes": [
+          "Dropping the constant 117 − 52 = 65.",
+          "Collecting −54y and −24y as −30y instead of −78y."
+        ]
+      }
+    ]
+  }
+}

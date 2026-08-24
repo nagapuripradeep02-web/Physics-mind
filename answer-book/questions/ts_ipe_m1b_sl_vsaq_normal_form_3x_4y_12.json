@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_normal_form_3x_4y_12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Transform the equation 3x+4y+12=0 into normal form.",
+  "appearances": [
+    {
+      "year": 2017
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Make the constant positive",
+      "marks": 1
+    },
+    {
+      "label": "Divide and read off",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Straight Lines, answer 91.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 17. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. NOTE: the book leaves this answer at the values of cosα, sinα and p rather than naming a single degree measure, because Tan⁻¹(4/3) is not a standard angle — unlike its facing question 91.1, whose angle is exactly 225°. This file follows the book and reports the quadrant. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what has to be true of p, and what you divide by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_make_the_constant_positive",
+        "kind": "equation",
+        "label": "Make the constant positive",
+        "marks": 1,
+        "margin_note": "First mark. Normal form is xcosα + ysinα = p with p POSITIVE, so before dividing, arrange the equation so the number on the right is greater than zero — multiply through by −1 if it is not.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Normal form is  xcosα + ysinα = p,  p > 0",
+          "∴ 3x + 4y + 12 = 0  ⇒  3x + 4y = −12",
+          "⇒ −3x − 4y = 12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is arranged with a positive constant on the right before dividing.",
+          "accept": [
+            "normal form needs p positive so fix the sign first",
+            "move the constant across and make it positive",
+            "multiply by minus one if the right side is negative",
+            "p positive ga undali kabatti sign correct cheyyali",
+            "arrange it with a positive right hand side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "normal form",
+            "p greater than zero",
+            "positive",
+            "multiply by minus one"
+          ]
+        },
+        "why": "p is a DISTANCE from the origin, so it cannot be negative — that requirement is what fixes the signs of cosα and sinα, and with them the quadrant of α.",
+        "common_mistakes": [
+          "Dividing while the right side is still negative, giving a negative p.",
+          "Changing the sign of only some terms."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_divide_and_read_off",
+        "kind": "boxed_final",
+        "label": "Divide and read off",
+        "marks": 1,
+        "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
+        "lines": [
+          "Now, dividing by √((−3)² + (−4)²) = √(9 + 16) = √25 = 5, we get",
+          "−(3/5)x − (4/5)y = 12/5",
+          "We write it as x cosα + y sinα = p",
+          "Where cosα = −3/5, sinα = −4/5, p = 12/5",
+          "Hence tanα = 4/3 ⇒ α = Tan⁻¹(4/3) ∈ Q₃",
+          {
+            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,  with α = Tan⁻¹(4/3) in the third quadrant",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by √(a²+b²) puts it in normal form x(−3/5) + y(−4/5) = 12/5,  with α = Tan⁻¹(4/3) in the third quadrant.",
+          "accept": [
+            "divide by the root of a squared plus b squared and read off the angle",
+            "the coefficients then square and add to one",
+            "write it as x cos alpha plus y sin alpha equals p",
+            "root a square plus b square tho divide cheyyali",
+            "this is the normal form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide",
+            "root a squared plus b squared",
+            "cos alpha",
+            "sin alpha",
+            "normal form"
+          ]
+        },
+        "why": "Only after dividing do the coefficients satisfy cos²α + sin²α = 1, which is what lets them be named as a cosine and a sine at all.",
+        "common_mistakes": [
+          "Dividing by a + b instead of √(a² + b²).",
+          "Naming an angle in the wrong quadrant for the signs obtained."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

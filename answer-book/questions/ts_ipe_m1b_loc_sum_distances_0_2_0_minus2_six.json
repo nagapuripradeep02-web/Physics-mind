@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_sum_distances_0_2_0_minus2_six",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of a point, the sum of whose distances from (0,2) and (0,−2) is 6 units.",
+  "appearances": [
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 7 Locus, answer 45.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+  },
+  "recall_prompt": "Say how you would solve this — say what you would do before squaring, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. Both fixed points sit on the y-axis, so the x-terms will cancel in the same way as its partner question.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (0, 2), B = (0, −2)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Isolate one distance, then square — never square a sum of two roots directly.",
+        "lines": [
+          "Given condition: PA + PB = 6",
+          "⇒ PA = 6 − PB",
+          "⇒ PA² = (6 − PB)² = 36 + PB² − 12 PB",
+          "⇒ 12 PB = 36 + PB² − PA²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PA is isolated as 6 − PB and squared, giving 12PB = 36 + PB² − PA².",
+          "accept": [
+            "shift P B across and square to get thirty six plus P B squared minus twelve P B",
+            "isolate one distance first then square both sides",
+            "write P A as six minus P B and square it",
+            "oka distance separate chesi square cheyyali",
+            "rearrange to get twelve P B on one side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "six minus P B",
+            "square both sides",
+            "twelve P B",
+            "isolate"
+          ]
+        },
+        "why": "A sum of two distances cannot be squared directly — squaring PA + PB gives a cross term. Isolating one distance first is what keeps the algebra finite.",
+        "common_mistakes": [
+          "Squaring PA + PB = 6 directly and being left with a cross term.",
+          "Writing (6 − PB)² as 36 − PB²."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Both fixed points have x = 0, so the x² terms are identical and cancel, and a difference of two squares in y finishes the line.",
+        "lines": [
+          "⇒ 12 PB = 36 + [x² + (y+2)²] − [x² + (y−2)²]",
+          "⇒ 12 PB = 36 + (y+2)² − (y−2)²",
+          "⇒ 12 PB = 36 + 4(2)y      [∵ (a+b)² − (a−b)² = 4ab]",
+          "⇒ 12 PB = 4(9 + 2y)   ⇒   3 PB = 9 + 2y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the x² terms cancel and the difference of squares gives 3PB = 9 + 2y.",
+          "accept": [
+            "the x squared terms cancel and the y difference of squares gives four a b",
+            "substitute and use a plus b whole squared minus a minus b whole squared equals four a b",
+            "both x terms are the same so they cancel leaving three P B equals nine plus two y",
+            "x terms cancel avuthaayi, y lo difference of squares",
+            "reduce it to three P B equals nine plus two y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "four a b",
+            "difference of squares",
+            "three P B",
+            "nine plus two y"
+          ]
+        },
+        "why": "PA² − PB² is a difference of two squares, so the y-terms collapse by (a+b)² − (a−b)² = 4ab and the whole line drops to the first degree.",
+        "common_mistakes": [
+          "Expanding both y-brackets fully and slipping a sign instead of cancelling.",
+          "Taking 4ab as 4(2)(y) but writing 8y² instead of 8y."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The 36y cancels across, 9y² − 4y² leaves 5y², and the constants give 45. Unequal positive coefficients again — an ellipse.",
+        "lines": [
+          "Squaring on both sides:  9 PB² = (9 + 2y)²",
+          "⇒ 9[(x−0)² + (y+2)²] = 81 + 4y² + 36y",
+          "⇒ 9[x² + y² + 4y + 4] = 81 + 4y² + 36y",
+          "⇒ 9x² + 9y² + 36y + 36 = 81 + 4y² + 36y",
+          {
+            "text": "∴ Locus of P is 9x² + 5y² = 45",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring again and collecting gives 9x² + 5y² = 45.",
+          "accept": [
+            "square again and collect to get nine x squared plus five y squared equals forty five",
+            "the thirty six y cancels and nine y squared minus four y squared is five y squared",
+            "square both sides once more and simplify to the ellipse",
+            "malli square chesi simplify chesthe nine x square plus five y square equals forty five",
+            "the locus is an ellipse"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "square again",
+            "five y squared",
+            "nine x squared",
+            "forty five",
+            "ellipse"
+          ]
+        },
+        "why": "The locus of a point whose distances to two fixed points add to a constant is an ellipse with those points as foci, so unequal positive coefficients on x² and y² are the expected finish.",
+        "common_mistakes": [
+          "Forgetting that 36y appears on both sides and cancels.",
+          "Multiplying only x² by 9 and leaving the y-bracket alone."
+        ]
+      }
+    ]
+  }
+}

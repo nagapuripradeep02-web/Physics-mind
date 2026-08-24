@@ -135,6 +135,43 @@ towers like `49ᵏ⁺¹` and `3·5⁽²ⁿ⁺¹⁾` need no KaTeX**, which is wh
 Subscript *letters* (`ₙ`, `ₐ`) are NOT available, so write "nth term" in words rather than `Tₙ`,
 and reach for a typeset line only for capital-letter subscripts and matrices.
 
+## Figures in the source — the complete sweep (2026-08-24)
+
+Every one of the book's 134 scan pages was rendered and read for printed figures, so this list is
+an **inventory, not a selection**. The same sweep was run on 1B; see `IPE_MATHS_1B_SOURCE.md`.
+
+**Nine answers in Maths-1A carry a printed figure. There are no others.**
+
+| Book p. | Answer | Question | Figure | Answer-book file |
+|---|---|---|---|---|
+| 49 | 39 | p₁p₂p₃ altitudes of a △ABC | △ABC, altitude from A onto BC, right-angle mark, base *a* | `ts_ipe_m1a_pt_altitudes` ✅ |
+| 60 | 51 | Regular hexagon ABCDEF sum | hexagon with centre O | `ts_ipe_m1a_vec_hexagon_sum` ✅ |
+| 60 | 52 | Right-angled triangle from three points | △ABC, right angle at C | `ts_ipe_m1a_vec_right_angled_triangle` ✅ |
+| 60 | 53 | Rhombus from four points | rhombus with tick marks and both diagonals | `ts_ipe_m1a_vec_rhombus_vertices` ✅ |
+| 64 | 62 | Cube diagonals ⟂ proof | unit cube on the axes | `ts_ipe_m1a_pv_saq_cube_diagonals` ✅ |
+| 72 | 74.1 | Sin⁻¹(4/5) + Sin⁻¹(7/25) | **two** small right triangles (α, β) | ⚠ skipped by decision |
+| 72 | 74.2 | Sin⁻¹(3/5) + Cos⁻¹(12/13) | **two** small right triangles | ⚠ skipped by decision |
+| 72 | 75 | Cos⁻¹(4/5) + Sin⁻¹(3/√34) | **two** small right triangles | ⚠ skipped by decision |
+| 105 | 162 | Angle between the diagonals of a parallelogram | parallelogram ABCD, both diagonals, θ at the crossing | `ts_ipe_m1a_pv_sqp_parallelogram_diagonals` ✅ |
+
+**The three ⚠ rows are a recorded presentation choice, not a gap** — see the Unit 8 entry under
+Open items. The book draws a small right triangle wherever an answer needs a second ratio
+(sinα = 4/5 ⇒ cosα = 3/5); those are authored as the one-line algebraic step with the triangle
+route named in the margin note, because six near-identical triangles would earn nothing that the
+single line does not. Reversing it is a founder call, not an authoring one.
+
+**Where the figures are NOT.** Functions, Mathematical Induction, Matrices, Trigonometric Ratios,
+Trigonometric Equations and Hyperbolic Functions carry **no figure at all** across their LAQ, SAQ
+and VSAQ chapters. Neither do the Bullet Model Paper or the five Guess Papers introduce any new
+one — book pp.116 and 117 reprint the hexagon and the inverse-trig triangles, and nothing else.
+
+**How the sweep was run.** `fitz` (PyMuPDF) renders every page at 110 dpi; a connected-component
+pass flags any blob ≥ 58×58 px with ink fill < 0.35 and a straight run ≥ 48 px, which triages the
+matrices and the boxed formula asides from real drawings; the surviving crops and a full set of
+page thumbnails are then read by eye. The component pass alone is **not** sufficient — it missed
+the hexagon on book p.60 outright, because the drawing touches its neighbouring text and merges
+into a page-sized component. Read the thumbnails.
+
 ## Open items — status
 
 1. ~~**The engine cannot draw a matrix.**~~ **RESOLVED 2026-08-21** (founder: use KaTeX).

@@ -96,6 +96,107 @@
         ]
       },
       {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the triangle",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The right angle sits at C, between the two SHORTER sides — the sketch is what shows which side is the hypotenuse before Pythagoras is applied to it.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That triangle ABC is sketched with the right angle marked at C. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the triangle and mark the right angle at C",
+            "sketch triangle A B C with a square corner",
+            "show which side is the hypotenuse",
+            "triangle geesi right angle mark cheyyali",
+            "draw the right angled triangle"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "triangle",
+            "right angle",
+            "hypotenuse"
+          ]
+        },
+        "why": "Pythagoras compares the LONGEST side against the other two, so the drawing is how you check which of the three magnitudes should sit alone on one side of the equation.",
+        "common_mistakes": [
+          "Marking the right angle at the wrong vertex, which tests the wrong pair of sides.",
+          "Assuming the vertices are given in the order they appear around the triangle."
+        ],
+        "figure": {
+          "id": "right_angled_triangle_abc",
+          "width": 260,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_ba",
+              "d": "M 42 170 L 212 38",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 42 170 L 212 170",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_ca",
+              "d": "M 212 170 L 212 38",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "rt_mark",
+              "d": "M 200 170 L 200 158 L 212 158",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 218,
+              "y": 30,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 26,
+              "y": 188,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 218,
+              "y": 188,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_hyp",
+              "x": 74,
+              "y": 98,
+              "text": "hypotenuse AB",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
         "id": "s2_magnitudes",
         "kind": "equation",
         "label": "Find the magnitudes",

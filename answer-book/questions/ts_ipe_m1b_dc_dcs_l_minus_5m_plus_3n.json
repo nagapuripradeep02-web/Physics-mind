@@ -1,0 +1,278 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dc_dcs_l_minus_5m_plus_3n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "D.C's & D.R's"
+  },
+  "chapter": "D.C's & D.R's",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the direction cosines of two lines which are connected by the relations l−5m+3n=0 and 7l²+5m²−3n²=0.",
+  "appearances": [
+    {
+      "year": 2015
+    },
+    {
+      "year": 2017
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the two relations",
+      "marks": 1
+    },
+    {
+      "label": "Eliminate and factorise",
+      "marks": 2
+    },
+    {
+      "label": "Case (i): the first line",
+      "marks": 1
+    },
+    {
+      "label": "Case (ii): the second line",
+      "marks": 1
+    },
+    {
+      "label": "Find the direction cosines",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.28 — LAQ chapter 3 D.C's & D.R's, answer 17.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say what separates direction ratios from direction cosines.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "D.C's & D.R's · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_relations",
+        "kind": "equation",
+        "label": "Write the two relations",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given l − 5m + 3n = 0  ⇒  l = 5m − 3n  ……(1),",
+          "7l² + 5m² − 3n² = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the linear relation is rearranged to make one letter the subject.",
+          "accept": [
+            "make one letter the subject of the linear relation",
+            "rearrange the first equation and substitute into the second",
+            "the linear one is easier to rearrange",
+            "linear equation nunchi oka letter ni subject cheyyali",
+            "write both relations and rearrange the first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "linear relation",
+            "make the subject",
+            "substitute",
+            "two relations"
+          ]
+        },
+        "why": "Two relations connect three unknowns, so the pair fixes only the RATIO l : m : n — which is all a direction needs. Eliminating one letter turns the pair into a single quadratic, and its two roots are the two lines.",
+        "common_mistakes": [
+          "Rearranging the second-degree relation instead, which needs a square root.",
+          "Sign slip when moving a term across."
+        ]
+      },
+      {
+        "id": "s2_eliminate",
+        "kind": "equation",
+        "label": "Eliminate and factorise",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "lines": [
+          "Solving (1) & (2), we get",
+          "7(5m − 3n)² + 5m² − 3n² = 0",
+          "⇒ 7(25m² + 9n² − 30mn) + 5m² − 3n² = 0",
+          "⇒ 175m² + 63n² − 210mn + 5m² − 3n² = 0",
+          "⇒ 180m² − 210mn + 60n² = 0",
+          "⇒ 30(6m² − 7mn + 2n²) = 0   ⇒   6m² − 7mn + 2n² = 0",
+          "⇒ 6m² − 4mn − 3mn + 2n² = 0   ⇒   2m(3m − 2n) − n(3m − 2n) = 0",
+          "⇒ (3m − 2n)(2m − n) = 0",
+          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives a homogeneous quadratic which factorises into two cases.",
+          "accept": [
+            "substitute into the second relation to get a quadratic then factorise it",
+            "the quadratic factors into two brackets, one for each line",
+            "each factor gives one of the two lines",
+            "substitute chesthe quadratic vasthundi, factorise cheyyali",
+            "this gives the two cases"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "quadratic",
+            "factorise",
+            "two cases"
+          ]
+        },
+        "why": "The quadratic is homogeneous, so it factors into two linear pieces — which is exactly why there are TWO lines rather than one. The problem is a pair from the start.",
+        "common_mistakes": [
+          "Trying to solve for numerical values of l, m, n rather than a ratio.",
+          "Missing one of the two factors and finding only one line."
+        ]
+      },
+      {
+        "id": "s3_first_case",
+        "kind": "equation",
+        "label": "Case (i): the first line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "lines": [
+          "Case (i): Put m = 2n/3 in (1), then",
+          "l = 5(2n/3) − 3n = (10n − 9n)/3 = n/3   ∴ l = n/3",
+          "Now, l : m : n = n/3 : 2n/3 : n = 1/3 : 2/3 : 1 = 1 : 2 : 3",
+          "So, d.r's of L₁ = (a₁, b₁, c₁) = (1, 2, 3)  ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first factor gives a ratio l : m : n and hence the first line's direction ratios.",
+          "accept": [
+            "put the first factor back into the linear relation and read off the ratio",
+            "cancel the common letter to get whole numbers",
+            "this gives the direction ratios of the first line",
+            "modati case nunchi ratio teesukovali",
+            "the first line's d r's"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first case",
+            "ratio",
+            "direction ratios",
+            "cancel"
+          ]
+        },
+        "why": "Only the RATIO matters, so any common factor may be cancelled — which is what turns fractions into the small whole numbers the answer carries.",
+        "common_mistakes": [
+          "Keeping the common letter and carrying fractions forward.",
+          "Reading the ratio in the wrong order."
+        ]
+      },
+      {
+        "id": "s4_second_case",
+        "kind": "equation",
+        "label": "Case (ii): the second line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "lines": [
+          "Case (ii): Put m = n/2 in (1), then",
+          "l = 5(n/2) − 3n = (5n − 6n)/2 = −n/2   ∴ l = −n/2",
+          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
+          "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second factor gives the second line's direction ratios the same way.",
+          "accept": [
+            "do the same with the second factor",
+            "put the second root back and read off the ratio",
+            "this gives the second line's direction ratios",
+            "rendo case ni kooda same ga cheyyali",
+            "the second line's d r's"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second case",
+            "the second line",
+            "direction ratios",
+            "same way"
+          ]
+        },
+        "why": "Both factors have to be used — the question asks about TWO lines, and stopping at one answers half of it.",
+        "common_mistakes": [
+          "Reusing the first factor by mistake.",
+          "Sign slip that makes the second line identical to the first."
+        ]
+      },
+      {
+        "id": "s5_finish",
+        "kind": "boxed_final",
+        "label": "Find the direction cosines",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
+        "lines": [
+          "On dividing (3) by √(1² + 2² + 3²) = √(1 + 4 + 9) = √14, we get",
+          "d.c's of L₁ = (1/√14, 2/√14, 3/√14)",
+          "On dividing (4) by √((−1)² + 1² + 2²) = √(1 + 1 + 4) = √6, we get",
+          {
+            "text": "d.c's of L₂ = (−1/√6, 1/√6, 2/√6)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each triple is divided by the root of the sum of its squares to give the direction cosines.",
+          "accept": [
+            "divide each triple by the root of the sum of the squares",
+            "direction cosines are the ratios normalised",
+            "divide by root l squared plus m squared plus n squared",
+            "root of sum of squares tho divide cheyyali",
+            "these are the direction cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide",
+            "root of the sum of squares",
+            "direction cosines",
+            "normalise"
+          ]
+        },
+        "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
+        "common_mistakes": [
+          "Forgetting to divide one of the two triples.",
+          "Dropping the ± that both directions along a line allow."
+        ]
+      }
+    ]
+  }
+}

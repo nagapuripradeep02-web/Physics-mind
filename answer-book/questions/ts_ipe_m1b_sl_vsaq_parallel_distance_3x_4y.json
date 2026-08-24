@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_parallel_distance_3x_4y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the distance between the parallel lines 3x+4y−3=0 and 6x+8y−1=0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Match the coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Apply the distance formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 14 Straight Lines, answer 95.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: AP 19. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what must be true of the two equations before the formula can be used.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_match_the_coefficients",
+        "kind": "equation",
+        "label": "Match the coefficients",
+        "marks": 1,
+        "margin_note": "First mark, and the step the whole question turns on. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We write the first line 3x + 4y − 3 = 0 as",
+          "6x + 8y − 6 = 0  ……(1)   [multiplying by 2]",
+          "Second line is  6x + 8y − 1 = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one line is rescaled so both lines have identical x and y coefficients.",
+          "accept": [
+            "multiply the first line so both have the same coefficients",
+            "the formula needs identical a and b in both lines",
+            "rescale one equation to match the other",
+            "rendu lines lo a b same ga undali",
+            "make the coefficients match first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "same coefficients",
+            "rescale",
+            "multiply",
+            "match"
+          ]
+        },
+        "why": "Using the formula on mismatched coefficients gives a number that is wrong by exactly the scale factor — this is the single commonest error in the question type.",
+        "common_mistakes": [
+          "Applying the formula without rescaling.",
+          "Rescaling the x and y terms but forgetting the constant."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_apply_the_formula",
+        "kind": "boxed_final",
+        "label": "Apply the distance formula",
+        "marks": 1,
+        "margin_note": "Second mark. With matched coefficients, the distance is |c₁ − c₂| over √(a² + b²).",
+        "lines": [
+          "∴ The distance between (1) & (2) is",
+          "|c₁ − c₂| / √(a² + b²) = |−6 + 1| / √(6² + 8²)",
+          "= |−5| / √(36 + 64) = 5/√100 = 5/10",
+          {
+            "text": "∴ Distance is 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the formula |c₁ − c₂|/√(a² + b²) gives 1/2.",
+          "accept": [
+            "use mod c one minus c two over root a squared plus b squared",
+            "apply the distance between parallel lines formula",
+            "the difference of the constants over the root",
+            "c one minus c two mod, root a square plus b square tho divide",
+            "this gives the distance"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "c one minus c two",
+            "root a squared plus b squared",
+            "distance",
+            "formula"
+          ]
+        },
+        "why": "Only the constants differ once the coefficients match, so their difference measures the gap — divided by the length of the coefficient vector to convert it into a true distance.",
+        "common_mistakes": [
+          "Adding the constants instead of subtracting.",
+          "Forgetting the square root in the denominator."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}
