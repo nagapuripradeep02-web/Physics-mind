@@ -1,5 +1,120 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## MONEY SESSION — Answer Book: **P4 — PAYMENTS, founding price grandfathered, awaiting keys** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `483996ee`/`0504b976`, branch + master PUSHED as `89ae57fc`)
+
+**Bottom line: the book can take money. RS99/31 days for the first 500 devices, RS249 after — and the founding price is GRANDFATHERED FOREVER (a device that has ever paid RS99 renews at RS99). Proven in SQL: with slots exhausted, the existing founder is still quoted RS99 while a new device is quoted RS249. The client NEVER names a price — `ab_price_for(device)` decides on the server and `answerbook-pay` re-reads it when minting the Razorpay link; the pay request carries no amount at all (gate-asserted). Three functions deployed (`answerbook-pay`, `ab-razorpay-webhook`, updated `answerbook-content`). NOTHING CHARGES until the founder sets the Razorpay secrets — verified live: no keys → `payments_unconfigured` and NO pay button. Verified: tsc 0 — vitest 416/416 — gated gates 12/12 (6 new paywall) — full suite 48/48 CLEAN twice (26.0m pre-merge, 33.5m post-chemistry).**
+
+### The money path, and what was proven rather than assumed
+[Unlock — RS99] → `answerbook-pay` prices THIS device and mints a Razorpay link carrying `notes.device_id` (30-min expiry) → UPI → `ab-razorpay-webhook` HMAC-verifies the RAW body → `ab_apply_payment`. Sequential SQL (CTEs share a snapshot — the recorded scar): first payment → founding, 31 days; SAME payment_id again → `duplicate`, still ONE entitlement row; renewal → Sep 23 → Oct 24, i.e. extended from the EXISTING expiry so paying early never burns paid days. The 500th/501st payer cannot both take the last slot — `ab_apply_payment` reads the price BEFORE writing the payment row. Live probes: foreign origin 403; unsigned AND wrongly-signed webhooks 401 (a forged payment grants nothing); money with no device_id is banked with `applied_at` null, attachable by hand.
+
+### `expires_at` is what makes a renewal mean anything
+NULL = permanent (the free chapter is a gift, not a rental); a date = a paid pass the content endpoint refuses once lapsed.
+
+### CHEMISTRY LANDED MID-BUILD — and cost almost nothing
+Master gained 204 chemistry entries (PR #135) while P4 was in flight; the push was rejected, the merge was CLEAN (zero conflicts). The P3 subject dimension absorbed a THIRD subject with no code changes — which is the entire reason it exists. Cost: a rebuild (gated 1.5 → 1.9 MB), `content:push` (18 → 25 units, 644 questions), and a label fix (the SKU said "both subjects"). A chemistry chapter correctly shows the RS99 offer. Also de-hardcoded the bundle-count gate — it asserted 448 and would have gone red on a CORRECT book the day chemistry opened (the recorded lesson: a test must never encode fleet size).
+
+### FIRST REAL STUDENTS — unprompted
+`ab_devices` holds **10 real devices** from 2026-08-23 19:53—21:47 UTC across android/ios/windows/mac/linux, two with progress ticks (4 and 1 questions). Nobody was told; P2 sync recorded them. Rows untouched.
+
+### FOUNDER STEPS — nothing charges until all three
+1. `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` (dashboard → API Keys).
+2. Webhook: `https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/ab-razorpay-webhook`, events payment.captured / payment_link.paid / order.paid, + `AB_RAZORPAY_WEBHOOK_SECRET`. **Do 1 and 2 together or neither** — keys without the webhook = money taken, access not granted.
+3. **`AB_DAILY_USD_CAP` $2 → $15 BEFORE launch.** Pilot-sized; 500 paying students hit "Vidi is resting" by mid-morning. The worst bug to learn about from a customer.
+Full runbook incl. go-live order + operator queries: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md`.
+
+### Files
+`supabase_migrations/supabase_2026_08_24_answerbook_payments.sql` (NEW, applied) — `supabase/functions/answerbook-pay/` + `ab-razorpay-webhook/` (NEW, deployed) — `answerbook-content` (expiry + per-device price) — `answer-book/notebook.js` (offer line, unlock tap, return-to-chapter) — `src/scripts/build_answer_book.ts` (`PM_PAY_BASE`) — `e2e/answer_book_gated.spec.ts` (12) — `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md` (NEW) — `docs/patterns/answer_book.md`. **No Rule-40 platform file touched.**
+
+### NEXT
+1. Founder: the three steps above, then a real RS99 payment on your own phone (the only end-to-end proof), refund + expire it.
+2. The launch flip: gated build → answers.viditra.co (`wrangler.answers.toml` recipe).
+3. P5 hardening. Still open: AB_ALLOWED_ORIGINS + chat persona redeploy; SMS/DLT (second-device restore).
+
+---
+
+
+## 🧪 SESSION — Answer Book: **CHEMISTRY OPENS — Junior Chapters 1–7, 204 entries** (2026-08-23, desk `physics-mind-ipe-chemistry`, branch `feat/ipe-answerbook-chemistry`)
+
+**Bottom line: the Answer Book has a third subject. Seven units / 204 catalog entries / 196 files take the book from 448 files·454 entries to 644 files·658 entries. A NEW SUBJECT NEEDED ZERO ENGINE WORK — `chemistry` was already whitelisted at every site the Maths-1B work generalised (build `SUBJECTS`, the zod `subject` enum, `SUBJ_LABEL`, `subjectOf`/`unitKey`, the subject chips, the data-derived e2e subject gate), so opening a paper is data plus one doc. Zero katex growth (272 lines, unchanged): chemical notation is Unicode. All seven units are at 100% `memory_tip` and `margin_note` — the full completeness bar from card one, unlike physics Units 4–9. Verified: build green · tsc 0 · vitest 416/416 · validate:chemistry 16/16 · figure-label sweep PASS (384 s at 477 q, 43% of its 900 s budget, slope ~0.80 s/q).**
+
+### How it was built
+Chapter 1 was authored by hand to set the standard, then **six parallel agents took Chapters 2–7, one each**. Every agent read its OWN pages from the Fastrack PDF rather than any prior transcription (the founder's standing rule), and **every chapter's independently transcribed count matched** the earlier inventory exactly. Each agent wrote only its own question files plus a manifest FRAGMENT to the scratchpad; `units.json` was merged by this session alone, sequentially, through a script that validates drift BOTH ways plus cross-unit `question_id` claims before writing. Parallel writes to one manifest would have collided.
+
+### What the chemistry half of the Fastrack actually is (book pp.48–96, 13 chapters, PDF = book + 2)
+**Only ch.1–3 carry a Long Answer section** (8 LAQs total); ch.4–7 stop at SAQ, so no 8-mark form was invented — the standing rule is that an LAQ is authored only where a book asks one. Content that IS Section-C-grade elsewhere (the kinetic gas equation, Hess's law, Le Chatelier across both industrial processes, the three acid-base theories compared) is **flagged for founder review, not authored**. **There is no PROBLEMS section anywhere in chemistry** — numericals sit inside the VSAQ/SAQ lists, so they ARE the asked bank and were authored; the physics "PROBLEMS deferred" decision does not arise. Stars are front-loaded per section; year citations are rare (only ch.4 VSAQ 23/24/25 and ch.5 SAQ 9/10/12). **Cuts are far commoner than in physics** — 7 cut-pairs across the seven chapters.
+
+### The gap that cannot be closed, and must not read as closed
+**The two-book union check is structurally impossible for chemistry** — the TSBIE Basic Learning Material on hand is physics only — **and so is the back-test**, since no chemistry board paper is in the corpus. Founder call: proceed Fastrack-only and RECORD both gaps rather than wait. Written into the `units.json` comment and `docs/CHEMISTRY_START_HERE.md`. Every chemistry card carries `needs_teacher_verification`.
+
+### The source is wrong more often than the physics half — recorded, never silently followed or silently fixed
+A ΔG° answer printing −5774.14 J/mol where the arithmetic gives −5744.1 · combustion enthalpy defined at constant VOLUME · absolute entropy referenced to 273 K · molar mass called "nuclear mass" · a hydrogen-bond definition omitting that H must be bonded to F/O/N · an oxidation-number line printing `x − 8 = 1` for an ion needing −1 · `n − l − 1` called "the number of nodes" (that is the RADIAL count) · the magnetic quantum number credited to Lande · a general Kp/Kc derivation whose printed answer only does the ammonia case. **Ch.6's book uses the OLDER sign convention (w = work done BY the system); every card uses NCERT `ΔU = q + w`** — a deliberate whole-chapter departure and the one judgement call worth a founder confirm.
+
+### Figure gates catch overlap, NOT clipping or wrong semantics
+The label-collision gate passed a `dz²` label that ran off the canvas edge, and a dz² ring that (with a full-width x-axis through it) read as four lobes along the axes — i.e. dx²−y², the wrong orbital. Both found only by rendering every figure to a standalone SVG page and screenshotting it. **That visual pass is now part of the per-chapter recipe.** The 12 chemistry figures were all checked this way; both MO diagrams are correct (N₂ π2p below σ2px, bond order 3, diamagnetic; O₂ σ2px below π2p, bond order 2, two unpaired π* → paramagnetic).
+
+### Also landed
+`answer-book/shell.html` — the catalog eyebrow read "Telangana IPE · **Physics** · First year" on a book that has held three subjects since Maths-1A; now subject-neutral (the subject chips below carry live counts and cannot go stale). `docs/CHEMISTRY_START_HERE.md` — the next-chapter playbook, mirroring `MATHS_1B_START_HERE.md`.
+
+### Concurrency note
+This work ran in a SEPARATE worktree because another session was live in `physics-mind-ipe-answerbook` (its P3 chapter gate) when this started — its files were 60 seconds old. That session's work landed on master mid-job; `origin/master` was merged in cleanly here and the whole chain re-verified against the merged code rather than a stale base.
+
+### NEXT
+1. **A Telangana IPE chemistry teacher must verify** every invented mark split and the recorded source departures — especially the Ch.6 sign convention.
+2. Chapters 8–13 (Hydrogen, s-block, p-block 13/14, Environmental, Organic) continue in this desk per `docs/CHEMISTRY_START_HERE.md`.
+3. Founder call: ch.5 VSAQ 15 "significant figures" genuinely duplicates physics `ts_ipe_p1_um_significant_figures_meaning` — both books ask it; authored in both, duplication recorded.
+4. If a TSBIE chemistry BLM or a TS/AP chemistry paper ever arrives, the union check and back-test become worth running retroactively.
+
+---
+
+
+## 🔒 SESSION — Answer Book: **P3 — THE CHAPTER GATE, built + server-live, PARKED off the site** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `9f572e8e`, branch + master PUSHED)
+
+**Bottom line: the paywall's skeleton exists and works end-to-end. `build:answers:gated` → `answer-book/dist-gated` (1.5 MB vs 4 MB): the full catalog ships — question texts, stars, marks, the sell — and NOT ONE answer byte (gate-asserted with positive controls against the full build). Answers live in `ab_content` (18 units / 448 questions pushed) behind the `answerbook-content` Edge Function + `ab_entitlements`; every device gets ONE free chapter via an EXPLICIT tap on the lock sheet (founder decision — a stray tap can never burn the slot). `ab_skus.full_book` exists with price NULL — the sheet says "coming soon" and never a number the founder has not set (P4 fills it). THE LIVE SITE IS UNCHANGED — answers.viditra.co still serves the full free book; the flip recipe is written into wrangler.answers.toml and pairs with the P4 price call. Verified: tsc 0 · vitest 416/416 · gated gates 6/6 · full suite 48/48 CLEAN (23.1 m, no flake — the offline build untouched by construction AND by measurement) · live endpoint probes all green · advisors: ab_* deny-by-default, `ab_claim_free` not anon-callable.**
+
+### The design in one paragraph
+notebook.js reads `question.answer.steps` at exactly TWO sites, one at module init — so the gated projection keeps every metadata field plus a BOOT-SAFE skeleton (steps `{id, marks}`, cut-step overrides `{marks}`), and the whole gate is ONE line at the top of `loadQuestion` (both routes funnel there). The `Gate` module (sibling of Sync, inert without `PM_CONTENT_BASE` — every full build) makes one boot `list` call (catalog lock chips appear only after the truth arrives), merges unlocked bundles into `questions` in memory (re-fetch per session — 550 KB bundles are localStorage roulette), and drives the sheet: free claim / coming-soon / retry. Identity = `Sync.deviceId()`. The free slot's atomicity is an INDEX (partial unique `where source='free_chapter'`), not code: a lost race → `free_used`, a same-unit replay → idempotent ok.
+
+### Also landed
+`subject` enum gains `mathematics_1b` in the QUESTION schema (the build guard covered units only — 1B files would have failed validation on their first card); a build check that each question's derived unit key equals its manifest unit's key (the gated fetch keys on it); `content:push` uses the recorded CURL bypass — node/undici to Supabase REST TransformError'd on a 550 KB jsonb upsert, row one.
+
+### Files
+`src/scripts/build_answer_book.ts` (--gated: projection, dist-gated, bundles, PM_CONTENT_BASE, key check) · `answer-book/notebook.js` (Gate module + one-line loadQuestion gate + catalog 🔒 chips; Sync exports deviceId) · `answer-book/shell.html` (#lockOverlay, pm-ask clone) · `supabase/functions/answerbook-content/index.ts` (NEW, deployed) · `supabase_migrations/supabase_2026_08_23_answerbook_gate.sql` (NEW, applied) · `src/scripts/push_answer_content.ts` (NEW) · `e2e/answer_book_gated.spec.ts` (NEW, 6 gates) · `src/schemas/answerBook.ts` · package.json (4 scripts) · wrangler.answers.toml (flip recipe) · docs/patterns/answer_book.md (§chapter gate). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **P4 — payments + OTP**: Razorpay webhook (copy signature/idempotency from `supabase/functions/razorpay-webhook/index.ts`), `apply_ab_payment`, device merge, phone OTP. **Founder sets the price here** — it drops straight into `ab_skus.price_inr` and the sheet starts quoting it.
+2. The launch flip (founder): gated to answers.viditra.co per the wrangler.answers.toml recipe.
+3. Still pending: AB_ALLOWED_ORIGINS + chat persona redeploy · SMS/DLT registration (long lead).
+
+---
+
+
+## 🔗 SESSION — Answer Book: **P2 — ANONYMOUS SYNC, built, deployed server-side, live site untouched** (2026-08-23, desk `physics-mind-ipe-answerbook`, commit `1a7e7f91`, branch + master PUSHED)
+
+**Bottom line: a student's ticks and plan can now follow them across devices with no login — identity is a random UUID in localStorage (`pm_device_id`), no PII anywhere. The whole feature is OFFLINE-FIRST BY CONSTRUCTION: `PM_SYNC_BASE` unset (every non-hosted build) leaves the Sync module inert — no device id minted, no timer, zero requests — so all 45 pre-existing gates ran untouched. The `answerbook-sync` Edge Function is DEPLOYED to the dev project and live-verified (403 foreign origin · earliest-wins merge through the real stack · 400 bad device · stale-plan refusal · mint quota); the three `ab_*` tables are RLS-on/zero-policy/service-role-only and the `ab_sync` RPC is not anon-callable (advisor-confirmed). THE LIVE SITE IS UNCHANGED — sync goes live only on the next founder-directed `npm run deploy:answers` (the hosted default is baked, so that one command is the whole flip). Verified: tsc 0 · vitest 416/416 (+11) · e2e 48/48 CLEAN full run, 31.8 m, no flake · live endpoint probes green.**
+
+### The design in one paragraph
+One POST does both directions: the client sends every tick + its plan, the atomic `ab_sync` RPC merges and returns the merged truth. A stage tick is a DATE and the EARLIEST wins (`LEAST()` in SQL, the same comparison in `Vidi.mergeStages`) — commutative, associative, idempotent, so two devices converge in any order, a retry is free, and there is no locking, versioning, or conflict UI. The plan is the one last-write-wins blob, ordered by CLIENT `saved_at` (stamped in `setPlan`); a stale push is refused by a `where` on the upsert, and sync adopts a remote plan via `storePlanRaw` (a `setPlan` re-stamp would make the adopted copy out-rank its own source and ping-pong forever). Only device MINTING is IP-capped (20/day, in the RPC) — an existing device is never IP-limited, because students share school networks.
+
+### Deviation from the plan, founder-approved
+The free tier caps at 2 active projects (dev + pilot), so the planned `physicsmind-students` project was impossible without paying. Founder chose: land in the dev project (`dxwpkjfypzxrzgbevfnx`). Namespaced tables + deny-by-default RLS keep it separable; moving later = dump/restore + one env var (`ANSWER_BOOK_SYNC_BASE`).
+
+### Tests that bite
+`syncMerge.test.ts` (11) proves the merge properties against the SHIPPED notebook.js by extract-and-evaluate, mutation-checked — inverting earliest→latest fails 3 — and greps the migration for `least(...)` so the browser and SQL copies cannot drift silently. Three new e2e gates: sync-off mints nothing and calls nothing · a routed fake endpoint proves the real merge + persistent device id · endpoint down changes nothing (no pageerror, progress still recorded). Two of them were first written against the RETIRED reveal-auto-tick and failed honestly — the U tick is the P1 leave-question ask now; repointed.
+
+### Scars
+(1) Multi-call RPC tests cannot share one SQL statement: CTEs share a snapshot and evaluate in unspecified order — a phantom "stale plan won" cost 20 minutes. Sequential statements only. (2) The explicit `git push` after commit races the auto-push hook — a "cannot lock ref … is at <the new sha>" rejection means the hook WON, not that the push failed; verify with ls-remote before re-pushing.
+
+### Files
+`answer-book/notebook.js` (+~170: Sync module · `mergeStages`/`allStages`/`storePlanRaw` · `syncTouch` hook in setStage/setPlan · `VidiPanel.onSynced` repaint · boot) · `src/scripts/build_answer_book.ts` (`PM_SYNC_BASE`, hosted default baked) · `supabase/functions/answerbook-sync/index.ts` (NEW) · `supabase_migrations/supabase_2026_08_23_answerbook_student_sync.sql` (NEW — applied to dev) · `src/lib/answerBook/__tests__/syncMerge.test.ts` (NEW) · `e2e/answer_book.spec.ts` (48 gates) · `docs/patterns/answer_book.md` (§Anonymous progress sync). **No Rule-40 platform file touched.**
+
+### NEXT
+1. ~~Founder go/no-go: flip the live site to sync-on~~ **DONE same session (founder: "deploy it")** — `npm run deploy:answers` shipped the sync-enabled build; live page carries both bases, a sync round-trip from the site origin verified against the deployed endpoint, probe rows deleted, tables at zero for real students.
+2. Still pending from earlier today: `AB_ALLOWED_ORIGINS` + the chat-function persona redeploy · **SMS/DLT registration (weeks of lead — start now)**.
+3. Then P3 gated build + free chapter → P4 Razorpay + OTP (price decision) → P5 hardening.
+
+---
+
+
 ## 🌐 SESSION — Answer Book: **THE MERGE AND THE DEPLOY — physics + maths live at answers.viditra.co** (2026-08-23, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`, merge `2b5fe9eb`, PUSHED)
 
 **Bottom line: the founder's decided next task is done. `origin/feat/ipe-mathematics-answerbook` (250 Maths-1A questions, the subject dimension, build-time KaTeX) is merged — as a TRUE two-parent merge, so future merges of that branch are no-ops — with cb6abc8a's deletion of the 17 physics Unit-4 files deliberately NOT taken (its own commit message sanctions exactly that) while its genuine test improvements (fixture-owned recallGrader, length-agnostic LAQ gate, data-derived deep link) are all kept. units.json is the union: 8 physics units (untagged = physics) + 10 maths units (subject:mathematics) = 448 question files, 454 catalog entries, 272 KaTeX lines. A new Worker `viditra-answers` (wrangler.answers.toml; `npm run deploy:answers` chains build:answers:hosted so the offline test dist can never reach the domain) is DEPLOYED and verified: https://answers.viditra.co serves 200 / 4.2 MB with both subjects and the hosted chat base baked in.**

@@ -285,6 +285,130 @@ localStorage; the LLM is never in the plan path.
   and resets the clock override — advance the day in-page and re-open the window instead of
   reloading.
 
+## Anonymous progress sync (P2, landed 2026-08-23)
+
+No login, ever, at this rung: identity is a random UUIDv4 minted in the browser
+(`pm_device_id`). Unguessable (122 bits) but deliberately NOT a security boundary
+— it protects progress ticks, nothing more. Phone numbers arrive in P4 and get
+their own table; no PII lives anywhere in this feature.
+
+- **Offline first, always.** localStorage stays the source of truth; sync is an
+  accelerator, never a dependency. `PM_SYNC_BASE` unset (every non-hosted build)
+  ⇒ the `Sync` module is INERT — no device id minted, no timer armed, zero
+  requests — asserted by its own gate, because every other gate in the suite
+  runs in that configuration.
+- **One POST, both directions.** The client sends all its ticks + its plan; the
+  server merges and returns the merged truth. Endpoint: `answerbook-sync`
+  (sibling of the chat function — same origin allowlist, same salted-IP
+  discipline, no spend ceiling because there is no model call). The whole merge
+  is ONE atomic RPC (`ab_sync`).
+- **The merge rule is the safety story**: a stage tick is a DATE and the
+  EARLIEST wins — `LEAST()` in SQL, the same comparison in `Vidi.mergeStages`.
+  Commutative + associative + idempotent ⇒ two devices converge in any order and
+  a retried request can never lose or move a tick; no locking, no versioning, no
+  conflict UI. The rule exists twice ON PURPOSE (browser + SQL); vitest
+  (`syncMerge.test.ts`) proves the properties against the SHIPPED notebook.js
+  (mutation-checked: inverting earliest→latest fails 3 tests) and greps the
+  migration for `least(...)` so the two copies cannot drift apart silently.
+- **The plan is the one last-write-wins value** (a single blob the student can
+  rebuild wholesale), ordered by CLIENT `saved_at` — stamped in `Vidi.setPlan`.
+  A stale push is REFUSED by a `where` on the upsert, never merged. Sync adopts
+  a remote plan via `Vidi.storePlanRaw` (no re-stamp): using setPlan would mark
+  the adopted plan newer than the device it came from and ping-pong forever.
+- **Only device MINTING is IP-limited** (default 20/day/IP, enforced in the
+  RPC). An existing device is never IP-limited: students share school and cafe
+  networks, and locking one out of their own progress is worse than the abuse
+  it prevents.
+- **Tables** (`ab_devices`/`ab_progress`/`ab_plans`, currently in the dev
+  project `dxwpkjfypzxrzgbevfnx` — the free tier's 2-project cap made the
+  planned `physicsmind-students` project impossible without paying; founder
+  accepted, and moving later is a dump/restore + one env var): RLS on, ZERO
+  policies — service-role only, and `ab_sync` has execute revoked from
+  public/anon/authenticated (the advisor confirms it is not anon-callable).
+- **Live-verified 2026-08-23**: 403 foreign origin · earliest-wins merge through
+  the real endpoint · 400 malformed device · stale-plan refusal · mint quota —
+  all against the deployed function, then the probe rows deleted.
+- **Test-author scar**: multi-step RPC tests CANNOT share one SQL statement —
+  CTEs share a snapshot and evaluate in unspecified order, which produced a
+  phantom "stale plan won" result. Sequential statements only.
+
+## The chapter gate (P3, landed 2026-08-23 — PARKED, not live)
+
+The gated build (`npm run build:answers:gated` → `answer-book/dist-gated/`, 1.5 MB vs
+4 MB) ships the full CATALOG — question texts, stars, marks, the sell — and NO answer
+bodies. Answers live in `ab_content` and leave through `answerbook-content` only for a
+device `ab_entitlements` allows. Every device gets ONE free chapter, claimed by an
+EXPLICIT tap on the lock sheet (founder: a stray tap must never burn the slot).
+**The live site still serves the full book** — the founder flips at launch (pairs with
+P4's price): point `wrangler.answers.toml` assets at `dist-gated` + deploy, after
+`content:push`.
+
+- **The projection**: everything metadata stays; the answer reduces to a BOOT-SAFE
+  skeleton — steps as `{id, marks}` only, cut-step overrides to `{marks}` — because
+  notebook.js dereferences `question.answer.steps` at module init (`applyCut(0)`).
+  The gate itself is ONE line at the top of `loadQuestion` (both routes funnel
+  there): `gated: true` → `Gate.showLockFlow`.
+- **The Gate module** (sibling of Sync, inert without `PM_CONTENT_BASE` — every full
+  build): boot `list` call → lock chips on the catalog (only AFTER the list answers —
+  no flicker) + accurate sheet copy; unlock → bundle merges into `questions` IN
+  MEMORY (re-fetched per session — 550 KB bundles are localStorage roulette);
+  identity = `Sync.deviceId()` (one identity, both doors).
+- **The free-slot atomicity is an INDEX, not code**: partial unique on
+  `ab_entitlements(device_id) where source='free_chapter'`; `ab_claim_free` turns a
+  lost race into `free_used` and a same-unit replay into idempotent success. Only
+  device MINTING is IP-capped, same as sync.
+- **A locked reply never carries an answer byte** — asserted by gates on the built
+  page (probe: a real physics answer line + a maths TeX source, positive-controlled
+  against the full build) and on the endpoint (curl).
+- **The price is data**: `ab_skus.price_inr` NULL → the sheet says "coming soon" and
+  never a number the founder has not set. P4 fills it.
+- **Scar**: node/undici to Supabase REST dies on large bodies (a 550 KB jsonb upsert
+  TransformError'd on row one) — `content:push` uses the recorded curl bypass
+  (temp file → `curl -H "Expect:"` → retry until 2xx).
+- **Gates**: own spec (`e2e/answer_book_gated.spec.ts`, 6) against dist-gated with a
+  routed endpoint serving the REAL bundle files; the main 48-gate suite still runs
+  the untouched offline full build.
+
+## Payments (P4, landed 2026-08-24 — built + deployed, awaiting keys)
+
+RS99/31 days for the first 500 devices, RS249 after — and **the founding price is
+grandfathered forever**: a device that has ever paid RS99 renews at RS99. Nobody's
+price ever rises; January's step-up reaches only students who never saw RS99. That
+is the trust story, it is enforced in `ab_price_for` (not the client), and the
+sheet says it out loud ("Once you join at this price, it stays yours") with a gate
+on that sentence. Full operator doc: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md`.
+
+- **The client never names a price.** `ab_price_for(device)` returns the number,
+  the label, the slots left and `founding_locked`; the page only renders what it
+  was told, and `answerbook-pay` re-reads the price server-side when it mints the
+  link. A client that posts its own amount is ignored — gate-asserted (the pay
+  request carries no amount at all).
+- **The device id is the whole identity.** `answerbook-pay` puts it in Razorpay
+  `notes.device_id`; the webhook reads it back and grants that device. No login,
+  no OTP, nothing typed — which is also why nothing here waits on SMS/DLT.
+- **Idempotent on payment_id** (Razorpay retries any non-2xx for 24h): a repeat
+  returns `duplicate` and the entitlement is EXTENDED, never stacked — proven in
+  SQL (same id twice → one row; a renewal moved Sep 23 → Oct 24, i.e. from the
+  existing expiry, so paying early never burns paid days).
+- **The founder slot cannot be double-spent**: `ab_apply_payment` reads
+  `ab_price_for` BEFORE writing the payment row, so the 500th and 501st payer
+  cannot both take the last place.
+- **Money is never lost.** A payment with no `notes.device_id` is banked in
+  `ab_payments` with `applied_at = null` and a note, attachable by hand.
+- **`expires_at` on entitlements**: NULL = permanent (the free chapter is a gift,
+  not a rental); a paid pass stops opening the book the moment it lapses, which is
+  what makes a renewal mean anything. The content endpoint filters on it.
+- **Fail-closed everywhere, verified live**: no Razorpay keys → `payments_unconfigured`
+  and NO pay button (never a button that leads nowhere); foreign origin → 403;
+  unsigned or wrongly-signed webhook → 401 (so a forged "payment" grants nothing).
+- **The operational trap**: the Vidi spend ceiling is $2/day, sized for a pilot.
+  500 paying students would hit it by mid-morning and the function fails closed —
+  paying customers seeing "Vidi is resting". `AB_DAILY_USD_CAP=15` is step 2.3 of
+  the runbook and must happen BEFORE launch.
+- **Not built, deliberately**: autopay mandates (friction kills student
+  conversion — they re-tap), phone OTP / second-device restore (needs SMS/DLT,
+  weeks of lead), in-app refunds (dashboard + expire the pass).
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_intermolecular_forces",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the different types of intermolecular forces.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dispersion (London) forces",
+      "marks": 1
+    },
+    {
+      "label": "Dipole–dipole forces",
+      "marks": 1
+    },
+    {
+      "label": "Hydrogen bonding and the strength order",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: intermolecular forces open the NCERT States of Matter chapter, yet the Fastrack chemistry section (book pp.62-66) skips the whole topic — an entire syllabus section with no question. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dispersion",
+        "kind": "text",
+        "label": "Dispersion (London) forces",
+        "marks": 1,
+        "mark_note": "London forces",
+        "lines": [
+          "1) Dispersion (London) forces: weak attractions",
+          "between momentary dipoles, formed when the",
+          "electron cloud of a molecule is unevenly spread",
+          "for an instant.",
+          "They exist between ALL molecules, including",
+          "non-polar ones (H₂, N₂, noble gases), and grow",
+          "with molecular size."
+        ],
+        "why": "Non-polar substances still liquefy, so some attraction must exist even without permanent dipoles. Momentary uneven electron distribution supplies it, which is why this force is universal.",
+        "common_mistakes": [
+          "Saying non-polar molecules have no intermolecular forces at all. Dispersion forces act between every pair of molecules.",
+          "Calling the momentary dipole a permanent one."
+        ],
+        "memory_tip": "London forces are present in every substance, and they are the ONLY intermolecular force in non-polar ones.",
+        "margin_note": "Momentary (instantaneous) dipole is the marked phrase."
+      },
+      {
+        "id": "s2_dipole",
+        "kind": "text",
+        "label": "Dipole–dipole forces",
+        "marks": 1,
+        "mark_note": "Dipole–dipole",
+        "lines": [
+          "2) Dipole–dipole forces: attractions between the",
+          "permanent dipoles of polar molecules — the",
+          "positive end of one molecule attracts the",
+          "negative end of the next.",
+          "Example: HCl molecules in the liquid."
+        ],
+        "why": "A polar molecule carries a built-in charge separation, so neighbouring molecules line up positive-to-negative. The attraction is stronger than dispersion between molecules of similar size.",
+        "common_mistakes": [
+          "Giving a non-polar example such as CO₂. The molecule must have a permanent dipole — HCl is the safe example.",
+          "Confusing this with the ion–ion attraction of salts, which is far stronger."
+        ],
+        "memory_tip": "Permanent plus-to-minus pairing — the polar molecules' own force.",
+        "margin_note": "One named polar example completes the point."
+      },
+      {
+        "id": "s3_hbond",
+        "kind": "boxed_final",
+        "label": "Hydrogen bonding and the strength order",
+        "marks": 2,
+        "mark_note": "Hydrogen bond + order",
+        "lines": [
+          "3) Hydrogen bond: the strongest dipole–dipole",
+          "attraction, formed when H is covalently bonded",
+          "to a small, highly electronegative atom — N, O",
+          "or F — and is attracted to the N, O or F of a",
+          "neighbouring molecule.",
+          "Examples: H₂O, NH₃, HF.",
+          {
+            "text": "Strength order: dispersion < dipole–dipole < hydrogen bond",
+            "style": "boxed"
+          }
+        ],
+        "why": "Bonding to N, O or F strips the small hydrogen atom of electron density, leaving an exposed positive centre that binds strongly to a neighbour's lone pair. That special case earns its own name and the top of the strength order.",
+        "common_mistakes": [
+          "Extending hydrogen bonding to H bonded to C or Cl. Only N, O and F qualify.",
+          "Calling the hydrogen bond a covalent bond. It is an intermolecular attraction, much weaker than a covalent bond."
+        ],
+        "memory_tip": "N, O, F — the only three atoms that give hydrogen bonding, and water is the standard example.",
+        "margin_note": "The boxed order line is the summarising mark; all three force names must appear above it."
+      }
+    ]
+  }
+}

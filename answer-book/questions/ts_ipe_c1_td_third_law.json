@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_third_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the third law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement",
+      "marks": 1
+    },
+    {
+      "label": "Mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The entropy of a pure, perfectly",
+          "crystalline substance is zero at the",
+          "absolute zero of temperature,",
+          "0 K (−273.15 °C)."
+        ],
+        "why": "At 0 K a perfect crystal has exactly one possible arrangement of its particles — perfect order — so its disorder, and therefore its entropy, is zero.",
+        "common_mistakes": [
+          "Dropping pure and perfectly crystalline — a glass or an impure solid keeps some entropy even at 0 K.",
+          "Writing 0 °C instead of 0 K."
+        ],
+        "memory_tip": "Perfect crystal, perfect order: zero kelvin, zero entropy.",
+        "margin_note": "The three conditions: pure, perfectly crystalline, absolute zero."
+      },
+      {
+        "id": "s2_math",
+        "kind": "boxed_final",
+        "label": "Mathematical form",
+        "marks": 1,
+        "mark_note": "Limit form",
+        "lines": [
+          "As the temperature approaches absolute",
+          "zero, the entropy approaches zero:",
+          {
+            "text": "S → 0 as T → 0 K (perfect crystal)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The limit form states the same law in symbols; the book prints it as Lt S = 0 with T tending to 0.",
+        "common_mistakes": [
+          "Writing ΔS → 0 instead of S → 0 — the law fixes the entropy itself, not a change in it."
+        ],
+        "memory_tip": "Third law gives entropy its zero point, the way sea level gives height its zero point.",
+        "margin_note": "The limit line completes the answer."
+      }
+    ]
+  },
+  "insider_note": "This law is the shortest answer in the chapter, so the marks depend on the qualifiers: pure, perfectly crystalline, and 0 K must all appear."
+}

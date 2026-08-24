@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ke_2mol_nitrogen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the kinetic energy of 2 moles of nitrogen at 27 °C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 1800 calories using R = 2 cal mol⁻¹ K⁻¹ (a rounding of 1.987). This card works in SI (7.48 × 10³ J) and shows the calorie form beside it; the two agree within the rounding of R. This question repeats the book's three-star VSAQ 5 with n = 2 instead of n = 5 — both are asked, so both are authored."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "KE = (3/2) nRT",
+            "style": "eq"
+          },
+          "n = 2 mol",
+          "T = 27 + 273 = 300 K",
+          "R = 8.314 J mol⁻¹ K⁻¹",
+          "KE = (3/2) × 2 × 8.314 × 300"
+        ],
+        "why": "KE = (3/2)nRT holds for any gas — the identity of nitrogen never enters. The only work before substitution is converting 27 °C to 300 K.",
+        "common_mistakes": [
+          "Substituting T = 27 instead of 300 K.",
+          "Bringing the molar mass of N₂ into the formula. Kinetic energy of n moles needs no molar mass."
+        ],
+        "memory_tip": "Three halves n R T — the gas's name is a distraction; only n and T matter.",
+        "margin_note": "The formula with T = 300 K earns this mark before any arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "KE = 1.5 × 2 × 8.314 × 300 = 7482.6 J",
+          {
+            "text": "KE ≈ 7.48 × 10³ J",
+            "style": "boxed"
+          },
+          "With R ≈ 2 cal mol⁻¹ K⁻¹: KE = (3/2) × 2 × 2 × 300",
+          "= 1800 cal (the same energy in calories)"
+        ],
+        "why": "2 × 8.314 = 16.628; times 300 gives 4988.4; times 1.5 gives 7482.6 J. The calorie line reproduces the book's expected 1800 cal with the rounded R = 2 cal mol⁻¹ K⁻¹.",
+        "common_mistakes": [
+          "Writing the number with no unit.",
+          "Mixing R values — 8.314 gives joules, 2 gives calories; using one and naming the other's unit."
+        ],
+        "memory_tip": "Two moles at room temperature: about twice 3.7 kJ, near 7.5 kJ.",
+        "margin_note": "Box the SI value; the calorie line is the book's form of the same answer."
+      }
+    ]
+  },
+  "insider_note": "This is the n = 5 question again with n = 2 — the paper-setters reuse the template, so master the template once and read n carefully on the day."
+}

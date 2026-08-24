@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_real_gas_deviation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why do real gases deviate from ideal behaviour?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two faulty assumptions",
+      "marks": 2
+    },
+    {
+      "label": "Measuring the deviation with Z",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) asks the van der Waals equation and the compressibility factor separately but never the WHY behind them — the reason real gases deviate, which is the NCERT thread joining both. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_assumptions",
+        "kind": "text",
+        "label": "The two faulty assumptions",
+        "marks": 2,
+        "mark_note": "Two reasons",
+        "lines": [
+          "Real gases deviate because two assumptions of",
+          "the kinetic theory fail:",
+          "1) The molecular volume is NOT negligible —",
+          "at high pressure the gas is squeezed until the",
+          "molecules' own volume is a real share of the",
+          "vessel's volume.",
+          "2) Intermolecular attractions are NOT absent —",
+          "at low temperature and high pressure the",
+          "molecules are slow and close, so the attractions",
+          "reduce the pressure on the walls."
+        ],
+        "why": "The ideal gas laws follow from point-size, non-attracting molecules. Each deviation of a real gas traces back to one of those two idealisations breaking down when molecules are pushed close together or slowed down.",
+        "common_mistakes": [
+          "Giving only one of the two reasons. Volume AND attraction are separate marked points.",
+          "Saying real gases deviate at all conditions. At low pressure and high temperature they are nearly ideal."
+        ],
+        "memory_tip": "Two false assumptions of the ideal model: no size, no attraction. Both show up when the gas is cold and compressed.",
+        "margin_note": "State the failing condition with each reason: high P for volume, low T and high P for attraction."
+      },
+      {
+        "id": "s2_z",
+        "kind": "boxed_final",
+        "label": "Measuring the deviation with Z",
+        "marks": 2,
+        "mark_note": "Z and the corrections",
+        "lines": [
+          "The deviation is measured by the compressibility",
+          "factor Z = PV/nRT.",
+          {
+            "text": "Ideal gas: Z = 1.  Real gas: Z < 1 when attraction dominates, Z > 1 when molecular volume dominates",
+            "style": "boxed"
+          },
+          "The van der Waals equation corrects for both:",
+          "(P + an²/V²)(V − nb) = nRT — a for attraction,",
+          "b for molecular volume."
+        ],
+        "why": "Z packs the whole comparison into one number, and the van der Waals equation repairs the two failures one term each — the a-term restores the pressure lost to attraction, the b-term removes the volume the molecules occupy.",
+        "common_mistakes": [
+          "Swapping the Z < 1 and Z > 1 cases.",
+          "Assigning a to volume and b to attraction. a is attraction, b is volume."
+        ],
+        "memory_tip": "a for attraction — the letter matches. b is the bulk of the molecules.",
+        "margin_note": "This card joins the two asked VSAQs (Z and the van der Waals equation) into one story."
+      }
+    ]
+  }
+}

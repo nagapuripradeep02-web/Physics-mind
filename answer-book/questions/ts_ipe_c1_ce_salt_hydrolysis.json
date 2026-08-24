@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_salt_hydrolysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by salt hydrolysis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The ion-water equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Salt hydrolysis is the reaction between the",
+          "cation or the anion (or both) of a dissolved",
+          "salt and water, giving an acidic, basic or",
+          "neutral solution.",
+          "It is the reverse of neutralisation."
+        ],
+        "why": "A salt has no H⁺ or OH⁻ of its own, so its solution can turn acidic or basic only if one of its ions reacts with water — that reaction is what the definition names.",
+        "common_mistakes": [
+          "Writing that the salt simply dissolves in water. Hydrolysis is a reaction of the ions WITH water, not dissolution.",
+          "Leaving out that the solution can also stay neutral (salt of a strong acid and a strong base)."
+        ],
+        "memory_tip": "Hydro + lysis = splitting by water. The ion reacts with water and splits it.",
+        "margin_note": "Name the cation and the anion — hydrolysis is an ion-water reaction."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "boxed_final",
+        "label": "The ion-water equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          {
+            "text": "Cation: M⁺ + H₂O ⇌ MOH + H⁺ (acidic)",
+            "style": "boxed"
+          },
+          {
+            "text": "Anion: A⁻ + H₂O ⇌ HA + OH⁻ (basic)",
+            "style": "eq"
+          },
+          "Example: CH₃COO⁻ + H₂O ⇌ CH₃COOH + OH⁻,",
+          "so a sodium acetate solution is basic."
+        ],
+        "why": "The two general equations show the mechanism: a cation releases H⁺ from water (acidic solution), an anion takes H⁺ from water and releases OH⁻ (basic solution).",
+        "common_mistakes": [
+          "Writing the equations with a one-way arrow. Hydrolysis is an equilibrium, so the arrow is ⇌.",
+          "Swapping the results — cation hydrolysis gives an acidic solution, anion hydrolysis gives a basic one."
+        ],
+        "memory_tip": "Cation makes the solution aCidic, Anion makes it Alkaline (basic).",
+        "margin_note": "Both general equations with ⇌ complete the answer; a real example supports them."
+      }
+    ]
+  },
+  "insider_note": "Write the two ion-water equations with ⇌ — the definition alone reads as half an answer."
+}

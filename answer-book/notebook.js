@@ -227,6 +227,11 @@
   /** Full question load — the mechanism behind the router. Always re-renders,
       even for the already-active question, so a route can be trusted blindly. */
   function loadQuestion(i, cutKey) {
+    // The chapter gate (P3). A gated question has no answer body in the
+    // page — Gate fetches the unit's bundle (or shows the lock sheet) and
+    // re-enters here once the real question object is in place. Both
+    // routes funnel through loadQuestion, so this is the WHOLE gate.
+    if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
     loadCuts();
@@ -528,6 +533,15 @@
             // says WHEN revision is due; green chip = done. Authored branch only
             // — the soon-card gate asserts its chips verbatim. A class turns the
             // red margin rule green.
+            // The chapter gate's lock cue. Only in the GATED build, only
+            // once the entitlement list has answered (no flicker), and
+            // appended after the other chips so no first-chip gate moves.
+            if (Gate.locked(unitKey(u))) {
+              var lk = document.createElement('span');
+              lk.className = 'cc-chip pm-lock';
+              lk.textContent = '🔒';
+              badges.appendChild(lk);
+            }
             var stg = Vidi.stageFor(e.question_id);
             if (stg.u || stg.r) {
               var done = stg.u && stg.r;
@@ -1877,6 +1891,11 @@
   var VIDI_BASE = (window.PM_VIDI_BASE || '').trim().replace(/\/$/, '');
   var lastSelfCheck = null;
 
+  // Announced by Vidi whenever stored study data changes. Sync replaces it at
+  // init; with no sync endpoint it stays a no-op forever, which is what keeps
+  // the offline build free of even a dormant timer.
+  var syncTouch = function () {};
+
   var Vidi = (function () {
     var mem = {};                       // fallback when localStorage is blocked
     function lsGet(k) {
@@ -1973,7 +1992,14 @@
       // ── the study plan (per device, like every other Vidi key) ────────────
       todayStr: todayStr,
       getPlan: function () { try { return JSON.parse(lsGet('pm_plan_v1') || 'null'); } catch (e) { return null; } },
-      setPlan: function (p) { lsSet('pm_plan_v1', JSON.stringify(p)); },
+      setPlan: function (p) {
+        // saved_at is what lets two devices agree on WHICH plan is current
+        // (the plan is one blob, so it is last-write-wins — unlike the stage
+        // ticks, which merge). Stamped here so every write is comparable.
+        if (p && typeof p === 'object') p.saved_at = new Date().toISOString();
+        lsSet('pm_plan_v1', JSON.stringify(p));
+        syncTouch();
+      },
       /** The Viditra intro: shown until answered, but never nags past 2 shows. */
       introDone: function () { return lsGet('pm_intro_done') === '1'; },
       markIntroDone: function () { lsSet('pm_intro_done', '1'); },
@@ -1997,6 +2023,40 @@
         s[k] = on ? todayStr() : '';
         stages[qid] = s;
         lsSet('pm_stage_v1', JSON.stringify(stages));
+        syncTouch();
+      },
+      /** The raw tick map, for the sync push. */
+      allStages: function () { return stages; },
+      /** Store a plan EXACTLY as given — no saved_at re-stamp. Only sync uses
+          this, to adopt another device's plan without making it look newer
+          than the device it came from. */
+      storePlanRaw: function (p) { lsSet('pm_plan_v1', JSON.stringify(p)); },
+      /** Merge ticks that came back from another device.
+
+          The SAME first-tick-wins rule as setStage, but applied to the remote
+          DATE instead of today: the earliest date either device saw is the
+          truth. That makes the merge commutative and idempotent, so two
+          devices converge no matter which syncs first and a replayed response
+          changes nothing. Returns true when anything actually moved, so the
+          caller only repaints on a real change. */
+      mergeStages: function (rows) {
+        if (!rows || !rows.length) return false;
+        var changed = false;
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var qid = row && row.q;
+          if (!qid) continue;
+          var s = stages[qid] || { u: '', p: '', r: '' };
+          var keys = ['u', 'r'], j;
+          for (j = 0; j < keys.length; j++) {
+            var k = keys[j], remote = row[k] || '';
+            if (!remote) continue;
+            if (!s[k] || remote < s[k]) { s[k] = remote; changed = true; }
+          }
+          stages[qid] = s;
+        }
+        if (changed) lsSet('pm_stage_v1', JSON.stringify(stages));
+        return changed;
       },
       log: log,
       flush: flush
@@ -2278,6 +2338,347 @@
     };
   })();
 
+  // ═══ Sync — the same progress on the student's other device ════════════
+  // Anonymous by design: identity is a random UUID minted here and kept in
+  // localStorage (`pm_device_id`). No login, no account, no PII — the founder's
+  // journey is "open a WhatsApp link and start reading".
+  //
+  // OFFLINE FIRST, ALWAYS. localStorage stays the source of truth and every
+  // feature works with the network down; sync is an accelerator, never a
+  // dependency. With no PM_SYNC_BASE the whole module is inert — no timer, no
+  // device id minted, not one request — so the file:// build and every gate
+  // that asserts zero network are untouched by construction.
+  //
+  // One POST does both directions: we send what we have, the server merges and
+  // returns the merged truth (see ab_sync in the migration). Stage ticks merge
+  // by earliest-date-wins, so the call is idempotent and order-independent — a
+  // retry after a dropped connection costs nothing and can never lose a tick.
+  var Sync = (function () {
+    var BASE = (window.PM_SYNC_BASE || '').trim();
+    var PUSH_DEBOUNCE_MS = 2500;
+    var timer = null, inFlight = false, again = false;
+
+    function deviceId() {
+      var id = null;
+      try { id = localStorage.getItem('pm_device_id'); } catch (e) {}
+      if (id && /^[0-9a-f-]{36}$/i.test(id)) return id;
+      id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+        : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0;
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+          });
+      try { localStorage.setItem('pm_device_id', id); } catch (e) {}
+      return id;
+    }
+
+    /** Only ticks worth sending: an empty pair carries no information. */
+    function rows() {
+      var all = Vidi.allStages(), out = [], qid;
+      for (qid in all) {
+        if (!Object.prototype.hasOwnProperty.call(all, qid)) continue;
+        var s = all[qid] || {};
+        if (!s.u && !s.r) continue;
+        out.push({ q: qid, u: s.u || '', r: s.r || '' });
+      }
+      return out;
+    }
+
+    function push() {
+      if (!BASE || inFlight) { again = again || !!BASE; return; }
+      inFlight = true;
+      var plan = Vidi.getPlan();
+      // A plan with no saved_at predates sync entirely, so no other device can
+      // hold a competing copy — stamping it now is safe, and without a stamp
+      // the server cannot tell it from a stale push and would ignore it.
+      if (plan && !plan.saved_at) { plan.saved_at = new Date().toISOString(); Vidi.storePlanRaw(plan); }
+      var body = {
+        device_id: deviceId(),
+        stages: rows(),
+        plan: plan || null,
+        plan_saved_at: (plan && plan.saved_at) || null
+      };
+      var done = function () {
+        inFlight = false;
+        if (again) { again = false; schedule(); }
+      };
+      try {
+        fetch(BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) { if (out && out.ok) adopt(out); done(); })
+          .catch(done);          // offline is normal, never an error to show
+      } catch (e) { done(); }
+    }
+
+    /** Take what the server merged. Ticks merge; the plan is last-write-wins. */
+    function adopt(out) {
+      var changed = Vidi.mergeStages(out.stages || []);
+      var mine = Vidi.getPlan();
+      var theirs = out.plan;
+      if (theirs && typeof theirs === 'object') {
+        var t = out.plan_saved_at || theirs.saved_at || '';
+        var m = (mine && mine.saved_at) || '';
+        if (t && (!m || t > m)) {
+          theirs.saved_at = t;
+          // Written straight to storage: Vidi.setPlan would re-stamp saved_at
+          // with NOW and the adopted plan would then out-rank the very device
+          // it came from, ping-ponging the two forever.
+          Vidi.storePlanRaw(theirs);
+          changed = true;
+        }
+      }
+      if (changed) VidiPanel.onSynced();
+    }
+
+    function schedule() {
+      if (!BASE) return;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { timer = null; push(); }, PUSH_DEBOUNCE_MS);
+    }
+
+    return {
+      deviceId: deviceId,
+      init: function () {
+        if (!BASE) return;                 // inert: no id, no timer, no request
+        syncTouch = schedule;
+        push();                            // the boot pull doubles as the first push
+        window.addEventListener('pagehide', function () {
+          if (timer) { clearTimeout(timer); timer = null; }
+          push();
+        });
+      }
+    };
+  })();
+
+
+  // ═══ Gate — the chapter gate of the GATED build (P3, 2026-08-23) ════════
+  // In the gated build a question ships as metadata plus a boot-safe skeleton
+  // (steps as {id, marks} only) with `gated: true`; the written answer lives
+  // server-side in ab_content and leaves only for an entitled device. Every
+  // device gets ONE free chapter, claimed by an EXPLICIT tap on the sheet —
+  // never spent by a plain open (founder decision).
+  //
+  // With no PM_CONTENT_BASE (every full build) this module is INERT: no call,
+  // no sheet, no lock chips — the same guarantee Sync makes.
+  //
+  // Unlocked bundles merge into `questions` IN MEMORY only. A new session
+  // re-fetches — deliberate for now: a 550 KB bundle is localStorage-quota
+  // roulette, and the fetch is one fast call.
+  var Gate = (function () {
+    var BASE = (window.PM_CONTENT_BASE || '').trim();
+    var unlockedUnits = {};            // unit_key -> true
+    var hasAll = false;
+    var listLoaded = false;            // lock chips wait for the truth (no flicker)
+    var pendingUnlock = null;          // where the student was headed before paying
+    var freeAvailable = null;
+    var priceInfo = null;              // what THIS device pays (server-decided)
+    var paidUntil = null;
+    var PAY_BASE = (window.PM_PAY_BASE || '').trim();
+
+    function keyOfQ(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
+
+    function post(body, cb) {
+      body.device_id = Sync.deviceId();
+      try {
+        fetch(BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) { cb(out || null); })
+          .catch(function () { cb(null); });
+      } catch (e) { cb(null); }
+    }
+
+    function adoptStanding(out) {
+      if (!out) return;
+      if (typeof out.free_available === 'boolean') freeAvailable = out.free_available;
+      if (typeof out.paid_until !== 'undefined') paidUntil = out.paid_until;
+      if (out.sku) priceInfo = out.sku;
+    }
+
+    /** The offer line. The price ALWAYS comes from the server (ab_price_for) —
+        the client never names a number, so a founding student and a later one
+        each see their own truth without the page knowing the rule. */
+    function offerLine() {
+      if (!priceInfo || !priceInfo.price_inr) return 'Unlocking every chapter is coming soon.';
+      var p = '₹' + priceInfo.price_inr + ' for ' + priceInfo.period_days + ' days';
+      if (priceInfo.founding_locked) {
+        return 'Unlock every chapter again — ' + p + ', your founding price.';
+      }
+      if (priceInfo.founding) {
+        var left = priceInfo.founding_slots_left;
+        return 'Unlock every chapter — ' + p + '. That is the founding price'
+          + (typeof left === 'number' && left > 0 ? ' (' + left + ' places left)' : '')
+          + '; it later costs ₹' + priceInfo.list_price_inr + '. Once you join at this price, it stays yours.';
+      }
+      return 'Unlock every chapter — ' + p + '.';
+    }
+
+    function payable() { return !!(PAY_BASE && priceInfo && priceInfo.price_inr); }
+
+    /** Ask the server for a payment link for THIS device and hand the student
+        over to Razorpay. The device id rides the payment, so the webhook can
+        unlock this very phone seconds after the UPI confirmation. */
+    function startPayment(i, cutKey) {
+      pendingUnlock = { i: i, cutKey: cutKey };
+      sheet('Opening the payment page…', []);
+      var body = { device_id: Sync.deviceId() };
+      try {
+        fetch(PAY_BASE, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (out) {
+            if (out && out.ok && out.url) {
+              // Same tab: the callback_url brings them back to the book, and a
+              // popup would be eaten by a phone browser's blocker.
+              location.href = out.url;
+              return;
+            }
+            sheet('Could not open the payment page just now. Please try again in a moment.',
+              [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+          })
+          .catch(function () {
+            sheet('Could not reach the payment page. Check your connection and try again.',
+              [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+          });
+      } catch (e) { /* nothing to do — the sheet already says what happened */ }
+    }
+
+    /** Fold a fetched bundle into the live question list. */
+    function mergeBundle(bundle) {
+      if (!bundle || !bundle.questions || !bundle.questions.length) return false;
+      var got = false;
+      for (var i = 0; i < bundle.questions.length; i++) {
+        var fq = bundle.questions[i];
+        var idx = qIndexById[fq.question_id];
+        if (idx === undefined) continue;
+        delete fq.gated;
+        questions[idx] = fq;
+        got = true;
+      }
+      if (bundle.unit_key) unlockedUnits[bundle.unit_key] = true;
+      return got;
+    }
+
+    // ── the sheet ───────────────────────────────────────────────────────────
+    function sheet(text, buttons) {
+      $('lockText').textContent = text;
+      var row = $('lockRow');
+      row.innerHTML = '';
+      for (var i = 0; i < buttons.length; i++) {
+        (function (b) {
+          var el2 = document.createElement('button');
+          el2.type = 'button';
+          el2.className = 'vw-btn' + (b.primary ? ' primary' : '');
+          el2.textContent = b.label;
+          el2.addEventListener('click', function () {
+            if (el2.disabled) return;
+            var all = row.querySelectorAll('button');
+            for (var j = 0; j < all.length; j++) all[j].disabled = true;
+            b.fn();
+          });
+          row.appendChild(el2);
+        })(buttons[i]);
+      }
+      $('lockOverlay').hidden = false;
+    }
+    function hideSheet() { $('lockOverlay').hidden = true; }
+    function backBtn() {
+      return { label: 'Back to all questions', fn: function () { hideSheet(); location.hash = '#/'; } };
+    }
+
+    function open(i, cutKey, bundle) {
+      if (!mergeBundle(bundle)) {
+        sheet('Something went wrong while opening this chapter. Try again.',
+          [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+        return;
+      }
+      hideSheet();
+      if (currentView === 'catalog') renderCatalog();
+      loadQuestion(i, cutKey);
+    }
+
+    function showLocked(i, cutKey, k) {
+      var buttons = [];
+      var text;
+      if (freeAvailable) {
+        text = 'This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?';
+        buttons.push({ label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } });
+        // The paid option sits BESIDE the free one: a student who already knows
+        // they want the whole book should not have to spend the gift first.
+        if (payable()) {
+          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, fn: function () { startPayment(i, cutKey); } });
+        }
+      } else {
+        text = 'This chapter is locked. You have already used your free chapter. ' + offerLine();
+        if (payable()) {
+          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
+        }
+      }
+      buttons.push(backBtn());
+      sheet(text, buttons);
+    }
+
+    function claimFree(i, cutKey, k) {
+      sheet('Opening your free chapter…', []);
+      post({ unit_key: k, claim_free: true }, function (out) {
+        adoptStanding(out);
+        if (out && out.ok && out.bundle) { open(i, cutKey, out.bundle); return; }
+        if (out && out.locked) { showLocked(i, cutKey, k); return; }   // slot was already spent
+        showError(i, cutKey);
+      });
+    }
+
+    function showError(i, cutKey) {
+      sheet('Could not reach the server. Check your connection and try again.',
+        [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
+    }
+
+    function showLockFlow(i, cutKey) {
+      var q = questions[i];
+      if (!BASE || !q) { location.hash = '#/'; return; }
+      var k = keyOfQ(q);
+      sheet('Opening this chapter…', []);
+      post({ unit_key: k }, function (out) {
+        adoptStanding(out);
+        if (out && out.ok && out.bundle) { open(i, cutKey, out.bundle); return; }
+        if (out && out.locked) { showLocked(i, cutKey, k); return; }
+        showError(i, cutKey);
+      });
+    }
+
+    return {
+      showLockFlow: showLockFlow,
+      /** True only when the LIST has answered and says this unit is locked —
+          before that the catalog shows no lock cue rather than a wrong one. */
+      locked: function (k) {
+        if (!BASE || !listLoaded || hasAll) return false;
+        return !unlockedUnits[k];
+      },
+      init: function () {
+        if (!BASE) return;               // inert in every full build
+        post({ list: true }, function (out) {
+          if (!out || !out.ok) return;   // no list = no chips; opens still work
+          adoptStanding(out);
+          var u = out.unlocked || [];
+          for (var i = 0; i < u.length; i++) {
+            if (u[i] === 'all') hasAll = true; else unlockedUnits[u[i]] = true;
+          }
+          listLoaded = true;
+          if (currentView === 'catalog') renderCatalog();
+          // Coming back from a successful payment: the pass is live, so drop the
+          // student straight into the chapter they were trying to open.
+          if (hasAll && pendingUnlock) {
+            var pu = pendingUnlock; pendingUnlock = null;
+            showLockFlow(pu.i, pu.cutKey);
+          }
+        });
+      }
+    };
+  })();
+
   var VidiPanel = (function () {
     var gen = 0;                        // guards late timers across question switches
     var online = true;
@@ -2440,7 +2841,9 @@
 
     function startIntro() {
       say('Hi, I am ' + Vidi.getName() + ' — welcome to Viditra.');
-      say('This book holds the questions your Physics exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
+      // Subject-neutral: the book has held physics, chemistry AND mathematics
+      // since 2026-08-23, and this line greets a student on any of them.
+      say('This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
       var g = gen;
       setTimeout(function () {
         if (g !== gen) return;
@@ -3353,6 +3756,14 @@
     }
 
     return {
+      /** Another device's progress just landed. Repaint what is on screen —
+          never a bubble: a student who did not ask for a sync should not be
+          interrupted by one. */
+      onSynced: function () {
+        updatePlanStrip();
+        if (currentView === 'catalog') renderCatalog();
+        else if (currentView === 'notebook') renderVidiChips();
+      },
       syncName: syncName,
       onQuestion: function () {
         gen++;
@@ -3623,6 +4034,8 @@
   ]).then(function () {
     initTest();
     initVidi();
+    Sync.init();
+    Gate.init();
     route();
     window.addEventListener('hashchange', route);
   });

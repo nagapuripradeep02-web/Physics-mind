@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_charles_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Charles' law. Write its mathematical form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) deduces Charles' law from the kinetic gas equation and uses it in the ideal-gas derivation, but never asks its plain statement — a standard board archetype for a named law. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Charles' law: at constant pressure, the volume",
+          "of a fixed mass of gas is directly proportional",
+          "to its absolute temperature."
+        ],
+        "why": "The proportionality is exact only on the kelvin scale — doubling the Celsius reading does not double the volume, but doubling the kelvin reading does. Absolute temperature is therefore part of the statement.",
+        "common_mistakes": [
+          "Writing temperature without the word absolute (kelvin).",
+          "Leaving out at constant pressure."
+        ],
+        "memory_tip": "Charles holds pressure; volume rises in step with the KELVIN temperature.",
+        "margin_note": "Constant pressure, fixed mass and ABSOLUTE temperature are the marked words."
+      },
+      {
+        "id": "s2_math",
+        "kind": "boxed_final",
+        "label": "The mathematical form",
+        "marks": 1,
+        "mark_note": "Mathematical form",
+        "lines": [
+          "V ∝ T, so V/T = constant (at constant P, n)",
+          {
+            "text": "V₁/T₁ = V₂/T₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "One constant ratio V/T for the sample means any two states share it — the two-state form the numericals use, with both temperatures in kelvin.",
+        "common_mistakes": [
+          "Substituting Celsius temperatures into V₁/T₁ = V₂/T₂. Convert to kelvin first.",
+          "Writing V₁T₁ = V₂T₂ (a product). The law is a constant RATIO."
+        ],
+        "memory_tip": "Boyle's form multiplies (PV), Charles' form divides (V over T).",
+        "margin_note": "Kelvin only in this formula — a Celsius substitution is the standard lost mark."
+      }
+    ]
+  }
+}

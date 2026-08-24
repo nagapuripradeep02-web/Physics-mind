@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_threshold_frequency_work_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define threshold frequency and work function.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Threshold frequency",
+      "marks": 1
+    },
+    {
+      "label": "Work function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_threshold",
+        "kind": "text",
+        "label": "Threshold frequency",
+        "marks": 1,
+        "mark_note": "Threshold frequency",
+        "lines": [
+          "Threshold frequency (ν₀): the minimum",
+          "frequency of light needed to eject an",
+          "electron from a metal surface.",
+          "Below ν₀ no electron is ejected."
+        ],
+        "why": "One photon frees one electron, so the photon must carry at least enough energy on its own. The frequency at which it carries exactly enough is the threshold frequency, and it is different for every metal.",
+        "common_mistakes": [
+          "Saying it is the minimum intensity. Intensity sends more photons, it does not make each one stronger.",
+          "Leaving out the word minimum."
+        ],
+        "memory_tip": "Threshold is the lowest frequency that works. Below it, nothing happens at all.",
+        "margin_note": "Write the symbol ν₀ with the definition."
+      },
+      {
+        "id": "s2_work_function",
+        "kind": "boxed_final",
+        "label": "Work function",
+        "marks": 1,
+        "mark_note": "Work function",
+        "lines": [
+          {
+            "text": "Work function W₀ = hν₀",
+            "style": "boxed"
+          },
+          "It is the minimum energy needed to remove",
+          "an electron from the metal surface.",
+          "Alkali metals have a low work function."
+        ],
+        "why": "The work function is the same idea as the threshold frequency, measured in energy instead of frequency, and h is what converts one into the other. A low work function is why the alkali metals show the photoelectric effect most readily.",
+        "common_mistakes": [
+          "Writing W₀ = hν, using the frequency of the incoming light instead of the threshold frequency.",
+          "Giving the work function a unit of frequency. It is an energy."
+        ],
+        "memory_tip": "Threshold is measured in frequency, work function in energy. Multiply by h to move between them.",
+        "margin_note": "W₀ = hν₀ links the two halves of this answer in one line."
+      }
+    ]
+  }
+}

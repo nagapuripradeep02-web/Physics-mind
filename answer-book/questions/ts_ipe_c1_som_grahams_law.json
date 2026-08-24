@@ -1,0 +1,205 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_grahams_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Graham's law of diffusion. Give its applications.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The expressions",
+      "marks": 1
+    },
+    {
+      "label": "Applications",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 22, the 4-mark form is its three-star SAQ 1). SPELLING: the book prints the coal-mine application as ansil's alarm; the device is Ansell's alarm, a marsh-gas (methane) alarm that works on diffusion. The card uses the corrected name. The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Graham's law of diffusion: at constant",
+          "temperature and pressure, the rate of diffusion",
+          "of a gas is inversely proportional to the square",
+          "root of its density (or vapour density, or",
+          "molecular weight)."
+        ],
+        "why": "The law is a comparison, so its statement must fix the conditions (same temperature and pressure) and name the property the rate depends on — the square root of density or molar mass.",
+        "common_mistakes": [
+          "Leaving out at constant temperature and pressure.",
+          "Saying proportional instead of INVERSELY proportional."
+        ],
+        "memory_tip": "Lighter diffuses faster — so the molar mass must sit under the rate, inside a square root.",
+        "margin_note": "The two conditions plus inversely proportional to the square root make the marked sentence."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "equation",
+        "label": "The expressions",
+        "marks": 1,
+        "mark_note": "Expressions",
+        "lines": [
+          {
+            "text": "r ∝ 1/√d ,   r ∝ 1/√M",
+            "style": "eq"
+          },
+          "For two gases at the same T and P:",
+          {
+            "text": "r₁/r₂ = √(d₂/d₁) = √(M₂/M₁) = √(VD₂/VD₁)",
+            "style": "eq"
+          },
+          "since M = 2 × VD (vapour density)."
+        ],
+        "why": "The working form of the law is the two-gas ratio: the subscripts swap sides inside the root, and molecular weight can replace density because at the same T and P density is proportional to molar mass.",
+        "common_mistakes": [
+          "Writing r₁/r₂ = √(M₁/M₂) — the subscripts must swap inside the root.",
+          "Forgetting M = 2 × VD when the data gives vapour density."
+        ],
+        "memory_tip": "Rate of 1 over rate of 2 equals root of M of 2 over M of 1 — always the OTHER gas's mass on top.",
+        "margin_note": "The ratio form is the one every numerical uses; write it even when not asked."
+      },
+      {
+        "id": "s3_applications",
+        "kind": "boxed_final",
+        "label": "Applications",
+        "marks": 2,
+        "mark_note": "Two applications",
+        "lines": [
+          "Applications:",
+          "1) Separation of isotopes — ²³⁵U is separated",
+          "from ²³⁸U by diffusing their volatile hexa-",
+          "fluorides (UF₆); the lighter one diffuses faster.",
+          "2) Ansell's alarm in coal mines — marsh gas",
+          "(methane) diffuses into the alarm faster than air",
+          "and its build-up sets off the warning.",
+          {
+            "text": "r₁/r₂ = √(M₂/M₁) at constant T and P",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both applications work because a mass difference becomes a rate difference: the tiny mass gap between ²³⁵UF₆ and ²³⁸UF₆ separates isotopes over many diffusion stages, and light methane entering faster than air is what the mine alarm detects.",
+        "common_mistakes": [
+          "Naming only one application when the question says applications.",
+          "Writing that uranium metal itself is diffused. The gas UF₆ diffuses, not the metal."
+        ],
+        "memory_tip": "One application separates (isotopes), one warns (the mine alarm) — both ride on light gas diffusing faster.",
+        "margin_note": "One mark per application; the boxed relation restates the law the applications use."
+      }
+    ]
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "Short answer (4 marks)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "The statement",
+          "marks": 1
+        },
+        {
+          "label": "The expressions",
+          "marks": 1
+        },
+        {
+          "label": "Applications",
+          "marks": 2
+        }
+      ],
+      "steps": {
+        "s1_statement": {
+          "marks": 1,
+          "mark_note": "Statement"
+        },
+        "s2_expression": {
+          "marks": 1,
+          "mark_note": "Expressions"
+        },
+        "s3_applications": {
+          "marks": 2,
+          "mark_note": "Two applications"
+        }
+      },
+      "needs_teacher_verification": true
+    },
+    {
+      "key": "vsaq",
+      "label": "Very short answer (2 marks)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "State Graham's law of diffusion.",
+      "mark_split": [
+        {
+          "label": "The statement",
+          "marks": 1
+        },
+        {
+          "label": "The expression",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_statement": {
+          "marks": 1,
+          "mark_note": "Statement"
+        },
+        "s2_expression": {
+          "marks": 1,
+          "mark_note": "Expression",
+          "label": "The expression",
+          "lines": [
+            {
+              "text": "r ∝ 1/√d ,   r ∝ 1/√M",
+              "style": "eq"
+            },
+            "For two gases at the same T and P:",
+            {
+              "text": "r₁/r₂ = √(M₂/M₁) = √(d₂/d₁)",
+              "style": "boxed"
+            }
+          ],
+          "margin_note": "At 2 marks the statement and the expression complete the answer; applications belong to the 4-mark form."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The book's VSAQ 22 asks only the statement of the law; the applications step is hidden in this cut."
+    }
+  ],
+  "insider_note": "The applications carry half the marks of the 4-mark form — UF₆ isotope separation and Ansell's alarm are the two the examiner expects by name."
+}

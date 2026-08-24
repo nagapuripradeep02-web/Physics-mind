@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_dg_sign_spontaneity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Using ΔG = ΔH − TΔS, explain how the signs of ΔH and ΔS and the temperature decide whether a process is spontaneous.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equation and criterion",
+      "marks": 1
+    },
+    {
+      "label": "The four sign cases",
+      "marks": 2
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the book asks Gibbs energy only as a two-mark definition (VSAQ 8), and the four ΔH/ΔS sign combinations — the standard examination table for spontaneity — appear nowhere in the chapter. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+2+1 mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_criterion",
+        "kind": "equation",
+        "label": "Equation and criterion",
+        "marks": 1,
+        "mark_note": "Criterion",
+        "lines": [
+          "At constant temperature and pressure:",
+          {
+            "text": "ΔG = ΔH − TΔS",
+            "style": "eq"
+          },
+          "ΔG < 0: spontaneous.   ΔG = 0: equilibrium.",
+          "ΔG > 0: non-spontaneous."
+        ],
+        "why": "ΔG collects the enthalpy change and the entropy change into one signed number; its sign is the complete test for the direction of the process.",
+        "common_mistakes": [
+          "Writing ΔG = ΔH + TΔS — the entropy term is subtracted.",
+          "Testing spontaneity with ΔH alone."
+        ],
+        "memory_tip": "One equation, one test: compute ΔH − TΔS and read the sign.",
+        "margin_note": "Equation plus the three sign readings."
+      },
+      {
+        "id": "s2_cases",
+        "kind": "text",
+        "label": "The four sign cases",
+        "marks": 2,
+        "mark_note": "All four cases",
+        "lines": [
+          "ΔH < 0, ΔS > 0: ΔG < 0 at every",
+          "temperature — spontaneous always.",
+          "ΔH > 0, ΔS < 0: ΔG > 0 at every",
+          "temperature — never spontaneous.",
+          "ΔH < 0, ΔS < 0: spontaneous only at low T,",
+          "where the TΔS term is small.",
+          "ΔH > 0, ΔS > 0: spontaneous only at high T,",
+          "where TΔS is larger than ΔH."
+        ],
+        "why": "T is always positive (kelvin), so the sign of ΔG follows from how large TΔS is compared with ΔH — the temperature decides the two mixed cases.",
+        "common_mistakes": [
+          "Forgetting that T is in kelvin and always positive.",
+          "Calling an endothermic process never spontaneous — with ΔS > 0 it becomes spontaneous at high temperature."
+        ],
+        "memory_tip": "Two clean cases (always, never) and two temperature-decided cases (low T, high T).",
+        "margin_note": "Both marks are here: all four combinations, each with its condition."
+      },
+      {
+        "id": "s3_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: melting of ice has ΔH > 0 and",
+          "ΔS > 0, so it is spontaneous above 273 K",
+          "and not below.",
+          {
+            "text": "Spontaneous when ΔG = ΔH − TΔS < 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Ice melting is the everyday case of the fourth row: an endothermic change that the entropy term makes spontaneous once the temperature is high enough.",
+        "common_mistakes": [
+          "Choosing an example whose signs do not match the case being illustrated."
+        ],
+        "memory_tip": "Ice melts above 0 °C and not below — one fact that fixes the whole fourth case.",
+        "margin_note": "Any correctly signed example is accepted; ice is the simplest."
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_van_der_waals_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the van der Waals equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "Units of a and b",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's model answer gives the equation with the units of a and b, so both are treated as asked."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "(P + an²/V²) (V − nb) = nRT",
+            "style": "eq"
+          },
+          "For n moles of a real gas.",
+          "a corrects the pressure for intermolecular attraction;",
+          "b corrects the volume for the space the molecules",
+          "themselves occupy."
+        ],
+        "why": "A real gas needs two corrections to PV = nRT: measured pressure is lower than ideal because molecules attract one another (the an²/V² term), and the free volume is smaller than the vessel because molecules have size (the nb term).",
+        "common_mistakes": [
+          "Writing (P − an²/V²). The correction is ADDED to the measured pressure.",
+          "Writing (V + nb). The correction is SUBTRACTED from the vessel volume.",
+          "Dropping the n² and n on the two corrections for n moles."
+        ],
+        "memory_tip": "Plus on pressure, minus on volume: attraction lowered the pressure, so add it back; molecular size removed free volume, so subtract it.",
+        "margin_note": "One line of equation with the signs right earns the mark; the two correction sentences show the meaning."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "Units of a and b",
+        "marks": 1,
+        "mark_note": "Units",
+        "lines": [
+          "Units of a: atm L² mol⁻²",
+          "Units of b: L mol⁻¹",
+          {
+            "text": "(P + an²/V²) (V − nb) = nRT",
+            "style": "boxed"
+          }
+        ],
+        "why": "an²/V² must carry pressure units, so a carries atm L² mol⁻²; nb must carry volume units, so b carries L mol⁻¹. The units follow from the equation instead of being memorised separately.",
+        "common_mistakes": [
+          "Swapping the units of a and b.",
+          "Writing a in atm L mol⁻¹ — the volume in a's unit is squared."
+        ],
+        "memory_tip": "a sits in the pressure bracket, so its unit is pressure × volume² per mole². b is a volume per mole.",
+        "margin_note": "In SI the same units read Pa m⁶ mol⁻² and m³ mol⁻¹; the atm–litre forms are the expected ones."
+      }
+    ]
+  },
+  "insider_note": "The two signs are the whole question: plus inside the pressure bracket, minus inside the volume bracket. Examiners look there first."
+}

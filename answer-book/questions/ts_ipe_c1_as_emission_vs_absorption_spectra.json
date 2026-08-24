@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_emission_vs_absorption_spectra",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the difference between emission and absorption spectra.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Emission spectrum",
+      "marks": 2
+    },
+    {
+      "label": "Absorption spectrum",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints this answer as a three-row comparison table; a table is fully accepted in the examination and is the faster way to write it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_emission",
+        "kind": "text",
+        "label": "Emission spectrum",
+        "marks": 2,
+        "mark_note": "Emission",
+        "lines": [
+          "Emission spectrum",
+          "1. Formed when an electron jumps from a",
+          "    higher orbit to a lower orbit.",
+          "2. Energy is emitted in quanta.",
+          "3. It shows bright lines on a dark background."
+        ],
+        "why": "An electron falling to a lower orbit releases the energy difference as a photon of one fixed frequency, so the spectrum records what the atom gave out. That is why the lines are bright.",
+        "common_mistakes": [
+          "Writing higher to lower for both spectra. The direction of the jump is the whole difference.",
+          "Giving only one point. Three numbered points are expected for two marks."
+        ],
+        "memory_tip": "Emission means giving out. The electron falls and the lines are bright.",
+        "margin_note": "Number the points. A three-point list reads as three separate ideas."
+      },
+      {
+        "id": "s2_absorption",
+        "kind": "boxed_final",
+        "label": "Absorption spectrum",
+        "marks": 2,
+        "mark_note": "Absorption",
+        "lines": [
+          {
+            "text": "Absorption: dark lines on a bright background",
+            "style": "boxed"
+          },
+          "1. Formed when an electron jumps from a",
+          "    lower orbit to a higher orbit.",
+          "2. Energy is absorbed in quanta.",
+          "3. The dark lines fall exactly where the",
+          "    emission lines of the same atom appear."
+        ],
+        "why": "The atom takes out of the incoming white light exactly the frequencies it would otherwise emit, so those frequencies are missing and appear as dark lines. This matching of positions is what identifies the element.",
+        "common_mistakes": [
+          "Writing bright lines for the absorption spectrum.",
+          "Saying the energy is absorbed continuously. It is absorbed in quanta, in fixed amounts."
+        ],
+        "memory_tip": "Absorption means taking in. The electron rises and the lines are dark.",
+        "margin_note": "The third point, that the lines match, is the one most students leave out."
+      }
+    ]
+  },
+  "insider_note": "Write it as a two-column table with three rows. The examiner is looking for the direction of the jump, quanta, and bright against dark; missing the direction loses both halves at once."
+}

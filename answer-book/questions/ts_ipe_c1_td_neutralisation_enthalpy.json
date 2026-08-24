@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_neutralisation_enthalpy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define enthalpy of neutralisation. What is its value for a strong acid and a strong base?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The value and its reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the book's SAQ 3 covers formation, fusion, vapourisation, sublimation and combustion but skips neutralisation entirely, a standard enthalpy type in the syllabus. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Enthalpy of neutralisation: the enthalpy",
+          "change when one mole of H⁺ ions from an",
+          "acid reacts with one mole of OH⁻ ions from",
+          "a base in dilute solution, forming one",
+          "mole of water."
+        ],
+        "why": "Fixing the amount at one mole of water formed makes values from different acid-base pairs comparable.",
+        "common_mistakes": [
+          "Leaving out in dilute solution.",
+          "Defining it per mole of acid instead of per mole of H⁺ reacting — for H₂SO₄ the two differ."
+        ],
+        "memory_tip": "One mole of H⁺ meets one mole of OH⁻ and one mole of water forms — three ones in one definition.",
+        "margin_note": "Dilute solution and one mole of water are the checked phrases."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value and its reason",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          "For any strong acid with any strong base",
+          "the value is the same, because both are",
+          "fully ionised and the only reaction is",
+          {
+            "text": "H⁺(aq) + OH⁻(aq) → H₂O(l)",
+            "style": "eq"
+          },
+          {
+            "text": "ΔH(neutralisation) = −57.1 kJ mol⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "Strong acids and bases are completely ionised in dilute solution, so whichever pair is chosen, the chemical change is the same one reaction between H⁺ and OH⁻. A weak acid or base gives a smaller release, because part of the heat goes into ionising it first.",
+        "common_mistakes": [
+          "Writing the value without the minus sign — neutralisation releases heat.",
+          "Claiming the same constant value for weak acids — it holds only when both are strong."
+        ],
+        "memory_tip": "Strong plus strong is always the same reaction, so always the same number: −57.1 kJ mol⁻¹.",
+        "margin_note": "The constancy argument is the understanding the examiner checks."
+      }
+    ]
+  }
+}

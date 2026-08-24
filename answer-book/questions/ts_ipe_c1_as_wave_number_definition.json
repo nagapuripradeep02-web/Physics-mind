@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_wave_number_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define wave number. Give its unit.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Wave number is the number of waves present",
+          "in one unit length.",
+          "It is written as ν̄ (nu bar)."
+        ],
+        "why": "Wave number counts waves per unit length, so it is a way of measuring a wave by how tightly packed it is rather than by how long each wave is. Spectroscopy uses it because the numbers come out convenient.",
+        "common_mistakes": [
+          "Defining wave number as the number of waves per second. That is the frequency.",
+          "Writing ν instead of ν̄. The bar matters."
+        ],
+        "memory_tip": "Frequency counts waves per second. Wave number counts waves per centimetre.",
+        "margin_note": "Write the symbol with its bar. Examiners look for it."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation and unit",
+        "marks": 1,
+        "mark_note": "Relation and unit",
+        "lines": [
+          {
+            "text": "ν̄ = 1 / λ",
+            "style": "boxed"
+          },
+          "Unit: cm⁻¹ (also m⁻¹ in the SI system)",
+          "Since ν = c / λ, it follows that ν = c ν̄",
+          "and E = hcν̄."
+        ],
+        "why": "Wave number is simply the reciprocal of the wavelength, so a short wave gives a large wave number. Because energy rises with wave number through E = hcν̄, spectral lines are often listed directly in cm⁻¹.",
+        "common_mistakes": [
+          "Writing ν̄ = λ instead of 1/λ.",
+          "Giving the unit as cm. Wave number is a count per length, so the unit is cm⁻¹."
+        ],
+        "memory_tip": "Reciprocal of wavelength, so the unit is a reciprocal length: cm⁻¹.",
+        "margin_note": "The unit is half of this mark. Never leave it out."
+      }
+    ]
+  }
+}

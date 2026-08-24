@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ke_ratio_h2_o2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the ratio of kinetic energies of 3 g of hydrogen and 4 g of oxygen at a given temperature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle and the moles",
+      "marks": 1
+    },
+    {
+      "label": "The ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: 1.5 mol : 0.125 mol = 12 : 1, matching the book."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "The principle and the moles",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "KE = (3/2) nRT. At the same temperature the",
+          "kinetic energies are in the ratio of the moles.",
+          "n(H₂) = 3 g / 2 g mol⁻¹ = 1.5 mol",
+          "n(O₂) = 4 g / 32 g mol⁻¹ = 0.125 mol"
+        ],
+        "why": "R and T are common to both gases, so they cancel in the ratio and only the mole numbers remain. The whole question reduces to two gram-to-mole conversions.",
+        "common_mistakes": [
+          "Taking the ratio of the masses 3 : 4. Kinetic energy follows moles, not grams.",
+          "Using M(H₂) = 1. Hydrogen gas is diatomic, M = 2 g mol⁻¹."
+        ],
+        "memory_tip": "Same T means R and T cancel: the KE ratio IS the mole ratio.",
+        "margin_note": "Stating that the ratio of energies equals the ratio of moles is the marked idea."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The ratio",
+        "marks": 1,
+        "mark_note": "Ratio",
+        "lines": [
+          "KE(H₂) : KE(O₂) = 1.5 : 0.125",
+          {
+            "text": "KE(H₂) : KE(O₂) = 12 : 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Dividing both sides by 0.125 gives 12 on the left and 1 on the right. A ratio is reported in the smallest whole numbers.",
+        "common_mistakes": [
+          "Leaving the ratio as 1.5 : 0.125 instead of 12 : 1.",
+          "Writing 1 : 12 — hydrogen has more moles, so its energy is the larger side."
+        ],
+        "memory_tip": "Three grams of the lightest gas is a lot of moles; four grams of oxygen is very few. The light gas side is far larger: 12 to 1.",
+        "margin_note": "A ratio has no unit; 12 : 1 in whole numbers is the expected form."
+      }
+    ]
+  },
+  "insider_note": "No temperature value is given on purpose — spotting that T cancels and the answer is a pure mole ratio is what earns the marks."
+}

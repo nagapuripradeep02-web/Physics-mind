@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_ca_vs_zn_stability",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which of the two ions Ca²⁺ or Zn²⁺ is more stable? Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two configurations",
+      "marks": 1
+    },
+    {
+      "label": "The answer with reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NOTATION: the book prints the ion charges as Ca⁺² and Zn⁺²; the card uses the standard Ca²⁺ and Zn²⁺."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configs",
+        "kind": "text",
+        "label": "The two configurations",
+        "marks": 1,
+        "mark_note": "Configurations",
+        "lines": [
+          "Ca²⁺ : 2, 8, 8 — a true inert gas",
+          "configuration (the argon arrangement).",
+          "Zn²⁺ : 2, 8, 18 — a pseudo inert gas",
+          "configuration (18 electrons in the",
+          "outermost shell)."
+        ],
+        "why": "The whole comparison rests on the two electron arrangements, so they are written first. One is a true noble gas arrangement; the other only resembles one.",
+        "common_mistakes": [
+          "Writing Zn²⁺ as 2, 8, 8, 2 — the ion has lost the two 4s electrons, leaving 2, 8, 18.",
+          "Calling the 18-electron arrangement an inert gas configuration. It is a pseudo inert gas configuration."
+        ],
+        "memory_tip": "Ca²⁺ matches argon exactly. Zn²⁺ ends in 18, which matches no noble gas.",
+        "margin_note": "Write both configurations in shell form. The numbers are the argument."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with reason",
+        "marks": 1,
+        "mark_note": "Answer + reason",
+        "lines": [
+          {
+            "text": "Ca²⁺ is more stable than Zn²⁺",
+            "style": "boxed"
+          },
+          "Ca²⁺ has a true inert gas configuration,",
+          "which is more stable than the pseudo",
+          "inert gas configuration of Zn²⁺."
+        ],
+        "why": "A true inert gas configuration is the most stable electron arrangement. The 18 outer electrons of a pseudo inert gas configuration shield the nucleus poorly, so that arrangement is less stable.",
+        "common_mistakes": [
+          "Answering Zn²⁺ because 18 is a larger number than 8. More outer electrons does not mean more stable."
+        ],
+        "memory_tip": "A true noble gas arrangement is more stable than a pseudo one.",
+        "margin_note": "Name both configurations in the reason. The comparison is the mark."
+      }
+    ]
+  },
+  "insider_note": "The mark is in the word pseudo — saying Zn²⁺ has 18 outer electrons without naming the pseudo inert gas configuration loses the reason mark."
+}

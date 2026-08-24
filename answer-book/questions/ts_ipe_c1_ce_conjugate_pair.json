@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_conjugate_pair",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is a conjugate acid-base pair? Write the conjugate acid and conjugate base of each of the following: (a) OH⁻ (b) HCO₃⁻",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    },
+    {
+      "label": "(a) OH⁻",
+      "marks": 1
+    },
+    {
+      "label": "(b) HCO₃⁻",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 3 (definition + example) and as its unstarred SAQ 9 (definition + the OH⁻ and HCO₃⁻ pairs) — so the 2-mark form is authored as a cut of this card, not as a second file."
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "4-mark answer (Section B)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "The definition",
+          "marks": 1
+        },
+        {
+          "label": "The example",
+          "marks": 1
+        },
+        {
+          "label": "(a) OH⁻",
+          "marks": 1
+        },
+        {
+          "label": "(b) HCO₃⁻",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_definition": {
+          "marks": 1,
+          "mark_note": "Definition"
+        },
+        "s2_example": {
+          "marks": 1,
+          "mark_note": "Example"
+        },
+        "s3_oh": {
+          "marks": 1,
+          "mark_note": "(a)"
+        },
+        "s4_hco3": {
+          "marks": 1,
+          "mark_note": "(b)"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 4-mark form is the book's SAQ 9; the split is a claim until a teacher confirms it."
+    },
+    {
+      "key": "vsaq",
+      "label": "2-mark answer (Section A)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "What is a conjugate acid-base pair?",
+      "mark_split": [
+        {
+          "label": "The definition",
+          "marks": 1
+        },
+        {
+          "label": "The example",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_definition": {
+          "marks": 1,
+          "mark_note": "Definition"
+        },
+        "s2_example": {
+          "marks": 1,
+          "mark_note": "Example"
+        },
+        "s4_hco3": {
+          "marks": 0,
+          "label": "The definition boxed",
+          "lines": [
+            {
+              "text": "Conjugate pair = an acid and a base that differ by exactly one H⁺",
+              "style": "boxed"
+            }
+          ],
+          "why": "The boxed line repeats the one-proton difference so the examiner sees the point of the definition at a glance.",
+          "margin_note": "Box the one-proton difference — it is the whole definition.",
+          "memory_tip": "One pair, one proton apart."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 2-mark form is the book's three-star VSAQ 3. The split into definition + example is a claim until a teacher confirms it."
+    }
+  ],
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An acid and a base that differ by exactly",
+          "one proton (H⁺) form a conjugate acid-base",
+          "pair.",
+          "The conjugate acid has one proton more;",
+          "the conjugate base has one proton less."
+        ],
+        "why": "The whole idea is the one-proton difference: every Brønsted-Lowry acid turns into its conjugate base by giving one H⁺, and every base turns into its conjugate acid by taking one.",
+        "common_mistakes": [
+          "Writing that the pair differs by one electron. The difference is one proton, H⁺.",
+          "Swapping the two: the species WITH the extra proton is the conjugate acid."
+        ],
+        "memory_tip": "More H⁺ = acid, less H⁺ = base. The pair sits one proton apart.",
+        "margin_note": "The words exactly one proton must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "When HCl dissolves in water:",
+          {
+            "text": "HCl + H₂O ⇌ Cl⁻ + H₃O⁺",
+            "style": "eq"
+          },
+          "H₃O⁺ is the conjugate acid of the base H₂O.",
+          "Cl⁻ is the conjugate base of the acid HCl."
+        ],
+        "why": "One equation shows both pairs at once: HCl/Cl⁻ differ by one proton, and H₂O/H₃O⁺ differ by one proton — naming which member is which proves the definition is understood.",
+        "common_mistakes": [
+          "Pairing HCl with H₃O⁺. The pairs are HCl/Cl⁻ and H₂O/H₃O⁺ — each pair differs by one H⁺.",
+          "Writing the ionisation with a one-way arrow instead of ⇌."
+        ],
+        "memory_tip": "Every proton-transfer equation holds two pairs. Match each species with its one-proton partner.",
+        "margin_note": "Name which member is the conjugate acid and which the conjugate base."
+      },
+      {
+        "id": "s3_oh",
+        "kind": "text",
+        "label": "(a) OH⁻",
+        "marks": 1,
+        "mark_note": "(a)",
+        "lines": [
+          "Add one H⁺ for the conjugate acid; remove",
+          "one H⁺ for the conjugate base.",
+          "Conjugate acid of OH⁻ : H₂O",
+          "Conjugate base of OH⁻ : O²⁻"
+        ],
+        "why": "The recipe is mechanical: OH⁻ plus one H⁺ is H₂O, and OH⁻ minus one H⁺ is O²⁻. Charges change by one unit each way because a proton carries +1.",
+        "common_mistakes": [
+          "Writing the conjugate base of OH⁻ as O⁻. Removing H⁺ from OH⁻ leaves O²⁻ — the charge drops by one full unit.",
+          "Giving only the conjugate acid. The question asks for both."
+        ],
+        "memory_tip": "Add H⁺: charge goes up by one. Remove H⁺: charge goes down by one.",
+        "margin_note": "Check each answer by counting H atoms and total charge."
+      },
+      {
+        "id": "s4_hco3",
+        "kind": "boxed_final",
+        "label": "(b) HCO₃⁻",
+        "marks": 1,
+        "mark_note": "(b)",
+        "lines": [
+          "Conjugate acid of HCO₃⁻ : H₂CO₃",
+          "Conjugate base of HCO₃⁻ : CO₃²⁻",
+          {
+            "text": "OH⁻: acid H₂O, base O²⁻ · HCO₃⁻: acid H₂CO₃, base CO₃²⁻",
+            "style": "boxed"
+          }
+        ],
+        "why": "HCO₃⁻ can both take a proton (giving H₂CO₃) and give one (leaving CO₃²⁻), which is why it appears in this question — it shows one species can have both a conjugate acid and a conjugate base.",
+        "common_mistakes": [
+          "Writing the conjugate base as CO₃⁻. Removing H⁺ from HCO₃⁻ leaves CO₃²⁻.",
+          "Forgetting that a species like HCO₃⁻ has BOTH a conjugate acid and a conjugate base."
+        ],
+        "memory_tip": "HCO₃⁻ sits in the middle of the ladder H₂CO₃ — HCO₃⁻ — CO₃²⁻, one proton per rung.",
+        "margin_note": "Box the four answers together as the final summary."
+      }
+    ]
+  },
+  "insider_note": "Add H⁺ for the conjugate acid, remove H⁺ for the conjugate base — worked one species at a time, parts (a) and (b) are four ten-second answers, and the charge is where they go wrong."
+}

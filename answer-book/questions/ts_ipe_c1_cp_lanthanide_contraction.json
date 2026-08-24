@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_lanthanide_contraction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is lanthanide contraction? What are its consequences?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The cause",
+      "marks": 1
+    },
+    {
+      "label": "The consequences",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book states the consequences as: 4d and 5d elements almost similar in size; 'they are not separated by the crystallization method'; Zr and Hf almost equal in size. The standard statement is that separation of the lanthanides is DIFFICULT because their sizes are nearly equal — crystallisation separates them poorly and ion-exchange methods are used — and the card says that; the book's flat 'not separated by crystallization' is recorded here rather than copied."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Classification of Elements – Periodic Properties · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In the lanthanide series, the atomic and ionic",
+          "sizes decrease gradually as the atomic number",
+          "increases from lanthanum to lutetium.",
+          "This steady decrease in size is called the",
+          "lanthanide contraction."
+        ],
+        "why": "The definition is a trend, so it needs all three parts: which elements (the lanthanides), what changes (atomic and ionic size decrease), and along what (increasing atomic number).",
+        "common_mistakes": [
+          "Writing that the size decreases suddenly. The decrease is small and steady across the fourteen elements.",
+          "Leaving out ionic size. The contraction shows in the ions as clearly as in the atoms."
+        ],
+        "memory_tip": "Fourteen elements, one slow shrink: La to Lu, each atom slightly smaller than the one before.",
+        "margin_note": "The words gradually and atomic number increases carry the definition."
+      },
+      {
+        "id": "s2_cause",
+        "kind": "text",
+        "label": "The cause",
+        "marks": 1,
+        "mark_note": "Cause",
+        "lines": [
+          "Cause: the differentiating electrons enter the",
+          "4f orbitals, and 4f electrons screen the outer",
+          "electrons very poorly.",
+          "So with each added proton the outer shell",
+          "feels a greater effective nuclear charge and",
+          "is pulled inward."
+        ],
+        "why": "Across the series each new proton should be balanced by its new electron, but a 4f electron cancels very little of the extra pull — so the net pull on the outer shell keeps growing and the atom keeps shrinking.",
+        "common_mistakes": [
+          "Writing poor shielding without naming the 4f orbitals. The orbital name is the marked word.",
+          "Saying the 4f electrons pull the outer electrons in. The nucleus pulls; the 4f electrons fail to screen it."
+        ],
+        "memory_tip": "The shape of a 4f orbital leaves the nucleus poorly covered, so every new proton is felt almost in full.",
+        "margin_note": "One phrase decides this mark: poor screening (shielding) by the 4f electrons."
+      },
+      {
+        "id": "s3_consequences",
+        "kind": "boxed_final",
+        "label": "The consequences",
+        "marks": 2,
+        "mark_note": "Consequences",
+        "lines": [
+          "Consequences:",
+          "1. The 4d and 5d series elements have almost",
+          "    the same size: zirconium and hafnium are",
+          "    nearly equal in radius and occur together",
+          "    in nature.",
+          "2. The lanthanides themselves are nearly",
+          "    equal in size, so separating them is",
+          "    difficult; crystallisation separates them",
+          "    poorly and ion-exchange methods are used.",
+          {
+            "text": "Zr ≈ Hf in size, and the lanthanides are difficult to separate",
+            "style": "boxed"
+          }
+        ],
+        "why": "The contraction of the fourteen lanthanides cancels the size increase expected between the 4d and 5d rows, which is why Zr and Hf come out almost identical; inside the series, near-equal sizes mean near-equal properties and therefore difficult separations.",
+        "common_mistakes": [
+          "Giving only one consequence for the two marks. Zr-Hf similarity and the difficult separation are both expected.",
+          "Writing that Zr and Hf are the same element. They are different elements of almost the same size."
+        ],
+        "memory_tip": "One shrink, two results: the row below matches the row above (Zr ≈ Hf), and the family members match each other (hard to separate).",
+        "margin_note": "Two numbered consequences for the two marks; the Zr–Hf pair is the example every scheme lists."
+      }
+    ]
+  },
+  "insider_note": "The cause — poor screening by the 4f electrons — is marked as strictly as the definition; an answer that defines the contraction and lists consequences but never says why loses a full mark."
+}

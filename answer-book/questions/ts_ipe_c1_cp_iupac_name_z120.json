@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_iupac_name_z120",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the IUPAC name and symbol of the element with atomic number 120.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The naming rule",
+      "marks": 1
+    },
+    {
+      "label": "The name and symbol",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book skips the IUPAC nomenclature section (elements with Z above 100) entirely, so the whole section is a gap. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The naming rule",
+        "marks": 1,
+        "mark_note": "Rule",
+        "lines": [
+          "IUPAC rule for elements above Z = 100:",
+          "write each digit of the atomic number as a",
+          "numerical root and add the ending -ium.",
+          "0 = nil, 1 = un, 2 = bi, 3 = tri, 4 = quad,",
+          "5 = pent, 6 = hex, 7 = sept, 8 = oct, 9 = enn.",
+          "The symbol is the first letter of each root."
+        ],
+        "why": "The name is built digit by digit, so the roots table is the whole method — with it, any atomic number can be named without memorising individual elements.",
+        "common_mistakes": [
+          "Naming the whole number instead of its digits. Each digit gets its own root.",
+          "Forgetting the ending -ium after the roots."
+        ],
+        "memory_tip": "Read the atomic number one digit at a time, replace each digit with its root, close with -ium.",
+        "margin_note": "The roots for 0, 1 and 2 (nil, un, bi) cover most asked cases."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The name and symbol",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "Z = 120: un + bi + nil + ium = Unbinilium, symbol Ubn",
+            "style": "boxed"
+          },
+          "1 → un, 2 → bi, 0 → nil, and the ending",
+          "-ium completes the name.",
+          "The symbol Ubn takes the first letter of each",
+          "root: u, b, n."
+        ],
+        "why": "Showing the digit-by-digit build (1, 2, 0 → un, bi, nil) proves the name was derived from the rule and not guessed.",
+        "common_mistakes": [
+          "Writing the symbol with three capital letters. Only the first letter is capital: Ubn.",
+          "Dropping the zero. The 0 of 120 contributes the root nil."
+        ],
+        "memory_tip": "120 spells itself: un-bi-nil plus -ium, and its symbol is the three first letters Ubn.",
+        "margin_note": "Show the three digits and their roots; the boxed line is then self-checking."
+      }
+    ]
+  }
+}

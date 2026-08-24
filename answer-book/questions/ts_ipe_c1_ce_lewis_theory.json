@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_lewis_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Lewis acid-base theory with examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Lewis acid",
+      "marks": 1
+    },
+    {
+      "label": "Types of Lewis acids",
+      "marks": 1
+    },
+    {
+      "label": "Lewis base and its types",
+      "marks": 1
+    },
+    {
+      "label": "Neutralisation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks the Lewis acid twice — as its unstarred VSAQ 6 (definition + one example) and inside this three-star SAQ 3 (the full theory) — so the 2-mark form is authored as a cut of this card, not as a second file."
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "4-mark answer (Section B)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "Lewis acid",
+          "marks": 1
+        },
+        {
+          "label": "Types of Lewis acids",
+          "marks": 1
+        },
+        {
+          "label": "Lewis base and its types",
+          "marks": 1
+        },
+        {
+          "label": "Neutralisation",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_lewis_acid": {
+          "marks": 1,
+          "mark_note": "Definition"
+        },
+        "s2_acid_types": {
+          "marks": 1,
+          "mark_note": "Acid types"
+        },
+        "s3_lewis_base": {
+          "marks": 1,
+          "mark_note": "Base and types"
+        },
+        "s4_neutralisation": {
+          "marks": 1,
+          "mark_note": "Neutralisation"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 4-mark form is the book's SAQ 3; the split is a claim until a teacher confirms it."
+    },
+    {
+      "key": "vsaq",
+      "label": "2-mark answer (Section A)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "What is a Lewis acid? Give one example.",
+      "mark_split": [
+        {
+          "label": "The definition",
+          "marks": 1
+        },
+        {
+          "label": "The example",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_lewis_acid": {
+          "marks": 2,
+          "mark_note": "Definition and example",
+          "label": "Lewis acid — definition and example",
+          "margin_note": "The definition and one example together earn both marks here."
+        },
+        "s4_neutralisation": {
+          "marks": 0,
+          "label": "The definition boxed",
+          "lines": [
+            {
+              "text": "Lewis acid = a lone-pair acceptor. Example: BF₃",
+              "style": "boxed"
+            }
+          ],
+          "why": "The boxed line repeats the definition and the example so the examiner sees the complete answer at a glance.",
+          "margin_note": "Box the definition with the example beside it.",
+          "memory_tip": "Acid Accepts — both words start with A."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The 2-mark form is the book's unstarred VSAQ 6. The split into definition + example is a claim until a teacher confirms it."
+    }
+  ],
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lewis_acid",
+        "kind": "text",
+        "label": "Lewis acid",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Lewis acid: a substance that can accept a",
+          "lone pair of electrons.",
+          "Example: BF₃ (the boron atom has only six",
+          "valence electrons, so it can accept a lone",
+          "pair)."
+        ],
+        "why": "The Lewis theory defines acid and base by electron pairs, not by protons. Acceptor of a lone pair is the whole definition, and BF₃ is the standard example because boron's octet is incomplete.",
+        "common_mistakes": [
+          "Writing proton donor. That is the Brønsted-Lowry acid, not the Lewis acid.",
+          "Writing electron acceptor without the word pair. The acid accepts a lone PAIR of electrons."
+        ],
+        "memory_tip": "Acid Accepts the pair — both words start with A.",
+        "margin_note": "Electron-pair acceptor, never proton donor — the theories must not mix."
+      },
+      {
+        "id": "s2_acid_types",
+        "kind": "text",
+        "label": "Types of Lewis acids",
+        "marks": 1,
+        "mark_note": "Acid types",
+        "lines": [
+          "a) Simple cations: Ag⁺, Co³⁺",
+          "b) Molecules whose central atom has an",
+          "incomplete octet: BF₃, BCl₃",
+          "c) Molecules with multiple bonds between",
+          "atoms of different electronegativity:",
+          "CO₂, SO₂"
+        ],
+        "why": "Each type is a different reason the substance can take a lone pair: a positive charge, an empty place in the octet, or a multiple bond that can shift its electrons aside.",
+        "common_mistakes": [
+          "Listing anions such as Cl⁻ as Lewis acids. Anions hold extra electrons, so they are bases.",
+          "Giving the types without one example each. The examples carry the mark with the list."
+        ],
+        "memory_tip": "Three ways to have room for a pair: positive charge, empty octet, shiftable multiple bond.",
+        "margin_note": "Three labelled types, one example each."
+      },
+      {
+        "id": "s3_lewis_base",
+        "kind": "text",
+        "label": "Lewis base and its types",
+        "marks": 1,
+        "mark_note": "Base and types",
+        "lines": [
+          "Lewis base: a substance that can donate a",
+          "lone pair of electrons.",
+          "a) Simple anions: Cl⁻, OH⁻",
+          "b) Molecules with lone pairs on the central",
+          "atom: H₂O, NH₃",
+          "c) Molecules with multiple bonds: CO, NO"
+        ],
+        "why": "The base is the mirror of the acid: it has a lone pair available and gives it into the new bond. Anions and lone-pair molecules are the two common ways to have a spare pair.",
+        "common_mistakes": [
+          "Writing proton acceptor. That is the Brønsted-Lowry base; the Lewis base donates an electron pair.",
+          "Swapping donor and acceptor between acid and base."
+        ],
+        "memory_tip": "Base gives the pair. NH₃ and H₂O, the everyday bases, both carry visible lone pairs.",
+        "margin_note": "Definition plus the three types with examples."
+      },
+      {
+        "id": "s4_neutralisation",
+        "kind": "boxed_final",
+        "label": "Neutralisation",
+        "marks": 1,
+        "mark_note": "Neutralisation",
+        "lines": [
+          "Neutralisation in this theory is the",
+          "formation of a coordinate covalent bond",
+          "between the base and the acid.",
+          {
+            "text": "Example: H₂O + H⁺ → H₃O⁺",
+            "style": "eq"
+          },
+          "(the oxygen atom donates its lone pair",
+          "to H⁺)",
+          {
+            "text": "Lewis acid = lone-pair acceptor; Lewis base = lone-pair donor",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two definitions meet in the bond: the base's lone pair becomes the shared pair of a coordinate covalent bond, and that bond formation is what the theory calls neutralisation.",
+        "common_mistakes": [
+          "Describing neutralisation as acid + base giving salt + water. In the Lewis theory it is the formation of a coordinate bond.",
+          "Forgetting to name which species donates the pair in the example."
+        ],
+        "memory_tip": "Neutralisation = one new coordinate bond. The base's lone pair becomes the shared pair.",
+        "margin_note": "Close with the boxed acceptor/donor pair — the two definitions side by side."
+      }
+    ]
+  },
+  "insider_note": "This content is asked at two lengths — the unstarred 2-mark form asks only for the acid definition with BF₃, while the three-star 4-mark form is marked type by type, with the coordinate-bond neutralisation as the closing mark."
+}

@@ -1,0 +1,345 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_vsepr_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give an account of VSEPR theory and its applications.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Postulates",
+      "marks": 4
+    },
+    {
+      "label": "NH₃ application",
+      "marks": 2
+    },
+    {
+      "label": "H₂O application",
+      "marks": 1
+    },
+    {
+      "label": "The diagrams",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 4+2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's six postulates are grouped into two marked steps of two marks each; the book's H₂O angle 104°30′ equals the 104.5° that NCERT prints — both notations are correct and the card uses 104°30′ with 104.5° in brackets once."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Chemical Bonding · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_postulates_shape",
+        "kind": "text",
+        "label": "Postulates — shape from repulsions",
+        "marks": 2,
+        "mark_note": "Postulates 1",
+        "lines": [
+          "VSEPR theory (valence shell electron pair",
+          "repulsion theory) — postulates:",
+          "1. The shape of a molecule is decided by",
+          "the repulsions between ALL the electron",
+          "pairs — bond pairs and lone pairs — in the",
+          "valence shell of the central atom.",
+          "2. The electron pairs arrange themselves",
+          "around the central atom so that the",
+          "repulsions among them are minimum."
+        ],
+        "why": "These two postulates are the core of the theory: count every electron pair on the central atom, then place the pairs as far apart as the geometry allows.",
+        "common_mistakes": [
+          "Counting only bond pairs. Lone pairs count too, and they are the reason NH₃ and H₂O are not tetrahedral.",
+          "Writing maximum repulsion. The pairs settle where repulsion is MINIMUM."
+        ],
+        "memory_tip": "Count all pairs, spread all pairs — the two sentences of the theory.",
+        "margin_note": "Expand the name VSEPR in full once at the start."
+      },
+      {
+        "id": "s2_postulates_lone_pair",
+        "kind": "text",
+        "label": "Postulates — lone pair rules",
+        "marks": 2,
+        "mark_note": "Postulates 2",
+        "lines": [
+          "3. A lone pair occupies more space than a",
+          "bond pair, because it belongs to one atom",
+          "only.",
+          "4. The order of repulsions is:",
+          "LP–LP > LP–BP > BP–BP.",
+          "5. The magnitude of repulsion between bond",
+          "pairs depends on the electronegativity",
+          "difference between the central atom and",
+          "the bonded atoms.",
+          "6. Repulsion strength of multiple bonds:",
+          "triple > double > single."
+        ],
+        "why": "The lone pair postulates are what give the theory its predictions: extra repulsion from lone pairs compresses the angles between bond pairs, which the two applications below use.",
+        "common_mistakes": [
+          "Reversing the repulsion order. Lone pair against lone pair is the STRONGEST repulsion.",
+          "Writing BP–BP as the strongest because bonds seem solid. Bond pairs repel least."
+        ],
+        "memory_tip": "The freer the pair, the more room it takes: LP–LP strongest, BP–BP weakest.",
+        "margin_note": "The inequality LP–LP > LP–BP > BP–BP is the most-quoted line of this answer."
+      },
+      {
+        "id": "s3_nh3",
+        "kind": "text",
+        "label": "Application — NH₃",
+        "marks": 2,
+        "mark_note": "NH₃",
+        "lines": [
+          "Application 1 — NH₃:",
+          "N undergoes sp³ hybridisation and has",
+          "three bond pairs and ONE lone pair.",
+          "The lone pair repels the bond pairs more",
+          "strongly than they repel each other.",
+          "The bond angle is reduced from 109°28′",
+          "to 107°.",
+          "The shape changes from tetrahedral to",
+          "pyramidal."
+        ],
+        "why": "NH₃ shows the theory working once: one lone pair pushes the three N−H bonds closer together, so both the angle and the shape name change from the pure tetrahedral case.",
+        "common_mistakes": [
+          "Calling NH₃ trigonal planar. The lone pair sits on the fourth sp³ position, so the shape is pyramidal.",
+          "Writing 107° without the starting value 109°28′. The reduction IS the application."
+        ],
+        "memory_tip": "One lone pair: angle down about two degrees, shape pyramidal.",
+        "margin_note": "State both angles — the starting 109°28′ and the reduced 107°."
+      },
+      {
+        "id": "s4_h2o",
+        "kind": "text",
+        "label": "Application — H₂O",
+        "marks": 1,
+        "mark_note": "H₂O",
+        "lines": [
+          "Application 2 — H₂O:",
+          "O undergoes sp³ hybridisation and has",
+          "two bond pairs and TWO lone pairs.",
+          "The two lone pairs repel more strongly, so",
+          "the bond angle is reduced further, from",
+          "109°28′ to 104°30′ (104.5°).",
+          "The shape changes from tetrahedral to",
+          "bent (angular)."
+        ],
+        "why": "H₂O shows the same effect doubled: two lone pairs compress the angle more than one did in NH₃, and only two bonded atoms remain visible, so the shape reads as bent.",
+        "common_mistakes": [
+          "Calling H₂O linear. The two lone pairs bend it to 104°30′.",
+          "Writing one lone pair for oxygen. Oxygen keeps TWO lone pairs in water."
+        ],
+        "memory_tip": "Two lone pairs: angle down twice as far, shape bent.",
+        "margin_note": "104°30′ and 104.5° are the same angle written two ways."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "The diagrams",
+        "marks": 1,
+        "mark_note": "Diagrams",
+        "figure": {
+          "id": "nh3_h2o_shapes",
+          "width": 480,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "nh3_b1",
+              "d": "M 133 98 L 102 140",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "nh3_b2",
+              "d": "M 140 100 L 140 152",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "nh3_b3",
+              "d": "M 147 98 L 178 140",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "n_lbl",
+              "x": 133,
+              "y": 88,
+              "text": "N",
+              "ms": 180,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lp_n",
+              "x": 133,
+              "y": 44,
+              "text": "••",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "h_n1",
+              "x": 88,
+              "y": 158,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_n2",
+              "x": 135,
+              "y": 172,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_n3",
+              "x": 184,
+              "y": 158,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "ang_nh3",
+              "x": 108,
+              "y": 130,
+              "text": "107°",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_nh3",
+              "x": 58,
+              "y": 225,
+              "text": "NH₃ — pyramidal, 107°",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "h2o_b1",
+              "d": "M 353 98 L 324 140",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "h2o_b2",
+              "d": "M 367 98 L 396 140",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "o_lbl",
+              "x": 353,
+              "y": 88,
+              "text": "O",
+              "ms": 180,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lp_o1",
+              "x": 338,
+              "y": 44,
+              "text": "••",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lp_o2",
+              "x": 370,
+              "y": 44,
+              "text": "••",
+              "ms": 140,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "h_o1",
+              "x": 310,
+              "y": 158,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "h_o2",
+              "x": 400,
+              "y": 158,
+              "text": "H",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "ang_h2o",
+              "x": 330,
+              "y": 130,
+              "text": "104°30′",
+              "ms": 160,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_h2o",
+              "x": 290,
+              "y": 225,
+              "text": "H₂O — bent, 104°30′",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two sketches make the argument visible: the dots above N and O are the lone pairs doing the compressing, and the marked angles show the result on each molecule.",
+        "common_mistakes": [
+          "Leaving the lone pair dots off. Without them the drawn shapes have no cause.",
+          "Marking 109°28′ on these molecules. That angle belongs to CH₄; here the angles are 107° and 104°30′."
+        ],
+        "memory_tip": "Dots on top, squeezed angle below — one pair of dots for NH₃, two for H₂O.",
+        "margin_note": "Draw the lone pairs as dots ABOVE the central atom; label each angle."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "Summary",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "CH₄ 109°28′ → NH₃ 107° → H₂O 104°30′",
+            "style": "boxed"
+          },
+          "Zero, one, two lone pairs — each added",
+          "lone pair reduces the bond angle further."
+        ],
+        "why": "The three-angle ladder compresses the whole answer into one comparable line, which is also the form short questions on VSEPR take.",
+        "common_mistakes": [
+          "Attaching the angles to the wrong molecules when writing quickly. Pair them: CH₄ largest, H₂O smallest."
+        ],
+        "memory_tip": "109, 107, 104 — the angle steps down as the lone pairs count up.",
+        "margin_note": "Unmarked closing line; it makes the two applications read as one pattern."
+      }
+    ]
+  },
+  "insider_note": "The angle ladder 109°28′, 107°, 104°30′ carries the application marks — one added lone pair reduces the angle each time, and all three numbers must appear."
+}

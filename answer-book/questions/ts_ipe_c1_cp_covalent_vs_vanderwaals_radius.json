@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_covalent_vs_vanderwaals_radius",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define covalent radius and van der Waals radius. Which of the two is larger?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definitions",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing from the types-of-atomic-radii section (covalent, metallic, van der Waals), so the whole section is a gap. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "The definitions",
+        "marks": 1,
+        "mark_note": "Definitions",
+        "lines": [
+          "Covalent radius: half the distance between",
+          "the nuclei of two like atoms joined by a",
+          "single covalent bond.",
+          "van der Waals radius: half the distance",
+          "between the nuclei of two nearest non-bonded",
+          "atoms of neighbouring molecules in the solid",
+          "state."
+        ],
+        "why": "Both radii are half of a measured nucleus-to-nucleus distance; the difference is only whether the two atoms are bonded (covalent) or merely touching as neighbours (van der Waals).",
+        "common_mistakes": [
+          "Leaving out single bond in the covalent radius. Double and triple bonds give shorter distances.",
+          "Defining the van der Waals radius between bonded atoms. It is measured between non-bonded neighbours."
+        ],
+        "memory_tip": "Both are half a distance: between bonded atoms for covalent, between touching neighbours for van der Waals.",
+        "margin_note": "The words bonded and non-bonded are what separate the two definitions."
+      },
+      {
+        "id": "s2_comparison",
+        "kind": "boxed_final",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          {
+            "text": "van der Waals radius > covalent radius",
+            "style": "boxed"
+          },
+          "A covalent bond pulls the two atoms into",
+          "overlap of their orbitals, while non-bonded",
+          "atoms only touch from outside.",
+          "Example (chlorine): covalent radius 0.99 Å,",
+          "van der Waals radius 1.80 Å."
+        ],
+        "why": "Bonding shortens the measured distance because the atoms overlap; without a bond the full outer clouds keep the nuclei farther apart, so the van der Waals half-distance is always the larger one.",
+        "common_mistakes": [
+          "Answering the comparison without a reason. The overlap of bonded atoms is the reason.",
+          "Writing the chlorine values swapped. The larger value, 1.80 Å, is the van der Waals radius."
+        ],
+        "memory_tip": "A bond pulls the atoms closer together, so the bonded (covalent) radius is the smaller of the two.",
+        "margin_note": "The chlorine pair 0.99 Å against 1.80 Å is the standard numerical illustration."
+      }
+    ]
+  }
+}

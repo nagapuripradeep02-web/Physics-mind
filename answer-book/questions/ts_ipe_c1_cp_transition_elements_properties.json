@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_transition_elements_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give any four characteristic properties of transition elements.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Metallic character",
+      "marks": 1
+    },
+    {
+      "label": "Variable oxidation states",
+      "marks": 1
+    },
+    {
+      "label": "Coloured compounds",
+      "marks": 1
+    },
+    {
+      "label": "Complexes and alloys",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties (hard heavy metals; variable oxidation states; 'colour compounds'; complex compounds; alloys; high M.P and B.P). The question asks for any four, so the card folds high melting and boiling points into the metallic-character point and alloys in with complexes, writes 'coloured compounds' for the book's 'colour compounds', and adds the one-line reasons the book omits."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Classification of Elements – Periodic Properties · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_metals",
+        "kind": "text",
+        "label": "Hard, heavy metals",
+        "marks": 1,
+        "mark_note": "Property 1",
+        "lines": [
+          "1. Transition elements are hard and heavy",
+          "metals with high melting and boiling points,",
+          "because both the ns and the (n−1)d electrons",
+          "take part in the metallic bonding."
+        ],
+        "why": "More electrons in the metallic bond means a stronger bond, and a stronger bond needs more heat to break — that one reason covers hardness and the high melting and boiling points together.",
+        "common_mistakes": [
+          "Writing metals with no property attached. Hard, heavy and high melting point are the marked words.",
+          "Counting hard metals and high melting points as two separate properties. They come from the same bonding."
+        ],
+        "memory_tip": "d electrons join the metallic bond, so everything about the metal gets stronger: harder, heavier, higher melting point.",
+        "margin_note": "One property with its reason per numbered line; four lines earn the four marks."
+      },
+      {
+        "id": "s2_oxidation_states",
+        "kind": "text",
+        "label": "Variable oxidation states",
+        "marks": 1,
+        "mark_note": "Property 2",
+        "lines": [
+          "2. They show variable oxidation states,",
+          "because the ns and (n−1)d electrons have",
+          "nearly equal energies and both can be lost.",
+          "Example: Fe²⁺ and Fe³⁺."
+        ],
+        "why": "When two sets of electrons cost nearly the same energy to remove, the atom can stop after different numbers of them — that is what variable oxidation states means.",
+        "common_mistakes": [
+          "Stating the property without an example. Fe²⁺ and Fe³⁺ is the expected pair.",
+          "Writing that only the d electrons are lost. The ns electrons are lost first."
+        ],
+        "memory_tip": "Two electron sets at nearly the same energy → more than one stopping point → more than one oxidation state.",
+        "margin_note": "The reason (ns and (n−1)d close in energy) lifts this from a list item to a marked point."
+      },
+      {
+        "id": "s3_coloured",
+        "kind": "text",
+        "label": "Coloured compounds",
+        "marks": 1,
+        "mark_note": "Property 3",
+        "lines": [
+          "3. They form coloured compounds, because",
+          "their ions have incompletely filled d orbitals.",
+          "Example: Cu²⁺ salts are blue, Ni²⁺ salts are",
+          "green."
+        ],
+        "why": "An incompletely filled d subshell can absorb visible light when a d electron moves between its levels; the light left over is the colour we see.",
+        "common_mistakes": [
+          "Writing coloured with no reason. The incompletely filled d orbitals are the marked phrase.",
+          "Using Zn²⁺ as the example. Its d¹⁰ shell is full, so zinc salts are white, not coloured."
+        ],
+        "memory_tip": "Partly filled d orbitals absorb visible light; a full d shell (Zn²⁺) gives white salts.",
+        "margin_note": "Two named examples cost one line and make the property concrete."
+      },
+      {
+        "id": "s4_complexes_alloys",
+        "kind": "boxed_final",
+        "label": "Complexes and alloys",
+        "marks": 1,
+        "mark_note": "Property 4",
+        "lines": [
+          {
+            "text": "They form complex compounds and alloys",
+            "style": "boxed"
+          },
+          "4. Their small, highly charged ions with",
+          "empty d orbitals accept electron pairs from",
+          "other molecules to give complex compounds,",
+          "and their similar atomic sizes let the metals",
+          "mix into alloys such as brass and steel."
+        ],
+        "why": "Complex formation needs an ion that can accept electron pairs, and the empty d orbitals provide the space; alloy formation needs atoms of similar size that can replace one another in the metal.",
+        "common_mistakes": [
+          "Naming complexes and alloys with no reason for either.",
+          "Giving a non-transition alloy example. Brass (Cu-Zn) and steel (Fe with carbon) are the expected ones."
+        ],
+        "memory_tip": "Empty d orbitals take electron pairs (complexes); equal-sized atoms swap places (alloys).",
+        "margin_note": "The question says any four, so these four with reasons are a complete answer; high M.P and B.P is already inside property 1."
+      }
+    ]
+  },
+  "insider_note": "The book's answer is a bare six-item list; examiners award full marks for four properties, and a one-line reason on each is what separates this from a memorised list when the wording is checked."
+}

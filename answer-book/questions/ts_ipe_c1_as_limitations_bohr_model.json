@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_limitations_bohr_model",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the limitations of Bohr's model of an atom?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it cannot explain in spectra",
+      "marks": 2
+    },
+    {
+      "label": "Where the theory itself fails",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists four limitations; the fifth point here (nothing about the shape of molecules) is standard NCERT content and is marked as an extra, not a replacement."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spectra",
+        "kind": "text",
+        "label": "What it cannot explain in spectra",
+        "marks": 2,
+        "mark_note": "Spectral failures",
+        "lines": [
+          "1. It cannot explain the spectra of atoms",
+          "    having more than one electron.",
+          "2. It cannot explain the Zeeman effect or",
+          "    the Stark effect.",
+          "3. It fails to explain the fine structure of",
+          "    the hydrogen spectrum."
+        ],
+        "why": "Bohr's model works only for one electron moving around a nucleus. It has nothing to say about the repulsion between two electrons, and no way to describe how a field splits a line.",
+        "common_mistakes": [
+          "Saying it fails for hydrogen. It works well for hydrogen, and fails for atoms with more electrons.",
+          "Writing one limitation only. Four marks need at least four points."
+        ],
+        "memory_tip": "Bohr handles one electron and no fields. Add a second electron or a field and it stops working.",
+        "margin_note": "Number the points and keep each to one line."
+      },
+      {
+        "id": "s2_theory",
+        "kind": "boxed_final",
+        "label": "Where the theory itself fails",
+        "marks": 2,
+        "mark_note": "Theoretical failures",
+        "lines": [
+          {
+            "text": "4. It contradicts Heisenberg's uncertainty principle",
+            "style": "boxed"
+          },
+          "A fixed orbit gives the position and the",
+          "momentum of the electron at the same time,",
+          "which is not possible.",
+          "5. It says nothing about the shapes of",
+          "    molecules or about chemical bonding.",
+          "6. It treats the electron as a particle only,",
+          "    ignoring its wave nature."
+        ],
+        "why": "The first three limitations are things the model cannot explain. These last ones are deeper: the model's central idea, a definite circular orbit, is itself forbidden by later physics.",
+        "common_mistakes": [
+          "Writing the uncertainty principle point without saying why an orbit breaks it.",
+          "Repeating the multi-electron point in different words instead of giving a new limitation."
+        ],
+        "memory_tip": "The first group is what it cannot explain. The second group is why the model itself is wrong.",
+        "margin_note": "The uncertainty-principle point is the strongest one. Write it with its reason."
+      }
+    ]
+  },
+  "insider_note": "An unranked question in the book, but it is the natural follow-up to the Bohr postulates long answer. Six numbered points is generous; four written clearly will do."
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_valence_period_group",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How does the valence of an element vary across a period and down a group?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What valence is",
+      "marks": 1
+    },
+    {
+      "label": "Across a period",
+      "marks": 2
+    },
+    {
+      "label": "Down a group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing from the periodicity-of-valence section, so the whole section is a gap. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Classification of Elements – Periodic Properties · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What valence is",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "Valence is the combining capacity of an",
+          "element.",
+          "For the representative elements it equals the",
+          "number of outermost electrons, or eight minus",
+          "that number."
+        ],
+        "why": "The two rules cover both halves of a period: metals use their few outer electrons directly, while non-metals combine through the electrons they lack from eight.",
+        "common_mistakes": [
+          "Giving only the outermost-electrons rule. For non-metals the working rule is eight minus that number.",
+          "Confusing valence with the number of shells."
+        ],
+        "memory_tip": "Count the outer electrons; if the count passes four, count what is missing from eight instead.",
+        "margin_note": "Both rules must appear; the period trend below uses them."
+      },
+      {
+        "id": "s2_period",
+        "kind": "text",
+        "label": "Across a period",
+        "marks": 2,
+        "mark_note": "Period trend",
+        "lines": [
+          "Across a period the number of outer",
+          "electrons rises from 1 to 8, so the valence",
+          "with respect to hydrogen rises from 1 to 4",
+          "and then falls back to 1:",
+          {
+            "text": "NaH, MgH₂, AlH₃, SiH₄, PH₃, H₂S, HCl",
+            "style": "eq"
+          },
+          "With respect to oxygen it rises steadily from",
+          "1 to 7 (Na₂O to Cl₂O₇)."
+        ],
+        "why": "The hydride formulas make the rise-and-fall visible: up to silicon the outer electrons set the valence, after silicon the missing-from-eight count takes over and the valence falls.",
+        "common_mistakes": [
+          "Writing that valence rises continuously across a period. With hydrogen it peaks at 4 (silicon) and falls back to 1.",
+          "Mixing the two series: the 1-to-7 rise belongs to the oxides, the 1-4-1 pattern to the hydrides."
+        ],
+        "memory_tip": "Read the valence straight off the hydride formulas: one H, two H, three H, four H, then three, two, one.",
+        "margin_note": "The formula line is the evidence; both marks sit on this trend with its examples."
+      },
+      {
+        "id": "s3_group",
+        "kind": "boxed_final",
+        "label": "Down a group",
+        "marks": 1,
+        "mark_note": "Group trend",
+        "lines": [
+          {
+            "text": "Down a group the valence stays the same",
+            "style": "boxed"
+          },
+          "All the elements of a group have the same",
+          "number of outermost electrons, so their",
+          "combining capacity does not change.",
+          "Example: Li, Na and K each show valence 1."
+        ],
+        "why": "Valence depends only on the outer-shell electron count, and going down a group changes the number of shells but not that count — so the valence is constant.",
+        "common_mistakes": [
+          "Writing that valence increases down a group because the atom grows. Size changes; the outer electron count does not."
+        ],
+        "memory_tip": "Down a group only the shell count changes; the outer electron count, and so the valence, stays fixed.",
+        "margin_note": "One boxed line with the same-outer-electrons reason closes the answer."
+      }
+    ]
+  }
+}

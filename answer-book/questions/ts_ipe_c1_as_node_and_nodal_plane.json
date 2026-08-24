@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_node_and_nodal_plane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are a node and a nodal plane?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Node",
+      "marks": 1
+    },
+    {
+      "label": "Nodal plane and the counts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE WORDING, recorded not resolved: the Fastrack (p.49) prints \"number of nodes = n − l − 1\". That expression is the number of RADIAL nodes; the TOTAL number of nodes is n − 1, of which l are angular (the nodal planes). This card writes radial nodes = n − l − 1 and states the total as well, so the worked count for 3d agrees with the book while the naming stays correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_node",
+        "kind": "text",
+        "label": "Node",
+        "marks": 1,
+        "mark_note": "Node",
+        "lines": [
+          "Node: a region around the nucleus where",
+          "the probability of finding the electron is",
+          "zero."
+        ],
+        "why": "An orbital is a standing wave, and a standing wave has points where its value stays zero. Those places are the nodes, and the electron is never found there.",
+        "common_mistakes": [
+          "Writing that the electron moves slowly at a node. The probability there is zero, not small."
+        ],
+        "memory_tip": "Node means zero probability. Nothing is found there at all.",
+        "margin_note": "The words probability is zero carry this mark."
+      },
+      {
+        "id": "s2_nodal_plane",
+        "kind": "boxed_final",
+        "label": "Nodal plane and the counts",
+        "marks": 1,
+        "mark_note": "Nodal plane",
+        "lines": [
+          {
+            "text": "Nodal plane: a plane through the nucleus with zero probability",
+            "style": "boxed"
+          },
+          "Radial nodes = n − l − 1",
+          "Nodal planes = l   (total nodes = n − 1)",
+          "For a 3d electron: n = 3, l = 2",
+          "radial nodes = 3 − 2 − 1 = 0, nodal planes = 2"
+        ],
+        "why": "A nodal plane is a flat surface of zero probability passing through the nucleus, which is why a p orbital has two lobes separated by one such plane. The count of nodal planes is simply l.",
+        "common_mistakes": [
+          "Using n − l − 1 for the nodal planes. That expression counts the radial nodes.",
+          "Saying an s orbital has a nodal plane. For s, l = 0, so there is none."
+        ],
+        "memory_tip": "Nodal planes equal l. Radial nodes are what is left over: n − l − 1.",
+        "margin_note": "Work the 3d case in figures. A worked count is safer than a formula alone."
+      }
+    ]
+  },
+  "insider_note": "The book prints n − l − 1 as the number of nodes. That count is the radial nodes; the nodal planes are l. Write both counts and the 3d example, and the answer is right under either wording."
+}

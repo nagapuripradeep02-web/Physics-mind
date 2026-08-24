@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_dynamic_equilibrium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define dynamic equilibrium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Why it is called dynamic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer sentence is garbled in print ('continue to take place simultaneously with equal rates. is known as'); the chemistry is correct and is restated here in full sentences."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In a reversible reaction, equilibrium is the",
+          "state at which the rate of the forward",
+          "reaction equals the rate of the backward",
+          "reaction. The concentrations of all the",
+          "substances then stay constant."
+        ],
+        "why": "Equal rates is the cause and constant concentrations is the result — the definition must contain the equality of the two rates, not only the constancy.",
+        "common_mistakes": [
+          "Writing that the reaction stops at equilibrium. Both reactions continue.",
+          "Writing that the concentrations of reactants and products become equal. They become constant, not equal to each other."
+        ],
+        "memory_tip": "Rates equal, amounts steady. Two runs at the same speed in opposite directions look like standing still.",
+        "margin_note": "The words equal rates must appear in the definition."
+      },
+      {
+        "id": "s2_dynamic",
+        "kind": "boxed_final",
+        "label": "Why it is called dynamic",
+        "marks": 1,
+        "mark_note": "Dynamic nature",
+        "lines": [
+          {
+            "text": "Both reactions continue at equal rates, so the equilibrium is called dynamic",
+            "style": "boxed"
+          },
+          "Example: N₂ + 3H₂ ⇌ 2NH₃. At equilibrium,",
+          "NH₃ is formed and decomposed at the same",
+          "rate, so its amount does not change."
+        ],
+        "why": "Dynamic means in motion. Molecular change continues in both directions even though nothing appears to change from outside — that is the exact point this question tests.",
+        "common_mistakes": [
+          "Calling the equilibrium static because nothing appears to change from outside."
+        ],
+        "memory_tip": "Dynamic means moving. The reaction keeps running in both directions; only the totals stand still.",
+        "margin_note": "One example written with the ⇌ arrow supports the definition."
+      }
+    ]
+  },
+  "insider_note": "A three-star definition where the mark is lost by writing that the reaction stops — the examiner looks for both reactions continuing at equal rates."
+}

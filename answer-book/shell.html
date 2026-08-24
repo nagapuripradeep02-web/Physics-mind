@@ -47,7 +47,9 @@
      the Answer Book's own light paper palette. -->
 <main class="catalog" id="catalogView" hidden>
   <div class="cat-hero">
-    <p class="cat-eyebrow">Telangana IPE · Physics · First year</p>
+    <!-- Subject-neutral since the book stopped being physics-only: it now carries
+         physics, chemistry and mathematics. The subject chips below say which. -->
+    <p class="cat-eyebrow">Telangana IPE · First year</p>
     <h1>Question Bank</h1>
     <p class="cat-tag">Every answer, written the way the examiner marks it.</p>
     <p class="cat-sub" id="catSub"></p>
@@ -222,6 +224,16 @@
 <!-- The leave-question ask (founder, 2026-08-23): the student, not the product,
      claims the Understand / Revise tick. Shown by askGuard() on navigation away
      from a fully revealed answer. -->
+<!-- The chapter gate (P3, 2026-08-23): shown by Gate.showLockFlow when a
+     gated question is opened. Buttons are built per state (free claim /
+     coming soon / retry); same overlay mechanics as the ask below. -->
+<div class="pm-ask" id="lockOverlay" hidden>
+  <div class="pm-ask-card" role="dialog" aria-modal="true" aria-labelledby="lockText">
+    <p id="lockText"></p>
+    <div class="pm-ask-row" id="lockRow"></div>
+  </div>
+</div>
+
 <div class="pm-ask" id="askOverlay" hidden>
   <div class="pm-ask-card" role="dialog" aria-modal="true" aria-labelledby="askText">
     <p id="askText"></p>

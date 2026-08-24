@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_dipole_moment_applications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define dipole moment and write its applications.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Units",
+      "marks": 1
+    },
+    {
+      "label": "Polar or non-polar test",
+      "marks": 1
+    },
+    {
+      "label": "Percentage ionic character",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Dipole moment appears TWICE in the book's SAQ list — this applications form (SAQ 8) and a why-is-BF₃-zero form (SAQ 9). They share only the definition and differ in focus at the same length, so they are authored as two separate cards, not as cuts of one."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Dipole moment (μ): the product of the",
+          "magnitude of the charge on either pole and",
+          "the distance between the two poles of a",
+          "polar molecule.",
+          {
+            "text": "μ = δ × d",
+            "style": "eq"
+          },
+          "It is a vector quantity."
+        ],
+        "why": "A polar molecule is two opposite partial charges a fixed distance apart, so its polarity is measured by the product of that charge and that distance.",
+        "common_mistakes": [
+          "Leaving out the word product and writing a sum or a ratio.",
+          "Forgetting that μ is a vector — direction matters when moments are added."
+        ],
+        "memory_tip": "Two poles: charge times the distance between them.",
+        "margin_note": "Definition in words plus the equation μ = δ × d earns the full mark."
+      },
+      {
+        "id": "s2_units",
+        "kind": "equation",
+        "label": "Units",
+        "marks": 1,
+        "mark_note": "Units",
+        "lines": [
+          "Units of dipole moment:",
+          "debye (D), and the SI unit coulomb metre",
+          "(C·m).",
+          {
+            "text": "1 D = 3.336 × 10⁻³⁰ C·m",
+            "style": "eq"
+          }
+        ],
+        "why": "Charge in coulomb times distance in metre gives coulomb metre; the debye is the practical unit sized for molecules, so both units and the conversion are expected.",
+        "common_mistakes": [
+          "Writing coulomb per metre. The unit is coulomb TIMES metre (C·m).",
+          "Misplacing the power of ten in the conversion: it is 10⁻³⁰."
+        ],
+        "memory_tip": "Charge unit times distance unit: coulomb metre. Debye is its molecule-sized version.",
+        "margin_note": "The 1 D conversion value is also asked alone as a very short answer."
+      },
+      {
+        "id": "s3_polarity",
+        "kind": "text",
+        "label": "Polar or non-polar test",
+        "marks": 1,
+        "mark_note": "Application 1",
+        "lines": [
+          "Application 1 — nature of the compound:",
+          "If μ = 0, the compound is non-polar.",
+          "If μ ≠ 0, the compound is polar.",
+          "Ex: μ of BF₃ is zero (non-polar);",
+          "μ of NH₃ is not zero (polar)."
+        ],
+        "why": "The measured moment is the direct test of molecular polarity: a symmetric molecule's bond moments cancel to zero even when its individual bonds are polar.",
+        "common_mistakes": [
+          "Concluding non-polar bonds from μ = 0. The BONDS can be polar while the MOLECULE is non-polar by symmetry."
+        ],
+        "memory_tip": "Zero moment, non-polar molecule; any non-zero moment, polar molecule.",
+        "margin_note": "One example on each side of the test reads best."
+      },
+      {
+        "id": "s4_ionic",
+        "kind": "boxed_final",
+        "label": "Percentage ionic character",
+        "marks": 1,
+        "mark_note": "Application 2",
+        "lines": [
+          "Application 2 — percentage ionic character",
+          "of a polar compound:",
+          {
+            "text": "% ionic character = (observed μ ÷ calculated μ) × 100",
+            "style": "boxed"
+          },
+          "Observed μ is the measured value;",
+          "calculated μ assumes a fully ionic bond."
+        ],
+        "why": "Comparing the measured moment with the value a 100% ionic bond would give tells how far the real bond is toward ionic — the ratio scaled to a percentage.",
+        "common_mistakes": [
+          "Inverting the ratio. The observed (measured) value goes on top.",
+          "Not saying what the calculated value means: the fully ionic assumption."
+        ],
+        "memory_tip": "Real value over ideal ionic value, times 100.",
+        "margin_note": "Say in words what observed and calculated mean under the boxed formula."
+      }
+    ]
+  },
+  "insider_note": "Two marks sit in the definition with its equation and units line — and the 1 D conversion value is regularly asked on its own, so it must be exact."
+}

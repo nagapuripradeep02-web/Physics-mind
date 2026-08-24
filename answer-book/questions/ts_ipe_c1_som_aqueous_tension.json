@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_aqueous_tension",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is aqueous tension?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Where it is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) asks Dalton's law twice but never its standard companion, aqueous tension — the correction applied to a gas collected over water, which is NCERT States of Matter material. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Aqueous tension is the pressure exerted by water",
+          "vapour that is in equilibrium with liquid water",
+          "at a given temperature.",
+          "It depends only on the temperature."
+        ],
+        "why": "A gas collected over water carries water vapour with it, and that vapour contributes its own partial pressure. Naming that contribution — the saturated vapour pressure of water — is the definition.",
+        "common_mistakes": [
+          "Confusing aqueous tension with surface tension. Aqueous tension is a PRESSURE, not a force per length.",
+          "Saying it depends on the volume of the vessel. It depends only on temperature."
+        ],
+        "memory_tip": "Aqueous tension is water's own vapour pressure at that temperature.",
+        "margin_note": "The equilibrium-with-liquid-water phrase makes the definition exact."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "Where it is used",
+        "marks": 1,
+        "mark_note": "The correction",
+        "lines": [
+          "For a gas collected over water, Dalton's law",
+          "gives the pressure of the dry gas:",
+          {
+            "text": "P(dry gas) = P(total) − aqueous tension",
+            "style": "boxed"
+          }
+        ],
+        "why": "The measured pressure of moist gas is the sum of the dry gas's partial pressure and the water vapour's. Subtracting the aqueous tension is Dalton's law applied backwards, and it is where this quantity appears in problems.",
+        "common_mistakes": [
+          "Adding the aqueous tension instead of subtracting it.",
+          "Applying the correction to a gas NOT collected over water — dry gas needs no correction."
+        ],
+        "memory_tip": "Moist reading minus water's share leaves the dry gas.",
+        "margin_note": "This subtraction line is the reason the term exists; write it with the definition."
+      }
+    ]
+  }
+}

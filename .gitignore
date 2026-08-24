@@ -141,3 +141,5 @@ nul
 ql-deploy/site/
 ql-deploy/.wrangler/
 website/learn/
+answer-book/content/
+answer-book/dist-gated/

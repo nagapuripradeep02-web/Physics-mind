@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ox_number_cr2o7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the oxidation number of the chromium atom in Cr₂O₇²⁻.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rules and the equation",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Rules and the equation",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Rules applied: O = −2, and the oxidation",
+          "numbers in an ION add up to the charge",
+          "of the ion, here −2.",
+          "Let the oxidation number of Cr be x.",
+          {
+            "text": "2x + 7(−2) = −2",
+            "style": "eq"
+          }
+        ],
+        "why": "Cr₂O₇²⁻ is an ion, not a neutral compound, so the sum of oxidation numbers must equal its charge −2, not zero. That single change is the point of this question.",
+        "common_mistakes": [
+          "Setting the sum equal to 0. For an ion the sum equals the ion's charge, −2 here.",
+          "Forgetting the factor 2 on x for the two chromium atoms."
+        ],
+        "memory_tip": "Neutral compound: sum = 0. Ion: sum = the charge written at its top right.",
+        "margin_note": "The equation set equal to −2 (not 0) earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "2x − 14 = −2",
+          "2x = +12",
+          {
+            "text": "x = +6, so the oxidation number of Cr in Cr₂O₇²⁻ is +6",
+            "style": "boxed"
+          }
+        ],
+        "why": "Moving −14 across gives 2x = 12, and halving it gives +6 for each chromium atom.",
+        "common_mistakes": [
+          "Stopping at 2x = +12 and reporting +12. The question asks for ONE chromium atom.",
+          "Sign slip when moving −14 across, giving 2x = −16."
+        ],
+        "memory_tip": "Chromium is +6 in dichromate and chromate both — the same x answers two common questions.",
+        "margin_note": "Box +6 for one Cr atom, not +12 for the pair."
+      }
+    ]
+  },
+  "insider_note": "The examiner checks the right-hand side of the very first equation: −2 for the ion's charge is the whole question, and 0 there loses the set-up mark."
+}

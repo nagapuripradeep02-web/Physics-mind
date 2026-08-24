@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_ionic_bond_formation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is an ionic bond? Which conditions favour its formation? Explain the formation of sodium chloride.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Favourable conditions",
+      "marks": 1
+    },
+    {
+      "label": "Formation of NaCl",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book asks the PROPERTIES of ionic compounds but never the ionic bond's definition, formation or favourable conditions — the section NCERT opens the topic with. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Ionic (electrovalent) bond: the",
+          "electrostatic force of attraction between",
+          "two oppositely charged ions, formed by the",
+          "complete transfer of one or more electrons",
+          "from a metal atom to a non-metal atom."
+        ],
+        "why": "The two defining phrases are complete transfer (against sharing) and electrostatic attraction (what actually holds the ions), so both must appear.",
+        "common_mistakes": [
+          "Writing sharing of electrons. Sharing is covalent; the ionic bond transfers completely.",
+          "Leaving out oppositely charged — like ions repel."
+        ],
+        "memory_tip": "Transfer makes the ions; attraction between them is the bond.",
+        "margin_note": "Electrovalent bond is the same term — either name is accepted."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "text",
+        "label": "Favourable conditions",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "An ionic bond forms easily when:",
+          "1. the metal has a low ionisation enthalpy",
+          "(loses its electron easily),",
+          "2. the non-metal has a high negative",
+          "electron gain enthalpy (releases much",
+          "energy on gaining the electron),",
+          "3. the lattice enthalpy of the crystal",
+          "formed is high."
+        ],
+        "why": "Each condition lowers the energy cost of one stage of the formation: removing the electron, attaching it, and packing the ions into a lattice.",
+        "common_mistakes": [
+          "Writing high ionisation enthalpy for the metal. LOW is favourable — the electron must be removable with little energy.",
+          "Forgetting lattice enthalpy, the condition that releases most of the energy."
+        ],
+        "memory_tip": "Little energy to remove, much energy released on gaining, strongly packed — the three conditions in order.",
+        "margin_note": "Three numbered conditions, one line of reason each."
+      },
+      {
+        "id": "s3_formation",
+        "kind": "boxed_final",
+        "label": "Formation of NaCl",
+        "marks": 2,
+        "mark_note": "NaCl formation",
+        "lines": [
+          {
+            "text": "Na (2, 8, 1) → Na⁺ (2, 8) + e⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Cl (2, 8, 7) + e⁻ → Cl⁻ (2, 8, 8)",
+            "style": "eq"
+          },
+          "Sodium transfers its single outer electron",
+          "to chlorine. Both ions reach an octet.",
+          {
+            "text": "Na⁺ + Cl⁻ → NaCl, held by electrostatic attraction",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two half-equations show the transfer and the octets it completes; the final line names the attraction that is the bond itself.",
+        "common_mistakes": [
+          "Writing Na⁺ as (2, 8, 1). After losing the electron it is (2, 8).",
+          "Stopping at the two ions. The bond is the ATTRACTION line at the end."
+        ],
+        "memory_tip": "One electron moves left to right; the two brackets then read 2,8 and 2,8,8.",
+        "margin_note": "Both half-equations with shell counts, then the boxed combination line."
+      }
+    ]
+  }
+}

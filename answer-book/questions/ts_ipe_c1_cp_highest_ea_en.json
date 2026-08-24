@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_highest_ea_en",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the element with the highest electron affinity (E.A) and the element with the highest electronegativity (E.N) in the periodic table.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Highest electron affinity",
+      "marks": 1
+    },
+    {
+      "label": "Highest electronegativity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book prints 'Give the highest E.A & E.N of element in the periodic table', regularised here. The book's answers (Cl for E.A, F for E.N) are correct; the card adds the reasons the book leaves out."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ea",
+        "kind": "text",
+        "label": "Highest electron affinity",
+        "marks": 1,
+        "mark_note": "E.A",
+        "lines": [
+          "Chlorine (Cl) has the highest electron",
+          "affinity in the periodic table.",
+          "It is chlorine and not fluorine: in fluorine's",
+          "small 2p subshell the incoming electron is",
+          "strongly repelled, so fluorine releases less",
+          "energy than chlorine."
+        ],
+        "why": "The expected answer by the general trend would be fluorine, so the one-line reason for chlorine shows the exception is understood, not guessed.",
+        "common_mistakes": [
+          "Writing fluorine. The repulsion inside fluorine's small 2p subshell makes chlorine the element that releases the most energy.",
+          "Naming a group instead of an element. The question asks for one element."
+        ],
+        "memory_tip": "Electron affinity peaks one row down from fluorine: chlorine.",
+        "margin_note": "This pairs with the question on E.A of chlorine versus fluorine; the same reason works in both."
+      },
+      {
+        "id": "s2_en",
+        "kind": "boxed_final",
+        "label": "Highest electronegativity",
+        "marks": 1,
+        "mark_note": "E.N",
+        "lines": [
+          {
+            "text": "Highest E.A: Cl — Highest E.N: F",
+            "style": "boxed"
+          },
+          "Fluorine (F) has the highest",
+          "electronegativity, 4.0 on the Pauling scale.",
+          "It is the smallest and most strongly",
+          "attracting atom in a bond."
+        ],
+        "why": "Electronegativity measures the pull of a bonded atom on the shared pair. No incoming electron is being added, so fluorine's small size only strengthens the pull and fluorine has the highest value.",
+        "common_mistakes": [
+          "Writing chlorine for both quantities. Only the electron affinity peaks at chlorine.",
+          "Giving electronegativity units. It is a relative number with no units."
+        ],
+        "memory_tip": "Two different questions: taking in a free electron favours Cl; pulling a shared pair favours F.",
+        "margin_note": "The value 4.0 is worth writing; it marks fluorine as the scale's top."
+      }
+    ]
+  },
+  "insider_note": "The common error is writing fluorine for both — electron affinity peaks at chlorine while electronegativity peaks at fluorine, and this question exists to test exactly that split."
+}

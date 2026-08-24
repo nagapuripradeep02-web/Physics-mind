@@ -1,0 +1,203 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_daltons_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Dalton's law of partial pressures.",
+  "appearances": [
+    {
+      "year": 2011
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The explanation",
+      "marks": 1
+    },
+    {
+      "label": "Partial pressure and mole fraction",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 23, the 4-mark form is its three-star SAQ 2). YEARS: the book prints Jun-11, Mar-14 and May-14 against the VSAQ form; appearances dedupe to 2011 and 2014 (March and May 2014 are two sittings of the same year). The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Dalton's law of partial pressures: the total",
+          "pressure exerted by a mixture of chemically",
+          "non-reacting gases, at a given temperature and",
+          "volume, is equal to the sum of the partial",
+          "pressures of the component gases."
+        ],
+        "why": "The law only holds when the gases do not react — a reaction would change the number of molecules and the pressure. Non-reacting, and at the same T and V, are therefore part of the statement itself.",
+        "common_mistakes": [
+          "Leaving out chemically non-reacting. HCl and NH₃ in one vessel do not obey this law.",
+          "Saying sum of the volumes instead of sum of the partial pressures."
+        ],
+        "memory_tip": "Each gas presses as if it were alone; the mixture's pressure is the sum of those alone-pressures.",
+        "margin_note": "Non-reacting and same T, V are the two conditions the examiner checks for."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The explanation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "P(total) = p₁ + p₂ + p₃ + …",
+            "style": "eq"
+          },
+          "The partial pressure of a gas is the pressure",
+          "that gas would exert if it alone occupied the",
+          "whole vessel at the same temperature."
+        ],
+        "why": "The equation needs the term it uses defined: partial pressure is an alone-in-the-vessel pressure. With that meaning fixed, the law is one addition.",
+        "common_mistakes": [
+          "Using the equation without defining partial pressure. The definition carries the explanation mark.",
+          "Writing the partial pressure as the gas's pressure in its own separate small container. It fills the WHOLE vessel."
+        ],
+        "memory_tip": "Partial pressure: same vessel, same temperature, the other gases removed.",
+        "margin_note": "Equation plus the one-sentence definition of partial pressure earn this mark."
+      },
+      {
+        "id": "s3_mole_fraction",
+        "kind": "boxed_final",
+        "label": "Partial pressure and mole fraction",
+        "marks": 2,
+        "mark_note": "Mole-fraction form",
+        "lines": [
+          "For each gas alone in the vessel: pᵢ = nᵢRT / V",
+          "Adding all the gases:",
+          "P = (n₁ + n₂ + n₃) RT/V = nRT/V",
+          "Dividing: pᵢ / P = nᵢ / n = xᵢ (mole fraction)",
+          {
+            "text": "pᵢ = xᵢ × P(total)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each gas obeys the ideal gas equation on its own, and RT/V is common to all of them, so pressures add exactly as moles add. Dividing one gas's pressure by the total cancels RT/V and leaves the mole fraction.",
+        "common_mistakes": [
+          "Defining mole fraction as nᵢ over the OTHER gases' moles. It is nᵢ over the TOTAL moles n.",
+          "Stopping at P = nRT/V without the division that produces pᵢ = xᵢP."
+        ],
+        "memory_tip": "Share of moles = share of pressure: a gas holding one quarter of the moles exerts one quarter of the total pressure.",
+        "margin_note": "The boxed relation pᵢ = xᵢP is the useful output; the three lines above justify it."
+      }
+    ]
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "Short answer (4 marks)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "The statement",
+          "marks": 1
+        },
+        {
+          "label": "The explanation",
+          "marks": 1
+        },
+        {
+          "label": "Partial pressure and mole fraction",
+          "marks": 2
+        }
+      ],
+      "steps": {
+        "s1_statement": {
+          "marks": 1,
+          "mark_note": "Statement"
+        },
+        "s2_equation": {
+          "marks": 1,
+          "mark_note": "Equation"
+        },
+        "s3_mole_fraction": {
+          "marks": 2,
+          "mark_note": "Mole-fraction form"
+        }
+      },
+      "needs_teacher_verification": true
+    },
+    {
+      "key": "vsaq",
+      "label": "Very short answer (2 marks)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "State Dalton's law of partial pressures.",
+      "mark_split": [
+        {
+          "label": "The statement",
+          "marks": 1
+        },
+        {
+          "label": "The equation",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_statement": {
+          "marks": 1,
+          "mark_note": "Statement"
+        },
+        "s2_equation": {
+          "marks": 1,
+          "mark_note": "Equation",
+          "label": "The equation",
+          "lines": [
+            {
+              "text": "P(total) = p₁ + p₂ + p₃ + …",
+              "style": "boxed"
+            },
+            "where p₁, p₂, p₃ … are the partial pressures",
+            "of the component gases."
+          ],
+          "margin_note": "At 2 marks the statement and the equation complete the answer; the mole-fraction derivation belongs to the 4-mark form."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The book's VSAQ 23 (asked in 2011 and 2014) asks only the statement and the equation; the mole-fraction step is hidden in this cut."
+    }
+  ],
+  "insider_note": "Asked repeatedly — 2011 and twice in 2014. The phrase chemically non-reacting gases is the first thing the examiner looks for in the statement."
+}

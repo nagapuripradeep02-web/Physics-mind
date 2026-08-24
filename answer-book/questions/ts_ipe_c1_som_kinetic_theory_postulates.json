@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_kinetic_theory_postulates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the postulates of the kinetic molecular theory of gases.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The particles and their motion",
+      "marks": 2
+    },
+    {
+      "label": "Pressure, collisions and energy",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 2+2 mark split over the book's eight postulates is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_particles",
+        "kind": "text",
+        "label": "The particles and their motion",
+        "marks": 2,
+        "mark_note": "Postulates 1–4",
+        "lines": [
+          "1) A gas consists of a very large number of tiny",
+          "particles called molecules.",
+          "2) The molecules move randomly in all directions,",
+          "colliding with one another and with the walls of",
+          "the container, changing direction at each collision.",
+          "3) The actual volume of the molecules is",
+          "negligible compared with the volume of the gas.",
+          "4) The molecules exert no attractive or repulsive",
+          "forces on one another; they are electrically neutral."
+        ],
+        "why": "These four postulates build the model itself: what the gas is made of, how the particles move, and the two idealisations — point-size molecules and no intermolecular forces — that make the mathematics of an ideal gas possible.",
+        "common_mistakes": [
+          "Writing the molecules are at rest between collisions. The motion is continuous and random.",
+          "Leaving out negligible VOLUME or no FORCES — these two are exactly what fails for real gases, so examiners look for them."
+        ],
+        "memory_tip": "Four model statements: many particles, random motion, no size, no forces.",
+        "margin_note": "Number the postulates. A numbered list is faster for the examiner to credit."
+      },
+      {
+        "id": "s2_pressure_energy",
+        "kind": "boxed_final",
+        "label": "Pressure, collisions and energy",
+        "marks": 2,
+        "mark_note": "Postulates 5–8",
+        "lines": [
+          "5) The pressure of the gas is due to the",
+          "collisions of the molecules with the walls of",
+          "the container.",
+          "6) The molecular collisions are perfectly elastic —",
+          "no kinetic energy is lost in a collision.",
+          "7) The motion of the molecules is not affected",
+          "by gravity.",
+          {
+            "text": "8) The average kinetic energy of the molecules is directly proportional to the absolute temperature: E ∝ T",
+            "style": "boxed"
+          }
+        ],
+        "why": "These four postulates connect the model to what is measured: wall collisions explain pressure, elastic collisions keep the energy constant in time, and the last postulate — energy proportional to absolute temperature — is the bridge that lets every gas law be deduced from the model.",
+        "common_mistakes": [
+          "Writing elastic as molecules stick or slow down. Elastic means the total kinetic energy is unchanged.",
+          "Writing E ∝ T with T in Celsius. The proportionality holds for ABSOLUTE temperature only."
+        ],
+        "memory_tip": "Four outcomes: pressure from wall hits, elastic hits, no gravity effect, energy tracks absolute temperature.",
+        "margin_note": "E ∝ T is the postulate the deduction question (SAQ 3) leans on — box it."
+      }
+    ]
+  },
+  "insider_note": "Eight numbered lines, two marks per group of four — completeness beats elaboration here, and E ∝ T written with absolute temperature is the line examiners underline."
+}

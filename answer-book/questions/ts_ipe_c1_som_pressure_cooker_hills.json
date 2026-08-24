@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_pressure_cooker_hills",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is a pressure cooker used for cooking food on hills?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The problem on hills",
+      "marks": 1
+    },
+    {
+      "label": "What the cooker does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's model answer stops at water boils at low temperature on hills; this card completes the mechanism (the cooker raises the pressure, which raises the boiling point), because the question asks why the cooker is used."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_problem",
+        "kind": "text",
+        "label": "The problem on hills",
+        "marks": 1,
+        "mark_note": "Low boiling point",
+        "lines": [
+          "At high altitude the atmospheric pressure is low.",
+          "A liquid boils when its vapour pressure equals the",
+          "external pressure, so on hills water boils below",
+          "100 °C. At this lower temperature food cooks",
+          "very slowly."
+        ],
+        "why": "Boiling point is not a fixed property of water; it is set by the external pressure. Lower the external pressure and the boiling point falls with it, and cooking depends on the temperature reached, not on the boiling itself.",
+        "common_mistakes": [
+          "Saying water cannot boil on hills. It boils MORE easily, but at a lower temperature.",
+          "Saying the low temperature of hill air is the reason. The reason is the low atmospheric pressure."
+        ],
+        "memory_tip": "Boiling point follows external pressure: low pressure on hills, low boiling temperature.",
+        "margin_note": "The link boiling point depends on external pressure is the marked idea."
+      },
+      {
+        "id": "s2_cooker",
+        "kind": "boxed_final",
+        "label": "What the cooker does",
+        "marks": 1,
+        "mark_note": "The cooker's effect",
+        "lines": [
+          "The sealed cooker holds steam, so the pressure",
+          "above the water rises above the outside pressure.",
+          {
+            "text": "The higher pressure raises the boiling point, so the food cooks quickly",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cooker reverses the altitude problem: trapping steam raises the pressure over the water, the boiling point climbs back above 100 °C, and the food is cooked at a higher temperature in less time.",
+        "common_mistakes": [
+          "Saying the cooker traps heat. The marked point is that it raises the PRESSURE, which raises the boiling temperature."
+        ],
+        "memory_tip": "The cooker is the hill in reverse: more pressure, higher boiling point.",
+        "margin_note": "Box the pressure-to-boiling-point link; that is the answer to why."
+      }
+    ]
+  },
+  "insider_note": "Two links make the full answer: low pressure lowers the boiling point, and the cooker raises the pressure back. Most students write only the first and lose the second mark."
+}

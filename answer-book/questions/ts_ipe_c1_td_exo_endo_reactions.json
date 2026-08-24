@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_exo_endo_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are exothermic and endothermic reactions?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Exothermic",
+      "marks": 1
+    },
+    {
+      "label": "Endothermic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer gives definitions only; the example equations on this card are standard NCERT values added for completeness."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_exothermic",
+        "kind": "text",
+        "label": "Exothermic reactions",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Exothermic reactions release heat as they",
+          "take place. For them ΔH is negative.",
+          "Example:",
+          {
+            "text": "C(s) + O₂(g) → CO₂(g)   ΔH = −393.5 kJ mol⁻¹",
+            "style": "eq"
+          }
+        ],
+        "why": "In an exothermic reaction the products hold less enthalpy than the reactants, and the difference leaves the system as heat.",
+        "common_mistakes": [
+          "Pairing exothermic with a positive ΔH — released heat means ΔH < 0."
+        ],
+        "memory_tip": "Exo, exit: heat goes out, and burning carbon is the standard example.",
+        "margin_note": "Definition earns the mark; the equation strengthens it."
+      },
+      {
+        "id": "s2_endothermic",
+        "kind": "boxed_final",
+        "label": "Endothermic reactions",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Endothermic reactions absorb heat as they",
+          "take place. For them ΔH is positive.",
+          "Example:",
+          {
+            "text": "N₂(g) + O₂(g) → 2NO(g)   ΔH = +180.5 kJ mol⁻¹",
+            "style": "eq"
+          },
+          {
+            "text": "Heat released: exothermic. Heat absorbed: endothermic.",
+            "style": "boxed"
+          }
+        ],
+        "why": "In an endothermic reaction the products hold more enthalpy than the reactants, and the difference is taken in from the surroundings as heat.",
+        "common_mistakes": [
+          "Giving no example — one standard equation per type completes the answer.",
+          "Writing the NO formation value without its plus sign."
+        ],
+        "memory_tip": "Endo, enter: heat comes in. Nitrogen and oxygen combine only when heat is supplied.",
+        "margin_note": "Box the one-line contrast as the final answer."
+      }
+    ]
+  },
+  "insider_note": "Definitions alone read as textbook copying. One balanced equation with its signed ΔH value under each definition is what a full-mark answer looks like."
+}

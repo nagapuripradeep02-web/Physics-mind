@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_common_ion_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the common ion effect? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the ionic-equilibrium half of the syllabus (common ion effect, solubility product, degree of dissociation) is skipped entirely by the Fastrack chemistry section (book pp.75-79). Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The decrease in the dissociation of a weak",
+          "electrolyte caused by adding a strong",
+          "electrolyte that has an ion common with it",
+          "is called the common ion effect."
+        ],
+        "why": "Adding the common ion raises that ion's concentration, and by Le Chatelier's principle the dissociation equilibrium shifts backward — so less of the weak electrolyte stays dissociated.",
+        "common_mistakes": [
+          "Writing that the added salt must be weak. The added electrolyte is STRONG; the suppressed one is weak.",
+          "Leaving out the word common — the shared ion is the whole mechanism."
+        ],
+        "memory_tip": "Weak electrolyte + strong partner sharing one ion: the shared ion pushes the split backward.",
+        "margin_note": "Name all three parts: weak electrolyte, strong electrolyte, common ion."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "CH₃COOH ⇌ CH₃COO⁻ + H⁺",
+            "style": "eq"
+          },
+          "Adding CH₃COONa (a strong electrolyte)",
+          "increases [CH₃COO⁻], so this equilibrium",
+          "shifts backward and the dissociation of",
+          "CH₃COOH decreases.",
+          {
+            "text": "The common ion CH₃COO⁻ suppresses the dissociation of CH₃COOH",
+            "style": "boxed"
+          }
+        ],
+        "why": "The acetic acid / sodium acetate pair is the textbook example: the acetate ion is common to both, and its raised concentration drives the weak acid's equilibrium backward.",
+        "common_mistakes": [
+          "Writing the dissociation with a one-way arrow. It is an equilibrium: ⇌.",
+          "Naming a pair with no shared ion (e.g. CH₃COOH and NaCl) — the effect needs the common ion."
+        ],
+        "memory_tip": "Acetic acid and its own sodium salt — the same pair as the acidic buffer, seen from the equilibrium side.",
+        "margin_note": "Point at the common ion by name in the example."
+      }
+    ]
+  }
+}

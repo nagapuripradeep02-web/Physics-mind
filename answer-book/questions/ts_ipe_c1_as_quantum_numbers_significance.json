@@ -1,0 +1,178 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_quantum_numbers_significance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the quantum numbers and give their significance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What quantum numbers are",
+      "marks": 1
+    },
+    {
+      "label": "Principal quantum number",
+      "marks": 2
+    },
+    {
+      "label": "Azimuthal quantum number",
+      "marks": 2
+    },
+    {
+      "label": "Magnetic quantum number",
+      "marks": 2
+    },
+    {
+      "label": "Spin quantum number",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+2+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ATTRIBUTIONS: the book credits the principal quantum number to Bohr, the azimuthal to Sommerfeld, the magnetic to Lande and the spin to Uhlenbeck and Goudsmit. These are the attributions the paper marks; the magnetic quantum number is more usually traced to the work of Sommerfeld and Zeeman, and that difference is recorded here rather than resolved on the card."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Atomic Structure · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intro",
+        "kind": "text",
+        "label": "What quantum numbers are",
+        "marks": 1,
+        "mark_note": "Introduction",
+        "lines": [
+          "Quantum numbers are the numbers used to",
+          "locate an electron in an atom. There are four:",
+          "1. Principal quantum number  (n)",
+          "2. Azimuthal quantum number  (l)",
+          "3. Magnetic quantum number  (m)",
+          "4. Spin quantum number  (s)"
+        ],
+        "why": "Naming all four at the start sets out the structure of the whole answer, and the examiner can see at once that nothing has been left out. The four together describe one electron completely.",
+        "common_mistakes": [
+          "Naming three quantum numbers and forgetting spin.",
+          "Starting straight into the principal quantum number without listing the four."
+        ],
+        "memory_tip": "Four numbers, four questions: which shell, which shape, which direction, which spin.",
+        "margin_note": "This list is a cheap mark. Write it before anything else."
+      },
+      {
+        "id": "s2_principal",
+        "kind": "text",
+        "label": "Principal quantum number",
+        "marks": 2,
+        "mark_note": "Principal (n)",
+        "lines": [
+          "1. Principal quantum number (n)",
+          "    Proposed by Bohr.",
+          "    Values: n = 1, 2, 3, 4 …, also written as",
+          "    K, L, M, N …",
+          "    Significance: it gives the size and the",
+          "    energy of the orbit.",
+          "    The maximum number of electrons in a",
+          "    shell is 2n²."
+        ],
+        "why": "The principal quantum number is the shell number, so it decides how far the electron is from the nucleus and therefore how much energy it has. The capacity 2n² follows from it and is worth stating.",
+        "common_mistakes": [
+          "Allowing n = 0. The principal quantum number starts at 1.",
+          "Giving the values without saying what n signifies. The significance is half of each of these marks."
+        ],
+        "memory_tip": "n is the shell number. Bigger n means bigger orbit and higher energy.",
+        "margin_note": "For each quantum number write three lines: who proposed it, its values, its significance."
+      },
+      {
+        "id": "s3_azimuthal",
+        "kind": "text",
+        "label": "Azimuthal quantum number",
+        "marks": 2,
+        "mark_note": "Azimuthal (l)",
+        "lines": [
+          "2. Azimuthal quantum number (l)",
+          "    Proposed by Sommerfeld.",
+          "    Values: l = 0 to (n − 1).",
+          "    Significance: it gives the shape of the",
+          "    orbital.",
+          "    l = 0 → s, spherical",
+          "    l = 1 → p, dumb-bell",
+          "    l = 2 → d, double dumb-bell",
+          "    l = 3 → f, complex shape"
+        ],
+        "why": "The azimuthal quantum number is what turns a shell into subshells. Its value fixes the shape, which is why the letters s, p, d and f are simply names for l = 0, 1, 2 and 3.",
+        "common_mistakes": [
+          "Writing l = 1 to n. The values start at 0 and stop at n − 1.",
+          "Giving the letters without the matching shapes."
+        ],
+        "memory_tip": "l runs from 0 up to one less than n. Its four values are the four letters s, p, d, f.",
+        "margin_note": "The l-to-letter table is the part examiners look for here."
+      },
+      {
+        "id": "s4_magnetic",
+        "kind": "text",
+        "label": "Magnetic quantum number",
+        "marks": 2,
+        "mark_note": "Magnetic (m)",
+        "lines": [
+          "3. Magnetic quantum number (m)",
+          "    Proposed by Lande.",
+          "    Values: m = −l to +l, including 0,",
+          "    which gives (2l + 1) values.",
+          "    Significance: it gives the orientation of",
+          "    the orbital in space.",
+          "    It explains the Zeeman effect and the",
+          "    Stark effect.",
+          "    For l = 1: m = −1, 0, +1 → px, py, pz"
+        ],
+        "why": "The magnetic quantum number is what says how many orbitals of a given shape there are, because each value of m is one orientation. The count 2l + 1 is why there are three p orbitals and five d orbitals.",
+        "common_mistakes": [
+          "Writing m = 0 to l. The values run from −l all the way to +l.",
+          "Forgetting to count 0, which gives 2l instead of 2l + 1 orbitals."
+        ],
+        "memory_tip": "m counts orientations: 2l + 1 of them. Three for p, five for d.",
+        "margin_note": "Naming the Zeeman and Stark effects here links this to the very short answer question on them."
+      },
+      {
+        "id": "s5_spin",
+        "kind": "boxed_final",
+        "label": "Spin quantum number",
+        "marks": 1,
+        "mark_note": "Spin (s)",
+        "lines": [
+          "4. Spin quantum number (s)",
+          "    Proposed by Uhlenbeck and Goudsmit.",
+          {
+            "text": "Values: s = +½ and −½ only",
+            "style": "boxed"
+          },
+          "    Significance: it gives the direction of spin",
+          "    of the electron about its own axis.",
+          "    The two values are why one orbital holds",
+          "    at most two electrons."
+        ],
+        "why": "Spin is the only quantum number that does not come from the orbital. Because it has just two values, an orbital can hold two electrons and no more, which is exactly what Pauli's exclusion principle says.",
+        "common_mistakes": [
+          "Giving values such as 0 or 1. The only values are +½ and −½.",
+          "Leaving out the link to the two-electron limit, which is the significance being asked for."
+        ],
+        "memory_tip": "Two spin values means two electrons per orbital. That is the whole significance.",
+        "margin_note": "Close by linking spin to Pauli's principle. It shows the four numbers work together."
+      }
+    ]
+  },
+  "insider_note": "A list question, so structure earns the marks. Use the same three lines for each quantum number — who proposed it, its values, its significance — and the answer writes itself in order."
+}

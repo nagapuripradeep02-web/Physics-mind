@@ -19,5 +19,9 @@ routes = [
   { pattern = "answers.viditra.co", custom_domain = true }
 ]
 
+# THE GATE FLIP (P3, parked): to launch the gated product, change directory to
+# "./answer-book/dist-gated", then: npm run build:answers:gated && npm run
+# content:push && npx wrangler deploy -c wrangler.answers.toml. Until then the
+# full free book serves. (Founder call — pairs with pricing ab_skus in P4.)
 [assets]
 directory = "./answer-book/dist"
