@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_vertex_c_centroid_origin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the coordinates of the vertex 'C' of △ABC if its centroid is the origin and the vertices A, B are (1,1,1) and (−2,4,1) respectively.",
+  "appearances": [
+    {
+      "year": 2015
+    },
+    {
+      "year": 2018
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the centroid formula",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the third vertex",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.83 — VSAQ chapter 15 3-D Coordinates, answer 97.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,18 · AP 15 · AP 20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what the centroid is in terms of the vertices, and how many equations that gives you.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_centroid_formula",
+        "kind": "equation",
+        "label": "Write the centroid formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The centroid is the plain average of the vertices, one coordinate at a time. Write the formula with the unknown vertex in it and set it equal to the given centroid.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (1, 1, 1), B = (−2, 4, 1) and",
+          "Third vertex C = (x₃, y₃, z₃)",
+          "Given Centroid G = (0, 0, 0)",
+          "Centroid of △ABC",
+          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3, (z₁+z₂+z₃)/3)",
+          "⇒ ((1 − 2 + x₃)/3, (1 + 4 + y₃)/3, (1 + 1 + z₃)/3) = (0, 0, 0)",
+          "⇒ ((x₃ − 1)/3, (y₃ + 5)/3, (z₃ + 2)/3) = (0, 0, 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centroid formula is written with the unknown vertex included and set equal to the given centroid.",
+          "accept": [
+            "the centroid is the average of the vertices so write that and set it equal",
+            "add the coordinates and divide, then equate to the given centroid",
+            "write the centroid formula with the unknown vertex in it",
+            "centroid formula rasi given centroid ki equate cheyyali",
+            "set the average equal to the given point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "centroid",
+            "average",
+            "divide by",
+            "equate"
+          ]
+        },
+        "why": "A centroid condition gives one equation per coordinate, and the three are completely independent — so each unknown coordinate falls out on its own.",
+        "common_mistakes": [
+          "Dividing by the wrong number of vertices.",
+          "Mixing the x, y and z equations together."
+        ]
+      },
+      {
+        "id": "s2_solve_each_coordinate",
+        "kind": "boxed_final",
+        "label": "Solve for the third vertex",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Solve the three equations one at a time. Nothing links them, so this is three short subtractions rather than a system.",
+        "lines": [
+          "⇒ x₃ − 1 = 0  ⇒  x₃ = 1;",
+          "   y₃ + 5 = 0  ⇒  y₃ = −5;",
+          "   z₃ + 2 = 0  ⇒  z₃ = −2",
+          {
+            "text": "∴ Hence, third vertex C = (1, −5, −2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving each coordinate equation gives (1, −5, −2).",
+          "accept": [
+            "solve each coordinate separately to get the vertex",
+            "the three equations are independent so do them one at a time",
+            "this gives the required vertex",
+            "moodu coordinates separate ga solve cheyyali",
+            "the vertex is this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve each",
+            "independent",
+            "the vertex is",
+            "one at a time"
+          ]
+        },
+        "why": "Each coordinate of a centroid depends only on the matching coordinates of the vertices, which is what makes the three equations separate.",
+        "common_mistakes": [
+          "Carrying a value from the x equation into the y equation.",
+          "Sign slip on a negative coordinate."
+        ]
+      }
+    ]
+  }
+}

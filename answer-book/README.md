@@ -8,11 +8,15 @@ themselves **stroke by stroke** in the same blue ink. When page 1 fills, page 2 
 like a real answer booklet.
 
 First board: **Telangana IPE** (Intermediate Public Examination). The book opened on a
-Physics-I 8-mark LAQ (the parallelogram law of vectors), but **this desk is now
-mathematics-only**: it holds Maths-1A Units 1-10 and nothing else. The physics track
-lives on `feat/ipe-answerbook`, on the other machine. The surface itself is
-subject-agnostic — the `subject` field, its `|| 'physics'` fallback and the catalog's
-subject chip row are all still here, and the physics desk relies on them.
+Physics-I 8-mark LAQ (the parallelogram law of vectors) and now carries three papers:
+**Physics-I**, **Maths-1A** (Units 1-10, complete) and **Maths-1B** (opened 2026-08-23).
+
+**One paper = one `subject` value.** Maths-1A owns `mathematics` for historical reasons
+(it predates 1B), the same way an absent `subject` means physics; Maths-1B is
+`mathematics_1b`. Unit numbers namespace **per subject**, so two papers under one value
+would collide — the build's unit-key guard fails on a duplicate `subject-number`, and the
+catalog, triage, exam-eve route and study planner all key on it. Physics-II will need the
+same treatment (`physics_2`).
 
 ## Build · serve · test
 
@@ -40,11 +44,12 @@ from `file://`.
 | `../e2e/answer_book.spec.ts` | Pagination/marks regression evidence |
 | `../docs/patterns/answer_book.md` | Schema reference + design decisions + rule-tension record |
 
-## How to add question #2
+## How to add a question
 
 1. Copy an existing `questions/*.json` to a new file — `ts_ipe_m1a_fn_gof_bijective.json`
-   is a good 7-mark LAQ to start from. The filename must
-   equal `question_id`.
+   is a good 7-mark LAQ to start from, `ts_ipe_m1b_loc_pa2_pb2_twice_pc2.json` a good 4-mark
+   SAQ. The filename must equal `question_id`, and the id carries its paper
+   (`ts_ipe_m1a_…` / `ts_ipe_m1b_…`). Add a matching entry to `units.json` in the same pass.
 2. Rewrite the header (board, unit, qtype, marks_total, mark_split, question_text) and the
    `answer.steps[]`. Rules of thumb:
    - one `lines[]` entry = one written rule; keep every line under ~52 characters;
@@ -58,8 +63,9 @@ from `file://`.
 3. `npm run build:answers` — it will tell you loudly if the marks don't add up.
 4. Eyeball at `npm run serve:answers`, then `npm run smoke:answers`.
 
-Today the page shows `PM_QUESTIONS[0]` only; a question picker is deliberately out of scope
-until there is more than one question worth picking.
+The page opens on a **catalog** — subject chips (Physics · Maths-1A · Maths-1B), then units,
+then the question cards. A unit's entries come from `units.json`, and the build hard-fails if an
+authored question is missing from that file, or if an entry there resolves to nothing.
 
 ## Test yourself
 

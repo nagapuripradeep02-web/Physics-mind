@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_homog_perpendicular_7x2_minus_4xy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the lines joining the origin with the points of intersection of the curve 7x²−4xy+8y²+2x−4y−8=0 with the line 3x−y=2 are mutually perpendicular.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Clear the line to = 1",
+      "marks": 1
+    },
+    {
+      "label": "Write the homogenised equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to ax² + 2hxy + by² = 0",
+      "marks": 3
+    },
+    {
+      "label": "Add the squared coefficients",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.25 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 13.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say what you homogenise, and what condition proves the lines are perpendicular.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_line_to_one",
+        "kind": "equation",
+        "label": "Clear the line to = 1",
+        "marks": 1,
+        "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 3x − y = 2",
+          "⇒ (3x − y)/2 = 1  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given line is rearranged into the form (expression)/(constant) = 1.",
+          "accept": [
+            "rearrange the line so it equals one",
+            "take the constant across and divide so the right side is one",
+            "write the line as something over something equals one",
+            "line ni equals one form lo raayali",
+            "make the line equal to one first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals one",
+            "clear the line",
+            "divide by the constant"
+          ]
+        },
+        "why": "Homogenisation only works on a line written as something = 1, because every term of the curve has to be raised to degree two by multiplying by that 1. Clearing the line to that form is therefore the first move every time.",
+        "common_mistakes": [
+          "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
+          "Dividing by the wrong constant and losing a sign."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_homogenise",
+        "kind": "equation",
+        "label": "Write the homogenised equation",
+        "marks": 1,
+        "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "lines": [
+          "Given curve is 7x² − 4xy + 8y² + 2x − 4y − 8 = 0  ……(2)",
+          "Homogenising (1) & (2), we get",
+          "7x² − 4xy + 8y² + 2x(1) − 4y(1) − 8(1)² = 0",
+          "⇒ 7x² − 4xy + 8y² + 2x[(3x−y)/2] − 4y[(3x−y)/2] − 8[(3x−y)/2]² = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the linear terms are multiplied by the '= 1' expression once and the constant twice.",
+          "accept": [
+            "multiply the linear terms by the bracket once and the constant by it squared",
+            "homogenise so every term becomes second degree",
+            "the constant gets the bracket squared",
+            "linear terms ki okasari, constant ki square",
+            "write the homogenised equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "homogenise",
+            "second degree",
+            "squared",
+            "linear terms"
+          ]
+        },
+        "why": "A second-degree equation in x and y with NO constant and NO linear term always represents two lines through the ORIGIN — which is exactly what the question asks about. Homogenising manufactures that equation from the curve and the chord.",
+        "common_mistakes": [
+          "Multiplying the constant by the bracket only once.",
+          "Multiplying the second-degree terms as well, which raises them to degree four."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_simplify",
+        "kind": "equation",
+        "label": "Simplify to ax² + 2hxy + by² = 0",
+        "marks": 3,
+        "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "lines": [
+          "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y) − 8(3x − y)²/4 = 0",
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y² − 2(9x² + y² − 6xy) = 0",
+          "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y² − 18x² − 2y² + 12xy = 0",
+          "⇒ −8x² + 8y² + xy = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and collecting gives a pure second-degree equation in x and y.",
+          "accept": [
+            "expand everything and collect into a x squared plus two h x y plus b y squared",
+            "simplify until only the second degree terms are left",
+            "there must be no constant and no linear term",
+            "expand chesi collect cheyyali, constant undakoodadu",
+            "this gives the pair of lines through the origin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand",
+            "collect",
+            "no constant",
+            "second degree"
+          ]
+        },
+        "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
+        "common_mistakes": [
+          "A constant term surviving, which means the squaring was missed.",
+          "Sign slip when expanding a squared bracket."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_apply_the_condition",
+        "kind": "boxed_final",
+        "label": "Add the squared coefficients",
+        "marks": 2,
+        "margin_note": "The last two marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
+        "lines": [
+          "Here, coeff. of x² + coeff. of y² = −8 + 8 = 0",
+          {
+            "text": "∴ The pair of lines are perpendicular",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients of x² and y² add to zero, so the pair is perpendicular.",
+          "accept": [
+            "add the coefficient of x squared and the coefficient of y squared and show it is zero",
+            "the perpendicular condition is a plus b equals zero",
+            "the two squared coefficients cancel so the lines are perpendicular",
+            "coeff x square plus coeff y square zero ayithe perpendicular",
+            "the sum of the squared coefficients is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coefficient of x squared",
+            "plus",
+            "equals zero",
+            "perpendicular"
+          ]
+        },
+        "why": "Two lines through the origin given by ax² + 2hxy + by² = 0 are perpendicular exactly when a + b = 0 — the cross term plays no part. That is why only the two squared coefficients are added.",
+        "common_mistakes": [
+          "Including the xy coefficient in the sum.",
+          "Concluding perpendicular from a + b = 1 or any value other than zero."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

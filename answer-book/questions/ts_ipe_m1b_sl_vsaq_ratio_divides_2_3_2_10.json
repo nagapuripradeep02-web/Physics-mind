@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_ratio_divides_2_3_2_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the ratio in which the straight line 2x+3y−20=0 divides the line joining the points (2,3) and (2,10).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Evaluate L at both points",
+      "marks": 1
+    },
+    {
+      "label": "Write the ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 14 Straight Lines, answer 94.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute where, and what a negative ratio means.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_evaluate_at_both_points",
+        "kind": "equation",
+        "label": "Evaluate L at both points",
+        "marks": 1,
+        "margin_note": "First mark. Write L for the left-hand side of the line, then put each of the two points into it. L₁₁ and L₂₂ are the two values obtained.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let L = 2x + 3y − 20 and",
+          "A(x₁, y₁) = (2, 3),  B(x₂, y₂) = (2, 10)",
+          "Now, L₁₁ = 2(2) + 3(3) − 20 = −7;",
+          "L₂₂ = 2(2) + 3(10) − 20 = 14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That L is evaluated at both given points, giving L₁₁ and L₂₂.",
+          "accept": [
+            "put both points into the left hand side of the line",
+            "L one one and L two two are the values at the two points",
+            "evaluate the expression at A and at B",
+            "rendu points ni L lo pettali",
+            "find L eleven and L twenty two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "L one one",
+            "L two two",
+            "evaluate",
+            "both points"
+          ]
+        },
+        "why": "The sign of each value says which side of the line that point is on, and the ratio of the two values is what the section formula reduces to.",
+        "common_mistakes": [
+          "Using the right-hand side instead of the whole expression set to zero.",
+          "Substituting the coordinates the wrong way round."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_write_the_ratio",
+        "kind": "boxed_final",
+        "label": "Write the ratio",
+        "marks": 1,
+        "margin_note": "Second mark. The required ratio is −L₁₁ : L₂₂. A NEGATIVE ratio means the line divides the segment externally, which is a real answer rather than an error.",
+        "lines": [
+          "Required ratio is  −L₁₁ : L₂₂",
+          {
+            "text": "∴ Required ratio = −L₁₁ : L₂₂ = −(−7) : 14 = 7 : 14 = 1 : 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio is −L₁₁ : L₂₂, giving 1 : 2.",
+          "accept": [
+            "the ratio is minus L one one to L two two",
+            "put a minus on the first value and write the ratio",
+            "this gives the required ratio",
+            "minus L eleven ratio L twenty two",
+            "the ratio is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus L one one",
+            "ratio",
+            "L two two"
+          ]
+        },
+        "why": "A negative ratio is the standard signal for EXTERNAL division — the point lies outside the segment rather than between its ends.",
+        "common_mistakes": [
+          "Dropping the minus sign in front of L₁₁.",
+          "Reporting a negative ratio as if it were an error and flipping its sign."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

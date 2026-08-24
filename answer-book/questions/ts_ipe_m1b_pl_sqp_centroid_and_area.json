@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_sqp_centroid_and_area",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the points of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Solve for both vertices",
+      "marks": 2
+    },
+    {
+      "label": "Find the centroid",
+      "marks": 2
+    },
+    {
+      "label": "Find the area",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 186, under its 'PAIR OF LINES' heading. Printed appearance: AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It applies chapter answer 7 (book p.20), which derives the area formula in general; this bank question does the same job with numbers, and additionally asks for the centroid. Its split follows the same 1+2+2+2 shape. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say where the third vertex is, and how that shortens the area formula.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_intersections",
+        "kind": "equation",
+        "label": "Find the points of intersection",
+        "marks": 1,
+        "margin_note": "First mark. Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex. Substitute the line into the pair to find where the other two vertices sit.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "First we find the points of intersection of  3x² − 4xy + y² = 0  ……(1)  and  2x − y = 6  ……(2)",
+          "(2) ⇒ 2x − y = 6  ⇒  y = 2x − 6  ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line is rearranged as y = 2x − 6 ready to substitute into the pair.",
+          "accept": [
+            "rearrange the line to make y the subject then substitute into the pair",
+            "y is two x minus six",
+            "both lines of the pair pass through the origin so that is one vertex",
+            "line ni y ki solve chesi pair lo substitute cheyyali",
+            "find where the line meets the pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y equals two x minus six",
+            "substitute",
+            "the origin",
+            "third vertex"
+          ]
+        },
+        "why": "A homogeneous second-degree equation always represents two lines through the ORIGIN, so one vertex is free — that is what makes both the centroid and the area short to compute.",
+        "common_mistakes": [
+          "Trying to factorise the pair before substituting, which is more work.",
+          "Forgetting that the origin is a vertex."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_both_vertices",
+        "kind": "equation",
+        "label": "Solve for both vertices",
+        "marks": 2,
+        "margin_note": "Two marks. Substituting collapses the pair to a single quadratic in x, and its two roots give the two vertices.",
+        "lines": [
+          "∴ (1) ⇒ 3x² − 4x(2x − 6) + (2x − 6)² = 0",
+          "⇒ 3x² − 8x² + 24x + 4x² + 36 − 24x = 0",
+          "⇒ −x² + 36 = 0   ⇒   x² = 36   ⇒   x = ±6  ⇒  x = 6 or −6",
+          "Put x = 6 in (3) ⇒ y = 2(6) − 6 = 12 − 6 = 6",
+          "∴ A point of intersection is A = (6, 6)",
+          "Put x = −6 in (3) ⇒ y = 2(−6) − 6 = −12 − 6 = −18",
+          "⇒ the other point of intersection is B = (−6, −18)",
+          "Also the pair of lines 3x² − 4xy + y² = 0 intersect at O(0, 0)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives x² = 36, so the vertices are A(6, 6), B(−6, −18) and O(0, 0).",
+          "accept": [
+            "substitute and solve the quadratic to get x equals plus or minus six",
+            "the two vertices are six comma six and minus six comma minus eighteen",
+            "the third vertex is the origin",
+            "substitute chesthe x square equals thirty six vasthundi",
+            "all three vertices"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x squared equals thirty six",
+            "six comma six",
+            "minus eighteen",
+            "the origin"
+          ]
+        },
+        "why": "The x terms cancel almost entirely, leaving x² = 36 — the numbers in this question were chosen so the quadratic has no linear term.",
+        "common_mistakes": [
+          "Losing the +36 when expanding (2x − 6)².",
+          "Taking only the positive root and finding one vertex."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_centroid",
+        "kind": "equation",
+        "label": "Find the centroid",
+        "marks": 2,
+        "margin_note": "Two marks. The centroid is the plain average of the three vertices. With the origin among them, two of the six numbers are zero.",
+        "lines": [
+          "∴ The centroid of the triangle formed by O(0,0), A(6, 6), B(−6, −18) is",
+          "G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)",
+          "= ((0 + 6 − 6)/3, (0 + 6 − 18)/3)",
+          "= (0/3, −12/3) = (0, −4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That averaging the three vertices gives the centroid (0, −4).",
+          "accept": [
+            "the centroid is the average of the three vertices",
+            "add the x's and divide by three, same for the y's",
+            "the centroid is zero comma minus four",
+            "moodu vertices average teesukovali",
+            "centroid is zero minus four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "centroid",
+            "average",
+            "divide by three",
+            "zero comma minus four"
+          ]
+        },
+        "why": "The centroid needs all three vertices, unlike the area, which can be written from two when the third is the origin.",
+        "common_mistakes": [
+          "Averaging only the two non-origin vertices.",
+          "Dividing by 2 instead of 3."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_area",
+        "kind": "boxed_final",
+        "label": "Find the area",
+        "marks": 2,
+        "margin_note": "The last two marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
+        "lines": [
+          "Area of △OAB = ½ |x₁y₂ − x₂y₁|",
+          "= ½ |6(−18) − (−6)(6)|",
+          "= ½ |−108 + 36| = ½ |−72| = ½ (72)",
+          {
+            "text": "∴ Area = 36 sq.units,  and the centroid is (0, −4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area is ½|x₁y₂ − x₂y₁| = ½|−72| = 36 sq.units.",
+          "accept": [
+            "the area with a vertex at the origin is half mod x one y two minus x two y one",
+            "six times minus eighteen minus minus six times six",
+            "the area is thirty six square units",
+            "origin vertex unnappudu area formula chinnadi",
+            "area is thirty six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half mod",
+            "x one y two",
+            "thirty six",
+            "square units"
+          ]
+        },
+        "why": "The modulus is what keeps the area positive — the determinant itself comes out negative here, which says only that the vertices were listed clockwise.",
+        "common_mistakes": [
+          "Reporting the area as −36 by dropping the modulus.",
+          "Using all three vertices in a determinant and mis-expanding it."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

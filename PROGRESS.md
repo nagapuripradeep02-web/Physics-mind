@@ -68,6 +68,42 @@ Per template out of 10 (final): outofbank **10.0** · explain 10.0 · skiplast 1
 4. There is still **no automatic physics gate**; the only semantic check is re-running this audit.
 5. **`npm run smoke:answers` (48 Playwright gates, ~25 min) was NOT run this session** — vitest, build and tsc were. Run it before the PR.
 6. Carried over from P4: `AB_DAILY_USD_CAP` $2 → $15 before launch. The `AB_ALLOWED_ORIGINS` secret remains UNSET — the 403 was fixed in the function's code default instead, which is why the other three functions were left untouched.
+## 📐 SESSION — Answer Book: **MATHS-1B OPENS (108 questions, 7 units) + THE FIGURE SWEEP across both maths books** (2026-08-24, desk `physics-mind-ipe-mathematics-answerbook`, `feat/ipe-mathematics-answerbook`, commits `b80a8738`/`0aa5a703`/`f9707c2e`, **PR #136 merged as `dfb6009d`, PUSHED**)
+
+**Bottom line: the second mathematics paper is on master. 108 Maths-1B questions across seven units — Locus 12 · Transformation of Axes 9 · The Straight Line 44 · Pair of Straight Lines 15 · 3D-Coordinates 10 · D.C’s & D.R’s 7 · The Plane 11 — taking the catalog to 32 units / 766 entries / 752 question files (198 physics · 196 chemistry · 250 Maths-1A · 108 Maths-1B). Alongside it, every figure the two Baby Bullet-Q maths books print is now inventoried rather than sampled: all 134 pages of 1A and all 127 of 1B were rendered and read, 24 answers carry a printed figure, and 17 of those 24 now ship one (61 figure blocks book-wide: 26 physics · 12 chemistry · 17 Maths-1B · 6 Maths-1A). Verified: tsc 0 — build clean at 752 — smoke **48/48 (34.8 m)** on the merged tree — CI `verify` green twice. NOT DEPLOYED: answers.viditra.co still serves the previous build (Rule 17).**
+
+### The merge’s one real risk — and why the resolution is worth reading
+This desk branched before chemistry existed, so when master was merged in (18 commits: chemistry, P2 sync, P3 chapter gate, P4 payments) **`answer-book/units.json` was the only conflict — and each side was missing a whole subject.** Ours had 8 physics + 10 Maths-1A + 7 Maths-1B and no chemistry; master’s had 8 physics + 7 chemistry + 10 Maths-1A and no 1B. Taking either side wholesale would have deleted a subject from the catalog. Neither side had touched the other’s entries, so it is resolved as a **strict union** — 32 units, both append-only comment blocks kept — and the result is verified rather than asserted: the build hard-fails on a question missing from the manifest, and the catalog gate asserts per-subject counts. Chemistry’s 7 units and 196 files are intact on master.
+
+**The generalisable half: a long-lived desk collides with every subject that opened while it was out.** `units.json` is the one file all four subject desks write, and the daily `master → branch` merge (GIT_WORKFLOW §2, “the one everyone skips”) is what keeps that conflict two minutes instead of an hour. This desk skipped it for 18 commits.
+
+**Two local changes were dropped as already-landed**: the `mathematics_1b` schema enum (byte-identical to master’s, from P3 `9f572e8e`) and the catalog’s Maths-1B subject chip. Only the *per-question meta chip* still needed the label — check master before committing an enablement change a parallel desk may already have shipped.
+
+### The figure sweep — an inventory, not a selection
+**Maths-1A prints 9 figures; Maths-1B prints 15. 1B is the drawing paper, 1A is not.** Both source docs now carry the full table (book page, answer number, target file, status), so a chapter absent from them genuinely prints nothing. Four figures were added to 1A this desk (rhombus and right-angled triangle, book p.60; the altitude onto its own base, p.49; the parallelogram diagonals from Star Questions Plus, p.105) and one to 1B (the locus right angle, p.53). Each is a 0-mark `s1b_figure` diagram step with `margin_note`, `why`, `common_mistakes` and a `name_it` recall rubric, and each `verification.note` names the book page and says whether the drawing is the book’s own.
+
+Left standing **deliberately**: the six small inverse-trig right triangles on 1A p.72 (answers 74.1, 74.2, 75), authored as the one-line algebraic step with the triangle route named in the margin note. **Blocked, not skipped**: the four Maxima & Minima figures on 1B pp.48-51, whose unit is not authored — all four are word problems where the figure IS the modelling step, which is the argument for building Unit 10 with figures from its first pass.
+
+**Six of 1B’s seventeen figures are OURS, not the book’s** — four circumcentre and two orthocentre family-mates an earlier pass generalised across their families. That call stands and is now written down, so those ten are never read back as evidence of what the source prints. Locus was deliberately NOT generalised the same way: answers 42.1 and 42.2 pose the identical right-angle condition in the columns above 42.3 and the book draws neither.
+
+### Three scars, recorded
+1. **`figure.height` is a PAGINATION decision, not a drawing one.** `buildFigure` reserves `Math.ceil(h / 32) * 32` px so the block below stays on the rules — a figure costs whole rules, not its own height (208 and 224 cost the same). A 7-rule figure on the altitudes LAQ pushed its `Total : 7 / 7 marks` line onto an otherwise-empty page 2 **by two pixels**; one rule off brought it back. `.page-body` is 1024 px = 32 rules. → `docs/patterns/answer_book.md` §Mechanism 2.
+2. **An `em` label needs ~7 px of headroom inside the viewBox** — `y=188` in a 200-tall figure passes, `y=190` does not. On a short canvas the vertex labels go BESIDE their vertices, which is where the source book puts them anyway. `overflow: visible` on `.figure-wrap svg` means a spill looks fine on screen while overlapping the block below, so only the browser gate sees it.
+3. **A stroke detector alone will miss figures.** PyMuPDF at 110 dpi plus a connected-component pass (blob ≥ 58×58 px, ink fill < 0.35, straight run > 48 px) usefully triages matrices and boxed formula asides from real drawings — and **missed the hexagon on 1A p.60 outright**, because the drawing touches its neighbouring text and merges into a page-sized component. Read the page thumbnails. → `docs/IPE_MATHS_1A_SOURCE.md`.
+
+### Verified
+`tsc --noEmit` 0 · `build:answers` clean at 752 questions · `smoke:answers` **48/48 (34.8 m)** on the merged tree, chemistry’s gates included · the two long figure sweeps (*no two figure labels overlap*, *construction lines survive an instant placement*) re-run alone after the final rebuild · CI `verify` green on both the branch push and the merge commit. **Master’s tree hash equals the tested tree** (`c8db668d` both), so the 48/48 carries over to master unchanged — no post-merge re-run needed. `build:answers:hosted` also run once to prove the deploy build is clean (`content gate: unset` · `payments: unset`), then `dist` restored to the offline build the smoke asserts against.
+
+### NOT DEPLOYED — founder-gated (Rule 17)
+answers.viditra.co still serves the previous build, so Maths-1B and the new figures are not live. Three things stand between master and the domain:
+1. **Deploy is the founder’s call**, not this desk’s.
+2. **Wrangler is not authenticated on this machine** (`npx wrangler whoami` → *not authenticated*), and `wrangler login` needs a real TTY — the same scar the hosting runbook records for the Supabase CLI, so it cannot run through Claude Code’s `!` prefix either.
+3. **`AB_ALLOWED_ORIGINS` on `answerbook-vidi-chat` should be confirmed** to include `https://answers.viditra.co`. Sync being live does not prove chat is — they are separate functions. If missing, the book still works fully; only Vidi’s free-text ask fails closed.
+
+Worth noting for the founder: the deployed site is the **ungated** build, so the 7 new Maths-1B units ship free with answers embedded, exactly as chemistry and Maths-1A do today. P3/P4 (content gate + payments) are gated-build only and remain parked off the site.
+
+### NEXT
+**Maths-1B Unit 10 (Applications of Derivatives)** is the obvious next block — the largest unit on that paper at 26 marks, spanning all three sections, and the composite the book splits into five sub-chapters (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) that ship as ONE catalog unit per the 2026-08-23 founder decision. Author it **with its four figures from the first pass**. Units 8 (Limits & Continuity) and 9 (Differentiation) are the other two unbuilt 1B units. **Blockers:** none for the merged work.
 
 ---
 

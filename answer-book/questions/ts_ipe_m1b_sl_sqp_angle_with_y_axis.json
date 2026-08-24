@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_sqp_angle_with_y_axis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the angle which the straight line y = √3x − 4 makes with the Y-axis.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the angle with the X-axis",
+      "marks": 1
+    },
+    {
+      "label": "Subtract from 90°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.104 — the STAR QUESTIONS PLUS bank, answer 184, under its 'STRAIGHT LINES' heading. Printed appearances: AP,TS 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from any of the unit's three numbered chapters — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: the bank's headings name the CHAPTER, never the mark cut. This is filed as VSAQ because it is a single short move of exactly the length and shape of VSAQ chapter 14's own answers (compare answers 88.1-96 on book pp.79-82). ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; 1+1 follows the shape used across VSAQ chapter 14 and matches the printed 1+1 on VSAQ answer 98 (book p.83). Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say which axis the slope refers to, and what you do to reach the other one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_angle_with_x_axis",
+        "kind": "equation",
+        "label": "Find the angle with the X-axis",
+        "marks": 1,
+        "margin_note": "First mark. The slope of a line is the tangent of the angle it makes with the X-AXIS, so start there even though the question asks about the Y-axis.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given equation is in the form y = mx + c  ⇒  slope m = √3",
+          "⇒ tanθ = √3 = tan60°",
+          "⇒ Angle made by the line with the X-axis is θ = 60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope √3 gives tanθ = √3, so the angle with the X-axis is 60°.",
+          "accept": [
+            "the slope is root three so tan theta is root three and theta is sixty degrees",
+            "slope equals tan of the angle with the x axis",
+            "root three is tan sixty",
+            "slope tan theta ki equal, theta sixty",
+            "the angle with the X axis is sixty degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope",
+            "tan theta",
+            "root three",
+            "sixty degrees",
+            "X axis"
+          ]
+        },
+        "why": "Slope is DEFINED against the X-axis, so any question about the Y-axis has to go through the X-axis angle first.",
+        "common_mistakes": [
+          "Taking tanθ = −4 from the constant term.",
+          "Assuming the slope is the angle with whichever axis the question names."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_subtract_from_ninety",
+        "kind": "boxed_final",
+        "label": "Subtract from 90°",
+        "marks": 1,
+        "margin_note": "Second mark. The two axes are at right angles, so the angle with the Y-axis is whatever is left of 90° after the X-axis angle.",
+        "lines": [
+          "The axes are perpendicular, so the two angles add to 90°",
+          "∴ Angle made by the line with the Y-axis is 90° − 60°",
+          {
+            "text": "∴ Angle with the Y-axis is 30°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle with the Y-axis is 90° − 60° = 30°.",
+          "accept": [
+            "ninety minus sixty is thirty",
+            "the two axes are perpendicular so subtract from ninety",
+            "the angle with the Y axis is thirty degrees",
+            "ninety minus theta",
+            "thirty degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety minus",
+            "thirty degrees",
+            "Y axis",
+            "perpendicular axes"
+          ]
+        },
+        "why": "The X and Y axes meet at 90°, so the two angles a line makes with them are complementary.",
+        "common_mistakes": [
+          "Reporting 60° as the answer to the question actually asked.",
+          "Subtracting from 180° instead of 90°."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

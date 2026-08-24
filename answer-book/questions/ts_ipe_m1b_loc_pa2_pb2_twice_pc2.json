@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_pa2_pb2_twice_pc2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "A(1,2), B(2,−3), C(−2,3) are 3 points. A point P moves such that PA² + PB² = 2PC². Show that the equation to the locus of P is 7x − 7y + 4 = 0.",
+  "appearances": [
+    {
+      "year": 2019
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 Locus, answer 44, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP 15,17. The mark split 1+1+2 IS THE BOOK'S: this answer sits alone on its page and carries printed margin tags — '1 Mark' beside the given condition, '1 Mark' beside the substitution, and '2 Marks' beside the final locus. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+  },
+  "recall_prompt": "Say how you would solve this — name the condition, and say what shape the locus turns out to be and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. Three fixed points this time, not two — C is the one the right side is measured from.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (1, 2), B = (2, −3), C = (−2, 3)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the book prints it against exactly this line. The condition is already in squares, so it goes straight into coordinates with no rearranging.",
+        "lines": [
+          "Given condition: PA² + PB² = 2PC²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given condition PA² + PB² = 2PC² is written down.",
+          "accept": [
+            "the condition is P A squared plus P B squared equals two P C squared",
+            "write P A square plus P B square is twice P C square",
+            "given condition P A squared plus P B squared equals two times P C squared",
+            "given condition ni raasukovali P A square plus P B square equals two P C square",
+            "state the given condition in squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P A squared",
+            "P B squared",
+            "two P C squared",
+            "given condition"
+          ]
+        },
+        "why": "The condition arrives already squared, which is the simplest case in this chapter — no square roots ever appear.",
+        "common_mistakes": [
+          "Reading 2PC² as (2PC)².",
+          "Measuring the right side from A or B instead of C."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark, also printed. Both sides get the distance formula in squared form; the 2 on the right multiplies the whole bracket, not just one term.",
+        "lines": [
+          "⇒ [(x−1)² + (y−2)²] + [(x−2)² + (y+3)²] = 2[(x+2)² + (y−3)²]",
+          "⇒ (x²+1−2x) + (y²+4−4y) + (x²+4−4x) + (y²+9+6y) = 2[(x²+4+4x) + (y²+9−6y)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every distance is replaced by its squared coordinate form, with the 2 multiplying the entire right bracket.",
+          "accept": [
+            "substitute the distance formula on both sides and keep the two outside the whole bracket",
+            "put x minus one whole squared plus y minus two whole squared and so on",
+            "replace each squared distance by coordinates and double the C bracket",
+            "distance formula rendu vaipula substitute cheyyali",
+            "expand all the squared distances in coordinates"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "whole squared",
+            "two into the bracket",
+            "substitute"
+          ]
+        },
+        "why": "PA² needs no root sign, so the substitution is a direct copy of the distance formula's inside.",
+        "common_mistakes": [
+          "Multiplying only the first term of the right bracket by 2.",
+          "Sign slip on (y + 3)², which expands with +6y."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks, printed as '2 Marks' in the book. Every x² and y² term cancels across the equals sign — that is why this locus is a straight LINE and not a circle.",
+        "lines": [
+          "⇒ 2x² + 2y² − 6x + 2y + 18 = 2x² + 2y² + 8x − 12y + 26",
+          "⇒ −6x + 2y + 18 = 8x − 12y + 26",
+          "⇒ 0 = 14x − 14y + 8   ⇒   7(2x − 2y) + 8 = 14x − 14y + 8",
+          "⇒ 2(7x − 7y + 4) = 0",
+          {
+            "text": "∴ Locus of P is 7x − 7y + 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squared terms cancel on both sides, leaving the straight line 7x − 7y + 4 = 0.",
+          "accept": [
+            "the x squared and y squared terms cancel so a straight line is left",
+            "cancel the second degree terms and simplify to seven x minus seven y plus four equals zero",
+            "after cancelling we get fourteen x minus fourteen y plus eight equals zero, divide by two",
+            "square terms cancel avuthaayi so straight line vasthundi",
+            "the locus is the straight line seven x minus seven y plus four equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "straight line",
+            "seven x minus seven y",
+            "divide by two",
+            "locus of P is"
+          ]
+        },
+        "why": "When the coefficient of PC² is exactly 2 and there are two points on the left, the squared terms match on both sides and cancel — so this family always produces a line, never a circle.",
+        "common_mistakes": [
+          "Cancelling 2x² on the left against 2x² on the right but forgetting 2y².",
+          "Stopping at 14x − 14y + 8 = 0 without dividing by 2."
+        ]
+      }
+    ]
+  }
+}

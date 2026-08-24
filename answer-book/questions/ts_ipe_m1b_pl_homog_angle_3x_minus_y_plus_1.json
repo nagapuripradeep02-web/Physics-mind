@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_homog_angle_3x_minus_y_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the angle between the lines joining the origin to the points of intersection of the curve x²+2xy+y²+2x+2y−5=0 and the line 3x−y+1=0.",
+  "appearances": [
+    {
+      "year": 2018
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Clear the line to = 1",
+      "marks": 1
+    },
+    {
+      "label": "Write the homogenised equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to ax² + 2hxy + by² = 0",
+      "marks": 2
+    },
+    {
+      "label": "Apply the cosθ formula",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 12, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP M,J-16. THE MARK SPLIT IS THE BOOK'S: this answer carries printed margin tags. It is one of only TWO answers in the whole chapter that do — answer 12 on book p.24 (printed 1+1+2+1+2) and answer 15 on book p.26 (printed 1+1+1+1+1+2). Both are HOMOGENISATION answers, and both total 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do to the line first, and what formula finishes it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_line_to_one",
+        "kind": "equation",
+        "label": "Clear the line to = 1",
+        "marks": 1,
+        "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 3x − y + 1 = 0  ⇒  3x − y = −1",
+          "⇒ (3x − y)/(−1) = 1  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given line is rearranged into the form (expression)/(constant) = 1.",
+          "accept": [
+            "rearrange the line so it equals one",
+            "take the constant across and divide so the right side is one",
+            "write the line as something over something equals one",
+            "line ni equals one form lo raayali",
+            "make the line equal to one first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals one",
+            "clear the line",
+            "divide by the constant"
+          ]
+        },
+        "why": "Homogenisation only works on a line written as something = 1, because every term of the curve has to be raised to degree two by multiplying by that 1. Clearing the line to that form is therefore the first move every time.",
+        "common_mistakes": [
+          "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
+          "Dividing by the wrong constant and losing a sign."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_homogenise",
+        "kind": "equation",
+        "label": "Write the homogenised equation",
+        "marks": 1,
+        "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "lines": [
+          "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
+          "Homogenising (1) & (2), we get",
+          "x² + 2xy + y² + 2x(1) + 2y(1) − 5(1)² = 0",
+          "⇒ x² + 2xy + y² + 2x[(3x−y)/(−1)] + 2y[(3x−y)/(−1)] − 5[(3x−y)/(−1)]² = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the linear terms are multiplied by the '= 1' expression once and the constant twice.",
+          "accept": [
+            "multiply the linear terms by the bracket once and the constant by it squared",
+            "homogenise so every term becomes second degree",
+            "the constant gets the bracket squared",
+            "linear terms ki okasari, constant ki square",
+            "write the homogenised equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "homogenise",
+            "second degree",
+            "squared",
+            "linear terms"
+          ]
+        },
+        "why": "A second-degree equation in x and y with NO constant and NO linear term always represents two lines through the ORIGIN — which is exactly what the question asks about. Homogenising manufactures that equation from the curve and the chord.",
+        "common_mistakes": [
+          "Multiplying the constant by the bracket only once.",
+          "Multiplying the second-degree terms as well, which raises them to degree four."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_simplify",
+        "kind": "equation",
+        "label": "Simplify to ax² + 2hxy + by² = 0",
+        "marks": 2,
+        "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "lines": [
+          "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y) − 5(3x − y)² = 0",
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 5(9x² + y² − 6xy) = 0",
+          "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 45x² − 5y² + 30xy = 0",
+          "⇒ −50x² − 2y² + 28xy = 0   ⇒   2(25x² + y² − 14xy) = 0",
+          "⇒ 25x² + y² − 14xy = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and collecting gives a pure second-degree equation in x and y.",
+          "accept": [
+            "expand everything and collect into a x squared plus two h x y plus b y squared",
+            "simplify until only the second degree terms are left",
+            "there must be no constant and no linear term",
+            "expand chesi collect cheyyali, constant undakoodadu",
+            "this gives the pair of lines through the origin"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand",
+            "collect",
+            "no constant",
+            "second degree"
+          ]
+        },
+        "why": "The absence of a constant and a linear term is the CHECK that the homogenisation was done right, and it is also what guarantees both lines pass through the origin.",
+        "common_mistakes": [
+          "A constant term surviving, which means the squaring was missed.",
+          "Sign slip when expanding a squared bracket."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_apply_the_condition",
+        "kind": "boxed_final",
+        "label": "Apply the cosθ formula",
+        "marks": 3,
+        "margin_note": "The last three marks, printed in the book as '1 Mark' for writing the cosθ formula and '2 Marks' for carrying it through to the angle. Note this formula uses 2h, not h — reading the wrong one is the commonest slip in the whole chapter.",
+        "lines": [
+          "On comparing with ax² + 2hxy + by² = 0, we get a = 25, b = 1, 2h = −14",
+          "∴ cosθ = |a + b| / √((a − b)² + (2h)²), where θ is the angle between the required lines",
+          "= |25 + 1| / √((25 − 1)² + (−14)²)",
+          "= 26 / √(576 + 196) = 26/√772 = 26/√(4 × 193) = 26/(2√193) = 13/√193",
+          {
+            "text": "∴ Angle between the lines is θ = Cos⁻¹(13/√193)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosθ = |a+b|/√((a−b)² + (2h)²) is applied to give θ = Cos⁻¹(13/√193).",
+          "accept": [
+            "use cos theta equals mod a plus b over root a minus b whole squared plus two h whole squared",
+            "compare to get a b and two h then apply the cosine formula",
+            "the angle is cos inverse thirteen over root one ninety three",
+            "cos theta formula apply cheyyali",
+            "read off a b and two h and substitute"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a plus b",
+            "two h",
+            "cos inverse",
+            "root one ninety three"
+          ]
+        },
+        "why": "The formula carries 2h rather than h because ax² + 2hxy + by² writes the cross coefficient as 2h — so the number read straight off the equation IS 2h, and must not be halved again.",
+        "common_mistakes": [
+          "Using h instead of 2h in the square root.",
+          "Forgetting the modulus and producing a negative cosine."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}
