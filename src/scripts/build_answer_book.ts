@@ -110,7 +110,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b'];
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany'];
 const unitKeys = new Set<string>();
 for (const u of manifest.units) {
     // Unit identity is subject-number EVERYWHERE (catalog chips, triage, the
