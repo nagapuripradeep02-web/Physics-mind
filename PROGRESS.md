@@ -1,5 +1,77 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📏 MEASURED SESSION — Answer Book: **VIDI PHYSICS AUDITED, THE BANK'S PHYSICS FIXED, DEPTH COMPLETED — 9.7 → 9.9 / 10** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `8054cf65` · `d01fdfa4` · `a028d953` · `aff17003`, function deployed twice)
+
+**Bottom line: Vidi was answering physics well and NO STUDENT COULD REACH HER — `answers.viditra.co` returned `403 origin not allowed` on every free-text question, because `answerbook-vidi-chat` was the only one of the four functions whose code default lacked the production domain (content/pay/sync all had it). Fixed, deployed, verified live from the real Origin. Then the thing nobody had ever done: the PHYSICS OF THE BANK ITSELF was read card by card and was wrong in 15 places. Measured before and after on the same harness — 2,040 live calls (204 physics contexts × 10 student asks) graded 0–3 by ten independent readers: precise replies 91.4% → 96.1%, weak/misleading 1.2% → 0.5%, harmful 0 → 0, grader mean 2.902 → 2.955 (9.7 → 9.9 / 10). Verified: build:answers green · tsc 0 · vitest 421/421 · vidi:contexts 658/658 under the 10,000-char slice (widest 87%). Total model spend for every audit run: ≈ ₹170.**
+
+### The method — and it is reusable for maths and chemistry tomorrow
+`vidi_physics_audit.ts` (scratchpad, kept): every context from `.answerbook_logs/vidi_contexts.json` × a 10-ask student battery (marks · whystep · remember · explain · mistakes · important · skiplast · physics · outofbank · telugu), fired at the LOCAL mirror (`npm run vidi:server`, no rate limit, no ledger) at concurrency 8. **2,040 calls in ~9 minutes for ₹30.** Writes JSONL incrementally so an interrupted run keeps its evidence, then splits into 10 markdown slices; ten grading agents score every reply against the authored bank and write JSONL back. The main session never loads the replies — same discipline as eye-walker.
+
+### THREE TRAPS, all of which changed a conclusion
+1. **The checker lied before the model did.** All 7 "CRITICAL" flags in the first run were false: `markClaims` had `/i` on `M\b`, so `24 m/s`, `9.8 m/s²` and `10^11 m` read as invented marks. The MIRROR bug was worse — the same slip in `authoredMarks` WHITELISTED physics quantities and would have HIDDEN a real invention. Now case-sensitive, `0 marks` exempt, `answeredOutOfBank` takes the probe's own topic instead of hardcoding ideal gas. Five red-first tests; `personaBlock` now strips `\r` (autocrlf is on with no `.gitattributes`, so a CRLF checkout would have reported all 26 persona lines as drift).
+2. **"Works locally" is not "works."** Model quality 9.7/10, product experience 0/10. **Probe the live endpoint from the real Origin** — `curl -H "Origin: https://answers.viditra.co"` — never just localhost.
+3. **Persona rules are ignored where they sit.** The persona's own 5-sentence cap was disobeyed on 71% of "explain the physics" asks. Moving the same instruction into the PER-REQUEST situation block took it to 13%. Cached-prefix rules are weak; per-request steering is obeyed, and it costs nothing because the situation block is already outside the cache prefix.
+
+### THE BANK'S PHYSICS HAD NEVER BEEN CHECKED FOR TRUTH — 15 real errors
+Every build gate is STRUCTURAL (mark sums, field presence, id/filename, an idiom word list); e2e never reads content for meaning; all 198 files are `status: "unverified"` and **no teacher pass has ever run**. Confirmed by history: **no commit in this bank had ever corrected a formula, a sign or a claim** — every prior "fix" was marks bookkeeping or Rule 41 register. `verification` was scoped to MARK SPLITS from birth; physics was never in scope.
+
+Eight examiner agents (one per unit) read all 198 cards end to end, recomputing every numerical: **125 cards clean, 84 issues on 73 cards — 15 errors, 32 ambiguities, 37 gaps.** The errors that were shipping to students AND feeding Vidi as ground truth:
+- `osc_spring_frequency` — "the mean position O is where the spring force is zero". False for a loaded vertical spring (at O it is stretched by mg/k and balances the weight), and it contradicted its own `common_mistakes`.
+- `vec_parallelogram_law` — `θ = 180° → R = P − Q` for a MAGNITUDE; must be `|P − Q|`, and the sibling card names that exact omission as the mistake.
+- `osc_pendulum_in_lift` — "the floor pushes up harder on the bob". The bob hangs from a string; the TENSION increases.
+- `um_types_of_errors` — least-count error called a kind of systematic error; NCERT 2.6 places it under random.
+- `msl_parachutist_motion` — decelerating from a *reduced downward* net force.
+- `msl_stopping_distance` — "(a negative)" paired with `s = u²/(2a)`.
+- `wpe_conservation_of_energy_falling_body` — "closed system" where the law needs "isolated".
+- `grav_escape_velocity` — condemned ½mv² = mgR, which is algebraically identical to the credited form via GM = gR²; only the constant-g reasoning is wrong.
+- `grav_hydrogen_sun_earth` — asserted the earth's escape velocity is BELOW hydrogen's r.m.s. speed (11.2 vs ~2 km/s; escape is via the fast tail).
+- plus two arithmetic slips inside explanation text and a figure label marking a height that was not u.
+
+**The largest class was ambiguity, not error** — the SIGN TRAP: `grav_potential_energy_derive` and `grav_gravitational_potential_energy` both defined U as "the work done in bringing the body from infinity" with no agent named, while one computed +GMm/r and the other boxed −GMm/r. That silence is exactly what made the model state the sign backwards in the first audit. Both now say **work done BY AN EXTERNAL AGENT**, the negative of the field's work.
+
+**House rule kept throughout:** what earns the mark stays as the book writes it, the truth goes in `why` (the `vector_form_gravitation` minus sign is the exemplar). Only **7 marked lines** were touched, each factually wrong. No `marks`, `mark_split`, `qtype` or step id moved. Every touched card records an `AI physics check 2026-08-24` line in `verification.note` — **`status` stays `unverified`; this does NOT substitute for the Telangana teacher gate.**
+
+### DEPTH BAR — Units 4–9 now match Units 2–3
+Units 4–9 sat at their instructed target ("optional and sparse, 3★ + LAQ first"): 27–48% `memory_tip`, **0–67% `margin_note` (Units 8 and 9 at ZERO)**, 3–17% `insider_note`. The audit proved the cost: **the "How to remember?" chip does not render at all on a step with no tip**, and where the model had to improvise a mnemonic it produced wrong ones ("a kilometre is a derived unit"). `REMEMBER:` / `NOTE:` / `INSIDER POINT:` are lines in Vidi's grounding text — absent field, absent line, model fills the silence.
+
+**599 strings authored**, one agent per unit: 241 `memory_tip` · 214 `margin_note` · 144 `insider_note`. **Every physics unit now reads 100% / 100% / 100%.** Register held across all 599: zero hits on the imported `IDIOMS` list, zero katex added, zero straight apostrophes, zero ASCII math. Lengths on the house medians (tip 81 chars vs 78, insider 117 vs 117).
+
+`docs/PHYSICS_BACKFILL_START_HERE.md` (NEW) is the doc that produced them — the five moves a tip may make (contrast pair with a capitalised pivot · a concrete number · a name-is-the-definition hook · a physical anchor · an arithmetic sanity check), insider_note as marks economics rather than physics, exemplars quoted from Units 2–3.
+
+**One correction to that doc mid-pass, worth keeping:** it first copied chemistry's "insider_note on ASKED cards only". **Physics does not follow that** — Units 2–3 carry one on all 42 cards, predicted included, because a predicted card can still say how the marks sit even though it cannot cite frequency. The 66 predicted cards in 4–9 were then written too; none claims exam history (checked mechanically).
+
+### The regression the final run caught — and why the final run was worth doing
+Out-of-bank replies went from 11% over the 5-sentence cap to **68%**. Cause: my own per-request length trigger listed "full answer", which is the exact phrasing of the out-of-bank ask ("the full answer for the derivation of the ideal gas equation"), so every **refusal** was being granted three paragraphs. Word removed; re-probed 204 asks → 11 over the cap (baseline 22), 204/204 still refuse, 0 leak PV = nRT. **A fix that is not re-measured is a guess** — three persona iterations were needed, and iteration 2 regressed two templates.
+
+### Before → after, the six defect classes
+| | before | after |
+|---|---|---|
+| skiplast naming the SKIPPED step as the minimum | 5% | **0%** |
+| fabricated "asked years" on cards with no Asked line | 11% | **0%** |
+| Telugu truncated mid-sentence (max_tokens 300) | 34% | **1%** |
+| Telugu translating physics terms (శక్తి for force) | 41% | **6%** |
+| "explain the physics" over 5 sentences | 71% | **13%** |
+| named 22-probe regression battery | 7 flagged | **1 flagged, 0 critical** |
+
+Per template out of 10 (final): outofbank **10.0** · explain 10.0 · skiplast 10.0 · marks 9.9 · whystep 9.9 · mistakes 9.9 · important 9.8 · remember 9.7 · physics 9.7 · telugu 9.5.
+
+### Telglish — founder call, taken this session
+"Work on telgish not purely on english." So Telugu chat STAYS and was fixed rather than dropped: `max_tokens` 300 → 500 for Telugu (and walkthrough) asks so nothing truncates, plus a per-request line pinning **Telugu SCRIPT with the physics terms in English** (velocity, force, energy, mass…). Note this is chat only and does not touch Rule 30i, which governs authored narration.
+
+### Files
+`supabase/functions/answerbook-vidi-chat/index.ts` (persona + origin default + per-request steering; **DEPLOYED twice**, `--use-api`) — `src/scripts/answerbook_vidi_server.ts` (byte-identical mirror) — `src/lib/answerBook/vidiChecks.ts` (mark regex, parameterised out-of-bank) — `src/lib/answerBook/__tests__/vidiChecker.test.ts` (+5 red-first) — `__tests__/vidiSeam.test.ts` (+4 load-bearing rules, `\r` strip) — **73 question files** (physics fixes) — **150 question files** (depth backfill) — `docs/PHYSICS_BACKFILL_START_HERE.md` (NEW). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **Maths is the queued track and the tooling now exists.** The session opened by measuring maths against physics: Maths-1A is 250 cards / 10 units complete, but **0 memory_tip, 0 insider_note, 0 cuts**, and its cards are *worked problems*, so a student's next question is usually a variant the bank does not hold — a different demand from physics theory. Two known client bugs are maths-specific: `buildVidiContext` picks chapter mates by BARE unit number, so **227 of 250 maths cards are told their chapter-mates are physics questions** (`notebook.js:3508`, the one site never re-keyed to `unitKey`), and `plain()` strips a leading `-`, which would sign-flip an equation (fires 0× in physics, a real risk in maths). Maths-1B has zero cards.
+2. Run the identical audit on chemistry (196) — it has never had a correctness pass either.
+3. **Still owed and NOT closed by this session: the Telangana-teacher verification pass.** All 198 stay `unverified`.
+4. There is still **no automatic physics gate**; the only semantic check is re-running this audit.
+5. **`npm run smoke:answers` (48 Playwright gates, ~25 min) was NOT run this session** — vitest, build and tsc were. Run it before the PR.
+6. Carried over from P4: `AB_DAILY_USD_CAP` $2 → $15 before launch. The `AB_ALLOWED_ORIGINS` secret remains UNSET — the 403 was fixed in the function's code default instead, which is why the other three functions were left untouched.
+
+---
+
+
 ## MONEY SESSION — Answer Book: **P4 — PAYMENTS, founding price grandfathered, awaiting keys** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `483996ee`/`0504b976`, branch + master PUSHED as `89ae57fc`)
 
 **Bottom line: the book can take money. RS99/31 days for the first 500 devices, RS249 after — and the founding price is GRANDFATHERED FOREVER (a device that has ever paid RS99 renews at RS99). Proven in SQL: with slots exhausted, the existing founder is still quoted RS99 while a new device is quoted RS249. The client NEVER names a price — `ab_price_for(device)` decides on the server and `answerbook-pay` re-reads it when minting the Razorpay link; the pay request carries no amount at all (gate-asserted). Three functions deployed (`answerbook-pay`, `ab-razorpay-webhook`, updated `answerbook-content`). NOTHING CHARGES until the founder sets the Razorpay secrets — verified live: no keys → `payments_unconfigured` and NO pay button. Verified: tsc 0 — vitest 416/416 — gated gates 12/12 (6 new paywall) — full suite 48/48 CLEAN twice (26.0m pre-merge, 33.5m post-chemistry).**
@@ -13,8 +85,8 @@ NULL = permanent (the free chapter is a gift, not a rental); a date = a paid pas
 ### CHEMISTRY LANDED MID-BUILD — and cost almost nothing
 Master gained 204 chemistry entries (PR #135) while P4 was in flight; the push was rejected, the merge was CLEAN (zero conflicts). The P3 subject dimension absorbed a THIRD subject with no code changes — which is the entire reason it exists. Cost: a rebuild (gated 1.5 → 1.9 MB), `content:push` (18 → 25 units, 644 questions), and a label fix (the SKU said "both subjects"). A chemistry chapter correctly shows the RS99 offer. Also de-hardcoded the bundle-count gate — it asserted 448 and would have gone red on a CORRECT book the day chemistry opened (the recorded lesson: a test must never encode fleet size).
 
-### FIRST REAL STUDENTS — unprompted
-`ab_devices` holds **10 real devices** from 2026-08-23 19:53—21:47 UTC across android/ios/windows/mac/linux, two with progress ticks (4 and 1 questions). Nobody was told; P2 sync recorded them. Rows untouched.
+### CORRECTION (2026-08-24) — those were not real students
+The 14 devices previously logged here as "first real students" were the founder's own team/friends test-opening the site on their phones, not organic student traffic. Confirmed by founder and cleared: all 14 rows deleted from `ab_devices` (cascading `ab_progress`/`ab_plans`); none held an entitlement or payment, so nothing else needed unwinding. Table is at zero. The "never delete" rule stays in force for whenever genuine unprompted student devices show up.
 
 ### FOUNDER STEPS — nothing charges until all three
 1. `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` (dashboard → API Keys).
