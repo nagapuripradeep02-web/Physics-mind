@@ -296,7 +296,11 @@ Deno.serve(async (req: Request) => {
     // the physics" asks and the Telugu term rule on ~half of Telugu asks (audit
     // 2026-08-24). These lines are per-request, so the cached prefix is untouched.
     const teluguAsk = /[ఀ-౿]/.test(question) || /\b(telugu|telugulo|cheppu|cheppandi)\b/i.test(question);
-    const walkthroughAsk = /\b(whole answer|walk (me )?through|everything|full answer|step by step)\b/i.test(question);
+    // "full answer" is deliberately NOT a trigger: it is the phrasing of the
+    // out-of-bank ask ("the full answer for the ideal gas equation"), and
+    // granting three paragraphs to a REFUSAL took those over the cap 68% of the
+    // time (measured 2026-08-24). The remaining phrases only fit the open card.
+    const walkthroughAsk = /\b(whole answer|walk (me )?through|explain everything|step by step)\b/i.test(question);
     const situation = [
         'Where the student is right now:',
         '- question: ' + String(body.question_id ?? 'unknown'),
