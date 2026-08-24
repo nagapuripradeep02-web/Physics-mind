@@ -1,0 +1,73 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_bryophyte_vegetative_reproduction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name different methods of vegetative reproduction in bryophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Fragmentation and gemmae", "marks": 1 },
+    { "label": "Budding in the secondary protonema", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 10. The book's list — fragmentation, gemma formation, budding in the secondary protonema — matches NCERT (fragmentation and gemmae in liverworts; fragmentation and budding in the secondary protonema in mosses). Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fragmentation_gemmae",
+        "kind": "text",
+        "label": "Fragmentation and gemmae",
+        "marks": 1,
+        "mark_note": "Two methods",
+        "lines": [
+          "Fragmentation — a broken piece of the",
+          "plant body grows into a new plant.",
+          "Gemmae — green multicellular buds formed",
+          "in gemma cups (as in Marchantia)."
+        ],
+        "why": "Vegetative reproduction copies the gametophyte without gametes. Liverworts use fragmentation of the thallus and gemmae formed inside gemma cups; mosses also fragment.",
+        "common_mistakes": [
+          "Calling gemmae spores — gemmae are multicellular vegetative buds; spores come from meiosis in the capsule.",
+          "Writing 'gamete formation' — that is sexual reproduction, not vegetative."
+        ],
+        "memory_tip": "Gemma sounds like gem — picture small green gems sitting in open cups on the thallus.",
+        "margin_note": "Name each method; one bracket example (Marchantia) is a safe extra."
+      },
+      {
+        "id": "s2_secondary_protonema",
+        "kind": "boxed_final",
+        "label": "Budding in the secondary protonema",
+        "marks": 1,
+        "mark_note": "Third method",
+        "lines": [
+          { "text": "Also: budding in the secondary protonema", "style": "boxed" },
+          "In mosses the secondary protonema forms",
+          "buds that grow into new gametophores."
+        ],
+        "why": "Mosses add a third method: the secondary protonema, produced during vegetative reproduction, carries buds that develop into leafy gametophores.",
+        "common_mistakes": [
+          "Writing 'primary protonema' — the budding named under vegetative reproduction is in the secondary protonema."
+        ],
+        "memory_tip": "Three methods in order F–G–B: fragmentation, gemmae, budding in the secondary protonema.",
+        "margin_note": "Naming all three methods is the safe full answer."
+      }
+    ]
+  },
+  "insider_note": "The book lists exactly these three methods; the word 'secondary' before protonema is the detail examiners check."
+}

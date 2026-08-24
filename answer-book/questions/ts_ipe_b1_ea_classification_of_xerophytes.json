@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_classification_of_xerophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a brief account on the classification of xerophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition and the three groups", "marks": 1 },
+    { "label": "Ephemerals", "marks": 1 },
+    { "label": "Succulents", "marks": 1 },
+    { "label": "Non-succulents", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 1. The book's three groups and all six examples are kept (Tribulus; Asparagus, Opuntia, Aloe; Nerium, Casuarina); the definition of a xerophyte, which the book omits, is added because the question says 'classification of xerophytes' and a classification needs the thing being classified named first. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition and the three groups",
+        "marks": 1,
+        "mark_note": "Three groups",
+        "lines": [
+          "Xerophytes are plants that grow in dry",
+          "habitats where water is scarce.",
+          "They are classified into three groups:",
+          "1) Ephemerals  2) Succulents",
+          "3) Non-succulents."
+        ],
+        "why": "A classification answer is marked on its headings first. Naming all three groups in the opening lines secures the structure mark before any detail is written.",
+        "common_mistakes": [
+          "Starting straight with ephemerals and never naming the three groups together.",
+          "Writing four or five groups. The standard classification has exactly three."
+        ],
+        "memory_tip": "Three groups by what happens in the drought: the life cycle finishes early, water is stored, or the plant withstands it.",
+        "margin_note": "Open with the three names in a numbered line. That line alone is one mark."
+      },
+      {
+        "id": "s2_ephemerals",
+        "kind": "text",
+        "label": "Ephemerals",
+        "marks": 1,
+        "mark_note": "Ephemerals",
+        "lines": [
+          "Ephemerals: annual xerophytes that finish",
+          "the whole life cycle in a very short",
+          "period, within a few weeks of the rain,",
+          "and pass the dry season as seeds.",
+          "Ex: Tribulus, Argemone."
+        ],
+        "why": "An ephemeral is not present as a growing plant during the drought. It germinates, flowers and sets seed while water is present, so the short life cycle IS the adaptation.",
+        "common_mistakes": [
+          "Calling them perennials. Ephemerals are annuals with a very short life.",
+          "Leaving out the example. Each group carries its own example mark."
+        ],
+        "memory_tip": "Ephemeral means short-lived. The whole life cycle is over before the soil dries.",
+        "margin_note": "Two lines and one example per group. Do not expand any one group."
+      },
+      {
+        "id": "s3_succulents",
+        "kind": "text",
+        "label": "Succulents",
+        "marks": 1,
+        "mark_note": "Succulents",
+        "lines": [
+          "Succulents: they absorb large amounts of",
+          "water in the rainy season and store it as",
+          "mucilage in fleshy organs.",
+          "a) Root succulents — Asparagus",
+          "b) Stem succulents — Opuntia",
+          "c) Leaf succulents — Aloe"
+        ],
+        "why": "Succulents are named by WHICH organ stores the water, so the three sub-types with one example each are what the examiner is counting in this mark.",
+        "common_mistakes": [
+          "Giving one example only. The three sub-types each need their own plant.",
+          "Swapping Opuntia and Aloe. Opuntia stores in the stem, Aloe in the leaf."
+        ],
+        "memory_tip": "Root, stem, leaf — Asparagus, Opuntia, Aloe, in that order.",
+        "margin_note": "Write the three sub-types as a lettered list; it reads as three points."
+      },
+      {
+        "id": "s4_non_succulents",
+        "kind": "boxed_final",
+        "label": "Non-succulents",
+        "marks": 1,
+        "mark_note": "Non-succulents",
+        "lines": [
+          { "text": "Non-succulents are the true xerophytes.", "style": "boxed" },
+          "They are perennials that withstand long",
+          "periods of drought without storing water,",
+          "using deep roots, thick cuticle, sunken",
+          "stomata and reduced leaves.",
+          "Ex: Nerium, Casuarina."
+        ],
+        "why": "Non-succulents endure the drought while still growing, so they carry the morphological and anatomical adaptations asked about in the other questions of this chapter.",
+        "common_mistakes": [
+          "Writing that non-succulents store water. Storing water is what makes a plant a succulent.",
+          "Calling them annuals. They are perennials."
+        ],
+        "memory_tip": "Non-succulent = no stored water, so every other feature reduces water loss.",
+        "margin_note": "End with this group and its example; it is the one the examiner reads last."
+      }
+    ]
+  },
+  "insider_note": "Four marks means four blocks. Name all three groups in the first line, then give exactly one short paragraph and one example each, and the answer fits the time."
+}

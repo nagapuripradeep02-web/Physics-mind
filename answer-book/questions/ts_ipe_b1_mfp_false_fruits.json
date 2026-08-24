@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_false_fruits",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are certain fruits called false fruits? Name two examples of plants having false fruits.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why false",
+      "marks": 1
+    },
+    {
+      "label": "Two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Naming the floral part beside each example is what makes this a full two-mark answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Why false fruits",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A true fruit develops only from the ovary.",
+          "Fruits that develop from any other floral",
+          "part - such as the thalamus or the pedicel -",
+          "are called false fruits."
+        ],
+        "why": "The definition is a contrast with the true fruit: ovary = true; any other part (thalamus, pedicel) = false.",
+        "common_mistakes": [
+          "Writing that false fruits form without fertilisation. That is parthenocarpy - a different idea."
+        ],
+        "memory_tip": "True from the ovary; false from anything else.",
+        "margin_note": "State the true-fruit line first - the contrast is the reason asked for."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Two examples",
+        "marks": 1,
+        "mark_note": "Two examples",
+        "lines": [
+          {
+            "text": "Apple: the fleshy thalamus forms the fruit.",
+            "style": "boxed"
+          },
+          "Cashew: the juicy pedicel forms the",
+          "cashew apple."
+        ],
+        "why": "Each example should name the non-ovary part that grew - thalamus in apple, pedicel in cashew - which proves the definition.",
+        "common_mistakes": [
+          "Listing banana. Banana is parthenocarpic, not false - it still comes from the ovary."
+        ],
+        "memory_tip": "Apple from the thalamus, cashew from the stalk.",
+        "margin_note": "Example + its floral part; the part is what earns the mark."
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_amphibians_bryology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which group of plants is called amphibians of the plant kingdom? Name the branch of Botany which deals with them.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Amphibians of the plant kingdom",
+      "marks": 1
+    },
+    {
+      "label": "The branch",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bryophytes",
+        "kind": "text",
+        "label": "Amphibians of the plant kingdom",
+        "marks": 1,
+        "mark_note": "Group",
+        "lines": [
+          "Bryophytes are called the amphibians of the",
+          "plant kingdom. They grow on moist soil (land)",
+          "but need water for sexual reproduction."
+        ],
+        "why": "Amphibians live both on land and in water; bryophytes carry the same name because the plant grows on land while fertilisation still needs water.",
+        "common_mistakes": [
+          "Answering algae — algae live fully in water; the group that needs both land and water is the bryophytes.",
+          "Giving the group without the reason — one line on the water need makes the answer complete."
+        ],
+        "memory_tip": "Frogs live on land but breed in water; mosses do the same — so bryophytes are called amphibians.",
+        "margin_note": "Group name plus the water-for-reproduction reason."
+      },
+      {
+        "id": "s2_bryology",
+        "kind": "boxed_final",
+        "label": "The branch",
+        "marks": 1,
+        "mark_note": "Bryology",
+        "lines": [
+          {
+            "text": "Bryophytes → Bryology",
+            "style": "boxed"
+          }
+        ],
+        "why": "The branch again comes from the group name: bryo- plus -logy gives bryology.",
+        "common_mistakes": [
+          "Writing 'bryophytology' — the branch is bryology.",
+          "Swapping with pteridology — pteridology is ferns; bryology is mosses and liverworts."
+        ],
+        "memory_tip": "Keep bryo-, drop -phytes, add -logy: bryology.",
+        "margin_note": "The boxed arrow line completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The board asks this in the same two-part shape every time — group first, branch second; answer in two labelled lines."
+}

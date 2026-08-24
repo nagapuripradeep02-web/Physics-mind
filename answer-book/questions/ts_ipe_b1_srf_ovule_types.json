@@ -1,0 +1,420 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_ovule_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write briefly about the different types of ovules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Orthotropous",
+      "marks": 1
+    },
+    {
+      "label": "Anatropous",
+      "marks": 1
+    },
+    {
+      "label": "Campylotropous",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.18-19, SAQ 5). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it. The book covers only these three ovule types (no hemianatropous/amphitropous/circinotropous), and this card follows the book's scope. FIGURE SCOPE: the book prints three separate stippled drawings; this card draws the three side by side as simplified exam outlines with micropyle, chalaza, funicle and raphe labelled."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basis",
+        "kind": "text",
+        "label": "Basis of classification",
+        "marks": 0,
+        "lines": [
+          "Ovules are classified by the position of the",
+          "micropyle with respect to the funicle and",
+          "the chalaza."
+        ],
+        "why": "One sentence of basis makes the three definitions read as one system instead of three unrelated names — the micropyle's position is the thing that changes.",
+        "common_mistakes": [
+          "Classifying by ovule size or by the number of integuments — the basis is the micropyle-funicle position."
+        ],
+        "memory_tip": "Watch the micropyle: straight up, folded down beside the stalk, or swung to the side.",
+        "margin_note": "Unmarked opening line — one sentence, then the three types."
+      },
+      {
+        "id": "s2_orthotropous",
+        "kind": "text",
+        "label": "Orthotropous ovule",
+        "marks": 1,
+        "mark_note": "Type 1",
+        "lines": [
+          "Orthotropous (straight) ovule: the micropyle,",
+          "chalaza and funicle lie in one straight",
+          "vertical line.",
+          "Example: Polygonum."
+        ],
+        "why": "This is the reference posture: the ovule stands upright on its stalk, so the three landmarks stack in a line — every other type is described as a change from this.",
+        "common_mistakes": [
+          "Forgetting the example. Polygonum is the standard one.",
+          "Writing 'micropyle faces the funicle' — that is anatropous, the opposite of straight."
+        ],
+        "memory_tip": "ORTHO = straight (as in orthopaedics) — all three parts in one line.",
+        "margin_note": "Definition + example: two lines are enough for this mark."
+      },
+      {
+        "id": "s3_anatropous",
+        "kind": "text",
+        "label": "Anatropous ovule",
+        "marks": 1,
+        "mark_note": "Type 2",
+        "lines": [
+          "Anatropous (inverted) ovule: the body of the",
+          "ovule turns through 180°, so the micropyle",
+          "lies close to the funicle. A raphe is present.",
+          "Example: sunflower."
+        ],
+        "why": "The full inversion is the identifying fact: after a 180° turn the micropyle ends up beside the stalk, and the fused part of the funicle along the body forms the ridge called the raphe.",
+        "common_mistakes": [
+          "Drawing or describing the micropyle at the top — in an inverted ovule it points down beside the funicle.",
+          "Leaving out the raphe — it exists only because of the inversion, so examiners look for it."
+        ],
+        "memory_tip": "ANA-tropous = turned back: 180°, micropyle next to the funicle, raphe as the seam of the fold.",
+        "margin_note": "Say 180°, micropyle-near-funicle, and raphe — three facts, one mark."
+      },
+      {
+        "id": "s4_campylotropous",
+        "kind": "text",
+        "label": "Campylotropous ovule",
+        "marks": 1,
+        "mark_note": "Type 3",
+        "lines": [
+          "Campylotropous ovule: the body of the ovule",
+          "is bent at a right angle to the funicle, and",
+          "the embryo sac is slightly curved.",
+          "Examples: pea, bean."
+        ],
+        "why": "Between straight and fully inverted sits the bent form: the body turns only about 90°, so the ovule and its embryo sac both curve — the legumes are the standard examples.",
+        "common_mistakes": [
+          "Writing 180° here — the right-angle bend is what separates it from anatropous.",
+          "Saying the embryo sac stays straight — in this type even the sac is slightly curved."
+        ],
+        "memory_tip": "CAMPYLO = bent (a camp-cot folds at an angle): body at 90°, sac slightly curved, pea and bean.",
+        "margin_note": "Right angle + curved sac + legume examples completes the trio."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the three ovule types",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "ovule_types",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "or_funicle",
+              "d": "M 88 262 L 88 230",
+              "ms": 300,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "or_body",
+              "d": "M 54 166 A 34 62 0 1 0 122 166 A 34 62 0 1 0 54 166",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "or_inner",
+              "d": "M 69 172 A 19 40 0 1 0 107 172 A 19 40 0 1 0 69 172",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "or_micro_l",
+              "d": "M 82 96 L 82 112",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "or_micro_r",
+              "d": "M 94 96 L 94 112",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "or_chalaza",
+              "d": "M 70 218 Q 88 208 106 218",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "or_lead_mi",
+              "d": "M 66 42 L 82 92",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "or_lbl_mi",
+              "x": 8,
+              "y": 34,
+              "text": "Micropyle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "or_lead_ch",
+              "d": "M 46 244 L 74 222",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "or_lbl_ch",
+              "x": 2,
+              "y": 252,
+              "text": "Chalaza",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "or_lead_fu",
+              "d": "M 104 252 L 92 248",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "or_lbl_fu",
+              "x": 108,
+              "y": 258,
+              "text": "Funicle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "or_name",
+              "x": 14,
+              "y": 308,
+              "text": "Orthotropous",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "an_funicle",
+              "d": "M 288 262 L 288 234",
+              "ms": 300,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "an_body",
+              "d": "M 222 168 A 34 62 0 1 0 290 168 A 34 62 0 1 0 222 168",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "an_inner",
+              "d": "M 237 164 A 19 40 0 1 0 275 164 A 19 40 0 1 0 237 164",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "an_raphe",
+              "d": "M 286 226 Q 297 168 286 112",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "an_micro_l",
+              "d": "M 244 222 L 244 238",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "an_micro_r",
+              "d": "M 256 222 L 256 238",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "an_chalaza",
+              "d": "M 238 116 Q 256 106 274 116",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "an_lead_ch",
+              "d": "M 230 90 L 250 108",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "an_lbl_ch",
+              "x": 196,
+              "y": 84,
+              "text": "Chalaza",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "an_lead_ra",
+              "d": "M 316 146 L 294 158",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "an_lbl_ra",
+              "x": 320,
+              "y": 150,
+              "text": "Raphe",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "an_lead_mi",
+              "d": "M 240 258 L 249 242",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "an_lbl_mi",
+              "x": 196,
+              "y": 268,
+              "text": "Micropyle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "an_lead_fu",
+              "d": "M 312 256 L 294 252",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "an_lbl_fu",
+              "x": 316,
+              "y": 262,
+              "text": "Funicle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "an_name",
+              "x": 196,
+              "y": 308,
+              "text": "Anatropous",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ca_body",
+              "d": "M 396 202 A 44 56 0 1 1 468 202 A 46 30 0 0 0 396 202",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "ca_inner",
+              "d": "M 410 174 Q 432 154 454 174 Q 432 188 410 174",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ca_micro_l",
+              "d": "M 392 204 L 388 218",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ca_micro_r",
+              "d": "M 402 206 L 398 220",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ca_funicle",
+              "d": "M 432 262 L 432 214",
+              "ms": 300,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "ca_lead_mi",
+              "d": "M 424 262 L 400 224",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "ca_lbl_mi",
+              "x": 428,
+              "y": 268,
+              "text": "Micropyle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ca_lead_ch",
+              "d": "M 452 68 L 462 116",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "ca_lbl_ch",
+              "x": 430,
+              "y": 60,
+              "text": "Chalaza",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ca_name",
+              "x": 340,
+              "y": 308,
+              "text": "Campylotropous",
+              "ms": 220
+            }
+          ]
+        },
+        "why": "The three postures are the answer — a straight stack, a full fold with the micropyle beside the funicle, and a right-angle bend. Drawing them side by side with the same three labels makes the comparison visible.",
+        "common_mistakes": [
+          "Drawing anatropous with the micropyle at the top — the inversion is the whole point.",
+          "Labelling chalaza and micropyle at the same end. They are always opposite ends of the ovule body."
+        ],
+        "memory_tip": "Draw the funicle first in each, then place the micropyle: in line, beside it, at an angle.",
+        "margin_note": "Three small sketches with micropyle, chalaza and funicle labelled — 3-4 minutes."
+      }
+    ]
+  },
+  "insider_note": "The diagram is where this question is really scored: the anatropous drawing with the micropyle beside the funicle is the detail that separates a 4 from a 3."
+}

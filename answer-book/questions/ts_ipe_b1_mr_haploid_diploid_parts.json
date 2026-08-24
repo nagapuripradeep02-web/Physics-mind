@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_haploid_diploid_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Identify each part in a flowering plant and write whether it is haploid (n) or diploid (2n): (a) Ovary (b) Anther (c) Egg (d) Pollen (e) Male gamete (f) Zygote (g) Antipodal (h) Megaspore mother cell.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Eight parts at half a mark each", "marks": 4 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.16), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The half-mark-per-part split is a CLAIM until a Telangana IPE teacher confirms it. The book prints 'Mega spore mother cell' (spacing); the card writes megaspore mother cell. The book's eight answers themselves are correct and the card agrees with all of them."
+  },
+  "insider_note": "Examiners award half a mark per part; the two usually lost are the megaspore mother cell (2n, not n) and the antipodal (n, not 2n).",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The placing rule",
+        "marks": 0,
+        "lines": [
+          "Rule: parts of the parent plant body and",
+          "all mother cells are diploid (2n).",
+          "Products of meiosis and all cells of the",
+          "gametophyte are haploid (n).",
+          "Fusion products are diploid again."
+        ],
+        "why": "With this rule none of the eight answers needs memorising: place the part before meiosis (2n), after meiosis (n), or after fertilization (2n).",
+        "common_mistakes": [
+          "Writing the list without the rule — one slip then goes unnoticed."
+        ],
+        "memory_tip": "2n → meiosis → n → fertilization → 2n. Every part sits at one of the three positions.",
+        "margin_note": "Two lines of rule first — no marks here, but it prevents slips."
+      },
+      {
+        "id": "s2_list",
+        "kind": "boxed_final",
+        "label": "The eight answers",
+        "marks": 4,
+        "mark_note": "8 parts × ½ mark",
+        "lines": [
+          { "text": "n = after meiosis · 2n = body cells and zygote", "style": "boxed" },
+          "(a) Ovary — diploid (2n)",
+          "(b) Anther — diploid (2n)",
+          "(c) Egg — haploid (n)",
+          "(d) Pollen — haploid (n)",
+          "(e) Male gamete — haploid (n)",
+          "(f) Zygote — diploid (2n)",
+          "(g) Antipodal — haploid (n)",
+          "(h) Megaspore mother cell — diploid (2n)"
+        ],
+        "why": "Ovary and anther are organs of the diploid plant; the megaspore mother cell is a mother cell, still 2n. Pollen, egg, male gamete and antipodals all come after meiosis, so n. The zygote is the fusion product, 2n again.",
+        "common_mistakes": [
+          "Marking the megaspore mother cell n — it is a MOTHER cell, still 2n; only its meiosis products are n.",
+          "Marking the antipodal 2n — antipodals are cells of the embryo sac (gametophyte), so n.",
+          "Marking pollen 2n because it sits inside a 2n anther — the pollen grain itself is a meiosis product, n."
+        ],
+        "memory_tip": "The two trap items: anything called 'mother cell' is still 2n; anything inside the embryo sac (egg, antipodal) is n.",
+        "margin_note": "Write all eight on separate lines with (n)/(2n) — half a mark each."
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_species_basic_unit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the basic unit of classification? Define it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the unit",
+      "marks": 1
+    },
+    {
+      "label": "Definition of species",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 5 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit",
+        "kind": "text",
+        "label": "The basic unit",
+        "marks": 1,
+        "mark_note": "The unit",
+        "lines": [
+          "Species is the basic unit (lowest category)",
+          "of taxonomic classification."
+        ],
+        "why": "Classification is a hierarchy of categories, and species is the lowest category in it — every organism is placed in some species first.",
+        "common_mistakes": [
+          "Writing genus or kingdom as the basic unit. The hierarchy starts at species; kingdom is the highest.",
+          "Writing 'specie'. The word is species, in both singular and plural."
+        ],
+        "memory_tip": "The ladder of categories ends at species — lowest step, basic unit.",
+        "margin_note": "Name the unit in the first line so the mark is visible at a glance."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition of species",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A species is a group of individual organisms",
+          "with fundamental similarities.",
+          {
+            "text": "Species = individuals with fundamental similarities",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the NCERT definition — the members of one species share fundamental (basic) similarities and can be told apart from the members of other, closely related species.",
+        "common_mistakes": [
+          "Defining species only by interbreeding. For this chapter, write the NCERT wording: fundamental similarities.",
+          "Writing 'similar organisms' without 'fundamental'. The marked phrase is fundamental similarities."
+        ],
+        "memory_tip": "Species and Similarities both start with S — a species is a group with fundamental similarities.",
+        "margin_note": "Write the definition in the NCERT words; one sentence is enough."
+      }
+    ]
+  },
+  "insider_note": "One mark is for the word species and one for the definition — students who define well but never write 'species' lose the first mark."
+}

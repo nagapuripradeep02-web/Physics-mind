@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_metacentric_chromosome_feature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the feature of a metacentric chromosome?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Position of the centromere",
+      "marks": 1
+    },
+    {
+      "label": "Shape at anaphase",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "text",
+        "label": "Middle centromere",
+        "marks": 1,
+        "mark_note": "Middle centromere",
+        "lines": [
+          "In a metacentric chromosome the centromere",
+          "lies in the middle of the chromosome.",
+          "It therefore divides the chromosome into two",
+          "arms of equal length."
+        ],
+        "why": "Meta means middle. The equal arms are a consequence of that middle position, so both facts come from one idea.",
+        "common_mistakes": [
+          "Writing that the arms are unequal. Unequal arms make it sub-metacentric.",
+          "Confusing metacentric with acrocentric."
+        ],
+        "memory_tip": "Meta = middle, so the two arms come out equal.",
+        "margin_note": "Middle centromere plus equal arms is this mark."
+      },
+      {
+        "id": "s2_shape",
+        "kind": "boxed_final",
+        "label": "Shape at anaphase",
+        "marks": 1,
+        "mark_note": "'V' shape",
+        "lines": [
+          {
+            "text": "Metacentric → middle centromere → 'V' shape",
+            "style": "boxed"
+          },
+          "During anaphase the spindle fibre pulls the",
+          "centromere towards the pole first.",
+          "Both arms, being of equal length, trail behind",
+          "it, so the chromosome takes a 'V' shape."
+        ],
+        "why": "The centromere is the point the spindle pulls, so it leads and the arms trail. Two equal arms trailing equally give a symmetrical V.",
+        "common_mistakes": [
+          "Writing 'J' or 'L' shape. Those come from unequal arms.",
+          "Writing that the shape is seen in interphase. It is seen at anaphase."
+        ],
+        "memory_tip": "Equal arms trailing behind a leading centromere draw the letter V.",
+        "margin_note": "One line on the anaphase shape completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The shape at anaphase is half the marks here — many students stop after 'centromere in the middle'."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_fungi_daily_life",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the role of fungi in daily life.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Food",
+      "marks": 1
+    },
+    {
+      "label": "Bread and beer",
+      "marks": 1
+    },
+    {
+      "label": "Antibiotics",
+      "marks": 1
+    },
+    {
+      "label": "Diseases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'Some fungi causes diseases' (grammar) and 'white spots on mustard leaves'; the standard name of the Albugo disease is white rust of mustard, which this card uses while keeping the book's phrase in brackets."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biological Classification · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_food",
+        "kind": "text",
+        "label": "Food",
+        "marks": 1,
+        "mark_note": "Edible fungi",
+        "lines": [
+          "Mushrooms, morels and truffles are common",
+          "edible fungi."
+        ],
+        "why": "The direct food role comes first: these three named fungi are eaten as food, the simplest daily-life role to state.",
+        "common_mistakes": [
+          "Naming only mushroom. Morels and truffles complete the listed edible fungi."
+        ],
+        "memory_tip": "Three edible names: mushrooms, morels, truffles.",
+        "margin_note": "One line with the three names is enough."
+      },
+      {
+        "id": "s2_bread_beer",
+        "kind": "text",
+        "label": "Bread and beer",
+        "marks": 1,
+        "mark_note": "Yeast",
+        "lines": [
+          "Unicellular fungi like yeast are used in",
+          "making bread and beer."
+        ],
+        "why": "Yeast ferments sugar and releases carbon dioxide and alcohol: the gas raises bread dough and the alcohol makes beer — one organism, two products.",
+        "common_mistakes": [
+          "Calling yeast a bacterium. Yeast is a unicellular fungus.",
+          "Writing yeast for curd. Curd is made by bacteria (Lactobacillus)."
+        ],
+        "memory_tip": "Yeast: gas for bread, alcohol for beer.",
+        "margin_note": "Name yeast and both products."
+      },
+      {
+        "id": "s3_antibiotics",
+        "kind": "text",
+        "label": "Antibiotics",
+        "marks": 1,
+        "mark_note": "Penicillium",
+        "lines": [
+          "Some fungi, such as Penicillium, are used",
+          "to produce antibiotics."
+        ],
+        "why": "Penicillin, the first antibiotic, comes from the fungus Penicillium — the medical role of fungi in daily life.",
+        "common_mistakes": [
+          "Writing Penicillium as a bacterium. It is a fungus (a mould)."
+        ],
+        "memory_tip": "Penicillium the fungus gives penicillin the medicine — nearly the same word.",
+        "margin_note": "The genus name is the marked word."
+      },
+      {
+        "id": "s4_diseases",
+        "kind": "boxed_final",
+        "label": "Diseases",
+        "marks": 1,
+        "mark_note": "Diseases",
+        "lines": [
+          "Some fungi cause diseases in plants and",
+          "animals:",
+          "wheat rust is caused by Puccinia;",
+          "white rust (white spots) on mustard leaves",
+          "is caused by Albugo.",
+          {
+            "text": "Food, bread and beer, antibiotics — and diseases.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The role of fungi includes harm: fungi are also disease agents, and the two named plant diseases with their pathogens complete a balanced answer. (The book prints white spots on mustard leaves; the standard name of the Albugo disease is white rust.)",
+        "common_mistakes": [
+          "Pairing the wrong pathogen: Puccinia — wheat rust; Albugo — white rust of mustard.",
+          "Writing only the useful roles. The syllabus answer includes the diseases."
+        ],
+        "memory_tip": "Puccinia on wheat, Albugo on mustard — pathogen before crop.",
+        "margin_note": "Two disease pairs plus the recap box close the answer."
+      }
+    ]
+  },
+  "insider_note": "Four separate roles, one mark each — a paragraph about mushrooms alone earns one of the four."
+}

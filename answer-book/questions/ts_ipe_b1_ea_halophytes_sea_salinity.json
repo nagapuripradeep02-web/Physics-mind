@@ -1,0 +1,76 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_halophytes_sea_salinity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the type of land plants that can tolerate the salinities of the sea.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The name", "marks": 1 },
+    { "label": "Example and feature", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 4. The book prints 'Halophytes. Ex: Rhizophora'; the definition line and the pneumatophore point are added from standard ecology. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halophytes",
+        "kind": "text",
+        "label": "The name",
+        "marks": 1,
+        "mark_note": "Halophytes",
+        "lines": [
+          "They are called halophytes.",
+          "Halophytes are plants that grow in soil",
+          "with a high salt content — sea coasts,",
+          "salt marshes and mangrove swamps."
+        ],
+        "why": "Halo means salt and phyte means plant, so the name itself states the habitat the question describes.",
+        "common_mistakes": [
+          "Writing hydrophytes. Hydrophytes grow in fresh water and cannot tolerate sea salt.",
+          "Writing mangroves as the type name. Mangrove is the forest; halophyte is the plant type."
+        ],
+        "memory_tip": "Halo = salt, as in halogen and halite. Halophyte = salt plant.",
+        "margin_note": "The word halophyte alone earns the first mark. Add the habitat line."
+      },
+      {
+        "id": "s2_example_feature",
+        "kind": "boxed_final",
+        "label": "Example and feature",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          { "text": "Ex: Rhizophora, Avicennia, Salicornia", "style": "boxed" },
+          "Their roots grow in salty mud that has little",
+          "air, so special roots called pneumatophores",
+          "(breathing roots) grow upward out of the",
+          "mud and carry out gas exchange."
+        ],
+        "why": "The example is what an examiner checks first. Rhizophora is the standard one, and its pneumatophores show how a halophyte handles a waterlogged salty soil.",
+        "common_mistakes": [
+          "Giving no example at all. This chapter marks the example separately.",
+          "Calling pneumatophores prop roots. Prop roots hang down; pneumatophores grow up."
+        ],
+        "memory_tip": "Pneuma means air. Pneumatophore = the root that reaches air.",
+        "margin_note": "One example is enough. The pneumatophore line is the safe extra."
+      }
+    ]
+  },
+  "insider_note": "Almost every student writes halophytes and stops. The second mark is usually the example, so always write Rhizophora."
+}

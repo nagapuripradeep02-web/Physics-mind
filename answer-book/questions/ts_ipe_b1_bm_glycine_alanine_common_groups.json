@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_glycine_alanine_common_groups",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Glycine and alanine differ with respect to one substituent on the carbon. What are the other common groups?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three common groups",
+      "marks": 1
+    },
+    {
+      "label": "The group that differs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 5. The book answers 'NH2, H, COOH'; the same three groups are given here, with the alpha-carbon named and the differing R group stated, because the question carries two marks. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_groups",
+        "kind": "text",
+        "label": "The three common groups",
+        "marks": 1,
+        "mark_note": "Three groups",
+        "lines": [
+          "Every amino acid has four groups on its",
+          "central alpha-carbon. Glycine and alanine",
+          "share three of them:",
+          "1. amino group  –NH₂",
+          "2. carboxyl group  –COOH",
+          "3. hydrogen atom  –H"
+        ],
+        "why": "The alpha-carbon of any amino acid carries four groups. Three of them are the same in every amino acid, so any two amino acids can differ only in the fourth.",
+        "common_mistakes": [
+          "Listing only –NH₂ and –COOH. The hydrogen atom on the alpha-carbon is the third common group.",
+          "Naming the R group as common. That is the one that differs."
+        ],
+        "memory_tip": "Four groups on the alpha-carbon: three are fixed, only R changes.",
+        "margin_note": "List the three with their formulas. A bare list earns the mark."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "boxed_final",
+        "label": "The group that differs",
+        "marks": 1,
+        "mark_note": "R group",
+        "lines": [
+          {
+            "text": "Glycine R = –H     Alanine R = –CH₃",
+            "style": "boxed"
+          },
+          "The fourth group is the variable R group,",
+          "the side chain.",
+          "It is a hydrogen atom in glycine and a",
+          "methyl group in alanine."
+        ],
+        "why": "Naming what differs shows the three common groups were not guessed. Glycine is the simplest amino acid because its R group is only a hydrogen atom.",
+        "common_mistakes": [
+          "Writing that alanine has R = –H. Alanine has the methyl group –CH₃.",
+          "Writing 'CH₃ group' without saying it is the R group or side chain."
+        ],
+        "memory_tip": "Glycine is the smallest: its side chain is one hydrogen atom. Alanine adds a methyl group.",
+        "margin_note": "One boxed line with both R groups completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question says 'other common groups', so the answer must be the three shared ones. State the differing R group as well to show the count of four."
+}

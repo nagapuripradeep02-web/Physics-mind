@@ -1,0 +1,460 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_nucleus_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of the nucleus.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Envelope and pores",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Nucleoplasm and nucleolus",
+      "marks": 1
+    },
+    {
+      "label": "Chromatin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_envelope",
+        "kind": "text",
+        "label": "Envelope and pores",
+        "marks": 1,
+        "mark_note": "Envelope + pores",
+        "lines": [
+          "The nucleus was discovered by Robert Brown.",
+          "It is bounded by a nuclear envelope of two",
+          "membranes with a perinuclear space between",
+          "them, and the outer membrane is continuous",
+          "with the endoplasmic reticulum.",
+          "Nuclear pores in the envelope let materials",
+          "pass between the nucleus and the cytoplasm."
+        ],
+        "why": "Two membranes and the pores through them are what make the nucleus a separate compartment that can still exchange material with the cytoplasm.",
+        "common_mistakes": [
+          "Writing that the nuclear envelope is a single membrane. It has two.",
+          "Writing that the envelope is completely closed. It is porous."
+        ],
+        "memory_tip": "Two membranes, one gap, many pores — and the outer one runs straight into the ER.",
+        "margin_note": "Robert Brown and 'two membranes' open the answer."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "nucleus_structure",
+          "width": 520,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "envelope_outer_1",
+              "d": "M 54.6 108.5 L 56.7 104.1 L 58.9 99.8 L 61.4 95.6 L 64.0 91.5 L 66.9 87.5 L 69.9 83.7 L 73.1 80.0 L 76.5 76.5 L 80.0 73.1 L 83.7 69.9 L 87.5 66.9 L 91.5 64.0 L 95.6 61.4 L 99.8 58.9 L 104.1 56.7 L 108.5 54.6",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_1",
+              "d": "M 62.0 111.7 L 63.9 107.6 L 65.9 103.6 L 68.2 99.8 L 70.6 96.0 L 73.3 92.3 L 76.1 88.8 L 79.0 85.4 L 82.1 82.1 L 85.4 79.0 L 88.8 76.1 L 92.3 73.3 L 96.0 70.6 L 99.8 68.2 L 103.6 65.9 L 107.6 63.9 L 111.7 62.0",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_outer_2",
+              "d": "M 120.5 50.3 L 125.2 49.0 L 129.9 48.0 L 134.7 47.1 L 139.6 46.5 L 144.4 46.1 L 149.3 46.0 L 154.2 46.1 L 159.1 46.4 L 163.9 46.9 L 168.7 47.7 L 173.5 48.7 L 178.2 49.9 L 182.9 51.3 L 187.5 53.0 L 192.0 54.9 L 196.4 56.9",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_2",
+              "d": "M 122.7 58.0 L 127.1 56.8 L 131.5 55.8 L 135.9 55.0 L 140.4 54.5 L 144.9 54.1 L 149.4 54.0 L 153.9 54.1 L 158.4 54.4 L 162.8 54.9 L 167.3 55.6 L 171.7 56.5 L 176.1 57.6 L 180.4 58.9 L 184.6 60.5 L 188.8 62.2 L 192.8 64.1",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_outer_3",
+              "d": "M 207.4 63.3 L 210.9 65.7 L 214.3 68.3 L 217.6 71.0 L 220.8 73.9 L 223.9 76.8 L 226.9 79.9 L 229.7 83.2 L 232.4 86.5 L 234.9 89.9 L 237.3 93.5 L 239.5 97.1 L 241.6 100.8 L 243.6 104.6 L 245.4 108.5",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_3",
+              "d": "M 203.0 69.9 L 206.2 72.2 L 209.4 74.6 L 212.4 77.1 L 215.4 79.7 L 218.2 82.5 L 220.9 85.3 L 223.5 88.3 L 226.0 91.4 L 228.4 94.5 L 230.6 97.8 L 232.7 101.2 L 234.6 104.6 L 236.4 108.1 L 238.0 111.7",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_outer_4",
+              "d": "M 249.7 120.5 L 251.2 126.2 L 252.4 132.0 L 253.3 137.9 L 253.8 143.8 L 254.0 149.8 L 253.8 155.7 L 253.4 161.6 L 252.5 167.5 L 251.4 173.3 L 249.9 179.1 L 248.0 184.7 L 245.9 190.3 L 243.4 195.7 L 240.7 200.9 L 237.6 206.0 L 234.3 210.9 L 230.7 215.6 L 226.8 220.1 L 222.7 224.4 L 218.3 228.4 L 213.7 232.2 L 208.9 235.7 L 203.9 238.9 L 198.8 241.9 L 193.4 244.5 L 188.0 246.8 L 182.4 248.8 L 176.7 250.5 L 170.9 251.9 L 165.0 252.9 L 159.1 253.6 L 153.2 254.0 L 147.3 254.0",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_4",
+              "d": "M 242.0 122.7 L 243.5 128.0 L 244.6 133.4 L 245.3 138.8 L 245.8 144.3 L 246.0 149.8 L 245.9 155.3 L 245.4 160.7 L 244.6 166.1 L 243.6 171.5 L 242.2 176.8 L 240.5 182.0 L 238.5 187.2 L 236.3 192.2 L 233.7 197.0 L 230.9 201.7 L 227.8 206.2 L 224.5 210.6 L 220.9 214.7 L 217.1 218.7 L 213.0 222.4 L 208.8 225.9 L 204.4 229.1 L 199.8 232.1 L 195.0 234.8 L 190.1 237.2 L 185.0 239.4 L 179.9 241.2 L 174.6 242.8 L 169.3 244.0 L 163.9 245.0 L 158.4 245.6 L 153.0 246.0 L 147.5 246.0",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_outer_5",
+              "d": "M 134.6 252.9 L 129.8 252.0 L 125.1 251.0 L 120.4 249.7 L 115.7 248.2 L 111.1 246.5 L 106.7 244.5 L 102.3 242.4 L 98.0 240.1 L 93.8 237.5 L 89.8 234.8 L 85.9 231.9 L 82.1 228.8 L 78.5 225.5 L 75.0 222.1 L 71.7 218.5 L 68.6 214.7",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_5",
+              "d": "M 135.8 244.9 L 131.4 244.2 L 127.0 243.2 L 122.6 242.0 L 118.3 240.6 L 114.1 239.0 L 110.0 237.3 L 106.0 235.3 L 102.0 233.1 L 98.2 230.8 L 94.4 228.3 L 90.8 225.6 L 87.3 222.7 L 84.0 219.7 L 80.8 216.5 L 77.8 213.2 L 74.9 209.8",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_outer_6",
+              "d": "M 61.3 204.3 L 58.9 200.2 L 56.7 195.9 L 54.6 191.5 L 52.8 187.0 L 51.2 182.4 L 49.8 177.8 L 48.6 173.1 L 47.6 168.4 L 46.9 163.6 L 46.4 158.8 L 46.1 153.9 L 46.0 149.1 L 46.2 144.3 L 46.5 139.4 L 47.1 134.6 L 48.0 129.9 L 49.0 125.1 L 50.3 120.5",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "envelope_inner_6",
+              "d": "M 68.1 200.2 L 65.9 196.3 L 63.8 192.3 L 62.0 188.3 L 60.3 184.1 L 58.8 179.9 L 57.5 175.7 L 56.4 171.3 L 55.5 166.9 L 54.8 162.5 L 54.3 158.1 L 54.1 153.6 L 54.0 149.2 L 54.1 144.7 L 54.5 140.2 L 55.1 135.8 L 55.8 131.4 L 56.8 127.0 L 58.0 122.7",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_1_1",
+              "d": "M 58.0 122.7 L 50.3 120.5",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_1_2",
+              "d": "M 62.0 111.7 L 54.6 108.5",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_2_1",
+              "d": "M 111.7 62.0 L 108.5 54.6",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_2_2",
+              "d": "M 122.7 58.0 L 120.5 50.3",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_3_1",
+              "d": "M 192.8 64.1 L 196.4 56.9",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_3_2",
+              "d": "M 203.0 69.9 L 207.4 63.3",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_4_1",
+              "d": "M 238.0 111.7 L 245.4 108.5",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_4_2",
+              "d": "M 242.0 122.7 L 249.7 120.5",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_5_1",
+              "d": "M 147.5 246.0 L 147.3 254.0",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_5_2",
+              "d": "M 135.8 244.9 L 134.6 252.9",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_6_1",
+              "d": "M 74.9 209.8 L 68.6 214.7",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "pore_lip_6_2",
+              "d": "M 68.1 200.2 L 61.3 204.3",
+              "ms": 140,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus",
+              "d": "M 214.0 112.0 L 213.7 116.1 L 212.7 120.0 L 211.2 123.8 L 209.0 127.3 L 206.4 130.4 L 203.3 133.0 L 199.8 135.2 L 196.0 136.7 L 192.1 137.7 L 188.0 138.0 L 183.9 137.7 L 180.0 136.7 L 176.2 135.2 L 172.7 133.0 L 169.6 130.4 L 167.0 127.3 L 164.8 123.8 L 163.3 120.0 L 162.3 116.1 L 162.0 112.0 L 162.3 107.9 L 163.3 104.0 L 164.8 100.2 L 167.0 96.7 L 169.6 93.6 L 172.7 91.0 L 176.2 88.8 L 180.0 87.3 L 183.9 86.3 L 188.0 86.0 L 192.1 86.3 L 196.0 87.3 L 199.8 88.8 L 203.3 91.0 L 206.4 93.6 L 209.0 96.7 L 211.2 100.2 L 212.7 104.0 L 213.7 107.9 L 214.0 112.0 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus_texture_1",
+              "d": "M 172.0 104.0 L 173.4 105.1 L 174.8 105.9 L 176.1 106.1 L 177.3 105.6 L 178.4 104.5 L 179.5 103.0 L 180.6 101.5 L 181.7 100.4 L 182.9 99.9 L 184.2 100.1 L 185.6 100.9 L 187.0 102.0 L 188.4 103.1 L 189.8 103.9 L 191.1 104.1 L 192.3 103.6 L 193.4 102.5 L 194.5 101.0 L 195.6 99.5 L 196.7 98.4 L 197.9 97.9 L 199.2 98.1 L 200.6 98.9 L 202.0 100.0",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus_texture_2",
+              "d": "M 168.0 116.0 L 169.7 117.2 L 171.3 118.1 L 172.9 118.3 L 174.5 117.9 L 176.0 116.9 L 177.5 115.5 L 179.0 114.1 L 180.5 113.1 L 182.1 112.7 L 183.7 112.9 L 185.3 113.8 L 187.0 115.0 L 188.7 116.2 L 190.3 117.1 L 191.9 117.3 L 193.5 116.9 L 195.0 115.9 L 196.5 114.5 L 198.0 113.1 L 199.5 112.1 L 201.1 111.7 L 202.7 111.9 L 204.3 112.8 L 206.0 114.0",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus_texture_3",
+              "d": "M 174.0 126.0 L 175.2 127.2 L 176.3 128.1 L 177.4 128.3 L 178.5 127.9 L 179.5 126.9 L 180.5 125.5 L 181.5 124.1 L 182.5 123.1 L 183.6 122.7 L 184.7 122.9 L 185.8 123.8 L 187.0 125.0 L 188.2 126.2 L 189.3 127.1 L 190.4 127.3 L 191.5 126.9 L 192.5 125.9 L 193.5 124.5 L 194.5 123.1 L 195.5 122.1 L 196.6 121.7 L 197.7 121.9 L 198.8 122.8 L 200.0 124.0",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "chromatin_1",
+              "d": "M 95.0 175.0 L 94.9 177.5 L 95.0 179.9 L 95.3 181.8 L 96.0 183.4 L 97.0 184.4 L 98.4 184.8 L 100.2 184.7 L 102.3 184.2 L 104.6 183.3 L 106.9 182.4 L 109.3 181.6 L 111.4 181.0 L 113.3 180.8 L 114.8 181.1 L 115.9 182.0 L 116.6 183.4 L 117.0 185.3 L 117.1 187.6 L 117.0 190.1 L 116.9 192.6 L 117.0 195.0 L 117.2 197.1 L 117.8 198.7 L 118.7 199.8 L 120.1 200.3 L 121.8 200.3 L 123.8 199.9 L 126.1 199.1 L 128.5 198.2 L 130.8 197.3 L 133.0 196.7 L 134.9 196.4 L 136.5 196.6 L 137.7 197.4 L 138.5 198.7 L 138.9 200.5 L 139.1 202.7 L 139.0 205.2 L 139.0 207.7 L 139.0 210.2 L 139.2 212.3 L 139.7 214.0 L 140.5 215.2 L 141.8 215.9 L 143.4 216.0 L 145.4 215.6 L 147.6 214.9 L 150.0 214.0",
+              "ms": 480,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "chromatin_2",
+              "d": "M 110.0 120.0 L 107.8 121.4 L 105.8 122.8 L 104.3 124.3 L 103.3 125.7 L 103.0 127.3 L 103.4 128.8 L 104.4 130.5 L 105.9 132.1 L 107.8 133.8 L 109.8 135.5 L 111.7 137.2 L 113.3 138.8 L 114.5 140.4 L 115.0 142.0 L 114.8 143.6 L 113.9 145.0 L 112.5 146.5 L 110.6 147.9 L 108.4 149.3 L 106.2 150.7 L 104.2 152.1 L 102.6 153.6 L 101.5 155.0 L 101.0 156.6 L 101.3 158.1 L 102.1 159.7 L 103.6 161.4 L 105.4 163.1 L 107.4 164.7 L 109.4 166.4 L 111.0 168.1 L 112.3 169.7 L 112.9 171.3 L 112.9 172.9 L 112.2 174.4 L 110.8 175.8 L 109.0 177.2 L 106.9 178.6 L 104.7 180.0 L 102.6 181.4 L 100.9 182.9 L 99.6 184.3 L 99.0 185.9 L 99.2 187.4 L 99.9 189.0 L 101.3 190.6 L 103.0 192.3 L 105.0 194.0",
+              "ms": 480,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "chromatin_3",
+              "d": "M 170.0 176.0 L 171.9 177.4 L 173.6 178.7 L 175.2 179.5 L 176.5 179.8 L 177.6 179.6 L 178.3 178.7 L 178.8 177.2 L 179.1 175.3 L 179.2 173.0 L 179.2 170.7 L 179.3 168.4 L 179.5 166.4 L 179.9 164.8 L 180.6 163.8 L 181.6 163.4 L 182.9 163.6 L 184.4 164.3 L 186.2 165.5 L 188.0 166.9 L 189.9 168.4 L 191.7 169.6 L 193.3 170.6 L 194.7 171.0 L 195.8 170.9 L 196.6 170.1 L 197.1 168.7 L 197.4 166.9 L 197.6 164.7 L 197.6 162.3 L 197.7 160.0 L 197.9 157.9 L 198.2 156.3 L 198.9 155.1 L 199.8 154.6 L 201.0 154.7 L 202.5 155.4 L 204.2 156.4 L 206.1 157.8 L 207.9 159.3 L 209.7 160.6 L 211.4 161.6 L 212.8 162.2 L 214.0 162.1 L 214.9 161.5 L 215.5 160.3 L 215.8 158.5 L 215.9 156.3 L 216.0 154.0",
+              "ms": 480,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "chromatin_4",
+              "d": "M 132.0 102.0 L 129.6 101.6 L 127.4 101.3 L 125.6 101.3 L 124.1 101.7 L 123.2 102.5 L 122.9 103.7 L 123.0 105.3 L 123.5 107.3 L 124.3 109.4 L 125.2 111.7 L 126.0 113.9 L 126.6 115.9 L 126.8 117.6 L 126.5 118.9 L 125.7 119.8 L 124.4 120.2 L 122.6 120.3 L 120.4 120.1 L 118.1 119.7 L 115.7 119.3 L 113.5 119.0 L 111.5 118.9 L 110.0 119.2 L 109.0 119.9 L 108.5 121.0 L 108.5 122.6 L 109.0 124.5 L 109.7 126.6 L 110.6 128.9 L 111.4 131.1 L 112.1 133.1 L 112.4 134.9 L 112.2 136.3 L 111.5 137.2 L 110.3 137.8 L 108.6 137.9 L 106.5 137.7 L 104.2 137.4 L 101.8 136.9 L 99.5 136.6 L 97.5 136.5 L 95.9 136.7 L 94.7 137.3 L 94.1 138.4 L 94.1 139.8 L 94.4 141.7 L 95.1 143.8 L 96.0 146.0",
+              "ms": 480,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "er_upper",
+              "d": "M 238.2 205.1 C 262 214 288 212 306 212",
+              "ms": 420,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "er_lower",
+              "d": "M 222.3 224.8 C 248 236 282 234 300 232",
+              "ms": 420,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "ld_env",
+              "d": "M 296 42 L 223 77",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_env",
+              "x": 300,
+              "y": 36,
+              "text": "Nuclear envelope",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleolus",
+              "d": "M 296 90 L 215 111",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_nucleolus",
+              "x": 300,
+              "y": 84,
+              "text": "Nucleolus",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pore",
+              "d": "M 296 138 L 252 118",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pore",
+              "x": 300,
+              "y": 132,
+              "text": "Nuclear pore",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleoplasm",
+              "d": "M 296 186 L 230 180",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_nucleoplasm",
+              "x": 300,
+              "y": 180,
+              "text": "Nucleoplasm",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_er",
+              "d": "M 300 268 L 296 236",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_er",
+              "x": 300,
+              "y": 276,
+              "text": "Endoplasmic reticulum",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chromatin",
+              "d": "M 60 266 L 103 198",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_chromatin",
+              "x": 6,
+              "y": 276,
+              "text": "Chromatin",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The labels the examiner looks for are nuclear envelope, nuclear pore, nucleoplasm, chromatin and nucleolus, with the ER drawn running out of the outer membrane to show the continuity.",
+        "common_mistakes": [
+          "Drawing one circle only. The envelope is two membranes.",
+          "Drawing a membrane round the nucleolus. It has none."
+        ],
+        "memory_tip": "Double circle, a few gaps for pores, one dense ball for the nucleolus, threads for chromatin.",
+        "margin_note": "Five labels is enough; the ER shows the continuity."
+      },
+      {
+        "id": "s3_nucleolus",
+        "kind": "text",
+        "label": "Nucleoplasm and nucleolus",
+        "marks": 1,
+        "mark_note": "Nucleolus",
+        "lines": [
+          "The ground substance inside the envelope is",
+          "the nucleoplasm.",
+          "It contains one or more nucleoli.",
+          "A nucleolus is not bound by a membrane. It is",
+          "the site of active ribosomal RNA synthesis,",
+          "and ribosomes are assembled there."
+        ],
+        "why": "The nucleolus is where ribosomal RNA is made, so a cell that makes a great deal of protein has a large nucleolus. That link is why the structure is marked.",
+        "common_mistakes": [
+          "Writing that the nucleolus is membrane bound. It is not.",
+          "Writing that the nucleolus makes DNA. It makes ribosomal RNA."
+        ],
+        "memory_tip": "Nucleolus and ribosome start the same story: rRNA is made here.",
+        "margin_note": "Say 'no membrane' and 'ribosomal RNA'."
+      },
+      {
+        "id": "s4_chromatin",
+        "kind": "boxed_final",
+        "label": "Chromatin",
+        "marks": 1,
+        "mark_note": "Chromatin",
+        "lines": [
+          {
+            "text": "Chromatin = DNA + histones + acidic proteins",
+            "style": "boxed"
+          },
+          "In interphase the nucleoplasm holds a loose,",
+          "indistinct network of nucleoprotein fibres",
+          "called chromatin.",
+          "Chromatin contains DNA, basic proteins called",
+          "histones, some non-histone proteins and RNA.",
+          "At cell division the chromatin condenses into",
+          "chromosomes."
+        ],
+        "why": "Chromatin and chromosomes are the same material at two stages: a loose network between divisions, tightly coiled during division.",
+        "common_mistakes": [
+          "Writing that chromatin and chromosomes are different substances. They are one material in two states.",
+          "Leaving histones out of the composition."
+        ],
+        "memory_tip": "Loose network between divisions, tight rod during division — one material, two states.",
+        "margin_note": "The composition list is the marked line."
+      }
+    ]
+  },
+  "insider_note": "Robert Brown's name, the two-membrane envelope, the pores, the nucleolus and the chromatin are five separate ticks — write them as five short sentences."
+}

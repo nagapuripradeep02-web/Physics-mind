@@ -1,0 +1,458 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_pollen_tube_entry_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the various types of pollen tube entry into ovary with the help of diagrams.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three methods",
+      "marks": 1
+    },
+    {
+      "label": "Porogamy",
+      "marks": 1
+    },
+    {
+      "label": "Chalazogamy",
+      "marks": 1
+    },
+    {
+      "label": "Mesogamy",
+      "marks": 1
+    },
+    {
+      "label": "Diagrams",
+      "marks": 3
+    },
+    {
+      "label": "Common end point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.20, LAQ 4). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints the same three-panel entry figure twice (in LAQ 2 and LAQ 4); this card draws it once, as three simplified ovules with the route labelled on each. In LAQ 2 the book defines mesogamy as entry 'through integument (or) funiculus'; here and in the standard definition it is through the integuments."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Sexual Reproduction in Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intro",
+        "kind": "text",
+        "label": "The three methods",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          "After pollen germination the pollen tube",
+          "passes through the style and enters the",
+          "ovary.",
+          "It then enters the ovule by any one of three",
+          "methods:",
+          "A) Porogamy B) Chalazogamy C) Mesogamy"
+        ],
+        "why": "The classification is by doorway into the ovule — before describing each route, show the journey up to the ovary and name all three methods, which is the listing mark.",
+        "common_mistakes": [
+          "Naming only porogamy. The question says 'various types' — all three must appear.",
+          "Writing that the tube enters the ovary three ways. The three ways are into the OVULE; the tube reaches the ovary through the style in every case."
+        ],
+        "memory_tip": "One road to the ovary, three doors into the ovule: pore, base, wall.",
+        "margin_note": "The A/B/C list up front earns the naming mark before any description."
+      },
+      {
+        "id": "s2_porogamy",
+        "kind": "text",
+        "label": "Porogamy",
+        "marks": 1,
+        "mark_note": "Method A",
+        "lines": [
+          "Porogamy: the pollen tube enters the ovule",
+          "through the micropyle.",
+          "This is the most common method.",
+          "Example: Ottelia."
+        ],
+        "why": "The micropyle is the ovule's natural pore, already pointing at the egg apparatus — which is why this route is the usual one in flowering plants.",
+        "common_mistakes": [
+          "Pairing porogamy with Casuarina — Casuarina is the chalazogamy example; Ottelia goes here.",
+          "Omitting 'most common' — it is the extra fact this route carries."
+        ],
+        "memory_tip": "PORO = pore. The micropyle IS the pore, so porogamy is entry through the micropyle.",
+        "margin_note": "Route + 'most common' + example: three short lines."
+      },
+      {
+        "id": "s3_chalazogamy",
+        "kind": "text",
+        "label": "Chalazogamy",
+        "marks": 1,
+        "mark_note": "Method B",
+        "lines": [
+          "Chalazogamy: the pollen tube enters the ovule",
+          "through the chalaza, the basal part opposite",
+          "the micropyle.",
+          "Example: Casuarina."
+        ],
+        "why": "The chalaza is the end where the integuments arise, opposite the micropyle — entry there means the tube comes in from the far end, as in Casuarina.",
+        "common_mistakes": [
+          "Placing the chalaza next to the micropyle. They are OPPOSITE ends of the ovule.",
+          "Spelling drift: chalazogamy, from chalaza."
+        ],
+        "memory_tip": "The name contains the door: CHALAZ-ogamy = through the CHALAZA. Casuarina is its plant.",
+        "margin_note": "Route + the 'opposite end' fact + example — one compact point."
+      },
+      {
+        "id": "s4_mesogamy",
+        "kind": "text",
+        "label": "Mesogamy",
+        "marks": 1,
+        "mark_note": "Method C",
+        "lines": [
+          "Mesogamy: the pollen tube enters the ovule",
+          "through the integuments, between the two",
+          "ends.",
+          "Example: Cucurbita."
+        ],
+        "why": "Meso means middle: the tube pierces the side coverings of the ovule rather than using either end — the Cucurbita route.",
+        "common_mistakes": [
+          "Confusing mesogamy with porogamy. Micropyle = porogamy; the side integuments = mesogamy.",
+          "Missing the example. Cucurbita (gourd family) is the stated one."
+        ],
+        "memory_tip": "MESO = middle. Not the pore, not the base — through the wall in the middle.",
+        "margin_note": "The book's LAQ 2 adds 'or funiculus' for this route; integuments is the standard answer."
+      },
+      {
+        "id": "s5_diagrams",
+        "kind": "diagram",
+        "label": "Diagrams — the three entry routes",
+        "marks": 3,
+        "mark_note": "3 diagrams",
+        "figure": {
+          "id": "pollen_tube_entry_types",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "label",
+              "id": "cap_a",
+              "x": 38,
+              "y": 30,
+              "text": "Porogamy",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "cap_b",
+              "x": 189,
+              "y": 30,
+              "text": "Chalazogamy",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "cap_c",
+              "x": 378,
+              "y": 30,
+              "text": "Mesogamy",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "pa_outer",
+              "d": "M 46 168 A 44 62 0 1 0 134 168 A 44 62 0 1 0 46 168",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pa_inner",
+              "d": "M 64 168 A 26 40 0 1 0 116 168 A 26 40 0 1 0 64 168",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "pa_ea1",
+              "d": "M 76 196 A 6 6 0 1 0 88 196 A 6 6 0 1 0 76 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pa_ea2",
+              "d": "M 92 196 A 6 6 0 1 0 104 196 A 6 6 0 1 0 92 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pa_ea3",
+              "d": "M 84 184 A 6 6 0 1 0 96 184 A 6 6 0 1 0 84 184",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pa_mi_l",
+              "d": "M 84 224 L 84 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pa_mi_r",
+              "d": "M 96 224 L 96 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pa_fun",
+              "d": "M 108 228 L 117 252",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "pb_outer",
+              "d": "M 216 168 A 44 62 0 1 0 304 168 A 44 62 0 1 0 216 168",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pb_inner",
+              "d": "M 234 168 A 26 40 0 1 0 286 168 A 26 40 0 1 0 234 168",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "pb_ea1",
+              "d": "M 246 196 A 6 6 0 1 0 258 196 A 6 6 0 1 0 246 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pb_ea2",
+              "d": "M 262 196 A 6 6 0 1 0 274 196 A 6 6 0 1 0 262 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pb_ea3",
+              "d": "M 254 184 A 6 6 0 1 0 266 184 A 6 6 0 1 0 254 184",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pb_mi_l",
+              "d": "M 254 224 L 254 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pb_mi_r",
+              "d": "M 266 224 L 266 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pb_fun",
+              "d": "M 278 228 L 287 252",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "pc_outer",
+              "d": "M 386 168 A 44 62 0 1 0 474 168 A 44 62 0 1 0 386 168",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pc_inner",
+              "d": "M 404 168 A 26 40 0 1 0 456 168 A 26 40 0 1 0 404 168",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "pc_ea1",
+              "d": "M 416 196 A 6 6 0 1 0 428 196 A 6 6 0 1 0 416 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pc_ea2",
+              "d": "M 432 196 A 6 6 0 1 0 444 196 A 6 6 0 1 0 432 196",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pc_ea3",
+              "d": "M 424 184 A 6 6 0 1 0 436 184 A 6 6 0 1 0 424 184",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pc_mi_l",
+              "d": "M 424 224 L 424 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pc_mi_r",
+              "d": "M 436 224 L 436 238",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pc_fun",
+              "d": "M 448 228 L 457 252",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "pa_tube",
+              "d": "M 90 298 C 85 272 94 254 90 236 C 88 224 90 212 90 202",
+              "ms": 800,
+              "w": 3.5
+            },
+            {
+              "type": "stroke",
+              "id": "pa_lead_tube",
+              "d": "M 104 278 L 93 272",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "pa_lbl_tube",
+              "x": 108,
+              "y": 284,
+              "text": "Pollen tube",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pa_lead_mi",
+              "d": "M 66 246 L 82 234",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "pa_lbl_mi",
+              "x": 4,
+              "y": 252,
+              "text": "Micropyle",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pb_tube",
+              "d": "M 330 84 C 306 70 282 74 268 90 C 261 100 260 112 260 130",
+              "ms": 800,
+              "w": 3.5
+            },
+            {
+              "type": "stroke",
+              "id": "pb_lead_ch",
+              "d": "M 232 80 L 250 100",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "pb_lbl_ch",
+              "x": 168,
+              "y": 84,
+              "text": "Chalaza",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pc_tube",
+              "d": "M 506 284 C 490 258 476 238 466 216 C 459 200 452 188 442 180",
+              "ms": 800,
+              "w": 3.5
+            },
+            {
+              "type": "stroke",
+              "id": "pc_lead_int",
+              "d": "M 380 264 L 444 224",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "pc_lbl_int",
+              "x": 296,
+              "y": 272,
+              "text": "Integuments",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pc_lead_tube",
+              "d": "M 462 292 L 490 274",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "pc_lbl_tube",
+              "x": 408,
+              "y": 300,
+              "text": "Pollen tube",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The question says 'with the help of diagrams', so the three panels carry real marks: the same ovule drawn three times with the tube coming through the micropyle, the chalaza, and the integuments.",
+        "common_mistakes": [
+          "Drawing three different ovules. Keep the ovule identical so only the tube's route changes.",
+          "Sending the chalazogamy tube through the top but stopping it outside — every tube must reach the embryo sac.",
+          "Forgetting to label the route on each panel."
+        ],
+        "memory_tip": "One ovule, photocopied three times; only the tube moves: bottom door, top door, side wall.",
+        "margin_note": "Three small panels beat one large drawing — label the route under each."
+      },
+      {
+        "id": "s6_common_end",
+        "kind": "boxed_final",
+        "label": "Common end point",
+        "marks": 1,
+        "mark_note": "End point",
+        "lines": [
+          {
+            "text": "All three routes end at a synergid",
+            "style": "boxed"
+          },
+          "Whatever the entry route, the pollen tube",
+          "finally enters a synergid through the",
+          "filiform apparatus and releases the two male",
+          "gametes there."
+        ],
+        "why": "The unifying fact closes the discussion: the routes differ only in the doorway — the destination (a synergid, via the filiform apparatus) is the same in all three.",
+        "common_mistakes": [
+          "Ending the answer at the three routes without the common destination — the book itself states this line.",
+          "Writing that the tube enters the egg. It enters a synergid; the gametes then reach the egg and the central cell."
+        ],
+        "memory_tip": "Three doors, one room: every tube finishes inside a synergid.",
+        "margin_note": "The boxed unifying line is the examiner's finish — do not stop at the third route."
+      }
+    ]
+  },
+  "insider_note": "The plural 'diagrams' in the question is literal — one drawing of porogamy alone forfeits the diagram marks; three small labelled panels is what full marks looks like."
+}

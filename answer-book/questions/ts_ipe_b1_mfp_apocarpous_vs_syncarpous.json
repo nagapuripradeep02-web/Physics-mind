@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_apocarpous_vs_syncarpous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between apocarpous and syncarpous ovary.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apocarpous",
+      "marks": 1
+    },
+    {
+      "label": "Syncarpous",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Free versus fused carpels, one example each - four short items earn both marks.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_apocarpous",
+        "kind": "text",
+        "label": "Apocarpous",
+        "marks": 1,
+        "mark_note": "Apocarpous",
+        "lines": [
+          "Apocarpous: the gynoecium has more than one",
+          "carpel and the carpels are FREE from one",
+          "another.",
+          "Ex: lotus, rose."
+        ],
+        "why": "Apo = apart: each carpel stands free on the thalamus. Both conditions need more than one carpel - free versus fused is the only difference.",
+        "common_mistakes": [
+          "Applying the terms to a single-carpel flower. With one carpel the question of free or fused does not arise."
+        ],
+        "memory_tip": "Apo - apart; carpels kept separate, as in lotus.",
+        "margin_note": "Definition + one example; a two-column table also works."
+      },
+      {
+        "id": "s2_syncarpous",
+        "kind": "boxed_final",
+        "label": "Syncarpous",
+        "marks": 1,
+        "mark_note": "Syncarpous",
+        "lines": [
+          {
+            "text": "Syncarpous: the carpels are FUSED with one",
+            "style": "boxed"
+          },
+          "another.",
+          "Ex: mustard, tomato."
+        ],
+        "why": "Syn = together: the carpels are joined into one ovary, as in mustard (two fused carpels).",
+        "common_mistakes": [
+          "Swapping the examples - lotus is apocarpous; mustard and tomato are syncarpous."
+        ],
+        "memory_tip": "Syn - together, like synthesis: carpels joined.",
+        "margin_note": "FREE vs FUSED is the tested pair - make both words visible."
+      }
+    ]
+  }
+}

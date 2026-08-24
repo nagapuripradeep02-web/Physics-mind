@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_rer_vs_ser",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Differentiate between RER and SER.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ribosomes",
+      "marks": 1
+    },
+    {
+      "label": "Other names",
+      "marks": 1
+    },
+    {
+      "label": "Function",
+      "marks": 1
+    },
+    {
+      "label": "Glycogen",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book's comparison table prints, in the SER column, 'It is also called a granular E.R.' — which repeats the RER row and is a typing/scan slip for AGRANULAR. Its RER row 4 also reads 'It cannot synthesis of glycogen'. This card writes agranular and correct grammar and records the book's text."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ribosomes",
+        "kind": "text",
+        "label": "Ribosomes",
+        "marks": 1,
+        "mark_note": "Ribosomes",
+        "lines": [
+          "RER: ribosomes are attached to the outer",
+          "surface of its membrane.",
+          "SER: ribosomes are not attached, so its",
+          "surface is smooth."
+        ],
+        "why": "The whole difference starts here. The attached ribosomes are what make one rough and the other smooth, and every other difference follows from that.",
+        "common_mistakes": [
+          "Writing that SER has no ribosomes anywhere. It has none ATTACHED; free ribosomes still lie in the cytoplasm.",
+          "Writing the difference as one sentence instead of two labelled halves."
+        ],
+        "memory_tip": "R for Rough and for Ribosomes attached. S for Smooth, with none stuck on.",
+        "margin_note": "Write the two halves as two labelled lines, not a paragraph."
+      },
+      {
+        "id": "s2_names",
+        "kind": "text",
+        "label": "Other names",
+        "marks": 1,
+        "mark_note": "Granular / agranular",
+        "lines": [
+          "RER is also called granular endoplasmic",
+          "reticulum, because the attached ribosomes make",
+          "the surface look grainy.",
+          "SER is also called agranular endoplasmic",
+          "reticulum."
+        ],
+        "why": "Granular means grainy, and the ribosomes are the grains, so the alternative names say exactly what the first difference says. The book's table prints 'a granular E.R.' in the SER column, which repeats the RER row; the word is agranular.",
+        "common_mistakes": [
+          "Writing 'granular' for SER. SER is AGRANULAR.",
+          "Leaving both alternative names out; the book marks them as a separate row."
+        ],
+        "memory_tip": "Granular means grains, which are ribosomes. Put an 'a' in front and it means without them.",
+        "margin_note": "Spell agranular carefully; the missing 'a' loses the mark."
+      },
+      {
+        "id": "s3_function",
+        "kind": "text",
+        "label": "Function",
+        "marks": 1,
+        "mark_note": "Function",
+        "lines": [
+          "RER takes part in protein synthesis and in the",
+          "secretion of those proteins.",
+          "SER takes part in lipid synthesis. In animal",
+          "cells it makes steroid hormones."
+        ],
+        "why": "The attached ribosomes make protein, so RER handles protein. SER has no attached ribosomes and handles lipid instead.",
+        "common_mistakes": [
+          "Swapping the two functions. Ribosomes make protein, so protein goes with RER.",
+          "Writing that SER makes proteins."
+        ],
+        "memory_tip": "Ribosomes make protein, so RER means protein. SER is left with lipid.",
+        "margin_note": "One function line for each is enough."
+      },
+      {
+        "id": "s4_glycogen",
+        "kind": "boxed_final",
+        "label": "Glycogen",
+        "marks": 1,
+        "mark_note": "Glycogen",
+        "lines": [
+          {
+            "text": "RER → protein · SER → lipid and glycogen",
+            "style": "boxed"
+          },
+          "SER also synthesises glycogen and stores it.",
+          "RER does not synthesise glycogen.",
+          "In muscle cells the SER is called the",
+          "sarcoplasmic reticulum and stores calcium",
+          "ions."
+        ],
+        "why": "Glycogen is the fourth row of the book's table and is the difference most often left out: SER makes and stores it, RER does not.",
+        "common_mistakes": [
+          "Writing that RER stores glycogen. It does not.",
+          "Stopping after three rows when the table has four."
+        ],
+        "memory_tip": "SER does the two jobs that are not protein: lipids and glycogen.",
+        "margin_note": "Four rows, four marks. Do not stop at three."
+      }
+    ]
+  },
+  "insider_note": "This is a table question — rule two columns and write four numbered rows. A paragraph loses marks a table would have earned."
+}

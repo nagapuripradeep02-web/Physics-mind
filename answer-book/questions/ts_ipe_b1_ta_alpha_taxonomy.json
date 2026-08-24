@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_alpha_taxonomy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define alpha taxonomy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What it does not use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK SPELLING: the book prints \"Alfa taxonomy\". The standard spelling is alpha (α) taxonomy; the question text here uses the standard spelling."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "lines": [
+          "Alpha taxonomy is classification based only on",
+          "morphological characters — the external form of",
+          "the root, stem, leaf, flower, fruit and seed.",
+          "It is the earliest stage: plants are described,",
+          "named and grouped from what can be seen."
+        ],
+        "why": "The word \"only\" is the whole definition. Alpha taxonomy is defined by what it leaves out as much as by what it uses.",
+        "common_mistakes": [
+          "Leaving out the word \"only\", which turns the definition into any taxonomy.",
+          "Calling it the final stage. Alpha is the first stage."
+        ],
+        "memory_tip": "Alpha is the first Greek letter and the first look, the outside only.",
+        "margin_note": "Two lines. The word \"only morphological\" must appear.",
+        "mark_note": "Definition"
+      },
+      {
+        "id": "s2_contrast",
+        "kind": "boxed_final",
+        "label": "What it does not use",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Alpha = morphology only; omega = all data",
+            "style": "boxed"
+          },
+          "Cytology, embryology, palynology, phytochemistry",
+          "and serology are NOT used at the alpha stage."
+        ],
+        "why": "Naming the contrast proves you know the term belongs to a series, and it is the quickest way to show the boundary of the definition.",
+        "common_mistakes": [
+          "Mixing the two up and saying alpha uses all data.",
+          "Writing that alpha taxonomy is wrong. It is a stage, not an error."
+        ],
+        "memory_tip": "Alpha first, omega last: alpha uses the outside only, omega uses everything.",
+        "margin_note": "One boxed contrast line is enough for this mark.",
+        "mark_note": "Contrast"
+      }
+    ]
+  },
+  "insider_note": "Alpha and omega come as a pair in this chapter. Learn the contrast once and both two-mark questions are answered."
+}

@@ -1,0 +1,425 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_solanaceae_essential_organs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the essential organs of Solanaceae.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Androecium",
+      "marks": 1
+    },
+    {
+      "label": "Gynoecium",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    },
+    {
+      "label": "The oblique ovary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Taxonomy of Angiosperms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_androecium",
+        "kind": "text",
+        "label": "Androecium",
+        "marks": 1,
+        "lines": [
+          "The essential organs are the androecium and the",
+          "gynoecium.",
+          "Androecium:",
+          "Five stamens, epipetalous — the filaments are",
+          "joined to the corolla tube — and they alternate",
+          "with the petals.",
+          "Anthers are dithecous, basifixed and introrse."
+        ],
+        "why": "Epipetalous and alternating with the petals fixes both where the stamens are attached and where they sit, which is what a technical description needs.",
+        "common_mistakes": [
+          "Writing epiphyllous. That word is for a perianth; Solanaceae has a corolla, so the word is epipetalous.",
+          "Writing that the stamens are opposite the petals. They alternate with them."
+        ],
+        "memory_tip": "Solanaceae counts in fives: five sepals, five petals, five stamens. Only the carpels are different, at two.",
+        "margin_note": "Head the block \"Androecium\". The word epipetalous must appear.",
+        "mark_note": "Androecium"
+      },
+      {
+        "id": "s2_gynoecium",
+        "kind": "text",
+        "label": "Gynoecium",
+        "marks": 1,
+        "lines": [
+          "Gynoecium:",
+          "Bicarpellary and syncarpous, with a bilocular",
+          "superior ovary.",
+          "Placentation is axile and the placenta is swollen.",
+          "The style is terminal and the stigma is capitate."
+        ],
+        "why": "Two fused carpels give two chambers with a central column, and the swollen placenta filling those chambers is a Solanaceae feature.",
+        "common_mistakes": [
+          "Writing trilocular. That is Liliaceae.",
+          "Leaving out the swollen placenta, which the book marks separately."
+        ],
+        "memory_tip": "Two carpels, two locules, one swollen placenta in the middle.",
+        "margin_note": "Head the block \"Gynoecium\". The swollen placenta is a separate fact.",
+        "mark_note": "Gynoecium"
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "solanaceae_flower_ls_ovary_ts",
+          "width": 520,
+          "height": 288,
+          "elements": [
+            {
+              "type": "label",
+              "id": "cap_ls",
+              "x": 14,
+              "y": 22,
+              "text": "(a) L.S. of flower",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_ts",
+              "x": 296,
+              "y": 22,
+              "text": "(b) T.S. of ovary",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ls_pedicel",
+              "d": "M 144 258 L 144 278 M 156 258 L 156 278",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "ls_thalamus",
+              "d": "M 130 246 L 170 246 L 162 258 L 138 258 Z",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ls_corolla_l",
+              "d": "M 132 246 C 118 212 102 172 94 130 C 90 118 84 110 76 104",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "ls_corolla_r",
+              "d": "M 168 246 C 182 212 198 172 206 130 C 210 118 216 110 224 104",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "ls_ovary",
+              "d": "M 132 222 A 18 20 0 1 0 168 222 A 18 20 0 1 0 132 222",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "ls_ovary_septum",
+              "d": "M 150 204 L 150 240",
+              "ms": 200,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ls_style",
+              "d": "M 150 202 L 150 100",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ls_stigma",
+              "d": "M 139 92 A 11 7 0 1 0 161 92 A 11 7 0 1 0 139 92",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "ls_filament_l",
+              "d": "M 108 178 L 122 138",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ls_filament_r",
+              "d": "M 192 178 L 178 138",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ls_epi_marks",
+              "d": "M 104.5 178 A 3.5 3.5 0 1 0 111.5 178 A 3.5 3.5 0 1 0 104.5 178 M 188.5 178 A 3.5 3.5 0 1 0 195.5 178 A 3.5 3.5 0 1 0 188.5 178",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_l",
+              "d": "M 114 118 A 8 20 0 1 0 130 118 A 8 20 0 1 0 114 118",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_r",
+              "d": "M 170 118 A 8 20 0 1 0 186 118 A 8 20 0 1 0 170 118",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_groove",
+              "d": "M 122 102 L 122 134 M 178 102 L 178 134",
+              "ms": 200,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ts_wall_out",
+              "d": "M 300 156 A 48 48 0 1 0 396 156 A 48 48 0 1 0 300 156",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "ts_wall_in",
+              "d": "M 308 156 A 40 40 0 1 0 388 156 A 40 40 0 1 0 308 156",
+              "ms": 540
+            },
+            {
+              "type": "stroke",
+              "id": "ts_median",
+              "d": "M 348 108 L 348 204",
+              "ms": 300,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "ts_septum",
+              "d": "M 376.3 127.7 L 319.7 184.3",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "ts_placenta",
+              "d": "M 332.4 171.6 A 22 11 -45 1 0 363.6 140.4 A 22 11 -45 1 0 332.4 171.6",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ts_ovules_1",
+              "d": "M 323 155.3 A 4.5 4.5 0 1 0 332 155.3 A 4.5 4.5 0 1 0 323 155.3 M 329.4 148.9 A 4.5 4.5 0 1 0 338.4 148.9 A 4.5 4.5 0 1 0 329.4 148.9 M 336.4 141.9 A 4.5 4.5 0 1 0 345.4 141.9 A 4.5 4.5 0 1 0 336.4 141.9 M 342.8 135.5 A 4.5 4.5 0 1 0 351.8 135.5 A 4.5 4.5 0 1 0 342.8 135.5",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ts_ovules_2",
+              "d": "M 344.2 176.5 A 4.5 4.5 0 1 0 353.2 176.5 A 4.5 4.5 0 1 0 344.2 176.5 M 350.6 170.1 A 4.5 4.5 0 1 0 359.6 170.1 A 4.5 4.5 0 1 0 350.6 170.1 M 357.6 163.1 A 4.5 4.5 0 1 0 366.6 163.1 A 4.5 4.5 0 1 0 357.6 163.1 M 364 156.7 A 4.5 4.5 0 1 0 373 156.7 A 4.5 4.5 0 1 0 364 156.7",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ld_stigma",
+              "d": "M 74 64 L 140 90",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_stigma",
+              "x": 6,
+              "y": 68,
+              "text": "Stigma",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_anther",
+              "d": "M 74 110 L 114 116",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_anther",
+              "x": 6,
+              "y": 114,
+              "text": "Anther",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_filament",
+              "d": "M 92 156 L 114 158",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_filament",
+              "x": 6,
+              "y": 160,
+              "text": "Filament",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_corolla",
+              "d": "M 74 202 L 110 196",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_corolla",
+              "x": 6,
+              "y": 206,
+              "text": "Corolla",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovary",
+              "d": "M 62 248 L 134 230",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_ovary",
+              "x": 6,
+              "y": 252,
+              "text": "Ovary",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovarywall",
+              "d": "M 404 66 L 364 114",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_ovarywall",
+              "x": 408,
+              "y": 70,
+              "text": "Ovary wall",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_locule",
+              "d": "M 404 116 L 338 130",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_locule",
+              "x": 408,
+              "y": 122,
+              "text": "Locule",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_placenta",
+              "d": "M 404 170 L 357 157",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_placenta",
+              "x": 408,
+              "y": 174,
+              "text": "Placenta",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovule",
+              "d": "M 404 222 L 353 177",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_ovule",
+              "x": 408,
+              "y": 226,
+              "text": "Ovule",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The L.S. shows the filaments joined to the corolla tube, which is the only way to draw \"epipetalous\"; the T.S. shows the two chambers, the swollen placenta and the tilted partition.",
+        "common_mistakes": [
+          "Drawing the stamens free from the corolla. In Solanaceae they are attached to it.",
+          "Drawing the partition upright. It must be tilted to show the oblique carpels."
+        ],
+        "memory_tip": "Draw the circle, then the partition as a slanting line, not an upright one.",
+        "margin_note": "The T.S. of the ovary with the slanting partition carries this mark on its own."
+      },
+      {
+        "id": "s4_oblique",
+        "kind": "boxed_final",
+        "label": "The oblique ovary",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Carpels lie obliquely at 45°",
+            "style": "boxed"
+          },
+          "They are set at 45° to the median plane. This",
+          "oblique ovary is a family character of Solanaceae",
+          "and separates it from other families with a",
+          "bilocular superior ovary.",
+          "Example: Solanum nigrum."
+        ],
+        "why": "Many families have a bilocular superior ovary, so the 45 degree tilt is the character that names this one.",
+        "common_mistakes": [
+          "Leaving out the angle. \"Obliquely at 45 degrees\" is the marked phrase.",
+          "Saying the whole flower is tilted. Only the carpels are set obliquely."
+        ],
+        "memory_tip": "Everything in Solanaceae is straight except the carpels, which sit at 45 degrees.",
+        "margin_note": "One boxed line. Write \"obliquely at 45 degrees\" in those words.",
+        "mark_note": "Oblique ovary"
+      }
+    ]
+  },
+  "insider_note": "The word \"essential\" limits this to the androecium and the gynoecium. The oblique ovary is the sentence that separates a full answer from a half one."
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_events_matched_to_phases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The following events occur during the various phases of the cell cycle. Name the phase against each: (a) disintegration of the nuclear membrane (b) appearance of the nucleolus (c) division of the centromere (d) replication of DNA.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "(a) and (b)",
+      "marks": 1
+    },
+    {
+      "label": "(c) and (d)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, VSAQ 9) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ab",
+        "kind": "text",
+        "label": "(a) and (b)",
+        "marks": 1,
+        "mark_note": "First pair",
+        "lines": [
+          {
+            "text": "(a) Disintegration of the nuclear membrane —",
+            "style": "indent"
+          },
+          {
+            "text": "Prophase. It breaks down at the end of",
+            "style": "indent"
+          },
+          {
+            "text": "prophase.",
+            "style": "indent"
+          },
+          {
+            "text": "(b) Appearance of the nucleolus — Telophase.",
+            "style": "indent"
+          },
+          {
+            "text": "The nucleolus and the nuclear membrane both",
+            "style": "indent"
+          },
+          {
+            "text": "reform here.",
+            "style": "indent"
+          }
+        ],
+        "why": "Prophase and telophase are opposites: what disappears in prophase, the nuclear membrane and the nucleolus, comes back in telophase. Pairing them that way makes both answers one decision.",
+        "common_mistakes": [
+          "Answering metaphase for the nuclear membrane. By metaphase it has already gone.",
+          "Answering prophase for the nucleolus. In prophase the nucleolus disappears."
+        ],
+        "memory_tip": "Prophase takes the nucleus apart, telophase puts it back together.",
+        "margin_note": "One line each. No explanation is needed."
+      },
+      {
+        "id": "s2_cd",
+        "kind": "boxed_final",
+        "label": "(c) and (d)",
+        "marks": 1,
+        "mark_note": "Second pair",
+        "lines": [
+          {
+            "text": "(c) Division of the centromere — Anaphase.",
+            "style": "indent"
+          },
+          {
+            "text": "(d) Replication of DNA — S phase (synthesis",
+            "style": "indent"
+          },
+          {
+            "text": "phase) of interphase.",
+            "style": "indent"
+          },
+          {
+            "text": "Prophase · Telophase · Anaphase · S phase",
+            "style": "boxed"
+          }
+        ],
+        "why": "The centromere splits only when the sister chromatids are pulled apart, which is the defining event of anaphase; DNA replication is the defining event of S phase. Each answer is the phase named after its own event.",
+        "common_mistakes": [
+          "Answering metaphase for centromere division. In metaphase the centromeres are lined up, still whole.",
+          "Answering G₁ or G₂ for DNA replication. Both gap phases make proteins, not DNA."
+        ],
+        "memory_tip": "Name the phase by its own event: S for synthesis, anaphase for apart.",
+        "margin_note": "Four one-word answers in all. Write the phase names only."
+      }
+    ]
+  },
+  "insider_note": "Four one-word answers. Write the phase name only — a wrong extra sentence can lose a mark the name had already earned."
+}

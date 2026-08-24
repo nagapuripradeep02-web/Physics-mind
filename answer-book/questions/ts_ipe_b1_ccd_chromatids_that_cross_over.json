@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_chromatids_that_cross_over",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which of the four chromatids of a bivalent at prophase I of meiosis can take part in crossing over?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The chromatids named",
+      "marks": 1
+    },
+    {
+      "label": "Why sister chromatids do not",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 4) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_named",
+        "kind": "text",
+        "label": "The chromatids named",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          "A bivalent is two homologous chromosomes paired",
+          "together. Each of them has two sister",
+          "chromatids, so a bivalent has four chromatids in",
+          "all.",
+          "Crossing over takes place between non-sister",
+          "chromatids — one chromatid of one homologue",
+          "with one chromatid of the other."
+        ],
+        "why": "Only chromatids belonging to DIFFERENT homologues carry different alleles of the same gene, so only an exchange between them can produce a new combination.",
+        "common_mistakes": [
+          "Writing 'all four chromatids'. Only two of the four take part in one crossover.",
+          "Writing 'sister chromatids'. That is the opposite of the answer."
+        ],
+        "memory_tip": "Sisters are identical copies. Non-sisters come from the two different parents.",
+        "margin_note": "Say four chromatids first, then name the two that cross."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why not sisters",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "Non-sister chromatids of the two homologous chromosomes — two of the four.",
+            "style": "boxed"
+          },
+          "Sister chromatids are exact copies of each",
+          "other, so an exchange between them would give",
+          "no new combination of genes."
+        ],
+        "why": "The purpose of crossing over is new gene combinations, and moving material between two identical chromatids changes nothing. That is the reason the answer is non-sister and not sister.",
+        "common_mistakes": [
+          "Answering with 'chiasmata' instead of naming the chromatids. A chiasma is the place, not the chromatid."
+        ],
+        "memory_tip": "Crossing over exchanges material between different chromosomes, never between two copies of the same one.",
+        "margin_note": "One sentence of reason is enough for the second mark."
+      }
+    ]
+  },
+  "insider_note": "The word 'non-sister' is the mark. Adding 'of the homologous chromosomes' makes the answer complete."
+}

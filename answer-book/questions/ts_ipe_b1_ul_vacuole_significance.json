@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_vacuole_significance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the significance of the vacuole in a plant cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Size and tonoplast",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_size_tonoplast",
+        "kind": "text",
+        "label": "Size and tonoplast",
+        "marks": 1,
+        "mark_note": "Size + tonoplast",
+        "lines": [
+          "In a mature plant cell the vacuole can fill",
+          "up to 90 per cent of the cell volume.",
+          "It is bound by a single membrane called the",
+          "tonoplast and is filled with cell sap."
+        ],
+        "why": "The vacuole is marked as a store, so the answer must first say what holds the store — one membrane, the tonoplast — and how large that store is. The book states the 90 per cent flatly; it is an upper figure for a mature cell, not every cell.",
+        "common_mistakes": [
+          "Writing that the vacuole has a double membrane. The tonoplast is a single membrane.",
+          "Saying the vacuole is empty. It is filled with cell sap."
+        ],
+        "memory_tip": "Tonoplast wraps the vacuole, plasma membrane wraps the cell. One membrane each.",
+        "margin_note": "Two lines: the size and the tonoplast. That is this mark."
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "Functions",
+        "marks": 1,
+        "mark_note": "Functions",
+        "lines": [
+          {
+            "text": "Vacuole = store + turgor + osmoregulation",
+            "style": "boxed"
+          },
+          "It stores water, mineral ions, sugars, waste",
+          "and secondary metabolites such as",
+          "anthocyanin, so it is called the store house",
+          "of the cell.",
+          "The tonoplast moves ions into the sap, water",
+          "follows by osmosis, and the cell stays firm."
+        ],
+        "why": "Every function follows from one fact: the tonoplast moves ions into the sap. That makes the sap concentrated, water enters by osmosis, and the pressure inside keeps the cell firm.",
+        "common_mistakes": [
+          "Listing only storage. The turgor and osmoregulation marks are then lost.",
+          "Writing that the vacuole makes food. It stores; it does not make."
+        ],
+        "memory_tip": "Three S words: Store, Sap pressure, Salt balance.",
+        "margin_note": "The boxed line plus two named stored substances completes it."
+      }
+    ]
+  },
+  "insider_note": "The word in the question is significance, so a list of stored substances alone is half an answer — the turgor point is what completes it."
+}

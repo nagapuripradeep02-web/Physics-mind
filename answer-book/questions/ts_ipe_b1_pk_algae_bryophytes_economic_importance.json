@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_algae_bryophytes_economic_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on the economic importance of algae and bryophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Economic importance of algae", "marks": 2 },
+    { "label": "Economic importance of bryophytes", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book pp.8-9, SAQ 5 (the algae half ends p.8; the bryophyte half opens p.9). The book lists four algae points (food, agar, iodine, SCP) and two bryophyte points (Sphagnum peat, succession); the card adds NCERT's CO2-fixation, hydrocolloid, erosion-control and animal-food points. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 2+2 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_algae",
+        "kind": "text",
+        "label": "Economic importance of algae",
+        "marks": 2,
+        "mark_note": "Algae uses",
+        "lines": [
+          "Algae carry out about half of the total",
+          "carbon dioxide fixation on earth by",
+          "photosynthesis (primary producers).",
+          "Food: species of Porphyra, Laminaria and",
+          "Sargassum are eaten.",
+          "Agar, from Gelidium and Gracilaria, is",
+          "used in microbiological media and in",
+          "ice-creams and jellies.",
+          "Chlorella and Spirulina are used as",
+          "single-cell protein (SCP)."
+        ],
+        "why": "Two marks here mean about four correct uses with named organisms. NCERT's list: half of all CO₂ fixation, food species, agar, hydrocolloids (algin from brown algae, carrageen from red) and SCP; the book also notes iodine extracted from Laminaria.",
+        "common_mistakes": [
+          "Naming uses without the organisms — 'agar from Gelidium' earns; bare 'agar' may not.",
+          "Writing 'sea grasses' as the food — the food algae are Porphyra, Laminaria and Sargassum."
+        ],
+        "memory_tip": "Five uses in one line: air (CO₂ fixation), food, agar, gels (algin, carrageen), protein (SCP).",
+        "margin_note": "About four points with named genera fill the two marks."
+      },
+      {
+        "id": "s2_bryophytes",
+        "kind": "boxed_final",
+        "label": "Economic importance of bryophytes",
+        "marks": 2,
+        "mark_note": "Bryophyte uses",
+        "lines": [
+          { "text": "Main uses: Sphagnum peat + role in succession", "style": "boxed" },
+          "Sphagnum provides peat, used as fuel and",
+          "as packing material for trans-shipment",
+          "of living material (it holds water).",
+          "Mosses with lichens are the first",
+          "colonisers of bare rocks (plant",
+          "succession).",
+          "Moss carpets reduce the impact of falling",
+          "rain and prevent soil erosion.",
+          "Some mosses are food for herbaceous",
+          "mammals and birds."
+        ],
+        "why": "Bryophytes matter less commercially but greatly ecologically: Sphagnum peat is the one economic product, while succession, erosion control and animal food are the ecological uses. The book lists only peat and succession; NCERT adds the erosion and food points.",
+        "common_mistakes": [
+          "Writing that Sphagnum gives agar — agar comes from red algae; Sphagnum gives peat.",
+          "Leaving out why Sphagnum packs living material — its water-holding capacity is the reason."
+        ],
+        "memory_tip": "One product, three services: peat, then succession, erosion control and food for animals.",
+        "margin_note": "Two or three bryophyte points with Sphagnum named fill these two marks."
+      }
+    ]
+  },
+  "insider_note": "Split the answer visibly into 'Algae:' and 'Bryophytes:' halves — examiners award two marks per labelled half."
+}

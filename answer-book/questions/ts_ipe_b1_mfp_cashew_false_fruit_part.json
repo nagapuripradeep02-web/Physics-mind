@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_cashew_false_fruit_part",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which part of the flower in the cashew plant forms the false fruit?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The part",
+      "marks": 1
+    },
+    {
+      "label": "The true fruit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "One-word answers lose the second mark here - contrast the pedicel apple with the ovary nut.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_part",
+        "kind": "text",
+        "label": "The false fruit part",
+        "marks": 1,
+        "mark_note": "Pedicel",
+        "lines": [
+          "In cashew the PEDICEL of the flower becomes",
+          "fleshy and juicy and forms the false fruit -",
+          "the cashew apple."
+        ],
+        "why": "The asked fact is one word: the pedicel (the flower stalk). It swells into the juicy cashew apple, which is not the real fruit.",
+        "common_mistakes": [
+          "Writing thalamus. The thalamus makes the apple's false fruit; in cashew it is the pedicel."
+        ],
+        "memory_tip": "The cashew apple is a swollen stalk - pedicel.",
+        "margin_note": "Pedicel is the mark; cashew apple names the structure."
+      },
+      {
+        "id": "s2_true_fruit",
+        "kind": "boxed_final",
+        "label": "The true fruit",
+        "marks": 1,
+        "mark_note": "True fruit",
+        "lines": [
+          {
+            "text": "The true fruit is the cashew nut, which",
+            "style": "boxed"
+          },
+          "develops from the ovary and hangs below the",
+          "false fruit."
+        ],
+        "why": "Completing the pair - false fruit from the pedicel, true fruit (the nut) from the ovary - shows the definition of false fruit is understood.",
+        "common_mistakes": [
+          "Calling the juicy part the fruit and the nut a seed. The nut IS the fruit; the seed is inside it."
+        ],
+        "memory_tip": "Juicy stalk above, true nut below.",
+        "margin_note": "The ovary-to-nut line completes the two marks."
+      }
+    ]
+  }
+}

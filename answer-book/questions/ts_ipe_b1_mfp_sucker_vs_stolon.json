@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_sucker_vs_stolon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does the sucker of Chrysanthemum differ from the stolon of jasmine?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sucker",
+      "marks": 1
+    },
+    {
+      "label": "Stolon",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Underline the two direction words - upward for sucker, downward for stolon - so the examiner sees the difference in one glance.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sucker",
+        "kind": "text",
+        "label": "Sucker of Chrysanthemum",
+        "marks": 1,
+        "mark_note": "Sucker",
+        "lines": [
+          "Sucker: a lateral branch from the underground",
+          "part of the stem; it grows horizontally",
+          "beneath the soil and then comes out obliquely",
+          "upward as a new shoot."
+        ],
+        "why": "The sucker's identity is its path: it STARTS underground and SURFACES upward. Both halves of the path must be written.",
+        "common_mistakes": [
+          "Calling the sucker a root. It is a stem branch - it carries buds and gives a new shoot."
+        ],
+        "memory_tip": "Sucker surfaces: born under the soil, comes up into the air.",
+        "margin_note": "Write the path - underground, horizontal, then obliquely up."
+      },
+      {
+        "id": "s2_stolon",
+        "kind": "boxed_final",
+        "label": "Stolon of jasmine",
+        "marks": 1,
+        "mark_note": "Stolon",
+        "lines": [
+          {
+            "text": "Stolon: a slender AERIAL lateral branch from",
+            "style": "boxed"
+          },
+          "the base of the main stem.",
+          "It grows up for some time, bends down to",
+          "touch the ground and produces adventitious",
+          "roots there."
+        ],
+        "why": "The stolon runs the opposite path to the sucker: it starts in the air and bends down to the ground. The contrast of paths is the whole difference.",
+        "common_mistakes": [
+          "Swapping the two paths. Sucker: soil to air. Stolon: air to soil."
+        ],
+        "memory_tip": "Sucker goes up and out of the soil; stolon stoops down into it.",
+        "margin_note": "The words aerial and bends down are the scoring contrast."
+      }
+    ]
+  }
+}

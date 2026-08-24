@@ -1,0 +1,76 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_icbn_full_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does ICBN stand for?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The full form",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 1 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints 'International code for Botanical Nomenclature'; the standard expansion uses 'of' — International Code of Botanical Nomenclature — and the card writes that."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_full_form",
+        "kind": "boxed_final",
+        "label": "The full form",
+        "marks": 2,
+        "mark_note": "Full form",
+        "lines": [
+          {
+            "text": "ICBN — International Code of Botanical Nomenclature",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question asks only for the full form, so the expansion is the whole answer. The book prints 'International code for Botanical Nomenclature' — the standard name uses 'of', not 'for': International Code of Botanical Nomenclature.",
+        "common_mistakes": [
+          "Writing 'International Council' or 'Indian Code'. The I stands for International and the C for Code.",
+          "Writing 'Biological' for the B. In ICBN the B is Botanical — this code is for plant names."
+        ],
+        "memory_tip": "Read the letters in order: I-C-B-N = International Code of Botanical Nomenclature.",
+        "margin_note": "One boxed line is the full answer. Start each word with a capital letter."
+      },
+      {
+        "id": "s2_what_it_is",
+        "kind": "text",
+        "label": "What the code is",
+        "marks": 0,
+        "lines": [
+          "It is the agreed set of rules for giving",
+          "scientific names to plants."
+        ],
+        "why": "One extra line showing what the code does makes the answer complete, and it costs only a few seconds.",
+        "common_mistakes": [
+          "Spending time on the history of the code. The 2-mark question does not ask for it."
+        ],
+        "memory_tip": "A code is a set of rules — ICBN is the rule book for plant names.",
+        "margin_note": "Optional line. Write it only if time allows."
+      }
+    ]
+  },
+  "insider_note": "Full-form questions are checked word by word — a wrong middle word such as 'Council' or 'for' can cost the mark."
+}

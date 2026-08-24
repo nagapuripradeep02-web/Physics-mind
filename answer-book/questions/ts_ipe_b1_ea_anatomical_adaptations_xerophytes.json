@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_anatomical_adaptations_xerophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give in detail the anatomical adaptations shown by xerophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Cuticle and epidermis", "marks": 1 },
+    { "label": "Stomata", "marks": 1 },
+    { "label": "Mechanical tissue", "marks": 1 },
+    { "label": "Vascular tissue and mesophyll", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 6. All five of the book's points are kept and grouped into four marked blocks; the sclerenchymatous hypodermis, the compact mesophyll and the water-storing parenchyma of succulents are added from standard texts. Note on the book's wording: it writes 'Stomata are hypostomatous', which is loose — a LEAF is hypostomatous, a stoma is not. The card says the leaves are hypostomatous. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cuticle_epidermis",
+        "kind": "text",
+        "label": "Cuticle and epidermis",
+        "marks": 1,
+        "mark_note": "Epidermis",
+        "lines": [
+          "A thick cuticle is present on the",
+          "epidermis, and it reduces water loss through",
+          "the surface.",
+          "The epidermis itself may be multilayered",
+          "(multiple epidermis).",
+          "Below it a hypodermis of sclerenchyma is",
+          "often present."
+        ],
+        "why": "Water leaves the plant through the surface, so the surface is thickened in three layers one after another: cuticle outside, several rows of epidermis under it, then a sclerenchymatous hypodermis.",
+        "common_mistakes": [
+          "Writing that the cuticle is thin or absent. That is a hydrophyte feature.",
+          "Confusing hypodermis with hypocotyl. The hypodermis is the layer under the epidermis."
+        ],
+        "memory_tip": "Three layers from outside in: cuticle, multiple epidermis, sclerenchyma hypodermis.",
+        "margin_note": "Four tissue blocks for four marks. Give the reason with each one."
+      },
+      {
+        "id": "s2_stomata",
+        "kind": "text",
+        "label": "Stomata",
+        "marks": 1,
+        "mark_note": "Stomata",
+        "lines": [
+          "Leaves are hypostomatous: the stomata lie",
+          "on the lower surface only, away from",
+          "direct sunlight.",
+          "The stomata are sunken — each one sits in a",
+          "pit below the surface, often lined with",
+          "hairs.",
+          "The pit holds still, moist air, so less",
+          "water diffuses out."
+        ],
+        "why": "Water vapour diffuses out fastest into dry moving air. A sunken stoma opens into a small pocket of still, humid air, which slows the diffusion at the point where it happens.",
+        "common_mistakes": [
+          "Writing epistomatous. Epi means upper and belongs to floating leaves, not xerophytes.",
+          "Saying stomata are absent. They are present, but sunken and fewer."
+        ],
+        "memory_tip": "Down and in: down to the lower surface, in to a sunken pit.",
+        "margin_note": "This block usually carries the mark. Write hypostomatous AND sunken."
+      },
+      {
+        "id": "s3_mechanical",
+        "kind": "text",
+        "label": "Mechanical tissue",
+        "marks": 1,
+        "mark_note": "Mechanical",
+        "lines": [
+          "Mechanical tissue is very well developed.",
+          "Sclerenchyma and collenchyma occur in large",
+          "amounts in the stem and the leaf.",
+          "They hold the shape of the plant even when",
+          "the cells lose water, so the plant does not",
+          "collapse during drought."
+        ],
+        "why": "A hydrophyte is supported by the water around it; a xerophyte has nothing but its own tissue, and it must stay upright even when its cells are short of water.",
+        "common_mistakes": [
+          "Writing that mechanical tissue is poorly developed. That is the hydrophyte answer.",
+          "Naming only sclerenchyma without saying what it does here."
+        ],
+        "memory_tip": "Hydrophyte: poorly developed. Xerophyte: very well developed. Same tissue, opposite answers.",
+        "margin_note": "One line of fact and one of reason. Do not expand this block."
+      },
+      {
+        "id": "s4_vascular_mesophyll",
+        "kind": "boxed_final",
+        "label": "Vascular tissue and mesophyll",
+        "marks": 1,
+        "mark_note": "Xylem",
+        "lines": [
+          { "text": "Vascular tissue, especially xylem, is well", "style": "boxed" },
+          { "text": "developed.", "style": "boxed" },
+          "Water reaching the deep root has a long way",
+          "to travel, so wide, plentiful xylem is",
+          "needed.",
+          "Mesophyll is compact with few air spaces,",
+          "and succulents add a water-storing",
+          "parenchyma."
+        ],
+        "why": "The xylem is the exact opposite of the hydrophyte case: here water is absorbed at one point far below the ground and has to be carried the whole length of the plant, so the conducting tissue is enlarged.",
+        "common_mistakes": [
+          "Writing that xylem is reduced. Reduced xylem is the hydrophyte answer.",
+          "Leaving out the mesophyll. Compact mesophyll with few air spaces is a marked point."
+        ],
+        "memory_tip": "Long distance to carry the water, so wide xylem. Xerophyte xylem is well developed; hydrophyte xylem is not.",
+        "margin_note": "End here. The xylem contrast is the line an examiner looks for last."
+      }
+    ]
+  },
+  "insider_note": "Anatomical means internal tissue, so spines and deep roots earn nothing here. The safest four blocks are cuticle and epidermis, sunken stomata, mechanical tissue, xylem — and every one of them is the exact opposite of the hydrophyte answer."
+}

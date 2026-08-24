@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_epiphyte_root_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What type of specialised roots are found in epiphytic plants? What is their function?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two root types",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "The examiner checks that epiphyte is not treated as parasite - moisture comes from the air, never from the host.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_types",
+        "kind": "text",
+        "label": "Roots of epiphytes",
+        "marks": 1,
+        "mark_note": "Both types",
+        "lines": [
+          "Epiphytes carry two kinds of specialised",
+          "roots: velamen roots and clinging roots.",
+          "Ex: Vanda, an epiphytic orchid."
+        ],
+        "why": "An epiphyte lives on another plant with no contact with soil, so it needs one root system for moisture and another for attachment - two types, both named.",
+        "common_mistakes": [
+          "Naming only velamen roots. The clinging roots are the second half of the answer."
+        ],
+        "memory_tip": "An epiphyte needs to drink and to hold on - velamen drinks, clinging holds.",
+        "margin_note": "Name both root types plus Vanda as the example."
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "Functions",
+        "marks": 1,
+        "mark_note": "Both functions",
+        "lines": [
+          {
+            "text": "Velamen roots absorb moisture from the",
+            "style": "boxed"
+          },
+          "atmosphere through the spongy velamen tissue.",
+          "Clinging roots fix the plant to the branches",
+          "of the host tree."
+        ],
+        "why": "Each root type maps to one function; writing the pair as two matched sentences is what the examiner ticks.",
+        "common_mistakes": [
+          "Writing that epiphyte roots absorb food from the host. An epiphyte only sits on the host; it is not a parasite."
+        ],
+        "memory_tip": "Velamen - vapour from air; clinging - clamped to bark.",
+        "margin_note": "Two sentences, one per root type - keep the pairing visible."
+      }
+    ]
+  }
+}

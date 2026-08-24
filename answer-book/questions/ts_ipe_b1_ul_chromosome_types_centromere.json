@@ -1,0 +1,294 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_chromosome_types_centromere",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of the types of chromosomes based on the position of the centromere.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Basis of the classification",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Metacentric and sub-metacentric",
+      "marks": 1
+    },
+    {
+      "label": "Acrocentric and telocentric",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book's diagram labels Satellite and Secondary constriction as well as the four types. Adding them here would have crowded a four-panel figure past the label-collision limit, so this card's figure shows the four types and their arms, and the satellite gets its own labelled sketch on the VSAQ card ts_ipe_b1_ul_satellite_chromosome."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_basis",
+        "kind": "text",
+        "label": "The basis",
+        "marks": 1,
+        "mark_note": "The basis",
+        "lines": [
+          "Every chromosome has a primary constriction",
+          "called the centromere, which divides the",
+          "chromosome into two arms.",
+          "The position of the centromere fixes the",
+          "relative length of the two arms, and so the",
+          "shape of the chromosome.",
+          "On this basis chromosomes are of four types."
+        ],
+        "why": "All four names describe one thing — how far the centromere lies from the end — so the classification only makes sense once the centromere and the arms are defined.",
+        "common_mistakes": [
+          "Writing that the classification is based on chromosome length. It is based on centromere position.",
+          "Naming only three types. There are four."
+        ],
+        "memory_tip": "Move the centromere from the middle to the tip and you pass through all four types in order.",
+        "margin_note": "Define centromere and arms before naming the types."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "chromosome_types",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "meta_chromatid_l",
+              "d": "M 39.0 105.0 Q 39.0 96.0 48.0 96.0 Q 57.0 96.0 57.0 105.0 L 57.0 161.0 Q 54.0 170.0 57.0 179.0 L 57.0 235.0 Q 57.0 244.0 48.0 244.0 Q 39.0 244.0 39.0 235.0 L 39.0 179.0 Q 42.0 170.0 39.0 161.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "meta_chromatid_r",
+              "d": "M 63.0 105.0 Q 63.0 96.0 72.0 96.0 Q 81.0 96.0 81.0 105.0 L 81.0 161.0 Q 78.0 170.0 81.0 179.0 L 81.0 235.0 Q 81.0 244.0 72.0 244.0 Q 63.0 244.0 63.0 235.0 L 63.0 179.0 Q 66.0 170.0 63.0 161.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "meta_centromere",
+              "d": "M 66.0 170.0 L 65.5 172.3 L 64.2 174.2 L 62.3 175.5 L 60.0 176.0 L 57.7 175.5 L 55.8 174.2 L 54.5 172.3 L 54.0 170.0 L 54.5 167.7 L 55.8 165.8 L 57.7 164.5 L 60.0 164.0 L 62.3 164.5 L 64.2 165.8 L 65.5 167.7 L 66.0 170.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "submeta_chromatid_l",
+              "d": "M 179.0 105.0 Q 179.0 96.0 188.0 96.0 Q 197.0 96.0 197.0 105.0 L 197.0 139.0 Q 194.0 148.0 197.0 157.0 L 197.0 235.0 Q 197.0 244.0 188.0 244.0 Q 179.0 244.0 179.0 235.0 L 179.0 157.0 Q 182.0 148.0 179.0 139.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "submeta_chromatid_r",
+              "d": "M 203.0 105.0 Q 203.0 96.0 212.0 96.0 Q 221.0 96.0 221.0 105.0 L 221.0 139.0 Q 218.0 148.0 221.0 157.0 L 221.0 235.0 Q 221.0 244.0 212.0 244.0 Q 203.0 244.0 203.0 235.0 L 203.0 157.0 Q 206.0 148.0 203.0 139.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "submeta_centromere",
+              "d": "M 206.0 148.0 L 205.5 150.3 L 204.2 152.2 L 202.3 153.5 L 200.0 154.0 L 197.7 153.5 L 195.8 152.2 L 194.5 150.3 L 194.0 148.0 L 194.5 145.7 L 195.8 143.8 L 197.7 142.5 L 200.0 142.0 L 202.3 142.5 L 204.2 143.8 L 205.5 145.7 L 206.0 148.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "acro_chromatid_l",
+              "d": "M 318.0 105.0 Q 318.0 96.0 327.0 96.0 Q 336.0 96.0 336.0 105.0 L 336.0 109.0 Q 333.0 118.0 336.0 127.0 L 336.0 235.0 Q 336.0 244.0 327.0 244.0 Q 318.0 244.0 318.0 235.0 L 318.0 127.0 Q 321.0 118.0 318.0 109.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "acro_chromatid_r",
+              "d": "M 342.0 105.0 Q 342.0 96.0 351.0 96.0 Q 360.0 96.0 360.0 105.0 L 360.0 109.0 Q 357.0 118.0 360.0 127.0 L 360.0 235.0 Q 360.0 244.0 351.0 244.0 Q 342.0 244.0 342.0 235.0 L 342.0 127.0 Q 345.0 118.0 342.0 109.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "acro_centromere",
+              "d": "M 345.0 118.0 L 344.5 120.3 L 343.2 122.2 L 341.3 123.5 L 339.0 124.0 L 336.7 123.5 L 334.8 122.2 L 333.5 120.3 L 333.0 118.0 L 333.5 115.7 L 334.8 113.8 L 336.7 112.5 L 339.0 112.0 L 341.3 112.5 L 343.2 113.8 L 344.5 115.7 L 345.0 118.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "telo_chromatid_l",
+              "d": "M 439.0 113.0 Q 439.0 104 448.0 104 Q 457.0 104 457.0 113.0 L 457.0 235.0 Q 457.0 244.0 448.0 244.0 Q 439.0 244.0 439.0 235.0 Z",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "telo_chromatid_r",
+              "d": "M 463.0 113.0 Q 463.0 104 472.0 104 Q 481.0 104 481.0 113.0 L 481.0 235.0 Q 481.0 244.0 472.0 244.0 Q 463.0 244.0 463.0 235.0 Z",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "telo_centromere",
+              "d": "M 466.0 98.0 L 465.5 100.3 L 464.2 102.2 L 462.3 103.5 L 460.0 104.0 L 457.7 103.5 L 455.8 102.2 L 454.5 100.3 L 454.0 98.0 L 454.5 95.7 L 455.8 93.8 L 457.7 92.5 L 460.0 92.0 L 462.3 92.5 L 464.2 93.8 L 465.5 95.7 L 466.0 98.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_centromere",
+              "d": "M 120 58 L 84 168",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_centromere",
+              "x": 100,
+              "y": 52,
+              "text": "Centromere",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_short",
+              "d": "M 250 58 L 225 112",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_short",
+              "x": 232,
+              "y": 52,
+              "text": "Short arm",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_long",
+              "d": "M 250 200 L 225 192",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_long",
+              "x": 232,
+              "y": 210,
+              "text": "Long arm",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lb_meta",
+              "x": 8,
+              "y": 292,
+              "text": "Metacentric",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lb_submeta",
+              "x": 128,
+              "y": 292,
+              "text": "Sub-metacentric",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lb_acro",
+              "x": 287,
+              "y": 292,
+              "text": "Acrocentric",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lb_telo",
+              "x": 408,
+              "y": 292,
+              "text": "Telocentric",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The four drawings earn the mark only if the arm lengths differ correctly: equal for metacentric, clearly unequal for sub-metacentric, very unequal for acrocentric, and one arm only for telocentric.",
+        "common_mistakes": [
+          "Drawing all four with the centromere in the same place.",
+          "Leaving out the short arm and long arm labels."
+        ],
+        "memory_tip": "Draw them in order — middle, off-middle, near the end, at the end.",
+        "margin_note": "Four small sketches side by side; label one of them fully."
+      },
+      {
+        "id": "s3_meta",
+        "kind": "text",
+        "label": "Metacentric, sub-metacentric",
+        "marks": 1,
+        "mark_note": "First two types",
+        "lines": [
+          "Metacentric: the centromere lies in the",
+          "middle, so the two arms are equal. The",
+          "chromosome looks like a 'V' at anaphase.",
+          "Sub-metacentric: the centromere lies nearer",
+          "one end, giving one shorter arm and one longer",
+          "arm, so the chromosome looks like an 'L'."
+        ],
+        "why": "These two differ only in where the centromere sits, so the answer must give the arm lengths for each and not just the name.",
+        "common_mistakes": [
+          "Writing that a sub-metacentric has equal arms.",
+          "Writing that a metacentric has a terminal centromere."
+        ],
+        "memory_tip": "Meta = middle, so equal arms. Sub-meta = just off middle, so one arm is shorter.",
+        "margin_note": "Give arm lengths for each type, not just the name."
+      },
+      {
+        "id": "s4_acro",
+        "kind": "boxed_final",
+        "label": "Acrocentric, telocentric",
+        "marks": 1,
+        "mark_note": "Last two types",
+        "lines": [
+          {
+            "text": "Meta → sub-meta → acro → telo: centromere moves out",
+            "style": "boxed"
+          },
+          "Acrocentric: the centromere lies close to one",
+          "end, giving one very short arm and one very",
+          "long arm. A satellite is often carried on the",
+          "short arm.",
+          "Telocentric: the centromere is terminal, at one",
+          "tip, so the chromosome has a single arm and",
+          "looks like a rod."
+        ],
+        "why": "Acro means at the tip and telo means the end itself, so an acrocentric still keeps a short arm while a telocentric has none at all.",
+        "common_mistakes": [
+          "Treating acrocentric and telocentric as the same. An acrocentric still has a short arm.",
+          "Writing that a telocentric has two arms."
+        ],
+        "memory_tip": "Acro = almost at the end, so a stub is left. Telo = at the end, so no stub.",
+        "margin_note": "The acro-versus-telo difference is the mark students lose."
+      }
+    ]
+  },
+  "insider_note": "The book's own diagram also carries a satellite and a secondary constriction — add the satellite on the acrocentric's short arm if there is room."
+}

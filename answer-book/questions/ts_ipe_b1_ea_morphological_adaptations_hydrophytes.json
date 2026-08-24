@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_morphological_adaptations_hydrophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Enumerate the morphological adaptations of hydrophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Root system", "marks": 1 },
+    { "label": "Root caps and root pockets", "marks": 1 },
+    { "label": "Stem", "marks": 1 },
+    { "label": "Leaves", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 3. All six of the book's points are kept and grouped into four marked blocks; the examples (Wolffia, Eichhornia, Vallisneria, Nymphaea) are added from standard texts because the book gives none for this question. Morphological means the features visible from outside — root, stem, leaf — which is how the blocks are ordered. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_root_system",
+        "kind": "text",
+        "label": "Root system",
+        "marks": 1,
+        "mark_note": "Roots",
+        "lines": [
+          "Root system is poorly developed, and in",
+          "some plants it is absent (Wolffia).",
+          "The roots are mostly adventitious, short",
+          "and fibrous.",
+          "They fix the plant to the mud rather than",
+          "absorb water."
+        ],
+        "why": "The main job of a root is to absorb water. A hydrophyte absorbs water over its whole surface, so the root is left with only the fixing job and stays small.",
+        "common_mistakes": [
+          "Writing that hydrophytes have a well developed tap root. The root system is poorly developed and adventitious.",
+          "Saying roots are absent in all hydrophytes. They are absent only in a few, such as Wolffia."
+        ],
+        "memory_tip": "The root fixes the plant; it does not absorb the water. That one sentence gives the whole block.",
+        "margin_note": "Four blocks for four marks. Root, root cap, stem, leaf — in that order."
+      },
+      {
+        "id": "s2_root_pockets",
+        "kind": "text",
+        "label": "Root caps and root pockets",
+        "marks": 1,
+        "mark_note": "Root pockets",
+        "lines": [
+          "Root caps are absent.",
+          "In their place root pockets are present.",
+          "A root pocket is a loose sheath that covers",
+          "the root tip in water, but it does not grow",
+          "along with the tip as a root cap does.",
+          "Ex: Eichhornia, Pistia."
+        ],
+        "why": "A root cap protects the tip against hard soil particles. In water there is nothing to rub against, so the cap is replaced by the simpler root pocket.",
+        "common_mistakes": [
+          "Writing root pouch or root cover. The term marked is root pocket.",
+          "Saying root caps are present but small. They are absent."
+        ],
+        "memory_tip": "No soil to scrape past, so no cap — just a pocket.",
+        "margin_note": "This is a named-term block. The words root pocket are the mark."
+      },
+      {
+        "id": "s3_stem",
+        "kind": "text",
+        "label": "Stem",
+        "marks": 1,
+        "mark_note": "Stem",
+        "lines": [
+          "Stems are long, slender, flexible and",
+          "spongy, so moving water bends them",
+          "instead of breaking them.",
+          "In rooted hydrophytes the stem is a rhizome",
+          "buried in the mud.",
+          "In free floating forms it is short and",
+          "stoloniferous."
+        ],
+        "why": "A hydrophyte stem is not a supporting pillar, because water already holds the plant up. It only has to survive being bent, so it is flexible instead of woody.",
+        "common_mistakes": [
+          "Writing that the stem is hard and woody. That is a xerophyte stem.",
+          "Leaving out the word flexible, which is the key term for this block."
+        ],
+        "memory_tip": "Water holds it up, current bends it — so slender and flexible, never woody.",
+        "margin_note": "Two lines are enough. Keep the word flexible in the first one."
+      },
+      {
+        "id": "s4_leaves",
+        "kind": "boxed_final",
+        "label": "Leaves",
+        "marks": 1,
+        "mark_note": "Leaves",
+        "lines": [
+          { "text": "Submerged leaves thin; floating leaves waxy", "style": "boxed" },
+          "Submerged leaves are thin, long and ribbon",
+          "shaped or linear, and in some plants finely",
+          "dissected. Ex: Vallisneria, Ceratophyllum.",
+          "Floating leaves are large and flat, with a",
+          "waxy coating on the upper surface and a",
+          "long petiole. Ex: Nymphaea, Nelumbo."
+        ],
+        "why": "The two leaf forms answer two different problems: a submerged leaf must let gases and light through thin tissue, while a floating leaf must stay dry on top, which the wax provides.",
+        "common_mistakes": [
+          "Describing only one leaf type. Both the submerged and the floating form are marked.",
+          "Putting the waxy coating on the lower surface. The wax is on the upper surface, the side exposed to air."
+        ],
+        "memory_tip": "Under water: thin and ribbon shaped. On the surface: broad and waxy on top.",
+        "margin_note": "This block carries two contrasting forms, so give one example on each side."
+      }
+    ]
+  },
+  "insider_note": "Morphological means what is visible from outside, so keep aerenchyma and cuticle out of this answer — they belong to the anatomical question and earn nothing here."
+}

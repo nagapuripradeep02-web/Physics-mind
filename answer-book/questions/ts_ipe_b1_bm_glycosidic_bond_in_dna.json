@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_glycosidic_bond_in_dna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What constituents of DNA are linked by a glycosidic bond?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two constituents",
+      "marks": 1
+    },
+    {
+      "label": "The bond named correctly",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 4. The book's answer — 'glycosidic bond is present between deoxyribose sugar and nitrogenous bases of nucleotides in DNA' — is CORRECT and is followed. This card adds the standard NCERT detail the book omits: the linkage is an N-glycosidic linkage, and the sugar-to-phosphate link is a separate phosphodiester bond. That second sentence corrects a common student error, not the book. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_constituents",
+        "kind": "text",
+        "label": "The two constituents",
+        "marks": 1,
+        "mark_note": "Both named",
+        "lines": [
+          "In DNA the glycosidic bond links",
+          "the deoxyribose sugar to the",
+          "nitrogenous base.",
+          "This sugar plus base unit is a nucleoside."
+        ],
+        "why": "A nucleotide has three parts — sugar, base and phosphate. The glycosidic bond joins only two of them, the sugar and the base, and the unit it makes is a nucleoside.",
+        "common_mistakes": [
+          "Answering 'sugar and phosphate'. That link is a phosphodiester bond, not a glycosidic bond.",
+          "Answering 'base and phosphate'. The base is never joined to the phosphate."
+        ],
+        "memory_tip": "Sugar plus base is a nucleoside, and the glycosidic bond is what makes it.",
+        "margin_note": "Both names must appear: deoxyribose sugar AND nitrogenous base."
+      },
+      {
+        "id": "s2_bond_named",
+        "kind": "boxed_final",
+        "label": "The bond named correctly",
+        "marks": 1,
+        "mark_note": "Bond named",
+        "lines": [
+          {
+            "text": "N-glycosidic bond: sugar C-1  ↔  base N-9 or N-1",
+            "style": "boxed"
+          },
+          "It joins carbon 1 of deoxyribose to",
+          "nitrogen 9 of a purine (adenine, guanine) or",
+          "nitrogen 1 of a pyrimidine (thymine, cytosine).",
+          "The sugar and the phosphate are joined by a",
+          "phosphodiester bond, not by this bond."
+        ],
+        "why": "The link is called N-glycosidic because it reaches a nitrogen atom of the base. Naming the two bonds apart is what stops the mix-up with the sugar-phosphate backbone.",
+        "common_mistakes": [
+          "Writing that the glycosidic bond forms the sugar-phosphate backbone. The backbone is held by phosphodiester bonds.",
+          "Writing 'hydrogen bond'. Hydrogen bonds hold the two strands together, not the sugar to the base."
+        ],
+        "memory_tip": "Glycosidic goes across the rung; phosphodiester goes down the backbone.",
+        "margin_note": "Two marks for a one-line question — add the N-glycosidic name and the contrast with the phosphodiester bond."
+      }
+    ]
+  },
+  "insider_note": "Many answers say 'sugar and phosphate' from memory of the backbone. The glycosidic bond is sugar to BASE."
+}

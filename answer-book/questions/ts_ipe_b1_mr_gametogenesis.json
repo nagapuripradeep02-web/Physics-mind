@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_gametogenesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a brief account on gametogenesis with examples.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "Isogametes and heterogametes", "marks": 2 },
+    { "label": "Ploidy of gametes", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.16), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book lower-cases the genus names 'pteris, cycas'; the card capitalises them. The 'diploid body needs meiosis for gametes' line is the NCERT-level simplification the book also uses — the ploidy step's why records the seed-plant nuance."
+  },
+  "insider_note": "The book lists Monera with fungi, algae and bryophytes as haploid-bodied organisms (NCERT's own grouping) — keep those examples; the examiner checks the mitosis/meiosis contrast.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          { "text": "Gametogenesis = the formation of gametes", "style": "boxed" },
+          "The process of formation of the two",
+          "types of gametes — male and female —",
+          "is called gametogenesis."
+        ],
+        "why": "The account has to start from the word itself: gamete + genesis, the formation of the male and female gametes.",
+        "common_mistakes": [
+          "Defining it as fusion of gametes — fusion is syngamy (fertilization); genesis is FORMATION."
+        ],
+        "memory_tip": "Genesis = formation. Gametogenesis forms the gametes; syngamy fuses them.",
+        "margin_note": "One boxed definition line opens the answer."
+      },
+      {
+        "id": "s2_iso_hetero",
+        "kind": "text",
+        "label": "Isogametes and heterogametes",
+        "marks": 2,
+        "mark_note": "Two gamete types",
+        "lines": [
+          "Isogametes: the two fusing gametes are",
+          "similar in appearance.",
+          "Ex: Cladophora (an alga).",
+          "Heterogametes: the two gametes are",
+          "different in appearance — a male gamete",
+          "(antherozoid) and a female gamete (egg).",
+          "Ex: Funaria, Pteris, Cycas."
+        ],
+        "why": "'With examples' points here: each gamete condition needs its name, the contrast (similar vs different), and a named organism.",
+        "common_mistakes": [
+          "Writing Cladophora under heterogametes — it is the standard ISOgamete example.",
+          "Lower-casing genus names — write Cladophora, Funaria, Pteris, Cycas."
+        ],
+        "memory_tip": "Iso = equal (the two gametes match); hetero = different (a large still egg and a small motile male gamete).",
+        "margin_note": "Both terms + one example line each carries the 2 marks."
+      },
+      {
+        "id": "s3_ploidy",
+        "kind": "text",
+        "label": "Ploidy of gametes",
+        "marks": 1,
+        "mark_note": "Ploidy",
+        "lines": [
+          "Gametes are always haploid (n).",
+          "A haploid parent body forms gametes by",
+          "mitosis. Ex: Monera, fungi, algae,",
+          "bryophytes.",
+          "A diploid parent body needs meiosis to",
+          "form its haploid gametes.",
+          "Ex: gymnosperms and angiosperms."
+        ],
+        "why": "Whatever the parent's ploidy, gametes must end up haploid — a haploid body copies cells by mitosis, a diploid body must halve by meiosis somewhere in the line (in seed plants meiosis makes the spores, and the gametophyte then forms gametes by mitosis — the life-cycle answer shows this).",
+        "common_mistakes": [
+          "Writing that gametes can be diploid — normal gametes are always haploid.",
+          "Saying haploid organisms use meiosis for gametes — a haploid cell cannot halve; they use mitosis."
+        ],
+        "memory_tip": "One rule: gametes are haploid. Haploid body → mitosis is enough; diploid body → a meiosis step is required.",
+        "margin_note": "The mitosis/meiosis contrast with one example set each."
+      }
+    ]
+  }
+}

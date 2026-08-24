@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_heterospory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by heterospory?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The definition", "marks": 1 },
+    { "label": "The two kinds of spores", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book words the definition 'development of two kinds of spores from a species'; the card uses the standard 'by the same plant' form."
+  },
+  "insider_note": "The examiner looks for the word pair microspore and megaspore — a definition without the two names usually loses the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Modes of Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Production of two different kinds of spores",
+          "by the same plant is called heterospory."
+        ],
+        "why": "The definition must carry the two facts inside the word: two kinds of spores, one plant. The book words it 'two kinds of spores from a species'; the standard form is 'by the same plant'.",
+        "common_mistakes": [
+          "Writing 'two spores' instead of 'two KINDS of spores'.",
+          "Answering with homospory (one kind of spore) — the opposite term."
+        ],
+        "memory_tip": "Hetero = different. Heterospory = spores of two different kinds, not one.",
+        "margin_note": "Two lines are enough for this mark."
+      },
+      {
+        "id": "s2_two_kinds",
+        "kind": "boxed_final",
+        "label": "The two kinds of spores",
+        "marks": 1,
+        "mark_note": "The two spore names",
+        "lines": [
+          { "text": "The two kinds: microspores and megaspores", "style": "boxed" },
+          "Microspores are small and develop into the",
+          "male gametophyte. Megaspores are larger",
+          "and develop into the female gametophyte.",
+          "Ex: Selaginella and all seed plants."
+        ],
+        "why": "Naming the two spore types shows the definition is understood: the small microspore is the male line, the large megaspore is the female line.",
+        "common_mistakes": [
+          "Swapping them: the MEGAspore is the larger one and forms the FEMALE gametophyte.",
+          "Leaving out the names — 'two kinds' alone does not show which two."
+        ],
+        "memory_tip": "Mega = large = female line. Micro = small = male line.",
+        "margin_note": "Name both spores; the example line is a safe extra."
+      }
+    ]
+  }
+}

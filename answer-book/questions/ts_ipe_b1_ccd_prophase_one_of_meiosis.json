@@ -1,0 +1,467 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_prophase_one_of_meiosis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain prophase I of meiosis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Leptotene and zygotene",
+      "marks": 1
+    },
+    {
+      "label": "Pachytene",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram of a pachytene bivalent",
+      "marks": 1
+    },
+    {
+      "label": "Diplotene and diakinesis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, SAQ 1) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. The book's figure prints the label 'Synoptonemal protein'; the correct name is the synaptonemal complex, and this card's figure uses that. The book's other labels — sister chromatids, non-sister chromatids, chiasmata, pachytene tetrad — are kept."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Cell Cycle and Cell Division · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_leptotene_zygotene",
+        "kind": "text",
+        "label": "Leptotene and zygotene",
+        "marks": 1,
+        "mark_note": "First two stages",
+        "lines": [
+          "Prophase I is the longest and most complex stage",
+          "of meiosis. It is divided into five sub-stages",
+          "according to how the chromosomes behave.",
+          {
+            "text": "Leptotene — the chromosomes become",
+            "style": "indent"
+          },
+          {
+            "text": "compact and slowly become visible under the",
+            "style": "indent"
+          },
+          {
+            "text": "light microscope.",
+            "style": "indent"
+          },
+          {
+            "text": "Zygotene — the homologous chromosomes",
+            "style": "indent"
+          },
+          {
+            "text": "pair. This pairing is called synapsis, and a",
+            "style": "indent"
+          },
+          {
+            "text": "protein structure called the synaptonemal",
+            "style": "indent"
+          },
+          {
+            "text": "complex forms between the paired",
+            "style": "indent"
+          },
+          {
+            "text": "chromosomes. A synapsed pair of homologous",
+            "style": "indent"
+          },
+          {
+            "text": "chromosomes is called a bivalent or a tetrad.",
+            "style": "indent"
+          }
+        ],
+        "why": "The five sub-stages are each named for one visible change, so the answer is built by taking them in order and stating that change. Leptotene makes the chromosomes visible, zygotene brings the partners together.",
+        "common_mistakes": [
+          "Mixing the order of leptotene and zygotene.",
+          "Treating 'synapsis' and 'synaptonemal complex' as the same thing. Synapsis is the pairing; the synaptonemal complex is the protein structure that holds it."
+        ],
+        "memory_tip": "Five sub-stages in order: Leptotene, Zygotene, Pachytene, Diplotene, Diakinesis — L, Z, P, D, D.",
+        "margin_note": "One line per sub-stage. Do not write a paragraph on any of them."
+      },
+      {
+        "id": "s2_pachytene",
+        "kind": "text",
+        "label": "Pachytene",
+        "marks": 1,
+        "mark_note": "Pachytene",
+        "lines": [
+          {
+            "text": "Pachytene — the bivalent now clearly shows",
+            "style": "indent"
+          },
+          {
+            "text": "four chromatids. Recombination nodules",
+            "style": "indent"
+          },
+          {
+            "text": "appear on it, and crossing over takes place at",
+            "style": "indent"
+          },
+          {
+            "text": "these points between non-sister chromatids",
+            "style": "indent"
+          },
+          {
+            "text": "of the two homologous chromosomes.",
+            "style": "indent"
+          },
+          "Crossing over is driven by an enzyme called",
+          "recombinase."
+        ],
+        "why": "Pachytene is the sub-stage the examiner marks hardest, because it carries crossing over, and crossing over is the reason meiosis produces variation at all.",
+        "common_mistakes": [
+          "Writing that crossing over happens between sister chromatids.",
+          "Placing crossing over in zygotene. Zygotene is only the pairing."
+        ],
+        "memory_tip": "Pachytene is the pairing-plus-exchange stage: four chromatids visible, crossing over happening.",
+        "margin_note": "Two lines. Name the nodules and say between which chromatids the exchange happens."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pachytene_bivalent",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "chromatid_a_outer",
+              "d": "M 60 150 L 400 150",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "chromatid_a_inner",
+              "d": "M 60 168 L 290 168 C 302 168 308 212 320 212 L 400 212",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "centromere_a",
+              "d": "M 200 149 L 200 169",
+              "ms": 180,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "chromatid_b_inner",
+              "d": "M 60 212 L 290 212 C 302 212 308 168 320 168 L 400 168",
+              "ms": 680
+            },
+            {
+              "type": "stroke",
+              "id": "chromatid_b_outer",
+              "d": "M 60 230 L 400 230",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "centromere_b",
+              "d": "M 200 211 L 200 231",
+              "ms": 180,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "sc_lateral_top",
+              "d": "M 74 180 L 268 180",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "sc_lateral_bottom",
+              "d": "M 74 200 L 268 200",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "sc_central",
+              "d": "M 74 190 L 268 190",
+              "ms": 420,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_1",
+              "d": "M 86 180 L 86 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_2",
+              "d": "M 110 180 L 110 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_3",
+              "d": "M 134 180 L 134 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_4",
+              "d": "M 158 180 L 158 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_5",
+              "d": "M 182 180 L 182 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_6",
+              "d": "M 206 180 L 206 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_7",
+              "d": "M 230 180 L 230 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "sc_rung_8",
+              "d": "M 254 180 L 254 200",
+              "ms": 110,
+              "w": 1.0
+            },
+            {
+              "type": "stroke",
+              "id": "bracket_sister",
+              "d": "M 54 150 L 46 150 L 46 168 L 54 168",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "leader_sister",
+              "d": "M 46 150 L 46 68",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "label",
+              "id": "lbl_sister",
+              "x": 14,
+              "y": 48,
+              "text": "Sister chromatids",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "bracket_nonsister",
+              "d": "M 54 212 L 46 212 L 46 230 L 54 230",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "leader_nonsister",
+              "d": "M 46 230 L 46 264",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "label",
+              "id": "lbl_nonsister",
+              "x": 14,
+              "y": 294,
+              "text": "Non-sister chromatids",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "leader_sc",
+              "d": "M 330 66 L 262 174",
+              "ms": 340,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_sc_1",
+              "d": "M 258.0 180.0 L 259.0 170.1",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_sc_2",
+              "d": "M 258.0 180.0 L 266.5 174.7",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_sc",
+              "x": 252,
+              "y": 48,
+              "text": "Synaptonemal complex",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "leader_chiasma",
+              "d": "M 414 190 L 320 190",
+              "ms": 320,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_chiasma_1",
+              "d": "M 314.0 190.0 L 323.0 185.6",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_chiasma_2",
+              "d": "M 314.0 190.0 L 323.0 194.4",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_chiasma",
+              "x": 420,
+              "y": 200,
+              "text": "Chiasma",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "leader_tetrad",
+              "d": "M 380 264 L 380 240",
+              "ms": 240,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_tetrad_1",
+              "d": "M 380.0 234.0 L 384.4 243.0",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_tetrad_2",
+              "d": "M 380.0 234.0 L 375.6 243.0",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_tetrad",
+              "x": 288,
+              "y": 294,
+              "text": "Pachytene tetrad",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "why": "A labelled pachytene bivalent shows in one picture what the words take a paragraph to say: two homologues, four chromatids, the synaptonemal complex between the pair, and a chiasma where two non-sister chromatids have exchanged.",
+        "common_mistakes": [
+          "Drawing only two chromatids. A bivalent at pachytene has four.",
+          "Leaving the chiasma out. Without it the drawing shows zygotene, not pachytene."
+        ],
+        "memory_tip": "Draw four lines, join each pair at a centromere, put the ladder between the two pairs, and cross the two middle lines once.",
+        "margin_note": "A simple line drawing with the four labels is enough. Do not shade it or draw a cell around it."
+      },
+      {
+        "id": "s4_diplotene_diakinesis",
+        "kind": "boxed_final",
+        "label": "Diplotene and diakinesis",
+        "marks": 1,
+        "mark_note": "Last two stages",
+        "lines": [
+          {
+            "text": "Diplotene — the synaptonemal complex",
+            "style": "indent"
+          },
+          {
+            "text": "dissolves. The homologues move apart except",
+            "style": "indent"
+          },
+          {
+            "text": "at the points where they crossed over; those",
+            "style": "indent"
+          },
+          {
+            "text": "points are now seen as X-shaped chiasmata.",
+            "style": "indent"
+          },
+          {
+            "text": "Diakinesis — the chiasmata move to the ends",
+            "style": "indent"
+          },
+          {
+            "text": "of the chromosomes, which is called",
+            "style": "indent"
+          },
+          {
+            "text": "terminalisation. The nucleolus and the nuclear",
+            "style": "indent"
+          },
+          {
+            "text": "membrane disappear and the spindle forms.",
+            "style": "indent"
+          },
+          {
+            "text": "Leptotene → Zygotene → Pachytene → Diplotene → Diakinesis",
+            "style": "boxed"
+          }
+        ],
+        "why": "Diplotene reverses the pairing of zygotene, and diakinesis ends prophase I by clearing the nucleus so the spindle can take over. Ending with the ordered list of five names secures the structure mark.",
+        "common_mistakes": [
+          "Writing that the homologues separate completely in diplotene. They stay joined at the chiasmata.",
+          "Confusing terminalisation with crossing over. Terminalisation only moves the chiasmata to the ends."
+        ],
+        "memory_tip": "Diplotene shows the chiasmata, diakinesis moves them to the ends.",
+        "margin_note": "Finish with the ordered list of the five sub-stages, even if you are short of time."
+      }
+    ]
+  },
+  "insider_note": "Four marks, five sub-stages and one diagram — the answer that scores is a short line for each stage plus the labelled bivalent, not a long paragraph on crossing over."
+}

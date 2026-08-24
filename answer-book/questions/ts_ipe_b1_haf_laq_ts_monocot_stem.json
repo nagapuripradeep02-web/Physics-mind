@@ -1,0 +1,477 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_laq_ts_monocot_stem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the transverse section of a monocot stem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Epidermis",
+      "marks": 1
+    },
+    {
+      "label": "Hypodermis",
+      "marks": 1
+    },
+    {
+      "label": "Ground tissue",
+      "marks": 1
+    },
+    {
+      "label": "Vascular bundles",
+      "marks": 3
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK SCAN DAMAGE RECORDED: the printed page reads 'Pheripheral vascular bundles' for peripheral, and the line about the water cavities is partly missing ('Wa... ontaining cavities'). Both are written correctly here. The book also does not state that a monocot stem lacks a separate cortex, pith and medullary rays; this card adds it, following NCERT, because it is the contrast the examiner marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Histology and Anatomy of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_epidermis",
+        "kind": "text",
+        "label": "Epidermis",
+        "marks": 1,
+        "mark_note": "Epidermis",
+        "margin_note": "Name the four parts first. The list itself shows you know it is not a dicot stem.",
+        "lines": [
+          "A transverse section of a monocot stem, for",
+          "example the stem of maize, shows four parts:",
+          "I. Epidermis        II. Hypodermis",
+          "III. Ground tissue  IV. Vascular bundles",
+          {
+            "text": "I. Epidermis",
+            "style": "heading"
+          },
+          "It is the outermost single protective layer.",
+          "It is covered by a thin layer of cuticle and",
+          "bears a few stomata."
+        ],
+        "why": "A monocot stem is described in four parts, not three, because it has no separate cortex and stele. Setting out the four names first is what keeps the answer different from the dicot answer.",
+        "common_mistakes": [
+          "Dividing the monocot stem into epidermis, cortex and stele. It has no cortex or stele of its own.",
+          "Leaving out the cuticle."
+        ],
+        "memory_tip": "Four parts, not three: a monocot stem has no cortex and no stele to name."
+      },
+      {
+        "id": "s2_hypodermis",
+        "kind": "text",
+        "label": "Hypodermis",
+        "marks": 1,
+        "mark_note": "Hypodermis",
+        "margin_note": "Three short lines. Say sclerenchyma in the first of them.",
+        "lines": [
+          {
+            "text": "II. Hypodermis",
+            "style": "heading"
+          },
+          "It lies just below the epidermis.",
+          "It is made of sclerenchymatous tissue, not of",
+          "collenchyma.",
+          "It gives mechanical strength to the stem."
+        ],
+        "why": "A monocot stem can never thicken, so it has to be strong from the start; sclerenchyma is dead, thick walled and permanently strong, which suits a stem that will not add new tissue later.",
+        "common_mistakes": [
+          "Writing collenchyma. That is the dicot stem hypodermis; here it is sclerenchyma.",
+          "Skipping this part because it is short. It carries a full mark."
+        ],
+        "memory_tip": "Monocot means sclerenchyma below the epidermis; dicot means collenchyma."
+      },
+      {
+        "id": "s3_ground",
+        "kind": "text",
+        "label": "Ground tissue",
+        "marks": 1,
+        "mark_note": "Ground tissue",
+        "margin_note": "Say clearly what is absent. The absences are marked here.",
+        "lines": [
+          {
+            "text": "III. Ground tissue",
+            "style": "heading"
+          },
+          "A large and conspicuous mass of parenchyma",
+          "lies below the hypodermis and fills the whole",
+          "of the inner region.",
+          "It is not divided into cortex, endodermis,",
+          "pericycle and pith.",
+          "So a monocot stem has no separate cortex, no",
+          "separate pith and no medullary rays."
+        ],
+        "why": "Because the bundles are scattered instead of forming a ring, there is no boundary left to divide the inside into cortex and pith, so the whole of it stays one continuous ground tissue.",
+        "common_mistakes": [
+          "Writing that the monocot stem has a large pith. The centre is ground tissue.",
+          "Naming medullary rays here. They exist only where bundles sit in a ring."
+        ],
+        "memory_tip": "No ring of bundles means no inside and outside, so the filling is all one tissue."
+      },
+      {
+        "id": "s4_bundles",
+        "kind": "text",
+        "label": "Vascular bundles",
+        "marks": 3,
+        "mark_note": "Bundles described",
+        "margin_note": "Three marks, the largest block on the page. Give every one of the six points.",
+        "lines": [
+          {
+            "text": "IV. Vascular bundles",
+            "style": "heading"
+          },
+          "A large number of vascular bundles lie",
+          "scattered through the ground tissue. This",
+          "scattered arrangement is the character of a",
+          "monocot stem.",
+          "Each bundle is surrounded by a",
+          "sclerenchymatous bundle sheath.",
+          "Each bundle is conjoint and collateral, and it",
+          "is closed, because there is no cambium between",
+          "the xylem and the phloem. So a monocot stem",
+          "shows no secondary growth.",
+          "The xylem is endarch. Two large metaxylem",
+          "vessels lie side by side, the protoxylem lies",
+          "below them towards the centre, and below the",
+          "protoxylem there is a water containing cavity,",
+          "called the lysigenous cavity.",
+          "Phloem parenchyma is absent; the phloem has",
+          "only sieve tubes and companion cells.",
+          "The bundles lying near the periphery are",
+          "generally smaller than the ones lying towards",
+          "the centre."
+        ],
+        "why": "The lysigenous cavity is made by the breaking down of the first formed protoxylem as the stem elongates, so the cavity marks where that first xylem stood, and it is the feature that makes a monocot bundle instantly recognisable in a drawing.",
+        "common_mistakes": [
+          "Writing open for a monocot stem. There is no cambium, so it is closed.",
+          "Saying the bundle sheath is parenchymatous. It is sclerenchymatous.",
+          "Forgetting that phloem parenchyma is absent. It is a marked point."
+        ],
+        "memory_tip": "Scattered, sheathed, closed, endarch, with a water cavity below the protoxylem."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "margin_note": "Label epidermis, hypodermis, ground tissue, vascular bundle, bundle sheath, metaxylem, protoxylem, phloem and the water cavity.",
+        "figure": {
+          "id": "ts_monocot_stem",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "epidermis",
+              "d": "M 150 158 A 108 108 0 1 0 366 158 A 108 108 0 1 0 150 158",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "epi_inner",
+              "d": "M 157 158 A 101 101 0 1 0 359 158 A 101 101 0 1 0 157 158",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "epi_cells",
+              "d": "M 358.9 152.7 L 365.9 152.3 M 355.6 131.9 L 362.3 130.0 M 348.0 112.1 L 354.2 109.0 M 336.5 94.4 L 341.9 90.0 M 321.6 79.5 L 326.0 74.1 M 303.9 68.0 L 307.0 61.8 M 284.1 60.4 L 286.0 53.7 M 263.3 57.1 L 263.7 50.1 M 242.2 58.2 L 241.1 51.3 M 221.8 63.7 L 219.3 57.2 M 203.0 73.3 L 199.2 67.4 M 186.6 86.6 L 181.6 81.6 M 173.3 103.0 L 167.4 99.2 M 163.7 121.8 L 157.2 119.3 M 158.2 142.2 L 151.3 141.1 M 157.1 163.3 L 150.1 163.7 M 160.4 184.1 L 153.7 186.0 M 168.0 203.9 L 161.8 207.0 M 179.5 221.6 L 174.1 226.0 M 194.4 236.5 L 190.0 241.9 M 212.1 248.0 L 209.0 254.2 M 231.9 255.6 L 230.0 262.3 M 252.7 258.9 L 252.3 265.9 M 273.8 257.8 L 274.9 264.7 M 294.2 252.3 L 296.7 258.8 M 313.0 242.7 L 316.8 248.6 M 329.4 229.4 L 334.4 234.4 M 342.7 213.0 L 348.6 216.8 M 352.3 194.2 L 358.8 196.7 M 357.8 173.8 L 364.7 174.9",
+              "ms": 620,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "hypodermis",
+              "d": "M 170 158 A 88 88 0 1 0 346 158 A 88 88 0 1 0 170 158",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "hypo_scler",
+              "d": "M 345.7 150.3 L 358.6 149.2 M 342.8 134.4 L 355.3 130.9 M 337.0 119.2 L 348.6 113.4 M 328.5 105.3 L 338.9 97.5 M 317.6 93.3 L 326.4 83.7 M 304.7 83.4 L 311.6 72.4 M 290.2 76.1 L 295.0 64.0 M 274.6 71.6 L 277.1 58.8 M 258.5 70.0 L 258.5 57.0 M 242.3 71.4 L 240.0 58.6 M 226.6 75.8 L 222.0 63.6 M 212.1 82.9 L 205.3 71.9 M 199.0 92.7 L 190.3 83.0 M 188.0 104.6 L 177.7 96.7 M 179.4 118.4 L 167.8 112.5 M 173.5 133.5 L 161.0 129.9 M 170.4 149.4 L 157.5 148.2 M 170.3 165.7 L 157.4 166.8 M 173.2 181.6 L 160.7 185.1 M 179.0 196.8 L 167.4 202.6 M 187.5 210.7 L 177.1 218.5 M 198.4 222.7 L 189.6 232.3 M 211.3 232.6 L 204.4 243.6 M 225.8 239.9 L 221.0 252.0 M 241.4 244.4 L 238.9 257.2 M 257.5 246.0 L 257.5 259.0 M 273.7 244.6 L 276.0 257.4 M 289.4 240.2 L 294.0 252.4 M 303.9 233.1 L 310.7 244.1 M 317.0 223.3 L 325.7 233.0 M 328.0 211.4 L 338.3 219.3 M 336.6 197.6 L 348.2 203.5 M 342.5 182.5 L 355.0 186.1 M 345.6 166.6 L 358.5 167.8",
+              "ms": 680,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "bundle_sheaths",
+              "d": "M 241.0 158.0 A 17 14 0 1 0 275.0 158.0 A 17 14 0 1 0 241.0 158.0 M 253.1 145.9 A 17 14 -112 1 0 240.4 114.4 A 17 14 -112 1 0 253.1 145.9 M 251.5 172.6 A 17 14 -246 1 0 237.7 203.7 A 17 14 -246 1 0 251.5 172.6 M 290.3 147.5 A 14 11.5 -18 1 0 317.0 138.8 A 14 11.5 -18 1 0 290.3 147.5 M 274.1 108.5 A 14 11.5 -72 1 0 282.7 81.9 A 14 11.5 -72 1 0 274.1 108.5 M 225.8 137.9 A 14 11.5 -148 1 0 202.0 123.0 A 14 11.5 -148 1 0 225.8 137.9 M 204.2 173.4 A 14 11.5 -196 1 0 177.3 181.2 A 14 11.5 -196 1 0 204.2 173.4 M 223.2 196.6 A 14 11.5 -228 1 0 204.5 217.5 A 14 11.5 -228 1 0 223.2 196.6 M 299.0 186.7 A 14 11.5 -325 1 0 321.9 202.7 A 14 11.5 -325 1 0 299.0 186.7 M 229.0 107.8 A 14 11.5 -120 1 0 215.0 83.5 A 14 11.5 -120 1 0 229.0 107.8 M 288.0 210.0 A 14 11.5 -300 1 0 302.0 234.2 A 14 11.5 -300 1 0 288.0 210.0 M 334.0 158.0 A 10 8.5 0 1 0 354.0 158.0 A 10 8.5 0 1 0 334.0 158.0 M 317.5 104.5 A 10 8.5 -42 1 0 332.3 91.1 A 10 8.5 -42 1 0 317.5 104.5 M 260.6 84.0 A 10 8.5 -88 1 0 261.3 64.1 A 10 8.5 -88 1 0 260.6 84.0 M 203.8 101.9 A 10 8.5 -134 1 0 189.9 87.5 A 10 8.5 -134 1 0 203.8 101.9 M 183.0 155.4 A 10 8.5 -178 1 0 163.1 154.7 A 10 8.5 -178 1 0 183.0 155.4 M 199.3 210.9 A 10 8.5 -222 1 0 184.4 224.2 A 10 8.5 -222 1 0 199.3 210.9 M 252.9 230.8 A 10 8.5 -266 1 0 251.5 250.8 A 10 8.5 -266 1 0 252.9 230.8 M 309.5 215.2 A 10 8.5 -312 1 0 322.9 230.1 A 10 8.5 -312 1 0 309.5 215.2",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "phloem",
+              "d": "M 262.8 158.0 A 3.2 3.2 0 1 0 269.2 158.0 A 3.2 3.2 0 1 0 262.8 158.0 M 240.6 122.8 A 3.2 3.2 0 1 0 247.0 122.8 A 3.2 3.2 0 1 0 240.6 122.8 M 238.1 195.5 A 3.2 3.2 0 1 0 244.5 195.5 A 3.2 3.2 0 1 0 238.1 195.5 M 307.2 141.2 A 2.6 2.6 0 1 0 312.4 141.2 A 2.6 2.6 0 1 0 307.2 141.2 M 277.8 89.0 A 2.6 2.6 0 1 0 283.0 89.0 A 2.6 2.6 0 1 0 277.8 89.0 M 205.8 127.0 A 2.6 2.6 0 1 0 211.0 127.0 A 2.6 2.6 0 1 0 205.8 127.0 M 181.9 179.1 A 2.6 2.6 0 1 0 187.1 179.1 A 2.6 2.6 0 1 0 181.9 179.1 M 206.9 211.9 A 2.6 2.6 0 1 0 212.1 211.9 A 2.6 2.6 0 1 0 206.9 211.9 M 313.2 198.4 A 2.6 2.6 0 1 0 318.4 198.4 A 2.6 2.6 0 1 0 313.2 198.4 M 216.2 90.0 A 2.6 2.6 0 1 0 221.3 90.0 A 2.6 2.6 0 1 0 216.2 90.0 M 295.6 227.7 A 2.6 2.6 0 1 0 300.9 227.7 A 2.6 2.6 0 1 0 295.6 227.7 M 347.1 158.0 A 1.9 1.9 0 1 0 350.9 158.0 A 1.9 1.9 0 1 0 347.1 158.0 M 326.7 94.4 A 1.9 1.9 0 1 0 330.5 94.4 A 1.9 1.9 0 1 0 326.7 94.4 M 259.2 69.1 A 1.9 1.9 0 1 0 263.0 69.1 A 1.9 1.9 0 1 0 259.2 69.1 M 191.5 91.1 A 1.9 1.9 0 1 0 195.3 91.1 A 1.9 1.9 0 1 0 191.5 91.1 M 166.2 154.9 A 1.9 1.9 0 1 0 170.0 154.9 A 1.9 1.9 0 1 0 166.2 154.9 M 186.2 220.9 A 1.9 1.9 0 1 0 190.0 220.9 A 1.9 1.9 0 1 0 186.2 220.9 M 250.0 245.8 A 1.9 1.9 0 1 0 253.8 245.8 A 1.9 1.9 0 1 0 250.0 245.8 M 317.7 226.4 A 1.9 1.9 0 1 0 321.5 226.4 A 1.9 1.9 0 1 0 317.7 226.4",
+              "ms": 620,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "metaxylem",
+              "d": "M 253.4 152.5 A 4.6 4.6 0 1 0 262.6 152.5 A 4.6 4.6 0 1 0 253.4 152.5 M 253.4 163.5 A 4.6 4.6 0 1 0 262.6 163.5 A 4.6 4.6 0 1 0 253.4 163.5 M 237.1 132.2 A 4.6 4.6 0 1 0 246.3 132.2 A 4.6 4.6 0 1 0 237.1 132.2 M 247.3 128.1 A 4.6 4.6 0 1 0 256.5 128.1 A 4.6 4.6 0 1 0 247.3 128.1 M 245.0 190.4 A 4.6 4.6 0 1 0 254.2 190.4 A 4.6 4.6 0 1 0 245.0 190.4 M 235.0 185.9 A 4.6 4.6 0 1 0 244.2 185.9 A 4.6 4.6 0 1 0 235.0 185.9 M 298.3 138.8 A 3.9 3.9 0 1 0 306.1 138.8 A 3.9 3.9 0 1 0 298.3 138.8 M 301.2 147.5 A 3.9 3.9 0 1 0 309.0 147.5 A 3.9 3.9 0 1 0 301.2 147.5 M 270.1 93.8 A 3.9 3.9 0 1 0 277.9 93.8 A 3.9 3.9 0 1 0 270.1 93.8 M 278.9 96.7 A 3.9 3.9 0 1 0 286.7 96.7 A 3.9 3.9 0 1 0 278.9 96.7 M 207.6 134.3 A 3.9 3.9 0 1 0 215.4 134.3 A 3.9 3.9 0 1 0 207.6 134.3 M 212.4 126.5 A 3.9 3.9 0 1 0 220.2 126.5 A 3.9 3.9 0 1 0 212.4 126.5 M 188.1 181.7 A 3.9 3.9 0 1 0 195.9 181.7 A 3.9 3.9 0 1 0 188.1 181.7 M 185.5 172.9 A 3.9 3.9 0 1 0 193.3 172.9 A 3.9 3.9 0 1 0 185.5 172.9 M 213.4 210.1 A 3.9 3.9 0 1 0 221.2 210.1 A 3.9 3.9 0 1 0 213.4 210.1 M 206.5 204.0 A 3.9 3.9 0 1 0 214.3 204.0 A 3.9 3.9 0 1 0 206.5 204.0 M 309.2 190.9 A 3.9 3.9 0 1 0 317.0 190.9 A 3.9 3.9 0 1 0 309.2 190.9 M 303.9 198.5 A 3.9 3.9 0 1 0 311.7 198.5 A 3.9 3.9 0 1 0 303.9 198.5 M 214.1 97.9 A 3.9 3.9 0 1 0 221.9 97.9 A 3.9 3.9 0 1 0 214.1 97.9 M 222.1 93.3 A 3.9 3.9 0 1 0 229.9 93.3 A 3.9 3.9 0 1 0 222.1 93.3 M 295.1 219.8 A 3.9 3.9 0 1 0 302.9 219.8 A 3.9 3.9 0 1 0 295.1 219.8 M 287.1 224.4 A 3.9 3.9 0 1 0 294.9 224.4 A 3.9 3.9 0 1 0 287.1 224.4 M 340.3 154.8 A 2.7 2.7 0 1 0 345.7 154.8 A 2.7 2.7 0 1 0 340.3 154.8 M 340.3 161.2 A 2.7 2.7 0 1 0 345.7 161.2 A 2.7 2.7 0 1 0 340.3 161.2 M 319.3 96.1 A 2.7 2.7 0 1 0 324.7 96.1 A 2.7 2.7 0 1 0 319.3 96.1 M 323.6 100.8 A 2.7 2.7 0 1 0 329.0 100.8 A 2.7 2.7 0 1 0 323.6 100.8 M 255.0 74.9 A 2.7 2.7 0 1 0 260.4 74.9 A 2.7 2.7 0 1 0 255.0 74.9 M 261.4 75.2 A 2.7 2.7 0 1 0 266.8 75.2 A 2.7 2.7 0 1 0 261.4 75.2 M 192.6 97.6 A 2.7 2.7 0 1 0 198.0 97.6 A 2.7 2.7 0 1 0 192.6 97.6 M 197.2 93.2 A 2.7 2.7 0 1 0 202.6 93.2 A 2.7 2.7 0 1 0 197.2 93.2 M 171.2 158.3 A 2.7 2.7 0 1 0 176.6 158.3 A 2.7 2.7 0 1 0 171.2 158.3 M 171.5 151.9 A 2.7 2.7 0 1 0 176.9 151.9 A 2.7 2.7 0 1 0 171.5 151.9 M 192.0 219.3 A 2.7 2.7 0 1 0 197.4 219.3 A 2.7 2.7 0 1 0 192.0 219.3 M 187.8 214.5 A 2.7 2.7 0 1 0 193.2 214.5 A 2.7 2.7 0 1 0 187.8 214.5 M 252.8 240.0 A 2.7 2.7 0 1 0 258.2 240.0 A 2.7 2.7 0 1 0 252.8 240.0 M 246.4 239.6 A 2.7 2.7 0 1 0 251.8 239.6 A 2.7 2.7 0 1 0 246.4 239.6 M 315.2 219.8 A 2.7 2.7 0 1 0 320.6 219.8 A 2.7 2.7 0 1 0 315.2 219.8 M 310.5 224.1 A 2.7 2.7 0 1 0 315.9 224.1 A 2.7 2.7 0 1 0 310.5 224.1",
+              "ms": 820,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "protoxylem",
+              "d": "M 247.4 158.0 A 2.6 2.6 0 1 0 252.6 158.0 A 2.6 2.6 0 1 0 247.4 158.0 M 247.2 137.6 A 2.6 2.6 0 1 0 252.4 137.6 A 2.6 2.6 0 1 0 247.2 137.6 M 245.2 180.8 A 2.6 2.6 0 1 0 250.4 180.8 A 2.6 2.6 0 1 0 245.2 180.8 M 295.4 145.2 A 2.1 2.1 0 1 0 299.6 145.2 A 2.1 2.1 0 1 0 295.4 145.2 M 274.3 101.4 A 2.1 2.1 0 1 0 278.5 101.4 A 2.1 2.1 0 1 0 274.3 101.4 M 217.3 133.9 A 2.1 2.1 0 1 0 221.5 133.9 A 2.1 2.1 0 1 0 217.3 133.9 M 194.9 175.5 A 2.1 2.1 0 1 0 199.1 175.5 A 2.1 2.1 0 1 0 194.9 175.5 M 216.1 202.2 A 2.1 2.1 0 1 0 220.3 202.2 A 2.1 2.1 0 1 0 216.1 202.2 M 303.0 191.0 A 2.1 2.1 0 1 0 307.2 191.0 A 2.1 2.1 0 1 0 303.0 191.0 M 223.2 101.3 A 2.1 2.1 0 1 0 227.3 101.3 A 2.1 2.1 0 1 0 223.2 101.3 M 289.6 216.5 A 2.1 2.1 0 1 0 293.9 216.5 A 2.1 2.1 0 1 0 289.6 216.5",
+              "ms": 520,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "water_cavity",
+              "d": "M 242.1 158.0 A 3.4 3.4 0 1 0 248.9 158.0 A 3.4 3.4 0 1 0 242.1 158.0 M 248.0 141.8 A 3.4 3.4 0 1 0 254.8 141.8 A 3.4 3.4 0 1 0 248.0 141.8 M 246.3 176.7 A 3.4 3.4 0 1 0 253.1 176.7 A 3.4 3.4 0 1 0 246.3 176.7 M 291.5 146.3 A 2.6 2.6 0 1 0 296.7 146.3 A 2.6 2.6 0 1 0 291.5 146.3 M 272.7 104.7 A 2.6 2.6 0 1 0 277.9 104.7 A 2.6 2.6 0 1 0 272.7 104.7 M 219.8 135.7 A 2.6 2.6 0 1 0 225.0 135.7 A 2.6 2.6 0 1 0 219.8 135.7 M 197.7 174.5 A 2.6 2.6 0 1 0 202.9 174.5 A 2.6 2.6 0 1 0 197.7 174.5 M 217.9 199.6 A 2.6 2.6 0 1 0 223.1 199.6 A 2.6 2.6 0 1 0 217.9 199.6 M 299.6 189.0 A 2.6 2.6 0 1 0 304.8 189.0 A 2.6 2.6 0 1 0 299.6 189.0 M 224.4 104.3 A 2.6 2.6 0 1 0 229.6 104.3 A 2.6 2.6 0 1 0 224.4 104.3 M 287.4 213.4 A 2.6 2.6 0 1 0 292.6 213.4 A 2.6 2.6 0 1 0 287.4 213.4",
+              "ms": 520,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "ground_tissue",
+              "d": "M 263.5 141.6 A 6 6 0 1 0 275.5 141.6 A 6 6 0 1 0 263.5 141.6 M 230.0 158.0 A 6 6 0 1 0 242.0 158.0 A 6 6 0 1 0 230.0 158.0 M 265.8 177.7 A 6 6 0 1 0 277.8 177.7 A 6 6 0 1 0 265.8 177.7 M 252.0 116.0 A 6 6 0 1 0 264.0 116.0 A 6 6 0 1 0 252.0 116.0 M 245.9 201.6 A 6 6 0 1 0 257.9 201.6 A 6 6 0 1 0 245.9 201.6 M 291.4 164.9 A 6 6 0 1 0 303.4 164.9 A 6 6 0 1 0 291.4 164.9 M 294.4 115.6 A 6 6 0 1 0 306.4 115.6 A 6 6 0 1 0 294.4 115.6 M 202.7 95.0 A 6 6 0 1 0 214.7 95.0 A 6 6 0 1 0 202.7 95.0 M 190.6 149.4 A 6 6 0 1 0 202.6 149.4 A 6 6 0 1 0 190.6 149.4 M 267.0 214.0 A 6 6 0 1 0 279.0 214.0 A 6 6 0 1 0 267.0 214.0 M 324.3 128.8 A 6 6 0 1 0 336.3 128.8 A 6 6 0 1 0 324.3 128.8 M 219.9 230.2 A 6 6 0 1 0 231.9 230.2 A 6 6 0 1 0 219.9 230.2 M 321.8 190.5 A 6 6 0 1 0 333.8 190.5 A 6 6 0 1 0 321.8 190.5",
+              "ms": 720,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "l_ground",
+              "x": 4,
+              "y": 56,
+              "text": "Ground tissue",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ground",
+              "d": "M 132 50 L 172 74 L 208.7 95.0",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ground_ah",
+              "d": "M 199.8 93.8 L 208.7 95.0 L 203.2 87.9",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_vb",
+              "x": 4,
+              "y": 126,
+              "text": "Vascular bundle",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vb",
+              "d": "M 150 120 L 178 126 L 213.9 130.4",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_vb_ah",
+              "d": "M 205.2 132.8 L 213.9 130.4 L 206.0 126.1",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_sheath",
+              "x": 4,
+              "y": 196,
+              "text": "Bundle sheath",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sheath",
+              "d": "M 132 190 L 158 186 L 178.2 180.9",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sheath_ah",
+              "d": "M 171.0 186.2 L 178.2 180.9 L 169.3 179.7",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_cav",
+              "x": 4,
+              "y": 266,
+              "text": "Water cavity",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cav",
+              "d": "M 122 260 L 180 232 L 220.5 199.6",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cav_ah",
+              "d": "M 216.1 207.5 L 220.5 199.6 L 211.9 202.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_epi",
+              "x": 372,
+              "y": 48,
+              "text": "Epidermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi",
+              "d": "M 368 42 L 338 56 L 322.3 75.7",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi_ah",
+              "d": "M 324.9 67.0 L 322.3 75.7 L 330.2 71.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_hypo",
+              "x": 372,
+              "y": 96,
+              "text": "Hypodermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hypo",
+              "d": "M 368 90 L 356 96 L 345.6 122.6",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hypo_ah",
+              "d": "M 345.5 113.6 L 345.6 122.6 L 351.8 116.1",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_scler",
+              "x": 372,
+              "y": 140,
+              "text": "(sclerenchyma)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "l_mx",
+              "x": 372,
+              "y": 192,
+              "text": "Metaxylem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mx",
+              "d": "M 368 186 L 350 184 L 343.0 161.2",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mx_ah",
+              "d": "M 348.7 168.2 L 343.0 161.2 L 342.2 170.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_phl",
+              "x": 372,
+              "y": 240,
+              "text": "Phloem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl",
+              "d": "M 368 234 L 334 222 L 315.8 198.4",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl_ah",
+              "d": "M 323.5 203.0 L 315.8 198.4 L 318.2 207.1",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_px",
+              "x": 372,
+              "y": 288,
+              "text": "Protoxylem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_px",
+              "d": "M 368 282 L 330 254 L 291.8 216.5",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_px_ah",
+              "d": "M 300.1 219.9 L 291.8 216.5 L 295.3 224.7",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "The drawing has to look different from the dicot stem at first sight, and it does so through one feature only: the bundles are scattered, with no ring and no pith boundary.",
+        "common_mistakes": [
+          "Arranging the bundles in a ring. That makes it a dicot stem.",
+          "Drawing all the bundles the same size. The outer ones are smaller.",
+          "Drawing a cambium line inside a bundle. There is none."
+        ],
+        "memory_tip": "Scatter the bundles, make the outer ones small, and give each one a sheath."
+      }
+    ]
+  },
+  "insider_note": "This question is marked against the dicot stem answer. Every sentence should be one a dicot stem could not claim: scattered, sclerenchymatous hypodermis, closed, no pith."
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_heterospory_significance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is heterospory? Briefly comment on its significance. Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "Examples", "marks": 1 },
+    { "label": "Significance", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.8, SAQ 3. The book's significance line reads 'Gametophytes helps in origin of seed habitat in higher plants' — 'habitat' is wrong; the NCERT term is seed habit, and the card writes the retention-of-the-female-gametophyte reasoning in full. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+2 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          { "text": "Heterospory: two kinds of spores on one plant", "style": "boxed" },
+          "The sporophyte produces small microspores",
+          "and large megaspores in separate",
+          "sporangia."
+        ],
+        "why": "'Hetero' means different: one sporophyte makes two different spore types instead of one. Microspores come from microsporangia and megaspores from megasporangia.",
+        "common_mistakes": [
+          "Defining it as spores of different ploidy — both spore kinds are haploid; they differ in size and sex, not ploidy."
+        ],
+        "memory_tip": "Micro = small and male; mega = large and female — size and sex change together.",
+        "margin_note": "The boxed definition plus one sentence earns this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Examples: Selaginella and Salvinia."
+        ],
+        "why": "Both are pteridophytes and both are the NCERT examples of heterospory — Selaginella among the lycopods, Salvinia among the water ferns.",
+        "common_mistakes": [
+          "Writing Pteris or Dryopteris — those are homosporous ferns."
+        ],
+        "memory_tip": "The two S-plants — Selaginella and Salvinia — are the heterospory pair.",
+        "margin_note": "Two genus names, underlined, earn the mark."
+      },
+      {
+        "id": "s3_significance",
+        "kind": "boxed_final",
+        "label": "Significance — the seed habit",
+        "marks": 2,
+        "mark_note": "Significance",
+        "lines": [
+          { "text": "Heterospory is the precursor of the seed habit", "style": "boxed" },
+          "Megaspores form female gametophytes that",
+          "are retained on the parent sporophyte.",
+          "The zygote develops into the embryo",
+          "inside this retained female gametophyte.",
+          "This retention and protection led, in",
+          "evolution, to the seed habit."
+        ],
+        "why": "A seed is an embryo kept and protected on the parent plant. Heterospory begins exactly that arrangement — the female gametophyte, and later the embryo, develop while still attached to the parent. The book prints 'seed habitat'; the correct term is seed habit.",
+        "common_mistakes": [
+          "Writing 'seed habitat' as the book prints — the term is seed habit, the way of forming seeds.",
+          "Stopping at 'it forms two kinds of gametophytes' — the retained female gametophyte and embryo are the 2-mark point."
+        ],
+        "memory_tip": "Follow the megaspore: kept on the parent → gametophyte inside → embryo inside → one step from a seed.",
+        "margin_note": "Two marks: give the retention idea in full, not just the phrase 'seed habit'."
+      }
+    ]
+  },
+  "insider_note": "The two significance marks need the retention idea in your own words; the bare phrase 'leads to the seed habit' usually earns only one."
+}

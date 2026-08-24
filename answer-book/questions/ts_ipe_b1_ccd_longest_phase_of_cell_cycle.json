@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_longest_phase_of_cell_cycle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which of the phases of the cell cycle is of longest duration?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the phase",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 1) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. BOOK ERROR: its key answers 'Synthesis phase of Interphase has longest duration'. This card answers interphase and records the book's wording in the second step's why."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_phases",
+        "kind": "text",
+        "label": "The two phases",
+        "marks": 1,
+        "mark_note": "The phase",
+        "lines": [
+          "The cell cycle has only two phases: interphase",
+          "and M phase, which is the division itself.",
+          "Interphase is the one that takes almost all the",
+          "time."
+        ],
+        "why": "The question asks about phases of the CELL CYCLE, and there are only two of them, so the answer has to be one of these two. NCERT states that interphase lasts more than 95 per cent of the cycle.",
+        "common_mistakes": [
+          "Naming M phase. Division proper is about one hour in a 24 hour cycle.",
+          "Naming S phase. S is a part of interphase, not a phase of the cell cycle."
+        ],
+        "memory_tip": "Two phases only: interphase and M phase. 23 hours against 1 hour.",
+        "margin_note": "One line. Name the two phases, then say which one is longer."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "Interphase — it takes more than 95% of the cell cycle.",
+            "style": "boxed"
+          },
+          "In a human cell cycle of 24 hours, division takes",
+          "about 1 hour and interphase takes the other 23."
+        ],
+        "why": "The second mark is for the evidence, not for the name. This book's key answers 'Synthesis phase of Interphase'. S phase is a long stretch, but it is a sub-phase INSIDE interphase, and in a typical human cell G₁ (about 11 hours) is longer than S (about 8 hours) — so interphase is the answer that is right on both readings.",
+        "common_mistakes": [
+          "Giving the name with no number. The second mark is for the 95 per cent or the 23 hours out of 24."
+        ],
+        "memory_tip": "24 hours in the cycle: 23 for interphase, 1 for division.",
+        "margin_note": "Add one number. That is the second mark."
+      }
+    ]
+  },
+  "insider_note": "The examiner wants the word interphase and one figure that proves it — more than 95 per cent, or 23 hours out of 24."
+}

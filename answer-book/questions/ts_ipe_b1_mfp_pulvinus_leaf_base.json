@@ -1,0 +1,80 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_pulvinus_leaf_base",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by pulvinus leaf base? In members of which angiospermic family do you find it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Family",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERROR RECORDED: the book prints 'Leguminoceae'; the correct spellings are Fabaceae / Leguminosae."
+  },
+  "insider_note": "A one-word family answer is accepted, but the misspelling Leguminoceae can cost the mark with a strict examiner.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Pulvinus — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A swollen leaf base is called a pulvinus."
+        ],
+        "why": "The definition is one line - the leaf BASE (the part joining the stem) is swollen.",
+        "common_mistakes": [
+          "Writing swollen petiole. The pulvinus is the swollen leaf BASE, not the whole stalk."
+        ],
+        "memory_tip": "Pulvinus - a pillow at the base of the leaf.",
+        "margin_note": "One sentence is the full first mark."
+      },
+      {
+        "id": "s2_family",
+        "kind": "boxed_final",
+        "label": "The family",
+        "marks": 1,
+        "mark_note": "Family",
+        "lines": [
+          {
+            "text": "It is found in members of Fabaceae",
+            "style": "boxed"
+          },
+          "(Leguminosae), e.g. bean, Mimosa."
+        ],
+        "why": "The family name is the second mark; Fabaceae is the accepted modern name and Leguminosae the older one. The book prints 'Leguminoceae', a misspelling.",
+        "common_mistakes": [
+          "Misspelling the family as Leguminoceae (the book's spelling). Write Fabaceae or Leguminosae."
+        ],
+        "memory_tip": "Pulvinus and pea family go together - Fabaceae.",
+        "margin_note": "Either family name earns the mark; spell it correctly."
+      }
+    ]
+  }
+}

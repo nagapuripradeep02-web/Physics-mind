@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_three_tissue_systems",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Name the three basic tissue systems in flowering plants. Give the tissue names under each system.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the three systems",
+      "marks": 1
+    },
+    {
+      "label": "Epidermal tissue system",
+      "marks": 1
+    },
+    {
+      "label": "Ground tissue system",
+      "marks": 1
+    },
+    {
+      "label": "Vascular tissue system",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK WORDING RECORDED: the book lists the epidermal tissue system as 'epidermis, stomata, trichomes and hairs', which repeats itself. This card writes trichomes on the shoot and root hairs on the root, which is what the two words mean."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The three tissue systems",
+        "marks": 1,
+        "mark_note": "The three names",
+        "margin_note": "One mark for the three names alone. Write them as a numbered list.",
+        "lines": [
+          "On the basis of their position in the plant",
+          "body, the tissues of a flowering plant are",
+          "grouped into three tissue systems:",
+          "1. Epidermal tissue system",
+          "2. Ground tissue system",
+          "3. Vascular tissue system"
+        ],
+        "why": "The grouping is by position, so the three names already run from the outside of the plant inward. Getting that order right stops you from putting a tissue in the wrong system later.",
+        "common_mistakes": [
+          "Writing epidermis, cortex and stele. Those are regions of one organ, not tissue systems.",
+          "Naming only two systems. There are three."
+        ],
+        "memory_tip": "Outside, middle, inside: epidermal, ground, vascular."
+      },
+      {
+        "id": "s2_epidermal",
+        "kind": "text",
+        "label": "Epidermal tissue system",
+        "marks": 1,
+        "mark_note": "Tissues named",
+        "margin_note": "Name the system, then list what is under it. One line for the job it does.",
+        "lines": [
+          {
+            "text": "1. Epidermal tissue system",
+            "style": "heading"
+          },
+          "It forms the outermost covering of the whole",
+          "plant body.",
+          "Tissues under it: the epidermis, the stomata",
+          "set in it, and the epidermal appendages, that",
+          "is trichomes on the shoot and root hairs on",
+          "the root.",
+          "It protects the plant and controls the loss of",
+          "water."
+        ],
+        "why": "This system is defined by being on the outside, so everything that sits in or grows out of the outermost layer belongs to it.",
+        "common_mistakes": [
+          "Leaving out the stomata and the hairs. The question asks for the tissues under each system.",
+          "Calling the cuticle a tissue. It is a waxy layer, not a tissue."
+        ],
+        "memory_tip": "Everything on the surface: epidermis, stomata, trichomes, root hairs."
+      },
+      {
+        "id": "s3_ground",
+        "kind": "text",
+        "label": "Ground tissue system",
+        "marks": 1,
+        "mark_note": "Tissues named",
+        "margin_note": "Four tissue names, then the three cell types that build them.",
+        "lines": [
+          {
+            "text": "2. Ground tissue system",
+            "style": "heading"
+          },
+          "It is all the tissue lying between the",
+          "epidermal system and the vascular bundles.",
+          "Tissues under it: cortex, pericycle, pith",
+          "(medulla) and medullary rays.",
+          "These are made of parenchyma, collenchyma and",
+          "sclerenchyma."
+        ],
+        "why": "This system is defined by what it is not: everything that is neither the covering nor the conducting tissue. That is why it is the largest of the three.",
+        "common_mistakes": [
+          "Forgetting the medullary rays. They are part of the ground tissue system.",
+          "Putting the xylem or phloem here. They belong to the vascular system."
+        ],
+        "memory_tip": "Ground tissue is the filling: cortex, pericycle, pith and rays."
+      },
+      {
+        "id": "s4_vascular",
+        "kind": "boxed_final",
+        "label": "Vascular tissue system",
+        "marks": 1,
+        "mark_note": "Tissues named",
+        "margin_note": "Close with the three system names in order so the answer ends where it started.",
+        "lines": [
+          {
+            "text": "3. Vascular tissue system",
+            "style": "heading"
+          },
+          "It is the conducting system of the plant,",
+          "present in the form of vascular bundles.",
+          "Tissues under it: xylem and phloem.",
+          "Xylem carries water and minerals upward;",
+          "phloem carries food.",
+          {
+            "text": "Epidermal · Ground · Vascular",
+            "style": "boxed"
+          }
+        ],
+        "why": "Only two tissues make up this system, so the mark is really for naming xylem and phloem and saying what each carries.",
+        "common_mistakes": [
+          "Writing cambium as a third tissue of this system. Cambium is a meristem.",
+          "Swapping the two jobs. Xylem carries water, phloem carries food."
+        ],
+        "memory_tip": "Two tissues only: xylem for water, phloem for food."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves, name and list. A student who names the three systems and stops loses three of the four marks."
+}

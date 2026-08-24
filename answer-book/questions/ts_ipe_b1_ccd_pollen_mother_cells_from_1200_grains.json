@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_pollen_mother_cells_from_1200_grains",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "An anther has 1200 pollen grains. How many pollen mother cells must have been present to produce them?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "One mother cell gives four grains",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, VSAQ 10) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ratio",
+        "kind": "text",
+        "label": "One mother cell gives four grains",
+        "marks": 1,
+        "mark_note": "The ratio",
+        "lines": [
+          "A pollen mother cell, also called a microspore",
+          "mother cell, is diploid and divides by meiosis.",
+          "One meiosis gives 4 haploid microspores, and",
+          "each microspore becomes one pollen grain.",
+          {
+            "text": "1 pollen mother cell → 4 pollen grains",
+            "style": "eq"
+          }
+        ],
+        "why": "Meiosis always gives four products from one cell, and in the anther all four survive as pollen grains. That fixed one-to-four ratio is the whole of this sum.",
+        "common_mistakes": [
+          "Using a ratio of 1 to 2. That is mitosis, not meiosis.",
+          "Jumping straight to the number without stating the ratio."
+        ],
+        "memory_tip": "One meiosis, four products. Divide by 4 for mother cells, multiply by 4 for grains.",
+        "margin_note": "State the ratio in one line before you divide."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          {
+            "text": "Number of pollen mother cells = 1200 ÷ 4 = 300",
+            "style": "boxed"
+          }
+        ],
+        "why": "Divide, do not multiply — the pollen grains are the product and the mother cells are the source. The book writes this as n/4 = 1200/4 = 300 PMC, using n for the number of pollen grains; the arithmetic is right but the symbol is loose, so write 'number of pollen grains ÷ 4' and the examiner can see what you divided.",
+        "common_mistakes": [
+          "Answering 4800 by multiplying instead of dividing."
+        ],
+        "memory_tip": "Grains are more numerous than mother cells, so the answer must be smaller than 1200.",
+        "margin_note": "One boxed line of arithmetic. Nothing else is needed."
+      }
+    ]
+  },
+  "insider_note": "The same one-to-four rule answers the megaspore version of this question, except that there only one of the four megaspores stays alive."
+}

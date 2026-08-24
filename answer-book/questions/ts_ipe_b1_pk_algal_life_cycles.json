@@ -1,0 +1,72 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_algal_life_cycles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name an alga which shows (a) a haplodiplontic life cycle, (b) a diplontic life cycle.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Haplodiplontic example", "marks": 1 },
+    { "label": "Diplontic example", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 8. The book lists Laminaria and Ectocarpus for haplodiplontic and Fucus for diplontic — consistent with NCERT (Ectocarpus, Polysiphonia and kelps are haplo-diplontic; Fucus is diplontic; Laminaria is a kelp). Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_haplodiplontic",
+        "kind": "text",
+        "label": "Haplodiplontic — Ectocarpus",
+        "marks": 1,
+        "mark_note": "Haplodiplontic",
+        "lines": [
+          "Haplodiplontic life cycle: Ectocarpus",
+          "(also kelps such as Laminaria)."
+        ],
+        "why": "In a haplodiplontic cycle both a haploid gametophyte and a diploid sporophyte are multicellular, free-living phases. Among algae, Ectocarpus, Polysiphonia and the kelps show this pattern.",
+        "common_mistakes": [
+          "Writing Fucus here — Fucus is the diplontic example.",
+          "Writing Spirogyra — Spirogyra is haplontic, the third pattern."
+        ],
+        "memory_tip": "Three cycle words, three algae: haplontic Spirogyra, diplontic Fucus, haplodiplontic Ectocarpus.",
+        "margin_note": "One correctly paired genus per cycle earns each mark."
+      },
+      {
+        "id": "s2_diplontic",
+        "kind": "boxed_final",
+        "label": "Diplontic — Fucus",
+        "marks": 1,
+        "mark_note": "Diplontic",
+        "lines": [
+          { "text": "Diplontic life cycle → Fucus", "style": "boxed" },
+          "The main plant body is diploid; only the",
+          "gametes are haploid."
+        ],
+        "why": "In a diplontic cycle the dominant free-living body is the diploid sporophyte and the haploid stage is only the single-celled gamete — Fucus is the standard algal example.",
+        "common_mistakes": [
+          "Writing a seed plant as the example — seed plants are diplontic, but the question asks for an alga.",
+          "Pairing Fucus with haplodiplontic — in Fucus the whole body is diploid."
+        ],
+        "memory_tip": "Learn the pair Fucus–diplontic as one item; it is the only named diplontic alga in the syllabus.",
+        "margin_note": "The boxed pair alone earns the mark; underline the genus name."
+      }
+    ]
+  },
+  "insider_note": "One correctly paired example per cycle earns each mark; an unpaired list of algae earns nothing."
+}
