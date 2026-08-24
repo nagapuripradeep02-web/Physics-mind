@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -94,7 +94,8 @@
         ],
         "why": "The name is built from parallax and second, which is exactly what the definition says, so the name itself is the reminder.",
         "common_mistakes": [
-          "Saying a parsec is smaller than a light year. It is about 3.26 times larger."
+          "Saying a parsec is smaller than a light year. It is about 3.26 times larger.",
+          "Using the diameter of the earth’s orbit (2 AU) as the baseline. The parsec uses 1 AU, the radius; the parallax angle is the half-angle at the star. 1 parsec = 3.08 × 10¹⁶ m."
         ],
         "recall": {
           "credit": "say_it",

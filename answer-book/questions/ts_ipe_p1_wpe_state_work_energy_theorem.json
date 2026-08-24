@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -52,7 +52,8 @@
         ],
         "why": "The word NET carries the whole theorem: with more than one force acting, the work of any single one of them is not the change in kinetic energy.",
         "common_mistakes": [
-          "Dropping the word \"net\" and saying \"the work done by a force\", which is false whenever two forces act."
+          "Dropping the word \"net\" and saying \"the work done by a force\", which is false whenever two forces act.",
+          "Writing 'net energy' or 'the energy of the force'. NET describes the force; the change happens in the kinetic energy. Force and energy are different quantities and must not be swapped."
         ],
         "recall": {
           "credit": "say_it",

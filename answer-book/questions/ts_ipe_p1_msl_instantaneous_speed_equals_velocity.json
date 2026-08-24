@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -133,9 +133,9 @@
             "text": "Average speed and |average velocity| can differ",
             "style": "boxed"
           },
-          "over a long path they differ, because distance",
-          "exceeds displacement whenever the direction",
-          "changes."
+          "they differ whenever the direction changes,",
+          "because distance then exceeds the magnitude of",
+          "displacement."
         ],
         "why": "Naming the case where the equality fails proves the answer was understood rather than remembered.",
         "common_mistakes": [

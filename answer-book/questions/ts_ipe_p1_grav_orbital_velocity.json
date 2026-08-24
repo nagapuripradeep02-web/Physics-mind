@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -165,7 +165,7 @@
             }
           ]
         },
-        "why": "The whole derivation turns on one length — the orbit radius is (R + h), not R — and the figure is what fixes it.",
+        "why": "The whole derivation turns on one length — the orbit radius is (R + h), not R — and the figure is what fixes it. The definition sentence itself opens the next step — write \"orbital velocity is the velocity with which a body must revolve to stay in a circular orbit\" beside the figure to earn this mark.",
         "common_mistakes": [
           "Using R instead of (R + h) as the radius of the circular path."
         ],

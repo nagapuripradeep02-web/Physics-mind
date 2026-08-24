@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -65,7 +65,8 @@
         ],
         "why": "The factor 2 comes from expanding a SQUARE — it is the sign that this is the height formula and not the depth one.",
         "common_mistakes": [
-          "Dropping the factor 2, which is exactly what turns this into the depth formula."
+          "Dropping the factor 2, which is exactly what turns this into the depth formula.",
+          "Using g(1 − 2h/R) when h is not small compared with R. The linear form is an approximation; the exact value at any height is GM/(R + h)²."
         ],
         "recall": {
           "credit": "say_it",

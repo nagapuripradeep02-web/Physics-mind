@@ -40,7 +40,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Re-homed from Unit 4 to Unit 3 on 2026-08-22: both source books place this question in Motion in a Straight Line — the Fastrack as Very Short Answer 2 (p.6, 3 stars) and the TSBIE Basic Learning Material as Short Answer 1 (p.4). The two books DISAGREE on the section, so both lengths ship as cuts and the student chooses. The question_id keeps its original mp_ prefix because ids are stable forever. It was asked in the AP March 2026 paper, question 24, which is recorded in appearances[]. Both mark splits are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "Re-homed from Unit 4 to Unit 3 on 2026-08-22: both source books place this question in Motion in a Straight Line — the Fastrack as Very Short Answer 2 (p.6, 3 stars) and the TSBIE Basic Learning Material as Short Answer 1 (p.4). The two books DISAGREE on the section, so both lengths ship as cuts and the student chooses. The question_id keeps its original mp_ prefix because ids are stable forever. It was asked in the AP March 2026 paper, question 24, which is recorded in appearances[]. Both mark splits are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -117,7 +117,7 @@
           }
         ],
         "margin_note": "Two of the four marks sit here. Write the limit line — the words alone earn one mark, the limit earns the other.",
-        "why": "Shrinking the interval to nothing turns the average over a stretch into the value at a point — that limit is what a speedometer needle reads.",
+        "why": "Shrinking the interval to nothing turns the average over a stretch into the value at a point — the speedometer needle reads the magnitude of that limit.",
         "common_mistakes": [
           "Leaving out the limit and writing only dr/dt.",
           "Saying \"very small time\" instead of the limit as Δt approaches zero."

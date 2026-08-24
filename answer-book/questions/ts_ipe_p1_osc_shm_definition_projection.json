@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "cuts": [
@@ -227,7 +227,7 @@
             "spring"
           ]
         },
-        "memory_tip": "Keep a list of four: pendulum, loaded spring, vibrating string, and the projection of circular motion."
+        "memory_tip": "Keep a list of four: pendulum, loaded spring, tuning fork, and the projection of circular motion."
       },
       {
         "id": "s3_figure",

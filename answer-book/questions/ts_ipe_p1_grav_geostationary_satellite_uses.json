@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -93,7 +93,7 @@
           "3) Studying the upper layers of the atmosphere.",
           "4) Studying the shape and size of the earth."
         ],
-        "why": "Every use follows from one property: it never moves relative to the ground, so it can watch or serve one region without a break.",
+        "why": "Every use follows from one property: it serves ONE region without a break. Use 4 is the source book’s list; strip-by-strip surveying of the WHOLE earth needs a polar satellite instead.",
         "common_mistakes": [
           "Listing whole-earth surveying, which needs a POLAR satellite instead."
         ],

@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -291,7 +291,7 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw first: bob at B, mean position O, string at angle θ, and mg split into two parts."
+        "memory_tip": "Draw first: bob at A, mean position O, string at angle θ, and mg split into two parts."
       },
       {
         "id": "s2_resolve",
@@ -314,7 +314,7 @@
             "style": "eq"
           }
         ],
-        "why": "Only the unbalanced part can accelerate the bob, so mg sin θ is the whole of the restoring force.",
+        "why": "Only the unbalanced part can accelerate the bob, so mg sin θ is the whole of the restoring force. The balance T = mg cos θ is exact only at the extreme points; while the bob moves, T is slightly larger to supply the centripetal force. For small swings the difference is negligible, so the board line stands.",
         "common_mistakes": [
           "Swapping sine and cosine — the component ALONG the string is the cosine one."
         ],

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -88,7 +88,7 @@
           },
           "Heavier gases move more slowly and stay."
         ],
-        "why": "The same rule explains why the earth keeps nitrogen and oxygen: a heavier molecule at the same temperature moves more slowly.",
+        "why": "The same rule explains why the earth keeps nitrogen and oxygen: a heavier molecule at the same temperature moves more slowly. In truth hydrogen’s r.m.s. speed near the earth (about 2 km s⁻¹) is below 11.2 km s⁻¹; escape happens because the fastest molecules in the distribution exceed v_e over long times. The marked line is the book’s simplified comparison.",
         "common_mistakes": [
           "Saying the earth has no hydrogen at all; it has very little free hydrogen, not none."
         ],

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -91,7 +91,7 @@
           "3.25 → 3.2 and 3.35 → 3.4, so that rounding",
           "up and down happen equally often."
         ],
-        "why": "Always rounding a 5 upward would push a long set of results slightly high. Rounding to the even digit removes that bias.",
+        "why": "Always rounding a 5 upward would push a long set of results slightly high. Rounding to the even digit removes that bias. The round-to-even rule applies only when the 5 is the last digit or is followed by zeros. If non-zero digits follow the 5, the value is above halfway, so round up: 3.2501 → 3.3.",
         "common_mistakes": [
           "Always rounding a 5 up, which biases a series of measurements upward."
         ],

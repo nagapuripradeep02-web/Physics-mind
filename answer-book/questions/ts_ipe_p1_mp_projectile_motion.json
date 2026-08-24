@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "cuts": [
     {
@@ -621,7 +621,7 @@
           "which is the equation of a parabola."
         ],
         "margin_note": "Eliminate t between the two equations. Two of the eight marks are for this step, so show the substitution.",
-        "why": "x and y each depend on time, so neither alone shows the shape of the path. Removing t leaves a relation between x and y only — and that relation is what a parabola is.",
+        "why": "x and y each depend on time, so neither alone shows the shape of the path. Removing t leaves a relation between x and y only — and that relation is what a parabola is. In y = Ax − Bx², A and B are the constants tan θ and g/(2u² cos²θ), not the points A and B of the figure.",
         "common_mistakes": [
           "Stopping at x and y separately without eliminating t.",
           "Dropping the minus sign and getting an upward curve.",

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -50,7 +50,7 @@
           "covered, that is distance ÷ time.",
           "It is a scalar and is never negative."
         ],
-        "why": "Speed is built from distance, so it inherits the property that it only ever adds up.",
+        "why": "Speed is built from distance, which never decreases, so speed can never be negative. The speed itself can still rise and fall during the motion.",
         "common_mistakes": [
           "Giving speed a direction."
         ],
@@ -89,7 +89,7 @@
         ],
         "why": "Because velocity is built from displacement, every property of displacement carries over: direction, sign, and zero for a round trip.",
         "common_mistakes": [
-          "Saying average speed always equals the magnitude of average velocity. It does so only when the direction never reverses."
+          "Saying average speed always equals the magnitude of average velocity. They are equal only when the body moves along one straight line in one direction, without reversing."
         ],
         "recall": {
           "credit": "say_it",

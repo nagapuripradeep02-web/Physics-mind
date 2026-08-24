@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -90,7 +90,8 @@
         ],
         "why": "The satellite and the bob fall around the earth at the same rate, so relative to the satellite the bob feels no pull at all.",
         "common_mistakes": [
-          "Saying there is no gravity in orbit — there is; the satellite and the bob are simply falling together."
+          "Saying there is no gravity in orbit — there is; the satellite and the bob are simply falling together.",
+          "Putting the value of g at the satellite's height into T = 2π√(l/g). The bob responds to the effective g inside the satellite, which is zero; the local field value does not set the period."
         ],
         "recall": {
           "credit": "say_it",

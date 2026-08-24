@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -92,7 +92,8 @@
         ],
         "why": "Writing newton as kg m s⁻² shows the derivation in one line, which is exactly what \"derived\" means.",
         "common_mistakes": [
-          "Naming a derived unit without showing what it is built from."
+          "Naming a derived unit without showing what it is built from.",
+          "Calling kilometre, centimetre or gram a derived unit. A prefix makes a multiple or sub-multiple of one fundamental unit, not a derived unit. A derived unit combines fundamental units, like kg m s⁻². Kilogram itself is the base unit."
         ],
         "recall": {
           "credit": "say_it",

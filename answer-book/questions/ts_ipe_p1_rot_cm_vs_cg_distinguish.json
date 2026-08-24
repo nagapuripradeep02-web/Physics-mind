@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -124,7 +124,8 @@
         "margin_note": "Point 4 is the connecting sentence examiners look for: for ordinary bodies the two points coincide.",
         "why": "Weight is mass TIMES g — so wherever g varies across a very large body, the weight-average and the mass-average part company. For everything on a table top they are the same point.",
         "common_mistakes": [
-          "Claiming the two are always different. For a small uniform-field body they coincide."
+          "Claiming the two are always different. For a small uniform-field body they coincide.",
+          "Thinking a different but UNIFORM g moves the centre of gravity. It does not — in any uniform field the CG is at the CM; the two separate only when g VARIES across the body."
         ],
         "recall": {
           "credit": "say_it",
