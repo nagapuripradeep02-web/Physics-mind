@@ -74,7 +74,8 @@
             "rolls over",
             "rolling friction"
           ]
-        }
+        },
+        "memory_tip": "A rolling body never drags — a new point touches down each instant. That is the difference."
       },
       {
         "id": "s2_laws",
@@ -125,7 +126,8 @@
             "radius",
             "normal reaction"
           ]
-        }
+        },
+        "memory_tip": "Three quantities in order: contact AREA, rolling RADIUS, normal REACTION. Smaller, larger, proportional."
       },
       {
         "id": "s3_coefficient",
@@ -164,8 +166,10 @@
             "coefficient",
             "normal reaction"
           ]
-        }
+        },
+        "memory_tip": "Steel wheel on rail gives μ_R near 0.001, against μ_k near 0.5 for sliding steel."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks sit in the three numbered laws. Write the book’s three as printed — the examiner is ticking a list, not reading an argument."
 }

@@ -74,7 +74,8 @@
             "minimum"
           ]
         },
-        "memory_tip": "The word that earns the mark is MINIMUM — the least speed that never comes back."
+        "memory_tip": "The word that earns the mark is MINIMUM — the least speed that never comes back.",
+        "margin_note": "First mark. The one word MINIMUM is what is being marked here."
       },
       {
         "id": "s2_energy",
@@ -116,7 +117,8 @@
             "G M m by R"
           ]
         },
-        "memory_tip": "It is an energy balance, not a force balance: ½mv² = GMm/R — kinetic energy pays for the whole climb."
+        "memory_tip": "It is an energy balance, not a force balance: ½mv² = GMm/R — kinetic energy pays for the whole climb.",
+        "margin_note": "Two of the four marks. Write the potential energy line before the energy balance."
       },
       {
         "id": "s3_expression",
@@ -157,8 +159,10 @@
             "11.2"
           ]
         },
-        "memory_tip": "v_e = √(2gR). The m cancels — a feather and a rocket need the same speed."
+        "memory_tip": "v_e = √(2gR). The m cancels — a feather and a rocket need the same speed.",
+        "margin_note": "Last mark. Show the m cancelling, then box the 11.2 km s⁻¹ value."
       }
     ]
-  }
+  },
+  "insider_note": "Write the 11.2 km s⁻¹ value inside the box as well as the formula — an answer that stops at √(2gR) has not finished the last mark."
 }

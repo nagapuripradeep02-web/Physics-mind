@@ -80,7 +80,8 @@
             "two pi",
             "six pi"
           ]
-        }
+        },
+        "memory_tip": "60 rpm is 1 revolution per second, so ω₁ = 2π. 180 rpm is 3 per second, so ω₂ = 6π."
       },
       {
         "id": "s2_work_energy",
@@ -116,7 +117,8 @@
             "change in kinetic energy",
             "half I"
           ]
-        }
+        },
+        "memory_tip": "Factor the I out first: W = ½I(ω₂² − ω₁²). One line, and the next step is a division."
       },
       {
         "id": "s3_value",
@@ -155,8 +157,10 @@
             "0.63",
             "sixteen pi squared"
           ]
-        }
+        },
+        "memory_tip": "16π² ≈ 158, so I ≈ 100/158 ≈ 0.63 kg·m². Keep π symbolic until this last division."
       }
     ]
-  }
+  },
+  "insider_note": "The value step is 2 of the 4 marks and the unit kg·m² is part of it — a bare 0.63 is not the whole answer."
 }

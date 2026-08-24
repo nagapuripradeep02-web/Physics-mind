@@ -62,6 +62,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. Say the bodies move on together before writing the momentum equation.",
         "why": "Momentum is conserved in EVERY collision; kinetic energy is not. Starting from the conserved quantity is what makes this answer short.",
         "common_mistakes": [
           "Using conservation of kinetic energy here; it is exactly what does not hold."
@@ -81,7 +82,8 @@
             "common velocity",
             "momentum conserved"
           ]
-        }
+        },
+        "memory_tip": "v is the total momentum divided by the total mass — a weighted average of u₁ and u₂."
       },
       {
         "id": "s2_energies",
@@ -103,6 +105,7 @@
           "Substituting v from the first step gives K_f",
           "in terms of the starting velocities."
         ],
+        "margin_note": "Two marks, one for each energy. Write K_i and K_f in full before you subtract.",
         "why": "Writing both energies before subtracting keeps the algebra honest; substituting v too early is where mistakes usually happen.",
         "common_mistakes": [
           "Writing K_f with the two masses moving at different speeds after a perfectly inelastic collision."
@@ -121,7 +124,8 @@
             "K initial",
             "K final"
           ]
-        }
+        },
+        "memory_tip": "Two ½mu² terms before, ONE ½(m₁ + m₂)v² term after. Two bodies in, one moving body out."
       },
       {
         "id": "s3_loss",
@@ -138,6 +142,7 @@
           "This is always positive, so kinetic energy is",
           "always lost. It turns into heat and sound."
         ],
+        "margin_note": "Last mark. Box the loss, then say where the energy went — heat and sound.",
         "why": "The loss depends on the RELATIVE velocity, so two bodies moving at the same velocity lose nothing — the (u₁ − u₂)² factor shows the collision has to be a real one.",
         "common_mistakes": [
           "Concluding energy is destroyed; it is converted, not destroyed."
@@ -157,8 +162,10 @@
             "loss",
             "heat and sound"
           ]
-        }
+        },
+        "memory_tip": "It is ½μ(u₁ − u₂)² with the reduced mass μ = m₁m₂/(m₁ + m₂) — the same ½mv² shape."
       }
     ]
-  }
+  },
+  "insider_note": "The two energies carry 2 of the 4 marks. Write both in full before subtracting; skipping straight to ΔK loses them."
 }

@@ -291,7 +291,8 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw first: bob at A, mean position O, string at angle θ, and mg split into two parts."
+        "memory_tip": "Draw first: bob at A, mean position O, string at angle θ, and mg split into two parts.",
+        "margin_note": "First mark. The figure earns it: mark θ, L and the two parts of mg."
       },
       {
         "id": "s2_resolve",
@@ -333,7 +334,8 @@
             "mg sin theta"
           ]
         },
-        "memory_tip": "mg cos θ is cancelled by the tension; mg sin θ survives as the restoring force."
+        "memory_tip": "mg cos θ is cancelled by the tension; mg sin θ survives as the restoring force.",
+        "margin_note": "Two marks here. Both components, and which one the tension balances."
       },
       {
         "id": "s3_small_angle",
@@ -375,7 +377,8 @@
             "g by L"
           ]
         },
-        "memory_tip": "The approximation lives here: for small θ, sin θ ≈ θ = x/L. Writing it is what makes the motion SHM."
+        "memory_tip": "The approximation lives here: for small θ, sin θ ≈ θ = x/L. Writing it is what makes the motion SHM.",
+        "margin_note": "Two more marks. sin θ ≈ θ and θ = x/L are separate lines. Write both."
       },
       {
         "id": "s4_period",
@@ -417,7 +420,8 @@
             "mass cancels"
           ]
         },
-        "memory_tip": "Match a = −(g/L)x with a = −ω²x: T = 2π√(L/g). The mass never appears."
+        "memory_tip": "Match a = −(g/L)x with a = −ω²x: T = 2π√(L/g). The mass never appears.",
+        "margin_note": "Two marks. Compare with a = −ω²x first, then turn ω into T."
       },
       {
         "id": "s5_seconds",
@@ -454,7 +458,8 @@
             "two seconds"
           ]
         },
-        "memory_tip": "Seconds pendulum: T = 2 s, length close to 1 metre."
+        "memory_tip": "Seconds pendulum: T = 2 s, length close to 1 metre.",
+        "margin_note": "The last mark. One sentence: T = 2 s, length about 1 metre."
       }
     ]
   },

@@ -72,7 +72,9 @@
             "unit mass",
             "field intensity"
           ]
-        }
+        },
+        "memory_tip": "Force per UNIT mass. Divide the test mass out and only the source M is left.",
+        "margin_note": "First mark. The words UNIT mass earn it; the formula on its own does not."
       },
       {
         "id": "s2_unit",
@@ -108,8 +110,11 @@
             "newton per kilogram",
             "vector"
           ]
-        }
+        },
+        "memory_tip": "N kg⁻¹ is force ÷ mass, which is an acceleration — so it also reads m s⁻².",
+        "margin_note": "Second mark. Give the unit and the direction; intensity is a vector."
       }
     ]
-  }
+  },
+  "insider_note": "The unit is a separate mark: write N kg⁻¹, and add the direction, since a vector defined without it reads as incomplete."
 }

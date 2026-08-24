@@ -79,7 +79,8 @@
             "potential energy",
             "by virtue"
           ]
-        }
+        },
+        "memory_tip": "Potential goes with POSITION, kinetic with MOTION. One word separates the two definitions."
       },
       {
         "id": "s2_figure",
@@ -249,7 +250,8 @@
             "diagram",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "Four things on the figure: the box, F pointing up, mg pointing down, and the height h."
       },
       {
         "id": "s3_force",
@@ -287,7 +289,8 @@
             "balances",
             "slowly"
           ]
-        }
+        },
+        "memory_tip": "Slowly means zero acceleration, and zero acceleration means F = mg exactly."
       },
       {
         "id": "s4_work",
@@ -330,7 +333,8 @@
             "m g h",
             "cos zero"
           ]
-        }
+        },
+        "memory_tip": "cos 0° = 1, so W = F s cos θ becomes plain F × s. Then F = mg and s = h give mgh."
       },
       {
         "id": "s5_result",
@@ -367,8 +371,10 @@
             "potential energy",
             "m g h"
           ]
-        }
+        },
+        "memory_tip": "Check it with a number: 1 kg raised 1 m stores about 10 J, since mgh is force × distance."
       }
     ]
-  }
+  },
+  "insider_note": "One mark each: the definition, F = mg, W = mgh, then U = mgh. Naming the work as STORED energy is the line most students leave out."
 }

@@ -54,6 +54,7 @@
           "u and g are fixed, so R is largest when",
           "sin 2θ is largest, that is sin 2θ = 1."
         ],
+        "margin_note": "First mark. Quote R = u² sin 2θ / g and state the condition sin 2θ = 1.",
         "why": "The angle sits inside one sine, so the whole question is \"when is a sine equal to 1\". This mark stops at sin 2θ = 1; the value θ = 45° belongs to the next step.",
         "common_mistakes": [
           "Maximising sin θ instead of sin 2θ, which gives 90° and zero range."
@@ -72,7 +73,8 @@
             "sin 2 theta",
             "maximum"
           ]
-        }
+        },
+        "memory_tip": "The angle inside the sine is 2θ, not θ. Make sin 2θ as large as possible and nothing else."
       },
       {
         "id": "s2_result",
@@ -89,6 +91,7 @@
           "The angle 45° does not depend on the",
           "speed of projection."
         ],
+        "margin_note": "Second mark. Both parts are wanted: the angle 45° and the range u²/g.",
         "why": "45° splits the speed equally between carrying the body forward and keeping it in the air, which is why 45° is the best angle at every speed.",
         "common_mistakes": [
           "Writing the maximum range as u²/2g, which is the maximum HEIGHT of a vertical throw."
@@ -107,8 +110,10 @@
             "45",
             "u squared by g"
           ]
-        }
+        },
+        "memory_tip": "2θ = 90° means θ = 45°, so halve it. Then sin 90° = 1 leaves R = u²/g exactly."
       }
     ]
-  }
+  },
+  "insider_note": "The condition sin 2θ = 1 is a full mark before the answer. θ = 45° with no working earns one mark, not two."
 }

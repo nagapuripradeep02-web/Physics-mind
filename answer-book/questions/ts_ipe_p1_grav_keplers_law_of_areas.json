@@ -77,7 +77,9 @@
             "equal areas",
             "sweeps"
           ]
-        }
+        },
+        "memory_tip": "The law of AREAS — the name gives you the quantity that stays constant.",
+        "margin_note": "First mark. Write the whole sentence: the line to the sun, equal areas, equal times."
       },
       {
         "id": "s2_meaning",
@@ -114,8 +116,11 @@
             "areal velocity",
             "faster"
           ]
-        }
+        },
+        "memory_tip": "Equal area with a shorter radius needs a faster planet. That is the whole consequence.",
+        "margin_note": "Second mark. dA/dt = constant, then the faster-when-nearer sentence."
       }
     ]
-  }
+  },
+  "insider_note": "Asked in the AP March 2026 paper as question 8, where Section A carries 1 mark; at the TS length of 2 marks the areal-rate line is what fills the second."
 }

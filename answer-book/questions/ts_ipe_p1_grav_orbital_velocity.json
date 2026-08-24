@@ -184,7 +184,8 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw the orbit and mark the radius as R + h from the CENTRE, not from the surface."
+        "memory_tip": "Draw the orbit and mark the radius as R + h from the CENTRE, not from the surface.",
+        "margin_note": "First mark is the figure. Draw it, and write the definition sentence beside it."
       },
       {
         "id": "s2_forces",
@@ -222,7 +223,8 @@
             "equate"
           ]
         },
-        "memory_tip": "One balance line: gravity supplies the centripetal force, GMm/(R+h)² = mv₀²/(R+h)."
+        "memory_tip": "One balance line: gravity supplies the centripetal force, GMm/(R+h)² = mv₀²/(R+h).",
+        "margin_note": "Two marks. The definition sentence and the balance equation, on separate lines."
       },
       {
         "id": "s3_expression",
@@ -263,8 +265,10 @@
             "7.9"
           ]
         },
-        "memory_tip": "v₀ = √(GM/(R+h)). Pair it with escape velocity: v_e = √2 × v₀."
+        "memory_tip": "v₀ = √(GM/(R+h)). Pair it with escape velocity: v_e = √2 × v₀.",
+        "margin_note": "Last mark. Cancel, then box √(gR) ≈ 7.9 km s⁻¹."
       }
     ]
-  }
+  },
+  "insider_note": "The figure carries one of the four marks even though the question asks only for an expression — draw the orbit and label R + h."
 }

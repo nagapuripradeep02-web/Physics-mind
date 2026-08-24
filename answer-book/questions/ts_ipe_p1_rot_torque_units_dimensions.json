@@ -71,7 +71,9 @@
             "newton metre",
             "dimensions"
           ]
-        }
+        },
+        "memory_tip": "Build it from τ = rF: [L] × [M L T⁻²] = [M L² T⁻²]. Never memorise it on its own.",
+        "margin_note": "First mark. The SI unit and the dimensional formula are both wanted here."
       },
       {
         "id": "s2_compare",
@@ -105,8 +107,11 @@
             "scalar",
             "vector"
           ]
-        }
+        },
+        "memory_tip": "The unit choice records the difference: joule for work, N·m for torque, never swapped.",
+        "margin_note": "Second mark. Answer \"No\" first, then give the scalar-against-vector reason."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks are in the comparison. Answer no, and give the reason in the same line: torque is a vector, work a scalar."
 }

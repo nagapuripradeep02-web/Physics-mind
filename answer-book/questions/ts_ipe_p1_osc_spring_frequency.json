@@ -192,7 +192,8 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw the hanging spring with the mean position O marked — every y is measured from O."
+        "memory_tip": "Draw the hanging spring with the mean position O marked — every y is measured from O.",
+        "margin_note": "First mark. Mark the mean position O on the figure. Every y is measured from O."
       },
       {
         "id": "s2_force",
@@ -236,7 +237,8 @@
             "k by m"
           ]
         },
-        "memory_tip": "Show F = −ky gives a = −(k/m)y FIRST; that line earns the right to use the SHM formulas."
+        "memory_tip": "Show F = −ky gives a = −(k/m)y FIRST; that line earns the right to use the SHM formulas.",
+        "margin_note": "Two marks here. a = −(k/m)y has to be reached before any period formula is used."
       },
       {
         "id": "s3_frequency",
@@ -276,8 +278,10 @@
             "2 pi"
           ]
         },
-        "memory_tip": "ω² = k/m, so n = (1/2π)√(k/m). Stiffer spring or lighter mass → higher frequency."
+        "memory_tip": "ω² = k/m, so n = (1/2π)√(k/m). Stiffer spring or lighter mass → higher frequency.",
+        "margin_note": "The last mark. The question says frequency, so end at n and not at T."
       }
     ]
-  }
+  },
+  "insider_note": "The question asks for frequency, so an answer that stops at T = 2π√(m/k) drops the last mark — finish with n = (1/2π)√(k/m)."
 }

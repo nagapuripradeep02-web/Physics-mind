@@ -79,7 +79,8 @@
             "displacement zero",
             "fifty minutes"
           ]
-        }
+        },
+        "memory_tip": "He ends at his own door, so the displacement is zero. Zero over any time is still zero."
       },
       {
         "id": "s2_speed",
@@ -122,8 +123,10 @@
             "6 km",
             "total distance"
           ]
-        }
+        },
+        "memory_tip": "More time is spent on the slower leg, so the answer is below 6.25 km/h — it is 6."
       }
     ]
-  }
+  },
+  "insider_note": "Two answers, one mark each: 0 for the velocity and 6 km/h for the speed. A number without its unit costs the second mark."
 }

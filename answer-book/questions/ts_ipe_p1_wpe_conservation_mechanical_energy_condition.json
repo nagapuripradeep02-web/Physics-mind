@@ -54,6 +54,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. The sentence, then KE + PE = constant. The word total is what earns it.",
         "why": "Only the SUM is fixed; each part rises and falls freely, which is what makes the law useful for finding a speed without touching time.",
         "common_mistakes": [
           "Saying the kinetic energy stays constant, instead of the sum."
@@ -72,7 +73,8 @@
             "kinetic plus potential",
             "constant"
           ]
-        }
+        },
+        "memory_tip": "All PE at the top of a fall, all KE at the bottom. The total reads the same number."
       },
       {
         "id": "s2_condition",
@@ -90,6 +92,7 @@
           "mechanical energy turns into heat and the",
           "total no longer stays constant."
         ],
+        "margin_note": "Second mark. Name the condition, then say what friction does to the total.",
         "why": "The condition is what stops the law being used on a sliding block, which is where students most often misuse it.",
         "common_mistakes": [
           "Applying the law to a body sliding on a rough surface.",
@@ -110,8 +113,10 @@
             "conservative",
             "friction"
           ]
-        }
+        },
+        "memory_tip": "The name is the condition: conservative forces conserve the total. Friction does not."
       }
     ]
-  }
+  },
+  "insider_note": "The condition is a full mark on its own. State the law, then write that only conservative forces may act."
 }

@@ -75,7 +75,9 @@
             "angle of friction",
             "angle of repose"
           ]
-        }
+        },
+        "memory_tip": "φ is measured from the NORMAL, not from the surface. θ is measured from the horizontal.",
+        "margin_note": "First mark. Both definitions on the page. One is measured on a table, the other on a slope."
       },
       {
         "id": "s2_relations",
@@ -120,7 +122,9 @@
             "tan phi",
             "tan theta"
           ]
-        }
+        },
+        "memory_tip": "Tangent both times: f_s/N on the flat table, sin θ/cos θ on the slope.",
+        "margin_note": "Second and third marks. One relation for each angle, and each must end at μ_s."
       },
       {
         "id": "s3_result",
@@ -156,8 +160,11 @@
             "equal",
             "phi equals theta"
           ]
-        }
+        },
+        "memory_tip": "μ_s = 0.6 gives φ = θ = 31°, whichever of the two ways it was measured.",
+        "margin_note": "Fourth mark. It is for the sentence φ = θ, not for the two tangents above it."
       }
     ]
-  }
+  },
+  "insider_note": "The two tan relations carry 2 of the 4 marks. End with φ = θ — stopping at tan φ = tan θ loses the last mark."
 }

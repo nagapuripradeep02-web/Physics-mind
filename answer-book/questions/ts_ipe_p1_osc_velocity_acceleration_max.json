@@ -72,7 +72,9 @@
             "mean position",
             "A omega"
           ]
-        }
+        },
+        "memory_tip": "Put y = 0 into v = ω√(A² − y²): the square root gives A, so v_max = Aω.",
+        "margin_note": "First mark. The mean position and v_max = Aω are both needed for it."
       },
       {
         "id": "s2_acceleration",
@@ -108,8 +110,11 @@
             "extreme",
             "omega squared A"
           ]
-        }
+        },
+        "memory_tip": "a_max = ω v_max = ω²A. Each step from y to v to a brings in one more ω.",
+        "margin_note": "Second mark. The extreme positions and a_max = ω²A. Give the magnitude, not the sign."
       }
     ]
-  }
+  },
+  "insider_note": "Each mark needs a place and a value, so write v_max = Aω and a_max = ω²A as well as the mean and extreme positions."
 }

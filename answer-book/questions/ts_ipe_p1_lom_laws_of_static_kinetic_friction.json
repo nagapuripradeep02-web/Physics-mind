@@ -75,7 +75,9 @@
             "static friction",
             "limiting"
           ]
-        }
+        },
+        "memory_tip": "Push a resting box with 3 N and friction is exactly 3 N. μ_s N is only the maximum.",
+        "margin_note": "First and second marks. Three numbered laws, and the self-adjusting one must be first."
       },
       {
         "id": "s2_kinetic",
@@ -116,8 +118,11 @@
             "kinetic friction",
             "mu k"
           ]
-        }
+        },
+        "memory_tip": "Static has three laws, kinetic has two — kinetic has no self-adjusting law.",
+        "margin_note": "Third and fourth marks. The kinetic list, then the closing line μ_k < μ_s."
       }
     ]
-  }
+  },
+  "insider_note": "An even split: 2 marks for the static laws, 2 for the kinetic. Number them so each law can be counted separately."
 }

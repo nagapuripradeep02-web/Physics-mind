@@ -327,5 +327,6 @@
         "memory_tip": "v = rω. Same ω, larger radius → faster rim."
       }
     ]
-  }
+  },
+  "insider_note": "The derivation carries 2 of the 4 marks and it is three lines: Δs = rΔθ, divide by Δt, take the limit."
 }

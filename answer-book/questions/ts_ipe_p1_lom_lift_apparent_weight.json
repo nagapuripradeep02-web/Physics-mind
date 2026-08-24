@@ -73,7 +73,9 @@
             "normal force",
             "m g minus N"
           ]
-        }
+        },
+        "memory_tip": "Check the sign with a = 0: mg − N = 0 gives N = mg, the ordinary reading.",
+        "margin_note": "First mark. Fix the positive direction, then write the equation. N is what the dial shows."
       },
       {
         "id": "s2_reading",
@@ -110,8 +112,11 @@
             "g minus a",
             "less"
           ]
-        }
+        },
+        "memory_tip": "60 kg with a = 2 m/s² reads 60(9.8 − 2) = 468 N instead of 588 N.",
+        "margin_note": "Second mark. Box N = m(g − a) and say the reading is less than the true weight."
       }
     ]
-  }
+  },
+  "insider_note": "One mark for m g − N = m a, one for the reading m (g − a). Write the equation first; the sign is where the mark is lost."
 }

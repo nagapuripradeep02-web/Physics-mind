@@ -74,7 +74,9 @@
             "newton second",
             "dimensional formula"
           ]
-        }
+        },
+        "memory_tip": "[M L T⁻¹] reads as mass × velocity. That is why kg m/s and N s are the same unit.",
+        "margin_note": "First mark. Two things are asked — the unit and the dimensional formula. Write both."
       },
       {
         "id": "s2_compare",
@@ -112,8 +114,11 @@
             "change in momentum",
             "delta p"
           ]
-        }
+        },
+        "memory_tip": "Momentum is the reading. Impulse is the difference between two readings.",
+        "margin_note": "Second mark. Write J = Δp. A shared unit on its own does not answer the question."
       }
     ]
-  }
+  },
+  "insider_note": "Three things are asked and there are two marks: the unit and the dimensional formula share the first, the comparison is the second."
 }

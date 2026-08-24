@@ -75,7 +75,8 @@
             "same point"
           ]
         },
-        "memory_tip": "Three matches make it geostationary: same period (24 h), same direction (west to east), over the equator."
+        "memory_tip": "Three matches make it geostationary: same period (24 h), same direction (west to east), over the equator.",
+        "margin_note": "Two marks. The matching-period sentence earns one; height, direction and plane earn the other."
       },
       {
         "id": "s2_uses",
@@ -114,8 +115,10 @@
             "communication"
           ]
         },
-        "memory_tip": "All uses are one property repeated: it never moves off its spot — TV relay, communication, weather watch of one region."
+        "memory_tip": "All uses are one property repeated: it never moves off its spot — TV relay, communication, weather watch of one region.",
+        "margin_note": "Two marks for the uses. A numbered list of four reads as four separate points."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks are for the uses, so a long definition with two uses added at the end still drops marks — number four of them."
 }

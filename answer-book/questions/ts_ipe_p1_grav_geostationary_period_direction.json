@@ -73,7 +73,8 @@
             "time period"
           ]
         },
-        "memory_tip": "24 hours — exactly the earth’s own spin period."
+        "memory_tip": "24 hours — exactly the earth’s own spin period.",
+        "margin_note": "First mark. 24 hours, with the reason on the same line."
       },
       {
         "id": "s2_direction",
@@ -110,8 +111,10 @@
             "direction"
           ]
         },
-        "memory_tip": "West to east — the same direction the earth turns."
+        "memory_tip": "West to east — the same direction the earth turns.",
+        "margin_note": "Second mark. West to east — three words, one mark."
       }
     ]
-  }
+  },
+  "insider_note": "The direction is a separate question with its own mark, so an answer that gives only the 24-hour period scores half."
 }

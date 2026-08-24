@@ -80,7 +80,8 @@
             "d omega by d t",
             "alpha"
           ]
-        }
+        },
+        "memory_tip": "The unit gives the definition: rad/s² is radians per second, per second."
       },
       {
         "id": "s2_torque",
@@ -119,7 +120,8 @@
             "d L by d t",
             "torque"
           ]
-        }
+        },
+        "memory_tip": "τ = dL/dt is the exact twin of F = dp/dt. Write it that way and the derivation is set up."
       },
       {
         "id": "s3_relation",
@@ -161,8 +163,10 @@
             "constant",
             "F equals m a"
           ]
-        }
+        },
+        "memory_tip": "Two lines only: write L = Iω, then differentiate it. Nothing else is needed."
       }
     ]
-  }
+  },
+  "insider_note": "The relation carries 2 of the 4 marks and the two definitions one each, so all three parts must be written."
 }

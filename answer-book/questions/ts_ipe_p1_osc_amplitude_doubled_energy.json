@@ -73,7 +73,9 @@
             "A squared",
             "total energy"
           ]
-        }
+        },
+        "memory_tip": "E ∝ A² means the factor squares: ×2 on A gives ×4 on E, and ×3 would give ×9.",
+        "margin_note": "First mark. Write E = ½mω²A², then the line E ∝ A²."
       },
       {
         "id": "s2_answer",
@@ -111,8 +113,11 @@
             "four times",
             "unchanged"
           ]
-        }
+        },
+        "memory_tip": "Count the powers of A: energy carries A², maximum speed A¹, time period A⁰.",
+        "margin_note": "Second mark. Answer four times, then add that the time period does not change."
       }
     ]
-  }
+  },
+  "insider_note": "The relation E ∝ A² carries the first mark, so write it before the factor four — the answer alone is half the marks."
 }

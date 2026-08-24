@@ -51,6 +51,7 @@
           "elastic potential energy, and the spring",
           "returns it when it is released."
         ],
+        "margin_note": "First mark. Name the work done in stretching, and say it is stored and returned.",
         "why": "Potential energy is always stored WORK; naming the work that was done is the cleanest way to say what is stored.",
         "common_mistakes": [
           "Calling it kinetic energy because the spring can make something move later."
@@ -69,7 +70,8 @@
             "elastic potential energy",
             "stored"
           ]
-        }
+        },
+        "memory_tip": "Like mgh, this is stored work — stored in a spring instead of in a height."
       },
       {
         "id": "s2_expression",
@@ -86,6 +88,7 @@
           "is the stretch or compression from its",
           "natural length. U is positive for both."
         ],
+        "margin_note": "Second mark. Box ½kx², then say what k and x are. Both of them need naming.",
         "why": "The x² is why compressing by the same amount stores the same energy as stretching — squaring removes the sign of x.",
         "common_mistakes": [
           "Writing U = kx² without the half, which comes from the force growing from 0 to kx."
@@ -105,8 +108,10 @@
             "half k x squared",
             "force constant"
           ]
-        }
+        },
+        "memory_tip": "The force grows from 0 to kx, so the average is ½kx and the work is ½kx × x = ½kx²."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, and the first is not the formula. Name the work done in stretching, then write U = ½kx² with k and x defined."
 }

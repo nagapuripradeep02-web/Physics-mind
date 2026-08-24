@@ -74,7 +74,9 @@
             "equilibrium",
             "unchanged"
           ]
-        }
+        },
+        "memory_tip": "Both momenta, p and L, must stay constant. Two quantities, so two conditions follow.",
+        "margin_note": "First mark. Say \"does not change with time\" for both momenta, not \"at rest\"."
       },
       {
         "id": "s2_conditions",
@@ -112,7 +114,9 @@
             "both",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "One condition per momentum: ΣF = 0 keeps p constant, Στ = 0 keeps L constant.",
+        "margin_note": "Two marks, one for each condition. Number them 1 and 2."
       },
       {
         "id": "s3_couple",
@@ -148,8 +152,11 @@
             "couple",
             "pure rotation"
           ]
-        }
+        },
+        "memory_tip": "Two fingers turning a tap: equal, opposite, and not along the same line.",
+        "margin_note": "Final mark. Define the couple and add that its net force is zero but its torque is not."
       }
     ]
-  }
+  },
+  "insider_note": "Three parts in the question, three in the answer. The couple is only the last mark, so do not spend the space on it."
 }

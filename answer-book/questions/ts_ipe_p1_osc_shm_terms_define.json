@@ -77,7 +77,9 @@
             "amplitude",
             "time period"
           ]
-        }
+        },
+        "memory_tip": "One time period is a return to the same point moving the same way, not just a return.",
+        "margin_note": "Two marks here, one for each definition. Add the SI unit to both."
       },
       {
         "id": "s2_frequency_phase",
@@ -123,8 +125,11 @@
             "frequency",
             "phase"
           ]
-        }
+        },
+        "memory_tip": "Hertz is oscillations per second, so n = 1/T reads off the unit. Phase is the whole angle ωt + φ, not just φ.",
+        "margin_note": "The other two marks. Frequency needs its unit; phase needs the whole ωt + φ."
       }
     ]
-  }
+  },
+  "insider_note": "Four terms, four marks — one each, so a missing term costs a whole mark. Give the SI unit with each of the first three."
 }

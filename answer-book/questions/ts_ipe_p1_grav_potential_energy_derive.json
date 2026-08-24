@@ -75,7 +75,9 @@
             "potential",
             "per unit mass"
           ]
-        }
+        },
+        "memory_tip": "Divide U by m and the mass is gone: V = U/m belongs to the point, not the body.",
+        "margin_note": "First mark. Two definitions, one line each, with V = U/m between them."
       },
       {
         "id": "s2_work",
@@ -117,7 +119,9 @@
             "integrate",
             "G M m by r"
           ]
-        }
+        },
+        "memory_tip": "Find the pull’s work first, +GMm/r, then change the sign at the end. Two steps.",
+        "margin_note": "Two marks. Integrate a changing force; force × distance is not available here."
       },
       {
         "id": "s3_result",
@@ -153,8 +157,11 @@
             "minus",
             "zero at infinity"
           ]
-        }
+        },
+        "memory_tip": "The outside agent’s work is the negative of the pull’s, so U = −GMm/r.",
+        "margin_note": "Last mark. Box U and V together and name the zero at infinity."
       }
     ]
-  }
+  },
+  "insider_note": "The two definitions share a single mark; the integration of G M m / x² is worth two, so write that part out in full."
 }

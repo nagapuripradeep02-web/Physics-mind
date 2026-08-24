@@ -113,5 +113,6 @@
         "memory_tip": "What is zero at the top is the vertical VELOCITY, not the acceleration. Gravity never switches off."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for two sentences: the value g with its direction, then the reason. The word \"downward\" is what the examiner checks."
 }

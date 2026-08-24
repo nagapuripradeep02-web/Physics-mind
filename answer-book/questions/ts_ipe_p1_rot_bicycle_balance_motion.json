@@ -73,7 +73,8 @@
             "direction",
             "conserved"
           ]
-        }
+        },
+        "memory_tip": "L points along the wheel axle, sideways. Say where it points, not only that it exists."
       },
       {
         "id": "s2_result",
@@ -111,8 +112,10 @@
             "does not tip",
             "balanced"
           ]
-        }
+        },
+        "memory_tip": "A spinning top stays upright; the same top at rest falls over. Same reason."
       }
     ]
-  }
+  },
+  "insider_note": "Both marks are language marks: name angular momentum for the first, connect it to not tipping for the second."
 }

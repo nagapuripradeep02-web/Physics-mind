@@ -78,7 +78,9 @@
             "kinetic energy",
             "G M m by 2 r"
           ]
-        }
+        },
+        "memory_tip": "KE = GMm/2r. Note the 2 on the bottom — the potential energy has a plain r.",
+        "margin_note": "First mark. Derive KE from the orbit condition rather than quoting it."
       },
       {
         "id": "s2_pe",
@@ -113,7 +115,9 @@
             "potential energy",
             "minus"
           ]
-        }
+        },
+        "memory_tip": "PE = −GMm/r is twice the KE in size and negative. Only the PE has a minus.",
+        "margin_note": "Second mark. One line, with the minus sign and the zero at infinity."
       },
       {
         "id": "s3_total",
@@ -154,8 +158,11 @@
             "total energy",
             "bound"
           ]
-        }
+        },
+        "memory_tip": "½ − 1 = −½, so E = −GMm/2r: the size of the KE with the sign of the PE.",
+        "margin_note": "Two marks. Show the addition, box E, then say it is negative and therefore bound."
       }
     ]
-  }
+  },
+  "insider_note": "The total is two of the four marks, so after adding, say what the negative sign means: the satellite is bound."
 }

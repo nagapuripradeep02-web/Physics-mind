@@ -81,7 +81,8 @@
             "focus"
           ]
         },
-        "memory_tip": "Orbits: an ellipse with the sun at ONE focus — the other focus is empty."
+        "memory_tip": "Orbits: an ellipse with the sun at ONE focus — the other focus is empty.",
+        "margin_note": "First mark. Say focus, not centre, and the sentence is complete."
       },
       {
         "id": "s2_figure",
@@ -217,7 +218,8 @@
             "ellipse"
           ]
         },
-        "memory_tip": "Shade two sectors: short and wide near the sun, long and thin far away — equal areas."
+        "memory_tip": "Shade two sectors: short and wide near the sun, long and thin far away — equal areas.",
+        "margin_note": "Second mark is the figure. Ellipse, sun at one focus, two shaded sectors."
       },
       {
         "id": "s3_areas",
@@ -259,7 +261,8 @@
             "sweeps"
           ]
         },
-        "memory_tip": "Areas: equal areas in equal times — conservation of angular momentum in different words."
+        "memory_tip": "Areas: equal areas in equal times — conservation of angular momentum in different words.",
+        "margin_note": "Third mark. The areas sentence together with dA/dt = constant."
       },
       {
         "id": "s4_periods",
@@ -299,7 +302,8 @@
             "a cubed"
           ]
         },
-        "memory_tip": "Periods: T² ∝ a³ — square of the time, cube of the semi-major axis. Learn the three names in order: orbits, areas, periods."
+        "memory_tip": "Periods: T² ∝ a³ — square of the time, cube of the semi-major axis. Learn the three names in order: orbits, areas, periods.",
+        "margin_note": "Fourth mark. T² ∝ a³, with a named as the semi-major axis."
       }
     ]
   },

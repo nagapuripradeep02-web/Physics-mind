@@ -73,7 +73,9 @@
             "three forces",
             "up the slope"
           ]
-        }
+        },
+        "memory_tip": "Count three: weight, normal force, friction. There is no fourth force pushing it down the slope.",
+        "margin_note": "First mark. All three forces named with their directions. Friction points up the slope."
       },
       {
         "id": "s2_resolve",
@@ -113,7 +115,9 @@
             "mg cos theta",
             "mg sin theta"
           ]
-        }
+        },
+        "memory_tip": "Test with θ = 0: cos 0 = 1 gives N = mg, and sin 0 = 0 gives nothing along the plane.",
+        "margin_note": "Second and third marks. One for N = mg cos θ, one for the equation along the plane."
       },
       {
         "id": "s3_result",
@@ -148,8 +152,11 @@
             "sin theta minus mu cos theta",
             "g into"
           ]
-        }
+        },
+        "memory_tip": "θ = 30° with μ = 0.2 gives a = 9.8(0.5 − 0.173) ≈ 3.2 m/s².",
+        "margin_note": "Fourth mark. Cancel m and box the result. The no-slide line is one extra sentence."
       }
     ]
-  }
+  },
+  "insider_note": "Resolving carries 2 of the 4 marks and depends on N = m g cos θ, not m g. The force diagram is the first mark, before any algebra."
 }

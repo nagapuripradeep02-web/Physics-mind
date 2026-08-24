@@ -89,7 +89,8 @@
             "mod a plus b",
             "a squared plus b squared"
           ]
-        }
+        },
+        "memory_tip": "Test θ = 0: the sum becomes a + b and the difference becomes |a − b|. Both formulae are right."
       },
       {
         "id": "s2_figure",
@@ -277,7 +278,8 @@
             "sketch",
             "parallelogram"
           ]
-        }
+        },
+        "memory_tip": "Draw a and b from one point, complete the parallelogram, then read both diagonals off it."
       },
       {
         "id": "s3_equate",
@@ -322,7 +324,8 @@
             "squaring",
             "equate"
           ]
-        }
+        },
+        "memory_tip": "After squaring, a² and b² must appear on both sides. If they do not, the squaring went wrong."
       },
       {
         "id": "s4_solve",
@@ -366,7 +369,8 @@
             "cancel",
             "cross term"
           ]
-        }
+        },
+        "memory_tip": "Bringing −2ab cos θ across adds it to the 2ab cos θ already there. The total is 4, not 2."
       },
       {
         "id": "s5_conclude",
@@ -412,8 +416,10 @@
             "90 degrees",
             "perpendicular"
           ]
-        }
+        },
+        "memory_tip": "cos 90° = 0 and cos 0° = 1. The zero cosine is the right angle, so θ = 90°."
       }
     ]
-  }
+  },
+  "insider_note": "Four marks for four algebra lines. The one most often lost is the sentence ruling out a = 0 and b = 0 before dividing."
 }

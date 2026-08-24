@@ -70,7 +70,9 @@
             "falling together",
             "free fall"
           ]
-        }
+        },
+        "memory_tip": "Free fall, not zero gravity. Everything inside has the same acceleration.",
+        "margin_note": "First mark. Say free fall, and name the acceleration as the same for all of it."
       },
       {
         "id": "s2_normal",
@@ -106,8 +108,11 @@
             "normal force",
             "apparent weight"
           ]
-        }
+        },
+        "memory_tip": "Apparent weight is the NORMAL force and it is zero. True weight mg is still there.",
+        "margin_note": "Second mark. Name the normal force, then box the apparent-weight line."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, two separate ideas: everything falls with the same acceleration, and the floor exerts no normal force."
 }

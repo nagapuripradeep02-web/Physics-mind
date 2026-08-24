@@ -114,5 +114,6 @@
         "memory_tip": "Moving faces only kinetic friction, which is smaller. The order to remember: static maximum > kinetic."
       }
     ]
-  }
+  },
+  "insider_note": "The examiner scans for two words, limiting and kinetic. An answer that never names either friction earns one mark at best."
 }

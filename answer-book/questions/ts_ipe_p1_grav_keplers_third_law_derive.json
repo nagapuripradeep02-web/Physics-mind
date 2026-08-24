@@ -77,7 +77,9 @@
             "v squared",
             "G M by r"
           ]
-        }
+        },
+        "memory_tip": "Set the pull equal to mv²/r, cancel m and one r, and v² = GM/r is left.",
+        "margin_note": "Two marks. The force balance and the cancelling belong on separate lines."
       },
       {
         "id": "s2_result",
@@ -118,8 +120,11 @@
             "T squared",
             "r cubed"
           ]
-        }
+        },
+        "memory_tip": "T = 2πr/v gives r² on top and GM/r underneath, so the r powers add to r³.",
+        "margin_note": "The last two marks. Substitute v, box T² ∝ r³, then name M in the constant."
       }
     ]
-  }
+  },
+  "insider_note": "Half the marks are in the setup, so write the pull equal to the centripetal force before going on to T² ∝ r³."
 }

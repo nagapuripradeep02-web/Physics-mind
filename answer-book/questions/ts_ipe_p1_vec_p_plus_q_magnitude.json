@@ -77,7 +77,8 @@
             "twenty four",
             "component wise"
           ]
-        }
+        },
+        "memory_tip": "Stack them and add straight down: 2+4, 4+4, 14+10. Nothing crosses between the columns."
       },
       {
         "id": "s2_mag",
@@ -120,8 +121,10 @@
             "root six seven six",
             "26"
           ]
-        }
+        },
+        "memory_tip": "36 + 64 + 576 = 676, and √676 = 26. A whole-number root means the addition was right."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, two lines: the sum in components, then the root. Show all three squares — 24² = 576 is where the arithmetic slips."
 }

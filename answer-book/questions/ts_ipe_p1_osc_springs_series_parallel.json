@@ -79,7 +79,9 @@
             "series",
             "reciprocals add"
           ]
-        }
+        },
+        "memory_tip": "Two equal springs of constant k in series give k/2 — softer than either one alone.",
+        "margin_note": "Two marks here. The same-force line is what allows the two stretches to be added."
       },
       {
         "id": "s2_parallel",
@@ -122,8 +124,11 @@
             "parallel",
             "k one plus k two"
           ]
-        }
+        },
+        "memory_tip": "The same pair in parallel gives 2k. Series halves it, parallel doubles it.",
+        "margin_note": "The other two marks. Box k = k₁ + k₂, then one line comparing the two cases."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for each half, and they sit in the reason: same force in series, same stretch in parallel."
 }

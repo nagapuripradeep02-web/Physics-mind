@@ -68,7 +68,9 @@
             "infinity",
             "work done"
           ]
-        }
+        },
+        "memory_tip": "Work done by an OUTSIDE agent, bringing the body from infinity to the point.",
+        "margin_note": "First mark. The words from infinity fix the zero; do not leave them out."
       },
       {
         "id": "s2_expression",
@@ -103,8 +105,11 @@
             "minus G M m by r",
             "negative"
           ]
-        }
+        },
+        "memory_tip": "One r on the bottom, not r². The r² belongs to the force, the r to the energy.",
+        "margin_note": "Second mark. Box the minus sign with the formula and name the zero at infinity."
       }
     ]
-  }
+  },
+  "insider_note": "The minus sign is what is checked in the second mark; the first needs the words from infinity to that point."
 }

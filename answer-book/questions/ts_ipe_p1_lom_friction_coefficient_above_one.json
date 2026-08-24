@@ -115,5 +115,6 @@
         "memory_tip": "Give the board reason: highly polished surfaces stick by adhesion, which pushes f above N."
       }
     ]
-  }
+  },
+  "insider_note": "A plain yes on the first line, the adhesion reason on the second. An opening that only says most surfaces are below one loses the first mark."
 }

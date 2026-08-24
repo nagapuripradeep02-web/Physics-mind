@@ -72,7 +72,9 @@
             "r cross p",
             "angular momentum"
           ]
-        }
+        },
+        "memory_tip": "Moment of MOMENTUM, exactly as torque is the moment of force. Both include the arm r.",
+        "margin_note": "First mark. Define L for a single particle — r × p — before naming the rigid-body form."
       },
       {
         "id": "s2_relation",
@@ -106,8 +108,11 @@
             "I omega",
             "unit"
           ]
-        }
+        },
+        "memory_tip": "Read the unit off the formula: kg·m² from I, per second from ω, so kg·m²/s.",
+        "margin_note": "Second mark. The equation and its SI unit both belong on this line."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks: the definition in words, then L = Iω with its unit. A relation with no unit does not finish the second mark."
 }

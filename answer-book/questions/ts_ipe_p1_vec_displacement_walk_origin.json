@@ -90,7 +90,8 @@
             "components",
             "forty five degrees"
           ]
-        }
+        },
+        "memory_tip": "10√2 at 45° gives components of exactly 10, because the √2 cancels. That is why 10√2 was chosen."
       },
       {
         "id": "s2_figure",
@@ -277,7 +278,8 @@
             "sketch",
             "path"
           ]
-        }
+        },
+        "memory_tip": "North-east is up and to the RIGHT; north-west is up and to the LEFT. Both of them go up."
       },
       {
         "id": "s3_add",
@@ -321,7 +323,8 @@
             "cancel",
             "add the components"
           ]
-        }
+        },
+        "memory_tip": "Add i with i and j with j, never across. The +10 and −10 in i cancel; the j parts add to 30."
       },
       {
         "id": "s4_answer",
@@ -358,8 +361,10 @@
             "30 m",
             "due north"
           ]
-        }
+        },
+        "memory_tip": "The walk itself was about 38 m long, but the displacement is 30 m. Distance and displacement differ."
       }
     ]
-  }
+  },
+  "insider_note": "Resolving the three legs is 2 of the 4 marks. Write all three component lines, even the ones that look obvious."
 }

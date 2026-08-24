@@ -72,7 +72,9 @@
             "g plus a",
             "effective"
           ]
-        }
+        },
+        "memory_tip": "In a lift accelerating upward you feel heavier, and the string pulls harder on the bob. Hence g + a.",
+        "margin_note": "First mark. One line: g_eff = g + a."
       },
       {
         "id": "s2_period",
@@ -109,8 +111,11 @@
             "smaller",
             "faster"
           ]
-        }
+        },
+        "memory_tip": "A lift accelerating at a = g doubles the effective value, so T drops to T/√2 — about 30% shorter.",
+        "margin_note": "Second mark. Box T = 2π√(l/(g + a)), then one line for the downward case."
       }
     ]
-  }
+  },
+  "insider_note": "Write g_eff = g + a as a line of its own — it carries the first mark, and the period is then one substitution."
 }

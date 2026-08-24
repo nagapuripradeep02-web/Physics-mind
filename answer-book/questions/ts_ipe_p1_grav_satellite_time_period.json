@@ -77,7 +77,9 @@
             "R plus h",
             "orbital speed"
           ]
-        }
+        },
+        "memory_tip": "Check it with h = 0: v becomes √(GM/R) = √(gR), the close-orbit speed.",
+        "margin_note": "Two marks. The force balance first, then the square root for v."
       },
       {
         "id": "s2_period",
@@ -120,8 +122,11 @@
             "time period",
             "cubed"
           ]
-        }
+        },
+        "memory_tip": "The cube sits inside the root. Square both sides and Kepler’s T² ∝ r³ appears.",
+        "margin_note": "Two marks. Show the substitution of v, then box T with the cube inside the root."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks are in the speed half, and they depend on the radius being R + h measured from the centre, not h."
 }

@@ -118,5 +118,6 @@
         "memory_tip": "h₂ = h/2 gives e = 1/√2. Notice the drop height cancels out of e."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, and the first is for e = √(h₂/h₁) alone. An answer that shows only 0.707 collects one of them."
 }

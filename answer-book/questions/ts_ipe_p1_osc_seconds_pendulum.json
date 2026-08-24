@@ -69,7 +69,9 @@
             "seconds pendulum",
             "two seconds"
           ]
-        }
+        },
+        "memory_tip": "The word seconds refers to the tick, not the full period: one second per tick, two seconds per period.",
+        "margin_note": "First mark. Two seconds for the full period, said in words."
       },
       {
         "id": "s2_length",
@@ -108,8 +110,11 @@
             "one metre",
             "length"
           ]
-        }
+        },
+        "memory_tip": "4π² ≈ 39.5 and gT² = 9.8 × 4 = 39.2. The two nearly cancel, which is why L is near 1 m.",
+        "margin_note": "Second mark. Show T = 2 s going into T = 2π√(L/g) before writing the length."
       }
     ]
-  }
+  },
+  "insider_note": "The length is a separate mark, so finish the arithmetic — quote 0.99 m, or 1 metre stated as a rounded value."
 }

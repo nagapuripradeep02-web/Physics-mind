@@ -74,7 +74,8 @@
             "vector form"
           ]
         },
-        "memory_tip": "The r³ is not a new law — it is r² times one extra r that turns the vector r into a direction."
+        "memory_tip": "The r³ is not a new law — it is r² times one extra r that turns the vector r into a direction.",
+        "margin_note": "First mark. The vector equation, with r named and its direction fixed."
       },
       {
         "id": "s2_sign",
@@ -111,7 +112,8 @@
             "minus sign"
           ]
         },
-        "memory_tip": "The minus sign IS the attraction. Keep it, and say what it means."
+        "memory_tip": "The minus sign IS the attraction. Keep it, and say what it means.",
+        "margin_note": "Second mark. Say in words what the minus sign means: attraction."
       }
     ]
   },

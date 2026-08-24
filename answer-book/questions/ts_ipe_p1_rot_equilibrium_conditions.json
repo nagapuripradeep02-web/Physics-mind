@@ -71,7 +71,9 @@
             "forces",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "ΣF = 0 is the same condition as in Laws of Motion. Nothing new here, only the first half.",
+        "margin_note": "First mark. ΣF = 0, and say the sum is a VECTOR sum."
       },
       {
         "id": "s2_rotational",
@@ -105,8 +107,11 @@
             "torques",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "ΣF = 0 stops the sliding; Στ = 0 stops the turning. One condition for each motion.",
+        "margin_note": "Second mark. Στ = 0, with the words \"about any point\"."
       }
     ]
-  }
+  },
+  "insider_note": "One mark per condition, so both must appear. ΣF = 0 alone is half the answer; Στ = 0 needs the words about any point."
 }

@@ -72,7 +72,9 @@
             "parallel",
             "centre of mass"
           ]
-        }
+        },
+        "memory_tip": "Parallel axes, and one of them through the centre of mass. Without that phrase the theorem is false.",
+        "margin_note": "First mark. Words only, and the words \"centre of mass\" must appear."
       },
       {
         "id": "s2_equation",
@@ -103,8 +105,11 @@
             "I naught",
             "M r squared"
           ]
-        }
+        },
+        "memory_tip": "Always PLUS. Every other parallel axis has a larger moment of inertia than the centre one.",
+        "margin_note": "Second mark. One line, I = I₀ + Mr², with r named as the distance between the axes."
       }
     ]
-  }
+  },
+  "insider_note": "One mark for the words, one for I = I₀ + Mr². An equation with no statement above it collects half the marks."
 }

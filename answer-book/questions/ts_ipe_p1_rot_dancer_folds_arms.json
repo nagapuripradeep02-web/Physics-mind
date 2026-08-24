@@ -71,7 +71,9 @@
             "conserved",
             "I omega"
           ]
-        }
+        },
+        "memory_tip": "No external torque acts, so the PRODUCT Iω is fixed. If I falls, ω must rise.",
+        "margin_note": "First mark. Name the condition — no external torque — before writing I₁ω₁ = I₂ω₂."
       },
       {
         "id": "s2_result",
@@ -105,8 +107,11 @@
             "spins faster",
             "I decreases"
           ]
-        }
+        },
+        "memory_tip": "Halving a mass’s distance from the axis quarters its contribution to I. The r is squared.",
+        "margin_note": "Second mark. Both halves of the chain — I decreases, so ω increases."
       }
     ]
-  }
+  },
+  "insider_note": "Write I₁ω₁ = I₂ω₂ before the answer. The equation is the first mark; increases on its own is only the second."
 }
