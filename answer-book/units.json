@@ -1,5 +1,5 @@
 {
-  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere.",
+  "comment": "Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. Unit 5 (Laws of Motion) is the Fastrack's own pp.12-14 inventory, LAQ included: unlike Unit 4 the book HAS a Long Answer section here, and the TSBIE Basic Learning Material (pp.10-11) has NO Section-C for this unit at all — it runs VSAQ, SAQ, then straight into Unit 6 — so nothing sources a second 8-mark form and none is invented. Unit 5 SAQ 5 is the only entry in the book with printed exam years (May-12, Mar-04, 06). Unit 6 (Work Power Energy) is the Fastrack's pp.15-19 inventory, and here the TSBIE BLM AGREES on the 8-mark set: its Unit 6 carries exactly these three Long Answer questions and nothing else (no VSAQ section, no SAQ section), so the VSAQ/SAQ list is the Fastrack's alone. The opposite finding from Unit 5 — which is why the source check is per unit, not once. Unit 6 SAQ 1 is a CUT of LAQ 3, not a separate answer: one authored step list served at 8 marks and at 4. The book's PROBLEMS section (4 numericals after LAQ 3; the BLM repeats the first 2 as \"Attached Problems\") is DEFERRED, not dismissed (founder, 2026-08-20): a practice problem belongs to no paper section and carries no mark scheme, and holding one would need a 4th section value across the build, the player and the gates. Fastrack problem 3 does carry printed years \"(Mar, May-14)\", and the two books disagree on problem 2's answer (14.95 kW at g=9.8 vs 15 kW at g=10) — author them deliberately if they are ever added, never transcribe. BOARD-PATTERN STATUS (researched 2026-08-20, full analysis in docs/patterns/answer_book.md §Board landscape): the TS theory paper this book models stays 60 marks A/B/C for 2026-27 — the reform adds 15-mark first-year practicals outside the written paper — but the SYLLABUS is NCERT-revised for 2026-27 (new AI-in-Physics chapter, non-JEE/NEET cuts), so diff every unit inventory against the new TGBIE textbooks when they publish. AP diverged: 85-mark 4-section CBSE-style paper since March 2026, same NCERT question bank at different lengths (the 2026 AP paper asks several of our exact questions) — an AP edition is re-heading + re-cutting, not re-authoring. Unit 7 (System of Particles and Rotational Motion) is the first unit where the two-book check CHANGES the inventory: the TSBIE BLM carries two VSAQs the Fastrack lacks (the girl-carrying-bag centre-of-mass shift; two bodies with the same moment of inertia via KE = L squared over 2I) while the Fastrack carries six SAQs the BLM lacks (both axes theorems, the moment of inertia of a rod, and three numericals). Neither book is a superset of the other even inside one unit, so the inventory below is THE UNION - entries carry source: 'blm' where only the BLM lists them (no source = Fastrack). Both books agree Unit 7 has NO Long Answer section (the BLM runs VSAQ, SAQ, then straight into Unit 8's LAQs), so none is invented - the Unit 5 precedent. Entries with source: 'enumerated' are PREDICTED questions from the Session-89 enumeration sweep (archetype x object grid): never asked in any paper we know, authored as lean cards, labelled honestly in the catalog. UNITS 4/5/6 TWO-BOOK CHECK RE-RUN AND ENUMERATION SWEEP (2026-08-21): the union check was re-run over the BLM's SHORT-ANSWER sections for Units 4 and 5, which earlier sessions had only checked for Section C, and it comes back CLEAN in all three units - the BLM is a strict SUBSET of the Fastrack here, the opposite of Unit 7. BLM Unit 4 (book pp.6-9) lists 6 VSAQs and 4 SAQs and no Section C; BLM Unit 5 (pp.10-11) lists 7 VSAQs and 3 SAQs and no Section C; BLM Unit 6 (pp.12-16) lists the 3 LAQs and nothing else. Every one of those questions was already in the Fastrack-sourced inventory below, so the asked core of these three units is unchanged at 20/17/12 and NOTHING was added from the BLM. Two corrections to the older wording in this comment: Unit 4's two LAQ entries are INVENTED Section-C forms, not 'the BLM's Section-C forms' - the BLM lists the parallelogram law and the parabola as 4-mark SAQs, exactly as the Fastrack does, and neither book has a Unit 4 Section C. And the BLM places 'How is average velocity different from instantaneous velocity?' in Unit 3 (Motion in a Straight Line) as its SAQ 1, while the Fastrack places it in Unit 4 - our card follows the Fastrack, and AP March 2026 asked it at 4 marks (C-24). THE SWEEP: the Session-89 archetype x object grid was then run over these three NCERT chapters minus the union, adding 11 predicted VSAQ/SAQ lean cards to Unit 4, 12 to Unit 5 and 10 to Unit 6 (source: 'enumerated', badged 'Predicted - not asked yet', never dressed as asked). The gaps it closed: Unit 4 had no scalar-vs-vector, no resolution derivation, no relative velocity and no uniform-circular-motion cell at all; Unit 5 had neither Newton's FIRST nor THIRD law anywhere in the bank, and nothing on angle of friction/repose, the rough incline, banking, or the static and kinetic friction laws (only the ROLLING friction laws were asked); Unit 6 had no scalar product (NCERT introduces it in this chapter, not in Unit 4), no variable-force work, no spring potential energy and no perfectly-inelastic energy loss. BACK-TEST PASSED: every question either book asks in these three units, plus all four March-2026 AP hits from these chapters (B-13 inertia, B-14 KE-momentum relation, C-26 methods to decrease friction, C-24 average vs instantaneous velocity), falls inside the grid - nothing landed outside, so the archetype set holds for a fourth, fifth and sixth chapter. Cross-unit duplication was checked and avoided: 'Define angular velocity, derive v = r omega' stays Unit 7 SAQ 7 and was NOT re-enumerated into Unit 4, and the vector product stays Unit 7 while the scalar product goes to Unit 6, following NCERT's own placement. UNIT 8 (Oscillations) — the two-book check came back the UNIT 6 SHAPE (2026-08-21). The TSBIE BLM's Unit 8 (book pp.21-24) carries EXACTLY the three Long Answer questions and nothing else — no VSAQ section, no SAQ section — then runs straight into Unit 9 Gravitation. So both books agree on the whole 8-mark set, and the VSAQ/SAQ list (3 VSAQ + 2 SAQ) is the Fastrack's alone (book pp.23-27, read directly). The two books NUMBER the LAQs differently — the Fastrack has 1 = simple pendulum, 2 = projection of uniform circular motion; the BLM has 1 = projection, 2 = pendulum — same three questions, different order. The manifest follows the FASTRACK numbering, as every unit here does, because the star ranks and section numbers are the Fastrack's. CUTS: the Fastrack asks the SHM definition ALONE as Short Answer 1 (4M) and the definition PLUS the projection proof as Long Answer 2 (8M) — one authored step list at two lengths, exactly the Unit 6 collision pattern; ts_ipe_p1_osc_shm_definition_projection is the root (LAQ, Section C) with cuts laq and saq, and the saq cut carries its own question_text. PROBLEMS: Unit 8 has six in the Fastrack (length of a seconds pendulum; energy when the amplitude is doubled; a heart beating 75 times a minute; v_max equal to half a_max; the starred 2 s to 1.5 s length change; a 2 kg mass on a 200 N/m spring). Still deferred per the founder's 2026-08-20 call, BUT NOTE: problem 2 (amplitude doubled) is now authored as an enumerated VSAQ, because the Session-89 archetype table records the March-2026 AP paper asking exactly that as a what-if. That is the SECOND deferred PROBLEM shown to have been examined (Unit 6 problem 3 carries printed years). The deferral keeps producing questions the boards actually ask — worth revisiting. Unit 8's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): periodic vs oscillatory, amplitude doubled, where v and a are maximum, seconds pendulum standalone, the force law, resonance, the pendulum in a lift; and at 4 marks the v/a derivation, the four defined terms, free-vs-damped-vs-forced, and springs in series and parallel. Unit 8 has the thinnest asked core of any unit (8 entries), so its predicted tail is larger than its core — a consequence of the chapter, not of the method. NEW SOURCE VALUE 'ap_2026_paper' (2026-08-21): Unit 4 vsaq17 'When are two vectors said to be equal vectors?' is sourced from the March-2026 AP Physics Paper-I scan, Section A question 7, read directly off the page held in the corpus. NEITHER source book lists it for Unit 4, so it is neither 'blm' nor 'enumerated' — it is ASKED, with a third provenance. notebook.js branches only on source === 'enumerated', so this value falls through to the asked-chip path and needed no code change; the card carries appearances [{year: 2026, q_no: 7, board: 'ap_ipe'}] and renders 'Asked: AP 2026'. AP Section A is 1 mark and TS has no 1-mark section, so the card is authored at the TS 2-mark VSAQ length. THE LESSON THAT COST IT: the Unit 4 enumeration sweep, run earlier the SAME DAY, had 'equal vectors' in its object inventory and dropped the cell when selecting what to author — and a real paper asked exactly it. The archetype set held (define-X x equal-vectors is inside the grid); the SELECTION from the grid was too tight. When a real paper is in the corpus, diff the sweep's OUTPUT against that paper question by question — do not stop at 'every asked question falls inside the grid'. UNIT 9 (Gravitation) — the union check FLIPS BACK: the BLM adds one SAQ (2026-08-21). Both books read directly. The Fastrack (book pp.28-30) lists 8 VSAQs and 6 SAQs and then runs straight into Unit 10 — no Long Answer section and no PROBLEMS section, the first unit since Unit 5 with neither. The BLM (book pp.25-26) lists FOUR Short Answer questions and nothing else: orbital velocity, escape velocity, the geostationary satellite, and — the one the Fastrack does NOT have — 'An object projected with a velocity greater than or equal to 11.2 km/s will not return to earth. Explain the reason.' That is saq7 here, carrying source: 'blm'. So across six units the check has now returned THREE different outcomes: Unit 7 (each book holds questions the other lacks), Units 4/5/6 (BLM a strict subset), Unit 8 (BLM LAQ-only, both books agreeing on the 8-mark set), and now Unit 9 (BLM adds one SAQ). Neither book has a Unit 9 Section C, so none is invented — the Unit 5/7/8 precedent. THE CORRECTED BACK-TEST PAID OFF ON ITS FIRST USE: the Unit-8 session recorded that AP March 2026 Section A question 8 is 'State Kepler's law of areas' and flagged it as a known Unit-9 cell waiting. The Fastrack asks all THREE Kepler laws together at 4 marks (saq4); a standalone statement of the law of areas is a different cell and is the one the AP paper actually asked. It is authored as vsaq9 with source: 'ap_2026_paper' and appearances [{year: 2026, q_no: 8, board: 'ap_ipe'}] — the SECOND card with that provenance. Diffing the sweep against a real paper is now a standing step, not an idea. A PHYSICS DISCREPANCY WORTH KNOWING: the Fastrack's answer to VSAQ 2 writes the vector form of the law of gravitation WITHOUT the minus sign (F = G m1 m2 / r^3 r). NCERT keeps the minus, and without it the formula describes a repulsive force. Our card writes the minus and puts the discrepancy in that step's why — the standing house rule for 'where the book teaches what is MARKED rather than what is true'. Unit 9's enumeration sweep added 11 predicted cells (7 VSAQ + 4 SAQ): gravitational potential energy, the escape-to-orbital ratio, whether escape velocity depends on mass or direction, weightlessness in a satellite, inertial vs gravitational mass, gravitational field intensity, and why a satellite's total energy is negative; and at 4 marks the potential-energy derivation, the satellite energy set, the satellite time period, and Kepler's third law derived from Newton's. The gaps were again not exotic: the chapter's entire POTENTIAL/POTENTIAL-ENERGY section and its entire SATELLITE-ENERGY section were absent from both books. UNIT 2 (Units and Measurements, added 2026-08-22): the union check produced a THIRD outcome — both books are VSAQ-ONLY. The Fastrack (pp.4-5) lists 11 Very Short Answer questions and runs straight into Unit 3; the TSBIE BLM (pp.2-3) lists 8, of which 7 are a strict subset and ONE is new (\"Why do we have different units for the same physical quantity?\", shipped as vsaq12 source:\"blm\"). NEITHER book has a Short Answer or Long Answer section for this unit, so every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented — the standing rule. Two further cells come from the AP March 2026 paper, which neither book lists: Section A Q1 (which quantity has no dimensions → vsaq13) and Q10 (J m⁻¹ and J m⁻² → vsaq14), both source:\"ap_2026_paper\". SOURCE DISAGREEMENT recorded, not resolved: the Fastrack says there are THREE types of error (systematic, random, gross), the BLM says TWO (systematic, random); vsaq2 writes the Fastrack’s three and records the BLM’s two in that step’s why line, the same house rule used for the rolling-friction \"laws\". The sweep deliberately SKIPS units-and-dimensions cells the bank already holds in other units — G (Unit 9), impulse (Unit 5) and torque (Unit 7) — so no predicted card duplicates them. UNIT 3 (Motion in a Straight Line, added 2026-08-22): the union check produced a FOURTH outcome — each book holds a whole SECTION the other lacks. The Fastrack (pp.6-8) has 4 Very Short Answer, 6 Short Answer and a PROBLEMS section but NO Long Answer section; the TSBIE BLM (pp.4-5) has a Short Answer section ONLY, with no VSAQ section at all. Neither has Section C, so no 8-mark form is invented. The BLM’s Short Answer 5 (roof jump, 9 m s⁻¹) is the Fastrack’s PROBLEM 3 — a book sources it as an SAQ, so it ships as saq8 source:\"blm\", the same promotion precedent as the Unit 8 problem the AP paper asked; Fastrack problems 1, 2 and 4 stay deferred. RE-HOMED: ts_ipe_p1_mp_average_instantaneous_velocity was filed under Unit 4 by the AP-paper session before Unit 3 existed. BOTH books place it here, and they DISAGREE on the section — Fastrack VSAQ 2 (3 stars) against BLM Short Answer 1 — so it now carries two cuts and appears twice in this unit, as vsaq2 (2 marks) and saq7 (4 marks, source:\"blm\"). Its question_id keeps the mp_ prefix because ids are stable forever. The AP March 2026 paper adds Q4 (value of g in free fall → vsaq5) and confirms Q11 (rest and motion relative) as vsaq1, recorded in that card’s appearances[]. The sweep deliberately SKIPS relative velocity: the bank already holds ts_ipe_p1_mp_relative_velocity_plane in Unit 4, where the Fastrack files it. ||| MATHEMATICS (Maths-1A, merged 2026-08-23 from feat/ipe-mathematics-answerbook): Per-unit question inventory for the catalog. ONE ENTRY = ONE QUESTION AT ONE LENGTH (founder decision 2026-08-20): the 8-mark Section-C forms are their own LAQ entries, each SAQ entry opens its 4-mark answer, and no card ever shows two lengths. Source for SAQ/VSAQ: Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) pp.8-12 — question text and star rank only, never its prose. The book has no LAQ section for Unit 4; the two LAQ entries are the TSBIE Basic Learning Material Section-C forms of the same derivations, numbered here for the catalog. An entry without question_id renders as a coming-soon card. build_answer_book.ts hard-fails if an authored question is missing from this file or if a question_id/cut here resolves to nothing. MATHEMATICS opens 2026-08-21 (Maths-1A). Source for its entries: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam) — question text, star rank and the PRINTED per-step mark split only, never its prose (the book's chat boxes are personified and part Telugu; Rule 41/30i). Maths-1A is a 75-mark paper: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers here are Maths-1A SYLLABUS units (1 Functions, 2 Mathematical Induction, 3 Matrices, 4 Addition of Vectors, 5 Product of Vectors, 6 Trigonometric Ratios upto Transformations, 7 Trigonometric Equations, 8 Inverse Trigonometric Functions, 9 Hyperbolic Functions, 10 Properties of Triangles) — the `subject` field namespaces them from the physics units (merged 2026-08-23). Stars on maths LAQ entries are the CHAPTER's rank (the book stars chapters here, not individual LAQs). Unit 1 is COMPLETE: 4 LAQ (book pp.14-15) + 20 VSAQ (book pp.79-81). Functions has no SAQ chapter in this book, and none on the paper — Section B is Q11-Q17, none of which is Functions, so 24 entries IS the whole unit. VSAQ stars are the CHAPTER's rank, and the book prints no internal mark split on its VSAQ pages, so every VSAQ's 1+1 is ours, not the source's. Each unit carries a `subject`; absent means physics (physics units predate the field, the same way an appearance with no board means TS). MERGED 2026-08-23 (feat/ipe-answerbook): this manifest now carries BOTH subjects - physics units untagged (absent = physics) plus the ten Maths-1A units tagged subject:mathematics. The 2026-08-22 mathematics-only deletion of physics Unit 4 was deliberately NOT taken in this merge; the physics units here are the live superset. The catalog's subject chip row appears only from the second subject on, so a physics-only build is unchanged. Unit 2 (Mathematical Induction) is COMPLETE at 8 of 8, book pp.16-21 — LAQ ONLY: the book has no induction SAQ or VSAQ chapter, and the paper has no induction question outside Section C (it is always Q19). Entry laq8 is the book's PRACTICE question, posed with no worked solution, so its answer AND its split are ours — flagged in that file's verification note. Unit 3 (Matrices) OPENS 2026-08-21 and is the largest unit on the paper: the book's chapter header reads '7+7 = 14 Marks' because Matrices holds TWO Section-C slots (Q20 and Q21), and with Q3, Q4 (VSAQ) and Q11 (SAQ) it carries 22 of the paper's 75 marks. Its full book inventory is LAQ answers 12-20 (book pp.22-34) · SAQ answers 40-45 (pp.51-55) · VSAQ answers 99-112 (pp.82-86). Its LAQ CHAPTER IS COMPLETE at 17 of 17 (book answers 12-20, pp.22-34), in four families: six determinant proofs (12-17) · four Cramer's rule (18.1-18.4) · three matrix inversion (19.1-19.3) · four Gauss-Jordan (20.1-20.4). Its SAQ CHAPTER IS COMPLETE at 11 of 11 (book answers 40-47, pp.51-56) — CORRECTED 2026-08-21 from an earlier claim of 9 of 9 over pp.51-55, which scoped the chapter from the book's 'TOP 40 SAQ' hit list. That list is a SELECTION, not an inventory: the chapter runs two answers further, to 47 on p.56, and answers 46 and 47 were missed until the walk to the Addition of Vectors boundary for Unit 4 found them. The LAQ pass had read every page and was unaffected. Lesson recorded in docs/IPE_MATHS_1A_SOURCE.md: scope a chapter by walking to its boundary, never from a hit list: one proof (answer 40 — the A-1 = AdjA/detA theorem, the most-asked matrices SAQ in the book at four printed appearances, and the only SAQ in the chapter carrying a PRINTED split, 1+1+1+1) · four find-the-inverse questions (41.1, 41.2, 42.1, 42.2) sharing one skeleton · two matrix-polynomial questions (43.1, 43.2) · the (aI+bE)³ identity (44) · the trigonometric product that vanishes (45). The 1+2+1 split on the four inverse SAQs is effectively SOURCED: the book asserts on p.30 that finding A-1 is worth 4 marks, and these SAQs ask for exactly that and are worth exactly 4 — so the whole question IS the book's own 4-mark chunk, divided the same way the matrix-inversion LAQs divide it. Its VSAQ CHAPTER IS ALSO COMPLETE at 18 of 18 (book answers 99.1-112.2, pp.82-86), so UNIT 3 IS COMPLETE AT 44 OF 44 (17 LAQ + 9 SAQ + 18 VSAQ). The VSAQ chapter corrected a standing claim in docs/IPE_MATHS_1A_SOURCE.md: that doc said after Unit 1 that this book never prints a mark split on its VSAQ pages, which held for the Functions VSAQ pages (pp.79-81) but is FALSE here — p.82 prints [1 mark] tags against answers 100 and 101. The real pattern tracks PAGE LAYOUT, not section: a question set alone on a page usually carries margin tags, and a question set two-to-a-page in two columns almost never does, because the columns take the margin. That explains every gap in this unit. The doc has been corrected. Within each solving-a-system family the step ids, labels and mark split are deliberately IDENTICAL — the questions are one method over different numbers, the same choice Unit 2 made for induction — with ONE exception: Gauss-Jordan answers 20.3 and 20.4 do not share that skeleton, because their systems have an infinite solution set and no solution respectively, so their closing steps are a different argument rather than different numbers. Those two are the only questions in the chapter whose answer is not a single triple, and they are a matched pair: both end in a row of zero coefficients, and the ONLY thing separating them is whether the constant after the rule is zero too. Mark splits: four determinant answers carry a split PRINTED in the book's margin (12, 13, 16, 17); the matrix-inversion family carries the book's 4+3 stated in WORDS in a margin note on p.30; every other split in the unit is ours, inferred from those two, and flagged as such in each file. This is the first unit to use typeset lines (render: 'katex') heavily — 126 across the book — because a determinant and an augmented matrix have no honest one-line Unicode form. Unit 5 (Product of Vectors) is COMPLETE at 26 of 26 — 7 LAQ (book pp.35-38) + 7 SAQ (pp.62-64) + 12 VSAQ (pp.89-91). It is the first MATHS unit to occupy all three sections of the paper (Q7 VSAQ, Q13 SAQ, Q22 LAQ), and the first since Matrices whose chapters print mark splits: answer 23 on p.37 is printed 1+1+1+1+1+2, answers 58 and 59 on p.63 are printed 1+1+1+1, and answer 61 on p.64 is printed 1+2+1 — so four of the unit's 26 splits are sourced rather than inferred, and the rest follow those shapes. Its LAQ chapter is titled 'Product of Vectors' on the chapter page but 'Vector Algebra' in the book's own hit list; the chapter pages were followed. Every chapter boundary in this unit was walked (pp.39, 65 and 92 were each read to confirm where the chapter ends), per the scoping rule recorded after the Unit 3 gap. Unit 6 (Trigonometric Ratios upto Transformations) is COMPLETE at 42 of 42 — 8 LAQ (book pp.39-42) + 10 SAQ (pp.65-67) + 24 VSAQ (pp.92-95). It is the SECOND-LARGEST unit after Matrices and holds the most slots on the paper: Q8 and Q9 (VSAQ), Q14 (SAQ) and Q23 (LAQ), where Q23 is always a transformation identity. All eight LAQs share ONE five-move method and one split, and four of them are TWINS on facing halves of a page differing by a single sign. No split is printed anywhere in this unit; the LAQ shape follows the printed split of LAQ answer 23 on p.37 and the SAQ/VSAQ shapes follow the printed splits on pp.63-64 and p.82, and every file says which. The VSAQ chapter's own header note — 'Writing Formula itself gets you 1 Mark in these Questions' — is why the first step of every VSAQ answer here IS the formula. All three boundaries were walked: pp.43, 68 and 96. Unit 7 (Trigonometric Equations) is COMPLETE at 8 of 8 — SAQ ONLY, book pp.68-71. The paper gives it no Section-A and no Section-C slot (Q15 is its only appearance), and the book has no Trigonometric Equations LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. The eight are four matched PAIRS, one per page: a sin+b cos=c (70.x), quadratic in one ratio (71.x), sum-to-product (72.x), and roots-of-a-quadratic (73.x) where nothing is ever solved. Boundary walked at p.72 (Inverse Trig Functions). Unit 8 (Inverse Trigonometric Functions) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.72-74, the same shape as Unit 7: the paper gives it only Q16, and the book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). Its five families are: name-the-angle plus a compound formula (74.x, 75), chaining the Tan-inverse addition formula (76.x), the doubled-Tan-inverse conversion (77 — the ONLY printed split in the chapter, 1+1+1+1), evaluating both sides independently (78.x), and one fully general proof with no numbers (79). Boundary walked at p.75 (Properties of Triangles). Unit 9 (Hyperbolic Functions) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.96-97. The paper gives it only Q10, and the book has no hyperbolic LAQ chapter (LAQ chapters 1-6) and no SAQ chapter (SAQ chapters 7-13). Three families: the logarithmic forms of the inverse functions (137.x, 138.x), one ratio given then the double angles (139.x), and proofs worked straight from the exponential DEFINITIONS (140.x, 141.x). VSAQ chapter 19 is the LAST VSAQ chapter; boundary walked to p.98, where the book's separate STAR QUESTIONS PLUS bank begins. THAT BANK IS NOW FOLDED IN (founder decision 2026-08-22): pp.98-111, answers 142-180, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory. All 37 answers were surveyed; 3 went into Unit 10 when that unit was built (178-180), 34 are now backfilled into Units 1-9, and 2 were SKIPPED as duplicates of questions already authored — answer 155 (unit vector of 2i+3j+k, TS 17) duplicates Unit 4 VSAQ 113.1, and answer 166 (cos A + cos B - cos C on a triangle, TS 18,19) duplicates Unit 6 LAQ answer 29. Unit 9 receives NOTHING: the bank has no hyperbolic-functions questions. Distribution of the 34: Unit 1 gets 2 (142, 143), Unit 2 gets 2 (144, 145), Unit 3 gets 9 (146-154), Unit 4 gets 1 (157), Unit 5 gets 6 (156, 158-162), Unit 6 gets 11 (163-165, 167-174), Unit 7 gets 2 (175, 176), Unit 8 gets 1 (177). SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S, and every backfilled file says so in its verification note. The bank's page headings name the CHAPTER, never the mark cut — the sole exception is p.98, which reads 'FUNCTIONS LAQ'. Two headings do read 'MATRICES-VSAQ' (p.100) and 'MATRICES' (p.102), but they are chapter banners rather than section markers: the p.102 'MATRICES' run holds answers 151 and 152, which are plainly VSAQ shapes, while the p.100 'MATRICES-VSAQ' run spills onto p.101 and swallows answer 150, a full 3x3 inverse that is Section-B work on the real paper. So every backfilled question is classed by its own length and shape against the unit's existing chapters, except where the unit itself fixes the section - Units 2 (LAQ-only), 7 (SAQ-only) and 8 (SAQ-only) admit no other answer. Mark splits are ours throughout: the bank prints no [N Marks] tags anywhere. MATHEMATICS-1B OPENS 2026-08-23 — the SECOND mathematics paper, and the first unit block to carry subject 'mathematics_1b'. Maths-1A owns 'mathematics' and its own Units 1-10, so the two papers CANNOT share a subject value: unit numbers namespace per subject and the catalog, triage, exam-eve route and study planner all key on subject-number (the build's unitKey guard fails on a collision — it was added after physics Unit 3 and maths Unit 3 keyed alike and Matrices' 17 LAQs were scheduled into physics study plans). Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), 127 pages, no text layer — question text, star rank, printed appearance years and the PRINTED per-step mark split only, never its prose (Rule 41/30i). Maths-1B is a 75-mark paper with the same shape as 1A: Section A Q1-Q10 VSAQ x2 (all compulsory), Section B Q11-Q17 SAQ x4 (any 5), Section C Q18-Q24 LAQ x7 (any 5). Unit numbers are Maths-1B SYLLABUS units (1 Locus, 2 Transformation of Axes, 3 The Straight Line, 4 Pair of Straight Lines, 5 3D-Coordinates, 6 D.C's & D.R's, 7 The Plane, 8 Limits & Continuity, 9 Differentiation, 10 Applications of Derivatives). ⚠ Unit 10 is a COMPOSITE: the book splits it into five sub-chapters with separate mark cuts (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — that will need a catalog decision when the unit is authored. Unlike 1A, the topic-by-question-number map is NOT a guarantee: the book's own IPE Blue Print (book p.3) carries a printed caveat that the public paper deviates from the model paper it is drawn from. Unit 1 (Locus) is COMPLETE at 12 of 12 — SAQ ONLY, book pp.53-56. The Blue Print gives Locus 4 marks in Section B and nothing in Section A or C, and the book has no Locus LAQ chapter (LAQ chapters 1-6) and no Locus VSAQ chapter (VSAQ chapters 14-20), so it is the 1B counterpart of 1A's Units 7 and 8. Scoped by BOUNDARY WALK to book p.57 (Transformation of Axes), NOT from the TOP 35 SAQ hit list — that list names only 6 of the 12, which is the Unit 3 scoping lesson repeating. Five families over one method: right angle at P (42.1-42.3, a circle), fixed area (43.1, 43.2, a PAIR of parallel lines and the only answers here that are not a single curve), PA²+PB²=2PC² (44, a straight line), sum of distances (45.1, 45.2, an ellipse), and ratio or difference of distances (46, 47.1, 47.2, 48, a circle or a hyperbola). The mark split 1+1+2 is the BOOK'S on answers 44 and 46, which sit alone on a page and carry printed margin tags; the other ten are set two-to-a-page in two columns, which takes the margin, so their splits are ours — patterned on those two printed ones rather than inferred from another chapter, because all twelve answers take the same three moves. ⚠ Star Questions Plus (book pp.104-108) is NOT yet folded in — on 1A that bank was found late and added 34 questions; plan for it per unit. Unit 2 (Transformation of Axes) is COMPLETE at 9 of 9 — SAQ ONLY, book pp.57-60 (8 questions, answers 49.1-54) PLUS one from the Star Questions Plus bank (answer 181, book p.104). Same shape as Unit 1: the Blue Print gives it only a Section-B slot, and the book has no Transformation of Axes LAQ or VSAQ chapter. Boundary walked to book p.61 (SAQ chapter 9, The Straight Line). Two methods, four questions each: TRANSLATION (shift of origin — 49.1, 49.2 find the new equation; 50 and SQP 181 find the ORIGINAL) and ROTATION (51.1, 51.2, 52 find the new equation; 53 finds the original), plus the general proof 54. The split 1+1+1+1 is OURS but its DECOMPOSITION IS THE BOOK'S: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — take the given equation, write the change-of-axes formulas, put them in, simplify — and every answer in the chapter is cut on those four. Answer 54 is the exception: it is the chapter's only fully general proof, carries no numbers, and its four steps are its own. NO [N Marks] tags are printed anywhere in this chapter. The direction of the transformation is the chapter's whole teaching point and its commonest error: finding the NEW equation uses x = X+h / x = Xcosθ − Ysinθ, while finding the ORIGINAL reverses them to X = x−h / X = xcosθ + ysinθ, moving the minus sign from the x-formula to the Y-formula. STAR QUESTIONS PLUS SURVEY (founder decision 2026-08-23 — fold the bank into each unit AS THAT UNIT IS BUILT, rather than late as 1A did): the bank is book pp.104-108, answers 181-196, sixteen questions, organised by chapter but sitting AFTER every numbered chapter, so it is not part of any chapter's own inventory; boundary walked to p.109, the Bullet Model Paper. Distribution: Unit 2 gets 1 (181), Unit 3 gets 3 (182-184), Unit 4 gets 2 (185, 186), Unit 5 gets 2 (187, 188), Unit 8 gets 2 (189, 190), Unit 9 gets 5 (191-195), Unit 10 gets 1 (196). UNITS 1, 6 AND 7 RECEIVE NOTHING — the bank has no Locus, D.C's & D.R's or Plane questions, so Unit 1 stays complete at 12. SECTION CLASSIFICATION FOR BANK QUESTIONS IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut, and each backfilled file says so. Unit 10 (Applications of Derivatives) WILL BE ONE UNIT (founder decision 2026-08-23), not the five the book splits it into (10.1 Errors, 10.2 Tangents & Normals, 10.3 Rate Measure, 10.4 Mean Value Theorems, 10.5 Maxima & Minima) — the syllabus unit is the catalog unit, the same rule that makes unit numbers syllabus numbers everywhere else. Unit 3 (The Straight Line) is COMPLETE at 44 of 44 and is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the Blue Print gives it 2+2 in Section A, 4 in Section B and 7 in Section C, 15 marks in all, tying Differentiation as the highest-scoring unit. It therefore has three separate chapters in the book: LAQ chapter 1 (pp.14-18, 8 answers 1.1-5.2 plus 4 PRACTICE questions = 12), SAQ chapter 9 (pp.61-64, 10 answers 55.1-61 plus 1 practice = 11), VSAQ chapter 14 (pp.79-82, 18 answers 88.1-96), plus 3 from the Star Questions Plus bank (answers 182-184, p.104). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, p.83 opens 3-D Coordinates. FIVE OF THE 44 ARE THE BOOK'S 'PQ' PRACTICE QUESTIONS, posed with ONLY their final answer printed and no worked solution — laq3, laq6, laq8, laq10 and saq3. Their WORKING IS OURS, checked against the book's own printed answers, and each file says so; the 1A precedent is Unit 2 laq8. THE ONE PRINTED SPLIT IN THE UNIT is on SAQ answer 59 (book p.63): 1+1+2 against slope-to-cos-and-sin, the parametric point, and the two required points. Every other split is ours — the LAQ chapter's 1+2+2+2 follows the book's own printed 'Step-1 / Step-2 / Step-3' structure and its boxed 'SOLUTION STEPS' panels on pp.16 and 17; the SAQ chapter uses 1+1+2 after answer 59 where the shape matches and 1+1+1+1 where the answer is four equal moves; the VSAQ chapter uses 1+1, matching the printed 1+1 on VSAQ answer 98 (p.83) in the very next chapter. Five families across the unit: CIRCUMCENTRE by equal distances (perpendicular bisectors), ORTHOCENTRE by altitudes, both asked either from VERTICES or from SIDES — the sides form needs the vertices manufactured first, which is the only difference — plus the two general proofs 5.1 (foot of perpendicular) and 5.2 (image), whose first three steps are IDENTICAL and differ only in the closing condition: the foot lies ON the line, the image's MIDPOINT does, and that midpoint is where the factor 2 in the image formula comes from. The book prints a note between them reading 'First half of the solution is same to same', so the two files deliberately share one step skeleton. Answer 3 PQ is worth a note: its triangle is RIGHT ANGLED (sides x+y+10=0 and x-y-2=0 have slopes -1 and 1), so the orthocentre sits exactly on the right-angled vertex and one computed altitude comes out identical to a given side — correct, not an error. That observation is ours; the book gives only the answer. Unit 4 (Pair of Straight Lines) is COMPLETE at 15 of 15 — LAQ ONLY, book pp.19-26 (11 worked answers 6-15 plus 2 PRACTICE questions) plus 2 from the Star Questions Plus bank (answers 185, 186, book p.105). It holds TWO Section-C slots: the chapter header reads '7+7=14 Marks' and the Blue Print gives it 14 marks all in Section C and NOTHING in Section A or B, so LAQ is the only cut this unit admits — which is what fixes the section for its two bank questions too, the same way 1A's Units 2, 7 and 8 fix their own. It is the 1B counterpart of 1A's Matrices, the only other unit on either paper with two long slots. Boundary walked to book p.27, LAQ chapter 3 D.C's & D.R's. ⚠ THIS CHAPTER HOLDS THE BOOK'S ONLY PRINTED LAQ MARK SPLITS, and both are HOMOGENISATION answers: answer 12 (book p.24) is printed 1+1+2+1+2 and answer 15 (p.26) is printed 1+1+1+1+1+2, each totalling 7. Those two fix the shape for the whole homogenisation run (answers 12-15 plus the two practice questions, book pp.24-26), and every other split in the unit is ours and says so. Two method families: the SIX GENERAL PROOFS (6 angular bisectors, 7 area of the triangle, 8 product of perpendiculars, 9 the parallel-lines conditions, 10 the pair conditions Delta=0 with h²≥ab f²≥bc g²≥ac, plus bank answer 185), every one of which opens by SPLITTING the pair into two lines with unknown coefficients and matching against the given equation — that dictionary is what every later step spends; and HOMOGENISATION (12-15), where a curve and a chord are combined into a pair of lines through the origin by multiplying the linear terms by the chord written as '= 1' once and the constant twice. Within homogenisation the closing condition is the only thing that varies: perpendicular is coeff x² + coeff y² = 0 (13.1, 13.2, 14, 15PQ), coincident is h² = ab (15), and an angle needs the cosθ formula (12). Answers 15 and 15PQ are a matched pair differing by ONE word in the question — coincident versus right angle at the origin — with identical homogenisation and different closing conditions. Unit 5 (3D-Coordinates) is COMPLETE at 10 of 10 — VSAQ ONLY, book pp.83-84 (7 worked answers 97.1-100.2 plus 1 PRACTICE question) plus 2 from the Star Questions Plus bank (answers 187, 188, book p.106). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no 3D LAQ chapter (LAQ chapters 1-6) and no 3D SAQ chapter (SAQ chapters 7-13), so VSAQ is the only cut this unit admits — which fixes the section for its two bank questions too. Its chapter header carries the note 'Just 2 Pages - 2 Marks'. Boundary walked to book p.85, VSAQ chapter 16 The Plane. ⚠ THE UNIT'S SPLIT IS SOURCED: answer 98 (book p.83) carries printed margin tags '1 Mark' against the midpoint equation and '1 Mark' against the fourth vertex — the only tagged answer in the chapter, and the one that fixes the 1+1 shape used across this unit AND cited from Unit 3's VSAQ chapter, which prints none of its own. Three families: CENTROID conditions (97.1 a triangle, 97.2 a TETRAHEDRON dividing by 4 not 3, 98 a parallelogram via bisecting diagonals), COORDINATE-PLANE section ratios (99.1 XZ, 99.2 YZ — a plane is where one coordinate is zero, so the ratio is minus that coordinate of the first point to the second, and a NEGATIVE ratio means external division), and the THREE-DISTANCES family (100.1 equilateral, 100.2 and its practice question collinear, plus bank answer 187). That last family computes the SAME three pairwise distances and differs only in the conclusion drawn — all three equal means equilateral, two summing to the third means collinear — which is why the book prints the note 'Questioning is different but Answering is similar' beneath them. The practice question 100.2 PQ is unusual in printing NO answer at all, not even a final one, so its working is entirely ours. Unit 6 (D.C's & D.R's) is COMPLETE at 7 of 7 — LAQ ONLY, book pp.27-31, answers 16.1-20, with NO practice questions and NOTHING from the Star Questions Plus bank (that bank holds no D.C's question, so this unit is one of the three — with Units 1 and 7 — that receive none). The Blue Print gives it 7 marks in Section C and nothing in Section A or B, and the book has no D.C's SAQ or VSAQ chapter; the book's own LAQ chapter table calls it the EASIEST of the six LAQ chapters. Boundary walked to book p.32, LAQ chapter 4 Differentiation. Two families. The FIVE RELATION questions (16.1, 16.2, 17.1, 17.2, 18) all give two relations connecting l, m, n — one linear and one of second degree — which together fix only the RATIO l:m:n, and that is all a direction needs. Four of them (16.1, 16.2, 17.1, 17.2) rearrange the linear relation, substitute, factorise the resulting homogeneous quadratic, and take each factor as one line; 16.1 and 16.2 then apply the angle formula while 17.1 and 17.2 normalise to direction COSINES by dividing by the root of the sum of squares. ⚠ ANSWER 18 IS DELIBERATELY DIFFERENT and is the unit's teaching point: it NEVER FINDS EITHER LINE. Perpendicularity needs only l1l2+m1m2+n1n2, and each product is the PRODUCT OF THE ROOTS (c/a) of a quadratic obtained by eliminating one letter — so two eliminations give all three products as a chain of equal fractions, and the three coefficients of the given second relation (2, 3, -5) turn out to BE those products up to a common factor, adding to zero. The TWO CUBE questions (19, 20) both begin by CHOOSING coordinates — one vertex at the origin, three edges along the axes — so every vertex is a triple of 0's and a's; the side a cancels in both, which is the check that the answer cannot depend on the cube's size. Answer 19 uses two of the four body diagonals and the book prints a contrast worth carrying: the angle between the diagonals of a SQUARE is 90 degrees, but for a CUBE it is Cos-inverse(1/3). Answer 20 uses all four. NO [N Marks] tags are printed anywhere in this chapter, so every split here is ours; the book's printed 7-mark shapes elsewhere (answers 12, 15 and 21) show both weighted and even cuts are its own at this length. Unit 7 (The Plane) is COMPLETE at 11 of 11 — VSAQ ONLY, book pp.85-86, 9 worked answers 101-107.2 plus 2 PRACTICE questions, and NOTHING from the Star Questions Plus bank (it holds no Plane question, so this is the third and last unit — with 1 and 6 — that receives none). The Blue Print gives it 2 marks in Section A and nothing elsewhere, and the book has no Plane LAQ or SAQ chapter. Boundary walked to book p.87, VSAQ chapter 17 Limits. Four families, all resting on one fact — A PLANE'S EQUATION CARRIES ITS NORMAL DIRECTION IN ITS COEFFICIENTS. INTERCEPT FORM (101, 102, 102PQ) divides by the CONSTANT so the right side is 1, and the three denominators that appear ARE the intercepts; 103 and 103PQ run the same thing backwards from given intercepts. NORMAL FORM (104) divides instead by the ROOT of the sum of the squared coefficients, so the coefficients become direction cosines and the right side becomes the distance from the origin — the contrast between what the two forms divide by is the chapter's teaching point. D.C's OF THE NORMAL (105) reads the coefficients as direction ratios and normalises them, with a ± because a normal points both ways out of the plane. ANGLE BETWEEN PLANES (106.1, 106.2) is the angle between the two NORMALS, so it reuses the line formula from Unit 6 unchanged. PARALLEL PLANE THROUGH A POINT (107.1, 107.2) keeps the coefficients and changes only the constant, which is what parallel means. NO [N Marks] tags are printed in this chapter, so its 1+1 splits are ours, following the printed 1+1 on VSAQ answer 98 (book p.83).",
   "units": [
     {
       "number": 2,
@@ -3852,6 +3852,919 @@
           "stars": 3,
           "text": "In a △ABC, show that (r₁ + r₂) sec²(C/2) = (r₂ + r₃) sec²(A/2) = (r₃ + r₁) sec²(B/2).",
           "question_id": "ts_ipe_m1a_pt_saq_sec_squared_equal"
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "name": "Locus (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the equation of locus of P, if the line segment joining (4,0) and (0,4) subtends a right angle at P.",
+          "question_id": "ts_ipe_m1b_loc_right_angle_4_0_0_4"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "The ends of the hypotenuse of a right angled triangle are (0,6) and (6,0). Find the equation of locus of its third vertex.",
+          "question_id": "ts_ipe_m1b_loc_right_angle_hypotenuse_0_6_6_0"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the equation of locus of P, if the line segment joining (2,3) and (−1,5) subtends a right angle at P.",
+          "question_id": "ts_ipe_m1b_loc_right_angle_2_3_minus1_5"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "A(5,3) and B(3,−2) are two fixed points. Find the equation of locus of P, so that the area of triangle PAB is 9 sq.units.",
+          "question_id": "ts_ipe_m1b_loc_area_5_3_3_minus2_nine"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "A(2,3) and B(−3,4) are two given points. Find the equation of the locus of P so that the area of the triangle PAB is 8.5 sq.units.",
+          "question_id": "ts_ipe_m1b_loc_area_2_3_minus3_4_eight_point_five"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "A(1,2), B(2,−3), C(−2,3) are 3 points. A point P moves such that PA² + PB² = 2PC². Show that the equation to the locus of P is 7x − 7y + 4 = 0.",
+          "question_id": "ts_ipe_m1b_loc_pa2_pb2_twice_pc2"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of locus of a point P, if A = (2,3), B = (2,−3) and PA + PB = 8.",
+          "question_id": "ts_ipe_m1b_loc_sum_distances_2_3_2_minus3_eight"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the equation of locus of a point, the sum of whose distances from (0,2) and (0,−2) is 6 units.",
+          "question_id": "ts_ipe_m1b_loc_sum_distances_0_2_0_minus2_six"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "If the distance from 'P' to the points (2,3) and (2,−3) are in the ratio 2:3, then find the equation of locus of P.",
+          "question_id": "ts_ipe_m1b_loc_ratio_2_3_2_minus3_two_three"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of locus of a point the difference of whose distances from (−5,0) and (5,0) is 8 units.",
+          "question_id": "ts_ipe_m1b_loc_diff_distances_minus5_0_5_0_eight"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation of locus P, if A = (4,0), B = (−4,0) and |PA − PB| = 4.",
+          "question_id": "ts_ipe_m1b_loc_diff_distances_4_0_minus4_0_four"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the equation of locus of a point P, if the distance of P from A(3,0) is twice the distance of P from B(−3,0).",
+          "question_id": "ts_ipe_m1b_loc_distance_twice_3_0_minus3_0"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Transformation of Axes (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "When the origin is shifted to (−1,2) by the translation of axes, find the transformed equation of x²+y²+2x−4y+1=0.",
+          "question_id": "ts_ipe_m1b_ta_shift_minus1_2_circle"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "When the origin is shifted to (−1,2) by the translation of axes, find the transformed equation of 2x²+y²−4x+4y=0.",
+          "question_id": "ts_ipe_m1b_ta_shift_minus1_2_ellipse"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "When the origin is shifted to the point (2,3), the transformed equation of a curve is x²+3xy−2y²+17x−7y−11=0, find the original equation of the curve.",
+          "question_id": "ts_ipe_m1b_ta_shift_2_3_find_original"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the transformed equation of x²+2√3xy−y²=2a², when the axes are rotated through an angle π/6.",
+          "question_id": "ts_ipe_m1b_ta_rotate_pi_over_6"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the transformed equation of 3x²+10xy+3y²=9 when the axes are rotated through an angle π/4.",
+          "question_id": "ts_ipe_m1b_ta_rotate_pi_over_4"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "When the axes are rotated through an angle α, find the transformed equation of xcosα + ysinα = p.",
+          "question_id": "ts_ipe_m1b_ta_rotate_alpha_normal_form"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "When the axes are rotated through an angle 45°, the transformed equation of a curve is 17x²−16xy+17y²=225. Find the original equation of the curve.",
+          "question_id": "ts_ipe_m1b_ta_rotate_45_find_original"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Prove that the angle of rotation of the axes to eliminate xy term from the equation ax²+2hxy+by²=0 is ½ Tan⁻¹(2h/(a−b)) where a ≠ b and π/4 if a = b.",
+          "question_id": "ts_ipe_m1b_ta_angle_removing_xy_term"
+        },
+        {
+          "ref": "sqp1",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "When the origin is shifted to the point (3,−4), the transformed equation of a curve is x²+y²−4=0. Find the original equation.",
+          "question_id": "ts_ipe_m1b_ta_sqp_shift_3_minus4_find_original"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "The Straight Line (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the circumcentre of the triangle whose vertices are (1,3), (−3,5), (5,−1).",
+          "question_id": "ts_ipe_m1b_sl_circumcentre_1_3_minus3_5_5_minus1"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the circumcentre of triangle whose vertices are (1,3), (0,−2), (−3,1).",
+          "question_id": "ts_ipe_m1b_sl_circumcentre_1_3_0_minus2_minus3_1"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the circumcentre of the triangle whose vertices are (−2,3), (2,−1), (4,0).",
+          "question_id": "ts_ipe_m1b_sl_circumcentre_minus2_3_2_minus1_4_0"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the orthocentre of the triangle whose vertices are (5,−2), (−1,2), (1,4).",
+          "question_id": "ts_ipe_m1b_sl_orthocentre_5_minus2_minus1_2_1_4"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the orthocentre of the triangle whose vertices are (−2,−1), (6,−1), (2,5).",
+          "question_id": "ts_ipe_m1b_sl_orthocentre_minus2_minus1_6_minus1_2_5"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the orthocentre of the triangle whose vertices are (−5,−7), (13,2), (−5,6).",
+          "question_id": "ts_ipe_m1b_sl_orthocentre_minus5_minus7_13_2_minus5_6"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the orthocentre of the triangle whose sides are 7x+y−10=0, x−2y+5=0, x+y+2=0.",
+          "question_id": "ts_ipe_m1b_sl_orthocentre_from_sides_7x_y_10"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the orthocentre of the triangle whose sides are x+y+10=0, x−y−2=0, 2x+y−7=0.",
+          "question_id": "ts_ipe_m1b_sl_orthocentre_from_sides_x_y_10"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the circumcentre of the triangle whose sides are x+y+2=0, 5x−y−2=0, x−2y+5=0.",
+          "question_id": "ts_ipe_m1b_sl_circumcentre_from_sides_x_y_2"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the circumcentre of the triangle whose sides are 3x−y−5=0, x+2y−4=0, 5x+3y+1=0.",
+          "question_id": "ts_ipe_m1b_sl_circumcentre_from_sides_3x_y_5"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "If Q(h,k) is the foot of the perpendicular of P(x₁,y₁) on the line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −(ax₁+by₁+c) : (a²+b²).",
+          "question_id": "ts_ipe_m1b_sl_foot_of_perpendicular_proof"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "If Q(h,k) is the image of the point P(x₁,y₁) with respect to the straight line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −2(ax₁+by₁+c) : (a²+b²).",
+          "question_id": "ts_ipe_m1b_sl_image_of_point_proof"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the value of k, if the lines 2x−3y+k=0, 3x−4y−13=0, 8x−11y−33=0 are concurrent.",
+          "question_id": "ts_ipe_m1b_sl_concurrent_find_k"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the value of p, if the lines 3x+4y=5, 2x+3y=4, px+4y=6 are concurrent.",
+          "question_id": "ts_ipe_m1b_sl_concurrent_find_p"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Show that the lines 2x+y−3=0, 3x+2y−2=0 and 2x−3y−23=0 are concurrent and find the point of concurrency.",
+          "question_id": "ts_ipe_m1b_sl_concurrent_point_of_concurrency"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Find the equation of the straight line parallel to the line 3x+4y=7 and passing through the point of intersection of the lines x−2y−3=0 and x+3y−6=0.",
+          "question_id": "ts_ipe_m1b_sl_parallel_through_intersection"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.",
+          "question_id": "ts_ipe_m1b_sl_perpendicular_through_intersection"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find the value of k if the angle between the straight lines 4x−y+7=0, kx−5y−9=0 is 45°.",
+          "question_id": "ts_ipe_m1b_sl_angle_45_find_k"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "A straight line with slope 1 passes through Q(−3,5) meets the line x+y−6=0 at P. Find the distance PQ.",
+          "question_id": "ts_ipe_m1b_sl_parametric_distance_slope_one"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "A straight line through Q(√3,2) makes an angle π/6 with the positive direction of the X-axis. If the straight line intersects the line √3x−4y+8=0 at P, find the distance PQ.",
+          "question_id": "ts_ipe_m1b_sl_parametric_distance_pi_over_6"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Find the points on the line 3x−4y−1=0 which are at a distance of 5 units from the point (3,2).",
+          "question_id": "ts_ipe_m1b_sl_points_at_distance_five"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.",
+          "question_id": "ts_ipe_m1b_sl_concurrent_cubes_proof"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².",
+          "question_id": "ts_ipe_m1b_sl_normal_form_intercepts"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Find the value of x, if the slope of the line passing through (2,5) and (x,3) is 2.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_slope_find_x"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the value of y, if the line joining (3,y), (2,7) is parallel to the line joining the points (−1,4), (0,6).",
+          "question_id": "ts_ipe_m1b_sl_vsaq_parallel_find_y"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Find the equation of the straight line passing through (−4,5) and cutting off equal intercepts on the coordinate axes.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_equal_intercepts"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "Find the equation of the straight line passing through the point (−2,4) and making intercepts, whose sum is zero.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_intercepts_sum_zero_minus2_4"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 3,
+          "text": "Find the equation of the straight line passing through the point (2,3) and making intercepts, whose sum is zero.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_intercepts_sum_zero_2_3"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 3,
+          "text": "Transform the equation 4x−3y+12=0 into (i) slope intercept form (ii) intercept form.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_transform_4x_minus_3y_12"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 3,
+          "text": "Transform the equation √3x+y=4 into (i) slope intercept form (ii) intercept form.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_transform_root3x_plus_y_4"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 3,
+          "text": "Reduce the equation x+y+1=0 into normal form.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_normal_form_x_y_1"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 3,
+          "text": "Transform the equation 3x+4y+12=0 into normal form.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_normal_form_3x_4y_12"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 33,
+          "stars": 3,
+          "text": "Find the equation of the straight line parallel to the line 2x+3y+7=0 and passing through the point (5,4).",
+          "question_id": "ts_ipe_m1b_sl_vsaq_parallel_through_5_4"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 34,
+          "stars": 3,
+          "text": "Find the equation of the straight line perpendicular to the line 5x−3y+1=0 and passing through the point (4,−3).",
+          "question_id": "ts_ipe_m1b_sl_vsaq_perpendicular_through_4_minus3"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 35,
+          "stars": 3,
+          "text": "Find the area of the triangle formed by the line 3x−4y+12=0 with the coordinate axes.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_area_with_axes"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 36,
+          "stars": 3,
+          "text": "Find the value of a if the area of the triangle formed by the lines x=0, y=0, 3x+4y=a is 6 sq.units.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_area_find_a"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 37,
+          "stars": 3,
+          "text": "Find the ratio in which the straight line 2x+3y−5=0 divides the line joining points (0,0) and (−2,1).",
+          "question_id": "ts_ipe_m1b_sl_vsaq_ratio_divides_0_0_minus2_1"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 38,
+          "stars": 3,
+          "text": "Find the ratio in which the straight line 2x+3y−20=0 divides the line joining the points (2,3) and (2,10).",
+          "question_id": "ts_ipe_m1b_sl_vsaq_ratio_divides_2_3_2_10"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 39,
+          "stars": 3,
+          "text": "Find the distance between the parallel lines 5x−3y−4=0, 10x−6y−9=0.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_parallel_distance_5x_3y"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 40,
+          "stars": 3,
+          "text": "Find the distance between the parallel lines 3x+4y−3=0 and 6x+8y−1=0.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_parallel_distance_3x_4y"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 41,
+          "stars": 3,
+          "text": "Find the value of p, if the straight lines x+p=0, y+2=0, 3x+2y+5=0 are concurrent.",
+          "question_id": "ts_ipe_m1b_sl_vsaq_concurrent_find_p"
+        },
+        {
+          "ref": "sqp1",
+          "section": "VSAQ",
+          "number": 42,
+          "stars": 3,
+          "text": "Find the value of k, if the straight lines 6x−10y+3=0 and kx−5y+8=0 are parallel.",
+          "question_id": "ts_ipe_m1b_sl_sqp_parallel_find_k"
+        },
+        {
+          "ref": "sqp2",
+          "section": "VSAQ",
+          "number": 43,
+          "stars": 3,
+          "text": "Find the value of p, if the straight lines 3x+7y−1=0, 7x−py+3=0 are mutually perpendicular.",
+          "question_id": "ts_ipe_m1b_sl_sqp_perpendicular_find_p"
+        },
+        {
+          "ref": "sqp3",
+          "section": "VSAQ",
+          "number": 44,
+          "stars": 3,
+          "text": "Find the angle which the straight line y = √3x − 4 makes with the Y-axis.",
+          "question_id": "ts_ipe_m1b_sl_sqp_angle_with_y_axis"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Pair of Straight Lines (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If the equation ax²+2hxy+by²=0 represents a pair of lines then prove that the equation of the pair of angular bisectors is h(x²−y²)−(a−b)xy=0.",
+          "question_id": "ts_ipe_m1b_pl_angular_bisectors_proof"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) : |am²−2hlm+bl²|.",
+          "question_id": "ts_ipe_m1b_pl_area_triangle_proof"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
+          "question_id": "ts_ipe_m1b_pl_product_perpendiculars_proof"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents two parallel lines then prove that (i) h²=ab (ii) af²=bg² (iii) the distance between the parallel lines is 2√((g²−ac)/(a(a+b))) or 2√((f²−bc)/(b(a+b))).",
+          "question_id": "ts_ipe_m1b_pl_parallel_lines_conditions_proof"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents a pair of lines then prove that (a) Δ = abc+2fgh−af²−bg²−ch² = 0 (b) h²≥ab, f²≥bc, g²≥ac.",
+          "question_id": "ts_ipe_m1b_pl_pair_conditions_proof"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
+          "question_id": "ts_ipe_m1b_pl_check_3x2_7xy_2y2"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Show that the equation 2x²−13xy−7y²+x+23y−6=0 represents a pair of straight lines. Also find the angle between them and the coordinates of the point of intersection.",
+          "question_id": "ts_ipe_m1b_pl_check_2x2_minus_13xy"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the angle between the lines joining the origin to the points of intersection of the curve x²+2xy+y²+2x+2y−5=0 and the line 3x−y+1=0.",
+          "question_id": "ts_ipe_m1b_pl_homog_angle_3x_minus_y_plus_1"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Show that the lines joining the origin with the points of intersection of the curve 7x²−4xy+8y²+2x−4y−8=0 with the line 3x−y=2 are mutually perpendicular.",
+          "question_id": "ts_ipe_m1b_pl_homog_perpendicular_7x2_minus_4xy"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Show that the lines joining the origin to the points of intersection of the curve x²−xy+y²+3x+3y−2=0 and the straight line x−y−√2=0 are mutually perpendicular.",
+          "question_id": "ts_ipe_m1b_pl_homog_perpendicular_x2_minus_xy"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the value of k, if the lines joining the origin with the points of intersection of the curve 2x²−2xy+3y²+2x−y−1=0 and the line x+2y=k are mutually perpendicular.",
+          "question_id": "ts_ipe_m1b_pl_homog_find_k_perpendicular"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the condition for the lines joining to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
+          "question_id": "ts_ipe_m1b_pl_chord_coincident_condition"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the condition for the chord lx+my=1 of the circle x²+y²=a² to subtend a right angle at the origin.",
+          "question_id": "ts_ipe_m1b_pl_chord_right_angle_condition"
+        },
+        {
+          "ref": "sqp1",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Prove that the product of the perpendicular distances from the origin to the pair of straight lines represented by ax²+2hxy+by²+2gx+2fy+c=0 is |c| : √((a−b)²+4h²).",
+          "question_id": "ts_ipe_m1b_pl_sqp_product_perpendiculars_origin"
+        },
+        {
+          "ref": "sqp2",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
+          "question_id": "ts_ipe_m1b_pl_sqp_centroid_and_area"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "3D-Coordinates (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the coordinates of the vertex 'C' of △ABC if its centroid is the origin and the vertices A, B are (1,1,1) and (−2,4,1) respectively.",
+          "question_id": "ts_ipe_m1b_td_vertex_c_centroid_origin"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If (3,2,−1), (4,1,1) and (6,2,5) are three vertices and (4,2,2) is the centroid of a tetrahedron, find the fourth vertex of that tetrahedron.",
+          "question_id": "ts_ipe_m1b_td_fourth_vertex_tetrahedron"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the fourth vertex of the parallelogram whose consecutive vertices are (2,4,−1), (3,6,−1) and (4,5,1).",
+          "question_id": "ts_ipe_m1b_td_fourth_vertex_parallelogram"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the ratio in which the XZ-plane divides line joining A(−2,3,4) & B(1,2,3). Also find the point of Intersection.",
+          "question_id": "ts_ipe_m1b_td_xz_plane_ratio"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the ratio in which the YZ-plane divides the line joining A(2,4,5) and B(3,5,−4). Also find the point of intersection.",
+          "question_id": "ts_ipe_m1b_td_yz_plane_ratio"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Show that the points (1,2,3), (2,3,1) and (3,1,2) form an equilateral triangle.",
+          "question_id": "ts_ipe_m1b_td_equilateral_triangle"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Show that the points (1,2,3), (7,0,1), (−2,3,4) are collinear.",
+          "question_id": "ts_ipe_m1b_td_collinear_1_2_3"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Show that the points (5,4,2), (6,2,−1), (8,−2,−7) are collinear.",
+          "question_id": "ts_ipe_m1b_td_collinear_5_4_2"
+        },
+        {
+          "ref": "sqp1",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Show that the points A(3,2,−4), B(5,4,−6) and C(9,8,−10) are collinear and find the ratio in which B divides AC.",
+          "question_id": "ts_ipe_m1b_td_sqp_collinear_and_ratio"
+        },
+        {
+          "ref": "sqp2",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "If the distance between the points (5,−1,7) and (x,5,1) is 9 units, find the values of x.",
+          "question_id": "ts_ipe_m1b_td_sqp_distance_find_x"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "D.C's & D.R's (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the angle between the lines whose d.c's are related by l+m+n=0 and l²+m²−n²=0.",
+          "question_id": "ts_ipe_m1b_dc_angle_l_plus_m_plus_n"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the angle between whose d.c's satisfy the equations 3l+m+5n=0 and 6mn−2nl+5lm=0.",
+          "question_id": "ts_ipe_m1b_dc_angle_3l_plus_m_plus_5n"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the direction cosines of two lines which are connected by the relations l−5m+3n=0 and 7l²+5m²−3n²=0.",
+          "question_id": "ts_ipe_m1b_dc_dcs_l_minus_5m_plus_3n"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the direction cosines of two lines which are connected by the relations l+m+n=0 and mn−2nl−2lm=0.",
+          "question_id": "ts_ipe_m1b_dc_dcs_l_plus_m_plus_n_mn"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that the lines whose direction cosines are given by l+m+n=0, 2mn+3nl−5lm=0 are perpendicular to each other.",
+          "question_id": "ts_ipe_m1b_dc_perpendicular_proof"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the angle between two diagonals of a cube.",
+          "question_id": "ts_ipe_m1b_dc_angle_between_cube_diagonals"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "If a ray makes angles α, β, γ, δ with the four diagonals of a cube then show that cos²α+cos²β+cos²γ+cos²δ = 4/3.",
+          "question_id": "ts_ipe_m1b_dc_four_diagonals_cos_squares"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "The Plane (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Write the equation of the plane 4x−4y+2z+5=0 in the intercept form.",
+          "question_id": "ts_ipe_m1b_pln_intercept_form_4x_4y_2z"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the intercepts of the plane 4x+3y−2z+2=0 on the coordinate axes.",
+          "question_id": "ts_ipe_m1b_pln_intercepts_4x_3y_2z"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the intercepts of the plane x−3y+2z=9 on the coordinate axes.",
+          "question_id": "ts_ipe_m1b_pln_intercepts_x_minus_3y_2z"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the equation of the plane which makes intercepts 1,2,4 on the x,y,z-axes respectively.",
+          "question_id": "ts_ipe_m1b_pln_from_intercepts_1_2_4"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the equation of the plane which makes intercepts 2,3,4 on the x,y,z-axes respectively.",
+          "question_id": "ts_ipe_m1b_pln_from_intercepts_2_3_4"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Reduce the equation x+2y−3z−6=0 of the plane to the normal form.",
+          "question_id": "ts_ipe_m1b_pln_normal_form_x_2y_3z"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find a traid of d.c's of the normal to the plane x+2y+2z−4=0.",
+          "question_id": "ts_ipe_m1b_pln_dcs_of_normal"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the angle between the planes 2x−y+z=6 and x+y+2z=7.",
+          "question_id": "ts_ipe_m1b_pln_angle_2x_minus_y_plus_z"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the angle between the planes x+2y+2z−5=0 and 3x+3y+2z−8=0.",
+          "question_id": "ts_ipe_m1b_pln_angle_x_2y_2z"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of the plane passing through the point (1,1,1) and parallel to the plane x+2y+3z−7=0.",
+          "question_id": "ts_ipe_m1b_pln_parallel_through_1_1_1"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation of the plane passing through the point (1,2,−3) and parallel to the plane 2x−3y+6z=0.",
+          "question_id": "ts_ipe_m1b_pln_parallel_through_1_2_minus3"
         }
       ]
     }

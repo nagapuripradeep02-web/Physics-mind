@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_parallel_through_5_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the straight line parallel to the line 2x+3y+7=0 and passing through the point (5,4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the required slope",
+      "marks": 1
+    },
+    {
+      "label": "Write the line through the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 92.1. No appearance years are printed against this answer. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what the slope must be, and which form you would use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_slope",
+        "kind": "equation",
+        "label": "Find the required slope",
+        "marks": 1,
+        "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then keep it, because parallel lines share a slope.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 2x + 3y + 7 = 0",
+          "It's slope  m = −a/b = −2/3",
+          "A parallel line has the same slope, so the required slope is −2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given slope is found as −a/b and the required slope is the same.",
+          "accept": [
+            "parallel lines have the same slope",
+            "keep the same slope",
+            "read minus a over b and use it as is",
+            "parallel kabatti same slope",
+            "the slope stays the same"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a over b",
+            "parallel",
+            "same slope"
+          ]
+        },
+        "why": "The slope is fixed entirely by the other line, so it can be written before the given point is touched at all.",
+        "common_mistakes": [
+          "Taking the negative reciprocal when the lines are parallel.",
+          "Reading the slope as −b/a."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_write_the_line",
+        "kind": "boxed_final",
+        "label": "Write the line through the point",
+        "marks": 1,
+        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. The book also prints a one-line shortcut for this shape, given below.",
+        "lines": [
+          "Parallel line through (5, 4) with slope −2/3 is  y − y₁ = m(x − x₁)",
+          "⇒ y − 4 = (−2/3)(x − 5)",
+          "⇒ 3(y − 4) = −2(x − 5)",
+          "⇒ 3y − 12 = −2x + 10",
+          {
+            "text": "⇒ 2x + 3y − 22 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "Easy Solution:",
+            "style": "heading"
+          },
+          "The parallel line is given by  a(x − x₁) + b(y − y₁) = 0",
+          "⇒ 2(x − 5) + 3(y − 4) = 0",
+          "⇒ 2x + 3y − 10 − 12 = 0  ⇒  2x + 3y − 22 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form through the given point gives 2x + 3y − 22 = 0.",
+          "accept": [
+            "use y minus y one equals m into x minus x one then simplify",
+            "write the point slope form and clear the fraction",
+            "put the point and slope in and collect the terms",
+            "point slope form lo pettesi simplify cheyyali",
+            "this gives the required line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point slope form",
+            "clear the fraction",
+            "required line"
+          ]
+        },
+        "why": "The book's shortcut works because a parallel line keeps the same coefficients in the same places, so only the constant has to be recomputed.",
+        "common_mistakes": [
+          "Sign slip when the point has a negative coordinate.",
+          "Leaving the answer with a fraction in it."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

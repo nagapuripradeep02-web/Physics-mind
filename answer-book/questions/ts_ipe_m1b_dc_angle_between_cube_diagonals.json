@@ -1,0 +1,464 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dc_angle_between_cube_diagonals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "D.C's & D.R's"
+  },
+  "chapter": "D.C's & D.R's",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the angle between two diagonals of a cube.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    },
+    {
+      "year": 2022
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set the cube on the axes",
+      "marks": 2
+    },
+    {
+      "label": "Name all eight vertices",
+      "marks": 2
+    },
+    {
+      "label": "Write the two diagonals' d.r's",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.30 — LAQ chapter 3 D.C's & D.R's, answer 19, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15 · AP 20 · TS 18 · TS 22. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. The book prints a side note here: the angle between the diagonals of a SQUARE is 90°, but for a CUBE it is Cos⁻¹(1/3) — a contrast worth carrying, since the two are easily confused. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say how you would place the cube, and what should happen to the side length.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "D.C's & D.R's · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_the_cube",
+        "kind": "text",
+        "label": "Set the cube on the axes",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Consider a cube of side 'a' with vertices O, A, B, C, L, M, N, P where O = (0,0,0)",
+          "Take A, B, C on the X-axis, Y-axis, Z-axis, then",
+          "A = (a,0,0),  B = (0,a,0),  C = (0,0,a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a cube of side a is placed with one vertex at the origin and three edges along the axes.",
+          "accept": [
+            "put one vertex at the origin and three edges along the axes",
+            "take a cube of side a with O at the origin",
+            "the three neighbours of O sit on the three axes",
+            "cube ni origin daggara pettali, edges axes meeda",
+            "choose the cube's position"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "origin",
+            "along the axes",
+            "side a",
+            "cube"
+          ]
+        },
+        "why": "Placing the cube on the axes is a free choice that costs nothing and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
+        "common_mistakes": [
+          "Trying to answer without choosing coordinates at all.",
+          "Placing the cube's CENTRE at the origin, which makes every coordinate a half."
+        ]
+      },
+      {
+        "id": "s2_name_vertices",
+        "kind": "equation",
+        "label": "Name all eight vertices",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The remaining four vertices follow a pattern: three lie on the coordinate PLANES with one zero each, and the last is (a,a,a) out in space.",
+        "lines": [
+          "Take L, M, N on the XY-plane, YZ-plane, ZX-plane, then",
+          "L = (a,a,0),  M = (0,a,a),  N = (a,0,a)",
+          "Take P in the XYZ space, then  P = (a,a,a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the other four vertices are L(a,a,0), M(0,a,a), N(a,0,a) and P(a,a,a).",
+          "accept": [
+            "three more vertices lie on the coordinate planes with one zero each",
+            "the last vertex is a comma a comma a",
+            "name all eight vertices of the cube",
+            "migilina vertices ni kooda rayali",
+            "P is the far corner at a a a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coordinate planes",
+            "one zero each",
+            "a a a",
+            "eight vertices"
+          ]
+        },
+        "why": "A cube's vertices are exactly the eight triples built from 0 and a, which is why this labelling is quick once the cube is on the axes.",
+        "common_mistakes": [
+          "Giving a vertex two zeros where it should have one.",
+          "Missing the far vertex (a,a,a), which every diagonal needs."
+        ]
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "Draw the cube",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. With the cube and its three axes on the page you can read each diagonal's coordinate differences straight off, instead of holding eight vertices in your head.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a labelled cube is drawn with the two diagonals OP and CL marked. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the cube and mark the two diagonals O P and C L",
+            "sketch the labelled cube with its diagonals",
+            "make a diagram of the cube showing the two body diagonals",
+            "cube geesi rendu diagonals mark cheyyali",
+            "draw a labelled cube with the diagonals shown"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "cube",
+            "diagonals",
+            "O P",
+            "C L"
+          ]
+        },
+        "why": "A body diagonal runs from a corner to the corner diagonally opposite THROUGH the cube. The picture is how you check you have taken two of those and not a face diagonal.",
+        "common_mistakes": [
+          "Drawing a face diagonal, which lies in one face and gives a different angle.",
+          "Labelling the vertices so that OP and CL turn out to be the same diagonal."
+        ],
+        "figure": {
+          "id": "cube_two_diagonals",
+          "width": 270,
+          "height": 292,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "front_face",
+              "d": "M 100 195 L 210 195 L 210 100 L 100 100 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "back_face",
+              "d": "M 50 240 L 160 240 L 160 145 L 50 145 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "edge_oc",
+              "d": "M 100 195 L 50 240",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_an",
+              "d": "M 210 195 L 160 240",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_lp",
+              "d": "M 210 100 L 160 145",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_bm",
+              "d": "M 100 100 L 50 145",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 210 195 L 246 195",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 238 190 L 246 195 L 238 200",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 100 100 L 100 62",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y_head",
+              "d": "M 95 70 L 100 62 L 105 70",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z",
+              "d": "M 50 240 L 28 262",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z_head",
+              "d": "M 36 260 L 28 262 L 30 254",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "diag_op",
+              "d": "M 100 195 L 160 145",
+              "ms": 520,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "diag_cl",
+              "d": "M 50 240 L 210 100",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 84,
+              "y": 212,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 216,
+              "y": 214,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 82,
+              "y": 94,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 220,
+              "y": 92,
+              "text": "L",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 34,
+              "y": 236,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 168,
+              "y": 260,
+              "text": "N",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 26,
+              "y": 140,
+              "text": "M",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 172,
+              "y": 140,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 250,
+              "y": 182,
+              "text": "X",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 108,
+              "y": 58,
+              "text": "Y",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_z",
+              "x": 14,
+              "y": 274,
+              "text": "Z",
+              "ms": 180,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_diagonals",
+        "kind": "equation",
+        "label": "Write the two diagonals' d.r's",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. A DIAGONAL joins opposite corners through the body of the cube — not a face diagonal. Its direction ratios are the coordinate differences.",
+        "lines": [
+          "Take the 2 diagonals  OP,  CL",
+          "d.r's of OP = (a−0, a−0, a−0) = (a, a, a) = (a₁, b₁, c₁)",
+          "d.r's of CL = (a−0, a−0, 0−a) = (a, a, −a) = (a₂, b₂, c₂)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two diagonals OP and CL have direction ratios (a, a, a) and (a, a, −a).",
+          "accept": [
+            "a diagonal joins opposite corners through the body",
+            "O P has direction ratios a a a and C L has a a minus a",
+            "take the coordinate differences",
+            "rendu diagonals d r's rayali",
+            "these are the two body diagonals"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "diagonals",
+            "O P",
+            "C L",
+            "direction ratios",
+            "a a a"
+          ]
+        },
+        "why": "A cube has four body diagonals; any two of them make the same angle, so picking two particular ones answers the question in general.",
+        "common_mistakes": [
+          "Using a FACE diagonal, which meets an edge rather than crossing the body.",
+          "Subtracting the coordinates the wrong way round."
+        ]
+      },
+      {
+        "id": "s4_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The a² cancels between numerator and denominator, leaving a pure number — which is why the answer holds for a cube of ANY size.",
+        "lines": [
+          "So, angle between the two diagonals is given by",
+          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "= |a(a) + a(a) + a(−a)| / √((a²+a²+a²)(a²+a²+a²))",
+          "= a² / √((3a²)(3a²)) = a²/(3a²) = 1/3",
+          {
+            "text": "∴ cosθ = 1/3  ⇒  angle between the diagonals of a cube is Cos⁻¹(1/3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the a² cancels and cosθ = 1/3, so θ = Cos⁻¹(1/3).",
+          "accept": [
+            "apply the angle formula and the a squared cancels leaving one third",
+            "cos theta is one over three",
+            "the angle is cos inverse one third",
+            "a square cancel avuthundi, one by three vasthundi",
+            "the answer does not depend on the side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared cancels",
+            "one third",
+            "cos inverse",
+            "does not depend on a"
+          ]
+        },
+        "why": "The answer being independent of a is the check that the working is right — an angle between diagonals cannot depend on how big the cube is.",
+        "common_mistakes": [
+          "Leaving a in the final answer.",
+          "Giving 90°, which is the angle between the diagonals of a SQUARE, not a cube."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_parallel_find_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the value of y, if the line joining (3,y), (2,7) is parallel to the line joining the points (−1,4), (0,6).",
+  "appearances": [
+    {
+      "year": 2017
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write both slopes",
+      "marks": 1
+    },
+    {
+      "label": "Equate the slopes and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Straight Lines, answer 88.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS M-17 (March 2017). ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what parallel means for the two slopes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_slopes",
+        "kind": "equation",
+        "label": "Write both slopes",
+        "marks": 1,
+        "margin_note": "First mark. Two lines are named, so two slopes are needed — one carries the unknown, the other is fully numeric.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (3, y), B = (2, 7); then",
+          "Slope of AB is  m₁ = (7 − y)/(2 − 3) = (7 − y)/(−1) = y − 7",
+          "Again, we take C = (−1, 4), D = (0, 6);",
+          "Slope of CD is  m₂ = (6 − 4)/(0 + 1) = 2/1 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of AB is y − 7 and the slope of CD is 2.",
+          "accept": [
+            "slope of A B is y minus seven and slope of C D is two",
+            "write both slopes from the two pairs of points",
+            "one slope has the unknown y in it",
+            "rendu slopes rayali",
+            "the second slope is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of A B",
+            "slope of C D",
+            "y minus seven",
+            "equals two"
+          ]
+        },
+        "why": "Dividing by −1 flips the sign of the numerator, which is why (7 − y)/(−1) becomes y − 7 rather than 7 − y.",
+        "common_mistakes": [
+          "Leaving the slope of AB as (7 − y)/(−1) and mishandling the sign later.",
+          "Pairing the wrong points together."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_equate_parallel",
+        "kind": "boxed_final",
+        "label": "Equate the slopes and solve",
+        "marks": 1,
+        "margin_note": "Second mark. Parallel lines have EQUAL slopes, so setting the two equal gives y in one step.",
+        "lines": [
+          "Take, m₁ = m₂  [∵ Given lines are parallel]",
+          "⇒ y − 7 = 2   ⇒   y = 2 + 7",
+          {
+            "text": "∴ y = 9",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That parallel means equal slopes, giving y = 9.",
+          "accept": [
+            "parallel means the slopes are equal so y minus seven is two",
+            "set them equal and solve to get nine",
+            "y equals nine",
+            "parallel kabatti slopes equal",
+            "equate the slopes"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parallel",
+            "equal slopes",
+            "y equals nine"
+          ]
+        },
+        "why": "Parallel is equal slopes; perpendicular would be a product of −1. The two are constantly confused and the whole answer turns on which is meant.",
+        "common_mistakes": [
+          "Using m₁m₂ = −1, which is the perpendicular condition.",
+          "Arithmetic slip on y − 7 = 2."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

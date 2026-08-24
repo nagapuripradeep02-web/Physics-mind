@@ -118,7 +118,10 @@
     meta.innerHTML = '';
     var chips = [
       question.class_label,
-      question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
+      // The chip names the PAPER, same table as the catalog's subject chips.
+      ({ physics: 'Physics', chemistry: 'Chemistry',
+         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B' })[question.subject] ||
+        question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
       'Unit ' + question.unit.number + ' · ' + question.unit.name,
       cut.paper_section + ' · ' + cut.qtype,
       'about ' + cut.expected_time_min + ' minutes'

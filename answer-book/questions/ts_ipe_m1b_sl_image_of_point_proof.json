@@ -1,0 +1,347 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_image_of_point_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If Q(h,k) is the image of the point P(x₁,y₁) with respect to the straight line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −2(ax₁+by₁+c) : (a²+b²).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Both slopes",
+      "marks": 1
+    },
+    {
+      "label": "Use the perpendicularity",
+      "marks": 2
+    },
+    {
+      "label": "Write h and k through r",
+      "marks": 2
+    },
+    {
+      "label": "Find r from the condition",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.2. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would prove this — say what perpendicularity gives you, and what condition on Q finishes it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_slopes",
+        "kind": "equation",
+        "label": "Both slopes",
+        "marks": 1,
+        "margin_note": "First mark. Two slopes are needed — the one joining the two points, and the one of the given line. The second reads straight off the coefficients as −a/b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given P = (x₁, y₁), Q = (h, k)",
+          "Slope of PQ is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (k − y₁)/(h − x₁)",
+          "Slope of the line ax + by + c = 0 is  m₂ = −a/b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of PQ is (k − y₁)/(h − x₁) and the slope of the line is −a/b.",
+          "accept": [
+            "slope of P Q is k minus y one over h minus x one and the line's slope is minus a over b",
+            "write both slopes, one from the two points and one from the coefficients",
+            "the line a x plus b y plus c has slope minus a over b",
+            "rendu slopes rayali, P Q di and line di",
+            "both slopes first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of P Q",
+            "minus a over b",
+            "k minus y one",
+            "h minus x one"
+          ]
+        },
+        "why": "Everything in this proof follows from PQ being perpendicular to the line, so both slopes have to be on the page before that fact can be used.",
+        "common_mistakes": [
+          "Reading the line's slope as −b/a.",
+          "Writing the slope of PQ upside down."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw P, the line and the image",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing, and it is the picture that explains the factor 2. Q is the mirror point, so the line cuts PQ in HALF — the two tick marks are equal, and it is the MIDPOINT R that lies on the line, not Q.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That P, the line, the image Q and the midpoint R on the line are sketched, with PR = RQ. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw P above the line and its mirror image Q below with the midpoint on the line",
+            "sketch the point, the line, and the image with equal halves",
+            "show R the midpoint of P Q lying on the line",
+            "P ki image Q ni line kinda geesi midpoint mark cheyyali",
+            "draw the image of the point in the line"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "image",
+            "mirror",
+            "midpoint",
+            "R on the line"
+          ]
+        },
+        "why": "An image is the mirror point, so the line is the perpendicular BISECTOR of PQ. Q itself is NOT on the line — its midpoint with P is, and halving inside the equation is what doubles the answer.",
+        "common_mistakes": [
+          "Drawing Q on the line, which makes it the foot of the perpendicular instead.",
+          "Drawing PR and RQ unequal, which loses the bisection the proof depends on."
+        ],
+        "figure": {
+          "id": "image_of_point",
+          "width": 280,
+          "height": 232,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "the_line",
+              "d": "M 24 120 L 256 120",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pq",
+              "d": "M 146 34 L 146 206",
+              "ms": 520,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "rt",
+              "d": "M 146 108 L 158 108 L 158 120",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "tick1",
+              "d": "M 138 74 L 154 74",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick2",
+              "d": "M 138 166 L 154 166",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "dot_r",
+              "d": "M 143 117 A 3 3 0 1 0 149 117 A 3 3 0 1 0 143 117",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 112,
+              "y": 26,
+              "text": "P(x₁,y₁)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 158,
+              "y": 114,
+              "text": "R",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 112,
+              "y": 224,
+              "text": "Q(h,k)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_line",
+              "x": 28,
+              "y": 104,
+              "text": "ax+by+c=0",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_use_the_perpendicularity",
+        "kind": "equation",
+        "label": "Use the perpendicularity",
+        "marks": 2,
+        "margin_note": "Two marks. PQ meets the line at a right angle, so m₁m₂ = −1. Rearranged, that says (h − x₁)/a and (k − y₁)/b are EQUAL — and giving that common value the name r is what makes the rest of the proof short.",
+        "lines": [
+          "Two lines are perpendicular ⇒ m₁m₂ = −1",
+          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+          "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
+          "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁m₂ = −1 gives (h − x₁)/a = (k − y₁)/b, and this common value is named r.",
+          "accept": [
+            "perpendicular means m one m two equals minus one, rearrange and call the common value r",
+            "the product of the slopes is minus one",
+            "h minus x one over a equals k minus y one over b, take it as r",
+            "perpendicular kabatti m one into m two equals minus one",
+            "name the common ratio r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m one m two",
+            "minus one",
+            "equals r",
+            "common value"
+          ]
+        },
+        "why": "Naming the common ratio r converts two unknowns h and k into ONE unknown, which is the move that makes a two-variable problem solvable in a line.",
+        "common_mistakes": [
+          "Setting m₁m₂ = 1 instead of −1.",
+          "Keeping h and k separate and ending with two unknowns and one equation."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_write_h_and_k",
+        "kind": "equation",
+        "label": "Write h and k through r",
+        "marks": 2,
+        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
+        "lines": [
+          "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
+          "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h = x₁ + ar and k = y₁ + br.",
+          "accept": [
+            "h is x one plus a r and k is y one plus b r",
+            "read the ratio both ways to get h and k in terms of r",
+            "express both coordinates through r",
+            "h equals x one plus a r, k equals y one plus b r",
+            "write h and k using r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "h equals x one plus a r",
+            "k equals y one plus b r",
+            "in terms of r"
+          ]
+        },
+        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is the only place the two proofs differ.",
+        "common_mistakes": [
+          "Writing h = x₁ + br and k = y₁ + ar, with a and b swapped.",
+          "Dropping the x₁ or y₁ when rearranging."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_find_r",
+        "kind": "boxed_final",
+        "label": "Find r from the condition",
+        "marks": 2,
+        "margin_note": "The last two marks, and the ONLY place this proof differs from its neighbour. The IMAGE is the mirror point, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
+        "lines": [
+          "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
+          "R = ((x₁ + h)/2, (y₁ + k)/2)",
+          "But R lies on ax + by + c = 0",
+          "⇒ a(x₁ + h)/2 + b(y₁ + k)/2 + c = 0",
+          "⇒ a(x₁ + h) + b(y₁ + k) + 2c = 0",
+          "⇒ a[x₁ + (x₁ + ar)] + b[y₁ + (y₁ + br)] + 2c = 0",
+          "⇒ 2ax₁ + a²r + 2by₁ + b²r + 2c = 0",
+          "⇒ r(a² + b²) = −2(ax₁ + by₁ + c)",
+          "⇒ r = −2(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
+          "From (1) & (2),",
+          {
+            "text": "∴ (h − x₁)/a = (k − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the MIDPOINT of PQ lies on the line, giving r = −2(ax₁+by₁+c)/(a²+b²).",
+          "accept": [
+            "the image means the line bisects P Q so the midpoint lies on the line",
+            "take the midpoint of P Q and put it in the line equation",
+            "the mid point condition is what gives the factor two",
+            "midpoint line meeda untundi, adi condition",
+            "this gives r with a two in front"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "midpoint",
+            "bisects",
+            "factor of two",
+            "lies on the line"
+          ]
+        },
+        "why": "An image is the mirror point, so the line is the perpendicular BISECTOR of PQ — Q itself is not on the line, its midpoint with P is. Halving inside the equation is what doubles the final numerator.",
+        "common_mistakes": [
+          "Putting Q on the line, which gives the foot-of-perpendicular answer with no factor 2.",
+          "Forgetting to multiply the constant c by 2 when clearing the halves."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

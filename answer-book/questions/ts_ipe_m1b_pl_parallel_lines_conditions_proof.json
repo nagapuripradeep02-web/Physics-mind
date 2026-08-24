@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_parallel_lines_conditions_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents two parallel lines then prove that (i) h²=ab (ii) af²=bg² (iii) the distance between the parallel lines is 2√((g²−ac)/(a(a+b))) or 2√((f²−bc)/(b(a+b))).",
+  "appearances": [
+    {
+      "year": 2020
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split into two PARALLEL lines",
+      "marks": 1
+    },
+    {
+      "label": "Prove h² = ab",
+      "marks": 2
+    },
+    {
+      "label": "Prove af² = bg²",
+      "marks": 2
+    },
+    {
+      "label": "Derive the distance",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 9, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say what is special about how you split a PARALLEL pair, and how you get the distance.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_parallel",
+        "kind": "equation",
+        "label": "Split into two PARALLEL lines",
+        "marks": 1,
+        "margin_note": "First mark, and the move that makes the whole question work. Parallel lines share their x and y coefficients and differ ONLY in the constant — so both factors get the same l and m.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ax² + 2hxy + by² + 2gx + 2fy + c ≡ (lx + my + n₁)(lx + my + n₂)",
+          "On equating like term coeff., we get",
+          "a = l²,  b = m²,  h = lm,  2g = l(n₁ + n₂),  2f = m(n₁ + n₂),  c = n₁n₂"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That parallel lines are written with the SAME l and m in both factors, differing only in n.",
+          "accept": [
+            "parallel lines have the same x and y coefficients so both factors use l and m",
+            "only the constants differ between the two lines",
+            "a is l squared, b is m squared, h is l m",
+            "parallel kabatti l and m same, n matrame veru",
+            "split it with identical coefficients"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "same coefficients",
+            "parallel",
+            "l squared",
+            "m squared",
+            "only the constant differs"
+          ]
+        },
+        "why": "This single choice — same l and m in both factors — is what forces every one of the three results that follow. Nothing else in the answer is really new.",
+        "common_mistakes": [
+          "Using different coefficients in the two factors, which describes intersecting lines.",
+          "Writing h = 2lm instead of h = lm."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_prove_h2_ab",
+        "kind": "equation",
+        "label": "Prove h² = ab",
+        "marks": 2,
+        "margin_note": "Two marks. The first result is immediate from the dictionary: h is lm, and a and b are l² and m².",
+        "lines": [
+          "(i) h² = (lm)² = l²m² = ab",
+          "⇒ h² = ab"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h = lm gives h² = l²m² = ab.",
+          "accept": [
+            "h is l m so h squared is l squared m squared which is a b",
+            "square the h relation and read off a and b",
+            "h squared equals a b follows straight from the dictionary",
+            "h square chesthe a b vasthundi",
+            "this proves the first part"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "h squared",
+            "l squared m squared",
+            "equals a b"
+          ]
+        },
+        "why": "h² = ab is the standard test for a pair of parallel lines, and here it falls straight out of the splitting — no algebra needed at all.",
+        "common_mistakes": [
+          "Squaring 2h rather than h.",
+          "Concluding h² > ab, which describes two distinct intersecting lines."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_prove_af2_bg2",
+        "kind": "equation",
+        "label": "Prove af² = bg²",
+        "marks": 2,
+        "margin_note": "Two marks. Both f and g carry the same factor (n₁ + n₂), so squaring each and multiplying by the other's coefficient produces the same expression twice.",
+        "lines": [
+          "(ii) af² = l²[m(n₁ + n₂)/2]²",
+          "= l²m²(n₁ + n₂)²/4",
+          "= m²l²(n₁ + n₂)²/4",
+          "= m²[l(n₁ + n₂)/2]² = bg²",
+          "⇒ af² = bg²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That af² and bg² both reduce to l²m²(n₁+n₂)²/4, so they are equal.",
+          "accept": [
+            "both sides reduce to the same expression so they are equal",
+            "a f squared is l squared times m squared n one plus n two over two all squared",
+            "the two sides are the same after expanding",
+            "rendu vaipula same expression vasthundi",
+            "this proves a f squared equals b g squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a f squared",
+            "b g squared",
+            "same expression",
+            "equal"
+          ]
+        },
+        "why": "f and g differ only in whether they carry m or l, so pairing each with the OTHER letter's square makes the two products identical.",
+        "common_mistakes": [
+          "Forgetting the division by 2 when writing f and g from 2f and 2g.",
+          "Pairing a with g² instead of f²."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_distance",
+        "kind": "boxed_final",
+        "label": "Derive the distance",
+        "marks": 2,
+        "margin_note": "The last two marks. The two lines share l and m, so the distance is |n₁ − n₂| over √(l² + m²) — and |n₁ − n₂| is found from its square, since only the sum and product of the n's are known.",
+        "lines": [
+          "(iii) Distance between lx + my + n₁ = 0 and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
+          "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",
+          "= √((2g/l)² − 4c) / √(a + b) = √(4g²/l² − 4c) / √(a + b)",
+          "= √(4g²/a − 4c) / √(a + b) = √((4g² − 4ac)/a) / √(a + b)",
+          "= 2√((g² − ac)/(a(a + b)))",
+          {
+            "text": "∴ Distance = 2√((g² − ac)/(a(a + b)))  or, taking n₁ + n₂ = 2f/m,  2√((f² − bc)/(b(a + b)))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distance is |n₁ − n₂|/√(l² + m²), which converts to 2√((g² − ac)/(a(a+b))).",
+          "accept": [
+            "the distance between parallel lines is the difference of the constants over the root",
+            "write n one minus n two through the sum and the product",
+            "substitute two g over l for the sum and c for the product",
+            "difference of constants over root l square plus m square",
+            "this gives the required distance"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of the constants",
+            "sum and product",
+            "two g over l",
+            "the distance"
+          ]
+        },
+        "why": "The two stated forms are the SAME distance reached two ways — through g and a, or through f and b — because n₁ + n₂ can be read from either 2g or 2f. The question asks for both.",
+        "common_mistakes": [
+          "Using n₁ + n₂ where |n₁ − n₂| is needed.",
+          "Giving only one of the two equivalent forms."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}
