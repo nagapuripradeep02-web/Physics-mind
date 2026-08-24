@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. FIGURE: the book prints one against this answer — triangle ABC with the altitude from A dropped onto BC, its right angle marked and the base named a (book p.49). It is the ONLY figure in the Properties of Triangles chapter, and it is redrawn as its own step because pairing each altitude with the side it is dropped onto is what all three parts rest on."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
@@ -96,6 +96,124 @@
           "Writing p₁ = Δ/a without the 2.",
           "Pairing p₁ with the wrong side."
         ]
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the triangle",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The altitude p₁ is the HEIGHT onto BC, and BC is the base a — the picture is what pairs each altitude with the side it is dropped onto, which is the whole content of Δ = ½ a p₁.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That triangle ABC is sketched with the altitude from A drawn onto BC, its right angle marked and the base named a. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the triangle and drop the altitude from A onto BC",
+            "sketch A B C and mark p one as the height on side a",
+            "show the perpendicular from a vertex to the opposite side",
+            "triangle geesi A nunchi BC meeda altitude veyyali",
+            "draw the triangle with its altitude"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "triangle",
+            "altitude",
+            "height",
+            "perpendicular",
+            "base"
+          ]
+        },
+        "why": "Every one of the three parts starts from the same area statement, and that statement only reads correctly off a picture: p₁ is the height ONLY when BC is the base. Drawing it once fixes all three pairings — p₁ with a, p₂ with b, p₃ with c.",
+        "common_mistakes": [
+          "Pairing p₁ with the wrong side, which breaks all three results at once.",
+          "Treating the altitude as a median — it meets BC at a right angle, not at its midpoint."
+        ],
+        "figure": {
+          "id": "triangle_abc_altitude",
+          "width": 272,
+          "height": 176,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 44 146 L 152 34",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "side_ac",
+              "d": "M 152 34 L 236 146",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 44 146 L 236 146",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "alt_p1",
+              "d": "M 152 34 L 152 146",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "rt_mark",
+              "d": "M 152 136 L 163 136 L 163 146",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 144,
+              "y": 28,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 18,
+              "y": 152,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 244,
+              "y": 152,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p1",
+              "x": 168,
+              "y": 92,
+              "text": "p₁",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_base_a",
+              "x": 96,
+              "y": 166,
+              "text": "a",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
       },
       {
         "id": "s2_prove_part_i",

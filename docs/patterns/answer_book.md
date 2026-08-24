@@ -79,6 +79,23 @@ body is exactly 32 rules (1024px). Placement:
   on low-end Android). If wobble is ever added it must be **seeded/authored, never
   `Math.random()`** — every load must render identically (Rule 18 posture).
 
+**`figure.height` is a PAGINATION decision, not just a drawing one** (learned 2026-08-24, the
+Maths-1A altitudes LAQ). `buildFigure` reserves `Math.ceil(fig.height / 32) * 32` px so the block
+below stays on the ruled lines, so a figure costs whole rules, not its own height — 208 and 224
+cost exactly the same, and 176 and 208 differ by a full rule. Adding a 7-rule figure to that LAQ
+pushed its `Total : 7 / 7 marks` line onto an otherwise-empty page 2 **by two pixels**. Dropping
+the figure one rule to 176 brought it back. The `.page-body` is 1024px = 32 rules; after
+authoring a figure, count the pages, and if a new one holds nothing but the total, take a rule
+off the figure before anything else.
+
+**Leave ~7px of headroom inside the viewBox under an `em` label.** `em` is 25px Kalam and its
+rendered box runs roughly `y-20 … y+5`, so a baseline at `height − 10` still spills. Measured:
+`y=188` in a 200-tall figure passes, `y=190` does not. Where the canvas is short, put vertex
+labels **beside** their vertices rather than under them — which is usually where the source book
+puts them anyway. The browser gate catches this too, but only as "label outside its own svg"; the
+`overflow: visible` on `.figure-wrap svg` means it looks fine on screen while overlapping the
+block below.
+
 ## Mechanism 3 — typeset lines (`render: "katex"`, added 2026-08-21)
 
 Some mathematics simply cannot be written on one line of text: a 3×3 matrix, a
