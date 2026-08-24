@@ -23,13 +23,16 @@ import { join } from 'path';
 const root = process.cwd();
 const read = (...p: string[]) => readFileSync(join(root, ...p), 'utf8');
 
-/** The persona array literal, sliced the same way in both files. */
+/** The persona array literal, sliced the same way in both files.
+ *  `\r` is stripped, as the manual one-liner in docs/notes/answer_book_hosting.md
+ *  always did: core.autocrlf is true and there is no .gitattributes rule for *.ts,
+ *  so a checkout that gives one file CRLF would report all 26 lines as drift. */
 function personaBlock(src: string, file: string): string {
     const a = src.indexOf('const PERSONA = [');
     expect(a, `no PERSONA array in ${file}`).toBeGreaterThan(-1);
     const b = src.indexOf("].join('", a);
     expect(b, `unterminated PERSONA array in ${file}`).toBeGreaterThan(a);
-    return src.slice(a, b);
+    return src.slice(a, b).replace(/\r/g, '');
 }
 
 describe('Vidi persona parity — the deployed function and the local mirror', () => {
@@ -61,6 +64,10 @@ describe('Vidi persona parity — the deployed function and the local mirror', (
             'NEVER invent a step, a mark value, or a mark split', // invented a 4-mark scheme
             'EARNS THE MARK FOR',                                 // the step→mark mapping now in context
             'not a rubric issued by the board',                   // every split is still unverified
+            'never the skipped step itself',                      // skiplast named the skipped step as the minimum (audit 2026-08-24)
+            'never assume each step is one mark',                 // collisions LAQ: 7 steps, one 2M row, "1 mark each"
+            'no asked years are listed',                          // fabricated "asked years" on starred cards with no Asked line
+            'never translate them into Telugu words',             // శక్తి for force — a wrong statement a student memorizes
         ]) {
             expect(edge, `persona lost: ${rule}`).toContain(rule);
         }

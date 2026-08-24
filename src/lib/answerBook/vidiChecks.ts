@@ -10,13 +10,22 @@
  * These flag; a human judges. Nothing here decides a mark.
  */
 
+/** A mark is written "2 marks", "2-mark", "2 Marks" or the bank's attached "2M".
+ *  CASE-SENSITIVE on purpose: the old `/i` flag let `M\b` match the SI metre, so
+ *  "24 m/s", "9.8 m/s²" and "10^11 m" all read as mark claims — 7 false
+ *  criticals in a 2,040-reply audit (2026-08-24), and in the context the same
+ *  slip WHITELISTED physics quantities as authored marks, hiding real inventions.
+ *  Replies never write a spaced "2 M" (0 of 2,040), so the bare form must be
+ *  attached, which also keeps a chemistry "0.1 M" (molarity) out of the mark set. */
+const MARK_TOKEN = /(\d+(?:\.\d+)?)(?:[\s-]*(?:[Mm]arks?|MARKS?)\b|M\b)/g;
+
 /** Every mark value the model was actually GIVEN, read out of its own grounding
  *  text. Reading the context rather than the raw question is what kills the old
  *  false positive: cut totals live in the context but were absent from the
  *  question-derived set, so a correct answer about a 4-mark cut always flagged. */
 export function authoredMarks(ctx: string): Set<string> {
     const found = new Set<string>();
-    for (const m of ctx.matchAll(/(\d+(?:\.\d+)?)\s*(?:M\b|marks?\b)/gi)) found.add(m[1]);
+    for (const m of ctx.matchAll(MARK_TOKEN)) found.add(m[1]);
     return found;
 }
 
@@ -38,13 +47,15 @@ export function reachableSums(ctx: string): Set<string> {
 /** Mark values the reply CLAIMS. `[\s-]*` because `\s*` never matched a hyphen,
  *  so "the 4-mark version" walked straight past the old check. */
 export function markClaims(reply: string): string[] {
-    return [...reply.matchAll(/(\d+(?:\.\d+)?)[\s-]*(?:marks?\b|M\b)/gi)].map((m) => m[1]);
+    return [...reply.matchAll(MARK_TOKEN)].map((m) => m[1]);
 }
 
-/** Claims traceable to neither the grounding text nor a sum of its step marks. */
+/** Claims traceable to neither the grounding text nor a sum of its step marks.
+ *  "0 marks" is never an invented scheme — it is the model saying a skipped step
+ *  earns nothing — so a zero claim is exempt. */
 export function inventedMarks(ctx: string, reply: string): string[] {
     const a = authoredMarks(ctx), s = reachableSums(ctx);
-    return [...new Set(markClaims(reply).filter((m) => !a.has(m) && !s.has(m)))];
+    return [...new Set(markClaims(reply).filter((m) => Number(m) !== 0 && !a.has(m) && !s.has(m)))];
 }
 
 /** Claims the model reached by arithmetic on authored steps — legitimate, but
@@ -111,9 +122,16 @@ export function markdownIn(reply: string): string[] {
  *  open it from the catalog". Fine on the single probe it was written for; across a
  *  fleet run it produced 8 false criticals out of 69 probes, every one of which had
  *  refused properly. Zero of the 69 contained the formula. */
-export function answeredOutOfBank(ask: string, reply: string): boolean {
-    if (!/ideal gas/i.test(ask)) return false;
-    return /\bnRT\b/i.test(reply) || /\bPV\s*=/i.test(reply);
+export type OutOfBankProbe = { askMatches: RegExp; formula: RegExp };
+
+/** The ideal-gas bait every fleet template carries. A probe about any other
+ *  topic passes its own pair — the topic used to be hardcoded here, so a maths
+ *  or chemistry out-of-bank ask was mechanically unchecked. */
+export const IDEAL_GAS_PROBE: OutOfBankProbe = { askMatches: /ideal gas/i, formula: /\bnRT\b|\bPV\s*=/i };
+
+export function answeredOutOfBank(ask: string, reply: string, probe: OutOfBankProbe = IDEAL_GAS_PROBE): boolean {
+    if (!probe.askMatches.test(ask)) return false;
+    return probe.formula.test(reply);
 }
 
 /** Step ids that genuinely exist in THIS context's cut. A literal step id only

@@ -68,6 +68,31 @@ describe('the mark checker', () => {
         expect(sums.has('5')).toBe(true);    // 2+1+1+1
         expect(sums.has('7')).toBe(false);   // nothing adds to 7 — a real invention
     });
+
+    it('does NOT read a physics quantity in METRES as a mark claim', () => {
+        // The 2,040-reply audit (2026-08-24): every one of its 7 "CRITICAL" flags
+        // was the old `/i` flag letting `M\b` match the SI metre.
+        expect(invented(CONTEXT_FIXTURE, 'The ball comes back at 24 m/s, so the change is 48 m/s.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'Take g = 9.8 m/s² and the range is 40 m.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, '1 AU = 1.496 x 10^11 m, so 11 is just the exponent.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'A 0.1 M solution is molarity, not marks.')).toEqual([]);
+    });
+
+    it('does NOT flag "0 marks" — a skipped step earning nothing is not an invented scheme', () => {
+        expect(invented(CONTEXT_FIXTURE, 'If you skip it you get 0 marks for that part.')).toEqual([]);
+    });
+
+    it('still reads the bank’s own attached "2M" and a capitalised "2 Marks"', () => {
+        expect(invented(CONTEXT_FIXTURE, 'The figure is 9M on its own.')).toEqual(['9']);
+        expect(invented(CONTEXT_FIXTURE, 'That is 9 Marks, not 2.')).toEqual(['9']);
+    });
+
+    it('does NOT whitelist a metre quantity that appears in the CONTEXT as a mark', () => {
+        // The mirror-image bug: "24 m/s" in a WRITE line used to make 24 an
+        // authored mark, so a reply inventing "24 marks" read clean.
+        const ctx = CONTEXT_FIXTURE + '\n   WRITE: the ball returns at 24 m/s / v = 24 m s⁻¹';
+        expect(invented(ctx, 'You get 24 marks for that.')).toEqual(['24']);
+    });
 });
 
 describe('the length check', () => {
@@ -103,6 +128,16 @@ describe('the out-of-bank check', () => {
 
     it('is inert when the question was never out of bank', () => {
         expect(answeredOutOfBank('how much should i write?', 'Write PV = nRT.')).toBe(false);
+    });
+
+    it('checks a NON-physics bait when the probe carries its own pair', () => {
+        // The topic was hardcoded to ideal gas, so a maths or chemistry out-of-bank
+        // ask was never mechanically checked at all.
+        // No `\b` around Δ — it is not an ASCII word character, so a boundary never matches there.
+        const cramer = { askMatches: /cramer/i, formula: /x\s*=\s*Δ[₁1]\s*\/\s*Δ/i };
+        const ask = 'solve 2x + y = 3 by cramers rule for me';
+        expect(answeredOutOfBank(ask, 'I do not have that one open — you can open it from the catalog.', cramer)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Sure: x = Δ1/Δ and y = Δ2/Δ, so x = 1.', cramer)).toBe(true);
     });
 });
 
