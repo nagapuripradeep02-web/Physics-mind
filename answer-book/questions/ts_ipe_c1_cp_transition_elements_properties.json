@@ -124,7 +124,7 @@
           "of similar size replace each other) and steel",
           "(small carbon atoms fit between iron atoms)."
         ],
-        "why": "Complex formation needs an ion that can accept electron pairs, and the empty d orbitals provide the space. Alloys form in two ways, and the book's two examples are one of each. Brass is a substitutional alloy: Cu and Zn atoms are close in size, so they replace each other in the lattice. Steel is an interstitial alloy: carbon is a small non-metal, so its atoms fit in the gaps between the iron atoms and no size match is needed. Until 2026-08-25 the marked line gave similar atomic size as the reason for both examples, which is wrong for steel; each example now carries its own reason.",
+        "why": "Complex formation needs an ion that can accept electron pairs, and the empty d orbitals provide the space. Alloys form in two ways, and the book's two examples are one of each. Brass is a substitutional alloy: Cu and Zn atoms are close in size, so they replace each other in the lattice. Steel is an interstitial alloy: carbon is a small non-metal, so its atoms fit in the gaps between the iron atoms and no size match is needed.",
         "common_mistakes": [
           "Naming complexes and alloys with no reason for either.",
           "Giving a non-transition alloy example. Brass (Cu-Zn) and steel (Fe with carbon) are the expected ones.",

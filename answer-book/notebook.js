@@ -3530,7 +3530,7 @@
       var asked = askedLine(question);
       if (e) {
         out.push(e.source === 'enumerated'
-          ? 'STARS: ' + e.stars + ' — this question is PREDICTED: the source book does not ask it, so it carries no frequency rank and no exam history. Do not tell the student it is frequently asked, and do not say the book ranked it.'
+          ? 'STARS: none — this question is PREDICTED BY THIS ANSWER BOOK. The source book does not ask it, so there is no frequency rank and no exam history to report. If you must name who expects it, say this answer book or this card — never the book, which does not contain the question.'
           : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
           + (asked ? ' An Asked line below gives this question’s exam history.'
                    : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
@@ -3552,7 +3552,7 @@
       // that licenses a reply to say "the book gives 1 mark for ...".
       if (question.verification && question.verification.needs_teacher_verification) {
         out.push(e && e.source === 'enumerated'
-          ? 'VERIFICATION: this question is predicted, so this mark split was authored for it, not copied from the source book, and no board teacher has confirmed it. Never call it the book’s split.'
+          ? 'VERIFICATION: this mark split was authored by THIS ANSWER BOOK for a predicted question; it was not copied from the source book, which does not contain the question, and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
           : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic

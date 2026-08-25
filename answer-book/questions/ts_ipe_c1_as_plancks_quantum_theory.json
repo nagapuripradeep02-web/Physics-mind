@@ -77,7 +77,7 @@
           "    whole numbers of quanta:  E = nhν,",
           "    where n = 1, 2, 3, …"
         ],
-        "why": "E = hν turns the idea of a packet into a number, and E = nhν says the total is always a whole-number multiple of that packet. Together they are what makes the theory usable, and together they are what these 2 marks buy: points 4 and 5 are one step, so writing only E = hν leaves this half of the answer incomplete. The mark label named only E = hν until 2026-08-25; it now names both equations, matching the common mistakes listed below.",
+        "why": "E = hν turns the idea of a packet into a number, and E = nhν says the total is always a whole-number multiple of that packet. Together they are what makes the theory usable, and together they are what these 2 marks buy: points 4 and 5 are one step, so writing only E = hν leaves this half of the answer incomplete.",
         "common_mistakes": [
           "Writing E = hλ. Energy rises with frequency and falls with wavelength.",
           "Leaving out E = nhν, which is the part that says only whole quanta are exchanged."

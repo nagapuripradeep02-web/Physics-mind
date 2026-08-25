@@ -50,7 +50,7 @@
           "They differ only in the magnetic quantum",
           "number m, that is, in their orientation."
         ],
-        "why": "Scope first, because the card was not explicit about it before 2026-08-25: this marked answer is written for a multi-electron atom, which is the general case the board asks about, and every example and common mistake below is read in that scope. Orbitals of one subshell share n and l, so they share the energy as well. Only the orientation differs, and orientation costs no energy unless a magnetic or electric field is applied. The hydrogen atom is the stated exception: it has one electron, its energy depends on n alone, so in hydrogen 2s and 2p are degenerate as well. Both statements are correct in their own scope, and the exam answer uses the multi-electron one.",
+        "why": "Scope first: this marked answer is written for a multi-electron atom, which is the general case the board asks about, and every example and common mistake below is read in that scope. Orbitals of one subshell share n and l, so they share the energy as well. Only the orientation differs, and orientation costs no energy unless a magnetic or electric field is applied. The hydrogen atom is the stated exception: it has one electron, its energy depends on n alone, so in hydrogen 2s and 2p are degenerate as well. Both statements are correct in their own scope, and the exam answer uses the multi-electron one.",
         "common_mistakes": [
           "Saying orbitals of the same shell are degenerate. In a multi-electron atom, which is the scope of this answer, 2s and 2p share n but have different energies. Hydrogen is the one exception, where they are equal.",
           "Leaving out the words equal energy, which is the whole definition."

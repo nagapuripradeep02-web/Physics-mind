@@ -71,7 +71,7 @@
           "Both effects show that an external field",
           "splits one spectral line into several lines."
         ],
-        "why": "The two effects are asked together because both show line splitting in an external field, but they do not share one explanation. The Zeeman effect comes from the magnetic quantum number m, which fixes how an orbital is oriented in space, so a magnetic field gives those orientations different energies. The Stark effect comes from the interaction of the electric field with the electric dipole moment of the atom. An earlier version of this card ended with the line 'Both effects are explained by the magnetic quantum number m'; that line was corrected on 2026-08-25, because m explains the Zeeman effect only. Bohr's model cannot explain either effect, and that is one of its listed limitations.",
+        "why": "The two effects are asked together because both show line splitting in an external field, but they do not share one explanation. The Zeeman effect comes from the magnetic quantum number m, which fixes how an orbital is oriented in space, so a magnetic field gives those orientations different energies. The Stark effect comes from the interaction of the electric field with the electric dipole moment of the atom. Bohr's model cannot explain either effect, and that is one of its listed limitations.",
         "common_mistakes": [
           "Writing that the Stark effect happens in a magnetic field.",
           "Saying the magnetic quantum number m explains both effects. It explains the Zeeman effect only; the Stark effect comes from the electric dipole moment of the atom."
