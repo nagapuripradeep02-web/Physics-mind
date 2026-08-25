@@ -59,8 +59,49 @@ Three graders reported replies cut off mid-word, each dropping whole mark-carryi
 
 The fix it found: Telugu `max_tokens` **500 → 800**. Measured, not guessed — the dead replies stopped at 720–782 chars while survivors reach 905, so the cap was binding on token density, not on how long the answer needs to be. **Two of the three were 4-MARK questions, not the 8-mark LAQs assumed**, so scaling the budget by marks would have missed them. Re-measured on 204 Telugu replies against the same contexts: **truncated 3 → 0, median 447 → 449 chars, p90 654 → 626.** The median not moving is the point — the higher cap is not inflating replies, only letting the few that needed room finish. Walkthroughs keep 500 and ordinary asks 300: zero truncation across 1,836 non-Telugu replies.
 
+### THE THIRD MEASUREMENT — 9.73 → 9.78 → **9.64**, and why the drop is the fix working
+
+Same 204 contexts, same 10-ask battery, same 10 slices, same frozen rubric, third
+run. The headline went **down**. It is not a regression, and the evidence is
+mechanical rather than editorial.
+
+Round 3's dominant grade-1 class, named independently by all ten graders, is a
+reply saying *"the book gives 1 mark for ..."* on a **predicted** card — a card the
+source book does not contain. That became a violation only in round 3, because
+round 3 is when the grounding stopped asserting the same falsehood: until then the
+VERIFICATION line told the model, of every card, *"this mark split is the source
+book's"*. The identical reply was FAITHFUL in rounds 1–2 and graders scored it 3.
+
+Measured as behaviour rather than as score (Trap 5), with identical code over all
+three corpora: false book-attribution on **predicted** cards **20.9% → 23.1% →
+15.2%**, against a flat **~20%** negative control on sourced cards where the claim
+is TRUE. Harmful (grade-0) replies **4 → 1**. Grade 1 tripled because a class of
+reply that was previously ungradeable became gradeable. The bank got more honest
+and the number got worse; both are true at once, and only one of them matters.
+
+**The residual 15% was mine, and the graders diagnosed it unanimously:** the
+predicted-card lines were AGENTLESS. *"Never call it the book's split"* states the
+prohibition and never supplies the permitted alternative, so a model that must
+attribute the split to someone had exactly one noun available on the card.
+Predicted-card grade-1 ran **8.6%** against **1.4%** elsewhere. Both lines now name
+**this answer book** as the owner. Verified before writing: all 140 enumerated
+entries carry `stars: 0`, so *"STARS: none"* is a fact and not a fresh claim.
+
+**The second defect was also mine.** Five round-3 fix agents wrote WHAT THEY
+CHANGED AND WHEN into `why` — student-facing teaching text. Three graders flagged
+it; nothing stopped a reply telling a student what an earlier version of the card
+used to say. The chemistry in each note is kept; the revision history moved to
+`verification.note`, where every other pass put it. 5 of 5 stripped, 0 remaining.
+
+`notebook.js` is shared by all four subjects, so the predicted-card wording changes
+physics/maths/botany grounding too. It only makes a false attribution harder, so no
+re-measure is owed — but their baselines were taken on the old string, and that is
+the honest caveat.
+
 ### NEXT
-1. **The four remaining harmful replies are now blocked at the card, but not re-measured.** A third audit round would tell you whether the mark-label fixes actually moved `marks`/`skiplast`/`explain`. ≈₹40 and one grading pass.
+1. **The two round-3 grounding fixes are committed but NOT re-measured.** Whether
+   naming the owner actually moves the 15.2% is unproven — the prediction is
+   testable and unverified. ≈₹30 and one grading pass.
 2. **`ts_ipe_c1_cp_periodic_properties_trends` is at 9,616 chars** of the server's 10,000-char slice and grew again this round. One authoring pass from silently dropping its tail steps.
 3. **Several mark splits are resolved TO rather than answered.** `td_spontaneous_process`, `td_state_function`, `td_reaction_enthalpies`, `cp_diagonal_relationship` and the three `st_law_*` cards now have prose consistent with their split — but the splits themselves are unconfirmed claims. Each is recorded for the teacher gate.
 4. **Maths (358 cards) has still never been truth-checked.** Physics found 15 errors, chemistry 11 + 38. Maths is the largest unread bank in the book.
