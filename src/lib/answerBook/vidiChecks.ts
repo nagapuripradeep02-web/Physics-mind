@@ -275,3 +275,28 @@ export function overWordBudget(template: string, reply: string): number {
     const n = wordCount(reply);
     return n > budget ? n : 0;
 }
+
+/** Endings a complete reply may legitimately have. Latin stops, the Telugu/
+ *  Devanagari danda, an ellipsis, and the closing bracket or quote a sentence
+ *  can finish on. */
+const TERMINAL_END = /[.!?:)।॥”’"']$|…$/;
+
+/** A reply that stops mid-sentence because max_tokens ran out.
+ *
+ *  THE CHECK NOBODY HAD WRITTEN. Three independent graders in the 2026-08-25
+ *  chemistry round reported replies cut off mid-word — each losing whole
+ *  mark-carrying properties on an answer the student was revising from — and all
+ *  three noted that no mechanical check existed and that a regex over CONTENT
+ *  could never find it: the reply is correct right up to the point it stops.
+ *
+ *  Measured over the full 2,040-reply corpus before shipping: 3 fires, all 3
+ *  genuinely truncated, 0 false positives. Every one was `telugu`, which costs
+ *  roughly 3x the tokens per sentence, so it hits the cap first.
+ *
+ *  An EMPTY reply is deliberately not truncation — that is the guard-reply or a
+ *  dead upstream, and it has its own flag. Conflating them would hide both. */
+export function looksTruncated(reply: string): boolean {
+    const t = (reply ?? '').trim();
+    if (!t) return false;
+    return !TERMINAL_END.test(t);
+}

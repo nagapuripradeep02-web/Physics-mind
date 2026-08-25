@@ -26,7 +26,7 @@ import { dirname } from 'path';
 import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
-    leakedInternalVocabulary, overWordBudget, WORD_BUDGET,
+    leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
     IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
@@ -207,6 +207,11 @@ function flagsFor(t: T, ctx: Ctx, reply: string, stepId: string | null): { text:
     } else if (!TE.test(reply)) add('NO_TELUGU_SCRIPT');
 
     if (answeredOutOfBank(t.ask, reply, cfg.probe)) add('ANSWERED_OUT_OF_BANK', true);
+    // A reply that stops mid-sentence loses whatever came after it, and the
+    // student has no way to know. Measured 3/2040 before shipping, all three
+    // genuinely truncated, zero false positives. Critical: unlike padding, the
+    // damage is silent and the reply reads correct up to the cut.
+    if (!GUARD_REPLY.test(reply) && looksTruncated(reply)) add('TRUNCATED', true);
     if (GUARD_REPLY.test(reply)) add('GUARD_REPLY');
     if (/REQUEST FAILED|no reply/.test(reply)) add('REQUEST_FAILED');
     return f;

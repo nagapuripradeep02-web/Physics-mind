@@ -358,7 +358,16 @@ Deno.serve(async (req: Request) => {
     // Telugu spends roughly 3x the tokens per sentence, and 300 truncated 34% of
     // Telugu replies mid-sentence (measured audit, 2026-08-24). A walkthrough is
     // allowed three paragraphs, which 300 also cut off. Ordinary asks stay at 300.
-    const maxTokens = (teluguAsk || walkthroughAsk) ? 500 : 300;
+    //
+    // 500 -> 800 for Telugu (2026-08-25). At 500 the chemistry corpus still lost 3
+    // of 204 Telugu replies mid-word, each dropping whole mark-carrying properties
+    // from an answer a student was revising from. The dead replies stopped at
+    // 720-782 chars while survivors reach 905, so the cap binds on token density,
+    // not on answer length -- two of the three were 4-mark questions, so scaling by
+    // marks would have missed them. 800 leaves ~60% headroom over the longest
+    // surviving reply. Walkthroughs keep 500: zero truncation in 1,836 non-Telugu
+    // replies, so raising them would cost tokens on every call and buy nothing.
+    const maxTokens = teluguAsk ? 800 : (walkthroughAsk ? 500 : 300);
     const t0 = Date.now();
     let text = '';
     let usage: Usage = {};

@@ -17,7 +17,7 @@ import { describe, it, expect } from 'vitest';
 // rots, which is how the mark checker stayed broken in both directions at once.
 import {
     inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
-    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE, NERNST_PROBE,
+    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE, NERNST_PROBE, looksTruncated,
 } from '../vidiChecks';
 
 /** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
@@ -212,6 +212,41 @@ describe('the maths out-of-bank probe', () => {
 
     it('stays silent on an ask it does not own', () => {
         expect(answeredOutOfBank('ideal gas equation?', leak, DE_MOIVRE_PROBE)).toBe(false);
+    });
+});
+
+describe('the truncation detector', () => {
+    // Three graders in the 2026-08-25 chemistry round reported replies cut off
+    // mid-word, each losing whole mark-carrying properties, and all three noted
+    // that nothing catches it. Measured over the 2,040-reply corpus: it fires 3
+    // times, all 3 genuinely truncated, 0 false positives. It is the cheapest
+    // check in the set and the only one that catches a defect no regex over
+    // CONTENT could -- the reply is correct right up to where it stops.
+    it('catches a reply cut off mid-word', () => {
+        expect(looksTruncated('ఆ చివరి ratio నే subscripts గా రాస్తే ఇది చాలా ముఖ్యమైన')).toBe(true);
+        expect(looksTruncated('Atomic radius: the distance from the nucleus to the outer')).toBe(true);
+    });
+
+    it('passes a reply that ends on a full stop, a Telugu danda, or an ellipsis', () => {
+        expect(looksTruncated('Write PV = nRT and name every symbol.')).toBe(false);
+        expect(looksTruncated('ఇది చాలా సింపుల్ గా చెప్తాను।')).toBe(false);
+        expect(looksTruncated('The book lists three more …')).toBe(false);
+    });
+
+    it('passes a reply ending on a question mark, a bracket or a quote', () => {
+        expect(looksTruncated('Shall I walk you through it?')).toBe(false);
+        expect(looksTruncated('the answer is 22 g (using the 1:1 ratio)')).toBe(false);
+        expect(looksTruncated('write exactly "PV = nRT"')).toBe(false);
+    });
+
+    it('ignores trailing whitespace and newlines rather than reading them as an ending', () => {
+        expect(looksTruncated('A complete sentence.\n\n  ')).toBe(false);
+        expect(looksTruncated('An incomplete one\n\n  ')).toBe(true);
+    });
+
+    it('does not fire on an empty reply — that is a different failure', () => {
+        expect(looksTruncated('')).toBe(false);
+        expect(looksTruncated('   ')).toBe(false);
     });
 });
 
