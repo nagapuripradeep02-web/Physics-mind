@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_lotic_vs_lentic_habitats",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between lotic and lentic habitats.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Lentic",
+      "marks": 1
+    },
+    {
+      "label": "Lotic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 158). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lentic",
+        "kind": "text",
+        "label": "Lentic habitats",
+        "marks": 1,
+        "mark_note": "Lentic",
+        "lines": [
+          "Lentic habitats are the STILL water bodies.",
+          "The water in them does not flow from place",
+          "to place.",
+          "Ex: ponds, lakes and reservoirs."
+        ],
+        "why": "The pair is marked as a contrast, so each side needs the same two things — whether the water moves, and a named example — and writing them in the same order makes the contrast visible to the examiner.",
+        "common_mistakes": [
+          "Giving a river as a lentic habitat. A river flows, so it is lotic.",
+          "Writing only the examples with no statement about the water."
+        ],
+        "memory_tip": "Lentic and level both start the same way: level water is still water.",
+        "margin_note": "One line on the water, one line of examples. Keep both sides in the same order."
+      },
+      {
+        "id": "s2_lotic",
+        "kind": "boxed_final",
+        "label": "Lotic habitats",
+        "marks": 1,
+        "mark_note": "Lotic",
+        "lines": [
+          {
+            "text": "Lentic = still water, Lotic = flowing water",
+            "style": "boxed"
+          },
+          "Lotic habitats are the FLOWING water bodies.",
+          "The water in them moves in one direction.",
+          "Ex: streams and rivers."
+        ],
+        "why": "Naming the direction of the water is the whole distinction, so the second half repeats the first half's shape with the one word changed from still to flowing.",
+        "common_mistakes": [
+          "Swapping the two terms. Lotic is the flowing one.",
+          "Giving a reservoir as lotic. A reservoir holds still water, so it is lentic."
+        ],
+        "memory_tip": "LOtic = flOwing. The other one, lentic, is the still one.",
+        "margin_note": "Answer as a two-line contrast. The box gives the examiner the difference at a glance."
+      }
+    ]
+  },
+  "insider_note": "A one-word slip loses both marks here, so fix the flowing one first: lotic is the moving water."
+}

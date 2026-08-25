@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_biological_rhythms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are biological rhythms?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 149). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Biological rhythms are the behavioural",
+          "activities of organisms that repeat at",
+          "regular intervals of time."
+        ],
+        "why": "The two words that carry the mark are repeat and regular: an activity that happens once, or at random, is not a rhythm.",
+        "common_mistakes": [
+          "Writing only that the activity repeats. It must repeat at REGULAR intervals.",
+          "Naming a single event such as birth. A rhythm is a repeating activity."
+        ],
+        "memory_tip": "Rhythm means the same beat again and again — regular, not random.",
+        "margin_note": "One sentence. The words repeat and regular intervals must both appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "A biological rhythm repeats at fixed times",
+            "style": "boxed"
+          },
+          "Ex: the circadian rhythm — the sleep and",
+          "wake cycle, which repeats every 24 hours.",
+          "Other rhythms follow the tides, the month",
+          "or the year."
+        ],
+        "why": "A named example proves the definition, and the circadian rhythm is the one the syllabus asks about separately, so it is the safest example to give.",
+        "common_mistakes": [
+          "Giving no example. One mark of the two is for the example.",
+          "Calling the sleep and wake cycle a circadian rhythm without saying it takes 24 hours."
+        ],
+        "memory_tip": "Circadian is the 24-hour one; tidal, monthly and yearly rhythms are the longer ones.",
+        "margin_note": "One named example with its time period. Two or three lines are enough."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for the words regular intervals in the definition and for one named example with its period beside it."
+}

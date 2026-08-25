@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_camouflage_significance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is camouflage? Give its significance.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 160). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Camouflage is the phenomenon in which the",
+          "colour of an animal matches the colour of",
+          "its surroundings.",
+          "Some animals change colour to match the",
+          "surrounding; others are naturally coloured",
+          "to suit it.",
+          "Ex: chameleon, leaf insect, stick insect."
+        ],
+        "why": "Camouflage covers two different cases — a colour that changes and a colour that is fixed from birth — and naming both stops the answer from being read as being only about the chameleon.",
+        "common_mistakes": [
+          "Writing that every camouflaged animal changes colour. The leaf insect is coloured that way from birth.",
+          "Giving no example. The named animals are part of the definition mark."
+        ],
+        "memory_tip": "Two kinds: the chameleon changes its colour, the leaf insect was born with it.",
+        "margin_note": "One sentence, one line for the two kinds, then the examples."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "The animal matches its background",
+            "style": "boxed"
+          },
+          "An animal whose colour matches its",
+          "background is hard for a predator to see.",
+          "This lowers its chance of being eaten.",
+          "A predator may also use camouflage to come",
+          "close to its prey."
+        ],
+        "why": "The significance is a survival value and must be stated in terms of being seen, because that is the physical fact the colour changes — not the animal's behaviour.",
+        "common_mistakes": [
+          "Writing that the animal becomes invisible. It becomes HARD TO SEE, not invisible.",
+          "Giving only the prey side. A predator may use camouflage too."
+        ],
+        "memory_tip": "Matching the background works both ways: prey are not seen, and predators are not seen either.",
+        "margin_note": "Two short lines on the prey, one on the predator. Do not repeat the examples here."
+      }
+    ]
+  },
+  "insider_note": "The significance is the second mark and needs the words predator or prey in it — a student who only repeats the definition scores one."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_detritus_food_chain_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on DFC. Give the significance in a terrestrial ecosystem.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What DFC is",
+      "marks": 1
+    },
+    {
+      "label": "Detritus",
+      "marks": 1
+    },
+    {
+      "label": "Decomposers",
+      "marks": 1
+    },
+    {
+      "label": "Significance and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.47, SAQ 58). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. SAME-UNIT OVERLAP: the detritus food chain is also one third of LAQ 10 (types of food chains, book p.26). This card is not a cut of that answer — it adds the significance in a terrestrial ecosystem, which the long answer does not ask for."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dfc",
+        "kind": "text",
+        "label": "What DFC is",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "DFC stands for Detritus Food Chain.",
+          "It is a food chain that begins with dead",
+          "organic matter instead of with a living",
+          "green plant.",
+          "It is the important food chain of a",
+          "terrestrial ecosystem."
+        ],
+        "why": "The letters must be expanded first, and the one line that matters is where the chain STARTS — that starting point is the whole difference between a detritus chain and a grazing chain.",
+        "common_mistakes": [
+          "Writing that a DFC starts with green plants. That is the GRAZING food chain.",
+          "Giving only the letters. The expansion carries the mark."
+        ],
+        "memory_tip": "Grazing chains start with something alive; detritus chains start with something dead.",
+        "margin_note": "Expand the letters, then say where the chain starts. Three lines."
+      },
+      {
+        "id": "s2_detritus",
+        "kind": "text",
+        "label": "Detritus",
+        "marks": 1,
+        "mark_note": "Detritus",
+        "lines": [
+          "Detritus is the dead organic matter of an",
+          "ecosystem.",
+          "It is formed from leaf litter, dead bodies",
+          "and the faeces of animals."
+        ],
+        "why": "Detritus is a named material, so the answer lists what it is made of; a student who writes only dead matter has not shown what falls to the forest floor.",
+        "common_mistakes": [
+          "Writing that detritus is soil. It is the dead ORGANIC matter lying on and in the soil.",
+          "Leaving out the faeces, which are one of the three named sources."
+        ],
+        "memory_tip": "Three sources of detritus: fallen leaves, dead bodies and droppings.",
+        "margin_note": "One definition line and one list line. Keep it to two lines."
+      },
+      {
+        "id": "s3_decomposers",
+        "kind": "text",
+        "label": "Decomposers",
+        "marks": 1,
+        "mark_note": "Decomposers",
+        "lines": [
+          "Detritus carries decomposers, which are",
+          "heterotrophic organisms. Ex: fungi and",
+          "bacteria.",
+          "They meet their energy and nutrition needs",
+          "by degrading the detritus, so they are",
+          "called saprotrophs.",
+          "They secrete enzymes that break the detritus",
+          "down into simple absorbable substances."
+        ],
+        "why": "The decomposers are what turn detritus into a food chain, and the word saprotroph is the named term the answer must carry along with the two examples.",
+        "common_mistakes": [
+          "Calling the decomposers producers. They are heterotrophs and cannot make their own food.",
+          "Leaving out the word saprotroph, which is the named term for this feeding mode."
+        ],
+        "memory_tip": "Saprotroph: enzymes go out on to the dead matter, the digested food comes back in.",
+        "margin_note": "Name the decomposers, the examples and the word saprotroph. Three short statements."
+      },
+      {
+        "id": "s4_significance",
+        "kind": "boxed_final",
+        "label": "Significance and examples",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "The DFC returns the dead matter to the soil",
+            "style": "boxed"
+          },
+          "The DFC breaks down the dead matter of a",
+          "terrestrial ecosystem and returns its",
+          "nutrients to the soil for the plants.",
+          "Without it, dead leaves and bodies would",
+          "pile up and the nutrients would be locked",
+          "away.",
+          "Ex-1: Detritus → Earthworms → Frogs →",
+          "Snakes.",
+          "Ex-2: Dead animals → Flies and maggots →",
+          "Frogs → Snakes."
+        ],
+        "why": "The question asks for the significance separately, so the recycling of nutrients is stated in its own step; the two chains are written last because they are the proof that detritus really does feed a chain of animals.",
+        "common_mistakes": [
+          "Giving the chains and calling that the significance. The significance is the RETURN of nutrients to the soil.",
+          "Drawing the arrows backwards. An arrow points FROM the eaten TO the eater."
+        ],
+        "memory_tip": "Detritus feeders are the second trophic level: earthworms, flies and maggots come straight after the dead matter.",
+        "margin_note": "One statement of significance, then the two example chains with the arrows pointing forward."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves — the note and the significance — and the significance is the recycling of nutrients, not the example chains."
+}

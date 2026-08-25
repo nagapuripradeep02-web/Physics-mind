@@ -1,0 +1,334 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_summer_stratification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is summer stratification? Explain.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition and the three layers",
+      "marks": 1
+    },
+    {
+      "label": "Epilimnion",
+      "marks": 1
+    },
+    {
+      "label": "Thermocline and hypolimnion",
+      "marks": 1
+    },
+    {
+      "label": "Autumn overturn",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.47, SAQ 56). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Summer stratification is the formation of",
+          "three layers of water in a temperate lake",
+          "during summer.",
+          "In summer the temperature of the lake rises",
+          "up to about 25°C.",
+          "The periodic circulation of the water then",
+          "stops, and three layers are formed:",
+          "1) Epilimnion  2) Thermocline",
+          "3) Hypolimnion"
+        ],
+        "why": "The three names in order from the top down are the plan of the whole answer, so they are written before any of them is described, and the temperature is given because it is what stops the water mixing.",
+        "common_mistakes": [
+          "Writing the three layers in the wrong order. Epilimnion is at the top, hypolimnion at the bottom.",
+          "Leaving out the word temperate. The layering is described for temperate lakes."
+        ],
+        "memory_tip": "Epi is above, hypo is below, and the thermocline is the temperature step between them.",
+        "margin_note": "Definition, temperature, then the three names in order. Name them before describing them."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the three layers",
+        "marks": 0,
+        "figure": {
+          "id": "ee_summer_stratification",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the lake outline and the water surface"
+            },
+            {
+              "type": "stroke",
+              "id": "wall_l",
+              "d": "M 30 58 L 44 284",
+              "ms": 3230
+            },
+            {
+              "type": "stroke",
+              "id": "bed",
+              "d": "M 44 284 L 476 284",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "wall_r",
+              "d": "M 476 284 L 490 58",
+              "ms": 3230
+            },
+            {
+              "type": "stroke",
+              "id": "surface",
+              "d": "M 30 58 L 490 58",
+              "ms": 4500,
+              "w": 2
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the two lines dividing the three layers"
+            },
+            {
+              "type": "stroke",
+              "id": "div1",
+              "d": "M 40 140 L 480 140",
+              "ms": 4500,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "div2",
+              "d": "M 35 210 L 485 210",
+              "ms": 4500,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the sun and the oxygen in the top layer"
+            },
+            {
+              "type": "stroke",
+              "id": "sun",
+              "d": "M 47 26 A 13 13 0 1 0 73 26 A 13 13 0 1 0 47 26",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "sun_rays",
+              "d": "M 78 26 L 84 26 M 72.7 38.7 L 77 43 M 60 44 L 60 50 M 47.3 38.7 L 43 43 M 42 26 L 36 26 M 47.3 13.3 L 43 9 M 60 8 L 60 2 M 72.7 13.3 L 77 9",
+              "ms": 690,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "oxygen",
+              "d": "M 116.8 124 A 3.2 3.2 0 1 0 123.2 124 A 3.2 3.2 0 1 0 116.8 124 M 172.8 130 A 3.2 3.2 0 1 0 179.2 130 A 3.2 3.2 0 1 0 172.8 130 M 228.8 122 A 3.2 3.2 0 1 0 235.2 122 A 3.2 3.2 0 1 0 228.8 122 M 284.8 130 A 3.2 3.2 0 1 0 291.2 130 A 3.2 3.2 0 1 0 284.8 130 M 340.8 124 A 3.2 3.2 0 1 0 347.2 124 A 3.2 3.2 0 1 0 340.8 124 M 396.8 130 A 3.2 3.2 0 1 0 403.2 130 A 3.2 3.2 0 1 0 396.8 130",
+              "ms": 1720,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "nutrients",
+              "d": "M 137.4 270 A 2.6 2.6 0 1 0 142.6 270 A 2.6 2.6 0 1 0 137.4 270 M 197.4 276 A 2.6 2.6 0 1 0 202.6 276 A 2.6 2.6 0 1 0 197.4 276 M 257.4 270 A 2.6 2.6 0 1 0 262.6 270 A 2.6 2.6 0 1 0 257.4 270 M 317.4 276 A 2.6 2.6 0 1 0 322.6 276 A 2.6 2.6 0 1 0 317.4 276 M 377.4 270 A 2.6 2.6 0 1 0 382.6 270 A 2.6 2.6 0 1 0 377.4 270",
+              "ms": 1170,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — name the three layers"
+            },
+            {
+              "type": "label",
+              "id": "lbl_epi",
+              "x": 48,
+              "y": 92,
+              "text": "Epilimnion",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_thermo",
+              "x": 48,
+              "y": 176,
+              "text": "Thermocline",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_hypo",
+              "x": 48,
+              "y": 244,
+              "text": "Hypolimnion",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the temperature of each layer"
+            },
+            {
+              "type": "label",
+              "id": "tmp_epi",
+              "x": 300,
+              "y": 92,
+              "text": "21°C to 25°C",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tmp_thermo",
+              "x": 296,
+              "y": 176,
+              "text": "falls 1°C per metre",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "tmp_hypo",
+              "x": 300,
+              "y": 244,
+              "text": "about 7°C",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The three layers stack in a fixed order with the temperature falling downwards, and a drawing fixes that order in a way a list of names cannot; the layers must be seen as bands, not as separate boxes.",
+        "common_mistakes": [
+          "Drawing the layers side by side. They are stacked one above the other.",
+          "Putting the warm layer at the bottom. The warm epilimnion is the TOP layer."
+        ],
+        "memory_tip": "Warm on top, cold at the bottom — warm water floats, so the order can never be the other way round.",
+        "margin_note": "The question does not ask for a diagram, so this figure is not marked. Draw it to fix the order of the layers."
+      },
+      {
+        "id": "s3_epilimnion",
+        "kind": "text",
+        "label": "Epilimnion",
+        "marks": 1,
+        "mark_note": "Epilimnion",
+        "lines": [
+          "Epilimnion is the upper layer of water.",
+          "It is warm and rich in oxygen.",
+          "Its temperature ranges from 21°C to 25°C."
+        ],
+        "why": "Each layer is described by the same two properties — its temperature and its oxygen — so that the three descriptions can be compared, which is what makes the layering visible.",
+        "common_mistakes": [
+          "Writing that the top layer is poor in oxygen. It is in contact with the air, so it is RICH in oxygen.",
+          "Leaving out the temperature range. The numbers are what separate the layers."
+        ],
+        "memory_tip": "Top layer: warm, bright and full of oxygen, because it touches the air and the sun.",
+        "margin_note": "Three short lines: name, properties, temperature range."
+      },
+      {
+        "id": "s4_thermo_hypo",
+        "kind": "text",
+        "label": "Thermocline and hypolimnion",
+        "marks": 1,
+        "mark_note": "Middle and bottom",
+        "lines": [
+          "Thermocline is the layer below the",
+          "epilimnion. It is also called the",
+          "metalimnion.",
+          "In it the temperature falls at the rate of",
+          "1°C per metre of depth.",
+          "Hypolimnion is the bottom layer, where the",
+          "temperature is about 7°C.",
+          "Its water is stagnant, cool and rich in",
+          "nutrients, and it has a low oxygen content",
+          "because there is no photosynthesis there."
+        ],
+        "why": "The thermocline is defined by a RATE, not by a temperature, and that rate is the one number in this answer a student is likely to leave out; the hypolimnion is then described with the same two properties as the top layer, in reverse.",
+        "common_mistakes": [
+          "Giving the thermocline a fixed temperature. It is defined by the fall of 1°C per metre.",
+          "Writing that the bottom layer is rich in oxygen. It is LOW in oxygen and rich in nutrients."
+        ],
+        "memory_tip": "Down the lake: 25°C at the top, 1°C lost per metre through the middle, about 7°C at the bottom.",
+        "margin_note": "The rate for the thermocline and the temperature for the hypolimnion. Both numbers are needed."
+      },
+      {
+        "id": "s5_overturn",
+        "kind": "boxed_final",
+        "label": "Autumn overturn",
+        "marks": 1,
+        "mark_note": "Overturn",
+        "lines": [
+          {
+            "text": "Autumn overturn mixes the lake again",
+            "style": "boxed"
+          },
+          "In autumn the temperature of the surface",
+          "water falls to 4°C.",
+          "Water is heaviest at 4°C, so this surface",
+          "water sinks to the bottom.",
+          "The bottom water, carrying its nutrients,",
+          "rises to the surface.",
+          "This circulation is called the autumn",
+          "overturn, and it makes the temperature,",
+          "the nutrients and the oxygen uniform",
+          "through the lake again."
+        ],
+        "why": "Summer stratification is one half of a yearly cycle, and the overturn is the half that undoes it; the answer needs the 4°C fact because that is the physical reason the surface water sinks.",
+        "common_mistakes": [
+          "Writing that the overturn happens in summer. It follows the summer, in AUTUMN.",
+          "Leaving out 4°C. Water is heaviest at that temperature, which is why the surface water sinks."
+        ],
+        "memory_tip": "At 4°C water is at its heaviest, so the cooled top layer sinks and turns the lake over.",
+        "margin_note": "The 4°C fact first, then the sinking, then the result. Close with the word uniform."
+      }
+    ]
+  },
+  "insider_note": "The three layer names in top-to-bottom order and the 1°C per metre rate are the two things checked first; the autumn overturn is a full mark on its own and is the part most often left out."
+}

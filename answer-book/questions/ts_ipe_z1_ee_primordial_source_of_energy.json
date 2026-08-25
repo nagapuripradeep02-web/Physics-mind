@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_primordial_source_of_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the primordial source of energy for all organisms?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Source",
+      "marks": 1
+    },
+    {
+      "label": "Transfer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 148). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sunlight",
+        "kind": "text",
+        "label": "The source",
+        "marks": 1,
+        "mark_note": "Source",
+        "lines": [
+          "Sunlight is the primordial source of energy",
+          "for all organisms on the earth.",
+          "Green plants trap this light energy and",
+          "store it as chemical energy in food."
+        ],
+        "why": "Every food chain begins with light, so naming the sun first fixes the direction of the whole answer: energy enters an ecosystem only through the producers.",
+        "common_mistakes": [
+          "Writing that plants are the source of energy. Plants are the producers; the sun is the source.",
+          "Answering with the word food. The question asks for a source of ENERGY."
+        ],
+        "memory_tip": "One sun, one entry point: the light goes into the green plants first.",
+        "margin_note": "One sentence naming the sun, then one line on how plants take it in."
+      },
+      {
+        "id": "s2_transfer",
+        "kind": "boxed_final",
+        "label": "Passing on",
+        "marks": 1,
+        "mark_note": "Transfer",
+        "lines": [
+          {
+            "text": "Sunlight — the primordial source of energy",
+            "style": "boxed"
+          },
+          "This energy is passed on from the producers",
+          "to each higher trophic level in turn.",
+          "About 10% of it moves up at each step."
+        ],
+        "why": "The second mark is for what happens to the energy after it enters, so the answer must say that it moves up the trophic levels and does not stay in the plants.",
+        "common_mistakes": [
+          "Stopping at the sun. The second mark is for the transfer between trophic levels."
+        ],
+        "memory_tip": "Sun in, then up the levels one step at a time.",
+        "margin_note": "Name the sun in the box, then one line on the transfer between trophic levels."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two ideas — the sun as the source and the transfer up the trophic levels. A student who writes only the word sunlight scores one."
+}

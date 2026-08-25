@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_photoperiodism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Photoperiodism?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 151). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Photoperiod is the number of light hours",
+          "in a day.",
+          "Photoperiodism is the response shown by an",
+          "organism to the photoperiod."
+        ],
+        "why": "Photoperiodism is named after the photoperiod, so defining the photoperiod first makes the second sentence a single short line instead of a long one.",
+        "common_mistakes": [
+          "Defining photoperiodism as the length of the day. That is the photoperiod; photoperiodism is the RESPONSE to it.",
+          "Writing about light intensity. The photoperiod is about the DURATION of light."
+        ],
+        "memory_tip": "Photoperiod is the day length; photoperiodism is what the animal does about it.",
+        "margin_note": "Two short sentences: the photoperiod first, then the response to it."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Photoperiodism: the response to day length",
+            "style": "boxed"
+          },
+          "Ex: the migration of birds.",
+          "In winter the days are short in Siberia, so",
+          "the birds move southward to a place with a",
+          "longer day for feeding and breeding."
+        ],
+        "why": "The example has to show a response that follows the day length and not the temperature, so the sentence must say why the birds move — the short day, not the cold.",
+        "common_mistakes": [
+          "Saying the birds migrate because of the cold. In this answer the trigger is the SHORT DAY.",
+          "Giving no example at all. One of the two marks is the example."
+        ],
+        "memory_tip": "Short days push the birds towards the longer day: photoperiodism moves them, not the cold.",
+        "margin_note": "Name the example and give the reason in one line. Three lines are enough."
+      }
+    ]
+  },
+  "insider_note": "The mark for the example is lost when a student writes that the birds migrate because of the cold — the answer must tie the migration to the day length."
+}

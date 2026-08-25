@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_mutualism_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define mutualism. Give one example.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 155). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Mutualism is an interaction between two",
+          "different species in which BOTH species are",
+          "benefited."
+        ],
+        "why": "One word does all the work here — both — so the definition is short, and the space saved goes into the example where the second mark sits.",
+        "common_mistakes": [
+          "Writing that one is benefited and the other is unaffected. That is commensalism.",
+          "Writing about two members of the SAME species. The interaction is between DIFFERENT species."
+        ],
+        "memory_tip": "Mutual means on both sides: in mutualism both partners gain.",
+        "margin_note": "One sentence only. The word both is the mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Both species gain",
+            "style": "boxed"
+          },
+          "Ex: bees and flowering plants.",
+          "The bee gets nectar and pollen from the",
+          "flower.",
+          "The plant gets pollinated by the bee."
+        ],
+        "why": "Because both partners gain, the example needs two statements of gain — one for each partner — and a student who writes only the bee's gain has shown commensalism, not mutualism.",
+        "common_mistakes": [
+          "Writing only that the bee gets nectar. The plant's gain must be written too.",
+          "Giving barnacles and a whale. The whale gains nothing, so that is commensalism."
+        ],
+        "memory_tip": "Bee and flower: nectar goes one way, pollen goes the other. Two gains, two lines.",
+        "margin_note": "Name the example, then one line of gain for each partner."
+      }
+    ]
+  },
+  "insider_note": "The mark for the example needs BOTH gains written out — one line for the bee and one for the plant."
+}

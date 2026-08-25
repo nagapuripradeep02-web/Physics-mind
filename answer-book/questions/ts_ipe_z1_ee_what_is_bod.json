@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_what_is_bod",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is BOD?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expansion and use",
+      "marks": 1
+    },
+    {
+      "label": "What it measures",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 162). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expansion",
+        "kind": "text",
+        "label": "What BOD stands for",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "lines": [
+          "BOD stands for Biochemical Oxygen Demand.",
+          "It is an index used to measure the pollution",
+          "load of sewage and of a water body."
+        ],
+        "why": "The expansion of the letters is a mark on its own, so it is written first and in full. The book expands BOD as 'Biological Oxygen Demand'; NCERT and standard usage write 'Biochemical Oxygen Demand', and both forms are seen in papers, so the biochemical form is the safer one to write.",
+        "common_mistakes": [
+          "Writing Biological Oxygen Deficiency. The last word is Demand.",
+          "Giving only the letters. The expansion carries the mark."
+        ],
+        "memory_tip": "Three words for three letters: Biochemical, Oxygen, Demand.",
+        "margin_note": "One line for the expansion, one for what it is used for."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it measures",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          {
+            "text": "BOD = oxygen needed to break down the waste",
+            "style": "boxed"
+          },
+          "BOD is the amount of dissolved oxygen needed",
+          "by aerobic organisms to break down the",
+          "organic matter in a given water sample, at a",
+          "stated temperature and over a stated time.",
+          "A high BOD means heavy organic pollution."
+        ],
+        "why": "BOD is an indirect measure — it counts the oxygen the microbes will USE, not the pollution itself — so the sentence must say oxygen needed and must name the organic matter being broken down.",
+        "common_mistakes": [
+          "Writing that BOD is the oxygen present in the water. It is the oxygen NEEDED.",
+          "Leaving out the last line. The link between high BOD and heavy pollution is the useful part."
+        ],
+        "memory_tip": "More waste means more microbes, more microbes means more oxygen demanded. High BOD, dirty water.",
+        "margin_note": "The definition in one long sentence, then the one line that reads the number."
+      }
+    ]
+  },
+  "insider_note": "The last line is the one an examiner looks for: a high BOD means the water is heavily polluted."
+}

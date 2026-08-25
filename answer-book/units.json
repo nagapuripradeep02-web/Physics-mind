@@ -8167,6 +8167,619 @@
       ]
     },
     {
+      "number": 2,
+      "name": "Structural Organisation in Animals (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq73",
+          "section": "VSAQ",
+          "number": 73,
+          "stars": 0,
+          "text": "What is cephalization? How is it useful to its possessors?",
+          "question_id": "ts_ipe_z1_so_cephalization"
+        },
+        {
+          "ref": "vsaq74",
+          "section": "VSAQ",
+          "number": 74,
+          "stars": 0,
+          "text": "Mention the animals that exhibited a 'tube-within-a-tube' organisation for the first time. Name their body cavity.",
+          "question_id": "ts_ipe_z1_so_tube_within_a_tube"
+        },
+        {
+          "ref": "vsaq75",
+          "section": "VSAQ",
+          "number": 75,
+          "stars": 0,
+          "text": "Why is the true coelom considered a secondary body cavity?",
+          "question_id": "ts_ipe_z1_so_true_coelom_secondary_cavity"
+        },
+        {
+          "ref": "vsaq76",
+          "section": "VSAQ",
+          "number": 76,
+          "stars": 0,
+          "text": "What are retroperitoneal organs?",
+          "question_id": "ts_ipe_z1_so_retroperitoneal_organs"
+        },
+        {
+          "ref": "vsaq77",
+          "section": "VSAQ",
+          "number": 77,
+          "stars": 0,
+          "text": "What is Enterocoelom? Name the enterocoelomate phyla in the animal kingdom.",
+          "question_id": "ts_ipe_z1_so_enterocoelom"
+        },
+        {
+          "ref": "vsaq78",
+          "section": "VSAQ",
+          "number": 78,
+          "stars": 0,
+          "text": "Distinguish between endocrine and exocrine glands with examples.",
+          "question_id": "ts_ipe_z1_so_endocrine_vs_exocrine_glands"
+        },
+        {
+          "ref": "vsaq79",
+          "section": "VSAQ",
+          "number": 79,
+          "stars": 0,
+          "text": "Mention any two substances secreted by mast cells and their functions.",
+          "question_id": "ts_ipe_z1_so_mast_cell_secretions"
+        },
+        {
+          "ref": "vsaq80",
+          "section": "VSAQ",
+          "number": 80,
+          "stars": 0,
+          "text": "Distinguish between a ligament and a tendon.",
+          "question_id": "ts_ipe_z1_so_ligament_vs_tendon"
+        },
+        {
+          "ref": "vsaq81",
+          "section": "VSAQ",
+          "number": 81,
+          "stars": 0,
+          "text": "What is the strongest cartilage? In which regions of the human body do you find it?",
+          "question_id": "ts_ipe_z1_so_strongest_cartilage"
+        },
+        {
+          "ref": "vsaq82",
+          "section": "VSAQ",
+          "number": 82,
+          "stars": 0,
+          "text": "Define osteon.",
+          "question_id": "ts_ipe_z1_so_define_osteon"
+        },
+        {
+          "ref": "vsaq83",
+          "section": "VSAQ",
+          "number": 83,
+          "stars": 0,
+          "text": "What is a Sesamoid bone? Give an example.",
+          "question_id": "ts_ipe_z1_so_sesamoid_bone"
+        },
+        {
+          "ref": "vsaq84",
+          "section": "VSAQ",
+          "number": 84,
+          "stars": 0,
+          "text": "What are microglia and what is their origin? Add a note on their function.",
+          "question_id": "ts_ipe_z1_so_microglia"
+        },
+        {
+          "ref": "vsaq85",
+          "section": "VSAQ",
+          "number": 85,
+          "stars": 0,
+          "text": "What is the haematocrit value?",
+          "question_id": "ts_ipe_z1_so_haematocrit_value"
+        },
+        {
+          "ref": "vsaq86",
+          "section": "VSAQ",
+          "number": 86,
+          "stars": 0,
+          "text": "What are intercalated discs? What is their significance?",
+          "question_id": "ts_ipe_z1_so_intercalated_discs"
+        },
+        {
+          "ref": "vsaq87",
+          "section": "VSAQ",
+          "number": 87,
+          "stars": 0,
+          "text": "\"Cardiac muscle is highly resistant to fatigue\". Justify.",
+          "question_id": "ts_ipe_z1_so_cardiac_muscle_fatigue_resistance"
+        },
+        {
+          "ref": "vsaq88",
+          "section": "VSAQ",
+          "number": 88,
+          "stars": 0,
+          "text": "Distinguish between white matter and grey matter of the central nervous system.",
+          "question_id": "ts_ipe_z1_so_white_vs_grey_matter"
+        },
+        {
+          "ref": "vsaq173",
+          "section": "VSAQ",
+          "number": 173,
+          "stars": 0,
+          "text": "What is lymph? How does it differ from plasma?",
+          "question_id": "ts_ipe_z1_so_lymph_vs_plasma"
+        },
+        {
+          "ref": "saq18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain Haversian system.",
+          "question_id": "ts_ipe_z1_so_haversian_system"
+        },
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Describe the structure of a skeletal muscle.",
+          "question_id": "ts_ipe_z1_so_skeletal_muscle_structure"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Describe the three types of cartilage.",
+          "question_id": "ts_ipe_z1_so_three_types_of_cartilage"
+        },
+        {
+          "ref": "saq21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Describe the structure of a cardiac muscle.",
+          "question_id": "ts_ipe_z1_so_cardiac_muscle_structure"
+        },
+        {
+          "ref": "saq22",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Describe the structure of a multipolar neuron.",
+          "question_id": "ts_ipe_z1_so_multipolar_neuron_structure"
+        },
+        {
+          "ref": "saq23",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Give an account of glandular epithelium.",
+          "question_id": "ts_ipe_z1_so_glandular_epithelium"
+        },
+        {
+          "ref": "saq179",
+          "section": "SAQ",
+          "number": 179,
+          "stars": 0,
+          "text": "Write short notes on lymph.",
+          "question_id": "ts_ipe_z1_so_lymph_short_notes"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Locomotion and Reproduction (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq124",
+          "section": "VSAQ",
+          "number": 124,
+          "stars": 0,
+          "text": "Draw a labelled diagram of T.S. of flagellum.",
+          "question_id": "ts_ipe_z1_lr_ts_flagellum_diagram"
+        },
+        {
+          "ref": "vsaq125",
+          "section": "VSAQ",
+          "number": 125,
+          "stars": 0,
+          "text": "List any two differences between a flagellum and a cilium.",
+          "question_id": "ts_ipe_z1_lr_flagellum_vs_cilium"
+        },
+        {
+          "ref": "vsaq126",
+          "section": "VSAQ",
+          "number": 126,
+          "stars": 0,
+          "text": "What is a kinety?",
+          "question_id": "ts_ipe_z1_lr_kinety"
+        },
+        {
+          "ref": "vsaq127",
+          "section": "VSAQ",
+          "number": 127,
+          "stars": 0,
+          "text": "Distinguish between synchronous and metachronous movements.",
+          "question_id": "ts_ipe_z1_lr_synchronous_vs_metachronous"
+        },
+        {
+          "ref": "vsaq128",
+          "section": "VSAQ",
+          "number": 128,
+          "stars": 0,
+          "text": "Distinguish between proter and opisthe.",
+          "question_id": "ts_ipe_z1_lr_proter_vs_opisthe"
+        },
+        {
+          "ref": "vsaq129",
+          "section": "VSAQ",
+          "number": 129,
+          "stars": 0,
+          "text": "Distinguish between lobopodium and filopodium. Give an example to each of them.",
+          "question_id": "ts_ipe_z1_lr_lobopodium_vs_filopodium"
+        },
+        {
+          "ref": "vsaq130",
+          "section": "VSAQ",
+          "number": 130,
+          "stars": 0,
+          "text": "Define conjugation with reference to ciliates. Give two examples.",
+          "question_id": "ts_ipe_z1_lr_conjugation_in_ciliates"
+        },
+        {
+          "ref": "vsaq174",
+          "section": "VSAQ",
+          "number": 174,
+          "stars": 0,
+          "text": "What are dynein arms? What is their significance?",
+          "question_id": "ts_ipe_z1_lr_dynein_arms"
+        },
+        {
+          "ref": "vsaq175",
+          "section": "VSAQ",
+          "number": 175,
+          "stars": 0,
+          "text": "Why do we refer to the offspring, formed by asexual method of reproduction, a clone?",
+          "question_id": "ts_ipe_z1_lr_clone_asexual_offspring"
+        },
+        {
+          "ref": "saq37",
+          "section": "SAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "Describe the process of transverse binary fission in Paramecium.",
+          "question_id": "ts_ipe_z1_lr_transverse_fission_paramecium"
+        },
+        {
+          "ref": "saq38",
+          "section": "SAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Describe the process of longitudinal binary fission in Euglena.",
+          "question_id": "ts_ipe_z1_lr_longitudinal_fission_euglena"
+        },
+        {
+          "ref": "saq39",
+          "section": "SAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "What are lateral appendages? Based on their presence and absence, write the various types of flagella giving at least one example for each type.",
+          "question_id": "ts_ipe_z1_lr_types_of_flagella"
+        },
+        {
+          "ref": "saq40",
+          "section": "SAQ",
+          "number": 40,
+          "stars": 0,
+          "text": "Give an account of pseudopodia.",
+          "question_id": "ts_ipe_z1_lr_pseudopodia_account"
+        },
+        {
+          "ref": "saq41",
+          "section": "SAQ",
+          "number": 41,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of Euglena.",
+          "question_id": "ts_ipe_z1_lr_euglena_diagram"
+        },
+        {
+          "ref": "saq42",
+          "section": "SAQ",
+          "number": 42,
+          "stars": 0,
+          "text": "Draw a neat diagram of Paramecium.",
+          "question_id": "ts_ipe_z1_lr_paramecium_diagram"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Biology in Human Welfare (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq131",
+          "section": "VSAQ",
+          "number": 131,
+          "stars": 0,
+          "text": "Define parasitism and justify this term.",
+          "question_id": "ts_ipe_z1_bhw_parasitism_define"
+        },
+        {
+          "ref": "vsaq132",
+          "section": "VSAQ",
+          "number": 132,
+          "stars": 0,
+          "text": "What is a hyper-parasite? Mention the name of one hyper-parasite.",
+          "question_id": "ts_ipe_z1_bhw_hyper_parasite"
+        },
+        {
+          "ref": "vsaq133",
+          "section": "VSAQ",
+          "number": 133,
+          "stars": 0,
+          "text": "What do you mean by parasitic castration? Give one example.",
+          "question_id": "ts_ipe_z1_bhw_parasitic_castration"
+        },
+        {
+          "ref": "vsaq134",
+          "section": "VSAQ",
+          "number": 134,
+          "stars": 0,
+          "text": "Define neoplasia. Give one example.",
+          "question_id": "ts_ipe_z1_bhw_neoplasia"
+        },
+        {
+          "ref": "vsaq135",
+          "section": "VSAQ",
+          "number": 135,
+          "stars": 0,
+          "text": "A person is suffering from bowel irregularity, abdominal pain, blood and mucus in stool, etc. Based on these symptoms, name the disease and its causative organism.",
+          "question_id": "ts_ipe_z1_bhw_amoebic_dysentery_symptoms"
+        },
+        {
+          "ref": "vsaq136",
+          "section": "VSAQ",
+          "number": 136,
+          "stars": 0,
+          "text": "Define prepatent period. What is its duration in the life cycle of Plasmodium vivax?",
+          "question_id": "ts_ipe_z1_bhw_prepatent_period"
+        },
+        {
+          "ref": "vsaq137",
+          "section": "VSAQ",
+          "number": 137,
+          "stars": 0,
+          "text": "Define incubation period. What is its duration in the life cycle of Plasmodium vivax?",
+          "question_id": "ts_ipe_z1_bhw_incubation_period"
+        },
+        {
+          "ref": "vsaq138",
+          "section": "VSAQ",
+          "number": 138,
+          "stars": 0,
+          "text": "The eggs of Ascaris are called 'mammillated eggs'. Justify.",
+          "question_id": "ts_ipe_z1_bhw_mammillated_egg"
+        },
+        {
+          "ref": "vsaq139",
+          "section": "VSAQ",
+          "number": 139,
+          "stars": 0,
+          "text": "What is meant by nocturnal periodicity with reference to the life history of a nematode parasite you have studied?",
+          "question_id": "ts_ipe_z1_bhw_nocturnal_periodicity"
+        },
+        {
+          "ref": "vsaq140",
+          "section": "VSAQ",
+          "number": 140,
+          "stars": 0,
+          "text": "Distinguish between lymphadenitis and lymphangitis.",
+          "question_id": "ts_ipe_z1_bhw_lymphadenitis_lymphangitis"
+        },
+        {
+          "ref": "vsaq141",
+          "section": "VSAQ",
+          "number": 141,
+          "stars": 0,
+          "text": "In which way does tobacco affect the respiration? Name the alkaloid found in tobacco.",
+          "question_id": "ts_ipe_z1_bhw_tobacco_respiration"
+        },
+        {
+          "ref": "vsaq142",
+          "section": "VSAQ",
+          "number": 142,
+          "stars": 0,
+          "text": "Define drug abuse.",
+          "question_id": "ts_ipe_z1_bhw_drug_abuse_define"
+        },
+        {
+          "ref": "vsaq143",
+          "section": "VSAQ",
+          "number": 143,
+          "stars": 0,
+          "text": "From which substances 'Smack' and 'Coke' are obtained?",
+          "question_id": "ts_ipe_z1_bhw_smack_and_coke"
+        },
+        {
+          "ref": "vsaq144",
+          "section": "VSAQ",
+          "number": 144,
+          "stars": 0,
+          "text": "'Entamoeba histolytica is an obligatory anaerobe'. Justify.",
+          "question_id": "ts_ipe_z1_bhw_entamoeba_anaerobe"
+        },
+        {
+          "ref": "vsaq145",
+          "section": "VSAQ",
+          "number": 145,
+          "stars": 0,
+          "text": "What are haemozoin granules? What is their significance?",
+          "question_id": "ts_ipe_z1_bhw_haemozoin_granules"
+        },
+        {
+          "ref": "vsaq146",
+          "section": "VSAQ",
+          "number": 146,
+          "stars": 0,
+          "text": "What is exflagellation and what are the resultant products called?",
+          "question_id": "ts_ipe_z1_bhw_exflagellation"
+        },
+        {
+          "ref": "vsaq147",
+          "section": "VSAQ",
+          "number": 147,
+          "stars": 0,
+          "text": "Why is the syngamy found in Plasmodium called anisogamy?",
+          "question_id": "ts_ipe_z1_bhw_anisogamy_plasmodium"
+        },
+        {
+          "ref": "vsaq176",
+          "section": "VSAQ",
+          "number": 176,
+          "stars": 0,
+          "text": "Why are cannabinoids and anabolic steroids banned in sports and games?",
+          "question_id": "ts_ipe_z1_bhw_steroids_banned_sports"
+        },
+        {
+          "ref": "saq43",
+          "section": "SAQ",
+          "number": 43,
+          "stars": 0,
+          "text": "What are the adverse effects of tobacco?",
+          "question_id": "ts_ipe_z1_bhw_tobacco_adverse_effects"
+        },
+        {
+          "ref": "saq44",
+          "section": "SAQ",
+          "number": 44,
+          "stars": 0,
+          "text": "Why is adolescence considered a vulnerable phase?",
+          "question_id": "ts_ipe_z1_bhw_adolescence_vulnerable"
+        },
+        {
+          "ref": "saq45",
+          "section": "SAQ",
+          "number": 45,
+          "stars": 0,
+          "text": "'Prevention is better than cure'. Justify with regard to TDA abuse.",
+          "question_id": "ts_ipe_z1_bhw_prevention_tda_abuse"
+        },
+        {
+          "ref": "saq46",
+          "section": "SAQ",
+          "number": 46,
+          "stars": 0,
+          "text": "Distinguish between hypertrophy and hyperplasia with an example for each.",
+          "question_id": "ts_ipe_z1_bhw_hypertrophy_hyperplasia"
+        },
+        {
+          "ref": "saq47",
+          "section": "SAQ",
+          "number": 47,
+          "stars": 0,
+          "text": "Write short notes on Opioids.",
+          "question_id": "ts_ipe_z1_bhw_opioids"
+        },
+        {
+          "ref": "saq48",
+          "section": "SAQ",
+          "number": 48,
+          "stars": 0,
+          "text": "Write short notes on Cannabinoids.",
+          "question_id": "ts_ipe_z1_bhw_cannabinoids"
+        },
+        {
+          "ref": "saq49",
+          "section": "SAQ",
+          "number": 49,
+          "stars": 0,
+          "text": "Write a short note on the pathogenicity of Entamoeba histolytica.",
+          "question_id": "ts_ipe_z1_bhw_entamoeba_pathogenicity"
+        },
+        {
+          "ref": "saq183",
+          "section": "SAQ",
+          "number": 183,
+          "stars": 0,
+          "text": "What is the need for parasites to develop special adaptations? Mention some special adaptations developed by the parasites.",
+          "question_id": "ts_ipe_z1_bhw_parasitic_adaptations"
+        },
+        {
+          "ref": "saq184",
+          "section": "SAQ",
+          "number": 184,
+          "stars": 0,
+          "text": "Distinguish between addiction and dependence.",
+          "question_id": "ts_ipe_z1_bhw_addiction_dependence"
+        },
+        {
+          "ref": "saq185",
+          "section": "SAQ",
+          "number": 185,
+          "stars": 0,
+          "text": "Describe the structure of sporozoite of Plasmodium vivax.",
+          "question_id": "ts_ipe_z1_bhw_sporozoite_structure"
+        },
+        {
+          "ref": "saq186",
+          "section": "SAQ",
+          "number": 186,
+          "stars": 0,
+          "text": "Explain the pathogenicity of Wuchereria bancrofti in man.",
+          "question_id": "ts_ipe_z1_bhw_wuchereria_pathogenicity"
+        },
+        {
+          "ref": "saq187",
+          "section": "SAQ",
+          "number": 187,
+          "stars": 0,
+          "text": "Write short notes on pneumonia and its prophylaxis.",
+          "question_id": "ts_ipe_z1_bhw_pneumonia"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the structure and life cycle of Entamoeba histolytica with the help of neat labelled diagrams.",
+          "question_id": "ts_ipe_z1_bhw_laq_entamoeba_histolytica"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Describe the life cycle of Plasmodium vivax in man.",
+          "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_man"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Describe the life cycle of Plasmodium vivax in mosquito.",
+          "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_mosquito"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Describe the structure and life cycle of Ascaris lumbricoides with the help of a neat labelled diagram.",
+          "question_id": "ts_ipe_z1_bhw_laq_ascaris_lumbricoides"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Describe the life cycle of Wuchereria bancrofti with a neat diagram.",
+          "question_id": "ts_ipe_z1_bhw_laq_wuchereria_bancrofti"
+        }
+      ]
+    },
+    {
       "number": 7,
       "name": "Periplaneta americana (Zoology)",
       "subject": "zoology",
@@ -8218,6 +8831,317 @@
           "stars": 0,
           "text": "Describe the respiratory system of cockroach with the help of neat and labelled diagrams.",
           "question_id": "ts_ipe_z1_pa_laq_respiratory_system"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Ecology and Environment (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq148",
+          "section": "VSAQ",
+          "number": 148,
+          "stars": 0,
+          "text": "What is the primordial source of energy for all organisms?",
+          "question_id": "ts_ipe_z1_ee_primordial_source_of_energy"
+        },
+        {
+          "ref": "vsaq149",
+          "section": "VSAQ",
+          "number": 149,
+          "stars": 0,
+          "text": "What are biological rhythms?",
+          "question_id": "ts_ipe_z1_ee_biological_rhythms"
+        },
+        {
+          "ref": "vsaq150",
+          "section": "VSAQ",
+          "number": 150,
+          "stars": 0,
+          "text": "What are circadian rhythms?",
+          "question_id": "ts_ipe_z1_ee_circadian_rhythms"
+        },
+        {
+          "ref": "vsaq151",
+          "section": "VSAQ",
+          "number": 151,
+          "stars": 0,
+          "text": "What is Photoperiodism?",
+          "question_id": "ts_ipe_z1_ee_photoperiodism"
+        },
+        {
+          "ref": "vsaq152",
+          "section": "VSAQ",
+          "number": 152,
+          "stars": 0,
+          "text": "Mention the advantages of some UV rays to us.",
+          "question_id": "ts_ipe_z1_ee_advantages_of_uv_rays"
+        },
+        {
+          "ref": "vsaq153",
+          "section": "VSAQ",
+          "number": 153,
+          "stars": 0,
+          "text": "What is cyclomorphosis? Explain its importance in Daphnia.",
+          "question_id": "ts_ipe_z1_ee_cyclomorphosis_daphnia"
+        },
+        {
+          "ref": "vsaq154",
+          "section": "VSAQ",
+          "number": 154,
+          "stars": 0,
+          "text": "Define commensalism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_commensalism_definition"
+        },
+        {
+          "ref": "vsaq155",
+          "section": "VSAQ",
+          "number": 155,
+          "stars": 0,
+          "text": "Define mutualism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_mutualism_definition"
+        },
+        {
+          "ref": "vsaq156",
+          "section": "VSAQ",
+          "number": 156,
+          "stars": 0,
+          "text": "What is meant by osmotrophic nutrition?",
+          "question_id": "ts_ipe_z1_ee_osmotrophic_nutrition"
+        },
+        {
+          "ref": "vsaq157",
+          "section": "VSAQ",
+          "number": 157,
+          "stars": 0,
+          "text": "What is an ecosystem?",
+          "question_id": "ts_ipe_z1_ee_what_is_an_ecosystem"
+        },
+        {
+          "ref": "vsaq158",
+          "section": "VSAQ",
+          "number": 158,
+          "stars": 0,
+          "text": "Distinguish between lotic and lentic habitats.",
+          "question_id": "ts_ipe_z1_ee_lotic_vs_lentic_habitats"
+        },
+        {
+          "ref": "vsaq159",
+          "section": "VSAQ",
+          "number": 159,
+          "stars": 0,
+          "text": "Distinguish the terms phototaxis and photokinesis.",
+          "question_id": "ts_ipe_z1_ee_phototaxis_vs_photokinesis"
+        },
+        {
+          "ref": "vsaq160",
+          "section": "VSAQ",
+          "number": 160,
+          "stars": 0,
+          "text": "What is camouflage? Give its significance.",
+          "question_id": "ts_ipe_z1_ee_camouflage_significance"
+        },
+        {
+          "ref": "vsaq161",
+          "section": "VSAQ",
+          "number": 161,
+          "stars": 0,
+          "text": "Which air pollutants are chiefly responsible for acid rains?",
+          "question_id": "ts_ipe_z1_ee_acid_rain_pollutants"
+        },
+        {
+          "ref": "vsaq162",
+          "section": "VSAQ",
+          "number": 162,
+          "stars": 0,
+          "text": "What is BOD?",
+          "question_id": "ts_ipe_z1_ee_what_is_bod"
+        },
+        {
+          "ref": "vsaq163",
+          "section": "VSAQ",
+          "number": 163,
+          "stars": 0,
+          "text": "What is biological magnification?",
+          "question_id": "ts_ipe_z1_ee_biological_magnification"
+        },
+        {
+          "ref": "vsaq164",
+          "section": "VSAQ",
+          "number": 164,
+          "stars": 0,
+          "text": "Why are incinerators used in hospitals?",
+          "question_id": "ts_ipe_z1_ee_incinerators_in_hospitals"
+        },
+        {
+          "ref": "vsaq165",
+          "section": "VSAQ",
+          "number": 165,
+          "stars": 0,
+          "text": "Define parasitism. Give one example.",
+          "question_id": "ts_ipe_z1_ee_parasitism_definition"
+        },
+        {
+          "ref": "vsaq166",
+          "section": "VSAQ",
+          "number": 166,
+          "stars": 0,
+          "text": "What is optimum temperature?",
+          "question_id": "ts_ipe_z1_ee_optimum_temperature"
+        },
+        {
+          "ref": "vsaq167",
+          "section": "VSAQ",
+          "number": 167,
+          "stars": 0,
+          "text": "Distinguish between photoperiod and critical photoperiod.",
+          "question_id": "ts_ipe_z1_ee_photoperiod_vs_critical"
+        },
+        {
+          "ref": "vsaq168",
+          "section": "VSAQ",
+          "number": 168,
+          "stars": 0,
+          "text": "What is PAR?",
+          "question_id": "ts_ipe_z1_ee_what_is_par"
+        },
+        {
+          "ref": "vsaq169",
+          "section": "VSAQ",
+          "number": 169,
+          "stars": 0,
+          "text": "What is the percentage of PAR in the incident solar radiation?",
+          "question_id": "ts_ipe_z1_ee_percentage_of_par"
+        },
+        {
+          "ref": "vsaq170",
+          "section": "VSAQ",
+          "number": 170,
+          "stars": 0,
+          "text": "Distinguish between neuston and nekton.",
+          "question_id": "ts_ipe_z1_ee_neuston_vs_nekton"
+        },
+        {
+          "ref": "vsaq171",
+          "section": "VSAQ",
+          "number": 171,
+          "stars": 0,
+          "text": "What is Gause's principle? When is it applicable?",
+          "question_id": "ts_ipe_z1_ee_gause_principle"
+        },
+        {
+          "ref": "vsaq172",
+          "section": "VSAQ",
+          "number": 172,
+          "stars": 0,
+          "text": "What is predation? Give an example.",
+          "question_id": "ts_ipe_z1_ee_predation_definition"
+        },
+        {
+          "ref": "saq53",
+          "section": "SAQ",
+          "number": 53,
+          "stars": 0,
+          "text": "Describe Green House Effect.",
+          "question_id": "ts_ipe_z1_ee_greenhouse_effect"
+        },
+        {
+          "ref": "saq54",
+          "section": "SAQ",
+          "number": 54,
+          "stars": 0,
+          "text": "Discuss the causes and effects of global warming. What measures need to be taken to control 'Global Warming'?",
+          "question_id": "ts_ipe_z1_ee_global_warming_causes_effects"
+        },
+        {
+          "ref": "saq55",
+          "section": "SAQ",
+          "number": 55,
+          "stars": 0,
+          "text": "What are the deleterious effects of depletion of ozone in the stratosphere?",
+          "question_id": "ts_ipe_z1_ee_ozone_depletion_effects"
+        },
+        {
+          "ref": "saq56",
+          "section": "SAQ",
+          "number": 56,
+          "stars": 0,
+          "text": "What is summer stratification? Explain.",
+          "question_id": "ts_ipe_z1_ee_summer_stratification"
+        },
+        {
+          "ref": "saq57",
+          "section": "SAQ",
+          "number": 57,
+          "stars": 0,
+          "text": "Compare the adaptations of animals with freshwater and seawater mode of life.",
+          "question_id": "ts_ipe_z1_ee_freshwater_vs_seawater_adaptations"
+        },
+        {
+          "ref": "saq58",
+          "section": "SAQ",
+          "number": 58,
+          "stars": 0,
+          "text": "Write a note on DFC. Give the significance in a terrestrial ecosystem.",
+          "question_id": "ts_ipe_z1_ee_detritus_food_chain_note"
+        },
+        {
+          "ref": "saq188",
+          "section": "SAQ",
+          "number": 188,
+          "stars": 0,
+          "text": "Explain Van't Hoff rule.",
+          "question_id": "ts_ipe_z1_ee_vant_hoff_rule"
+        },
+        {
+          "ref": "saq189",
+          "section": "SAQ",
+          "number": 189,
+          "stars": 0,
+          "text": "How do terrestrial animals protect themselves from the danger of dehydration of bodies?",
+          "question_id": "ts_ipe_z1_ee_terrestrial_dehydration_protection"
+        },
+        {
+          "ref": "saq190",
+          "section": "SAQ",
+          "number": 190,
+          "stars": 0,
+          "text": "Distinguish between euryhaline and stenohaline animals.",
+          "question_id": "ts_ipe_z1_ee_euryhaline_vs_stenohaline"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Describe lake as an ecosystem by giving examples for the various zones and the biotic components in it.",
+          "question_id": "ts_ipe_z1_ee_laq_lake_as_an_ecosystem"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Describe different types of food chains that exist in an ecosystem.",
+          "question_id": "ts_ipe_z1_ee_laq_types_of_food_chains"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Give an account of flow of energy in an ecosystem.",
+          "question_id": "ts_ipe_z1_ee_laq_flow_of_energy"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "List out the major air pollutants and describe their effects on human beings.",
+          "question_id": "ts_ipe_z1_ee_laq_major_air_pollutants"
         }
       ]
     }

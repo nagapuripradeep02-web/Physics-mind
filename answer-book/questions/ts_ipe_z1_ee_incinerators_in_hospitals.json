@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_incinerators_in_hospitals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are incinerators used in hospitals?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Hospital waste",
+      "marks": 1
+    },
+    {
+      "label": "What the incinerator does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 164). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_waste",
+        "kind": "text",
+        "label": "Hospital waste",
+        "marks": 1,
+        "mark_note": "The waste",
+        "lines": [
+          "Hospitals produce hazardous waste such as",
+          "used disinfectants, chemicals and material",
+          "carrying disease-causing microorganisms.",
+          "This waste must be treated before it is",
+          "thrown out."
+        ],
+        "why": "The question asks why, so the answer must start with the problem: the waste is hazardous, and that is the reason an ordinary bin will not do.",
+        "common_mistakes": [
+          "Writing only that hospitals produce a lot of waste. It is the HAZARDOUS kind that matters.",
+          "Starting with the incinerator. The reason comes first, the device second."
+        ],
+        "memory_tip": "Answer a why question in two halves: the problem first, then the device that solves it.",
+        "margin_note": "Name two or three kinds of waste, then say it must be treated."
+      },
+      {
+        "id": "s2_incinerator",
+        "kind": "boxed_final",
+        "label": "What the incinerator does",
+        "marks": 1,
+        "mark_note": "The device",
+        "lines": [
+          {
+            "text": "An incinerator burns hospital waste",
+            "style": "boxed"
+          },
+          "An incinerator burns the waste at a high",
+          "temperature.",
+          "The heat destroys the disease-causing",
+          "microorganisms and reduces the waste to ash.",
+          "So the waste does not pollute the",
+          "surroundings or spread infection."
+        ],
+        "why": "Burning is only half the answer; the mark is for what the burning achieves — the microorganisms are destroyed — because that is what makes the waste safe.",
+        "common_mistakes": [
+          "Writing that the incinerator stores the waste. It BURNS it.",
+          "Leaving out the microorganisms. Destroying them is the point of the high temperature."
+        ],
+        "memory_tip": "High heat does two jobs: it kills the microorganisms and it cuts the waste down to ash.",
+        "margin_note": "One line on the burning, one on what the heat destroys, one on the result."
+      }
+    ]
+  },
+  "insider_note": "This is a why question, so an answer that only describes an incinerator scores half — say what the waste is and what the heat destroys."
+}

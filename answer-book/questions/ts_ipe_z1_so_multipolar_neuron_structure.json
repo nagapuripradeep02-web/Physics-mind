@@ -1,0 +1,505 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_multipolar_neuron_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of a multipolar neuron.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Parts",
+      "marks": 1
+    },
+    {
+      "label": "Dendrites",
+      "marks": 1
+    },
+    {
+      "label": "Cell body",
+      "marks": 1
+    },
+    {
+      "label": "Axon",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.34, SAQ 22). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: this book prints a labelled multipolar-neuron figure beside the answer, but the question does not ask for a diagram, so the drawing here is authored as a 0-mark study figure. It carries the book's own labels — dendrites, Nissl granules, cell body, nucleus, Schwann cell, axon, myelin sheath, node of Ranvier, axon terminal and synaptic knob — plus the axon hillock named in the written answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "The three parts",
+        "marks": 1,
+        "why": "The word multipolar counts the processes leaving the cell body — many dendrites and one axon — so the name itself gives the plan of the answer.",
+        "common_mistakes": [
+          "Writing that a multipolar neuron has many axons. It has many dendrites but only ONE axon.",
+          "Naming only two parts. Three are expected."
+        ],
+        "memory_tip": "Multipolar means many poles: many dendrites in, one axon out.",
+        "margin_note": "Name the three parts first, then take them in order. Three lines.",
+        "mark_note": "Parts",
+        "lines": [
+          "A multipolar neuron has many dendrites and one",
+          "axon arising from the cell body.",
+          "These are the commonest neurons of the body.",
+          "Its three parts are the dendrites, the cell body",
+          "and the axon."
+        ]
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — multipolar neuron",
+        "marks": 0,
+        "why": "The three parts are told apart by direction — many short branches on one side, one long process on the other — so the drawing itself carries the definition.",
+        "common_mistakes": [
+          "Drawing the myelin sheath as one unbroken tube. The gaps between the sheath cells are the nodes of Ranvier.",
+          "Drawing several long processes. Only one process is the axon."
+        ],
+        "memory_tip": "Draw the cell body, then many short branches above it, then one long process below with gaps in its sheath.",
+        "margin_note": "The question does not ask for a diagram, so it earns no mark here. This book prints one beside the answer, and it makes the three parts obvious.",
+        "figure": {
+          "id": "so_multipolar_neuron",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — cell body, nucleus and Nissl granules"
+            },
+            {
+              "type": "stroke",
+              "id": "cell_body",
+              "d": "M 305 118 L 295.7 137.9 L 277 146.6 L 255 147.4 L 241.9 128.9 L 239.1 106 L 257 92 L 277.7 85.5 L 295.7 98.1 Z",
+              "ms": 2840
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus",
+              "d": "M 261 116 A 11 11 0 1 0 283 116 A 11 11 0 1 0 261 116",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "nissl_granules",
+              "d": "M 289.3 127.3 A 2.6 2.6 0 1 0 294.5 127.3 A 2.6 2.6 0 1 0 289.3 127.3 M 277.6 140.6 A 2.6 2.6 0 1 0 282.8 140.6 A 2.6 2.6 0 1 0 277.6 140.6 M 260.5 137 A 2.6 2.6 0 1 0 265.7 137 A 2.6 2.6 0 1 0 260.5 137 M 247.8 125.9 A 2.6 2.6 0 1 0 253 125.9 A 2.6 2.6 0 1 0 247.8 125.9 M 246.7 107.4 A 2.6 2.6 0 1 0 251.9 107.4 A 2.6 2.6 0 1 0 246.7 107.4 M 261.9 97.3 A 2.6 2.6 0 1 0 267.1 97.3 A 2.6 2.6 0 1 0 261.9 97.3 M 279.5 96.2 A 2.6 2.6 0 1 0 284.7 96.2 A 2.6 2.6 0 1 0 279.5 96.2 M 289.1 110.8 A 2.6 2.6 0 1 0 294.3 110.8 A 2.6 2.6 0 1 0 289.1 110.8",
+              "ms": 1870,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the branched dendrites"
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_1",
+              "d": "M 240.5 112.4 L 193.2 104.1 M 193.2 104.1 L 171.7 108.7 M 193.2 104.1 L 174.6 92.4",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_2",
+              "d": "M 251.4 93.5 L 220.6 56.7 M 220.6 56.7 L 201.2 46.4 M 220.6 56.7 L 213.8 35.8",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_3",
+              "d": "M 272 86 L 272 38 M 272 38 L 263.8 17.6 M 272 38 L 280.2 17.6",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_4",
+              "d": "M 292.6 93.5 L 323.4 56.7 M 323.4 56.7 L 330.2 35.8 M 323.4 56.7 L 342.8 46.4",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_5",
+              "d": "M 303.5 112.4 L 350.8 104.1 M 350.8 104.1 L 369.4 92.4 M 350.8 104.1 L 372.3 108.7",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "dendrite_6",
+              "d": "M 244.3 134 L 202.7 158 M 202.7 158 L 189.2 175.3 M 202.7 158 L 180.9 161.1",
+              "ms": 1310,
+              "w": 1.9
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the axon hillock and the axon"
+            },
+            {
+              "type": "stroke",
+              "id": "hillock_l",
+              "d": "M 258 146 L 265 180",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "hillock_r",
+              "d": "M 286 146 L 279 180",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "axon_l",
+              "d": "M 265 180 L 265 330",
+              "ms": 2140
+            },
+            {
+              "type": "stroke",
+              "id": "axon_r",
+              "d": "M 279 180 L 279 330",
+              "ms": 2140
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — myelin sheath and nodes of Ranvier"
+            },
+            {
+              "type": "stroke",
+              "id": "myelin_1",
+              "d": "M 253 186 L 291 186 L 291 224 L 253 224 Z",
+              "ms": 2170
+            },
+            {
+              "type": "stroke",
+              "id": "myelin_2",
+              "d": "M 253 232 L 291 232 L 291 270 L 253 270 Z",
+              "ms": 2170
+            },
+            {
+              "type": "stroke",
+              "id": "myelin_3",
+              "d": "M 253 278 L 291 278 L 291 316 L 253 316 Z",
+              "ms": 2170
+            },
+            {
+              "type": "stroke",
+              "id": "schwann_nuclei",
+              "d": "M 277.5 196 A 5.5 3 0 1 0 288.5 196 A 5.5 3 0 1 0 277.5 196 M 277.5 242 A 5.5 3 0 1 0 288.5 242 A 5.5 3 0 1 0 277.5 242 M 277.5 288 A 5.5 3 0 1 0 288.5 288 A 5.5 3 0 1 0 277.5 288",
+              "ms": 1170,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — telodendria and synaptic knobs"
+            },
+            {
+              "type": "stroke",
+              "id": "axon_end",
+              "d": "M 265 330 L 279 330",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "telodendria",
+              "d": "M 272 330 L 226 362 M 272 330 L 252 370 M 272 330 L 292 370 M 272 330 L 318 362",
+              "ms": 2880,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "synaptic_knobs",
+              "d": "M 221.5 362 A 4.5 4.5 0 1 0 230.5 362 A 4.5 4.5 0 1 0 221.5 362 M 247.5 370 A 4.5 4.5 0 1 0 256.5 370 A 4.5 4.5 0 1 0 247.5 370 M 287.5 370 A 4.5 4.5 0 1 0 296.5 370 A 4.5 4.5 0 1 0 287.5 370 M 313.5 362 A 4.5 4.5 0 1 0 322.5 362 A 4.5 4.5 0 1 0 313.5 362",
+              "ms": 1620,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_dendrites",
+              "x": 6,
+              "y": 40,
+              "text": "Dendrites",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dendrites",
+              "d": "M 95.1 36 L 172 92",
+              "ms": 1360,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nissl",
+              "x": 6,
+              "y": 110,
+              "text": "Nissl granules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nissl",
+              "d": "M 144.6 106 L 250 112",
+              "ms": 1510,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_axon",
+              "x": 6,
+              "y": 178,
+              "text": "Axon",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_axon",
+              "d": "M 45.6 174 L 258 176",
+              "ms": 3030,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_node",
+              "x": 6,
+              "y": 240,
+              "text": "Node of Ranvier",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_node",
+              "d": "M 154.5 236 L 263 228",
+              "ms": 1550,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_knob",
+              "x": 6,
+              "y": 340,
+              "text": "Synaptic knob",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_knob",
+              "d": "M 134.7 336 L 222 360",
+              "ms": 1290,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cell_body",
+              "x": 386,
+              "y": 60,
+              "text": "Cell body",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cell_body",
+              "d": "M 382 56 L 300 92",
+              "ms": 1280,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus_lbl",
+              "x": 386,
+              "y": 108,
+              "text": "Nucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleus_lbl",
+              "d": "M 382 104 L 284 114",
+              "ms": 1410,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_schwann",
+              "x": 386,
+              "y": 196,
+              "text": "Schwann cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_schwann",
+              "d": "M 382 192 L 289 196",
+              "ms": 1330,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_myelin",
+              "x": 386,
+              "y": 250,
+              "text": "Myelin sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_myelin",
+              "d": "M 382 246 L 292 250",
+              "ms": 1290,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_terminal",
+              "x": 386,
+              "y": 320,
+              "text": "Axon terminal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_terminal",
+              "d": "M 382 316 L 296 344",
+              "ms": 1290,
+              "w": 1.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_dendrites",
+        "kind": "text",
+        "label": "Dendrites",
+        "marks": 1,
+        "why": "Direction is the whole point of the pair: dendrites bring the impulse in and the axon carries it out, so the words afferent and efferent are what the examiner ticks.",
+        "common_mistakes": [
+          "Saying dendrites carry the impulse away from the cell body. They carry it towards the cell body.",
+          "Writing that dendrites have no Nissl granules. They have them; the axon does not."
+        ],
+        "memory_tip": "Dendrites bring it in (afferent); the axon takes it away (efferent).",
+        "margin_note": "Shape, contents, direction. Three short lines.",
+        "mark_note": "Dendrites",
+        "lines": [
+          "1) Dendrites: short, branched processes arising",
+          "from the cell body.",
+          "They contain Nissl granules and neurofibrils.",
+          "They carry the nerve impulse TOWARDS the cell",
+          "body, so they are afferent."
+        ]
+      },
+      {
+        "id": "s4_cell_body",
+        "kind": "text",
+        "label": "Cell body",
+        "marks": 1,
+        "why": "Nissl granules are rough endoplasmic reticulum, so naming them tells the examiner that the cell body is the part which makes the neuron's proteins.",
+        "common_mistakes": [
+          "Writing that Nissl granules are present in the axon. They are absent there.",
+          "Giving only one name for the cell body. Cyton, soma and perikaryon are all asked."
+        ],
+        "memory_tip": "Three names for one part: cyton, soma, perikaryon — and Nissl granules make its protein.",
+        "margin_note": "All three names, the nucleus, then the contents. Nissl granules must appear.",
+        "mark_note": "Cell body",
+        "lines": [
+          "2) Cell body: also called the cyton, the soma or",
+          "the perikaryon.",
+          "It has a large spherical nucleus.",
+          "Its cytoplasm holds Nissl granules, which are",
+          "rough endoplasmic reticulum and make the",
+          "neuron's proteins.",
+          "It also holds neurofibrils and lipofuscin",
+          "granules."
+        ]
+      },
+      {
+        "id": "s5_axon",
+        "kind": "boxed_final",
+        "label": "Axon",
+        "marks": 1,
+        "why": "The axon's parts are all named after it — hillock, axolemma, axoplasm, telodendria — so the list is easy to hold once the order from base to tip is fixed.",
+        "common_mistakes": [
+          "Naming the end branches dendrites. The end branches of an axon are telodendria.",
+          "Leaving out the neurotransmitter. Acetylcholine is worth a name."
+        ],
+        "memory_tip": "Follow the axon from base to tip: hillock, axolemma and axoplasm, telodendria, synaptic knobs.",
+        "margin_note": "Take the axon from its base to its tip in one order. Acetylcholine is worth naming.",
+        "mark_note": "Axon",
+        "lines": [
+          {
+            "text": "One axon, efferent, ending in synaptic knobs",
+            "style": "boxed"
+          },
+          "3) Axon: a single long, cylindrical process from",
+          "the cell body.",
+          "Its base is the axon hillock, its membrane is",
+          "the axolemma and its cytoplasm the axoplasm.",
+          "Nissl granules are absent in it.",
+          "Its end branches into telodendria, which end in",
+          "synaptic knobs holding neurotransmitters such",
+          "as acetylcholine.",
+          "The axon carries the impulse away from the cell",
+          "body, so it is efferent."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four marks means four blocks — parts, dendrites, cell body, axon — and the axon block is the long one, so leave room for it instead of writing everything about the cell body."
+}

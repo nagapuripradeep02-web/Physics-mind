@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_greenhouse_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe Green House Effect.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Radiation reaching the earth",
+      "marks": 1
+    },
+    {
+      "label": "Role of the greenhouse gases",
+      "marks": 1
+    },
+    {
+      "label": "Result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.46, SAQ 53). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecology and Environment · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The greenhouse effect is a naturally",
+          "occurring phenomenon that is responsible for",
+          "the heating of the earth's surface and its",
+          "atmosphere.",
+          "It is named after a glass greenhouse, which",
+          "lets sunlight in and holds the heat inside."
+        ],
+        "why": "The word naturally is placed first because the greenhouse effect is not itself a pollution problem; only the increase in the gases is, and a student who calls the effect harmful has answered the global warming question instead.",
+        "common_mistakes": [
+          "Writing that the greenhouse effect is caused by pollution. The effect itself is natural.",
+          "Confusing it with global warming. Global warming is the RISE in the effect above normal."
+        ],
+        "memory_tip": "The atmosphere works like the glass of a greenhouse: light passes in, heat does not pass out.",
+        "margin_note": "One sentence with the word naturally in it. Do not start on global warming here."
+      },
+      {
+        "id": "s2_radiation",
+        "kind": "text",
+        "label": "Radiation reaching the earth",
+        "marks": 1,
+        "mark_note": "Radiation",
+        "lines": [
+          "When sunlight reaches the outermost layer of",
+          "the atmosphere, some radiation is absorbed",
+          "there.",
+          "About one fourth of the solar radiation is",
+          "reflected back by the clouds and gases.",
+          "Only about half of the incoming solar",
+          "radiation reaches the earth's surface, and",
+          "the earth gets heated."
+        ],
+        "why": "The three fractions are the physical account of the effect, and giving them in order — absorbed, reflected, reaching the ground — shows the examiner the answer is describing a process and not just naming it.",
+        "common_mistakes": [
+          "Writing that all the sunlight reaches the ground. Only about half of it does.",
+          "Swapping the fractions. About one fourth is reflected; about half reaches the surface."
+        ],
+        "memory_tip": "Some absorbed, one fourth reflected, one half arrives — that is the sunlight's journey down.",
+        "margin_note": "Three short statements with the fractions attached. Keep them in order."
+      },
+      {
+        "id": "s3_gases",
+        "kind": "text",
+        "label": "Role of the greenhouse gases",
+        "marks": 1,
+        "mark_note": "Gases",
+        "lines": [
+          "The heated earth sends a part of this heat",
+          "back into the atmosphere.",
+          "The greenhouse gases, mainly carbon dioxide",
+          "(CO₂) and methane (CH₄), absorb this heat.",
+          "They reflect a major part of it back to the",
+          "earth's surface instead of letting it",
+          "escape into space."
+        ],
+        "why": "This step is the mechanism and therefore the heart of the answer: the gases act on the heat going UP, not on the sunlight coming down, and that direction is what the mark is for.",
+        "common_mistakes": [
+          "Writing that the greenhouse gases stop the sunlight. They act on the HEAT leaving the earth.",
+          "Naming only carbon dioxide. Methane is the second named greenhouse gas here."
+        ],
+        "memory_tip": "Light goes in easily, heat cannot get out. The gases work on the way UP, not the way down.",
+        "margin_note": "Name the two gases and say clearly that they send the heat back DOWN."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "Heat is trapped, so the earth warms up",
+            "style": "boxed"
+          },
+          "Because of this, the earth's surface heats up",
+          "once again.",
+          "This whole phenomenon is called the",
+          "greenhouse effect.",
+          "Without it the earth would be far too cold",
+          "for living things."
+        ],
+        "why": "Closing with the name of the phenomenon completes the answer as the question asked it, and the last line makes clear why the effect is described as natural and useful.",
+        "common_mistakes": [
+          "Ending with the harmful effects. Those belong to the global warming question.",
+          "Not naming the phenomenon at the end. The examiner looks for the closing sentence."
+        ],
+        "memory_tip": "Natural and useful at the normal level; harmful only when the gases increase.",
+        "margin_note": "Close by naming the phenomenon. One line on why it is needed."
+      }
+    ]
+  },
+  "insider_note": "Keep this answer separate from global warming: the greenhouse effect is the natural process, and global warming is what happens when the gases rise above their normal level."
+}

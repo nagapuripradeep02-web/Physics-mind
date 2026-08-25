@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_so_lymph_short_notes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Structural Organisation in Animals (Zoology)"
+  },
+  "chapter": "Structural Organisation in Animals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write short notes on lymph.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Formation",
+      "marks": 1
+    },
+    {
+      "label": "Composition",
+      "marks": 1
+    },
+    {
+      "label": "Return route",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.64, SAQ 179). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: the transport of absorbed fats and the defence role of the lymphocytes are standard NCERT content and are not printed in this book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Structural Organisation in Animals (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What lymph is",
+        "marks": 1,
+        "why": "Lymph and interstitial fluid are the same fluid in two places, so the definition has to say WHERE it is rather than what it is made of.",
+        "common_mistakes": [
+          "Calling lymph blood without red cells. It is tissue fluid that has entered the lymph vessels.",
+          "Writing that it flows in the blood vessels. It has its own vessels."
+        ],
+        "memory_tip": "Same fluid, two names: interstitial fluid between the cells, lymph once it is in a lymph vessel.",
+        "margin_note": "Colour, where it flows, what it is. Two or three lines.",
+        "mark_note": "Definition",
+        "lines": [
+          "Lymph is a colourless fluid that flows through",
+          "the vessels of the lymphatic system.",
+          "It is the interstitial fluid, the fluid lying in",
+          "the spaces between the cells, once it has",
+          "entered a lymph vessel."
+        ]
+      },
+      {
+        "id": "s2_formation",
+        "kind": "text",
+        "label": "How lymph is formed",
+        "marks": 1,
+        "why": "Lymph exists because more fluid leaves the capillaries than returns to them, and the lymph vessels collect the small amount that is left behind.",
+        "common_mistakes": [
+          "Writing that lymph is made by the lymph glands. It is filtered out of the blood capillaries.",
+          "Leaving out hydrostatic pressure, which is what drives the fluid out."
+        ],
+        "memory_tip": "Pressure pushes fluid out of the capillary; most of it goes back, and the small remainder becomes lymph.",
+        "margin_note": "Pressure, fluid out, most back, a little into lymph vessels. Four short lines.",
+        "mark_note": "Formation",
+        "lines": [
+          "Blood entering a capillary is under pressure,",
+          "called hydrostatic pressure.",
+          "This pressure drives water, nutrients, oxygen",
+          "and other small materials out of the capillary",
+          "into the spaces between the cells.",
+          "Most of this fluid returns to the blood at the",
+          "far end of the capillary.",
+          "A small part of it enters the lymph capillaries",
+          "and becomes lymph."
+        ]
+      },
+      {
+        "id": "s3_composition",
+        "kind": "text",
+        "label": "What lymph contains",
+        "marks": 1,
+        "why": "Everything present in lymph is what could pass through the capillary wall and everything missing is what was too large to pass, so one rule explains the whole list.",
+        "common_mistakes": [
+          "Writing that lymph has no cells. It carries lymphocytes.",
+          "Saying it is richer in oxygen than blood. It carries less oxygen and more carbon dioxide."
+        ],
+        "memory_tip": "Too big to cross the capillary wall stays behind: red cells, platelets and large proteins.",
+        "margin_note": "What is in it, what is missing, and how it compares with blood.",
+        "mark_note": "Composition",
+        "lines": [
+          "Lymph is made of plasma and lymphocytes.",
+          "It has no red blood cells and no platelets.",
+          "It carries less protein than plasma, because the",
+          "large plasma proteins cannot cross the capillary",
+          "wall.",
+          "It carries less oxygen and fewer nutrients than",
+          "blood, and more carbon dioxide and other waste",
+          "products."
+        ]
+      },
+      {
+        "id": "s4_return",
+        "kind": "boxed_final",
+        "label": "Where lymph goes back",
+        "marks": 1,
+        "why": "The lymphatic system is a one-way road with a single exit, and naming that exit turns a list of facts into a circuit the examiner can follow.",
+        "common_mistakes": [
+          "Writing that lymph circulates like blood. It flows one way only, from the tissues back to the veins.",
+          "Leaving out the words accessory route, which is what this book's answer closes with."
+        ],
+        "memory_tip": "One-way street: tissues, then lymph vessels, then the subclavian veins, then the blood.",
+        "margin_note": "Name the subclavian veins and the words accessory route. Close with the two extra jobs.",
+        "mark_note": "Return route",
+        "lines": [
+          {
+            "text": "Lymph rejoins the blood at the subclavian veins",
+            "style": "boxed"
+          },
+          "The lymph vessels join one another and finally",
+          "open into the subclavian veins near the heart.",
+          "So the fluid that left the capillaries is",
+          "returned to the blood.",
+          "The lymphatic system is therefore called an",
+          "accessory route back to the blood.",
+          "Lymph also carries fats absorbed from the",
+          "intestine, and its lymphocytes defend the body."
+        ]
+      }
+    ]
+  },
+  "insider_note": "'Short notes' still means four blocks for four marks — what it is, how it forms, what it holds, where it goes — and the return at the subclavian veins is the line most papers never reach."
+}

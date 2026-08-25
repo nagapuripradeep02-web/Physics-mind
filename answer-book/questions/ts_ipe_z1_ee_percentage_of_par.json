@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_percentage_of_par",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the percentage of PAR in the incident solar radiation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The percentage",
+      "marks": 1
+    },
+    {
+      "label": "What plants capture",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 169). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK REDUNDANCY: VSAQ 168 ('What is PAR?') and VSAQ 169 ('What is the percentage of PAR...') are printed as two separate questions on book p.62 with nearly the same one-line answer. Both are authored because both are in the asked bank; this card leads with the percentage and 168 leads with the expansion. The book's own printed wording for 169 is 'What is the percentage of PAR, in the incident solar radiation.' — cleaned to a question here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_percentage",
+        "kind": "text",
+        "label": "The percentage",
+        "marks": 1,
+        "mark_note": "Percentage",
+        "lines": [
+          "PAR is less than 50% of the incident solar",
+          "radiation available on the earth.",
+          "PAR is Photosynthetically Active Radiation,",
+          "the part of sunlight that plants can use",
+          "for photosynthesis."
+        ],
+        "why": "The question asks for one number, so it is written in the first line; the expansion follows because a bare percentage with no named quantity is not a complete answer.",
+        "common_mistakes": [
+          "Answering 2 to 10%. That is the share of PAR that plants capture, not the share of sunlight that is PAR.",
+          "Giving the number without expanding PAR."
+        ],
+        "memory_tip": "Less than half of the sunlight arriving is even usable by a plant.",
+        "margin_note": "The percentage in the first line, then the expansion. Two short sentences."
+      },
+      {
+        "id": "s2_capture",
+        "kind": "boxed_final",
+        "label": "What plants capture",
+        "marks": 1,
+        "mark_note": "Capture",
+        "lines": [
+          {
+            "text": "Under 50% of sunlight is PAR",
+            "style": "boxed"
+          },
+          "Of this PAR, green plants capture only",
+          "2 to 10%.",
+          "This small fraction supports the whole",
+          "living world."
+        ],
+        "why": "The second number completes the picture and is the one the long answer on energy flow uses, so writing both here keeps the two figures fixed to the right quantities.",
+        "common_mistakes": [
+          "Adding the two percentages together. They are percentages of DIFFERENT quantities.",
+          "Leaving the second number out. A two-mark answer needs a second point."
+        ],
+        "memory_tip": "Two steps down: sunlight to PAR, then PAR to what the plant actually keeps.",
+        "margin_note": "The second percentage and one line on why so little matters."
+      }
+    ]
+  },
+  "insider_note": "This question and the PAR definition question are asked separately in the book, so keep the answers different: this one leads with the percentage."
+}

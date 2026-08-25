@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_what_is_an_ecosystem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an ecosystem?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Parts and example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.61, VSAQ 157). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An ecosystem is a functional unit of the",
+          "biosphere in which the members of a",
+          "community interact among themselves and with",
+          "the surrounding environment, in relation to",
+          "the flow of energy."
+        ],
+        "why": "The phrase functional unit is what marks an ecosystem out from a community: a community is only the living members, while an ecosystem is those members working together with their surroundings.",
+        "common_mistakes": [
+          "Defining an ecosystem as all the plants and animals of an area. That is a community.",
+          "Leaving out the surrounding environment. The non-living part belongs to the ecosystem."
+        ],
+        "memory_tip": "Community is the living members alone; ecosystem is those members plus their surroundings.",
+        "margin_note": "One sentence. It must contain both interact and surrounding environment."
+      },
+      {
+        "id": "s2_parts",
+        "kind": "boxed_final",
+        "label": "Parts and example",
+        "marks": 1,
+        "mark_note": "Parts",
+        "lines": [
+          {
+            "text": "Community + environment = ecosystem",
+            "style": "boxed"
+          },
+          "An ecosystem has a living (biotic) part and",
+          "a non-living (abiotic) part.",
+          "Ex: a lake, a pond, a forest."
+        ],
+        "why": "Splitting the ecosystem into its biotic and abiotic parts turns the definition into something that can be checked against an example, and the lake is the example the long-answer question uses.",
+        "common_mistakes": [
+          "Giving only living things as the example. A named place such as a lake carries both parts.",
+          "Writing the words biotic and abiotic without saying what they mean."
+        ],
+        "memory_tip": "Two parts, two words: biotic is the living half, abiotic is the non-living half.",
+        "margin_note": "Name the two parts and give one example. Three lines are enough."
+      }
+    ]
+  },
+  "insider_note": "A lake is the example to give: it is also the eight-mark question in this chapter, so the same words carry over."
+}

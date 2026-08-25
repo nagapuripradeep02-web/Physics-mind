@@ -34,11 +34,19 @@ back-test against your cards.
 **The book numbers questions GLOBALLY** (LAQ 1–12, then SAQ 13–…, VSAQ …–172, Star Q 173–190+).
 Keep that number: it is what the hit lists and guess papers cite as "P 32(18)".
 
-**The hit lists are NOT the inventory — the chapters are.** Proven on this book: the "TOP 10+ LAQ"
-list skips global qno 5, and Guess Paper 5 shows what it is — *"Describe the life cycle of
-Wuchereria bancrofti with a neat diagram"* (book p.18), a real 8-mark LAQ in Biology in Human
-Welfare. Walk your chapter's PAGES and author every question printed there, then use the hit
-lists only as a cross-check.
+**The hit lists are NOT the inventory — the chapters are. Proven TWICE:** (1) Unit 2's hit-list
+rows promised 15 VSAQs and 4 SAQs, but the printed chapters hold **16 VSAQs and 6 SAQs** — the
+multipolar-neuron and glandular-epithelium SAQs (book p.34) appear in no list at all. (2) The
+"TOP 10+ LAQ" list skips global qno 5, and Guess Paper 5 shows what it is — *"Describe the life
+cycle of Wuchereria bancrofti with a neat diagram"* (book p.18), a real 8-mark LAQ in Biology in
+Human Welfare. **Walk from the question that CLOSES the previous chapter to the one that OPENS
+the next**, and state both boundary questions in your report as evidence you did.
+
+**Diagram marks follow the ASKED question (the Unit 2 convention).** Only a question that says
+"draw a neat labelled diagram of ..." carries diagram marks. Everywhere else the figure is a study
+drawing: give the diagram step `marks: 0` and NO `mark_note` (the schema forbids one at 0 marks),
+put the whole split on the written steps, and say so in `margin_note`. Never invent a diagram
+mark — the split is a claim a teacher must verify.
 
 **Never copy the book's prose into a card.** Take the QUESTION TEXT (verbatim-ish, cleaned of
 scan noise and grammar errors) and the FACTS. Write the answer yourself in clean exam English.

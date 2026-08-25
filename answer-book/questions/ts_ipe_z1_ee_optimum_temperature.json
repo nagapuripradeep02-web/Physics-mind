@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_optimum_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is optimum temperature?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Value in man",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.62, VSAQ 166). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK DIFFERENCE: the book prints the human optimum as 98.4°F (or) 37°C. 37°C is exactly 98.6°F, and 98.6°F is the standard value, so this card writes 37°C first with 98.6°F beside it; a paper that expects 98.4°F still accepts 37°C."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Optimum temperature is the temperature at",
+          "which the metabolic activities of an",
+          "organism take place at their greatest level.",
+          "Above it and below it the rate of these",
+          "activities falls."
+        ],
+        "why": "The word optimum means best, not highest, so the second line — the rate falls on BOTH sides — is what stops the answer from being read as the maximum temperature the animal can stand.",
+        "common_mistakes": [
+          "Writing that it is the highest temperature the animal can survive. That is the maximum, not the optimum.",
+          "Leaving out the word metabolic. The definition is about the rate of metabolic activity."
+        ],
+        "memory_tip": "Optimum is the peak of a hill: the rate falls whether you go up or down from it.",
+        "margin_note": "One sentence for the definition and one line saying the rate falls on both sides."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Value in man",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          {
+            "text": "Optimum body temperature of man: 37°C",
+            "style": "boxed"
+          },
+          "The optimum temperature of the human body is",
+          "about 37°C (98.6°F).",
+          "Each species has its own optimum",
+          "temperature."
+        ],
+        "why": "A named number turns a general definition into a checkable answer, and the human body temperature is the one value in the syllabus every student already knows.",
+        "common_mistakes": [
+          "Writing 37°F. The value is 37 degrees CELSIUS.",
+          "Writing that every animal has the same optimum. Each species has its own."
+        ],
+        "memory_tip": "37 in Celsius, about 98.6 in Fahrenheit — one body, two scales.",
+        "margin_note": "Give the number with its unit. One extra line that the value differs between species."
+      }
+    ]
+  },
+  "insider_note": "Give the number: a definition with no value attached usually scores one of the two marks."
+}

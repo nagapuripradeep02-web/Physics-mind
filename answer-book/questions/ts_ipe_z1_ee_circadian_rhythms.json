@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ee_circadian_rhythms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Ecology and Environment (Zoology)"
+  },
+  "chapter": "Ecology and Environment",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are circadian rhythms?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.60, VSAQ 150). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecology and Environment · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Circadian rhythms are the biological",
+          "rhythms that repeat in a period of about",
+          "24 hours.",
+          "Biological rhythms are the activities of an",
+          "organism that repeat at regular intervals."
+        ],
+        "why": "Circadian is only one kind of biological rhythm, so the answer defines the larger term first and then fixes the period at 24 hours — that period IS the whole difference.",
+        "common_mistakes": [
+          "Leaving out the 24 hours. Without the period the answer defines any rhythm, not a circadian one.",
+          "Writing that the rhythm lasts 24 hours. It REPEATS every 24 hours."
+        ],
+        "memory_tip": "Circa means about and diem means a day: circadian is the about-a-day rhythm.",
+        "margin_note": "One sentence with the period in it, then one line placing it inside biological rhythms."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Circadian rhythm: a 24-hour rhythm",
+            "style": "boxed"
+          },
+          "Ex: the sleep and wake cycle of man.",
+          "Ex: the daily opening and closing of the",
+          "stomata of leaves."
+        ],
+        "why": "The example must itself take a day, so the sleep and wake cycle is the one to give — it shows the period without needing another sentence.",
+        "common_mistakes": [
+          "Giving the migration of birds as the example. That is a yearly rhythm, not a circadian one."
+        ],
+        "memory_tip": "Ask of any example: does it come round once a day? If yes, it is circadian.",
+        "margin_note": "One example is enough. Name it and stop."
+      }
+    ]
+  },
+  "insider_note": "Both marks turn on the number 24 — a definition without the period scores nothing, however well it is written."
+}
