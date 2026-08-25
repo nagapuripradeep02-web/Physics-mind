@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📏 MEASURED SESSION — Answer Book: **MATHS-1B SHIPPED, MATHS AUDITED TWICE — 9.62/10, AND THE SCORE DID NOT MOVE** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `f0deee41` · `21ffb260`, site `417d266f`, function v7)
+
+**Bottom line: the deploy was the real win; the persona round was not.** Maths-1B (108 questions, 7 units) and the 24-Aug physics content fixes reached students — before this, `answers.viditra.co` served physics cards with the 15 known errors still in them. Then maths was measured for the first time ever: **9.67/10** (2.900, 3,580 replies, 15 graders). After a persona + checker round it re-measured **9.62** (2.885), and physics **9.85 → 9.71** on a 596-reply sample. **Reported as flat, not as a win.** All three physics graders independently judged their slice UNCHANGED. Verified: build:answers green · tsc 0 · vitest 432/432 · smoke:answers 48/48 (43.4 min — the fleet grew 644 → 752, sweeps run longer, budget NOT trimmed). Model spend ₹168 across both rounds.
+
+### The one that would have shipped into 1B
+`buildVidiContext` picked the chapter 3-star set by BARE unit number (`notebook.js:3508`), the last site never re-keyed when `subject-number` identity landed — so **227 of 250 Maths-1A cards told the model their chapter-mates were PHYSICS questions** (Matrices got Motion in a Straight Line, because physics sorts first). The obvious `unitKey(question.unit)` fix is WRONG: a question carries `subject` at TOP level and `unit` is `{number,name}` with no subject, so that reads every card as physics and preserves the bug silently. Now a named `chapterMates()` keyed on the question own subject, extracted from the SHIPPED file by the seam test, negative-controlled both ways.
+
+### Four ways the second round lied, and what survived
+- **The grader rubric changed between rounds** (I added register-counting), so the means are non-comparable and the drop landed exactly in `outofbank` where the padding lives. Freeze the rubric next time; new questions go in a separate pass.
+- **The success metric went narrow.** I reported closers 34% → 0.1% by grepping `"you can do this"` — the phrase the persona RECOMMENDED. The model substituted "Good luck with your revision". Behaviour-measured: 34% → 9%.
+- **Two checks withdrawn after measurement.** The LaTeX arm fired 209/3,580 where readers found 2 (a heredoc collapsed `\\left` to `\left`, which JS reads as the literal word "left"). A `skiplast` step-name matcher hit 1-of-3 recall and false-positived in 8 of 18 slices — it does NOT ship; `skiplast` is deliberately uninstrumented with the reasoning in the code.
+- **What survived, because identical code scored both corpora:** stock closers 34–38% → 9%, machinery words 43 → 1, markdown 3 → 0, romanised Telugu 2 → 0, `MARK_SUM` noise 109 → 4, `LONG` 385 → 0 (replaced by 28 targeted word-budget fires).
+
+### The persona was causing the defect it was blamed for
+It literally said `say "you can do this"`. Removed, plus bans on naming the machinery ("ANSWER FACTS", raw step ids), raw LaTeX, and the named metaphors readers found. Subject term list now derived per request from the question-id prefix (a Maths student was being handed the physics whitelist); the physics string rebuilt **byte-identical**, positive-controlled, so its baseline stayed comparable. Function deployed **v7**; site redeployed with two corrected cards.
+
+### Bank defects — no prompt change can fix these
+`sl_vsaq_ratio_divides_2_3_2_10` answer is `−(−7):14 = 1:2`, POSITIVE i.e. internal, but its `WHY` and `NOTE` both said the ratio signals EXTERNAL division — it poisoned 3–4 replies **per round**. `sl_concurrent_point_of_concurrency` notes were copy-pasted from its find-k sibling and kept saying "the unknown" on a question that has none. **Both fixed here** (explanation text only; no marked line, no mark value). Readers report ~6 more cards whose step `NOTE` contradicts its own `MARK SPLIT`, and that a share of surviving metaphors are inherited verbatim from authored `WHY` lines. **When a defect reproduces on the same card across independent runs, suspect the card.**
+
+### NEXT — ranked, and the ranking is the finding
+1. **The maths correctness audit.** 358 cards, never truth-checked by anyone. Physics found **15 real errors** in 198 cards when someone finally read them. This outranks everything below.
+2. **Teacher verification.** All 752 cards ship `needs_teacher_verification: true`, and **0 of 250 replies pass that caveat on** to the student.
+3. **The depth layer: 1,168 memory tips + 358 insider notes = 1,526 strings across 17 units** (~3 sessions at the physics rate of 599). `remember` was the weakest template in EVERY round of both books because maths has 0 tips authored, so every tip is improvised and the wrong ones are wrong at formula level. A maths equivalent of `PHYSICS_BACKFILL_START_HERE.md` comes first.
+4. **An `outofbank` spec.** Both physics graders isolated the deficit there: the decline fires reliably, the follow-through is unconstrained — and that is where the single physics 0 got in.
+
+### Ops scars
+**The DeepSeek balance ran out mid-run and took LIVE student chat down with no alert** — every question returned the friendly-down message while the deterministic book kept working. There is no monitoring on this. `AB_DAILY_USD_CAP` is still **$2**; the runbook says $15 before launch. Also: killing an audit process does NOT kill its wrapper script — it marched on to Maths-1B against a dead account and wrote 1,080 "done" markers with zero content, which the resume logic would have honoured as a completed paper. Purge failed rows before resuming.
+
+---
+
 ## 📏 MEASURED SESSION — Answer Book: **VIDI PHYSICS AUDITED, THE BANK'S PHYSICS FIXED, DEPTH COMPLETED — 9.7 → 9.9 / 10** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `8054cf65` · `d01fdfa4` · `a028d953` · `aff17003`, function deployed twice)
 
 **Bottom line: Vidi was answering physics well and NO STUDENT COULD REACH HER — `answers.viditra.co` returned `403 origin not allowed` on every free-text question, because `answerbook-vidi-chat` was the only one of the four functions whose code default lacked the production domain (content/pay/sync all had it). Fixed, deployed, verified live from the real Origin. Then the thing nobody had ever done: the PHYSICS OF THE BANK ITSELF was read card by card and was wrong in 15 places. Measured before and after on the same harness — 2,040 live calls (204 physics contexts × 10 student asks) graded 0–3 by ten independent readers: precise replies 91.4% → 96.1%, weak/misleading 1.2% → 0.5%, harmful 0 → 0, grader mean 2.902 → 2.955 (9.7 → 9.9 / 10). Verified: build:answers green · tsc 0 · vitest 421/421 · vidi:contexts 658/658 under the 10,000-char slice (widest 87%). Total model spend for every audit run: ≈ ₹170.**
