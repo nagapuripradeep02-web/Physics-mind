@@ -1,5 +1,50 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📏 MEASURED SESSION — Answer Book: **CHEMISTRY AUDITED AND ITS BANK FIXED — 9.73 → 9.78, AND THE OUTOFBANK SPEC IS WRITTEN** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `122b5efd` · `4bbe2006` · `cb555ab8` · `c50ab998`)
+
+**Bottom line: chemistry is the third subject to be measured and the second to have its content read for truth. Baseline 9.73/10 (2.919/3, 204 contexts × 10 asks, ten independent graders); after 9.78 (2.935). Reported as flat — the +0.05 is inside grader noise. What is NOT flat is the thing the round was aimed at: `outofbank` moved 9.31 → 9.80, three times any other template, and the mechanical evidence is unambiguous.** Seven examiners read all 196 cards and found 11 errors, 36 ambiguities, 54 gaps; two fix agents then closed 30 more defects the graders found that the examiners structurally could not see. Verified: build:answers green · katex unmoved at 278 · tsc 0 · vitest 438/438 · smoke:answers 48/48 (47.3 m). Model spend ₹80 across both rounds.
+
+### The chemistry bank had never been checked for truth, and the arithmetic was the good news
+Git history confirmed it: the only post-authoring commit on any chemistry card had changed one word in one `insider_note`. Seven examiners (one per chapter) recomputed everything. **Chapters 4 and 5 — 76 numerical cards — came back with every boxed answer, half-reaction, molar mass and oxidation number correct. Zero wrong.** The ch.6 sign convention held on all 25 cards (only two write a work term at all, which is why: q is positive-in under both conventions).
+
+**All eleven errors were in the explanation layer** — the layer Vidi is grounded on and no gate reads. Four of them named the CORRECT move as the mistake: `cb_bond_order_he2` listed "bonding minus antibonding" (its own boxed formula); `ce_lechatelier_principle` called "the system opposes the change" an error (NCERT's own wording); `som_ke_4g_methane` named *subtracting* as the error where 273 − 73 = 200 is right; `cp_highest_ea_en` named chlorine where the trap is fluorine. Plus a margin note telling students to write four points on a five-point answer whose fifth point its own mistakes line says must not be dropped.
+
+### The outofbank spec — owed since August, now written and measured
+All 204 declines fired correctly in the baseline. What failed was everything after: replies that declined and then sketched the Nernst derivation, asserted which chapter holds it, asserted what an examiner checks, or invented an app capability ("tap Change my plan to add it to your list" — `changePlanWidget` only re-plans by question type). Both physics graders isolated this same deficit in August and the physics NEXT list called for a spec; it was never written.
+
+Placement was the load-bearing decision. Physics Trap 3: the same rule in the cached persona prefix was disobeyed on 71% of replies and obeyed at 13% from the per-request block. The hard constraint went in `situation`. Measured with identical checker code over both corpora:
+
+| | before | after |
+|---|---|---|
+| `outofbank` replies flagged | 30 | **10** |
+| mentions the out-of-bank topic at all | 183 | **60** |
+| asserts which chapter holds it | 3 | **0** |
+| asserts what an examiner checks | 2 | **0** |
+| claims "Change my plan" can add it | 7 | **0** |
+| `ANSWERED_OUT_OF_BANK` | 1 | **0** |
+| `LEAKED_INTERNAL` | 13 | **3** |
+
+### What the GRADERS see that the EXAMINERS cannot
+Examiners read raw JSON; graders read the **assembled grounding context**. Every defect below was invisible to the first pass and obvious to the second: `insider_note` contradicting its own `mark_split` (8 cards, and it caused a harmful reply), 4-mark insider text served to 2-mark students, `STARS: 0` shipping in two string forms the model read as two different rankings, a chapter roster truncated mid-word that replies quoted verbatim. **Run both, and run the audit second so its findings feed back.**
+
+**The cut limit you cannot author around:** `applyCut` overrides only `marks`/`label`/`lines`/`margin_note`/`why`/`memory_tip`/`mark_note`. **`common_mistakes` and `insider_note` are silently un-overridable**, so a card served at two lengths needs BASE text true at every length.
+
+### I introduced a defect and the second round caught it
+My round-1 STARS fix ended "read the Asked line below for exam history". Only **7 of 204** chemistry cards carry an Asked line, so on 197 the grounding text pointed at a field that is not there. Four graders in four slices reported it. Fixed: the Asked line is computed first and the gloss points at it only when it exists. **A fix that is not re-measured is a guess — and this one was wrong in a way only the re-measurement could show.**
+
+The same round found a pre-existing twin: the `VERIFICATION` line said "this mark split is the source book's" unconditionally, while an enumerated card's own STARS line says the book does not ask the question at all. On 58 of 204 cards it laundered an authored split as a sourced one — and it is the sentence that licenses every reply to say "the book gives 1 mark for…". Both now branch honestly (dangling pointers 197 → 0).
+
+### Where the remaining harm lives
+Harmful replies went 2 → 4 and `why` regressed 9.74 → 9.48. **Three of the four zeros are mark-value inventions on cards whose `MARK SPLIT` does not map one-to-one onto steps** — `as_plancks_quantum_theory` (EARNS THE MARK FOR names half its own 2M step), `cb_vsepr_theory` (one 4M bucket split across two 2M steps — the only such card in its slice, and the only one that produced a wrong split), `td_reaction_enthalpies` (five definitions in four marks). The fourth is a model chemistry falsehood (Cr³⁺ in dichromate). **That is the next target and it is an authoring fix, not a prompt fix.**
+
+### NEXT
+1. **One MARK SPLIT bucket per step.** Three of four harmful replies trace to cards that break it. Cheapest real quality win left in this bank.
+2. **Telugu truncation on long LAQs.** Three graders found replies cut mid-word (`cb_ionic_compound_properties`, `cp_periodic_properties_trends`, `som_deduce_laws_from_kge`), each losing whole mark-carrying properties. Physics raised Telugu `max_tokens` 300 → 500; chemistry's 8-mark LAQs need more. **A truncation detector fires exactly once per slice with zero false positives — the cheapest check nobody has written.**
+3. **`ts_ipe_c1_cp_periodic_properties_trends` is at 9,508 chars** of the server's 10,000 slice. One authoring pass from silently dropping its tail steps.
+4. **Maths (358 cards) has still never been truth-checked.** Physics found 15 errors, chemistry 11. Maths is the largest unread bank in the book.
+5. Still owed: the Telangana teacher gate. All 196 chemistry cards stay `unverified`, and the two-book union check and back-test remain structurally impossible for chemistry.
+
+---
 ## 📏 MEASURED SESSION — Answer Book: **MATHS-1B SHIPPED, MATHS AUDITED TWICE — 9.62/10, AND THE SCORE DID NOT MOVE** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `f0deee41` · `21ffb260`, site `417d266f`, function v7)
 
 **Bottom line: the deploy was the real win; the persona round was not.** Maths-1B (108 questions, 7 units) and the 24-Aug physics content fixes reached students — before this, `answers.viditra.co` served physics cards with the 15 known errors still in them. Then maths was measured for the first time ever: **9.67/10** (2.900, 3,580 replies, 15 graders). After a persona + checker round it re-measured **9.62** (2.885), and physics **9.85 → 9.71** on a 596-reply sample. **Reported as flat, not as a win.** All three physics graders independently judged their slice UNCHANGED. Verified: build:answers green · tsc 0 · vitest 432/432 · smoke:answers 48/48 (43.4 min — the fleet grew 644 → 752, sweeps run longer, budget NOT trimmed). Model spend ₹168 across both rounds.
