@@ -1,0 +1,531 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_laq_root_systems_modifications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Define root. Mention the types of root systems. Explain how the root is modified to perform different functions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of root",
+      "marks": 1
+    },
+    {
+      "label": "Types of root systems",
+      "marks": 1
+    },
+    {
+      "label": "Root modifications",
+      "marks": 5
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERRORS RECORDED: the book prints 'radical' for radicle and lists only storage/prop/stilt/assimilatory/nodular in its LAQ answer while its own figure set adds Avicennia pneumatophores, Vanda velamen and Striga; this card includes respiratory and velamen roots per NCERT."
+  },
+  "insider_note": "Most students write the five modifications but lose the definition mark - start with the radicle line before any list.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Morphology of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Root — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "The root is the underground part of the plant",
+            "style": "boxed"
+          },
+          "axis. It develops from the radicle of the",
+          "germinating seed.",
+          "It fixes the plant in the soil and absorbs",
+          "water and minerals."
+        ],
+        "why": "The examiner looks for two things in the definition: where the root comes from (the radicle) and what it normally does (fixation and absorption). The book prints 'radical' - the correct word is radicle.",
+        "common_mistakes": [
+          "Writing that the root comes from the plumule. The plumule gives the shoot.",
+          "Calling every underground part a root. A rhizome and a corm are underground STEMS."
+        ],
+        "memory_tip": "Radicle gives Root; Plumule gives the shoot. R goes with R.",
+        "margin_note": "Two lines are enough: origin from the radicle, plus fixation and absorption."
+      },
+      {
+        "id": "s2_root_systems",
+        "kind": "text",
+        "label": "Two root systems",
+        "marks": 1,
+        "mark_note": "Both systems",
+        "lines": [
+          {
+            "text": "Root systems:",
+            "style": "heading"
+          },
+          "Tap root system: in dicots the radicle grows",
+          "into the primary root; the primary root and",
+          "its branches form the tap root system.",
+          "Ex: mustard.",
+          "Fibrous root system: in monocots the radicle",
+          "is short-lived; a cluster of roots from the",
+          "base of the stem forms the fibrous root",
+          "system. Ex: paddy."
+        ],
+        "why": "The two systems differ in one fact: whether the radicle survives. In dicots it grows into the tap root; in monocots it dies and roots from the stem base take over.",
+        "common_mistakes": [
+          "Swapping the examples: tap root belongs to dicots, fibrous to monocots.",
+          "Forgetting to say the fibrous roots come from the BASE of the stem."
+        ],
+        "memory_tip": "Dicot - Deep tap root. Monocot - Many fibrous roots.",
+        "margin_note": "Name both systems, one plant group and one example each."
+      },
+      {
+        "id": "s3_support_mods",
+        "kind": "text",
+        "label": "Modifications for support",
+        "marks": 2,
+        "mark_note": "Prop + stilt",
+        "lines": [
+          {
+            "text": "Root modifications:",
+            "style": "heading"
+          },
+          "1. Prop roots: aerial adventitious roots grow",
+          "down from horizontal branches, reach the soil",
+          "and support the tree like pillars.",
+          "Ex: banyan tree.",
+          "2. Stilt roots: oblique supporting roots that",
+          "develop from the lower nodes of the stem.",
+          "Ex: maize, sugarcane."
+        ],
+        "why": "Both are supporting roots; the difference the examiner marks is the origin - prop roots come DOWN from branches, stilt roots come OUT from the lower nodes of the stem.",
+        "common_mistakes": [
+          "Writing banyan for stilt roots and maize for prop roots. It is the reverse.",
+          "Calling prop roots tap roots. They are adventitious - they do not come from the radicle."
+        ],
+        "memory_tip": "Prop roots drop from a branch (banyan); stilt roots tilt out from the stem base (maize).",
+        "margin_note": "One line of function plus one example carries each modification."
+      },
+      {
+        "id": "s4_storage_respiration",
+        "kind": "text",
+        "label": "Storage and respiratory roots",
+        "marks": 2,
+        "mark_note": "Storage + respiratory",
+        "lines": [
+          "3. Storage roots: roots become swollen and",
+          "tuberous with stored food.",
+          "Swollen tap roots: carrot, radish, turnip.",
+          "Swollen adventitious roots (fasciculated):",
+          "Asparagus.",
+          "4. Respiratory roots (pneumatophores): in",
+          "mangrove plants the roots grow vertically up,",
+          "out of the marshy soil, and take in air.",
+          "Ex: Avicennia, Rhizophora."
+        ],
+        "why": "Storage roots change shape (swollen); respiratory roots change direction (they grow up, against gravity, because marshy soil has no air). Naming the habitat - mangroves in marshy soil - is what justifies the upward growth.",
+        "common_mistakes": [
+          "Writing that pneumatophores absorb water. They exchange air; the soil water is all around them.",
+          "Listing potato under storage roots. Potato is a stem tuber, not a root."
+        ],
+        "memory_tip": "Carrot, radish, turnip - three swollen tap roots sold in one vegetable shop. Pneumatophores: pneumo = air, as in pneumonia.",
+        "margin_note": "Give both tap and adventitious storage examples; the examiner looks for pneumatophores by name."
+      },
+      {
+        "id": "s5_other_mods",
+        "kind": "text",
+        "label": "Other modifications",
+        "marks": 1,
+        "mark_note": "Any two more",
+        "lines": [
+          "5. Assimilatory roots: green chlorenchymatous",
+          "roots that make starch by photosynthesis.",
+          "Ex: Taeniophyllum (an epiphyte).",
+          "6. Nodular roots: in Fabaceae the roots carry",
+          "nodules with the bacterium Rhizobium, which",
+          "fixes nitrogen. Ex: groundnut, beans.",
+          "7. Velamen roots: epiphytes such as Vanda",
+          "absorb moisture from the air through the",
+          "spongy velamen tissue."
+        ],
+        "why": "These three show that a root can take over feeding jobs: making food (assimilatory), taking nitrogen (nodular, with Rhizobium) and taking moisture from air (velamen). Naming Rhizobium is the scoring word in nodular roots.",
+        "common_mistakes": [
+          "Writing that Rhizobium harms the plant. It is symbiotic - both partners are helped.",
+          "Confusing velamen roots (epiphytes, absorb moisture) with clinging roots (fix the epiphyte to the host)."
+        ],
+        "memory_tip": "Feeding jobs in order: food (Taeniophyllum), nitrogen (Rhizobium), moisture (Vanda).",
+        "margin_note": "In a time squeeze, any two of these with examples still complete the list."
+      },
+      {
+        "id": "s6_figure",
+        "kind": "diagram",
+        "label": "Diagram — root modifications",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "root_modifications",
+          "width": 500,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "car_tuft_1",
+              "d": "M 115 36 L 112 20",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "car_tuft_2",
+              "d": "M 110 37 L 100 24",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "car_tuft_3",
+              "d": "M 120 37 L 130 24",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "car_body",
+              "d": "M 95 42 C 93 60 100 90 113 112 C 126 90 135 60 133 42 C 127 36 103 36 95 42",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "car_hair_1",
+              "d": "M 99 65 L 92 68",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "car_hair_2",
+              "d": "M 128 70 L 135 74",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "car_hair_3",
+              "d": "M 104 88 L 98 92",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "car_hair_4",
+              "d": "M 124 92 L 130 96",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "ban_ground",
+              "d": "M 285 110 L 445 110",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "ban_trunk_l",
+              "d": "M 355 48 L 353 110",
+              "ms": 260,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "ban_trunk_r",
+              "d": "M 375 48 L 377 110",
+              "ms": 260,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "ban_canopy",
+              "d": "M 300 55 C 318 16 422 16 440 55",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ban_branch_l",
+              "d": "M 355 52 L 305 57",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ban_branch_r",
+              "d": "M 375 52 L 435 57",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ban_prop_1",
+              "d": "M 318 56 L 318 110",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ban_prop_2",
+              "d": "M 332 55 L 331 110",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ban_prop_3",
+              "d": "M 406 56 L 405 110",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ban_prop_4",
+              "d": "M 421 57 L 422 110",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_ground",
+              "d": "M 55 245 L 175 245",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stem_l",
+              "d": "M 110 168 L 109 245",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stem_r",
+              "d": "M 120 168 L 121 245",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "mz_leaf_l",
+              "d": "M 110 175 C 95 166 86 156 81 144",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "mz_leaf_r",
+              "d": "M 120 175 C 135 166 144 156 149 144",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "mz_node_1",
+              "d": "M 109 202 L 121 202",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "mz_node_2",
+              "d": "M 109 216 L 121 216",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "mz_node_3",
+              "d": "M 109 229 L 121 229",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_1",
+              "d": "M 110 203 L 79 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_2",
+              "d": "M 110 217 L 88 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_3",
+              "d": "M 110 230 L 97 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_4",
+              "d": "M 120 203 L 151 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_5",
+              "d": "M 120 217 L 142 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "mz_stilt_6",
+              "d": "M 120 230 L 133 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "av_ground",
+              "d": "M 290 225 L 452 225",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "av_trunk_l",
+              "d": "M 310 175 L 308 245",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "av_trunk_r",
+              "d": "M 322 175 L 324 245",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "av_canopy",
+              "d": "M 294 180 C 305 156 328 156 338 180",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "av_uroot",
+              "d": "M 316 245 C 350 249 410 247 442 245",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_1a",
+              "d": "M 343 246 L 348 206",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_1b",
+              "d": "M 353 246 L 348 206",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_2a",
+              "d": "M 363 246 L 368 212",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_2b",
+              "d": "M 373 246 L 368 212",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_3a",
+              "d": "M 383 246 L 388 205",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_3b",
+              "d": "M 393 246 L 388 205",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_4a",
+              "d": "M 403 246 L 408 211",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_4b",
+              "d": "M 413 246 L 408 211",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_5a",
+              "d": "M 423 246 L 428 207",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "av_peg_5b",
+              "d": "M 433 246 L 428 207",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_soil",
+              "x": 458,
+              "y": 218,
+              "text": "soil",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_storage",
+              "x": 40,
+              "y": 142,
+              "text": "Storage root",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_prop",
+              "x": 303,
+              "y": 142,
+              "text": "Prop roots",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_stilt",
+              "x": 47,
+              "y": 274,
+              "text": "Stilt roots",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_pneu",
+              "x": 278,
+              "y": 274,
+              "text": "Pneumatophores",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "why": "One labelled panel per modification is what the examiner can tick: a swollen storage root, prop roots hanging from branches, stilt roots from the lower nodes, and pneumatophores standing above the soil line.",
+        "common_mistakes": [
+          "Drawing pneumatophores below the soil line. Their point is that they come UP out of the soil.",
+          "Leaving the panels unlabelled. An unlabelled sketch earns nothing."
+        ],
+        "memory_tip": "Draw the soil line first in each panel; every root modification is placed relative to it.",
+        "margin_note": "Four small labelled sketches, not one detailed drawing. Two minutes at most."
+      }
+    ]
+  }
+}

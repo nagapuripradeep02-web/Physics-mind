@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_active_vs_passive_transport",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between active and passive transport.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definitions",
+      "marks": 1
+    },
+    {
+      "label": "Energy",
+      "marks": 1
+    },
+    {
+      "label": "Direction",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "Definitions",
+        "marks": 1,
+        "mark_note": "Definitions",
+        "lines": [
+          "Active transport: the movement of molecules or",
+          "ions across the membrane through carrier",
+          "proteins, using metabolic energy.",
+          "Passive transport: the movement of molecules",
+          "across the membrane without using metabolic",
+          "energy."
+        ],
+        "why": "The single word that separates the two definitions is energy. Write both definitions so that word is the only difference between them.",
+        "common_mistakes": [
+          "Leaving 'carrier protein' out of the active transport definition.",
+          "Writing that passive transport crosses no membrane. It still crosses one."
+        ],
+        "memory_tip": "Active spends energy, passive spends none. Everything else follows from that.",
+        "margin_note": "Two definitions, side by side, in two columns."
+      },
+      {
+        "id": "s2_energy",
+        "kind": "text",
+        "label": "Energy",
+        "marks": 1,
+        "mark_note": "ATP",
+        "lines": [
+          "Active transport uses ATP.",
+          "Passive transport does not use ATP; the energy",
+          "comes from the concentration gradient itself."
+        ],
+        "why": "ATP is the cell's usable energy, so 'uses metabolic energy' and 'uses ATP' are the same statement written two ways — and both are marked.",
+        "common_mistakes": [
+          "Writing that passive transport uses a small amount of ATP. It uses none.",
+          "Writing 'energy' without naming ATP."
+        ],
+        "memory_tip": "ATP yes, ATP no. That is row two of the table.",
+        "margin_note": "One short line for each side is enough here."
+      },
+      {
+        "id": "s3_direction",
+        "kind": "text",
+        "label": "Direction",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          "Active transport carries the substance from a",
+          "lower concentration to a higher one, that is",
+          "against the concentration gradient.",
+          "Passive transport carries it from a higher",
+          "concentration to a lower one, that is along",
+          "the concentration gradient."
+        ],
+        "why": "Moving a substance against its gradient is the work that costs the ATP, so the direction row is the reason for the energy row.",
+        "common_mistakes": [
+          "Swapping the directions. Active goes from low to high.",
+          "Writing 'against the gradient' for both."
+        ],
+        "memory_tip": "Against the gradient costs energy; along the gradient costs nothing.",
+        "margin_note": "State both directions explicitly; do not write only 'opposite'."
+      },
+      {
+        "id": "s4_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Active → Na⁺/K⁺ pump · Passive → diffusion",
+            "style": "boxed"
+          },
+          "Example of active transport: the sodium-",
+          "potassium pump.",
+          "Examples of passive transport: diffusion and",
+          "osmosis.",
+          "Facilitated diffusion uses a carrier protein",
+          "but no ATP, so it is still passive."
+        ],
+        "why": "Facilitated diffusion is the case students misplace: it uses a carrier protein like active transport but spends no ATP, so it belongs with passive transport.",
+        "common_mistakes": [
+          "Calling facilitated diffusion active because it uses a carrier. The test is ATP, not the carrier.",
+          "Giving no named example on either side."
+        ],
+        "memory_tip": "The test is ATP, not the carrier protein.",
+        "margin_note": "One named example on each side finishes the table."
+      }
+    ]
+  },
+  "insider_note": "Answer this as a four-row table. The row students forget is direction — low to high for active, high to low for passive."
+}

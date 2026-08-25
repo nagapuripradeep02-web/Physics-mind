@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_osmosis_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is osmosis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Kind of movement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Osmosis is the movement of water molecules",
+          "from a region where their concentration is",
+          "higher to a region where it is lower, across",
+          "a semipermeable membrane."
+        ],
+        "why": "Three parts must be present for the definition to be complete: water, a difference in concentration, and a semipermeable membrane.",
+        "common_mistakes": [
+          "Writing that the solute moves. In osmosis only the water moves.",
+          "Leaving out the semipermeable membrane. Without it the movement is plain diffusion."
+        ],
+        "memory_tip": "Osmosis is diffusion with a membrane in the way, and only water gets through.",
+        "margin_note": "All three parts — water, gradient, membrane — in one sentence."
+      },
+      {
+        "id": "s2_passive",
+        "kind": "boxed_final",
+        "label": "Kind of movement",
+        "marks": 1,
+        "mark_note": "Passive",
+        "lines": [
+          {
+            "text": "Osmosis = diffusion of water across an SPM",
+            "style": "boxed"
+          },
+          "It is a special case of diffusion: only the",
+          "solvent moves, and it moves down its own",
+          "concentration gradient.",
+          "No metabolic energy is spent, so osmosis is",
+          "a form of passive transport."
+        ],
+        "why": "Naming osmosis as passive transport links it to the transport question in the same chapter and shows why no ATP appears anywhere in the answer.",
+        "common_mistakes": [
+          "Writing that osmosis needs ATP. It is passive.",
+          "Calling osmosis active transport because a membrane is involved."
+        ],
+        "memory_tip": "Water moves down its own gradient, so no ATP is used.",
+        "margin_note": "Adding 'passive, no ATP' completes a 2-mark answer."
+      }
+    ]
+  },
+  "insider_note": "Osmosis appears again in the active-versus-passive transport question, where it is the standard example of passive transport."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_natural_system_scientists",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the natural system of plant classification? Name the scientists who followed it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the system is",
+      "marks": 1
+    },
+    {
+      "label": "The scientists",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book spells the first name \"Bantham\" in the Section B answer. The correct spelling is Bentham."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_system",
+        "kind": "text",
+        "label": "What the system is",
+        "marks": 1,
+        "lines": [
+          "In the natural system, all the important",
+          "characters of a plant are taken together, mostly",
+          "morphological ones.",
+          "Plants are then grouped by their overall likeness,",
+          "not by one or two chosen characters as in an",
+          "artificial system."
+        ],
+        "why": "The mark is for the contrast with the artificial system: many characters together instead of one selected character.",
+        "common_mistakes": [
+          "Saying it uses evolutionary relationship. That is the phylogenetic system.",
+          "Saying it uses only one character. That is the artificial system."
+        ],
+        "memory_tip": "Artificial = one character. Natural = many characters. Phylogenetic = descent.",
+        "margin_note": "Two lines. Say \"all important characters, mostly morphological\".",
+        "mark_note": "The system"
+      },
+      {
+        "id": "s2_scientists",
+        "kind": "boxed_final",
+        "label": "The scientists",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "George Bentham and Joseph Dalton Hooker",
+            "style": "boxed"
+          },
+          "They set it out in their book Genera Plantarum.",
+          "It is the best known natural system, and",
+          "herbaria still arrange their specimens by it."
+        ],
+        "why": "The question asks for names, so the two names and their book are the whole second mark.",
+        "common_mistakes": [
+          "Spelling it Bantham. The book prints that misspelling; the correct name is Bentham.",
+          "Naming Linnaeus. His sexual system is the artificial system."
+        ],
+        "memory_tip": "Bentham and Hooker wrote Genera Plantarum: two men, one book, the natural system.",
+        "margin_note": "Write both full names. Adding the book name is safe and costs one line.",
+        "mark_note": "Names"
+      }
+    ]
+  },
+  "insider_note": "Examiners accept \"Bentham and Hooker\" alone, but the book name Genera Plantarum makes the answer look certain."
+}

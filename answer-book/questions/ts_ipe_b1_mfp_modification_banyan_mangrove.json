@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_modification_banyan_mangrove",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define modification. Mention how the root is modified in the banyan tree and in mangrove plants.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Banyan and mangrove roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "A frequent half-answer names only the banyan - the mangrove half carries equal weight.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Modification — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A permanent morphological change in a plant",
+          "organ, so that it can perform a special",
+          "function, is called modification."
+        ],
+        "why": "Two words carry the definition: PERMANENT (not a seasonal change) and SPECIAL FUNCTION (a job different from the organ's normal one).",
+        "common_mistakes": [
+          "Leaving out 'permanent' - a temporary change such as wilting is not a modification."
+        ],
+        "memory_tip": "Permanent change + special function = modification.",
+        "margin_note": "One clean sentence; both key words must appear."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Banyan and mangrove",
+        "marks": 1,
+        "mark_note": "Both plants",
+        "lines": [
+          {
+            "text": "Banyan: prop roots. Mangroves: respiratory",
+            "style": "boxed"
+          },
+          "roots (pneumatophores).",
+          "Prop roots support the heavy branches;",
+          "pneumatophores grow up out of the marshy",
+          "soil to take in air."
+        ],
+        "why": "The question names two plants, so the answer must name two modifications - prop roots for support in banyan, pneumatophores for air in mangroves.",
+        "common_mistakes": [
+          "Writing stilt roots for banyan. Stilt roots belong to maize and sugarcane.",
+          "Writing that pneumatophores absorb water. They exchange air."
+        ],
+        "memory_tip": "Banyan props up its branches; mangroves put up breathing pegs.",
+        "margin_note": "Name both modifications; the one-line functions make the answer complete."
+      }
+    ]
+  }
+}

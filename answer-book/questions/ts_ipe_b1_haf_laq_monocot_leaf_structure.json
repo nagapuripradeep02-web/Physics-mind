@@ -1,0 +1,626 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_laq_monocot_leaf_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the internal structure of a monocot leaf (isobilateral leaf).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Epidermis and stomata",
+      "marks": 2
+    },
+    {
+      "label": "Bulliform cells",
+      "marks": 1
+    },
+    {
+      "label": "Mesophyll",
+      "marks": 2
+    },
+    {
+      "label": "Vascular system",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERROR RECORDED: the printed answer states that the mesophyll 'contains either palisade or spongy parenchyma but not both'. That is wrong. In an isobilateral leaf the mesophyll is not differentiated into either kind; all the cells are alike. The card writes the correct version. The book also prints 'isobilatera' for isobilateral, 'similr' for similar and 'callateral' for collateral."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Histology and Anatomy of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_epidermis",
+        "kind": "text",
+        "label": "Epidermis and stomata",
+        "marks": 2,
+        "mark_note": "Both layers and the stomata",
+        "margin_note": "Two marks. Say equally distributed and dumb-bell shaped in so many words.",
+        "lines": [
+          "A vertical section of a monocot leaf shows",
+          "three parts:",
+          "1. Epidermis   2. Mesophyll   3. Vascular system",
+          {
+            "text": "1. Epidermis",
+            "style": "heading"
+          },
+          "The epidermis is differentiated into the",
+          "adaxial epidermis on the upper surface and the",
+          "abaxial epidermis on the lower surface.",
+          "Both are covered with a cuticle, which reduces",
+          "transpiration.",
+          "Stomata are equally distributed on both the",
+          "surfaces.",
+          "Each stoma is bounded by two dumb-bell shaped",
+          "guard cells."
+        ],
+        "why": "A grass leaf stands almost upright, so both faces receive about the same light and neither face is more shaded than the other; there is then no reason to put more stomata on one side, and equal distribution is what gives the leaf its name.",
+        "common_mistakes": [
+          "Writing that the stomata are mostly on the lower surface. That is the dicot leaf.",
+          "Giving bean shaped guard cells. In a monocot they are dumb-bell shaped."
+        ],
+        "memory_tip": "Iso means equal: equal on both surfaces, stomata included."
+      },
+      {
+        "id": "s2_bulliform",
+        "kind": "text",
+        "label": "Bulliform cells",
+        "marks": 1,
+        "mark_note": "Bulliform cells",
+        "margin_note": "One mark, four short lines. Give both names and both directions of the movement.",
+        "lines": [
+          {
+            "text": "Bulliform cells",
+            "style": "heading"
+          },
+          "In grasses, large, empty, colourless cells are",
+          "present in the adaxial epidermis along the",
+          "veins. These are called bulliform cells or",
+          "motor cells.",
+          "When they lose water they shrink, and the leaf",
+          "rolls inward.",
+          "When they take up water they swell, and the",
+          "leaf unrolls.",
+          "Rolling reduces the surface exposed to the",
+          "air, so less water is lost."
+        ],
+        "why": "These cells are thin walled and hold a lot of water, so they change size more than the cells around them; that uneven shrinking is what bends the leaf, which is why they are also called motor cells.",
+        "common_mistakes": [
+          "Placing the bulliform cells in the lower epidermis. They lie in the upper epidermis.",
+          "Saying they help in photosynthesis. They are colourless and have no chloroplasts.",
+          "Leaving out the second name. Motor cells is also marked."
+        ],
+        "memory_tip": "Empty cells in the upper epidermis: they lose water and the leaf rolls, they take up water and it opens."
+      },
+      {
+        "id": "s3_mesophyll",
+        "kind": "text",
+        "label": "Mesophyll",
+        "marks": 2,
+        "mark_note": "Undifferentiated mesophyll",
+        "margin_note": "Two marks and the heart of the answer. Say not differentiated in those words.",
+        "lines": [
+          {
+            "text": "2. Mesophyll",
+            "style": "heading"
+          },
+          "The tissue lying between the upper and the",
+          "lower epidermis is the mesophyll.",
+          "It is not differentiated into palisade",
+          "parenchyma and spongy parenchyma. All its",
+          "cells are of one kind, more or less rounded,",
+          "with intercellular spaces between them.",
+          "Because the mesophyll is undifferentiated, the",
+          "leaf is called isobilateral.",
+          "Every mesophyll cell contains chloroplasts and",
+          "takes part in photosynthesis."
+        ],
+        "why": "With the same light falling on both faces there is no upper half and no lower half to specialise, so one kind of cell serves the whole thickness of the leaf. This is the difference the whole answer is built on.",
+        "common_mistakes": [
+          "Writing that the mesophyll has spongy parenchyma only. It has neither kind; the cells are all alike.",
+          "Copying the dicot leaf answer here. The mesophyll is the point of difference."
+        ],
+        "memory_tip": "One kind of cell from top to bottom: that is what undifferentiated means."
+      },
+      {
+        "id": "s4_vascular",
+        "kind": "boxed_final",
+        "label": "Vascular system",
+        "marks": 1,
+        "mark_note": "Bundles described",
+        "margin_note": "Close with the one-line summary. It answers the word isobilateral in the question.",
+        "lines": [
+          {
+            "text": "3. Vascular system",
+            "style": "heading"
+          },
+          "The vascular bundles are of similar size,",
+          "except in the main veins, where they are",
+          "larger.",
+          "Each bundle is conjoint, collateral and",
+          "closed, and is surrounded by a bundle sheath.",
+          "The xylem lies towards the adaxial surface and",
+          "the phloem towards the abaxial surface.",
+          {
+            "text": "Isobilateral: mesophyll not differentiated",
+            "style": "boxed"
+          }
+        ],
+        "why": "The veins of a grass leaf run parallel and are nearly equal, so the bundles cut across in a section are nearly equal too. In a dicot leaf the veins branch, so the bundles vary widely in size.",
+        "common_mistakes": [
+          "Writing open for a leaf bundle. It is closed.",
+          "Saying the bundles are all exactly equal. They are of similar size except in the main veins."
+        ],
+        "memory_tip": "Parallel veins of one size give bundles of one size."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "margin_note": "Label cuticle, adaxial epidermis, bulliform cells, mesophyll, bundle sheath, xylem, phloem, stomata, sub-stomatal cavity and abaxial epidermis.",
+        "figure": {
+          "id": "vs_monocot_leaf",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cuticle",
+              "d": "M 24 66 Q 35.5 63 47.0 66 Q 58.5 69 70.0 66 Q 81.5 63 93.0 66 Q 104.5 69 116.0 66 Q 127.5 63 139.0 66 Q 150.5 69 162.0 66 Q 173.5 63 185.0 66 Q 196.5 69 208.0 66 Q 219.5 63 231.0 66 Q 242.5 69 254.0 66 Q 265.5 63 277.0 66 Q 288.5 69 300.0 66",
+              "ms": 620,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "upper_epi_a",
+              "d": "M 24 70 L 56 70 L 56 98 L 24 98 Z M 40.0 70 L 40.0 98",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "upper_epi_b",
+              "d": "M 90 70 L 150 70 L 150 98 L 90 98 Z M 110.0 70 L 110.0 98 M 130.0 70 L 130.0 98",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "upper_epi_c",
+              "d": "M 206 70 L 236 70 L 236 98 L 206 98 Z",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "upper_epi_d",
+              "d": "M 270 70 L 300 70 L 300 98 L 270 98 Z",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "bulliform",
+              "d": "M 150 98 L 150 78 C 152 62 168 56 178 56 C 190 56 204 62 206 78 L 206 98 Z",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "bulliform_walls",
+              "d": "M 169 98 L 169 59 M 188 98 L 188 57",
+              "ms": 380,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "stoma_up_a",
+              "d": "M 58 70 C 54 84.0 58 98 69 98 C 65 88.0 65 80.0 58 70 Z M 88 70 C 92 84.0 88 98 77 98 C 81 88.0 81 80.0 88 70 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "stoma_up_b",
+              "d": "M 238 70 C 234 84.0 238 98 249 98 C 245 88.0 245 80.0 238 70 Z M 268 70 C 272 84.0 268 98 257 98 C 261 88.0 261 80.0 268 70 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_left",
+              "d": "M 24 98 L 24 240",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "side_right",
+              "d": "M 300 98 L 300 240",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "mesophyll",
+              "d": "M 25 116 A 11 11 0 1 0 47 116 A 11 11 0 1 0 25 116 M 54 116 A 11 11 0 1 0 76 116 A 11 11 0 1 0 54 116 M 141 116 A 11 11 0 1 0 163 116 A 11 11 0 1 0 141 116 M 170 116 A 11 11 0 1 0 192 116 A 11 11 0 1 0 170 116 M 257 116 A 11 11 0 1 0 279 116 A 11 11 0 1 0 257 116 M 39 146 A 11 11 0 1 0 61 146 A 11 11 0 1 0 39 146 M 126 146 A 11 11 0 1 0 148 146 A 11 11 0 1 0 126 146 M 155 146 A 11 11 0 1 0 177 146 A 11 11 0 1 0 155 146 M 184 146 A 11 11 0 1 0 206 146 A 11 11 0 1 0 184 146 M 213 146 A 11 11 0 1 0 235 146 A 11 11 0 1 0 213 146 M 271 146 A 11 11 0 1 0 293 146 A 11 11 0 1 0 271 146 M 25 176 A 11 11 0 1 0 47 176 A 11 11 0 1 0 25 176 M 54 176 A 11 11 0 1 0 76 176 A 11 11 0 1 0 54 176 M 141 176 A 11 11 0 1 0 163 176 A 11 11 0 1 0 141 176 M 170 176 A 11 11 0 1 0 192 176 A 11 11 0 1 0 170 176 M 257 176 A 11 11 0 1 0 279 176 A 11 11 0 1 0 257 176 M 39 206 A 11 11 0 1 0 61 206 A 11 11 0 1 0 39 206 M 126 206 A 11 11 0 1 0 148 206 A 11 11 0 1 0 126 206 M 155 206 A 11 11 0 1 0 177 206 A 11 11 0 1 0 155 206 M 271 206 A 11 11 0 1 0 293 206 A 11 11 0 1 0 271 206 M 25 228 A 11 11 0 1 0 47 228 A 11 11 0 1 0 25 228 M 54 228 A 11 11 0 1 0 76 228 A 11 11 0 1 0 54 228 M 141 228 A 11 11 0 1 0 163 228 A 11 11 0 1 0 141 228 M 170 228 A 11 11 0 1 0 192 228 A 11 11 0 1 0 170 228 M 257 228 A 11 11 0 1 0 279 228 A 11 11 0 1 0 257 228",
+              "ms": 1000,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bundle_sheath_a",
+              "d": "M 68.0 177.0 A 32 27 0 1 0 132.0 177.0 A 32 27 0 1 0 68.0 177.0",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "xylem_a",
+              "d": "M 84 168 A 5 5 0 1 0 94 168 A 5 5 0 1 0 84 168 M 106 168 A 5 5 0 1 0 116 168 A 5 5 0 1 0 106 168",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "phloem_a",
+              "d": "M 88 190 A 4 4 0 1 0 96 190 A 4 4 0 1 0 88 190 M 99 192 A 4 4 0 1 0 107 192 A 4 4 0 1 0 99 192 M 110 189 A 4 4 0 1 0 118 189 A 4 4 0 1 0 110 189",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ext_a",
+              "d": "M 83 98 L 83 152 M 117 98 L 117 152 M 83 202 L 83 240 M 117 202 L 117 240",
+              "ms": 460,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "bundle_sheath_b",
+              "d": "M 194.0 177.0 A 32 27 0 1 0 258.0 177.0 A 32 27 0 1 0 194.0 177.0",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "xylem_b",
+              "d": "M 210 168 A 5 5 0 1 0 220 168 A 5 5 0 1 0 210 168 M 232 168 A 5 5 0 1 0 242 168 A 5 5 0 1 0 232 168",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "phloem_b",
+              "d": "M 214 190 A 4 4 0 1 0 222 190 A 4 4 0 1 0 214 190 M 225 192 A 4 4 0 1 0 233 192 A 4 4 0 1 0 225 192 M 236 189 A 4 4 0 1 0 244 189 A 4 4 0 1 0 236 189",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ext_b",
+              "d": "M 209 98 L 209 152 M 243 98 L 243 152 M 209 202 L 209 240 M 243 202 L 243 240",
+              "ms": 460,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lower_epi_a",
+              "d": "M 24 240 L 60 240 L 60 268 L 24 268 Z M 42.0 240 L 42.0 268",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "lower_epi_b",
+              "d": "M 94 240 L 226 240 L 226 268 L 94 268 Z M 120.4 240 L 120.4 268 M 146.8 240 L 146.8 268 M 173.2 240 L 173.2 268 M 199.6 240 L 199.6 268",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "lower_epi_c",
+              "d": "M 262 240 L 300 240 L 300 268 L 262 268 Z M 281.0 240 L 281.0 268",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "stoma_dn_a",
+              "d": "M 62 240 C 58 254.0 62 268 73 268 C 69 258.0 69 250.0 62 240 Z M 92 240 C 96 254.0 92 268 81 268 C 85 258.0 85 250.0 92 240 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "stoma_dn_b",
+              "d": "M 229 240 C 225 254.0 229 268 240 268 C 236 258.0 236 250.0 229 240 Z M 259 240 C 263 254.0 259 268 248 268 C 252 258.0 252 250.0 259 240 Z",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "substomatal",
+              "d": "M 223 240 C 225 222 263 222 265 240",
+              "ms": 420,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_ext",
+              "x": 24,
+              "y": 44,
+              "text": "Bundle sheath extension",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ext",
+              "d": "M 198 40 L 150 70 L 118 106",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ext_ah",
+              "d": "M 121.0 97.5 L 118 106 L 126.1 102.0",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_cut",
+              "x": 312,
+              "y": 36,
+              "text": "Cuticle",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cut",
+              "d": "M 308 30 L 292 48 L 272 64",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cut_ah",
+              "d": "M 276.4 56.2 L 272 64 L 280.6 61.4",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_ade",
+              "x": 312,
+              "y": 80,
+              "text": "Adaxial epidermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ade",
+              "d": "M 308 74 L 296 78 L 284 84",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ade_ah",
+              "d": "M 290.0 77.3 L 284 84 L 293.0 83.3",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_bul",
+              "x": 312,
+              "y": 124,
+              "text": "Bulliform cells",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bul",
+              "d": "M 308 118 L 250 96 L 198 74",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bul_ah",
+              "d": "M 207.0 74.1 L 198 74 L 204.4 80.4",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_meso",
+              "x": 312,
+              "y": 168,
+              "text": "Mesophyll",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_meso",
+              "d": "M 308 162 L 296 158 L 285 150",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_meso_ah",
+              "d": "M 293.7 152.2 L 285 150 L 289.8 157.6",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_bs",
+              "x": 312,
+              "y": 212,
+              "text": "Bundle sheath",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bs",
+              "d": "M 308 206 L 280 200 L 257 189",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bs_ah",
+              "d": "M 266.0 189.6 L 257 189 L 263.1 195.6",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_abe",
+              "x": 312,
+              "y": 256,
+              "text": "Abaxial epidermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_abe",
+              "d": "M 308 250 L 300 254 L 292 258",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_abe_ah",
+              "d": "M 298.0 251.3 L 292 258 L 301.0 257.3",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_sub",
+              "x": 312,
+              "y": 300,
+              "text": "Sub-stomatal cavity",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sub",
+              "d": "M 308 294 L 280 266 L 256 234",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sub_ah",
+              "d": "M 263.7 238.7 L 256 234 L 258.3 242.7",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_sto",
+              "x": 30,
+              "y": 300,
+              "text": "Stomata",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sto",
+              "d": "M 60 290 L 70 278 L 76 266",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sto_ah",
+              "d": "M 75.3 275.0 L 76 266 L 69.3 272.0",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sto2",
+              "d": "M 52 288 L 12 250 L 12 110 L 64 94",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sto2_ah",
+              "d": "M 57.0 99.7 L 64 94 L 55.0 93.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_phl",
+              "x": 120,
+              "y": 300,
+              "text": "Phloem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl",
+              "d": "M 150 290 L 146 250 L 110 194",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl_ah",
+              "d": "M 117.3 199.2 L 110 194 L 111.7 202.8",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_xyl",
+              "x": 210,
+              "y": 300,
+              "text": "Xylem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_xyl",
+              "d": "M 232 290 L 250 236 L 240 172",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_xyl_ah",
+              "d": "M 244.6 179.7 L 240 172 L 238.0 180.8",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "Two of the eight marks are for the drawing, and it must show three things a dicot leaf drawing cannot: uniform mesophyll, stomata on both surfaces and bulliform cells on top.",
+        "common_mistakes": [
+          "Drawing a palisade layer. That makes it a dorsiventral leaf.",
+          "Putting stomata on one surface only.",
+          "Leaving out the bulliform cells."
+        ],
+        "memory_tip": "Same cells all through, stomata top and bottom, and a group of big empty cells on top."
+      }
+    ]
+  },
+  "insider_note": "This answer is marked beside the dicot leaf answer, so lead with the three differences: equal stomata, bulliform cells, undifferentiated mesophyll."
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_self_pollination_prevention",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List three strategies that a bisexual chasmogamous flower can evolve to prevent self-pollination.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three strategies",
+      "marks": 1
+    },
+    {
+      "label": "Dichogamy",
+      "marks": 1
+    },
+    {
+      "label": "Herkogamy",
+      "marks": 1
+    },
+    {
+      "label": "Heterostyly",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.18, SAQ 1). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'to present self pollination' (scan error for 'prevent') and 'Primula-diheterostyly' (mangling of distyly); both are cleaned here."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_names",
+        "kind": "boxed_final",
+        "label": "The three strategies",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          {
+            "text": "Dichogamy · Herkogamy · Heterostyly",
+            "style": "boxed"
+          },
+          "These three prevent self-pollination in a",
+          "bisexual chasmogamous flower."
+        ],
+        "why": "The question says 'list three', so the examiner first looks for the three names together — box them before explaining each one.",
+        "common_mistakes": [
+          "Writing self-incompatibility or unisexuality here. Those stop selfing too, but this list is for a BISEXUAL open flower.",
+          "Explaining one strategy at length and never naming the other two."
+        ],
+        "memory_tip": "Time, height, style-length: organs mature at different TIMES, sit at different HEIGHTS, styles have different LENGTHS.",
+        "margin_note": "One boxed line with all three names — the listing mark is separate from the explanations."
+      },
+      {
+        "id": "s2_dichogamy",
+        "kind": "text",
+        "label": "Dichogamy",
+        "marks": 1,
+        "mark_note": "Timing",
+        "lines": [
+          "Dichogamy: the male and female sex organs of",
+          "the flower mature at different times.",
+          "Protandry: anthers mature first. Eg: sunflower",
+          "Protogyny: stigma matures first. Eg: Solanum"
+        ],
+        "why": "If pollen is shed when the stigma of the same flower is not receptive, self-pollination cannot happen — a timing separation, in two directions with a name each.",
+        "common_mistakes": [
+          "Swapping protandry and protogyny. Andro = male first, gyno = female first.",
+          "Leaving out the two sub-types — they carry the detail this mark pays for."
+        ],
+        "memory_tip": "ProtANDRY = ANDRoecium (male) early; protoGYNY = GYNoecium (female) early.",
+        "margin_note": "Definition plus both sub-types with one example each — four short lines."
+      },
+      {
+        "id": "s3_herkogamy",
+        "kind": "text",
+        "label": "Herkogamy",
+        "marks": 1,
+        "mark_note": "Position",
+        "lines": [
+          "Herkogamy: the anthers and the stigma are",
+          "placed at different heights (eg: Hibiscus) or",
+          "point in different directions (eg: Gloriosa)."
+        ],
+        "why": "Here the separation is in SPACE: with a physical gap or a direction mismatch between anther and stigma, pollen from the same flower does not reach its own stigma.",
+        "common_mistakes": [
+          "Confusing herkogamy with heterostyly — herkogamy is within ONE flower's geometry; heterostyly compares flowers of the same species.",
+          "Giving no example. Hibiscus is the standard one."
+        ],
+        "memory_tip": "Herkogamy = a hurdle in space: same flower, organs kept apart.",
+        "margin_note": "Two placements (height, direction) with an example each is the full point."
+      },
+      {
+        "id": "s4_heterostyly",
+        "kind": "text",
+        "label": "Heterostyly",
+        "marks": 1,
+        "mark_note": "Style length",
+        "lines": [
+          "Heterostyly: flowers of the same species have",
+          "styles of different lengths, so anther and",
+          "stigma never sit at the same level.",
+          "Example: Primula (distyly)."
+        ],
+        "why": "Long-styled and short-styled flowers on different plants match anther height to a DIFFERENT flower's stigma height, so pollen transfer works between morphs, not within one flower.",
+        "common_mistakes": [
+          "Writing 'different styles in the same flower' — the different lengths are across flowers of the species.",
+          "Missing the example. Primula is the textbook case."
+        ],
+        "memory_tip": "Hetero-STYLY: the STYLE length varies across the species — pin and thrum flowers of Primula.",
+        "margin_note": "The book's 'di-heterostyly' means distyly — two style-length forms in Primula."
+      }
+    ]
+  },
+  "insider_note": "The four marks here are 1 for the list and 1 per explanation — a beautifully written essay on dichogamy alone still scores 2 at most."
+}

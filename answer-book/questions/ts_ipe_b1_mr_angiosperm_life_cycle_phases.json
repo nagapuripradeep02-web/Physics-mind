@@ -1,0 +1,110 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_angiosperm_life_cycle_phases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of the phases of the life cycle of an angiosperm plant.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Alternation of phases", "marks": 1 },
+    { "label": "Sporophytic phase", "marks": 2 },
+    { "label": "Gametophytic phase", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.16), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book prints the question as 'Give a brief an account on … an angiospermic plant' and 'Dominante phase' in the answer — grammar/scan noise the card cleans."
+  },
+  "insider_note": "Marks sit in the two phase accounts — name each phase, its ploidy, its first cell, and where meiosis happens, and the four marks are covered.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alternation",
+        "kind": "text",
+        "label": "Alternation of phases",
+        "marks": 1,
+        "mark_note": "Alternation",
+        "lines": [
+          "In an angiosperm, a diploid (2n)",
+          "sporophytic phase alternates with a",
+          "haploid (n) gametophytic phase."
+        ],
+        "why": "The life cycle is the regular alternation of these two phases; naming both with their ploidy is the opening mark.",
+        "common_mistakes": [
+          "Writing haploid sporophyte / diploid gametophyte — the sporophyte is the diploid phase."
+        ],
+        "memory_tip": "Each phase is named for what it produces: the sporophyte makes spores (by meiosis), the gametophyte makes gametes (by mitosis).",
+        "margin_note": "One sentence with both phase names and both ploidies."
+      },
+      {
+        "id": "s2_sporophytic",
+        "kind": "text",
+        "label": "Sporophytic phase",
+        "marks": 2,
+        "mark_note": "Sporophytic phase",
+        "lines": [
+          { "text": "Sporophytic phase (2n):", "style": "heading" },
+          "It is the dominant phase. The zygote is",
+          "its first cell; it divides by mitosis to",
+          "form the embryo and then the plant.",
+          "The plant bears roots, stem, leaves and",
+          "flowers. A stamen = filament + anther;",
+          "a carpel = an ovary with one to many",
+          "ovules.",
+          "The microspore mother cell (in the",
+          "anther) and the megaspore mother cell",
+          "(in the ovule) undergo meiosis and form",
+          "microspores and megaspores."
+        ],
+        "why": "The sporophyte account must end at meiosis: the diploid plant's two mother cells produce haploid spores, which is exactly where the next phase begins.",
+        "common_mistakes": [
+          "Writing that the anther produces gametes directly — it produces microSPORES; gametes come later, from the gametophyte.",
+          "Saying meiosis happens in the zygote — the zygote divides by MITOSIS."
+        ],
+        "memory_tip": "The sporophyte line runs: zygote → mitosis → plant → meiosis → spores. Mitosis builds it; meiosis ends it.",
+        "margin_note": "Five to six lines; finish at the two spore types."
+      },
+      {
+        "id": "s3_gametophytic",
+        "kind": "boxed_final",
+        "label": "Gametophytic phase",
+        "marks": 1,
+        "mark_note": "Gametophytic phase",
+        "lines": [
+          { "text": "Gametophytic phase (n):", "style": "heading" },
+          "It is haploid, much reduced, and fully",
+          "dependent on the sporophyte.",
+          "The microspore is the first cell of the",
+          "male gametophyte; the megaspore is the",
+          "first cell of the female gametophyte.",
+          "They produce the male gametes and the",
+          "egg cell.",
+          { "text": "Male gamete + egg → zygote (2n): cycle repeats", "style": "boxed" }
+        ],
+        "why": "Syngamy completes the cycle: the fusion of a male gamete with the egg restores 2n and starts the next sporophyte — writing the closing fusion shows the cycle, not just two separate lists.",
+        "common_mistakes": [
+          "Calling the gametophyte dominant — in angiosperms it is tiny and dependent on the sporophyte.",
+          "Writing that gametes form by meiosis here — the spores were the meiosis products; the gametophyte forms gametes by mitosis."
+        ],
+        "memory_tip": "The two firsts: microspore = first cell of the MALE gametophyte, megaspore = first cell of the FEMALE gametophyte.",
+        "margin_note": "Three short points + the boxed fusion line."
+      }
+    ]
+  }
+}

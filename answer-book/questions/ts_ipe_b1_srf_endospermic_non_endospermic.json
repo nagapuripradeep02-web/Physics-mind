@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_endospermic_non_endospermic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define with examples endospermic and non-endospermic seeds.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Endospermic seeds",
+      "marks": 1
+    },
+    {
+      "label": "Non-endospermic seeds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.17, VSAQ 4). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_endospermic",
+        "kind": "text",
+        "label": "Endospermic seeds",
+        "marks": 1,
+        "mark_note": "Definition + eg",
+        "lines": [
+          "Endospermic seeds: the endosperm persists in",
+          "the mature seed and stores the food.",
+          "Examples: castor, coconut."
+        ],
+        "why": "The whole classification rests on one question — is the endosperm still there in the mature seed? Here it persists, so the seed keeps its food in the endosperm. These are also called albuminous seeds.",
+        "common_mistakes": [
+          "Giving groundnut or bean as the example — those are the non-endospermic pair.",
+          "Defining by cotyledon number. Monocot/dicot is a different classification."
+        ],
+        "memory_tip": "Coconut water and the white kernel ARE endosperm you can see — coconut is the endospermic anchor.",
+        "margin_note": "Definition plus one correct example earns the mark; two examples are safer."
+      },
+      {
+        "id": "s2_non_endospermic",
+        "kind": "boxed_final",
+        "label": "Non-endospermic seeds",
+        "marks": 1,
+        "mark_note": "Definition + eg",
+        "lines": [
+          "Non-endospermic seeds: the endosperm is fully",
+          "used up by the developing embryo by the time",
+          "the ovule becomes a seed.",
+          "Examples: groundnut, bean.",
+          {
+            "text": "Endosperm persists → endospermic seed",
+            "style": "boxed"
+          },
+          {
+            "text": "Endosperm used up → non-endospermic seed",
+            "style": "boxed"
+          }
+        ],
+        "why": "The contrast completes the definition: the same endosperm forms in both, but here the embryo consumes it during development, so the mature seed has none — the food sits in the cotyledons instead.",
+        "common_mistakes": [
+          "Writing 'endosperm never forms'. It forms in both; here it is consumed.",
+          "Swapping the example pairs between the two types."
+        ],
+        "memory_tip": "A groundnut splits into two fat cotyledons and nothing else — the food moved into them because the endosperm was used up.",
+        "margin_note": "The boxed contrast line is the one-glance summary the examiner rewards."
+      }
+    ]
+  },
+  "insider_note": "Both marks turn on the phrase 'by the time the ovule becomes a seed' — the endosperm forms in every angiosperm seed; persist or get used up is the only difference."
+}

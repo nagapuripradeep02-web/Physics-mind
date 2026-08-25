@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_insectivorous_trap_organ",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which organ is modified to trap insects in insectivorous plants? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The organ and its purpose",
+      "marks": 1
+    },
+    {
+      "label": "Two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERRORS RECORDED: the book prints 'Dionea (venus fly trap)' and 'pitche plant'; correct forms are Dionaea and pitcher plant."
+  },
+  "insider_note": "Two examples are asked - a single example halves the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_organ",
+        "kind": "text",
+        "label": "The modified organ",
+        "marks": 1,
+        "mark_note": "Organ + reason",
+        "lines": [
+          "Leaves are modified to trap insects.",
+          "These plants grow in nitrogen-poor soils and",
+          "digest the trapped insects for their nitrogen",
+          "requirement."
+        ],
+        "why": "The organ is the LEAF, and the reason is nitrogen - the soil lacks it, so the plant digests insects to get it.",
+        "common_mistakes": [
+          "Writing stem or root as the trapping organ. The trap is always a modified leaf.",
+          "Saying the plant eats insects for energy. It still photosynthesises; the insects supply nitrogen."
+        ],
+        "memory_tip": "Leaf traps, nitrogen is the prize.",
+        "margin_note": "Organ + the nitrogen line; the reason is part of the mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Two examples",
+        "marks": 1,
+        "mark_note": "Two examples",
+        "lines": [
+          {
+            "text": "Nepenthes (pitcher plant): leaf modified",
+            "style": "boxed"
+          },
+          "into a pitcher.",
+          "Dionaea (Venus flytrap): leaf modified into",
+          "a two-lobed snap trap."
+        ],
+        "why": "Two named genera with the shape of each trap show the examiner you know the modification, not just the plant names.",
+        "common_mistakes": [
+          "Misspelling the genera - Nepenthes and Dionaea (the book prints 'Dionea')."
+        ],
+        "memory_tip": "A pitcher that pours and a trap that snaps - Nepenthes and Dionaea.",
+        "margin_note": "Genus + common name each; the trap shape is a bonus line."
+      }
+    ]
+  }
+}

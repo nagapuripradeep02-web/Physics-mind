@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_pea_papilionaceous_corolla",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How are the petals in the pea plant arranged? What is such a type of arrangement called?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Arrangement of the five petals",
+      "marks": 1
+    },
+    {
+      "label": "Name of the arrangement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Papilionaceous corolla AND vexillary aestivation - the second term is the one that separates full marks from half.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_arrangement",
+        "kind": "text",
+        "label": "The five petals",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "The pea flower has five unequal petals:",
+          "the largest posterior standard (vexillum)",
+          "overlaps the two lateral wings (alae), and",
+          "the wings overlap the two smallest anterior",
+          "keel petals (carina)."
+        ],
+        "why": "The scoring facts are the counts and the overlap order: 1 standard over 2 wings over 2 keel petals - large to small, back to front.",
+        "common_mistakes": [
+          "Writing five equal petals. The corolla is unequal - that is the point of the question.",
+          "Reversing the overlap - the standard is outermost, the keel innermost."
+        ],
+        "memory_tip": "1 standard, 2 wings, 2 keel - 1+2+2 = 5, each layer covering the next.",
+        "margin_note": "Give the three technical names with their common names in brackets."
+      },
+      {
+        "id": "s2_name",
+        "kind": "boxed_final",
+        "label": "Name of the arrangement",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          {
+            "text": "Such a corolla is called papilionaceous;",
+            "style": "boxed"
+          },
+          "the overlapping pattern is vexillary",
+          "aestivation."
+        ],
+        "why": "Two names close the answer: papilionaceous for the corolla type, vexillary for its aestivation - both are asked by 'what is it called'.",
+        "common_mistakes": [
+          "Giving only papilionaceous. Vexillary aestivation is the second half of the naming."
+        ],
+        "memory_tip": "Vexillum leads, so the aestivation is vexillary; the whole corolla is papilionaceous.",
+        "margin_note": "Both terms in one boxed line - this is the mark most students drop."
+      }
+    ]
+  }
+}

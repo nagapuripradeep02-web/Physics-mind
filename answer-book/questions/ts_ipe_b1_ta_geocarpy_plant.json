@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_geocarpy_plant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is geocarpy? Name the plant which shows this phenomenon.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The plant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints \"Arachis hypogea\". The correct spelling of the species name is hypogaea."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "lines": [
+          "Geocarpy is the ripening of fruits below the soil",
+          "surface.",
+          "The flower opens above the ground. After",
+          "fertilisation the stalk below the ovary grows",
+          "downward and pushes the young fruit into the",
+          "soil, where it ripens."
+        ],
+        "why": "The whole point is that the flower is above ground and only the fruit is below, so the sequence must be stated.",
+        "common_mistakes": [
+          "Saying the flower itself opens under the soil. It does not.",
+          "Confusing it with a root. The pod is a fruit, not a root."
+        ],
+        "memory_tip": "geo = earth, carpy = fruit. Fruit in the earth.",
+        "margin_note": "Two lines: the definition, then how the fruit gets under the soil.",
+        "mark_note": "Definition"
+      },
+      {
+        "id": "s2_plant",
+        "kind": "boxed_final",
+        "label": "The plant",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Arachis hypogaea — the groundnut",
+            "style": "boxed"
+          },
+          "It belongs to the family Fabaceae. The species",
+          "name hypogaea itself means \"below the earth\"."
+        ],
+        "why": "One correct named example with its family is all the second mark asks for.",
+        "common_mistakes": [
+          "Spelling it hypogea. The correct spelling is hypogaea.",
+          "Giving only the common name when the question expects the botanical name."
+        ],
+        "memory_tip": "hypogaea = hypo (below) + gaea (earth), the same idea as geocarpy in the plant’s own name.",
+        "margin_note": "Write the botanical name in italics or underline it.",
+        "mark_note": "Example"
+      }
+    ]
+  },
+  "insider_note": "Two marks, two facts. Do not spend the answer describing the groundnut plant."
+}

@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_satellite_chromosome",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is referred to as a satellite chromosome?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Labelled sketch",
+      "marks": 1
+    },
+    {
+      "label": "Definition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book prints the satellite and the secondary constriction as extra labels on its four-types-of-chromosome diagram, not as a figure of its own. This card gives them their own sketch so the four-types figure (SAQ 6) stays legible; the sketch is this card's addition, and its 1 mark in the split is therefore a claim."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diagram",
+        "kind": "diagram",
+        "label": "Labelled sketch",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "satellite_chromosome",
+          "width": 470,
+          "height": 224,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "chromatid_l",
+              "d": "M 109.0 77.0 Q 109.0 68.0 118.0 68.0 Q 127.0 68.0 127.0 77.0 L 127.0 87.0 Q 124.0 96.0 127.0 105.0 L 127.0 191.0 Q 127.0 200.0 118.0 200.0 Q 109.0 200.0 109.0 191.0 L 109.0 105.0 Q 112.0 96.0 109.0 87.0 L 109.0 77.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "chromatid_r",
+              "d": "M 133.0 77.0 Q 133.0 68.0 142.0 68.0 Q 151.0 68.0 151.0 77.0 L 151.0 87.0 Q 148.0 96.0 151.0 105.0 L 151.0 191.0 Q 151.0 200.0 142.0 200.0 Q 133.0 200.0 133.0 191.0 L 133.0 105.0 Q 136.0 96.0 133.0 87.0 L 133.0 77.0 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "centromere",
+              "d": "M 136.0 96.0 L 135.5 98.3 L 134.2 100.2 L 132.3 101.5 L 130.0 102.0 L 127.7 101.5 L 125.8 100.2 L 124.5 98.3 L 124.0 96.0 L 124.5 93.7 L 125.8 91.8 L 127.7 90.5 L 130.0 90.0 L 132.3 90.5 L 134.2 91.8 L 135.5 93.7 L 136.0 96.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "sat_stalk_l",
+              "d": "M 118.0 68 L 118.0 58",
+              "ms": 160,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "sat_stalk_r",
+              "d": "M 142.0 68 L 142.0 58",
+              "ms": 160,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "satellite_l",
+              "d": "M 127.0 46.0 L 126.7 49.1 L 125.8 52.0 L 124.4 54.5 L 122.5 56.4 L 120.3 57.6 L 118.0 58.0 L 115.7 57.6 L 113.5 56.4 L 111.6 54.5 L 110.2 52.0 L 109.3 49.1 L 109.0 46.0 L 109.3 42.9 L 110.2 40.0 L 111.6 37.5 L 113.5 35.6 L 115.7 34.4 L 118.0 34.0 L 120.3 34.4 L 122.5 35.6 L 124.4 37.5 L 125.8 40.0 L 126.7 42.9 L 127.0 46.0 Z",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "satellite_r",
+              "d": "M 151.0 46.0 L 150.7 49.1 L 149.8 52.0 L 148.4 54.5 L 146.5 56.4 L 144.3 57.6 L 142.0 58.0 L 139.7 57.6 L 137.5 56.4 L 135.6 54.5 L 134.2 52.0 L 133.3 49.1 L 133.0 46.0 L 133.3 42.9 L 134.2 40.0 L 135.6 37.5 L 137.5 35.6 L 139.7 34.4 L 142.0 34.0 L 144.3 34.4 L 146.5 35.6 L 148.4 37.5 L 149.8 40.0 L 150.7 42.9 L 151.0 46.0 Z",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "ld_satellite",
+              "d": "M 226 46 L 155 44",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_satellite",
+              "x": 230,
+              "y": 52,
+              "text": "Satellite",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_secondary",
+              "d": "M 226 100 L 146 62",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_secondary",
+              "x": 230,
+              "y": 104,
+              "text": "Secondary constriction",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_centromere",
+              "d": "M 226 152 L 154 100",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_centromere",
+              "x": 230,
+              "y": 156,
+              "text": "Centromere",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The sketch is the fastest way to show the three parts in the right order down the chromosome: satellite at the top, then the secondary constriction, then the centromere.",
+        "common_mistakes": [
+          "Drawing the satellite below the centromere. It lies on the short arm, beyond the secondary constriction.",
+          "Leaving the labels off. The three labels are what is marked."
+        ],
+        "memory_tip": "Read the sketch downwards: satellite, secondary constriction, centromere.",
+        "margin_note": "A 2-minute sketch with three labels."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "SAT chromosome = one that carries a satellite",
+            "style": "boxed"
+          },
+          "The centromere is the primary constriction.",
+          "A few chromosomes have a second narrow region",
+          "as well, called the secondary constriction.",
+          "The short rounded piece lying beyond the",
+          "secondary constriction is the satellite."
+        ],
+        "why": "A satellite can only be defined once the secondary constriction is defined, because the satellite is the piece that lies beyond it.",
+        "common_mistakes": [
+          "Calling the centromere the secondary constriction. The centromere is the primary one.",
+          "Writing that every chromosome has a satellite. Only a few do."
+        ],
+        "memory_tip": "Primary constriction = centromere. Secondary constriction = the one that cuts off the satellite.",
+        "margin_note": "Name both constrictions before you define the satellite."
+      }
+    ]
+  },
+  "insider_note": "Two marks, and one of them is for showing where the satellite sits — a labelled sketch answers this faster than a paragraph."
+}

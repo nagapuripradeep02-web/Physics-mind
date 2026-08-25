@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_father_of_botany",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Who is popularly known as the father of Botany? What was the book written by him?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Father of Botany",
+      "marks": 1
+    },
+    {
+      "label": "His book",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_father",
+        "kind": "text",
+        "label": "Father of Botany",
+        "marks": 1,
+        "mark_note": "Name",
+        "lines": [
+          "Theophrastus is popularly known as the",
+          "father of Botany."
+        ],
+        "why": "The first half of the question asks for one name. Theophrastus, the Greek scholar who first studied and described plants in an organised way, is the accepted answer.",
+        "common_mistakes": [
+          "Writing Linnaeus — he is the father of taxonomy, not of Botany.",
+          "Misspelling the name past recognition — write Theo-phras-tus slowly once."
+        ],
+        "memory_tip": "Break the name into three parts to spell it: Theo-phras-tus.",
+        "margin_note": "One line for the name is enough."
+      },
+      {
+        "id": "s2_book",
+        "kind": "boxed_final",
+        "label": "His book",
+        "marks": 1,
+        "mark_note": "Book",
+        "lines": [
+          {
+            "text": "Theophrastus — De Historia Plantarum",
+            "style": "boxed"
+          },
+          "In this book he described and classified",
+          "many kinds of plants."
+        ],
+        "why": "The second half asks for the book. De Historia Plantarum, the first organised description of plants, is the work that earned Theophrastus the title.",
+        "common_mistakes": [
+          "Writing Micrographia — that is Robert Hooke's book, not Theophrastus'.",
+          "Naming the author but leaving the book out — the question asks for both."
+        ],
+        "memory_tip": "Historia Plantarum is Latin for 'history of plants' — the father of Botany wrote the plants' first history.",
+        "margin_note": "The boxed name-and-book line carries this mark."
+      }
+    ]
+  },
+  "insider_note": "Both halves are asked together; a correct name with a missing or wrong book title drops one of the two marks."
+}

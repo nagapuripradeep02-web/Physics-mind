@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_middle_lamella",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the middle lamella made up of? What is its functional significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Composition",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_composition",
+        "kind": "text",
+        "label": "Composition",
+        "marks": 1,
+        "mark_note": "Composition",
+        "lines": [
+          "The middle lamella is the thin layer lying",
+          "between the walls of two neighbouring cells.",
+          "It is made mainly of calcium pectate, with",
+          "some magnesium pectate."
+        ],
+        "why": "The question names two parts. The first is answered by the pectate salts, which are sticky and hold the two walls together.",
+        "common_mistakes": [
+          "Writing cellulose. Cellulose builds the primary and secondary wall, not the middle lamella.",
+          "Writing calcium pectin. The salt is calcium pectate."
+        ],
+        "memory_tip": "Middle lamella = the layer between two walls, made of calcium pectate.",
+        "margin_note": "Both salts named earns this mark."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "Middle lamella joins neighbouring cells",
+            "style": "boxed"
+          },
+          "It sticks the two adjacent cells firmly",
+          "together, so groups of cells stay joined and",
+          "form a tissue.",
+          "When it dissolves, as in a ripening fruit,",
+          "the cells separate and the fruit softens."
+        ],
+        "why": "One layer of sticky pectate between every pair of cells is what turns separate cells into a tissue — and when it breaks down, the tissue falls apart.",
+        "common_mistakes": [
+          "Writing that the middle lamella gives strength to the wall. That is cellulose; the middle lamella joins cells.",
+          "Leaving out tissue formation, which is the second half of the question."
+        ],
+        "memory_tip": "Dissolve the middle lamella and the cells come apart — that is why ripe fruit is soft.",
+        "margin_note": "Say 'holds cells together' and 'forms tissue'."
+      }
+    ]
+  },
+  "insider_note": "Two questions in one line, so write two separate sentences — one on composition, one on the joining function."
+}

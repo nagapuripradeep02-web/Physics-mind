@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_monosporic_development",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by monosporic development of the female gametophyte?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Four megaspores, one functional",
+      "marks": 1
+    },
+    {
+      "label": "Definition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.17, VSAQ 2). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book's answer line is garbled ('Development of embryosac from single functional megaspore in monosporic typic'); this card writes the standard sentence."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_megaspore",
+        "kind": "text",
+        "label": "Four megaspores, one functional",
+        "marks": 1,
+        "mark_note": "Setting",
+        "lines": [
+          "The megaspore mother cell divides by meiosis",
+          "and forms four megaspores.",
+          "Three of them degenerate; only one remains",
+          "functional."
+        ],
+        "why": "Monosporic means 'from one spore'. To say that clearly, first show that meiosis made four megaspores and only one survives — the definition then follows by itself.",
+        "common_mistakes": [
+          "Writing mitosis for the megaspore mother cell division — it is meiosis.",
+          "Saying all four megaspores form embryo sacs — three degenerate."
+        ],
+        "memory_tip": "Mono = one. Four are made, three die, ONE builds the embryo sac.",
+        "margin_note": "Two short sentences: meiosis gives four, one stays functional."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Embryo sac from ONE functional megaspore",
+            "style": "boxed"
+          },
+          "Development of the embryo sac from a single",
+          "functional megaspore is called monosporic",
+          "development. Example: Polygonum type."
+        ],
+        "why": "The boxed line is the definition the examiner scans for; the Polygonum type is the standard monosporic embryo sac, so the example anchors the term.",
+        "common_mistakes": [
+          "Defining it as development from one 'microspore' — that is the male side; here it is the megaspore.",
+          "Leaving out 'functional' — the one that survives is the functional megaspore."
+        ],
+        "memory_tip": "MEGAspore → female gametophyte; MICROspore → male. Monosporic = the female sac from one megaspore.",
+        "margin_note": "The boxed definition plus the Polygonum example is the complete 2-mark answer."
+      }
+    ]
+  },
+  "insider_note": "Write 'megaspore', not 'microspore' — one letter swap here is the difference between the female and the male gametophyte, and examiners do not give the mark for the wrong one."
+}

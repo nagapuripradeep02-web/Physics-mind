@@ -120,7 +120,8 @@
       question.class_label,
       // The chip names the PAPER, same table as the catalog's subject chips.
       ({ physics: 'Physics', chemistry: 'Chemistry',
-         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B' })[question.subject] ||
+         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+         botany: 'Botany' })[question.subject] ||
         question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
       'Unit ' + question.unit.number + ' · ' + question.unit.name,
       cut.paper_section + ' · ' + cut.qtype,
@@ -176,7 +177,8 @@
       // The SUBJECT word, not the paper: 'the mathematics and the method are
       // checked' reads right for 1A and 1B alike.
       var subjectWord = (question.subject || '').indexOf('mathematics') === 0 ? 'mathematics'
-        : question.subject === 'chemistry' ? 'chemistry' : 'physics';
+        : question.subject === 'chemistry' ? 'chemistry'
+        : question.subject === 'botany' ? 'botany' : 'physics';
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The ' + subjectWord + ' and the method are checked; the exact split is a claim.';
     }
@@ -373,7 +375,8 @@
     if (subjects.length >= 2) {
       // The chip names the PAPER, which is what a student picks by.
       var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
-                         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B' };
+                         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+                         botany: 'Botany' };
       var subjChips = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
       subjects.forEach(function (sName) {
         var n = 0;

@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_mango_scientific_name",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the scientific name of mango. Identify the generic name and specific epithet.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Scientific name",
+      "marks": 1
+    },
+    {
+      "label": "Genus and specific epithet",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 9 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "boxed_final",
+        "label": "Scientific name",
+        "marks": 1,
+        "mark_note": "The binomial",
+        "lines": [
+          {
+            "text": "Scientific name of mango: Mangifera indica",
+            "style": "boxed"
+          }
+        ],
+        "why": "The binomial has exactly two words. In print it is set in italics; in a handwritten answer the two words are underlined separately.",
+        "common_mistakes": [
+          "Writing 'Mangifera Indica' with a capital I. The specific epithet always starts with a small letter.",
+          "Underlining the two words with one continuous line. Underline each word separately."
+        ],
+        "memory_tip": "Mango and Mangifera share their first five letters — the genus carries the fruit's name inside it.",
+        "margin_note": "Underline Mangifera and indica separately — the convention is part of the mark."
+      },
+      {
+        "id": "s2_parts",
+        "kind": "text",
+        "label": "The two parts",
+        "marks": 1,
+        "mark_note": "The two parts",
+        "lines": [
+          "Generic name (genus): Mangifera",
+          "Specific epithet: indica"
+        ],
+        "why": "The first word of a binomial is always the genus and the second is the specific epithet. Strictly, indica alone is the specific epithet — the species name is the full two-word combination Mangifera indica.",
+        "common_mistakes": [
+          "Calling indica the species. indica alone is the specific epithet; the species is Mangifera indica.",
+          "Writing the two parts in the wrong order. First word = genus, second word = specific epithet."
+        ],
+        "memory_tip": "Order rule: genus first, epithet second — capital word first, small word second.",
+        "margin_note": "Two labelled lines, one for each part, make the split easy to mark."
+      }
+    ]
+  },
+  "insider_note": "The examiner checks the small-letter i in indica and the separate underlines — the writing conventions are worth as much as the name."
+}

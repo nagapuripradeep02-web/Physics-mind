@@ -1,0 +1,750 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_laq_stem_modifications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain how the stem is modified variously to perform different functions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Three groups of modifications",
+      "marks": 1
+    },
+    {
+      "label": "Underground stems",
+      "marks": 2
+    },
+    {
+      "label": "Aerial modifications",
+      "marks": 2
+    },
+    {
+      "label": "Sub-aerial modifications",
+      "marks": 2
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Nine modifications with nine examples is the full answer; examiners reward the sorted three-group layout over a single long list.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Morphology of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_groups",
+        "kind": "text",
+        "label": "Three groups",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "The stem is modified for storage of food,",
+          "support, protection, photosynthesis and",
+          "vegetative propagation.",
+          {
+            "text": "Three groups: underground, aerial and",
+            "style": "boxed"
+          },
+          "sub-aerial stem modifications."
+        ],
+        "why": "The 8-mark answer is organised by WHERE the modified stem lives - under the soil, in the air, or running along the ground. Writing this frame first keeps the nine examples sorted.",
+        "common_mistakes": [
+          "Jumping straight to examples with no classification line - the organisation itself carries a mark."
+        ],
+        "memory_tip": "Under, air, along the ground - the three places a stem can go.",
+        "margin_note": "One framing line, then the three headed lists below."
+      },
+      {
+        "id": "s2_underground",
+        "kind": "text",
+        "label": "Underground stems",
+        "marks": 2,
+        "mark_note": "Four types",
+        "lines": [
+          {
+            "text": "A. Underground stem modifications:",
+            "style": "heading"
+          },
+          "1. Rhizome: grows horizontally at a certain",
+          "depth in the soil. Ex: ginger, turmeric.",
+          "2. Corm: grows vertically in the soil.",
+          "Ex: Colocasia, Amorphophallus.",
+          "3. Stem tuber: the tip of an underground",
+          "branch swells with stored food; buds sit in",
+          "the eyes. Ex: potato.",
+          "4. Bulb: the stem is reduced to a disc and",
+          "fleshy leaf bases store the food. Ex: onion.",
+          "All of them store food and also propagate",
+          "the plant vegetatively."
+        ],
+        "why": "The four underground types are separated by one line each: rhizome grows horizontally, corm vertically, a tuber is a swollen branch TIP, and in a bulb the LEAF BASES (not the stem) hold the food.",
+        "common_mistakes": [
+          "Calling potato a root. The eyes are buds - only a stem carries buds.",
+          "Writing that the bulb stem stores food. In a bulb the stem is a small disc; the fleshy leaf bases store the food.",
+          "Swapping rhizome (horizontal) and corm (vertical)."
+        ],
+        "memory_tip": "Ginger lies flat (rhizome), Amorphophallus stands (corm), potato is a swollen tip (tuber), onion is all leaf bases (bulb).",
+        "margin_note": "Four names, one direction or storage fact each, one example each."
+      },
+      {
+        "id": "s3_aerial",
+        "kind": "text",
+        "label": "Aerial modifications",
+        "marks": 2,
+        "mark_note": "Three types",
+        "lines": [
+          {
+            "text": "B. Aerial stem modifications:",
+            "style": "heading"
+          },
+          "1. Stem tendril: an axillary or terminal bud",
+          "becomes a slender, spirally coiled structure",
+          "used for climbing.",
+          "From axillary buds: cucumber, pumpkin,",
+          "watermelon. From a terminal bud: grapevine.",
+          "2. Thorn: a hard, woody, straight and pointed",
+          "structure; it protects the plant from grazing",
+          "animals. Ex: Bougainvillea, Citrus.",
+          "3. Phylloclade: in xerophytes the stem becomes",
+          "green and flattened or cylindrical and does",
+          "photosynthesis. Ex: Opuntia, Casuarina."
+        ],
+        "why": "Each aerial type is a BUD or branch rebuilt for one job: tendril = climbing, thorn = protection, phylloclade = photosynthesis in dry habitats. The bud origin (axillary vs terminal) is the detail examiners reward in tendrils.",
+        "common_mistakes": [
+          "Calling the phylloclade a leaf. It is the stem; in Opuntia the leaves are the spines.",
+          "Writing curved for thorn. A stem thorn is straight and pointed; a prickle is curved."
+        ],
+        "memory_tip": "Climb, defend, cook: tendril climbs, thorn defends, phylloclade makes the food.",
+        "margin_note": "Grapevine (terminal bud) vs cucumber (axillary bud) is the pair worth writing."
+      },
+      {
+        "id": "s4_subaerial",
+        "kind": "text",
+        "label": "Sub-aerial modifications",
+        "marks": 2,
+        "mark_note": "Three types",
+        "lines": [
+          {
+            "text": "C. Sub-aerial stem modifications:",
+            "style": "heading"
+          },
+          "1. Runner: a branch that grows flat along the",
+          "ground and roots at the nodes; it spreads the",
+          "plant to new places.",
+          "Ex: grasses, strawberry, Oxalis.",
+          "2. Stolon: a slender lateral branch from the",
+          "base of the main axis; it grows up for some",
+          "time, bends down to touch the ground and",
+          "produces adventitious roots.",
+          "Ex: jasmine, Nerium.",
+          "3. Sucker: an underground lateral branch that",
+          "grows horizontally and then comes out",
+          "obliquely upward. Ex: Chrysanthemum."
+        ],
+        "why": "All three spread the plant near the parent; they differ by path. Runner: along the ground. Stolon: starts in air, bends down. Sucker: starts underground, comes up. The path is what the examiner reads for.",
+        "common_mistakes": [
+          "Swapping stolon and sucker. Stolon starts in the AIR and bends down; sucker starts UNDER the soil and comes up.",
+          "Writing that a runner grows underground. It runs on the surface, rooting at nodes."
+        ],
+        "memory_tip": "Runner runs on the ground, stolon stoops down to it, sucker surfaces from below it.",
+        "margin_note": "State each path (on, down to, up from the ground) - the example alone is not enough."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "Diagram — stem modifications",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "stem_modifications",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "rh_body",
+              "d": "M 45 85 C 48 71 70 66 85 73 C 96 64 114 65 125 73 C 138 70 143 82 134 90 C 118 100 60 101 45 85",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_1",
+              "d": "M 75 71 C 73 79 73 88 75 96",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_2",
+              "d": "M 95 68 C 93 78 93 89 95 98",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_3",
+              "d": "M 115 69 C 113 78 113 87 115 95",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rh_bud_a",
+              "d": "M 134 78 L 147 71",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "rh_bud_b",
+              "d": "M 136 88 L 147 71",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "rh_root_1",
+              "d": "M 60 98 L 56 112",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "rh_root_2",
+              "d": "M 80 100 L 78 114",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "rh_root_3",
+              "d": "M 100 100 L 102 114",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "rh_root_4",
+              "d": "M 120 96 L 124 110",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_leader",
+              "d": "M 68 62 L 74 70",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_leader_tip_a",
+              "d": "M 74 70 L 68 68",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "rh_node_leader_tip_b",
+              "d": "M 74 70 L 73 64",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_rh_node",
+              "x": 52,
+              "y": 58,
+              "text": "node",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rh_bud_leader",
+              "d": "M 152 58 L 148 68",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "rh_bud_leader_tip_a",
+              "d": "M 148 68 L 147 62",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "rh_bud_leader_tip_b",
+              "d": "M 148 68 L 153 64",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_rh_bud",
+              "x": 154,
+              "y": 56,
+              "text": "bud",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "tu_body",
+              "d": "M 215 85 C 215 65 240 58 262 60 C 288 62 305 72 303 88 C 300 104 275 112 250 110 C 228 108 215 100 215 85",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_1",
+              "d": "M 236 74 A 6 4 0 0 1 246 72",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_2",
+              "d": "M 266 66 A 6 4 0 0 1 276 65",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_3",
+              "d": "M 250 96 A 6 4 0 0 1 260 95",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_1b",
+              "d": "M 241 76 L 241 72",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_2b",
+              "d": "M 271 68 L 271 64",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_3b",
+              "d": "M 255 98 L 255 94",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_leader",
+              "d": "M 294 52 L 274 63",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_leader_tip_a",
+              "d": "M 274 63 L 277 58",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "tu_eye_leader_tip_b",
+              "d": "M 274 63 L 280 63",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_tu_eye",
+              "x": 296,
+              "y": 48,
+              "text": "eye",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "bu_body",
+              "d": "M 400 100 C 392 80 398 58 418 48 C 425 44 435 44 442 48 C 462 58 468 80 460 100",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_1",
+              "d": "M 410 101 C 406 78 412 60 424 52",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_2",
+              "d": "M 450 101 C 454 78 448 60 436 52",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_3",
+              "d": "M 422 102 C 420 82 424 66 430 58",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "bu_apex_a",
+              "d": "M 427 45 L 430 34",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "bu_apex_b",
+              "d": "M 433 45 L 430 34",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "bu_disc_a",
+              "d": "M 402 103 L 458 103",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "bu_disc_b",
+              "d": "M 408 108 L 452 108",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "bu_root_1",
+              "d": "M 418 110 L 414 122",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "bu_root_2",
+              "d": "M 430 110 L 430 124",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "bu_root_3",
+              "d": "M 442 110 L 446 122",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_leader",
+              "d": "M 452 32 L 440 50",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_leader_tip_a",
+              "d": "M 440 50 L 440 44",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "bu_scale_leader_tip_b",
+              "d": "M 440 50 L 445 47",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_bu_scale",
+              "x": 440,
+              "y": 28,
+              "text": "scale leaf",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "bu_disc_leader",
+              "d": "M 396 110 L 404 105",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bu_disc_leader_tip_a",
+              "d": "M 404 105 L 401 110",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "bu_disc_leader_tip_b",
+              "d": "M 404 105 L 398 105",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_bu_disc",
+              "x": 368,
+              "y": 112,
+              "text": "disc",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "th_stem",
+              "d": "M 85 178 L 84 268",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "th_leaf_1a",
+              "d": "M 85 205 C 72 199 62 203 57 213",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "th_leaf_1b",
+              "d": "M 57 213 C 65 220 79 215 85 208",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "th_leaf_2a",
+              "d": "M 84 240 C 97 234 107 238 112 248",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "th_leaf_2b",
+              "d": "M 112 248 C 104 255 90 250 84 243",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "th_thorn_a",
+              "d": "M 85 218 L 112 196",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "th_thorn_b",
+              "d": "M 85 224 L 108 200",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_th_thorn",
+              "x": 115,
+              "y": 186,
+              "text": "thorn",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "op_pad_low",
+              "d": "M 235 265 C 225 240 235 215 255 212 C 275 210 288 232 283 252 C 279 268 245 275 235 265",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "op_pad_up",
+              "d": "M 255 214 C 250 196 258 180 272 178 C 286 177 294 192 290 205 C 287 215 265 220 258 214",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_1",
+              "d": "M 248 236 L 252 232",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_2",
+              "d": "M 262 250 L 266 246",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_3",
+              "d": "M 272 228 L 276 224",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_4",
+              "d": "M 268 192 L 272 188",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_5",
+              "d": "M 280 200 L 284 196",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "op_sp_6",
+              "d": "M 246 254 L 250 250",
+              "ms": 100
+            },
+            {
+              "type": "stroke",
+              "id": "ru_ground",
+              "d": "M 385 262 L 495 262",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ru_stem",
+              "d": "M 388 252 C 405 246 448 254 488 250",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "ru_root_1a",
+              "d": "M 410 251 L 406 272",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ru_root_1b",
+              "d": "M 412 251 L 411 274",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ru_root_2a",
+              "d": "M 455 252 L 452 272",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ru_root_2b",
+              "d": "M 458 252 L 458 273",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ru_shoot_1",
+              "d": "M 411 249 L 408 226",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ru_leaf_1a",
+              "d": "M 408 228 C 400 222 396 214 398 208",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "ru_leaf_1b",
+              "d": "M 408 228 C 416 222 420 214 418 208",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "ru_shoot_2",
+              "d": "M 456 250 L 454 232",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ru_leaf_2a",
+              "d": "M 454 233 C 447 228 444 222 446 217",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "ru_leaf_2b",
+              "d": "M 454 233 C 461 228 464 222 462 217",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "ru_node_leader",
+              "d": "M 476 242 L 458 250",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ru_node_leader_tip_a",
+              "d": "M 458 250 L 461 245",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ru_node_leader_tip_b",
+              "d": "M 458 250 L 464 251",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_ru_node",
+              "x": 478,
+              "y": 238,
+              "text": "node",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_rhizome",
+              "x": 46,
+              "y": 144,
+              "text": "Rhizome",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_tuber",
+              "x": 229,
+              "y": 144,
+              "text": "Tuber",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_bulb",
+              "x": 405,
+              "y": 144,
+              "text": "Bulb",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_thorn",
+              "x": 59,
+              "y": 296,
+              "text": "Thorn",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_phyllo",
+              "x": 191,
+              "y": 296,
+              "text": "Phylloclade",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_runner",
+              "x": 393,
+              "y": 296,
+              "text": "Runner",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "why": "Six small labelled sketches show one member of each habit: three underground stores (rhizome, tuber, bulb) and three above-ground jobs (thorn, phylloclade, runner). Small features - eyes, scale leaves, node roots - are what make each sketch identifiable.",
+        "common_mistakes": [
+          "Drawing the potato without eyes. The eyes are the proof it is a stem.",
+          "Drawing the onion without the disc. The reduced disc IS the stem of the bulb."
+        ],
+        "memory_tip": "Each sketch needs its one identifying part: node, eye, disc, thorn, pad, runner node.",
+        "margin_note": "Any four of the six panels, clearly labelled, is a full diagram in exam time."
+      }
+    ]
+  }
+}

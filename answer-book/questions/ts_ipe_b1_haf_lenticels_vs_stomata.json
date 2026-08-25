@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_lenticels_vs_stomata",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the difference between lenticels and stomata?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where and when they are formed",
+      "marks": 1
+    },
+    {
+      "label": "The opening and the guard cells",
+      "marks": 2
+    },
+    {
+      "label": "Complementary cells",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where_when",
+        "kind": "text",
+        "label": "Where and when they are formed",
+        "marks": 1,
+        "mark_note": "Place and stage",
+        "margin_note": "Two columns or paired lines. Keep the same order in every pair.",
+        "lines": [
+          {
+            "text": "Lenticels",
+            "style": "heading"
+          },
+          "Formed on the bark of woody stems and woody",
+          "roots.",
+          "Formed during secondary growth.",
+          {
+            "text": "Stomata",
+            "style": "heading"
+          },
+          "Formed on the leaves and on younger green",
+          "stems.",
+          "Formed during primary growth."
+        ],
+        "why": "A lenticel is a break in the cork, so it can only exist where cork exists, which is on a woody part after secondary growth. A stoma is a gap in the epidermis, so it exists where the epidermis is still present.",
+        "common_mistakes": [
+          "Writing that lenticels occur on leaves. Leaves have stomata, not lenticels.",
+          "Missing the stage of growth. Secondary against primary is a marked difference."
+        ],
+        "memory_tip": "Cork carries lenticels; epidermis carries stomata."
+      },
+      {
+        "id": "s2_opening",
+        "kind": "text",
+        "label": "The opening and the guard cells",
+        "marks": 2,
+        "mark_note": "Two differences",
+        "margin_note": "Two marks here. Both the shape of the opening and the guard cells are needed.",
+        "lines": [
+          {
+            "text": "Lenticels",
+            "style": "heading"
+          },
+          "The opening is lens shaped and comparatively",
+          "wide.",
+          "It is not surrounded by guard cells, so it",
+          "stays permanently open.",
+          {
+            "text": "Stomata",
+            "style": "heading"
+          },
+          "The opening, called the stomatal pore, is",
+          "narrow.",
+          "It is surrounded by two guard cells, which",
+          "open and close the pore."
+        ],
+        "why": "Whether the pore can close is the real difference between the two. Guard cells change shape with their water content, and a lenticel has no such cells, so it cannot be shut.",
+        "common_mistakes": [
+          "Saying a lenticel has guard cells. It has none.",
+          "Forgetting that the number of guard cells at a stoma is two."
+        ],
+        "memory_tip": "Lens shaped and always open is a lenticel; narrow and closable is a stoma."
+      },
+      {
+        "id": "s3_complementary",
+        "kind": "boxed_final",
+        "label": "Complementary cells",
+        "marks": 1,
+        "mark_note": "Complementary cells",
+        "margin_note": "End with the one-line contrast so the table has a conclusion.",
+        "lines": [
+          {
+            "text": "Lenticels",
+            "style": "heading"
+          },
+          "Complementary cells are present. They are",
+          "loosely arranged cells that fill the lenticel",
+          "and leave spaces between them for gases to",
+          "pass.",
+          {
+            "text": "Stomata",
+            "style": "heading"
+          },
+          "Complementary cells are absent.",
+          {
+            "text": "Both exchange gases; only the stoma can close",
+            "style": "boxed"
+          }
+        ],
+        "why": "A lenticel still has to keep water in while letting gases through, and the loose complementary cells do this without having to open or close, which is why no guard cells are needed.",
+        "common_mistakes": [
+          "Mixing up complementary cells with subsidiary cells. Subsidiary cells belong to a stoma.",
+          "Writing that complementary cells close the lenticel. They do not move."
+        ],
+        "memory_tip": "Complementary cells belong to the lenticel; subsidiary cells belong to the stoma."
+      }
+    ]
+  },
+  "insider_note": "Both are gas-exchange openings, so the examiner wants the differences listed in matched pairs, not two separate descriptions."
+}

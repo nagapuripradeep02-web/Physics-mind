@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_scope_plant_physiology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the scope of Botany taking plant physiology as an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Plant physiology introduced",
+      "marks": 1
+    },
+    {
+      "label": "Mineral nutrition",
+      "marks": 1
+    },
+    {
+      "label": "Plant hormone applications",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The book's answer opens directly with the mineral point; the one-line introduction of plant physiology is added here as standard answer-writing practice. The 1+1+2 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Science of Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_physiology",
+        "kind": "text",
+        "label": "Plant physiology introduced",
+        "marks": 1,
+        "mark_note": "The branch",
+        "lines": [
+          "Plant physiology is the branch of Botany",
+          "that studies the functions and life",
+          "processes of plants, such as nutrition",
+          "and growth."
+        ],
+        "why": "The question uses one branch as the example of Botany's scope, so the answer opens by stating what that branch is before listing its uses.",
+        "common_mistakes": [
+          "Starting directly with fertilizers — say what plant physiology is first.",
+          "Defining morphology (structure) instead of physiology (functions)."
+        ],
+        "memory_tip": "Morphology = parts; physiology = processes. This question is about processes.",
+        "margin_note": "One sentence naming the branch and what it studies."
+      },
+      {
+        "id": "s2_minerals",
+        "kind": "text",
+        "label": "Mineral nutrition",
+        "marks": 1,
+        "mark_note": "Minerals",
+        "lines": [
+          "Knowledge of the role of minerals in plant",
+          "nutrition helps in the rational use of",
+          "chemical fertilizers and in the control of",
+          "mineral deficiencies."
+        ],
+        "why": "Knowing which mineral does what lets a farmer add fertilizer only where it is needed and correct a deficiency once it is recognised.",
+        "common_mistakes": [
+          "Writing 'fertilizers increase yield' alone — the marked idea is rational (correct, measured) use.",
+          "Dropping deficiency control — this point has two halves."
+        ],
+        "memory_tip": "One mineral point, two halves: use fertilizer correctly, correct deficiencies.",
+        "margin_note": "One point, both halves written."
+      },
+      {
+        "id": "s3_hormones",
+        "kind": "boxed_final",
+        "label": "Plant hormone applications",
+        "marks": 2,
+        "mark_note": "Hormones",
+        "lines": [
+          {
+            "text": "Knowledge of plant hormones is useful in:",
+            "style": "heading"
+          },
+          {
+            "text": "a) herbicidal control of weeds",
+            "style": "indent"
+          },
+          {
+            "text": "b) breaking seed dormancy",
+            "style": "indent"
+          },
+          {
+            "text": "c) increasing the shelf life of leafy",
+            "style": "indent"
+          },
+          {
+            "text": "vegetables",
+            "style": "indent"
+          },
+          {
+            "text": "d) artificial ripening of fruits",
+            "style": "indent"
+          },
+          {
+            "text": "e) rooting of stem cuttings for vegetative",
+            "style": "indent"
+          },
+          {
+            "text": "propagation",
+            "style": "indent"
+          },
+          {
+            "text": "Plant physiology guides fertilizer use and hormone applications in crops.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each hormone application is a real farm or garden practice; listing all five shows the scope the question asks for.",
+        "common_mistakes": [
+          "Writing only two or three uses — the list has five and the two marks expect most of them.",
+          "Naming hormones (auxin, ethylene) without their uses — the uses are what is marked here."
+        ],
+        "memory_tip": "Five hormone uses in order: weeds, dormancy, shelf life, ripening, rooting.",
+        "margin_note": "The lettered list a) to e) carries two marks; keep every item."
+      }
+    ]
+  },
+  "insider_note": "The five-part hormone list is the weight of this answer — a complete a) to e) list with the mineral point before it reads as a full 4-mark script."
+}

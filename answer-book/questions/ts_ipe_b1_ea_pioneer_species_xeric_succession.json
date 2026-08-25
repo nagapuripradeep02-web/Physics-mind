@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_pioneer_species_xeric_succession",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Among bryophytes, lichens and ferns, which one is a pioneer species in a xeric succession?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The answer", "marks": 1 },
+    { "label": "Why lichens", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 2. The book prints the one-word answer 'Lichens'; the reason and the order of stages are added here from standard ecology. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer_lichens",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Lichens",
+        "lines": [
+          "Lichens are the pioneer species of a xeric",
+          "(xerarch) succession.",
+          "A xeric succession starts on a bare, dry",
+          "surface such as a rock, where there is no",
+          "soil and no stored water."
+        ],
+        "why": "The pioneer is whichever organism can live where nothing else can. On bare dry rock only a lichen can hold on, so it forms the first stage.",
+        "common_mistakes": [
+          "Answering bryophytes. Mosses form the second stage here, after lichens have made some soil.",
+          "Answering ferns. Ferns need soil and appear much later."
+        ],
+        "memory_tip": "On bare rock the first stage is lichen. Moss follows only after there is some soil.",
+        "margin_note": "The single word Lichens carries the first mark. Add the habitat sentence for safety."
+      },
+      {
+        "id": "s2_why_and_order",
+        "kind": "boxed_final",
+        "label": "Why lichens",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          { "text": "Lichens → mosses → herbs → shrubs → trees", "style": "boxed" },
+          "Lichens grow on bare rock and release acids",
+          "that break the rock into fine particles.",
+          "Their dead remains mix with those particles",
+          "and form the first thin layer of soil."
+        ],
+        "why": "Lichens are pioneers because they produce the soil that the next stages need. Stating the sequence shows the examiner the answer is understood, not guessed.",
+        "common_mistakes": [
+          "Writing the sequence backwards, with trees before shrubs.",
+          "Calling a lichen a plant. A lichen is an alga and a fungus living together."
+        ],
+        "memory_tip": "Small to tall: lichen, moss, herb, shrub, tree.",
+        "margin_note": "One reason line plus the sequence completes a two-mark answer."
+      }
+    ]
+  },
+  "insider_note": "One word answers the question, but examiners in this chapter reward the sequence line. Writing lichens, mosses, herbs, shrubs, trees in order rarely loses a mark."
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_climax_quicker_in_secondary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Climax stage is achieved quickly in secondary succession as compared to primary succession. Why?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Soil is already present", "marks": 1 },
+    { "label": "Why that saves time", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 1. The book's one-line answer is 'Soil is already there in where secondary succession occurs' — correct but ungrammatical; the fact is kept and the sentence is rewritten, and the second mark adds WHY soil saves the time. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_soil_present",
+        "kind": "text",
+        "label": "Soil is already present",
+        "marks": 1,
+        "mark_note": "Soil present",
+        "lines": [
+          "Secondary succession begins on an area that",
+          "already carried a plant community and lost",
+          "it — an abandoned field, a burnt forest.",
+          "So soil is already present there."
+        ],
+        "why": "Secondary succession never starts from bare rock. The site lost its plants but kept its soil, and that soil is the whole difference from primary succession.",
+        "common_mistakes": [
+          "Writing that secondary succession starts on a bare area. That is primary succession.",
+          "Answering only 'because it is faster' — that repeats the question instead of giving the reason."
+        ],
+        "memory_tip": "Secondary = second time on the SAME soil.",
+        "margin_note": "Two short sentences are enough here. Name the soil in the first one."
+      },
+      {
+        "id": "s2_soil_saves_time",
+        "kind": "boxed_final",
+        "label": "Why that saves time",
+        "marks": 1,
+        "mark_note": "Time saved",
+        "lines": [
+          { "text": "Soil formation is the slowest step, and it", "style": "boxed" },
+          { "text": "is already over in secondary succession.", "style": "boxed" },
+          "Seeds, spores and root stocks also survive",
+          "in that soil, so plants appear at once and",
+          "the climax stage is reached quickly."
+        ],
+        "why": "In primary succession most of the time is spent breaking rock into soil. Skipping that step, and starting with seeds and root stocks already in place, is why the climax community arrives sooner.",
+        "common_mistakes": [
+          "Saying soil forms faster in secondary succession. It does not form at all — it is already there."
+        ],
+        "memory_tip": "The slow step is making soil. If the soil is already there, that step is skipped.",
+        "margin_note": "The examiner looks for the word soil and the word time in the same sentence."
+      }
+    ]
+  },
+  "insider_note": "This is a one-word idea — soil — but a bare 'soil is present' often gets only half the marks. Add what the soil saves: the time taken to form it."
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_botanical_gardens",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which is the largest botanical garden in the world? Name a few well known botanical gardens in India.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Largest in the world",
+      "marks": 1
+    },
+    {
+      "label": "Gardens in India",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 7 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented. BOOK GAP: the book lists the Indian gardens only as 'National botanical garden. Indian botanical garden.' with no places; the card writes the full standard names — Indian Botanical Garden, Howrah and National Botanical Research Institute, Lucknow."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_largest",
+        "kind": "boxed_final",
+        "label": "Largest in the world",
+        "marks": 1,
+        "mark_note": "World's largest",
+        "lines": [
+          {
+            "text": "Largest: Royal Botanic Gardens, Kew, England",
+            "style": "boxed"
+          }
+        ],
+        "why": "One named garden answers the first half. The standard name is Royal Botanic Gardens, Kew — the book prints 'Royal botanical garden at Kew', a loose form of the same name.",
+        "common_mistakes": [
+          "Writing only 'Kew garden' without the country. Add England so the answer is complete.",
+          "Naming the Indian Botanical Garden as the world's largest. Howrah is the famous Indian one; Kew is the largest."
+        ],
+        "memory_tip": "Count 1 + 2: one world's largest (Kew) and two Indian gardens (Howrah, Lucknow).",
+        "margin_note": "Name plus country in one line earns the mark."
+      },
+      {
+        "id": "s2_india",
+        "kind": "text",
+        "label": "Gardens in India",
+        "marks": 1,
+        "mark_note": "Indian gardens",
+        "lines": [
+          "Well known botanical gardens in India:",
+          "1. Indian Botanical Garden, Howrah (Kolkata)",
+          "2. National Botanical Research Institute,",
+          "   Lucknow"
+        ],
+        "why": "These are the two Indian gardens the NCERT chapter names. The book prints 'National botanical garden' and 'Indian botanical garden' without places — the full names with their cities are Indian Botanical Garden, Howrah and National Botanical Research Institute, Lucknow.",
+        "common_mistakes": [
+          "Writing city names alone (Kolkata, Lucknow) without the garden names. Name the institution, then the city.",
+          "Mixing the two into one name, such as 'National Botanical Garden, Howrah'. Keep Howrah with the Indian Botanical Garden and Lucknow with NBRI."
+        ],
+        "memory_tip": "Pair each garden with its city: Indian — Howrah; National (NBRI) — Lucknow.",
+        "margin_note": "Two named Indian gardens are enough for 'a few'."
+      }
+    ]
+  },
+  "insider_note": "This is pure recall — the marks are for the three institution names, so write them in full with their places."
+}

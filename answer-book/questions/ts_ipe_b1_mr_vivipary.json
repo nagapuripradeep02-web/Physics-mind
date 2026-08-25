@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_vivipary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define vivipary with an example.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The definition", "marks": 1 },
+    { "label": "The example", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. BOOK ERROR: the book prints the question as 'Define vivipory' — a spelling error for vivipary; the card corrects it."
+  },
+  "insider_note": "Write the definition and the example as two separate lines — examiners award 1 + 1, and a correct definition without Rhizophora still loses the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Modes of Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          { "text": "Vivipary: seeds germinate on the mother plant", "style": "boxed" },
+          "The seed germinates while it is still",
+          "attached to the mother plant, before it",
+          "is shed."
+        ],
+        "why": "The defining point is WHERE germination happens: on the mother plant itself, before the seed is shed.",
+        "common_mistakes": [
+          "Writing 'seeds germinate early' without saying they are still on the mother plant.",
+          "Confusing vivipary with parthenocarpy (fruit formation without fertilization)."
+        ],
+        "memory_tip": "Vivi = alive (as in viviparous animals): the seed leaves the plant already germinated and growing.",
+        "margin_note": "One boxed line + one supporting line is enough."
+      },
+      {
+        "id": "s2_example",
+        "kind": "text",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Ex: Rhizophora (a mangrove plant).",
+          "The seedling grows out of the fruit on",
+          "the tree, then drops and fixes in the mud."
+        ],
+        "why": "Mangroves grow in salty, waterlogged mud where a shed seed cannot germinate, so in Rhizophora the seed germinates on the tree and the seedling drops ready-grown.",
+        "common_mistakes": [
+          "Misspelling Rhizophora.",
+          "Writing Rhizobium (a bacterium) instead of Rhizophora."
+        ],
+        "memory_tip": "Rhizo = root: Rhizophora is the mangrove whose seedling drops with its root already formed.",
+        "margin_note": "The name Rhizophora alone earns this mark; the habit line is a safe extra."
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_heterotrophic_bacteria_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State two economically important uses of heterotrophic bacteria.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Curd from milk",
+      "marks": 1
+    },
+    {
+      "label": "Antibiotics",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_curd",
+        "kind": "text",
+        "label": "Curd from milk",
+        "marks": 1,
+        "mark_note": "Curd",
+        "lines": [
+          "Heterotrophic bacteria (Lactobacillus)",
+          "convert milk into curd."
+        ],
+        "why": "Lactobacillus ferments the lactose of milk to lactic acid, which sets the milk into curd — a daily food use of heterotrophic bacteria.",
+        "common_mistakes": [
+          "Writing yeast for curd. Yeast is a fungus; curd formation is by bacteria (Lactobacillus)."
+        ],
+        "memory_tip": "One food use and one medicine use: curd, then antibiotics.",
+        "margin_note": "Adding the name Lactobacillus makes the point exact."
+      },
+      {
+        "id": "s2_antibiotics",
+        "kind": "boxed_final",
+        "label": "Antibiotics",
+        "marks": 1,
+        "mark_note": "Antibiotics",
+        "lines": [
+          "Many heterotrophic bacteria are used in",
+          "the production of antibiotics.",
+          {
+            "text": "Curd from milk; production of antibiotics.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Antibiotic production is the medical use of heterotrophic bacteria; with curd it gives the two economically important uses asked for.",
+        "common_mistakes": [
+          "Writing Penicillium here. Penicillium is a fungus; this question asks for bacterial uses.",
+          "Writing disease-causing as a use. Diseases are harm, not an economic use."
+        ],
+        "memory_tip": "Bacteria in food (curd) and bacteria in medicine (antibiotics).",
+        "margin_note": "Two one-line uses; nitrogen fixation in legume roots is an accepted alternative."
+      }
+    ]
+  },
+  "insider_note": "Any two correct uses earn the marks — curd, antibiotics, or nitrogen fixation in legume roots — but a fungal example like Penicillium earns nothing here."
+}

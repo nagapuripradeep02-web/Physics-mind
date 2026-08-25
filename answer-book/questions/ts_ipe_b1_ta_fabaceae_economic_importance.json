@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_fabaceae_economic_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the economic importance of plants belonging to Fabaceae.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pulses and oils",
+      "marks": 1
+    },
+    {
+      "label": "Timber and fibre",
+      "marks": 1
+    },
+    {
+      "label": "Vegetables and fodder",
+      "marks": 1
+    },
+    {
+      "label": "Other uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK WORDING: the book lists \"Red grams, black grams, green grams\", \"Indian rose wood\" and \"menthi\". Botanical names are used here in their place; \"menthi\" is fenugreek, Trigonella foenum-graecum. Fodder is given as Phaseolus in the book; clover and lucerne are added as the standard fodder legumes."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Taxonomy of Angiosperms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_food",
+        "kind": "text",
+        "label": "Pulses and oils",
+        "marks": 1,
+        "lines": [
+          "Pulses, whose seeds are rich in protein:",
+          "red gram (Cajanus cajan), black gram (Vigna",
+          "mungo), green gram (Vigna radiata).",
+          "Edible oils:",
+          "groundnut (Arachis hypogaea), soybean (Glycine",
+          "max)."
+        ],
+        "why": "Fabaceae seeds are rich in protein, so pulses are the first use any examiner expects.",
+        "common_mistakes": [
+          "Giving only common names. Add the botanical name for at least one plant in each group.",
+          "Listing cereals. Cereals are Poaceae, not Fabaceae."
+        ],
+        "memory_tip": "Six uses, six headings: pulses, oils, timber, fibre, vegetables, fodder. Then add the extras.",
+        "margin_note": "Head each use, then give two named examples. Do not write paragraphs.",
+        "mark_note": "Food"
+      },
+      {
+        "id": "s2_timber_fibre",
+        "kind": "text",
+        "label": "Timber and fibre",
+        "marks": 1,
+        "lines": [
+          "Timber:",
+          "red sanders (Pterocarpus santalinus) and",
+          "rosewood (Dalbergia latifolia) give hard, valuable",
+          "wood.",
+          "Fibre:",
+          "sun hemp (Crotalaria juncea) gives a strong bast",
+          "fibre."
+        ],
+        "why": "Fabaceae includes large trees as well as herbs, which is why one family can supply both a pulse and a timber.",
+        "common_mistakes": [
+          "Naming teak. Teak is Verbenaceae or Lamiaceae, not Fabaceae.",
+          "Naming cotton as the fibre. Cotton is Malvaceae."
+        ],
+        "memory_tip": "Two hard woods and one soft fibre: red sanders, rosewood, sun hemp.",
+        "margin_note": "Two named timbers and one fibre plant fill this mark.",
+        "mark_note": "Timber, fibre"
+      },
+      {
+        "id": "s3_vegetable_fodder",
+        "kind": "text",
+        "label": "Vegetables and fodder",
+        "marks": 1,
+        "lines": [
+          "Vegetables:",
+          "pea (Pisum sativum), beans (Phaseolus vulgaris)",
+          "and fenugreek (Trigonella foenum-graecum).",
+          "Fodder:",
+          "Phaseolus species, clover (Trifolium) and lucerne",
+          "(Medicago sativa) are grown to feed cattle."
+        ],
+        "why": "The same protein-rich seed that feeds people also feeds cattle, so vegetables and fodder are two sides of one property.",
+        "common_mistakes": [
+          "Writing only \"vegetables\" with no example.",
+          "Confusing fodder with green manure. Fodder is eaten; green manure is ploughed in."
+        ],
+        "memory_tip": "Pea, beans and fenugreek are eaten; clover and lucerne are fed to cattle.",
+        "margin_note": "Two or three named vegetables plus one fodder plant.",
+        "mark_note": "Vegetables, fodder"
+      },
+      {
+        "id": "s4_other",
+        "kind": "boxed_final",
+        "label": "Other uses",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Also dye, medicine, ornamentals, nitrogen",
+            "style": "boxed"
+          },
+          "Dye: indigo (Indigofera tinctoria).",
+          "Medicine: liquorice (Glycyrrhiza glabra).",
+          "Ornamentals: lupin and sweet pea.",
+          "Root nodules fix nitrogen, so Crotalaria and",
+          "Sesbania are ploughed in as green manure."
+        ],
+        "why": "Nitrogen fixation is the property that makes the whole family important to farming, so it belongs in any full answer.",
+        "common_mistakes": [
+          "Leaving out nitrogen fixation, which is the family’s biggest contribution.",
+          "Writing that the nodules make nitrogen. The bacteria in them fix nitrogen from the air."
+        ],
+        "memory_tip": "Food for people, fodder for cattle, and nitrogen for the soil.",
+        "margin_note": "One extra line on nitrogen fixation lifts a plain list into a full answer.",
+        "mark_note": "Other uses"
+      }
+    ]
+  },
+  "insider_note": "This is a list question, so the marks come from the number of NAMED uses. Six headings with examples beat two headings written well."
+}

@@ -1,0 +1,308 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_annual_rings_formation_significance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A transverse section of the trunk of a tree shows concentric rings, which are known as annual rings. How are these rings formed? What is the significance of these rings?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Spring wood",
+      "marks": 1
+    },
+    {
+      "label": "Autumn wood",
+      "marks": 1
+    },
+    {
+      "label": "The annual ring and its significance",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spring",
+        "kind": "text",
+        "label": "Spring wood (early wood)",
+        "marks": 1,
+        "mark_note": "Spring wood",
+        "margin_note": "Link the season to the leaves, the leaves to the water, the water to the vessels.",
+        "lines": [
+          "The activity of the vascular cambium is not",
+          "the same all through the year. It changes with",
+          "the season, and in temperate regions the",
+          "seasons are sharply marked.",
+          "In the favourable season the plant puts out",
+          "many leaves and needs a large amount of water.",
+          "So the cambium produces secondary xylem with",
+          "more vessels and a broader lumen. This wide,",
+          "light-coloured wood is spring wood or early",
+          "wood."
+        ],
+        "why": "The cambium makes the wood the plant needs at that moment. Many leaves mean heavy water demand, and wide vessels carry more water, so the kind of wood made depends on the season.",
+        "common_mistakes": [
+          "Writing that the cambium stops working in the favourable season. It works fastest then.",
+          "Leaving out the vessel width. Broad lumen is what makes spring wood look light."
+        ],
+        "memory_tip": "Many leaves, much water, wide vessels, light wood. That is spring wood."
+      },
+      {
+        "id": "s2_autumn",
+        "kind": "text",
+        "label": "Autumn wood (late wood)",
+        "marks": 1,
+        "mark_note": "Autumn wood",
+        "margin_note": "Two lines. Keep it as the mirror image of the step above.",
+        "lines": [
+          "In the unfavourable season the plant has few",
+          "leaves and needs less water.",
+          "So the cambium produces secondary xylem with",
+          "fewer vessels and a narrow lumen. This narrow,",
+          "dark-coloured wood is autumn wood or late",
+          "wood."
+        ],
+        "why": "The same reasoning run backwards: fewer leaves mean less water is needed, so narrow vessels are enough, and closely packed narrow cells look darker.",
+        "common_mistakes": [
+          "Calling autumn wood the wood of autumn only. It is the wood of the whole unfavourable season.",
+          "Saying autumn wood has no vessels. It has fewer and narrower ones."
+        ],
+        "memory_tip": "Few leaves, little water, narrow vessels, dark wood. That is autumn wood."
+      },
+      {
+        "id": "s3_ring",
+        "kind": "boxed_final",
+        "label": "The annual ring and its significance",
+        "marks": 1,
+        "mark_note": "Ring and significance",
+        "margin_note": "Write the word significance as a heading. The examiner looks for it.",
+        "lines": [
+          "The spring wood and the autumn wood of one",
+          "year together form one ring.",
+          "In a transverse section of the trunk these",
+          "rings are seen one inside another, so they are",
+          "called annual rings.",
+          {
+            "text": "Significance",
+            "style": "heading"
+          },
+          "One ring is added each year, so counting the",
+          "rings gives the approximate age of the tree.",
+          {
+            "text": "One annual ring = one year of growth",
+            "style": "boxed"
+          }
+        ],
+        "why": "A ring is visible only because the two kinds of wood look different, so the boundary between dark autumn wood and the next year's light spring wood marks one year. That is why counting works.",
+        "common_mistakes": [
+          "Counting each light band and each dark band as a separate year. One ring is both together.",
+          "Giving the formation and forgetting the significance. The question asks for both."
+        ],
+        "memory_tip": "Light band plus the dark band that closes it is one year."
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Diagram of annual rings",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "margin_note": "Four or five circles are enough. Label bark, cork cambium and one annual ring.",
+        "figure": {
+          "id": "annual_rings",
+          "width": 500,
+          "height": 256,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bark_out",
+              "d": "M 145 130 A 95 95 0 1 0 335 130 A 95 95 0 1 0 145 130",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "cork_camb",
+              "d": "M 151 130 A 89 89 0 1 0 329 130 A 89 89 0 1 0 151 130",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "bark_in",
+              "d": "M 156 130 A 84 84 0 1 0 324 130 A 84 84 0 1 0 156 130",
+              "ms": 440
+            },
+            {
+              "type": "stroke",
+              "id": "autumn3",
+              "d": "M 170 130 A 70 70 0 1 0 310 130 A 70 70 0 1 0 170 130",
+              "ms": 420,
+              "w": 5
+            },
+            {
+              "type": "stroke",
+              "id": "autumn2",
+              "d": "M 190.5 130 A 49.5 49.5 0 1 0 289.5 130 A 49.5 49.5 0 1 0 190.5 130",
+              "ms": 380,
+              "w": 5
+            },
+            {
+              "type": "stroke",
+              "id": "autumn1",
+              "d": "M 212.5 130 A 27.5 27.5 0 1 0 267.5 130 A 27.5 27.5 0 1 0 212.5 130",
+              "ms": 320,
+              "w": 5
+            },
+            {
+              "type": "stroke",
+              "id": "pith",
+              "d": "M 231 130 A 9 9 0 1 0 249 130 A 9 9 0 1 0 231 130",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "l_bark",
+              "x": 352,
+              "y": 52,
+              "text": "Bark",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bark",
+              "d": "M 348 46 L 330 58 L 308.4 68.4",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_bark_ah",
+              "d": "M 314.4 61.8 L 308.4 68.4 L 317.3 67.8",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_cork",
+              "x": 352,
+              "y": 122,
+              "text": "Cork cambium",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cork",
+              "d": "M 348 116 L 340 121 L 327.6 114.5",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cork_ah",
+              "d": "M 336.6 115.4 L 327.6 114.5 L 333.5 121.4",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_ring",
+              "x": 352,
+              "y": 196,
+              "text": "Annual ring",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ring",
+              "d": "M 348 190 L 322 180 L 283.7 153.2",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ring_ah",
+              "d": "M 292.5 155.3 L 283.7 153.2 L 288.6 160.8",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_spring",
+              "x": 6,
+              "y": 96,
+              "text": "Spring wood",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_spring",
+              "d": "M 118 90 L 142 100 L 204.3 117.0",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_spring_ah",
+              "d": "M 195.4 118.1 L 204.3 117.0 L 197.1 111.6",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_autumn",
+              "x": 6,
+              "y": 176,
+              "text": "Autumn wood",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_autumn",
+              "d": "M 118 170 L 140 176 L 174.2 153.9",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_autumn_ah",
+              "d": "M 169.0 161.3 L 174.2 153.9 L 165.4 155.6",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "The rings only make sense as a picture: wide light bands closed by narrow dark bands, one pair for each year, with the bark outside.",
+        "common_mistakes": [
+          "Drawing evenly spaced circles. The spring band is wide and the autumn band is narrow.",
+          "Leaving out the bark and the cork cambium, which the book labels."
+        ],
+        "memory_tip": "Draw a small centre, then wide circle, thin dark circle, wide circle, thin dark circle."
+      }
+    ]
+  },
+  "insider_note": "The rings are only visible because the two woods differ, so the answer must explain the difference before it names the ring."
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_population_and_community",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define population and community.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Population", "marks": 1 },
+    { "label": "Community", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 6. The book writes 'same sps.' as an abbreviation; it is expanded to 'same species' here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_population",
+        "kind": "text",
+        "label": "Population",
+        "marks": 1,
+        "mark_note": "Population",
+        "lines": [
+          "Population: a group of individuals of the",
+          "SAME species living in a given area at a",
+          "given time.",
+          "Ex: all the mango trees in one orchard."
+        ],
+        "why": "A population is fixed by three things at once — one species, one area, one time. Leaving out any one of them makes the definition incomplete.",
+        "common_mistakes": [
+          "Writing 'a group of plants in an area' without the words same species. That is a community, not a population.",
+          "Leaving out the area. A population is always counted for a stated place."
+        ],
+        "memory_tip": "Population = ONE species. Community = MANY species. Count the species.",
+        "margin_note": "One sentence each. The examiner marks the two definitions separately."
+      },
+      {
+        "id": "s2_community",
+        "kind": "boxed_final",
+        "label": "Community",
+        "marks": 1,
+        "mark_note": "Community",
+        "lines": [
+          { "text": "Community: all the populations in an area", "style": "boxed" },
+          "It is the assemblage of the populations of",
+          "all the different species living together",
+          "in the same area.",
+          "Ex: all the plants and animals of a pond."
+        ],
+        "why": "A community is built out of populations, so it is the next level up. Defining it with the word populations shows the examiner the two terms are linked, not separate.",
+        "common_mistakes": [
+          "Defining community as one kind of plant. That is a population.",
+          "Adding the soil, water and air. That makes it an ecosystem, not a community."
+        ],
+        "memory_tip": "Levels in order: individual, population, community, ecosystem.",
+        "margin_note": "Use the word populations inside the community definition — it earns the link mark."
+      }
+    ]
+  },
+  "insider_note": "The pair is marked as a contrast, so a student who defines both with the same words loses one mark. Put same species in one and all populations in the other."
+}

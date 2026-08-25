@@ -1,0 +1,71 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_algae_body_forms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give examples for unicellular, colonial and filamentous algae.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Unicellular and colonial", "marks": 1 },
+    { "label": "Filamentous", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 9. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unicellular_colonial",
+        "kind": "text",
+        "label": "Unicellular and colonial",
+        "marks": 1,
+        "mark_note": "Two forms",
+        "lines": [
+          "Unicellular alga: Chlamydomonas.",
+          "Colonial alga: Volvox."
+        ],
+        "why": "Algal body form ranges from one cell to a colony to a filament. Chlamydomonas is a single motile cell; Volvox is a colony of many such cells in one hollow ball.",
+        "common_mistakes": [
+          "Writing Volvox as unicellular — it is a colony of many cells.",
+          "Misspelling Chlamydomonas — write the genus slowly; the name itself is marked."
+        ],
+        "memory_tip": "Size order C → V → S: Chlamydomonas (one cell), Volvox (colony ball), Spirogyra (thread).",
+        "margin_note": "One genus per body form; underline every genus name."
+      },
+      {
+        "id": "s2_filamentous",
+        "kind": "boxed_final",
+        "label": "Filamentous",
+        "marks": 1,
+        "mark_note": "Filamentous",
+        "lines": [
+          { "text": "Filamentous algae → Spirogyra, Ulothrix", "style": "boxed" },
+          "Cells joined end to end form a thread-",
+          "like filament."
+        ],
+        "why": "In filamentous algae, cell division in one plane keeps the daughter cells attached in a row, giving a thread-like body. Spirogyra (the book's example) and Ulothrix are the standard genera.",
+        "common_mistakes": [
+          "Writing Fucus or Laminaria here — they are large thalloid marine algae, not simple filaments."
+        ],
+        "memory_tip": "Spirogyra is the spiral thread — its spiral chloroplast runs along a filament.",
+        "margin_note": "One filamentous genus is enough; Spirogyra is the book's pick."
+      }
+    ]
+  },
+  "insider_note": "Three named genera, one per body form, is the complete answer — a fourth example adds nothing to the marks."
+}

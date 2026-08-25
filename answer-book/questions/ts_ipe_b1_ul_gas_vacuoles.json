@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_gas_vacuoles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are gas vacuoles? State their functions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK WORDING: the book classes gas vacuoles as 'a type of inclusion bodies'. NCERT treats inclusion bodies (phosphate, cyanophycean and glycogen granules) separately from gas vacuoles, so this card writes 'gas-filled sacs' and records the book's phrasing here rather than following it silently."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Gas vacuoles are small gas-filled sacs found",
+          "in the cytoplasm of some prokaryotes.",
+          "They occur in blue-green, purple and green",
+          "photosynthetic bacteria."
+        ],
+        "why": "The question asks what they ARE, so the answer must say gas-filled and must name the group that has them. The book calls them a type of inclusion body; NCERT lists inclusion bodies as phosphate, cyanophycean and glycogen granules and keeps gas vacuoles separate, so this card writes gas-filled sacs.",
+        "common_mistakes": [
+          "Writing that gas vacuoles occur in plant cells. They are prokaryotic.",
+          "Confusing them with the large sap vacuole of a plant cell."
+        ],
+        "memory_tip": "A gas vacuole holds gas; a plant vacuole holds sap. Different contents, different cells.",
+        "margin_note": "Gas-filled plus the prokaryote group carries this mark."
+      },
+      {
+        "id": "s2_functions",
+        "kind": "boxed_final",
+        "label": "Functions",
+        "marks": 1,
+        "mark_note": "Buoyancy",
+        "lines": [
+          {
+            "text": "Gas vacuoles give buoyancy",
+            "style": "boxed"
+          },
+          "The trapped gas lowers the density of the",
+          "cell, so the cell floats near the water",
+          "surface, where light reaches it.",
+          "They also give the cell some protection from",
+          "very strong light."
+        ],
+        "why": "A gas-filled space makes the whole cell less dense than the water around it, so the cell rises. That floating is the only function the question is asking for.",
+        "common_mistakes": [
+          "Writing that gas vacuoles store food. They hold gas.",
+          "Leaving out floating. Buoyancy is the marked point."
+        ],
+        "memory_tip": "Gas is light, so the cell rises to where the light is.",
+        "margin_note": "One sentence on floating is enough for this mark."
+      }
+    ]
+  },
+  "insider_note": "Two parts, two marks: what they are, then what they do. Students often write only the definition."
+}
