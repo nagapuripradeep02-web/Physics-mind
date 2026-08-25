@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_parasitic_adaptations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the need for parasites to develop special adaptations? Mention some special adaptations developed by the parasites.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The need",
+      "marks": 1
+    },
+    {
+      "label": "Attachment and covering",
+      "marks": 1
+    },
+    {
+      "label": "Reproduction and lost organs",
+      "marks": 1
+    },
+    {
+      "label": "Life cycles and cysts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.66, Star Q 183). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_need",
+        "kind": "text",
+        "label": "The need",
+        "marks": 1,
+        "mark_note": "Need",
+        "lines": [
+          "A parasite depends on its host for food and for",
+          "shelter.",
+          "The host resists the parasite with its defence",
+          "system and with its digestive juices.",
+          "Parasites have therefore evolved special",
+          "adaptations that let them stay in the host,",
+          "resist its defences and reach a new host."
+        ],
+        "why": "The adaptations only make sense once the pressure is named, so the first step states the two problems a parasite meets — the host's defence system and its digestive juices.",
+        "common_mistakes": [
+          "Writing that the parasite needs adaptations to move about. It needs them to stay in the host and resist its defences.",
+          "Leaving out the host's defence system, which is the reason the adaptations exist."
+        ],
+        "memory_tip": "Two problems for a parasite: the host's defences and the host's digestive juices.",
+        "margin_note": "Three short lines. State the need before listing anything."
+      },
+      {
+        "id": "s2_attach",
+        "kind": "text",
+        "label": "Attachment and covering",
+        "marks": 1,
+        "mark_note": "Adaptation 1",
+        "lines": [
+          "Organs of attachment are developed, such as",
+          "hooks, suckers and the rostellum. They hold the",
+          "parasite in place inside the host.",
+          "A tough protective covering is developed.",
+          "Ascaris has a thick cuticle and Fasciola has a",
+          "tegument, which withstand the digestive juices",
+          "of the host.",
+          "Some parasites produce anti-enzymes that",
+          "neutralise the digestive juices. Example:",
+          "Taenia."
+        ],
+        "why": "These three adaptations answer the same problem, staying alive inside a gut that digests food, so they are grouped together with a named example each.",
+        "common_mistakes": [
+          "Naming the hooks and suckers without saying what they do.",
+          "Giving no example. Every named adaptation should carry an example."
+        ],
+        "memory_tip": "Hold on, cover up, cancel out: hooks and suckers, cuticle and tegument, anti-enzymes.",
+        "margin_note": "Three named adaptations with an example each. Two lines is enough for each."
+      },
+      {
+        "id": "s3_repro",
+        "kind": "text",
+        "label": "Reproduction and lost organs",
+        "marks": 1,
+        "mark_note": "Adaptation 2",
+        "lines": [
+          "A very high reproductive capacity is developed,",
+          "because only a few of the young reach a new",
+          "host. Taenia has 700 to 900 proglottids, and",
+          "each one produces about 3500 eggs.",
+          "Sense organs and organs that are no longer used",
+          "are lost, because a parasite inside a host does",
+          "not need them."
+        ],
+        "why": "A parasite loses what it does not use and multiplies what it does, so these two adaptations are opposite sides of the same pressure and are easiest to remember as a pair.",
+        "common_mistakes": [
+          "Giving the numbers without the name. The Taenia count is the marked example.",
+          "Writing that the parasite grows more sense organs. Unused organs are lost."
+        ],
+        "memory_tip": "More eggs, fewer organs: reproduction goes up, unused structures go away.",
+        "margin_note": "Two adaptations, one with the Taenia numbers. Two short blocks."
+      },
+      {
+        "id": "s4_cycles",
+        "kind": "boxed_final",
+        "label": "Life cycles and cysts",
+        "marks": 1,
+        "mark_note": "Adaptation 3",
+        "lines": [
+          {
+            "text": "Complex cycles, resistant cysts, changing antigens",
+            "style": "boxed"
+          },
+          "Complex life cycles with many larval stages are",
+          "developed, so the parasite can pass through more",
+          "than one host. Example: Fasciola.",
+          "Resistant cysts are formed, which survive",
+          "outside the host until a new host takes them in.",
+          "Example: Entamoeba.",
+          "The surface antigens are changed, so the host's",
+          "immune response and vaccines become less",
+          "effective. Example: Plasmodium and HIV."
+        ],
+        "why": "The last three adaptations all deal with reaching a NEW host and surviving the immune response, which is the second half of the problem stated at the start.",
+        "common_mistakes": [
+          "Writing that the parasite escapes the vaccine. State what happens: the surface antigens change.",
+          "Naming the adaptations without examples. Fasciola, Entamoeba and Plasmodium are the named ones."
+        ],
+        "memory_tip": "Getting to the next host: many stages, a resistant cyst, and a changing coat.",
+        "margin_note": "Three named adaptations in the box, each with its example. Closing mark."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves and both are marked, so state the need in full before starting the list of adaptations."
+}

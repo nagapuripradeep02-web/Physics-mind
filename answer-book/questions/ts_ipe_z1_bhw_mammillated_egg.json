@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_mammillated_egg",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The eggs of Ascaris are called 'mammillated eggs'. Justify.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The egg coat",
+      "marks": 1
+    },
+    {
+      "label": "Justification",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 138). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_coat",
+        "kind": "text",
+        "label": "The egg coat",
+        "marks": 1,
+        "mark_note": "Coat",
+        "lines": [
+          "The egg of Ascaris lumbricoides is covered on",
+          "the outside by a protein coat.",
+          "This coat carries small rounded bumps called",
+          "papillae, so the surface of the egg looks",
+          "rippled."
+        ],
+        "why": "The name comes from the outermost layer alone, so the answer has to reach that layer and describe what its surface looks like.",
+        "common_mistakes": [
+          "Describing the shell as smooth. The outer protein coat is bumpy.",
+          "Writing that the bumps are inside the egg. They are on the outer coat."
+        ],
+        "memory_tip": "Mammillated means covered with small rounded bumps, and that is the outer protein coat.",
+        "margin_note": "Two lines: the coat, then the bumps on it."
+      },
+      {
+        "id": "s2_justify",
+        "kind": "boxed_final",
+        "label": "Justification",
+        "marks": 1,
+        "mark_note": "Justification",
+        "lines": [
+          {
+            "text": "Bumpy protein coat, so the egg is mammillated",
+            "style": "boxed"
+          },
+          "Because the outer coat is covered with these",
+          "rounded bumps, the egg is called a mammillated",
+          "egg."
+        ],
+        "why": "A 'justify' question is answered by joining the observed feature to the name, so the last sentence must contain both the bumps and the word mammillated.",
+        "common_mistakes": [
+          "Repeating the definition without ever using the word mammillated.",
+          "Writing that the egg is mammillated because it is fertilised. The two are unrelated."
+        ],
+        "memory_tip": "Say the feature, then say the name it earns: bumps, so mammillated.",
+        "margin_note": "One closing sentence joining the bumps to the name."
+      }
+    ]
+  },
+  "insider_note": "A justify question is scored on the join: the rippled protein coat and the word mammillated must appear in the same sentence."
+}

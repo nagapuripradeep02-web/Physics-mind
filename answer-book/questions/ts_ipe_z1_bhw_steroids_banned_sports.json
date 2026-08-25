@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_steroids_banned_sports",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are cannabinoids and anabolic steroids banned in sports and games?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Anabolic steroids",
+      "marks": 1
+    },
+    {
+      "label": "Cannabinoids",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.63, Star Q 176). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book's answer reads 'Cannabinoid and anabolic drugs are called steroid drugs. They mimic the effect of testosterone', which treats cannabinoids as steroids. Cannabinoids come from Cannabis sativa and act on the central nervous system and the cardiovascular system; only anabolic steroids are testosterone-like. This card separates the two groups and gives each its own reason for the ban."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_steroids",
+        "kind": "text",
+        "label": "Anabolic steroids",
+        "marks": 1,
+        "mark_note": "Steroids",
+        "lines": [
+          "Anabolic steroids are man-made substances that",
+          "act like the hormone testosterone.",
+          "They increase protein synthesis, so muscle",
+          "tissue is built up and the strength of the",
+          "sportsperson rises beyond the natural level."
+        ],
+        "why": "The ban rests on an unfair advantage, so the answer must show HOW the drug raises performance — through testosterone-like action on protein synthesis and muscle.",
+        "common_mistakes": [
+          "Writing only that the drugs are harmful. Name the testosterone-like action and the muscle build-up.",
+          "Writing that anabolic steroids are obtained from a plant. They are man-made."
+        ],
+        "memory_tip": "Anabolic means building up: these drugs build muscle by acting like testosterone.",
+        "margin_note": "Two lines: what they act like, then what they build. Do not describe cannabinoids here."
+      },
+      {
+        "id": "s2_cannabinoids",
+        "kind": "boxed_final",
+        "label": "Cannabinoids",
+        "marks": 1,
+        "mark_note": "Cannabinoids",
+        "lines": [
+          {
+            "text": "Unfair gain and body damage, so both are banned",
+            "style": "boxed"
+          },
+          "Cannabinoids are obtained from the hemp plant",
+          "Cannabis sativa. They act on the central nervous",
+          "system and on the heart and blood vessels.",
+          "Both groups of drugs change the result of a",
+          "contest unfairly and damage the body of the",
+          "user, so they are banned in sports and games."
+        ],
+        "why": "The two groups are banned for two different reasons — one gives an unfair gain, the other harms the body and dulls judgement — and the closing line joins both to the ban.",
+        "common_mistakes": [
+          "Writing that cannabinoids act like testosterone. They act on the nervous system and the heart.",
+          "Ending without saying why the ban follows."
+        ],
+        "memory_tip": "Steroids build the body unfairly, cannabinoids damage the nerves and the heart. Both are banned.",
+        "margin_note": "Name the source and the action, then close with the reason for the ban."
+      }
+    ]
+  },
+  "insider_note": "Two drug groups, two separate reasons — an answer that gives one reason for both is treated as half an answer."
+}

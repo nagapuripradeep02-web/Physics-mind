@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_tobacco_respiration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In which way does tobacco affect the respiration? Name the alkaloid found in tobacco.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Effect on respiration",
+      "marks": 1
+    },
+    {
+      "label": "The alkaloid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.59, VSAQ 141). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect",
+        "kind": "text",
+        "label": "Effect on respiration",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          "When tobacco is smoked, the carbon monoxide",
+          "level in the blood rises and the oxygen level",
+          "falls.",
+          "Carbon monoxide binds to haemoglobin, so less",
+          "oxygen is carried to the tissues."
+        ],
+        "why": "The effect is on the blood's carrying capacity, not on the lungs alone, so the answer names the gas that rises and the gas that falls.",
+        "common_mistakes": [
+          "Writing only that smoking is harmful to the lungs. Name carbon monoxide and oxygen.",
+          "Writing that nicotine reduces oxygen. It is carbon monoxide that does this."
+        ],
+        "memory_tip": "Carbon monoxide up, oxygen down: the blood carries the wrong gas.",
+        "margin_note": "Two short lines naming both gases. That is the whole first mark."
+      },
+      {
+        "id": "s2_alkaloid",
+        "kind": "boxed_final",
+        "label": "The alkaloid",
+        "marks": 1,
+        "mark_note": "Alkaloid",
+        "lines": [
+          {
+            "text": "Nicotine",
+            "style": "boxed"
+          },
+          "The alkaloid found in tobacco is nicotine.",
+          "It stimulates the adrenal gland to release",
+          "adrenaline and noradrenaline, which raise the",
+          "blood pressure and the heart rate."
+        ],
+        "why": "Nicotine is the one name the question asks for, and the extra line shows the student knows it acts on the adrenal gland rather than on the lungs.",
+        "common_mistakes": [
+          "Naming tar or carbon monoxide. Neither is an alkaloid.",
+          "Writing that nicotine is a gas. It is an alkaloid."
+        ],
+        "memory_tip": "One alkaloid, one name: nicotine, and it works through the adrenal gland.",
+        "margin_note": "The name alone earns the mark. One extra line on its action is enough."
+      }
+    ]
+  },
+  "insider_note": "This is a two-part question and each part carries its own mark, so answer the respiration part in full before naming nicotine."
+}

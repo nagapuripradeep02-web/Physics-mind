@@ -1,0 +1,482 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_paramecium_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw a neat diagram of Paramecium.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Shape and parts to show",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Named parts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, SAQ chapter 8 'Locomotion & Reproduction' (book p.42, question 42), which prints the labelled figure with NO written answer. Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP M-22]. TEXT BEYOND THE BOOK: the book prints the figure alone; the two written steps here are authored from the labels the book itself prints. FIGURE SCOPE: the book labels eleven parts — pellicle, cilia, anterior contractile vacuole, micronucleus, macronucleus, oral groove, cytostome, cytopharynx, food vacuole, posterior contractile vacuole and cytopyge — and all eleven are drawn and labelled here. TRICHOCYSTS are not drawn: the book does not label them in this figure, and at exam scale they crowd the pellicle."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locomotion and Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "Shape and parts to show",
+        "marks": 1,
+        "mark_note": "Plan",
+        "lines": [
+          "Paramecium is a slipper-shaped single-celled",
+          "organism with a blunt anterior end and a",
+          "pointed posterior end.",
+          "The body is covered by a pellicle and cilia",
+          "are present all over it.",
+          "The drawing must show the oral groove leading",
+          "to the cytostome and cytopharynx, the two",
+          "nuclei, the food vacuoles, the two contractile",
+          "vacuoles and the cytopyge."
+        ],
+        "why": "Naming the shape and the parts before drawing fixes the order of work: the outline and cilia first, then the feeding path, then the contents.",
+        "common_mistakes": [
+          "Drawing an oval cell. The slipper shape is asked for by name in most papers.",
+          "Drawing cilia on one side only. They cover the whole body."
+        ],
+        "memory_tip": "Blunt in front, pointed behind, and one groove cut into one side: that is the slipper shape.",
+        "margin_note": "Three lines of plan. Do not describe fission or conjugation here."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "lr_paramecium",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the slipper-shaped body outline"
+            },
+            {
+              "type": "stroke",
+              "id": "body_r",
+              "d": "M 318 56 L 320.6 56.4 L 323.4 57.2 L 326.5 58.6 L 329.7 60.3 L 333 62.4 L 336.3 64.7 L 339.5 67.3 L 342.6 70.1 L 345.4 73 L 348 76 L 350.3 79.1 L 352.6 82.6 L 354.7 86.2 L 356.7 90.1 L 358.6 94.2 L 360.4 98.4 L 362 102.7 L 363.5 107.1 L 364.8 111.5 L 366 116 L 367.1 120.6 L 368 125.4 L 368.9 130.5 L 369.7 135.6 L 370.2 140.8 L 370.7 146 L 370.9 151 L 370.8 156 L 370.6 160.6 L 370 165 L 369 169 L 367.3 172.7 L 365.3 176.1 L 362.9 179.4 L 360.5 182.6 L 358.1 185.7 L 355.9 189 L 354 192.4 L 352.7 196 L 352 200 L 352 204.3 L 352.6 208.8 L 353.6 213.4 L 354.9 218.3 L 356.5 223.2 L 358.2 228.2 L 359.9 233.2 L 361.5 238.2 L 362.9 243.1 L 364 248 L 365 252.9 L 366 257.8 L 367.1 262.8 L 368.1 267.8 L 369 272.8 L 369.8 277.7 L 370.3 282.5 L 370.6 287.2 L 370.5 291.7 L 370 296 L 369.1 300.2 L 367.9 304.2 L 366.3 308.2 L 364.4 312 L 362.4 315.8 L 360.1 319.3 L 357.7 322.8 L 355.2 326 L 352.6 329.1 L 350 332 L 347.3 334.8 L 344.3 337.6 L 341.2 340.4 L 338 343 L 334.6 345.4",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "body_l",
+              "d": "M 334.6 345.4 L 331.2 347.5 L 327.8 349.3 L 324.5 350.7 L 321.2 351.6 L 318 352 L 314.9 351.8 L 311.6 351.2 L 308.4 350.1 L 305.2 348.7 L 302 346.9 L 298.9 344.8 L 295.9 342.4 L 293.1 339.7 L 290.4 336.9 L 288 334 L 285.8 330.9 L 283.7 327.4 L 281.8 323.7 L 280 319.8 L 278.4 315.6 L 276.9 311.2 L 275.5 306.7 L 274.2 301.9 L 273.1 297 L 272 292 L 271.1 286.7 L 270.3 281.2 L 269.7 275.4 L 269.2 269.4 L 268.8 263.2 L 268.4 257 L 268.2 250.7 L 268.1 244.4 L 268 238.2 L 268 232 L 268 225.9 L 268.1 219.7 L 268.3 213.5 L 268.5 207.2 L 268.9 201 L 269.3 194.8 L 269.8 188.5 L 270.4 182.3 L 271.2 176.1 L 272 170 L 273 163.8 L 274.2 157.5 L 275.5 151.1 L 276.9 144.7 L 278.4 138.4 L 279.9 132.2 L 281.5 126.2 L 283 120.4 L 284.6 115 L 286 110 L 287.4 105.3 L 288.7 101 L 290.1 96.9 L 291.4 93 L 292.8 89.4 L 294.1 86 L 295.5 82.7 L 296.9 79.7 L 298.4 76.8 L 300 74 L 301.6 71.3 L 303.2 68.6 L 304.7 66.1 L 306.3 63.7 L 308 61.5 L 309.7 59.6 L 311.6 58 L 313.6 56.9 L 315.7 56.2 L 318 56",
+              "ms": 4500
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — cilia all round the body"
+            },
+            {
+              "type": "stroke",
+              "id": "cilia1",
+              "d": "M 318 56 L 317.7 47 M 360.4 98.4 L 363.4 89.9 M 367.3 172.7 L 374.8 167.7 M 361.5 238.2 L 368.1 244.3 M 364.4 312 L 367.7 320.4 M 318 352 L 317.7 361 M 276.9 311.2 L 273.4 319.5 M 268.1 219.7 L 259.5 222.4 M 283 120.4 L 279.1 112.3 M 306.3 63.7 L 305.3 54.7",
+              "ms": 1290,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cilia2",
+              "d": "M 329.7 60.3 L 330.2 51.3 M 366 116 L 370 107.9 M 358.1 185.7 L 366.2 181.9 M 366 257.8 L 371.5 264.9 M 355.2 326 L 357.5 334.7 M 305.2 348.7 L 304.1 357.6 M 272 292 L 267.6 299.8 M 269.3 194.8 L 260.4 193.5 M 288.7 101 L 285.9 92.4 M 313.6 56.9 L 313 47.9",
+              "ms": 1290,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cilia3",
+              "d": "M 342.6 70.1 L 343.9 61.2 M 369.7 135.6 L 374.8 128.3 M 352 200 L 361 199.2 M 369.8 277.7 L 374.5 285.3 M 344.3 337.6 L 345.8 346.5 M 293.1 339.7 L 291.2 348.5 M 269.2 269.4 L 263.5 276.4 M 272 170 L 264.4 165.1 M 294.1 86 L 292 77.2",
+              "ms": 1160,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cilia4",
+              "d": "M 352.6 82.6 L 354.8 73.8 M 370.8 156 L 377.3 149.7 M 354.9 218.3 L 363 222.2 M 370 296 L 374.1 304 M 331.2 347.5 L 331.8 356.5 M 283.7 327.4 L 281 336 M 268.1 244.4 L 261 249.9 M 276.9 144.7 L 271.3 137.7 M 300 74 L 298.4 65.1",
+              "ms": 1160,
+              "w": 1.5
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — oral groove, cytostome and cytopharynx"
+            },
+            {
+              "type": "stroke",
+              "id": "groove_a",
+              "d": "M 364 112 C 350 138 336 164 322 190",
+              "ms": 1270
+            },
+            {
+              "type": "stroke",
+              "id": "groove_b",
+              "d": "M 346 96 C 332 122 318 152 306 178",
+              "ms": 1300
+            },
+            {
+              "type": "stroke",
+              "id": "cytostome",
+              "d": "M 322 190 L 306 178",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_a",
+              "d": "M 322 190 C 318 204 312 216 304 226",
+              "ms": 580
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_b",
+              "d": "M 306 178 C 300 192 294 204 288 214",
+              "ms": 580
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_end",
+              "d": "M 304 226 C 296 228 290 222 288 214",
+              "ms": 320
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the two nuclei and the food vacuoles"
+            },
+            {
+              "type": "stroke",
+              "id": "macronucleus",
+              "d": "M 324 212 A 20 13 0 1 0 364 212 A 20 13 0 1 0 324 212",
+              "ms": 1500
+            },
+            {
+              "type": "stroke",
+              "id": "micronucleus",
+              "d": "M 345 184 A 7 7 0 1 0 359 184 A 7 7 0 1 0 345 184",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "foodvac1",
+              "d": "M 316 248 A 10 10 0 1 0 336 248 A 10 10 0 1 0 316 248",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "foodvac2",
+              "d": "M 328 278 A 10 10 0 1 0 348 278 A 10 10 0 1 0 328 278",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "foodvac3",
+              "d": "M 310 306 A 10 10 0 1 0 330 306 A 10 10 0 1 0 310 306",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "foodvac4",
+              "d": "M 292 242 A 10 10 0 1 0 312 242 A 10 10 0 1 0 292 242",
+              "ms": 900
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — contractile vacuoles and the cytopyge"
+            },
+            {
+              "type": "stroke",
+              "id": "cv_ant",
+              "d": "M 295 112 A 9 9 0 1 0 313 112 A 9 9 0 1 0 295 112",
+              "ms": 810
+            },
+            {
+              "type": "stroke",
+              "id": "cv_ant_canals",
+              "d": "M 313.7 114.6 L 320.4 116.4 M 306.6 121.7 L 308.4 128.4 M 296.9 119.1 L 292 124 M 294.3 109.4 L 287.6 107.6 M 301.4 102.3 L 299.6 95.6 M 311.1 104.9 L 316 100",
+              "ms": 590,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cv_post",
+              "d": "M 285 300 A 9 9 0 1 0 303 300 A 9 9 0 1 0 285 300",
+              "ms": 810
+            },
+            {
+              "type": "stroke",
+              "id": "cv_post_canals",
+              "d": "M 303.7 302.6 L 310.4 304.4 M 296.6 309.7 L 298.4 316.4 M 286.9 307.1 L 282 312 M 284.3 297.4 L 277.6 295.6 M 291.4 290.3 L 289.6 283.6 M 301.1 292.9 L 306 288",
+              "ms": 590,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "cytopyge",
+              "d": "M 344 306 L 356 300 M 346 320 L 358 324",
+              "ms": 370,
+              "w": 1.7
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_acv",
+              "x": 6,
+              "y": 44,
+              "text": "Anterior contractile vacuole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_acv",
+              "d": "M 288.2 40 L 296 106",
+              "ms": 950,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_groove",
+              "x": 6,
+              "y": 100,
+              "text": "Oral groove",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_groove",
+              "d": "M 119.9 96 L 340 146",
+              "ms": 3220,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cytostome",
+              "x": 6,
+              "y": 156,
+              "text": "Cytostome",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cytostome",
+              "d": "M 100.1 152 L 312 186",
+              "ms": 3070,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pharynx",
+              "x": 6,
+              "y": 212,
+              "text": "Cytopharynx",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pharynx",
+              "d": "M 119.9 208 L 298 212",
+              "ms": 2540,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_foodvac",
+              "x": 6,
+              "y": 268,
+              "text": "Food vacuole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_foodvac",
+              "d": "M 129.8 264 L 316 250",
+              "ms": 2670,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pcv",
+              "x": 6,
+              "y": 356,
+              "text": "Posterior contractile vacuole",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pcv",
+              "d": "M 298.1 352 L 286 306",
+              "ms": 680,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cilia",
+              "x": 380,
+              "y": 60,
+              "text": "Cilia",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cilia",
+              "d": "M 376 56 L 358 88",
+              "ms": 520,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pellicle",
+              "x": 380,
+              "y": 112,
+              "text": "Pellicle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pellicle",
+              "d": "M 376 108 L 368 148",
+              "ms": 580,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_micro",
+              "x": 380,
+              "y": 220,
+              "text": "Micronucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_micro",
+              "d": "M 376 216 L 357 182",
+              "ms": 560,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_macro",
+              "x": 380,
+              "y": 272,
+              "text": "Macronucleus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_macro",
+              "d": "M 376 268 L 358 214",
+              "ms": 810,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cytopyge",
+              "x": 380,
+              "y": 324,
+              "text": "Cytopyge",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cytopyge",
+              "d": "M 376 320 L 352 318",
+              "ms": 340,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The feeding path is drawn as one continuous line from the oral groove to the cytopyge, so the food vacuoles can be placed along it instead of scattered at random.",
+        "common_mistakes": [
+          "Drawing one nucleus. Show the large macronucleus AND the small micronucleus beside it.",
+          "Placing both contractile vacuoles together. One lies near the anterior end and one near the posterior end.",
+          "Leaving out the cytopyge. It is the fixed opening near the posterior end where waste leaves."
+        ],
+        "memory_tip": "Draw the slipper, then the cilia, then the groove and gullet, then the two nuclei, then the vacuoles, then label.",
+        "margin_note": "Two marks sit here. The two nuclei and the two contractile vacuoles decide them."
+      },
+      {
+        "id": "s3_parts",
+        "kind": "boxed_final",
+        "label": "Named parts",
+        "marks": 1,
+        "mark_note": "Labels",
+        "lines": [
+          {
+            "text": "Two nuclei, two contractile vacuoles, one gullet",
+            "style": "boxed"
+          },
+          "The oral groove runs backwards along one side",
+          "and ends at the cytostome.",
+          "The cytostome opens into the cytopharynx,",
+          "where food vacuoles are formed.",
+          "The macronucleus is large and controls the",
+          "everyday work of the cell. The micronucleus",
+          "is small and takes part in reproduction.",
+          "The two contractile vacuoles remove excess",
+          "water, one at each end of the body.",
+          "Undigested matter leaves through the",
+          "cytopyge near the posterior end."
+        ],
+        "why": "Paramecium has a fixed mouth and a fixed anal spot, unlike Amoeba, so the labels are easiest to hold as one path: groove, cytostome, cytopharynx, food vacuole, cytopyge.",
+        "common_mistakes": [
+          "Swapping the two nuclei. The macronucleus is the large one and it is not the reproductive nucleus.",
+          "Calling the cytopyge a mouth. It is the fixed opening for waste."
+        ],
+        "memory_tip": "Follow the food: groove, cytostome, cytopharynx, food vacuole, cytopyge. That is five labels in one line of thought.",
+        "margin_note": "One short line per part. Do not repeat every figure label at length."
+      }
+    ]
+  },
+  "insider_note": "The paper often says 'neat diagram' without the word labelled, but the labels are still where the marks are — the two nuclei and the two contractile vacuoles are the pieces examiners look for first."
+}

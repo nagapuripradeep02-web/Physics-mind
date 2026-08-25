@@ -46,8 +46,8 @@ def fig_entamoeba_stages():
         a = 2 * math.pi * k / 20
         rr = 1 + 0.08 * math.sin(3 * a + 0.6) + 0.05 * math.cos(5 * a)
         d = abs(((math.degrees(a) - 202 + 180) % 360) - 180)
-        if d < 28:
-            rr += 0.42 * math.cos(math.radians(d * 90 / 28))
+        if d < 36:
+            rr += 0.46 * math.cos(math.radians(d * 90 / 36))
         pts.append((tx + 54 * rr * math.cos(a), ty + 47 * rr * math.sin(a)))
     pts.append(pts[0])
     sc = catmull(pts, 4)
@@ -59,7 +59,7 @@ def fig_entamoeba_stages():
     E.append(stroke('tro_endo_b', poly(si[len(si) // 2:]), w=1.4))
 
     E.append(pause('p2', 'Step 2 — inside it: nucleus and food vacuoles'))
-    nx, ny, nr = 140, CY + 26, 13
+    nx, ny, nr = 108, CY + 28, 13
     E.append(stroke('tro_nuc', circle(nx, ny, nr), w=1.5))
     E.append(stroke('tro_kar', circle(nx, ny, 3.2), w=1.5))
     spokes = ""
@@ -68,12 +68,12 @@ def fig_entamoeba_stages():
         spokes += " M %s %s L %s %s" % (f(nx + 3.6 * math.cos(a)), f(ny + 3.6 * math.sin(a)),
                                         f(nx + (nr - 1.6) * math.cos(a)), f(ny + (nr - 1.6) * math.sin(a)))
     E.append(stroke('tro_spokes', spokes.strip(), w=1.2))
-    E.append(stroke('tro_fv1', circle(152, CY + 8, 10), w=1.5))
-    E.append(stroke('tro_rbc', circle(152, CY + 8, 5.4), w=1.5))
-    E.append(stroke('tro_fv2', circle(98, CY - 24, 8), w=1.5))
-    E.append(stroke('tro_bact', poly([(94, CY - 24), (102, CY - 26)]), w=2.6))
-    E.append(stroke('tro_fv3', circle(106, CY + 30, 7), w=1.5))
-    E.append(stroke('tro_fv4', circle(130, CY - 32, 6), w=1.5))
+    E.append(stroke('tro_fv1', circle(154, CY + 4, 10), w=1.5))
+    E.append(stroke('tro_rbc', circle(154, CY + 4, 5.4), w=1.5))
+    E.append(stroke('tro_fv2', circle(102, CY - 26, 8), w=1.5))
+    E.append(stroke('tro_bact', poly([(98, CY - 26), (106, CY - 28)]), w=2.6))
+    E.append(stroke('tro_fv3', circle(142, CY + 34, 6.5), w=1.5))
+    E.append(stroke('tro_fv4', circle(134, CY - 30, 6), w=1.5))
 
     E.append(pause('p3', 'Step 3 — the precystic stage: oval with granules'))
     px, py = 280, CY
@@ -108,10 +108,10 @@ def fig_entamoeba_stages():
         E.append(label('lbl_' + id_, x, y, text))
         E.append(leader('ld_' + id_, x + label_w(text, sm=True) / 2, y + 10, ex, ey))
     # lower rows (y 290, 334): leaders rise UP onto each stage
-    low = [('endoplasm', 4, 290, 'Endoplasm', (96, 208)),
+    low = [('endoplasm', 4, 290, 'Endoplasm', (74, 202)),
            ('chromatoid', 215, 290, 'Chromatoid bar', (280, 214)),
-           ('cartwheel', 4, 334, 'Cart-wheel nucleus', (132, 212)),
-           ('vacrbc', 200, 334, 'Vacuole with RBC', (156, 192))]
+           ('cartwheel', 4, 334, 'Cart-wheel nucleus', (104, 216)),
+           ('vacrbc', 200, 334, 'Vacuole with RBC', (158, 190))]
     for id_, x, y, text, (ex, ey) in low:
         E.append(label('lbl_' + id_, x, y, text))
         E.append(leader('ld_' + id_, x + label_w(text, sm=True) / 2, y - 20, ex, ey))
@@ -235,7 +235,7 @@ def fig_ascaris_bodies():
     E.append(pause('p4', 'Step 4 — leader lines and labels'))
     E.append(label('lbl_male', 145, 32, 'MALE', sm=False))
     E.append(label('lbl_female', 302, 32, 'FEMALE', sm=False))
-    left = [('mouth', 88, 'Mouth with three lips', (176, 50)),
+    left = [('mouth', 88, 'Mouth (3 lips)', (176, 50)),
             ('expore', 132, 'Excretory pore', (160, 76)),
             ('spicules', 280, 'Pineal spicules', (168, 256)),
             ('curved', 324, 'Curved tail', (150, 266)),
@@ -243,7 +243,6 @@ def fig_ascaris_bodies():
     for id_, y, text, (ex, ey) in left:
         E.append(label('lbl_' + id_, 4, y, text))
         E.append(leader('ld_' + id_, 4 + label_w(text, sm=True) + 5, y - 4, ex, ey))
-    E.append(leader('ld_mouth2', 4 + label_w('Mouth with three lips', sm=True) + 5, 84, 336, 50))
     right = [('genpore', 132, 'Genital pore', (330, 150)),
              ('straight', 324, 'Straight tail', (348, 326)),
              ('anus', 368, 'Anus', (346, 344))]
@@ -297,8 +296,8 @@ def fig_wuchereria_cycle():
             'Step 3 — the infective larva and the return to man',
             'Step 4 — the arrows that close the ring',
             'Step 5 — numbered stage names and the two hosts']
-    extra = [label('lbl_inman', 232, 152, 'IN MAN'),
-             label('lbl_inmos', 206, 250, 'IN MOSQUITO')]
+    extra = [label('lbl_inman', 230, 170, 'IN MAN'),
+             label('lbl_inmos', 205, 214, 'IN MOSQUITO')]
     return build_wheel('bhw_wuchereria_life_cycle', names, g, caps, extra=extra)
 
 
@@ -334,16 +333,16 @@ def fig_sporozoite():
     E.append(stroke('nucleolus', circle(133, 200, 5), w=1.5))
     E.append(stroke('mito', ellipse(140, 252, 8, 14)))
     E.append(stroke('mito_c', 'M 136 245 Q 144 249 137 254 Q 145 258 138 263', w=1.3))
-    E.append(stroke('tubule', 'M 143 282 Q 152 289 145 295 Q 138 301 147 307', w=1.5))
+    E.append(stroke('tubule', 'M 141 280 Q 150 287 143 293 Q 137 299 145 305', w=1.5))
 
     E.append(pause('p5', 'Step 5 — leader lines and labels'))
     right = [('apical', 48, 'Apical cup', (163, 82)),
              ('secretory', 92, 'Secretory organelles', (165, 66)),
-             ('pellicle', 136, 'Pellicle', (150, 152)),
-             ('golgi', 180, 'Golgi complex', (150, 136)),
+             ('golgi', 136, 'Golgi complex', (150, 138)),
+             ('pellicle', 180, 'Pellicle', (124, 170)),
              ('nucleus', 224, 'Nucleus', (147, 202)),
              ('mito', 268, 'Mitochondrion', (148, 252)),
-             ('tubule', 312, 'Convoluted tubule', (150, 292))]
+             ('tubule', 312, 'Convoluted tubule', (148, 292))]
     for id_, y, text, (ex, ey) in right:
         x = 290 if label_w(text, sm=True) + 290 <= w2 - 4 else w2 - label_w(text, sm=True) - 4
         E.append(label('lbl_' + id_, round(x, 1), y, text))

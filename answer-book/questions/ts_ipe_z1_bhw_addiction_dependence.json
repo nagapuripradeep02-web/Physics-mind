@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_addiction_dependence",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between addiction and dependence.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Addiction",
+      "marks": 2
+    },
+    {
+      "label": "Dependence",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.66, Star Q 184). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biology in Human Welfare · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_addiction",
+        "kind": "text",
+        "label": "Addiction",
+        "marks": 2,
+        "mark_note": "Addiction",
+        "lines": [
+          "Addiction is a psychological attachment to",
+          "certain effects of a drug, such as euphoria.",
+          "Tobacco, drugs and alcohol are addictive by",
+          "nature, and repeated use raises the tolerance",
+          "level of the receptors in the body.",
+          "The receptors then respond only to a higher",
+          "dose, so the person takes more and more of the",
+          "drug. Even a single use of tobacco, drugs or",
+          "alcohol can be the start of addiction.",
+          "Without guidance or counselling a person moves",
+          "from addiction to dependence."
+        ],
+        "why": "Addiction sits in the mind and is driven by rising tolerance, so the answer follows one chain: attachment, tolerance, higher dose, more intake.",
+        "common_mistakes": [
+          "Writing that addiction is a physical need. That is dependence.",
+          "Leaving out tolerance. The rising tolerance is what forces the dose up."
+        ],
+        "memory_tip": "Addiction is in the mind: the person wants the effect and needs a bigger dose each time.",
+        "margin_note": "One chain in four short lines: attachment, tolerance, higher dose, dependence."
+      },
+      {
+        "id": "s2_dependence",
+        "kind": "boxed_final",
+        "label": "Dependence",
+        "marks": 2,
+        "mark_note": "Dependence",
+        "lines": [
+          {
+            "text": "Addiction is mental, dependence is bodily",
+            "style": "boxed"
+          },
+          "Dependence is the tendency of the BODY to show a",
+          "characteristic unpleasant condition, called the",
+          "withdrawal syndrome, when the regular dose of",
+          "the drug or alcohol is stopped suddenly.",
+          "The withdrawal syndrome shows anxiety, shakiness",
+          "(tremors), nausea and sweating.",
+          "These signs are relieved when the drug is taken",
+          "again, so the person continues to use it.",
+          "Dependence leads a patient to ignore all social",
+          "norms."
+        ],
+        "why": "Dependence is tested by stopping the drug: the body reacts, and that reaction is what proves the need is physical rather than mental.",
+        "common_mistakes": [
+          "Writing that dependence is the wish to feel good. That is addiction.",
+          "Naming the withdrawal syndrome without listing its signs. The four signs are marked."
+        ],
+        "memory_tip": "Stop the drug and see: if the body reacts, that is dependence.",
+        "margin_note": "Definition, the four signs, then the relief and the result. Two marks."
+      }
+    ]
+  },
+  "insider_note": "The contrast is mind against body — say psychological for addiction and body for dependence, and list the withdrawal signs."
+}

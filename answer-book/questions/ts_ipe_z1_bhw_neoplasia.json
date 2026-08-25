@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_neoplasia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define neoplasia. Give one example.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 134). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book defines neoplasia as 'abnormal increase in size of the cell of the host due to presence of parasite', which is its own definition of HYPERTROPHY on p.44 (SAQ 46). Standard zoology defines neoplasia as new, abnormal and uncontrolled growth of host cells forming a neoplasm (tumour); this card is written correctly and the book's wording is recorded in the step's why field."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Neoplasia is the abnormal and uncontrolled",
+          "growth of host cells caused by the presence of a",
+          "parasite.",
+          "The new mass of cells is called a neoplasm or",
+          "tumour, and it may become cancer."
+        ],
+        "why": "Neoplasia is new growth, not swelling of one cell: the host cells keep dividing without control, which is why the end point is a tumour and not a bigger cell.",
+        "common_mistakes": [
+          "Writing that the SIZE of the host cell increases. That is hypertrophy, not neoplasia.",
+          "Writing that the number of cells increases without saying the growth is uncontrolled. Controlled increase in number is hyperplasia."
+        ],
+        "memory_tip": "Neo means new: neoplasia is new uncontrolled growth, hypertrophy is a bigger cell, hyperplasia is more cells.",
+        "margin_note": "One sentence for the definition and one for the tumour. Keep it apart from hypertrophy in your own words."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Carcinoma caused by a virus",
+            "style": "boxed"
+          },
+          "A virus in the host cells can cause carcinoma, a",
+          "cancer of the covering tissue."
+        ],
+        "why": "One named growth is enough, and naming the causative agent shows the growth was caused by a parasite rather than arising on its own.",
+        "common_mistakes": [
+          "Writing 'cancer' alone with no named example or agent."
+        ],
+        "memory_tip": "Carcinoma from a virus: the parasite is the virus, the new growth is the carcinoma.",
+        "margin_note": "One named example with its cause. One line."
+      }
+    ]
+  },
+  "insider_note": "The examiner is separating three look-alike terms in this chapter, so the answer must say uncontrolled NEW growth, not 'increase in size'."
+}

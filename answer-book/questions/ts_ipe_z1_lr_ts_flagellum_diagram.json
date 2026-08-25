@@ -1,0 +1,444 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_ts_flagellum_diagram",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw a labelled diagram of T.S. of flagellum.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Parts named",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 124). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [AP May-19], [AP M-18, TS May-17] and [TS May-19] against this question. FIGURE SCOPE: the book labels nine parts — outer sheath, nexin, peripheral doublets, radial spokes, central singlets, inner sheath, dynein arms, 'B' (β) tubule and 'A' (α) tubule — and all nine are drawn here. The nine doublets and the two central singlets are placed on a computed circle, not by hand, so the 9 + 2 count is exact."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "lr_ts_flagellum",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — plasma membrane and the central pair"
+            },
+            {
+              "type": "stroke",
+              "id": "membrane_a",
+              "d": "M 32 192 A 118 118 0 0 1 268 192",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "membrane_b",
+              "d": "M 268 192 A 118 118 0 0 1 32 192",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "inner_sheath",
+              "d": "M 120 192 A 30 30 0 1 0 180 192 A 30 30 0 1 0 120 192",
+              "ms": 2690
+            },
+            {
+              "type": "stroke",
+              "id": "singlet_l",
+              "d": "M 124 192 A 12 12 0 1 0 148 192 A 12 12 0 1 0 124 192",
+              "ms": 1080
+            },
+            {
+              "type": "stroke",
+              "id": "singlet_r",
+              "d": "M 152 192 A 12 12 0 1 0 176 192 A 12 12 0 1 0 152 192",
+              "ms": 1080
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the nine A tubules on a ring"
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a1",
+              "d": "M 145.5 106 A 13 13 0 1 0 171.5 106 A 13 13 0 1 0 145.5 106",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a2",
+              "d": "M 198.8 131.6 A 13 13 0 1 0 224.8 131.6 A 13 13 0 1 0 198.8 131.6",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a3",
+              "d": "M 223.2 185.4 A 13 13 0 1 0 249.2 185.4 A 13 13 0 1 0 223.2 185.4",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a4",
+              "d": "M 207.2 242.4 A 13 13 0 1 0 233.2 242.4 A 13 13 0 1 0 207.2 242.4",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a5",
+              "d": "M 158.4 275.7 A 13 13 0 1 0 184.4 275.7 A 13 13 0 1 0 158.4 275.7",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a6",
+              "d": "M 99.6 269.9 A 13 13 0 1 0 125.6 269.9 A 13 13 0 1 0 99.6 269.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a7",
+              "d": "M 58.3 227.6 A 13 13 0 1 0 84.3 227.6 A 13 13 0 1 0 58.3 227.6",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a8",
+              "d": "M 53.8 168.7 A 13 13 0 1 0 79.8 168.7 A 13 13 0 1 0 53.8 168.7",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_a9",
+              "d": "M 88.2 120.7 A 13 13 0 1 0 114.2 120.7 A 13 13 0 1 0 88.2 120.7",
+              "ms": 1170
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the B tubule beside every A tubule"
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b1",
+              "d": "M 128.5 106 A 13 13 0 1 0 154.5 106 A 13 13 0 1 0 128.5 106",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b2",
+              "d": "M 185.8 120.7 A 13 13 0 1 0 211.8 120.7 A 13 13 0 1 0 185.8 120.7",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b3",
+              "d": "M 220.2 168.7 A 13 13 0 1 0 246.2 168.7 A 13 13 0 1 0 220.2 168.7",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b4",
+              "d": "M 215.7 227.6 A 13 13 0 1 0 241.7 227.6 A 13 13 0 1 0 215.7 227.6",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b5",
+              "d": "M 174.4 269.9 A 13 13 0 1 0 200.4 269.9 A 13 13 0 1 0 174.4 269.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b6",
+              "d": "M 115.6 275.7 A 13 13 0 1 0 141.6 275.7 A 13 13 0 1 0 115.6 275.7",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b7",
+              "d": "M 66.8 242.4 A 13 13 0 1 0 92.8 242.4 A 13 13 0 1 0 66.8 242.4",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b8",
+              "d": "M 50.8 185.4 A 13 13 0 1 0 76.8 185.4 A 13 13 0 1 0 50.8 185.4",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "tub_b9",
+              "d": "M 75.2 131.6 A 13 13 0 1 0 101.2 131.6 A 13 13 0 1 0 75.2 131.6",
+              "ms": 1170
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — dynein arms and the nexin links"
+            },
+            {
+              "type": "stroke",
+              "id": "dynein_arms",
+              "d": "M 170.5 100.5 L 179.5 100.5 M 170.5 111.5 L 179.5 111.5 M 224.5 135.1 L 231.4 140.9 M 217.4 143.5 L 224.3 149.3 M 243.7 196.3 L 245.2 205.2 M 232.8 198.2 L 234.4 207.1 M 219 255.5 L 214.5 263.3 M 209.5 250 L 205 257.8 M 162 285 L 153.6 288.1 M 158.3 274.7 L 149.8 277.7 M 99.4 271 L 91 267.9 M 103.2 260.6 L 94.7 257.6 M 60.5 220 L 56 212.2 M 70 214.5 L 65.5 206.7 M 63.4 155.9 L 65 147.1 M 74.3 157.8 L 75.8 149 M 106.9 108.7 L 113.8 102.9 M 114 117.2 L 120.9 111.4",
+              "ms": 2310,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "nexin_links",
+              "d": "M 172.5 86.4 L 200.7 96.6 M 235.1 125.5 L 250.1 151.5 M 257.9 195.8 L 252.7 225.4 M 230.3 264.3 L 207.2 283.6 M 165 298.9 L 135 298.9 M 92.8 283.6 L 69.7 264.3 M 47.3 225.4 L 42.1 195.8 M 49.9 151.5 L 64.9 125.5 M 99.3 96.6 L 127.5 86.4",
+              "ms": 3860,
+              "w": 1.7
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — the nine radial spokes"
+            },
+            {
+              "type": "stroke",
+              "id": "radial_spokes",
+              "d": "M 156.1 122.3 L 152.8 160.1 M 199.5 142.5 L 172.6 169.4 M 219.7 185.9 L 181.9 189.2 M 207.3 232.2 L 176.2 210.4 M 168.1 259.6 L 158.3 222.9 M 120.4 255.4 L 136.5 221 M 86.6 221.6 L 121 205.5 M 82.4 173.9 L 119.1 183.7 M 109.8 134.7 L 131.6 165.8",
+              "ms": 4500,
+              "w": 1.7
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_outer_sheath",
+              "x": 300,
+              "y": 40,
+              "text": "Outer sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_outer_sheath",
+              "d": "M 296 36 L 194.2 82.6",
+              "ms": 1600,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_nexin",
+              "x": 300,
+              "y": 83,
+              "text": "Nexin",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nexin",
+              "d": "M 296 79 L 239.5 131.6",
+              "ms": 1100,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_doublets",
+              "x": 300,
+              "y": 126,
+              "text": "Peripheral doublets",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_doublets",
+              "d": "M 296 122 L 236.2 185.4",
+              "ms": 1250,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_singlets",
+              "x": 300,
+              "y": 169,
+              "text": "Central singlets",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_singlets",
+              "d": "M 296 165 L 164 192",
+              "ms": 1920,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_inner_sheath",
+              "x": 300,
+              "y": 212,
+              "text": "Inner sheath",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_inner_sheath",
+              "d": "M 296 208 L 171.2 213.2",
+              "ms": 1780,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_spokes",
+              "x": 300,
+              "y": 255,
+              "text": "Radial spokes",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_spokes",
+              "d": "M 296 251 L 192.6 221.8",
+              "ms": 1530,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_b_tubule",
+              "x": 300,
+              "y": 298,
+              "text": "B (β) tubule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_b_tubule",
+              "d": "M 296 294 L 228.7 227.6",
+              "ms": 1350,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_a_tubule",
+              "x": 300,
+              "y": 341,
+              "text": "A (α) tubule",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_a_tubule",
+              "d": "M 296 337 L 220.2 242.4",
+              "ms": 1730,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_dynein",
+              "x": 300,
+              "y": 381,
+              "text": "Dynein arms",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dynein",
+              "d": "M 296 377 L 154.5 281.9",
+              "ms": 2440,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The section is named by what it holds, so the drawing is built by counting: nine doublets on the outside, two singlets in the middle, and every other label hangs on one of those eleven tubules.",
+        "common_mistakes": [
+          "Drawing nine single tubules. Each peripheral unit is a DOUBLET of two tubules.",
+          "Drawing the two central tubules joined as a doublet. They are two separate singlets.",
+          "Drawing the 9 + 0 pattern. That is a centriole or a basal body, not a flagellum."
+        ],
+        "memory_tip": "Nine outside in pairs, two inside alone: 9 + 2. A centriole is 9 + 0.",
+        "margin_note": "Count the nine doublets before you label anything. Eight or ten loses the mark."
+      },
+      {
+        "id": "s2_parts",
+        "kind": "boxed_final",
+        "label": "Parts named",
+        "marks": 1,
+        "mark_note": "Labels",
+        "lines": [
+          {
+            "text": "Axoneme = 9 peripheral doublets + 2 singlets",
+            "style": "boxed"
+          },
+          "The axoneme is covered by the plasma membrane,",
+          "also called the outer sheath.",
+          "Each peripheral doublet has an A tubule and a",
+          "B tubule.",
+          "The A tubule carries a pair of dynein arms.",
+          "Nexin links join one doublet to the next.",
+          "A radial spoke runs from each doublet to the",
+          "inner sheath around the two central singlets."
+        ],
+        "why": "Every label on the figure belongs to one of three groups: the two tubules of a doublet, the links between doublets, and the central pair with its sheath — so naming the groups in that order names all nine labels.",
+        "common_mistakes": [
+          "Putting the dynein arms on the B tubule. They sit on the A tubule and reach the B tubule of the next doublet.",
+          "Calling the inner sheath the plasma membrane. The inner sheath wraps the two central singlets only."
+        ],
+        "memory_tip": "Work outward to inward: outer sheath, doublets with arms and nexin, spokes, inner sheath, central pair.",
+        "margin_note": "The labels are the answer here. Two or three naming lines are enough."
+      }
+    ]
+  },
+  "insider_note": "This is a pure drawing question, so both marks sit in the labelled figure — the labels most often missed are nexin and the radial spokes, and an unlabelled neat circle scores close to nothing."
+}

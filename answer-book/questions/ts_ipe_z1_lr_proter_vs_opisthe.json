@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_proter_vs_opisthe",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between proter and opisthe.",
+  "appearances": [
+    { "year": 2015, "board": "ap_ipe" },
+    { "year": 2015, "board": "ts_ipe" },
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2017, "board": "ts_ipe" },
+    { "year": 2018, "board": "ap_ipe" },
+    { "year": 2019, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Proter", "marks": 1 },
+    { "label": "Opisthe", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 128). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [TS May-19], [AP M-18] and [AP,TS M-15,17]. TEXT BEYOND THE BOOK: the book does not say where the two names come from; the opening line naming transverse binary fission in Paramecium is added here so the two words have a setting, and it matches the book's own SAQ 37 on the same page range."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_proter",
+        "kind": "text",
+        "label": "Proter",
+        "marks": 1,
+        "mark_note": "Proter",
+        "lines": [
+          "Transverse binary fission in Paramecium cuts",
+          "the parent across its long axis and gives two",
+          "daughter individuals.",
+          "The anterior daughter is called the proter.",
+          "It keeps the cytostome and the cytopharynx of",
+          "the parent, and the anterior contractile",
+          "vacuole."
+        ],
+        "why": "The two names are only front and back, so the answer is anchored by saying which end each daughter came from before listing what it inherited.",
+        "common_mistakes": [
+          "Writing that the proter is the posterior daughter. Proter is the FRONT one.",
+          "Writing that the proter builds a new mouth. It keeps the parent's cytostome and cytopharynx."
+        ],
+        "memory_tip": "Proter and 'prior' share the same root, meaning the one in front; the front daughter keeps the parent's mouth.",
+        "margin_note": "Say anterior, then say what it inherits. Two lines are enough."
+      },
+      {
+        "id": "s2_opisthe",
+        "kind": "boxed_final",
+        "label": "Opisthe",
+        "marks": 1,
+        "mark_note": "Opisthe",
+        "lines": [
+          "The posterior daughter is called the opisthe.",
+          "It keeps the posterior contractile vacuole of",
+          "the parent and forms a new cytostome, a new",
+          "cytopharynx and the other missing organelles.",
+          {
+            "text": "Proter = anterior daughter; opisthe = posterior",
+            "style": "boxed"
+          }
+        ],
+        "why": "The parent has only one mouth, so only one daughter can inherit it; the other has to build its own, and that is the real difference between the two.",
+        "common_mistakes": [
+          "Writing that the opisthe gets no nucleus. Both daughters receive a macronucleus and a micronucleus.",
+          "Writing that both daughters build a new mouth. Only the opisthe does."
+        ],
+        "memory_tip": "Opistho- means behind, as in opisthosoma; the behind daughter builds its own mouth.",
+        "margin_note": "The second mark is the new mouth parts the opisthe has to form."
+      }
+    ]
+  },
+  "insider_note": "Both marks are decided by one word each — anterior for the proter and posterior for the opisthe — so write those two words before anything else."
+}

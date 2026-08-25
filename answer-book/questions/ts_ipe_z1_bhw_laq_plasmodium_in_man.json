@@ -1,0 +1,808 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_laq_plasmodium_in_man",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the life cycle of Plasmodium vivax in man.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity and the two schizogonies",
+      "marks": 1
+    },
+    {
+      "label": "Pre-erythrocytic cycle",
+      "marks": 1
+    },
+    {
+      "label": "Exo-erythrocytic cycle",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Erythrocytic schizogony",
+      "marks": 2
+    },
+    {
+      "label": "Formation of gametocytes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.12, LAQ 2). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book prints a dense shaded plate of the whole human cycle. This card draws the simplified exam figure — a numbered ring of the named stages with no host organs drawn in the middle."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biology in Human Welfare · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "Identity and the two schizogonies",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Plasmodium vivax: Phylum Protozoa, Class",
+          "Telosporea.",
+          "It is the malarial parasite of man.",
+          "It is a digenetic intracellular parasite, so it",
+          "needs two hosts. In man it lives inside the",
+          "liver cells and the red blood cells.",
+          "In man the parasite reproduces asexually by",
+          "schizogony. Schizogony in man is of two types:",
+          "hepatic schizogony in the liver cells and",
+          "erythrocytic schizogony in the red blood cells."
+        ],
+        "why": "The whole answer is a two-part story, liver first and blood second, so naming the two schizogonies at the start gives the examiner the plan the rest of the answer follows.",
+        "common_mistakes": [
+          "Writing that Plasmodium is monogenetic. It is digenetic: man and the female Anopheles.",
+          "Calling the human phase sexual. The sexual phase takes place in the mosquito.",
+          "Naming only one kind of schizogony. Hepatic and erythrocytic are both asked."
+        ],
+        "memory_tip": "Two hosts, two schizogonies in man: liver first, then blood.",
+        "margin_note": "Four short lines. The words digenetic, hepatic schizogony and erythrocytic schizogony carry the mark."
+      },
+      {
+        "id": "s2_pre_eryth",
+        "kind": "text",
+        "label": "Pre-erythrocytic cycle",
+        "marks": 1,
+        "mark_note": "Liver 1",
+        "lines": [
+          "Hepatic schizogony was discovered by Shortt and",
+          "Garnham. It has two cycles: pre-erythrocytic and",
+          "exo-erythrocytic.",
+          "Pre-erythrocytic cycle: when an infected female",
+          "Anopheles mosquito bites a healthy person, the",
+          "sporozoites enter the blood of man.",
+          "Within half an hour they reach the liver cells",
+          "and transform into trophozoites.",
+          "They become round, grow in size and are then",
+          "called schizonts.",
+          "The nucleus divides several times and the",
+          "cytoplasm then divides, producing 12,000",
+          "cryptozoites, which are also called first",
+          "generation merozoites.",
+          "They rupture the cell membrane of the schizont",
+          "and the liver cell, and enter the sinusoids of",
+          "the liver. This cycle takes 8 days."
+        ],
+        "why": "The parasite must multiply before it can cause disease, and the liver is where the first multiplication happens quietly, which is why no symptoms appear during these 8 days.",
+        "common_mistakes": [
+          "Writing that the sporozoites enter the red blood cells first. They go to the liver cells first.",
+          "Giving the wrong count. One liver schizont gives 12,000 cryptozoites.",
+          "Writing that this cycle takes 48 hours. The pre-erythrocytic cycle takes 8 days."
+        ],
+        "memory_tip": "Sporozoite to liver cell, trophozoite to schizont, then 12,000 cryptozoites in 8 days.",
+        "margin_note": "Six short lines following one chain. Give the number 12,000 and the 8 days."
+      },
+      {
+        "id": "s3_exo_eryth",
+        "kind": "text",
+        "label": "Exo-erythrocytic cycle",
+        "marks": 1,
+        "mark_note": "Liver 2",
+        "lines": [
+          "Exo-erythrocytic cycle: the cryptozoites that",
+          "enter fresh liver cells undergo schizogony again",
+          "and produce two kinds of metacryptozoites within",
+          "two days.",
+          "Some are small and are called micro",
+          "metacryptozoites. They are the male forms and",
+          "they enter the red blood cells.",
+          "Others are large and are called macro",
+          "metacryptozoites. They are the female forms and",
+          "they continue hepatic schizogony.",
+          "Prepatent period: the interval between the first",
+          "entry of the parasite into the blood as",
+          "sporozoites and its second entry as cryptozoites",
+          "is called the prepatent period. It takes about 8",
+          "days and no clinical symptoms are seen."
+        ],
+        "why": "This second liver cycle is what keeps a reserve of parasites in the liver while the blood cycle begins, and it is where the prepatent period is defined.",
+        "common_mistakes": [
+          "Writing that all metacryptozoites enter the blood. Only the micro forms do.",
+          "Confusing the prepatent period with the incubation period. Prepatent is 8 days; incubation is 10 to 14 days.",
+          "Writing that symptoms appear in this period. No clinical symptoms are seen."
+        ],
+        "memory_tip": "Micro goes to the blood, macro stays in the liver: small out, large in.",
+        "margin_note": "Four short blocks. Define the prepatent period here; it is a marked term."
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "Diagram — the cycle in man",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_plasmodium_man_cycle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — sporozoite, liver cell, schizont and cryptozoites"
+            },
+            {
+              "type": "stroke",
+              "id": "g1_a",
+              "d": "M 274.2 93.3 Q 294.9 95.6 304 76.9",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "g1_b",
+              "d": "M 274.2 93.3 Q 290.6 87.8 304 76.9",
+              "ms": 490
+            },
+            {
+              "type": "stroke",
+              "id": "g2_cell",
+              "d": "M 345.1 157.2 L 330.2 164.3 L 315.3 157.2 L 315.3 143 L 330.2 135.8 L 345.1 143 L 345.1 157.2",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "g2_hn",
+              "d": "M 335.1 144.1 A 3.4 3.4 0 1 0 341.8 144.1 A 3.4 3.4 0 1 0 335.1 144.1",
+              "ms": 340,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g2b_out",
+              "d": "M 334.5 153.1 L 334.2 153.6 L 333.9 154.3 L 333.4 155.2 L 332.9 156 L 332.4 156.7 L 331.9 157.2 L 331.3 157.8 L 330.8 158.2 L 330.2 158.6 L 329.5 158.9 L 328.9 159 L 328.3 159 L 327.6 158.9 L 326.9 158.8 L 326.2 158.9 L 325.4 159.1 L 324.6 159.5 L 323.7 159.9 L 322.9 160.2 L 322.1 160.2 L 321.4 159.8 L 320.8 159.3 L 320.2 158.5 L 319.7 157.8 L 319.4 157 L 319.4 156.3 L 319.7 155.5 L 320 154.7 L 320.3 153.9 L 320.5 153.1 L 320.5 152.4 L 320.4 151.7 L 320.3 151 L 320.2 150.3 L 320.3 149.7 L 320.5 149 L 320.9 148.4 L 321.4 147.8 L 322 147.3 L 322.5 146.8 L 323.2 146.2 L 323.9 145.7 L 324.7 145.2 L 325.5 144.9 L 326.2 144.9 L 326.8 145.2 L 327.4 145.8 L 328 146.6 L 328.6 147.4 L 329.1 148 L 329.6 148.5 L 330.1 148.9 L 330.6 149.2 L 331 149.6 L 331.5 150 L 332.1 150.6 L 332.8 151.3 L 333.5 152 L 334.1 152.7 L 334.5 153.1",
+              "ms": 670
+            },
+            {
+              "type": "stroke",
+              "id": "g2b_nuc",
+              "d": "M 319 155.1 A 4.2 4.2 0 1 0 327.4 155.1 A 4.2 4.2 0 1 0 319 155.1",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g3_out",
+              "d": "M 315.2 241.9 A 15 15 0 1 0 345.2 241.9 A 15 15 0 1 0 315.2 241.9",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m0",
+              "d": "M 337 244.9 A 2.9 2.9 0 1 0 342.8 244.9 A 2.9 2.9 0 1 0 337 244.9",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m1",
+              "d": "M 330.9 246.7 A 2.9 2.9 0 1 0 336.7 246.7 A 2.9 2.9 0 1 0 330.9 246.7",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m2",
+              "d": "M 327.4 252.1 A 2.9 2.9 0 1 0 333.2 252.1 A 2.9 2.9 0 1 0 327.4 252.1",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m3",
+              "d": "M 323.8 246.8 A 2.9 2.9 0 1 0 329.6 246.8 A 2.9 2.9 0 1 0 323.8 246.8",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m4",
+              "d": "M 317.6 245.2 A 2.9 2.9 0 1 0 323.4 245.2 A 2.9 2.9 0 1 0 317.6 245.2",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m5",
+              "d": "M 321.6 240.1 A 2.9 2.9 0 1 0 327.4 240.1 A 2.9 2.9 0 1 0 321.6 240.1",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m6",
+              "d": "M 321.2 233.7 A 2.9 2.9 0 1 0 327 233.7 A 2.9 2.9 0 1 0 321.2 233.7",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m7",
+              "d": "M 327.2 235.9 A 2.9 2.9 0 1 0 333 235.9 A 2.9 2.9 0 1 0 327.2 235.9",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m8",
+              "d": "M 333.2 233.6 A 2.9 2.9 0 1 0 339 233.6 A 2.9 2.9 0 1 0 333.2 233.6",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g3_m9",
+              "d": "M 333 240 A 2.9 2.9 0 1 0 338.8 240 A 2.9 2.9 0 1 0 333 240",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the stages inside the red blood cell"
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c0",
+              "d": "M 285.5 306.9 A 3.6 4.9 0 1 0 292.7 306.9 A 3.6 4.9 0 1 0 285.5 306.9",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c1",
+              "d": "M 291.1 315.3 A 3.6 4.9 0 1 0 298.3 315.3 A 3.6 4.9 0 1 0 291.1 315.3",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c2",
+              "d": "M 283.5 316.8 A 3.6 4.9 0 1 0 290.7 316.8 A 3.6 4.9 0 1 0 283.5 316.8",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c3",
+              "d": "M 277.1 312.5 A 3.6 4.9 0 1 0 284.3 312.5 A 3.6 4.9 0 1 0 277.1 312.5",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c4",
+              "d": "M 275.6 304.9 A 3.6 4.9 0 1 0 282.8 304.9 A 3.6 4.9 0 1 0 275.6 304.9",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c5",
+              "d": "M 279.9 298.5 A 3.6 4.9 0 1 0 287.1 298.5 A 3.6 4.9 0 1 0 279.9 298.5",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c6",
+              "d": "M 287.5 297 A 3.6 4.9 0 1 0 294.7 297 A 3.6 4.9 0 1 0 287.5 297",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_c7",
+              "d": "M 293.9 301.3 A 3.6 4.9 0 1 0 301.1 301.3 A 3.6 4.9 0 1 0 293.9 301.3",
+              "ms": 380,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g5_rbc",
+              "d": "M 214.9 306.9 A 16 16 0 1 0 246.9 306.9 A 16 16 0 1 0 214.9 306.9",
+              "ms": 1440
+            },
+            {
+              "type": "stroke",
+              "id": "g5_ring",
+              "d": "M 221.1 307.9 A 8.8 8.8 0 1 0 238.7 307.9 A 8.8 8.8 0 1 0 221.1 307.9",
+              "ms": 790,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g5_nuc",
+              "d": "M 235.3 307.9 A 3.4 3.4 0 1 0 242.1 307.9 A 3.4 3.4 0 1 0 235.3 307.9",
+              "ms": 310,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g6_rbc",
+              "d": "M 172.8 241.9 A 17 17 0 1 0 206.8 241.9 A 17 17 0 1 0 172.8 241.9",
+              "ms": 1530
+            },
+            {
+              "type": "stroke",
+              "id": "g6b_out",
+              "d": "M 203.3 241.9 L 202.4 242.5 L 201 243.3 L 199.6 244.3 L 198.1 245.2 L 197 246.1 L 196.2 246.8 L 195.7 247.6 L 195.2 248.3 L 194.7 248.9 L 194.1 249.3 L 193.4 249.4 L 192.7 249.2 L 191.9 249 L 190.9 248.9 L 189.8 249.3 L 188.2 250.6 L 186.3 252.5 L 184.2 254.5 L 182.5 256 L 181.4 256.4 L 181.2 255.3 L 181.5 253.1 L 182.1 250.3 L 182.8 247.7 L 183.2 245.7 L 183.4 244.5 L 183.5 243.8 L 183.6 243.2 L 183.5 242.7 L 183.3 241.9 L 182.7 240.8 L 181.7 239.6 L 180.7 238.4 L 179.9 237.1 L 179.7 236.1 L 180 235.1 L 180.8 234.2 L 181.9 233.5 L 183 232.7 L 184.1 232 L 185.2 231.2 L 186.5 230.3 L 187.8 229.4 L 188.9 229.1 L 189.8 229.3 L 190.3 230.7 L 190.4 233 L 190.4 235.5 L 190.7 237.8 L 191.4 239.1 L 192.9 239.1 L 194.8 238.2 L 197 237 L 199 236 L 200.5 235.7 L 201.5 236.4 L 202.2 237.8 L 202.7 239.4 L 203 240.9 L 203.3 241.9",
+              "ms": 1270
+            },
+            {
+              "type": "stroke",
+              "id": "g6b_nuc",
+              "d": "M 182.6 243.9 A 4.2 4.2 0 1 0 191 243.9 A 4.2 4.2 0 1 0 182.6 243.9",
+              "ms": 380,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — schizogony and the two gametocytes"
+            },
+            {
+              "type": "stroke",
+              "id": "g7_out",
+              "d": "M 174.8 150.1 A 15 15 0 1 0 204.8 150.1 A 15 15 0 1 0 174.8 150.1",
+              "ms": 1350
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m0",
+              "d": "M 196.6 153.1 A 2.9 2.9 0 1 0 202.4 153.1 A 2.9 2.9 0 1 0 196.6 153.1",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m1",
+              "d": "M 191 154.5 A 2.9 2.9 0 1 0 196.8 154.5 A 2.9 2.9 0 1 0 191 154.5",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m2",
+              "d": "M 189.2 160 A 2.9 2.9 0 1 0 195 160 A 2.9 2.9 0 1 0 189.2 160",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m3",
+              "d": "M 185.1 155.8 A 2.9 2.9 0 1 0 190.9 155.8 A 2.9 2.9 0 1 0 185.1 155.8",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m4",
+              "d": "M 179.4 157 A 2.9 2.9 0 1 0 185.2 157 A 2.9 2.9 0 1 0 179.4 157",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m5",
+              "d": "M 181 151.4 A 2.9 2.9 0 1 0 186.8 151.4 A 2.9 2.9 0 1 0 181 151.4",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m6",
+              "d": "M 177.2 147.1 A 2.9 2.9 0 1 0 183 147.1 A 2.9 2.9 0 1 0 177.2 147.1",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m7",
+              "d": "M 182.8 145.7 A 2.9 2.9 0 1 0 188.6 145.7 A 2.9 2.9 0 1 0 182.8 145.7",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m8",
+              "d": "M 184.6 140.2 A 2.9 2.9 0 1 0 190.4 140.2 A 2.9 2.9 0 1 0 184.6 140.2",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m9",
+              "d": "M 188.7 144.4 A 2.9 2.9 0 1 0 194.5 144.4 A 2.9 2.9 0 1 0 188.7 144.4",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m10",
+              "d": "M 194.4 143.2 A 2.9 2.9 0 1 0 200.2 143.2 A 2.9 2.9 0 1 0 194.4 143.2",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_m11",
+              "d": "M 192.8 148.8 A 2.9 2.9 0 1 0 198.6 148.8 A 2.9 2.9 0 1 0 192.8 148.8",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "g7_br",
+              "d": "M 200.8 139.1 L 209.8 130.1 M 202.8 159.1 L 211.8 167.1",
+              "ms": 350,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g8_m",
+              "d": "M 212.9 81.1 A 9 9 0 1 0 230.9 81.1 A 9 9 0 1 0 212.9 81.1",
+              "ms": 810
+            },
+            {
+              "type": "stroke",
+              "id": "g8_mn",
+              "d": "M 218.7 81.1 A 3.2 3.2 0 1 0 225.1 81.1 A 3.2 3.2 0 1 0 218.7 81.1",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g8_f",
+              "d": "M 228.9 90.1 A 11 11 0 1 0 250.9 90.1 A 11 11 0 1 0 228.9 90.1",
+              "ms": 990
+            },
+            {
+              "type": "stroke",
+              "id": "g8_fn",
+              "d": "M 236.1 90.1 A 3.8 3.8 0 1 0 243.7 90.1 A 3.8 3.8 0 1 0 236.1 90.1",
+              "ms": 340,
+              "w": 1.4
+            },
+            {
+              "type": "pause",
+              "id": "pa",
+              "caption": "Step 4 — the arrows that close the ring"
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar0",
+              "d": "M 304.9 99.2 L 306.5 101.1 L 308 103 L 309.5 104.9 L 310.9 106.9 L 312.4 109 L 313.7 111.1 L 315.1 113.3 L 316.4 115.6 L 317.7 117.9 L 318.9 120.2 L 320.1 122.6",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah0",
+              "d": "M 314.6 120.6 L 321.3 125 L 321.8 117.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar1",
+              "d": "M 335.1 177.7 L 335.4 180.8 L 335.6 183.8 L 335.8 186.8 L 335.9 189.9 L 336 192.9 L 336 196 L 336 199.1 L 335.9 202.1 L 335.8 205.2 L 335.6 208.2 L 335.4 211.2",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah1",
+              "d": "M 331.7 207 L 335.1 214.3 L 339.7 207.7",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar2",
+              "d": "M 321.3 267 L 320.1 269.4 L 318.9 271.8 L 317.7 274.1 L 316.4 276.4 L 315.1 278.7 L 313.7 280.9 L 312.4 283 L 310.9 285.1 L 309.5 287.1 L 308 289 L 306.5 290.9",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah2",
+              "d": "M 306.2 284.9 L 304.9 292.8 L 312.4 289.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar3",
+              "d": "M 271.6 314.6 L 269.6 315 L 267.7 315.4 L 265.8 315.7 L 263.9 315.8 L 261.9 316 L 260 316 L 258.1 316 L 256.1 315.8 L 254.2 315.7 L 252.3 315.4 L 250.4 315",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah3",
+              "d": "M 256 312.1 L 248.4 314.6 L 254.4 319.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar4",
+              "d": "M 215.1 292.8 L 213.5 290.9 L 212 289 L 210.5 287.1 L 209.1 285.1 L 207.6 283 L 206.3 280.9 L 204.9 278.7 L 203.6 276.4 L 202.3 274.1 L 201.1 271.8 L 199.9 269.4",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah4",
+              "d": "M 205.4 271.4 L 198.7 267 L 198.2 274.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar5",
+              "d": "M 184.9 214.3 L 184.6 211.2 L 184.4 208.2 L 184.2 205.2 L 184.1 202.1 L 184 199.1 L 184 196 L 184 192.9 L 184.1 189.9 L 184.2 186.8 L 184.4 183.8 L 184.6 180.8",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah5",
+              "d": "M 188.3 185 L 184.9 177.7 L 180.3 184.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar6",
+              "d": "M 198.7 125 L 199.9 122.6 L 201.1 120.2 L 202.3 117.9 L 203.6 115.6 L 204.9 113.3 L 206.3 111.1 L 207.6 109 L 209.1 106.9 L 210.5 104.9 L 212 103 L 213.5 101.1",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah6",
+              "d": "M 213.8 107.1 L 215.1 99.2 L 207.6 102.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar7",
+              "d": "M 248.4 77.4 L 250.4 77 L 252.3 76.6 L 254.2 76.3 L 256.1 76.2 L 258.1 76 L 260 76 L 261.9 76 L 263.9 76.2 L 265.8 76.3 L 267.7 76.6 L 269.6 77",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah7",
+              "d": "M 264 79.9 L 271.6 77.4 L 265.6 72.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "pl",
+              "caption": "Step 5 — numbered stage names"
+            },
+            {
+              "type": "label",
+              "id": "n_l0",
+              "x": 300.6,
+              "y": 49.4,
+              "text": "1. Sporozoite",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l1",
+              "x": 357.9,
+              "y": 130.6,
+              "text": "2. Liver cell",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l2",
+              "x": 357.9,
+              "y": 267.4,
+              "text": "3. Schizont",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l3",
+              "x": 300.6,
+              "y": 348.6,
+              "text": "4. Cryptozoites",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l4",
+              "x": 80.8,
+              "y": 348.6,
+              "text": "5. Signet ring",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l5",
+              "x": 53.2,
+              "y": 267.4,
+              "text": "6. Amoeboid",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l6",
+              "x": 33.4,
+              "y": 130.6,
+              "text": "7. Schizogony",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l7",
+              "x": 80.8,
+              "y": 49.4,
+              "text": "8. Gametocytes",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The cycle in man is a ring with two loops on it, one in the liver and one in the blood, and the drawing has to show that the blood loop repeats while the liver loop happens once.",
+        "common_mistakes": [
+          "Drawing the signet ring stage as a plain circle. The vacuole must push the nucleus to one side.",
+          "Drawing the sporozoite as a round body. It is sickle shaped.",
+          "Putting the gametocytes inside the liver. They form inside the red blood cells."
+        ],
+        "memory_tip": "Draw the ring, then hang the stages on it in order and put the arrowheads on last.",
+        "margin_note": "Label the sporozoite, liver cell, schizont, cryptozoites, signet ring stage, amoeboid stage, erythrocytic schizont, merozoites and the two gametocytes."
+      },
+      {
+        "id": "s5_erythrocytic",
+        "kind": "text",
+        "label": "Erythrocytic schizogony",
+        "marks": 2,
+        "mark_note": "Blood cycle",
+        "lines": [
+          "Erythrocytic schizogony is also called the Golgi",
+          "cycle. It was described by Golgi.",
+          "The cryptozoites or the micro metacryptozoites",
+          "enter fresh red blood cells and transform into",
+          "trophozoites.",
+          "A small vacuole appears in the trophozoite. It",
+          "enlarges and pushes the cytoplasm and the",
+          "nucleus to one side, so the parasite looks like",
+          "a ring. This is the signet ring stage.",
+          "The vacuole then disappears, pseudopodia develop",
+          "and the parasite changes to the amoeboid stage.",
+          "At this stage the red blood cell grows to almost",
+          "double its size. This condition is called",
+          "hypertrophy.",
+          "The parasite feeds on the globin part of",
+          "haemoglobin and grows. It converts the soluble",
+          "haem into insoluble haemozoin, which is called",
+          "malaria pigment.",
+          "Small red dots appear in the cytoplasm of the",
+          "red blood cell. They are called Schuffner's",
+          "dots.",
+          "The parasite becomes a round schizont. It",
+          "undergoes schizogony and produces 12 to 24",
+          "erythrocytic merozoites.",
+          "The red blood cell finally bursts and releases",
+          "the merozoites and the haemozoin into the blood.",
+          "The release of haemozoin causes the chill and",
+          "fever of malaria.",
+          "The merozoites attack fresh red blood cells and",
+          "the cycle is repeated. One erythrocytic cycle",
+          "takes 48 hours.",
+          "Incubation period: the period between the entry",
+          "of the sporozoites into the blood and the first",
+          "appearance of the symptoms of malaria is called",
+          "the incubation period. It lasts 10 to 14 days."
+        ],
+        "why": "This is the cycle a patient feels, so the answer follows one red blood cell from the moment the parasite enters it to the moment it bursts, and the fever is placed exactly where the bursting happens.",
+        "common_mistakes": [
+          "Writing that the parasite digests the haem. It digests the GLOBIN; the haem becomes haemozoin.",
+          "Giving the wrong merozoite count. One erythrocytic schizont gives 12 to 24 merozoites.",
+          "Writing that the fever comes from the merozoites. It comes from the released haemozoin."
+        ],
+        "memory_tip": "Ring, amoeba, schizont, burst: one red blood cell, four shapes, 48 hours.",
+        "margin_note": "This is the longest part of the answer and carries two marks. Keep the named stages in order and give the three numbers."
+      },
+      {
+        "id": "s6_gametocytes",
+        "kind": "boxed_final",
+        "label": "Formation of gametocytes",
+        "marks": 1,
+        "mark_note": "Gametocytes",
+        "lines": [
+          {
+            "text": "Gametocytes must reach the mosquito to develop",
+            "style": "boxed"
+          },
+          "After several erythrocytic cycles some",
+          "merozoites enter red blood cells and transform",
+          "into gametocytes instead of continuing the",
+          "cycle.",
+          "There are two kinds: the female (macro)",
+          "gametocyte and the male (micro) gametocyte.",
+          "The gametocytes do not develop any further in",
+          "man. They have to reach a female Anopheles",
+          "mosquito.",
+          "They die if they do not reach a mosquito within",
+          "a week."
+        ],
+        "why": "The human phase ends here on purpose: the gametocyte is the handover point between the two hosts, which is why the sexual phase can only begin inside the mosquito.",
+        "common_mistakes": [
+          "Writing that gametocytes fuse in man. They fuse only in the mosquito.",
+          "Writing that gametocytes are formed in the liver. They are formed in the red blood cells."
+        ],
+        "memory_tip": "The gametocyte is the ticket to the mosquito: no mosquito in a week and it dies.",
+        "margin_note": "Four short lines closing the answer. Say plainly that they do not develop further in man."
+      }
+    ]
+  },
+  "insider_note": "Four numbers decide this answer — 12,000 cryptozoites, 12 to 24 merozoites, 48 hours per cycle and 10 to 14 days of incubation."
+}

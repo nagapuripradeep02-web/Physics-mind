@@ -430,7 +430,7 @@ W.append(card(
                      "immune response and vaccines become less effective. "
                      "Example: Plasmodium and HIV."),
              why="The last three adaptations all deal with reaching a NEW host and surviving the immune response, which is the second half of the problem stated at the start.",
-             cm=["Writing that the parasite hides from vaccines. Write what happens: the surface antigens change.",
+             cm=["Writing that the parasite escapes the vaccine. State what happens: the surface antigens change.",
                  "Naming the adaptations without examples. Fasciola, Entamoeba and Plasmodium are the named ones."],
              tip="Getting to the next host: many stages, a resistant cyst, and a changing coat.",
              margin="Three named adaptations in the box, each with its example. Closing mark."),

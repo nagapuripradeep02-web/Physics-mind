@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_hyper_parasite",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a hyper-parasite? Mention the name of one hyper-parasite.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.58, VSAQ 132). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biology in Human Welfare · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A parasite that lives on or inside the body of",
+          "another parasite is called a hyper-parasite."
+        ],
+        "why": "The word 'hyper' here means one level higher, so the host of a hyper-parasite is itself a parasite — that second level is the whole idea being tested.",
+        "common_mistakes": [
+          "Writing that a hyper-parasite is a very harmful parasite. 'Hyper' names the level, not the strength.",
+          "Saying it lives on a host. Its host is another PARASITE."
+        ],
+        "memory_tip": "Parasite on a parasite: the host of the hyper-parasite is itself living on someone else.",
+        "margin_note": "One line. The whole mark is in the words 'on another parasite'."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Nosema notabilis on Sphaerospora polymorpha",
+            "style": "boxed"
+          },
+          "Nosema notabilis is a hyper-parasite.",
+          "It lives on Sphaerospora polymorpha, which is",
+          "itself a parasite in the urinary bladder of the",
+          "toad fish."
+        ],
+        "why": "The example only proves the point if the chain of three is written out — hyper-parasite, its parasite host, and the animal that parasite lives in.",
+        "common_mistakes": [
+          "Naming only Nosema notabilis. The parasite it lives on must be named too.",
+          "Writing the two names the other way round."
+        ],
+        "memory_tip": "Three names in a chain: Nosema on Sphaerospora, Sphaerospora in the toad fish.",
+        "margin_note": "Both names, in order, and the animal at the end of the chain. Two lines."
+      }
+    ]
+  },
+  "insider_note": "Only the paired names earn the second mark — an unnamed 'parasite on a parasite' example scores nothing."
+}

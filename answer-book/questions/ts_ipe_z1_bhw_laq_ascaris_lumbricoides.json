@@ -1,0 +1,927 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_bhw_laq_ascaris_lumbricoides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Biology in Human Welfare (Zoology)"
+  },
+  "chapter": "Biology in Human Welfare",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the structure and life cycle of Ascaris lumbricoides with the help of a neat labelled diagram.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identity of the parasite",
+      "marks": 1
+    },
+    {
+      "label": "General structure",
+      "marks": 1
+    },
+    {
+      "label": "Male and female",
+      "marks": 1
+    },
+    {
+      "label": "Diagram — male and female",
+      "marks": 2
+    },
+    {
+      "label": "Eggs and larvae in soil",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle diagram",
+      "marks": 1
+    },
+    {
+      "label": "Migration inside man",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.16, LAQ 4). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book prints one shaded plate of the two worms and a second elaborate life-cycle plate with the organs of man drawn inside it. This card draws the simplified exam figures — the two worms side by side, and a numbered ring of stages with the soil half and the man half marked."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Biology in Human Welfare · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "Identity of the parasite",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "Ascaris lumbricoides: Phylum Nematoda, Class",
+          "Phasmidia.",
+          "It is commonly called the common round worm.",
+          "It reaches the intestine of children through",
+          "contaminated water and food and causes",
+          "ascariasis.",
+          "It is a dimorphic, monogenetic, pseudocoelomate",
+          "and enterozoic parasite, so the two sexes look",
+          "different, it needs only ONE host, its body",
+          "cavity is a pseudocoelom and it lives in the",
+          "intestine."
+        ],
+        "why": "Four labels open the answer and each one is used later: dimorphic sets up the male and female comparison, monogenetic explains why there is no second host in the cycle.",
+        "common_mistakes": [
+          "Writing that Ascaris is digenetic. It is monogenetic and needs only man.",
+          "Naming the phylum Platyhelminthes. Ascaris belongs to Nematoda.",
+          "Writing that it lives in the liver. The adult lives in the small intestine."
+        ],
+        "memory_tip": "One host, one gut, two sexes that look different.",
+        "margin_note": "Four short lines. Explain each label in the same line rather than listing bare words."
+      },
+      {
+        "id": "s2_structure",
+        "kind": "text",
+        "label": "General structure",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "The sexes are separate and the sexual dimorphism",
+          "is distinct.",
+          "In both the male and the female the body is",
+          "elongated and cylindrical, and it tapers at both",
+          "ends.",
+          "In both forms the mouth is at the anterior end",
+          "and is surrounded by three chitinous lips: one",
+          "dorsal lip and two ventro-lateral lips.",
+          "The excretory pore is present ventrally, close",
+          "to the mouth."
+        ],
+        "why": "These are the features the male and the female share, so writing them once keeps the next step free to describe only the differences.",
+        "common_mistakes": [
+          "Giving two lips. Ascaris has THREE chitinous lips around the mouth.",
+          "Placing the excretory pore at the posterior end. It is ventral and close to the mouth."
+        ],
+        "memory_tip": "Same in both sexes: cylindrical body, three lips, excretory pore near the mouth.",
+        "margin_note": "Four short lines of shared features. Keep the differences for the next step."
+      },
+      {
+        "id": "s3_male_female",
+        "kind": "text",
+        "label": "Male and female",
+        "marks": 1,
+        "mark_note": "Dimorphism",
+        "lines": [
+          "Male: it is short, and its posterior end is",
+          "CURVED.",
+          "A cloaca is present in the curved end and bears",
+          "a pair of equal sized copulatory spicules, also",
+          "called pineal spicules.",
+          "Female: the body is long, and its posterior end",
+          "is STRAIGHT.",
+          "The anus is present at the posterior end.",
+          "The female genital pore, or vulva, is present at",
+          "about one third of the body length from the",
+          "anterior end."
+        ],
+        "why": "The two sexes are told apart by the tail before anything else, so the answer pairs the two ends directly — curved with spicules against straight with an anus.",
+        "common_mistakes": [
+          "Giving the male a straight tail. The MALE tail is curved; the female tail is straight.",
+          "Placing the female genital pore at the posterior end. It is one third of the way from the ANTERIOR end.",
+          "Writing that the spicules are of unequal size. In Ascaris they are equal."
+        ],
+        "memory_tip": "Curved and short is the male, straight and long is the female.",
+        "margin_note": "Two named sub-headings. The curved tail and the one-third genital pore are the marked facts."
+      },
+      {
+        "id": "s4_diagram_structure",
+        "kind": "diagram",
+        "label": "Diagram — male and female",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_ascaris_male_female",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the male body and its curved tail"
+            },
+            {
+              "type": "stroke",
+              "id": "male_a",
+              "d": "M 161.6 53 L 162.1 57.8 L 163 64.3 L 164 71.9 L 165.1 80.2 L 165.9 88.6 L 166.4 96.7 L 166.5 103.7 L 166 110 L 164.9 116.3 L 163.4 122.8 L 161.7 129.6 L 160.1 136.7 L 159 144.2 L 158.5 151.9 L 158.8 159.8 L 159.6 167.6 L 160.8 175.4 L 162.2 183.1 L 163.7 190.5 L 165.3 197.4 L 166.7 204 L 168.5 210.4 L 170.6 216.5 L 172.7 221.9 L 174.6 226.8 L 176.2 231.2 L 177.1 234.9 L 177.5 238.3 L 177.3 241.8 L 176.8 245.7 L 175.8 249.4 L 174.5 253 L 173.1 256 L 171.6 258.3 L 170.5 259.5 L 169.3 260.3 L 167.2 261.1 L 164.5 261.6 L 161.6 261.8 L 159.1 261.7 L 157.4 261.3 L 157.4 261.5 L 157.8 261.8 L 157.3 260.2 L 156.7 257 L 156.3 253.2 L 156 249.3 L 155.8 245.7 L 155.4 243",
+              "ms": 3500
+            },
+            {
+              "type": "stroke",
+              "id": "male_b",
+              "d": "M 178.4 51 L 179 55.6 L 179.9 62 L 180.9 69.8 L 182 78.3 L 182.8 87.2 L 183.4 96 L 183.5 104.3 L 182.8 112.1 L 181.5 119.6 L 179.9 126.7 L 178.3 133.4 L 176.8 139.8 L 175.9 146 L 175.5 152.1 L 175.8 158.6 L 176.5 165.5 L 177.5 172.6 L 178.9 179.8 L 180.3 186.9 L 181.9 193.7 L 183.3 200 L 184.7 205.5 L 186.5 210.6 L 188.5 215.7 L 190.6 220.9 L 192.4 226.2 L 193.9 231.9 L 194.5 237.7 L 194.3 243.5 L 193.4 249 L 192 254.4 L 190.2 259.5 L 187.9 264.3 L 185.1 268.6 L 181.5 272.5 L 177 275.5 L 172 277.4 L 166.9 278.5 L 161.7 278.8 L 156.7 278.5 L 151.7 277.3 L 146.6 274.5 L 142.7 269.7 L 140.8 264.5 L 139.9 259.5 L 139.3 254.7 L 139 250.4 L 138.8 247.1 L 138.6 245",
+              "ms": 4240
+            },
+            {
+              "type": "stroke",
+              "id": "male_head",
+              "d": "M 161.6 53 Q 168.8 41.6 178.4 51",
+              "ms": 300,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "male_tip",
+              "d": "M 155.4 243 Q 146.4 238.7 138.6 245",
+              "ms": 300,
+              "w": 2
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the female body and its straight tail"
+            },
+            {
+              "type": "stroke",
+              "id": "fem_a",
+              "d": "M 330.6 53.3 L 331.3 58.1 L 332.3 64.2 L 333.5 71.4 L 334.7 79.4 L 335.9 87.7 L 336.8 96.2 L 337.4 104.3 L 337.5 111.7 L 337 118.8 L 335.9 126.1 L 334.4 133.7 L 332.6 141.7 L 330.8 149.9 L 329.2 158.4 L 328 167.1 L 327.5 175.9 L 327.9 184.8 L 328.9 193.5 L 330.4 201.9 L 332.1 210.2 L 333.7 218.1 L 335.1 225.8 L 336.1 233.1 L 336.5 240.1 L 336.2 247.1 L 335.5 254.4 L 334.3 261.8 L 332.9 269.4 L 331.4 277 L 330 284.6 L 329 292.2 L 328.5 299.8 L 328.6 307.2 L 329.2 314.5 L 330.1 321.6 L 331.1 328.3 L 332.2 334.5 L 333.3 339.8 L 334.1 344.2 L 334.6 347.5",
+              "ms": 4250
+            },
+            {
+              "type": "stroke",
+              "id": "fem_b",
+              "d": "M 349.4 50.7 L 350 55.1 L 351 61.1 L 352.2 68.4 L 353.5 76.6 L 354.7 85.4 L 355.7 94.5 L 356.4 103.5 L 356.5 112.3 L 355.9 120.9 L 354.6 129.4 L 353 137.7 L 351.2 145.8 L 349.4 153.7 L 347.9 161.4 L 346.9 168.9 L 346.5 176.1 L 346.8 183.3 L 347.7 190.7 L 349.1 198.4 L 350.7 206.3 L 352.4 214.5 L 353.9 222.8 L 355 231.3 L 355.5 239.9 L 355.2 248.5 L 354.3 256.9 L 353 265 L 351.5 272.9 L 350.1 280.4 L 348.8 287.6 L 347.9 294.2 L 347.5 300.2 L 347.6 306.3 L 348.1 312.6 L 348.9 319 L 349.9 325.2 L 350.9 331 L 351.9 336.3 L 352.8 340.9 L 353.4 344.5",
+              "ms": 4240
+            },
+            {
+              "type": "stroke",
+              "id": "fem_head",
+              "d": "M 330.6 53.3 Q 338.6 41.9 349.4 50.7",
+              "ms": 320,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "fem_tip",
+              "d": "M 334.6 347.5 Q 345.2 353.6 353.4 344.5",
+              "ms": 300,
+              "w": 2
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — mouth lips, the pores and the spicules"
+            },
+            {
+              "type": "stroke",
+              "id": "m_lip1",
+              "d": "M 162 52 Q 166 40 170 52",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "m_lip2",
+              "d": "M 170 52 Q 174 40 178 52",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "m_lip3",
+              "d": "M 166 56 Q 170 44 174 56",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_lip1",
+              "d": "M 332 52 Q 336 40 340 52",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_lip2",
+              "d": "M 340 52 Q 344 40 348 52",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_lip3",
+              "d": "M 336 56 Q 340 44 344 56",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "m_expore",
+              "d": "M 158.6 74 A 3.4 3.4 0 1 0 165.4 74 A 3.4 3.4 0 1 0 158.6 74",
+              "ms": 310,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_expore",
+              "d": "M 328.6 74 A 3.4 3.4 0 1 0 335.4 74 A 3.4 3.4 0 1 0 328.6 74",
+              "ms": 310,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_genpore",
+              "d": "M 328 144 L 331 150 L 328 156",
+              "ms": 300,
+              "w": 2.2
+            },
+            {
+              "type": "stroke",
+              "id": "m_spic",
+              "d": "M 168 250 L 174 268 M 174 250 L 180 267",
+              "ms": 530,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "m_cloaca",
+              "d": "M 162.6 272 A 3.4 3.4 0 1 0 169.4 272 A 3.4 3.4 0 1 0 162.6 272",
+              "ms": 310,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "f_anus",
+              "d": "M 336 340 L 345 342",
+              "ms": 300,
+              "w": 2.4
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_male",
+              "x": 145,
+              "y": 32,
+              "text": "MALE",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_female",
+              "x": 302,
+              "y": 32,
+              "text": "FEMALE",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_mouth",
+              "x": 4,
+              "y": 88,
+              "text": "Mouth (3 lips)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mouth",
+              "d": "M 147.6 84 L 176 50",
+              "ms": 630,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_expore",
+              "x": 4,
+              "y": 132,
+              "text": "Excretory pore",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_expore",
+              "d": "M 147.6 128 L 160 76",
+              "ms": 760,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_spicules",
+              "x": 4,
+              "y": 280,
+              "text": "Pineal spicules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_spicules",
+              "d": "M 157.5 276 L 168 256",
+              "ms": 320,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_curved",
+              "x": 4,
+              "y": 324,
+              "text": "Curved tail",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_curved",
+              "d": "M 117.9 320 L 150 266",
+              "ms": 900,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cloaca",
+              "x": 4,
+              "y": 368,
+              "text": "Cloacal aperture",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cloaca",
+              "d": "M 167.4 364 L 164 276",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_genpore",
+              "x": 397.2,
+              "y": 132,
+              "text": "Genital pore",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_genpore",
+              "d": "M 393.2 128 L 330 150",
+              "ms": 960,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_straight",
+              "x": 387.3,
+              "y": 324,
+              "text": "Straight tail",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_straight",
+              "d": "M 383.3 320 L 348 326",
+              "ms": 510,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_anus",
+              "x": 476.4,
+              "y": 368,
+              "text": "Anus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_anus",
+              "d": "M 472.4 364 L 346 344",
+              "ms": 1830,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "A single drawing of the two worms side by side makes the whole dimorphism section visible at once, because the curved and the straight tail sit next to each other.",
+        "common_mistakes": [
+          "Drawing both tails the same. The curl on the male tail is the point of the figure.",
+          "Leaving the female genital pore unmarked. Its position, one third from the anterior end, is a mark.",
+          "Labelling the male as the longer worm. The female is longer."
+        ],
+        "memory_tip": "Draw the two bodies first, then curl the male tail and keep the female tail straight.",
+        "margin_note": "Label the mouth, excretory pore, female genital pore, pineal spicules, curved tail, cloacal aperture, straight tail and anus."
+      },
+      {
+        "id": "s5_eggs",
+        "kind": "text",
+        "label": "Eggs and larvae in soil",
+        "marks": 1,
+        "mark_note": "Eggs",
+        "lines": [
+          "After copulation in the small intestine the",
+          "female releases about 200,000 eggs every day.",
+          "Each egg is surrounded by a rippled protein",
+          "coat, so it is called a mammillated egg.",
+          "The eggs are passed out along with the faecal",
+          "matter.",
+          "In moist soil the development takes place inside",
+          "the egg and the first stage rhabditiform larva",
+          "is formed.",
+          "It undergoes the first moulting and the second",
+          "stage rhabditiform larva is formed. This second",
+          "stage larva is the infective stage to man.",
+          "These eggs reach a new host through contaminated",
+          "food and water."
+        ],
+        "why": "The parasite has no second host, so the soil does the work instead: the egg has to develop outside the body before it can infect anyone, and that is why the second-stage larva is the infective form.",
+        "common_mistakes": [
+          "Writing that the egg is infective as soon as it is passed out. It must develop in moist soil first.",
+          "Calling the first stage larva infective. The SECOND stage rhabditiform larva is infective.",
+          "Writing that the larva hatches in the soil. It stays inside the egg until it is swallowed."
+        ],
+        "memory_tip": "Two larval stages in the soil, and the second one is the one that infects.",
+        "margin_note": "Six short lines from egg to infective stage. Give the number 200,000."
+      },
+      {
+        "id": "s6_diagram_cycle",
+        "kind": "diagram",
+        "label": "Diagram — life cycle",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "bhw_ascaris_life_cycle",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the adult worms and the mammillated egg"
+            },
+            {
+              "type": "stroke",
+              "id": "g1_m",
+              "d": "M 277.1 68.1 C 272.1 80 281.1 90.2 277.1 97.8 C 273.1 102.9 267.1 97 270.1 91",
+              "ms": 650,
+              "w": 2.3
+            },
+            {
+              "type": "stroke",
+              "id": "g1_f",
+              "d": "M 301.1 65.5 C 307.1 80 296.1 91.9 302.1 104.6",
+              "ms": 570,
+              "w": 2.3
+            },
+            {
+              "type": "stroke",
+              "id": "g2_sh",
+              "d": "M 319.7 150.1 A 10.5 14.5 0 1 0 340.7 150.1 A 10.5 14.5 0 1 0 319.7 150.1",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "g2_coat",
+              "d": "M 343.2 150.1 A 8.8 8.8 0 0 1 340.2 161 A 7.5 7.5 0 0 1 332.5 166.8 A 7 7 0 0 1 323.7 164.8 A 8.2 8.2 0 0 1 318 155.9 A 9 9 0 0 1 318 144.3 A 8.2 8.2 0 0 1 323.7 135.4 A 7 7 0 0 1 332.5 133.4 A 7.5 7.5 0 0 1 340.2 139.2 A 8.8 8.8 0 0 1 343.2 150.1",
+              "ms": 1440,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g3_sh",
+              "d": "M 319.7 241.9 A 10.5 14.5 0 1 0 340.7 241.9 A 10.5 14.5 0 1 0 319.7 241.9",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "g3_coat",
+              "d": "M 343.2 241.9 A 8.8 8.8 0 0 1 340.2 252.8 A 7.5 7.5 0 0 1 332.5 258.6 A 7 7 0 0 1 323.7 256.6 A 8.2 8.2 0 0 1 318 247.7 A 9 9 0 0 1 318 236.1 A 8.2 8.2 0 0 1 323.7 227.2 A 7 7 0 0 1 332.5 225.2 A 7.5 7.5 0 0 1 340.2 231 A 8.8 8.8 0 0 1 343.2 241.9",
+              "ms": 1440,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g3_lv",
+              "d": "M 324.2 241.9 A 6 4.2 0 1 0 336.2 241.9 A 6 4.2 0 1 0 324.2 241.9",
+              "ms": 460,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the two larval stages inside the egg"
+            },
+            {
+              "type": "stroke",
+              "id": "g4_sh",
+              "d": "M 278.6 306.9 A 10.5 14.5 0 1 0 299.6 306.9 A 10.5 14.5 0 1 0 278.6 306.9",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "g4_coat",
+              "d": "M 302.1 306.9 A 8.8 8.8 0 0 1 299.1 317.8 A 7.5 7.5 0 0 1 291.4 323.6 A 7 7 0 0 1 282.6 321.6 A 8.2 8.2 0 0 1 276.9 312.7 A 9 9 0 0 1 276.9 301.1 A 8.2 8.2 0 0 1 282.6 292.2 A 7 7 0 0 1 291.4 290.2 A 7.5 7.5 0 0 1 299.1 296 A 8.8 8.8 0 0 1 302.1 306.9",
+              "ms": 1440,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g4_lv",
+              "d": "M 283.1 313.9 C 297.1 313.9 297.1 299.9 284.1 300.9 C 280.1 301.9 281.1 308.9 285.1 308.9",
+              "ms": 540,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "g5_sh",
+              "d": "M 220.4 306.9 A 10.5 14.5 0 1 0 241.4 306.9 A 10.5 14.5 0 1 0 220.4 306.9",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "g5_coat",
+              "d": "M 243.9 306.9 A 8.8 8.8 0 0 1 240.9 317.8 A 7.5 7.5 0 0 1 233.2 323.6 A 7 7 0 0 1 224.4 321.6 A 8.2 8.2 0 0 1 218.7 312.7 A 9 9 0 0 1 218.7 301.1 A 8.2 8.2 0 0 1 224.4 292.2 A 7 7 0 0 1 233.2 290.2 A 7.5 7.5 0 0 1 240.9 296 A 8.8 8.8 0 0 1 243.9 306.9",
+              "ms": 1440,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "g5_lv",
+              "d": "M 224.9 313.9 C 238.9 313.9 238.9 299.9 225.9 300.9 C 221.9 301.9 222.9 308.9 226.9 308.9",
+              "ms": 540,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "g5_crack",
+              "d": "M 239.9 296.9 L 250.9 288.9 M 241.9 314.9 L 251.9 321.9",
+              "ms": 370,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "g6_a",
+              "d": "M 188.3 231 L 190.5 232.6 L 191.9 233.8 L 192.2 234.4 L 192.2 234.3 L 191.5 235.2 L 189.8 236.5 L 187.5 238.1 L 185.2 239.9 L 183.2 242.1 L 182.2 245.2 L 183.2 248.2 L 185.2 250.4 L 187.5 252.2 L 189.8 253.8 L 191.5 255.1 L 192.2 256",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "g6_b",
+              "d": "M 191.3 226.8 L 193.7 228.5 L 195.8 230.5 L 197.3 233.2 L 196.9 236.5 L 195.2 238.9 L 192.9 240.8 L 190.5 242.4 L 188.5 243.9 L 187.5 245 L 187.4 245.2 L 187.5 245.3 L 188.5 246.4 L 190.5 247.9 L 192.9 249.5 L 195.2 251.4 L 196.9 253.8",
+              "ms": 550
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the larva through liver, heart and lungs"
+            },
+            {
+              "type": "stroke",
+              "id": "g7_a",
+              "d": "M 188.1 136.5 L 190.7 138.4 L 192.3 140 L 192.8 140.7 L 192.8 140.9 L 191.9 142 L 189.9 143.7 L 187.1 145.7 L 184.3 147.8 L 181.9 150.5 L 180.8 154.1 L 181.9 157.7 L 184.3 160.4 L 187.1 162.5 L 189.9 164.5 L 191.9 166.2 L 192.8 167.3",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "g7_b",
+              "d": "M 191.5 131.7 L 194.4 133.8 L 197 136.2 L 198.7 139.5 L 198.3 143.3 L 196.2 146.2 L 193.4 148.5 L 190.6 150.5 L 188.2 152.4 L 187 153.7 L 186.8 154.1 L 187 154.5 L 188.2 155.8 L 190.6 157.7 L 193.4 159.7 L 196.2 162 L 198.3 164.9",
+              "ms": 660
+            },
+            {
+              "type": "stroke",
+              "id": "g8_a",
+              "d": "M 228.8 69 L 231.8 71.3 L 233.8 73.1 L 234.3 74 L 234.2 74.2 L 233.3 75.5 L 230.9 77.5 L 227.7 79.8 L 224.4 82.4 L 221.6 85.6 L 220.3 89.8 L 221.6 94.1 L 224.4 97.3 L 227.7 99.9 L 230.9 102.2 L 233.3 104.2 L 234.2 105.5",
+              "ms": 730
+            },
+            {
+              "type": "stroke",
+              "id": "g8_b",
+              "d": "M 233 63.2 L 236.3 65.7 L 239.4 68.6 L 241.3 72.5 L 240.9 77 L 238.4 80.5 L 235.2 83.2 L 231.9 85.6 L 229.2 87.8 L 227.7 89.4 L 227.5 89.8 L 227.7 90.3 L 229.2 91.9 L 231.9 94.1 L 235.2 96.5 L 238.4 99.2 L 240.9 102.7",
+              "ms": 780
+            },
+            {
+              "type": "pause",
+              "id": "pa",
+              "caption": "Step 4 — the arrows that close the ring"
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar0",
+              "d": "M 304.9 99.2 L 306.5 101.1 L 308 103 L 309.5 104.9 L 310.9 106.9 L 312.4 109 L 313.7 111.1 L 315.1 113.3 L 316.4 115.6 L 317.7 117.9 L 318.9 120.2 L 320.1 122.6",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah0",
+              "d": "M 314.6 120.6 L 321.3 125 L 321.8 117.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar1",
+              "d": "M 335.1 177.7 L 335.4 180.8 L 335.6 183.8 L 335.8 186.8 L 335.9 189.9 L 336 192.9 L 336 196 L 336 199.1 L 335.9 202.1 L 335.8 205.2 L 335.6 208.2 L 335.4 211.2",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah1",
+              "d": "M 331.7 207 L 335.1 214.3 L 339.7 207.7",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar2",
+              "d": "M 321.3 267 L 320.1 269.4 L 318.9 271.8 L 317.7 274.1 L 316.4 276.4 L 315.1 278.7 L 313.7 280.9 L 312.4 283 L 310.9 285.1 L 309.5 287.1 L 308 289 L 306.5 290.9",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah2",
+              "d": "M 306.2 284.9 L 304.9 292.8 L 312.4 289.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar3",
+              "d": "M 271.6 314.6 L 269.6 315 L 267.7 315.4 L 265.8 315.7 L 263.9 315.8 L 261.9 316 L 260 316 L 258.1 316 L 256.1 315.8 L 254.2 315.7 L 252.3 315.4 L 250.4 315",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah3",
+              "d": "M 256 312.1 L 248.4 314.6 L 254.4 319.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar4",
+              "d": "M 215.1 292.8 L 213.5 290.9 L 212 289 L 210.5 287.1 L 209.1 285.1 L 207.6 283 L 206.3 280.9 L 204.9 278.7 L 203.6 276.4 L 202.3 274.1 L 201.1 271.8 L 199.9 269.4",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah4",
+              "d": "M 205.4 271.4 L 198.7 267 L 198.2 274.9",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar5",
+              "d": "M 184.9 214.3 L 184.6 211.2 L 184.4 208.2 L 184.2 205.2 L 184.1 202.1 L 184 199.1 L 184 196 L 184 192.9 L 184.1 189.9 L 184.2 186.8 L 184.4 183.8 L 184.6 180.8",
+              "ms": 480,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah5",
+              "d": "M 188.3 185 L 184.9 177.7 L 180.3 184.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar6",
+              "d": "M 198.7 125 L 199.9 122.6 L 201.1 120.2 L 202.3 117.9 L 203.6 115.6 L 204.9 113.3 L 206.3 111.1 L 207.6 109 L 209.1 106.9 L 210.5 104.9 L 212 103 L 213.5 101.1",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah6",
+              "d": "M 213.8 107.1 L 215.1 99.2 L 207.6 102.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ar7",
+              "d": "M 248.4 77.4 L 250.4 77 L 252.3 76.6 L 254.2 76.3 L 256.1 76.2 L 258.1 76 L 260 76 L 261.9 76 L 263.9 76.2 L 265.8 76.3 L 267.7 76.6 L 269.6 77",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "w_ah7",
+              "d": "M 264 79.9 L 271.6 77.4 L 265.6 72.1",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "pl",
+              "caption": "Step 5 — numbered stage names"
+            },
+            {
+              "type": "label",
+              "id": "n_l0",
+              "x": 300.6,
+              "y": 49.4,
+              "text": "1. Adult worms",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l1",
+              "x": 357.6,
+              "y": 130.6,
+              "text": "2. Egg in faeces",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l2",
+              "x": 357.9,
+              "y": 267.4,
+              "text": "3. 1st larva",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l3",
+              "x": 300.6,
+              "y": 348.6,
+              "text": "4. Infective larva",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l4",
+              "x": 41.2,
+              "y": 348.6,
+              "text": "5. Small intestine",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l5",
+              "x": 13.6,
+              "y": 267.4,
+              "text": "6. Liver, heart",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l6",
+              "x": 82.9,
+              "y": 130.6,
+              "text": "7. Lungs",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "n_l7",
+              "x": 90.7,
+              "y": 49.4,
+              "text": "8. Young worm",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The cycle has two halves, one outside the body in the soil and one inside man, and the drawing must show the loop crossing from one to the other twice.",
+        "common_mistakes": [
+          "Drawing only the human half. The soil half carries the two rhabditiform stages.",
+          "Reversing the migration route. The order is liver, heart, lungs, then back to the small intestine.",
+          "Leaving the arrowheads off. The direction is what makes a cycle diagram readable."
+        ],
+        "memory_tip": "Draw the ring first, mark the two halves, then place the stages and the arrowheads on last.",
+        "margin_note": "Show the adult worms, the mammillated egg, the two rhabditiform stages, then liver, heart, lungs and the return to the small intestine."
+      },
+      {
+        "id": "s7_migration",
+        "kind": "boxed_final",
+        "label": "Migration inside man",
+        "marks": 1,
+        "mark_note": "Migration",
+        "lines": [
+          {
+            "text": "Liver - heart - lungs - back to small intestine",
+            "style": "boxed"
+          },
+          "In the small intestine the shell of the egg is",
+          "dissolved and the larva is released. Here the",
+          "larva undertakes an extra-intestinal migration.",
+          "It reaches the liver through the hepatic portal",
+          "vein.",
+          "It then goes to the heart through the post caval",
+          "vein.",
+          "It reaches the lungs through the pulmonary",
+          "arteries.",
+          "The second moulting takes place in the alveoli",
+          "of the lungs and the third stage larva is",
+          "formed. The third moulting also takes place in",
+          "the alveoli and the fourth stage larva is",
+          "formed.",
+          "The larva then reaches the small intestine",
+          "through the bronchi, trachea, larynx, glottis,",
+          "pharynx, oesophagus and stomach.",
+          "The fourth and final moulting takes place in the",
+          "small intestine and the larva becomes a young",
+          "round worm. It attains sexual maturity in 8 to",
+          "10 weeks.",
+          "Pathogenicity: Ascaris causes ascariasis. A",
+          "heavy infection causes nutritional deficiency,",
+          "severe abdominal pain and stunted growth in",
+          "children."
+        ],
+        "why": "The larva ends where it started, in the small intestine, but it can only mature after passing through the lungs, so the route is written as one unbroken chain of named vessels and organs.",
+        "common_mistakes": [
+          "Writing that the larva stays in the intestine. It makes a full migration through liver, heart and lungs.",
+          "Naming the wrong vessel. Liver by the hepatic portal vein, heart by the post caval vein, lungs by the pulmonary arteries.",
+          "Counting three moultings. Ascaris undergoes FOUR moultings in all."
+        ],
+        "memory_tip": "Up through the blood and down through the throat: liver, heart, lungs, then swallowed back to the gut.",
+        "margin_note": "One chain of named vessels and organs, then the four moultings and the pathogenicity line."
+      }
+    ]
+  },
+  "insider_note": "The migration route and the four moultings are what separate a full answer from a half one, so name every vessel and organ in order."
+}

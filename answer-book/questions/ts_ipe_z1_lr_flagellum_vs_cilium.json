@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_lr_flagellum_vs_cilium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Locomotion and Reproduction (Zoology)"
+  },
+  "chapter": "Locomotion and Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List any two differences between a flagellum and a cilium.",
+  "appearances": [
+    { "year": 2016, "board": "ts_ipe" },
+    { "year": 2017, "board": "ap_ipe" },
+    { "year": 2018, "board": "ts_ipe" },
+    { "year": 2019, "board": "ap_ipe" },
+    { "year": 2020, "board": "ap_ipe" },
+    { "year": 2020, "board": "ts_ipe" }
+  ],
+  "mark_split": [
+    { "label": "Size and number", "marks": 1 },
+    { "label": "Beat and work done", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section, VSAQ chapter 16 'Locomotion & Reproduction' (book p.57, question 125). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely unrun; 'not checked' must never be read as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. MARKS: the VSAQ chapter header prints '2+2=4 MARKS', which is the blueprint's two 2-mark questions drawn from this unit, not 4 marks for one question; this card is authored at the Section A standard of 2 marks. APPEARANCES: the book prints [AP M-17,19,20] and [TS M-16,18,20]. TEXT BEYOND THE BOOK: the book prints three differences (size, type of beat, work done); the line 'flagella are few in number while cilia are many' is added here because the number is the difference an examiner accepts most readily and it is standard zoology, not this book's wording."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Locomotion and Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_size",
+        "kind": "text",
+        "label": "Size and number",
+        "marks": 1,
+        "mark_note": "Size",
+        "lines": [
+          "A flagellum is a long whip-like organelle and",
+          "only one or a few are present on a cell.",
+          "A cilium is a short hair-like organelle and",
+          "very many are present on a cell."
+        ],
+        "why": "The two organelles have the same 9 + 2 inner structure, so the differences an examiner can mark are the outside ones: how long they are and how many there are.",
+        "common_mistakes": [
+          "Writing that a flagellum and a cilium differ in internal structure. Both have the 9 + 2 axoneme.",
+          "Writing only one difference. The question asks for two."
+        ],
+        "memory_tip": "Long and few is a flagellum; short and many is a cilium.",
+        "margin_note": "Write the difference for BOTH organelles in each point, not for one only."
+      },
+      {
+        "id": "s2_movement",
+        "kind": "boxed_final",
+        "label": "Beat and work done",
+        "marks": 1,
+        "mark_note": "Beat",
+        "lines": [
+          "A flagellum shows undular movement and its",
+          "work is locomotion.",
+          "A cilium shows pendular movement. It is used",
+          "for locomotion, for collecting food, for",
+          "moving materials over the cell, and as a",
+          "sense organelle.",
+          {
+            "text": "Flagellum long and few; cilium short and many",
+            "style": "boxed"
+          }
+        ],
+        "why": "A flagellum beats by sending a wave along its whole length, while a cilium swings to and fro from its base, and that difference in beat is why one is used only to swim and the other does several jobs.",
+        "common_mistakes": [
+          "Swapping the two beats. Undular belongs to the flagellum, pendular to the cilium.",
+          "Writing that a cilium is only for locomotion. It also collects food and works as a sense organelle."
+        ],
+        "memory_tip": "Undular means a wave runs along the whole length; pendular means the whole cilium swings from its base.",
+        "margin_note": "Two clean differences are full marks. Do not write a long list."
+      }
+    ]
+  },
+  "insider_note": "The paper asks for any TWO differences, so a table of two well-stated rows scores full marks — but each row must state the point for both organelles, not for one."
+}
