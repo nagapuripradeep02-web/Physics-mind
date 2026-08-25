@@ -1,5 +1,69 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🦋 SESSION — Answer Book: **ZOOLOGY — engine + tooling DONE, authoring BLOCKED on API credits** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d`/`b22d1f22`, pushed, no PR yet)
+
+**STOPPED BY API CREDIT EXHAUSTION — not by a code problem.** The unit-7 pilot agent was
+terminated mid-run ("out of usage credits"). **Zero zoology cards exist.** Everything below is
+finished and verified; resume by re-dispatching the pilot.
+
+### Done and verified
+- **Phased "watch it drawn" figures** (founder directive: a student must watch a diagram being
+  drawn, in named steps, never rushed). Figures may carry `{type:'pause', id, caption}` elements:
+  the player stops there, shows the caption on ONE reserved 32px rule, waits for a tap; a
+  mid-phase tap completes only the CURRENT phase. Figures with no pauses behave byte-for-byte as
+  before (pinned by a new e2e test — that behaviour had never been tested). Instant path
+  (revealAll/print/reduced-motion/rail jump) draws phased figures complete, caption hidden.
+  `renderUpTo` now calls `finishCurrent(true)` so teardown cannot resume timers into wiped DOM.
+- **Pacing is authoring-time, never runtime.** `src/lib/answerBook/pathLength.ts` measures SVG
+  path length (verified against analytic circle/ellipse); `pace_figures.ts` fills every stroke's
+  `ms` at **70 units/second** (300–4500 ms clamp; labels 450 ms); `check_figure_pace.ts` gates
+  40–160 u/s and requires phases on any figure with >= 16 drawn elements — **strict for
+  `ts_ipe_z1`, warning-only for legacy**. First sweep: the 96 existing figures run at **200–770
+  u/s**. That is the rushing the founder named, now measurable.
+- **Subject wiring**: `SUBJECTS`, the zod enum, `subjectWord` (the silent one — zoology would
+  have printed "The physics ... are checked"), both chip label maps. e2e sweep budgets
+  1.2M -> 1.8M ms for the ~1136-file bank. `answer-book/README.md` was two subjects stale — fixed.
+- **Tooling promoted into the repo** (`answer-book/tools/`, previously scratchpad-only and nearly
+  lost): `render_figures.py` (gallery, **one snapshot per phase, cumulative**), `measure_wrap.mjs`
+  (fleet line-wrap measure — the e2e wrap gate still checks only ONE question), `merge_units.py`
+  (parameterised by subject/prefix/suffix, refuses to write unless units.json round-trips
+  byte-identically). npm: `check:figure-pace`, `pace:figures`, `figures:gallery`, `measure:wrap`,
+  `backtest:zoology`.
+- **The back-test** (`backtest_zoology.ts` + `zoology_wip/backtest_refs.json`, 259 refs). The
+  two-book union check and a real board paper are BOTH impossible for zoology — but the book
+  cites every answer as "P <page>(<qno>)" across 3 hit lists, the Bullet Model Paper and 5 guess
+  papers, and each must resolve to an authored card.
+- Verified: build 946/946 · `tsc` 0 · vitest 416/416 · 3 new figure e2e tests pass.
+
+### The finding that would have cost an LAQ
+The **"TOP 10+ LAQ" hit list skips global qno 5.** LAQ answer pages run 10, 12, 14, 16, **18**,
+19, 21, 23, 25–28; Guess Paper 5 names p.18 — *"Describe the life cycle of Wuchereria bancrofti
+with a neat diagram"*. **Unit 6 has FIVE LAQs.** Standing rule now in the brief: walk the chapter
+PAGES; hit lists are a cross-check, never the inventory.
+
+### Resume here
+1. Re-dispatch the unit-7 pilot (brief: `answer-book/tools/zoology_wip/BRIEF.md`; ranges:
+   `DISPATCH_RANGES.md`). The pilot's finished figure geometry is already in
+   `zoology_wip/figs_1.json` + `gen_pa_1.py` (alimentary canal 59 elements / 5 phases; salivary
+   apparatus 40 / 5) with the reusable builder `figlib.py` — **reuse it, do not redraw**.
+   Render: `pilot_figures_preview.png`. Still to draw for unit 7: heart/circulatory, tracheal
+   system, mouthparts, ommatidium. **No question file has been written yet.**
+2. **FOUNDER CHECKPOINT after the pilot** (his call, this session): he reviews the drawing pace
+   and phase granularity before the other 7 units are dispatched. Do not fan out first.
+3. Then waves of one agent per unit (ranges in `DISPATCH_RANGES.md`), orchestrator-only
+   `merge_units.py --subject zoology --prefix ts_ipe_z1 --suffix "(Zoology)" --stars-zero`,
+   then build -> tsc -> vitest -> smoke -> pace gate -> back-test -> **render every figure and LOOK**.
+4. Eyes-only defect already spotted in the pilot render: hepatic caecae and salivary-gland acini
+   read as spiky starbursts; they should be finger-like diverticula / rounded lobes. The gates
+   pass them — the same class as chemistry's wrong-shaped `dz²`.
+
+### Zoology source facts (differ from botany)
+`stars: 0` everywhere (this book ranks CHAPTERS, not questions) · **`appearances[]` IS authored**
+(the book cites years: `[TS M-19]`, `[AP M-15,18]`; bare `[IPE-14]` = no board) · LAQ chapters
+exist only for units 6/7/8 · unit 7 has no VSAQ chapter · Star Questions Plus (book 63–68) is
+part of the asked bank · the Bullet Model Paper and guess papers are NEVER authored (back-test
+corpus only) · ids `ts_ipe_z1_<abbr>_<slug>`, abbrs `dlw so ad1 ad2 lr bhw pa ee`.
+
 ## 🌿 SESSION — Answer Book: **BOTANY OPENS — the whole Junior Botany book, 13 chapters, 194 cards, 35 figures** (2026-08-25, desk `physics-mind-ipe-botany`, `feat/ipe-answerbook-botany`, commits `624b58af`/`a8ffb0d1`, **PR #137 open, PUSHED, NOT merged, NOT deployed**)
 
 **Bottom line: the fourth subject is authored end to end. All 13 chapters of the Sri Chaitanya Junior Botany Fastrack (book pp.3-37) — The Living World 10 · Biological Classification 13 · Science of Plants 14 · Plant Kingdom 17 · Morphology 29 · Modes of Reproduction 10 · Sexual Reproduction 14 · Taxonomy 15 · The Unit of Life 21 · Biomolecules 9 · Cell Cycle 14 · Histology & Anatomy 13 · Ecological Adaptations 15 — taking the catalog to 45 units / 946 questions (198 physics · 196 chemistry · 250 Maths-1A · 108 Maths-1B · 194 botany). Every botany unit ships 100% memory_tip / margin_note / insider_note, the richest coverage in the book. Verified: build green — tsc 0 — vitest 416/416 — smoke **48/48 (45.9 m)**. NOT DEPLOYED (Rule 17).**
