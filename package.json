@@ -82,6 +82,10 @@
     "vidi:grade": "npx tsx src/scripts/vidi_grade_log.ts",
     "serve:answers": "npx --yes http-server answer-book/dist -p 8100 -c-1",
     "smoke:answers": "playwright test e2e/answer_book.spec.ts",
+    "check:figure-pace": "npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1",
+    "pace:figures": "npx tsx src/scripts/pace_figures.ts",
+    "figures:gallery": "python answer-book/tools/render_figures.py",
+    "measure:wrap": "node answer-book/tools/measure_wrap.mjs",
     "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts"
   },
   "dependencies": {
