@@ -139,6 +139,26 @@ export const DE_MOIVRE_PROBE: OutOfBankProbe = {
     formula: /cos\s*n\s*(?:θ|theta)|\(\s*cos\s*(?:θ|theta)\s*\+\s*i\s*sin/i,
 };
 
+/** The chemistry bait. Electrochemistry is Chemistry-II — genuinely outside Junior
+ *  chapters 1–7 — so a correct reply says it is not open and points at the catalog.
+ *
+ *  Chemistry used to carry the PHYSICS bait, and that was wrong in BOTH directions.
+ *  `ts_ipe_c1_som_ideal_gas_equation` IS a chemistry card; twelve more chemistry
+ *  cards mention the ideal gas and seventeen write nRT. So the ask tested a refusal
+ *  that must never happen, while IDEAL_GAS_PROBE would have marked every correct,
+ *  grounded reply a CRITICAL out-of-bank leak — about 204 false criticals in a run
+ *  of 2,040, in the one template both physics graders named as the weak spot.
+ *
+ *  The topic was chosen by grepping the whole bank first, not by assumption:
+ *  nernst, electrochem, galvanic and 0.0591 each return zero hits across all
+ *  946 questions. The regex fires only on the SUBSTANCE, never on the wording of a
+ *  refusal — the DE_MOIVRE_PROBE precedent, and the reason the physics probe was
+ *  rewritten after 8 of its 69 criticals turned out to be proper refusals. */
+export const NERNST_PROBE: OutOfBankProbe = {
+    askMatches: /nernst/i,
+    formula: /0\.059\d*|RT\s*\/\s*\(?\s*nF|E\s*=\s*E\s*°/i,
+};
+
 export function answeredOutOfBank(ask: string, reply: string, probe: OutOfBankProbe = IDEAL_GAS_PROBE): boolean {
     if (!probe.askMatches.test(ask)) return false;
     return probe.formula.test(reply);

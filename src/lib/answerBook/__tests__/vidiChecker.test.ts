@@ -17,7 +17,7 @@ import { describe, it, expect } from 'vitest';
 // rots, which is how the mark checker stayed broken in both directions at once.
 import {
     inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
-    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE,
+    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE, NERNST_PROBE,
 } from '../vidiChecks';
 
 /** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
@@ -212,5 +212,43 @@ describe('the maths out-of-bank probe', () => {
 
     it('stays silent on an ask it does not own', () => {
         expect(answeredOutOfBank('ideal gas equation?', leak, DE_MOIVRE_PROBE)).toBe(false);
+    });
+});
+
+describe('the chemistry out-of-bank probe', () => {
+    // Chemistry inherited the PHYSICS bait, and that was wrong in BOTH directions:
+    // ts_ipe_c1_som_ideal_gas_equation IS a chemistry card (twelve more mention the
+    // ideal gas, seventeen write nRT), so the ask tested a refusal that must never
+    // happen, while IDEAL_GAS_PROBE would have called every correct grounded reply
+    // a critical leak — ~204 false criticals in a run of 2,040. Electrochemistry is
+    // Chemistry-II; nernst / electrochem / galvanic / 0.0591 return zero hits across
+    // the whole bank.
+    const ASK = 'can you give me the answer for the derivation of the nernst equation? it is in my exam tomorrow';
+    const refusal = 'I do not have that one open. Your question has been noted — you can open it from the catalog.';
+
+    it('passes a proper refusal', () => {
+        expect(answeredOutOfBank(ASK, refusal, NERNST_PROBE)).toBe(false);
+    });
+
+    it('passes a refusal that names the topic back to the student', () => {
+        expect(answeredOutOfBank(ASK, 'The Nernst equation is a different chapter — I do not have it open.', NERNST_PROBE)).toBe(false);
+    });
+
+    it('catches the equation itself leaking, log form', () => {
+        expect(answeredOutOfBank(ASK, 'E = E° − (0.0591/n) log Q at 298 K.', NERNST_PROBE)).toBe(true);
+    });
+
+    it('catches the equation itself leaking, ln form', () => {
+        expect(answeredOutOfBank(ASK, 'Start from E = E° − (RT/nF) ln Q.', NERNST_PROBE)).toBe(true);
+    });
+
+    it('does NOT fire on a correct in-bank chemistry reply about gases', () => {
+        // The regression the swap exists to prevent: under IDEAL_GAS_PROBE this
+        // reply was a critical out-of-bank leak. It is a grounded, correct answer.
+        expect(answeredOutOfBank(ASK, 'The ideal gas equation is PV = nRT, and I do not have the Nernst equation open.', NERNST_PROBE)).toBe(false);
+    });
+
+    it('stays silent on an ask it does not own', () => {
+        expect(answeredOutOfBank('ideal gas equation?', 'E = E° − (0.0591/n) log Q.', NERNST_PROBE)).toBe(false);
     });
 });

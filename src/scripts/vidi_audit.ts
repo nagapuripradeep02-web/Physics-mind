@@ -27,7 +27,7 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET,
-    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, NERNST_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -77,8 +77,11 @@ const SUBJECTS: Record<string, SubjectCfg> = {
     chemistry: {
         label: 'Chemistry-I',
         whyAsk: 'but WHY does this happen chemically? explain the reason behind it, not just the steps',
-        outOfBankAsk: 'can you give me the answer for the derivation of the ideal gas equation? it is in my exam tomorrow',
-        probe: IDEAL_GAS_PROBE,
+        // NOT the ideal gas — that is Chapter 4 of this very paper. Chemistry
+        // inherited the physics bait and it was dead in both directions; see
+        // NERNST_PROBE in vidiChecks.ts for the measurement that chose this topic.
+        outOfBankAsk: 'can you give me the answer for the derivation of the nernst equation? it is in my exam tomorrow',
+        probe: NERNST_PROBE,
         bareMarkAmbiguous: false,
     },
     mathematics: {
