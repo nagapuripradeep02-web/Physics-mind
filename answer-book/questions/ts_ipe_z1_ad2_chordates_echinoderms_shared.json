@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_chordates_echinoderms_shared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List out the characters shared by chordates and echinoderms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Deuterostome condition and cleavage",
+      "marks": 1
+    },
+    {
+      "label": "Enterocoelom",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 107). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. TEXT BEYOND THE BOOK: the book prints the three names only; the one-line meanings are authored."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_deuterostome",
+        "kind": "text",
+        "label": "Deuterostome condition",
+        "marks": 1,
+        "mark_note": "Blastopore",
+        "margin_note": "Two shared characters here, one line each for the name and one for the meaning.",
+        "lines": [
+          "1) What the blastopore becomes (the",
+          "deuterostome condition):",
+          "The blastopore of the embryo becomes the anus,",
+          "and the mouth is formed later as a new opening.",
+          "2) Cleavage:",
+          "Cleavage of the egg is radial and",
+          "indeterminate."
+        ],
+        "why": "Both groups are deuterostomes, so the earliest events of the embryo run the same way in both — and it is these embryonic characters, not the adult body, that place echinoderms next to chordates.",
+        "common_mistakes": [
+          "Writing that the blastopore becomes the mouth. That is the protostome condition.",
+          "Calling the cleavage spiral and determinate. That is again the protostome pattern."
+        ],
+        "memory_tip": "Deutero means second: the mouth is the SECOND opening to form."
+      },
+      {
+        "id": "s2_enterocoelom",
+        "kind": "boxed_final",
+        "label": "Enterocoelom",
+        "marks": 1,
+        "mark_note": "Coelom",
+        "margin_note": "One boxed line holds all three names; then explain only the coelom.",
+        "lines": [
+          {
+            "text": "Anus first, radial cleavage, enterocoelom",
+            "style": "boxed"
+          },
+          "3) Enterocoelom:",
+          "The coelom of both groups is an enterocoelom.",
+          "It is formed from pouches of the archenteron,",
+          "the embryonic gut, so the mesoderm and the",
+          "body cavity arise together."
+        ],
+        "why": "The third shared character is the way the body cavity is built, and it follows from the same embryo: the gut wall itself gives out the pouches that become the coelom.",
+        "common_mistakes": [
+          "Calling it a schizocoelom. A schizocoelom is split out of solid mesoderm; an enterocoelom grows out of the gut.",
+          "Naming only two characters. The question asks for the shared list, so give all three."
+        ],
+        "memory_tip": "Three shared points, all from the embryo: blastopore, cleavage, coelom."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for the three embryonic words — deuterostome, radial and indeterminate, enterocoelom; adult characters such as the water vascular system earn nothing here."
+}

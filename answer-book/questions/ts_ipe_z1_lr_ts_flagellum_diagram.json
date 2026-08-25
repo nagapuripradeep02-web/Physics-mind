@@ -418,7 +418,7 @@
         "mark_note": "Labels",
         "lines": [
           {
-            "text": "Axoneme = 9 peripheral doublets + 2 singlets",
+            "text": "Axoneme = 9 doublets + 2 central singlets",
             "style": "boxed"
           },
           "The axoneme is covered by the plasma membrane,",

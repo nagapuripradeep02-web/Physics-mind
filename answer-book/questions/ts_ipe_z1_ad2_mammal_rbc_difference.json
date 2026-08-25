@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_mammal_rbc_difference",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does a mature RBC of a mammal differ from that of other vertebrates?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mammalian RBC",
+      "marks": 1
+    },
+    {
+      "label": "RBC of other vertebrates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 122). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mammal",
+        "kind": "text",
+        "label": "Mammalian RBC",
+        "marks": 1,
+        "mark_note": "Mammal",
+        "margin_note": "Three shape words in a numbered list. That is the first mark.",
+        "lines": [
+          "A mature red blood cell of a mammal is:",
+          "1) circular (round) in outline,",
+          "2) biconcave, and",
+          "3) without a nucleus (enucleate).",
+          "Losing the nucleus leaves more room for",
+          "haemoglobin."
+        ],
+        "why": "Three shape words answer the whole question, and the missing nucleus is the one that explains why a mammal carries more oxygen per cell.",
+        "common_mistakes": [
+          "Writing that the mammalian RBC has a nucleus. The mature cell loses it.",
+          "Calling it biconvex. The mammalian RBC is biconcave, which widens the surface."
+        ],
+        "memory_tip": "Round, dented on both faces, and no nucleus: three words for the mammal."
+      },
+      {
+        "id": "s2_others",
+        "kind": "boxed_final",
+        "label": "RBC of other vertebrates",
+        "marks": 1,
+        "mark_note": "Others",
+        "margin_note": "Three opposite words in the same order as the first step. The examiner reads them as a pair.",
+        "lines": [
+          {
+            "text": "Mammal: circular, biconcave, no nucleus",
+            "style": "boxed"
+          },
+          "The mature red blood cell of other vertebrates",
+          "is:",
+          "1) oval in outline,",
+          "2) biconvex, and",
+          "3) nucleated."
+        ],
+        "why": "The other vertebrates take the opposite word at every point, so the pair is learnt as three straight opposites rather than as six separate facts.",
+        "common_mistakes": [
+          "Mixing the two lists. Every word of one list is the opposite of the other.",
+          "Writing that birds have no nucleus in the RBC. Birds are nucleated like the rest."
+        ],
+        "memory_tip": "Every word flips: circular to oval, concave to convex, no nucleus to nucleus."
+      }
+    ]
+  },
+  "insider_note": "Write the two lists in the same order so the three opposites line up; that is what earns full credit in a two mark answer."
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_snakes_south_india",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two poisonous and two non-poisonous snakes found in South India.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Poisonous snakes",
+      "marks": 1
+    },
+    {
+      "label": "Non-poisonous snakes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 117). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. QUESTION WORDING: the book prints 'Name two poisonous and non poisonous snakes found in South India'; the card keeps the South India wording the paper asks and only repairs the grammar of the count. BOOK WORDING: the book prints 'Najanaja' and 'Viper russelli'; the accepted names are Naja naja and Vipera russelli, and the card uses those."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_poisonous",
+        "kind": "text",
+        "label": "Poisonous snakes",
+        "marks": 1,
+        "mark_note": "Poisonous",
+        "margin_note": "Two names with the common name in brackets. Nothing else is needed for the mark.",
+        "lines": [
+          "Poisonous snakes:",
+          "1) Naja naja (cobra)",
+          "2) Vipera russelli (chain viper)",
+          "These snakes have poison fangs in the upper",
+          "jaw."
+        ],
+        "why": "A poisonous snake is named by the fangs it carries, so writing the fang line once covers both examples.",
+        "common_mistakes": [
+          "Writing only the common name. Give the scientific name; that is what is marked.",
+          "Naming the rat snake as poisonous. Ptyas is non-poisonous."
+        ],
+        "memory_tip": "Cobra and viper are the two poisonous names to keep; rat snake and pond snake are the safe pair."
+      },
+      {
+        "id": "s2_non_poisonous",
+        "kind": "boxed_final",
+        "label": "Non-poisonous snakes",
+        "marks": 1,
+        "mark_note": "Non-poisonous",
+        "margin_note": "Two names again. Four names in all carry the two marks.",
+        "lines": [
+          {
+            "text": "Poisonous: Naja naja, Vipera russelli",
+            "style": "boxed"
+          },
+          "Non-poisonous snakes:",
+          "1) Ptyas (rat snake)",
+          "2) Tropidonotus (pond snake)",
+          "These snakes have no poison fangs. They kill",
+          "prey by holding or by coiling."
+        ],
+        "why": "The non-poisonous snakes are grouped by what they lack, so the fang line separates the two halves of the answer cleanly.",
+        "common_mistakes": [
+          "Giving a python or a krait here. Bungarus (krait) is poisonous.",
+          "Writing two snakes in total. The question asks for two in EACH group."
+        ],
+        "memory_tip": "Two and two: cobra and viper on the poisonous side, rat snake and pond snake on the other."
+      }
+    ]
+  },
+  "insider_note": "Four scientific names are the whole answer; spelling Naja naja and Vipera russelli correctly is worth more here than any description."
+}

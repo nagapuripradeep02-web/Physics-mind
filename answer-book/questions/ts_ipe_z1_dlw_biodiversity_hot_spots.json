@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_biodiversity_hot_spots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain in brief 'Biodiversity Hot Spots'.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a hot spot is",
+      "marks": 1
+    },
+    {
+      "label": "Features of a hot spot",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    },
+    {
+      "label": "Legal protection",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.31, SAQ 17). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ADDED BEYOND THE BOOK: endemism (species found nowhere else) and the loss of a large part of the original vegetation are the two criteria by which hot spots are identified, and the term in-situ conservation for the four protected-area types; neither is printed in this book's answer. The book gives the count as 'about 34', which the card keeps."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Diversity of Living World (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a hot spot is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "Two conditions have to be met together — very rich and badly threatened — and a region that meets only one of them is not a hot spot.",
+        "common_mistakes": [
+          "Writing only that a hot spot is rich in species. It must also be under threat.",
+          "Writing that a hot spot is a protected area. It is a region identified as needing protection."
+        ],
+        "memory_tip": "Two tests for a hot spot: very rich in species, and badly threatened.",
+        "margin_note": "The worker's name and the two-part definition. Three or four lines.",
+        "lines": [
+          "The idea of the biodiversity hot spot was put",
+          "forward by Norman Myers.",
+          "A biodiversity hot spot is a biogeographic",
+          "region that holds a large reservoir of",
+          "biodiversity and is at the same time under",
+          "threat of destruction by human activity."
+        ]
+      },
+      {
+        "id": "s2_features",
+        "kind": "text",
+        "label": "Features",
+        "marks": 1,
+        "mark_note": "Features",
+        "why": "Endemic species are the reason a hot spot cannot be replaced: if the region is lost, those species are lost from the earth and not merely from that place.",
+        "common_mistakes": [
+          "Leaving out endemism. Species found nowhere else are what make the region irreplaceable.",
+          "Giving the wrong number. The count began at 25 and now stands at about 34."
+        ],
+        "memory_tip": "Endemic means found nowhere else, so a lost hot spot is a species lost from the earth.",
+        "margin_note": "Four short points, ending with the number. One mark.",
+        "lines": [
+          "Features of a hot spot:",
+          "They are the biologically richest and the most",
+          "threatened terrestrial ecoregions of the",
+          "earth.",
+          "They hold a large number of endemic species,",
+          "that is, species found nowhere else.",
+          "They have already lost a large part of their",
+          "original vegetation.",
+          "About 34 biodiversity hot spots have been",
+          "named in the world."
+        ]
+      },
+      {
+        "id": "s3_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "why": "The examples show what a hot spot looks like on a map — a large named region with a boundary, not a single forest.",
+        "common_mistakes": [
+          "Naming a national park as a hot spot. A hot spot is a large biogeographic region, not one park.",
+          "Giving fewer than the three that cover India."
+        ],
+        "memory_tip": "Three for India: Western Ghats with Sri Lanka, Indo-Burma, and the Himalaya.",
+        "margin_note": "Three names as a numbered list. One mark.",
+        "lines": [
+          "Three hot spots cover parts of India:",
+          "1) The Western Ghats and Sri Lanka",
+          "2) Indo-Burma",
+          "3) The Himalaya",
+          "These regions hold many plants and animals",
+          "that are found nowhere else."
+        ]
+      },
+      {
+        "id": "s4_protection",
+        "kind": "boxed_final",
+        "label": "Legal protection",
+        "marks": 1,
+        "mark_note": "Protection",
+        "why": "All four are places where the species stays in its own habitat, which is why they are grouped together as in-situ conservation.",
+        "common_mistakes": [
+          "Naming zoos and botanical gardens here. Those are ex-situ conservation, outside the natural habitat.",
+          "Giving fewer than four kinds of protected area."
+        ],
+        "memory_tip": "In-situ means in its own place: reserve, park, sanctuary, sacred grove.",
+        "margin_note": "A four-item list and the term in-situ conservation. One mark.",
+        "lines": [
+          {
+            "text": "Biosphere reserves, parks, sanctuaries",
+            "style": "boxed"
+          },
+          "Regions rich in biodiversity are given legal",
+          "protection as:",
+          "1) Biosphere reserves",
+          "2) National parks",
+          "3) Wildlife sanctuaries",
+          "4) Sacred groves",
+          "Protecting a species in its own habitat in",
+          "this way is called in-situ conservation."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Four blocks, one mark each — Norman Myers and the two tests, the features, the three hot spots covering India, and the four kinds of protected area."
+}

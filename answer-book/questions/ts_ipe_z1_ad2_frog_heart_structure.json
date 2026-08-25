@@ -1,0 +1,578 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_frog_heart_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the structure of the heart of frog.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Position and chambers",
+      "marks": 1
+    },
+    {
+      "label": "Sinus venosus",
+      "marks": 1
+    },
+    {
+      "label": "Conus arteriosus and aortic arches",
+      "marks": 1
+    },
+    {
+      "label": "Incomplete double circulation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.38, SAQ 33). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK GAP: the book's printed FROG HEART figure labels ten structures (carotid arch, systemic arch, pulmocutaneous arch, right and left precaval, right and left atrium, conus arteriosus, ventricle, post caval) but does NOT label the sinus venosus, although its own written answer describes it. The card's figure adds the sinus venosus, drawn as a broken outline because it lies on the dorsal side and is hidden in a ventral view. NAMING: the book and NCERT both call the outlet the conus arteriosus; many texts call the same tube the truncus arteriosus, so the card gives both names once. FIGURE SCOPE: the card's figure is a simplified VENTRAL view. Three points where it departs from a full anatomical drawing, all for legibility (the renderer draws outlines only, so nothing can be hidden behind anything): (1) the three aortic arches are drawn on ONE side and the other trunk is cut short — the written answer says each trunk gives the same three; (2) the conus arteriosus is drawn rising in the midline lane between the two auricles, whereas in the animal it arises towards the animal's right and crosses the ventral face obliquely; (3) the postcaval is cut short below the ventricle because it runs up BEHIND it and is not seen from the front. The sinus venosus is drawn as a broken outline, the ordinary hidden-line convention, because it is dorsal."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chambers",
+        "kind": "text",
+        "label": "Position and chambers",
+        "marks": 1,
+        "mark_note": "Chambers",
+        "margin_note": "Position, chamber count, pericardium. Three or four lines is enough for this mark.",
+        "lines": [
+          "The heart of a frog is a muscular pump. It lies",
+          "in the upper part of the body cavity.",
+          "It is three chambered.",
+          "There are two auricles (atria) and one",
+          "ventricle.",
+          "A double layered pericardium surrounds the",
+          "heart. The fluid between its two layers",
+          "protects the heart from mechanical shock."
+        ],
+        "why": "Three chambers is the fact the whole answer is built on: one ventricle for two auricles is what makes the frog's circulation incomplete at the end of the answer.",
+        "common_mistakes": [
+          "Writing four chambers. The frog has two auricles and only ONE ventricle.",
+          "Calling the pericardium a single membrane. It is double layered, with fluid between the layers."
+        ],
+        "memory_tip": "Two in, one out: two auricles pour into one ventricle."
+      },
+      {
+        "id": "s2_sinus_venosus",
+        "kind": "text",
+        "label": "Sinus venosus",
+        "marks": 1,
+        "mark_note": "Sinus venosus",
+        "margin_note": "Shape, side, the three veins, and where it opens. Four short lines.",
+        "lines": [
+          "The sinus venosus is a triangular thin walled",
+          "chamber.",
+          "It lies on the DORSAL side of the heart.",
+          "Three major veins pour blood into it: the right",
+          "precaval, the left precaval and the postcaval.",
+          "The sinus venosus opens into the right auricle."
+        ],
+        "why": "The sinus venosus is the collecting chamber, so it is described by the three veins that empty into it and the one chamber it empties into.",
+        "common_mistakes": [
+          "Placing the sinus venosus on the ventral side. It is DORSAL; the conus arteriosus is the ventral one.",
+          "Writing that it opens into the ventricle. It opens into the RIGHT AURICLE."
+        ],
+        "memory_tip": "Dorsal side collects, ventral side sends out: sinus venosus behind, conus arteriosus in front."
+      },
+      {
+        "id": "s3_conus",
+        "kind": "text",
+        "label": "Conus arteriosus",
+        "marks": 1,
+        "mark_note": "Conus",
+        "margin_note": "Name all three arches. Each name is worth part of this mark.",
+        "lines": [
+          "The ventricle opens into the conus arteriosus",
+          "on the VENTRAL side of the heart.",
+          "The conus arteriosus is also called the truncus",
+          "arteriosus.",
+          "It divides into a right and a left trunk.",
+          "Each trunk gives rise to three aortic arches:",
+          "the carotid arch, the systemic arch and the",
+          "pulmocutaneous arch.",
+          "Blood leaves the heart through these arches."
+        ],
+        "why": "The conus arteriosus is the single outlet of the one ventricle, and the three arches are how one stream of blood is shared between the head, the body and the lungs and skin.",
+        "common_mistakes": [
+          "Writing that the conus arteriosus leaves the auricle. It leaves the VENTRICLE.",
+          "Naming two arches. There are THREE on each side: carotid, systemic and pulmocutaneous."
+        ],
+        "memory_tip": "Three arches, three destinations: carotid to the head, systemic to the body, pulmocutaneous to lungs and skin."
+      },
+      {
+        "id": "s3b_diagram",
+        "kind": "diagram",
+        "label": "Diagram — frog heart",
+        "marks": 0,
+        "margin_note": "The question says describe, not draw, so NO diagram mark is on offer — all four marks sit on the written steps. Draw it anyway if time allows: a small labelled figure lets you write the description in fewer words. The three arches are drawn on ONE side to keep the figure readable; the other trunk gives the same three.",
+        "figure": {
+          "id": "ad2_frog_heart",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — the ventricle and the two auricles"
+            },
+            {
+              "type": "stroke",
+              "id": "ventricle",
+              "d": "M 190 240 C 184 292 214 340 260 356 C 306 340 336 292 330 240",
+              "ms": 4180
+            },
+            {
+              "type": "stroke",
+              "id": "av_groove_l",
+              "d": "M 190 240 L 242 240",
+              "ms": 740,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "av_groove_r",
+              "d": "M 278 240 L 330 240",
+              "ms": 740,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "right_auricle",
+              "d": "M 190 240 C 180 206 194 172 226 169 C 244 166 248 188 244 210 L 242 240",
+              "ms": 2490
+            },
+            {
+              "type": "stroke",
+              "id": "left_auricle",
+              "d": "M 330 240 C 340 206 326 172 294 169 C 276 166 272 188 276 210 L 278 240",
+              "ms": 2490
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the conus arteriosus and its two trunks"
+            },
+            {
+              "type": "stroke",
+              "id": "conus_edge_l",
+              "d": "M 252 248 C 251 220 251 184 252 152",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "conus_edge_r",
+              "d": "M 268 248 C 269 220 269 184 268 152",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_l_a",
+              "d": "M 260.1 146.8 L 259.2 145.8 L 258 144.3 L 256.5 142.5 L 254.9 140.6 L 253.1 138.5 L 251.3 136.4 L 249.6 134.4 L 247.9 132.6 L 246.2 130.8 L 244.4 129 L 242.6 127.2 L 240.9 125.4 L 239.2 123.8 L 237.7 122.4 L 236.5 121.2 L 235.6 120.3",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_l_b",
+              "d": "M 247.9 157.2 L 247 156.1 L 245.7 154.6 L 244.3 152.8 L 242.6 150.9 L 240.9 148.9 L 239.2 146.9 L 237.6 145.1 L 236.1 143.4 L 234.6 141.9 L 233 140.2 L 231.3 138.5 L 229.6 136.8 L 228 135.3 L 226.6 133.8 L 225.3 132.6 L 224.4 131.7",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_l_cap",
+              "d": "M 224.3 131.7 L 235.7 120.3",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_r_a",
+              "d": "M 272.1 157.2 L 273 156.1 L 274.3 154.6 L 275.7 152.8 L 277.4 150.9 L 279.1 148.9 L 280.8 146.9 L 282.4 145.1 L 283.9 143.4 L 285.4 141.9 L 287 140.2 L 288.7 138.5 L 290.4 136.8 L 292 135.3 L 293.4 133.8 L 294.7 132.6 L 295.6 131.7",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "trunk_r_b",
+              "d": "M 259.9 146.8 L 260.8 145.8 L 262 144.3 L 263.5 142.5 L 265.1 140.6 L 266.9 138.5 L 268.7 136.4 L 270.4 134.4 L 272.1 132.6 L 273.8 130.8 L 275.6 129 L 277.4 127.2 L 279.1 125.4 L 280.8 123.8 L 282.3 122.4 L 283.5 121.2 L 284.4 120.3",
+              "ms": 520
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — the three aortic arches (drawn on one side)"
+            },
+            {
+              "type": "stroke",
+              "id": "carotid_a",
+              "d": "M 293 123.4 L 292.7 120.8 L 292.2 117.4 L 291.8 113.3 L 291.2 108.8 L 290.6 104 L 290.1 99 L 289.5 94.1 L 289 89.4 L 288.4 84.6 L 287.9 79.4 L 287.3 73.9 L 286.7 68.4 L 286.2 63.1 L 285.7 58.4 L 285.3 54.4 L 285 51.5",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "carotid_b",
+              "d": "M 283 124.6 L 282.7 122 L 282.3 118.6 L 281.8 114.5 L 281.3 110 L 280.7 105.1 L 280.1 100.2 L 279.6 95.2 L 279 90.6 L 278.5 85.7 L 277.9 80.4 L 277.4 74.9 L 276.8 69.4 L 276.2 64.2 L 275.7 59.4 L 275.3 55.5 L 275 52.5",
+              "ms": 1040
+            },
+            {
+              "type": "stroke",
+              "id": "carotid_cap",
+              "d": "M 275 52.5 L 285 51.5",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "systemic_a",
+              "d": "M 296.9 126.9 L 297.4 124.3 L 298 120.9 L 298.8 116.7 L 299.7 112.2 L 300.6 107.3 L 301.4 102.3 L 302.2 97.4 L 302.9 92.7 L 303.6 88 L 304.2 82.9 L 304.8 77.6 L 305.3 72.4 L 305.9 67.5 L 306.3 63 L 306.7 59.3 L 307 56.5",
+              "ms": 1020
+            },
+            {
+              "type": "stroke",
+              "id": "systemic_b",
+              "d": "M 287.1 125.1 L 287.6 122.5 L 288.2 119 L 289 114.9 L 289.8 110.3 L 290.7 105.5 L 291.6 100.6 L 292.4 95.8 L 293.1 91.3 L 293.7 86.7 L 294.3 81.7 L 294.9 76.5 L 295.4 71.4 L 295.9 66.4 L 296.4 62 L 296.7 58.3 L 297 55.5",
+              "ms": 1000
+            },
+            {
+              "type": "stroke",
+              "id": "systemic_cap",
+              "d": "M 297 55.4 L 307 56.6",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pulmocutaneous_a",
+              "d": "M 299.5 132.1 L 300.6 129.8 L 302.1 126.7 L 303.8 123.1 L 305.7 119 L 307.7 114.7 L 309.8 110.3 L 311.7 106 L 313.6 102.1 L 315.3 98.1 L 317.2 93.8 L 319.1 89.4 L 321 85.1 L 322.7 81 L 324.3 77.4 L 325.6 74.3 L 326.6 72",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "pulmocutaneous_b",
+              "d": "M 290.5 127.9 L 291.6 125.6 L 293 122.5 L 294.7 118.8 L 296.7 114.7 L 298.7 110.5 L 300.7 106.1 L 302.7 101.9 L 304.4 97.9 L 306.2 94 L 308 89.8 L 309.9 85.4 L 311.8 81.2 L 313.5 77.1 L 315.1 73.4 L 316.4 70.3 L 317.4 68",
+              "ms": 940
+            },
+            {
+              "type": "stroke",
+              "id": "pulmocutaneous_cap",
+              "d": "M 317.4 68 L 326.6 72",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — the great veins and the sinus venosus behind"
+            },
+            {
+              "type": "stroke",
+              "id": "sinus_top",
+              "d": "M 206 148 L 286 148",
+              "ms": 1140,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "sinus_limb_l",
+              "d": "M 206 148 L 236 198",
+              "ms": 830,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "sinus_limb_r",
+              "d": "M 286 148 L 236 198",
+              "ms": 1010,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_r_a",
+              "d": "M 207 140.4 L 205 138.7 L 202.5 136.4 L 199.4 133.7 L 196 130.7 L 192.4 127.6 L 188.8 124.4 L 185.3 121.3 L 182 118.4 L 178.7 115.5 L 175.1 112.4 L 171.5 109.2 L 167.9 106 L 164.5 103 L 161.4 100.3 L 158.9 98.1 L 157 96.4",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_r_b",
+              "d": "M 197 151.6 L 195.1 149.9 L 192.6 147.7 L 189.5 145 L 186.1 142 L 182.5 138.8 L 178.9 135.6 L 175.3 132.5 L 172 129.6 L 168.7 126.7 L 165.2 123.6 L 161.6 120.4 L 158 117.3 L 154.6 114.3 L 151.5 111.6 L 149 109.3 L 147 107.6",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_r_cap",
+              "d": "M 147 107.6 L 157 96.4",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_l_a",
+              "d": "M 292.2 154.2 L 294.9 152.4 L 298.6 149.9 L 303 147 L 307.9 143.7 L 313.1 140.3 L 318.3 136.8 L 323.4 133.4 L 328.2 130.2 L 332.9 127.1 L 338 123.7 L 343.2 120.2 L 348.4 116.7 L 353.3 113.5 L 357.7 110.6 L 361.4 108.1 L 364.2 106.2",
+              "ms": 1240
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_l_b",
+              "d": "M 283.8 141.8 L 286.6 139.9 L 290.3 137.4 L 294.7 134.5 L 299.6 131.3 L 304.8 127.8 L 310 124.3 L 315.1 120.9 L 319.8 117.8 L 324.6 114.6 L 329.7 111.2 L 334.9 107.7 L 340.1 104.3 L 345 101 L 349.4 98.1 L 353.1 95.6 L 355.8 93.8",
+              "ms": 1240
+            },
+            {
+              "type": "stroke",
+              "id": "precaval_l_cap",
+              "d": "M 355.8 93.8 L 364.2 106.2",
+              "ms": 300,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "postcaval_stub",
+              "d": "M 246 354 L 246 380 L 274 380 L 274 354",
+              "ms": 1140
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_carotid",
+              "x": 6,
+              "y": 34,
+              "text": "Carotid arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_carotid",
+              "d": "M 128.8 30 L 277 50",
+              "ms": 2140,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_systemic",
+              "x": 142,
+              "y": 34,
+              "text": "Systemic arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_systemic",
+              "d": "M 274.7 30 L 300 54",
+              "ms": 500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pulmo",
+              "x": 292,
+              "y": 34,
+              "text": "Pulmocutaneous arch",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pulmo",
+              "d": "M 484.1 30 L 321 68",
+              "ms": 2390,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_precaval_r",
+              "x": 6,
+              "y": 132,
+              "text": "Right precaval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_precaval_r",
+              "d": "M 148.6 128 L 172 128",
+              "ms": 330,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_sinus",
+              "x": 6,
+              "y": 180,
+              "text": "Sinus venosus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sinus",
+              "d": "M 138.7 176 L 216 166",
+              "ms": 1110,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_atrium_r",
+              "x": 6,
+              "y": 228,
+              "text": "Right atrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_atrium_r",
+              "d": "M 128.8 224 L 198 210",
+              "ms": 1010,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_conus",
+              "x": 6,
+              "y": 276,
+              "text": "Conus arteriosus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_conus",
+              "d": "M 168.4 272 L 250 244",
+              "ms": 1230,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ventricle",
+              "x": 6,
+              "y": 324,
+              "text": "Ventricle",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ventricle",
+              "d": "M 99.1 320 L 206 326",
+              "ms": 1530,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_postcaval",
+              "x": 6,
+              "y": 378,
+              "text": "Post caval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_postcaval",
+              "d": "M 109 374 L 246 374",
+              "ms": 1960,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_precaval_l",
+              "x": 386,
+              "y": 180,
+              "text": "Left precaval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_precaval_l",
+              "d": "M 382 176 L 344 114",
+              "ms": 1040,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_atrium_l",
+              "x": 406,
+              "y": 228,
+              "text": "Left atrium",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_atrium_l",
+              "d": "M 402 224 L 322 210",
+              "ms": 1160,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "Seeing the three chambers in one picture fixes the fact the whole answer rests on — two auricles pouring into ONE ventricle — and it shows why the sinus venosus and the conus arteriosus are drawn on opposite faces of the heart.",
+        "common_mistakes": [
+          "Drawing four chambers. The frog ventricle is single and undivided.",
+          "Drawing the sinus venosus in front. It is DORSAL, so it is shown here as a broken outline behind the auricles.",
+          "Drawing the conus arteriosus leaving an auricle. It leaves the VENTRICLE, on the ventral side."
+        ],
+        "memory_tip": "Behind and in front: the sinus venosus collects at the back, the conus arteriosus sends out at the front."
+      },
+      {
+        "id": "s4_circulation",
+        "kind": "boxed_final",
+        "label": "Incomplete double circulation",
+        "marks": 1,
+        "mark_note": "Circulation",
+        "margin_note": "Finish with the named term. This last line is the one the examiner scans for.",
+        "lines": [
+          {
+            "text": "Two auricles, ONE ventricle: blood mixes",
+            "style": "boxed"
+          },
+          "The right auricle receives deoxygenated blood",
+          "from the sinus venosus.",
+          "The left auricle receives oxygenated blood from",
+          "the lungs.",
+          "Both auricles empty into the single ventricle,",
+          "so the two kinds of blood mix to some extent.",
+          "The circulation of the frog is therefore called",
+          "incomplete double circulation."
+        ],
+        "why": "The single ventricle is the reason for the name: the blood passes through the heart twice in one round, which makes it double, but it is not kept fully apart, which makes it incomplete.",
+        "common_mistakes": [
+          "Writing that frog blood does not mix at all. The single ventricle allows some mixing.",
+          "Calling it single circulation. Fishes have single circulation; the frog has incomplete DOUBLE circulation."
+        ],
+        "memory_tip": "Double because the blood crosses the heart twice; incomplete because one ventricle cannot keep it apart."
+      }
+    ]
+  },
+  "insider_note": "The question says describe, so no diagram mark is on offer — but the words sinus venosus, conus arteriosus and incomplete double circulation are, and an answer missing any of the three reads as unfinished."
+}

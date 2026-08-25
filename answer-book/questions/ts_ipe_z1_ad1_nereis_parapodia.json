@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_nereis_parapodia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you call the locomotor structures of Nereis? Why is Nereis called a polychaete?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Parapodia",
+      "marks": 1
+    },
+    {
+      "label": "Why a polychaete",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 99). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parapodia",
+        "kind": "text",
+        "label": "The locomotor structures",
+        "marks": 1,
+        "why": "The parapodium is a flap of the body wall itself, which is why one organ can serve both for movement and for the exchange of gases.",
+        "common_mistakes": [
+          "Writing setae. The setae are carried ON the parapodia; the locomotor organ is the parapodium.",
+          "Writing that parapodia are present on a few segments only. They are present on every segment."
+        ],
+        "memory_tip": "Para-podium means side-foot: a foot on the side of each segment.",
+        "margin_note": "Name the organ, say where it lies and what it does. Three or four lines.",
+        "mark_note": "Parapodia",
+        "lines": [
+          "The locomotor structures of Nereis are called",
+          "parapodia. One is a parapodium.",
+          "A parapodium is a flat, paired outgrowth on",
+          "the side of every body segment.",
+          "The parapodia are used for swimming and for",
+          "crawling.",
+          "They are thin and hold many blood vessels, so",
+          "they also take part in respiration."
+        ]
+      },
+      {
+        "id": "s2_why_polychaete",
+        "kind": "boxed_final",
+        "label": "Why it is a polychaete",
+        "marks": 1,
+        "why": "The class name is a count of setae, so the answer is complete only when the number of setae per segment is stated.",
+        "common_mistakes": [
+          "Writing that the setae lie on the body wall. In Nereis they are carried on the parapodia.",
+          "Answering 'many setae' alone. Say that they are borne on the parapodia of every segment."
+        ],
+        "memory_tip": "Poly-chaeta is many setae; oligo-chaeta is few setae. Count the setae, name the class.",
+        "margin_note": "Explain the class name from the word itself. Two or three lines.",
+        "mark_note": "Why a polychaete",
+        "lines": [
+          {
+            "text": "Poly = many, chaeta = seta",
+            "style": "boxed"
+          },
+          "Nereis is called a polychaete because every",
+          "parapodium bears many chitinous setae.",
+          "Poly means many and chaeta means seta, so the",
+          "name records the large number of setae.",
+          "An earthworm has only a few setae in each",
+          "segment, and it is therefore an oligochaete."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The second mark is for taking the word apart — poly and chaeta — so write the meaning of the name, not just the fact that setae are present."
+}

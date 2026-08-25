@@ -262,7 +262,7 @@
         "mark_note": "Noise",
         "lines": [
           {
-            "text": "Above 120 dB is noise; above 150 dB damages",
+            "text": "Noise above 120 dB; damage above 150 dB",
             "style": "boxed"
           },
           "Noise pollution is caused by undesirable",

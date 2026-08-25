@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_extra_embryonic_membranes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the four extra embryonic membranes.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "The four names",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.56, VSAQ 118). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Membranes",
+        "margin_note": "One or two lines saying what they are, then the list. The names carry the second mark.",
+        "lines": [
+          "Extra embryonic membranes are membranes that",
+          "grow out of the embryo but do not become part",
+          "of its body.",
+          "They are found in reptiles, birds and mammals,",
+          "which are together called amniotes."
+        ],
+        "why": "The membranes are named extra embryonic because they lie outside the embryo proper, and that is why they are shed at birth or at hatching.",
+        "common_mistakes": [
+          "Writing that they are organs of the embryo. They are outside the embryo and are left behind.",
+          "Giving them to amphibians and fishes. Only reptiles, birds and mammals have them."
+        ],
+        "memory_tip": "Extra means outside: outside the embryo, so they are thrown away at birth."
+      },
+      {
+        "id": "s2_names",
+        "kind": "boxed_final",
+        "label": "The four names",
+        "marks": 1,
+        "mark_note": "Names",
+        "margin_note": "The four names alone can earn the mark; one short use each makes the answer complete.",
+        "lines": [
+          {
+            "text": "Amnion · Chorion · Allantois · Yolk sac",
+            "style": "boxed"
+          },
+          "1) Amnion holds the amniotic fluid, which",
+          "protects the embryo from shock and drying.",
+          "2) Chorion is the outermost membrane and helps",
+          "in exchange of gases.",
+          "3) Allantois stores the nitrogenous waste and",
+          "helps in respiration.",
+          "4) Yolk sac holds the yolk, the food of the",
+          "embryo."
+        ],
+        "why": "Each membrane has one job, so learning them as protect, exchange, store, feed keeps all four apart in the exam.",
+        "common_mistakes": [
+          "Naming the placenta as one of the four. The placenta is formed from the chorion and the allantois.",
+          "Writing three names only. The question asks for four."
+        ],
+        "memory_tip": "Protect, exchange, store, feed: amnion, chorion, allantois, yolk sac."
+      }
+    ]
+  },
+  "insider_note": "This is a naming question, so the four words are the answer; the one-line uses are insurance if one name is misspelt."
+}

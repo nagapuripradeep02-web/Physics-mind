@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_reptilia_extant_orders",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List out the extant orders of the Class Reptilia. Give two examples for each order.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Chelonia",
+      "marks": 1
+    },
+    {
+      "label": "Rhynchocephalia",
+      "marks": 1
+    },
+    {
+      "label": "Crocodilia",
+      "marks": 1
+    },
+    {
+      "label": "Squamata",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.39, SAQ 34). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ANSWERABILITY: the question asks for two examples per order, but Rhynchocephalia has only one living genus (Sphenodon), so a second example does not exist. The card says so rather than inventing one. BOOK WORDING: the book prints 'Najanaja' and 'chained viper'; the accepted forms are Naja naja and chain viper (Russell's viper), and the card uses those."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chelonia",
+        "kind": "text",
+        "label": "Chelonia",
+        "marks": 1,
+        "mark_note": "Chelonia",
+        "margin_note": "Say what extant means in the first line, then take the four orders in order.",
+        "lines": [
+          "Extant means the orders that are still living.",
+          "There are four living orders of Reptilia.",
+          "1) Chelonia (turtles and tortoises):",
+          "The body is covered by a hard shell of bony",
+          "plates. Teeth are absent; the jaws carry a",
+          "horny beak.",
+          "Examples: Chelone (marine green turtle),",
+          "Testudo (land tortoise), Trionyx (fresh water",
+          "turtle)."
+        ],
+        "why": "The word extant is the first thing to settle, because the class also holds large extinct orders and a list that includes them is the commonest way to lose this whole question.",
+        "common_mistakes": [
+          "Listing dinosaurs or pterosaurs. Extant means still living, so extinct orders do not belong.",
+          "Giving three orders. There are FOUR living orders."
+        ],
+        "memory_tip": "Four living orders: shell, beak head, crocodile, scale. One word each."
+      },
+      {
+        "id": "s2_rhynchocephalia",
+        "kind": "text",
+        "label": "Rhynchocephalia",
+        "marks": 1,
+        "mark_note": "Rhynchocephalia",
+        "margin_note": "One example only, with the reason. An honest line here reads better than a made up name.",
+        "lines": [
+          "2) Rhynchocephalia (beak headed reptiles):",
+          "This order has only ONE living genus, so it is",
+          "called a living fossil.",
+          "Example: Sphenodon (tuatara), found only in",
+          "New Zealand.",
+          "Because only one genus survives, a second",
+          "example cannot be given for this order."
+        ],
+        "why": "This order is remembered by the fact that almost nothing is left of it, so the single surviving name is easier to hold than a list.",
+        "common_mistakes": [
+          "Inventing a second example to match the question. Only Sphenodon survives; say so instead.",
+          "Writing that Sphenodon lives in Australia. It is restricted to New Zealand."
+        ],
+        "memory_tip": "One order, one genus, one country: Sphenodon in New Zealand."
+      },
+      {
+        "id": "s3_crocodilia",
+        "kind": "text",
+        "label": "Crocodilia",
+        "marks": 1,
+        "mark_note": "Crocodilia",
+        "margin_note": "Two examples are asked; three are printed. Two named genera earn the mark.",
+        "lines": [
+          "3) Crocodilia (crocodiles and their kin):",
+          "They are large aquatic reptiles. The heart is",
+          "completely four chambered, which no other",
+          "reptile has.",
+          "Examples: Crocodylus palustris (Indian",
+          "crocodile), Alligator, Gavialis gangeticus",
+          "(gharial)."
+        ],
+        "why": "The four chambered heart is the character that makes Crocodilia stand out from every other reptile, so it is worth one line even in a list question.",
+        "common_mistakes": [
+          "Writing that crocodiles have a three chambered heart. Their heart is completely four chambered.",
+          "Putting the gharial in a separate order. Gavialis belongs to Crocodilia."
+        ],
+        "memory_tip": "The only reptile with a full four chambered heart is the crocodile."
+      },
+      {
+        "id": "s4_squamata",
+        "kind": "boxed_final",
+        "label": "Squamata",
+        "marks": 1,
+        "mark_note": "Squamata",
+        "margin_note": "Split the order into lizards and snakes, then name examples. This step carries the most names.",
+        "lines": [
+          {
+            "text": "Chelonia · Rhynchocephalia · Crocodilia · Squamata",
+            "style": "boxed"
+          },
+          "4) Squamata (scaly reptiles):",
+          "This is the largest order. It has two groups.",
+          "i) Lizards: Hemidactylus (wall lizard),",
+          "Chameleon, Draco (flying lizard).",
+          "ii) Snakes:",
+          "Non-poisonous: Ptyas (rat snake),",
+          "Tropidonotus (pond snake).",
+          "Poisonous: Naja naja (cobra), Ophiophagus",
+          "(king cobra), Bungarus (krait), Vipera",
+          "russelli (chain viper)."
+        ],
+        "why": "Squamata is split into lizards and snakes before the examples are given, because the examiner expects both groups to appear under the one order.",
+        "common_mistakes": [
+          "Listing snakes as a separate order. Snakes and lizards are two groups INSIDE Squamata.",
+          "Giving only lizards. Both groups must be shown for the full mark."
+        ],
+        "memory_tip": "Squama means scale, so every scaly reptile — lizard and snake alike — sits here."
+      }
+    ]
+  },
+  "insider_note": "Four orders, one mark each, and the mark is for the ORDER NAME plus its examples — a beautiful description of turtles with the word Chelonia missing scores nothing."
+}

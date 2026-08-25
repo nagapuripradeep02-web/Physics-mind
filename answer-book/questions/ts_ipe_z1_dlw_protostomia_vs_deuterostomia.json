@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_protostomia_vs_deuterostomia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between Protostomia and Deuterostomia.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Protostomia",
+      "marks": 1
+    },
+    {
+      "label": "Deuterostomia",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 64). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_protostomia",
+        "kind": "text",
+        "label": "Protostomia",
+        "marks": 1,
+        "mark_note": "Protostomia",
+        "why": "The two groups differ in one event of development — what the blastopore becomes — so the answer is that one fact stated twice, once for each group.",
+        "common_mistakes": [
+          "Writing that the blastopore becomes the anus in Protostomia. Proto means first, and the mouth forms first.",
+          "Giving Echinodermata as an example. It is a deuterostome."
+        ],
+        "memory_tip": "Proto means first and stoma means mouth: in Protostomia the mouth comes first.",
+        "margin_note": "The blastopore fact and the three phyla. Three lines.",
+        "lines": [
+          "Protostomia:",
+          "These are eumetazoans in which the blastopore",
+          "of the embryo develops into the mouth.",
+          "The anus is formed later, as a new opening.",
+          "Examples: Annelida, Arthropoda and Mollusca."
+        ]
+      },
+      {
+        "id": "s2_deuterostomia",
+        "kind": "boxed_final",
+        "label": "Deuterostomia",
+        "marks": 1,
+        "mark_note": "Deuterostomia",
+        "why": "Deutero means second, so in this group the mouth is the second opening to form and the blastopore end is left as the anus.",
+        "common_mistakes": [
+          "Swapping the example groups. Chordata, which includes humans, is deuterostome."
+        ],
+        "memory_tip": "Deutero means second: the mouth is the second opening, so the blastopore end becomes the anus.",
+        "margin_note": "The same fact reversed, plus the three phyla. Keep both halves the same length.",
+        "lines": [
+          {
+            "text": "Deuterostomia: blastopore becomes anus",
+            "style": "boxed"
+          },
+          "Deuterostomia:",
+          "These are eumetazoans in which the anus is",
+          "formed from or near the blastopore.",
+          "The mouth is formed later, as a new opening.",
+          "Examples: Echinodermata, Hemichordata and",
+          "Chordata."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write it as a two-row table — what the blastopore becomes, then the example phyla — because a table shows the difference faster than a paragraph."
+}

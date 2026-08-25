@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_blood_glands_pheretima",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are blood glands in Pheretima?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What they make",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.54, VSAQ 106). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "why": "The glands sit in three named segments near the front of the worm, and the segment numbers are the part of the answer a paper can mark.",
+        "common_mistakes": [
+          "Giving the wrong segments. The blood glands lie in segments 4, 5 and 6.",
+          "Confusing them with the spermathecae, which lie in segments 6 to 9."
+        ],
+        "memory_tip": "Blood glands 4, 5, 6. Spermathecae 6, 7, 8, 9. Keep the two lists apart.",
+        "margin_note": "Position is the first mark. Two or three lines.",
+        "mark_note": "What they are",
+        "lines": [
+          "Blood glands are small glandular masses in",
+          "the body of Pheretima, the earthworm.",
+          "They lie in the 4th, 5th and 6th segments."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "What they make",
+        "marks": 1,
+        "why": "The pigment is dissolved in the plasma and the cells are separate from it, so the gland has to make two separate products.",
+        "common_mistakes": [
+          "Writing that earthworm haemoglobin lies inside the corpuscles. It is dissolved in the plasma.",
+          "Writing that the glands filter the blood. They produce blood cells and haemoglobin."
+        ],
+        "memory_tip": "The earthworm's red pigment floats in the plasma, not in the cells.",
+        "margin_note": "Two products, then the one line that makes the earthworm different.",
+        "mark_note": "What they make",
+        "lines": [
+          {
+            "text": "Segments 4, 5, 6 — they make the blood",
+            "style": "boxed"
+          },
+          "The blood glands produce the blood cells,",
+          "that is, the corpuscles of the earthworm.",
+          "They also produce the haemoglobin.",
+          "In the earthworm the haemoglobin is dissolved",
+          "in the plasma. It is not held inside the",
+          "blood cells."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The line examiners look for is that the haemoglobin is dissolved in the plasma — it is the fact that separates the earthworm from a vertebrate."
+}

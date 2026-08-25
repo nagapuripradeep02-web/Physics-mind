@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_cyclostomes_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write four salient features of cyclostomes.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Jawless body",
+      "marks": 1
+    },
+    {
+      "label": "Mouth and heart",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 108). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. TEXT BEYOND THE BOOK: the book prints five features and no example; Petromyzon and Myxine are added from the standard syllabus list."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_body",
+        "kind": "text",
+        "label": "Jawless body",
+        "marks": 1,
+        "mark_note": "Body",
+        "margin_note": "Four numbered features, two in this step. One short line each.",
+        "lines": [
+          "1) Cyclostomes are jawless aquatic vertebrates.",
+          "2) The body is long, slender and eel like, and",
+          "it carries no scales."
+        ],
+        "why": "Cyclostomes are placed apart from all other fishes because they have no jaws, so the first two features name what they lack rather than what they have.",
+        "common_mistakes": [
+          "Calling cyclostomes true fishes. They are jawless vertebrates and are kept in a separate class.",
+          "Writing that they have scales. The body is naked."
+        ],
+        "memory_tip": "Cyclo means circle: a round mouth and no jaws is the whole group in two words."
+      },
+      {
+        "id": "s2_mouth",
+        "kind": "boxed_final",
+        "label": "Mouth and heart",
+        "marks": 1,
+        "mark_note": "Mouth",
+        "margin_note": "Give the two remaining features, then one example. Four features are enough for two marks.",
+        "lines": [
+          {
+            "text": "Jawless · scaleless · round suctorial mouth",
+            "style": "boxed"
+          },
+          "3) The mouth is round and suctorial. It has no",
+          "jaws, so the animal clings to a host fish and",
+          "sucks.",
+          "4) The tongue bears horny teeth.",
+          "The heart is two chambered.",
+          "Examples: Petromyzon (lamprey), Myxine",
+          "(hagfish)."
+        ],
+        "why": "The round sucking mouth and the horny teeth on the tongue are what let a jawless animal still feed, so these two features always travel together.",
+        "common_mistakes": [
+          "Writing that the horny teeth are on the jaws. There are no jaws; the teeth sit on the tongue.",
+          "Saying the mouth bites. It is suctorial, so it sucks and rasps."
+        ],
+        "memory_tip": "No jaws, so the mouth is a round sucker and the teeth ride on the tongue."
+      }
+    ]
+  },
+  "insider_note": "Write the word jawless in the first line — it is the one word that separates cyclostomes from every other fish, and most part marks turn on it."
+}

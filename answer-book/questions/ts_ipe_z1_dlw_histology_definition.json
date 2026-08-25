@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_histology_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the term histology. What is it otherwise called?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Other name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 61). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. ENUMERATION NOTE: this book files histology under the Diversity of Living World VSAQ chapter although the topic belongs to Structural Organisation; the card follows the book's chapter placement so that the global question number and the unit agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What histology is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "why": "The definition names the level of study — tissues seen under a microscope — which is what separates histology from anatomy, the study of parts seen with the unaided eye.",
+        "common_mistakes": [
+          "Writing that histology is the study of cells. That is cytology; histology is the study of tissues.",
+          "Writing that histology is the study of organs seen with the unaided eye. That is gross anatomy."
+        ],
+        "memory_tip": "Histo means tissue: histology is tissue study under a microscope.",
+        "margin_note": "One sentence. Name tissues and the microscope.",
+        "lines": [
+          "Histology is the study of the microscopic",
+          "structure of tissues.",
+          "It is carried out with a microscope, because",
+          "these details cannot be seen with the",
+          "unaided eye."
+        ]
+      },
+      {
+        "id": "s2_other_name",
+        "kind": "boxed_final",
+        "label": "The other name",
+        "marks": 1,
+        "mark_note": "Other name",
+        "why": "The second name is the first one explained: micro plus anatomy says exactly what histology does.",
+        "common_mistakes": [
+          "Writing 'micrology' or 'microbiology'. The other name is microanatomy."
+        ],
+        "memory_tip": "Micro plus anatomy: the same subject at a smaller scale.",
+        "margin_note": "One word carries this mark. Write microanatomy and one line to justify it.",
+        "lines": [
+          {
+            "text": "Histology is also called microanatomy",
+            "style": "boxed"
+          },
+          "Anatomy is the study of structure seen with",
+          "the unaided eye, so the study of structure",
+          "seen under a microscope is called",
+          "microanatomy."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The second half is a single word — microanatomy — and it is the half most students leave out, so write it even when you are short of time."
+}

@@ -8167,6 +8167,181 @@
       ]
     },
     {
+      "number": 1,
+      "name": "Diversity of Living World (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq59",
+          "section": "VSAQ",
+          "number": 59,
+          "stars": 0,
+          "text": "What does ICZN stand for?",
+          "question_id": "ts_ipe_z1_dlw_iczn_full_form"
+        },
+        {
+          "ref": "vsaq60",
+          "section": "VSAQ",
+          "number": 60,
+          "stars": 0,
+          "text": "What is biogenesis?",
+          "question_id": "ts_ipe_z1_dlw_biogenesis"
+        },
+        {
+          "ref": "vsaq61",
+          "section": "VSAQ",
+          "number": 61,
+          "stars": 0,
+          "text": "Define the term histology. What is it otherwise called?",
+          "question_id": "ts_ipe_z1_dlw_histology_definition"
+        },
+        {
+          "ref": "vsaq62",
+          "section": "VSAQ",
+          "number": 62,
+          "stars": 0,
+          "text": "What is trinomial nomenclature? Give an example.",
+          "question_id": "ts_ipe_z1_dlw_trinomial_nomenclature"
+        },
+        {
+          "ref": "vsaq63",
+          "section": "VSAQ",
+          "number": 63,
+          "stars": 0,
+          "text": "What is meant by tautonymy? Give two examples.",
+          "question_id": "ts_ipe_z1_dlw_tautonymy"
+        },
+        {
+          "ref": "vsaq64",
+          "section": "VSAQ",
+          "number": 64,
+          "stars": 0,
+          "text": "Differentiate between Protostomia and Deuterostomia.",
+          "question_id": "ts_ipe_z1_dlw_protostomia_vs_deuterostomia"
+        },
+        {
+          "ref": "vsaq65",
+          "section": "VSAQ",
+          "number": 65,
+          "stars": 0,
+          "text": "What is ecological diversity? Mention the different types of ecological diversities.",
+          "question_id": "ts_ipe_z1_dlw_ecological_diversity"
+        },
+        {
+          "ref": "vsaq66",
+          "section": "VSAQ",
+          "number": 66,
+          "stars": 0,
+          "text": "Define species richness.",
+          "question_id": "ts_ipe_z1_dlw_species_richness"
+        },
+        {
+          "ref": "vsaq67",
+          "section": "VSAQ",
+          "number": 67,
+          "stars": 0,
+          "text": "List out any four sacred groves in India.",
+          "question_id": "ts_ipe_z1_dlw_sacred_groves_india"
+        },
+        {
+          "ref": "vsaq68",
+          "section": "VSAQ",
+          "number": 68,
+          "stars": 0,
+          "text": "Write the full form of IUCN. In which book are threatened species listed?",
+          "question_id": "ts_ipe_z1_dlw_iucn_red_data_book"
+        },
+        {
+          "ref": "vsaq69",
+          "section": "VSAQ",
+          "number": 69,
+          "stars": 0,
+          "text": "Define the term metabolism. Give any one example.",
+          "question_id": "ts_ipe_z1_dlw_metabolism_definition"
+        },
+        {
+          "ref": "vsaq70",
+          "section": "VSAQ",
+          "number": 70,
+          "stars": 0,
+          "text": "How do you differentiate between growth in a living organism and growth in a non-living object?",
+          "question_id": "ts_ipe_z1_dlw_growth_living_vs_nonliving"
+        },
+        {
+          "ref": "vsaq71",
+          "section": "VSAQ",
+          "number": 71,
+          "stars": 0,
+          "text": "'Zoos are tools for classification.' Explain.",
+          "question_id": "ts_ipe_z1_dlw_zoos_tools_for_classification"
+        },
+        {
+          "ref": "vsaq72",
+          "section": "VSAQ",
+          "number": 72,
+          "stars": 0,
+          "text": "Where and how do we preserve skeletons of animals, dry specimens etc.?",
+          "question_id": "ts_ipe_z1_dlw_museum_preservation"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Define species. Explain the various aspects of 'species'.",
+          "question_id": "ts_ipe_z1_dlw_species_and_its_aspects"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What is the 'evil quartet'?",
+          "question_id": "ts_ipe_z1_dlw_evil_quartet"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Explain the 'Rivet Popper' hypothesis.",
+          "question_id": "ts_ipe_z1_dlw_rivet_popper_hypothesis"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What are the reasons for greater biodiversity in the tropics?",
+          "question_id": "ts_ipe_z1_dlw_tropics_greater_biodiversity"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Explain in brief 'Biodiversity Hot Spots'.",
+          "question_id": "ts_ipe_z1_dlw_biodiversity_hot_spots"
+        },
+        {
+          "ref": "saq177",
+          "section": "SAQ",
+          "number": 177,
+          "stars": 0,
+          "text": "What is genetic diversity and what are the different types of genetic diversity?",
+          "question_id": "ts_ipe_z1_dlw_genetic_diversity"
+        },
+        {
+          "ref": "saq178",
+          "section": "SAQ",
+          "number": 178,
+          "stars": 0,
+          "text": "Explain the hierarchy of classification.",
+          "question_id": "ts_ipe_z1_dlw_hierarchy_of_classification"
+        }
+      ]
+    },
+    {
       "number": 2,
       "name": "Structural Organisation in Animals (Zoology)",
       "subject": "zoology",
@@ -8362,6 +8537,428 @@
           "stars": 0,
           "text": "Write short notes on lymph.",
           "question_id": "ts_ipe_z1_so_lymph_short_notes"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Animal Diversity-I (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq89",
+          "section": "VSAQ",
+          "number": 89,
+          "stars": 0,
+          "text": "What are the functions of the canal system of sponges?",
+          "question_id": "ts_ipe_z1_ad1_sponge_canal_system_functions"
+        },
+        {
+          "ref": "vsaq90",
+          "section": "VSAQ",
+          "number": 90,
+          "stars": 0,
+          "text": "What is metagenesis? Animals belonging to which phylum exhibit metagenesis?",
+          "question_id": "ts_ipe_z1_ad1_metagenesis"
+        },
+        {
+          "ref": "vsaq91",
+          "section": "VSAQ",
+          "number": 91,
+          "stars": 0,
+          "text": "What are the excretory cells of flatworms called? What is the other important function of these specialized cells?",
+          "question_id": "ts_ipe_z1_ad1_flame_cells"
+        },
+        {
+          "ref": "vsaq92",
+          "section": "VSAQ",
+          "number": 92,
+          "stars": 0,
+          "text": "Distinguish between amphids and phasmids.",
+          "question_id": "ts_ipe_z1_ad1_amphids_vs_phasmids"
+        },
+        {
+          "ref": "vsaq93",
+          "section": "VSAQ",
+          "number": 93,
+          "stars": 0,
+          "text": "What is botryoidal tissue?",
+          "question_id": "ts_ipe_z1_ad1_botryoidal_tissue"
+        },
+        {
+          "ref": "vsaq94",
+          "section": "VSAQ",
+          "number": 94,
+          "stars": 0,
+          "text": "Which arthropod is called a 'living fossil'? Name its respiratory organs.",
+          "question_id": "ts_ipe_z1_ad1_living_fossil_arthropod"
+        },
+        {
+          "ref": "vsaq95",
+          "section": "VSAQ",
+          "number": 95,
+          "stars": 0,
+          "text": "What is the function of radula? Give the name of the group of molluscs which do not possess a radula.",
+          "question_id": "ts_ipe_z1_ad1_radula_function"
+        },
+        {
+          "ref": "vsaq96",
+          "section": "VSAQ",
+          "number": 96,
+          "stars": 0,
+          "text": "What is Aristotle's lantern? Give one example of an animal possessing it.",
+          "question_id": "ts_ipe_z1_ad1_aristotles_lantern"
+        },
+        {
+          "ref": "vsaq97",
+          "section": "VSAQ",
+          "number": 97,
+          "stars": 0,
+          "text": "What is the essential difference between the larvae and adults of echinoderms, symmetry wise?",
+          "question_id": "ts_ipe_z1_ad1_echinoderm_larva_symmetry"
+        },
+        {
+          "ref": "vsaq98",
+          "section": "VSAQ",
+          "number": 98,
+          "stars": 0,
+          "text": "What are the two chief morphological 'body forms' of cnidarians? What are their chief functions?",
+          "question_id": "ts_ipe_z1_ad1_cnidarian_body_forms"
+        },
+        {
+          "ref": "vsaq99",
+          "section": "VSAQ",
+          "number": 99,
+          "stars": 0,
+          "text": "What do you call the locomotor structures of Nereis? Why is Nereis called a polychaete?",
+          "question_id": "ts_ipe_z1_ad1_nereis_parapodia"
+        },
+        {
+          "ref": "vsaq100",
+          "section": "VSAQ",
+          "number": 100,
+          "stars": 0,
+          "text": "What do you call the first and second pairs of cephalic appendages of a scorpion?",
+          "question_id": "ts_ipe_z1_ad1_scorpion_cephalic_appendages"
+        },
+        {
+          "ref": "vsaq101",
+          "section": "VSAQ",
+          "number": 101,
+          "stars": 0,
+          "text": "What are the respiratory structures of Limulus and Palamnaeus respectively?",
+          "question_id": "ts_ipe_z1_ad1_limulus_palamnaeus_respiration"
+        },
+        {
+          "ref": "vsaq102",
+          "section": "VSAQ",
+          "number": 102,
+          "stars": 0,
+          "text": "What are antennae? What is the arthropod group without antennae?",
+          "question_id": "ts_ipe_z1_ad1_antennae_chelicerata"
+        },
+        {
+          "ref": "vsaq103",
+          "section": "VSAQ",
+          "number": 103,
+          "stars": 0,
+          "text": "What is the other name for the gill of a mollusc? What is the function of osphradium?",
+          "question_id": "ts_ipe_z1_ad1_ctenidium_osphradium"
+        },
+        {
+          "ref": "vsaq104",
+          "section": "VSAQ",
+          "number": 104,
+          "stars": 0,
+          "text": "What are spermathecae on the body of Pheretima?",
+          "question_id": "ts_ipe_z1_ad1_spermathecae_pheretima"
+        },
+        {
+          "ref": "vsaq105",
+          "section": "VSAQ",
+          "number": 105,
+          "stars": 0,
+          "text": "What do you call the perivisceral cavity of an arthropod? Where from is it derived during development?",
+          "question_id": "ts_ipe_z1_ad1_haemocoel_arthropod"
+        },
+        {
+          "ref": "vsaq106",
+          "section": "VSAQ",
+          "number": 106,
+          "stars": 0,
+          "text": "What are blood glands in Pheretima?",
+          "question_id": "ts_ipe_z1_ad1_blood_glands_pheretima"
+        },
+        {
+          "ref": "saq24",
+          "section": "SAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write short notes on the salient features of the anthozoans.",
+          "question_id": "ts_ipe_z1_ad1_anthozoa_features"
+        },
+        {
+          "ref": "saq25",
+          "section": "SAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What are the salient features exhibited by polychaetes?",
+          "question_id": "ts_ipe_z1_ad1_polychaeta_features"
+        },
+        {
+          "ref": "saq26",
+          "section": "SAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What are the chief characters of the crustaceans?",
+          "question_id": "ts_ipe_z1_ad1_crustacea_characters"
+        },
+        {
+          "ref": "saq27",
+          "section": "SAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "What are the salient features of the echinoids?",
+          "question_id": "ts_ipe_z1_ad1_echinoidea_features"
+        },
+        {
+          "ref": "saq28",
+          "section": "SAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Mention the salient features of Holothuroidea.",
+          "question_id": "ts_ipe_z1_ad1_holothuroidea_features"
+        },
+        {
+          "ref": "saq29",
+          "section": "SAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "Mention the general characters of Arachnida.",
+          "question_id": "ts_ipe_z1_ad1_arachnida_characters"
+        },
+        {
+          "ref": "saq180",
+          "section": "SAQ",
+          "number": 180,
+          "stars": 0,
+          "text": "What is the class to which the flukes belong? Write short notes on the chief characters of that group.",
+          "question_id": "ts_ipe_z1_ad1_trematoda_flukes"
+        },
+        {
+          "ref": "saq181",
+          "section": "SAQ",
+          "number": 181,
+          "stars": 0,
+          "text": "Compare briefly a centipede and a millipede.",
+          "question_id": "ts_ipe_z1_ad1_centipede_vs_millipede"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Animal Diversity-II (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "vsaq107",
+          "section": "VSAQ",
+          "number": 107,
+          "stars": 0,
+          "text": "List out the characters shared by chordates and echinoderms.",
+          "question_id": "ts_ipe_z1_ad2_chordates_echinoderms_shared"
+        },
+        {
+          "ref": "vsaq108",
+          "section": "VSAQ",
+          "number": 108,
+          "stars": 0,
+          "text": "Write four salient features of cyclostomes.",
+          "question_id": "ts_ipe_z1_ad2_cyclostomes_features"
+        },
+        {
+          "ref": "vsaq109",
+          "section": "VSAQ",
+          "number": 109,
+          "stars": 0,
+          "text": "What is the importance of endostyle in lancelets and ascidians?",
+          "question_id": "ts_ipe_z1_ad2_endostyle_importance"
+        },
+        {
+          "ref": "vsaq110",
+          "section": "VSAQ",
+          "number": 110,
+          "stars": 0,
+          "text": "Name the type of caudal fin and scales that are present in a shark and Catla, respectively.",
+          "question_id": "ts_ipe_z1_ad2_shark_catla_fin_scales"
+        },
+        {
+          "ref": "vsaq111",
+          "section": "VSAQ",
+          "number": 111,
+          "stars": 0,
+          "text": "What is the importance of air bladder in fishes?",
+          "question_id": "ts_ipe_z1_ad2_air_bladder_importance"
+        },
+        {
+          "ref": "vsaq112",
+          "section": "VSAQ",
+          "number": 112,
+          "stars": 0,
+          "text": "How do you justify the statement — \"heart in fishes is a branchial heart\"?",
+          "question_id": "ts_ipe_z1_ad2_branchial_heart_fishes"
+        },
+        {
+          "ref": "vsaq113",
+          "section": "VSAQ",
+          "number": 113,
+          "stars": 0,
+          "text": "What are claspers? Which group of fishes possesses them?",
+          "question_id": "ts_ipe_z1_ad2_claspers"
+        },
+        {
+          "ref": "vsaq114",
+          "section": "VSAQ",
+          "number": 114,
+          "stars": 0,
+          "text": "How does the heart of an amphibian differ from that of a reptile?",
+          "question_id": "ts_ipe_z1_ad2_amphibian_vs_reptile_heart"
+        },
+        {
+          "ref": "vsaq115",
+          "section": "VSAQ",
+          "number": 115,
+          "stars": 0,
+          "text": "How do you distinguish a male frog from a female frog?",
+          "question_id": "ts_ipe_z1_ad2_male_vs_female_frog"
+        },
+        {
+          "ref": "vsaq116",
+          "section": "VSAQ",
+          "number": 116,
+          "stars": 0,
+          "text": "Distinguish between milt and spawn.",
+          "question_id": "ts_ipe_z1_ad2_milt_vs_spawn"
+        },
+        {
+          "ref": "vsaq117",
+          "section": "VSAQ",
+          "number": 117,
+          "stars": 0,
+          "text": "Name two poisonous and two non-poisonous snakes found in South India.",
+          "question_id": "ts_ipe_z1_ad2_snakes_south_india"
+        },
+        {
+          "ref": "vsaq118",
+          "section": "VSAQ",
+          "number": 118,
+          "stars": 0,
+          "text": "Name the four extra embryonic membranes.",
+          "question_id": "ts_ipe_z1_ad2_extra_embryonic_membranes"
+        },
+        {
+          "ref": "vsaq119",
+          "section": "VSAQ",
+          "number": 119,
+          "stars": 0,
+          "text": "What are Jacobson's organs? What is their function?",
+          "question_id": "ts_ipe_z1_ad2_jacobsons_organs"
+        },
+        {
+          "ref": "vsaq120",
+          "section": "VSAQ",
+          "number": 120,
+          "stars": 0,
+          "text": "What are pneumatic bones? How do they help birds?",
+          "question_id": "ts_ipe_z1_ad2_pneumatic_bones"
+        },
+        {
+          "ref": "vsaq121",
+          "section": "VSAQ",
+          "number": 121,
+          "stars": 0,
+          "text": "What is wish bone? What are the skeletal components that form it?",
+          "question_id": "ts_ipe_z1_ad2_wish_bone"
+        },
+        {
+          "ref": "vsaq122",
+          "section": "VSAQ",
+          "number": 122,
+          "stars": 0,
+          "text": "How does a mature RBC of a mammal differ from that of other vertebrates?",
+          "question_id": "ts_ipe_z1_ad2_mammal_rbc_difference"
+        },
+        {
+          "ref": "vsaq123",
+          "section": "VSAQ",
+          "number": 123,
+          "stars": 0,
+          "text": "Name the three meninges. In which group of animals do you find all of them?",
+          "question_id": "ts_ipe_z1_ad2_three_meninges"
+        },
+        {
+          "ref": "saq30",
+          "section": "SAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "Name the four 'hallmarks' of chordates and explain the principal function of each of them.",
+          "question_id": "ts_ipe_z1_ad2_chordate_hallmarks"
+        },
+        {
+          "ref": "saq31",
+          "section": "SAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "Compare and contrast cartilaginous and bony fishes.",
+          "question_id": "ts_ipe_z1_ad2_cartilaginous_vs_bony_fishes"
+        },
+        {
+          "ref": "saq32",
+          "section": "SAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "What are the modifications that are observed in birds that help them in flight?",
+          "question_id": "ts_ipe_z1_ad2_bird_flight_modifications"
+        },
+        {
+          "ref": "saq33",
+          "section": "SAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Describe the structure of the heart of frog.",
+          "question_id": "ts_ipe_z1_ad2_frog_heart_structure"
+        },
+        {
+          "ref": "saq34",
+          "section": "SAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "List out the extant orders of the Class Reptilia. Give two examples for each order.",
+          "question_id": "ts_ipe_z1_ad2_reptilia_extant_orders"
+        },
+        {
+          "ref": "saq35",
+          "section": "SAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "List out eight characteristics that help distinguish a fish from the other vertebrates.",
+          "question_id": "ts_ipe_z1_ad2_fish_distinguishing_characters"
+        },
+        {
+          "ref": "saq36",
+          "section": "SAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Write eight salient features of the class Amphibia.",
+          "question_id": "ts_ipe_z1_ad2_amphibia_salient_features"
+        },
+        {
+          "ref": "saq182",
+          "section": "SAQ",
+          "number": 182,
+          "stars": 0,
+          "text": "What are the features peculiar to ratite birds? Give two examples of ratite birds.",
+          "question_id": "ts_ipe_z1_ad2_ratite_birds"
         }
       ]
     },

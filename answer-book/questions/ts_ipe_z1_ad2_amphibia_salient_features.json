@@ -1,0 +1,173 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_amphibia_salient_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write eight salient features of the class Amphibia.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Habitat and body",
+      "marks": 1
+    },
+    {
+      "label": "Skeleton",
+      "marks": 1
+    },
+    {
+      "label": "Respiration, heart and excretion",
+      "marks": 1
+    },
+    {
+      "label": "Sense organs and reproduction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.39, SAQ 36). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR: the book prints 'Hyla (free frog)'. Hyla is the TREE frog; 'free' is a misprint for 'tree', and the card writes tree frog."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Animal Diversity-II (Zoology) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_body",
+        "kind": "text",
+        "label": "Habitat and body",
+        "marks": 1,
+        "mark_note": "Body",
+        "margin_note": "Eighteen features are printed and eight are asked. Take two to five per mark, grouped.",
+        "lines": [
+          "1) Amphibians are the first tetrapods, the",
+          "first animals with four limbs.",
+          "2) They live both on land and in water.",
+          "3) The body is divided into head, trunk and",
+          "tail. The tail may be present or absent.",
+          "4) The skin is moist, glandular and without",
+          "scales.",
+          "5) The limbs are pentadactyl: five digits on",
+          "each limb."
+        ],
+        "why": "The moist naked skin is the key to the whole class, because it is what lets an amphibian breathe through the skin and what keeps it tied to water.",
+        "common_mistakes": [
+          "Writing that amphibians have scales. Their skin is naked; scales appear first in reptiles.",
+          "Saying all amphibians have a tail. A frog loses its tail as an adult; a salamander keeps it."
+        ],
+        "memory_tip": "Amphi means both: both land and water, and a skin that has to stay wet for it."
+      },
+      {
+        "id": "s2_skeleton",
+        "kind": "text",
+        "label": "Skeleton",
+        "marks": 1,
+        "mark_note": "Skeleton",
+        "margin_note": "Three skeletal features. The sternum line is the one examiners look for.",
+        "lines": [
+          "6) The skull is dicondylic: it has two",
+          "occipital condyles.",
+          "7) The vertebrae are procoelous, amphicoelous",
+          "or opisthocoelous.",
+          "8) The sternum appeared for the first time in",
+          "amphibia."
+        ],
+        "why": "The sternum is a new bone that appears with limbs, because a four limbed animal needs a chest to brace the front limbs against, so this feature belongs with the tetrapod line.",
+        "common_mistakes": [
+          "Writing that the skull is monocondylic. That is the bird and reptile condition; amphibians have two condyles.",
+          "Saying the sternum is absent. It appears for the FIRST time in this class."
+        ],
+        "memory_tip": "First tetrapods, so the first sternum: limbs and a chest bone arrive together."
+      },
+      {
+        "id": "s3_respiration",
+        "kind": "text",
+        "label": "Respiration, heart, excretion",
+        "marks": 1,
+        "mark_note": "Respiration",
+        "margin_note": "Group breathing, heart and excretion into one mark. Name all three routes of respiration.",
+        "lines": [
+          "9) Respiration is of three kinds: pulmonary",
+          "(by lungs), cutaneous (by the moist skin) and",
+          "bucco-pharyngeal (by the lining of the mouth).",
+          "10) The heart is three chambered, with two",
+          "auricles and one ventricle.",
+          "11) The sinus venosus and the conus arteriosus",
+          "are both present.",
+          "12) The kidneys are mesonephric.",
+          "13) Amphibians are ureotelic; they give out",
+          "urea."
+        ],
+        "why": "Three ways of breathing follow from the moist skin of the first feature, so this block is the working out of a fact already written.",
+        "common_mistakes": [
+          "Naming only lungs. Skin and mouth lining are two separate marked routes.",
+          "Writing that amphibians are ammonotelic. They are ureotelic and give out urea."
+        ],
+        "memory_tip": "Three ways to breathe: lungs, skin, mouth. All three need the skin to stay moist."
+      },
+      {
+        "id": "s4_senses",
+        "kind": "boxed_final",
+        "label": "Sense organs and reproduction",
+        "marks": 1,
+        "mark_note": "Reproduction",
+        "margin_note": "Finish with the examples. Four named genera round off the eight features.",
+        "lines": [
+          {
+            "text": "Moist skin, no scales, 3 chambered heart",
+            "style": "boxed"
+          },
+          "14) The meninges are two: piamater and",
+          "duramater.",
+          "15) The middle ear has a columella auris, a",
+          "small rod that carries sound from the tympanum",
+          "to the internal ear.",
+          "16) Lacrimal and harderian glands are present",
+          "in the eye and keep it moist.",
+          "17) Sexes are separate. Fertilisation is",
+          "external and the larva is a tadpole.",
+          "18) Examples: Bufo (toad), Rana (frog), Hyla",
+          "(tree frog), Rhacophorus (flying frog)."
+        ],
+        "why": "External fertilisation and a tadpole larva are the last tie to water, so the class that began on land still has to return to water to breed.",
+        "common_mistakes": [
+          "Writing that amphibians have three meninges. They have TWO; three are found in mammals.",
+          "Saying fertilisation is internal. In frogs and toads it is external, in water."
+        ],
+        "memory_tip": "Two meninges, one ear bone, external fertilisation: the class is only half way onto land."
+      }
+    ]
+  },
+  "insider_note": "Eight features are asked but eighteen are printed, so choose the eight that are hardest to guess — dicondylic skull, first sternum, three routes of respiration, two meninges — and number them."
+}

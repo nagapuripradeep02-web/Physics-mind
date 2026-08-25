@@ -65,7 +65,7 @@
         "mark_note": "Meaning",
         "lines": [
           {
-            "text": "BOD = oxygen needed to break down the waste",
+            "text": "BOD = oxygen needed to break down waste",
             "style": "boxed"
           },
           "BOD is the amount of dissolved oxygen needed",

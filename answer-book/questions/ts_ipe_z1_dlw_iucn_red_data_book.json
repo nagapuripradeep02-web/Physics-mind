@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_iucn_red_data_book",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the full form of IUCN. In which book are threatened species listed?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Full form",
+      "marks": 1
+    },
+    {
+      "label": "The book",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.50, VSAQ 68). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. QUESTION TEXT: the book prints 'In which book threatened species are enlisted.'; the card keeps the same two asks in corrected grammar."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_full_form",
+        "kind": "text",
+        "label": "The full form",
+        "marks": 1,
+        "mark_note": "Full form",
+        "why": "The words of the expansion say what the body does: it is a union of countries and organisations that works on conserving nature.",
+        "common_mistakes": [
+          "Writing 'International Council' or 'Institute'. The first two words are International Union.",
+          "Leaving out 'and Natural Resources', which is part of the full name."
+        ],
+        "memory_tip": "I-U-C-N: International Union for Conservation of Nature.",
+        "margin_note": "One line, written out in full.",
+        "lines": [
+          "IUCN stands for the International Union for",
+          "Conservation of Nature and Natural Resources."
+        ]
+      },
+      {
+        "id": "s2_red_data_book",
+        "kind": "boxed_final",
+        "label": "The Red Data Book",
+        "marks": 1,
+        "mark_note": "The book",
+        "why": "The Red Data Book is the record the union publishes, and naming it is the whole of the second mark.",
+        "common_mistakes": [
+          "Writing 'Green Book' or 'Red Book of Animals'. The name is the Red Data Book."
+        ],
+        "memory_tip": "The Red Data Book is named for the colour used to mark danger, and it lists species in danger.",
+        "margin_note": "Name the book in one line. Nothing more is asked.",
+        "lines": [
+          {
+            "text": "Threatened species: in the Red Data Book",
+            "style": "boxed"
+          },
+          "The IUCN Red Data Book lists the species that",
+          "are threatened with extinction.",
+          "The list is kept up to date and is also called",
+          "the IUCN Red List."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two one-line answers — the full form and the Red Data Book — so this is a question to finish in under two minutes."
+}

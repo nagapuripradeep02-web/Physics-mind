@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_living_fossil_arthropod",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which arthropod is called a 'living fossil'? Name its respiratory organs.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The animal",
+      "marks": 1
+    },
+    {
+      "label": "Respiratory organs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 94). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_animal",
+        "kind": "text",
+        "label": "The living fossil",
+        "marks": 1,
+        "why": "A living fossil is defined by the comparison with its own fossils, so the reason has to be written and not only the name.",
+        "common_mistakes": [
+          "Naming the cockroach. The living fossil arthropod is Limulus.",
+          "Writing only the name. One line of reason is expected as well."
+        ],
+        "memory_tip": "Limulus, the king crab: an old design that is still alive.",
+        "margin_note": "Name the animal, then one line saying why it carries the name.",
+        "mark_note": "The animal",
+        "lines": [
+          "Limulus, the king crab, is the arthropod",
+          "called a living fossil.",
+          "It belongs to the subphylum Chelicerata.",
+          "It is called a living fossil because it has",
+          "changed very little from its fossil ancestors,",
+          "and its close relatives are all extinct."
+        ]
+      },
+      {
+        "id": "s2_respiration",
+        "kind": "boxed_final",
+        "label": "Its respiratory organs",
+        "marks": 1,
+        "why": "The name of the organ describes its shape, so a student who pictures a stack of plates will not confuse book gills with the tracheae of an insect.",
+        "common_mistakes": [
+          "Writing book lungs. Book lungs are aerial and belong to the scorpion; Limulus is aquatic and has book gills.",
+          "Writing gills alone. The organ has a name of its own: book gills."
+        ],
+        "memory_tip": "Limulus lives in water, so gills. The scorpion lives on land, so lungs.",
+        "margin_note": "Name the organ, then one line on where it lies. Two or three lines.",
+        "mark_note": "Respiratory organs",
+        "lines": [
+          {
+            "text": "Limulus — respires by book gills",
+            "style": "boxed"
+          },
+          "The respiratory organs of Limulus are book",
+          "gills.",
+          "They are flat plates of gill tissue stacked",
+          "one over another like the pages of a book,",
+          "and they lie on the abdominal appendages.",
+          "Limulus is aquatic, so its book gills take up",
+          "the oxygen dissolved in the water."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both halves of this question are one word each, so nothing is gained by writing more — but 'gills' without the word 'book' has cost students the second mark."
+}

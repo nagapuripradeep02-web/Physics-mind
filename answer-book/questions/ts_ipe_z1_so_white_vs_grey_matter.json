@@ -76,7 +76,7 @@
         "mark_note": "Grey matter",
         "lines": [
           {
-            "text": "White = myelinated fibres · Grey = cell bodies",
+            "text": "White: myelinated fibres · Grey: cell bodies",
             "style": "boxed"
           },
           "Grey matter looks grey because of the Nissl",

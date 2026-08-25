@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_echinoderm_larva_symmetry",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the essential difference between the larvae and adults of echinoderms, symmetry wise?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The larva",
+      "marks": 1
+    },
+    {
+      "label": "The adult",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 97). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_larva",
+        "kind": "text",
+        "label": "The larva",
+        "marks": 1,
+        "why": "The larva keeps the older symmetry of the group, so it is the larva and not the adult that shows where echinoderms belong in classification.",
+        "common_mistakes": [
+          "Writing that the larva is radial. Only the adult is radial.",
+          "Writing that the larva is fixed to the bottom. The larva swims freely."
+        ],
+        "memory_tip": "Swimming larva is bilateral; settled adult is radial.",
+        "margin_note": "One line for the symmetry and one for the habit.",
+        "mark_note": "The larva",
+        "lines": [
+          "The larva of an echinoderm is bilaterally",
+          "symmetrical.",
+          "It is small, free-swimming and lives in the",
+          "plankton.",
+          "Example: the bipinnaria larva of a starfish."
+        ]
+      },
+      {
+        "id": "s2_adult",
+        "kind": "boxed_final",
+        "label": "The adult",
+        "marks": 1,
+        "why": "The adult settles on the sea bottom, where food can arrive from any direction, and a body built on five parts round an axis suits that position.",
+        "common_mistakes": [
+          "Writing radial alone. The adult symmetry is pentamerous radial symmetry.",
+          "Writing that both stages have the same symmetry. The change of symmetry is the whole point of the question."
+        ],
+        "memory_tip": "Bilateral first, radial second — the five-part radial form comes later.",
+        "margin_note": "The boxed contrast is the answer. Add the word pentamerous, it carries the mark.",
+        "mark_note": "The adult",
+        "lines": [
+          {
+            "text": "Larva bilateral · Adult pentamerous radial",
+            "style": "boxed"
+          },
+          "The adult echinoderm is radially symmetrical.",
+          "Its symmetry is pentamerous, that is, the",
+          "body is built on five parts around a central",
+          "axis.",
+          "The radial symmetry is acquired later and is",
+          "not the original symmetry of the group.",
+          "This is why echinoderms are grouped with the",
+          "bilaterally symmetrical animals."
+        ]
+      }
+    ]
+  },
+  "insider_note": "The word pentamerous is what separates a full answer from a half one — 'radial' on its own is only part of the adult's symmetry."
+}

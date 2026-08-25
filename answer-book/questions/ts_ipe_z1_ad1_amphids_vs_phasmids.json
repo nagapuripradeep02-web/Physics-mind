@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad1_amphids_vs_phasmids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Animal Diversity-I (Zoology)"
+  },
+  "chapter": "Animal Diversity-I",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between amphids and phasmids.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Amphids",
+      "marks": 1
+    },
+    {
+      "label": "Phasmids",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.53, VSAQ 92). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-I (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_amphids",
+        "kind": "text",
+        "label": "Amphids",
+        "marks": 1,
+        "why": "The two organs are told apart by position first, one at the front and one at the tail, and only after that by what each one does.",
+        "common_mistakes": [
+          "Writing that amphids are glands. They are cuticular pits that work as sense organs.",
+          "Placing amphids at the tail end. They lie near the mouth."
+        ],
+        "memory_tip": "Amphids are at the anterior end; phasmids are at the posterior end.",
+        "margin_note": "Position, structure, function. Two or three lines.",
+        "mark_note": "Amphids",
+        "lines": [
+          "Amphids are a pair of sense organs in the head",
+          "region of nematodes.",
+          "Each amphid is a small pit in the cuticle,",
+          "placed near the mouth.",
+          "They are chemoreceptors, so they detect the",
+          "chemicals around the animal."
+        ]
+      },
+      {
+        "id": "s2_phasmids",
+        "kind": "boxed_final",
+        "label": "Phasmids",
+        "marks": 1,
+        "why": "The presence of phasmids splits the whole phylum into two classes, which is why the small gland is worth a name of its own.",
+        "common_mistakes": [
+          "Placing phasmids at the head end. They lie in the tail region.",
+          "Writing that both are pits. Amphids are cuticular pits; phasmids are glands."
+        ],
+        "memory_tip": "A-phasmid-ia means without phasmids, so the name of the class states the difference.",
+        "margin_note": "One boxed contrast line, then the phasmid's own facts.",
+        "mark_note": "Phasmids",
+        "lines": [
+          {
+            "text": "Amphids front sense · Phasmids hind glands",
+            "style": "boxed"
+          },
+          "Phasmids are a pair of unicellular glands in",
+          "the tail region of some nematodes.",
+          "They are glandulo-sensory organs, that is,",
+          "they are both glandular and sensory.",
+          "Nematodes that have phasmids are placed in",
+          "the class Phasmidia, and those without them",
+          "in Aphasmidia."
+        ]
+      }
+    ]
+  },
+  "insider_note": "This is a two-column question in disguise, so the safest layout is a small table: position, structure, function, one row each."
+}

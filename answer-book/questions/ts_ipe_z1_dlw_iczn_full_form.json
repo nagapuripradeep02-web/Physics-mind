@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_dlw_iczn_full_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Diversity of Living World (Zoology)"
+  },
+  "chapter": "Diversity of Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does ICZN stand for?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Full form",
+      "marks": 1
+    },
+    {
+      "label": "What the code is used for",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.49, VSAQ 59). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK WORDING: the book writes that the code 'is used to name an identified organism'; the ICZN governs ANIMAL names only (plant names are governed by the botanical code), and the card says animals."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Diversity of Living World (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_full_form",
+        "kind": "text",
+        "label": "The full form",
+        "marks": 1,
+        "mark_note": "Full form",
+        "why": "The four words are the mark: Code says it is a set of rules, and Zoological says the rules cover animals.",
+        "common_mistakes": [
+          "Writing 'Botanical' in place of 'Zoological'. ICBN is the plant code; ICZN is the animal code.",
+          "Writing 'Classification' in place of 'Nomenclature'. The code governs naming, not grouping."
+        ],
+        "memory_tip": "Read the letters in order: International, Code, Zoological, Nomenclature.",
+        "margin_note": "One line. Write all four words in full; an abbreviation earns nothing.",
+        "lines": [
+          "ICZN stands for the International Code of",
+          "Zoological Nomenclature."
+        ]
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "What the code is for",
+        "marks": 1,
+        "mark_note": "Use",
+        "why": "A code exists so that the same animal is not called by different names in different places, so the second mark is for saying what the rules are for.",
+        "common_mistakes": [
+          "Stopping at the full form. The question carries a second mark for what the code does."
+        ],
+        "memory_tip": "Code means rules: one animal, one accepted scientific name everywhere.",
+        "margin_note": "One sentence on what the code is used for. Two lines are enough.",
+        "lines": [
+          {
+            "text": "ICZN = the agreed rules for naming animals",
+            "style": "boxed"
+          },
+          "It is the agreed set of rules used to give a",
+          "scientific name to an identified animal.",
+          "The rules stop one animal from being given",
+          "different names by different workers."
+        ]
+      }
+    ]
+  },
+  "insider_note": "Both marks are quick ones — write the full form without a single abbreviation, then one line on what the code is for."
+}

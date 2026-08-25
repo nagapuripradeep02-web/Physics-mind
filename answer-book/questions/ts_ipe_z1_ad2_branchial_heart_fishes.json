@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_ad2_branchial_heart_fishes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Animal Diversity-II (Zoology)"
+  },
+  "chapter": "Animal Diversity-II",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you justify the statement — \"heart in fishes is a branchial heart\"?",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Two chambers",
+      "marks": 1
+    },
+    {
+      "label": "Pumps to the gills",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.55, VSAQ 112). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Animal Diversity-II (Zoology) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chambers",
+        "kind": "text",
+        "label": "Two chambers",
+        "marks": 1,
+        "mark_note": "Chambers",
+        "margin_note": "State the number of chambers and name them. The venous heart line is a bonus.",
+        "lines": [
+          "The heart of a fish is two chambered.",
+          "It has one auricle and one ventricle.",
+          "It holds only deoxygenated blood, so it is also",
+          "called a venous heart."
+        ],
+        "why": "A two chambered heart can hold only one kind of blood, and that single fact is what forces all of it to go to the gills first.",
+        "common_mistakes": [
+          "Writing that the fish heart has three chambers. Three chambers appear first in amphibians.",
+          "Saying it carries oxygenated blood. The fish heart holds deoxygenated blood only."
+        ],
+        "memory_tip": "Two chambers, one kind of blood, one destination: the gills."
+      },
+      {
+        "id": "s2_gills",
+        "kind": "boxed_final",
+        "label": "Pumps to the gills",
+        "marks": 1,
+        "mark_note": "Gills",
+        "margin_note": "The justification is the mark here, not the name. Say where the blood is sent.",
+        "lines": [
+          {
+            "text": "Pumps blood straight to the gills: branchial",
+            "style": "boxed"
+          },
+          "The ventricle pumps this blood directly to the",
+          "gills, where it takes up oxygen.",
+          "Branchiae means gills. Because the heart sends",
+          "its blood to the gills and nowhere else first,",
+          "it is called a branchial heart."
+        ],
+        "why": "The name is justified by the destination of the blood, so the answer must trace where the blood goes before it names the heart.",
+        "common_mistakes": [
+          "Naming the heart branchial without saying where the blood goes. The reason is the mark.",
+          "Writing that the heart pumps blood to the body first. The gills come first in a fish."
+        ],
+        "memory_tip": "Branchiae means gills, so a branchial heart is a heart that serves the gills."
+      }
+    ]
+  },
+  "insider_note": "This is a justify question, so the words because it pumps blood directly to the gills must appear; simply naming the heart branchial scores nothing."
+}
