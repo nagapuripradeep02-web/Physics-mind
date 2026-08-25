@@ -1,10 +1,83 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
-## 🦋 SESSION — Answer Book: **ZOOLOGY — engine + tooling DONE, authoring BLOCKED on API credits** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d`/`b22d1f22`, pushed, no PR yet)
+## 🦋 SESSION — Answer Book: **ZOOLOGY OPENS — the whole Junior Zoology book, 8 units, 190 cards, 32 phased figures** (2026-08-25, desk `physics-mind-ipe-zoology`, `feat/ipe-answerbook-zoology`, commits `ab34a71d` → `ae91927b`, pushed, no PR yet)
 
-**STOPPED BY API CREDIT EXHAUSTION — not by a code problem.** The unit-7 pilot agent was
-terminated mid-run ("out of usage credits"). **Zero zoology cards exist.** Everything below is
-finished and verified; resume by re-dispatching the pilot.
+**The book's FIFTH subject, and the first with phased "watch it drawn" figures.** Bank
+946 → 1136 files, 45 → 53 units. Ids `ts_ipe_z1_<abbr>_<slug>`; abbrs
+`dlw so ad1 ad2 lr bhw pa ee`. Doc: `docs/ZOOLOGY_START_HERE.md`. Per-unit counts:
+1 DLW 21 · 2 SO 24 · 3 AD-I 26 · 4 AD-II 25 · 5 LR 15 · 6 BHW 35 · 7 PA 6 · 8 EE 38.
+
+**Verified:** build 1137 cards 8/8 units ready · tsc 0 · pace gate PASS (strict 40–160 u/s over
+32 figures) · **back-test 259/259** · wrap 0.1% (4 of 3721) · 8 figures read stage-by-stage by eye.
+
+### THE HIT LISTS UNDERCOUNT — every unit, without exception
+The book prints "TOP 10+ LAQ / TOP 30 SAQ / TOP 50+ VSAQ" and they read as an inventory. They are
+not. Authoring from them would have shipped roughly HALF the book and silently dropped an 8-mark
+question. index → actual: unit 1 **10 → 21** · unit 2 19 → 24 · unit 6 13 → 35 · unit 8 15 → 38.
+And the LAQ list skips global qno 5 entirely — book p.18 is *Wuchereria bancrofti*, a real printed
+8-mark LAQ (**unit 6 has FIVE LAQs**). Every agent walked from the question CLOSING the previous
+chapter to the one OPENING the next and reported both as evidence. **Transcribing the back-test
+corpus BEFORE authoring is what surfaced the missing LAQ** — do that first on any future subject.
+
+### The back-test is zoology's substitute for two impossible checks
+The two-book union check and a real board-paper back-test are **structurally impossible** (the
+TSBIE BLM in hand is physics-only; no zoology board paper in the corpus). But this book cites every
+answer as `P <page>(<qno>)` across 3 hit lists + the Bullet Model Paper + 5 guess papers: **259
+references, all 259 resolve** (`npm run backtest:zoology`). Three printed numbers disagree with
+where the text matches — all three were independently flagged during transcription, so they are the
+book's own typos. Never let "not checked" read as "checked and clean" — recorded on every card.
+
+### The engine work the founder's directive forced
+Figures may carry `{type:'pause', id, caption}`: the player stops, shows the caption on ONE reserved
+32px rule, waits for a tap; a mid-phase tap completes only the CURRENT phase. Unphased figures are
+byte-identical to before (pinned by a new e2e test — that behaviour had never been tested).
+**Pacing moved to AUTHORING time, deliberately not a runtime field** — `ms` stays the single source
+of truth so print/reduced-motion can never disagree, and the 96 legacy figures are never silently
+retimed. `pace_figures.ts` fills `ms` from measured path length at **70 u/s**; `check_figure_pace.ts`
+gates 40–160 u/s and requires phases above 16 drawn elements, strict for `ts_ipe_z1` only.
+**Measured: the 96 pre-existing figures draw at 200–770 u/s** — the rushing the founder named, now
+a number. NB **no e2e gate has ever watched a figure animate** (both sweeps take the instant path).
+
+### Renderer fact worth keeping
+This renderer draws **OUTLINES ONLY — no fills, no occlusion**, so "in front of" is impossible: a
+later stroke adds lines, it never hides them. Depth is expressed by giving a vessel its own clear
+lane and drawing the structure behind in dashed pencil (the frog heart's dorsal sinus venosus).
+Cost seven iterations to discover.
+
+### Defects no gate can see (found only by rendering and LOOKING)
+`figlib.scallop()` used SVG arc **sweep-flag 0**, bowing every arc inward and spiking each vertex —
+hepatic caecae and salivary acini rendered as starbursts (the founder's first complaint) · the
+flagellum T.S. drew **eighteen evenly spaced tubules instead of nine countable doublets** (counting
+9+2 IS the mark) · the sporozoite was a symmetric lens, not a sickle · leader lines struck through
+their own labels (generators assumed 6.8 u/char; real Kalam at 17px runs **6.7–9.8**, so widths are
+measured now) · a lake plant leaned across its zone divider · setae hidden inside the parapodia ·
+"liver cell" and "amoeboid stage" rendered identically · cardiac nuclei touching intercalated discs.
+
+### Conventions set this run
+**Diagram marks follow the ASKED question**: only "draw a neat labelled diagram of …" carries
+diagram marks; elsewhere the figure is a study drawing — `marks: 0`, **no `mark_note`** (schema
+forbids one at zero), whole split on the written steps, said so in `margin_note`.
+**Measure a candidate line before authoring it** — `answer-book/tools/measure_candidates.mjs`.
+Four lines wrap deliberately (four reptile orders, five mouthparts, four sacred groves, four
+chordate hallmarks): the required TERMS alone exceed 535px, and a wrapped-but-correct final answer
+beats a fitting-but-wrong one. The wrap pass had shortened "gill slits" to "slits"; restored.
+
+### Two process scars from this run
+1. **An interrupted run loses whatever is not a finished card.** The first pilot was killed by API
+   credit exhaustion after building tooling but before writing ONE card. Order unit agents
+   cards-first, and preserve scratchpad tooling into the repo early.
+2. **`git add <directory>` on a desk shared by six agents sweeps their in-flight files**, and
+   `2f2395eb` committed a `units.json` listing 50 cards whose files were not staged — that tree
+   fails the build. Fixed in `deea1a49`. Stage a NAMED list.
+Also: `git worktree add -b X origin/master` sets upstream to **origin/master**, so the auto-push
+hook fails rc=128 — `git push -u origin <branch>` once, immediately.
+
+### Still open
+No PR yet. Not deployed (Rule 17 — founder only). Every card `needs_teacher_verification: true`;
+mark splits are claims and no teacher has seen a figure. Section-C-grade content flagged but NOT
+authored in the five units with no LAQ chapter (listed in each unit's agent report).
+
+## 🦋 SESSION (superseded by the entry above) — zoology engine + tooling, authoring blocked on API credits
 
 ### Done and verified
 - **Phased "watch it drawn" figures** (founder directive: a student must watch a diagram being
