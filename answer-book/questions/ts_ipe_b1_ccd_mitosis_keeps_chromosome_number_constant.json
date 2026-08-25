@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_mitosis_keeps_chromosome_number_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Which division is necessary to maintain a constant chromosome number in all the body cells of a multicellular organism, and why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The division named",
+      "marks": 1
+    },
+    {
+      "label": "One replication, one division",
+      "marks": 1
+    },
+    {
+      "label": "Identical daughter cells",
+      "marks": 1
+    },
+    {
+      "label": "All body cells come from the zygote",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, SAQ 2) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. The book's answer includes the mangled line 'In mitosis replication of DNA once, Doubling of chromosome number once without crossing over'. The biology intended is one round of DNA replication and no crossing over; this card writes that correctly and does not repeat the book's phrasing, which as printed reads as the chromosome number doubling."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Cell Cycle and Cell Division · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_named",
+        "kind": "text",
+        "label": "The division named",
+        "marks": 1,
+        "mark_note": "The division",
+        "lines": [
+          "Mitosis is the division that keeps the",
+          "chromosome number constant in all body cells.",
+          "It is also called the equational division, because",
+          "each daughter cell ends with the same number of",
+          "chromosomes as the mother cell (2n → 2n)."
+        ],
+        "why": "The question has two halves, and the first mark is simply for naming mitosis and the word equational. Answer the 'which' before you start on the 'why'.",
+        "common_mistakes": [
+          "Naming meiosis. Meiosis halves the number and happens only in reproductive tissue.",
+          "Naming amitosis or binary fission."
+        ],
+        "memory_tip": "Mitosis is equational: 2n gives 2n. Meiosis is reductional: 2n gives n.",
+        "margin_note": "Name it in the first line. The rest of the answer is the reason."
+      },
+      {
+        "id": "s2_one_replication",
+        "kind": "text",
+        "label": "One replication, one division",
+        "marks": 1,
+        "mark_note": "The mechanism",
+        "lines": [
+          "DNA is replicated once, in the S phase, so each",
+          "chromosome now has two sister chromatids",
+          "joined at one centromere.",
+          "At anaphase the centromere divides and one",
+          "chromatid of every chromosome goes to each",
+          "pole.",
+          "So each daughter nucleus receives one full set:",
+          "the number is neither doubled nor halved."
+        ],
+        "why": "One round of replication followed by one division is the arithmetic that keeps the number the same. Doubling the material and then splitting it once returns each daughter cell to the starting number.",
+        "common_mistakes": [
+          "Saying the chromosome number doubles in S phase. Only the DNA amount doubles.",
+          "Leaving out the centromere division. Without it the chromatids could not be shared equally."
+        ],
+        "memory_tip": "Double once, divide once. That is why the number comes back to where it started.",
+        "margin_note": "Three short lines: replication, centromere division, result."
+      },
+      {
+        "id": "s3_identical",
+        "kind": "text",
+        "label": "Identical daughter cells",
+        "marks": 1,
+        "mark_note": "Identical cells",
+        "lines": [
+          "Homologous chromosomes do not pair and there",
+          "is no crossing over in mitosis.",
+          "The two daughter cells are therefore genetically",
+          "identical to each other and to the mother cell, in",
+          "both quality and quantity."
+        ],
+        "why": "Mitosis has no pairing and no exchange, and that is exactly why it copies rather than reshuffles. This contrast with meiosis is what the examiner is looking for.",
+        "common_mistakes": [
+          "Writing that crossing over occurs in mitosis.",
+          "Saying the daughter cells are 'similar'. The word wanted is identical."
+        ],
+        "memory_tip": "No pairing, no crossing over, no variation. Mitosis copies; meiosis mixes.",
+        "margin_note": "Two lines. State the contrast with meiosis in plain words."
+      },
+      {
+        "id": "s4_zygote",
+        "kind": "boxed_final",
+        "label": "All body cells come from the zygote",
+        "marks": 1,
+        "mark_note": "The conclusion",
+        "lines": [
+          {
+            "text": "Mitosis — every body cell is derived from the zygote by repeated mitosis, so all of them carry the zygote's chromosome number.",
+            "style": "boxed"
+          },
+          "That is how a whole multicellular body, built from",
+          "one fertilised egg, ends with the same 2n in",
+          "every cell."
+        ],
+        "why": "The final mark is for closing the argument: a constant number in EVERY body cell follows only if every body cell traces back to one cell by a division that does not change the number.",
+        "common_mistakes": [
+          "Stopping at 'mitosis gives identical cells' without linking it back to the zygote."
+        ],
+        "memory_tip": "One zygote, many mitoses, one chromosome number throughout the body.",
+        "margin_note": "Close with the zygote sentence. It is the sentence that answers 'why in ALL body cells'."
+      }
+    ]
+  },
+  "insider_note": "The question says 'and why', so half the marks are in the reason. A one-word answer of 'mitosis' scores one mark out of four."
+}

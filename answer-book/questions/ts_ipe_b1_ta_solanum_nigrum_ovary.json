@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_solanum_nigrum_ovary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the technical description of the ovary in Solanum nigrum.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Carpels and locules",
+      "marks": 1
+    },
+    {
+      "label": "Position and setting",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carpels",
+        "kind": "text",
+        "label": "Carpels and locules",
+        "marks": 1,
+        "lines": [
+          "Bicarpellary — the ovary is made of two carpels.",
+          "Syncarpous — the two carpels are fused.",
+          "Bilocular — the ovary has two chambers.",
+          "Placentation is axile and the placenta is swollen."
+        ],
+        "why": "A technical description is a list of the standard terms, so each term is a separate fact the examiner ticks.",
+        "common_mistakes": [
+          "Writing \"two ovaries\". There is one ovary made of two carpels.",
+          "Writing parietal placentation. Axile placentation goes with a fused, chambered ovary."
+        ],
+        "memory_tip": "Two carpels, joined, two chambers: bicarpellary, syncarpous, bilocular.",
+        "margin_note": "Four short terms, one per line. Do not write sentences.",
+        "mark_note": "Carpels"
+      },
+      {
+        "id": "s2_position",
+        "kind": "boxed_final",
+        "label": "Position and setting",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Ovary superior; carpels oblique at 45°",
+            "style": "boxed"
+          },
+          "The ovary sits above the other whorls on the",
+          "thalamus, so the flower is hypogynous.",
+          "The oblique setting of the carpels is a family",
+          "character of Solanaceae."
+        ],
+        "why": "The oblique ovary is the one feature that separates Solanaceae from other families with a bilocular superior ovary.",
+        "common_mistakes": [
+          "Saying the ovary is inferior. It is superior in Solanaceae.",
+          "Leaving out the 45 degrees. The angle is the marked point."
+        ],
+        "memory_tip": "Superior ovary, and the two carpels sit tilted at 45 degrees. That tilt is the family character of Solanaceae.",
+        "margin_note": "The word \"obliquely\" plus 45 degrees is the mark. Do not leave it out.",
+        "mark_note": "Position"
+      }
+    ]
+  },
+  "insider_note": "The oblique ovary at 45 degrees is the line examiners look for. Write it even if you write nothing else."
+}

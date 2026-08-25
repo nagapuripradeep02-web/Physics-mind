@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_mitotic_cycles_for_1024_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A tissue has 1024 cells at a given time. How many cycles of mitosis had the original single parent cell undergone?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The doubling rule",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 5) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "The doubling rule",
+        "marks": 1,
+        "mark_note": "The rule",
+        "lines": [
+          "Each cycle of mitosis doubles the number of",
+          "cells: 1 → 2 → 4 → 8 …",
+          {
+            "text": "After n cycles, number of cells = 2ⁿ",
+            "style": "eq"
+          },
+          {
+            "text": "2ⁿ = 1024 = 2¹⁰",
+            "style": "eq"
+          }
+        ],
+        "why": "Mitosis gives two daughter cells from one, so the count is always a power of two. Writing 1024 as a power of 2 turns the question into reading off the index.",
+        "common_mistakes": [
+          "Dividing 1024 by 2 once and answering 512.",
+          "Forgetting that the tissue started from ONE cell, so no extra doubling is added."
+        ],
+        "memory_tip": "Powers of 2 worth knowing: 2⁵ = 32, 2¹⁰ = 1024, 2²⁰ is about a million.",
+        "margin_note": "Two short lines: the rule, then 1024 written as a power of 2."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          {
+            "text": "n = 10 — the parent cell has gone through 10 cycles of mitosis.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Once 1024 is written as 2¹⁰ the index IS the number of cycles, so the answer needs no further working. The book's key gives 10 cycles of mitosis, which matches.",
+        "common_mistakes": [
+          "Writing 1024 cycles instead of 10."
+        ],
+        "memory_tip": "The power is the number of cycles.",
+        "margin_note": "One boxed line. Do not write more."
+      }
+    ]
+  },
+  "insider_note": "Show 1024 = 2¹⁰ in your script. An answer of 10 with no working can be read as a guess."
+}

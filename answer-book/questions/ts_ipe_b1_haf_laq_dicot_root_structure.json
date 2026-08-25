@@ -1,0 +1,585 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_laq_dicot_root_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the internal structure of a dicot root.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Epidermis",
+      "marks": 1
+    },
+    {
+      "label": "Cortex and endodermis",
+      "marks": 2
+    },
+    {
+      "label": "Pericycle",
+      "marks": 1
+    },
+    {
+      "label": "Vascular tissue",
+      "marks": 1
+    },
+    {
+      "label": "Conjunctive tissue and pith",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK OMISSION RECORDED: the printed answer does not say that the protoxylem is exarch, although its own figure labels the protoxylem outside and the metaxylem inside. Exarch is stated here, following NCERT, because it is a marked term."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Histology and Anatomy of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_epidermis",
+        "kind": "text",
+        "label": "Epidermis",
+        "marks": 1,
+        "mark_note": "Epidermis",
+        "margin_note": "Name the three regions first, then the epidermis. Say unicellular root hairs.",
+        "lines": [
+          "A transverse section of a dicot root, for",
+          "example the root of the sunflower, shows three",
+          "regions:",
+          "I. Epidermis    II. Cortex    III. Stele",
+          {
+            "text": "I. Epidermis",
+            "style": "heading"
+          },
+          "It is the outermost single layer, also called",
+          "the epiblema.",
+          "Many of its cells protrude in the form of",
+          "unicellular root hairs, which absorb water and",
+          "mineral salts from the soil.",
+          "There is no cuticle and there are no stomata."
+        ],
+        "why": "A root epidermis has the opposite job to a shoot epidermis: it has to let water in, so it carries no waterproof cuticle and grows hairs to increase the absorbing surface.",
+        "common_mistakes": [
+          "Drawing a cuticle on a root. There is none, because the root must absorb water.",
+          "Writing that the root hairs are multicellular. They are unicellular outgrowths of single epidermal cells."
+        ],
+        "memory_tip": "Epiblema is the root's name for epidermis: no cuticle, no stomata, many hairs."
+      },
+      {
+        "id": "s2_cortex",
+        "kind": "text",
+        "label": "Cortex and endodermis",
+        "marks": 2,
+        "mark_note": "Cortex and endodermis",
+        "margin_note": "Two marks. The casparian strip and what it does are the reasoning half.",
+        "lines": [
+          {
+            "text": "II. Cortex",
+            "style": "heading"
+          },
+          "It consists of several layers of thin walled",
+          "parenchyma cells with clear intercellular",
+          "spaces. It stores food and passes water",
+          "inward.",
+          {
+            "text": "Endodermis",
+            "style": "heading"
+          },
+          "It is the innermost single layer of the",
+          "cortex.",
+          "It is made of barrel shaped cells fitted",
+          "together without intercellular spaces.",
+          "The tangential as well as the radial walls of",
+          "these cells carry casparian strips, which are",
+          "depositions of suberin, a waxy material that",
+          "water cannot pass through.",
+          "So water reaching the stele has to pass",
+          "through the living cells of the endodermis."
+        ],
+        "why": "The casparian strip closes the gaps between the endodermal cells, so the only route left into the stele is through the cell itself. That is how a root controls what enters it, and it is why the endodermis carries a mark of its own.",
+        "common_mistakes": [
+          "Saying the casparian strips lie on all six walls. They lie on the radial and the tangential walls.",
+          "Writing that the endodermis has intercellular spaces. It has none.",
+          "Calling suberin a mineral. It is a waxy material."
+        ],
+        "memory_tip": "Barrel shaped cells, no gaps, waxy bands: nothing gets past without going through a cell."
+      },
+      {
+        "id": "s3_pericycle",
+        "kind": "text",
+        "label": "Pericycle",
+        "marks": 1,
+        "mark_note": "Pericycle",
+        "margin_note": "Open the stele and list its four contents before describing the pericycle.",
+        "lines": [
+          {
+            "text": "III. Stele",
+            "style": "heading"
+          },
+          "All the tissues on the inner side of the",
+          "endodermis make the stele. It consists of the",
+          "pericycle, the vascular tissues, the",
+          "conjunctive tissue and the pith.",
+          "a) Pericycle: it lies just below the",
+          "endodermis and is a few layers of thick walled",
+          "parenchyma cells.",
+          "Lateral roots are initiated in these cells,",
+          "and during secondary growth a part of the",
+          "vascular cambium also arises from them."
+        ],
+        "why": "Lateral roots have to start deep inside so that they can push out through the cortex with a ready-made connection to the conducting tissue; the pericycle is the outermost layer of the stele, so it is the nearest place to the surface that still has that connection.",
+        "common_mistakes": [
+          "Saying lateral roots arise from the cortex. They arise from the pericycle.",
+          "Writing that the pericycle is a single layer. It is a few layers."
+        ],
+        "memory_tip": "Peri means around, cycle means ring: the ring around the vascular tissue, where branch roots start."
+      },
+      {
+        "id": "s4_vascular",
+        "kind": "text",
+        "label": "Vascular tissue",
+        "marks": 1,
+        "mark_note": "Radial and exarch",
+        "margin_note": "Three claims: radial, two to four groups, exarch. All three are marked.",
+        "lines": [
+          "b) Vascular tissues: the xylem and the phloem",
+          "lie on separate radii, one alternating with",
+          "the other. This is called a radial",
+          "arrangement.",
+          "There are usually two to four patches of xylem",
+          "and the same number of patches of phloem, so a",
+          "dicot root is diarch, triarch or tetrarch.",
+          "The protoxylem lies towards the outside and",
+          "the metaxylem towards the centre, so the xylem",
+          "is exarch."
+        ],
+        "why": "Water enters from the outside, so the first formed xylem is placed nearest the surface; that is why a root is exarch while a stem, which grows away from the ground, is endarch.",
+        "common_mistakes": [
+          "Writing endarch for a root. A root is exarch.",
+          "Saying the xylem and phloem lie in the same bundle. In a root they lie on separate radii.",
+          "Giving more than four xylem patches. More than six makes it a monocot root."
+        ],
+        "memory_tip": "Radial means separate radii; exarch means the oldest xylem is outermost."
+      },
+      {
+        "id": "s5_conjunctive_pith",
+        "kind": "boxed_final",
+        "label": "Conjunctive tissue and pith",
+        "marks": 1,
+        "mark_note": "Conjunctive tissue and pith",
+        "margin_note": "Close with the one-line summary. Those three words separate it from a monocot root.",
+        "lines": [
+          "c) Conjunctive tissue: the parenchymatous",
+          "cells lying between the xylem and the phloem",
+          "are called the conjunctive tissue.",
+          "During secondary growth a cambium ring",
+          "develops in this tissue, between the xylem and",
+          "the phloem.",
+          "d) Pith: it is small or not seen at all,",
+          "because the xylem reaches almost to the",
+          "centre.",
+          {
+            "text": "Dicot root: radial, exarch, two to four xylem groups",
+            "style": "boxed"
+          }
+        ],
+        "why": "The conjunctive tissue is the only living, dividing-capable tissue left between xylem and phloem, so it is the natural place for the cambium ring to appear. The pith is small for the same reason the root is exarch: the xylem grows inward until little room is left.",
+        "common_mistakes": [
+          "Writing that the pith of a dicot root is large. A large pith belongs to the monocot root.",
+          "Saying the cambium is present from the beginning. It develops later, during secondary growth."
+        ],
+        "memory_tip": "Conjunctive tissue joins xylem to phloem, and it is where the cambium later appears."
+      },
+      {
+        "id": "s6_figure",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "margin_note": "Label root hair, epidermis, cortex, endodermis, pericycle, protoxylem, metaxylem, phloem, conjunctive tissue and pith.",
+        "figure": {
+          "id": "ts_dicot_root",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "epiblema",
+              "d": "M 154 158 A 104 104 0 1 0 362 158 A 104 104 0 1 0 154 158",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "root_hairs",
+              "d": "M 349.8 109.2 C 357.4 98.3 369.0 102.7 374.0 91.0 M 279.6 56.3 C 276.1 43.4 286.9 37.4 281.3 26.0 M 194.0 76.0 C 181.9 70.5 184.2 58.3 171.9 55.4 M 154.3 150.7 C 142.0 156.0 134.6 146.1 124.1 153.3 M 180.7 227.6 C 176.0 240.0 163.7 238.5 161.6 251.1 M 254.4 261.9 C 260.0 274.0 250.4 281.8 258.0 292.0 M 335.3 227.6 C 348.1 231.0 347.9 243.4 360.6 244.1",
+              "ms": 680,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "epi_cells",
+              "d": "M 353.9 153.0 L 361.9 152.6 M 349.9 130.2 L 357.5 127.9 M 340.6 109.0 L 347.4 104.9 M 326.4 90.7 L 332.1 85.1 M 308.3 76.2 L 312.5 69.4 M 287.3 66.6 L 289.7 59.0 M 264.6 62.2 L 265.1 54.2 M 241.5 63.4 L 240.1 55.6 M 219.3 70.1 L 216.1 62.8 M 199.4 82.0 L 194.5 75.6 M 182.9 98.2 L 176.7 93.2 M 170.8 117.9 L 163.5 114.6 M 163.7 139.9 L 155.9 138.4 M 162.1 163.0 L 154.1 163.4 M 166.1 185.8 L 158.5 188.1 M 175.4 207.0 L 168.6 211.1 M 189.6 225.3 L 183.9 230.9 M 207.7 239.8 L 203.5 246.6 M 228.7 249.4 L 226.3 257.0 M 251.4 253.8 L 250.9 261.8 M 274.5 252.6 L 275.9 260.4 M 296.7 245.9 L 299.9 253.2 M 316.6 234.0 L 321.5 240.4 M 333.1 217.8 L 339.3 222.8 M 345.2 198.1 L 352.5 201.4 M 352.3 176.1 L 360.1 177.6",
+              "ms": 520,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "epi_inner",
+              "d": "M 162 158 A 96 96 0 1 0 354 158 A 96 96 0 1 0 162 158",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "cortex_cells",
+              "d": "M 246.5 92.4 A 4.6 4.6 0 1 0 255.7 92.4 A 4.6 4.6 0 1 0 246.5 92.4 M 238.2 83.5 A 4.6 4.6 0 1 0 247.4 83.5 A 4.6 4.6 0 1 0 238.2 83.5 M 244.4 72.5 A 4.6 4.6 0 1 0 253.6 72.5 A 4.6 4.6 0 1 0 244.4 72.5 M 234.1 94.9 A 4.6 4.6 0 1 0 243.3 94.9 A 4.6 4.6 0 1 0 234.1 94.9 M 224.3 87.8 A 4.6 4.6 0 1 0 233.5 87.8 A 4.6 4.6 0 1 0 224.3 87.8 M 228.3 75.8 A 4.6 4.6 0 1 0 237.5 75.8 A 4.6 4.6 0 1 0 228.3 75.8 M 222.4 99.7 A 4.6 4.6 0 1 0 231.6 99.7 A 4.6 4.6 0 1 0 222.4 99.7 M 211.5 94.6 A 4.6 4.6 0 1 0 220.7 94.6 A 4.6 4.6 0 1 0 211.5 94.6 M 213.0 82.1 A 4.6 4.6 0 1 0 222.2 82.1 A 4.6 4.6 0 1 0 213.0 82.1 M 211.9 106.7 A 4.6 4.6 0 1 0 221.1 106.7 A 4.6 4.6 0 1 0 211.9 106.7 M 200.1 103.8 A 4.6 4.6 0 1 0 209.3 103.8 A 4.6 4.6 0 1 0 200.1 103.8 M 199.3 91.2 A 4.6 4.6 0 1 0 208.5 91.2 A 4.6 4.6 0 1 0 199.3 91.2 M 202.8 115.6 A 4.6 4.6 0 1 0 212.0 115.6 A 4.6 4.6 0 1 0 202.8 115.6 M 190.8 115.0 A 4.6 4.6 0 1 0 200.0 115.0 A 4.6 4.6 0 1 0 190.8 115.0 M 187.5 102.7 A 4.6 4.6 0 1 0 196.7 102.7 A 4.6 4.6 0 1 0 187.5 102.7 M 195.7 126.0 A 4.6 4.6 0 1 0 204.9 126.0 A 4.6 4.6 0 1 0 195.7 126.0 M 183.7 127.7 A 4.6 4.6 0 1 0 192.9 127.7 A 4.6 4.6 0 1 0 183.7 127.7 M 178.2 116.3 A 4.6 4.6 0 1 0 187.4 116.3 A 4.6 4.6 0 1 0 178.2 116.3 M 190.6 137.6 A 4.6 4.6 0 1 0 199.8 137.6 A 4.6 4.6 0 1 0 190.6 137.6 M 179.2 141.6 A 4.6 4.6 0 1 0 188.4 141.6 A 4.6 4.6 0 1 0 179.2 141.6 M 171.6 131.4 A 4.6 4.6 0 1 0 180.8 131.4 A 4.6 4.6 0 1 0 171.6 131.4 M 187.9 150.0 A 4.6 4.6 0 1 0 197.1 150.0 A 4.6 4.6 0 1 0 187.9 150.0 M 177.4 156.0 A 4.6 4.6 0 1 0 186.6 156.0 A 4.6 4.6 0 1 0 177.4 156.0 M 168.0 147.5 A 4.6 4.6 0 1 0 177.2 147.5 A 4.6 4.6 0 1 0 168.0 147.5",
+              "ms": 760,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "endo_out",
+              "d": "M 200 158 A 58 58 0 1 0 316 158 A 58 58 0 1 0 200 158",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "endo_in",
+              "d": "M 206 158 A 52 52 0 1 0 310 158 A 52 52 0 1 0 206 158",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "endo_cells",
+              "d": "M 309.4 149.9 L 315.3 148.9 M 304.3 134.4 L 309.7 131.7 M 294.8 121.2 L 299.0 117.0 M 281.6 111.7 L 284.3 106.3 M 266.1 106.6 L 267.1 100.7 M 249.9 106.6 L 248.9 100.7 M 234.4 111.7 L 231.7 106.3 M 221.2 121.2 L 217.0 117.0 M 211.7 134.4 L 206.3 131.7 M 206.6 149.9 L 200.7 148.9 M 206.6 166.1 L 200.7 167.1 M 211.7 181.6 L 206.3 184.3 M 221.2 194.8 L 217.0 199.0 M 234.4 204.3 L 231.7 209.7 M 249.9 209.4 L 248.9 215.3 M 266.1 209.4 L 267.1 215.3 M 281.6 204.3 L 284.3 209.7 M 294.8 194.8 L 299.0 199.0 M 304.3 181.6 L 309.7 184.3 M 309.4 166.1 L 315.3 167.1",
+              "ms": 520,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "casparian",
+              "d": "M 311.3 149.6 L 313.8 149.2 M 306.1 133.5 L 308.3 132.3 M 296.2 119.8 L 298.0 118.0 M 282.5 109.9 L 283.7 107.7 M 266.4 104.7 L 266.8 102.2 M 249.6 104.7 L 249.2 102.2 M 233.5 109.9 L 232.3 107.7 M 219.8 119.8 L 218.0 118.0 M 209.9 133.5 L 207.7 132.3 M 204.7 149.6 L 202.2 149.2 M 204.7 166.4 L 202.2 166.8 M 209.9 182.5 L 207.7 183.7 M 219.8 196.2 L 218.0 198.0 M 233.5 206.1 L 232.3 208.3 M 249.6 211.3 L 249.2 213.8 M 266.4 211.3 L 266.8 213.8 M 282.5 206.1 L 283.7 208.3 M 296.2 196.2 L 298.0 198.0 M 306.1 182.5 L 308.3 183.7 M 311.3 166.4 L 313.8 166.8",
+              "ms": 520,
+              "w": 4
+            },
+            {
+              "type": "stroke",
+              "id": "pericycle",
+              "d": "M 214 158 A 44 44 0 1 0 302 158 A 44 44 0 1 0 214 158",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "xylem_arms",
+              "d": "M 266.5 149.5 A 16 7.5 -45 1 0 289.1 126.9 A 16 7.5 -45 1 0 266.5 149.5 M 249.5 149.5 A 16 7.5 -135 1 0 226.9 126.9 A 16 7.5 -135 1 0 249.5 149.5 M 249.5 166.5 A 16 7.5 -225 1 0 226.9 189.1 A 16 7.5 -225 1 0 249.5 166.5 M 266.5 166.5 A 16 7.5 -315 1 0 289.1 189.1 A 16 7.5 -315 1 0 266.5 166.5",
+              "ms": 720
+            },
+            {
+              "type": "stroke",
+              "id": "protoxylem",
+              "d": "M 283.7 129.7 A 2.6 2.6 0 1 0 288.9 129.7 A 2.6 2.6 0 1 0 283.7 129.7 M 227.1 129.7 A 2.6 2.6 0 1 0 232.3 129.7 A 2.6 2.6 0 1 0 227.1 129.7 M 227.1 186.3 A 2.6 2.6 0 1 0 232.3 186.3 A 2.6 2.6 0 1 0 227.1 186.3 M 283.7 186.3 A 2.6 2.6 0 1 0 288.9 186.3 A 2.6 2.6 0 1 0 283.7 186.3",
+              "ms": 480,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "metaxylem",
+              "d": "M 273.8 138.2 A 4.0 4.0 0 1 0 281.8 138.2 A 4.0 4.0 0 1 0 273.8 138.2 M 266.7 145.3 A 4.0 4.0 0 1 0 274.7 145.3 A 4.0 4.0 0 1 0 266.7 145.3 M 234.2 138.2 A 4.0 4.0 0 1 0 242.2 138.2 A 4.0 4.0 0 1 0 234.2 138.2 M 241.3 145.3 A 4.0 4.0 0 1 0 249.3 145.3 A 4.0 4.0 0 1 0 241.3 145.3 M 234.2 177.8 A 4.0 4.0 0 1 0 242.2 177.8 A 4.0 4.0 0 1 0 234.2 177.8 M 241.3 170.7 A 4.0 4.0 0 1 0 249.3 170.7 A 4.0 4.0 0 1 0 241.3 170.7 M 273.8 177.8 A 4.0 4.0 0 1 0 281.8 177.8 A 4.0 4.0 0 1 0 273.8 177.8 M 266.7 170.7 A 4.0 4.0 0 1 0 274.7 170.7 A 4.0 4.0 0 1 0 266.7 170.7",
+              "ms": 620,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "phloem",
+              "d": "M 284.5 158.0 A 6.5 7.5 0 1 0 297.5 158.0 A 6.5 7.5 0 1 0 284.5 158.0 M 258.0 131.5 A 6.5 7.5 -90 1 0 258.0 118.5 A 6.5 7.5 -90 1 0 258.0 131.5 M 231.5 158.0 A 6.5 7.5 -180 1 0 218.5 158.0 A 6.5 7.5 -180 1 0 231.5 158.0 M 258.0 184.5 A 6.5 7.5 -270 1 0 258.0 197.5 A 6.5 7.5 -270 1 0 258.0 184.5",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "conjunctive",
+              "d": "M 282.0 147.2 A 4 4 0 1 0 290.0 147.2 A 4 4 0 1 0 282.0 147.2 M 264.8 130.0 A 4 4 0 1 0 272.8 130.0 A 4 4 0 1 0 264.8 130.0 M 243.2 130.0 A 4 4 0 1 0 251.2 130.0 A 4 4 0 1 0 243.2 130.0 M 226.0 147.2 A 4 4 0 1 0 234.0 147.2 A 4 4 0 1 0 226.0 147.2 M 226.0 168.8 A 4 4 0 1 0 234.0 168.8 A 4 4 0 1 0 226.0 168.8 M 243.2 186.0 A 4 4 0 1 0 251.2 186.0 A 4 4 0 1 0 243.2 186.0 M 264.8 186.0 A 4 4 0 1 0 272.8 186.0 A 4 4 0 1 0 264.8 186.0 M 282.0 168.8 A 4 4 0 1 0 290.0 168.8 A 4 4 0 1 0 282.0 168.8",
+              "ms": 560,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "pith",
+              "d": "M 248 158 A 10 10 0 1 0 268 158 A 10 10 0 1 0 248 158",
+              "ms": 260
+            },
+            {
+              "type": "label",
+              "id": "l_hair",
+              "x": 6,
+              "y": 52,
+              "text": "Root hair",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hair",
+              "d": "M 100 46 L 126 62 L 180.0 61.6",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hair_ah",
+              "d": "M 171.6 65.1 L 180.0 61.6 L 171.6 58.3",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_epi",
+              "x": 6,
+              "y": 104,
+              "text": "Epidermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi",
+              "d": "M 100 98 L 128 118 L 159.0 144.1",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi_ah",
+              "d": "M 150.4 141.3 L 159.0 144.1 L 154.8 136.1",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_cortex",
+              "x": 6,
+              "y": 156,
+              "text": "Cortex",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cortex",
+              "d": "M 70 150 L 130 156 L 183.2 144.8",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cortex_ah",
+              "d": "M 175.7 149.8 L 183.2 144.8 L 174.3 143.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_endo",
+              "x": 6,
+              "y": 208,
+              "text": "Endodermis",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_endo",
+              "d": "M 106 202 L 160 194 L 206.3 176.8",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_endo_ah",
+              "d": "M 199.7 182.9 L 206.3 176.8 L 197.3 176.6",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_peri",
+              "x": 6,
+              "y": 260,
+              "text": "Pericycle",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_peri",
+              "d": "M 94 254 L 170 224 L 240.0 202.5",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_peri_ah",
+              "d": "M 233.0 208.2 L 240.0 202.5 L 231.1 201.7",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_px",
+              "x": 386,
+              "y": 48,
+              "text": "Protoxylem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_px",
+              "d": "M 382 42 L 330 86 L 286.3 129.7",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_px_ah",
+              "d": "M 289.8 121.4 L 286.3 129.7 L 294.6 126.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_mx",
+              "x": 386,
+              "y": 96,
+              "text": "Metaxylem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mx",
+              "d": "M 382 90 L 330 116 L 277.8 138.2",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mx_ah",
+              "d": "M 284.2 131.8 L 277.8 138.2 L 286.8 138.0",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_conj",
+              "x": 382,
+              "y": 144,
+              "text": "Conjunctive tissue",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_conj",
+              "d": "M 378 138 L 340 142 L 286.0 147.2",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_conj_ah",
+              "d": "M 294.0 143.1 L 286.0 147.2 L 294.6 149.8",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_phl",
+              "x": 386,
+              "y": 192,
+              "text": "Phloem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl",
+              "d": "M 382 186 L 340 172 L 294.0 158.0",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_phl_ah",
+              "d": "M 303.0 157.2 L 294.0 158.0 L 301.0 163.7",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_pith",
+              "x": 386,
+              "y": 240,
+              "text": "Pith",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pith",
+              "d": "M 382 234 L 314.0 179.5 L 269.2 162.3",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pith_ah",
+              "d": "M 278.2 162.1 L 269.2 162.3 L 275.8 168.4",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_casp",
+              "x": 150,
+              "y": 306,
+              "text": "Casparian strip",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_casp",
+              "d": "M 252 296 L 256 240 L 259.9 213.0",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_casp_ah",
+              "d": "M 262.1 221.7 L 259.9 213.0 L 255.4 220.7",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "Two of the eight marks are for the drawing, and the number of xylem arms is the feature the examiner checks first: two to four for a dicot root.",
+        "common_mistakes": [
+          "Drawing more than four xylem groups. That makes it a monocot root.",
+          "Placing the protoxylem at the centre. In a root it lies at the outer tip of each arm.",
+          "Drawing a large pith."
+        ],
+        "memory_tip": "Four arms in a cross, protoxylem at the outer tip, phloem in the four gaps."
+      }
+    ]
+  },
+  "insider_note": "The examiner tells a dicot root from a monocot root by counting xylem groups in your diagram. Draw four, not seven."
+}

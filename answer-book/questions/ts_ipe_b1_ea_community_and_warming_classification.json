@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_community_and_warming_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define community. Who classified plant communities into hydrophytes, mesophytes and xerophytes?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "The botanist and his three classes", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 7. BOOK ERROR: the book prints the name as 'Eugen warming'. The botanist is Eugenius Warming (1841-1924), the Danish botanist regarded as the founder of ecology; his 1895 book Plantesamfund set out the hydrophyte / mesophyte / xerophyte classes. The card writes the name correctly and notes the book's spelling. The book's question also reads 'Define communities?'; it is written as 'Define community' here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Community: the assemblage of all the",
+          "populations of different species living",
+          "together in a given area.",
+          "A plant community is the plant part of it."
+        ],
+        "why": "A community is defined one level above a population, so the definition must contain the word populations and the word area.",
+        "common_mistakes": [
+          "Defining it as one species in an area. That is a population.",
+          "Including the soil, water and climate. That makes it an ecosystem."
+        ],
+        "memory_tip": "Many populations in one area = one community.",
+        "margin_note": "One sentence. The second mark is the name, so do not spend time here."
+      },
+      {
+        "id": "s2_warming",
+        "kind": "boxed_final",
+        "label": "The botanist and his three classes",
+        "marks": 1,
+        "mark_note": "Warming",
+        "lines": [
+          { "text": "Eugenius Warming, the Danish botanist", "style": "boxed" },
+          "He is regarded as the founder of ecology.",
+          "He grouped plant communities by the water",
+          "of the habitat:",
+          "hydrophytes (water), mesophytes (medium),",
+          "xerophytes (dry)."
+        ],
+        "why": "Warming grouped communities by ONE factor, the water available in the habitat, which is why the three names all end in -phyte and differ only in the water word.",
+        "common_mistakes": [
+          "Writing Eugen Warming, the spelling this book prints. The name is Eugenius Warming.",
+          "Naming Odum or Clements. Clements named the climax concept; Warming named these three classes."
+        ],
+        "memory_tip": "Three water levels, three classes: hydro = plenty, meso = medium, xero = little.",
+        "margin_note": "Name plus the three classes. Nothing else is needed for this mark."
+      }
+    ]
+  },
+  "insider_note": "The name is the mark here, and it is the part students blank on. Fix it by the meaning of his classes: Warming sorted plants by water — hydro, meso, xero."
+}

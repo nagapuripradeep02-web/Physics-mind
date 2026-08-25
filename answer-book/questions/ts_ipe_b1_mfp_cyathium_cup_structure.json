@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_cyathium_cup_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the morphology of the cup-like structure in cyathium? In which family is it found?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Morphology of the cup",
+      "marks": 1
+    },
+    {
+      "label": "Family",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Involucre of bracts and Euphorbiaceae - two precise terms, one mark each; nothing else is needed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_morphology",
+        "kind": "text",
+        "label": "The cup",
+        "marks": 1,
+        "mark_note": "Involucre",
+        "lines": [
+          "The cup of the cyathium is formed by an",
+          "involucre of bracts - the bracts are fused",
+          "into a cup-shaped structure.",
+          "It encloses one central female flower and",
+          "many male flowers."
+        ],
+        "why": "Morphologically the cup is BRACTS, not petals or a receptacle - fused bracts (an involucre). That is the tested word.",
+        "common_mistakes": [
+          "Calling the cup a corolla or a receptacle. It is made of fused bracts."
+        ],
+        "memory_tip": "Cyathium cup = bracts joined into a cup (involucre).",
+        "margin_note": "The phrase 'involucre of bracts' is the mark; the flower contents are a bonus line."
+      },
+      {
+        "id": "s2_family",
+        "kind": "boxed_final",
+        "label": "The family",
+        "marks": 1,
+        "mark_note": "Family",
+        "lines": [
+          {
+            "text": "Cyathium is found in the family",
+            "style": "boxed"
+          },
+          "Euphorbiaceae. Ex: Euphorbia, poinsettia."
+        ],
+        "why": "Cyathium is the marker inflorescence of one family - Euphorbiaceae; naming it is the second mark.",
+        "common_mistakes": [
+          "Writing Asteraceae. The head belongs to Asteraceae; the cyathium belongs to Euphorbiaceae."
+        ],
+        "memory_tip": "Cyathium sits with Euphorbia - both start rare letters, C and E of Euphorbiaceae.",
+        "margin_note": "Family name alone earns it; an example genus strengthens the line."
+      }
+    ]
+  }
+}

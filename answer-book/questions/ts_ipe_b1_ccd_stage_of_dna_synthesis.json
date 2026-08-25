@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_stage_of_dna_synthesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "At what stage of the cell cycle does DNA synthesis occur?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stage",
+      "marks": 1
+    },
+    {
+      "label": "What happens in it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 6) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stage",
+        "kind": "text",
+        "label": "The stage",
+        "marks": 1,
+        "mark_note": "The stage",
+        "lines": [
+          "Interphase has three sub-phases in this order:",
+          "G₁, S and G₂.",
+          "DNA is copied in the S phase, the middle one."
+        ],
+        "why": "The letter S in the name stands for synthesis, and it sits between the two gap phases because the copying has to finish before the cell can divide.",
+        "common_mistakes": [
+          "Writing 'interphase' alone. The question asks for the exact stage inside it.",
+          "Writing 'prophase'. By prophase the DNA has already been copied."
+        ],
+        "memory_tip": "G₁ – S – G₂ : Gap, Synthesis, Gap. The S in the middle stands for synthesis of DNA.",
+        "margin_note": "One line naming the stage, one line placing it inside interphase."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "What happens in it",
+        "marks": 1,
+        "mark_note": "The result",
+        "lines": [
+          {
+            "text": "S phase (synthesis phase) of interphase.",
+            "style": "boxed"
+          },
+          "The DNA amount doubles (2C → 4C) but the",
+          "chromosome NUMBER does not change — each",
+          "chromosome now has two sister chromatids",
+          "joined at one centromere."
+        ],
+        "why": "This is where students lose the mark: doubling the DNA is not the same as doubling the chromosome number, because the two copies stay attached at a single centromere and count as one chromosome.",
+        "common_mistakes": [
+          "Saying the chromosome number doubles in S phase. Only the DNA amount doubles.",
+          "Saying centrioles duplicate in plant cells. Centrioles duplicate in animal cells."
+        ],
+        "memory_tip": "DNA doubles, chromosome number does not. One centromere, one chromosome.",
+        "margin_note": "The second mark is for the 2C to 4C point. Write it in one sentence."
+      }
+    ]
+  },
+  "insider_note": "Naming the S phase gets one mark; the sentence separating DNA amount from chromosome number gets the other."
+}

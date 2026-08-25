@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_allium_cepa_anthers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the technical description of the anthers of Allium cepa.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stamens",
+      "marks": 1
+    },
+    {
+      "label": "The anthers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stamens",
+        "kind": "text",
+        "label": "The stamens",
+        "marks": 1,
+        "lines": [
+          "Allium cepa, the onion, belongs to the family",
+          "Liliaceae.",
+          "Six stamens are arranged in two whorls of three",
+          "(3+3).",
+          "They are free from one another and epiphyllous,",
+          "that is, attached to the perianth."
+        ],
+        "why": "The anthers cannot be described without saying which stamens they belong to, and 3+3 epiphyllous is the Liliaceae pattern.",
+        "common_mistakes": [
+          "Writing epipetalous. That word is for stamens on a corolla; Liliaceae has a perianth, so the word is epiphyllous.",
+          "Writing five stamens, which is the Solanaceae number."
+        ],
+        "memory_tip": "Onion is a Liliaceae plant: everything is in threes. Three plus three stamens, three carpels, three plus three tepals.",
+        "margin_note": "One line for the family, one for 3+3 and epiphyllous.",
+        "mark_note": "Stamens"
+      },
+      {
+        "id": "s2_anthers",
+        "kind": "boxed_final",
+        "label": "The anthers",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Dithecous, basifixed, introrse",
+            "style": "boxed"
+          },
+          "They open by longitudinal dehiscence.",
+          "Dithecous = two lobes, so four pollen sacs.",
+          "Basifixed = the filament is joined to the base of",
+          "the anther.",
+          "Introrse = the anther opens towards the centre",
+          "of the flower."
+        ],
+        "why": "The four terms are the standard technical description of any anther, and each one is a separate tick.",
+        "common_mistakes": [
+          "Writing versatile or dorsifixed. The onion anther is basifixed.",
+          "Writing extrorse. Introrse anthers face inward and favour self pollination."
+        ],
+        "memory_tip": "Four questions in order: how many lobes, where fixed, which way it faces, how it opens.",
+        "margin_note": "All four terms in one boxed line, then one line of meaning each.",
+        "mark_note": "Anthers"
+      }
+    ]
+  },
+  "insider_note": "The question says anthers, but a bare four words looks thin. Give the 3+3 epiphyllous stamens first, then the four anther terms."
+}

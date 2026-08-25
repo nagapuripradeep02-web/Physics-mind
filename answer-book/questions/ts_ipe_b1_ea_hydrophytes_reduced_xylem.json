@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_hydrophytes_reduced_xylem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Hydrophytes show reduced xylem. Why?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Water is absorbed all over", "marks": 1 },
+    { "label": "So conduction and support are not needed", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, VSAQ 8. The book's answer is the single line 'The absorption of water takes place through all over the surface of plant body'; the fact is kept, the sentence rewritten, and the second mark adds the two jobs of xylem that are therefore not needed. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_absorption",
+        "kind": "text",
+        "label": "Water is absorbed all over",
+        "marks": 1,
+        "mark_note": "Absorption",
+        "lines": [
+          "A hydrophyte is surrounded by water on",
+          "every side.",
+          "Its thin-walled epidermis absorbs water and",
+          "dissolved gases over the whole surface of",
+          "the plant body, not through the roots."
+        ],
+        "why": "Xylem exists to carry water from the root to the shoot. When every cell already touches water, there is nothing left to carry.",
+        "common_mistakes": [
+          "Writing that hydrophytes have no xylem. The xylem is reduced, not absent.",
+          "Saying they do not need water. They need water; they simply do not need to transport it."
+        ],
+        "memory_tip": "Water has no distance to travel, so little xylem is needed.",
+        "margin_note": "The first mark is the words absorbed over the whole surface. Write them."
+      },
+      {
+        "id": "s2_two_jobs",
+        "kind": "boxed_final",
+        "label": "So conduction and support are not needed",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          { "text": "Xylem conducts water and gives support.", "style": "boxed" },
+          "Neither job is needed here: water reaches",
+          "every cell directly, and the water around",
+          "the plant holds it up.",
+          "So the xylem stays poorly developed."
+        ],
+        "why": "Xylem has two jobs, conduction and mechanical support, and water removes the need for both — which is why hydrophyte mechanical tissue is poorly developed as well.",
+        "common_mistakes": [
+          "Mentioning only conduction. The support half is the second half of the reason.",
+          "Confusing xylem with phloem. Phloem carries food and stays normal in hydrophytes."
+        ],
+        "memory_tip": "Xylem does two jobs, conduction and support. The surrounding water covers both.",
+        "margin_note": "Naming both jobs of xylem is what turns a half answer into a full one."
+      }
+    ]
+  },
+  "insider_note": "Most answers stop at absorption through the surface. The support point is the easy second mark and takes one line."
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_apomixis_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is apomixis? What is its importance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "How it happens + example",
+      "marks": 1
+    },
+    {
+      "label": "Importance",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.18, SAQ 4). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The 1+1+2 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Apomixis = production of seeds without",
+            "style": "boxed"
+          },
+          {
+            "text": "meiosis and without fertilisation",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both 'without's matter: skipping meiosis keeps the cell diploid, and skipping fertilisation means no gamete fusion — a seed forms, but nothing sexual happened.",
+        "common_mistakes": [
+          "Defining it as 'asexual reproduction' alone — say specifically: seeds without meiosis and fertilisation.",
+          "Confusing apomixis with parthenocarpy. Parthenocarpy gives seedLESS fruit; apomixis gives seeds."
+        ],
+        "memory_tip": "Apo = away from, mixis = mixing. Seeds with no mixing of gametes.",
+        "margin_note": "The two 'without's — meiosis and fertilisation — are both required for the definition mark."
+      },
+      {
+        "id": "s2_mechanism",
+        "kind": "text",
+        "label": "How it happens + example",
+        "marks": 1,
+        "mark_note": "Mechanism",
+        "lines": [
+          "The diploid egg cell is formed without",
+          "reduction division and develops into the",
+          "embryo without fertilisation.",
+          "Examples: some species of Asteraceae and",
+          "some grasses."
+        ],
+        "why": "This is the definition in action: an unreduced (2n) egg grows straight into an embryo, so the offspring is genetically identical to the mother plant.",
+        "common_mistakes": [
+          "Writing 'haploid egg develops without fertilisation' — the apomictic egg is DIPLOID because meiosis was skipped.",
+          "No example. Asteraceae and grasses are the stated ones."
+        ],
+        "memory_tip": "2n egg → 2n embryo → a genetic copy of the mother. No reduction, no fusion, no change.",
+        "margin_note": "Two sentences: the unreduced diploid egg, and the named example groups."
+      },
+      {
+        "id": "s3_importance",
+        "kind": "text",
+        "label": "Importance",
+        "marks": 2,
+        "mark_note": "Importance",
+        "lines": [
+          "The desirable characters are not segregated",
+          "(separated) in the offspring.",
+          "So superior characters can be maintained for",
+          "many generations.",
+          "This is very useful in commercial hybrid",
+          "seed production — the hybrid's qualities do",
+          "not split up in the next generation."
+        ],
+        "why": "In normal sexual seed, hybrid characters segregate in the next generation and the farmer must buy fresh seed; an apomictic hybrid breeds true, so its superiority is kept year after year.",
+        "common_mistakes": [
+          "Listing 'seed production' without the reason — the point is that characters do NOT segregate.",
+          "Writing that apomixis creates variation. It does the opposite: it fixes the genotype."
+        ],
+        "memory_tip": "No meiosis → no shuffling → no segregation → the hybrid stays a hybrid.",
+        "margin_note": "Three importance points for 2 marks: no segregation, maintained for generations, hybrid seed industry."
+      }
+    ]
+  },
+  "insider_note": "The importance carries half the marks here — students who write a long definition and one word on importance invert the weighting the question sets."
+}

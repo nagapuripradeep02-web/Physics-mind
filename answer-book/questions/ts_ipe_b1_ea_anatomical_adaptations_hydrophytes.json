@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_anatomical_adaptations_hydrophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List out the anatomical adaptations of hydrophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Cuticle and epidermis", "marks": 1 },
+    { "label": "Stomata", "marks": 1 },
+    { "label": "Aerenchyma", "marks": 1 },
+    { "label": "Mechanical and vascular tissue", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 4. All six of the book's points are kept and grouped into four marked blocks. One addition from standard texts: floating leaves are epistomatous, stomata on the upper surface only — the book says only that stomata are absent in submerged plants, which leaves the floating case unstated. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cuticle_epidermis",
+        "kind": "text",
+        "label": "Cuticle and epidermis",
+        "marks": 1,
+        "mark_note": "Epidermis",
+        "lines": [
+          "Cuticle is absent, or present only as a",
+          "very thin layer on floating leaves.",
+          "The epidermis is made of thin-walled cells.",
+          "Here it is not a protective layer: it",
+          "absorbs water and dissolved gases directly",
+          "from the surrounding water."
+        ],
+        "why": "A cuticle exists to stop water loss. A plant surrounded by water has no water to lose, so the cuticle goes and the epidermis is free to take up water instead.",
+        "common_mistakes": [
+          "Writing that the cuticle is thick. A thick cuticle is a xerophyte feature.",
+          "Saying the epidermis protects the plant. In hydrophytes its work is absorption."
+        ],
+        "memory_tip": "No water to lose, so no waterproof layer. The epidermis absorbs water instead.",
+        "margin_note": "Four tissues, four marks: epidermis, stomata, aerenchyma, mechanical and vascular."
+      },
+      {
+        "id": "s2_stomata",
+        "kind": "text",
+        "label": "Stomata",
+        "marks": 1,
+        "mark_note": "Stomata",
+        "lines": [
+          "Stomata are absent in submerged plants.",
+          "Gases are exchanged by diffusion through",
+          "the thin-walled epidermal cells.",
+          "Floating leaves carry stomata only on the",
+          "upper surface, which is exposed to air.",
+          "Such leaves are called epistomatous."
+        ],
+        "why": "A stoma is useless under water, because gases already diffuse straight through the thin wall. It is kept only on the surface that touches air, which is the upper face of a floating leaf.",
+        "common_mistakes": [
+          "Writing hypostomatous for floating leaves. Hypo means lower; floating leaves are epistomatous.",
+          "Saying stomata are absent in all hydrophytes. They are absent only in the submerged parts."
+        ],
+        "memory_tip": "Epi means upper. A floating leaf exchanges gases at the top, so epistomatous.",
+        "margin_note": "Both halves matter: absent below water, upper surface only when floating."
+      },
+      {
+        "id": "s3_aerenchyma",
+        "kind": "text",
+        "label": "Aerenchyma",
+        "marks": 1,
+        "mark_note": "Aerenchyma",
+        "lines": [
+          "Aerenchyma is present.",
+          "It is a parenchyma with large air spaces",
+          "running through the root, stem and leaf.",
+          "It stores oxygen and carbon dioxide for",
+          "respiration and photosynthesis, and the",
+          "trapped air keeps the plant buoyant."
+        ],
+        "why": "Water holds very little dissolved oxygen, and the mud around the root holds almost none. Aerenchyma stores gas inside the plant and supplies the submerged parts.",
+        "common_mistakes": [
+          "Calling it sclerenchyma. Sclerenchyma is thick-walled and belongs to xerophytes.",
+          "Giving only buoyancy as its use. Gas storage for respiration is the main one."
+        ],
+        "memory_tip": "Aero means air. Aerenchyma = the air tissue.",
+        "margin_note": "Name it, define it, give both uses. Three short lines is the full mark."
+      },
+      {
+        "id": "s4_mechanical_vascular",
+        "kind": "boxed_final",
+        "label": "Mechanical and vascular tissue",
+        "marks": 1,
+        "mark_note": "Both poor",
+        "lines": [
+          { "text": "Mechanical and vascular tissue: both poor", "style": "boxed" },
+          "Mechanical tissue is poorly developed,",
+          "because the surrounding water supports the",
+          "plant body.",
+          "Vascular tissue, and the xylem in",
+          "particular, is poorly developed, because",
+          "water is absorbed over the whole surface."
+        ],
+        "why": "Both of these tissues do jobs the water already does — support and water transport — so both are reduced, and this is the block that explains the reduced xylem asked about separately.",
+        "common_mistakes": [
+          "Writing that xylem is absent. It is poorly developed, not absent.",
+          "Giving no reason. Each reduction is marked with its reason, not on its own."
+        ],
+        "memory_tip": "The water supports the plant and supplies the water, so both tissues stay poorly developed.",
+        "margin_note": "Pair the two reductions in one block; each needs its one-line reason."
+      }
+    ]
+  },
+  "insider_note": "Anatomical means the internal tissues, so root pockets and ribbon leaves score nothing here. Keep the answer to epidermis, stomata, aerenchyma and the two reduced tissues."
+}

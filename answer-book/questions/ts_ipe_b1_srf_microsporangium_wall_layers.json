@@ -1,0 +1,648 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_microsporangium_wall_layers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Draw the diagram of a microsporangium and label its wall layers. Write briefly about the wall layers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Parts of the microsporangium",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Epidermis",
+      "marks": 1
+    },
+    {
+      "label": "Endothecium",
+      "marks": 1
+    },
+    {
+      "label": "Middle layers",
+      "marks": 1
+    },
+    {
+      "label": "Tapetum",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.20, LAQ 3). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. Book wording cleaned: 'Stomium like epidermal cells helps in dehiscence' (the stomium is the strip where the anther splits — written correctly here), 'cells loss water', 'posses', 'binucleate.It'. FIGURE SCOPE: the book prints a whole anther T.S. plus an enlarged sector; this card draws the ENLARGED SECTOR (the labelled stack of the four wall layers over the sporogenous tissue), which is the part a student reproduces in the exam."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Sexual Reproduction in Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "Parts of the microsporangium",
+        "marks": 1,
+        "mark_note": "Two parts",
+        "lines": [
+          "A mature microsporangium consists of two",
+          "parts:",
+          "1. the microsporangial wall, and",
+          "2. the sporogenous tissue inside it.",
+          "The wall has four layers. From outside in:",
+          "epidermis, endothecium, middle layers,",
+          "tapetum."
+        ],
+        "why": "Wall outside, sporogenous tissue inside — naming the two parts and listing the four wall layers in their outside-to-inside order sets up every later step.",
+        "common_mistakes": [
+          "Listing the layers in a scrambled order. The order IS the anatomy — outermost to innermost.",
+          "Forgetting the sporogenous tissue — the wall exists to protect and feed it."
+        ],
+        "memory_tip": "'External Environment Makes Trouble': Epidermis, Endothecium, Middle layers, Tapetum — outside to inside.",
+        "margin_note": "Two parts plus the ordered four-layer list — the frame for the whole answer."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — wall layers of a microsporangium",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "microsporangium_wall_layers",
+          "width": 500,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "b0",
+              "d": "M 60 62 Q 180 38 300 62",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "b1",
+              "d": "M 60 96 Q 180 72 300 96",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "b2",
+              "d": "M 60 132 Q 180 108 300 132",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "b3",
+              "d": "M 60 162 Q 180 138 300 162",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "b4",
+              "d": "M 60 198 Q 180 174 300 198",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "b_mid",
+              "d": "M 60 147 Q 180 123 300 147",
+              "ms": 400,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "cap_l",
+              "d": "M 60 62 L 60 198",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "cap_r",
+              "d": "M 300 62 L 300 198",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi0",
+              "d": "M 92 56.5 L 92 90.5",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi1",
+              "d": "M 124 52.6 L 124 86.6",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi2",
+              "d": "M 156 50.5 L 156 84.5",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi3",
+              "d": "M 188 50.1 L 188 84.1",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi4",
+              "d": "M 220 51.3 L 220 85.3",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi5",
+              "d": "M 252 54.3 L 252 88.3",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_epi6",
+              "d": "M 284 59.0 L 284 93.0",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_end0",
+              "d": "M 104 88.8 L 104 124.8",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_end1",
+              "d": "M 148 84.9 L 148 120.9",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_end2",
+              "d": "M 192 84.1 L 192 120.1",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_end3",
+              "d": "M 236 86.6 L 236 122.6",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_end4",
+              "d": "M 280 92.3 L 280 128.3",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid0",
+              "d": "M 96 125.9 L 96 155.9",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid1",
+              "d": "M 132 121.9 L 132 151.9",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid2",
+              "d": "M 168 120.1 L 168 150.1",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid3",
+              "d": "M 204 120.5 L 204 150.5",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid4",
+              "d": "M 240 123.0 L 240 153.0",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_mid5",
+              "d": "M 276 127.7 L 276 157.7",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "t_tap0",
+              "d": "M 116 153.4 L 116 189.4",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_tap1",
+              "d": "M 172 150.1 L 172 186.1",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_tap2",
+              "d": "M 228 151.9 L 228 187.9",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "t_tap3",
+              "d": "M 284 159.0 L 284 195.0",
+              "ms": 140,
+              "w": 2.25
+            },
+            {
+              "type": "stroke",
+              "id": "tapn0a",
+              "d": "M 78.6 175.1 A 2.4 2.4 0 1 0 83.4 175.1 A 2.4 2.4 0 1 0 78.6 175.1",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn0b",
+              "d": "M 92.6 175.1 A 2.4 2.4 0 1 0 97.4 175.1 A 2.4 2.4 0 1 0 92.6 175.1",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn1a",
+              "d": "M 134.6 169.1 A 2.4 2.4 0 1 0 139.4 169.1 A 2.4 2.4 0 1 0 134.6 169.1",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn1b",
+              "d": "M 148.6 169.1 A 2.4 2.4 0 1 0 153.4 169.1 A 2.4 2.4 0 1 0 148.6 169.1",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn2a",
+              "d": "M 190.6 168.3 A 2.4 2.4 0 1 0 195.4 168.3 A 2.4 2.4 0 1 0 190.6 168.3",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn2b",
+              "d": "M 204.6 168.3 A 2.4 2.4 0 1 0 209.4 168.3 A 2.4 2.4 0 1 0 204.6 168.3",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn3a",
+              "d": "M 246.6 172.8 A 2.4 2.4 0 1 0 251.4 172.8 A 2.4 2.4 0 1 0 246.6 172.8",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tapn3b",
+              "d": "M 260.6 172.8 A 2.4 2.4 0 1 0 265.4 172.8 A 2.4 2.4 0 1 0 260.6 172.8",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc0",
+              "d": "M 106 218 A 14 14 0 1 0 134 218 A 14 14 0 1 0 106 218",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn0",
+              "d": "M 116.8 218 A 3.2 3.2 0 1 0 123.2 218 A 3.2 3.2 0 1 0 116.8 218",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc1",
+              "d": "M 138 214 A 14 14 0 1 0 166 214 A 14 14 0 1 0 138 214",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn1",
+              "d": "M 148.8 214 A 3.2 3.2 0 1 0 155.2 214 A 3.2 3.2 0 1 0 148.8 214",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc2",
+              "d": "M 170 212 A 14 14 0 1 0 198 212 A 14 14 0 1 0 170 212",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn2",
+              "d": "M 180.8 212 A 3.2 3.2 0 1 0 187.2 212 A 3.2 3.2 0 1 0 180.8 212",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc3",
+              "d": "M 202 214 A 14 14 0 1 0 230 214 A 14 14 0 1 0 202 214",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn3",
+              "d": "M 212.8 214 A 3.2 3.2 0 1 0 219.2 214 A 3.2 3.2 0 1 0 212.8 214",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc4",
+              "d": "M 234 218 A 14 14 0 1 0 262 218 A 14 14 0 1 0 234 218",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn4",
+              "d": "M 244.8 218 A 3.2 3.2 0 1 0 251.2 218 A 3.2 3.2 0 1 0 244.8 218",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc5",
+              "d": "M 122 246 A 14 14 0 1 0 150 246 A 14 14 0 1 0 122 246",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn5",
+              "d": "M 132.8 246 A 3.2 3.2 0 1 0 139.2 246 A 3.2 3.2 0 1 0 132.8 246",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc6",
+              "d": "M 154 243 A 14 14 0 1 0 182 243 A 14 14 0 1 0 154 243",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn6",
+              "d": "M 164.8 243 A 3.2 3.2 0 1 0 171.2 243 A 3.2 3.2 0 1 0 164.8 243",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc7",
+              "d": "M 186 242 A 14 14 0 1 0 214 242 A 14 14 0 1 0 186 242",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn7",
+              "d": "M 196.8 242 A 3.2 3.2 0 1 0 203.2 242 A 3.2 3.2 0 1 0 196.8 242",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "spc8",
+              "d": "M 218 245 A 14 14 0 1 0 246 245 A 14 14 0 1 0 218 245",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "spn8",
+              "d": "M 228.8 245 A 3.2 3.2 0 1 0 235.2 245 A 3.2 3.2 0 1 0 228.8 245",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "lead_epi",
+              "d": "M 352 62 L 302 76",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_epi",
+              "x": 356,
+              "y": 66,
+              "text": "Epidermis",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_endo",
+              "d": "M 352 108 L 302 112",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_endo",
+              "x": 356,
+              "y": 112,
+              "text": "Endothecium",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_midl",
+              "d": "M 352 152 L 302 145",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_midl",
+              "x": 356,
+              "y": 156,
+              "text": "Middle layers",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_tap",
+              "d": "M 352 196 L 302 180",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_tap",
+              "x": 356,
+              "y": 200,
+              "text": "Tapetum",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_spc",
+              "d": "M 258 246 L 244 238",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_spc",
+              "x": 264,
+              "y": 252,
+              "text": "Microspore mother cells",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The enlarged sector is the drawing that scores: four concentric layers in the right order with the microspore mother cells inside. The whole four-lobed anther outline adds time, not marks.",
+        "common_mistakes": [
+          "Swapping the tapetum and the endothecium. Tapetum is the INNERMOST layer, touching the sporogenous tissue.",
+          "Drawing all layers the same thickness — the middle layers are the thin ones.",
+          "Leaving out the microspore mother cells the wall surrounds."
+        ],
+        "memory_tip": "Draw four arcs outside-in — big cells, fibrous cells, thin lines, fat feeding cells — then dot the mother cells below.",
+        "margin_note": "Four labelled layers + microspore mother cells; 4-5 minutes with labels."
+      },
+      {
+        "id": "s3_epidermis",
+        "kind": "text",
+        "label": "Epidermis",
+        "marks": 1,
+        "mark_note": "Layer 1",
+        "lines": [
+          "Epidermis: the outermost protective layer,",
+          "single and one cell thick, with thin walls.",
+          "The anther splits open at maturity along the",
+          "stomium, a strip of specialised epidermal",
+          "cells, releasing the pollen."
+        ],
+        "why": "The epidermis is the boundary layer, and its one special feature is the stomium — the pre-marked line of cells along which the pollen sac finally opens.",
+        "common_mistakes": [
+          "Writing that the epidermis is many-layered — it is a single layer, one cell thick.",
+          "Calling the stomium a separate wall layer. It is a region of the epidermis."
+        ],
+        "memory_tip": "Thin skin with a tear-line: the stomium is the perforation along which the anther opens.",
+        "margin_note": "Protective, one cell thick, and the stomium — three facts, one mark."
+      },
+      {
+        "id": "s4_endothecium",
+        "kind": "text",
+        "label": "Endothecium",
+        "marks": 1,
+        "mark_note": "Layer 2",
+        "lines": [
+          "Endothecium: the hypodermal layer just below",
+          "the epidermis.",
+          "Its cells expand radially and develop fibrous",
+          "thickenings.",
+          "At maturity these cells lose water and",
+          "contract — this helps the pollen sac dehisce."
+        ],
+        "why": "The endothecium is the opening mechanism: the fibrous thickenings make the drying cells contract unevenly, and that pull tears the anther open at the stomium.",
+        "common_mistakes": [
+          "Giving the fibrous thickenings to the epidermis — they belong to the endothecium.",
+          "Stating the thickenings without their job: losing water + contracting = dehiscence."
+        ],
+        "memory_tip": "Endothecium = the spring: fibre bands + drying = the contraction that flips the anther open.",
+        "margin_note": "Hypodermal, fibrous thickenings, water loss, dehiscence — chain the four."
+      },
+      {
+        "id": "s5_middle_layers",
+        "kind": "text",
+        "label": "Middle layers",
+        "marks": 1,
+        "mark_note": "Layer 3",
+        "lines": [
+          "Middle layers: one to three thin walled",
+          "layers lying between the endothecium and the",
+          "tapetum.",
+          "They are short lived and degenerate as the",
+          "anther matures."
+        ],
+        "why": "The middle layers are defined by position and by being temporary — thin, one to three of them, gone by maturity; a short step because the layer itself is slight.",
+        "common_mistakes": [
+          "Writing a fixed count. The book says 1-3 layers — give the range.",
+          "Making them thick walled. Thin walls are their identifying feature."
+        ],
+        "memory_tip": "The middle child of the wall: 1-3 thin layers, squeezed between two famous ones, gone early.",
+        "margin_note": "Position + count + thin walled — one compact sentence carries the mark."
+      },
+      {
+        "id": "s6_tapetum",
+        "kind": "text",
+        "label": "Tapetum",
+        "marks": 2,
+        "mark_note": "Layer 4",
+        "lines": [
+          "Tapetum: the innermost wall layer, one cell",
+          "thick, and nutritive in function.",
+          "Its cells possess dense cytoplasm and are",
+          "binucleate.",
+          "It nourishes the developing sporogenous",
+          "tissue (the microspore mother cells)."
+        ],
+        "why": "The tapetum earns double weight because it does the biology: pressed against the sporogenous tissue, its dense-cytoplasm, two-nucleus cells feed the developing microspores.",
+        "common_mistakes": [
+          "Placing the tapetum outside the middle layers. It is the INNERMOST layer.",
+          "Writing uninucleate cells. Binucleate (often multinucleate) cells are its signature.",
+          "Calling it protective. Its function is nutrition."
+        ],
+        "memory_tip": "Tapetum = the kitchen layer: innermost, dense cytoplasm, two nuclei, feeds the mother cells.",
+        "margin_note": "Position, one-cell thickness, dense cytoplasm, binucleate, nutrition — the full 2-mark list."
+      },
+      {
+        "id": "s7_order",
+        "kind": "boxed_final",
+        "label": "Wall layers in order",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Outside → in: epidermis → endothecium →",
+            "style": "boxed"
+          },
+          {
+            "text": "middle layers → tapetum",
+            "style": "boxed"
+          }
+        ],
+        "why": "A one-line recap of the order is the highest-value revision line on this page — the order is what the diagram is marked on.",
+        "common_mistakes": [
+          "Reversing the ends: tapetum is inner, epidermis is outer — always."
+        ],
+        "memory_tip": "Say it as one word-chain: epidermis-endothecium-middle-tapetum, outside to in.",
+        "margin_note": "Unmarked recap — worth ten seconds before leaving the answer."
+      }
+    ]
+  },
+  "insider_note": "Most scripts lose marks on layer ORDER, not layer facts — the diagram and the boxed chain fix the order, and the examiner checks the diagram against the text."
+}

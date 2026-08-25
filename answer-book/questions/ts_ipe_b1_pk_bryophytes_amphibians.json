@@ -1,0 +1,71 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_bryophytes_amphibians",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are bryophytes called the amphibians of the plant kingdom?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "They live on land", "marks": 1 },
+    { "label": "They need water to reproduce", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 7. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_land",
+        "kind": "text",
+        "label": "They live on land",
+        "marks": 1,
+        "mark_note": "Land half",
+        "lines": [
+          "Bryophytes live on land, in moist and",
+          "shady places."
+        ],
+        "why": "'Amphibian' describes a life in two places. The plant body itself grows on land — on moist soil, rocks and tree bark — which is the land half of the comparison.",
+        "common_mistakes": [
+          "Writing that bryophytes live in water. The plant grows on land; only fertilisation needs water."
+        ],
+        "memory_tip": "A frog lives on land but breeds in water; a bryophyte does the same, so both are called amphibians.",
+        "margin_note": "State the land half in one line; the reason mark is in the next step."
+      },
+      {
+        "id": "s2_water",
+        "kind": "boxed_final",
+        "label": "Water needed for fertilisation",
+        "marks": 1,
+        "mark_note": "Water half",
+        "lines": [
+          { "text": "They need water for sexual reproduction", "style": "boxed" },
+          "The antherozoids must swim through water",
+          "to reach the archegonium and the egg."
+        ],
+        "why": "The male gametes are flagellated and can move only through a film of water, so no fertilisation happens without water — the water half of the comparison.",
+        "common_mistakes": [
+          "Stopping at 'they need water' without the reason — the swimming antherozoids are the reason.",
+          "Writing 'they need water for photosynthesis' — every plant does; the marked point is fertilisation."
+        ],
+        "memory_tip": "Remember the two halves as one contrast: body on land, fertilisation in water.",
+        "margin_note": "The boxed line plus the swimming-gamete reason completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The mark is for the reason — water-dependent fertilisation — not for repeating the word amphibian."
+}

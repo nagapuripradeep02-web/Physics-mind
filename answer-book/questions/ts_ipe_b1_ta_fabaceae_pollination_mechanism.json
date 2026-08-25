@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_fabaceae_pollination_mechanism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the type of pollination mechanism found in members of Fabaceae.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How the mechanism works",
+      "marks": 1
+    },
+    {
+      "label": "The name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_working",
+        "kind": "text",
+        "label": "How the mechanism works",
+        "marks": 1,
+        "lines": [
+          "In Fabaceae the two keel petals enclose the",
+          "stamens and the pistil.",
+          "When a heavy insect lands on the keel, the keel",
+          "is pressed down. The anthers and the stigma are",
+          "pushed out through the tip of the keel and touch",
+          "the underside of the insect."
+        ],
+        "why": "The mark is for the movement: pressure on the keel pushes the enclosed stamens out, which is why the mechanism has this name.",
+        "common_mistakes": [
+          "Saying the petals open like a flap. They are pressed down, and the stamens come out of the tip.",
+          "Forgetting that the stigma comes out with the anthers."
+        ],
+        "memory_tip": "The keel is a closed tube and the stamens are pushed out of its tip, the way a piston moves in a cylinder. That movement gives the mechanism its name.",
+        "margin_note": "Three lines. Name the keel petals and say what is pushed out.",
+        "mark_note": "Working"
+      },
+      {
+        "id": "s2_name",
+        "kind": "boxed_final",
+        "label": "The name",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Piston mechanism",
+            "style": "boxed"
+          },
+          "Seen in the pea, Crotalaria and other",
+          "papilionaceous flowers of Fabaceae."
+        ],
+        "why": "The question says \"name the type\", so the exact term is the mark.",
+        "common_mistakes": [
+          "Writing \"valvular mechanism\" or \"explosive mechanism\". Those are other legume mechanisms, not the one named here.",
+          "Writing only \"insect pollination\"."
+        ],
+        "memory_tip": "Keel closed, stamens inside, insect presses, stamens out. That movement is the piston.",
+        "margin_note": "The name alone is the second mark. Box it.",
+        "mark_note": "Name"
+      }
+    ]
+  },
+  "insider_note": "This is a one-word answer question. Add two lines on the working so an examiner can see you know why it is called that."
+}

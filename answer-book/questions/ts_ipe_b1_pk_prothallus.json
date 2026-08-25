@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_prothallus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of prothallus.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "Labelled diagram", "marks": 1 },
+    { "label": "Growth requirements", "marks": 1 },
+    { "label": "Sex organs", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.9, SAQ 6. The book's answer is a bullet list with no figure; the labelled heart-shaped prothallus sketch is added here as the exam-standard support for a 4-mark 'brief account' — its 1 mark in the split is therefore this card's claim, not the book's. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The whole split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          { "text": "Prothallus = free-living fern gametophyte", "style": "boxed" },
+          "In pteridophytes the haploid spores",
+          "germinate into a small, multicellular,",
+          "free-living, mostly photosynthetic",
+          "thalloid gametophyte — the prothallus."
+        ],
+        "why": "Every word of the definition is a marked point: haploid (the spores come from meiosis), multicellular, free-living (independent of the sporophyte), photosynthetic and thalloid.",
+        "common_mistakes": [
+          "Calling the prothallus a sporophyte — it is the gametophyte generation.",
+          "Writing that it is unicellular — the prothallus is multicellular."
+        ],
+        "memory_tip": "Pro-thallus = the simple thallus stage that comes before the fern plant you see.",
+        "margin_note": "The boxed line plus one full sentence earns this mark."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "fern_prothallus",
+          "width": 460,
+          "height": 288,
+          "elements": [
+            { "type": "stroke", "id": "outline", "d": "M 200 85 C 190 60 155 48 138 62 C 112 82 112 122 132 152 C 152 182 178 200 200 218 C 222 200 248 182 268 152 C 288 122 288 82 262 62 C 245 48 210 60 200 85", "ms": 900 },
+            { "type": "stroke", "id": "rhizoid_1", "d": "M 172 196 C 168 210 176 224 170 238", "ms": 260, "w": 1.5 },
+            { "type": "stroke", "id": "rhizoid_2", "d": "M 186 206 C 184 220 192 232 186 246", "ms": 260, "w": 1.5 },
+            { "type": "stroke", "id": "rhizoid_3", "d": "M 200 216 C 200 228 208 240 202 254", "ms": 260, "w": 1.5 },
+            { "type": "stroke", "id": "rhizoid_4", "d": "M 214 206 C 217 220 211 232 216 246", "ms": 260, "w": 1.5 },
+            { "type": "stroke", "id": "antheridium_1", "d": "M 169 178 A 5 5 0 1 0 179 178 A 5 5 0 1 0 169 178", "ms": 200 },
+            { "type": "stroke", "id": "antheridium_2", "d": "M 189 190 A 5 5 0 1 0 199 190 A 5 5 0 1 0 189 190", "ms": 200 },
+            { "type": "stroke", "id": "antheridium_3", "d": "M 207 180 A 5 5 0 1 0 217 180 A 5 5 0 1 0 207 180", "ms": 200 },
+            { "type": "stroke", "id": "archegonium_1", "d": "M 183 104 A 3 3 0 1 0 189 104 A 3 3 0 1 0 183 104", "ms": 180 },
+            { "type": "stroke", "id": "archegonium_1_neck", "d": "M 186 101 L 186 95", "ms": 120, "w": 1.5 },
+            { "type": "stroke", "id": "archegonium_2", "d": "M 197 110 A 3 3 0 1 0 203 110 A 3 3 0 1 0 197 110", "ms": 180 },
+            { "type": "stroke", "id": "archegonium_2_neck", "d": "M 200 107 L 200 101", "ms": 120, "w": 1.5 },
+            { "type": "stroke", "id": "archegonium_3", "d": "M 211 102 A 3 3 0 1 0 217 102 A 3 3 0 1 0 211 102", "ms": 180 },
+            { "type": "stroke", "id": "archegonium_3_neck", "d": "M 214 99 L 214 93", "ms": 120, "w": 1.5 },
+            { "type": "stroke", "id": "leader_notch", "d": "M 200 50 L 200 79", "ms": 240, "w": 1.5 },
+            { "type": "label", "id": "lbl_notch", "x": 152, "y": 42, "text": "Apical notch", "ms": 220, "em": true },
+            { "type": "stroke", "id": "leader_archegonia", "d": "M 222 102 L 294 102", "ms": 300, "w": 1.5 },
+            { "type": "label", "id": "lbl_archegonia", "x": 302, "y": 108, "text": "Archegonia", "ms": 220, "em": true },
+            { "type": "stroke", "id": "leader_antheridia", "d": "M 220 184 L 294 184", "ms": 300, "w": 1.5 },
+            { "type": "label", "id": "lbl_antheridia", "x": 302, "y": 190, "text": "Antheridia", "ms": 220, "em": true },
+            { "type": "stroke", "id": "leader_rhizoids", "d": "M 222 240 L 294 242", "ms": 300, "w": 1.5 },
+            { "type": "label", "id": "lbl_rhizoids", "x": 302, "y": 248, "text": "Rhizoids", "ms": 220, "em": true }
+          ]
+        },
+        "why": "A heart-shaped outline with rhizoids and the two sex organs marked is the exam-standard sketch: archegonia sit near the apical notch, antheridia among the rhizoids near the pointed end.",
+        "common_mistakes": [
+          "Placing archegonia and antheridia at the same spot — archegonia lie near the notch, antheridia among the rhizoids.",
+          "Leaving the labels off — an unlabelled sketch earns little."
+        ],
+        "memory_tip": "Heart shape, notch up: the egg organs sit near the notch; the swimming-gamete organs sit low, among the rhizoids.",
+        "margin_note": "A 3-minute labelled sketch; these four labels are enough."
+      },
+      {
+        "id": "s3_growth",
+        "kind": "text",
+        "label": "Growth requirements",
+        "marks": 1,
+        "mark_note": "Growth needs",
+        "lines": [
+          "The prothallus needs cool, damp, shady",
+          "places to grow, and water for the",
+          "antherozoids to swim to the archegonia.",
+          "This water requirement restricts the",
+          "spread of ferns to moist habitats."
+        ],
+        "why": "The gametophyte has no roots or vascular tissue, and its fertilisation needs a film of water — so the whole fern life cycle stays tied to moist places.",
+        "common_mistakes": [
+          "Writing dry or sunny places — cool, damp and shady is the marked phrase."
+        ],
+        "memory_tip": "Three growth words together: cool, damp, shady — plus water for fertilisation.",
+        "margin_note": "The NCERT phrase 'cool, damp, shady' carries this mark."
+      },
+      {
+        "id": "s4_sex_organs",
+        "kind": "boxed_final",
+        "label": "Sex organs",
+        "marks": 1,
+        "mark_note": "Sex organs",
+        "lines": [
+          { "text": "Prothallus bears antheridia + archegonia", "style": "boxed" },
+          "In homosporous pteridophytes both organs",
+          "form on the same prothallus.",
+          "In heterosporous ones, the male and",
+          "female gametophytes are separate."
+        ],
+        "why": "The prothallus is the sexual stage of the fern life cycle: it carries the antheridia and archegonia. Whether both sit on one prothallus depends on homospory versus heterospory.",
+        "common_mistakes": [
+          "Writing that the fern plant itself bears the sex organs — they form only on the prothallus, the gametophyte."
+        ],
+        "memory_tip": "One spore type → one prothallus with both organs; two spore types → two separate gametophytes.",
+        "margin_note": "The boxed line plus the homosporous/heterosporous contrast completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Definition, diagram, growth needs and sex organs are four short parts — students who write only the definition leave three marks behind."
+}

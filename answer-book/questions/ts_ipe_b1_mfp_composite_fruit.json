@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_composite_fruit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name a plant that has a single fruit developing from the entire inflorescence. What is such a fruit called?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Plant",
+      "marks": 1
+    },
+    {
+      "label": "Name of the fruit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Aggregate versus composite is the confusion this question hunts for - keep one-flower and whole-inflorescence separated.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plant",
+        "kind": "text",
+        "label": "The plant",
+        "marks": 1,
+        "mark_note": "Plant",
+        "lines": [
+          "Pineapple (or jackfruit): the entire",
+          "inflorescence, with its axis and bracts,",
+          "develops into one single fruit."
+        ],
+        "why": "The scale is the point - not one flower but the WHOLE inflorescence becomes one fruit body.",
+        "common_mistakes": [
+          "Naming custard apple. That is an aggregate fruit from ONE flower, not from an inflorescence."
+        ],
+        "memory_tip": "Pineapple and jackfruit - many flowers fused into one big fruit.",
+        "margin_note": "Either plant earns the mark; the inflorescence line shows why."
+      },
+      {
+        "id": "s2_name",
+        "kind": "boxed_final",
+        "label": "Name of such a fruit",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          {
+            "text": "Such a fruit is called a composite fruit",
+            "style": "boxed"
+          },
+          "(a sorosis)."
+        ],
+        "why": "Composite is the asked name; sorosis is the technical term for the pineapple/jackfruit type of composite fruit.",
+        "common_mistakes": [
+          "Writing aggregate. Aggregate = one flower; composite = whole inflorescence."
+        ],
+        "memory_tip": "Composite - composed of the whole inflorescence.",
+        "margin_note": "Composite is the mark; sorosis in brackets is the finishing touch."
+      }
+    ]
+  }
+}

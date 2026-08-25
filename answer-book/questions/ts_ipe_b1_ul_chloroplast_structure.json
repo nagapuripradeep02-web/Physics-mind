@@ -1,0 +1,503 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_chloroplast_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the cell organelle which contains chlorophyll pigments.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The organelle and its envelope",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Thylakoids, grana and lamellae",
+      "marks": 1
+    },
+    {
+      "label": "Stroma and its contents",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_envelope",
+        "kind": "text",
+        "label": "Double envelope",
+        "marks": 1,
+        "mark_note": "Double membrane",
+        "lines": [
+          "The organelle that contains the chlorophyll",
+          "pigments is the chloroplast.",
+          "It is bounded by a double membrane — an outer",
+          "membrane and an inner membrane — with a narrow",
+          "space between them.",
+          "The inner membrane encloses a ground substance",
+          "called the stroma."
+        ],
+        "why": "Naming the organelle and its double envelope sets up everything else, because both the grana and the stroma lie inside that envelope.",
+        "common_mistakes": [
+          "Writing that the chloroplast has one membrane. It has two.",
+          "Saying the chlorophyll is in the stroma. It is in the thylakoid membrane."
+        ],
+        "memory_tip": "Work inwards: two membranes, then stroma, then grana inside the stroma.",
+        "margin_note": "Name the organelle and its two membranes in the first two lines."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "chloroplast_structure",
+          "width": 520,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "outer_membrane",
+              "d": "M 398.0 158.0 L 397.6 163.9 L 396.4 169.9 L 394.4 175.7 L 391.6 181.4 L 388.1 186.9 L 383.8 192.3 L 378.8 197.4 L 373.1 202.2 L 366.8 206.8 L 359.9 211.0 L 352.5 214.8 L 344.5 218.3 L 336.2 221.3 L 327.4 223.9 L 318.3 226.1 L 309.0 227.8 L 299.4 229.0 L 289.7 229.8 L 280.0 230.0 L 270.3 229.8 L 260.6 229.0 L 251.0 227.8 L 241.7 226.1 L 232.6 223.9 L 223.8 221.3 L 215.5 218.3 L 207.5 214.8 L 200.1 211.0 L 193.2 206.8 L 186.9 202.2 L 181.2 197.4 L 176.2 192.3 L 171.9 186.9 L 168.4 181.4 L 165.6 175.7 L 163.6 169.9 L 162.4 163.9 L 162.0 158.0 L 162.4 152.1 L 163.6 146.1 L 165.6 140.3 L 168.4 134.6 L 171.9 129.1 L 176.2 123.7 L 181.2 118.6 L 186.9 113.8 L 193.2 109.2 L 200.1 105.0 L 207.5 101.2 L 215.5 97.7 L 223.8 94.7 L 232.6 92.1 L 241.7 89.9 L 251.0 88.2 L 260.6 87.0 L 270.3 86.2 L 280.0 86.0 L 289.7 86.2 L 299.4 87.0 L 309.0 88.2 L 318.3 89.9 L 327.4 92.1 L 336.2 94.7 L 344.5 97.7 L 352.5 101.2 L 359.9 105.0 L 366.8 109.2 L 373.1 113.8 L 378.8 118.6 L 383.8 123.7 L 388.1 129.1 L 391.6 134.6 L 394.4 140.3 L 396.4 146.1 L 397.6 152.1 L 398.0 158.0 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "inner_membrane",
+              "d": "M 390.0 158.0 L 389.6 163.3 L 388.5 168.5 L 386.6 173.7 L 384.0 178.8 L 380.7 183.7 L 376.7 188.5 L 372.1 193.0 L 366.8 197.3 L 360.9 201.3 L 354.5 205.1 L 347.6 208.5 L 340.2 211.6 L 332.4 214.3 L 324.2 216.6 L 315.7 218.5 L 307.0 220.0 L 298.1 221.1 L 289.1 221.8 L 280.0 222.0 L 270.9 221.8 L 261.9 221.1 L 253.0 220.0 L 244.3 218.5 L 235.8 216.6 L 227.6 214.3 L 219.8 211.6 L 212.4 208.5 L 205.5 205.1 L 199.1 201.3 L 193.2 197.3 L 187.9 193.0 L 183.3 188.5 L 179.3 183.7 L 176.0 178.8 L 173.4 173.7 L 171.5 168.5 L 170.4 163.3 L 170.0 158.0 L 170.4 152.7 L 171.5 147.5 L 173.4 142.3 L 176.0 137.2 L 179.3 132.3 L 183.3 127.5 L 187.9 123.0 L 193.2 118.7 L 199.1 114.7 L 205.5 110.9 L 212.4 107.5 L 219.8 104.4 L 227.6 101.7 L 235.8 99.4 L 244.3 97.5 L 253.0 96.0 L 261.9 94.9 L 270.9 94.2 L 280.0 94.0 L 289.1 94.2 L 298.1 94.9 L 307.0 96.0 L 315.7 97.5 L 324.2 99.4 L 332.4 101.7 L 340.2 104.4 L 347.6 107.5 L 354.5 110.9 L 360.9 114.7 L 366.8 118.7 L 372.1 123.0 L 376.7 127.5 L 380.7 132.3 L 384.0 137.2 L 386.6 142.3 L 388.5 147.5 L 389.6 152.7 L 390.0 158.0 Z",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "granum1_disc1",
+              "d": "M 212.0 124.0 L 252.0 124.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum1_disc2",
+              "d": "M 212.0 132.0 L 252.0 132.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum1_disc3",
+              "d": "M 212.0 140.0 L 252.0 140.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum1_disc4",
+              "d": "M 212.0 148.0 L 252.0 148.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum1_disc5",
+              "d": "M 212.0 156.0 L 252.0 156.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum2_disc1",
+              "d": "M 304.0 116.0 L 344.0 116.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum2_disc2",
+              "d": "M 304.0 124.0 L 344.0 124.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum2_disc3",
+              "d": "M 304.0 132.0 L 344.0 132.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum2_disc4",
+              "d": "M 304.0 140.0 L 344.0 140.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum2_disc5",
+              "d": "M 304.0 148.0 L 344.0 148.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum3_disc1",
+              "d": "M 254.0 182.0 L 294.0 182.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum3_disc2",
+              "d": "M 254.0 190.0 L 294.0 190.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum3_disc3",
+              "d": "M 254.0 198.0 L 294.0 198.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum3_disc4",
+              "d": "M 254.0 206.0 L 294.0 206.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "granum3_disc5",
+              "d": "M 254.0 214.0 L 294.0 214.0",
+              "ms": 170,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_1",
+              "d": "M 252 132 C 272 118 288 122 304 128",
+              "ms": 420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_2",
+              "d": "M 238 158 C 236 168 244 176 256 184",
+              "ms": 380,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_3",
+              "d": "M 294 198 C 312 190 324 172 330 150",
+              "ms": 420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "lamella_4",
+              "d": "M 212 140 C 194 142 182 150 178 160",
+              "ms": 380,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "circular_dna",
+              "d": "M 222.0 186.0 L 222.8 187.1 L 223.3 188.4 L 223.4 189.6 L 223.2 190.9 L 222.6 192.1 L 221.7 193.2 L 220.3 194.1 L 218.8 194.8 L 217.0 195.2 L 215.2 195.5 L 213.4 195.5 L 211.7 195.5 L 210.1 195.3 L 208.7 195.2 L 207.3 195.1 L 206.0 195.0 L 204.7 195.1 L 203.3 195.2 L 201.9 195.3 L 200.3 195.5 L 198.6 195.5 L 196.8 195.5 L 195.0 195.2 L 193.2 194.8 L 191.7 194.1 L 190.3 193.2 L 189.4 192.1 L 188.8 190.9 L 188.6 189.6 L 188.7 188.4 L 189.2 187.1 L 190.0 186.0 L 190.9 185.0 L 191.9 184.1 L 192.8 183.3 L 193.7 182.5 L 194.4 181.7 L 195.0 181.0 L 195.6 180.1 L 196.1 179.2 L 196.7 178.2 L 197.4 177.2 L 198.3 176.1 L 199.5 175.1 L 200.8 174.3 L 202.4 173.6 L 204.2 173.2 L 206.0 173.0 L 207.8 173.2 L 209.6 173.6 L 211.2 174.3 L 212.5 175.1 L 213.7 176.1 L 214.6 177.2 L 215.3 178.2 L 215.9 179.2 L 216.4 180.1 L 217.0 181.0 L 217.6 181.7 L 218.3 182.5 L 219.2 183.3 L 220.1 184.1 L 221.1 185.0 L 222.0 186.0 Z",
+              "ms": 420,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "starch_granule",
+              "d": "M 365.0 186.0 L 364.6 188.7 L 363.3 191.2 L 361.3 193.5 L 358.6 195.4 L 355.4 196.8 L 351.8 197.7 L 348.0 198.0 L 344.2 197.7 L 340.6 196.8 L 337.4 195.4 L 334.7 193.5 L 332.7 191.2 L 331.4 188.7 L 331.0 186.0 L 331.4 183.3 L 332.7 180.8 L 334.7 178.5 L 337.4 176.6 L 340.6 175.2 L 344.2 174.3 L 348.0 174.0 L 351.8 174.3 L 355.4 175.2 L 358.6 176.6 L 361.3 178.5 L 363.3 180.8 L 364.6 183.3 L 365.0 186.0 Z",
+              "ms": 340,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "lipid_droplet",
+              "d": "M 240.0 206.0 L 239.8 207.8 L 239.2 209.5 L 238.3 211.0 L 237.0 212.3 L 235.5 213.2 L 233.8 213.8 L 232.0 214.0 L 230.2 213.8 L 228.5 213.2 L 227.0 212.3 L 225.7 211.0 L 224.8 209.5 L 224.2 207.8 L 224.0 206.0 L 224.2 204.2 L 224.8 202.5 L 225.7 201.0 L 227.0 199.7 L 228.5 198.8 L 230.2 198.2 L 232.0 198.0 L 233.8 198.2 L 235.5 198.8 L 237.0 199.7 L 238.3 201.0 L 239.2 202.5 L 239.8 204.2 L 240.0 206.0 Z",
+              "ms": 240,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_1",
+              "d": "M 199.0 128.0 L 198.6 129.5 L 197.5 130.6 L 196.0 131.0 L 194.5 130.6 L 193.4 129.5 L 193.0 128.0 L 193.4 126.5 L 194.5 125.4 L 196.0 125.0 L 197.5 125.4 L 198.6 126.5 L 199.0 128.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_2",
+              "d": "M 209.0 152.0 L 208.6 153.5 L 207.5 154.6 L 206.0 155.0 L 204.5 154.6 L 203.4 153.5 L 203.0 152.0 L 203.4 150.5 L 204.5 149.4 L 206.0 149.0 L 207.5 149.4 L 208.6 150.5 L 209.0 152.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_3",
+              "d": "M 253.0 176.0 L 252.6 177.5 L 251.5 178.6 L 250.0 179.0 L 248.5 178.6 L 247.4 177.5 L 247.0 176.0 L 247.4 174.5 L 248.5 173.4 L 250.0 173.0 L 251.5 173.4 L 252.6 174.5 L 253.0 176.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_4",
+              "d": "M 291.0 160.0 L 290.6 161.5 L 289.5 162.6 L 288.0 163.0 L 286.5 162.6 L 285.4 161.5 L 285.0 160.0 L 285.4 158.5 L 286.5 157.4 L 288.0 157.0 L 289.5 157.4 L 290.6 158.5 L 291.0 160.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_5",
+              "d": "M 355.0 152.0 L 354.6 153.5 L 353.5 154.6 L 352.0 155.0 L 350.5 154.6 L 349.4 153.5 L 349.0 152.0 L 349.4 150.5 L 350.5 149.4 L 352.0 149.0 L 353.5 149.4 L 354.6 150.5 L 355.0 152.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_6",
+              "d": "M 333.0 210.0 L 332.6 211.5 L 331.5 212.6 L 330.0 213.0 L 328.5 212.6 L 327.4 211.5 L 327.0 210.0 L 327.4 208.5 L 328.5 207.4 L 330.0 207.0 L 331.5 207.4 L 332.6 208.5 L 333.0 210.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_7",
+              "d": "M 271.0 116.0 L 270.6 117.5 L 269.5 118.6 L 268.0 119.0 L 266.5 118.6 L 265.4 117.5 L 265.0 116.0 L 265.4 114.5 L 266.5 113.4 L 268.0 113.0 L 269.5 113.4 L 270.6 114.5 L 271.0 116.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_8",
+              "d": "M 371.0 152.0 L 370.6 153.5 L 369.5 154.6 L 368.0 155.0 L 366.5 154.6 L 365.4 153.5 L 365.0 152.0 L 365.4 150.5 L 366.5 149.4 L 368.0 149.0 L 369.5 149.4 L 370.6 150.5 L 371.0 152.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_outer",
+              "d": "M 100 32 L 196 107",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_outer",
+              "x": 6,
+              "y": 26,
+              "text": "Outer membrane",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_inner",
+              "d": "M 368 32 L 352 110",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_inner",
+              "x": 340,
+              "y": 26,
+              "text": "Inner membrane",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lamella",
+              "d": "M 160 104 L 184 154",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_lamella",
+              "x": 6,
+              "y": 110,
+              "text": "Stromal lamella",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dna",
+              "d": "M 130 164 L 190 184",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_dna",
+              "x": 6,
+              "y": 168,
+              "text": "Circular DNA",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_grana",
+              "d": "M 410 96 L 346 120",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_grana",
+              "x": 414,
+              "y": 100,
+              "text": "Grana",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_stroma",
+              "d": "M 410 154 L 366 158",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_stroma",
+              "x": 414,
+              "y": 158,
+              "text": "Stroma",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ribo",
+              "d": "M 410 212 L 338 209",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ribo",
+              "x": 414,
+              "y": 216,
+              "text": "Ribosomes",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lipid",
+              "d": "M 110 266 L 224 210",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_lipid",
+              "x": 6,
+              "y": 272,
+              "text": "Lipid droplet",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_starch",
+              "d": "M 350 266 L 350 200",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_starch",
+              "x": 290,
+              "y": 272,
+              "text": "Starch granule",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The examiner looks for four things in the right places: outer and inner membrane on the envelope, grana as stacks inside, and stroma as the ground substance around them.",
+        "common_mistakes": [
+          "Drawing the grana outside the envelope. They lie inside the stroma.",
+          "Drawing a single boundary line instead of a double membrane."
+        ],
+        "memory_tip": "Draw the envelope, then the stroma, then the stacks of flat discs inside it.",
+        "margin_note": "A 3-minute sketch. These labels are what carries the mark."
+      },
+      {
+        "id": "s3_grana",
+        "kind": "text",
+        "label": "Thylakoids and grana",
+        "marks": 1,
+        "mark_note": "Grana",
+        "lines": [
+          "Inside the stroma lie flattened membranous",
+          "sacs called thylakoids. Thylakoids stacked",
+          "one above another form a granum.",
+          "Flat tubes called stroma lamellae join the",
+          "thylakoids of different grana.",
+          "The photosynthetic pigments, including the",
+          "chlorophylls, lie in the thylakoid membrane."
+        ],
+        "why": "Stacking the thylakoids packs a very large membrane area into a small organelle, and that membrane is where the light reaction takes place.",
+        "common_mistakes": [
+          "Writing that grana are made of stroma lamellae. Lamellae connect grana; they are not the stacks.",
+          "Placing the pigments in the stroma instead of the thylakoid membrane."
+        ],
+        "memory_tip": "Thylakoid is one disc, granum is the stack, lamella is the flat tube that joins two stacks.",
+        "margin_note": "Thylakoid, granum and lamella must all be named."
+      },
+      {
+        "id": "s4_stroma",
+        "kind": "boxed_final",
+        "label": "Stroma contents",
+        "marks": 1,
+        "mark_note": "Stroma",
+        "lines": [
+          {
+            "text": "Chloroplast = envelope + grana + stroma",
+            "style": "boxed"
+          },
+          "The stroma holds the enzymes of the dark",
+          "reaction, a circular DNA molecule and 70S",
+          "ribosomes.",
+          "Starch granules and lipid droplets are stored",
+          "in it.",
+          "Because it has its own DNA and ribosomes the",
+          "chloroplast is a semi-autonomous organelle."
+        ],
+        "why": "The DNA and the 70S ribosomes are the marked point: they are prokaryotic features, and they are why the chloroplast can make some of its own proteins and divide on its own.",
+        "common_mistakes": [
+          "Writing 80S ribosomes. The chloroplast has 70S, like a prokaryote.",
+          "Leaving out the circular DNA, which is what makes it semi-autonomous."
+        ],
+        "memory_tip": "Circular DNA plus 70S ribosomes equals semi-autonomous. The mitochondrion has exactly the same pair.",
+        "margin_note": "The DNA and 70S ribosome line is the one most often missed."
+      }
+    ]
+  },
+  "insider_note": "The question never uses the word chloroplast, so open by naming it — the diagram and the grana description then carry most of the marks."
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_periderm_formation_dicot_stem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is periderm? How does periderm formation take place in the dicot stem?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What periderm is",
+      "marks": 1
+    },
+    {
+      "label": "Why a new meristem is needed",
+      "marks": 1
+    },
+    {
+      "label": "Cork cambium and what it cuts off",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK SCAN DAMAGE RECORDED: the printed answer for this question is broken mid-sentence ('by the divisi... of vascular cambium the epidermal layer (... cortex may break'). The card reconstructs the standard NCERT account: girth increases, the epidermis and outer cortex rupture, a cortical layer becomes the phellogen."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What periderm is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "One sentence for the meaning, then the three names as a short list.",
+        "lines": [
+          "Periderm is the protective covering formed on",
+          "the outside of a dicot stem during secondary",
+          "growth.",
+          "Three layers taken together make the periderm:",
+          "cork (phellem),",
+          "cork cambium (phellogen), and",
+          "secondary cortex (phelloderm)."
+        ],
+        "why": "The question asks what periderm is before it asks how it forms, so the three names must come first. Naming the three layers also fixes the order in which they are made.",
+        "common_mistakes": [
+          "Writing that periderm is only the cork. Cork is one of its three layers.",
+          "Giving the English names without the technical ones. Phellem, phellogen and phelloderm are the marked words."
+        ],
+        "memory_tip": "Phellem, phellogen, phelloderm: outside, middle, inside."
+      },
+      {
+        "id": "s2_need",
+        "kind": "text",
+        "label": "Why a new meristem is needed",
+        "marks": 1,
+        "mark_note": "Why it forms",
+        "margin_note": "Three short lines. This is the reasoning mark, so do not cut it.",
+        "lines": [
+          "As the vascular cambium keeps dividing, the",
+          "stem grows in girth.",
+          "The epidermis and the outer cortex cannot",
+          "stretch any further, so they break and are",
+          "lost.",
+          "The stem now has no protective covering, so a",
+          "new meristem has to make one."
+        ],
+        "why": "Periderm exists because of a mechanical problem: the old covering was made for a thin stem and cannot grow with it. Stating that problem is what makes the rest of the answer reasoned rather than remembered.",
+        "common_mistakes": [
+          "Skipping this step and starting with the cork cambium. The examiner looks for the reason.",
+          "Saying the epidermis stretches. It ruptures."
+        ],
+        "memory_tip": "The stem grows thicker than its old covering, so a new covering has to be made from inside."
+      },
+      {
+        "id": "s3_phellogen",
+        "kind": "boxed_final",
+        "label": "Cork cambium and its products",
+        "marks": 2,
+        "mark_note": "Cork cambium and both products",
+        "margin_note": "Two marks here. Name both products and say which side each is cut off on.",
+        "lines": [
+          "A layer of cells in the cortex becomes",
+          "meristematic again. This new lateral meristem",
+          "is the cork cambium or phellogen.",
+          "The cork cambium divides and cuts off cells on",
+          "both of its sides.",
+          "Outer side: cork or phellem. Its walls are",
+          "thickened with suberin, so cork is impermeable",
+          "to water and gases and protects the stem.",
+          "Inner side: secondary cortex or phelloderm,",
+          "which is a living parenchymatous tissue.",
+          {
+            "text": "Periderm = phellem + phellogen + phelloderm",
+            "style": "boxed"
+          }
+        ],
+        "why": "One meristem cutting off cells on two sides explains the whole structure in a single sentence: cork outside because that is where protection is needed, secondary cortex inside because that is where living tissue is needed.",
+        "common_mistakes": [
+          "Saying the cork cambium makes cork only. It cuts off cells on both sides.",
+          "Writing phelloderm outside and phellem inside. Cork is always the outer product.",
+          "Leaving out suberin. It is the reason cork is waterproof."
+        ],
+        "memory_tip": "Phellogen is the middle layer, so it makes one product outward and one inward."
+      }
+    ]
+  },
+  "insider_note": "The mark for periderm formation is lost most often by naming cork alone. Say clearly that the phellogen cuts off cells on both sides."
+}

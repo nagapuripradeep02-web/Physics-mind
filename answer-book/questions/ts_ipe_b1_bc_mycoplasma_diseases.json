@@ -1,0 +1,81 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_mycoplasma_diseases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two diseases caused by mycoplasma.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Disease in plants",
+      "marks": 1
+    },
+    {
+      "label": "Disease in animals",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plant_disease",
+        "kind": "text",
+        "label": "Disease in plants",
+        "marks": 1,
+        "mark_note": "Plant disease",
+        "lines": [
+          "In plants: witches' broom."
+        ],
+        "why": "Mycoplasma are the smallest living cells and lack a cell wall; some infect plants, and witches' broom is the plant disease named in the syllabus.",
+        "common_mistakes": [
+          "Writing a fungal disease such as wheat rust here. Wheat rust is caused by Puccinia, a fungus."
+        ],
+        "memory_tip": "One plant disease, one animal disease: witches' broom, then pleuropneumonia.",
+        "margin_note": "Naming the disease is enough; adding the host (plants) makes it exact."
+      },
+      {
+        "id": "s2_animal_disease",
+        "kind": "boxed_final",
+        "label": "Disease in animals",
+        "marks": 1,
+        "mark_note": "Animal disease",
+        "lines": [
+          "In animals: pleuropneumonia in cattle.",
+          {
+            "text": "Witches' broom (plants); pleuropneumonia (cattle).",
+            "style": "boxed"
+          }
+        ],
+        "why": "The second named disease completes the two the question asks for; pleuropneumonia in cattle is the animal example in the syllabus.",
+        "common_mistakes": [
+          "Writing pneumonia alone. The named disease is pleuropneumonia, in cattle.",
+          "Attributing these diseases to viruses. Mycoplasma are wall-less cells, not viruses."
+        ],
+        "memory_tip": "Pleuro-pneumonia — the longer word is the cattle disease.",
+        "margin_note": "One line per disease; the spelling of pleuropneumonia matters."
+      }
+    ]
+  },
+  "insider_note": "Each correctly named disease earns one mark; a misspelt pleuropneumonia is the common loss here."
+}

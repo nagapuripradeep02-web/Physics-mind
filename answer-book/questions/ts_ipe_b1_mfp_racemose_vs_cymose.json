@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_racemose_vs_cymose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between racemose and cymose inflorescences.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Racemose",
+      "marks": 1
+    },
+    {
+      "label": "Cymose",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERROR RECORDED: the example is printed 'Jasminun'; the correct genus is Jasminum."
+  },
+  "insider_note": "Axis growth and flower order are the two paired facts; examples make the table complete.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_racemose",
+        "kind": "text",
+        "label": "Racemose",
+        "marks": 1,
+        "mark_note": "Racemose",
+        "lines": [
+          "Racemose: the peduncle (main axis) grows",
+          "indefinitely; it never ends in a flower.",
+          "The flowers are arranged in acropetal order -",
+          "oldest at the base, youngest at the tip.",
+          "Ex: Crotalaria."
+        ],
+        "why": "One fact decides everything: the axis keeps growing. Because the tip stays a growing point, new (young) flowers keep appearing at the top - acropetal order.",
+        "common_mistakes": [
+          "Writing basipetal for racemose. Acropetal order follows from the growing tip."
+        ],
+        "memory_tip": "Racemose keeps rising; acropetal - apex youngest.",
+        "margin_note": "Growth of the axis + flower order + one example."
+      },
+      {
+        "id": "s2_cymose",
+        "kind": "boxed_final",
+        "label": "Cymose",
+        "marks": 1,
+        "mark_note": "Cymose",
+        "lines": [
+          {
+            "text": "Cymose: the peduncle ends in a flower, so",
+            "style": "boxed"
+          },
+          "its growth is definite (limited).",
+          "The flowers are arranged in basipetal order -",
+          "youngest at the base side, oldest at the top.",
+          "Ex: jasmine (Jasminum)."
+        ],
+        "why": "The cymose axis is used up by its terminal flower, so growth stops and later flowers appear below it - basipetal order. Each column of the table mirrors the other.",
+        "common_mistakes": [
+          "Writing that the cymose axis grows indefinitely - that is the racemose character."
+        ],
+        "memory_tip": "Cymose closes with a flower; basipetal - the base gets the young ones.",
+        "margin_note": "Mirror the racemose column point for point; the book's example spelling is 'Jasminun' - write Jasminum."
+      }
+    ]
+  }
+}
