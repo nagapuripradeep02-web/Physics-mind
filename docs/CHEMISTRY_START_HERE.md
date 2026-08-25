@@ -120,6 +120,46 @@ and never silently correct one either. Recorded so far:
 Sign conventions in Thermodynamics are the highest-risk area: use ΔU = q + w with w = work done
 **on** the system, ΔH = ΔU + Δn(g)RT counting gaseous moles only, and ΔG = ΔH − TΔS. If the book
 uses the older "work done by" convention anywhere, write the NCERT one and record the difference.
+*(Audited 2026-08-25: the NCERT convention is applied consistently on all 25 ch.6 cards. Only two
+cards write a work term at all, which is why it held — q is positive-in under both conventions.)*
+
+## 5a. The card must not contradict ITSELF — what the 2026-08-25 audit found
+
+Seven examiners read all 196 cards and found 11 errors, 36 ambiguities and 54 gaps. **The
+arithmetic was sound** — chapters 4 and 5, 76 numerical cards, had every boxed answer,
+half-reaction, molar mass and oxidation number recomputed and none was wrong. Every error was in
+the **explanation layer**, which is exactly the layer Vidi is grounded on and no gate reads.
+
+The recurring shapes, in the order they cost marks:
+
+1. **A `common_mistakes` entry that names the CORRECT move as the error.** Four separate cases:
+   `cb_bond_order_he2` listed "bonding minus antibonding" (its own boxed formula);
+   `ce_lechatelier_principle` called "the system opposes the change" a mistake (NCERT's own
+   wording); `som_ke_4g_methane` named *subtracting* as the error where 273 − 73 = 200 is
+   correct; `cp_highest_ea_en` named chlorine where the trap is fluorine. **Read every mistakes
+   entry against the step's own marked lines before shipping.**
+2. **`insider_note` contradicting its own `mark_split`.** `as_photoelectric_effect` claimed three
+   of four marks on a 2M step; `td_second_law` said "either form" against a 1M+1M split, and that
+   one produced a harmful reply. The insider note is prose written last and checked by nothing —
+   re-read it against the split every time.
+3. **A trend stated as absolute while a sibling card boxes the exception.**
+   `cp_periodic_properties_trends` gave the IE and electron-gain trends flat while
+   `cp_ie_nitrogen_oxygen` and `cp_ea_chlorine_fluorine` box N > O and Cl > F. Silence about an
+   exception is what makes an AI state a trend backwards.
+4. **A count that disagrees with the card.** A margin note saying "four numbered points" on a
+   five-point answer, where the fifth point is the one the mistakes line says must not be dropped.
+
+**The cut limit you cannot author around.** `applyCut` in `answer-book/notebook.js` overrides only
+`marks`, `label`, `lines`, `margin_note`, `why`, `memory_tip`, `mark_note`. **`common_mistakes`
+and `insider_note` are NOT cut-overridable** — a cut-level key for either is silently dropped. So
+a card served at two lengths must have BASE text that is true at every length. Four cards were
+shipping 4-mark insider notes and 4-mark mistakes to 2-mark students ("parts (a) and (b)" on a
+card with no parts; "the applications carry half the marks" on a form where they earn nothing).
+
+**What a grader sees that an examiner cannot.** The examiner pass reads raw JSON; the audit's
+graders read the ASSEMBLED grounding context, and that is where the insider/split contradictions,
+the two `STARS: 0` renderings, and the truncated chapter roster all surfaced. Run both, and run
+the audit second so its findings can be fed back.
 
 ## 6. The enumeration sweep
 

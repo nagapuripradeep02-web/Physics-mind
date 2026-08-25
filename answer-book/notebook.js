@@ -3522,12 +3522,19 @@
       // fixes a separate contradiction they all hit: cards carrying STARS 0 alongside
       // five Asked years. Stars are the book's rank; the Asked line is exam history; the
       // context never said they were independent.
+      // Compute the Asked line FIRST: the rank gloss may only point at it when
+      // it exists. Measured 2026-08-25 -- only 7 of 204 chemistry cards carry
+      // one, and an earlier version of this gloss told the model to read a line
+      // that was absent on the other 197. Four graders reported the dangling
+      // pointer; every reply had to improvise the absence.
+      var asked = askedLine(question);
       if (e) {
         out.push(e.source === 'enumerated'
-          ? 'STARS: ' + e.stars + ' — this question is PREDICTED: the source book does not ask it, so it carries no frequency rank and no exam history. Do not tell the student it is frequently asked.'
-          : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). A 0 does NOT mean it was never asked: read the Asked line below for exam history, and report the two separately.');
+          ? 'STARS: ' + e.stars + ' — this question is PREDICTED: the source book does not ask it, so it carries no frequency rank and no exam history. Do not tell the student it is frequently asked, and do not say the book ranked it.'
+          : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
+          + (asked ? ' An Asked line below gives this question’s exam history.'
+                   : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
       }
-      var asked = askedLine(question);
       if (asked) out.push(asked);
       var split = [];
       for (var i = 0; i < cut.mark_split.length; i++) {
@@ -3538,8 +3545,15 @@
       // teacher confirms it (verification.needs_teacher_verification is true on
       // all 157). The model must be able to say so when asked instead of
       // presenting the split as a board-issued rubric; the persona governs WHEN.
+      // An enumerated question is NOT in the source book, so the book cannot
+      // have printed a mark split for it. Saying otherwise launders an authored
+      // split as a sourced one -- four graders in four slices named this the
+      // highest-value defect in the round-2 corpus, because this is the sentence
+      // that licenses a reply to say "the book gives 1 mark for ...".
       if (question.verification && question.verification.needs_teacher_verification) {
-        out.push('VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
+        out.push(e && e.source === 'enumerated'
+          ? 'VERIFICATION: this question is predicted, so this mark split was authored for it, not copied from the source book, and no board teacher has confirmed it. Never call it the book’s split.'
+          : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic
       // greeting; the model was never given it, so it could not build on it.
