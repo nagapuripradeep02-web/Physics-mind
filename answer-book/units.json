@@ -8165,6 +8165,61 @@
           "question_id": "ts_ipe_b1_ea_plant_succession_primary_vs_secondary"
         }
       ]
+    },
+    {
+      "number": 7,
+      "name": "Periplaneta americana (Zoology)",
+      "subject": "zoology",
+      "questions": [
+        {
+          "ref": "saq50",
+          "section": "SAQ",
+          "number": 50,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of the mouthparts of cockroach.",
+          "question_id": "ts_ipe_z1_pa_mouthparts_diagram"
+        },
+        {
+          "ref": "saq51",
+          "section": "SAQ",
+          "number": 51,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of the salivary apparatus of cockroach.",
+          "question_id": "ts_ipe_z1_pa_salivary_apparatus"
+        },
+        {
+          "ref": "saq52",
+          "section": "SAQ",
+          "number": 52,
+          "stars": 0,
+          "text": "Draw a neat labelled diagram of ommatidium.",
+          "question_id": "ts_ipe_z1_pa_ommatidium_diagram"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the digestive system of cockroach with the help of a neat labelled diagram.",
+          "question_id": "ts_ipe_z1_pa_laq_digestive_system"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Describe the blood circulatory system of Periplaneta in detail and draw a neat and labelled diagram of it.",
+          "question_id": "ts_ipe_z1_pa_laq_blood_circulatory_system"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Describe the respiratory system of cockroach with the help of neat and labelled diagrams.",
+          "question_id": "ts_ipe_z1_pa_laq_respiratory_system"
+        }
+      ]
     }
   ]
 }

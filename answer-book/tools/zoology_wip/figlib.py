@@ -1,6 +1,6 @@
 """Shared helpers for the Periplaneta figure generators (unit 7 pilot).
 All paths use ABSOLUTE commands so mirror() can flip them."""
-import math, re
+import math, re, json, io
 
 def f(v):
     s = f"{v:.1f}"
@@ -81,7 +81,11 @@ def tube(ctrl, hw, n=8):
     return poly(L), poly(R)
 
 def scallop(cx, cy, rx, ry, n=8, bulge=1.25, phase=0.0):
-    """Lobed blob: n outward-bulging arcs around an ellipse (a gland lobe)."""
+    """Lobed blob: n OUTWARD-bulging arcs around an ellipse (a rounded acinar gland lobe).
+
+    sweep-flag is 1: the points run clockwise on screen (SVG y is down), so a
+    clockwise arc bows AWAY from the centre. sweep 0 bows inward and turns every
+    vertex into a spike — that was the starburst bug in the pilot figures."""
     pts = []
     for k in range(n):
         a = phase + 2*math.pi*k/n
@@ -91,8 +95,21 @@ def scallop(cx, cy, rx, ry, n=8, bulge=1.25, phase=0.0):
         x1, y1 = pts[(k+1) % n]
         x0, y0 = pts[k]
         r = math.hypot(x1-x0, y1-y0) / 2 * bulge
-        d += f" A {f(r)} {f(r)} 0 0 0 {f(x1)} {f(y1)}"
+        d += f" A {f(r)} {f(r)} 0 0 1 {f(x1)} {f(y1)}"
     return d
+
+def finger(bx, by, tx, ty, hw=4.0):
+    """One finger-like diverticulum: two parallel sides + a ROUNDED tip cap.
+
+    Open at the base (bx,by) because the finger merges into the gut wall. Used
+    for the hepatic caecae — pointed lens shapes read as spikes, not fingers."""
+    ux, uy = tx - bx, ty - by
+    m = math.hypot(ux, uy) or 1
+    ux, uy = ux/m, uy/m
+    nx, ny = -uy, ux
+    return (f"M {f(bx - nx*hw)} {f(by - ny*hw)} L {f(tx - nx*hw)} {f(ty - ny*hw)} "
+            f"A {f(hw)} {f(hw)} 0 0 1 {f(tx + nx*hw)} {f(ty + ny*hw)} "
+            f"L {f(bx + nx*hw)} {f(by + ny*hw)}")
 
 _TOK = re.compile(r'([MLHVCSQTAZ])|(-?\d*\.?\d+)')
 def mirror(d, cx):
@@ -192,6 +209,30 @@ def path_len(d):
     use()
     return L
 
+_WIDTHS = {}
+try:
+    import os as _os
+    _p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'label_widths.json')
+    _WIDTHS = json.load(io.open(_p, encoding='utf-8'))
+except Exception:
+    pass
+
+
+def label_w(text, sm=False, em=False):
+    """Width of a rendered Kalam label.
+
+    Kalam is proportional and per-char width runs 6.7-9.9 u at 17px depending on
+    the letters, so a uniform estimate is wrong in BOTH directions: it clipped
+    'Basement membrane' and false-failed 'Ventral longitudinal trunk'. Prefer the
+    MEASURED width (label_widths.json, dumped by measure.mjs from the real render);
+    fall back to the observed worst case for a string never rendered yet."""
+    size = 25 if em else (17 if sm else 22)
+    hit = _WIDTHS.get(f'{size}|{text}')
+    if hit is not None:
+        return hit
+    return len(text) * (14.5 if em else (9.9 if sm else 12.8))
+
+
 def check(elems, width, height, name):
     """Author-side sanity: stroke length cap, label bounds, label clearance."""
     bad = []
@@ -201,8 +242,7 @@ def check(elems, width, height, name):
             L = path_len(e['d'])
             if L > 660: bad.append(f"{name}: stroke {e['id']} ~{L:.0f} u (>650)")
         elif e['type'] == 'label':
-            per = 8.5 * (1.15 if e.get('em') else (0.8 if e.get('sm') else 1.0))
-            w = per * len(e['text'])
+            w = label_w(e['text'], sm=e.get('sm', False), em=e.get('em', False))
             h = 25 if e.get('em') else (17 if e.get('sm') else 22)
             x0, x1 = e['x'], e['x'] + w
             if x0 < 0 or x1 > width or e['y'] < 20 or e['y'] > height - 2:

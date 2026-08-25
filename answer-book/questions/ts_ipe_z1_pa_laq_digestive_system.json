@@ -1,0 +1,666 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_laq_digestive_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the digestive system of cockroach with the help of a neat labelled diagram.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Parts of the digestive system",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Foregut",
+      "marks": 2
+    },
+    {
+      "label": "Midgut",
+      "marks": 1
+    },
+    {
+      "label": "Hindgut",
+      "marks": 1
+    },
+    {
+      "label": "Digestive glands",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.19-20, LAQ 6). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP M-20], [TS May-19] and [TS Mar-19]; the two 2019 Telangana sittings are stored as one 2019 entry because the month is not stored. ADDED BEYOND THE BOOK: the number of Malpighian tubules (about 100 to 150) is standard NCERT and is not printed in this book's answer. FIGURE SCOPE: the book prints a shaded drawing of the whole canal; this card draws the simplified exam figure a student can reproduce — pharynx, oesophagus, crop, gizzard, midgut with eight finger-like hepatic caecae, Malpighian tubules, ileum, colon, rectum, and the salivary glands with their reservoirs beside the crop."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Periplaneta americana · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parts",
+        "kind": "text",
+        "label": "Parts of the system",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "The digestive system of the cockroach has two",
+          "parts — the alimentary canal and the",
+          "digestive glands.",
+          "The alimentary canal runs from mouth to anus.",
+          "It has three regions: foregut (stomodaeum),",
+          "midgut (mesenteron) and hindgut",
+          "(proctodaeum)."
+        ],
+        "why": "The three regions are the plan of the whole answer, so naming them first tells the examiner the order the description will follow and stops parts being written out of place.",
+        "common_mistakes": [
+          "Writing only the alimentary canal. The digestive glands are the second part and carry their own mark.",
+          "Mixing the region names up. Foregut = stomodaeum, midgut = mesenteron, hindgut = proctodaeum."
+        ],
+        "memory_tip": "Fore, mid, hind: stomodaeum, mesenteron, proctodaeum — front to back, in that order.",
+        "margin_note": "Two parts and the three regions, with both names for each region. Four short lines are enough."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — alimentary canal",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_alimentary_canal",
+          "width": 520,
+          "height": 384,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — foregut: pharynx, oesophagus and crop"
+            },
+            {
+              "type": "stroke",
+              "id": "mouth",
+              "d": "M 250 27 Q 260 21 270 27",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_l",
+              "d": "M 250 27 L 251 48 L 254 53 L 254 100",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "pharynx_r",
+              "d": "M 270 27 L 269 48 L 266 53 L 266 100",
+              "ms": 1060
+            },
+            {
+              "type": "stroke",
+              "id": "crop_l",
+              "d": "M 254 100 C 226 118 216 172 240 200",
+              "ms": 1600
+            },
+            {
+              "type": "stroke",
+              "id": "crop_r",
+              "d": "M 266 100 C 294 118 304 172 280 200",
+              "ms": 1600
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — gizzard and midgut with hepatic caecae"
+            },
+            {
+              "type": "stroke",
+              "id": "gizzard_l",
+              "d": "M 240 200 C 231 210 232 229 250 236",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "gizzard_r",
+              "d": "M 280 200 C 289 210 288 229 270 236",
+              "ms": 630
+            },
+            {
+              "type": "stroke",
+              "id": "gizzard_teeth",
+              "d": "M 253 207 L 252 228 M 260 205 L 260 229 M 267 207 L 268 228",
+              "ms": 940,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "midgut_l",
+              "d": "M 250 236 L 252 300",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "midgut_r",
+              "d": "M 270 236 L 268 300",
+              "ms": 910
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_l1",
+              "d": "M 248.2 241.1 L 221.2 225.1 A 3.6 3.6 0 0 1 224.8 218.9 L 251.8 234.9",
+              "ms": 1050
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_l2",
+              "d": "M 249.1 250.5 L 215.1 241.5 A 3.6 3.6 0 0 1 216.9 234.5 L 250.9 243.5",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_l3",
+              "d": "M 250.6 259.5 L 216.6 265.5 A 3.6 3.6 0 0 1 215.4 258.5 L 249.4 252.5",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_l4",
+              "d": "M 251.8 268.1 L 226.8 282.1 A 3.6 3.6 0 0 1 223.2 275.9 L 248.2 261.9",
+              "ms": 970
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_r1",
+              "d": "M 271.8 241.1 L 298.8 225.1 A 3.6 3.6 -0 0 0 295.2 218.9 L 268.2 234.9",
+              "ms": 1050
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_r2",
+              "d": "M 270.9 250.5 L 304.9 241.5 A 3.6 3.6 -0 0 0 303.1 234.5 L 269.1 243.5",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_r3",
+              "d": "M 269.4 259.5 L 303.4 265.5 A 3.6 3.6 -0 0 0 304.6 258.5 L 270.6 252.5",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "caecum_r4",
+              "d": "M 268.2 268.1 L 293.2 282.1 A 3.6 3.6 -0 0 0 296.8 275.9 L 271.8 261.9",
+              "ms": 970
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — Malpighian tubules and the hindgut"
+            },
+            {
+              "type": "stroke",
+              "id": "malpighian_l",
+              "d": "M 252 300 Q 238 296 232 284 Q 228 274 218 272 M 252 300 Q 236 302 226 296 Q 216 290 208 292 M 252 301 Q 242 310 236 318 Q 230 326 220 324",
+              "ms": 1900,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "malpighian_r",
+              "d": "M 268 300 Q 282 296 288 284 Q 292 274 302 272 M 268 300 Q 284 302 294 296 Q 304 290 312 292 M 268 301 Q 278 310 284 318 Q 290 326 300 324",
+              "ms": 1900,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "ileum_l",
+              "d": "M 252 300 C 249 306 249 316 251 322",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "ileum_r",
+              "d": "M 268 300 C 271 306 271 316 269 322",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "colon_a",
+              "d": "M 251.8 318.3 L 251.2 319.7 L 250.3 321.6 L 249.4 323.6 L 248.5 325.6 L 247.5 327.4 L 246.8 328.7 L 245.9 329.6 L 244.7 330.8 L 243.1 332.2 L 241.1 334 L 238.9 336.1 L 236.9 338.4 L 235.3 340.6 L 233.7 342.8 L 231.9 345.5 L 230.2 348.7 L 229 353 L 229.3 358.4 L 231.5 362.9 L 234.3 366 L 237.4 368.4 L 240.8 370.3 L 244.4 371.8 L 248.4 372.9 L 252.4 373.3 L 256.5 373.3 L 260.5 372.9 L 264.5 372.4 L 268.4 371.6 L 272.3 370.7 L 276.3 369.5 L 280.1 368 L 283.6 366.5 L 286.8 365 L 289.9 363.6 L 292.9 362.5 L 296.4 361.4 L 300.4 360.3 L 304.5 359.2 L 308.4 358.2 L 311.8 357.3 L 314.3 356.7",
+              "ms": 2020
+            },
+            {
+              "type": "stroke",
+              "id": "colon_b",
+              "d": "M 268.2 325.7 L 267.6 327 L 266.8 328.8 L 265.8 331.1 L 264.6 333.8 L 263.1 336.5 L 261.2 339.3 L 259.1 341.9 L 256.9 344 L 254.9 345.8 L 253.3 347.2 L 252.1 348.4 L 251.1 349.6 L 249.8 351.3 L 248.4 353.2 L 247.4 354.7 L 246.8 355.7 L 246.8 355.4 L 246.7 353.6 L 246.2 352.5 L 246.4 352.7 L 247.3 353.4 L 248.7 354.1 L 250.2 354.8 L 251.6 355.1 L 253.3 355.3 L 255.6 355.3 L 258.5 355.1 L 261.5 354.6 L 264.7 354 L 267.7 353.3 L 270.3 352.5 L 273.1 351.4 L 276.2 350 L 279.5 348.5 L 283.2 346.9 L 287.1 345.5 L 291.2 344.2 L 295.6 342.9 L 300 341.8 L 304 340.8 L 307.3 339.9 L 309.7 339.3",
+              "ms": 1530
+            },
+            {
+              "type": "stroke",
+              "id": "rectum_top",
+              "d": "M 312 337 L 364 332",
+              "ms": 750
+            },
+            {
+              "type": "stroke",
+              "id": "rectum_bot",
+              "d": "M 312 359 L 364 354",
+              "ms": 750
+            },
+            {
+              "type": "stroke",
+              "id": "anus",
+              "d": "M 364 332 Q 373 343 364 354",
+              "ms": 350
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — salivary glands and reservoirs beside the crop"
+            },
+            {
+              "type": "stroke",
+              "id": "sal_lobe1_l",
+              "d": "M 198 124 A 6 6 0 0 1 193.6 132.5 A 7 7 0 0 1 183 136 A 7 7 0 0 1 172.4 132.5 A 6 6 0 0 1 168 124 A 6 6 0 0 1 172.4 115.5 A 7 7 0 0 1 183 112 A 7 7 0 0 1 193.6 115.5 A 6 6 0 0 1 198 124",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "sal_lobe2_l",
+              "d": "M 184 151.9 A 5.6 5.6 0 0 1 176.9 157.3 A 6.2 6.2 0 0 1 166.9 157.2 A 5.5 5.5 0 0 1 160 151.8 A 4.8 4.8 0 0 1 160 144.1 A 5.6 5.6 0 0 1 167.1 138.7 A 6.2 6.2 0 0 1 177.1 138.8 A 5.5 5.5 0 0 1 184 144.2 A 4.8 4.8 0 0 1 184 151.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "sal_res_l",
+              "d": "M 197 172 A 8 17 0 1 0 213 172 A 8 17 0 1 0 197 172",
+              "ms": 1160
+            },
+            {
+              "type": "stroke",
+              "id": "sal_duct_l",
+              "d": "M 197 126 C 214 118 236 96 253 74",
+              "ms": 1100,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sal_duct2_l",
+              "d": "M 184 146 C 192 138 200 132 208 126",
+              "ms": 450,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sal_resduct_l",
+              "d": "M 207 155 C 216 136 232 108 253 82",
+              "ms": 1240,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sal_lobe1_r",
+              "d": "M 322 124 A 6 6 -0 0 0 326.4 132.5 A 7 7 -0 0 0 337 136 A 7 7 -0 0 0 347.6 132.5 A 6 6 -0 0 0 352 124 A 6 6 -0 0 0 347.6 115.5 A 7 7 -0 0 0 337 112 A 7 7 -0 0 0 326.4 115.5 A 6 6 -0 0 0 322 124",
+              "ms": 1370
+            },
+            {
+              "type": "stroke",
+              "id": "sal_lobe2_r",
+              "d": "M 336 151.9 A 5.6 5.6 -0 0 0 343.1 157.3 A 6.2 6.2 -0 0 0 353.1 157.2 A 5.5 5.5 -0 0 0 360 151.8 A 4.8 4.8 -0 0 0 360 144.1 A 5.6 5.6 -0 0 0 352.9 138.7 A 6.2 6.2 -0 0 0 342.9 138.8 A 5.5 5.5 -0 0 0 336 144.2 A 4.8 4.8 -0 0 0 336 151.9",
+              "ms": 1170
+            },
+            {
+              "type": "stroke",
+              "id": "sal_res_r",
+              "d": "M 323 172 A 8 17 -0 1 1 307 172 A 8 17 -0 1 1 323 172",
+              "ms": 1160
+            },
+            {
+              "type": "stroke",
+              "id": "sal_duct_r",
+              "d": "M 323 126 C 306 118 284 96 267 74",
+              "ms": 1100,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sal_duct2_r",
+              "d": "M 336 146 C 328 138 320 132 312 126",
+              "ms": 450,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "sal_resduct_r",
+              "d": "M 313 155 C 304 136 288 108 267 82",
+              "ms": 1240,
+              "w": 1.3
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_oesophagus",
+              "x": 8,
+              "y": 74,
+              "text": "Oesophagus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_oesophagus",
+              "d": "M 95.5 70 L 252 76",
+              "ms": 2240,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_salivary_gland",
+              "x": 8,
+              "y": 116,
+              "text": "Salivary gland",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_salivary_gland",
+              "d": "M 114 112 L 168 122",
+              "ms": 780,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_salivary_reservoir",
+              "x": 8,
+              "y": 160,
+              "text": "Salivary reservoir",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_salivary_reservoir",
+              "d": "M 134.5 156 L 197 172",
+              "ms": 920,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_crop",
+              "x": 8,
+              "y": 202,
+              "text": "Crop",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_crop",
+              "d": "M 45.5 198 L 236 188",
+              "ms": 2730,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_gizzard",
+              "x": 8,
+              "y": 242,
+              "text": "Gizzard",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_gizzard",
+              "d": "M 66 238 L 233 214",
+              "ms": 2410,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_hepatic_caecae",
+              "x": 8,
+              "y": 282,
+              "text": "Hepatic caecae",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hepatic_caecae",
+              "d": "M 119.9 278 L 222 254",
+              "ms": 1500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_colon",
+              "x": 8,
+              "y": 336,
+              "text": "Colon",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_colon",
+              "d": "M 51.8 332 L 240 350",
+              "ms": 2700,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_mesenteron",
+              "x": 372,
+              "y": 252,
+              "text": "Mesenteron",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mesenteron",
+              "d": "M 368 248 L 269 282",
+              "ms": 1500,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_malpighian",
+              "x": 372,
+              "y": 292,
+              "text": "Malpighian tubules",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_malpighian",
+              "d": "M 368 288 L 298 288",
+              "ms": 1000,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ileum",
+              "x": 372,
+              "y": 332,
+              "text": "Ileum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ileum",
+              "d": "M 368 328 L 271 312",
+              "ms": 1400,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_rectum",
+              "x": 386,
+              "y": 378,
+              "text": "Rectum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_rectum",
+              "d": "M 384 372 L 368 352",
+              "ms": 370,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "The order of the organs IS the answer: food passes crop, then gizzard, then midgut, then hindgut, and a drawing with the gizzard before the crop is wrong even when every name is spelled right.",
+        "common_mistakes": [
+          "Putting the gizzard before the crop. The crop comes first and stores the food; the gizzard behind it grinds it.",
+          "Drawing the hepatic caecae at the end of the midgut. They arise at its front end, where it joins the gizzard.",
+          "Leaving out the Malpighian tubules at the midgut-hindgut junction."
+        ],
+        "memory_tip": "Draw one long tube top to bottom first, then hang the side pieces on it: glands by the crop, caecae at the midgut front, tubules at the midgut-hindgut junction.",
+        "margin_note": "Label at least the crop, gizzard, hepatic caecae, mesenteron, Malpighian tubules, ileum, colon and rectum — the labels carry the two marks."
+      },
+      {
+        "id": "s3_foregut",
+        "kind": "text",
+        "label": "Foregut (stomodaeum)",
+        "marks": 2,
+        "mark_note": "Region 1",
+        "lines": [
+          "Foregut (stomodaeum): pharynx, oesophagus,",
+          "crop and gizzard.",
+          "The pharynx is a short tube. It leads into a",
+          "narrow tubular oesophagus.",
+          "The oesophagus opens into a sac-like crop,",
+          "which stores the food.",
+          "Behind the crop lies a thick-walled muscular",
+          "gizzard. Its chitinous lining bears six teeth",
+          "that grind the food, so it works as a mill",
+          "and a sieve.",
+          "A funnel-shaped stomodeal valve projects into",
+          "the midgut and stops food moving back."
+        ],
+        "why": "The foregut is the storing and grinding part, so each organ is described by the job it does — sac for storage, muscular grinder with six teeth, and a one-way valve at the exit.",
+        "common_mistakes": [
+          "Writing that the crop grinds the food. The crop only stores it; the gizzard grinds it.",
+          "Giving the wrong number of gizzard teeth. There are six chitinous teeth.",
+          "Leaving out the stomodeal valve, which is a named part of this region."
+        ],
+        "memory_tip": "Foregut = PECG: pharynx, oesophagus, crop, gizzard — store first, grind next.",
+        "margin_note": "Four organs, then one line each for the crop, the gizzard's six teeth and the stomodeal valve. This is the biggest region: two marks."
+      },
+      {
+        "id": "s4_midgut",
+        "kind": "text",
+        "label": "Midgut (mesenteron)",
+        "marks": 1,
+        "mark_note": "Region 2",
+        "lines": [
+          "Midgut (mesenteron): a short narrow tube.",
+          "At its front end are 6 to 8 finger-like",
+          "diverticula called hepatic caecae.",
+          "The front part of the midgut secretes enzymes",
+          "and the hind part absorbs the digested food.",
+          "The food is wrapped in a porous peritrophic",
+          "membrane. It protects the midgut wall from",
+          "hard food particles."
+        ],
+        "why": "The midgut is where digestion and absorption actually happen, so the answer must state both jobs and name the two structures that serve them — the hepatic caecae and the peritrophic membrane.",
+        "common_mistakes": [
+          "Calling the hepatic caecae excretory. They are digestive: they secrete enzymes and absorb food.",
+          "Writing that the whole midgut absorbs. The front part secretes; the hind part absorbs."
+        ],
+        "memory_tip": "Mesenteron is where digestion finishes: the caecae add enzymes at the front, the wall absorbs at the back.",
+        "margin_note": "Short tube, 6 to 8 hepatic caecae, secretory front and absorptive back, peritrophic membrane. Four facts, one mark."
+      },
+      {
+        "id": "s5_hindgut",
+        "kind": "text",
+        "label": "Hindgut (proctodaeum)",
+        "marks": 1,
+        "mark_note": "Region 3",
+        "lines": [
+          "Hindgut (proctodaeum): a long coiled tube.",
+          "It has three parts — ileum, colon and rectum.",
+          "A sphincter between midgut and hindgut stops",
+          "food and uric acid from moving back.",
+          "The ileum collects uric acid from the",
+          "Malpighian tubules (about 100 to 150) at the",
+          "midgut-hindgut junction.",
+          "The rectum bears six rectal papillae that",
+          "absorb water from the undigested food.",
+          "The rectum opens out through the anus."
+        ],
+        "why": "The hindgut recovers water and passes out waste, so the ileum, colon and rectum are described by what each one collects or absorbs, ending at the anus where the canal ends.",
+        "common_mistakes": [
+          "Writing that the Malpighian tubules open into the colon. They open at the anterior end of the ileum.",
+          "Forgetting the six rectal papillae, which are the water-absorbing folds of the rectum."
+        ],
+        "memory_tip": "Hindgut = ICR: ileum takes the uric acid, colon carries, rectum takes back the water.",
+        "margin_note": "Three parts in order, the sphincter, the Malpighian tubules and the rectal papillae. One mark."
+      },
+      {
+        "id": "s6_glands",
+        "kind": "boxed_final",
+        "label": "Digestive glands",
+        "marks": 1,
+        "mark_note": "Glands",
+        "lines": [
+          {
+            "text": "Salivary glands, hepatic caecae, mesenteron cells",
+            "style": "boxed"
+          },
+          "A pair of salivary glands lies on either side",
+          "of the crop. Each gland has two lobes made of",
+          "acini of zymogen cells.",
+          "Their saliva contains the starch-digesting",
+          "enzyme amylase.",
+          "The hepatic caecae have secretory and",
+          "absorptive cells.",
+          "The glandular cells of the mesenteron secrete",
+          "maltase, invertase, proteases and lipase."
+        ],
+        "why": "The question asks for the digestive system, not just the canal, so the three glands and the enzyme each one gives are the closing marks the examiner looks for.",
+        "common_mistakes": [
+          "Naming only the salivary glands. Three glands are expected: salivary, hepatic caecae and the glandular cells of the mesenteron.",
+          "Writing that saliva digests protein. Saliva has amylase, which digests starch."
+        ],
+        "memory_tip": "Three glands, three places: beside the crop, at the midgut front, and in the midgut wall.",
+        "margin_note": "Name the three glands in a box, then one line each. Amylase must appear by name."
+      }
+    ]
+  },
+  "insider_note": "The two diagram marks are for the labels, not the outline — crop, gizzard, hepatic caecae, mesenteron, Malpighian tubules and rectum must all be named on the drawing, and the digestive glands paragraph is the part most students run out of time to write."
+}

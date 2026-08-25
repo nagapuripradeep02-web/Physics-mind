@@ -1,0 +1,581 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z1_pa_laq_blood_circulatory_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Periplaneta americana (Zoology)"
+  },
+  "chapter": "Periplaneta americana",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the blood circulatory system of Periplaneta in detail and draw a neat and labelled diagram of it.",
+  "appearances": [
+    {
+      "year": 2014
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Open circulatory system",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Haemocoel and sinuses",
+      "marks": 2
+    },
+    {
+      "label": "Heart",
+      "marks": 1
+    },
+    {
+      "label": "Blood",
+      "marks": 1
+    },
+    {
+      "label": "Path of the blood",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack zoology section (book p.21-22, LAQ 7). Zoology holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no zoology board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. APPEARANCES: the book prints [AP May-17,19], [TS M-16,20], [AP M-15] and [IPE-14]; the 2014 entry has no board because it predates bifurcation. TWO COUNTS DIFFER BETWEEN SOURCES and this card follows the source book: (1) ostia — the book says every chamber EXCEPT the last bears a pair, which gives 12 pairs; other texts print 13 pairs, one for every chamber; (2) alary muscles — the book says one pair per segment and does not give a total, while several texts print 12 pairs. A teacher must settle both before this card is taught. FIGURE SCOPE: the book prints a dorsal view of the 13-chambered heart with alary muscles beside a transverse section showing the sinuses; this card draws the same two views simplified to what a student can reproduce."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Periplaneta americana · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_open_type",
+        "kind": "text",
+        "label": "Open circulatory system",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "The blood of the cockroach is not held in",
+          "closed vessels. It flows freely in the body",
+          "spaces called the haemocoel, so the system is",
+          "of the open type.",
+          "It has three parts — the haemocoel, the heart",
+          "and the blood.",
+          "It carries digested food, nitrogenous waste",
+          "and hormones from one part of the body to",
+          "another."
+        ],
+        "why": "Open type is the one word the examiner looks for first, and it explains the rest of the answer: with no closed vessels, the body cavity itself has to be divided into sinuses for the blood to travel through.",
+        "common_mistakes": [
+          "Calling it a closed circulatory system. The blood leaves the heart into open body spaces.",
+          "Leaving out the three parts, which set the order of the whole answer."
+        ],
+        "memory_tip": "Open type: the blood flows in the body cavity itself, not in vessels. Three parts to describe — haemocoel, heart, blood.",
+        "margin_note": "Open type, the haemocoel, and the three parts. Three short lines before the detail starts."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — heart and sinuses",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "pa_circulatory_system",
+          "width": 520,
+          "height": 352,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "p1",
+              "caption": "Step 1 — body outline, aorta and the dorsal heart"
+            },
+            {
+              "type": "stroke",
+              "id": "body_l",
+              "d": "M 149 62 L 147.6 62.4 L 145.8 62.8 L 143.7 63.2 L 141.3 63.8 L 138.8 64.4 L 136.1 65.1 L 133.6 66 L 131.1 67.1 L 128.9 68.4 L 127 70 L 125.4 71.8 L 123.8 73.9 L 122.4 76.2 L 121.1 78.7 L 119.9 81.4 L 118.7 84.2 L 117.7 87 L 116.7 90 L 115.8 93 L 115 96 L 114.3 99 L 113.6 102 L 113.1 105.1 L 112.7 108.3 L 112.3 111.5 L 112 114.9 L 111.7 118.4 L 111.5 122 L 111.2 125.9 L 111 130 L 110.8 134.4 L 110.6 139 L 110.4 143.8 L 110.3 148.8 L 110.2 154 L 110.1 159.2 L 110.1 164.5 L 110 169.7 L 110 174.9 L 110 180 L 110 185 L 110 190 L 110 195.1 L 110.1 200.1 L 110.1 205.1 L 110.2 210.1 L 110.3 215.1 L 110.5 220.1 L 110.7 225.1 L 111 230 L 111.3 234.9 L 111.6 240 L 111.9 245 L 112.2 250 L 112.6 255 L 113.1 259.9 L 113.6 264.7 L 114.3 269.3 L 115.1 273.8 L 116 278 L 117 282 L 118.2 286 L 119.4 289.8 L 120.7 293.5 L 122.1 297 L 123.7 300.4 L 125.3 303.6 L 127.1 306.6 L 129 309.4 L 131 312 L 133.3 314.4 L 136.1 316.6 L 139.1 318.6 L 142.2 320.5 L 145.4 322.1 L 148.6 323.6 L 151.5 324.9 L 154.1 326.1 L 156.3 327.1 L 158 328",
+              "ms": 4350
+            },
+            {
+              "type": "stroke",
+              "id": "body_r",
+              "d": "M 167 62 L 168.4 62.4 L 170.2 62.8 L 172.3 63.2 L 174.7 63.8 L 177.2 64.4 L 179.9 65.1 L 182.4 66 L 184.9 67.1 L 187.1 68.4 L 189 70 L 190.6 71.8 L 192.2 73.9 L 193.6 76.2 L 194.9 78.7 L 196.1 81.4 L 197.3 84.2 L 198.3 87 L 199.3 90 L 200.2 93 L 201 96 L 201.7 99 L 202.4 102 L 202.9 105.1 L 203.3 108.3 L 203.7 111.5 L 204 114.9 L 204.3 118.4 L 204.5 122 L 204.8 125.9 L 205 130 L 205.2 134.4 L 205.4 139 L 205.6 143.8 L 205.7 148.8 L 205.8 154 L 205.9 159.2 L 205.9 164.5 L 206 169.7 L 206 174.9 L 206 180 L 206 185 L 206 190 L 206 195.1 L 205.9 200.1 L 205.9 205.1 L 205.8 210.1 L 205.7 215.1 L 205.5 220.1 L 205.3 225.1 L 205 230 L 204.7 234.9 L 204.4 240 L 204.1 245 L 203.8 250 L 203.4 255 L 202.9 259.9 L 202.4 264.7 L 201.7 269.3 L 200.9 273.8 L 200 278 L 199 282 L 197.8 286 L 196.6 289.8 L 195.3 293.5 L 193.9 297 L 192.3 300.4 L 190.7 303.6 L 188.9 306.6 L 187 309.4 L 185 312 L 182.7 314.4 L 179.9 316.6 L 176.9 318.6 L 173.8 320.5 L 170.6 322.1 L 167.4 323.6 L 164.5 324.9 L 161.9 326.1 L 159.7 327.1 L 158 328",
+              "ms": 4350
+            },
+            {
+              "type": "stroke",
+              "id": "aorta_l",
+              "d": "M 152 34 L 152 70",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "aorta_r",
+              "d": "M 164 34 L 164 70",
+              "ms": 510
+            },
+            {
+              "type": "stroke",
+              "id": "aorta_cap",
+              "d": "M 152 34 Q 158 28 164 34",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "heart_l",
+              "d": "M 146 72 L 146 316",
+              "ms": 3490
+            },
+            {
+              "type": "stroke",
+              "id": "heart_r",
+              "d": "M 170 72 L 170 316",
+              "ms": 3490
+            },
+            {
+              "type": "stroke",
+              "id": "heart_end",
+              "d": "M 146 316 Q 158 325 170 316",
+              "ms": 370
+            },
+            {
+              "type": "pause",
+              "id": "p2",
+              "caption": "Step 2 — the 13 chambers and the pairs of ostia"
+            },
+            {
+              "type": "stroke",
+              "id": "chambers_a",
+              "d": "M 146 90.8 L 170 90.8 M 146 109.5 L 170 109.5 M 146 128.3 L 170 128.3 M 146 147.1 L 170 147.1 M 146 165.8 L 170 165.8 M 146 184.6 L 170 184.6",
+              "ms": 2060,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "chambers_b",
+              "d": "M 146 203.4 L 170 203.4 M 146 222.2 L 170 222.2 M 146 240.9 L 170 240.9 M 146 259.7 L 170 259.7 M 146 278.5 L 170 278.5 M 146 297.2 L 170 297.2",
+              "ms": 2060,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ostia_l",
+              "d": "M 139 86.8 L 146 86.8 M 139 105.5 L 146 105.5 M 139 124.3 L 146 124.3 M 139 143.1 L 146 143.1 M 139 161.8 L 146 161.8 M 139 180.6 L 146 180.6 M 139 199.4 L 146 199.4 M 139 218.2 L 146 218.2 M 139 236.9 L 146 236.9 M 139 255.7 L 146 255.7 M 139 274.5 L 146 274.5 M 139 293.2 L 146 293.2",
+              "ms": 1200,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ostia_r",
+              "d": "M 177 86.8 L 170 86.8 M 177 105.5 L 170 105.5 M 177 124.3 L 170 124.3 M 177 143.1 L 170 143.1 M 177 161.8 L 170 161.8 M 177 180.6 L 170 180.6 M 177 199.4 L 170 199.4 M 177 218.2 L 170 218.2 M 177 236.9 L 170 236.9 M 177 255.7 L 170 255.7 M 177 274.5 L 170 274.5 M 177 293.2 L 170 293.2",
+              "ms": 1200,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p3",
+              "caption": "Step 3 — alary muscles on both sides"
+            },
+            {
+              "type": "stroke",
+              "id": "alary_la",
+              "d": "M 118.5 98 L 145 107.6 L 115.8 117.2 L 145 126.8 L 114.7 136.4 L 145 146 L 114.2 155.6 L 145 165.2 L 114 174.8 L 145 184.4 L 114 194",
+              "ms": 4500,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "alary_ra",
+              "d": "M 197.5 98 L 171 107.6 L 200.2 117.2 L 171 126.8 L 201.3 136.4 L 171 146 L 201.8 155.6 L 171 165.2 L 202 174.8 L 171 184.4 L 202 194",
+              "ms": 4500,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "alary_lb",
+              "d": "M 114 194 L 145 203.6 L 114.3 213.2 L 145 222.8 L 115.1 232.4 L 145 242 L 116.4 251.6 L 145 261.2 L 118.6 270.8 L 145 280.4 L 123.5 290",
+              "ms": 4280,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "alary_rb",
+              "d": "M 202 194 L 171 203.6 L 201.7 213.2 L 171 222.8 L 200.9 232.4 L 171 242 L 199.6 251.6 L 171 261.2 L 197.4 270.8 L 171 280.4 L 192.5 290",
+              "ms": 4280,
+              "w": 1.6
+            },
+            {
+              "type": "pause",
+              "id": "p4",
+              "caption": "Step 4 — cross section: body wall and the two diaphragms"
+            },
+            {
+              "type": "stroke",
+              "id": "sec_wall",
+              "d": "M 256 196 A 54 48 0 1 0 364 196 A 54 48 0 1 0 256 196",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dorsal_diaphragm",
+              "d": "M 264 171 L 356 171",
+              "ms": 1310,
+              "w": 2
+            },
+            {
+              "type": "stroke",
+              "id": "ventral_diaphragm",
+              "d": "M 264 221 L 356 221",
+              "ms": 1310,
+              "w": 2
+            },
+            {
+              "type": "pause",
+              "id": "p5",
+              "caption": "Step 5 — heart, gut and nerve cord in the section"
+            },
+            {
+              "type": "stroke",
+              "id": "sec_heart",
+              "d": "M 302.5 159 A 7.5 7.5 0 1 0 317.5 159 A 7.5 7.5 0 1 0 302.5 159",
+              "ms": 670
+            },
+            {
+              "type": "stroke",
+              "id": "sec_gut",
+              "d": "M 295.5 196 A 14.5 14.5 0 1 0 324.5 196 A 14.5 14.5 0 1 0 295.5 196",
+              "ms": 1300
+            },
+            {
+              "type": "stroke",
+              "id": "sec_cord",
+              "d": "M 305 233 A 5 5 0 1 0 315 233 A 5 5 0 1 0 305 233",
+              "ms": 450
+            },
+            {
+              "type": "pause",
+              "id": "p6",
+              "caption": "Step 6 — leader lines and labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_aorta",
+              "x": 6,
+              "y": 62,
+              "text": "Anterior aorta",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_aorta",
+              "d": "M 110.3 58 L 150 52",
+              "ms": 570,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_chamber",
+              "x": 6,
+              "y": 122,
+              "text": "Heart chamber",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chamber",
+              "d": "M 118.8 118 L 146 128",
+              "ms": 410,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_alary",
+              "x": 6,
+              "y": 186,
+              "text": "Alary muscles",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_alary",
+              "d": "M 110.2 182 L 126 187",
+              "ms": 300,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ostia",
+              "x": 6,
+              "y": 246,
+              "text": "Ostia",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ostia",
+              "d": "M 47.3 242 L 139 243",
+              "ms": 1310,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_pericardial",
+              "x": 378,
+              "y": 108,
+              "text": "Pericardial sinus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pericardial",
+              "d": "M 374 104 L 326 154",
+              "ms": 990,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_dorsaldia",
+              "x": 378,
+              "y": 150,
+              "text": "Dorsal diaphragm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_dorsaldia",
+              "d": "M 374 146 L 344 171",
+              "ms": 560,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_perivisceral",
+              "x": 378,
+              "y": 192,
+              "text": "Perivisceral sinus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perivisceral",
+              "d": "M 374 188 L 338 196",
+              "ms": 530,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_ventraldia",
+              "x": 378,
+              "y": 234,
+              "text": "Ventral diaphragm",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ventraldia",
+              "d": "M 374 230 L 342 221",
+              "ms": 470,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_cord",
+              "x": 378,
+              "y": 276,
+              "text": "Ventral nerve cord",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cord",
+              "d": "M 374 272 L 316 235",
+              "ms": 980,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lbl_perineural",
+              "x": 378,
+              "y": 318,
+              "text": "Perineural sinus",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perineural",
+              "d": "M 374 314 L 288 235",
+              "ms": 1670,
+              "w": 1.4
+            }
+          ]
+        },
+        "why": "Two views are needed because the facts live in different directions: the chambers and alary muscles show along the length of the body, and the three sinuses only show in a cross section.",
+        "common_mistakes": [
+          "Drawing the heart on the ventral side. The heart is dorsal, just under the tergal plates.",
+          "Drawing fewer than 13 chambers. The number is marked.",
+          "Putting the nerve cord in the perivisceral sinus. It lies in the perineural sinus, below the ventral diaphragm."
+        ],
+        "memory_tip": "Draw the long view first with 13 boxes and the alary muscles on the sides, then a small oval cross section beside it with two lines across for the two diaphragms.",
+        "margin_note": "Label the heart chambers, alary muscles, aorta, both diaphragms and all three sinuses — the labels carry the two marks."
+      },
+      {
+        "id": "s3_haemocoel",
+        "kind": "text",
+        "label": "Haemocoel and sinuses",
+        "marks": 2,
+        "mark_note": "Part 1",
+        "lines": [
+          "Haemocoel: the body cavity filled with blood.",
+          "Two horizontal muscular membranes, the dorsal",
+          "diaphragm and the ventral diaphragm, divide",
+          "it into three sinuses. Both diaphragms carry",
+          "valvular pores.",
+          "The pericardial sinus lies above the dorsal",
+          "diaphragm and surrounds the heart.",
+          "The perivisceral sinus lies between the two",
+          "diaphragms and surrounds the gut. It is the",
+          "largest of the three.",
+          "The perineural sinus lies below the ventral",
+          "diaphragm and surrounds the nerve cord.",
+          "A pair of triangular alary muscles lies in",
+          "each segment, on the sides of the body."
+        ],
+        "why": "The three sinuses are named after what each one holds — heart, viscera, nerve cord — so the names themselves give the positions, and the two diaphragms are the boundaries between them.",
+        "common_mistakes": [
+          "Naming the sinuses without saying what each surrounds. The organ inside is what makes the name correct.",
+          "Writing that the diaphragms are solid. Both have valvular pores that let blood through.",
+          "Forgetting the alary muscles, which pull the dorsal diaphragm and drive the whole circulation."
+        ],
+        "memory_tip": "Named by their contents from top to bottom: peri-CARDIAL heart, peri-VISCERAL gut, peri-NEURAL nerve cord.",
+        "margin_note": "Two diaphragms, three sinuses with what each surrounds, and the alary muscles. This is the biggest part: two marks."
+      },
+      {
+        "id": "s4_heart",
+        "kind": "text",
+        "label": "Heart",
+        "marks": 1,
+        "mark_note": "Part 2",
+        "lines": [
+          "Heart: a long muscular contractile tube. It",
+          "lies dorsally, below the tergal plates,",
+          "inside the pericardial sinus.",
+          "It has 13 chambers. Each chamber opens into",
+          "the chamber in front of it through a valve.",
+          "Its hind end is closed. In front it opens",
+          "into the aorta.",
+          "Each chamber except the last bears a pair of",
+          "small openings called ostia, one on each",
+          "side of its hind end.",
+          "The ostia have valves that let blood pass",
+          "only from the pericardial sinus into the",
+          "heart."
+        ],
+        "why": "The valves are what make an open system still move blood one way: chamber valves send it forward, ostial valves let it in but not out, so the blood can only travel head-ward.",
+        "common_mistakes": [
+          "Writing that blood leaves the heart through the ostia. The ostia are one-way inlets.",
+          "Writing that the hind end opens outside. The hind end is closed; the front end opens into the aorta."
+        ],
+        "memory_tip": "Thirteen chambers, all valves one way: in through the ostia, forward through the chambers, out at the aorta.",
+        "margin_note": "Position, 13 chambers, closed hind end, aorta in front, ostia and their valves. One mark."
+      },
+      {
+        "id": "s5_blood",
+        "kind": "text",
+        "label": "Blood (haemolymph)",
+        "marks": 1,
+        "mark_note": "Part 3",
+        "lines": [
+          "Blood (haemolymph): colourless, made of",
+          "plasma and phagocytic haemocytes.",
+          "It has no respiratory pigment, so it plays no",
+          "major part in carrying oxygen. The tracheal",
+          "system carries the air instead.",
+          "Functions of the blood:",
+          "It absorbs and distributes digested food.",
+          "It carries nitrogenous waste to the excretory",
+          "organs.",
+          "It carries phagocytes to places of infection.",
+          "It carries hormones to their target organs."
+        ],
+        "why": "The absence of a respiratory pigment is the point of this part: it is the reason the cockroach needs a tracheal system, and it separates insect blood from human blood in one line.",
+        "common_mistakes": [
+          "Writing that haemolymph is red or carries oxygen. It is colourless and has no respiratory pigment.",
+          "Giving only one function. Four functions are expected: food, waste, defence and hormones."
+        ],
+        "memory_tip": "Colourless blood, no pigment: it carries food, waste, phagocytes and hormones, but not oxygen.",
+        "margin_note": "Colour, two contents, no pigment, then the four functions as short separate lines. One mark."
+      },
+      {
+        "id": "s6_circulation",
+        "kind": "boxed_final",
+        "label": "Path of the blood",
+        "marks": 1,
+        "mark_note": "Circulation",
+        "lines": [
+          {
+            "text": "Heart to aorta to sinuses, back in by the ostia",
+            "style": "boxed"
+          },
+          "The heart muscles contract and push the blood",
+          "into the aorta and then into the head sinus.",
+          "From the head sinus the blood passes back",
+          "through the perivisceral and perineural",
+          "sinuses.",
+          "The alary muscles contract and pull the",
+          "dorsal diaphragm down, so blood enters the",
+          "pericardial sinus.",
+          "The alary muscles relax, the diaphragm moves",
+          "up, and the blood is forced through the ostia",
+          "into the heart. The circulation goes on."
+        ],
+        "why": "This step turns the named parts into one loop, and it shows that the alary muscles, not the heart, are what draw the blood back into the pericardial sinus.",
+        "common_mistakes": [
+          "Writing that the heart draws the blood back in. The alary muscles pull the diaphragm down and do that work.",
+          "Ending the answer at the sinuses without closing the loop back into the heart."
+        ],
+        "memory_tip": "Forward by the heart, backward through the sinuses, upward by the alary muscles, inward through the ostia.",
+        "margin_note": "Four sentences in one direction, ending back at the heart. Write it as a loop, not as a list."
+      }
+    ]
+  },
+  "insider_note": "The two diagram marks are given for the labels, and the pair most often lost is the two diaphragms with the three sinuses they separate — students draw the 13-chambered heart neatly and then leave the cross section out altogether."
+}
