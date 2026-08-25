@@ -24,8 +24,9 @@
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
 import {
-    inventedMarks, summedMarks, sentenceCount, idiomsIn, romanisedTeluguIn, markdownIn,
+    inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
+    leakedInternalVocabulary, overWordBudget, WORD_BUDGET,
     IDEAL_GAS_PROBE, DE_MOIVRE_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
@@ -145,12 +146,16 @@ const TE = /[ఀ-౿]/;
 const LEADING_DASH = /^\s{0,3}-\s+\S/m;
 const GUARD_REPLY = /^(Give me a short moment|I am resting for today|I could not answer just now|You have asked a lot)/;
 
-function flagsFor(t: T, ctx: Ctx, reply: string): { text: string; critical: boolean }[] {
+function flagsFor(t: T, ctx: Ctx, reply: string, stepId: string | null): { text: string; critical: boolean }[] {
     const f: { text: string; critical: boolean }[] = [];
     const add = (text: string, critical = false) => f.push({ text, critical });
 
-    const n = sentenceCount(reply);
-    if (n > (t.key === 'explain' ? 12 : 5)) add('LONG(' + n + ')');
+    // WORDS, per template. The old global 5-sentence cap fired on 583 of 3,580
+    // replies (16.3%) and readers judged most of them non-findings: it penalised
+    // `explain` for answering "explain the whole answer", and Telugu for needing
+    // more sentences to say the same thing. Budgets fire on 0.8% (2026-08-24).
+    const over = overWordBudget(t.key, reply);
+    if (over) add('OVER_BUDGET(' + over + 'w/' + (WORD_BUDGET[t.key] ?? 150) + ')');
 
     // A bare-form-only claim in MATHS is probably matrix notation, not a mark
     // invention. Reported, never silenced — a human reads the bucket.
@@ -161,7 +166,24 @@ function flagsFor(t: T, ctx: Ctx, reply: string): { text: string; critical: bool
     if (realInv.length) add('MARK_NOT_IN_BANK:' + realInv.join(','), true);
     if (ambiguous.length) add('MARK_BARE_M:' + ambiguous.join(','));
 
-    const sum = summedMarks(ctx.context, reply); if (sum.length) add('MARK_SUM:' + sum.join(','));
+    // MARK_SUM is silenced on `skiplast`: that template's whole job is to state the
+    // remainder after dropping a step, so a derived total is the CORRECT answer.
+    // Measured 2026-08-24: 152 fires on skiplast across 3,580 replies, and fifteen
+    // independent readers judged every one a non-finding, while all four genuinely
+    // broken skiplast replies went unflagged. It stays live on every other template.
+    if (t.key !== 'skiplast') {
+        const sum = summedMarks(ctx.context, reply); if (sum.length) add('MARK_SUM:' + sum.join(','));
+    }
+    // NO automated skiplast check ships. Two were tried and both failed on measured
+    // evidence: summedMarks fired 152 times with zero true positives (it flags the
+    // arithmetic the template exists to perform), and a step-name matcher reached
+    // only 1-of-3 recall while throwing false positives in 8 of 18 graded slices --
+    // it fires when a reply names the skipped step in the *marks-lost* sentence,
+    // which is correct behaviour. The defect (naming the skipped step inside the
+    // MINIMUM) is real but rare (~1%) and every instance was found by reading.
+    // Leaving it uninstrumented is honest; a green run here would have implied a
+    // safety this check cannot provide. namesSkippedStepAsMinimum stays exported
+    // and unit-tested for whoever builds the third attempt.
     const idi = idiomsIn(reply); if (idi.length) add('IDIOM:' + idi.join(','));
     const md = markdownIn(reply); if (md.length) add('MARKDOWN:' + md.join(','));
 
@@ -169,6 +191,12 @@ function flagsFor(t: T, ctx: Ctx, reply: string): { text: string; critical: bool
     // reply, so a maths line like "- 2x + 3y = 5" loses its sign. Measured, not
     // assumed: it fired 0 times across 2,040 physics replies.
     if (LEADING_DASH.test(reply)) add('LEADING_DASH_LINE');
+
+    // Machinery words a student has no referent for: "the answer facts do not list
+    // any asked years", a raw step id ("if you skip s6_divide"), or raw LaTeX. Found
+    // in 57 of 3,580 replies (1.6%) and in most graded slices (2026-08-24).
+    const leak = leakedInternalVocabulary(ctx.context, reply);
+    if (leak.length) add('LEAKED_INTERNAL:' + leak.join(','), true);
 
     if (t.lang !== 'te') {
         if (TE.test(reply)) add('TELUGU_SCRIPT_FOR_ENGLISH_ASK', true);
@@ -222,7 +250,7 @@ async function worker(): Promise<void> {
             step_id: j.step, question: j.t.ask, recent_messages: [], tutor_context: j.ctx.context,
         });
         usd += res.cost;
-        const flags = flagsFor(j.t, j.ctx, res.reply);
+        const flags = flagsFor(j.t, j.ctx, res.reply, j.step);
         if (flags.length) nflag++;
         if (flags.some((f) => f.critical)) ncrit++;
         if (flags.some((f) => f.text === 'REQUEST_FAILED' || f.text === 'GUARD_REPLY')) nfail++;

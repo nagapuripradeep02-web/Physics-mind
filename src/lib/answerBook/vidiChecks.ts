@@ -174,3 +174,84 @@ export function stepIdsIn(ctx: string): string[] {
 export function diagramStepIdsIn(ctx: string): string[] {
     return [...ctx.matchAll(/^\d+\. \[([^\]]+)\][^\n]*\n\s+WRITE: a labelled figure/gm)].map((m) => m[1]);
 }
+
+/** Step LABELS, paired with their ids. `skiplast` is judged on WHICH steps a reply
+ *  names, never on the arithmetic — see namesSkippedStepAsMinimum. */
+export function stepLabelsIn(ctx: string): { id: string; label: string }[] {
+    return [...ctx.matchAll(/^\d+\. \[([^\]]+)\] (.*?) — \d+M$/gm)]
+        .map((m) => ({ id: m[1], label: m[2].trim() }));
+}
+
+/** The `skiplast` defect, at last checked directly.
+ *
+ *  The old signal was summedMarks: it flagged the arithmetic the template EXISTS to
+ *  perform (total minus the skipped step) and fired ~120 times across the 2026-08-24
+ *  maths audit with zero true positives — while staying silent on all four replies
+ *  that were genuinely wrong. The failure is never the number; it is naming the
+ *  SKIPPED step inside the minimum the student must still write.
+ *
+ *  So: find the sentence that states the minimum, and look for the skipped step's own
+ *  label words in it. Content words only, because "the" and "of" match everything. */
+export function namesSkippedStepAsMinimum(ctx: string, skippedStepId: string | null, reply: string): boolean {
+    if (!skippedStepId) return false;
+    const step = stepLabelsIn(ctx).find((s) => s.id === skippedStepId);
+    if (!step) return false;
+    const sentences = reply.split(/(?<=[.!?])\s+/)
+        .filter((s) => /\b(minimum|at least|you must (still )?write|must write)\b/i.test(s));
+    if (!sentences.length) return false;
+    const STOP = new Set(['the', 'and', 'for', 'into', 'from', 'with', 'that', 'this', 'its', 'take', 'then']);
+    // Stem to a 5-char prefix: the reply writes "simplified" where the step label
+    // says "Simplify", and an exact substring test misses that (measured 2026-08-24).
+    const stems = step.label.toLowerCase().split(/[^a-z0-9]+/)
+        .filter((w) => w.length > 3 && !STOP.has(w)).map((w) => w.slice(0, 5));
+    if (!stems.length) return false;
+    const need = stems.length === 1 ? 1 : 2;
+    return sentences.some((sent) => {
+        const words = sent.toLowerCase().split(/[^a-z0-9]+/).map((w) => w.slice(0, 5));
+        const seen = new Set(words);
+        return stems.filter((st) => seen.has(st)).length >= need;
+    });
+}
+/** Words that exist only inside the machinery, and must never reach a student.
+ *  Measured 2026-08-24: "the answer facts do not list any asked years" and raw step
+ *  ids ("if you skip s6_divide") appeared across most graded slices. A student has
+ *  no referent for either. Raw LaTeX is here too — the bubble renders textContent,
+ *  so \begin{bmatrix} arrives literally. */
+const INTERNAL_TERMS = [
+    'answer facts', 'answer_facts', 'the bank shows', 'the bank lists', 'mark scheme grounding',
+    'tutor_context', 'grounding text', 'the facts i hold', 'the facts i am carrying',
+    'in my current answer', 'the records show',
+];
+
+export function leakedInternalVocabulary(ctx: string, reply: string): string[] {
+    const low = reply.toLowerCase();
+    const found = INTERNAL_TERMS.filter((t) => low.includes(t));
+    // A literal authored step id is unambiguous: it exists nowhere a student can see.
+    for (const id of stepIdsIn(ctx)) if (reply.includes(id)) found.push('step-id:' + id);
+    // Escapes matter here: \\left written as \left is JS for the literal word
+    // "left", which fired on 209 of 3,580 replies where readers found 2 (2026-08-24).
+    if (/\\begin\{|\\frac|\\left|\\right|\\[a-zA-Z]+\{/.test(reply)) found.push('raw-latex');
+    return [...new Set(found)];
+}
+
+/** Length budgets in WORDS, per template.
+ *
+ *  The old check was one global 5-sentence cap. It fired on `explain` — whose ask is
+ *  literally "explain the whole answer to me" — and on Telugu, which needs more
+ *  sentences to say the same thing, while missing genuinely padded short-ask replies.
+ *  Words are what "too long on a phone" actually means. Budgets set from the graded
+ *  corpus: the replies readers scored 3 sit well inside these. */
+export const WORD_BUDGET: Record<string, number> = {
+    explain: 380, telugu: 220, mistakes: 170, remember: 150, why: 150,
+    whystep: 140, marks: 140, important: 120, skiplast: 130, outofbank: 90,
+};
+
+export function wordCount(reply: string): number {
+    return reply.trim().split(/\s+/).filter(Boolean).length;
+}
+
+export function overWordBudget(template: string, reply: string): number {
+    const budget = WORD_BUDGET[template] ?? 150;
+    const n = wordCount(reply);
+    return n > budget ? n : 0;
+}
