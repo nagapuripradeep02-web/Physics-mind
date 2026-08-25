@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's model answer gives the equation with the units of a and b, so both are treated as asked."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's model answer gives the equation with the units of a and b, so both are treated as asked. AI chemistry check 2026-08-25 (audit round 3): the insider note said the two signs are the whole question, which understates the split — the signs sit inside the 1-mark equation row and the units of a and b carry the other mark. The note now names both rows. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -87,5 +87,5 @@
       }
     ]
   },
-  "insider_note": "The two signs are the whole question: plus inside the pressure bracket, minus inside the volume bracket. Examiners look there first."
+  "insider_note": "Both halves are marked: 1 mark for the equation and 1 mark for the units of a and b, so write both. Inside the equation the two signs are what examiners check first — plus inside the pressure bracket, minus inside the volume bracket."
 }

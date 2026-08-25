@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 4500 cal using R = 2 cal mol⁻¹ K⁻¹, a rounding of 1.987. This card works in SI (R = 8.314 J mol⁻¹ K⁻¹ → 1.87 × 10⁴ J) and shows the book's calorie form beside it; the two agree within the rounding of R. AI chemistry check 2026-08-25. Arithmetic re-verified: 1.5 × 5 × 8.314 × 300 = 18 706.5 J ≈ 1.87 × 10⁴ J, and the calorie form 1.5 × 5 × 2 × 300 = 4500 cal — both printed values correct. Added one clause to the first step's why saying (3/2)nRT is the TRANSLATIONAL kinetic energy, so a student who knows N₂ is diatomic is not told the card is wrong. No marked line changed. AI chemistry check 2026-08-25 (audit round): the calorie line called 4500 cal the same energy in calories, but 18 706.5 J is 4471 cal; the two figures agree only under the rounded R = 2, so the bracket now says that instead of claiming an exact equality."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 4500 cal using R = 2 cal mol⁻¹ K⁻¹, a rounding of 1.987. This card works in SI (R = 8.314 J mol⁻¹ K⁻¹ → 1.87 × 10⁴ J) and shows the book's calorie form beside it; the two agree within the rounding of R. AI chemistry check 2026-08-25. Arithmetic re-verified: 1.5 × 5 × 8.314 × 300 = 18 706.5 J ≈ 1.87 × 10⁴ J, and the calorie form 1.5 × 5 × 2 × 300 = 4500 cal — both printed values correct. Added one clause to the first step's why saying (3/2)nRT is the TRANSLATIONAL kinetic energy, so a student who knows N₂ is diatomic is not told the card is wrong. No marked line changed. AI chemistry check 2026-08-25 (audit round): the calorie line called 4500 cal the same energy in calories, but 18 706.5 J is 4471 cal; the two figures agree only under the rounded R = 2, so the bracket now says that instead of claiming an exact equality. AI chemistry check 2026-08-25 (audit round 3): the step-2 margin note told the student to box the SI value while the why and the insider note said the book's printed answer is the calorie figure — advice against the printed key, and the two KE cards worded it differently. Both cards now say the same thing: the book prints the calorie value, and the student boxes whichever value they actually calculated. OPEN FOR THE TEACHER GATE: whether a Telangana IPE examiner wants the calorie figure the book prints or the SI value in the box."
   },
   "answer": {
     "page_header": [
@@ -77,15 +77,15 @@
           "With R ≈ 2 cal mol⁻¹ K⁻¹: KE = (3/2) × 5 × 2 × 300",
           "= 4500 cal (using the rounded R = 2 cal mol⁻¹ K⁻¹)"
         ],
-        "why": "Multiplying out: 5 × 8.314 = 41.57; times 300 gives 12 471; times 1.5 gives 18 706.5 J. The calorie line matches the model answer many examiners expect, using the rounded R = 2 cal mol⁻¹ K⁻¹.",
+        "why": "Multiplying out: 5 × 8.314 = 41.57; times 300 gives 12 471; times 1.5 gives 18 706.5 J. The book prints its answer in calories, 4500 cal, using the rounded R = 2 cal mol⁻¹ K⁻¹; the SI line is the same formula with R = 8.314 J mol⁻¹ K⁻¹, and the two agree to the rounding of R.",
         "common_mistakes": [
           "Writing the answer without a unit. J (or cal) is part of this mark.",
           "Mixing units: R in J mol⁻¹ K⁻¹ gives joules, R in cal mol⁻¹ K⁻¹ gives calories. Pick one and say which."
         ],
         "memory_tip": "One mole near room temperature carries about 3.7 kJ; five moles carry about five times that, near 19 kJ.",
-        "margin_note": "Box the SI value; the calorie line is the same answer in the book's units."
+        "margin_note": "The book's printed answer is the calorie figure, 4500 cal. Write both lines and box the value you actually calculated: the SI value if you used R = 8.314, the calorie value if you used R = 2."
       }
     ]
   },
-  "insider_note": "Model answers to this question use R = 2 cal mol⁻¹ K⁻¹ and reach 4500 cal — write whichever system you start with clearly, and never mix the two R values in one calculation."
+  "insider_note": "The book prints this answer in calories: 4500 cal, using R = 2 cal mol⁻¹ K⁻¹. The SI value 1.87 × 10⁴ J is the same formula with R = 8.314 J mol⁻¹ K⁻¹, and the two agree to the rounding of R. Write both lines, box the one you calculated, and never mix the two R values in one calculation. The same question is also set with n = 2 — the paper-setters reuse the template, so read n carefully on the day."
 }

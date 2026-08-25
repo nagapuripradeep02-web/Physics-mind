@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question (as 'Explain Gibb's energy'), its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25. Signs verified: G = H − TS, ΔG = ΔH − TΔS, ΔG < 0 spontaneous, ΔG = 0 equilibrium, ΔG > 0 non-spontaneous. Added to the why channel that it is −ΔG, not G itself, that equals the maximum non-expansion work. No marked line changed."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question (as 'Explain Gibb's energy'), its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25. Signs verified: G = H − TS, ΔG = ΔH − TΔS, ΔG < 0 spontaneous, ΔG = 0 equilibrium, ΔG > 0 non-spontaneous. Added to the why channel that it is −ΔG, not G itself, that equals the maximum non-expansion work. No marked line changed. AI chemistry check 2026-08-25 (audit round 3): the s1 why previously read as a correction of the line the student is told to copy. It now frames the energy available to do useful work as the board's standard shorthand for −ΔG, and points forward to the ΔG test in step 2. Marked lines unchanged."
   },
   "answer": {
     "page_header": [
@@ -51,7 +51,7 @@
           "pressure.",
           "It is a state function, defined as G = H − TS."
         ],
-        "why": "Of a system's total enthalpy, the part TS is tied to disorder and is not available as work; what remains, H − TS, is the usable part — the Gibbs energy. Stated exactly, it is the CHANGE that measures work: at constant temperature and pressure −ΔG equals the maximum non-expansion (useful) work the process can deliver. G itself has no absolute value; only differences in G are measurable.",
+        "why": "Of a system's total enthalpy, the part TS is tied to disorder and is not available as work; what remains, H − TS, is the usable part — the Gibbs energy. The energy available to do useful work is the board's standard wording for this, and it is the wording to write. What that wording is short for is the CHANGE: at constant temperature and pressure −ΔG equals the maximum non-expansion (useful) work the process can deliver. Only differences in G are measurable, which is why the second mark is the ΔG test rather than a value of G.",
         "common_mistakes": [
           "Leaving out at constant temperature and pressure — those are the conditions that make G the right quantity.",
           "Writing G = H + TS. The TS term is subtracted."

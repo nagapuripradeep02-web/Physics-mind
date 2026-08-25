@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the book uses the word spontaneous in its second-law and Gibbs-energy answers (VSAQ 6, VSAQ 8) but never asks what a spontaneous process is. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the book uses the word spontaneous in its second-law and Gibbs-energy answers (VSAQ 6, VSAQ 8) but never asks what a spontaneous process is. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25 (audit round 3): the s2 mark_note and margin_note said one example earns the mark, while the mark_split row reads Examples and criterion — two replies followed different halves. The notes now match the split row; the split itself is untouched. OPEN QUESTION for the teacher gate: whether the ΔG < 0 criterion is genuinely required for the second mark, or is credit-neutral, rests on that unverified split."
   },
   "answer": {
     "page_header": [
@@ -63,7 +63,7 @@
         "kind": "boxed_final",
         "label": "Examples and criterion",
         "marks": 1,
-        "mark_note": "Example",
+        "mark_note": "Example and ΔG criterion",
         "lines": [
           "Examples: heat flows from a hot body to a",
           "cold body; a gas expands into an empty",
@@ -74,12 +74,12 @@
             "style": "boxed"
           }
         ],
-        "why": "Each example runs in one direction only, and none of them needs outside work to proceed — that is what the definition describes.",
+        "why": "Each example runs in one direction only, and none of them needs outside work to proceed — that is what the definition describes. The ΔG < 0 line sits inside this same mark, not a separate one: the mark_split row is Examples and criterion, so the example and the test are the two halves of one mark.",
         "common_mistakes": [
           "Giving a driven process as the example — charging a battery or pumping water uphill needs outside work, so neither is spontaneous."
         ],
         "memory_tip": "Three stock examples: hot to cold, gas into vacuum, iron to rust.",
-        "margin_note": "One example earns the mark; the ΔG line connects it to Gibbs energy."
+        "margin_note": "This one mark covers both halves of the row: give an example and the ΔG < 0 test."
       }
     ]
   }
