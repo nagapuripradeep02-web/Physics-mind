@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the filling order and the (n + l) arithmetic for 4s and 3d verified; a memory tip reworded to drop tie and win (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -77,7 +77,7 @@
           "Placing 3d before 4s in the written order.",
           "Stopping the sequence at 3p and not reaching 4s and 3d, which is where the order becomes interesting."
         ],
-        "memory_tip": "Compare (n + l) first. Only when two orbitals tie does the smaller n win.",
+        "memory_tip": "Compare (n + l) first. When two orbitals have the same (n + l), the one with the smaller n is filled first.",
         "margin_note": "Write the sequence at least as far as 3d. That is the part the examiner reads."
       }
     ]

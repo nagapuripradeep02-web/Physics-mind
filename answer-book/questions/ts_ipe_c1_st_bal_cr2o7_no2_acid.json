@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The final equation was independently re-checked: atoms Cr 2=2, N 3=3, O 13=13, H 8=8; charge +3 on each side."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The final equation was independently re-checked: atoms Cr 2=2, N 3=3, O 13=13, H 8=8; charge +3 on each side. AI chemistry check 2026-08-25. Corrected the s1 why: per-atom changes of 2 and 3 alone would give multipliers 3 and 2; the stated 3 and 1 need the TWO chromium atoms (6 electrons). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -64,7 +64,7 @@
             "style": "eq"
           }
         ],
-        "why": "Nitrogen's oxidation number rises by 2 and chromium's falls by 3, which fixes the two halves and, later, the multipliers 3 and 1.",
+        "why": "Nitrogen's oxidation number rises by 2, and each of the two chromium atoms falls by 3, so the dichromate half takes six electrons in all. That fixes the two halves and, later, the multipliers 3 and 1.",
         "common_mistakes": [
           "Mislabelling the halves. Dichromate is the oxidising agent, so it is itself reduced.",
           "Computing N in NO₂⁻ as +4. With two O at −2 and charge −1, nitrogen is +3."

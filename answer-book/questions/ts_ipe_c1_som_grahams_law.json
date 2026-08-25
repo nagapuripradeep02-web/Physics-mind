@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 22, the 4-mark form is its three-star SAQ 1). SPELLING: the book prints the coal-mine application as ansil's alarm; the device is Ansell's alarm, a marsh-gas (methane) alarm that works on diffusion. The card uses the corrected name. The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3)."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 22, the 4-mark form is its three-star SAQ 1). SPELLING: the book prints the coal-mine application as ansil's alarm; the device is Ansell's alarm, a marsh-gas (methane) alarm that works on diffusion. The card uses the corrected name. The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3). AI chemistry check 2026-08-25. Statement (RATE, inversely proportional to √d / √M, at constant T and P), the ratio form r₁/r₂ = √(M₂/M₁) = √(d₂/d₁) = √(VD₂/VD₁) and M = 2 × VD all verified; UF₆ isotope separation and Ansell's marsh-gas alarm are both correct applications. One memory_tip idiom (\"ride on\") replaced per Rule 41. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -113,7 +113,7 @@
           "Naming only one application when the question says applications.",
           "Writing that uranium metal itself is diffused. The gas UF₆ diffuses, not the metal."
         ],
-        "memory_tip": "One application separates (isotopes), one warns (the mine alarm) — both ride on light gas diffusing faster.",
+        "memory_tip": "One application separates (isotopes), one warns (the mine alarm) — both work because the lighter gas diffuses faster.",
         "margin_note": "One mark per application; the boxed relation restates the law the applications use."
       }
     ]

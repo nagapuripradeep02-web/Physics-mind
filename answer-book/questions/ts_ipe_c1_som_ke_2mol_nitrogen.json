@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 1800 calories using R = 2 cal mol⁻¹ K⁻¹ (a rounding of 1.987). This card works in SI (7.48 × 10³ J) and shows the calorie form beside it; the two agree within the rounding of R. This question repeats the book's three-star VSAQ 5 with n = 2 instead of n = 5 — both are asked, so both are authored."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book answers 1800 calories using R = 2 cal mol⁻¹ K⁻¹ (a rounding of 1.987). This card works in SI (7.48 × 10³ J) and shows the calorie form beside it; the two agree within the rounding of R. This question repeats the book's three-star VSAQ 5 with n = 2 instead of n = 5 — both are asked, so both are authored. AI chemistry check 2026-08-25. Arithmetic re-verified: 1.5 × 2 × 8.314 × 300 = 7482.6 J ≈ 7.48 × 10³ J, and the calorie form 1.5 × 2 × 2 × 300 = 1800 cal — both printed values correct. Added one clause to the first step's why saying (3/2)nRT is the TRANSLATIONAL kinetic energy, so a student who knows N₂ is diatomic is not told the card is wrong. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -54,7 +54,7 @@
           "R = 8.314 J mol⁻¹ K⁻¹",
           "KE = (3/2) × 2 × 8.314 × 300"
         ],
-        "why": "KE = (3/2)nRT holds for any gas — the identity of nitrogen never enters. The only work before substitution is converting 27 °C to 300 K.",
+        "why": "KE = (3/2)nRT holds for any gas — the identity of nitrogen never enters. (This is the translational kinetic energy the kinetic gas equation gives; a molecule is treated as a moving point, so the same (3/2)nRT is used for diatomic N₂.) The only work before substitution is converting 27 °C to 300 K.",
         "common_mistakes": [
           "Substituting T = 27 instead of 300 K.",
           "Bringing the molar mass of N₂ into the formula. Kinetic energy of n moles needs no molar mass."

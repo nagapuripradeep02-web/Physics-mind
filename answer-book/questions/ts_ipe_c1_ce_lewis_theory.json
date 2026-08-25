@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks the Lewis acid twice — as its unstarred VSAQ 6 (definition + one example) and inside this three-star SAQ 3 (the full theory) — so the 2-mark form is authored as a cut of this card, not as a second file."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks the Lewis acid twice — as its unstarred VSAQ 6 (definition + one example) and inside this three-star SAQ 3 (the full theory) — so the 2-mark form is authored as a cut of this card, not as a second file. AI chemistry check 2026-08-25. Definitions, the three acid types and the coordinate-bond neutralisation verified correct. The s3 why named only TWO ways of holding a spare pair while its lines list THREE types — rewritten to cover all three. FLAGGED FOR A TEACHER, not changed: type (c) of the Lewis BASES lists CO and NO under 'molecules with multiple bonds', but CO donates the lone pair on its carbon atom rather than the multiple bond, and NO is a radical — confirm this is the classification the board expects. CUT DEFECT FLAGGED FOR THE ENGINE, not fixable in this file: applyCut in answer-book/notebook.js cannot override common_mistakes, so the 2-mark vsaq cut inherits s4_neutralisation's mistakes about neutralisation and the coordinate bond even though that cut never mentions either."
   },
   "cuts": [
     {
@@ -193,7 +193,7 @@
           "atom: H₂O, NH₃",
           "c) Molecules with multiple bonds: CO, NO"
         ],
-        "why": "The base is the mirror of the acid: it has a lone pair available and gives it into the new bond. Anions and lone-pair molecules are the two common ways to have a spare pair.",
+        "why": "The base is the opposite of the acid: it has a lone pair available and donates it into the new bond. The list covers three ways of having a spare pair — a negative charge (anions), a lone pair on the central atom (H₂O, NH₃), and molecules with multiple bonds whose electrons are available for donation (CO, NO).",
         "common_mistakes": [
           "Writing proton acceptor. That is the Brønsted-Lowry base; the Lewis base donates an electron pair.",
           "Swapping donor and acceptor between acid and base."

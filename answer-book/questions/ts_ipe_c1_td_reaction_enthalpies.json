@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer covering formation, fusion, vapourisation, sublimation and combustion. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split over five definitions is a CLAIM until a Telangana IPE teacher confirms it. DISCREPANCY: the book defines heat of combustion as burning at constant volume; enthalpy is a constant-pressure quantity (heat at constant volume measures ΔU), so this card writes constant pressure and records the book's version."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer covering formation, fusion, vapourisation, sublimation and combustion. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split over five definitions is a CLAIM until a Telangana IPE teacher confirms it. DISCREPANCY: the book defines heat of combustion as burning at constant volume; enthalpy is a constant-pressure quantity (heat at constant volume measures ΔU), so this card writes constant pressure and records the book's version. AI chemistry check 2026-08-25. The constant-pressure correction stands, and every value was recomputed or checked (−393.5, +6.0, +40.8, −890.3 kJ mol⁻¹). Added to the why channel: C(s) means graphite (the reference form) and the definition given is the STANDARD enthalpy of formation; and the sublimation sum rule holds only at ONE temperature, so the melting-point and boiling-point water values above must not simply be added. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -61,7 +61,7 @@
             "style": "eq"
           }
         ],
-        "why": "Formation enthalpies give every compound one reference number, from which reaction enthalpies can be calculated by Hess law.",
+        "why": "Formation enthalpies give every compound one reference number, from which reaction enthalpies can be calculated by Hess law. Elements in their standard states means the reference form of each element: the C(s) written here is graphite, and −393.5 kJ mol⁻¹ is the graphite value, not the diamond value. Because the standard-state condition is part of the definition, the quantity defined here is the STANDARD enthalpy of formation, ΔfH°.",
         "common_mistakes": [
           "Leaving out one mole of the compound.",
           "Leaving out from its elements — formation is always from elements, not from other compounds."
@@ -116,10 +116,11 @@
             "style": "eq"
           }
         ],
-        "why": "Solid to vapour directly, and solid to liquid to vapour, connect the same two states — so by Hess law their enthalpies must be equal.",
+        "why": "Solid to vapour directly, and solid to liquid to vapour, connect the same two states — so by Hess law their enthalpies must be equal. All three values must be taken at the SAME temperature. The two water values in the previous step are not: 6.0 kJ mol⁻¹ is quoted at the melting point and 40.8 kJ mol⁻¹ at the boiling point, so adding those two does not give the enthalpy of sublimation of ice, which is about 51 kJ mol⁻¹ at 273 K.",
         "common_mistakes": [
           "Defining sublimation with decomposition — the substance must reach the vapour unchanged.",
-          "Writing ΔH(sub) = ΔH(vap) − ΔH(fus). The two are added."
+          "Writing ΔH(sub) = ΔH(vap) − ΔH(fus). The two are added.",
+          "Adding the 6.0 and 40.8 kJ mol⁻¹ water values from the previous step to get a sublimation enthalpy. Those two are quoted at different temperatures; the sum rule needs all three values at one temperature."
         ],
         "memory_tip": "Sublimation skips the liquid stage but its enthalpy still counts both steps: fusion plus vapourisation.",
         "margin_note": "The Hess relation is the detail that earns this mark."

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split over three definitions is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines absolute entropy in the standard state at 273 K and 1 atm; standard thermodynamic data are reported at 298 K, and this card writes 298 K."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split over three definitions is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines absolute entropy in the standard state at 273 K and 1 atm; standard thermodynamic data are reported at 298 K, and this card writes 298 K. AI chemistry check 2026-08-25. Confirmed the 273 K to 298 K correction stands and that the third law is referenced to 0 K, not 273 K. Sharpened the why: the third-law zero needs pure and perfectly crystalline, and 298 K is the tabulation temperature, not part of the meaning of absolute. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -77,7 +77,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The third law fixes S = 0 for a perfect crystal at 0 K, so a real total (absolute) entropy can be counted from that zero. The source book prints the standard state as 273 K; standard thermodynamic data are reported at 298 K, so this card writes 298 K.",
+        "why": "The third law fixes S = 0 for a pure, perfectly crystalline substance at 0 K, so a real total (absolute) entropy can be counted up from that zero. An absolute entropy exists at every temperature; 298 K is simply the temperature at which standard values are tabulated, not part of what makes the entropy absolute. The source book prints the standard state as 273 K; standard thermodynamic data are reported at 298 K, so this card writes 298 K.",
         "common_mistakes": [
           "Writing 273 K for the standard state — thermodynamic tables use 298 K.",
           "Leaving out per mole."

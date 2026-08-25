@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NOTATION: the book prints the ion charges as Ca⁺² and Zn⁺²; the card uses the standard Ca²⁺ and Zn²⁺."
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NOTATION: the book prints the ion charges as Ca⁺² and Zn⁺²; the card uses the standard Ca²⁺ and Zn²⁺. AI chemistry check 2026-08-25. Rewrote the s2 `why`, which argued that poor shielding by the 18 outer electrons makes the pseudo inert gas configuration less stable — poor shielding is the Fajan's-rules polarising-power consequence, not the reason for lower stability. Both shell configurations verified correct."
   },
   "answer": {
     "page_header": [
@@ -74,7 +74,7 @@
           "which is more stable than the pseudo",
           "inert gas configuration of Zn²⁺."
         ],
-        "why": "A true inert gas configuration is the most stable electron arrangement. The 18 outer electrons of a pseudo inert gas configuration shield the nucleus poorly, so that arrangement is less stable.",
+        "why": "A true inert gas configuration — eight electrons in the outermost shell — is the most stable electron arrangement, so Ca²⁺ is the more stable ion. Zn²⁺ also has a filled outer shell, but 18 electrons is not a noble gas arrangement, so it ranks below a true inert gas configuration. The poor shielding by those 18 electrons is a separate consequence: it makes Zn²⁺ the stronger polarising ion in Fajan's rules, not the less stable one.",
         "common_mistakes": [
           "Answering Zn²⁺ because 18 is a larger number than 8. More outer electrons does not mean more stable."
         ],

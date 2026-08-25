@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 3 (definition + example) and as its unstarred SAQ 9 (definition + the OH⁻ and HCO₃⁻ pairs) — so the 2-mark form is authored as a cut of this card, not as a second file."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 3 (definition + example) and as its unstarred SAQ 9 (definition + the OH⁻ and HCO₃⁻ pairs) — so the 2-mark form is authored as a cut of this card, not as a second file. AI chemistry check 2026-08-25. All four conjugate species recomputed and correct (OH⁻: H₂O and O²⁻; HCO₃⁻: H₂CO₃ and CO₃²⁻); one memory tip rewritten for Rule 41 ('ladder/rung'). CUT DEFECT FLAGGED FOR THE ENGINE, not fixable in this file: applyCut in answer-book/notebook.js merges only marks/label/lines/margin_note/why/memory_tip/mark_note, so the 2-mark vsaq cut inherits s4_hco3's common_mistakes about HCO₃⁻ and CO₃²⁻ even though that cut never shows HCO₃⁻."
   },
   "cuts": [
     {
@@ -221,7 +221,7 @@
           "Writing the conjugate base as CO₃⁻. Removing H⁺ from HCO₃⁻ leaves CO₃²⁻.",
           "Forgetting that a species like HCO₃⁻ has BOTH a conjugate acid and a conjugate base."
         ],
-        "memory_tip": "HCO₃⁻ sits in the middle of the ladder H₂CO₃ — HCO₃⁻ — CO₃²⁻, one proton per rung.",
+        "memory_tip": "HCO₃⁻ is the middle member of the series H₂CO₃ — HCO₃⁻ — CO₃²⁻, with one proton between neighbours.",
         "margin_note": "Box the four answers together as the final summary."
       }
     ]

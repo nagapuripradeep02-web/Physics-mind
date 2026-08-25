@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: both halves of the definition and the hollow-sphere realisation verified; no content changed. FLAGGED for the teacher gate: in the second step the boxed line is Radiation emitted by it is black body radiation, while the step label, the mark note and the margin note all say the mark is earned by naming the hollow sphere with a small hole. The box therefore highlights a true sentence that is not the one carrying this mark; which line the box should carry is left for the teacher."
   },
   "answer": {
     "page_header": [

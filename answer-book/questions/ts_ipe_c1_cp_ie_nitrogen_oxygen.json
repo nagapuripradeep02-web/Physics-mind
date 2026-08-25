@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book states the half-filled/full-filled stability factor inside the ionisation enthalpy LAQ but never asks its standard application, the N-versus-O comparison — the explain-with-a-reason cell for that factor. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book states the half-filled/full-filled stability factor inside the ionisation enthalpy LAQ but never asks its standard application, the N-versus-O comparison — the explain-with-a-reason cell for that factor. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25: the half-filled 2p³ stability reason and the paired-electron repulsion reason were both re-checked against NCERT Class-11 and nothing marked was changed; one memory tip reworded to plain literal language. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -57,7 +57,7 @@
           "Arguing from atomic size. Size favours oxygen; the half-filled configuration is what decides this pair.",
           "Writing 2p³ as a pair plus a single electron. It is one electron in each of the three orbitals."
         ],
-        "memory_tip": "2p³ is one electron per orbital — a settled arrangement that costs extra energy to break.",
+        "memory_tip": "2p³ is one electron in each of the three orbitals — a half-filled, extra stable arrangement, so removing an electron needs more energy.",
         "margin_note": "Write the configurations first; the whole answer reads off them."
       },
       {

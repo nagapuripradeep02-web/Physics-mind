@@ -42,7 +42,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 3+1+1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book's diagram draws all five series. This card's diagram draws Lyman, Balmer and Paschen, because five arrow groups on one page cannot be labelled legibly; the table in the previous step lists all five. REGION NAMES: the book's table marks Paschen, Brackett and Pfund all as infrared, and its prose calls Pfund far infrared; this card follows the table and names all three infrared."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 3+1+1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book's diagram draws all five series. This card's diagram draws Lyman, Balmer and Paschen, because five arrow groups on one page cannot be labelled legibly; the table in the previous step lists all five. REGION NAMES: the book's table marks Paschen, Brackett and Pfund all as infrared, and its prose calls Pfund far infrared; this card follows the table and names all three infrared. AI chemistry check 2026-08-25: the postulates, ΔE = hν, mvr = nh/2π and all five series with their n₁, n₂ values and regions verified; a memory tip reworded to drop stays put. FLAGGED for the teacher gate: this is the only Chapter 1 card with no boxed line, and the energy-level figure spaces n = 2 to n = 5 evenly, whereas real levels crowd closer together as n rises (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -73,7 +73,7 @@
           "Writing only that electrons move in orbits. Three marks need the full numbered list.",
           "Leaving out the stationary orbit postulate, which is the one that answers why the atom is stable."
         ],
-        "memory_tip": "Fixed paths, fixed energies, no energy lost while it stays put. Then the two equations.",
+        "memory_tip": "Fixed paths, fixed energies, no energy lost while the electron stays in one orbit. Then the two equations.",
         "margin_note": "Number every postulate. Three marks means the examiner is counting points."
       },
       {

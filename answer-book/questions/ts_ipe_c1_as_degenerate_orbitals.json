@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 1+1 mark split are claims until a Telangana IPE teacher confirms them. AI chemistry check 2026-08-25: the definition, the quantum-number reasoning and the 2p and 3d examples verified against NCERT Class-11 conventions; the why and one common mistake now say that the 2s/2p energy difference is the multi-electron case, since in hydrogen those orbitals are degenerate (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -50,9 +50,9 @@
           "They differ only in the magnetic quantum",
           "number m, that is, in their orientation."
         ],
-        "why": "Orbitals of one subshell share n and l, so they share the energy as well. Only the orientation differs, and orientation costs no energy unless a magnetic or electric field is applied.",
+        "why": "Orbitals of one subshell share n and l, so they share the energy as well. Only the orientation differs, and orientation costs no energy unless a magnetic or electric field is applied. That is the multi-electron case; in the hydrogen atom, which has one electron, the energy depends on n alone, so there 2s and 2p are degenerate as well.",
         "common_mistakes": [
-          "Saying orbitals of the same shell are degenerate. 2s and 2p share n but have different energies.",
+          "Saying orbitals of the same shell are degenerate. In a multi-electron atom 2s and 2p share n but have different energies.",
           "Leaving out the words equal energy, which is the whole definition."
         ],
         "memory_tip": "Same subshell means same energy. Only the direction changes.",

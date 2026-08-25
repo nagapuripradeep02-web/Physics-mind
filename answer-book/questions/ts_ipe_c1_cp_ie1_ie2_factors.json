@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2+4 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's 'factors that effect IE' is regularised to affect. The book writes the factor relations as proportionalities (I.E ∝ 1/atomic size, I.E ∝ nuclear charge, I.E ∝ 1/screening effect); these are qualitative shorthands for trends, not numerical laws, and the card keeps them with that reading. The book's reason for IE₂ > IE₁ — 'in unipositive ion number of protons are more than the number of electrons, so the nuclear attraction increases' — is essentially right and the card states it precisely: the same nuclear charge acts on one electron fewer."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2+4 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's 'factors that effect IE' is regularised to affect. The book writes the factor relations as proportionalities (I.E ∝ 1/atomic size, I.E ∝ nuclear charge, I.E ∝ 1/screening effect); these are qualitative shorthands for trends, not numerical laws, and the card keeps them with that reading. The book's reason for IE₂ > IE₁ — 'in unipositive ion number of protons are more than the number of electrons, so the nuclear attraction increases' — is essentially right and the card states it precisely: the same nuclear charge acts on one electron fewer. AI chemistry check 2026-08-25: both definitions, the IE₂ > IE₁ reason and all four factors re-checked against NCERT Class-11; no chemistry changed; one memory tip reworded to plain literal language. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -211,7 +211,7 @@
           "Leaving out this fourth factor and listing only three.",
           "Giving the N and O comparison the wrong way. Nitrogen's half-filled 2p³ makes its IE₁ the higher one."
         ],
-        "memory_tip": "2p³ and 2p⁶ are settled arrangements; breaking a settled arrangement costs extra energy.",
+        "memory_tip": "A half-filled 2p³ and a completely filled 2p⁶ are extra stable, so removing an electron from either needs more energy.",
         "margin_note": "The N versus O example is the standard illustration and is worth the one extra line."
       }
     ]
