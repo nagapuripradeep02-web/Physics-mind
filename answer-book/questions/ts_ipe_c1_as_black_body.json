@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: both halves of the definition and the hollow-sphere realisation verified; no content changed. FLAGGED for the teacher gate: in the second step the boxed line is Radiation emitted by it is black body radiation, while the step label, the mark note and the margin note all say the mark is earned by naming the hollow sphere with a small hole. The box therefore highlights a true sentence that is not the one carrying this mark; which line the box should carry is left for the teacher."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: both halves of the definition and the hollow-sphere realisation verified; no content changed. FLAGGED for the teacher gate: in the second step the boxed line is Radiation emitted by it is black body radiation, while the step label, the mark note and the margin note all say the mark is earned by naming the hollow sphere with a small hole. The box therefore highlights a true sentence that is not the one carrying this mark; which line the box should carry is left for the teacher. AI chemistry check 2026-08-25 (audit round): no marked line was moved; the step's why now states plainly that the boxed line names the radiation while the hollow sphere with a small hole is what earns the mark, so the why, the mark note and the margin note agree."
   },
   "answer": {
     "page_header": [
@@ -73,7 +73,7 @@
           "A hollow sphere coated inside with lamp",
           "black, with a small hole, acts as one."
         ],
-        "why": "Radiation entering the small hole is reflected again and again inside and cannot come out, so the hole absorbs everything. This is why the hollow sphere is the standard laboratory model of a black body.",
+        "why": "The boxed line names what a black body gives out when it is heated. The mark for this step is earned by the practical form written under it: a hollow sphere coated inside with lamp black, with a small hole. Radiation entering the small hole is reflected again and again inside and cannot come out, so the hole absorbs everything, and that is why the hollow sphere is the standard laboratory model of a black body.",
         "common_mistakes": [
           "Naming a black-coloured object as a perfect black body. No real surface absorbs every wavelength."
         ],

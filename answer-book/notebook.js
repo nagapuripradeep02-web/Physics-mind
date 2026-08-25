@@ -335,7 +335,18 @@
       for (var e2 = 0; e2 < qs2.length && mates.length < cap; e2++) {
         var me2 = qs2[e2];
         if (me2.question_id && me2.stars === 3 && me2.question_id !== q.question_id) {
-          mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
+          // Finish the word. A bare slice(0,80) cut mid-word — three graders quoted
+          // "...completely burn 100 ml of acetylen" and "...in acid medium (or) Write t"
+          // out of this list, and Vidi repeats it to students verbatim. Extend FORWARD
+          // to the next space so the clip can only ever ADD characters; trimming
+          // backwards could drop a word a caller asserts on.
+          var t2 = String(me2.text);
+          if (t2.length > 80) {
+            var end2 = t2.indexOf(' ', 80);
+            t2 = (end2 > 0 && end2 <= 100) ? t2.slice(0, end2) : t2.slice(0, 80);
+            t2 = t2.replace(/[\s,;:.]+$/, '') + '…';
+          }
+          mates.push(me2.section + ' ' + me2.number + ': ' + t2);
         }
       }
     }
@@ -3503,7 +3514,19 @@
         ' marks · about ' + cut.expected_time_min + ' minutes');
       if (question.chapter) out.push('CHAPTER: ' + question.chapter);
       var e = manifestEntry();
-      if (e) out.push('STARS: ' + e.stars + (e.source === 'enumerated' ? ' · predicted, not asked yet' : ''));
+      // Say what the rank MEANS, both ways. The old line emitted a bare "STARS: 0" on a
+      // sourced card and "STARS: 0 · predicted, not asked yet" on an enumerated one, and
+      // four independent graders caught the model reading those as two different
+      // rankings — "the book predicts it IS likely to be asked" on one card and "predicts
+      // it is not asked often" on another, from the same underlying 0. The second half
+      // fixes a separate contradiction they all hit: cards carrying STARS 0 alongside
+      // five Asked years. Stars are the book's rank; the Asked line is exam history; the
+      // context never said they were independent.
+      if (e) {
+        out.push(e.source === 'enumerated'
+          ? 'STARS: ' + e.stars + ' — this question is PREDICTED: the source book does not ask it, so it carries no frequency rank and no exam history. Do not tell the student it is frequently asked.'
+          : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). A 0 does NOT mean it was never asked: read the Asked line below for exam history, and report the two separately.');
+      }
       var asked = askedLine(question);
       if (asked) out.push(asked);
       var split = [];
@@ -3537,9 +3560,14 @@
         }
       }
       // The chapter's 3-star set — the #1 follow-up question a crammer asks.
+      // Say SOME. The cap of 6 silently drops 3-star questions in the bigger
+      // chapters, and graders caught replies quoting this list to a student as the
+      // complete set ("the book lists disproportionation and comproportionation as
+      // the 3-star ones") while two 3-star SAQs in that very chapter were invisible
+      // to it. A partial list presented as whole is a wrong answer, not a short one.
       var mates = chapterMates(question, 6);
       if (mates.length) {
-        out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
+        out.push('SOME OF THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS (a partial list, never present it as the complete set): ' + mates.join(' | '));
       }
       out.push('THE MODEL ANSWER, step by step:');
       for (var k = 0; k < steps.length; k++) {

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties (hard heavy metals; variable oxidation states; 'colour compounds'; complex compounds; alloys; high M.P and B.P). The question asks for any four, so the card folds high melting and boiling points into the metallic-character point and alloys in with complexes, writes 'coloured compounds' for the book's 'colour compounds', and adds the one-line reasons the book omits."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties (hard heavy metals; variable oxidation states; 'colour compounds'; complex compounds; alloys; high M.P and B.P). The question asks for any four, so the card folds high melting and boiling points into the metallic-character point and alloys in with complexes, writes 'coloured compounds' for the book's 'colour compounds', and adds the one-line reasons the book omits. AI chemistry check 2026-08-25 (audit round): the insider note treated the reasons as optional while step 3 called the reason the marked phrase, so the note now says the reason is required on every point; the first step was titled 'Hard, heavy metals' while the mark split calls that mark 'Metallic character', so the step label now matches the split. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -49,7 +49,7 @@
       {
         "id": "s1_metals",
         "kind": "text",
-        "label": "Hard, heavy metals",
+        "label": "Metallic character",
         "marks": 1,
         "mark_note": "Property 1",
         "lines": [
@@ -133,5 +133,5 @@
       }
     ]
   },
-  "insider_note": "The book's answer is a bare six-item list; examiners award full marks for four properties, and a one-line reason on each is what separates this from a memorised list when the wording is checked."
+  "insider_note": "The book's answer is a bare six-item list and the question asks for any four, so four properties fill the four marks. Each numbered point must carry its one-line reason or example with it: the reason is the marked phrase, and a property named on its own is what loses the mark."
 }

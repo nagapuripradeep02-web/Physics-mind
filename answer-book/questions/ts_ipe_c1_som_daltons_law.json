@@ -41,7 +41,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 23, the 4-mark form is its three-star SAQ 2). YEARS: the book prints Jun-11, Mar-14 and May-14 against the VSAQ form; appearances dedupe to 2011 and 2014 (March and May 2014 are two sittings of the same year). The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3)."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced (the 2-mark form is the book's VSAQ 23, the 4-mark form is its three-star SAQ 2). YEARS: the book prints Jun-11, Mar-14 and May-14 against the VSAQ form; appearances dedupe to 2011 and 2014 (March and May 2014 are two sittings of the same year). The deduction of this law from the kinetic gas equation is a different question and is authored separately (SAQ 3). AI chemistry check 2026-08-25 (audit round): the second step's common mistake forbids using the equation without defining partial pressure, but the 2-mark cut dropped that definition from its lines; the definition is now written into the cut as well, and the mistake line no longer names a mark row that exists only at 4 marks. No marked line removed and no mark moved."
   },
   "answer": {
     "page_header": [
@@ -87,7 +87,7 @@
         ],
         "why": "The equation needs the term it uses defined: partial pressure is an alone-in-the-vessel pressure. With that meaning fixed, the law is one addition.",
         "common_mistakes": [
-          "Using the equation without defining partial pressure. The definition carries the explanation mark.",
+          "Using the equation without defining partial pressure. The definition is part of this step's mark.",
           "Writing the partial pressure as the gas's pressure in its own separate small container. It fills the WHOLE vessel."
         ],
         "memory_tip": "Partial pressure: same vessel, same temperature, the other gases removed.",
@@ -190,7 +190,10 @@
               "style": "boxed"
             },
             "where p₁, p₂, p₃ … are the partial pressures",
-            "of the component gases."
+            "of the component gases.",
+            "The partial pressure of a gas is the pressure",
+            "that gas would exert if it alone occupied the",
+            "whole vessel at the same temperature."
           ],
           "margin_note": "At 2 marks the statement and the equation complete the answer; the mole-fraction derivation belongs to the 4-mark form."
         }

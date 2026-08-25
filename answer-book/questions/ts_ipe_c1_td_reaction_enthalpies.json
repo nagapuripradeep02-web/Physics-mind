@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer covering formation, fusion, vapourisation, sublimation and combustion. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split over five definitions is a CLAIM until a Telangana IPE teacher confirms it. DISCREPANCY: the book defines heat of combustion as burning at constant volume; enthalpy is a constant-pressure quantity (heat at constant volume measures ΔU), so this card writes constant pressure and records the book's version. AI chemistry check 2026-08-25. The constant-pressure correction stands, and every value was recomputed or checked (−393.5, +6.0, +40.8, −890.3 kJ mol⁻¹). Added to the why channel: C(s) means graphite (the reference form) and the definition given is the STANDARD enthalpy of formation; and the sublimation sum rule holds only at ONE temperature, so the melting-point and boiling-point water values above must not simply be added. No marked line changed."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer covering formation, fusion, vapourisation, sublimation and combustion. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split over five definitions is a CLAIM until a Telangana IPE teacher confirms it. DISCREPANCY: the book defines heat of combustion as burning at constant volume; enthalpy is a constant-pressure quantity (heat at constant volume measures ΔU), so this card writes constant pressure and records the book's version. AI chemistry check 2026-08-25. The constant-pressure correction stands, and every value was recomputed or checked (−393.5, +6.0, +40.8, −890.3 kJ mol⁻¹). Added to the why channel: C(s) means graphite (the reference form) and the definition given is the STANDARD enthalpy of formation; and the sublimation sum rule holds only at ONE temperature, so the melting-point and boiling-point water values above must not simply be added. No marked line changed. AI chemistry check 2026-08-25 (audit round): the insider_note claimed every part carries a balanced equation with a real value, but step s3_sublimation carries the Hess relation and no value; the insider_note now names that exception. The s1 margin_note no longer says 'each'."
   },
   "answer": {
     "page_header": [
@@ -67,7 +67,7 @@
           "Leaving out from its elements — formation is always from elements, not from other compounds."
         ],
         "memory_tip": "Formation: elements combine into one mole of compound.",
-        "margin_note": "One line of definition plus one balanced equation each."
+        "margin_note": "One line of definition plus one balanced equation with its value."
       },
       {
         "id": "s2_fusion_vap",
@@ -159,5 +159,5 @@
       }
     ]
   },
-  "insider_note": "Five definitions in four marks: one tight line each plus one balanced equation with a real value is what a full-mark answer looks like."
+  "insider_note": "Five definitions in four marks: one short line for each definition, and an example equation with a real ΔH value wherever one exists — formation, fusion, vapourisation and combustion. Sublimation is the exception: it carries the Hess relation ΔH(sub) = ΔH(fus) + ΔH(vap) in place of an equation with a value."
 }

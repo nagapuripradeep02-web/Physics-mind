@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the chapter's syllabus covers three acid-base theories, and the book asks Brønsted-Lowry (SAQ 6) and Lewis (SAQ 3, VSAQ 6) but never Arrhenius. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 (removed 'Arrhenius lives in water' and 'misfit that pushed chemistry past'). No marked line changed."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the chapter's syllabus covers three acid-base theories, and the book asks Brønsted-Lowry (SAQ 6) and Lewis (SAQ 3, VSAQ 6) but never Arrhenius. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 (removed 'Arrhenius lives in water' and 'misfit that pushed chemistry past'). No marked line changed. AI chemistry check 2026-08-25 (audit round): step s2 mark_note read 'Examples' while the mark split row is 'Examples and limitation' — mark_note, why and margin_note now all say the limitation is part of this mark."
   },
   "answer": {
     "page_header": [
@@ -63,7 +63,7 @@
         "kind": "boxed_final",
         "label": "Examples and limitation",
         "marks": 1,
-        "mark_note": "Examples",
+        "mark_note": "Examples and limitation",
         "lines": [
           {
             "text": "Acid: HCl  ·  Base: NaOH",
@@ -74,13 +74,13 @@
           "the basic nature of substances without",
           "OH⁻, such as NH₃."
         ],
-        "why": "HCl and NaOH are the cleanest examples — full ionisation in water into H⁺ and OH⁻. The NH₃ limitation is why the later theories were needed, which is the link the examiner rewards.",
+        "why": "HCl and NaOH are the clearest examples — full ionisation in water into H⁺ and OH⁻. The NH₃ limitation is why the later theories were needed. This single mark covers the two examples AND the limitation together, so write both parts.",
         "common_mistakes": [
           "Giving NH₃ as an Arrhenius base. NH₃ has no OH⁻ — it is the standard counter-example.",
           "Writing an example without naming which theory member it is."
         ],
         "memory_tip": "HCl and NaOH are the standard pair. NH₃ is the counter-example the Arrhenius theory cannot explain.",
-        "margin_note": "One example each; the limitation line shows why other theories exist."
+        "margin_note": "One example each, then the limitation line. Both parts sit inside this one mark."
       }
     ]
   }

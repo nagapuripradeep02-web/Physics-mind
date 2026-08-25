@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 3 (definition + example) and as its unstarred SAQ 9 (definition + the OH⁻ and HCO₃⁻ pairs) — so the 2-mark form is authored as a cut of this card, not as a second file. AI chemistry check 2026-08-25. All four conjugate species recomputed and correct (OH⁻: H₂O and O²⁻; HCO₃⁻: H₂CO₃ and CO₃²⁻); one memory tip rewritten for Rule 41 ('ladder/rung'). CUT DEFECT FLAGGED FOR THE ENGINE, not fixable in this file: applyCut in answer-book/notebook.js merges only marks/label/lines/margin_note/why/memory_tip/mark_note, so the 2-mark vsaq cut inherits s4_hco3's common_mistakes about HCO₃⁻ and CO₃²⁻ even though that cut never shows HCO₃⁻."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book asks this content twice — as its three-star VSAQ 3 (definition + example) and as its unstarred SAQ 9 (definition + the OH⁻ and HCO₃⁻ pairs) — so the 2-mark form is authored as a cut of this card, not as a second file. AI chemistry check 2026-08-25. All four conjugate species recomputed and correct (OH⁻: H₂O and O²⁻; HCO₃⁻: H₂CO₃ and CO₃²⁻); one memory tip rewritten for Rule 41 ('ladder/rung'). CUT LIMIT: applyCut in answer-book/notebook.js merges only marks/label/lines/margin_note/why/memory_tip/mark_note, so common_mistakes and insider_note can never be cut-overridden. AI chemistry check 2026-08-25 (audit round): both base texts are therefore rewritten to be true at every length — the insider_note no longer names parts (a) and (b), and s4_hco3's common_mistakes are now the general charge rule, with the HCO₃⁻/CO₃²⁻ detail moved into the base why, which the vsaq cut does override."
   },
   "cuts": [
     {
@@ -216,15 +216,15 @@
             "style": "boxed"
           }
         ],
-        "why": "HCO₃⁻ can both take a proton (giving H₂CO₃) and give one (leaving CO₃²⁻), which is why it appears in this question — it shows one species can have both a conjugate acid and a conjugate base.",
+        "why": "HCO₃⁻ can both take a proton (giving H₂CO₃) and give one (leaving CO₃²⁻), which is why it appears in this question — it shows one species can have both a conjugate acid and a conjugate base. The usual slip is writing CO₃⁻: removing one H⁺ drops the charge by a full unit, from −1 to −2, so the conjugate base is CO₃²⁻.",
         "common_mistakes": [
-          "Writing the conjugate base as CO₃⁻. Removing H⁺ from HCO₃⁻ leaves CO₃²⁻.",
-          "Forgetting that a species like HCO₃⁻ has BOTH a conjugate acid and a conjugate base."
+          "Changing the charge by the wrong amount. Adding one H⁺ raises the charge by exactly one unit and removing one H⁺ lowers it by exactly one unit.",
+          "Forgetting that one species can have BOTH a conjugate acid and a conjugate base."
         ],
         "memory_tip": "HCO₃⁻ is the middle member of the series H₂CO₃ — HCO₃⁻ — CO₃²⁻, with one proton between neighbours.",
         "margin_note": "Box the four answers together as the final summary."
       }
     ]
   },
-  "insider_note": "Add H⁺ for the conjugate acid, remove H⁺ for the conjugate base — worked one species at a time, parts (a) and (b) are four ten-second answers, and the charge is where they go wrong."
+  "insider_note": "Add H⁺ for the conjugate acid, remove H⁺ for the conjugate base. Worked one species at a time, each listed species gives two one-line answers, and the charge is where marks are lost: removing H⁺ lowers the charge by one full unit. The 2-mark form asks for the definition and one example only; the 4-mark form adds the species listed in the question."
 }
