@@ -37,12 +37,34 @@ The same round found a pre-existing twin: the `VERIFICATION` line said "this mar
 ### Where the remaining harm lives
 Harmful replies went 2 → 4 and `why` regressed 9.74 → 9.48. **Three of the four zeros are mark-value inventions on cards whose `MARK SPLIT` does not map one-to-one onto steps** — `as_plancks_quantum_theory` (EARNS THE MARK FOR names half its own 2M step), `cb_vsepr_theory` (one 4M bucket split across two 2M steps — the only such card in its slice, and the only one that produced a wrong split), `td_reaction_enthalpies` (five definitions in four marks). The fourth is a model chemistry falsehood (Cr³⁺ in dichromate). **That is the next target and it is an authoring fix, not a prompt fix.**
 
+### ROUND 3 — the 38 defects the second audit named, closed
+
+The first two fix rounds ran BEFORE the round-2 graders reported, so their findings sat unaddressed. Four agents closed them across **40 cards**. Every item was verified still live in the current file before the work order was written — two earlier passes had already fixed some, and a fix applied twice is how a card ends up saying the same thing in two voices.
+
+**The checker lied first, again.** The liveness script reported two defects as already fixed. Both were false negatives: `lines[]` is an array of short display lines, so *"the energy available to do / useful work"* and *"Both effects are explained by the magnetic / quantum number m"* never appear as contiguous strings. Found by opening the cards. Real count 38, not 36.
+
+**Four marked lines changed, each an outright falsehood.** `as_zeeman_stark_effect` attributed the **Stark** effect to the magnetic quantum number (m explains Zeeman only — and step 1 of the same card said so). `cp_transition_elements_properties` attributed alloys to "similar atomic sizes … such as brass and **steel**", where steel is interstitial, so the book's own example refuted the book's own mechanism. `td_define_entropy_terms` defined **standard molar entropy S°** and called it absolute entropy, which its own `why` already said; the definition now attaches to the third-law zero and the 298 K survives on S° where it belongs (the recorded 273 → 298 departure is NOT reverted). `td_reaction_enthalpies` invited the 6.0 + 40.8 sum its own mistakes line forbids; the same-temperature qualifier is now ON the line.
+
+**The two redox cards were recomputed, not trusted.** `st_bal_cr2o7_no2_acid` and `st_bal_croh3_io3_basic` both told students to cancel amounts that MUST survive — 14H⁺/7H₂O and 10OH⁻/8H₂O are the half-equations' coefficients and never reach the final line. The agent re-derived the remainders from each card's own marked lines (**8H⁺ and 4H₂O**; **4OH⁻ and 5H₂O**), confirmed each against its boxed answer, and rewrote both bullets into the surviving-remainder form the two CORRECT sibling cards already use. One reply had already repeated the bad phrasing verbatim.
+
+**The harmful-reply root cause, addressed without moving a mark.** Three of the corpus's four zeros were mark-value inventions on cards whose `MARK SPLIT` does not map one-to-one onto steps. Eight `mark_note` fields now state which portion of which row each step earns — `cb_vsepr_theory` (a 4M Postulates row across two 2M steps), `as_plancks_quantum_theory` (a 2M step labelled with one of its two required equations), `td_reaction_enthalpies` (fusion and vapourisation SHARING one mark), plus `td_spontaneous_process`, `td_state_function` and `som_surface_tension`.
+
+Verified over 40 cards / 120 steps, proven not asserted: **0** changes to marks/marks_total/mark_split/qtype/ids · **4** marked-line changes, all named · **0** unexpected fields · cuts touched only in `why`/`margin_note`/`label` on one cut, no membership and no marks.
+
+### THE TRUNCATION NOBODY COULD SEE — and the check that finds it
+
+Three graders reported replies cut off mid-word, each dropping whole mark-carrying properties, and all three noted the same two things: nothing catches it, and no regex over CONTENT ever could, because the reply is correct right up to where it stops.
+
+`looksTruncated()` now ships: the last non-empty character is not terminal punctuation (Latin stops, the Telugu/Devanagari danda, an ellipsis, closing brackets and quotes all count as a legitimate ending). An EMPTY reply is deliberately NOT truncation — that is the guard reply, and conflating them would hide both. **Measured over the full 2,040-reply corpus before shipping: 3 fires, 3 genuinely truncated, 0 false positives.** Wired into `vidi_audit` as a CRITICAL flag.
+
+The fix it found: Telugu `max_tokens` **500 → 800**. Measured, not guessed — the dead replies stopped at 720–782 chars while survivors reach 905, so the cap was binding on token density, not on how long the answer needs to be. **Two of the three were 4-MARK questions, not the 8-mark LAQs assumed**, so scaling the budget by marks would have missed them. Re-measured on 204 Telugu replies against the same contexts: **truncated 3 → 0, median 447 → 449 chars, p90 654 → 626.** The median not moving is the point — the higher cap is not inflating replies, only letting the few that needed room finish. Walkthroughs keep 500 and ordinary asks 300: zero truncation across 1,836 non-Telugu replies.
+
 ### NEXT
-1. **One MARK SPLIT bucket per step.** Three of four harmful replies trace to cards that break it. Cheapest real quality win left in this bank.
-2. **Telugu truncation on long LAQs.** Three graders found replies cut mid-word (`cb_ionic_compound_properties`, `cp_periodic_properties_trends`, `som_deduce_laws_from_kge`), each losing whole mark-carrying properties. Physics raised Telugu `max_tokens` 300 → 500; chemistry's 8-mark LAQs need more. **A truncation detector fires exactly once per slice with zero false positives — the cheapest check nobody has written.**
-3. **`ts_ipe_c1_cp_periodic_properties_trends` is at 9,508 chars** of the server's 10,000 slice. One authoring pass from silently dropping its tail steps.
-4. **Maths (358 cards) has still never been truth-checked.** Physics found 15 errors, chemistry 11. Maths is the largest unread bank in the book.
-5. Still owed: the Telangana teacher gate. All 196 chemistry cards stay `unverified`, and the two-book union check and back-test remain structurally impossible for chemistry.
+1. **The four remaining harmful replies are now blocked at the card, but not re-measured.** A third audit round would tell you whether the mark-label fixes actually moved `marks`/`skiplast`/`explain`. ≈₹40 and one grading pass.
+2. **`ts_ipe_c1_cp_periodic_properties_trends` is at 9,616 chars** of the server's 10,000-char slice and grew again this round. One authoring pass from silently dropping its tail steps.
+3. **Several mark splits are resolved TO rather than answered.** `td_spontaneous_process`, `td_state_function`, `td_reaction_enthalpies`, `cp_diagonal_relationship` and the three `st_law_*` cards now have prose consistent with their split — but the splits themselves are unconfirmed claims. Each is recorded for the teacher gate.
+4. **Maths (358 cards) has still never been truth-checked.** Physics found 15 errors, chemistry 11 + 38. Maths is the largest unread bank in the book.
+5. Still owed and NOT closed by any of this: the Telangana teacher gate. All 196 chemistry cards stay `unverified`, chapters 8–13 are unauthored, and the two-book union check and back-test remain structurally impossible for chemistry.
 
 ---
 ## 📏 MEASURED SESSION — Answer Book: **MATHS-1B SHIPPED, MATHS AUDITED TWICE — 9.62/10, AND THE SCORE DID NOT MOVE** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `f0deee41` · `21ffb260`, site `417d266f`, function v7)
