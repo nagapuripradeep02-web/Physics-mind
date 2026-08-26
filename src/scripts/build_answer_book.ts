@@ -37,19 +37,63 @@ const QUESTIONS_DIR = join(BOOK_DIR, 'questions');
 // by construction. Gated also writes the per-unit content bundles that
 // content:push uploads.
 const GATED = process.argv.includes('--gated');
-const OUT_DIR = join(BOOK_DIR, GATED ? 'dist-gated' : 'dist');
-const CONTENT_DIR = join(BOOK_DIR, 'content');
 
 function fail(msg: string): never {
     console.error(`\n✗ build:answers failed\n${msg}`);
     process.exit(1);
 }
 
+// --stream=<name> (2026-08-26): ONE bank, one build, a subject LENS over it —
+// never a second catalog and never duplicated question files (the same doctrine
+// the board picker follows). A stream is the set of PAPERS a student actually
+// sits, so an MPC student is never shown Botany, and a BiPC student is never
+// handed a book that silently omits Zoology.
+//
+// The lens is applied SYMMETRICALLY — to the questions AND to the manifest —
+// because §1b's cross-checks run in both directions: shrink only the manifest
+// and "authored question X is not listed in any unit" fires once per dropped
+// file; shrink only the files and "question_id X has no authored file" fires.
+// Filtering both with one predicate leaves every downstream guard satisfied.
+// `label`/`blurb` are the STUDENT-FACING words for the stream and are the single
+// source for both the link-preview card and the on-page header, so the two can
+// never disagree about what the reader is holding.
+const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string; short: string }> = {
+    // Maths-1A is `mathematics` for historical reasons (see SUBJECTS below).
+    mpc: {
+        subjects: ['physics', 'chemistry', 'mathematics', 'mathematics_1b'],
+        label: 'Junior Inter MPC',
+        blurb: 'Maths, Physics and Chemistry',
+        // `short` joins the catalog eyebrow, which already carries the board and
+        // the year — so it must NOT repeat either ("Telangana IPE · First year · MPC").
+        short: 'MPC',
+    },
+};
+const streamArg = process.argv.find((a) => a.startsWith('--stream='));
+const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
+if (STREAM !== null && !STREAMS[STREAM]) {
+    // Loud, not lenient: a typo'd stream falling back to the full bank would
+    // ship Botany to an MPC student — the exact thing this flag prevents.
+    fail(`  --stream="${STREAM}" is not one of ${Object.keys(STREAMS).join('/')}`);
+}
+if (STREAM && GATED) {
+    // content:push hard-fails on an ORPHAN bundle, and a streamed gated build
+    // would leave the dropped subjects' bundles behind in answer-book/content/
+    // to serve dead content forever. Scope CONTENT_DIR per stream before
+    // lifting this.
+    fail('  --gated and --stream cannot be combined yet: the per-unit content bundles in\n' +
+         '  answer-book/content/ are not stream-scoped, so content:push would abort on the\n' +
+         "  dropped subjects' orphan bundles.");
+}
+const STREAM_SUBJECTS = STREAM ? new Set(STREAMS[STREAM].subjects) : null;
+
+const OUT_DIR = join(BOOK_DIR, GATED ? 'dist-gated' : STREAM ? `dist-${STREAM}` : 'dist');
+const CONTENT_DIR = join(BOOK_DIR, 'content');
+
 // ── 1. read + validate every question ────────────────────────────────────────
 const files = readdirSync(QUESTIONS_DIR).filter((f) => f.endsWith('.json')).sort();
 if (files.length === 0) fail(`no question JSONs found in ${QUESTIONS_DIR}`);
 
-const questions: AnswerBookQuestion[] = [];
+const allQuestions: AnswerBookQuestion[] = [];
 for (const f of files) {
     const path = join(QUESTIONS_DIR, f);
     let raw: unknown;
@@ -69,7 +113,22 @@ for (const f of files) {
     if (q.question_id !== f.replace(/\.json$/, '')) {
         fail(`${path}\n  question_id "${q.question_id}" must match the filename`);
     }
-    questions.push(q);
+    allQuestions.push(q);
+}
+
+// The stream lens, half 1 of 2 (half 2 is the manifest, below). Every file is
+// parsed and validated above FIRST, so a streamed build still proves the whole
+// bank is sound — the lens only decides what ships, never what is checked.
+//
+// This keys on the question's own `subject` field, which the schema REQUIRES on
+// every file. It deliberately does not parse the `ts_ipe_<x>_` id prefix: three
+// tools in this repo do parse it, none of them learned `ts_ipe_b1_`, and all
+// three silently file Botany as physics. A lens must not inherit that bug.
+const questions = STREAM_SUBJECTS
+    ? allQuestions.filter((q) => STREAM_SUBJECTS.has(q.subject))
+    : allQuestions;
+if (STREAM_SUBJECTS && questions.length === 0) {
+    fail(`  --stream="${STREAM}" matched no authored questions (wanted ${[...STREAM_SUBJECTS].join('/')})`);
 }
 
 // ── 1b. read + cross-check the unit manifest ─────────────────────────────────
@@ -102,6 +161,17 @@ if (!Array.isArray(manifest.units) || manifest.units.length === 0) {
     fail(`${manifestPath}\n  units[] is missing or empty`);
 }
 
+// The stream lens, half 2 of 2 — the same predicate the questions were filtered
+// with, so §1b's bidirectional cross-checks below stay satisfied. Absent
+// `subject` means physics (the historical meaning), exactly as the unitKey guard
+// reads it.
+if (STREAM_SUBJECTS) {
+    manifest.units = manifest.units.filter((u) => STREAM_SUBJECTS.has(u.subject || 'physics'));
+    if (manifest.units.length === 0) {
+        fail(`${manifestPath}\n  --stream="${STREAM}" matched no units (wanted ${[...STREAM_SUBJECTS].join('/')})`);
+    }
+}
+
 const questionById = new Map(questions.map((q) => [q.question_id, q]));
 const listedIds = new Set<string>();
 // One PAPER = one subject value. Maths-1A and Maths-1B are different papers with
@@ -111,6 +181,16 @@ const listedIds = new Set<string>();
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
 const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany'];
+// STREAMS (top of file) names subjects too. If the two lists drift — a stream
+// naming a subject that no longer exists, or a renamed subject — the lens would
+// silently drop a whole paper from a student's book rather than erroring. Cheap
+// to assert, expensive to discover in a WhatsApp group.
+for (const [name, def] of Object.entries(STREAMS)) {
+    const unknown = def.subjects.filter((s) => !SUBJECTS.includes(s));
+    if (unknown.length) {
+        fail(`  stream "${name}" names subject(s) ${unknown.join('/')} which are not in SUBJECTS (${SUBJECTS.join('/')})`);
+    }
+}
 const unitKeys = new Set<string>();
 for (const u of manifest.units) {
     // Unit identity is subject-number EVERYWHERE (catalog chips, triage, the
@@ -273,7 +353,7 @@ const shell = readFileSync(join(BOOK_DIR, 'shell.html'), 'utf8');
 const css = readFileSync(join(BOOK_DIR, 'notebook.css'), 'utf8');
 const js = readFileSync(join(BOOK_DIR, 'notebook.js'), 'utf8');
 
-for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_AT__-->']) {
+for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_AT__-->', '<!--__HEAD_META__-->']) {
     if (!shell.includes(token)) fail(`shell.html is missing the token ${token}`);
 }
 
@@ -407,12 +487,56 @@ const dataJs =
     `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};\n` +
     `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};
 ` +
-    `window.PM_PAY_BASE = ${JSON.stringify(payBase)};`;
+    `window.PM_PAY_BASE = ${JSON.stringify(payBase)};\n` +
+    // null on the full build — the catalog eyebrow then stays subject-neutral.
+    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};`;
+
+// ── the social-preview card ──────────────────────────────────────────────────
+// A student meets this product as a link in a WhatsApp group before they ever
+// meet the page, so the preview card is the storefront. Without og: tags the
+// link renders as a bare grey box, which reads as spam in exactly the channel
+// distribution depends on.
+//
+// og:image must be an ABSOLUTE url to a real file — WhatsApp does not fetch
+// data: URIs — so the card png is written alongside index.html and referenced
+// off PUBLIC_URL. If the png is missing the tags still degrade to a clean
+// text-only card rather than a broken image.
+const PUBLIC_URL = (process.env.ANSWER_BOOK_PUBLIC_URL ?? 'https://answers.viditra.co/').replace(/\/*$/, '/');
+const streamDef = STREAM ? STREAMS[STREAM] : null;
+const esc = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const metaTitle = streamDef ? `IPE Answer Book — ${streamDef.label}` : 'IPE Answer Book — Telangana';
+const metaDesc = streamDef
+    ? `Every Telangana IPE question answered step by step, with the marks for each step. ` +
+      `${streamDef.blurb} — first year. Free.`
+    : 'Every Telangana IPE question answered step by step, with the marks for each step. Free.';
+
+const headMeta = [
+    `<title>${esc(metaTitle)} | Viditra</title>`,
+    `<meta name="description" content="${esc(metaDesc)}">`,
+    // Viditra clay — the phone browser's chrome tints to this, so it is the
+    // first brand colour a student sees, before the page paints.
+    `<meta name="theme-color" content="#CB6843">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:site_name" content="Viditra">`,
+    `<meta property="og:title" content="${esc(metaTitle)}">`,
+    `<meta property="og:description" content="${esc(metaDesc)}">`,
+    `<meta property="og:url" content="${esc(PUBLIC_URL)}">`,
+    `<meta property="og:image" content="${esc(PUBLIC_URL + 'og.png')}">`,
+    `<meta property="og:image:width" content="1200">`,
+    `<meta property="og:image:height" content="630">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${esc(metaTitle)}">`,
+    `<meta name="twitter:description" content="${esc(metaDesc)}">`,
+    `<meta name="twitter:image" content="${esc(PUBLIC_URL + 'og.png')}">`,
+].join('\n');
 
 const html = shell
     .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
     .replace('/*__DATA__*/', () => dataJs)
     .replace('/*__JS__*/', () => js)
+    .replace('<!--__HEAD_META__-->', () => headMeta)
     .replace('<!--__BUILT_AT__-->', () => `<!-- built ${new Date().toISOString()} -->`);
 
 mkdirSync(OUT_DIR, { recursive: true });
@@ -421,6 +545,17 @@ writeFileSync(outPath, html, 'utf8');
 
 // ── report ───────────────────────────────────────────────────────────────────
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
+// State the lens on every build. A streamed artifact and a full one are the same
+// filename in different directories; the one thing that must never be ambiguous
+// is which subjects a student is about to receive.
+if (STREAM) {
+    const dropped = SUBJECTS.filter((s) => !STREAM_SUBJECTS!.has(s));
+    console.log(`  stream:       ${STREAM.toUpperCase()} — ${[...STREAM_SUBJECTS!].join(', ')}`);
+    console.log(`                ${questions.length} of ${allQuestions.length} cards, ${manifest.units.length} units` +
+        (dropped.length ? ` (excluded: ${dropped.join(', ')})` : ''));
+} else {
+    console.log(`  stream:       (none — the FULL bank, every subject)`);
+}
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
 console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
 console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage only, zero network)'}`);
