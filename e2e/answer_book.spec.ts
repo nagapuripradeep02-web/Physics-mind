@@ -2088,3 +2088,95 @@ test('an unknown timetable is guessed two days apart, and the plan says it guess
     expect(plan.examDates.chemistry).toBe('2026-09-16');       // the ladder: +2
     expect(plan.examDates.mathematics).toBe('2026-09-18');     // and +2 again
 });
+
+test('a real four-paper plan at one hour a day MIXES its days — not one subject at a time', async ({ page }) => {
+    // The regression the founder caught in the shipped build (2026-08-27): a
+    // 50-day, four-paper, one-hour plan read "Chemistry" on days 1, 2, 3 and 4
+    // and never mixed. The old per-day quota (~15 min across four papers)
+    // could not fit a single long answer (mins x 2 = 16-20), so every day fell
+    // through to the spill and the most urgent subject took all of it.
+    //
+    // Deliberately the WHOLE book at a realistic pace — a smaller pick with a
+    // roomier budget is exactly what hid this.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+
+    const dates: Record<string, string> = {
+        physics: '2026-10-14', chemistry: '2026-10-17',
+        mathematics: '2026-10-19', mathematics_1b: '2026-10-21',
+    };
+    for (const s of Object.keys(dates)) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(dates[s]);
+    }
+    await lastW().locator('.vw-btn.primary').click();          // These subjects →
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // every chapter, pre-ticked
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // These types →
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 8000 });
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
+    const plan = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+
+    expect(plan.subjects.length).toBe(4);
+
+    // Across the opening fortnight every paper must get real time — the bug
+    // gave one subject all fourteen days.
+    const seen = new Set<string>();
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) seen.add(plan.subjectByQid[qid]);
+    }
+    expect([...seen].sort()).toEqual(['chemistry', 'mathematics', 'mathematics_1b', 'physics']);
+
+    // and no single paper may swallow the opening fortnight
+    const share: Record<string, number> = {};
+    let n = 0;
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) { share[plan.subjectByQid[qid]] = (share[plan.subjectByQid[qid]] || 0) + 1; n++; }
+    }
+    for (const s of Object.keys(share)) expect(share[s] / n).toBeLessThan(0.75);
+});
+
+test('the whole plan expands day by day, and names the day each paper is written', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+    for (const [s, d] of Object.entries({ physics: '2026-09-20', chemistry: '2026-09-25' })) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(d);
+    }
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).waitFor({ timeout: 8000 });
+
+    // collapsed: the opening days, an ellipsis, then the revision run-ins
+    const collapsed = await page.locator('.vw-plan .vw-day').count();
+    expect(collapsed).toBeLessThan(10);
+
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).click();
+    const rows = await page.locator('.vw-plan .vw-day').count();
+    expect(rows).toBeGreaterThan(20);                 // every day, not a sample
+
+    const text = await page.locator('.vw-plan').innerText();
+    // the exam row is CSS-uppercased, so compare case-insensitively
+    expect(text).toMatch(/physics exam/i);            // the anchor days are named
+    expect(text).toMatch(/chemistry exam/i);
+    expect(text).toMatch(/Day\s*1\b/);
+    expect(text).not.toMatch(/Day (\d+)–\1\b/);         // never "Day 43–43"
+
+    // and it closes again
+    await page.locator('.vw-toggle', { hasText: 'Show less' }).click();
+    expect(await page.locator('.vw-plan .vw-day').count()).toBe(collapsed);
+});

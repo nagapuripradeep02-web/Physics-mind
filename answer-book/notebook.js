@@ -2396,7 +2396,7 @@
           var r = Math.max(1, Math.ceil(d * 0.15));
           if (r >= d) r = d > 1 ? 1 : 0;
           S[sName] = { name: sName, queue: [], D: d, R: r, L: d - r,
-                       demand: 0, crunch: false, reviseNext: [], w: 0 };
+                       demand: 0, crunch: false, reviseNext: [], w: 0, spent: 0 };
           subjects.push(sName);
         }
         S[sName].queue.push(all[i]);
@@ -2422,7 +2422,7 @@
         if (st.D > maxD) maxD = st.D;
       }
 
-      var learnDay = {}, byDay = [];
+      var learnDay = {}, byDay = [], cumPot = 0;
       for (var day = 1; day <= Math.max(1, maxL); day++) {
         var row = { learn: [], revise: [] };
         var budget = minsPerDay, st2, nx;
@@ -2451,37 +2451,44 @@
           wTotal += st2.w;
           active.push(st2);
         }
-        // Most urgent first, so it also gets first refusal on the spill.
+        // Most urgent first — the deterministic tiebreak when two subjects are
+        // equally far behind.
         active.sort(function (a, b) { return b.w - a.w; });
 
+        // 3. Fill the day by DEFICIT, not by a per-day quota.
+        //
+        //    A quota cannot work here: at 60 minutes across four papers each
+        //    share is ~15 minutes, while one long answer costs mins × 2 ≈ 16-20
+        //    — so no subject's quota ever fits its next question, everything
+        //    falls through to a spill, and the single most urgent subject takes
+        //    the whole day. Every day. (Found in the shipped build 2026-08-27:
+        //    a real 50-day, four-paper, one-hour plan read "Chemistry" on days
+        //    1, 2, 3 and 4 and never mixed at all.)
+        //
+        //    So entitlement is tracked CUMULATIVELY instead: each subject is
+        //    owed its urgency share of every learning minute offered so far,
+        //    and each question goes to whoever is furthest behind what they are
+        //    owed. A day too small to give everyone a turn still evens out
+        //    across days, and a day of cheap questions mixes within itself.
         var pot = Math.max(0, budget);
-        for (k = 0; k < active.length; k++) {
-          st2 = active[k];
-          var quota = wTotal > 0 ? pot * (st2.w / wTotal) : 0;
-          while (st2.queue.length && st2.queue[0].mins * 2 <= quota
-                                  && st2.queue[0].mins * 2 <= budget) {
-            nx = st2.queue.shift();
-            quota -= nx.mins * 2;
-            budget -= nx.mins * 2;
-            row.learn.push(nx.qid);
-            learnDay[nx.qid] = day;
-            st2.reviseNext.push(nx);
+        cumPot += pot;
+        while (true) {
+          var pick = null, worst = -Infinity;
+          for (k = 0; k < active.length; k++) {
+            st2 = active[k];
+            if (!st2.queue.length) continue;
+            if (st2.queue[0].mins * 2 > budget) continue;
+            var frac = wTotal > 0 ? st2.w / wTotal : 1 / active.length;
+            var deficit = frac * cumPot - st2.spent;
+            if (deficit > worst) { worst = deficit; pick = st2; }
           }
-        }
-
-        // 3. Spill. A quota too small for its subject's cheapest question
-        //    would waste those minutes, so what is left goes to the most
-        //    urgent subject that can still use it. Nothing stays starved: a
-        //    skipped subject's urgency rises tomorrow, so its quota grows.
-        for (k = 0; k < active.length; k++) {
-          st2 = active[k];
-          while (st2.queue.length && st2.queue[0].mins * 2 <= budget) {
-            nx = st2.queue.shift();
-            budget -= nx.mins * 2;
-            row.learn.push(nx.qid);
-            learnDay[nx.qid] = day;
-            st2.reviseNext.push(nx);
-          }
+          if (!pick) break;
+          nx = pick.queue.shift();
+          budget -= nx.mins * 2;
+          pick.spent += nx.mins * 2;
+          row.learn.push(nx.qid);
+          learnDay[nx.qid] = day;
+          pick.reviseNext.push(nx);
         }
         byDay.push(row);
       }
@@ -3390,6 +3397,99 @@
       return { subjects: subjects, dates: dates };
     }
 
+    /** The day a paper is actually written (plan.start is day 1). */
+    function examDayOf(plan, subject) {
+      return Plan.diffDays(plan.examDates[subject], plan.start) + 1;
+    }
+
+    /** Every day of the plan as one display row: what is learned, what is
+        revised, and — the row that makes a multi-paper plan legible — the day
+        each paper is written. Days beyond the learning array are the revision
+        run-ins, which the scheduler stores as ranges rather than rows. */
+    function planDayRows(plan) {
+      var subs = (plan.subjects || []).slice();
+      var rows = [], d, i, s;
+      if (!subs.length) {
+        // A single-subject or pre-per-subject plan: the old shape, unchanged.
+        for (d = 1; d <= plan.totalDays; d++) {
+          var od = plan.days[d - 1], op = [];
+          if (od && od.revise.length) op.push('revise ' + od.revise.length);
+          if (od && od.learn.length) op.push('learn ' + od.learn.length);
+          if (!od && d >= plan.revBlockStart) op.push('full revision, weakest first');
+          rows.push({ day: d, exam: [], text: op.join(' · ') || 'catch-up' });
+        }
+        return rows;
+      }
+      var examDay = {}, last = 0;
+      for (i = 0; i < subs.length; i++) {
+        examDay[subs[i]] = examDayOf(plan, subs[i]);
+        if (examDay[subs[i]] > last) last = examDay[subs[i]];
+      }
+      for (d = 1; d <= last; d++) {
+        var learnParts = [], revParts = [], sat = [];
+        var day = plan.days[d - 1];
+        var by = day ? countBySubject(plan, day.learn.concat(day.revise)) : {};
+        for (i = 0; i < subs.length; i++) {
+          s = subs[i];
+          if (d === examDay[s]) { sat.push(subjLabel(s)); continue; }
+          if (d > examDay[s]) continue;                       // paper written
+          if (by[s]) learnParts.push(subjLabel(s) + ' ' + by[s]);
+          else if (d >= Plan.revStartFor(plan, s)) revParts.push(subjLabel(s) + ' revision');
+        }
+        rows.push({
+          day: d, exam: sat,
+          text: learnParts.concat(revParts).join(' · '),
+        });
+      }
+      return rows;
+    }
+
+    /** Paint the plan's days into `box`. Collapsed shows the opening days and
+        each paper's revision run-in; expanded shows every single day. */
+    function renderPlanDays(box, plan, expanded) {
+      var subs = plan.subjects || [];
+      var rows = planDayRows(plan), i;
+      var mk = function (label, text, isExam) {
+        var r = el('div', 'vw-day' + (isExam ? ' vwd-examrow' : ''));
+        r.appendChild(el('span', 'vwd-n', label));
+        r.appendChild(el('span', '', text));
+        box.appendChild(r);
+      };
+      if (expanded) {
+        for (i = 0; i < rows.length; i++) {
+          if (rows[i].exam.length) {
+            mk('Day ' + rows[i].day, listWords(rows[i].exam) + ' exam', true);
+            if (rows[i].text) mk('', rows[i].text, false);
+          } else {
+            mk('Day ' + rows[i].day, rows[i].text || 'catch-up', false);
+          }
+        }
+        return;
+      }
+      var show = Math.min(4, rows.length);
+      for (i = 0; i < show; i++) mk('Day ' + rows[i].day, rows[i].text || 'catch-up', false);
+      if (rows.length > show) {
+        var dots = el('div', 'vw-day');
+        dots.appendChild(el('span', 'vwd-n', '…'));
+        box.appendChild(dots);
+      }
+      // Each paper's own revision run-in, NEAREST EXAM FIRST — listing them in
+      // plan.subjects order put a day-43 block after a day-50 one.
+      if (subs.length > 1) {
+        var order = subs.slice().sort(function (a, b) { return examDayOf(plan, a) - examDayOf(plan, b); });
+        for (i = 0; i < order.length; i++) {
+          var s = order[i];
+          var from = Plan.revStartFor(plan, s), to = examDayOf(plan, s) - 1;
+          // A one-day run-in is "Day 43", never "Day 43–43".
+          mk(from >= to ? 'Day ' + to : 'Day ' + from + '–' + to,
+             subjLabel(s) + ' revision, weakest first', false);
+        }
+      } else {
+        var f = plan.revBlockStart, t = plan.totalDays;
+        mk(f >= t ? 'Day ' + t : 'Day ' + f + '–' + t, 'full revision, weakest first', false);
+      }
+    }
+
     /** {subject: how many of these qids belong to it}. */
     function countBySubject(plan, qids) {
       var out = {};
@@ -3604,48 +3704,22 @@
         var subs = plan.subjects || [];
         var multi = subs.length > 1;
         var box = el('div', 'vw-plan');
-        var show = Math.min(4, plan.days.length);
-        for (var d = 0; d < show; d++) {
-          var row = el('div', 'vw-day');
-          row.appendChild(el('span', 'vwd-n', 'Day ' + (d + 1)));
-          var parts = [];
-          if (multi) {
-            // With several papers running, the useful thing to show is WHICH
-            // subjects the day touches — that is the promise being made.
-            var by = countBySubject(plan, plan.days[d].learn.concat(plan.days[d].revise));
-            for (var bi = 0; bi < subs.length; bi++) {
-              if (by[subs[bi]]) parts.push(subjLabel(subs[bi]) + ' ' + by[subs[bi]]);
-            }
-          } else {
-            if (plan.days[d].revise.length) parts.push('revise ' + plan.days[d].revise.length);
-            if (plan.days[d].learn.length) parts.push('learn ' + plan.days[d].learn.length);
-          }
-          row.appendChild(el('span', '', parts.join(' · ') || 'catch-up'));
-          box.appendChild(row);
-        }
-        if (plan.days.length > show) {
-          var dots = el('div', 'vw-day');
-          dots.appendChild(el('span', 'vwd-n', '…'));
-          box.appendChild(dots);
-        }
-        // Each paper gets its OWN revision run-in, ending on its own exam-eve.
-        if (multi) {
-          for (var ri = 0; ri < subs.length; ri++) {
-            var s = subs[ri];
-            var from = Plan.revStartFor(plan, s);
-            var to = Plan.diffDays(plan.examDates[s], plan.start);
-            var rbm = el('div', 'vw-day');
-            rbm.appendChild(el('span', 'vwd-n', 'Day ' + from + '–' + to));
-            rbm.appendChild(el('span', '', subjLabel(s) + ' revision, weakest first'));
-            box.appendChild(rbm);
-          }
-        } else {
-          var rb = el('div', 'vw-day');
-          rb.appendChild(el('span', 'vwd-n', 'Day ' + plan.revBlockStart + '–' + plan.totalDays));
-          rb.appendChild(el('span', '', 'full revision, weakest first'));
-          box.appendChild(rb);
-        }
+        var expanded = false;
+        var toggle = el('button', 'vw-toggle', '');
+        toggle.type = 'button';
+        var paint = function () {
+          box.innerHTML = '';
+          renderPlanDays(box, plan, expanded);
+          toggle.textContent = expanded ? 'Show less' : 'View whole plan';
+          box.className = 'vw-plan' + (expanded ? ' vw-plan-full' : '');
+        };
+        // NOT a wBtn: wBtn freezes every control in its widget once used, which
+        // is right for a step of the conversation and wrong for a view toggle
+        // the student should be able to open and close as often as they like.
+        toggle.addEventListener('click', function () { expanded = !expanded; paint(); });
+        paint();
         w.appendChild(box);
+        w.appendChild(toggle);
         if (plan.datesProvisional) {
           w.appendChild(el('div', 'vw-warn', 'Some of these dates are my guess, two days apart. Tell me the real ones when the timetable is out and I will re-plan.'));
         }

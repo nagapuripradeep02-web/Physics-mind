@@ -962,8 +962,16 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 
 /* the plan preview / today list rows */
 .vw-plan { margin-top: 8px; border-top: 1px dashed rgba(43, 38, 32, 0.25); padding-top: 7px; }
+/* The whole plan, day by day. A 50-day plan is far taller than the chat
+   bubble, so the expanded list scrolls inside itself rather than pushing the
+   Implement button off the screen. */
+.vw-plan-full { max-height: 250px; overflow-y: auto; padding-right: 4px; }
 .vw-day { display: flex; gap: 8px; font-size: 12px; margin-top: 3px; }
-.vw-day .vwd-n { font-weight: 700; min-width: 52px; }
+.vw-day .vwd-n { font-weight: 700; min-width: 52px; flex: 0 0 auto; }
+/* The day a paper is actually written — the anchor a student reads the plan
+   against, so it is the one row that stands out. */
+.vw-day.vwd-examrow { margin-top: 5px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.03em; font-size: 11.5px; }
 .vw-item { display: flex; align-items: center; gap: 8px; margin-top: 6px;
   text-decoration: none; color: var(--ink); font-size: 12.5px; }
 .vw-item:hover { text-decoration: underline; }
