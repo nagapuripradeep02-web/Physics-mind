@@ -14177,14 +14177,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   (the range input sanitises what it is given) — that is the resolution
     //   the control genuinely has, and the LABEL beside it carries the exact
     //   resolved value, which is the number the geometry is built from.
-    function vgSyncRampedRows(anim, resolved, showSliders) {
+    function vgSyncRampedRows(anim, resolved) {
         var written = [];
         if (!anim || !anim.length) { window.PM_vgRowsTracking = written; return written; }
         for (var i = 0; i < anim.length; i++) {
             var k = (anim[i] || {}).knob;
             if (!k || VG_ROW_DEC[k] == null) continue;              // not a slider-bound knob
             if (written.indexOf(k) >= 0) continue;                  // several windows, one row
-            if (showSliders && window[VG_ROW_DRAG[k]]) continue;    // the teacher's drag owns it
+            if (window[VG_ROW_DRAG[k]]) continue;                   // the teacher's drag owns it
             var v = resolved ? resolved[k] : null;
             if (!(typeof v === "number" && isFinite(v))) continue;
             var sl = document.getElementById("vg_" + k + "_slider");
@@ -15352,13 +15352,29 @@ export const FIELD_3D_RENDERER_CODE = `
         var grpOn = (((d.controls || []).indexOf("scene_group") !== -1) && groups && groups.length) ? true : false;
         var grpRow = document.getElementById("vg_scene_group_row");
         if (grpRow) grpRow.style.display = grpOn ? "block" : "none";
+        // Rule 39b \u00b7 A FORCE-SHOWN ROW IS A LIVE ROW. Same clause the
+        // curated capacitance path already carries (capApplyWidgetVis: "a
+        // force-shown row is also live \u2014 the teacher showed it to use
+        // it"), in this panel's terms. Without it the \u2699 override wins the
+        // row's DISPLAY (the generic engine's .pmWgShow beats the write above,
+        // and its shell pass force-shows #vg_sliders too) and then hands the
+        // teacher a slider this pass has already set disabled \u2014 grey, and
+        // incapable of emitting the input event the whole drag-seize contract
+        // starts from. Measured on #9 STATE_4: row on screen, panel on screen,
+        // slider.disabled true, a real mouse drag moved nothing.
+        //
+        // ONLY a row the state does not show at all is promoted. A row the
+        // state DOES show as a static_readout stays greyed under a redundant
+        // "show" \u2014 a greyed row is a value display the state authored on
+        // purpose, not a control that failed to work.
+        var wgOv = window.PM_widgetVis || {};
         var anyRow = grpOn, shown = [];
         for (var key in rowIds) {
             var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
             var rowEl = document.getElementById(rowIds[key]);
             if (rowEl) rowEl.style.display = relevant ? "block" : "none";
             if (relevant) { anyRow = true; shown.push(key); }
-            var isLive = controls.indexOf(key) !== -1;
+            var isLive = controls.indexOf(key) !== -1 || (!relevant && wgOv[rowIds[key]] === "show");
             var slEl = document.getElementById(sliderIds[key]);
             if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
         }
@@ -15397,8 +15413,34 @@ export const FIELD_3D_RENDERER_CODE = `
         // idle_auto_sweep already use — a teacher scrubbing theta is never
         // fought by a ramp). THE EYE never drags, so a frozen frame always
         // takes the closed-form branch and stays deterministic.
+        //
+        //   ── AND A TRUSTED DRAG IS THE AUTHORITY, NEVER THE AUTHORED FLAG ──
+        //   bug_class field3d_vg_teacher_forced_slider_row_is_inert_because_
+        //   authored_state_flags_still_own_the_control. This branch was ALSO
+        //   gated on stateDef.show_sliders, so on every state whose JSON omits
+        //   that key the condition was unreachable and a teacher's drag was
+        //   silently discarded — measured on #9 STATE_4: PM_vgTheta 60 -> 110
+        //   with the seize flag set, and the frame still built the meshes from
+        //   60. The \u2699 panel (Rule 39f) declares EVERY vg row on EVERY
+        //   state, so a teacher can force a row on, watch the thumb and the
+        //   number follow their finger, and watch the picture ignore them —
+        //   which is exactly what Rule 39b forbids.
+        //
+        //   The seize flag is authority enough, and is a STRICTLY stronger
+        //   guarantee than any visibility test: wire() sets it only from an
+        //   ev.isTrusted input on that row (a real finger on a row that was
+        //   really on screen and really enabled), and the apply pass clears
+        //   every flag on state entry — so it can be true only if a teacher
+        //   really dragged that row during THIS state. A visibility test would
+        //   be weaker AND would introduce a second defect of the same family:
+        //   hiding the row again mid-state would silently release the seize and
+        //   snap the geometry back under the teacher's hand.
+        //
+        //   THE EYE never drags and never sends SET_WIDGET_VIS, so a captured
+        //   frame always takes the closed-form branch — baselines unaffected
+        //   by construction.
         function knob(key, dflt, liveKey, dragKey) {
-            if (stateDef.show_sliders && window[dragKey] && window[liveKey] != null) return window[liveKey];
+            if (window[dragKey] && window[liveKey] != null) return window[liveKey];
             return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt), animLoopMs);
         }
         var aMag = knob("a_mag", 3.0, "PM_vgAMag", "PM_vgAMagDragged");
@@ -15558,7 +15600,7 @@ export const FIELD_3D_RENDERER_CODE = `
             half_extent: LP_KNOBS.half_extent, q_height: LP_KNOBS.q_height,
             line2_offset: LP_KNOBS.line2_offset
         };
-        vgSyncRampedRows(anim, resolvedKnobs, !!stateDef.show_sliders);
+        vgSyncRampedRows(anim, resolvedKnobs);
 
         var rdEl = document.getElementById("vg_readout");
         if (rdEl) {
@@ -85173,6 +85215,20 @@ export const FIELD_3D_RENDERER_CODE = `
                         var wvSd = config.states[PM_currentState];
                         if (wvSd) capApplyWidgetVis(wvSd.capacitance || {});
                     } else {
+                        // Rule 39b \u00b7 the vector-geometry panel's "live"
+                        // is a disabled flag its ROW PASS owns, so that pass
+                        // re-runs on an override change \u2014 otherwise a
+                        // force-shown row appears instantly and stays inert
+                        // until the next SET_STATE. It writes display /
+                        // disabled / opacity and NOTHING else (never a
+                        // drag-seize flag, never a slider VALUE), which is why
+                        // it was extracted in the first place: Rule 39c forbids
+                        // the full apply here. It runs BEFORE pmWgApply so the
+                        // generic shell pass reads current inline displays.
+                        if (config.scenario_type === "vector_geometry_3d" && !isMobile) {
+                            var wvVgSd = config.states[PM_currentState];
+                            if (wvVgSd) vgApplyControlRows(wvVgSd.vg || {}, wvVgSd.show_sliders);
+                        }
                         pmWgApply(true);   // generic engine (no-op on mobile)
                     }
                     break;
