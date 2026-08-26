@@ -1222,6 +1222,11 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
     await page.addInitScript((args: { today: string; seed: Record<string, string> }) => {
         try {
             localStorage.setItem('pm_today_override', args.today);
+            // The planner is DORMANT for students (founder, 2026-08-27) — its
+            // timings are unvalidated. Every gate below revives it explicitly so
+            // the feature stays PROVEN while it sleeps; a dormant feature that
+            // stops being tested is one that cannot be switched back on.
+            localStorage.setItem('pm_planner', '1');
             for (const k of Object.keys(args.seed)) localStorage.setItem(k, args.seed[k]);
         } catch { /* file:// storage may be blocked; the page has its own fallback */ }
     }, { today, seed });
@@ -1988,9 +1993,23 @@ test('the nearer a paper is, the bigger its share of the day', async ({ page }) 
         physics: '2026-09-12', chemistry: '2026-10-24',
     }, ['Units and Measurements', 'Atomic Structure'], '1 hour');
 
-    const farPhy = countBySubject(far, far.days[0].learn).physics || 0;
-    const nearPhy = countBySubject(near, near.days[0].learn).physics || 0;
-    expect(nearPhy).toBeGreaterThan(farPhy);
+    // Measured over the opening WEEK, not day one. Day one saturates: at 60
+    // minutes the same 3 physics questions fit whether the paper is six weeks
+    // out or ten days out, so a day-1 comparison reads 3 vs 3 and can see
+    // nothing. The share across the first ten days is where urgency shows —
+    // measured 42% when the paper is far, 50% when it is near.
+    const share = (p: any) => {
+        let phy = 0, tot = 0;
+        for (let d = 0; d < Math.min(10, p.days.length); d++) {
+            for (const q of p.days[d].learn) { if (p.subjectByQid[q] === 'physics') phy++; tot++; }
+        }
+        return phy / Math.max(1, tot);
+    };
+    expect(share(near)).toBeGreaterThan(share(far));
+    // and day one still mixes both papers in each case
+    for (const p of [far, near]) {
+        expect(Object.keys(countBySubject(p, p.days[0].learn)).length).toBeGreaterThan(1);
+    }
 });
 
 test('a paper already written leaves the plan — the rest keep going', async ({ page }) => {
@@ -2088,3 +2107,181 @@ test('an unknown timetable is guessed two days apart, and the plan says it guess
     expect(plan.examDates.chemistry).toBe('2026-09-16');       // the ladder: +2
     expect(plan.examDates.mathematics).toBe('2026-09-18');     // and +2 again
 });
+
+test('a real four-paper plan at one hour a day MIXES its days — not one subject at a time', async ({ page }) => {
+    // The regression the founder caught in the shipped build (2026-08-27): a
+    // 50-day, four-paper, one-hour plan read "Chemistry" on days 1, 2, 3 and 4
+    // and never mixed. The old per-day quota (~15 min across four papers)
+    // could not fit a single long answer (mins x 2 = 16-20), so every day fell
+    // through to the spill and the most urgent subject took all of it.
+    //
+    // Deliberately the WHOLE book at a realistic pace — a smaller pick with a
+    // roomier budget is exactly what hid this.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+
+    const dates: Record<string, string> = {
+        physics: '2026-10-14', chemistry: '2026-10-17',
+        mathematics: '2026-10-19', mathematics_1b: '2026-10-21',
+    };
+    for (const s of Object.keys(dates)) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(dates[s]);
+    }
+    await lastW().locator('.vw-btn.primary').click();          // These subjects →
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // every chapter, pre-ticked
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // These types →
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 8000 });
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
+    const plan = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+
+    expect(plan.subjects.length).toBe(4);
+
+    // Across the opening fortnight every paper must get real time — the bug
+    // gave one subject all fourteen days.
+    const seen = new Set<string>();
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) seen.add(plan.subjectByQid[qid]);
+    }
+    expect([...seen].sort()).toEqual(['chemistry', 'mathematics', 'mathematics_1b', 'physics']);
+
+    // and no single paper may swallow the opening fortnight
+    const share: Record<string, number> = {};
+    let n = 0;
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) { share[plan.subjectByQid[qid]] = (share[plan.subjectByQid[qid]] || 0) + 1; n++; }
+    }
+    for (const s of Object.keys(share)) expect(share[s] / n).toBeLessThan(0.75);
+});
+
+test('the whole plan expands day by day, and names the day each paper is written', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+    for (const [s, d] of Object.entries({ physics: '2026-09-20', chemistry: '2026-09-25' })) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(d);
+    }
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).waitFor({ timeout: 8000 });
+
+    // collapsed: the opening days, an ellipsis, then the revision run-ins
+    const collapsed = await page.locator('.vw-plan .vw-day').count();
+    expect(collapsed).toBeLessThan(10);
+
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).click();
+    const rows = await page.locator('.vw-plan .vw-day').count();
+    expect(rows).toBeGreaterThan(20);                 // every day, not a sample
+
+    const text = await page.locator('.vw-plan').innerText();
+    // the exam row is CSS-uppercased, so compare case-insensitively
+    expect(text).toMatch(/physics exam/i);            // the anchor days are named
+    expect(text).toMatch(/chemistry exam/i);
+    expect(text).toMatch(/Day\s*1\b/);
+    expect(text).not.toMatch(/Day (\d+)–\1\b/);         // never "Day 43–43"
+
+    // and it closes again
+    await page.locator('.vw-toggle', { hasText: 'Show less' }).click();
+    expect(await page.locator('.vw-plan .vw-day').count()).toBe(collapsed);
+});
+
+test('the planner is dormant: a student sees no plan offer anywhere', async ({ page }) => {
+    // Deliberately NOT bootPlanner — that revives the planner. This is the
+    // student's build, exactly as shipped.
+    await page.addInitScript(() => {
+        try { localStorage.clear(); localStorage.setItem('pm_today_override', '2026-09-01'); } catch { /* file:// */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+
+    // the intro offers only "Start learning now"
+    await page.locator('.vw-btn', { hasText: 'Start learning now' }).waitFor({ timeout: 6000 });
+    expect(await page.locator('.vw-btn', { hasText: 'Plan my first-term exam' }).count()).toBe(0);
+    await page.locator('.vw-btn', { hasText: 'Start learning now' }).click();
+
+    // no plan chip on the home conversation, and no countdown strip
+    const body = await page.locator('#vidiThread').innerText();
+    expect(body).not.toMatch(/study plan|plan your exam|exam preparation/i);
+    for (const label of ['Plan my exam prep', 'Plan my next exam', 'Change my plan', 'Want a study plan?']) {
+        expect(await page.locator('.vidi-chip', { hasText: label }).count()).toBe(0);
+    }
+    expect(await page.$eval('#vidiPlanStrip', (e) => (e as HTMLElement).hidden)).toBe(true);
+
+    // and a plan blob left on the device (a test device, or one synced from
+    // another) must not resurrect any of it
+    await page.evaluate(() => {
+        localStorage.setItem('pm_plan_v1', JSON.stringify({
+            v: 2, start: '2026-09-01', examDate: '2026-09-21', examDates: { physics: '2026-09-21' },
+            units: ['physics-2'], minsPerDay: 60, scope: null, days: [], learnDay: {},
+            subjects: ['physics'], optional: [], revBlockStart: 18, totalDays: 20,
+            implemented: true, lastNudgeDay: '', archived: false,
+        }));
+    });
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    expect(await page.$eval('#vidiPlanStrip', (e) => (e as HTMLElement).hidden)).toBe(true);
+    expect(await page.locator('.vidi-chip', { hasText: 'Change my plan' }).count()).toBe(0);
+});
+
+test('with the planner dormant, revision and the answer flow still work', async ({ page }) => {
+    // What must survive the removal: the two-stage Understand/Revise ticks and
+    // the plan-less next-day revision queue. Neither ever needed a schedule.
+    // Earned through the REAL flow, not by seeding pm_stage_v1 — the app reads
+    // stages into memory at boot, so a post-load write is simply ignored.
+    await page.addInitScript(() => {
+        try {
+            localStorage.clear();
+            localStorage.setItem('pm_today_override', '2026-09-01');
+            localStorage.setItem('pm_intro_done', '1');
+        } catch { /* file:// storage may be blocked */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+
+    const qid = await page.evaluate(() => (window as any).PM_QUESTIONS[0].question_id);
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);                       // claims the Understand tick
+
+    // next day: the revision queues itself, with no plan in sight
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
+    if (!(await page.isVisible('#vidiFab'))) await page.click('#vidiClose');
+    await page.click('#vidiFab');
+    await page.waitForSelector('.vidi-widget .vw-item', { timeout: 6000 });
+    await page.waitForFunction(() => /due for revision/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 6000 });
+
+    // and the greeting never offers a plan
+    const text = await page.locator('#vidiThread').innerText();
+    expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+    expect(await page.locator('.vidi-chip', { hasText: 'Plan my exam prep' }).count()).toBe(0);
+
+    // the revise tick still completes to green
+    await page.click('.vidi-widget .vw-item');
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
+    const st = await page.evaluate((q: string) =>
+        JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q], qid);
+    expect(st.u).toBeTruthy();
+    expect(st.r).toBeTruthy();
+});
+
