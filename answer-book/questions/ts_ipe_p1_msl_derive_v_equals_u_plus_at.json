@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_derive_v_equals_u_plus_at",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Derive the equation v = u + at using the graphical method.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The slope rule",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope",
+        "kind": "equation",
+        "label": "The slope rule",
+        "marks": 1,
+        "mark_note": "Slope rule",
+        "lines": [
+          "On a velocity–time graph the slope of the line",
+          "is the acceleration. For uniform acceleration",
+          "the line is straight from u at time 0 to v at",
+          "time t, so",
+          {
+            "text": "a = (v − u)/t",
+            "style": "eq"
+          }
+        ],
+        "why": "Acceleration is the rate of change of velocity, and a slope is exactly a rate of change, so the slope of a v–t line IS the acceleration.",
+        "common_mistakes": [
+          "Using the AREA instead of the slope. The area gives displacement, not acceleration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of a velocity time graph is the acceleration, so a equals v minus u over t.",
+          "accept": [
+            "slope is acceleration",
+            "v minus u by t"
+          ],
+          "reject": [
+            "area gives acceleration"
+          ],
+          "heard_as": [
+            "slope",
+            "acceleration"
+          ]
+        },
+        "memory_tip": "Slope = acceleration. Area = displacement. Do not swap them.",
+        "margin_note": "Name the slope rule before using it."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Rearranging a = (v − u)/t:",
+          "v − u = at",
+          {
+            "text": "v = u + at",
+            "style": "boxed"
+          }
+        ],
+        "why": "The equation says the final velocity is the starting velocity plus the extra velocity that the acceleration supplied in time t.",
+        "common_mistakes": [
+          "Writing v = u + at², which confuses this equation with the displacement one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rearranging gives v equals u plus a t.",
+          "accept": [
+            "v equals u plus a t"
+          ],
+          "reject": [
+            "u plus a t squared"
+          ],
+          "heard_as": [
+            "v equals u plus"
+          ]
+        },
+        "memory_tip": "Start speed plus the speed the acceleration added: u + at.",
+        "margin_note": "Show the rearrangement in two short lines."
+      }
+    ]
+  },
+  "insider_note": "This is the shortest of the three graphical derivations — the slope of the v–t line is the whole proof."
+}

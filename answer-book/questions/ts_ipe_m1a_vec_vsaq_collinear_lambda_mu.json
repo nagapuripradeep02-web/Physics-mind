@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_collinear_lambda_mu",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If −3i + 4j + λk and μi + 8j + 6k are collinear vectors, then find λ and μ.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the ratio condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for λ and μ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 20,22 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would find the unknowns when two vectors are collinear.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Write the ratio condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same condition as the last question, but here the unknowns sit on OPPOSITE sides — μ in the second vector, λ in the first — so watch which way each ratio goes.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given −3i + 4j + λk and μi + 8j + 6k",
+          "are collinear.",
+          "∴ −3/μ = 4/8 = λ/6",
+          "⇒ −3/μ = 1/2 = λ/6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collinearity gives −3/μ = 4/8 = λ/6, and that 4/8 simplifies to 1/2.",
+          "accept": [
+            "collinear so minus three by mu equals four by eight equals lambda by six, and four by eight is a half",
+            "write the component ratios equal, the middle one simplifies to one half",
+            "the three ratios are equal and the known one is a half",
+            "ratios equal, four by eight equals half",
+            "set minus three by mu equal to lambda by six equal to a half"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "collinear",
+            "ratio",
+            "minus three by mu",
+            "lambda by six",
+            "one half"
+          ]
+        },
+        "why": "The middle ratio is the one with no unknown, so it fixes the common value. Everything else is then solved against it.",
+        "common_mistakes": [
+          "Simplifying 4/8 to 2.",
+          "Writing μ/−3 in one ratio and λ/6 in another."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for λ and μ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. μ comes out negative — the common ratio is positive, so a negative numerator forces a negative denominator.",
+        "lines": [
+          "−3/μ = 1/2 ⇒ μ = 2 × (−3) = −6",
+          "λ/6 = 1/2 ⇒ λ = 6/2 = 3",
+          {
+            "text": "∴ λ = 3, μ = −6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving gives λ = 3 and μ = −6, with μ negative.",
+          "accept": [
+            "lambda is three and mu is minus six",
+            "solving gives lambda three, mu negative six",
+            "mu comes out minus six because the numerator is negative",
+            "lambda three, mu minus six",
+            "cross multiply to get lambda equals three and mu equals minus six"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "lambda equals three",
+            "mu equals minus six",
+            "three",
+            "minus six"
+          ]
+        },
+        "why": "The sign is the trap. Both vectors point along the same line, but the first has a negative i component and the second must too — so μ cannot be positive.",
+        "common_mistakes": [
+          "Writing μ = 6 and losing the sign.",
+          "Solving λ/6 = 1/2 as λ = 12."
+        ]
+      }
+    ]
+  }
+}

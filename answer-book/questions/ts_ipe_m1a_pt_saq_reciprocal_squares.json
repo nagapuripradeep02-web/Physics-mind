@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_reciprocal_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that 1/r² + 1/r₁² + 1/r₂² + 1/r₃² = (a² + b² + c²)/Δ².",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write each reciprocal square",
+      "marks": 2
+    },
+    {
+      "label": "Expand and collapse",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 87. Printed appearances: TS 17,19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_reciprocal_squa",
+        "kind": "equation",
+        "label": "Write each reciprocal square",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. r = Δ/s inverts to 1/r = s/Δ, so 1/r² = s²/Δ² — and the ex-radii follow the same pattern with s−a, s−b, s−c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = 1/r² + 1/r₁² + 1/r₂² + 1/r₃²",
+          "= (s/Δ)² + ((s−a)/Δ)² + ((s−b)/Δ)² + ((s−c)/Δ)²",
+          "= [s² + (s−a)² + (s−b)² + (s−c)²]/Δ²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/r = s/Δ and 1/r₁ = (s−a)/Δ, so all four squares go over the common denominator Δ².",
+          "accept": [
+            "one over r is s over delta so its square is s squared over delta squared and the others follow with s minus a",
+            "invert each radius and square, everything is over delta squared",
+            "all four terms share delta squared underneath",
+            "prathi radius invert chesi square cheyyali, delta square meeda vasthai",
+            "write the four reciprocal squares over delta squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s over delta",
+            "s minus a over delta",
+            "delta squared",
+            "invert"
+          ]
+        },
+        "why": "Inverting first and squaring second keeps the fractions simple. Squaring the radii and then inverting gives the same answer through much messier algebra.",
+        "common_mistakes": [
+          "Writing 1/r = Δ/s.",
+          "Forgetting to square the denominator."
+        ]
+      },
+      {
+        "id": "s2_expand_and_collapse",
+        "kind": "boxed_final",
+        "label": "Expand and collapse",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. Expand the three brackets; the s² terms give 4s², the cross terms give −2s(a+b+c) = −4s², and those cancel exactly.",
+        "lines": [
+          "= [s² + (s²−2as+a²) + (s²−2bs+b²) + (s²−2cs+c²)]/Δ²",
+          "= [4s² − 2s(a+b+c) + a²+b²+c²]/Δ²",
+          "= [4s² − 2s(2s) + a²+b²+c²]/Δ²   [∵ a+b+c = 2s]",
+          "= [4s² − 4s² + a²+b²+c²]/Δ²",
+          {
+            "text": "= (a²+b²+c²)/Δ² = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives 4s² − 2s(a+b+c) + a²+b²+c², and that 4s² − 4s² cancels to leave (a²+b²+c²)/Δ².",
+          "accept": [
+            "expand the brackets, four s squared minus two s times two s cancels leaving the sum of the squares over delta squared",
+            "the s squared terms cancel exactly",
+            "the answer is a squared plus b squared plus c squared over delta squared",
+            "four s square minus four s square cancel ayi sum of squares migulutundi",
+            "expand and the s terms vanish"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four s squared",
+            "two s",
+            "cancel",
+            "sum of the squares"
+          ]
+        },
+        "why": "a + b + c = 2s is what makes 2s(a+b+c) equal 4s² — exactly the s² total from the four squares. Without that substitution nothing cancels.",
+        "common_mistakes": [
+          "Forgetting the s² from the first term and getting 3s².",
+          "Writing a+b+c = s."
+        ]
+      }
+    ]
+  }
+}

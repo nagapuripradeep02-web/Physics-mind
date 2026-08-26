@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ef_c2h3cl3o2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A carbon compound on analysis gave the following percentage composition: carbon 14.5%, hydrogen 1.8%, chlorine 64.46%, oxygen 19.24%. Calculate the empirical formula of the compound.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relative moles of each element",
+      "marks": 2
+    },
+    {
+      "label": "Whole-number ratio",
+      "marks": 1
+    },
+    {
+      "label": "The empirical formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic re-checked: C₂H₃Cl₃O₂ back-computes to 14.5% C, 1.8% H, 64.4% Cl, 19.3% O — consistent with the given data. AI chemistry check 2026-08-25 (audit round 3): step s2_whole is TITLED Whole-number ratio while its mark_note says ×2 to whole numbers, and step s1_moles already ends with a ratio line that is not whole-number — a reader can mis-assign that step-1 line to step 2. The s2 why now states that the mark is for the doubling only. CROSS-CARD MARK-MAP DIFFERENCE, recorded for a teacher to settle: the move divide everything by the smallest value sits INSIDE the 2-mark step s1_moles on st_ef_c2h3cl3o2 and st_ef_k2cr2o7, but is the whole of the 1-mark step s2_ratio on st_ef_chcl3. The same piece of working therefore carries a different mark weight on the two card shapes. Nothing was moved — mark_split is the authority on each card, and both splits are still unconfirmed claims. No mark moved; no marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Relative moles of each element",
+        "marks": 2,
+        "mark_note": "% ÷ atomic weight",
+        "lines": [
+          "Divide each percentage by the atomic weight:",
+          "C: 14.5 / 12 = 1.21",
+          "H: 1.8 / 1 = 1.8",
+          "Cl: 64.46 / 35.5 = 1.82",
+          "O: 19.24 / 16 = 1.20",
+          "Divide by the smallest (1.20):",
+          {
+            "text": "C : H : Cl : O = 1 : 1.5 : 1.5 : 1",
+            "style": "eq"
+          }
+        ],
+        "why": "Four elements means four divisions, but the method is unchanged: percent over atomic weight gives relative moles, then everything over the smallest value.",
+        "common_mistakes": [
+          "Using 35 for chlorine instead of 35.5.",
+          "Rounding 1.5 to 1 or 2 at this stage. Keep 1.5 — the next step fixes it honestly."
+        ],
+        "memory_tip": "Percent over atomic weight, then everything over the smallest — the same two moves for any number of elements.",
+        "margin_note": "Both marks are here: the four divisions and the division by 1.20."
+      },
+      {
+        "id": "s2_whole",
+        "kind": "equation",
+        "label": "Whole-number ratio",
+        "marks": 1,
+        "mark_note": "×2 to whole numbers",
+        "lines": [
+          "1.5 is not a whole number, so multiply the",
+          "whole ratio by 2:",
+          {
+            "text": "2 × (1 : 1.5 : 1.5 : 1) = 2 : 3 : 3 : 2",
+            "style": "eq"
+          }
+        ],
+        "why": "Subscripts must be whole numbers. A ratio ending in .5 becomes whole when every term is doubled — rounding 1.5 to 1 or 2 would change the chemistry. Read the step title with care: the ratio 1 : 1.5 : 1.5 : 1 is already written at the end of step 1 and is not a whole-number ratio, so repeating it here earns nothing. This mark is for the doubling alone, which turns it into 2 : 3 : 3 : 2.",
+        "common_mistakes": [
+          "Rounding 1.5 to 2 instead of multiplying the whole ratio by 2.",
+          "Multiplying only the 1.5 terms and leaving the 1s unchanged."
+        ],
+        "memory_tip": "A .5 in the ratio always means multiply EVERYTHING by 2.",
+        "margin_note": "The doubled ratio 2 : 3 : 3 : 2 earns this mark."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "The empirical formula",
+        "marks": 1,
+        "mark_note": "Empirical formula",
+        "lines": [
+          "The atoms are in the ratio C₂H₃Cl₃O₂.",
+          {
+            "text": "Empirical formula = C₂H₃Cl₃O₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "The whole-number ratio 2 : 3 : 3 : 2 written as subscripts in the element order C, H, Cl, O gives the empirical formula.",
+        "common_mistakes": [
+          "Scrambling the subscript order between Cl and O.",
+          "Calling it the molecular formula — no molecular weight was given."
+        ],
+        "memory_tip": "Keep the elements in the order of the working table so the subscripts cannot swap.",
+        "margin_note": "Box C₂H₃Cl₃O₂ and name it the EMPIRICAL formula."
+      }
+    ]
+  },
+  "insider_note": "The 1.5 in the ratio is the whole question: the examiner is watching for the multiply-by-2 step, and any rounding of 1.5 collapses the answer."
+}

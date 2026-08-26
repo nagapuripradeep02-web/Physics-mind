@@ -1,0 +1,248 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_shapes_s_p_orbitals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw the shapes of s and p orbitals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The diagrams",
+      "marks": 1
+    },
+    {
+      "label": "Naming and quantum numbers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. NOTATION: Unicode has a subscript x but no subscript y or z, so the three p orbitals are written px, py and pz in plain letters throughout the book (the same decision as the plain i, j, k axis vectors in the mathematics cards)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The diagrams",
+        "marks": 1,
+        "mark_note": "Diagrams",
+        "figure": {
+          "id": "s_and_p_orbitals",
+          "width": 500,
+          "height": 345,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "s_axis_x",
+              "d": "M 180 85 L 320 85",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "s_axis_y",
+              "d": "M 250 18 L 250 152",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "s_axis_z",
+              "d": "M 213 120 L 287 50",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "s_sphere",
+              "d": "M 205 85 A 45 45 0 1 0 295 85 A 45 45 0 1 0 205 85",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "s_lbl_x",
+              "x": 327,
+              "y": 89,
+              "text": "x",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "s_lbl_y",
+              "x": 245,
+              "y": 12,
+              "text": "y",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "s_lbl_z",
+              "x": 293,
+              "y": 46,
+              "text": "z",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "s_lbl_name",
+              "x": 222,
+              "y": 175,
+              "text": "s-orbital",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "px_axis_x",
+              "d": "M 35 250 L 155 250",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "px_axis_y",
+              "d": "M 95 212 L 95 288",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "px_lobe_right",
+              "d": "M 95 250 A 25 15 0 1 0 145 250 A 25 15 0 1 0 95 250",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "px_lobe_left",
+              "d": "M 45 250 A 25 15 0 1 0 95 250 A 25 15 0 1 0 45 250",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "px_lbl",
+              "x": 84,
+              "y": 322,
+              "text": "px",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "py_axis_x",
+              "d": "M 190 250 L 310 250",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "py_axis_y",
+              "d": "M 250 200 L 250 300",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "py_lobe_top",
+              "d": "M 235 225 A 15 25 0 1 0 265 225 A 15 25 0 1 0 235 225",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "py_lobe_bottom",
+              "d": "M 235 275 A 15 25 0 1 0 265 275 A 15 25 0 1 0 235 275",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "py_lbl",
+              "x": 240,
+              "y": 322,
+              "text": "py",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "pz_axis_z",
+              "d": "M 368 287 L 442 213",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "pz_axis_y",
+              "d": "M 405 205 L 405 295",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "pz_lobe_ne",
+              "d": "M 405 250 A 25 15 -45 1 0 440 215 A 25 15 -45 1 0 405 250",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "pz_lobe_sw",
+              "d": "M 405 250 A 25 15 -45 1 0 370 285 A 25 15 -45 1 0 405 250",
+              "ms": 520
+            },
+            {
+              "type": "label",
+              "id": "pz_lbl",
+              "x": 396,
+              "y": 322,
+              "text": "pz",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        },
+        "why": "The examiner is looking for one spherical shape and three dumb-bell shapes drawn on axes. Drawing the axes matters as much as the lobes, because the axes are what tell px, py and pz apart.",
+        "common_mistakes": [
+          "Drawing only one p orbital. The question says p orbitals, and there are three.",
+          "Leaving the axes off, so the three dumb-bells look identical."
+        ],
+        "memory_tip": "One sphere, three dumb-bells. Each dumb-bell lies along its own axis.",
+        "margin_note": "Draw the axes first, then the lobes on them. Neat small diagrams are enough."
+      },
+      {
+        "id": "s2_naming",
+        "kind": "boxed_final",
+        "label": "Naming and quantum numbers",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          {
+            "text": "s: l = 0, m = 0 — spherical",
+            "style": "boxed"
+          },
+          "p: l = 1, m = −1, 0, +1 — dumb-bell shaped",
+          "The three values of m give px, py and pz,",
+          "one along each of the three axes.",
+          "Each p orbital has one nodal plane."
+        ],
+        "why": "The number of orbitals of a given type comes from the values m can take, which is 2l + 1. For p, l = 1 gives three values of m, and that is exactly why three p orbitals are drawn.",
+        "common_mistakes": [
+          "Writing m = 0, 1, 2 for a p orbital. The values run from −l to +l.",
+          "Saying an s orbital has a nodal plane. For s, l = 0, so it has none."
+        ],
+        "memory_tip": "Count the orbitals with 2l + 1. For p that is three, so three dumb-bells.",
+        "margin_note": "One line of quantum numbers under each shape earns this mark."
+      }
+    ]
+  },
+  "insider_note": "A drawing question, so the marks are in the figure. Label the axes and name px, py and pz, because an unlabelled pair of lobes cannot be told apart from any other p orbital."
+}

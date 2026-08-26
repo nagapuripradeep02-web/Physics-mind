@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_elastic_inelastic_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which physical quantity remains constant (i) in an elastic collision (ii) in an inelastic collision?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "(i) Elastic",
+      "marks": 1
+    },
+    {
+      "label": "(ii) Inelastic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_elastic",
+        "kind": "text",
+        "label": "(i) Elastic",
+        "marks": 1,
+        "mark_note": "(i)",
+        "lines": [
+          {
+            "text": "(i) Elastic collision:",
+            "style": "heading"
+          },
+          "both the total linear momentum AND the",
+          "total kinetic energy remain constant."
+        ],
+        "margin_note": "Say BOTH. Naming only one is the commonest way to lose this mark.",
+        "why": "Elastic means nothing is left behind as heat or sound, so the kinetic energy the bodies had is still kinetic energy afterwards.",
+        "common_mistakes": [
+          "Writing only \"kinetic energy\" and forgetting momentum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in an elastic collision both momentum and kinetic energy stay constant.",
+          "accept": [
+            "momentum and kinetic energy both",
+            "both are conserved in elastic",
+            "elastic lo rendu constant"
+          ],
+          "reject": [
+            "only momentum is conserved"
+          ],
+          "heard_as": [
+            "both",
+            "momentum and kinetic energy",
+            "elastic"
+          ]
+        },
+        "memory_tip": "Elastic keeps BOTH: momentum and kinetic energy."
+      },
+      {
+        "id": "s2_inelastic",
+        "kind": "boxed_final",
+        "label": "(ii) Inelastic",
+        "marks": 1,
+        "mark_note": "(ii)",
+        "lines": [
+          {
+            "text": "(ii) Inelastic collision:",
+            "style": "heading"
+          },
+          {
+            "text": "only the total momentum is constant.",
+            "style": "boxed"
+          },
+          "Some kinetic energy becomes heat, sound",
+          "or deformation, so KE is not conserved."
+        ],
+        "margin_note": "Say where the kinetic energy went. \"Not conserved\" alone reads like a guess.",
+        "why": "Momentum survives every collision because the forces are internal. Kinetic energy does not, because it can be converted into other forms.",
+        "common_mistakes": [
+          "Saying momentum is lost too. Momentum is conserved in EVERY collision."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in an inelastic collision only momentum stays constant, kinetic energy does not.",
+          "accept": [
+            "only momentum is conserved",
+            "kinetic energy is not conserved",
+            "it becomes heat and sound",
+            "momentum matrame constant"
+          ],
+          "reject": [
+            "momentum and kinetic energy both"
+          ],
+          "heard_as": [
+            "only momentum",
+            "not conserved",
+            "heat"
+          ]
+        },
+        "memory_tip": "Inelastic keeps momentum only — some kinetic energy leaves as heat, sound and deformation."
+      }
+    ]
+  },
+  "insider_note": "Part (i) is one mark for TWO quantities, momentum and kinetic energy. Naming only one loses the whole mark, not half of it."
+}

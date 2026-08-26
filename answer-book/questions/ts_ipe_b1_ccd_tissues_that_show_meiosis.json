@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_tissues_that_show_meiosis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which tissues of animals and plants exhibit meiosis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Plant tissues",
+      "marks": 1
+    },
+    {
+      "label": "Animal tissue",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 2) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plants",
+        "kind": "text",
+        "label": "Plant tissues",
+        "marks": 1,
+        "mark_note": "Plants",
+        "lines": [
+          "Meiosis takes place in the diploid sporogenous",
+          "tissue of the reproductive parts.",
+          {
+            "text": "Microsporogenous tissue of the anther —",
+            "style": "indent"
+          },
+          {
+            "text": "gives microspores, which become pollen",
+            "style": "indent"
+          },
+          {
+            "text": "grains.",
+            "style": "indent"
+          },
+          {
+            "text": "Megasporogenous tissue of the ovule — gives",
+            "style": "indent"
+          },
+          {
+            "text": "megaspores.",
+            "style": "indent"
+          }
+        ],
+        "why": "Meiosis is the division that halves the chromosome number, so it can only happen in the tissue that makes spores or gametes. In a flowering plant those two tissues sit inside the anther and inside the ovule.",
+        "common_mistakes": [
+          "Writing 'anther' and 'ovule' alone. Name the tissue, not the organ.",
+          "Naming root tips or shoot tips. Those grow by mitosis."
+        ],
+        "memory_tip": "Micro from the anther, mega from the ovule: small spores from the male part, large spore from the female part.",
+        "margin_note": "Two plant tissues by name, one line each."
+      },
+      {
+        "id": "s2_animals",
+        "kind": "boxed_final",
+        "label": "Animal tissue",
+        "marks": 1,
+        "mark_note": "Animals",
+        "lines": [
+          {
+            "text": "Animals — germinal epithelium of the gonads (testis and ovary).",
+            "style": "boxed"
+          },
+          "These diploid mother cells divide by meiosis and",
+          "give haploid spores or gametes."
+        ],
+        "why": "Animals have no spore stage, so meiosis happens directly in the tissue that lines the gonad and makes the gametes.",
+        "common_mistakes": [
+          "Writing 'testis and ovary' without naming the germinal epithelium."
+        ],
+        "memory_tip": "Plants make spores, animals make gametes, but both do it by meiosis.",
+        "margin_note": "One line for animals. Both marks are for naming tissues."
+      }
+    ]
+  },
+  "insider_note": "Three tissue names carry this answer: microsporogenous, megasporogenous, germinal epithelium."
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_needle_phylloclade_plant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Needle-like phylloclades are found in which plant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The plant",
+      "marks": 1
+    },
+    {
+      "label": "What a phylloclade is",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK DISAGREEMENT RECORDED: the book answers 'Euphorbia'. The standard NCERT/textbook triad assigns needle-like phylloclades to Casuarina (Euphorbia's are cylindrical), so this card answers Casuarina and flags the conflict for teacher verification."
+  },
+  "insider_note": "Question banks disagree here because Euphorbia species vary - the safe exam answer is the textbook triad with Casuarina for needles.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plant",
+        "kind": "boxed_final",
+        "label": "The plant",
+        "marks": 1,
+        "mark_note": "Plant",
+        "lines": [
+          {
+            "text": "Needle-like phylloclades are found in",
+            "style": "boxed"
+          },
+          "Casuarina."
+        ],
+        "why": "The standard textbook triad is: Opuntia - flattened, Euphorbia - cylindrical, Casuarina - needle-like. The book answers 'Euphorbia' here, which matches the cylindrical form, not the needle-like one; this card follows the standard assignment (Casuarina).",
+        "common_mistakes": [
+          "Writing Opuntia. Its phylloclade is flattened, not needle-like.",
+          "Writing Euphorbia (the book's answer). Euphorbia phylloclades are cylindrical; the needle-like form belongs to Casuarina."
+        ],
+        "memory_tip": "Casuarina looks like a pine - its green needles are the phylloclades.",
+        "margin_note": "One genus name is the mark. A teacher should confirm which answer the board key accepts - see the note."
+      },
+      {
+        "id": "s2_context",
+        "kind": "text",
+        "label": "What a phylloclade is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A phylloclade is a green stem of a xerophyte,",
+          "modified to carry out photosynthesis.",
+          "Opuntia - flattened; Euphorbia - cylindrical;",
+          "Casuarina - needle-like."
+        ],
+        "why": "Stating the definition and the three-shape triad shows why the answer is Casuarina and secures the mark even if only the plant name was asked.",
+        "common_mistakes": [
+          "Calling the phylloclade a leaf. It is the stem; the leaves of these xerophytes are reduced to spines or scales."
+        ],
+        "memory_tip": "Flat pad - Opuntia; green pencil - Euphorbia; green needle - Casuarina.",
+        "margin_note": "The triad line answers every phylloclade variant of this question."
+      }
+    ]
+  }
+}

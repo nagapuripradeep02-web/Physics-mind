@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_pendulum_clock_seasons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Pendulum clocks generally go fast in winter and slow in summer. Why?",
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 18,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The period depends on L",
+      "marks": 1
+    },
+    {
+      "label": "The rod expands",
+      "marks": 1
+    },
+    {
+      "label": "Summer — slow",
+      "marks": 1
+    },
+    {
+      "label": "Winter — fast",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2017 (Q18), March 2019 (Q18) and March 2023 (Q18) — Section B, 4 marks each time. Sourced from those papers (answer-book/papers/), not from either guide book, which is why the manifest entry carries source \"ts_paper\" and stars 0. The four-way split is invented and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: T = 2π√(L/g); L = L₀(1 + αΔθ); differentiating gives ΔT/T = ½ ΔL/L = ½ αΔθ."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_period",
+        "kind": "equation",
+        "label": "The period depends on the length",
+        "marks": 1,
+        "mark_note": "T = 2π√(L/g)",
+        "lines": [
+          "A pendulum clock measures time by counting",
+          "the swings of its pendulum. For a simple",
+          "pendulum of length L,",
+          {
+            "text": "T = 2π√(L/g)",
+            "style": "eq"
+          },
+          "so only L and g set the period."
+        ],
+        "margin_note": "First mark. Write the formula before saying anything about hot or cold.",
+        "why": "The whole answer follows from T rising when L rises. The mass of the bob is not in the formula, so a change of season can act only through L.",
+        "common_mistakes": [
+          "Saying the mass of the bob changes with temperature — the mass never enters T = 2π√(L/g)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the clock counts swings and the period is T = 2π root L by g.",
+          "accept": [
+            "T is 2 pi root L by g",
+            "period depends on the length",
+            "only L and g"
+          ],
+          "reject": [
+            "the rod expands on heating"
+          ],
+          "heard_as": [
+            "2 pi root L by g",
+            "length"
+          ]
+        },
+        "memory_tip": "Only L and g sit in T = 2π√(L/g). Temperature can reach the clock only through L."
+      },
+      {
+        "id": "s2_expansion",
+        "kind": "equation",
+        "label": "The rod expands and contracts",
+        "marks": 1,
+        "mark_note": "L = L₀(1 + αΔθ)",
+        "lines": [
+          "The pendulum rod is metal. It gets longer",
+          "when heated and shorter when cooled:",
+          {
+            "text": "L = L₀(1 + αΔθ)",
+            "style": "eq"
+          },
+          "α is the coefficient of linear expansion",
+          "of the rod and Δθ is the change in",
+          "temperature."
+        ],
+        "margin_note": "Second mark. Name the ROD as the part that changes length.",
+        "why": "This is the only place temperature enters the problem. A pendulum with a rod that did not expand would keep the same time in every season.",
+        "common_mistakes": [
+          "Reading Δθ as the temperature itself. It is the CHANGE in temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the metal rod expands on heating, L = L naught into one plus alpha delta theta.",
+          "accept": [
+            "the rod expands on heating",
+            "L naught into one plus alpha delta theta",
+            "coefficient of linear expansion"
+          ],
+          "reject": [
+            "T is 2 pi root L by g"
+          ],
+          "heard_as": [
+            "alpha delta theta",
+            "expands"
+          ]
+        },
+        "memory_tip": "Metal rod, hotter, longer. The season acts on the rod, never on the bob."
+      },
+      {
+        "id": "s3_summer",
+        "kind": "equation",
+        "label": "Summer — the clock runs slow",
+        "marks": 1,
+        "mark_note": "Summer: slow",
+        "lines": [
+          "In summer Δθ is positive, so L increases.",
+          "A larger L gives a larger T, so each swing",
+          "takes longer and fewer swings are completed",
+          "in one real day.",
+          {
+            "text": "L ↑ ⇒ T ↑ ⇒ the clock runs SLOW",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Both halves are needed: L increases, therefore T increases.",
+        "why": "A pendulum clock displays the number of swings it has counted. Longer swings mean fewer counted in a real day, so the display reads less than the true time.",
+        "common_mistakes": [
+          "Saying a longer pendulum swings faster. A longer pendulum swings SLOWER."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in summer L increases, T increases, and the clock runs slow.",
+          "accept": [
+            "summer the clock is slow",
+            "L increases so T increases",
+            "fewer swings in a day"
+          ],
+          "reject": [
+            "winter the clock is fast"
+          ],
+          "heard_as": [
+            "summer",
+            "slow"
+          ]
+        },
+        "memory_tip": "Longer pendulum, longer swing, fewer swings counted. Summer clock is slow."
+      },
+      {
+        "id": "s4_winter",
+        "kind": "boxed_final",
+        "label": "Winter — the clock runs fast",
+        "marks": 1,
+        "mark_note": "Winter: fast",
+        "lines": [
+          "In winter Δθ is negative, so L decreases.",
+          "A smaller L gives a smaller T, and more",
+          "swings are completed in one real day.",
+          "The fractional change follows from the",
+          "square root in the formula:",
+          {
+            "text": "ΔT/T = ½ · ΔL/L = ½ αΔθ",
+            "style": "eq"
+          },
+          {
+            "text": "Summer: slow · Winter: fast",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The ½ that the square root puts there is what is checked.",
+        "why": "The period goes as the square root of the length, so a 1% rise in L changes T by only about 0.5%. That factor of one half is the whole reason the formula is not ΔT/T = αΔθ.",
+        "common_mistakes": [
+          "Writing ΔT/T = αΔθ and dropping the ½ that the square root introduces."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in winter L decreases, T decreases, the clock runs fast, and delta T by T is half alpha delta theta.",
+          "accept": [
+            "winter the clock is fast",
+            "half alpha delta theta",
+            "L decreases so T decreases"
+          ],
+          "reject": [
+            "summer the clock is slow"
+          ],
+          "heard_as": [
+            "winter",
+            "fast",
+            "half alpha delta theta"
+          ]
+        },
+        "memory_tip": "The square root halves it: ΔT/T = ½ αΔθ, never αΔθ."
+      }
+    ]
+  },
+  "insider_note": "Two of the four marks are the two seasons, so write both directions even when the question names only one. The ½ in ΔT/T = ½ αΔθ is the line most students drop."
+}

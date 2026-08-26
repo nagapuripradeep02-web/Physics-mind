@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_flora_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is flora?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of flora",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 2 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition of flora",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "Flora is the actual account of the habitat and",
+          "distribution of plants of a given area.",
+          {
+            "text": "Flora — the plant record of a given area",
+            "style": "boxed"
+          }
+        ],
+        "why": "The definition names the two things a flora records — where the plants live (habitat) and where they occur (distribution) — for one given area.",
+        "common_mistakes": [
+          "Writing that flora means only 'plants'. A flora is the written account of the plants of an area.",
+          "Mixing up flora with fauna. Fauna is the animal list; flora is the plant list."
+        ],
+        "memory_tip": "FLora has the L of pLants; FAuna has the A of Animals — match the letters.",
+        "margin_note": "Two lines of definition carry both marks."
+      },
+      {
+        "id": "s2_use",
+        "kind": "text",
+        "label": "What a flora is used for",
+        "marks": 0,
+        "lines": [
+          "A flora helps in the correct identification",
+          "of the plants found in that area."
+        ],
+        "why": "One line on its use shows why floras are written — they are the reference for identifying the plants of that area.",
+        "common_mistakes": [
+          "Writing a long note on all the taxonomical aids. The question asks about flora alone."
+        ],
+        "memory_tip": "Area, account, identification — a flora is written area-wise and used to identify.",
+        "margin_note": "Optional line. The definition above already carries both marks."
+      }
+    ]
+  },
+  "insider_note": "Examiners look for three words in the definition — habitat, distribution and 'a given area'; keep all three."
+}

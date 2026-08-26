@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_kinds_of_hydrophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are hydrophytes? Briefly discuss the different kinds of hydrophytes with examples.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition and the five kinds", "marks": 1 },
+    { "label": "The two floating kinds", "marks": 1 },
+    { "label": "The two submerged kinds", "marks": 1 },
+    { "label": "Amphibious plants", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 2. All five of the book's kinds and its examples are kept (Pistia and Lemna; Nelumbo; Hydrilla; Vallisneria; Limnophila), with one extra standard example added to each line. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition and the five kinds",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Hydrophytes are plants that grow in water",
+          "or in very wet places.",
+          "They are of five kinds:",
+          "1) Free floating  2) Rooted with floating",
+          "leaves  3) Submerged suspended",
+          "4) Submerged rooted  5) Amphibious."
+        ],
+        "why": "The two questions asked here are the definition and the list, so both belong in the opening block. The five kinds are separated by only two facts: whether the plant is rooted, and whether it floats or is submerged.",
+        "common_mistakes": [
+          "Giving four kinds. The standard count in this syllabus is five.",
+          "Defining hydrophytes as water plants only. Very wet soil counts too, which is why amphibious plants belong here."
+        ],
+        "memory_tip": "Two questions sort all five: rooted or not, floating or submerged. The fifth is the in-between one, amphibious.",
+        "margin_note": "Definition in one line, then the numbered list. This block is one mark."
+      },
+      {
+        "id": "s2_floating",
+        "kind": "text",
+        "label": "The two floating kinds",
+        "marks": 1,
+        "mark_note": "Floating",
+        "lines": [
+          "Free floating hydrophytes: float freely on",
+          "the water surface with no contact with the",
+          "soil. Ex: Pistia, Lemna, Eichhornia.",
+          "Rooted hydrophytes with floating leaves:",
+          "rooted in the mud, with long petioles that",
+          "hold the leaves on the surface.",
+          "Ex: Nelumbo, Nymphaea."
+        ],
+        "why": "Both kinds have leaves on the surface; the difference is the root. Free floating plants touch no soil, while the second kind is fixed in the mud and reaches the surface by a long petiole.",
+        "common_mistakes": [
+          "Putting Nelumbo in the free floating group. Nelumbo is rooted in the mud.",
+          "Leaving out the words no contact with soil, which is the whole definition of free floating."
+        ],
+        "memory_tip": "Both float; only one is tied down. Pistia drifts, Nelumbo is anchored.",
+        "margin_note": "One line of definition and one example line per kind."
+      },
+      {
+        "id": "s3_submerged",
+        "kind": "text",
+        "label": "The two submerged kinds",
+        "marks": 1,
+        "mark_note": "Submerged",
+        "lines": [
+          "Submerged suspended hydrophytes: wholly",
+          "under water with no contact with soil.",
+          "Ex: Hydrilla, Ceratophyllum, Utricularia.",
+          "Submerged rooted hydrophytes: wholly under",
+          "water and fixed to the soil by roots.",
+          "Ex: Vallisneria, Potamogeton."
+        ],
+        "why": "The same root test separates these two as separated the floating pair, so the four kinds form a neat two by two table: floating or submerged, rooted or not.",
+        "common_mistakes": [
+          "Writing that submerged plants have stomata. Submerged leaves have no stomata.",
+          "Swapping Hydrilla and Vallisneria. Hydrilla is suspended, Vallisneria is rooted."
+        ],
+        "memory_tip": "Hydrilla hangs, Vallisneria is fixed. Both stay under water.",
+        "margin_note": "Keep the wording parallel with the floating block; parallel lines read as four clear kinds."
+      },
+      {
+        "id": "s4_amphibious",
+        "kind": "boxed_final",
+        "label": "Amphibious plants",
+        "marks": 1,
+        "mark_note": "Amphibious",
+        "lines": [
+          { "text": "Amphibious: partly in water, partly in air", "style": "boxed" },
+          "The lower part of the plant stands in water",
+          "or wet mud and the upper part is in the",
+          "air, so it bears two kinds of leaves.",
+          "Ex: Limnophila, Sagittaria, Typha."
+        ],
+        "why": "Amphibious plants are the fifth kind because they belong to neither water nor land alone, and their two leaf forms on one plant are the visible proof of it.",
+        "common_mistakes": [
+          "Leaving this kind out. It is the one most often forgotten of the five.",
+          "Calling them mesophytes. A mesophyte grows in ordinary moist soil, not standing water."
+        ],
+        "memory_tip": "Amphibious means living in both water and air — the same word is used for frogs.",
+        "margin_note": "Two lines and one example finish the answer; do not extend past four blocks."
+      }
+    ]
+  },
+  "insider_note": "The list is what carries the marks here, not the description. Write all five names first, then one line and one example each — a long account of two kinds and silence on the rest scores less."
+}

@@ -1,0 +1,261 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_divisible_3_5_2n1_2_3n1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Using the principle of Mathematical Induction, prove that 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ is divisible by 17, ∀ n ∈ N.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2, question 11. NOTE: this page prints NO mark split; the 1+1+1+3+1 is the split the same book prints on questions 5, 6, 8 and 10 of this chapter. Publisher's claims until a Telangana IPE teacher confirms them. The book writes the product as 3.5 with a period; it is written here as 3·5 so it cannot be read as three point five."
+  },
+  "recall_prompt": "Say how you would prove this by induction — how each power grows, and which subtraction produces the 17.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark. Write divisibility as an equation before anything else.",
+        "lines": [
+          "Let S(n): 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ = 17q,",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That divisible by 17 is written as the expression equalling 17q for an integer q.",
+          "accept": [
+            "write it as equal to seventeen q where q is an integer",
+            "divisible by seventeen means seventeen times some integer",
+            "set the whole expression equal to seventeen q",
+            "seventeen q ki equal ga rastam"
+          ],
+          "reject": [
+            "let s of n be",
+            "I state it",
+            "it is divisible by seventeen"
+          ],
+          "heard_as": [
+            "seventeen q",
+            "integer",
+            "divisible"
+          ]
+        },
+        "why": "Every divisibility induction starts the same way: turn the word into an equation you can substitute.",
+        "common_mistakes": [
+          "Reading 3·5 as the decimal three point five.",
+          "Leaving the statement in words."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. The powers are small at n = 1 — work the arithmetic out fully and show the multiple of 17.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "3·5³ + 2⁴ = 3(125) + 16",
+          "= 375 + 16 = 391 = 17(23)",
+          "which is divisible by 17. So S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the value is 3(125) + 16 = 391, and that 391 = 17 × 23.",
+          "accept": [
+            "three times one twenty five plus sixteen is three ninety one which is seventeen times twenty three",
+            "at n equals one it comes to three ninety one a multiple of seventeen",
+            "five cubed is one twenty five and two to the fourth is sixteen giving three ninety one",
+            "n equals one ki three ninety one vasthundi seventeen into twenty three"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "three ninety one",
+            "seventeen",
+            "twenty three",
+            "one twenty five"
+          ]
+        },
+        "why": "Showing 391 = 17 × 23 rather than just saying 'divisible' is what earns the mark — the examiner wants the multiple named.",
+        "common_mistakes": [
+          "Substituting n = 1 into the exponents wrongly: 2n+1 is 3 and 3n+1 is 4.",
+          "Writing 391 and stopping without showing it is 17 × 23."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume for k and number the line — Step 3 substitutes it.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 3·5⁽²ᵏ⁺¹⁾ + 2⁽³ᵏ⁺¹⁾ = 17q   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the statement is assumed for one k, written as 3·5⁽²ᵏ⁺¹⁾ + 2⁽³ᵏ⁺¹⁾ = 17q, and labelled (1).",
+          "accept": [
+            "assume it for k so three times five to the two k plus one plus two to the three k plus one is seventeen q",
+            "suppose s of k is true and number it equation one",
+            "take the statement as true for some k",
+            "k ki true ani assume chesi equation one"
+          ],
+          "reject": [
+            "assume s of k",
+            "let it be true",
+            "take k"
+          ],
+          "heard_as": [
+            "assume",
+            "seventeen q",
+            "equation one",
+            "two k plus one",
+            "three k plus one"
+          ]
+        },
+        "why": "Both powers grow by a fixed factor when n goes up by one, so the assumption can be used as a whole rather than rearranged.",
+        "common_mistakes": [
+          "Assuming it for every k instead of one k.",
+          "Not numbering the line."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three marks. Each power grows by its own factor: 5² = 25 and 2³ = 8. Substitute for ONE of them and let 17 appear.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "3·5⁽²ᵏ⁺³⁾ + 2⁽³ᵏ⁺⁴⁾",
+          "= 25(3·5⁽²ᵏ⁺¹⁾) + 8(2⁽³ᵏ⁺¹⁾)",
+          "= 25(17q − 2⁽³ᵏ⁺¹⁾) + 8(2⁽³ᵏ⁺¹⁾)   [from (1)]",
+          "= 25(17q) − 25(2⁽³ᵏ⁺¹⁾) + 8(2⁽³ᵏ⁺¹⁾)",
+          "= 25(17q) − 17(2⁽³ᵏ⁺¹⁾)",
+          "= 17(25q − 2⁽³ᵏ⁺¹⁾)",
+          "which is divisible by 17."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That going from k to k+1 multiplies the first power by 25 and the second by 8, that (1) is used to replace 3·5⁽²ᵏ⁺¹⁾ by 17q − 2⁽³ᵏ⁺¹⁾, and that 25 − 8 = 17 is what leaves a factor of 17.",
+          "accept": [
+            "the first term picks up twenty five and the second picks up eight then substitute the assumption and twenty five minus eight is seventeen",
+            "replace three times five to the two k plus one using equation one and the leftover is seventeen times something",
+            "twenty five minus eight equals seventeen which is why it factors",
+            "twenty five and eight difference seventeen kabatti factor avuthundi"
+          ],
+          "reject": [
+            "substitute and simplify",
+            "I show the next case",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "twenty five",
+            "eight",
+            "seventeen",
+            "substitute",
+            "two to the three k plus one"
+          ]
+        },
+        "why": "25 − 8 = 17 is the whole reason this works. The question is built backwards from that difference.",
+        "common_mistakes": [
+          "Getting the growth factors wrong: 5⁽²ᵏ⁺³⁾ is 25 × 5⁽²ᵏ⁺¹⁾, not 5 × it.",
+          "Substituting for both powers at once, which leaves nothing to cancel.",
+          "Not stating that the final bracket is an integer."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the statement holds for every natural number.",
+          "accept": [
+            "since the first case is true and each case gives the next by p m i it is true for all n",
+            "hence by the principle of mathematical induction it holds for every natural number",
+            "base case plus inductive step gives it for all n in n",
+            "p m i prakaram anni n ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is divisible",
+            "that completes it"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the principle."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_resonance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is resonance? Explain it with the ozone molecule as an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 2
+    },
+    {
+      "label": "Ozone structures",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: resonance is an NCERT Chemical Bonding section that the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Added the formal charges of the ozone canonical forms (central O +1, singly bonded terminal O −1) to the s2 `why` — the marked line draws them uncharged, which the formal-charge card of this same chapter computes as +1. The 128 / 121 / 148 pm bond lengths verified correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "When a single Lewis structure cannot",
+          "describe a molecule exactly, the molecule",
+          "is described as a resonance hybrid of two",
+          "or more Lewis structures, called canonical",
+          "forms.",
+          "The canonical forms differ only in the",
+          "positions of electrons, never of atoms.",
+          "The hybrid is lower in energy (more",
+          "stable) than any single canonical form."
+        ],
+        "why": "The definition has three separately checkable parts: why resonance is needed, what may differ between forms, and that the hybrid is the more stable description.",
+        "common_mistakes": [
+          "Saying the molecule keeps switching between the forms. The real molecule is ONE fixed hybrid; the forms are drawings.",
+          "Moving atoms between canonical forms. Only electron positions may differ."
+        ],
+        "memory_tip": "Many drawings, one molecule: electrons move between drawings, atoms never do.",
+        "margin_note": "Three sentences, three parts of the definition — write all three."
+      },
+      {
+        "id": "s2_ozone",
+        "kind": "equation",
+        "label": "Ozone structures",
+        "marks": 1,
+        "mark_note": "Ozone forms",
+        "lines": [
+          "Ozone (O₃) has two canonical forms:",
+          {
+            "text": "O=O−O ↔ O−O=O",
+            "style": "eq"
+          },
+          "The double bond can be drawn on either",
+          "side of the central O atom, so neither",
+          "structure alone is correct."
+        ],
+        "why": "Ozone is the standard example because its two forms are mirror placements of one double bond — the simplest possible pair of canonical forms. In a complete Lewis structure each form also carries formal charges: the central O is +1, the singly bonded terminal O is −1 and the doubly bonded terminal O is 0. Board answers accept the plain forms written here, so the marked line keeps them.",
+        "common_mistakes": [
+          "Using a plain arrow → between the forms. The resonance symbol is the double-headed arrow ↔.",
+          "Drawing ozone as a ring of three O atoms. It is bent and open."
+        ],
+        "memory_tip": "One double bond, two possible sides — that is the whole pair of forms.",
+        "margin_note": "The double-headed arrow ↔ is the required notation."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "Both O−O bonds in ozone are identical (128 pm)",
+            "style": "boxed"
+          },
+          "This length lies between a single bond",
+          "(148 pm) and a double bond (121 pm) —",
+          "exactly what a resonance hybrid predicts."
+        ],
+        "why": "The equal, intermediate bond lengths are the experimental evidence: if either drawing were the real molecule, the two bonds would have different lengths.",
+        "common_mistakes": [
+          "Writing one short and one long bond for ozone. Experiment finds the two bonds EQUAL."
+        ],
+        "memory_tip": "128 sits between 121 and 148 — the hybrid averages its drawings.",
+        "margin_note": "The three lengths in one line close the argument."
+      }
+    ]
+  }
+}

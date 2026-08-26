@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_noble_gas_egh_positive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is the electron gain enthalpy of noble gases positive?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing on the electron gain enthalpy exceptions (the noble gases), the standard explain-with-a-reason cell for this property. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25: the reason and the sign convention were re-checked against NCERT Class-11 and nothing marked was changed; the why now records that helium is the exception in form, with a filled 1s² shell and no p subshell. Status stays unverified."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Noble gases have the completely filled outer",
+          "configuration ns² np⁶.",
+          "There is no vacancy in the outermost shell,",
+          "so an added electron must enter the next",
+          "higher shell, far from the nucleus and well",
+          "screened by the inner electrons."
+        ],
+        "why": "Energy is released only when the attraction of the nucleus on the added electron is greater than its repulsion by the electrons already present; in the next higher shell of a noble gas that attraction is very small, so no energy is released. Helium is the exception in form: its filled shell is 1s², with no p subshell, but the argument is the same.",
+        "common_mistakes": [
+          "Saying only that noble gases are stable. The marked reason is the full ns² np⁶ shell and the next-shell entry.",
+          "Writing that noble gases cannot gain an electron at all. They can, but energy must be supplied."
+        ],
+        "memory_tip": "A full ns² np⁶ shell has no vacancy, so the extra electron is pushed out to the next shell.",
+        "margin_note": "Both parts count: the full shell, and where the added electron would have to go."
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Energy must be supplied to add the electron, so the electron gain enthalpy is positive",
+            "style": "boxed"
+          },
+          "The atom does not release energy on gaining",
+          "an electron; it absorbs energy instead."
+        ],
+        "why": "The sign follows the direction of energy flow: released energy makes the enthalpy change negative, absorbed energy makes it positive — and for noble gases the flow is inward.",
+        "common_mistakes": [
+          "Writing positive because energy is released. Released energy gives a negative enthalpy change; positive means absorbed."
+        ],
+        "memory_tip": "Energy in means a positive sign; energy out means a negative sign. Noble gases take energy in.",
+        "margin_note": "State the sign convention in one line; it is what the question is really testing."
+      }
+    ]
+  }
+}

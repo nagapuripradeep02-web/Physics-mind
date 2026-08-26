@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_state_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a state function? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and contrast",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: state functions underlie Hess law and every ΔH argument in the chapter, yet the Fastrack chemistry section (book pp.73-75) never asks the definition itself. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25 (audit round 3): the s2 mark_note said Examples, and the margin_note called the q and w contrast a finishing extra, while the mark_split row reads Examples and contrast — three fields, three answers. All three now match the split row, which is untouched. The phrase strong finish was also removed under the plain-language rule. OPEN QUESTION for the teacher gate: whether the contrast is genuinely required for the second mark rests on that unverified split."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A state function is a property whose value",
+          "depends only on the present state of the",
+          "system, not on the path by which that",
+          "state was reached."
+        ],
+        "why": "This is the property Hess law rests on: if a quantity depends only on the state, its change between two states is fixed, whatever route the system takes.",
+        "common_mistakes": [
+          "Defining it as a constant — a state function changes when the state changes; it only ignores the path."
+        ],
+        "memory_tip": "Same state, same value — the history of the system does not enter.",
+        "margin_note": "The contrast word path must appear."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and contrast",
+        "marks": 1,
+        "mark_note": "Examples and contrast",
+        "lines": [
+          "Examples: internal energy U, enthalpy H,",
+          "entropy S, Gibbs energy G, pressure,",
+          "volume, temperature.",
+          "Heat q and work w are not state functions:",
+          "their values depend on the path taken.",
+          {
+            "text": "State function: fixed by the state, not the path",
+            "style": "boxed"
+          }
+        ],
+        "why": "The mark_split row is Examples and contrast, so both halves belong to this one mark: the list of state functions, and q and w named as path functions beside it. Listing q and w as the exceptions shows the definition is understood — they describe the transfer of energy along a path, not a state of the system.",
+        "common_mistakes": [
+          "Listing heat or work among the state functions — both are path functions."
+        ],
+        "memory_tip": "The big four letters U, H, S, G are state functions; q and w are the two path functions.",
+        "margin_note": "This one mark covers both halves of the row: the examples, and q and w named as path functions."
+      }
+    ]
+  }
+}

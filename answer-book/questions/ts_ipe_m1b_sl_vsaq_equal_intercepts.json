@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_equal_intercepts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the straight line passing through (−4,5) and cutting off equal intercepts on the coordinate axes.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the intercepts",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Straight Lines, answer 89.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,16,18,20. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say which form you would use and why, and what the condition tells you about the two intercepts.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up_the_intercepts",
+        "kind": "equation",
+        "label": "Set up the intercepts",
+        "marks": 1,
+        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1 and let the condition choose a and b for you: intercepts are equal.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given that, intercepts are equal.",
+          "So, we take a, a as the intercepts.",
+          "Intercept form:  x/a + y/b = 1",
+          "∴ x/a + y/a = 1",
+          "⇒ x + y = a  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intercept form is used with the intercepts chosen to satisfy the given condition.",
+          "accept": [
+            "use the intercept form x over a plus y over b equals one",
+            "let the intercepts be chosen to match the condition",
+            "take the intercepts as a, a as the intercepts",
+            "intercept form vaadali",
+            "set the two intercepts from the condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "x over a",
+            "y over b",
+            "intercepts"
+          ]
+        },
+        "why": "Any condition stated about intercepts is cheapest to use in the intercept form — the condition collapses two unknowns to one before any point is substituted.",
+        "common_mistakes": [
+          "Using the slope-intercept form, which hides the intercepts.",
+          "Introducing two separate unknowns when the condition ties them together."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_substitute_the_point",
+        "kind": "boxed_final",
+        "label": "Substitute the point and finish",
+        "marks": 1,
+        "margin_note": "Second mark. The line passes through the given point, so that point satisfies the equation — substitute it, find the one remaining unknown, and write the line.",
+        "lines": [
+          "But (−4, 5) lies on (1)",
+          "⇒ −4 + 5 = a  ⇒  a = 1",
+          "∴ x + y = 1",
+          {
+            "text": "⇒ x + y − 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting the given point finds the intercept and gives x + y − 1 = 0.",
+          "accept": [
+            "put the given point into the equation and solve for a",
+            "the point lies on the line so substitute it",
+            "find a then write the line",
+            "point ni substitute chesi a teesukovali",
+            "substitute and finish"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "lies on",
+            "solve for a",
+            "the line is"
+          ]
+        },
+        "why": "One unknown is left after the condition is used, and one point is exactly enough to pin it.",
+        "common_mistakes": [
+          "Substituting the coordinates the wrong way round.",
+          "Stopping at the value of a without writing the line."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

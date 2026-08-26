@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_static_vs_kinetic_friction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which is greater, limiting friction or kinetic friction? Give the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "Limiting friction is greater than kinetic",
+          "friction.",
+          "So for the same pair of surfaces,",
+          "μ_s > μ_k."
+        ],
+        "why": "This is why a heavy box is hard to start and then noticeably easier to keep sliding.",
+        "common_mistakes": [
+          "Saying they are equal because both use the same normal force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That limiting friction is greater than kinetic friction, so mu s is greater than mu k.",
+          "accept": [
+            "limiting friction is greater",
+            "mu s is greater than mu k"
+          ],
+          "reject": [
+            "the contact points bond"
+          ],
+          "heard_as": [
+            "limiting",
+            "greater"
+          ]
+        },
+        "memory_tip": "Steel on steel gives about μ_s = 0.74 against μ_k = 0.57. Static is the larger number.",
+        "margin_note": "First mark. Commit to limiting friction in the first line, then write μ_s > μ_k."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "While the body is at rest the two surfaces",
+          "settle into each other and the contact",
+          "points join. Once sliding starts there is",
+          "less time for those joins to form, so less",
+          "force is needed.",
+          {
+            "text": "Harder to start than to keep going",
+            "style": "boxed"
+          }
+        ],
+        "why": "Friction comes from contact at the microscopic high points, and those need time to form — which is the whole difference between the two coefficients.",
+        "common_mistakes": [
+          "Explaining it by \"the body has gained speed\", which is not the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at rest the surfaces settle and the contact points join, and sliding gives them less time to form.",
+          "accept": [
+            "contact points join",
+            "surfaces settle into each other",
+            "less time to form"
+          ],
+          "reject": [
+            "limiting friction is greater"
+          ],
+          "heard_as": [
+            "contact points",
+            "settle"
+          ]
+        },
+        "memory_tip": "Nothing about the body changes. What changes is how long the contacts had to form.",
+        "margin_note": "Second mark. The reason is the contact points, not the speed the body has gained."
+      }
+    ]
+  },
+  "insider_note": "Which is greater is one mark, the reason is the other. Answering μ_s > μ_k and stopping answers only half the question."
+}

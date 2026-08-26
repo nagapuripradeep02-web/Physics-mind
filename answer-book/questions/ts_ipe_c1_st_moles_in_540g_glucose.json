@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_moles_in_540g_glucose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many moles of glucose are present in 540 grams of glucose?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and molar mass",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and molar mass",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Number of moles n = mass of substance / molar mass",
+            "style": "eq"
+          },
+          "Molar mass of glucose C₆H₁₂O₆",
+          "= (6 × 12) + (12 × 1) + (6 × 16)",
+          "= 72 + 12 + 96 = 180 g mol⁻¹",
+          "n = 540 g / 180 g mol⁻¹"
+        ],
+        "why": "Mass alone does not count particles. Dividing the given mass by the molar mass converts grams into moles, and the molar mass of glucose must be computed from its formula first.",
+        "common_mistakes": [
+          "Using a wrong molar mass for glucose. Show the sum 72 + 12 + 96 = 180.",
+          "Writing n = molar mass / mass. The given mass goes on top."
+        ],
+        "memory_tip": "Grams to moles: divide by the molar mass. Moles to grams: multiply.",
+        "margin_note": "The formula with the computed molar mass 180 g mol⁻¹ earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "n = 540 / 180",
+          {
+            "text": "n = 3 mol of glucose",
+            "style": "boxed"
+          }
+        ],
+        "why": "540 divided by 180 is exactly 3. The answer is a number of moles, so the unit mol must be written.",
+        "common_mistakes": [
+          "Writing the answer without the unit mol.",
+          "Arithmetic slips such as 540 / 180 = 0.3."
+        ],
+        "memory_tip": "540 is three times 180. The answer is a small whole number, which is normal for these set questions.",
+        "margin_note": "Box the final value with the unit mol."
+      }
+    ]
+  },
+  "insider_note": "A three-star one-step numerical. The molar mass computation 6 × 12 + 12 × 1 + 6 × 16 = 180 must appear on the page — quoting 180 from memory with no working risks the first mark."
+}

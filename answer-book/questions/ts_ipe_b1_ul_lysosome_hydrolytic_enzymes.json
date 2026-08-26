@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_lysosome_hydrolytic_enzymes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention a single membrane bound organelle which is rich in hydrolytic enzymes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Naming the organelle",
+      "marks": 1
+    },
+    {
+      "label": "Its enzymes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "The organelle",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          "Lysosome.",
+          "It is a tiny sac bound by a single membrane,",
+          "and it is formed by the Golgi complex."
+        ],
+        "why": "The question gives two clues — one membrane, and hydrolytic enzymes — and only the lysosome matches both.",
+        "common_mistakes": [
+          "Answering mitochondrion or chloroplast. Both have two membranes.",
+          "Answering ribosome. A ribosome has no membrane at all."
+        ],
+        "memory_tip": "Lyso comes from lysis, which means splitting. A lysosome splits things apart.",
+        "margin_note": "The single word Lysosome earns this mark."
+      },
+      {
+        "id": "s2_enzymes",
+        "kind": "boxed_final",
+        "label": "Its enzymes",
+        "marks": 1,
+        "mark_note": "Hydrolases",
+        "lines": [
+          {
+            "text": "Lysosome = single membrane sac of hydrolases",
+            "style": "boxed"
+          },
+          "It is rich in hydrolytic enzymes — lipases,",
+          "proteases and carbohydrases.",
+          "These enzymes work best in an acid medium.",
+          "They digest carbohydrates, proteins, lipids",
+          "and nucleic acids."
+        ],
+        "why": "Hydrolytic means the enzyme splits a bond by adding water, so naming the classes of hydrolase is what shows you know the word in the question.",
+        "common_mistakes": [
+          "Writing that lysosomal enzymes work in an alkaline medium. They need an acid medium.",
+          "Naming no enzyme class at all."
+        ],
+        "memory_tip": "Four food types, four enzyme jobs: carbohydrate, protein, lipid, nucleic acid.",
+        "margin_note": "Name the acid medium and two enzyme classes."
+      }
+    ]
+  },
+  "insider_note": "One word is the whole answer, but a bare 'lysosome' usually earns only half the marks — add the acid medium and the enzyme classes."
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_one_plus_sin_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve 1 + sin²θ = 3 sinθ cosθ.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide by cos²θ",
+      "marks": 1
+    },
+    {
+      "label": "Convert sec² and factorise",
+      "marks": 1
+    },
+    {
+      "label": "Solve the first root",
+      "marks": 1
+    },
+    {
+      "label": "Solve the second root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 11 Trigonometric Equations, answer 71.2. Printed appearances: AP,TS 17. The twin of 71.1, but the reduction is to TANGENT rather than sine — because dividing by cos²θ is what removes the mixed sinθcosθ term. Both roots survive here, so the answer has two families. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_cos",
+        "kind": "equation",
+        "label": "Divide by cos²θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The sinθcosθ term blocks any single-ratio substitution, but dividing the whole equation by cos²θ turns every term into a tangent or a secant.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 1 + sin²θ = 3 sinθ cosθ",
+          "Divide throughout by cos²θ:",
+          "⇒ 1/cos²θ + sin²θ/cos²θ = 3 sinθcosθ/cos²θ",
+          "⇒ sec²θ + tan²θ = 3 tanθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is divided by cos²θ, giving sec²θ + tan²θ = 3 tanθ.",
+          "accept": [
+            "divide the whole equation by cos squared theta to get sec squared plus tan squared equals three tan",
+            "dividing by cos squared turns everything into tangents and secants",
+            "divide by cos squared theta throughout",
+            "cos square theta tho divide cheste sec square plus tan square equals three tan",
+            "divide through by cos squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by cos squared",
+            "sec squared",
+            "tan squared",
+            "three tan"
+          ]
+        },
+        "why": "A term in sinθcosθ cannot be written in one ratio directly, but divided by cos²θ it becomes a plain tanθ. That is why this family goes to tangent.",
+        "common_mistakes": [
+          "Dividing by cosθ only and leaving a mixed term.",
+          "Trying to substitute sin²θ = 1 − cos²θ, which does not remove the product term."
+        ]
+      },
+      {
+        "id": "s2_convert_sec_and_factorise",
+        "kind": "equation",
+        "label": "Convert sec² and factorise",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. sec²θ = 1 + tan²θ turns it into a quadratic in tanθ, which then factorises.",
+        "lines": [
+          "⇒ (1 + tan²θ) + tan²θ = 3 tanθ",
+          "  [∵ sec²θ − tan²θ = 1]",
+          "⇒ 2tan²θ − 3tanθ + 1 = 0",
+          "⇒ (2tanθ − 1)(tanθ − 1) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec²θ = 1 + tan²θ gives the quadratic 2tan²θ − 3tanθ + 1 = 0, which factorises.",
+          "accept": [
+            "sec squared is one plus tan squared so it becomes two tan squared minus three tan plus one equals zero and factorises",
+            "convert the secant and factorise the quadratic in tangent",
+            "the factors are two tan minus one and tan minus one",
+            "sec square ante one plus tan square, quadratic factorise cheyyali",
+            "get a quadratic in tan and factorise it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus tan squared",
+            "two tan squared",
+            "factorise",
+            "tan minus one"
+          ]
+        },
+        "why": "sec²θ − tan²θ = 1 is the identity that pairs with the Pythagorean one. It is what lets a secant be removed without introducing a cosine.",
+        "common_mistakes": [
+          "Writing sec²θ = 1 − tan²θ.",
+          "Failing to collect the two tan² terms."
+        ]
+      },
+      {
+        "id": "s3_solve_the_first_root",
+        "kind": "equation",
+        "label": "Solve the first root",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. tanθ = 1 is tan(π/4). For a TANGENT equation the general solution is nπ + α — no ± and no (−1)ⁿ.",
+        "lines": [
+          "⇒ tanθ = 1  (or)  tanθ = 1/2",
+          "Now tanθ = 1 = tan(π/4), so α = π/4",
+          "For tanθ = tanα, θ = nπ + α",
+          "∴ θ = nπ + π/4,  n ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = 1 gives α = π/4 and the TANGENT general solution θ = nπ + α.",
+          "accept": [
+            "tan theta equals one is tan pi by four so theta is n pi plus pi by four",
+            "for tangent the general solution is n pi plus alpha",
+            "the first family is n pi plus pi by four",
+            "tan theta one ante tan pi by four, n pi plus pi by four",
+            "use the tangent general solution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan pi by four",
+            "n pi plus alpha",
+            "tangent general solution"
+          ]
+        },
+        "why": "Tangent repeats every π rather than every 2π, which is why its general solution is the simplest of the three — just nπ + α.",
+        "common_mistakes": [
+          "Using 2nπ ± α for a tangent equation.",
+          "Adding a (−1)ⁿ that does not belong."
+        ]
+      },
+      {
+        "id": "s4_solve_the_second_root",
+        "kind": "boxed_final",
+        "label": "Solve the second root",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. tanθ = 1/2 is not a standard angle, so the principal value stays as an inverse tangent — that is the exact answer and is expected.",
+        "lines": [
+          "Also tanθ = 1/2 ⇒ θ = Tan⁻¹(1/2)",
+          "Here the principal value is α = Tan⁻¹(1/2)",
+          {
+            "text": "∴ θ = nπ + π/4  or  θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = 1/2 gives α = Tan⁻¹(1/2), and that BOTH families are reported.",
+          "accept": [
+            "tan theta equals half so the principal value is tan inverse half and both families are answers",
+            "the second solution is n pi plus tan inverse one half",
+            "report both general solutions",
+            "tan inverse half ni P V ga unchi, rendu families rasta",
+            "leave it as an inverse tangent and give both answers"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan inverse half",
+            "both",
+            "two families",
+            "n pi plus"
+          ]
+        },
+        "why": "Both roots of the quadratic are valid tangents — a tangent can take any real value, unlike a sine — so unlike the twin question nothing is rejected here.",
+        "common_mistakes": [
+          "Reporting only the π/4 family.",
+          "Trying to force 1/2 into a standard angle."
+        ]
+      }
+    ]
+  }
+}

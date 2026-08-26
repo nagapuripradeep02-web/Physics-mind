@@ -1,0 +1,326 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_derive_s_ut_half_at2_graphical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the equation s = ut + ½at² using the graphical method.",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The v–t graph",
+      "marks": 1
+    },
+    {
+      "label": "Area = displacement",
+      "marks": 1
+    },
+    {
+      "label": "The two areas",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_graph",
+        "kind": "diagram",
+        "label": "The v–t graph",
+        "marks": 1,
+        "mark_note": "Graph",
+        "figure": {
+          "id": "fig_vt_graph",
+          "width": 360,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "yaxis",
+              "d": "M 60 250 L 60 30",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "xaxis",
+              "d": "M 60 250 L 330 250",
+              "ms": 380
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 30,
+              "y": 34,
+              "text": "v",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_t",
+              "x": 334,
+              "y": 256,
+              "text": "t",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 46,
+              "y": 268,
+              "text": "O",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "line_ab",
+              "d": "M 60 190 L 280 90",
+              "ms": 620
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 44,
+              "y": 186,
+              "text": "A",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 286,
+              "y": 84,
+              "text": "B",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "drop_b",
+              "d": "M 280 90 L 280 250",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 276,
+              "y": 268,
+              "text": "D",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "line_ac",
+              "d": "M 60 190 L 280 190",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 288,
+              "y": 196,
+              "text": "C",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_u",
+              "x": 40,
+              "y": 224,
+              "text": "u",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_vfinal",
+              "x": 300,
+              "y": 140,
+              "text": "v",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_tri",
+              "x": 150,
+              "y": 152,
+              "text": "½(v−u)t",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_rect",
+              "x": 140,
+              "y": 226,
+              "text": "u t",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "A body with uniform acceleration has a straight-line v–t graph, so the area under it is a trapezium that splits into one rectangle and one triangle.",
+        "common_mistakes": [
+          "Drawing a curved line. Uniform acceleration gives a straight line.",
+          "Leaving the graph unlabelled, which loses the mark even when the shape is right."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the graph is a straight line from A at velocity u to B at velocity v over time t.",
+          "accept": [
+            "straight line",
+            "u at the start",
+            "v at time t"
+          ],
+          "reject": [
+            "curved line"
+          ],
+          "heard_as": [
+            "graph",
+            "straight line"
+          ]
+        },
+        "memory_tip": "Uniform acceleration means a STRAIGHT v–t line. Label O, A, B, C, D.",
+        "margin_note": "Draw it first. The figure is one of the four marks."
+      },
+      {
+        "id": "s2_area",
+        "kind": "text",
+        "label": "Area = displacement",
+        "marks": 1,
+        "mark_note": "Area rule",
+        "lines": [
+          "For a velocity–time graph, the area under the",
+          "line equals the displacement.",
+          "So s = area of the trapezium OABD."
+        ],
+        "why": "Velocity multiplied by time is displacement, and that product is exactly what an area on a v–t graph measures.",
+        "common_mistakes": [
+          "Saying the SLOPE gives displacement. The slope gives acceleration; the area gives displacement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area under a velocity time graph is the displacement.",
+          "accept": [
+            "area is displacement",
+            "area under the graph"
+          ],
+          "reject": [
+            "slope is displacement"
+          ],
+          "heard_as": [
+            "area",
+            "displacement"
+          ]
+        },
+        "memory_tip": "Area = displacement. Slope = acceleration. Two different features, two different meanings.",
+        "margin_note": "State the rule before using it."
+      },
+      {
+        "id": "s3_split",
+        "kind": "equation",
+        "label": "The two areas",
+        "marks": 1,
+        "mark_note": "The split",
+        "lines": [
+          "Split OABD into rectangle OACD and △ABC:",
+          "area OACD = OA × OD = u t",
+          "area ABC = ½ × AC × BC = ½ × t × (v − u)",
+          {
+            "text": "and v − u = at, so area ABC = ½ a t²",
+            "style": "eq"
+          }
+        ],
+        "why": "The rectangle is the distance the body would have covered at its starting speed; the triangle is the extra distance the acceleration added.",
+        "common_mistakes": [
+          "Using BC = v instead of BC = v − u. The triangle sits above the rectangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rectangle has area u t and the triangle has area half a t squared, using v minus u equals a t.",
+          "accept": [
+            "u t",
+            "half a t squared",
+            "v minus u is a t"
+          ],
+          "reject": [
+            "half v t"
+          ],
+          "heard_as": [
+            "rectangle",
+            "triangle",
+            "u t"
+          ]
+        },
+        "memory_tip": "Rectangle = what u alone would give. Triangle = what a adds on top.",
+        "margin_note": "Substituting v − u = at is the step that makes ½at² appear."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "s = area OACD + area ABC",
+          {
+            "text": "s = ut + ½at²",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two areas add because they are two parts of one trapezium, so the displacement is the sum of the steady part and the accelerated part.",
+        "common_mistakes": [
+          "Writing s = ut + ½at, missing the square on t."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That s equals u t plus half a t squared.",
+          "accept": [
+            "u t plus half a t squared"
+          ],
+          "reject": [
+            "u t plus half a t"
+          ],
+          "heard_as": [
+            "s equals",
+            "half a t squared"
+          ]
+        },
+        "memory_tip": "Rectangle plus triangle: ut + ½at².",
+        "margin_note": "Box the final equation."
+      }
+    ]
+  },
+  "insider_note": "A 3-star cell. The figure carries a mark on its own — draw and label the v–t graph before any algebra."
+}

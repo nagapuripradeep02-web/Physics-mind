@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_screening_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is screening effect? How is it related to ionisation enthalpy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Relation to ionisation enthalpy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book prints the question incomplete — 'What is screening effect? How is it related' with no object — and the completion 'to ionisation enthalpy' is taken from the book's own printed answer, which relates screening to I.E. The book also writes 'Screening effect ∝ 1/I.E'; that is a qualitative shorthand for an inverse trend, not a numerical law, and the card records that reading."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Screening effect (shielding effect): the",
+          "inner-shell electrons reduce the force of",
+          "attraction of the nucleus on the outermost",
+          "(valence) electrons.",
+          "This reduction is called the screening effect."
+        ],
+        "why": "The valence electron does not feel the full nuclear charge, because the inner-shell electrons sit between it and the nucleus and cancel part of the attraction. That cancelling is what the definition names.",
+        "common_mistakes": [
+          "Saying the inner electrons attract the outer electrons. They repel them; what falls is the pull of the nucleus.",
+          "Leaving out which electrons do the screening. It is the inner-shell electrons."
+        ],
+        "memory_tip": "The inner shells stand between the nucleus and the outer electron, so the outer electron feels a smaller pull.",
+        "margin_note": "The words inner-shell electrons and force of attraction of the nucleus must both appear."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "Relation to ionisation enthalpy",
+        "marks": 1,
+        "mark_note": "Relation to I.E",
+        "lines": [
+          {
+            "text": "Greater screening → lower ionisation enthalpy",
+            "style": "boxed"
+          },
+          "If the screening effect increases, the valence",
+          "electron is held less tightly, so the",
+          "ionisation enthalpy decreases.",
+          "If the screening effect decreases, the",
+          "ionisation enthalpy increases.",
+          {
+            "text": "Screening effect ∝ 1 / I.E",
+            "style": "eq"
+          }
+        ],
+        "why": "Screening reduces the effective nuclear pull on the valence electron, and ionisation enthalpy measures how much energy it takes to remove that electron — so the two always change in opposite directions. The ∝ line is the book's shorthand for this inverse trend, not a numerical law.",
+        "common_mistakes": [
+          "Writing that more screening means a higher ionisation enthalpy. The relation is inverse.",
+          "Giving the ∝ line alone with no sentence. The examiner expects the relation stated in words."
+        ],
+        "memory_tip": "More screening, weaker hold, easier removal. The two quantities always move in opposite directions.",
+        "margin_note": "One boxed sentence plus the inverse relation completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The relation to ionisation enthalpy is half the marks — the definition alone earns one mark, not two."
+}

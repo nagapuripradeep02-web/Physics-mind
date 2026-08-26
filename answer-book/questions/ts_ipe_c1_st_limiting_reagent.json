@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_limiting_reagent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a limiting reagent?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) never mentions the limiting reagent, though it is a named syllabus topic in this chapter. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25 (audit round): the printed stem asks only to state or define, yet the mark split pays 1 of the 2 marks for an example the stem never requests — the sibling card ts_ipe_c1_st_law_multiple_proportions proves the bank knows the difference, because its stem ends with the words: with an example. Split, marks and question text are UNCHANGED; the card now says plainly that the example is expected. FLAGGED for the teacher gate: confirm whether the board prints this stem with those words, or whether both marks belong to the statement alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When reactants are not mixed in the exact",
+          "ratio of the balanced equation, the reactant",
+          "that is completely consumed first is the",
+          "limiting reagent. It decides the maximum",
+          "amount of product formed."
+        ],
+        "why": "The reaction stops when one reactant runs out, so the amount of product is fixed by that reactant — not by the ones present in excess.",
+        "common_mistakes": [
+          "Writing that the limiting reagent is the one present in the smaller MASS. The comparison is in moles against the equation's ratio.",
+          "Leaving out that it decides the product amount — that is why the concept exists."
+        ],
+        "memory_tip": "The reagent that finishes first limits the product; the leftover one is the excess reagent.",
+        "margin_note": "Both sentences carry weight: consumed first, and decides the product."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "2H₂ + O₂ → 2H₂O",
+          "Mixing 2 mol H₂ with 2 mol O₂: 2 mol H₂ needs",
+          "only 1 mol O₂, so H₂ is used up first.",
+          {
+            "text": "H₂ is the limiting reagent; 1 mol O₂ is left in excess",
+            "style": "boxed"
+          }
+        ],
+        "why": "A worked mole comparison shows the test: divide the available moles by the equation's coefficients, and the reactant that runs out first is the limiting one, even though the two amounts started equal. The printed question asks only what a limiting reagent is, but this card scores an example as the second mark, so write one even though the stem does not ask for it.",
+        "common_mistakes": [
+          "Picking O₂ because both started at 2 mol. Equal moles do not mean equal sufficiency — the equation needs twice as much H₂ as O₂."
+        ],
+        "memory_tip": "Compare moles against coefficients, never moles against moles.",
+        "margin_note": "Any balanced reaction with a worked mole comparison earns this mark."
+      }
+    ]
+  },
+  "insider_note": "The stem asks only what a limiting reagent is, but this card gives 1 mark for the definition and 1 mark for an example. Write a short worked mole comparison anyway — three lines, and it is what a full-mark answer shows. The 1+1 split is a reading of the chapter, not a printed key."
+}

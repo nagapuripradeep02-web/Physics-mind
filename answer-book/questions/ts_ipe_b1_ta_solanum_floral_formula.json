@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_solanum_floral_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the floral formula of the Solanum plant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the symbols mean",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_symbols",
+        "kind": "text",
+        "label": "What the symbols mean",
+        "marks": 1,
+        "lines": [
+          "Ebr = ebracteate (no bract). Ebrl = ebracteolate.",
+          "⊕ = actinomorphic (radially symmetrical). ⚥ =",
+          "bisexual.",
+          "K = calyx, C = corolla, A = androecium, G =",
+          "gynoecium.",
+          "A bracket round a number means those parts are",
+          "fused. A line under G means the ovary is",
+          "superior."
+        ],
+        "why": "A floral formula is only read correctly if each symbol is read correctly, and the symbol key is easy marks.",
+        "common_mistakes": [
+          "Writing K for corolla and C for calyx. K is calyx (from the German Kelch).",
+          "Leaving the brackets off K and C. Solanum sepals and petals are fused."
+        ],
+        "memory_tip": "Read the formula outside in: bract, symmetry, sex, then K, C, A, G in whorl order.",
+        "margin_note": "A short key of the symbols is worth one line each. Do not skip it.",
+        "mark_note": "Symbols"
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Ebr Ebrl ⊕ ⚥ K(5) C(5) A5 G(2)",
+            "style": "boxed"
+          },
+          "Underline the G — that shows the ovary is",
+          "superior.",
+          "Five fused sepals, five fused petals, five free",
+          "epipetalous stamens, and a bicarpellary",
+          "syncarpous ovary."
+        ],
+        "why": "Each part of the formula is a fact about the flower, so writing the formula is writing the whole floral description in short form.",
+        "common_mistakes": [
+          "Writing A(5). The stamens are epipetalous but they are free from one another, so A5 has no bracket.",
+          "Forgetting the line under G, which turns a superior ovary into an unmarked one."
+        ],
+        "memory_tip": "Solanum: five, five, five, two. K(5) C(5) A5 G(2), and only the G is underlined.",
+        "margin_note": "Write the formula on its own line and underline the G by hand.",
+        "mark_note": "Formula"
+      }
+    ]
+  },
+  "insider_note": "Most marks are lost on the brackets, not on the numbers. A5 is free, K(5) and C(5) are fused, G(2) is fused and underlined."
+}

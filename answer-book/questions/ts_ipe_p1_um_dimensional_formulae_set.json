@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_dimensional_formulae_set",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the dimensional formulae of work, power and pressure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work and power",
+      "marks": 1
+    },
+    {
+      "label": "Pressure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_work_power",
+        "kind": "equation",
+        "label": "Work and power",
+        "marks": 1,
+        "mark_note": "Work, power",
+        "lines": [
+          "Work = force × distance",
+          {
+            "text": "[W] = [M L T⁻²][L] = [M L² T⁻²]",
+            "style": "eq"
+          },
+          "Power = work ÷ time",
+          {
+            "text": "[P] = [M L² T⁻²]/[T] = [M L² T⁻³]",
+            "style": "eq"
+          }
+        ],
+        "why": "Power is work divided by time, so its dimensional formula is the work formula with one more power of T in the denominator. Deriving it makes the −3 impossible to misremember.",
+        "common_mistakes": [
+          "Writing power as [M L² T⁻²], which is work — the extra T⁻¹ is missing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is M L squared T to the minus two and power is M L squared T to the minus three.",
+          "accept": [
+            "M L squared T minus two",
+            "M L squared T minus three"
+          ],
+          "reject": [
+            "M L T minus two for work"
+          ],
+          "heard_as": [
+            "work",
+            "power",
+            "M L squared"
+          ]
+        },
+        "memory_tip": "Power is work per second, so it is work with one extra T in the bottom: T⁻³.",
+        "margin_note": "Derive, do not recall. Each line is one definition."
+      },
+      {
+        "id": "s2_pressure",
+        "kind": "boxed_final",
+        "label": "Pressure",
+        "marks": 1,
+        "mark_note": "Pressure",
+        "lines": [
+          "Pressure = force ÷ area",
+          {
+            "text": "[p] = [M L T⁻²]/[L²] = [M L⁻¹ T⁻²]",
+            "style": "boxed"
+          },
+          "Stress and Young’s modulus share this formula."
+        ],
+        "why": "The L⁻¹ comes from dividing by an area, which is why pressure is the only one of the three with a negative power of length.",
+        "common_mistakes": [
+          "Writing [M L⁻² T⁻²] by forgetting the L already in force. The power of L is 1 − 2 = −1, not 0 − 2 = −2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pressure is M L to the minus one T to the minus two.",
+          "accept": [
+            "M L minus one T minus two"
+          ],
+          "reject": [
+            "M L minus two T minus two"
+          ],
+          "heard_as": [
+            "pressure",
+            "M L minus one"
+          ]
+        },
+        "memory_tip": "Force ÷ area takes L away twice from the L in force: L¹⁻² = L⁻¹.",
+        "margin_note": "Note that stress shares this formula — it saves work later."
+      }
+    ]
+  },
+  "insider_note": "Derive each from its definition in one line. A remembered formula that is wrong earns nothing; a derived one is self-checking."
+}

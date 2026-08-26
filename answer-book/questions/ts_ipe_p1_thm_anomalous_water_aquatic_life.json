@@ -1,0 +1,213 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_anomalous_water_aquatic_life",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "In what way is the anomalous behaviour of water advantageous to aquatic animals?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Water is densest at 4 °C",
+      "marks": 1
+    },
+    {
+      "label": "The pond cools to 4 °C",
+      "marks": 1
+    },
+    {
+      "label": "Ice forms on the top",
+      "marks": 1
+    },
+    {
+      "label": "Life survives below",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2024 (Q16) — Section B, 4 marks. The four-way split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: water contracts from 0 °C to 4 °C and expands above 4 °C, so its density is maximum at 4 °C; a cooling pond therefore reaches 4 °C throughout before the surface can cool further, the colder surface water is then less dense and stays on top, and the ice that forms floats. Ice is a poor conductor, so the water below stays liquid at about 4 °C."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermal Properties of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_anomaly",
+        "kind": "equation",
+        "label": "Water is densest at 4 °C",
+        "marks": 1,
+        "mark_note": "Density maximum",
+        "lines": [
+          "Water does not expand steadily on heating.",
+          "From 0 °C to 4 °C it contracts, and above",
+          "4 °C it expands.",
+          {
+            "text": "Density of water is maximum at 4 °C",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The value 4 °C for maximum density must appear.",
+        "why": "Almost every liquid becomes steadily less dense as it is heated. Water reverses that between 0 °C and 4 °C, and the maximum density at 4 °C is the reason a pond freezes from the top.",
+        "common_mistakes": [
+          "Saying water is densest at 0 °C. The maximum density is at 4 °C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That water contracts from 0 °C to 4 °C and is densest at 4 °C.",
+          "accept": [
+            "densest at four degrees",
+            "contracts from zero to four",
+            "anomalous expansion"
+          ],
+          "reject": [
+            "ice is a poor conductor"
+          ],
+          "heard_as": [
+            "four degree Celsius",
+            "maximum density",
+            "anomalous"
+          ]
+        },
+        "memory_tip": "Water is densest at 4 °C, not at 0 °C. That one fact drives the whole answer."
+      },
+      {
+        "id": "s2_cooling",
+        "kind": "text",
+        "label": "The pond cools to 4 °C",
+        "marks": 1,
+        "mark_note": "Cooling to 4 °C",
+        "lines": [
+          "When a pond cools in cold weather, the",
+          "surface water becomes denser and sinks.",
+          "Warmer water rises to take its place.",
+          "This goes on until the whole pond has",
+          "reached 4 °C."
+        ],
+        "margin_note": "Second mark. Say that the whole pond reaches 4 °C first.",
+        "why": "Convection carries the cooling downward only while the cooled water is denser than the water below it, and that holds all the way down to 4 °C.",
+        "common_mistakes": [
+          "Skipping this stage and going straight to the ice. The pond first reaches 4 °C throughout."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cooled surface water sinks until the whole pond is at 4 °C.",
+          "accept": [
+            "surface water sinks",
+            "whole pond reaches four degrees",
+            "denser water goes down"
+          ],
+          "reject": [
+            "ice floats on the top"
+          ],
+          "heard_as": [
+            "sinks",
+            "four degrees",
+            "whole pond"
+          ]
+        },
+        "memory_tip": "Denser water sinks, so the pond cools all the way down to 4 °C first."
+      },
+      {
+        "id": "s3_freezing",
+        "kind": "text",
+        "label": "Ice forms on the top",
+        "marks": 1,
+        "mark_note": "Ice on top",
+        "lines": [
+          "Below 4 °C the surface water becomes less",
+          "dense than the water beneath it.",
+          "So it stays on the top, cools to 0 °C and",
+          "freezes there.",
+          "Ice is less dense than water, so the layer",
+          "of ice floats."
+        ],
+        "margin_note": "Third mark. Say the colder water stays on top because it is less dense.",
+        "why": "Once the surface water is below 4 °C it is lighter than the water underneath, so it cannot sink. Only that thin surface layer keeps cooling, and only it freezes.",
+        "common_mistakes": [
+          "Saying the whole pond freezes at the same time. Only the top layer freezes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That below 4 °C the colder water stays on top, freezes there, and the ice floats.",
+          "accept": [
+            "ice floats on the top",
+            "colder water is less dense",
+            "freezes at the surface"
+          ],
+          "reject": [
+            "whole pond reaches four degrees"
+          ],
+          "heard_as": [
+            "ice floats",
+            "less dense",
+            "surface freezes"
+          ]
+        },
+        "memory_tip": "Below 4 °C colder means lighter, so the cold stays on top and freezes there."
+      },
+      {
+        "id": "s4_life",
+        "kind": "boxed_final",
+        "label": "Life survives below the ice",
+        "marks": 1,
+        "mark_note": "Aquatic life",
+        "lines": [
+          "Ice is a poor conductor of heat, so the",
+          "layer of ice slows any further cooling.",
+          "The water below it stays liquid at about",
+          "4 °C through the winter.",
+          {
+            "text": "Fish and plants survive under the ice",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Connect the poor conduction of ice to the surviving animals.",
+        "why": "The ice layer conducts heat poorly, so the water at the bottom loses its energy very slowly and stays near 4 °C even while the air above is far colder.",
+        "common_mistakes": [
+          "Saying the fish survive because the ice is warm. Ice is at 0 °C; it is the poor conduction that protects the water below."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ice is a poor conductor, the water below stays near 4 °C, and aquatic animals survive there.",
+          "accept": [
+            "ice is a poor conductor",
+            "water below stays liquid",
+            "fish survive under the ice"
+          ],
+          "reject": [
+            "densest at four degrees"
+          ],
+          "heard_as": [
+            "poor conductor",
+            "fish survive",
+            "stays liquid"
+          ]
+        },
+        "memory_tip": "Ice is a poor conductor, so the 4 °C water below it stays liquid."
+      }
+    ]
+  },
+  "insider_note": "Four marks follow four stages — maximum density at 4 °C, the pond cooling to 4 °C, the top freezing, life surviving below."
+}

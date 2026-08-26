@@ -1,0 +1,512 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_centriole_cartwheel",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Comment on the cartwheel structure of the centriole.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Centrosome and centrioles",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Hub and spokes",
+      "marks": 1
+    },
+    {
+      "label": "Triplets and function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centrioles",
+        "kind": "text",
+        "label": "Centrosome and centrioles",
+        "marks": 1,
+        "mark_note": "Centrioles",
+        "lines": [
+          "A centrosome contains two cylindrical",
+          "structures called centrioles, lying at right",
+          "angles to each other.",
+          "When a centriole is cut across, the pattern",
+          "seen in the section is called the cartwheel."
+        ],
+        "why": "The cartwheel is what a transverse section of a centriole looks like, so the answer has to begin by saying that a centriole is a cylinder seen end on.",
+        "common_mistakes": [
+          "Writing that a centrosome has one centriole. It has two.",
+          "Writing that the two centrioles lie parallel. They lie at right angles."
+        ],
+        "memory_tip": "Two cylinders at right angles make one centrosome; cut one across and the cartwheel appears.",
+        "margin_note": "Two centrioles at right angles is the opening mark."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "centriole_cartwheel",
+          "width": 500,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "hub",
+              "d": "M 152.0 148.0 L 151.6 151.1 L 150.4 154.0 L 148.5 156.5 L 146.0 158.4 L 143.1 159.6 L 140.0 160.0 L 136.9 159.6 L 134.0 158.4 L 131.5 156.5 L 129.6 154.0 L 128.4 151.1 L 128.0 148.0 L 128.4 144.9 L 129.6 142.0 L 131.5 139.5 L 134.0 137.6 L 136.9 136.4 L 140.0 136.0 L 143.1 136.4 L 146.0 137.6 L 148.5 139.5 L 150.4 142.0 L 151.6 144.9 L 152.0 148.0 Z",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "triplet1_subA",
+              "d": "M 137.6 76.7 L 137.2 79.2 L 136.1 81.4 L 134.3 83.2 L 132.1 84.4 L 129.6 84.7 L 127.1 84.4 L 124.9 83.2 L 123.1 81.4 L 122.0 79.2 L 121.6 76.7 L 122.0 74.3 L 123.1 72.0 L 124.9 70.3 L 127.1 69.1 L 129.6 68.7 L 132.1 69.1 L 134.3 70.3 L 136.1 72.0 L 137.2 74.3 L 137.6 76.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet1_subB",
+              "d": "M 148.0 68.0 L 147.6 70.5 L 146.5 72.7 L 144.7 74.5 L 142.5 75.6 L 140.0 76.0 L 137.5 75.6 L 135.3 74.5 L 133.5 72.7 L 132.4 70.5 L 132.0 68.0 L 132.4 65.5 L 133.5 63.3 L 135.3 61.5 L 137.5 60.4 L 140.0 60.0 L 142.5 60.4 L 144.7 61.5 L 146.5 63.3 L 147.6 65.5 L 148.0 68.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet1_subC",
+              "d": "M 158.4 59.3 L 158.0 61.7 L 156.9 64.0 L 155.1 65.7 L 152.9 66.9 L 150.4 67.3 L 147.9 66.9 L 145.7 65.7 L 143.9 64.0 L 142.8 61.7 L 142.4 59.3 L 142.8 56.8 L 143.9 54.6 L 145.7 52.8 L 147.9 51.6 L 150.4 51.3 L 152.9 51.6 L 155.1 52.8 L 156.9 54.6 L 158.0 56.8 L 158.4 59.3 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet2_subA",
+              "d": "M 185.8 86.7 L 185.4 89.2 L 184.3 91.4 L 182.5 93.2 L 180.3 94.3 L 177.8 94.7 L 175.4 94.3 L 173.1 93.2 L 171.4 91.4 L 170.2 89.2 L 169.8 86.7 L 170.2 84.2 L 171.4 82.0 L 173.1 80.2 L 175.4 79.1 L 177.8 78.7 L 180.3 79.1 L 182.5 80.2 L 184.3 82.0 L 185.4 84.2 L 185.8 86.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet2_subB",
+              "d": "M 199.4 86.7 L 199.0 89.2 L 197.9 91.4 L 196.1 93.2 L 193.9 94.3 L 191.4 94.7 L 189.0 94.3 L 186.7 93.2 L 185.0 91.4 L 183.8 89.2 L 183.4 86.7 L 183.8 84.2 L 185.0 82.0 L 186.7 80.2 L 189.0 79.1 L 191.4 78.7 L 193.9 79.1 L 196.1 80.2 L 197.9 82.0 L 199.0 84.2 L 199.4 86.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet2_subC",
+              "d": "M 213.0 86.7 L 212.6 89.2 L 211.5 91.4 L 209.7 93.2 L 207.5 94.3 L 205.0 94.7 L 202.6 94.3 L 200.3 93.2 L 198.6 91.4 L 197.4 89.2 L 197.0 86.7 L 197.4 84.2 L 198.6 82.0 L 200.3 80.2 L 202.6 79.1 L 205.0 78.7 L 207.5 79.1 L 209.7 80.2 L 211.5 82.0 L 212.6 84.2 L 213.0 86.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet3_subA",
+              "d": "M 216.4 125.4 L 216.0 127.8 L 214.8 130.1 L 213.1 131.8 L 210.8 133.0 L 208.4 133.4 L 205.9 133.0 L 203.7 131.8 L 201.9 130.1 L 200.8 127.8 L 200.4 125.4 L 200.8 122.9 L 201.9 120.7 L 203.7 118.9 L 205.9 117.8 L 208.4 117.4 L 210.8 117.8 L 213.1 118.9 L 214.8 120.7 L 216.0 122.9 L 216.4 125.4 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet3_subB",
+              "d": "M 226.8 134.1 L 226.4 136.6 L 225.3 138.8 L 223.5 140.6 L 221.3 141.7 L 218.8 142.1 L 216.3 141.7 L 214.1 140.6 L 212.3 138.8 L 211.2 136.6 L 210.8 134.1 L 211.2 131.6 L 212.3 129.4 L 214.1 127.6 L 216.3 126.5 L 218.8 126.1 L 221.3 126.5 L 223.5 127.6 L 225.3 129.4 L 226.4 131.6 L 226.8 134.1 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet3_subC",
+              "d": "M 237.2 142.9 L 236.8 145.3 L 235.7 147.6 L 233.9 149.3 L 231.7 150.5 L 229.2 150.9 L 226.7 150.5 L 224.5 149.3 L 222.7 147.6 L 221.6 145.3 L 221.2 142.9 L 221.6 140.4 L 222.7 138.1 L 224.5 136.4 L 226.7 135.2 L 229.2 134.9 L 231.7 135.2 L 233.9 136.4 L 235.7 138.1 L 236.8 140.4 L 237.2 142.9 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet4_subA",
+              "d": "M 214.9 174.6 L 214.5 177.1 L 213.4 179.3 L 211.6 181.1 L 209.4 182.2 L 206.9 182.6 L 204.4 182.2 L 202.2 181.1 L 200.4 179.3 L 199.3 177.1 L 198.9 174.6 L 199.3 172.1 L 200.4 169.9 L 202.2 168.1 L 204.4 167.0 L 206.9 166.6 L 209.4 167.0 L 211.6 168.1 L 213.4 169.9 L 214.5 172.1 L 214.9 174.6 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet4_subB",
+              "d": "M 217.3 188.0 L 216.9 190.5 L 215.8 192.7 L 214.0 194.5 L 211.8 195.6 L 209.3 196.0 L 206.8 195.6 L 204.6 194.5 L 202.8 192.7 L 201.7 190.5 L 201.3 188.0 L 201.7 185.5 L 202.8 183.3 L 204.6 181.5 L 206.8 180.4 L 209.3 180.0 L 211.8 180.4 L 214.0 181.5 L 215.8 183.3 L 216.9 185.5 L 217.3 188.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet4_subC",
+              "d": "M 219.6 201.4 L 219.3 203.9 L 218.1 206.1 L 216.3 207.9 L 214.1 209.0 L 211.6 209.4 L 209.2 209.0 L 206.9 207.9 L 205.2 206.1 L 204.0 203.9 L 203.6 201.4 L 204.0 198.9 L 205.2 196.7 L 206.9 194.9 L 209.2 193.8 L 211.6 193.4 L 214.1 193.8 L 216.3 194.9 L 218.1 196.7 L 219.3 198.9 L 219.6 201.4 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet5_subA",
+              "d": "M 182.2 211.4 L 181.8 213.9 L 180.6 216.1 L 178.9 217.9 L 176.6 219.0 L 174.2 219.4 L 171.7 219.0 L 169.5 217.9 L 167.7 216.1 L 166.6 213.9 L 166.2 211.4 L 166.6 208.9 L 167.7 206.7 L 169.5 204.9 L 171.7 203.8 L 174.2 203.4 L 176.6 203.8 L 178.9 204.9 L 180.6 206.7 L 181.8 208.9 L 182.2 211.4 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet5_subB",
+              "d": "M 175.4 223.2 L 175.0 225.6 L 173.8 227.9 L 172.1 229.6 L 169.8 230.8 L 167.4 231.2 L 164.9 230.8 L 162.7 229.6 L 160.9 227.9 L 159.8 225.6 L 159.4 223.2 L 159.8 220.7 L 160.9 218.5 L 162.7 216.7 L 164.9 215.6 L 167.4 215.2 L 169.8 215.6 L 172.1 216.7 L 173.8 218.5 L 175.0 220.7 L 175.4 223.2 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet5_subC",
+              "d": "M 168.6 235.0 L 168.2 237.4 L 167.0 239.7 L 165.3 241.4 L 163.0 242.6 L 160.6 243.0 L 158.1 242.6 L 155.9 241.4 L 154.1 239.7 L 153.0 237.4 L 152.6 235.0 L 153.0 232.5 L 154.1 230.3 L 155.9 228.5 L 158.1 227.3 L 160.6 227.0 L 163.0 227.3 L 165.3 228.5 L 167.0 230.3 L 168.2 232.5 L 168.6 235.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet6_subA",
+              "d": "M 133.4 218.5 L 133.0 221.0 L 131.9 223.2 L 130.1 225.0 L 127.9 226.1 L 125.4 226.5 L 122.9 226.1 L 120.7 225.0 L 118.9 223.2 L 117.8 221.0 L 117.4 218.5 L 117.8 216.1 L 118.9 213.8 L 120.7 212.1 L 122.9 210.9 L 125.4 210.5 L 127.9 210.9 L 130.1 212.1 L 131.9 213.8 L 133.0 216.1 L 133.4 218.5 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet6_subB",
+              "d": "M 120.6 223.2 L 120.2 225.6 L 119.1 227.9 L 117.3 229.6 L 115.1 230.8 L 112.6 231.2 L 110.2 230.8 L 107.9 229.6 L 106.2 227.9 L 105.0 225.6 L 104.6 223.2 L 105.0 220.7 L 106.2 218.5 L 107.9 216.7 L 110.2 215.6 L 112.6 215.2 L 115.1 215.6 L 117.3 216.7 L 119.1 218.5 L 120.2 220.7 L 120.6 223.2 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet6_subC",
+              "d": "M 107.9 227.8 L 107.5 230.3 L 106.3 232.5 L 104.6 234.3 L 102.3 235.4 L 99.9 235.8 L 97.4 235.4 L 95.2 234.3 L 93.4 232.5 L 92.3 230.3 L 91.9 227.8 L 92.3 225.4 L 93.4 223.1 L 95.2 221.4 L 97.4 220.2 L 99.9 219.8 L 102.3 220.2 L 104.6 221.4 L 106.3 223.1 L 107.5 225.4 L 107.9 227.8 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet7_subA",
+              "d": "M 91.5 192.7 L 91.1 195.1 L 90.0 197.4 L 88.2 199.1 L 86.0 200.3 L 83.5 200.7 L 81.0 200.3 L 78.8 199.1 L 77.0 197.4 L 75.9 195.1 L 75.5 192.7 L 75.9 190.2 L 77.0 187.9 L 78.8 186.2 L 81.0 185.0 L 83.5 184.7 L 86.0 185.0 L 88.2 186.2 L 90.0 187.9 L 91.1 190.2 L 91.5 192.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet7_subB",
+              "d": "M 78.7 188.0 L 78.3 190.5 L 77.2 192.7 L 75.4 194.5 L 73.2 195.6 L 70.7 196.0 L 68.2 195.6 L 66.0 194.5 L 64.2 192.7 L 63.1 190.5 L 62.7 188.0 L 63.1 185.5 L 64.2 183.3 L 66.0 181.5 L 68.2 180.4 L 70.7 180.0 L 73.2 180.4 L 75.4 181.5 L 77.2 183.3 L 78.3 185.5 L 78.7 188.0 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet7_subC",
+              "d": "M 65.9 183.3 L 65.5 185.8 L 64.4 188.1 L 62.6 189.8 L 60.4 191.0 L 57.9 191.3 L 55.5 191.0 L 53.2 189.8 L 51.5 188.1 L 50.3 185.8 L 49.9 183.3 L 50.3 180.9 L 51.5 178.6 L 53.2 176.9 L 55.5 175.7 L 57.9 175.3 L 60.4 175.7 L 62.6 176.9 L 64.4 178.6 L 65.5 180.9 L 65.9 183.3 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet8_subA",
+              "d": "M 76.0 145.9 L 75.6 148.4 L 74.5 150.6 L 72.7 152.4 L 70.5 153.5 L 68.0 153.9 L 65.5 153.5 L 63.3 152.4 L 61.5 150.6 L 60.4 148.4 L 60.0 145.9 L 60.4 143.4 L 61.5 141.2 L 63.3 139.4 L 65.5 138.3 L 68.0 137.9 L 70.5 138.3 L 72.7 139.4 L 74.5 141.2 L 75.6 143.4 L 76.0 145.9 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet8_subB",
+              "d": "M 69.2 134.1 L 68.8 136.6 L 67.7 138.8 L 65.9 140.6 L 63.7 141.7 L 61.2 142.1 L 58.7 141.7 L 56.5 140.6 L 54.7 138.8 L 53.6 136.6 L 53.2 134.1 L 53.6 131.6 L 54.7 129.4 L 56.5 127.6 L 58.7 126.5 L 61.2 126.1 L 63.7 126.5 L 65.9 127.6 L 67.7 129.4 L 68.8 131.6 L 69.2 134.1 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet8_subC",
+              "d": "M 62.4 122.3 L 62.0 124.8 L 60.9 127.0 L 59.1 128.8 L 56.9 129.9 L 54.4 130.3 L 51.9 129.9 L 49.7 128.8 L 47.9 127.0 L 46.8 124.8 L 46.4 122.3 L 46.8 119.9 L 47.9 117.6 L 49.7 115.9 L 51.9 114.7 L 54.4 114.3 L 56.9 114.7 L 59.1 115.9 L 60.9 117.6 L 62.0 119.9 L 62.4 122.3 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet9_subA",
+              "d": "M 94.2 100.1 L 93.8 102.6 L 92.7 104.8 L 90.9 106.6 L 88.7 107.7 L 86.2 108.1 L 83.7 107.7 L 81.5 106.6 L 79.7 104.8 L 78.6 102.6 L 78.2 100.1 L 78.6 97.6 L 79.7 95.4 L 81.5 93.6 L 83.7 92.5 L 86.2 92.1 L 88.7 92.5 L 90.9 93.6 L 92.7 95.4 L 93.8 97.6 L 94.2 100.1 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet9_subB",
+              "d": "M 96.6 86.7 L 96.2 89.2 L 95.0 91.4 L 93.3 93.2 L 91.0 94.3 L 88.6 94.7 L 86.1 94.3 L 83.9 93.2 L 82.1 91.4 L 81.0 89.2 L 80.6 86.7 L 81.0 84.2 L 82.1 82.0 L 83.9 80.2 L 86.1 79.1 L 88.6 78.7 L 91.0 79.1 L 93.3 80.2 L 95.0 82.0 L 96.2 84.2 L 96.6 86.7 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "triplet9_subC",
+              "d": "M 98.9 73.3 L 98.5 75.8 L 97.4 78.0 L 95.6 79.8 L 93.4 80.9 L 90.9 81.3 L 88.5 80.9 L 86.2 79.8 L 84.5 78.0 L 83.3 75.8 L 82.9 73.3 L 83.3 70.9 L 84.5 68.6 L 86.2 66.9 L 88.5 65.7 L 90.9 65.3 L 93.4 65.7 L 95.6 66.9 L 97.4 68.6 L 98.5 70.9 L 98.9 73.3 Z",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_1",
+              "d": "M 138.3 136.1 L 130.7 84.7",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_2",
+              "d": "M 146.3 137.8 L 173.6 93.5",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_3",
+              "d": "M 151.4 144.2 L 200.8 127.9",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_4",
+              "d": "M 151.2 152.4 L 199.5 171.7",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_5",
+              "d": "M 145.7 158.6 L 170.4 204.4",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_6",
+              "d": "M 137.6 159.8 L 127.0 210.7",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_7",
+              "d": "M 130.6 155.4 L 89.8 187.7",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_8",
+              "d": "M 128.0 147.6 L 76.0 146.1",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "spoke_9",
+              "d": "M 131.0 140.0 L 92.2 105.4",
+              "ms": 200,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "link_1",
+              "d": "M 156.1 64.9 L 172.2 81.1",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_2",
+              "d": "M 205.7 94.7 L 207.7 117.4",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_3",
+              "d": "M 224.6 149.4 L 211.5 168.1",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_4",
+              "d": "M 203.9 203.5 L 181.9 209.3",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_5",
+              "d": "M 153.3 231.6 L 132.7 221.9",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_6",
+              "d": "M 96.5 220.6 L 86.9 199.9",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_7",
+              "d": "M 60.0 175.6 L 65.9 153.6",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_8",
+              "d": "M 61.0 117.7 L 79.7 104.7",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "link_9",
+              "d": "M 98.9 74.0 L 121.6 76.0",
+              "ms": 180,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_hub",
+              "d": "M 296 42 L 149 139",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_hub",
+              "x": 300,
+              "y": 46,
+              "text": "Hub (central rod)",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_spoke",
+              "d": "M 296 90 L 186 133",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_spoke",
+              "x": 300,
+              "y": 94,
+              "text": "Radial spoke",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_triplet",
+              "d": "M 296 138 L 238 141",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_triplet",
+              "x": 300,
+              "y": 142,
+              "text": "Peripheral triplet",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_link",
+              "d": "M 296 186 L 218 160",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_link",
+              "x": 300,
+              "y": 190,
+              "text": "C-A linker",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_subs",
+              "d": "M 296 234 L 184 213",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_subs",
+              "x": 300,
+              "y": 238,
+              "text": "Subtubules A, B, C",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The examiner counts the peripheral units. Nine evenly spaced triplets round a hub, joined to it by spokes, is the whole marked content of the drawing.",
+        "common_mistakes": [
+          "Drawing eight or ten peripheral units. There are exactly nine.",
+          "Drawing single tubules instead of triplets of three."
+        ],
+        "memory_tip": "Nine outside, one hub in the middle, nine spokes between them — the 9 + 0 pattern.",
+        "margin_note": "Count the nine triplets before you label anything."
+      },
+      {
+        "id": "s3_hub",
+        "kind": "text",
+        "label": "Hub and spokes",
+        "marks": 1,
+        "mark_note": "Hub + spokes",
+        "lines": [
+          "The centre of the cartwheel is a",
+          "proteinaceous mass called the hub, or central",
+          "rod.",
+          "Nine radial spokes run outward from the hub to",
+          "nine evenly spaced peripheral fibrils.",
+          "Adjacent peripheral fibrils are joined to each",
+          "other by a linker."
+        ],
+        "why": "The name comes from the shape: a hub at the centre, nine spokes, and a rim formed by the linked peripheral fibrils.",
+        "common_mistakes": [
+          "Calling the hub a centromere. The hub is protein at the centre of a centriole.",
+          "Leaving out the link between adjacent triplets."
+        ],
+        "memory_tip": "Hub, spokes, rim — the three parts of any wheel, and of this one.",
+        "margin_note": "Hub, spokes and linkers are three separate sentences."
+      },
+      {
+        "id": "s4_triplets",
+        "kind": "boxed_final",
+        "label": "Triplets and function",
+        "marks": 1,
+        "mark_note": "Triplets",
+        "lines": [
+          {
+            "text": "Cartwheel = hub + 9 spokes + 9 triplets",
+            "style": "boxed"
+          },
+          "Each peripheral fibril is a triplet of three",
+          "microtubules, named A, B and C.",
+          "A centriole has no membrane of its own.",
+          "Centrioles form the basal bodies of cilia and",
+          "flagella, and they give rise to the spindle",
+          "fibres during cell division."
+        ],
+        "why": "Naming the three subtubules A, B and C completes the structure, and the two functions — basal bodies and spindle fibres — are what the word 'comment' invites you to add.",
+        "common_mistakes": [
+          "Writing that a centriole is membrane bound. It is not.",
+          "Writing the 9 + 2 pattern. That belongs to a cilium; a centriole is 9 + 0."
+        ],
+        "memory_tip": "A centriole is 9 + 0, with no central tubules; a cilium is 9 + 2.",
+        "margin_note": "Two functions at the end lift this from three marks to four."
+      }
+    ]
+  },
+  "insider_note": "The commonest slip is drawing nine single tubules instead of nine triplets — count three circles in every peripheral unit."
+}

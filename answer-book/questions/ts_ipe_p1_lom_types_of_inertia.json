@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_types_of_inertia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is inertia? Explain the three types of inertia with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inertia and inertia of rest",
+      "marks": 1
+    },
+    {
+      "label": "Inertia of motion and of direction",
+      "marks": 2
+    },
+    {
+      "label": "What it depends on",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rest",
+        "kind": "text",
+        "label": "Inertia and inertia of rest",
+        "marks": 1,
+        "mark_note": "Rest",
+        "lines": [
+          "Inertia is the property by which a body",
+          "resists any change in its state of rest or",
+          "of motion.",
+          "Inertia of rest: a body at rest stays at rest.",
+          "Example: when a mat is beaten, the mat moves",
+          "away and the dust stays behind and falls."
+        ],
+        "why": "Every example works the same way: one part of the system is forced to change, and the rest keeps doing what it was doing.",
+        "common_mistakes": [
+          "Defining inertia as a force; it is a property of the body, not a force acting on it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inertia is resistance to a change of state, and inertia of rest keeps a body at rest, as with dust and a beaten mat.",
+          "accept": [
+            "resists change in its state",
+            "inertia of rest",
+            "dust stays when the mat is beaten"
+          ],
+          "reject": [
+            "inertia of direction"
+          ],
+          "heard_as": [
+            "inertia",
+            "rest"
+          ]
+        },
+        "memory_tip": "Inert means not acting by itself. Inertia is that property of a body, never a force.",
+        "margin_note": "First mark. The definition and the rest example together. Both are needed for it."
+      },
+      {
+        "id": "s2_motion_direction",
+        "kind": "text",
+        "label": "Inertia of motion and of direction",
+        "marks": 2,
+        "mark_note": "Motion, direction",
+        "lines": [
+          "Inertia of motion: a body in motion keeps",
+          "moving. Example: a passenger keeps moving",
+          "forward when a bus stops suddenly.",
+          "Inertia of direction: a body keeps moving",
+          "along the same straight line. Example: mud",
+          "leaves a spinning wheel along the tangent."
+        ],
+        "why": "Inertia of direction is the one that needs Newton’s first law in full: \"in a straight line\" is a separate claim from \"keeps moving\".",
+        "common_mistakes": [
+          "Giving the same example for inertia of motion and of direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inertia of motion keeps a body moving, as a passenger does when a bus stops, and inertia of direction keeps it in a straight line, as mud leaving a wheel.",
+          "accept": [
+            "passenger keeps moving when the bus stops",
+            "mud flies off along the tangent",
+            "keeps moving in a straight line"
+          ],
+          "reject": [
+            "dust stays when the mat is beaten"
+          ],
+          "heard_as": [
+            "inertia of motion",
+            "tangent"
+          ]
+        },
+        "memory_tip": "Inertia of motion keeps a body moving; inertia of direction keeps it straight. Bus jerk, then mud off a wheel.",
+        "margin_note": "Second and third marks. Two types, one mark each, and a DIFFERENT example on each."
+      },
+      {
+        "id": "s3_measure",
+        "kind": "boxed_final",
+        "label": "What it depends on",
+        "marks": 1,
+        "mark_note": "Measure",
+        "lines": [
+          "All three follow from Newton’s first law.",
+          {
+            "text": "Mass is the measure of inertia",
+            "style": "boxed"
+          },
+          "The greater the mass, the greater the inertia",
+          "of the body."
+        ],
+        "why": "Naming mass as the measure connects all three types to one number, which is what the last mark is usually for.",
+        "common_mistakes": [
+          "Naming weight as the measure of inertia; weight changes with place, inertia does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three follow from the first law and mass is the measure of inertia.",
+          "accept": [
+            "mass is the measure of inertia",
+            "all three follow from the first law"
+          ],
+          "reject": [
+            "passenger keeps moving when the bus stops"
+          ],
+          "heard_as": [
+            "mass",
+            "measure"
+          ]
+        },
+        "memory_tip": "Mass, not weight. On the Moon the same body has the same inertia and less weight.",
+        "margin_note": "Fourth mark. One word — MASS. The greater-the-mass line completes it."
+      }
+    ]
+  },
+  "insider_note": "Three types with three different examples are 3 of the 4 marks; mass as the measure of inertia is the fourth."
+}

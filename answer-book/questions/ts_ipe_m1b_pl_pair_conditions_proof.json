@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_pair_conditions_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents a pair of lines then prove that (a) Δ = abc+2fgh−af²−bg²−ch² = 0 (b) h²≥ab, f²≥bc, g²≥ac.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Split the pair and match coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Build 8fgh from the dictionary",
+      "marks": 2
+    },
+    {
+      "label": "Reduce it to the Δ condition",
+      "marks": 2
+    },
+    {
+      "label": "Prove the inequalities",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Pair of Straight Lines, answer 10. Printed appearances: AP M-16 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say what you multiply together for part (a), and what makes the inequalities in (b) true.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Pair of Straight Lines · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_match",
+        "kind": "equation",
+        "label": "Split the pair and match coefficients",
+        "marks": 1,
+        "margin_note": "First mark. A general pair splits into two general lines, each with its own constant — six coefficients matched against six.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ax² + 2hxy + by² + 2gx + 2fy + c ≡ (l₁x + m₁y + n₁)(l₂x + m₂y + n₂)",
+          "On equating like term coeff., we get",
+          "a = l₁l₂,  b = m₁m₂,  c = n₁n₂,",
+          "2h = l₁m₂ + l₂m₁,  2g = l₁n₂ + l₂n₁,  2f = m₁n₂ + m₂n₁"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair is split into two general lines and all six coefficients are matched.",
+          "accept": [
+            "split into two general lines each with its own constant and match all six coefficients",
+            "a is l one l two, b is m one m two, c is n one n two",
+            "the three doubled coefficients are the cross sums",
+            "aaru coefficients match cheyyali",
+            "write the full dictionary"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "six coefficients",
+            "cross sums",
+            "l one l two",
+            "n one n two"
+          ]
+        },
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "common_mistakes": [
+          "Pairing the cross terms with the same subscript twice.",
+          "Forgetting that h, g and f are each HALF the matched quantity."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_build_8fgh",
+        "kind": "equation",
+        "label": "Build 8fgh from the dictionary",
+        "marks": 2,
+        "margin_note": "Two marks. Multiply the three doubled coefficients together. Every term of the expansion is a product of six letters, and regrouping is what turns it into something recognisable.",
+        "lines": [
+          "(a) (2h)(2g)(2f) = (l₁m₂ + l₂m₁)(l₁n₂ + l₂n₁)(m₁n₂ + m₂n₁)",
+          "On multiplying and regrouping, we get",
+          "8fgh = l₁l₂(m₁²n₂² + m₂²n₁²) + m₁m₂(l₁²n₂² + n₁²l₂²) + n₁n₂(l₁²m₂² + l₂²m₁²) + 2l₁l₂m₁m₂n₁n₂"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the three doubled coefficients and regrouping gives that expression for 8fgh.",
+          "accept": [
+            "multiply two h two g and two f together and regroup",
+            "eight f g h is the product of the three doubled coefficients",
+            "group the terms by which pair of letters they share",
+            "moodintini multiply chesi regroup cheyyali",
+            "this gives eight f g h"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight f g h",
+            "multiply",
+            "regroup",
+            "product"
+          ]
+        },
+        "why": "Each of the three bracketed groups is a square-sum that can be turned into a square-of-sum minus a cross term — which is what the next step exploits.",
+        "common_mistakes": [
+          "Multiplying h, g and f rather than 2h, 2g and 2f.",
+          "Losing the final term 2l₁l₂m₁m₂n₁n₂."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Reduce it to the Δ condition",
+        "marks": 2,
+        "margin_note": "Two marks. Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary — so the whole expression converts into a, b, c, f, g, h in one pass.",
+        "lines": [
+          "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂] + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
+          "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
+          "⇒ 8fgh = a[(2f)² − 2bc] + b[(2g)² − 2ac] + c[(2h)² − 2ab] + 2abc",
+          "⇒ 8fgh = 4af² + 4bg² + 4ch² − 4abc",
+          "⇒ 2fgh = af² + bg² + ch² − abc",
+          {
+            "text": "∴ abc + 2fgh − af² − bg² − ch² = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each bracket becomes (sum)² − 2(product), giving 8fgh = 4af² + 4bg² + 4ch² − 4abc.",
+          "accept": [
+            "each bracket is a sum squared minus twice the product",
+            "substitute the dictionary and divide by four",
+            "this gives the determinant condition equal to zero",
+            "prathi bracket ni sum square minus two product ga rayali",
+            "hence delta is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum squared minus twice",
+            "substitute",
+            "divide by four",
+            "delta equals zero"
+          ]
+        },
+        "why": "Δ = 0 is the master test for a pair of lines, and this derivation shows it is not an arbitrary determinant but exactly what the splitting forces.",
+        "common_mistakes": [
+          "Forgetting to divide the whole line by 4 at the end.",
+          "Sign slip when moving abc across."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_inequalities",
+        "kind": "boxed_final",
+        "label": "Prove the inequalities",
+        "marks": 2,
+        "margin_note": "The last two marks. h² − ab turns out to be a perfect square divided by 4 — and a square is never negative, which is the entire argument.",
+        "lines": [
+          "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
+          "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
+          "= (l₁m₂ − l₂m₁)²/4  ≥ 0",
+          "∴ h² − ab ≥ 0  ⇒  h² ≥ ab",
+          {
+            "text": "Similarly, g² ≥ ac and f² ≥ bc",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h² − ab equals (l₁m₂ − l₂m₁)²/4, which is a square and therefore non-negative.",
+          "accept": [
+            "h squared minus a b is a perfect square over four so it cannot be negative",
+            "sum squared minus four times the product is the difference squared",
+            "a square is never negative so h squared is at least a b",
+            "square kabatti negative kaadhu",
+            "similarly for the other two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perfect square",
+            "never negative",
+            "h squared is at least a b",
+            "similarly"
+          ]
+        },
+        "why": "The same argument runs unchanged for g² − ac and f² − bc, with the letters permuted — which is why the book writes 'similarly' rather than repeating it twice.",
+        "common_mistakes": [
+          "Claiming strict inequality h² > ab, which fails when the lines are parallel.",
+          "Forgetting the division by 4 when writing h from 2h."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

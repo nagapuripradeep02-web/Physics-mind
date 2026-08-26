@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_black_body",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a black body?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How it is realised",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: both halves of the definition and the hollow-sphere realisation verified; no content changed. FLAGGED for the teacher gate: in the second step the boxed line is Radiation emitted by it is black body radiation, while the step label, the mark note and the margin note all say the mark is earned by naming the hollow sphere with a small hole. The box therefore highlights a true sentence that is not the one carrying this mark; which line the box should carry is left for the teacher. AI chemistry check 2026-08-25 (audit round): no marked line was moved; the step's why now states plainly that the boxed line names the radiation while the hollow sphere with a small hole is what earns the mark, so the why, the mark note and the margin note agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A black body is a body that absorbs",
+          "completely all the radiation falling on it,",
+          "and on heating emits radiation of all",
+          "wavelengths."
+        ],
+        "why": "The definition has two halves, absorption and emission, and the examiner looks for both. A perfect absorber must also be a perfect emitter, otherwise the body would keep heating up without limit.",
+        "common_mistakes": [
+          "Writing only the absorption half and stopping there.",
+          "Saying a black body looks black. It is defined by what it absorbs and emits, not by its colour."
+        ],
+        "memory_tip": "Two halves in one line: absorbs everything, emits everything.",
+        "margin_note": "One sentence carries this mark. Do not write a paragraph."
+      },
+      {
+        "id": "s2_realisation",
+        "kind": "boxed_final",
+        "label": "How it is realised",
+        "marks": 1,
+        "mark_note": "Practical form",
+        "lines": [
+          {
+            "text": "Radiation emitted by it is black body radiation",
+            "style": "boxed"
+          },
+          "No perfect black body exists in nature.",
+          "A hollow sphere coated inside with lamp",
+          "black, with a small hole, acts as one."
+        ],
+        "why": "The boxed line names what a black body gives out when it is heated. The mark for this step is earned by the practical form written under it: a hollow sphere coated inside with lamp black, with a small hole. Radiation entering the small hole is reflected again and again inside and cannot come out, so the hole absorbs everything, and that is why the hollow sphere is the standard laboratory model of a black body.",
+        "common_mistakes": [
+          "Naming a black-coloured object as a perfect black body. No real surface absorbs every wavelength."
+        ],
+        "memory_tip": "Picture the small hole in a hollow sphere. Radiation goes in and never comes back out.",
+        "margin_note": "Naming the hollow sphere with a small hole is what earns this second mark."
+      }
+    ]
+  },
+  "insider_note": "A three-star question that is asked in one line. Write the absorb half and the emit half as one sentence, then name the hollow sphere. Nothing more is needed at 2 marks."
+}

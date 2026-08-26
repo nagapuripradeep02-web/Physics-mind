@@ -1,0 +1,322 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_keplers_laws",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State Kepler’s laws of planetary motion.",
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 16,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Law of orbits",
+      "marks": 1
+    },
+    {
+      "label": "The figure",
+      "marks": 1
+    },
+    {
+      "label": "Law of areas",
+      "marks": 1
+    },
+    {
+      "label": "Law of periods",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_orbits",
+        "kind": "text",
+        "label": "Law of orbits",
+        "marks": 1,
+        "mark_note": "First law",
+        "lines": [
+          {
+            "text": "First law — the law of orbits:",
+            "style": "heading"
+          },
+          "Every planet moves round the sun in an",
+          "elliptical orbit, with the sun at one of the",
+          "two foci of the ellipse."
+        ],
+        "why": "The other focus is empty — nothing sits there. That is why an orbit is not symmetric about the sun.",
+        "common_mistakes": [
+          "Saying the sun is at the CENTRE of the ellipse; it is at a focus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every planet moves in an ellipse with the sun at one focus.",
+          "accept": [
+            "ellipse with the sun at one focus",
+            "law of orbits"
+          ],
+          "reject": [
+            "equal areas in equal times"
+          ],
+          "heard_as": [
+            "ellipse",
+            "focus"
+          ]
+        },
+        "memory_tip": "Orbits: an ellipse with the sun at ONE focus — the other focus is empty.",
+        "margin_note": "First mark. Say focus, not centre, and the sentence is complete."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "kepler_orbit",
+          "width": 380,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ellipse",
+              "d": "M 50 130 A 140 90 0 1 0 330 130 A 140 90 0 1 0 50 130",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "sun",
+              "d": "M 75 130 A 8 8 0 1 0 91 130 A 8 8 0 1 0 75 130",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_sun",
+              "x": 58,
+              "y": 154,
+              "text": "Sun (F₁)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "f2",
+              "d": "M 294 130 A 3 3 0 1 0 300 130 A 3 3 0 1 0 294 130",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f2",
+              "x": 288,
+              "y": 154,
+              "text": "F₂",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ra1",
+              "d": "M 83 130 L 83 72",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "ra2",
+              "d": "M 83 130 L 51 122",
+              "ms": 260
+            },
+            {
+              "type": "label",
+              "id": "lbl_a1",
+              "x": 88,
+              "y": 108,
+              "text": "A₁",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_p1",
+              "x": 70,
+              "y": 56,
+              "text": "P₁",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "rb1",
+              "d": "M 83 130 L 328 146",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "rb2",
+              "d": "M 83 130 L 325 107",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_a2",
+              "x": 262,
+              "y": 96,
+              "text": "A₂",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_p2",
+              "x": 336,
+              "y": 160,
+              "text": "P₂",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_equal",
+              "x": 116,
+              "y": 236,
+              "text": "A₁ = A₂ in equal times",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two shaded sectors are the second law drawn: short and fat near the sun, long and thin far away, and equal in area.",
+        "common_mistakes": [
+          "Drawing a circle, which loses both the foci and the whole point of the first law."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That an ellipse is drawn with the sun at one focus and two equal-area sectors marked.",
+          "accept": [
+            "draw the ellipse with the sun at a focus",
+            "mark two equal areas"
+          ],
+          "reject": [
+            "T squared is proportional to a cubed"
+          ],
+          "heard_as": [
+            "figure",
+            "ellipse"
+          ]
+        },
+        "memory_tip": "Shade two sectors: short and wide near the sun, long and thin far away — equal areas.",
+        "margin_note": "Second mark is the figure. Ellipse, sun at one focus, two shaded sectors."
+      },
+      {
+        "id": "s3_areas",
+        "kind": "equation",
+        "label": "Law of areas",
+        "marks": 1,
+        "mark_note": "Second law",
+        "lines": [
+          {
+            "text": "Second law — the law of areas:",
+            "style": "heading"
+          },
+          "The line joining a planet to the sun sweeps out",
+          "equal areas in equal intervals of time.",
+          {
+            "text": "dA/dt = constant",
+            "style": "eq"
+          },
+          "So a planet moves faster when it is nearer the",
+          "sun and slower when it is farther away."
+        ],
+        "why": "This law is the conservation of angular momentum in disguise — the sun’s pull has no turning effect about the sun.",
+        "common_mistakes": [
+          "Saying the planet sweeps equal ANGLES in equal times, which is false for an ellipse."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line joining planet to sun sweeps equal areas in equal times, so d A by d t is constant.",
+          "accept": [
+            "equal areas in equal times",
+            "d A by d t is constant",
+            "faster near the sun"
+          ],
+          "reject": [
+            "ellipse with the sun at one focus"
+          ],
+          "heard_as": [
+            "equal areas",
+            "sweeps"
+          ]
+        },
+        "memory_tip": "Areas: equal areas in equal times — conservation of angular momentum in different words.",
+        "margin_note": "Third mark. The areas sentence together with dA/dt = constant."
+      },
+      {
+        "id": "s4_periods",
+        "kind": "boxed_final",
+        "label": "Law of periods",
+        "marks": 1,
+        "mark_note": "Third law",
+        "lines": [
+          {
+            "text": "Third law — the law of periods:",
+            "style": "heading"
+          },
+          "The square of the time period of a planet is",
+          "proportional to the cube of the semi-major",
+          "axis of its orbit.",
+          {
+            "text": "T² ∝ a³",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the law that lets one measured orbit fix the distance of every other planet from the sun.",
+        "common_mistakes": [
+          "Writing T³ ∝ a², with the powers swapped."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T squared is proportional to a cubed, the cube of the semi-major axis.",
+          "accept": [
+            "T squared proportional to a cubed",
+            "law of periods"
+          ],
+          "reject": [
+            "equal areas in equal times"
+          ],
+          "heard_as": [
+            "T squared",
+            "a cubed"
+          ]
+        },
+        "memory_tip": "Periods: T² ∝ a³ — square of the time, cube of the semi-major axis. Learn the three names in order: orbits, areas, periods.",
+        "margin_note": "Fourth mark. T² ∝ a³, with a named as the semi-major axis."
+      }
+    ]
+  },
+  "insider_note": "The law of areas is also asked ALONE as a 2-mark question — be ready to state it by itself."
+}

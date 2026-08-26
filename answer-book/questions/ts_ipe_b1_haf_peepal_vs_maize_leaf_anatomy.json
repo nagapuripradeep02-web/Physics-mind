@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_peepal_vs_maize_leaf_anatomy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Point out the differences in the anatomy of the leaf of peepal and the leaf of maize.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Type of leaf and stomata",
+      "marks": 2
+    },
+    {
+      "label": "Guard cells and bulliform cells",
+      "marks": 1
+    },
+    {
+      "label": "Mesophyll",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERROR RECORDED: the book's LAQ on the monocot leaf writes that the mesophyll 'contains either palisade or spongy parenchyma but not both'. That is wrong and also a damaged sentence. The mesophyll of an isobilateral leaf is NOT differentiated into either kind; this card and the matching LAQ write it correctly."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_type_stomata",
+        "kind": "text",
+        "label": "Type of leaf and stomata",
+        "marks": 2,
+        "mark_note": "Two differences",
+        "margin_note": "Write it as pairs: peepal first, maize second, one line each. A two-column table is fine.",
+        "lines": [
+          {
+            "text": "1. Type of leaf",
+            "style": "heading"
+          },
+          "Peepal: it is a dorsiventral leaf. The upper",
+          "and the lower halves are built differently.",
+          "Maize: it is an isobilateral leaf. The two",
+          "halves are built alike.",
+          {
+            "text": "2. Stomata",
+            "style": "heading"
+          },
+          "Peepal: more stomata on the lower epidermis",
+          "than on the upper epidermis.",
+          "Maize: stomata are equally distributed on the",
+          "lower and the upper epidermis."
+        ],
+        "why": "The peepal leaf is held with one face towards the sky and one face shaded, so its two halves are built differently. The maize leaf stands almost upright and both faces receive the same light, so both are built alike. Every later difference follows from this one.",
+        "common_mistakes": [
+          "Writing only dicot and monocot. The marked words are dorsiventral and isobilateral.",
+          "Saying the peepal leaf has stomata only on the lower surface. It has more there, not all there."
+        ],
+        "memory_tip": "Dorsi means back, so the back and the front differ. Iso means equal, so both sides match."
+      },
+      {
+        "id": "s2_guard_bulliform",
+        "kind": "text",
+        "label": "Guard cells and bulliform cells",
+        "marks": 1,
+        "mark_note": "Two differences",
+        "margin_note": "Two more pairs, one line each. Do not explain the shapes here.",
+        "lines": [
+          {
+            "text": "3. Guard cells",
+            "style": "heading"
+          },
+          "Peepal: the guard cells are kidney shaped,",
+          "that is bean shaped.",
+          "Maize: the guard cells are dumb-bell shaped.",
+          {
+            "text": "4. Bulliform cells",
+            "style": "heading"
+          },
+          "Peepal: bulliform cells are absent.",
+          "Maize: bulliform cells are present in the",
+          "upper epidermis."
+        ],
+        "why": "Guard-cell shape is a fixed difference between dicots and monocots, so naming the plant already fixes the shape. Bulliform cells are large empty cells found in grasses, and maize is a grass while peepal is not.",
+        "common_mistakes": [
+          "Swapping the two shapes. Dicot means bean, monocot means dumb-bell.",
+          "Putting the bulliform cells of maize in the lower epidermis. They lie in the upper epidermis."
+        ],
+        "memory_tip": "Bean for the broad-leaved peepal, dumb-bell for the grass maize."
+      },
+      {
+        "id": "s3_mesophyll",
+        "kind": "boxed_final",
+        "label": "Mesophyll",
+        "marks": 1,
+        "mark_note": "Mesophyll",
+        "margin_note": "Close with the one-line contrast. It reads as the conclusion of the table.",
+        "lines": [
+          {
+            "text": "5. Mesophyll",
+            "style": "heading"
+          },
+          "Peepal: the mesophyll is differentiated into",
+          "palisade parenchyma above and spongy",
+          "parenchyma below.",
+          "Maize: the mesophyll is not differentiated.",
+          "All the cells are of one kind.",
+          {
+            "text": "Peepal dorsiventral · Maize isobilateral",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the difference the examiner treats as the deciding one: a leaf is called dorsiventral or isobilateral by whether its mesophyll is split into two kinds of tissue or not.",
+        "common_mistakes": [
+          "Writing that the maize mesophyll has only spongy parenchyma. It has neither kind; the cells are all alike.",
+          "Reversing the layers in peepal. Palisade is the upper layer."
+        ],
+        "memory_tip": "Palisade above and spongy below is a two-storey leaf, so it is dorsiventral."
+      }
+    ]
+  },
+  "insider_note": "The examiner counts differences, not sentences. Five clean paired differences carry all four marks; three long paragraphs do not."
+}

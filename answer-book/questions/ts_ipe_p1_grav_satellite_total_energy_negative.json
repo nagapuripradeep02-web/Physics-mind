@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_satellite_total_energy_negative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the total energy of a satellite in a circular orbit. Why is it negative?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The total energy",
+      "marks": 1
+    },
+    {
+      "label": "Why it is negative",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_value",
+        "kind": "equation",
+        "label": "The total energy",
+        "marks": 1,
+        "mark_note": "Total energy",
+        "lines": [
+          "For a satellite of mass m in a circular orbit",
+          "of radius r about the earth,",
+          {
+            "text": "KE = G M m / 2r,   PE = − G M m / r",
+            "style": "eq"
+          },
+          {
+            "text": "E = KE + PE = − G M m / 2r",
+            "style": "eq"
+          }
+        ],
+        "why": "The potential energy is exactly twice the kinetic energy in size, so the sum keeps the sign of the potential.",
+        "common_mistakes": [
+          "Adding the two magnitudes and getting a positive total."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E equals minus G M m by 2 r, the sum of KE and PE.",
+          "accept": [
+            "minus G M m by two r",
+            "KE plus PE"
+          ],
+          "reject": [
+            "the satellite is bound"
+          ],
+          "heard_as": [
+            "minus G M m by 2 r",
+            "total energy"
+          ]
+        },
+        "memory_tip": "KE is +GMm/2r and PE is −GMm/r. Adding them halves the PE and keeps its sign.",
+        "margin_note": "First mark. Write KE and PE on separate lines, then add them."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it is negative",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "E = − G M m / 2r",
+            "style": "boxed"
+          },
+          "A negative total energy means the satellite is",
+          "BOUND: it does not have enough energy to reach",
+          "infinity and escape. Raising its energy to zero",
+          "would just free it from the earth."
+        ],
+        "why": "Energy zero is the dividing line — below it the body orbits, above it the body leaves and never comes back.",
+        "common_mistakes": [
+          "Reading the minus sign as \"the satellite is losing energy\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a negative total energy means the satellite is bound and cannot reach infinity.",
+          "accept": [
+            "the satellite is bound",
+            "not enough energy to reach infinity",
+            "zero energy would free it"
+          ],
+          "reject": [
+            "minus G M m by two r"
+          ],
+          "heard_as": [
+            "bound",
+            "negative"
+          ]
+        },
+        "memory_tip": "Negative means bound, zero is the escape threshold, positive means it leaves.",
+        "margin_note": "Second mark. The word BOUND, and what raising E to zero would do."
+      }
+    ]
+  },
+  "insider_note": "The reason is a separate mark: say the satellite is bound and cannot reach infinity, rather than only quoting the minus sign."
+}

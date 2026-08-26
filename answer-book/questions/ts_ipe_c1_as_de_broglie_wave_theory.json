@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_de_broglie_wave_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain de Broglie's wave theory.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation and its terms",
+      "marks": 2
+    },
+    {
+      "label": "Where it applies",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "de Broglie's theory: every moving material",
+          "particle has wave properties as well as",
+          "particle properties.",
+          "This is called the dual nature of matter."
+        ],
+        "why": "Light was already known to behave both as a wave and as a particle. de Broglie's step was to say that matter does the same, which is why an electron can be described by a wavelength at all.",
+        "common_mistakes": [
+          "Writing that the particle becomes a wave. It has both natures, it does not change into one.",
+          "Leaving out the word moving. A particle at rest has no de Broglie wavelength."
+        ],
+        "memory_tip": "Light behaves as both. de Broglie said matter does too.",
+        "margin_note": "The words dual nature are worth writing."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation and its terms",
+        "marks": 2,
+        "mark_note": "Equation and terms",
+        "lines": [
+          {
+            "text": "λ = h / mv = h / p",
+            "style": "eq"
+          },
+          "λ = wavelength of the particle",
+          "h = Planck's constant",
+          "m = mass,  v = velocity",
+          "p = mv = momentum of the particle"
+        ],
+        "why": "The wavelength is inversely proportional to the momentum, so a heavy or fast particle has a very short wavelength. This single relation is what connects the wave picture to ordinary mechanics.",
+        "common_mistakes": [
+          "Writing λ = mv/h, which turns the relation upside down.",
+          "Not naming the symbols. The terms carry marks here as well as the formula."
+        ],
+        "memory_tip": "Wavelength is h divided by momentum. Heavier and faster means shorter.",
+        "margin_note": "Both marks are here. Write the formula, then name every symbol."
+      },
+      {
+        "id": "s3_application",
+        "kind": "boxed_final",
+        "label": "Where it applies",
+        "marks": 1,
+        "mark_note": "Application",
+        "lines": [
+          {
+            "text": "Significant only for very small particles such as electrons",
+            "style": "boxed"
+          },
+          "For a moving cricket ball the mass is large,",
+          "so λ is far too small to measure.",
+          "For an electron in a stationary wave around",
+          "the nucleus:  2πr = nλ,",
+          "which gives Bohr's condition  mvr = nh/2π."
+        ],
+        "why": "Because h is extremely small, a measurable wavelength needs a very small mass. The standing-wave condition 2πr = nλ is worth writing because it derives Bohr's quantisation rule instead of assuming it.",
+        "common_mistakes": [
+          "Saying the theory applies to all bodies equally. It applies to all, but is measurable only for small masses.",
+          "Leaving out 2πr = nλ, which is the link to the previous chapter's quantisation rule."
+        ],
+        "memory_tip": "The orbit must hold a whole number of waves. That is why n appears at all.",
+        "margin_note": "The standing-wave line is the part that lifts this answer above a bare formula."
+      }
+    ]
+  },
+  "insider_note": "The formula alone is half the answer. Writing 2πr = nλ and showing that it gives mvr = nh/2π is what examiners reward, because it explains where Bohr's rule comes from."
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_equilibrium_couple_saq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by mechanical equilibrium of a rigid body? State its conditions and explain what a couple is.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equilibrium",
+      "marks": 1
+    },
+    {
+      "label": "The two conditions",
+      "marks": 2
+    },
+    {
+      "label": "The couple",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What equilibrium means",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "A rigid body is in mechanical",
+          "equilibrium when its linear momentum",
+          "and its angular momentum do not change",
+          "with time — no acceleration and no",
+          "angular acceleration."
+        ],
+        "why": "Equilibrium is a statement about BOTH motions a rigid body can have — along a line and about an axis.",
+        "common_mistakes": [
+          "Defining equilibrium as \"at rest\". A body moving uniformly is also in equilibrium."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equilibrium means neither linear nor angular momentum changes.",
+          "accept": [
+            "both momenta unchanged",
+            "no acceleration and no angular acceleration"
+          ],
+          "reject": [
+            "sum of forces is zero"
+          ],
+          "heard_as": [
+            "equilibrium",
+            "unchanged"
+          ]
+        },
+        "memory_tip": "Both momenta, p and L, must stay constant. Two quantities, so two conditions follow.",
+        "margin_note": "First mark. Say \"does not change with time\" for both momenta, not \"at rest\"."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "equation",
+        "label": "The two conditions",
+        "marks": 2,
+        "mark_note": "Conditions",
+        "lines": [
+          "1. Translational equilibrium:",
+          {
+            "text": "ΣF = 0",
+            "style": "eq"
+          },
+          "2. Rotational equilibrium:",
+          {
+            "text": "Στ = 0  (about any point)",
+            "style": "eq"
+          }
+        ],
+        "why": "Each condition kills one kind of acceleration; a body needs both to be fully in equilibrium. When ΣF = 0, the torque sum is the same about every point, so verifying Στ = 0 about one convenient point is enough.",
+        "common_mistakes": [
+          "Giving only ΣF = 0 — a couple defeats that single condition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both the net force and the net torque must vanish.",
+          "accept": [
+            "sigma F zero and sigma tau zero",
+            "both conditions"
+          ],
+          "reject": [
+            "two equal and opposite separated forces"
+          ],
+          "heard_as": [
+            "both",
+            "zero"
+          ]
+        },
+        "memory_tip": "One condition per momentum: ΣF = 0 keeps p constant, Στ = 0 keeps L constant.",
+        "margin_note": "Two marks, one for each condition. Number them 1 and 2."
+      },
+      {
+        "id": "s3_couple",
+        "kind": "boxed_final",
+        "label": "The couple",
+        "marks": 1,
+        "mark_note": "Couple",
+        "lines": [
+          "A couple is a pair of equal and",
+          "opposite forces with separated lines of",
+          "action. Its net force is zero but its",
+          "net torque is not:",
+          {
+            "text": "a couple produces pure rotation.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The couple is the standard counter-example that shows why the second condition exists at all.",
+        "common_mistakes": [
+          "Saying a couple is in equilibrium because its forces cancel — its torques do not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a couple has zero net force but non-zero torque, producing pure rotation.",
+          "accept": [
+            "zero net force non zero torque",
+            "pure rotation"
+          ],
+          "reject": [
+            "sigma F zero and sigma tau zero"
+          ],
+          "heard_as": [
+            "couple",
+            "pure rotation"
+          ]
+        },
+        "memory_tip": "Two fingers turning a tap: equal, opposite, and not along the same line.",
+        "margin_note": "Final mark. Define the couple and add that its net force is zero but its torque is not."
+      }
+    ]
+  },
+  "insider_note": "Three parts in the question, three in the answer. The couple is only the last mark, so do not spend the space on it."
+}

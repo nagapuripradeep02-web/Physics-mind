@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_average_speed_equals_velocity_when",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "When is the average speed of a body equal to the magnitude of its average velocity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The condition",
+      "marks": 1
+    },
+    {
+      "label": "A counter-example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "text",
+        "label": "The condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          "They are equal when the body moves along a",
+          "straight line in ONE direction only, without",
+          "reversing. Then the distance travelled equals",
+          "the magnitude of the displacement."
+        ],
+        "why": "The two averages differ only because distance can exceed displacement, and that can happen only if the body doubles back.",
+        "common_mistakes": [
+          "Saying they are equal whenever the path is straight. A body that goes out and comes back moves in a straight line and still differs."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That they are equal when the body moves in a straight line in one direction without reversing.",
+          "accept": [
+            "one direction",
+            "without reversing",
+            "distance equals displacement"
+          ],
+          "reject": [
+            "whenever the path is straight"
+          ],
+          "heard_as": [
+            "one direction",
+            "no reversal"
+          ]
+        },
+        "memory_tip": "Straight line is not enough — it must also never turn back.",
+        "margin_note": "The words \"without reversing\" carry this mark."
+      },
+      {
+        "id": "s2_counter",
+        "kind": "boxed_final",
+        "label": "A counter-example",
+        "marks": 1,
+        "mark_note": "Counter-example",
+        "lines": [
+          {
+            "text": "A round trip: displacement 0, distance not 0",
+            "style": "boxed"
+          },
+          "A man who walks 2.5 km to a market and back",
+          "has average velocity zero but average speed",
+          "is not zero."
+        ],
+        "why": "The round trip is the extreme case: the displacement collapses to zero while the distance is the full journey, so the two averages could not differ more.",
+        "common_mistakes": [
+          "Giving an example that does not reverse, which cannot show any difference."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a round trip the average velocity is zero while the average speed is not.",
+          "accept": [
+            "round trip",
+            "average velocity zero",
+            "average speed not zero"
+          ],
+          "reject": [
+            "both are zero"
+          ],
+          "heard_as": [
+            "round trip",
+            "zero"
+          ]
+        },
+        "memory_tip": "Round trip: velocity averages to zero, speed does not. Best possible counter-example.",
+        "margin_note": "Name both averages in the example."
+      }
+    ]
+  },
+  "insider_note": "One condition, one counter-example. The counter-example is what shows the condition is needed."
+}

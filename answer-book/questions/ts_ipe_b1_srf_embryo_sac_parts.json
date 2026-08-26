@@ -1,0 +1,397 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_embryo_sac_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the parts of a mature angiosperm embryo sac. Mention the role of synergids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The embryo sac",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Egg apparatus",
+      "marks": 2
+    },
+    {
+      "label": "Antipodals",
+      "marks": 1
+    },
+    {
+      "label": "Central cell",
+      "marks": 1
+    },
+    {
+      "label": "Role of synergids",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.19, LAQ 1). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book prints a stippled oval with all cells; this card draws the simplified 7-celled, 8-nucleate Polygonum-type sac a student can reproduce — antipodals at the chalazal end, polar nuclei in the central cell, egg + synergids with filiform apparatus at the micropylar end."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Sexual Reproduction in Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intro",
+        "kind": "text",
+        "label": "The embryo sac",
+        "marks": 1,
+        "mark_note": "Identity",
+        "lines": [
+          "The female gametophyte of angiosperms is",
+          "called the embryo sac.",
+          "The most common embryo sac is 7-celled and",
+          "8-nucleate — the Polygonum type.",
+          "It shows three main parts: the egg apparatus,",
+          "the antipodals and the central cell."
+        ],
+        "why": "The opening fixes the identity (embryo sac = female gametophyte), the standard organisation (7 cells, 8 nuclei, Polygonum type) and announces the three parts the rest of the answer will describe.",
+        "common_mistakes": [
+          "Writing 8-celled. There are 8 NUCLEI but 7 cells — the central cell keeps two nuclei.",
+          "Calling the embryo sac the ovule. The sac lies INSIDE the ovule."
+        ],
+        "memory_tip": "7 cells, 8 nuclei: 3 + 3 + 1 cells, and the 1 (central cell) holds 2 nuclei.",
+        "margin_note": "Three facts before the parts: female gametophyte, 7-celled 8-nucleate, Polygonum type."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Diagram — mature embryo sac",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "mature_embryo_sac",
+          "width": 480,
+          "height": 352,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sac",
+              "d": "M 118 168 A 82 126 0 1 0 282 168 A 82 126 0 1 0 118 168",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "anti1",
+              "d": "M 168 86 A 12 12 0 1 0 192 86 A 12 12 0 1 0 168 86",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "anti2",
+              "d": "M 200 80 A 12 12 0 1 0 224 80 A 12 12 0 1 0 200 80",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "anti3",
+              "d": "M 183 110 A 13 13 0 1 0 209 110 A 13 13 0 1 0 183 110",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "polar1",
+              "d": "M 171 168 A 13 13 0 1 0 197 168 A 13 13 0 1 0 171 168",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "polar2",
+              "d": "M 203 168 A 13 13 0 1 0 229 168 A 13 13 0 1 0 203 168",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "egg",
+              "d": "M 185 236 A 15 21 0 1 0 215 236 A 15 21 0 1 0 185 236",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "syn1",
+              "d": "M 158 252 A 14 18 0 1 0 186 252 A 14 18 0 1 0 158 252",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "syn2",
+              "d": "M 214 252 A 14 18 0 1 0 242 252 A 14 18 0 1 0 214 252",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "fili1a",
+              "d": "M 166 262 L 165 273",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "fili1b",
+              "d": "M 172 264 L 172 275",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "fili1c",
+              "d": "M 178 262 L 179 273",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "fili2a",
+              "d": "M 222 262 L 221 273",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "fili2b",
+              "d": "M 228 264 L 228 275",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "fili2c",
+              "d": "M 234 262 L 235 273",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_chal_end",
+              "x": 36,
+              "y": 26,
+              "text": "Chalazal end",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_chal",
+              "d": "M 130 32 L 172 46",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_micro_end",
+              "x": 30,
+              "y": 312,
+              "text": "Micropylar end",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_micro",
+              "d": "M 208 306 L 188 292",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "lead_anti",
+              "d": "M 346 76 L 226 82",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_anti",
+              "x": 350,
+              "y": 80,
+              "text": "Antipodals",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_polar",
+              "d": "M 346 146 L 231 164",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_polar",
+              "x": 350,
+              "y": 150,
+              "text": "Polar nuclei",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_central",
+              "d": "M 346 188 L 274 190",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_central",
+              "x": 350,
+              "y": 192,
+              "text": "Central cell",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_egg",
+              "d": "M 346 228 L 218 230",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_egg",
+              "x": 350,
+              "y": 234,
+              "text": "Egg",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_syn",
+              "d": "M 346 272 L 244 254",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_syn",
+              "x": 350,
+              "y": 276,
+              "text": "Synergids",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_fili",
+              "d": "M 320 310 L 238 272",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_fili",
+              "x": 296,
+              "y": 316,
+              "text": "Filiform apparatus",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The positions ARE the physiology: the egg apparatus sits at the micropylar end because the pollen tube arrives through the micropyle; the antipodals sit at the far chalazal end. A drawing with the ends swapped is wrong even if every name is right.",
+        "common_mistakes": [
+          "Placing the antipodals at the micropylar end. Antipodals are chalazal; the egg apparatus is micropylar.",
+          "Drawing one polar nucleus. There are two, in the central cell, before they fuse.",
+          "Leaving out the filiform apparatus at the synergid tips."
+        ],
+        "memory_tip": "Draw the oval, mark the two ends first, then fill: 3 antipodals at the chalazal end, 2 polar nuclei in the middle, egg + 2 synergids at the micropylar end.",
+        "margin_note": "Seven cells, both ends named, filiform apparatus shown — this is the 2-mark drawing."
+      },
+      {
+        "id": "s3_egg_apparatus",
+        "kind": "text",
+        "label": "Egg apparatus",
+        "marks": 2,
+        "mark_note": "Part 1",
+        "lines": [
+          "Egg apparatus: a group of three cells at the",
+          "micropylar end of the embryo sac — one egg",
+          "cell and two synergids.",
+          "The synergids carry a filiform apparatus at",
+          "their micropylar tips."
+        ],
+        "why": "The egg apparatus is the business end of the sac: the egg is the female gamete, and the synergids beside it are the cells the pollen tube actually enters — so this part carries the most description marks.",
+        "common_mistakes": [
+          "Writing two egg cells and one synergid — the ratio is 1 egg : 2 synergids.",
+          "Placing the egg apparatus at the chalazal end."
+        ],
+        "memory_tip": "At the door (micropyle): two helpers around one egg. Synergid means 'working together'.",
+        "margin_note": "Three cells, the end they occupy, and the filiform apparatus — all three facts for 2 marks."
+      },
+      {
+        "id": "s4_antipodals",
+        "kind": "text",
+        "label": "Antipodals",
+        "marks": 1,
+        "mark_note": "Part 2",
+        "lines": [
+          "Antipodals: three cells at the chalazal end",
+          "of the embryo sac.",
+          "They are the smallest, short-lived vegetative",
+          "cells, and they degenerate before or after",
+          "fertilisation."
+        ],
+        "why": "The antipodals balance the description: three cells at the opposite end, with no role in fertilisation — which is why they are called vegetative and why they degenerate.",
+        "common_mistakes": [
+          "Giving the antipodals a role in fertilisation. They take no part and degenerate.",
+          "Writing two antipodals. Three antipodals mirror the three cells of the egg apparatus."
+        ],
+        "memory_tip": "ANTIpodal = at the opposite pole from the egg — three cells that fade away.",
+        "margin_note": "Position, count, 'vegetative', and their degeneration — four short facts."
+      },
+      {
+        "id": "s5_central_cell",
+        "kind": "text",
+        "label": "Central cell",
+        "marks": 1,
+        "mark_note": "Part 3",
+        "lines": [
+          "Central cell: the largest cell of the embryo",
+          "sac, containing two polar nuclei.",
+          "The polar nuclei often fuse at the centre to",
+          "form a single diploid secondary nucleus."
+        ],
+        "why": "The central cell matters for what comes later: its secondary nucleus (2n) is what the second male gamete joins in triple fusion to make the 3n endosperm.",
+        "common_mistakes": [
+          "Calling the polar nuclei separate cells. They are two nuclei inside ONE cell.",
+          "Writing that the secondary nucleus is haploid — n + n makes it diploid."
+        ],
+        "memory_tip": "Biggest room, two nuclei: n + n → the 2n secondary nucleus waiting for triple fusion.",
+        "margin_note": "Largest cell, two polar nuclei, diploid secondary nucleus — the endosperm story starts here."
+      },
+      {
+        "id": "s6_synergid_role",
+        "kind": "boxed_final",
+        "label": "Role of synergids",
+        "marks": 1,
+        "mark_note": "Role",
+        "lines": [
+          {
+            "text": "Synergids absorb food and guide the tube",
+            "style": "boxed"
+          },
+          "They absorb nutrients from the nucellus.",
+          "Their filiform apparatus guides the entry of",
+          "the pollen tube into a synergid."
+        ],
+        "why": "The question asks this by name, so it gets its own step: nutrition (absorbing from the nucellus) and guidance (the filiform apparatus steering the pollen tube) are the two stated roles.",
+        "common_mistakes": [
+          "Writing that the pollen tube enters the egg directly — it enters a SYNERGID through the filiform apparatus.",
+          "Giving only one of the two roles. Both absorption and guidance are expected."
+        ],
+        "memory_tip": "Synergids feed and lead: food from the nucellus in, pollen tube guided in.",
+        "margin_note": "A separately asked part — answer it under its own heading so the examiner finds it."
+      }
+    ]
+  },
+  "insider_note": "'Mention the role of synergids' is a named sub-question — leave it as its own labelled paragraph; burying it inside the egg-apparatus description is how this mark gets missed."
+}

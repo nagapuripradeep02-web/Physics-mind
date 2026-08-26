@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_plane_three_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the vector equation of the plane passing through the points i − 2j + 5k, −5j − k and −3i + 5j.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the three points",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 117.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17,19 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say the vector equation of a plane through three given points.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Name the three points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Three points fix a plane. Watch the gaps: the second has no i term and the third has no k term — write those components as 0 rather than leaving them out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A(a) = i − 2j + 5k,",
+          "B(b) = −5j − k,  C(c) = −3i + 5j"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three given vectors are named as position vectors a, b and c of three points on the plane.",
+          "accept": [
+            "name the three points a b and c",
+            "call the three position vectors a b c",
+            "three points determine the plane, name them",
+            "moodu points ni a b c ani peru pettali",
+            "identify the three position vectors"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three points",
+            "position vectors",
+            "a b c",
+            "plane"
+          ]
+        },
+        "why": "Two points give a line; three give a plane. The count of points is what selects the two-parameter form below.",
+        "common_mistakes": [
+          "Missing a zero component when copying a vector.",
+          "Using only two of the three points."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A plane needs TWO parameters, s and t, because it is two-dimensional. The three coefficients (1−s−t), s and t always add to 1.",
+        "lines": [
+          "Vector equation of the plane is",
+          "r = (1−s−t)a + sb + tc,  s, t ∈ R",
+          {
+            "text": "∴ r = (1−s−t)(i − 2j + 5k) + s(−5j − k) + t(−3i + 5j)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the plane equation is r = (1−s−t)a + sb + tc with TWO parameters s and t.",
+          "accept": [
+            "r equals one minus s minus t times a plus s b plus t c with two parameters",
+            "a plane needs two parameters so use one minus s minus t, s and t",
+            "the three coefficients add to one and there are two free parameters",
+            "rendu parameters kavali, one minus s minus t, s, t",
+            "write the three point form of the plane"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus s minus t",
+            "two parameters",
+            "s and t",
+            "plane"
+          ]
+        },
+        "why": "One parameter sweeps a line, two sweep a surface. The coefficients summing to 1 is what keeps every point on the plane through those three.",
+        "common_mistakes": [
+          "Using one parameter and describing a line instead.",
+          "Writing (1−s−t) as (1−s)(1−t)."
+        ]
+      }
+    ]
+  }
+}

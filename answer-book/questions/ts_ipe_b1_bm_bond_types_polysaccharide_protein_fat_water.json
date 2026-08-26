@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_bond_types_polysaccharide_protein_fat_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Select an appropriate bond from ester bond, glycosidic bond, peptide bond and hydrogen bond, and write it against each of the following: polysaccharide, protein, fat, water.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Polysaccharide and protein",
+      "marks": 1
+    },
+    {
+      "label": "Fat and water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 2. The book's four matches are standard and are used unchanged; the joining units are added here because a bare match is thin for two marks. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_glycosidic_peptide",
+        "kind": "text",
+        "label": "Polysaccharide and protein",
+        "marks": 1,
+        "mark_note": "Two correct",
+        "lines": [
+          "Polysaccharide — glycosidic bond.",
+          "It joins one monosaccharide to the next.",
+          "Protein — peptide bond.",
+          "It joins the carboxyl group of one amino",
+          "acid to the amino group of the next."
+        ],
+        "why": "Both of these are polymers, so the bond named is the bond that joins one monomer to the next: sugar to sugar is glycosidic, amino acid to amino acid is peptide.",
+        "common_mistakes": [
+          "Writing peptide bond for polysaccharide. Peptide bonds join amino acids, not sugars.",
+          "Writing hydrogen bond for protein. Hydrogen bonds hold the folded shape, but the chain itself is built by peptide bonds."
+        ],
+        "memory_tip": "Name the monomer first, then the bond: sugar to sugar is glycosidic, amino acid to amino acid is peptide.",
+        "margin_note": "Match each item to one bond name. No explanation is demanded, but one line each is safer."
+      },
+      {
+        "id": "s2_ester_hydrogen",
+        "kind": "boxed_final",
+        "label": "Fat and water",
+        "marks": 1,
+        "mark_note": "Two correct",
+        "lines": [
+          {
+            "text": "Fat — ester bond   ·   Water — hydrogen bond",
+            "style": "boxed"
+          },
+          "In a fat, the ester bond joins glycerol to",
+          "each fatty acid.",
+          "In water, the hydrogen bond joins one water",
+          "molecule to the next."
+        ],
+        "why": "A fat is glycerol plus fatty acids joined by ester bonds, so the ester bond lies inside one molecule. Water molecules are joined to each other by hydrogen bonds, so that bond lies between molecules.",
+        "common_mistakes": [
+          "Writing glycosidic bond for fat. Fats have no sugar units.",
+          "Writing that hydrogen bonds hold the atoms inside a water molecule. Those are covalent bonds; hydrogen bonds are between molecules."
+        ],
+        "memory_tip": "Fat has an ester bond inside it; water has hydrogen bonds between its molecules.",
+        "margin_note": "A four-line matching answer is enough. Do not write a paragraph on any one bond."
+      }
+    ]
+  },
+  "insider_note": "All four matches must be present. Getting three of four usually earns only one of the two marks."
+}

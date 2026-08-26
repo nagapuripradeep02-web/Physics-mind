@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_couplet_and_lead",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the terms couplet and lead in a taxonomic key.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Couplet",
+      "marks": 1
+    },
+    {
+      "label": "Lead",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 3 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_couplet",
+        "kind": "text",
+        "label": "Couplet",
+        "marks": 1,
+        "mark_note": "Couplet",
+        "lines": [
+          "A key is based on contrasting characters,",
+          "generally in a pair. The pair of contrasting",
+          "characters is called a couplet."
+        ],
+        "why": "A taxonomic key works by choosing between two opposite characters at each step; that pair of opposite characters is the couplet.",
+        "common_mistakes": [
+          "Writing that a couplet is any two characters. The two characters must be contrasting (opposite).",
+          "Confusing couplet with lead. The couplet is the pair; each single statement is a lead."
+        ],
+        "memory_tip": "Couplet sounds like couple — a couple is two, so a couplet is the pair of contrasting characters.",
+        "margin_note": "One clear sentence with the word 'contrasting' earns this mark."
+      },
+      {
+        "id": "s2_lead",
+        "kind": "boxed_final",
+        "label": "Lead",
+        "marks": 1,
+        "mark_note": "Lead",
+        "lines": [
+          {
+            "text": "Each statement in the key is called a lead.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each single statement of the couplet takes you to the next choice or to the name — so one statement is one lead.",
+        "common_mistakes": [
+          "Writing that the whole key is the lead. One statement is one lead; the key holds many leads."
+        ],
+        "memory_tip": "Two leads make one couplet — statement is to lead as pair is to couplet.",
+        "margin_note": "The one boxed line is the complete answer for this mark."
+      }
+    ]
+  },
+  "insider_note": "Both definitions are one NCERT line each — 'contrasting characters in a pair' and 'each statement is a lead' are the marked phrases."
+}

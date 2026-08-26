@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_area_find_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the value of a if the area of the triangle formed by the lines x=0, y=0, 3x+4y=a is 6 sq.units.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Read off the coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Solve for a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Straight Lines, answer 93.2. Printed appearance: AP 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — name the area formula for a line with the two axes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_off_the_coefficients",
+        "kind": "equation",
+        "label": "Read off the coefficients",
+        "marks": 1,
+        "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = c²/(2|ab|) — so the only setting-up needed is to compare with ax + by + c = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 3x + 4y = a  ⇒  3x + 4y − a = 0",
+          "On comparing with ax + by + c = 0, we get",
+          "a = 3, b = 4, c = −a",
+          "Area of the triangle is  Δ = c²/(2|ab|)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is compared with ax + by + c = 0 and the area formula Δ = c²/(2|ab|) is written.",
+          "accept": [
+            "compare with a x plus b y plus c equals zero and use delta equals c squared over two mod a b",
+            "the area formula for a line with both axes",
+            "read off a b and c then apply the formula",
+            "a b c teesukoni area formula rayali",
+            "area is c squared by two mod a b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a x plus b y plus c",
+            "c squared",
+            "two mod a b",
+            "area formula"
+          ]
+        },
+        "why": "This formula already accounts for the two intercepts and the right angle at the origin, so no intercepts need finding separately.",
+        "common_mistakes": [
+          "Getting the sign of c wrong when the equation is rearranged.",
+          "Dropping the modulus and producing a negative area."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_compute",
+        "kind": "boxed_final",
+        "label": "Solve for a",
+        "marks": 1,
+        "margin_note": "Second mark. Set the formula equal to the given area and solve — the modulus means the answer comes in a ± pair.",
+        "lines": [
+          "Δ = c²/(2|ab|) = (−a)²/(2|(3)(4)|) = a²/24",
+          "But given Area is 6",
+          "∴ a²/24 = 6  ⇒  a² = 6 × 24 = 144 = 12²",
+          {
+            "text": "⇒ a = ±12,  hence the value of a is ±12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That setting the area equal to the given value gives a = ±12,  hence the value of a is ±12.",
+          "accept": [
+            "set the area equal to six and solve for a",
+            "a squared over twenty four equals six",
+            "solve to get a equals plus or minus twelve",
+            "area ni equal chesi solve cheyyali",
+            "a is plus or minus twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equals six",
+            "a squared",
+            "plus or minus twelve",
+            "solve"
+          ]
+        },
+        "why": "a appears squared in the formula, so both a positive and a negative value give the same area — both are genuine answers.",
+        "common_mistakes": [
+          "Reporting only the positive value of a.",
+          "Forgetting to square c before dividing."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

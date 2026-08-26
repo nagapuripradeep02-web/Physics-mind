@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_flower_changes_after_pollination",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "List the changes observed in an angiosperm flower subsequent to pollination and fertilization.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "After pollination", "marks": 2 },
+    { "label": "After fertilization", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book prints 'chala-zogamy' (a scan hyphenation of chalazogamy) and 'pollen tube enters into ovules'; the card writes chalazogamy and 'enters the ovule'."
+  },
+  "insider_note": "Split the answer under the two headings exactly as asked — a mixed list makes the marker search for each point and usually costs one of the four marks.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_after_pollination",
+        "kind": "text",
+        "label": "After pollination",
+        "marks": 2,
+        "mark_note": "After pollination",
+        "lines": [
+          { "text": "I. After pollination:", "style": "heading" },
+          "The pollen grain germinates on the stigma",
+          "and forms a pollen tube.",
+          "The generative cell divides and forms two",
+          "male gametes inside the tube.",
+          "The pollen tube grows through the stigma",
+          "and style and reaches the ovary.",
+          "It enters the ovule by porogamy,",
+          "mesogamy or chalazogamy."
+        ],
+        "why": "Pollination only lands the pollen on the stigma; every change that follows — tube, two male gametes, growth down the style, entry into the ovule — happens before fertilization and belongs in this half.",
+        "common_mistakes": [
+          "Writing that the pollen grain travels down the style — the pollen TUBE grows down; the grain stays on the stigma.",
+          "Writing 'vegetative cell divides' — the GENERATIVE cell divides into the two male gametes."
+        ],
+        "memory_tip": "Entry routes by position: porogamy through the micropyle (the pore), mesogamy through the integuments (the middle), chalazogamy through the chalaza.",
+        "margin_note": "Four short points — tube, two male gametes, path, entry route."
+      },
+      {
+        "id": "s2_after_fertilization",
+        "kind": "text",
+        "label": "After fertilization",
+        "marks": 2,
+        "mark_note": "After fertilization",
+        "lines": [
+          { "text": "II. After fertilization:", "style": "heading" },
+          "Sepals, petals and stamens wither and",
+          "fall off.",
+          { "text": "Zygote → embryo · ovary → fruit · ovule → seed", "style": "boxed" },
+          "The primary endosperm nucleus (PEN)",
+          "develops into the endosperm, and the",
+          "nucellus into the perisperm."
+        ],
+        "why": "After fertilization every remaining part converts into a seed-and-fruit structure — zygote to embryo, ovary to fruit, ovule to seed, PEN to endosperm — while the display parts wither and fall.",
+        "common_mistakes": [
+          "Swapping the pair — the OVARY becomes the fruit; each OVULE becomes a seed.",
+          "Writing that the endosperm comes from the zygote — it comes from the PEN (the triple-fusion product)."
+        ],
+        "memory_tip": "Three conversions from small to large: zygote → embryo, ovule → seed, ovary → fruit.",
+        "margin_note": "The boxed conversion line is what the examiner scans for."
+      }
+    ]
+  }
+}

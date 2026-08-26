@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_bal_croh3_io3_basic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Balance the following equation in basic medium: Cr(OH)₃ + IO₃⁻ → I⁻ + CrO₄²⁻.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identifying the two half reactions",
+      "marks": 1
+    },
+    {
+      "label": "Balanced oxidation half",
+      "marks": 1
+    },
+    {
+      "label": "Balanced reduction half",
+      "marks": 1
+    },
+    {
+      "label": "Adding and the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK SLIP: the book's intermediate addition line prints '8H₂' for 8H₂O (a typographical slip) and carries extra H₂O on both sides before simplifying; its FINAL equation is correct and matches this card. The final equation was independently re-checked: atoms Cr 2=2, I 1=1, O 13=13, H 10=10; charge −5 on each side. AI chemistry check 2026-08-25 (audit round 3): the s4 common mistake warned against leaving 10OH⁻ and 8H₂O uncancelled. Those are the doubled oxidation half’s own coefficients; they never appear in the final line, and a student obeying that line would strike out the 4OH⁻ and 5H₂O that the insider note names as the thing the examiner checks. Recomputed from this card’s own marked lines (10 − 6 = 4OH⁻ on the left; 8 − 3 = 5H₂O on the right) and rewritten into the surviving-remainder form the sibling acid-medium cards use. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halves",
+        "kind": "equation",
+        "label": "Identifying the two half reactions",
+        "marks": 1,
+        "mark_note": "Half reactions",
+        "lines": [
+          "Cr in Cr(OH)₃ is +3 → +6 in CrO₄²⁻ : oxidation",
+          "I in IO₃⁻ is +5 → −1 in I⁻ : reduction",
+          {
+            "text": "Oxidation half: Cr(OH)₃ → CrO₄²⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Reduction half: IO₃⁻ → I⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "The oxidation numbers decide the two halves before balancing: chromium's number increases by 3 (oxidation) and iodine's decreases by 6 (reduction).",
+        "common_mistakes": [
+          "Mislabelling the halves. IO₃⁻ is the oxidising agent, so it is itself reduced.",
+          "Computing iodine in IO₃⁻ as +6. With three O at −2 and ion charge −1, iodine is +5."
+        ],
+        "memory_tip": "Write the two oxidation numbers over each changing atom first: +3→+6 and +5→−1.",
+        "margin_note": "Both skeleton halves with their oxidation-number changes earn this mark."
+      },
+      {
+        "id": "s2_oxidation_half",
+        "kind": "equation",
+        "label": "Balanced oxidation half",
+        "marks": 1,
+        "mark_note": "Oxidation half",
+        "lines": [
+          "Basic medium: balance O and H with OH⁻ and H₂O.",
+          "Cr(OH)₃ + 5OH⁻ → CrO₄²⁻ + 4H₂O",
+          "(O: 3 + 5 = 8 = 4 + 4 ; H: 3 + 5 = 8 = 8)",
+          {
+            "text": "Cr(OH)₃ + 5OH⁻ → CrO₄²⁻ + 4H₂O + 3e⁻ … (1)",
+            "style": "eq"
+          },
+          "Charge check: −5 = (−2) + (−3) = −5 ✓"
+        ],
+        "why": "In basic medium OH⁻ and H₂O do the balancing instead of H⁺. Chromium moves from +3 to +6, so three electrons leave, and the charge check confirms exactly three.",
+        "common_mistakes": [
+          "Balancing with H⁺ in a basic-medium question.",
+          "Forgetting the 3 H already inside Cr(OH)₃ when counting hydrogen."
+        ],
+        "memory_tip": "In basic medium, balance with OH⁻ and H₂O instead of H⁺ and H₂O.",
+        "margin_note": "Equation (1) with its atom and charge checks earns this mark."
+      },
+      {
+        "id": "s3_reduction_half",
+        "kind": "equation",
+        "label": "Balanced reduction half",
+        "marks": 1,
+        "mark_note": "Reduction half",
+        "lines": [
+          "IO₃⁻ + 3H₂O → I⁻ + 6OH⁻",
+          "(O: 3 + 3 = 6 = 6 ; H: 6 = 6)",
+          {
+            "text": "IO₃⁻ + 3H₂O + 6e⁻ → I⁻ + 6OH⁻ … (2)",
+            "style": "eq"
+          },
+          "Charge check: (−1) + (−6) = −7 = (−1) + (−6) ✓"
+        ],
+        "why": "Iodine falls from +5 to −1, a gain of six electrons, so 6e⁻ sit on the reactant side. Water supplies the hydrogen that becomes OH⁻ on the product side.",
+        "common_mistakes": [
+          "Writing 4e⁻ from a wrong iodine oxidation number.",
+          "Placing the OH⁻ on the reactant side of this half."
+        ],
+        "memory_tip": "+5 down to −1 crosses six units, so six electrons.",
+        "margin_note": "Equation (2) with its charge check earns this mark."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Adding and the final equation",
+        "marks": 1,
+        "mark_note": "Final equation",
+        "lines": [
+          "Equalise electrons: (1) × 2 (6e⁻ each).",
+          "2Cr(OH)₃ + 10OH⁻ → 2CrO₄²⁻ + 8H₂O + 6e⁻",
+          "Add (2) and cancel 6OH⁻ and 3H₂O from both sides:",
+          {
+            "text": "2Cr(OH)₃ + IO₃⁻ + 4OH⁻ → 2CrO₄²⁻ + I⁻ + 5H₂O",
+            "style": "boxed"
+          },
+          "Check: Cr 2=2, I 1=1, O 13=13, H 10=10; charge −5 = −5"
+        ],
+        "why": "Doubling the chromium half brings both halves to six electrons, so they cancel on addition. Cancelling the OH⁻ and H₂O common to both sides leaves the simplest balanced equation.",
+        "common_mistakes": [
+          "Cancelling every OH⁻ or every H₂O. Exactly 4OH⁻ on the left and 5H₂O on the right survive.",
+          "Multiplying the iodine half by 2 as well, which doubles everything for no reason.",
+          "Skipping the final atom-and-charge check."
+        ],
+        "memory_tip": "Electron counts 3 and 6 need only the smaller half doubled — one multiplication, not two.",
+        "margin_note": "The boxed equation with the atom and charge check earns this mark."
+      }
+    ]
+  },
+  "insider_note": "The three-star basic-medium classic. The examiner checks that OH⁻, not H⁺, does the balancing and that the final line has been simplified to 4OH⁻ and 5H₂O."
+}

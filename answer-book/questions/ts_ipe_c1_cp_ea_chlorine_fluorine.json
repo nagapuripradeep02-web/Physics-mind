@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_ea_chlorine_fluorine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Electron affinity of chlorine is more than that of fluorine. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why fluorine releases less energy",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion for chlorine",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. TERMS: the book uses the older term electron affinity (E.A); NCERT now frames the same comparison through electron gain enthalpy. The card keeps the book's term because that is what the paper prints, and the reasoning is identical either way. AI chemistry check 2026-08-25: the small-2p-subshell repulsion reason and the Cl above F conclusion were re-checked against NCERT Class-11 and nothing marked was changed; the conclusion why now bridges the book's electron affinity wording to the NCERT electron gain enthalpy sign convention, with the standard values. Status stays unverified."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fluorine",
+        "kind": "text",
+        "label": "Why fluorine releases less",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Fluorine has a very small atomic size, so its",
+          "2p subshell is compact and the electron",
+          "density on the atom is high.",
+          "The incoming electron is strongly repelled by",
+          "the electrons already present in this small",
+          "2p subshell, so less energy is released."
+        ],
+        "why": "Adding an electron releases energy, but in fluorine part of that release is cancelled by the strong repulsion the new electron feels from the electrons packed in the small 2p subshell.",
+        "common_mistakes": [
+          "Saying fluorine attracts electrons weakly. Its attraction is strong; the repulsion inside the small 2p subshell is the problem.",
+          "Writing small atomic size without naming the repulsion between the incoming electron and the electrons already there."
+        ],
+        "memory_tip": "Small atom, high electron density, strong repulsion on the new electron — so fluorine releases less energy.",
+        "margin_note": "Two ideas: small size with high electron density, and repulsion on the incoming electron."
+      },
+      {
+        "id": "s2_chlorine",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "E.A of chlorine > E.A of fluorine",
+            "style": "boxed"
+          },
+          "In chlorine the added electron enters the",
+          "larger 3p subshell, where the repulsion is",
+          "much smaller, so more energy is released."
+        ],
+        "why": "The same electron added to chlorine enters a larger 3p subshell, loses less of its energy release to repulsion, and so chlorine releases more energy overall. Under the NCERT electron gain enthalpy convention the same fact is written with signs: the value for chlorine, about −349 kJ mol⁻¹, is more negative than the value for fluorine, about −328 kJ mol⁻¹.",
+        "common_mistakes": [
+          "Stopping after the fluorine reason and never stating the conclusion for chlorine.",
+          "Writing that chlorine is more electronegative than fluorine. Fluorine has the higher electronegativity; chlorine has the higher electron affinity."
+        ],
+        "memory_tip": "The 3p subshell of chlorine has more space than the 2p subshell of fluorine, so the new electron faces less repulsion.",
+        "margin_note": "Close with the comparison the question asked for, boxed."
+      }
+    ]
+  },
+  "insider_note": "The marking scheme requires the repulsion inside fluorine's small 2p subshell to be named — writing only that fluorine is small is not the reason."
+}

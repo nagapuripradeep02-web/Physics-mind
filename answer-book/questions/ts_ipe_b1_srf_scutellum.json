@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_scutellum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by scutellum? In which type of seeds is it present?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Where it is found",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.17, VSAQ 5). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Scutellum = the single, large, shield shaped",
+            "style": "boxed"
+          },
+          {
+            "text": "cotyledon of a grass (Poaceae) embryo",
+            "style": "boxed"
+          },
+          "It lies in a groove at one side of the",
+          "embryo axis."
+        ],
+        "why": "The scutellum is simply the one cotyledon of a grass embryo given a special name; 'shield shaped' and 'at one side of the embryo axis' are the two identifying facts.",
+        "common_mistakes": [
+          "Calling it a separate organ. It IS the cotyledon of the grass embryo.",
+          "Writing 'two cotyledons' — grasses are monocots; there is only one."
+        ],
+        "memory_tip": "Scutellum comes from the Latin word for shield — the name itself stores the shape.",
+        "margin_note": "The boxed definition with 'shield shaped cotyledon' is what earns this mark."
+      },
+      {
+        "id": "s2_where",
+        "kind": "text",
+        "label": "Where it is found",
+        "marks": 1,
+        "mark_note": "Location",
+        "lines": [
+          "It is present in the endospermic seeds of",
+          "monocots of the grass family (Poaceae).",
+          "Example: maize."
+        ],
+        "why": "The second half of the question asks the seed type: grass seeds keep their endosperm, so the scutellum sits against it and absorbs the food during germination.",
+        "common_mistakes": [
+          "Answering 'monocot seeds' alone — say endospermic seeds of the grass family.",
+          "Giving bean or groundnut as the example; those are non-endospermic dicots."
+        ],
+        "memory_tip": "Maize grain: yellow endosperm + one shield-shaped scutellum pressed against it.",
+        "margin_note": "Name the seed type AND one example — the question asks both."
+      }
+    ]
+  },
+  "insider_note": "Two asks, two marks: the definition and the seed type. Students who only define the scutellum leave the second mark on the table."
+}

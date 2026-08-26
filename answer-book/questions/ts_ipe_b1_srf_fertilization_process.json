@@ -1,0 +1,441 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_fertilization_process",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the process of fertilization in angiosperms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition and the tube's path",
+      "marks": 1
+    },
+    {
+      "label": "Entry into the ovule",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 2
+    },
+    {
+      "label": "Entry into the synergid",
+      "marks": 1
+    },
+    {
+      "label": "Double fertilisation",
+      "marks": 2
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.19-20, LAQ 2). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. Book scan errors cleaned here: 'Triple fussion', 'sygamy', 'endosp[erm] nucleus' with missing letters. The book defines mesogamy in this answer as entry 'through integument (or) funiculus'; its own LAQ 4 and the standard definition say through the integuments — this card writes integuments. FIGURE SCOPE: the book's 'Longitudinal section of a flower showing growth of pollen tube' is redrawn as a simplified pistil (stigma-style-ovary) with the tube reaching the embryo sac."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Sexual Reproduction in Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition and the tube's path",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The fusion of the male and female gametes is",
+          "called fertilisation.",
+          "After pollination the pollen grain germinates",
+          "on the stigma; the pollen tube grows down",
+          "through the style and reaches the ovary."
+        ],
+        "why": "The process has a fixed order — pollination, germination, tube growth, entry, fusion — so the answer opens with the definition and the tube's journey to the ovary.",
+        "common_mistakes": [
+          "Starting at the ovule and skipping the stigma-style path.",
+          "Treating pollination as fertilisation. Pollination only delivers the grain; fusion is fertilisation."
+        ],
+        "memory_tip": "Order of events: land (stigma) → grow (style) → enter (ovule) → fuse (gametes).",
+        "margin_note": "Definition plus the stigma-to-ovary journey — two sentences open the answer."
+      },
+      {
+        "id": "s2_entry_routes",
+        "kind": "text",
+        "label": "Entry into the ovule",
+        "marks": 1,
+        "mark_note": "3 routes",
+        "lines": [
+          "The pollen tube enters the ovule in any one",
+          "of three ways:",
+          "Porogamy — through the micropyle. Eg: Ottelia",
+          "Chalazogamy — through the chalaza.",
+          "Eg: Casuarina",
+          "Mesogamy — through the integuments.",
+          "Eg: Cucurbita"
+        ],
+        "why": "Whatever the route, the destination is the same embryo sac — the three names only describe which doorway the tube uses: the natural pore, the base, or through the side walls.",
+        "common_mistakes": [
+          "Mixing the examples across routes. Pair them: Ottelia-micropyle, Casuarina-chalaza, Cucurbita-integuments.",
+          "Writing porogamy as the only route — the other two exist and carry names."
+        ],
+        "memory_tip": "PORE-ogamy through the pore (micropyle); CHALAZ-ogamy through the chalaza; MESO = middle, through the wall between the two ends.",
+        "margin_note": "Three lines, one route + one example each — a compact table in words."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram — pollen tube reaching the sac",
+        "marks": 2,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "ls_flower_pollen_tube",
+          "width": 480,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "stigma",
+              "d": "M 146 48 A 34 14 0 1 0 214 48 A 34 14 0 1 0 146 48",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "pg1",
+              "d": "M 157 30 A 5 5 0 1 0 167 30 A 5 5 0 1 0 157 30",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "pg2",
+              "d": "M 175 26 A 5 5 0 1 0 185 26 A 5 5 0 1 0 175 26",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "pg3",
+              "d": "M 193 30 A 5 5 0 1 0 203 30 A 5 5 0 1 0 193 30",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "style_l",
+              "d": "M 168 60 L 160 170",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "style_r",
+              "d": "M 192 60 L 200 170",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "ovary",
+              "d": "M 106 232 A 74 62 0 1 0 254 232 A 74 62 0 1 0 106 232",
+              "ms": 800
+            },
+            {
+              "type": "stroke",
+              "id": "ovule",
+              "d": "M 140 240 A 40 34 0 1 0 220 240 A 40 34 0 1 0 140 240",
+              "ms": 550
+            },
+            {
+              "type": "stroke",
+              "id": "ov_fun",
+              "d": "M 180 274 L 180 290",
+              "ms": 160,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "syn_l",
+              "d": "M 159 212 A 7 7 0 1 0 173 212 A 7 7 0 1 0 159 212",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "syn_r",
+              "d": "M 187 212 A 7 7 0 1 0 201 212 A 7 7 0 1 0 187 212",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "eggc",
+              "d": "M 172 226 A 8 8 0 1 0 188 226 A 8 8 0 1 0 172 226",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pol1",
+              "d": "M 165 242 A 7 7 0 1 0 179 242 A 7 7 0 1 0 165 242",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "pol2",
+              "d": "M 181 242 A 7 7 0 1 0 195 242 A 7 7 0 1 0 181 242",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ant1",
+              "d": "M 163 262 A 5 5 0 1 0 173 262 A 5 5 0 1 0 163 262",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ant2",
+              "d": "M 175 266 A 5 5 0 1 0 185 266 A 5 5 0 1 0 175 266",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ant3",
+              "d": "M 187 262 A 5 5 0 1 0 197 262 A 5 5 0 1 0 187 262",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "tube",
+              "d": "M 166 40 C 162 80 172 120 176 150 C 179 172 172 196 166 204 L 167 209",
+              "ms": 1100,
+              "w": 3.5
+            },
+            {
+              "type": "stroke",
+              "id": "lead_pg",
+              "d": "M 108 34 L 155 31",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_pg",
+              "x": 20,
+              "y": 30,
+              "text": "Pollen grain",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_sti",
+              "d": "M 86 68 L 147 51",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_sti",
+              "x": 20,
+              "y": 76,
+              "text": "Stigma",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_sty",
+              "d": "M 58 124 L 162 120",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_sty",
+              "x": 20,
+              "y": 130,
+              "text": "Style",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_synl",
+              "d": "M 84 220 L 158 213",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_synl",
+              "x": 20,
+              "y": 224,
+              "text": "Synergid",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_ovy",
+              "d": "M 66 290 L 112 252",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_ovy",
+              "x": 20,
+              "y": 296,
+              "text": "Ovary",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_tube",
+              "d": "M 326 116 L 182 146",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_tube",
+              "x": 330,
+              "y": 120,
+              "text": "Pollen tube",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_egg",
+              "d": "M 326 186 L 191 226",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_egg",
+              "x": 330,
+              "y": 190,
+              "text": "Egg cell",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_pol",
+              "d": "M 326 232 L 196 241",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_pol",
+              "x": 330,
+              "y": 236,
+              "text": "Polar nuclei",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "lead_ant",
+              "d": "M 326 278 L 198 263",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_ant",
+              "x": 330,
+              "y": 282,
+              "text": "Antipodals",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "One picture holds the whole journey: grain on the stigma, tube down the style, entry into the ovule, tip at a synergid beside the egg — the same structures the written steps name.",
+        "common_mistakes": [
+          "Drawing the tube stopping at the ovary wall — it must reach the embryo sac inside the ovule.",
+          "Labelling the egg where a synergid is. The tube's tip meets a synergid first.",
+          "Leaving the pollen grain off the stigma — the tube must start from a grain."
+        ],
+        "memory_tip": "Draw pistil first (stigma, style, ovary), ovule inside, then one bold line from grain to synergid.",
+        "margin_note": "The tube must be drawn from the grain to inside the ovule — a half-drawn tube loses the mark."
+      },
+      {
+        "id": "s4_synergid_entry",
+        "kind": "text",
+        "label": "Entry into the synergid",
+        "marks": 1,
+        "mark_note": "Synergid",
+        "lines": [
+          "Whichever way it enters the ovule, the pollen",
+          "tube enters a synergid through the filiform",
+          "apparatus.",
+          "The tip of the tube ruptures and releases the",
+          "two male gametes into the synergid."
+        ],
+        "why": "This is the hand-over moment: the filiform apparatus receives the tube, the tip bursts, and the two male gametes are set free for the two fusions that follow.",
+        "common_mistakes": [
+          "Sending the tube straight into the egg. It always passes through a synergid first.",
+          "Releasing one male gamete. Two are released — both are needed for double fertilisation."
+        ],
+        "memory_tip": "All three roads meet at the synergid: filiform apparatus in, tip bursts, two gametes out.",
+        "margin_note": "Two sentences: filiform-apparatus entry, then the release of both male gametes."
+      },
+      {
+        "id": "s5_double_fertilisation",
+        "kind": "text",
+        "label": "Double fertilisation",
+        "marks": 2,
+        "mark_note": "2 fusions",
+        "lines": [
+          "Double fertilisation consists of two events:",
+          "1. Syngamy: the first male gamete fuses with",
+          "the egg cell to form the diploid zygote (2n).",
+          "2. Triple fusion: the second male gamete",
+          "fuses with the secondary nucleus of the",
+          "central cell to form the primary endosperm",
+          "nucleus (3n)."
+        ],
+        "why": "Both male gametes fuse, and with different partners — that pair of fusions is what 'double fertilisation' means, and the ploidies (2n zygote, 3n endosperm nucleus) prove which fusion is which.",
+        "common_mistakes": [
+          "Writing 2n for the primary endosperm nucleus. It is 3n: two polar nuclei + one male gamete.",
+          "Calling triple fusion 'three gametes fusing'. It is one gamete + the (already fused) two polar nuclei.",
+          "Spelling errors under pressure: it is syngamy, and fusion (the book's scan even prints 'fussion')."
+        ],
+        "memory_tip": "Gamete 1 + egg = 2n zygote. Gamete 2 + 2 polar nuclei = 3n. One fusion makes the plant, the other makes its food.",
+        "margin_note": "Name both events with their ploidies — 2n and 3n written explicitly earn the 2 marks."
+      },
+      {
+        "id": "s6_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "Zygote → embryo; PEN → endosperm",
+            "style": "boxed"
+          },
+          "The zygote develops into the embryo and the",
+          "primary endosperm nucleus develops into the",
+          "endosperm, the nutritive tissue of the seed.",
+          "Double fertilisation is a characteristic",
+          "feature of angiosperms."
+        ],
+        "why": "The closing line answers 'so what': each fusion product has a destiny (embryo, endosperm), and the whole double event is unique to angiosperms — the sentence examiners expect at the end.",
+        "common_mistakes": [
+          "Stopping after the two fusions without their fates.",
+          "Claiming double fertilisation occurs in gymnosperms too — it is the angiosperm signature."
+        ],
+        "memory_tip": "Two fusions, two futures: baby plant (embryo) and its packed lunch (endosperm).",
+        "margin_note": "The boxed fates plus 'characteristic of angiosperms' close the answer."
+      }
+    ]
+  },
+  "insider_note": "The two ploidies are the examiner's checksum — a script that writes 2n beside the zygote and 3n beside the primary endosperm nucleus signals the whole process was understood."
+}

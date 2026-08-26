@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_actinomorphic_vs_zygomorphic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate actinomorphic from zygomorphic flower.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Actinomorphic",
+      "marks": 1
+    },
+    {
+      "label": "Zygomorphic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "This pair is answered in two lines if the words ANY and ONE are capitalised or underlined - examiners reward the visible contrast.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_actinomorphic",
+        "kind": "text",
+        "label": "Actinomorphic",
+        "marks": 1,
+        "mark_note": "Actinomorphic",
+        "lines": [
+          "Actinomorphic flower: it can be cut into two",
+          "equal halves in ANY vertical plane passing",
+          "through the centre (radial symmetry).",
+          "Ex: china rose (Hibiscus), mustard."
+        ],
+        "why": "The test is the cutting plane: ANY vertical plane gives equal halves - that is radial symmetry.",
+        "common_mistakes": [
+          "Leaving out 'any plane'. Without it the two definitions read the same."
+        ],
+        "memory_tip": "Actino - like rays of a wheel: cut anywhere through the centre, the halves match.",
+        "margin_note": "The word ANY plus one example carries the mark."
+      },
+      {
+        "id": "s2_zygomorphic",
+        "kind": "boxed_final",
+        "label": "Zygomorphic",
+        "marks": 1,
+        "mark_note": "Zygomorphic",
+        "lines": [
+          {
+            "text": "Zygomorphic flower: it can be cut into two",
+            "style": "boxed"
+          },
+          "equal halves in only ONE vertical plane",
+          "(bilateral symmetry).",
+          "Ex: pea, bean."
+        ],
+        "why": "Same test, opposite result: only ONE plane works - bilateral symmetry, as in the pea flower.",
+        "common_mistakes": [
+          "Swapping the examples: Hibiscus and mustard are actinomorphic; pea and bean are zygomorphic."
+        ],
+        "memory_tip": "Zygo - only one plane, like a face: one line of symmetry only.",
+        "margin_note": "ANY versus ONE is the whole table - underline both words."
+      }
+    ]
+  }
+}

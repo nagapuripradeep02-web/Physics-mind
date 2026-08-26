@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_escape_velocity_independent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Does the escape velocity of a body depend on its mass or on the direction of projection? Give the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The mass",
+      "marks": 1
+    },
+    {
+      "label": "The direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mass",
+        "kind": "equation",
+        "label": "The mass",
+        "marks": 1,
+        "mark_note": "Mass",
+        "lines": [
+          "No, on neither.",
+          "In the escape condition ½ m v_e² = G M m / R the",
+          "mass m cancels from both sides, leaving",
+          {
+            "text": "v_e = √(2gR)",
+            "style": "eq"
+          },
+          "which contains no m at all."
+        ],
+        "why": "The heavier body needs more energy, but it also has more energy at the same speed — the two effects cancel exactly.",
+        "common_mistakes": [
+          "Saying a heavier body needs a larger escape velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mass cancels in the escape condition, so v e does not depend on m.",
+          "accept": [
+            "the mass cancels",
+            "v e is root 2 g R with no m"
+          ],
+          "reject": [
+            "kinetic energy depends only on the size of the velocity"
+          ],
+          "heard_as": [
+            "cancels",
+            "no mass"
+          ]
+        },
+        "memory_tip": "The m sits on BOTH sides of ½mv² = GMm/R, so it cancels and cannot matter.",
+        "margin_note": "First mark. Answer no first, then show the m cancelling."
+      },
+      {
+        "id": "s2_direction",
+        "kind": "boxed_final",
+        "label": "The direction",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          "Escaping is decided by ENERGY, and the kinetic",
+          "energy ½mv² depends only on the SIZE of the",
+          "velocity, never on its direction.",
+          {
+            "text": "v_e depends only on M and R of the planet",
+            "style": "boxed"
+          }
+        ],
+        "why": "The one practical exception is a direction that sends the body back into the ground; for any projection clear of the surface the direction makes no difference.",
+        "common_mistakes": [
+          "Saying a vertical projection needs a smaller escape velocity than a slanting one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That kinetic energy depends only on the size of the velocity, so the direction does not matter.",
+          "accept": [
+            "kinetic energy depends only on the speed",
+            "direction does not matter"
+          ],
+          "reject": [
+            "the mass cancels"
+          ],
+          "heard_as": [
+            "direction",
+            "energy"
+          ]
+        },
+        "memory_tip": "Kinetic energy is ½mv², and v² holds no direction. Straight up or slanting, the same speed.",
+        "margin_note": "Second mark. Name energy as the reason; direction is not in ½mv²."
+      }
+    ]
+  },
+  "insider_note": "Two questions, a mark each, and each needs its own reason — m cancelling, and energy depending only on speed."
+}

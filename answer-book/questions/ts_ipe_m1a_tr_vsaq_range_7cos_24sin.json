@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_range_7cos_24sin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the range of 7cosx − 24sinx + 5.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identify a, b, c and find √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Write the range as an interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 T-Ratios upto Transformations, answer 128.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · AP 20. RANGE, not maximum and minimum — but it is the same calculation, written as an interval at the end.⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Identify a, b, c and find √(a²+b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The sine coefficient is −24 and the cosine one is 7. Both get squared, so both signs disappear.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 7cosx − 24sinx + 5",
+          "Comparing with a sinx + b cosx + c:",
+          "a = −24, b = 7, c = 5",
+          "√(a² + b²) = √(576 + 49) = √625 = 25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = −24, b = 7, c = 5, and √(a²+b²) = 25.",
+          "accept": [
+            "a is minus twenty four b is seven c is five and the root of five seventy six plus forty nine is twenty five",
+            "identify the coefficients and get twenty five",
+            "root six twenty five is twenty five",
+            "a minus twenty four, b seven, c five, root twenty five",
+            "the amplitude is twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus twenty four",
+            "twenty five",
+            "six twenty five",
+            "seven"
+          ]
+        },
+        "why": "7, 24, 25 is a Pythagorean triple, which is why the root comes out whole. Recognising it saves a long square root.",
+        "common_mistakes": [
+          "Matching a to the cosine coefficient by habit.",
+          "Missing the constant 5."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the range as an interval",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Compute both ends, then write them as [minimum, maximum] — smallest first, which is the convention for an interval.",
+        "lines": [
+          "Maximum = c + √(a²+b²) = 5 + 25 = 30",
+          "Minimum = c − √(a²+b²) = 5 − 25 = −20",
+          "Range = [Minimum, Maximum]",
+          {
+            "text": "∴ Range = [−20, 30]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is written as the interval [−20, 30], minimum first.",
+          "accept": [
+            "maximum thirty and minimum minus twenty so the range is minus twenty to thirty",
+            "write it as the closed interval minus twenty comma thirty",
+            "the range is from minus twenty to thirty",
+            "range minus twenty to thirty ani rasta",
+            "the interval is minus twenty to thirty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty",
+            "minus twenty",
+            "range",
+            "interval"
+          ]
+        },
+        "why": "The expression takes every value between its two extremes, so the range is a closed interval — not just the two endpoints listed.",
+        "common_mistakes": [
+          "Writing the interval the wrong way round as [30, −20].",
+          "Giving only the two numbers without interval notation."
+        ]
+      }
+    ]
+  }
+}

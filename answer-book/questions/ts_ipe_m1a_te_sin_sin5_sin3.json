@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_sin_sin5_sin3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve sinθ + sin5θ = sin3θ, given 0 < θ < π.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pair and factorise",
+      "marks": 1
+    },
+    {
+      "label": "Solve branch (i)",
+      "marks": 1
+    },
+    {
+      "label": "Solve branch (ii)",
+      "marks": 1
+    },
+    {
+      "label": "List the values in the interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.70 — SAQ chapter 11 Trigonometric Equations, answer 72.2. Printed appearances: none — this answer carries no year tag. The twin of 72.1, with one crucial addition: an INTERVAL. The general solution is not the answer here — the specific values inside 0 < θ < π are, so the last step lists them. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_and_factorise",
+        "kind": "equation",
+        "label": "Pair and factorise",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Pair sin5θ with −sin3θ using the sine DIFFERENCE formula; their half-difference is θ, which matches the leftover term and gives the common factor.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sinθ + sin5θ = sin3θ",
+          "⇒ sinθ + (sin5θ − sin3θ) = 0",
+          "⇒ sinθ + 2cos((5θ+3θ)/2) sin((5θ−3θ)/2) = 0",
+          "⇒ sinθ + 2cos4θ sinθ = 0",
+          "⇒ sinθ (1 + 2cos4θ) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin5θ − sin3θ is paired to give 2cos4θ sinθ, so sinθ factors out.",
+          "accept": [
+            "pair sin five theta minus sin three theta to get two cos four theta sin theta then factor out sin theta",
+            "use the sine difference formula so a sin theta appears and factorise",
+            "the half difference is theta which matches the other term",
+            "sin five minus sin three ni pair cheste sin theta common vasthundi",
+            "apply the difference formula and take sin theta common"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin C minus sin D",
+            "cos four theta",
+            "sin theta",
+            "common factor"
+          ]
+        },
+        "why": "The half-difference of 5θ and 3θ is θ, which is exactly the leftover term — that match is why a common factor appears at all.",
+        "common_mistakes": [
+          "Pairing sinθ with sin5θ instead.",
+          "Using the sum formula on a difference."
+        ]
+      },
+      {
+        "id": "s2_solve_branch_i",
+        "kind": "equation",
+        "label": "Solve branch (i)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. sinθ = 0 gives θ = nπ — but every one of those is 0 or π or beyond, and the interval is OPEN, so this branch contributes nothing. Say so rather than leaving it out.",
+        "lines": [
+          "⇒ sinθ = 0  (or)  1 + 2cos4θ = 0",
+          "(i) If sinθ = 0 then θ = nπ,  n ∈ Z",
+          "  But 0 < θ < π is open, and every nπ is",
+          "  0, ±π, ±2π, … — none lies strictly inside.",
+          "  So this branch gives no solution here."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinθ = 0 gives θ = nπ, and that no such value lies strictly inside the open interval 0 < θ < π.",
+          "accept": [
+            "sin theta equals zero gives theta equals n pi but none of those lie strictly between zero and pi",
+            "the first branch gives multiples of pi which are excluded by the open interval",
+            "no solution from this branch in the given range",
+            "sin theta zero ante n pi, kani interval open kabatti solution ledu",
+            "this branch contributes nothing in the interval"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n pi",
+            "no solution",
+            "open interval",
+            "excluded"
+          ]
+        },
+        "why": "An open interval excludes its endpoints, so θ = 0 and θ = π are both out. Checking a branch and finding it empty is a real step, not a skipped one.",
+        "common_mistakes": [
+          "Including θ = 0 or θ = π in the answer.",
+          "Omitting this branch entirely and never saying why."
+        ]
+      },
+      {
+        "id": "s3_solve_branch_ii",
+        "kind": "equation",
+        "label": "Solve branch (ii)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. cos4θ = −1/2 = cos(2π/3), so the cosine general solution applies — then divide by 4.",
+        "lines": [
+          "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
+          "  Here α = 2π/3, and θ = 2nπ ± α gives",
+          "  4θ = 2nπ ± 2π/3",
+          "  ⇒ θ = nπ/2 ± π/6,  n ∈ Z   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos4θ = −1/2 gives 4θ = 2nπ ± 2π/3, so θ = nπ/2 ± π/6.",
+          "accept": [
+            "cos four theta is minus a half which is cos two pi by three so four theta is two n pi plus or minus two pi by three and theta is n pi by two plus or minus pi by six",
+            "use the cosine general solution then divide by four",
+            "theta is n pi over two plus or minus pi over six",
+            "cos four theta minus half, general solution rasi four tho divide cheyyali",
+            "solve the second branch to a general solution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a half",
+            "cos two pi by three",
+            "n pi by two",
+            "pi by six"
+          ]
+        },
+        "why": "cos is negative in the second quadrant, so the principal value is 2π/3 rather than π/3. Getting that wrong shifts every answer.",
+        "common_mistakes": [
+          "Taking the principal value as π/3 and losing the sign.",
+          "Dividing only one term by 4."
+        ]
+      },
+      {
+        "id": "s4_list_the_values_in_the_int",
+        "kind": "boxed_final",
+        "label": "List the values in the interval",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark, and the point of this twin. Substitute n = 0, 1, 2 into the general solution and keep only what lies strictly between 0 and π.",
+        "lines": [
+          "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
+          "n = 0: θ = ±π/6 → π/6",
+          "n = 1: θ = π/2 ± π/6 → π/3, 2π/3",
+          "n = 2: θ = π ± π/6 → 5π/6",
+          {
+            "text": "∴ θ = π/6, π/3, 2π/3, 5π/6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That specific n values are substituted and only the solutions inside 0 < θ < π are listed: π/6, π/3, 2π/3, 5π/6.",
+          "accept": [
+            "put n equals zero one and two and keep only the values between zero and pi giving pi by six pi by three two pi by three and five pi by six",
+            "substitute small n values and select those inside the interval",
+            "the four answers are pi by six pi by three two pi by three and five pi by six",
+            "n zero one two pettina values lo interval lo unnavi teeskovali",
+            "list the specific solutions in the range"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by six",
+            "pi by three",
+            "two pi by three",
+            "five pi by six",
+            "interval"
+          ]
+        },
+        "why": "When an interval is given, the general solution is working — not the answer. The answer is the finite list inside it, which is why the substitution has to be done.",
+        "common_mistakes": [
+          "Leaving the general solution as the final answer.",
+          "Including 7π/6, which is outside the interval.",
+          "Missing one of the four values."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_heliophytes_and_sciophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define heliophytes and sciophytes. Name a plant near you that is either a heliophyte or a sciophyte.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Heliophytes", "marks": 1 },
+    { "label": "Sciophytes", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 5. The book's wording is 'Name a plant from your locality'; it is kept in meaning but written as 'a plant near you' so no place is named (Rule 35). Both of the book's examples are kept: Helianthus for heliophyte and Funaria for sciophyte. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_heliophytes",
+        "kind": "text",
+        "label": "Heliophytes",
+        "marks": 1,
+        "mark_note": "Heliophytes",
+        "lines": [
+          "Heliophytes: plants that grow well in",
+          "direct sunlight. They have small, thick",
+          "leaves and a high rate of photosynthesis",
+          "in bright light.",
+          "Ex: Helianthus (sunflower)."
+        ],
+        "why": "Helios means sun, so a heliophyte is defined by the light level of its habitat — full, direct sunlight.",
+        "common_mistakes": [
+          "Defining heliophytes by heat instead of light. The dividing factor is light, not temperature.",
+          "Leaving out the example. Each half of this question carries its own example."
+        ],
+        "memory_tip": "Helios = sun (as in helium, found in the sun). Heliophyte = sun plant.",
+        "margin_note": "One definition line plus one example is a full mark. Do not write more."
+      },
+      {
+        "id": "s2_sciophytes",
+        "kind": "boxed_final",
+        "label": "Sciophytes",
+        "marks": 1,
+        "mark_note": "Sciophytes",
+        "lines": [
+          { "text": "Sciophytes: plants that grow in shade", "style": "boxed" },
+          "They grow in shady places under the shade",
+          "of taller plants, have broad thin leaves",
+          "and photosynthesise at low light.",
+          "Ex: Funaria, ferns, Oxalis."
+        ],
+        "why": "Skia means shade, so a sciophyte is the opposite habitat class to a heliophyte. Broad thin leaves catch more of the little light that reaches them.",
+        "common_mistakes": [
+          "Spelling it as psychophyte or scyophyte. It is sciophyte, from skia meaning shade.",
+          "Saying sciophytes need no light. They need low light, not zero light."
+        ],
+        "memory_tip": "Two Greek roots, one pair: helios sun, skia shade.",
+        "margin_note": "The question says name A plant, so one example on either side is enough."
+      }
+    ]
+  },
+  "insider_note": "This is a two-part definition, so a student who defines both and gives only one example usually loses half a mark. Give one example on each side."
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_epipetalous_condition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by epipetalous condition? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERROR RECORDED: the example is printed 'Datu' (scan cut); the intended plant is Datura."
+  },
+  "insider_note": "Pair this definition with epiphyllous (stamens on tepals, lily) - examiners often ask the two together.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Epipetalous — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When the stamens are attached to the petals,",
+          "the condition is called epipetalous."
+        ],
+        "why": "Epi = upon, petalous = petals: stamens standing ON the petals instead of free on the thalamus.",
+        "common_mistakes": [
+          "Writing petals attached to stamens - the direction matters: STAMENS are attached to PETALS."
+        ],
+        "memory_tip": "Epi- means upon: stamens upon the petals.",
+        "margin_note": "One sentence; keep the direction of attachment clear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ex: Datura, brinjal (Solanum).",
+            "style": "boxed"
+          }
+        ],
+        "why": "The Solanaceae flowers are the standard examples - the book's example line is cut off as 'Datu'; the intended plant is Datura.",
+        "common_mistakes": [
+          "Giving lily as the example. In lily the stamens sit on the tepals - that condition is epiphyllous."
+        ],
+        "memory_tip": "Datura and brinjal - one family (Solanaceae), both epipetalous.",
+        "margin_note": "One correct plant name is the full mark."
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_rms_speed_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is RMS speed?",
+  "appearances": [
+    {
+      "year": 2004
+    },
+    {
+      "year": 2005
+    },
+    {
+      "year": 2006
+    },
+    {
+      "year": 2009
+    },
+    {
+      "year": 2014
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. YEARS: the book prints Jun-04, May-05, Jun-06, May-09 and May-14 against this question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The RMS (root mean square) speed of a gas is",
+          "the square root of the mean of the squares of",
+          "the speeds of all the gas molecules."
+        ],
+        "why": "The name is the recipe read backwards: square every molecule's speed, take the mean of those squares, then take the root. That order matters — it is not the average speed.",
+        "common_mistakes": [
+          "Defining it as the average of the speeds. Squaring comes first; RMS is slightly larger than the average speed.",
+          "Reversing the order of operations — the mean is taken of the SQUARES."
+        ],
+        "memory_tip": "Read the name right to left: Speed → Squared → Mean → Root.",
+        "margin_note": "The three operations in order — square, mean, root — are the marked content."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "U(rms) = √( (U₁² + U₂² + … + Uₙ²) / n )",
+          {
+            "text": "U(rms) = √(3RT / M)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The first form is the definition written in symbols; the second comes from the kinetic gas equation and is the form every numerical uses, with T in kelvin and M the molar mass.",
+        "common_mistakes": [
+          "Writing 2RT or 8RT/π under the root. Those belong to the most probable and average speeds.",
+          "Forgetting the square root entirely."
+        ],
+        "memory_tip": "3 goes with RMS — the biggest number under the root for the biggest of the three speeds.",
+        "margin_note": "Either form earns the mark; the √(3RT/M) form is the one to box."
+      }
+    ]
+  },
+  "insider_note": "Asked five times across the years on record — a two-line answer with the definition in words plus √(3RT/M) has been full marks every time."
+}

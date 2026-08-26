@@ -29,7 +29,8 @@ the vehicle; re-voice only the affected clips, never a mass re-voice).
 ## Hard invariants (validated by hand in the 2026-07-04 Ch.6 trim — verbatim law)
 
 1. **Choreography bindings are sacred.** Never delete or move a `tts_sentences[]` block carrying
-   `scenario_cue` or `glow`. To shorten, FOLD unbound prose INTO the bound block; anchor every edit on the
+   `scenario_cue`, `glow`, or `focus` (the Focus Overlay pointing binding, 2026-08-19). To shorten, FOLD
+   unbound prose INTO the bound block; anchor every edit on the
    `tts_sentences` array so cue timing cannot desync. Binding count before == binding count after, per state.
 2. **The PRIMARY aha sentence is preserved verbatim** (see `aha_moment.statement` and its carrying state)
    unless the delta explicitly targets it.
@@ -51,8 +52,8 @@ the vehicle; re-voice only the affected clips, never a mass re-voice).
 
 1. `npx tsc --noEmit` → 0 errors.
 2. `npm run validate:concepts` → the target concept PASSES.
-3. Binding audit: grep count of `"scenario_cue"` and `"glow"` in the file, before vs after — MUST be equal
-   (unless the delta explicitly removed a binding, in which case name it).
+3. Binding audit: grep count of `"scenario_cue"`, `"glow"`, and `"focus"` in the file, before vs after —
+   MUST be equal (unless the delta explicitly removed a binding, in which case name it).
 
 ## Output contract
 
@@ -108,7 +109,7 @@ No findings → the report says "Candidate scar rows: none". Filing is the dispa
 ## Self-review checklist (before returning)
 
 - [ ] Every edit traceable to the delta brief — zero opportunistic "improvements".
-- [ ] Binding counts equal (or delta-named exception listed).
+- [ ] Binding counts equal — `scenario_cue` + `glow` + `focus` (or delta-named exception listed).
 - [ ] PRIMARY aha verbatim-intact (grep it).
 - [ ] No Socratic mechanic introduced; advance_mode set untouched.
 - [ ] tsc 0 + target validate PASS, evidence pasted.

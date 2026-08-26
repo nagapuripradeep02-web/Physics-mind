@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_3b_minus_2a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (1, 2, 3) and (3, 2, 1), and B is the matrix with rows (3, 2, 1) and (1, 2, 3), then find 3B − 2A.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply by the scalars",
+      "marks": 1
+    },
+    {
+      "label": "Subtract entry by entry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 15 Matrices, answer 100, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19, plus the pre-bifurcation tag 'IPE 12' which appearances[] cannot carry. THE 1+1 SPLIT IS PRINTED in the book's margin against this answer as [1 mark] on each of two working lines — a sourced split. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would work out 3B − 2A.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scalars",
+        "kind": "equation",
+        "label": "Multiply by the scalars",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A number times a matrix multiplies EVERY entry. Do both scalar multiplications before subtracting anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "3B = 3\\begin{bmatrix} 3 & 2 & 1 \\\\ 1 & 2 & 3 \\end{bmatrix} = \\begin{bmatrix} 9 & 6 & 3 \\\\ 3 & 6 & 9 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "2A = 2\\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & 2 & 1 \\end{bmatrix} = \\begin{bmatrix} 2 & 4 & 6 \\\\ 6 & 4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3B multiplies every entry of B by 3 and 2A multiplies every entry of A by 2, done before the subtraction.",
+          "accept": [
+            "multiply every entry of B by three and every entry of A by two first",
+            "do the scalar multiplications, three times B and two times A",
+            "three B means each entry times three and two A means each entry times two",
+            "B lo prathi entry ni three tho, A lo prathi entry ni two tho multiply cheyyali",
+            "scalar multiply both matrices before subtracting"
+          ],
+          "reject": [
+            "multiply them",
+            "find three B and two A"
+          ],
+          "heard_as": [
+            "three B",
+            "two A",
+            "scalar",
+            "every entry"
+          ]
+        },
+        "why": "Scalar multiplication reaches every entry, unlike matrix multiplication. Doing both scalars first keeps the subtraction to one clean step.",
+        "common_mistakes": [
+          "Multiplying only the first row by the scalar.",
+          "Subtracting first and scaling afterwards, which changes the answer."
+        ]
+      },
+      {
+        "id": "s2_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract entry by entry",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Subtract matching positions. Both matrices are 2×3, so the answer is 2×3 too.",
+        "lines": [
+          {
+            "text": "3B - 2A = \\begin{bmatrix} 9-2 & 6-4 & 3-6 \\\\ 3-6 & 6-4 & 9-2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} 7 & 2 & -3 \\\\ -3 & 2 & 7 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two matrices are subtracted entry by entry, giving rows (7, 2, −3) and (−3, 2, 7).",
+          "accept": [
+            "subtract entry by entry to get seven two minus three and minus three two seven",
+            "take away the matching entries and the answer is a two by three matrix",
+            "subtract the corresponding positions",
+            "corresponding entries subtract cheste answer vasthundi",
+            "the result has rows seven two minus three and minus three two seven"
+          ],
+          "reject": [
+            "subtract them",
+            "get the answer"
+          ],
+          "heard_as": [
+            "seven",
+            "minus three",
+            "entry by entry"
+          ]
+        },
+        "why": "Matrices add and subtract entry by entry, and only when they are the same size. Here both are 2×3, so the operation is defined.",
+        "common_mistakes": [
+          "Computing 2A − 3B and getting every sign wrong.",
+          "Writing the answer as a 3×2 matrix."
+        ]
+      }
+    ]
+  }
+}

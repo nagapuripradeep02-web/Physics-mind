@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_mericarp",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define mericarp. In which plants do you find it?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Plants",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Questions 21 and 22 are one idea asked twice - schizocarpic fruit and its pieces; answer them with the same two examples.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Mericarp — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The one-seeded pieces into which a",
+          "schizocarpic dry fruit splits are called",
+          "mericarps."
+        ],
+        "why": "A mericarp is defined THROUGH the schizocarpic fruit - it is the one-seeded unit produced by the split.",
+        "common_mistakes": [
+          "Calling a mericarp a seed. It is a piece of the FRUIT that contains one seed."
+        ],
+        "memory_tip": "Meri - part; carp - fruit: one part of a split fruit.",
+        "margin_note": "One sentence linking mericarp to the schizocarpic split."
+      },
+      {
+        "id": "s2_plants",
+        "kind": "boxed_final",
+        "label": "Plants",
+        "marks": 1,
+        "mark_note": "Plants",
+        "lines": [
+          {
+            "text": "Found in Acacia and castor; also in",
+            "style": "boxed"
+          },
+          "coriander, whose cremocarp splits into two",
+          "mericarps."
+        ],
+        "why": "The book names Acacia and castor (its schizocarpic examples); coriander is the classic textbook case - a cremocarp splitting into exactly two mericarps.",
+        "common_mistakes": [
+          "Naming plants with capsules (cotton, Datura). Capsules release seeds; they do not break into mericarps."
+        ],
+        "memory_tip": "The two halves of a coriander split are two mericarps.",
+        "margin_note": "The book's pair (Acacia, castor) is enough; coriander strengthens it."
+      }
+    ]
+  }
+}

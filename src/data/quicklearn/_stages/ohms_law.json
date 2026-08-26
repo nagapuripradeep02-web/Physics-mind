@@ -1,0 +1,30 @@
+{
+  "_comment": "Shared visual vocabulary for a particle_field scenario, keyed by particle_field_config.scenario_type. The AI tutor has no vision — it only knows the picture from this text, so an element missing here is an element the model will guess about (it invented a battery and resistor before this existed, 2026-08-18). A concept's own `stage` block in ../<id>.json extends this and wins on any conflicting `looks_like`.",
+  "viewpoint": "The view is INSIDE the metal wire, zoomed in far enough to see individual electrons moving between the atoms. It is NOT a circuit diagram. There is no battery symbol, no resistor symbol, no cell, no switch and no circuit loop drawn anywhere on the screen. The battery is outside the view; the only evidence of it is the field arrows inside the wire and the reading in the meter box.",
+  "elements": [
+    {
+      "looks_like": "small blue dots with short tails, moving steadily across the screen",
+      "means": "free electrons drifting through the metal. The tail shows the path each electron just took."
+    },
+    {
+      "looks_like": "grey circles with a plus sign inside, spaced out in a fixed grid, never moving",
+      "means": "the positive ion cores of the metal lattice — the atoms the wire is made of. Electrons collide with these, and that is what resistance is."
+    },
+    {
+      "looks_like": "orange arrows pointing sideways, one of them labelled E",
+      "means": "the electric field inside the wire. This is the push the battery creates. It appears when the battery switches on."
+    },
+    {
+      "looks_like": "a dark box in the top left corner showing a formula and a number in amperes",
+      "means": "the live current meter. The number is the current flowing right now."
+    },
+    {
+      "looks_like": "a short label in the bottom left corner",
+      "means": "the name of what this state is showing."
+    },
+    {
+      "looks_like": "a few words in a small caption near the top centre",
+      "means": "the one new thing happening in this state."
+    }
+  ]
+}

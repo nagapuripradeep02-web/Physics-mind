@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ta_rotate_alpha_normal_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Transformation of Axes"
+  },
+  "chapter": "Transformation of Axes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "When the axes are rotated through an angle α, find the transformed equation of xcosα + ysinα = p.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the given equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the change of axes",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 8 Transformation of Axes, answer 52, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20 · TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). This is the answer whose page prints the boxed 'SOLUTION STEPS' panel that the mark split above is cut on. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+  },
+  "recall_prompt": "Say how you would solve this — say what happens to the two Y terms, and which identity finishes it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transformation of Axes · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_given_equation",
+        "kind": "text",
+        "label": "Take the given equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This one carries no numbers at all — the angle of rotation is the SAME α that appears in the equation, which is what makes the answer come out so short.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given original equation is",
+          "x cosα + y sinα = p  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given equation is the original one, and its angle α is also the angle of rotation.",
+          "accept": [
+            "the given equation is the original one and alpha is the rotation angle",
+            "take x cos alpha plus y sin alpha equals p as the original",
+            "the angle in the equation is the same as the angle of rotation",
+            "ichchina equation original, alpha ye rotation angle",
+            "write the given equation and number it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "original equation",
+            "alpha",
+            "same angle"
+          ]
+        },
+        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "common_mistakes": [
+          "Introducing a second letter for the rotation angle when it is the same α.",
+          "Reading p as a variable rather than a constant."
+        ]
+      },
+      {
+        "id": "s2_write_the_change_of_axes",
+        "kind": "equation",
+        "label": "Write the change of axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The standard rotation formulas with θ = α. Nothing is evaluated, because α stays a letter throughout.",
+        "lines": [
+          "Angle of rotation θ = α, then",
+          "x = Xcosθ − Ysinθ  ⇒  x = Xcosα − Ysinα",
+          "y = Ycosθ + Xsinθ  ⇒  y = Ycosα + Xsinα"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rotation formulas are written with θ = α.",
+          "accept": [
+            "x equals X cos alpha minus Y sin alpha and y equals Y cos alpha plus X sin alpha",
+            "write the rotation formulas with theta equal to alpha",
+            "put theta equals alpha in the standard formulas",
+            "theta place lo alpha pettali",
+            "the rotation formulas with alpha"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "X cos alpha",
+            "Y sin alpha",
+            "rotation formulas"
+          ]
+        },
+        "why": "Under a rotation through θ the old coordinates are mixtures of both new ones: x = Xcosθ − Ysinθ and y = Ycosθ + Xsinθ. Writing them down correctly is most of the work.",
+        "common_mistakes": [
+          "Putting a number in for α when it must stay general.",
+          "Getting the sign of the sine term wrong in x."
+        ]
+      },
+      {
+        "id": "s3_substitute_into_the_equation",
+        "kind": "equation",
+        "label": "Substitute into the equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Substituting gives four terms; group the ones carrying X and the ones carrying Y before doing anything else.",
+        "lines": [
+          "From (1), transformed equation is",
+          "(Xcosα − Ysinα)cosα + (Ycosα + Xsinα)sinα = p",
+          "⇒ Xcos²α − Ysinα cosα + Ycosα sinα + Xsin²α = p"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives Xcos²α − Ysinαcosα + Ycosαsinα + Xsin²α = p.",
+          "accept": [
+            "substitute both expressions and expand the two brackets",
+            "put the rotation formulas into the given equation",
+            "multiply out cos alpha and sin alpha across the brackets",
+            "rendu brackets ni expand cheyyali",
+            "substitute into the given equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "expand",
+            "cos squared alpha",
+            "sin squared alpha"
+          ]
+        },
+        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "common_mistakes": [
+          "Multiplying only the first term of each bracket.",
+          "Losing one of the two mixed terms before they can cancel."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to the answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. The two Y terms are equal and opposite, so they cancel outright; the two X terms carry cos²α + sin²α, which is 1. What is left is a single letter.",
+        "lines": [
+          "⇒ X(cos²α + sin²α) = p      [∵ the two Y terms cancel]",
+          "⇒ X(1) = p      [∵ cos²α + sin²α = 1]",
+          {
+            "text": "∴ Transformed equation is X = p",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Y terms cancel and cos²α + sin²α = 1, leaving X = p.",
+          "accept": [
+            "the Y terms cancel and cos squared plus sin squared is one so X equals p",
+            "the two Y terms are equal and opposite so they cancel",
+            "using the identity the answer is X equals p",
+            "Y terms cancel avuthaayi, cos square plus sin square one",
+            "the transformed equation is X equals p"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "cos squared plus sin squared",
+            "equals one",
+            "X equals p"
+          ]
+        },
+        "why": "Rotating the axes through the line's own normal angle turns it into a line perpendicular to the new X-axis at distance p — which is exactly what X = p says.",
+        "common_mistakes": [
+          "Cancelling the X terms instead of the Y terms.",
+          "Leaving the answer as X(cos²α + sin²α) = p without using the identity."
+        ]
+      }
+    ]
+  }
+}

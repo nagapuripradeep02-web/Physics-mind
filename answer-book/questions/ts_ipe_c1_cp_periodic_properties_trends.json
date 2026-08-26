@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_periodic_properties_trends",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What is a periodic property? How do the following properties vary in a group and in a period? Explain. (a) Ionisation enthalpy (b) Electronegativity (c) Atomic radius (d) Electron gain enthalpy (e) Nature of oxides (f) Metallic nature",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Periodicity",
+      "marks": 1
+    },
+    {
+      "label": "Ionisation enthalpy",
+      "marks": 2
+    },
+    {
+      "label": "Electronegativity",
+      "marks": 1
+    },
+    {
+      "label": "Atomic radius",
+      "marks": 1
+    },
+    {
+      "label": "Electron gain enthalpy",
+      "marks": 1
+    },
+    {
+      "label": "Nature of oxides",
+      "marks": 1
+    },
+    {
+      "label": "Metallic nature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1+1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING + CONVENTIONS: the book's question line 'How are the following properties vary' is regularised. The book's periodicity definition does not say what the elements are arranged by; the card states the modern basis, increasing atomic number. The book defines electron gain enthalpy as 'energy released' and gives its trends as bare increases/decreases with no sign convention; under NCERT's convention the enthalpy change is negative when energy is released, so the card phrases the trends as the amount of energy released and records the sign convention once on the card. AI chemistry check 2026-08-25: every trend and definition re-checked against NCERT Class-11 conventions and nothing marked was changed; the ionisation enthalpy why now names the known period exceptions (Be above B, N above O) and the electron gain enthalpy why now names the group-17 exception (Cl releases more than F) and the positive noble-gas values, so neither trend can be read as absolute; three memory tips reworded to plain literal language. AI chemistry check 2026-08-25 (audit round): the electron gain enthalpy why appeared to sanction the book's unsigned increases and decreases while its common mistakes calls that error mixing the sign and the magnitude; the why now states one convention, the energy released with the sign written once. AI chemistry check 2026-08-25 (audit round 3): the ionisation enthalpy memory tip read 'size up means I.E down, in a group and in a period alike', which reads as I.E falling across a period, the opposite of the marked line; the tip now says which way size moves in each direction. No marked line changed. Status stays unverified."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Classification of Elements – Periodic Properties · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_periodicity",
+        "kind": "text",
+        "label": "Periodicity",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When the elements are arranged in the",
+          "increasing order of their atomic numbers,",
+          "elements with similar properties repeat at",
+          "regular intervals.",
+          "This repetition is called periodicity, and such",
+          "properties are called periodic properties."
+        ],
+        "why": "Arranging by atomic number brings atoms with the same outer electronic configuration under one another, and the outer configuration is what fixes chemical behaviour — so the properties repeat with it.",
+        "common_mistakes": [
+          "Writing atomic weights in place of atomic numbers. The modern arrangement is by atomic number.",
+          "Defining a periodic property without the phrase at regular intervals."
+        ],
+        "memory_tip": "Same outer configuration returns at regular intervals, so the same properties return with it.",
+        "margin_note": "This definition heads the answer; the six lettered properties follow in the question's order."
+      },
+      {
+        "id": "s2_ionisation_enthalpy",
+        "kind": "text",
+        "label": "Ionisation enthalpy",
+        "marks": 2,
+        "mark_note": "I.E: definition + trends",
+        "lines": [
+          "(a) Ionisation enthalpy: the energy required",
+          "to remove an electron from the outermost",
+          "shell of an isolated neutral gaseous atom.",
+          "Down a group: atomic size increases, the",
+          "outer electron lies farther from the nucleus,",
+          "so I.E decreases.",
+          "Across a period: atomic size decreases and",
+          "nuclear charge increases, so I.E increases.",
+          {
+            "text": "I.E ∝ 1 / atomic size",
+            "style": "eq"
+          }
+        ],
+        "why": "Ionisation enthalpy is the energy needed to overcome the nuclear pull on the outer electron, so anything that weakens that pull (distance, screening) lowers it and anything that strengthens the pull (nuclear charge, small size) raises it. The ∝ line is a qualitative shorthand for this trend, not a numerical law. The rise across a period is the general trend and has known exceptions where a half-filled or completely filled subshell is involved: beryllium is higher than boron, and nitrogen is higher than oxygen.",
+        "common_mistakes": [
+          "Dropping any of the three words isolated, gaseous, neutral from the definition.",
+          "Writing the group trend and the period trend without their reasons. The reasons are the explain in the question."
+        ],
+        "memory_tip": "Farther electron, easier removal. The size rule holds in both directions, but size itself moves opposite ways: down a group size increases, so I.E falls; across a period size decreases, so I.E rises.",
+        "margin_note": "The first property carries the full pattern — definition, group trend with reason, period trend with reason. The rest reuse it."
+      },
+      {
+        "id": "s3_electronegativity",
+        "kind": "text",
+        "label": "Electronegativity",
+        "marks": 1,
+        "mark_note": "E.N",
+        "lines": [
+          "(b) Electronegativity: the ability of a bonded",
+          "atom to attract the shared pair of electrons",
+          "towards itself.",
+          "Down a group it decreases, because the atom",
+          "gets larger.",
+          "Across a period it increases, because the atom",
+          "gets smaller and the nuclear charge grows."
+        ],
+        "why": "The pull on a shared pair follows the same size-and-charge logic as every other attraction in this answer: small atoms with high nuclear charge pull hardest.",
+        "common_mistakes": [
+          "Defining electronegativity for a free atom. It is defined for an atom inside a bond.",
+          "Leaving out the words shared pair (bond pair). Attraction for electrons in general is a different property."
+        ],
+        "memory_tip": "Small bonded atom, strong pull on the shared pair. Fluorine, the smallest halogen, has the highest value, 4.0.",
+        "margin_note": "One definition and both trends; the reason is the same size argument as I.E."
+      },
+      {
+        "id": "s4_atomic_radius",
+        "kind": "text",
+        "label": "Atomic radius",
+        "marks": 1,
+        "mark_note": "Radius",
+        "lines": [
+          "(c) Atomic radius: the distance from the",
+          "centre of the nucleus to the outermost shell",
+          "of electrons.",
+          "Down a group it increases, because new shells",
+          "are added.",
+          "Across a period it decreases, because the",
+          "nuclear charge acting on the same outer shell",
+          "increases."
+        ],
+        "why": "The two trends have two different causes and both must be named: going down adds whole shells, while going across adds pull on the same shell.",
+        "common_mistakes": [
+          "Giving one reason for both directions. New shells explains the group; greater nuclear charge explains the period.",
+          "Writing that the radius increases across a period because electrons are added. The added electrons enter the same shell while the pull grows."
+        ],
+        "memory_tip": "Down a group a new shell is added. Across a period the same outer shell is pulled in more strongly.",
+        "margin_note": "This property is the cause the other trends keep pointing back to."
+      },
+      {
+        "id": "s5_electron_gain_enthalpy",
+        "kind": "text",
+        "label": "Electron gain enthalpy",
+        "marks": 1,
+        "mark_note": "E.G.E",
+        "lines": [
+          "(d) Electron gain enthalpy: the enthalpy",
+          "change when an electron is added to an",
+          "isolated neutral gaseous atom.",
+          "For most elements energy is released, so the",
+          "enthalpy change is negative.",
+          "Down a group the energy released decreases,",
+          "because the added electron is farther from",
+          "the nucleus.",
+          "Across a period the energy released",
+          "increases, because smaller atoms with a",
+          "higher nuclear charge attract the electron",
+          "more strongly."
+        ],
+        "why": "Phrasing the trends as the amount of energy released keeps them true under the sign convention: more energy released means a more negative enthalpy change. The book writes the same trends as bare increases and decreases without saying which quantity is meant, and that wording is ambiguous, so this card always names the quantity (the energy released) and states the sign once. Both trends are general, not absolute: chlorine releases more energy than fluorine, so group 17 does not fall in a straight line, and the noble gases at the end of each period absorb energy instead of releasing it, which makes their enthalpy change positive.",
+        "common_mistakes": [
+          "Mixing the sign and the magnitude: across a period the enthalpy change becomes more negative while the energy released increases.",
+          "Calling it the energy required. For most elements energy comes out, not in."
+        ],
+        "memory_tip": "Think of the energy released: it grows toward the halogens (across) and shrinks going down the group.",
+        "margin_note": "Write the trends in terms of energy released; one line noting the negative sign covers the convention. Do not write a bare increases or decreases without saying what increases."
+      },
+      {
+        "id": "s6_nature_of_oxides",
+        "kind": "text",
+        "label": "Nature of oxides",
+        "marks": 1,
+        "mark_note": "Oxides",
+        "lines": [
+          "(e) Nature of oxides: metal oxides are",
+          "generally basic and non-metal oxides are",
+          "acidic.",
+          "Down a group, metallic nature increases, so",
+          "the oxides become more basic.",
+          "Across a period, non-metallic nature",
+          "increases, so the oxides change from basic",
+          "through amphoteric (Al₂O₃) to acidic."
+        ],
+        "why": "The oxide's character simply follows the element's character: the more metallic the element, the more basic its oxide. Naming Al₂O₃ shows where the change of character crosses the middle.",
+        "common_mistakes": [
+          "Writing the trend without the basic-from-metal, acidic-from-non-metal rule it rests on.",
+          "Leaving out the amphoteric middle. Na₂O is basic, Al₂O₃ amphoteric, Cl₂O₇ acidic across period 3."
+        ],
+        "memory_tip": "The oxide follows its element: metal side basic, non-metal side acidic, aluminium's oxide in between is amphoteric.",
+        "margin_note": "Period 3 (Na₂O → Al₂O₃ → Cl₂O₇) is the standard illustration if one is asked."
+      },
+      {
+        "id": "s7_metallic_nature",
+        "kind": "boxed_final",
+        "label": "Metallic nature",
+        "marks": 1,
+        "mark_note": "Metallic nature",
+        "lines": [
+          "(f) Metallic nature: the tendency of an",
+          "element to lose electrons.",
+          "Down a group it increases, because the atomic",
+          "radius increases and the outer electrons are",
+          "held less tightly.",
+          "Across a period it decreases, because the",
+          "atoms get smaller and hold their electrons",
+          "more tightly.",
+          {
+            "text": "Down a group: size ↑, I.E ↓, metallic nature ↑ — across a period the reverse",
+            "style": "boxed"
+          }
+        ],
+        "why": "Losing an electron is the opposite of holding one, so metallic nature runs opposite to ionisation enthalpy everywhere — which lets one boxed line summarise the whole answer.",
+        "common_mistakes": [
+          "Defining metallic nature by shine or conductivity. Here it is the tendency to lose electrons.",
+          "Writing that metallic nature increases across a period. It decreases; non-metallic nature increases."
+        ],
+        "memory_tip": "Metallic nature follows atomic size: big atom, loose electron, strong metal character.",
+        "margin_note": "The boxed line ties all six properties to the one size-and-charge argument; it is a strong close."
+      }
+    ]
+  },
+  "insider_note": "Six properties in the question means six visible headings in the answer — examiners mark this LAQ by ticking each lettered property, and a trend written without its reason is the most common half-mark loss."
+}

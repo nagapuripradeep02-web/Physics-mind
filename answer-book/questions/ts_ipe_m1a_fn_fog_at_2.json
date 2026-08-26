@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_fog_at_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R, g: R→R are defined by f(x) = 3x − 1 and g(x) = x² + 1, then find (fog)(2).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Value of g(2)",
+      "marks": 1
+    },
+    {
+      "label": "Value of (fog)(2)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Functions, question 88. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find (fog)(2) — which function acts first, and the value.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Work the inner function",
+        "marks": 1,
+        "mark_note": "Value of g(2)",
+        "margin_note": "One mark for getting inside first. g is the inner function in fog, so g(2) is computed before f touches anything.",
+        "lines": [
+          "(fog)(2) = f[g(2)]",
+          "g(2) = 2² + 1 = 4 + 1 = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in fog the INNER function is g, so g(2) is worked first, giving 5.",
+          "accept": [
+            "in f o g the inner function is g so first find g of two which is four plus one equals five",
+            "g of two is two squared plus one that is five",
+            "work g first because it is written second and acts first",
+            "modata g of two teeskovali adi five",
+            "the inner function g gives five at x equals two"
+          ],
+          "reject": [
+            "I substitute two",
+            "first I find the composition",
+            "apply both functions"
+          ],
+          "heard_as": [
+            "f o g",
+            "fog",
+            "g of two",
+            "inner",
+            "five"
+          ]
+        },
+        "why": "In fog the function written on the RIGHT acts first. Getting that order wrong changes the answer, so the examiner can see it in this line alone.",
+        "common_mistakes": [
+          "Applying f first, which computes gof and gives a different number.",
+          "Reading g(2) as 2² + 1 = 5 but then substituting 2 again into f."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Finish with the outer function",
+        "marks": 1,
+        "mark_note": "Value of (fog)(2)",
+        "margin_note": "The second mark is the number. Put g(2) into f and simplify to a single value.",
+        "lines": [
+          "∴ (fog)(2) = f(5) = 3(5) − 1",
+          "= 15 − 1 = 14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is applied to 5, giving 3 times 5 minus 1, which is 14.",
+          "accept": [
+            "f of five is three times five minus one equals fourteen",
+            "then apply f to five and get fourteen",
+            "three into five is fifteen minus one is fourteen",
+            "f of five ante fifteen minus one fourteen",
+            "the answer is fourteen"
+          ],
+          "reject": [
+            "then I get the answer",
+            "substitute and simplify",
+            "it comes out"
+          ],
+          "heard_as": [
+            "f of five",
+            "fourteen",
+            "three into five",
+            "fifteen minus one"
+          ]
+        },
+        "why": "The outer function receives the inner function's OUTPUT, not the original 2. Writing f(5) makes that visible.",
+        "common_mistakes": [
+          "Writing f(2) instead of f(5) at the last step.",
+          "Arithmetic slip: 3(5) − 1 read as 3(5 − 1)."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_inverse_equals_a_cubed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (3, −3, 4), (2, −3, 4) and (0, −1, 1), then show that A⁻¹ = A³.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Restate the claim as A⁴ = I",
+      "marks": 1
+    },
+    {
+      "label": "Find A²",
+      "marks": 2
+    },
+    {
+      "label": "Show A⁴ = I and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.56 — SAQ chapter 7 Matrices, answer 46. Printed appearances: none — this answer carries no year tag. AUTHORED LATE, and why is worth recording: the first pass over this unit scoped the Matrices SAQ chapter as answers 40-45 (pp.51-55) from the book's \"TOP 40 SAQ\" hit list. That list is a SELECTION, not an inventory — the chapter actually runs to answer 47 on p.56, and this question and its neighbour were missed. Found on 2026-08-21 while walking to the Addition of Vectors chapter boundary for Unit 4. The LAQ pass had read every page pp.22-34 and was complete; only the SAQ pass trusted the hit list. The book opens it with an \"RTP\" (Required To Prove) line, and that restatement is the whole method: A⁻¹ = A³ is hard to attack directly, A⁴ = I is not. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It follows the split the same book DOES print for Matrices answer 40 on book p.51, the only tagged 4-mark answer in the chapter. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would show that the inverse of A equals A cubed — say what you would prove instead.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rtp",
+        "kind": "equation",
+        "label": "Restate as A⁴ = I",
+        "marks": 1,
+        "mark_note": "Required to prove",
+        "margin_note": "First mark, and the idea of the question. Multiply both sides by A: A⁻¹ = A³ becomes AA⁻¹ = AA³, that is I = A⁴. Finding A⁴ is arithmetic; finding A⁻¹ would be nine cofactors.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Required To Prove (RTP):",
+          "A⁻¹ = A³  ⇔  AA⁻¹ = AA³  ⇔  I = A⁴",
+          "So it is enough to show A⁴ = I."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the claim is restated by multiplying both sides by A, turning A⁻¹ = A³ into A⁴ = I, which avoids computing an inverse at all.",
+          "accept": [
+            "multiply both sides by A so A inverse equals A cubed becomes A to the fourth equals I",
+            "restate it as A power four equals the identity, then no inverse is needed",
+            "instead of finding the inverse show A to the four is I",
+            "rendu vaipula A tho multiply cheste A power four equals I avthundi",
+            "it is enough to prove A to the fourth equals the identity matrix"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A to the fourth",
+            "A power four",
+            "equals I",
+            "multiply both sides",
+            "RTP"
+          ]
+        },
+        "why": "A⁻¹ is defined by AA⁻¹ = I, so any statement about A⁻¹ can be turned into one about products of A. That swap is what makes this a 4-mark question instead of a 7-mark one.",
+        "common_mistakes": [
+          "Computing A⁻¹ by cofactors and running out of time.",
+          "Multiplying only one side by A."
+        ]
+      },
+      {
+        "id": "s2_a_squared",
+        "kind": "equation",
+        "label": "Find A²",
+        "marks": 2,
+        "mark_note": "A squared",
+        "margin_note": "Half the marks. Nine row-by-column products. The middle row of A has a 0 in it, which shortens three of them — but every entry still has to be written out.",
+        "lines": [
+          {
+            "text": "A^2 = A\\!\\cdot\\!A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1:  9 − 6 + 0 = 3",
+          "Row 1 × column 2:  −9 + 9 − 4 = −4",
+          {
+            "text": "A^2 = \\begin{bmatrix} 3 & -4 & 4 \\\\ 0 & -1 & 0 \\\\ -2 & 2 & -3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A² is found by multiplying A by itself row against column, giving rows (3,−4,4), (0,−1,0), (−2,2,−3).",
+          "accept": [
+            "multiply A by itself row into column to get A squared",
+            "A squared is A times A, not the entries squared",
+            "work out the nine products to get A squared",
+            "A ni A tho multiply cheste A square vasthundi, row into column",
+            "find A into A carefully with the negative entries"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A squared",
+            "A into A",
+            "row into column",
+            "nine products"
+          ]
+        },
+        "why": "A⁴ is (A²)², so computing A² once and squaring it costs two multiplications instead of three. Reaching for A³ first would be a wasted step here.",
+        "common_mistakes": [
+          "Squaring each entry instead of multiplying the matrices.",
+          "Sign slips where two negatives meet.",
+          "Computing A³ instead, which does not square as cleanly."
+        ]
+      },
+      {
+        "id": "s3_a_fourth",
+        "kind": "boxed_final",
+        "label": "Show A⁴ = I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. A⁴ = (A²)(A²) — square the matrix just found. It comes out as the identity, which is exactly what was required.",
+        "lines": [
+          {
+            "text": "A^4 = (A^2)(A^2) = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Since A⁴ = I, multiplying by A⁻¹ gives A³ = A⁻¹.",
+          {
+            "text": "∴ A⁻¹ = A³",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A⁴ is found as A² times A², comes out as the identity, and that A⁴ = I is what proves A⁻¹ = A³.",
+          "accept": [
+            "A to the fourth is A squared times A squared and it comes out as the identity so A inverse equals A cubed",
+            "square A squared to get I which proves the result",
+            "A four equals I hence A inverse is A cubed",
+            "A square ni A square tho multiply cheste I vasthundi, so A inverse equals A cube",
+            "the product is the identity matrix so the claim holds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A to the fourth",
+            "identity",
+            "I",
+            "A cubed",
+            "A inverse"
+          ]
+        },
+        "why": "A matrix whose fourth power is the identity is its own inverse three steps along. Writing the final line back in terms of A⁻¹ is what answers the question actually asked.",
+        "common_mistakes": [
+          "Reaching A⁴ = I and stopping, without returning to A⁻¹ = A³.",
+          "Writing \"= 1\" instead of \"= I\"."
+        ]
+      }
+    ]
+  }
+}

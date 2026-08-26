@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_weightlessness_satellite",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does an astronaut inside an orbiting satellite feel weightless?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Everything falls together",
+      "marks": 1
+    },
+    {
+      "label": "No supporting force",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_freefall",
+        "kind": "text",
+        "label": "Everything falls together",
+        "marks": 1,
+        "mark_note": "Free fall",
+        "lines": [
+          "Inside an orbiting satellite the satellite and",
+          "everything in it are falling towards the earth",
+          "with exactly the same acceleration, because",
+          "that acceleration does not depend on mass."
+        ],
+        "why": "An orbit is a continuous free fall: the satellite falls towards the earth while also moving sideways fast enough that it never reaches the ground.",
+        "common_mistakes": [
+          "Saying there is no gravity at that height; g is still about 90% of its surface value in a low orbit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the satellite and everything in it fall with the same acceleration.",
+          "accept": [
+            "everything falls together",
+            "same acceleration",
+            "free fall"
+          ],
+          "reject": [
+            "the floor exerts no normal force"
+          ],
+          "heard_as": [
+            "falling together",
+            "free fall"
+          ]
+        },
+        "memory_tip": "Free fall, not zero gravity. Everything inside has the same acceleration.",
+        "margin_note": "First mark. Say free fall, and name the acceleration as the same for all of it."
+      },
+      {
+        "id": "s2_normal",
+        "kind": "boxed_final",
+        "label": "No supporting force",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Because nothing presses on anything else, the",
+          "floor exerts NO normal force on the astronaut,",
+          "and it is the normal force we feel as weight.",
+          {
+            "text": "Apparent weight = 0, but gravity ≠ 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "What a person feels is never gravity itself but the push of whatever is holding them up; remove the push and the feeling goes.",
+        "common_mistakes": [
+          "Concluding gravity has switched off — it is what keeps the satellite in orbit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the floor exerts no normal force, and it is the normal force we feel as weight.",
+          "accept": [
+            "no normal force",
+            "apparent weight is zero",
+            "gravity is still acting"
+          ],
+          "reject": [
+            "everything falls together"
+          ],
+          "heard_as": [
+            "normal force",
+            "apparent weight"
+          ]
+        },
+        "memory_tip": "Apparent weight is the NORMAL force and it is zero. True weight mg is still there.",
+        "margin_note": "Second mark. Name the normal force, then box the apparent-weight line."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two separate ideas: everything falls with the same acceleration, and the floor exerts no normal force."
+}

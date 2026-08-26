@@ -1,0 +1,328 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_interphase_is_not_a_resting_phase",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Though redundantly described as a resting phase, interphase does not really involve rest. Comment.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why it was called a resting phase",
+      "marks": 1
+    },
+    {
+      "label": "Labelled cell cycle diagram",
+      "marks": 1
+    },
+    {
+      "label": "G₁, S and G₂",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book pp.28-29, SAQ 3) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Cell Cycle and Cell Division · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why_called_resting",
+        "kind": "text",
+        "label": "Why it was called a resting phase",
+        "marks": 1,
+        "mark_note": "The name",
+        "lines": [
+          "Interphase is the period between two successive",
+          "M phases.",
+          "No chromosome movement and no division of the",
+          "nucleus or the cytoplasm can be seen in it, and",
+          "that is the only reason it was called a resting",
+          "phase.",
+          "It lasts more than 95% of the cell cycle — about",
+          "23 hours in a 24 hour human cell cycle."
+        ],
+        "why": "The word 'resting' describes what an early microscopist could not see, not what the cell is doing. Saying that first sets up the rest of the answer, which lists what is actually going on.",
+        "common_mistakes": [
+          "Writing that nothing happens in interphase. That is the belief the question asks you to correct.",
+          "Calling interphase a stage of mitosis. It is the phase between two divisions."
+        ],
+        "memory_tip": "Resting means no visible division, not no activity.",
+        "margin_note": "Open by saying what 'resting' was meant to describe. Two lines."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled cell cycle diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "cell_cycle_clock",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cycle_circle",
+              "d": "M 66 168 A 104 104 0 1 0 274 168 A 104 104 0 1 0 66 168",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "radius_1",
+              "d": "M 170 168 L 170.0 64.0",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "radius_2",
+              "d": "M 170 168 L 205.6 70.3",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "radius_3",
+              "d": "M 170 168 L 170.0 272.0",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "radius_4",
+              "d": "M 170 168 L 79.9 116.0",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_g1",
+              "x": 218.3,
+              "y": 185.8,
+              "text": "G₁",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 103.6,
+              "y": 202.3,
+              "text": "S",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_g2",
+              "x": 123.7,
+              "y": 122.1,
+              "text": "G₂",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "interphase_arc",
+              "d": "M 218.8 58.4 A 120 120 0 1 1 161.6 48.3",
+              "ms": 900,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "interphase_tick_1",
+              "d": "M 215.6 65.7 L 222.1 51.1",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "interphase_tick_2",
+              "d": "M 162.2 56.3 L 161.1 40.3",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "leader_interphase",
+              "d": "M 302 168 L 296 169",
+              "ms": 160,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_interphase_1",
+              "d": "M 291.0 170.0 L 299.1 164.1",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_interphase_2",
+              "d": "M 291.0 170.0 L 300.6 172.8",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_interphase",
+              "x": 306,
+              "y": 170,
+              "text": "Interphase",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "leader_m",
+              "d": "M 296 62 L 226 30 L 198 46",
+              "ms": 420,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_m_1",
+              "d": "M 190.0 54.0 L 195.9 45.9",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_m_2",
+              "d": "M 190.0 54.0 L 200.0 53.7",
+              "ms": 120,
+              "w": 1.6
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 306,
+              "y": 70,
+              "text": "M phase (mitosis)",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "note_interphase",
+              "x": 306,
+              "y": 228,
+              "text": "Interphase = G₁ + S + G₂",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "note_s",
+              "x": 306,
+              "y": 272,
+              "text": "S = DNA is duplicated",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The cycle drawn as a circle shows the point of the answer at a glance: G₁, S and G₂ together fill almost the whole ring, and M phase is the thin slice.",
+        "common_mistakes": [
+          "Drawing the four parts equal in size. M phase must look much smaller than interphase.",
+          "Leaving the interphase bracket off. Without it the diagram does not answer the question."
+        ],
+        "memory_tip": "Draw the circle, cut a thin slice for M phase, and bracket the rest as interphase.",
+        "margin_note": "A labelled circle is enough. Do not draw the stages of mitosis inside it."
+      },
+      {
+        "id": "s3_subphases",
+        "kind": "text",
+        "label": "G₁, S and G₂",
+        "marks": 1,
+        "mark_note": "The three sub-phases",
+        "lines": [
+          {
+            "text": "G₁ phase — the cell is metabolically active",
+            "style": "indent"
+          },
+          {
+            "text": "and grows continuously, but DNA is not made.",
+            "style": "indent"
+          },
+          {
+            "text": "S phase — DNA is replicated and the amount",
+            "style": "indent"
+          },
+          {
+            "text": "doubles from 2C to 4C. In an animal cell the",
+            "style": "indent"
+          },
+          {
+            "text": "centriole also duplicates.",
+            "style": "indent"
+          },
+          {
+            "text": "G₂ phase — proteins are made, the cell keeps",
+            "style": "indent"
+          },
+          {
+            "text": "growing, and the material needed for division",
+            "style": "indent"
+          },
+          {
+            "text": "is built.",
+            "style": "indent"
+          }
+        ],
+        "why": "Each of the three sub-phases has work of its own, so listing them one by one is the direct evidence that interphase is not rest.",
+        "common_mistakes": [
+          "Saying DNA is made in G₁ or G₂. Only S phase makes DNA.",
+          "Saying centrioles duplicate in plant cells. Plant cells have no centrioles."
+        ],
+        "memory_tip": "G₁ grow, S copy, G₂ grow again. Two growth phases with the copying in between.",
+        "margin_note": "One line per sub-phase. This step alone carries a full mark."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "The conclusion",
+        "lines": [
+          {
+            "text": "Interphase is a phase of intense preparation, not a phase of rest.",
+            "style": "boxed"
+          },
+          "DNA replication, synthesis of histones and other",
+          "proteins, production of RNA and ATP, and",
+          "duplication of organelles all take place in it. A cell",
+          "that did none of this could not divide at all."
+        ],
+        "why": "The last mark is for the direct answer to the word 'comment': name the activities that fill the phase and state the conclusion in one sentence.",
+        "common_mistakes": [
+          "Ending without a conclusion sentence. The question asks you to comment, so say it plainly."
+        ],
+        "memory_tip": "Replication, protein synthesis, RNA, ATP, organelles. Five kinds of work, no rest.",
+        "margin_note": "One boxed sentence plus the list of activities. That closes the answer."
+      }
+    ]
+  },
+  "insider_note": "This is a comment question, so the marks sit in the contrast: what 'resting' meant, and what actually happens. The diagram is the fastest mark on the page."
+}

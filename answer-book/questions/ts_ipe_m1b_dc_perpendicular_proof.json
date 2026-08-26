@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dc_perpendicular_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "D.C's & D.R's"
+  },
+  "chapter": "D.C's & D.R's",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the lines whose direction cosines are given by l+m+n=0, 2mn+3nl−5lm=0 are perpendicular to each other.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Eliminate l to get a quadratic in m/n",
+      "marks": 2
+    },
+    {
+      "label": "Read off the product of its roots",
+      "marks": 1
+    },
+    {
+      "label": "Eliminate n to get a quadratic in l/m",
+      "marks": 2
+    },
+    {
+      "label": "Combine and test l₁l₂+m₁m₂+n₁n₂",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.29 — LAQ chapter 3 D.C's & D.R's, answer 18. Printed appearances: AP 16 · AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say whether you need to find the two lines, and what quantity you test at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "D.C's & D.R's · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_eliminate_l",
+        "kind": "equation",
+        "label": "Eliminate l to get a quadratic in m/n",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, and the move that makes this question different from its neighbours. The two lines are NEVER found — only the PRODUCTS of their direction ratios are needed, and those come from the quadratics' roots. Divide through by n² to get a quadratic in m/n.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given l + m + n = 0  ⇒  l = −(m + n)  ……(1);",
+          "2mn + 3nl − 5lm = 0  ……(2)",
+          "Solving (1) & (2), we get  2mn − 3n(m + n) + 5m(m + n) = 0",
+          "⇒ 2mn − 3mn − 3n² + 5m² + 5mn = 0   ⇒   5m² + 4mn − 3n² = 0",
+          "⇒ 5m²/n² + 4mn/n² − 3n²/n² = 0   ⇒   5(m/n)² + 4(m/n) − 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eliminating l gives 5m² + 4mn − 3n² = 0, divided through by n² to become a quadratic in m/n.",
+          "accept": [
+            "eliminate l and divide by n squared to get a quadratic in m over n",
+            "substitute the linear relation and collect",
+            "five m over n squared plus four m over n minus three equals zero",
+            "l ni eliminate chesi n square tho divide cheyyali",
+            "this gives a quadratic in m by n"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eliminate l",
+            "divide by n squared",
+            "quadratic in m over n"
+          ]
+        },
+        "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each product is the PRODUCT OF THE ROOTS of one of these quadratics — so the individual lines never have to be found. That is what keeps a seven-mark question short.",
+        "common_mistakes": [
+          "Solving for the two lines explicitly, which is far more work than the question needs.",
+          "Dividing by m² instead of n² and getting the reciprocal roots."
+        ]
+      },
+      {
+        "id": "s2_product_of_roots",
+        "kind": "equation",
+        "label": "Read off the product of its roots",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. For ax² + bx + c = 0 the product of the roots is c/a. The two roots here are m₁/n₁ and m₂/n₂, so their product gives m₁m₂ against n₁n₂.",
+        "lines": [
+          "This is a quadratic equation in m/n; its roots are taken as  m₁/n₁,  m₂/n₂",
+          "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
+          "  [∵ Product of roots of ax² + bx + c = 0 is αβ = c/a]",
+          "⇒ m₁m₂/(n₁n₂) = −3/5   ⇒   m₁m₂/3 = n₁n₂/(−5)  ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the roots is c/a = −3/5, giving m₁m₂/3 = n₁n₂/(−5).",
+          "accept": [
+            "the product of the roots is c over a which is minus three over five",
+            "m one m two over n one n two is minus three fifths",
+            "rearrange it as m one m two over three equals n one n two over minus five",
+            "product of roots c by a",
+            "this relates m one m two and n one n two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product of roots",
+            "c over a",
+            "minus three over five",
+            "m one m two"
+          ]
+        },
+        "why": "Writing the result as a chain of equal fractions is what lets the second quadratic's result be joined onto it in the final step.",
+        "common_mistakes": [
+          "Using −b/a, the SUM of the roots, instead of c/a.",
+          "Losing the minus sign on the 5."
+        ]
+      },
+      {
+        "id": "s3_eliminate_n",
+        "kind": "equation",
+        "label": "Eliminate n to get a quadratic in l/m",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The same move with a different letter removed, giving a second quadratic whose roots are l₁/m₁ and l₂/m₂.",
+        "lines": [
+          "From (1), n = −(l + m)",
+          "Substituting this value of n in (2), we get  −2m(l + m) − 3l(l + m) − 5lm = 0",
+          "⇒ −2lm − 2m² − 3l² − 3lm − 5lm = 0   ⇒   3l² + 10lm + 2m² = 0",
+          "⇒ 3l²/m² + 10lm/m² + 2m²/m² = 0   ⇒   3(l/m)² + 10(l/m) + 2 = 0",
+          "This is a quadratic equation in l/m; its roots are taken as  l₁/m₁,  l₂/m₂",
+          "Product of roots  (l₁/m₁)(l₂/m₂) = c/a = 2/3",
+          "⇒ l₁l₂/(m₁m₂) = 2/3   ⇒   l₁l₂/2 = m₁m₂/3  ……(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eliminating n gives 3l² + 10lm + 2m² = 0, whose roots' product gives l₁l₂/2 = m₁m₂/3.",
+          "accept": [
+            "eliminate n this time and divide by m squared",
+            "the product of the roots is two over three",
+            "l one l two over two equals m one m two over three",
+            "n ni eliminate chesi malli same cheyyali",
+            "this gives the second relation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eliminate n",
+            "divide by m squared",
+            "two over three",
+            "l one l two"
+          ]
+        },
+        "why": "Each elimination produces one of the three products. Two eliminations are enough because the chain of equal fractions then links all three.",
+        "common_mistakes": [
+          "Eliminating l again and getting the same information twice.",
+          "Reading the product of roots as b/a."
+        ]
+      },
+      {
+        "id": "s4_combine_and_test",
+        "kind": "boxed_final",
+        "label": "Combine and test l₁l₂+m₁m₂+n₁n₂",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Chain (3) and (4) into one string of equal fractions, call the common value k, and add. Two lines are perpendicular exactly when that sum is zero.",
+        "lines": [
+          "From (3) and (4), we get  l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
+          "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",
+          "∴ l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 5k − 5k = 0",
+          {
+            "text": "Hence proved that the two lines are perpendicular",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l₁l₂ + m₁m₂ + n₁n₂ = 2k + 3k − 5k = 0, so the lines are perpendicular.",
+          "accept": [
+            "set the three equal fractions to k and add them",
+            "two k plus three k minus five k is zero",
+            "the sum of the products is zero so the lines are perpendicular",
+            "moodintini k ga pettesi add chesthe zero vasthundi",
+            "hence perpendicular"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equal to k",
+            "two k plus three k",
+            "minus five k",
+            "equals zero",
+            "perpendicular"
+          ]
+        },
+        "why": "The three coefficients of the original second relation, 2, 3 and −5, ARE the three products up to the common factor k — and they were chosen to add to zero, which is the whole question.",
+        "common_mistakes": [
+          "Adding the coefficients of the wrong relation.",
+          "Concluding perpendicular without showing the sum is zero."
+        ]
+      }
+    ]
+  }
+}

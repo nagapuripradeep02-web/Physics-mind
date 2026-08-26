@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_gram_molar_volume",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is gram molar volume (GMV)?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The value at STP",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. STP CONVENTION: the book's 22.4 L answer uses the older STP of 0 °C and 1 atm. At the newer NCERT standard of 0 °C and 1 bar the molar volume is 22.7 L. The examiner's expected answer here is 22.4 L; the card states its STP explicitly so the claim is exact."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Gram molar volume is the volume occupied by",
+          "one mole (one gram-molecular weight) of any",
+          "gas at STP.",
+          "It is the same for every gas, because equal",
+          "numbers of gas molecules fill equal volumes."
+        ],
+        "why": "Avogadro's law makes the molar volume a property of the gaseous state itself, not of the particular gas — one mole of hydrogen and one mole of CO₂ fill the same volume at the same temperature and pressure.",
+        "common_mistakes": [
+          "Leaving out at STP. Away from STP one mole occupies a different volume.",
+          "Restricting it to one named gas. The definition says ANY gas."
+        ],
+        "memory_tip": "One mole of any gas, one standard volume — the gas's identity does not matter.",
+        "margin_note": "The words one mole, any gas, at STP are the three marked pieces."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value at STP",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          {
+            "text": "GMV = 22.4 L (22 400 mL) at STP",
+            "style": "boxed"
+          },
+          "Here STP = 0 °C (273 K) and 1 atm.",
+          "(At the newer 1 bar standard the value is 22.7 L.)"
+        ],
+        "why": "PV = nRT with n = 1, T = 273 K and P = 1 atm gives V = 0.0821 × 273 = 22.4 L. Stating which STP is used makes the number exact rather than memorised.",
+        "common_mistakes": [
+          "Writing 22.4 mL instead of 22.4 L — a thousand-fold slip.",
+          "Quoting 22.7 L against 1 atm. 22.7 L belongs to the 1 bar convention."
+        ],
+        "memory_tip": "One mole of ANY gas: 22.4 L at 0 °C and 1 atm.",
+        "margin_note": "22.4 L is the expected board answer; the 22.7 L bracket shows the newer convention is known."
+      }
+    ]
+  },
+  "insider_note": "22.4 L is the number the examiner scans for, but writing the STP conditions beside it is what marks the answer as understood rather than recited."
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_drops_bubbles_spherical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are drops and bubbles spherical?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 6,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Surface tension reduces the area",
+      "marks": 1
+    },
+    {
+      "label": "The sphere has the least area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2024 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: surface tension T is numerically equal to the surface energy per unit area, so the work needed to increase the area by ΔA is W = T × ΔA; a free liquid mass settles at the state of least surface energy, which is the state of least surface area; for a fixed volume the sphere is the shape of least surface area. Large drops resting on a surface are flattened because their weight is no longer small beside the surface tension forces."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_surface_energy",
+        "kind": "equation",
+        "label": "Surface tension reduces the area",
+        "marks": 1,
+        "mark_note": "Least surface energy",
+        "lines": [
+          "The surface of a liquid is under tension.",
+          "Making the surface larger needs work, so a",
+          "larger area carries more surface energy:",
+          {
+            "text": "W = T × ΔA",
+            "style": "eq"
+          },
+          "A free drop settles at the state of least",
+          "surface energy, and that is the state of",
+          "least surface area."
+        ],
+        "margin_note": "First mark. Link surface tension to surface energy through W = T × ΔA.",
+        "why": "Surface tension and surface energy are the same quantity: T is force per unit length and also energy per unit area. The shape then follows from the energy being least.",
+        "common_mistakes": [
+          "Saying the air outside presses the drop into a ball. The cause is the liquid's own surface tension.",
+          "Saying the surface area becomes zero. The volume is fixed, so the area has a smallest possible value, not a zero one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That surface tension means a larger area costs more energy, so a free drop settles at the least surface area.",
+          "accept": [
+            "surface tension, least surface area",
+            "work is T into delta A",
+            "least surface energy"
+          ],
+          "reject": [
+            "a sphere has the least area for a given volume"
+          ],
+          "heard_as": [
+            "surface tension",
+            "surface energy",
+            "least area"
+          ]
+        },
+        "memory_tip": "Surface tension is energy per unit area, so least area means least energy."
+      },
+      {
+        "id": "s2_sphere",
+        "kind": "boxed_final",
+        "label": "The sphere has the least area",
+        "marks": 1,
+        "mark_note": "Sphere: least area for a given volume",
+        "lines": [
+          "For a fixed volume, the sphere is the shape",
+          "with the smallest surface area of all.",
+          "So a small free drop, and a bubble, take",
+          "the spherical shape.",
+          "Large drops resting on a surface are",
+          "flattened, because their weight is then",
+          "large enough to matter beside the surface",
+          "tension forces.",
+          {
+            "text": "Least area for a given volume: the sphere",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the sphere as the least-area shape for a fixed volume.",
+        "why": "This is the geometrical half of the answer. Without it the first step says only that the area is small, never why the shape is a ball.",
+        "common_mistakes": [
+          "Claiming every drop is spherical. A large drop on a table is flattened by its own weight.",
+          "Saying a sphere has the largest volume for a given area and leaving it there. State it the way the question needs: least area for a given volume."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a given volume the sphere has the smallest surface area, so drops and bubbles are spherical.",
+          "accept": [
+            "sphere has the least surface area",
+            "for a given volume",
+            "so the drop is spherical"
+          ],
+          "reject": [
+            "work is T into delta A"
+          ],
+          "heard_as": [
+            "sphere",
+            "least surface area",
+            "given volume"
+          ]
+        },
+        "memory_tip": "Fixed volume, smallest area: the sphere. That one fact ends the answer."
+      }
+    ]
+  },
+  "insider_note": "Two statements, one mark each: surface tension reduces the area, and the sphere is the least-area shape for a given volume. Students omit the second."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_octet_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is octet rule?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book states the rule as a bare possession statement ('an atom must possess eight electrons in its outermost energy level for its stability'); the card adds HOW atoms reach eight (losing, gaining or sharing), which is the NCERT form of the rule."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Octet rule: atoms take part in bonding so",
+          "as to have eight electrons in their",
+          "outermost shell.",
+          "They reach eight by losing, gaining or",
+          "sharing electrons, arriving at the nearest",
+          "noble gas configuration."
+        ],
+        "why": "Eight outer electrons is the noble gas arrangement, the most stable one, so every bond in this chapter is explained as a route to eight.",
+        "common_mistakes": [
+          "Writing eight electrons in the atom instead of eight electrons in the outermost shell.",
+          "Leaving out how atoms reach eight: by losing, gaining or sharing electrons."
+        ],
+        "memory_tip": "Octet means a set of eight. Eight outer electrons is the noble gas count.",
+        "margin_note": "The words outermost shell and eight electrons must both appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "NaCl: Na (2,8,1) → Na⁺ (2,8); Cl (2,8,7) → Cl⁻ (2,8,8)",
+            "style": "boxed"
+          },
+          "Sodium loses one electron and chlorine",
+          "gains it. Both ions end with eight",
+          "electrons in the outermost shell."
+        ],
+        "why": "One worked example shows the rule in use: sodium reaches eight by losing an electron, chlorine by gaining one.",
+        "common_mistakes": [
+          "Writing Na⁺ as 2,8,1 — the ion has lost its outer electron, so it is 2,8."
+        ],
+        "memory_tip": "Sodium gives one electron, chlorine takes it, and both end at eight.",
+        "margin_note": "Any correct example is accepted. NaCl is the shortest one to write."
+      }
+    ]
+  },
+  "insider_note": "The two-mark answer is the rule plus one example with electron counts in brackets — the bracketed counts are what separate a full answer from a half answer."
+}

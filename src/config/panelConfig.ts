@@ -1862,6 +1862,47 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #6 — same newtons_laws_body engine,
+    // the FIRST concept in the fleet to render the U_grav energy bar and pair
+    // it with a work accumulator where the claim IS their numeric CHANGE-
+    // identity. Potential energy U is DEFINED by ΔU = −W_conservative: gravity's
+    // negative work climbing a frictionless slope is mirrored joule-for-joule
+    // by U rising (the PRIMARY aha), and returned on the descent; a rough
+    // slope adds a third bar (friction) that falls on both legs with no
+    // partner, because only a conservative (path-independent) force can have
+    // a potential energy. Pure configuration, zero renderer edits (0d).
+    // Alex pipeline, 2026-08-10.
+    potential_energy_definition: {
+        concept_id: 'potential_energy_definition',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'potential_energy_definition',
+            label: 'Potential Energy — ΔU = −W_conservative (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #7 — same newtons_laws_body engine.
+    // Near the Earth's surface a body's gravitational potential energy is
+    // U = mgh, measured from a height you CHOOSE to call zero — the choice
+    // moves every U value but never ΔU = mgΔh. One canonical apparatus (a cart
+    // on a ramp, a U bar, a dashed h = 0 line) carries three invariances: same
+    // place gives the same U (round trip), a moved zero shifts every U but
+    // never ΔU (the PRIMARY aha), and a different slope to the same height
+    // gives the same U (path independence). Closes the loop by deriving
+    // U = mgh from potential_energy_definition's ΔU = −W_conservative applied
+    // to gravity. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-10.
+    gravitational_potential_energy: {
+        concept_id: 'gravitational_potential_energy',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gravitational_potential_energy',
+            label: 'Gravitational Potential Energy — U = mgh (3D)',
+        },
+    },
+
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 for the Phase-0d parallel authoring wave, so
     // the five desks never edit this file. Gate 8b hard-FAILs a concept that is

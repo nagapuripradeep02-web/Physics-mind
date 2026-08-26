@@ -1,0 +1,893 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_laq_racemose_inflorescences",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the different types of racemose inflorescences.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Characters of racemose type",
+      "marks": 1
+    },
+    {
+      "label": "Six types with examples",
+      "marks": 5
+    },
+    {
+      "label": "Labelled diagrams",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK ERRORS RECORDED: 'Achyranthus' for Achyranthes and 'pedicillate' for pedicellate; both written correctly in this card."
+  },
+  "insider_note": "The diagram set carries two full marks here - practise the six stick figures until each takes thirty seconds.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Morphology of Flowering Plants · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_characters",
+        "kind": "text",
+        "label": "Racemose — characters",
+        "marks": 1,
+        "mark_note": "Characters",
+        "lines": [
+          {
+            "text": "Racemose inflorescence — characters:",
+            "style": "heading"
+          },
+          {
+            "text": "The peduncle grows indefinitely; it never",
+            "style": "boxed"
+          },
+          "ends in a flower.",
+          "On a long peduncle the flowers are acropetal:",
+          "oldest at the base, youngest at the tip.",
+          "On a condensed peduncle they are centripetal:",
+          "oldest outside, youngest at the centre.",
+          "Unbranched peduncle: simple inflorescence.",
+          "Branched peduncle: compound inflorescence."
+        ],
+        "why": "Every racemose type below is this one rule in a different shape: the main axis keeps growing, so the youngest flowers are always at the tip (long axis) or at the centre (condensed axis).",
+        "common_mistakes": [
+          "Writing basipetal for racemose. Basipetal order belongs to the cymose type.",
+          "Saying the peduncle ends in a flower. That is the cymose character."
+        ],
+        "memory_tip": "Racemose - the axis keeps Rising; acropetal - the Apex is youngest.",
+        "margin_note": "The boxed indefinite-growth line plus acropetal order earns this mark."
+      },
+      {
+        "id": "s2_raceme",
+        "kind": "text",
+        "label": "1. Raceme",
+        "marks": 1,
+        "mark_note": "Raceme",
+        "lines": [
+          "1. Raceme: the peduncle is long and bears",
+          "bracteate, pedicellate flowers in acropetal",
+          "order.",
+          "Simple raceme: Crotalaria.",
+          "Compound raceme (panicle): Mangifera (mango)."
+        ],
+        "why": "Raceme is the reference type - stalked (pedicellate) flowers on a long axis. Every other type is described by what changes from the raceme.",
+        "common_mistakes": [
+          "Forgetting that the compound raceme has its own name, panicle.",
+          "Writing sessile. Raceme flowers have pedicels; sessile flowers make a spike."
+        ],
+        "memory_tip": "Raceme is the base plan; a branched raceme is a panicle (mango).",
+        "margin_note": "Definition plus both examples - simple and compound - for the full mark."
+      },
+      {
+        "id": "s3_corymb",
+        "kind": "text",
+        "label": "2. Corymb",
+        "marks": 1,
+        "mark_note": "Corymb",
+        "lines": [
+          "2. Corymb: the older (lower) flowers have",
+          "longer pedicels and the younger ones shorter,",
+          "so all flowers are brought to the same level.",
+          "Simple corymb: Cassia.",
+          "Compound corymb: cauliflower."
+        ],
+        "why": "The corymb is a raceme with unequal pedicels doing a levelling job: lower flowers reach up on longer stalks, so the top of the cluster is flat.",
+        "common_mistakes": [
+          "Confusing corymb with umbel. In a corymb the pedicels start at DIFFERENT points on the axis; in an umbel they start at ONE point."
+        ],
+        "memory_tip": "Corymb - a flat top made by longer stalks from lower down.",
+        "margin_note": "The same-level line is the scoring phrase; cauliflower is the expected compound example."
+      },
+      {
+        "id": "s4_umbel",
+        "kind": "text",
+        "label": "3. Umbel",
+        "marks": 1,
+        "mark_note": "Umbel",
+        "lines": [
+          "3. Umbel: the peduncle is condensed to a",
+          "point; equal pedicellate flowers arise from",
+          "that one point, covered at the base by an",
+          "involucre of bracts.",
+          "Simple umbel: onion.",
+          "Compound umbel: carrot."
+        ],
+        "why": "Condensing the raceme axis to a single point turns it into an umbel - so all pedicels share one origin, like umbrella ribs, and the bracts crowd there as an involucre.",
+        "common_mistakes": [
+          "Leaving out the involucre of bracts - it is the marked feature of the umbel.",
+          "Writing pedicels of different lengths. Umbel pedicels are about equal."
+        ],
+        "memory_tip": "Umbel = umbrella: all ribs from one point. Onion simple, carrot compound.",
+        "margin_note": "One point of origin + involucre + the two examples."
+      },
+      {
+        "id": "s5_spike",
+        "kind": "text",
+        "label": "4. Spike",
+        "marks": 1,
+        "mark_note": "Spike",
+        "lines": [
+          "4. Spike: the long peduncle bears bracteate,",
+          "sessile flowers in acropetal order.",
+          "It is characteristic of the family Poaceae.",
+          "Simple spike: Achyranthes.",
+          "Compound spike: Oryza sativa (paddy)."
+        ],
+        "why": "A spike is a raceme whose flowers lost their stalks - sessile is the single scoring word. The compound spike of paddy ties it to Poaceae.",
+        "common_mistakes": [
+          "Writing pedicellate. Sessile (no pedicel) is what makes a spike a spike."
+        ],
+        "memory_tip": "Spike - flowers sit straight on the axis, no stalk (sessile).",
+        "margin_note": "The book prints 'Achyranthus'; write Achyranthes."
+      },
+      {
+        "id": "s6_spadix_head",
+        "kind": "text",
+        "label": "5. Spadix and 6. Head",
+        "marks": 1,
+        "mark_note": "Spadix + head",
+        "lines": [
+          "5. Spadix: a fleshy peduncle bears sessile",
+          "unisexual and neuter flowers, protected by a",
+          "large modified bract called the spathe.",
+          "Ex: Colocasia.",
+          "6. Head: unisexual and bisexual sessile",
+          "flowers develop centripetally on a condensed,",
+          "flattened peduncle (receptacle).",
+          "Ex: sunflower."
+        ],
+        "why": "Spadix = a spike wrapped in a spathe with unisexual flowers; head = the condensed-axis case, where the flat receptacle carries the youngest florets at its centre (centripetal).",
+        "common_mistakes": [
+          "Forgetting the spathe - it is the identifying cover of the spadix.",
+          "Writing acropetal for the head. On the condensed receptacle the order is centripetal."
+        ],
+        "memory_tip": "Spadix wears a spathe; the head is a flat plate filled from the rim to the centre.",
+        "margin_note": "Two types in one block: one defining line and one example each."
+      },
+      {
+        "id": "s7_figure",
+        "kind": "diagram",
+        "label": "Diagrams — six types",
+        "marks": 2,
+        "mark_note": "Diagrams",
+        "figure": {
+          "id": "racemose_types",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ra_axis",
+              "d": "M 90 146 L 90 40",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ra_arrow_a",
+              "d": "M 90 40 L 86 48",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ra_arrow_b",
+              "d": "M 90 40 L 94 48",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_1",
+              "d": "M 90 132 L 64 120",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_1",
+              "d": "M 56.0 118 A 5.0 5.0 0 1 0 66.0 118 A 5.0 5.0 0 1 0 56.0 118",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_2",
+              "d": "M 90 118 L 114 107",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_2",
+              "d": "M 112.0 105 A 5.0 5.0 0 1 0 122.0 105 A 5.0 5.0 0 1 0 112.0 105",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_3",
+              "d": "M 90 104 L 68 95",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_3",
+              "d": "M 60.5 93 A 4.5 4.5 0 1 0 69.5 93 A 4.5 4.5 0 1 0 60.5 93",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_4",
+              "d": "M 90 90 L 109 82",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_4",
+              "d": "M 108.0 80 A 4.0 4.0 0 1 0 116.0 80 A 4.0 4.0 0 1 0 108.0 80",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_5",
+              "d": "M 90 76 L 73 69",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_5",
+              "d": "M 67.5 67 A 3.5 3.5 0 1 0 74.5 67 A 3.5 3.5 0 1 0 67.5 67",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_ped_6",
+              "d": "M 90 62 L 104 56",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_fl_6",
+              "d": "M 103.0 54 A 3.0 3.0 0 1 0 109.0 54 A 3.0 3.0 0 1 0 103.0 54",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ra_bract_1",
+              "d": "M 90 132 L 84 138",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "ra_bract_2",
+              "d": "M 90 118 L 96 124",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "ra_bract_3",
+              "d": "M 90 104 L 84 110",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_flower",
+              "d": "M 46 56 L 66 64",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_flower_tip_a",
+              "d": "M 66 64 L 60 65",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_flower_tip_b",
+              "d": "M 66 64 L 62 59",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_ra_flower",
+              "x": 6,
+              "y": 52,
+              "text": "Flower",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_pedicel",
+              "d": "M 56 99 L 75 100",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_pedicel_tip_a",
+              "d": "M 75 100 L 70 103",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_pedicel_tip_b",
+              "d": "M 75 100 L 70 97",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_ra_pedicel",
+              "x": 6,
+              "y": 96,
+              "text": "Pedicel",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_bract",
+              "d": "M 42 137 L 80 136",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_bract_tip_a",
+              "d": "M 80 136 L 75 139",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ra_lead_bract_tip_b",
+              "d": "M 80 136 L 75 133",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_ra_bract",
+              "x": 6,
+              "y": 140,
+              "text": "Bract",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "co_axis",
+              "d": "M 260 146 L 260 70",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_1",
+              "d": "M 260 130 L 218 64",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_2",
+              "d": "M 260 130 L 302 64",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_3",
+              "d": "M 260 112 L 232 60",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_4",
+              "d": "M 260 112 L 288 60",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_5",
+              "d": "M 260 95 L 246 58",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_6",
+              "d": "M 260 95 L 274 58",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "co_ped_7",
+              "d": "M 260 70 L 260 58",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_1",
+              "d": "M 210 60 A 6 6 0 1 0 222 60 A 6 6 0 1 0 210 60",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_2",
+              "d": "M 298 60 A 6 6 0 1 0 310 60 A 6 6 0 1 0 298 60",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_3",
+              "d": "M 225 55 A 5 5 0 1 0 235 55 A 5 5 0 1 0 225 55",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_4",
+              "d": "M 285 55 A 5 5 0 1 0 295 55 A 5 5 0 1 0 285 55",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_5",
+              "d": "M 241 53 A 4 4 0 1 0 249 53 A 4 4 0 1 0 241 53",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_6",
+              "d": "M 271 53 A 4 4 0 1 0 279 53 A 4 4 0 1 0 271 53",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "co_fl_7",
+              "d": "M 257 53 A 3 3 0 1 0 263 53 A 3 3 0 1 0 257 53",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_ped",
+              "d": "M 430 146 L 430 100",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "um_ray_1",
+              "d": "M 430 100 L 394 62",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "um_ray_2",
+              "d": "M 430 100 L 412 52",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "um_ray_3",
+              "d": "M 430 100 L 430 48",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "um_ray_4",
+              "d": "M 430 100 L 448 52",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "um_ray_5",
+              "d": "M 430 100 L 466 62",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "um_fl_1",
+              "d": "M 387 58 A 5 5 0 1 0 397 58 A 5 5 0 1 0 387 58",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_fl_2",
+              "d": "M 406 47 A 5 5 0 1 0 416 47 A 5 5 0 1 0 406 47",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_fl_3",
+              "d": "M 425 42 A 5 5 0 1 0 435 42 A 5 5 0 1 0 425 42",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_fl_4",
+              "d": "M 444 47 A 5 5 0 1 0 454 47 A 5 5 0 1 0 444 47",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_fl_5",
+              "d": "M 463 58 A 5 5 0 1 0 473 58 A 5 5 0 1 0 463 58",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_1",
+              "d": "M 430 100 L 418 112",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_2",
+              "d": "M 430 100 L 442 112",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_3",
+              "d": "M 430 100 L 424 116",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_4",
+              "d": "M 430 100 L 436 116",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_leader",
+              "d": "M 444 114 L 437 108",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_leader_tip_a",
+              "d": "M 437 108 L 443 109",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "um_inv_leader_tip_b",
+              "d": "M 437 108 L 439 114",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_um_inv",
+              "x": 446,
+              "y": 118,
+              "text": "involucre",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "sp_axis",
+              "d": "M 90 284 L 90 210",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "sp_arrow_a",
+              "d": "M 90 210 L 86 218",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "sp_arrow_b",
+              "d": "M 90 210 L 94 218",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "sp_fl_1",
+              "d": "M 79.5 268 A 4.5 4.5 0 1 0 88.5 268 A 4.5 4.5 0 1 0 79.5 268",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sp_fl_2",
+              "d": "M 92.0 255 A 4.0 4.0 0 1 0 100.0 255 A 4.0 4.0 0 1 0 92.0 255",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sp_fl_3",
+              "d": "M 80.5 242 A 3.5 3.5 0 1 0 87.5 242 A 3.5 3.5 0 1 0 80.5 242",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sp_fl_4",
+              "d": "M 93.0 230 A 3.0 3.0 0 1 0 99.0 230 A 3.0 3.0 0 1 0 93.0 230",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sp_bract_1",
+              "d": "M 90 272 L 82 278",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "sp_bract_2",
+              "d": "M 90 244 L 98 250",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "sp_lead_peduncle",
+              "d": "M 62 252 L 87 257",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "sp_lead_peduncle_tip_a",
+              "d": "M 87 257 L 81 259",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "sp_lead_peduncle_tip_b",
+              "d": "M 87 257 L 83 253",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_sp_peduncle",
+              "x": 6,
+              "y": 250,
+              "text": "Peduncle",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "sx_spathe_l",
+              "d": "M 240 284 C 233 250 238 214 256 196",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "sx_spathe_r",
+              "d": "M 280 284 C 287 250 282 214 264 196",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "sx_base",
+              "d": "M 240 284 L 280 284",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "sx_axis",
+              "d": "M 260 278 L 260 206",
+              "ms": 340,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "sx_fl_1",
+              "d": "M 253 262 A 3 3 0 1 0 259 262 A 3 3 0 1 0 253 262",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sx_fl_2",
+              "d": "M 261 252 A 3 3 0 1 0 267 252 A 3 3 0 1 0 261 252",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sx_fl_3",
+              "d": "M 253 242 A 3 3 0 1 0 259 242 A 3 3 0 1 0 253 242",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sx_fl_4",
+              "d": "M 261 232 A 3 3 0 1 0 267 232 A 3 3 0 1 0 261 232",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "sx_spathe_leader",
+              "d": "M 284 220 L 278 226",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "sx_spathe_leader_tip_a",
+              "d": "M 278 226 L 279 220",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "sx_spathe_leader_tip_b",
+              "d": "M 278 226 L 284 225",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_sx_spathe",
+              "x": 286,
+              "y": 216,
+              "text": "spathe",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "hd_dome",
+              "d": "M 396 258 C 400 242 460 242 464 258",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "hd_base",
+              "d": "M 396 258 C 402 270 458 270 464 258",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "hd_ray_l",
+              "d": "M 398 254 C 388 250 382 240 386 232 C 392 234 398 244 400 252",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "hd_ray_r",
+              "d": "M 462 254 C 472 250 478 240 474 232 C 468 234 462 244 460 252",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "hd_fl_1",
+              "d": "M 410 248 L 406 234",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "hd_fl_2",
+              "d": "M 420 246 L 418 234",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "hd_fl_3",
+              "d": "M 430 245 L 430 237",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "hd_fl_4",
+              "d": "M 440 246 L 442 234",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "hd_fl_5",
+              "d": "M 450 248 L 454 234",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "hd_inv_1",
+              "d": "M 402 262 L 396 272",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "hd_inv_2",
+              "d": "M 412 265 L 408 275",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "hd_inv_3",
+              "d": "M 448 265 L 452 275",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "hd_inv_4",
+              "d": "M 458 262 L 464 272",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "lbl_raceme",
+              "x": 53,
+              "y": 170,
+              "text": "Raceme",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_corymb",
+              "x": 223,
+              "y": 170,
+              "text": "Corymb",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_umbel",
+              "x": 399,
+              "y": 170,
+              "text": "Umbel",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_spike",
+              "x": 59,
+              "y": 306,
+              "text": "Spike",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_spadix",
+              "x": 223,
+              "y": 306,
+              "text": "Spadix",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_head",
+              "x": 405,
+              "y": 306,
+              "text": "Head",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "why": "The six stick diagrams are the exam-standard schematics: raceme (stalked flowers, growing tip), corymb (flat top), umbel (one point, involucre), spike (sessile), spadix (spathe) and head (dome receptacle). Smaller circles toward the tip show the acropetal order.",
+        "common_mistakes": [
+          "Drawing the biggest flowers at the top. Youngest (smallest) flowers sit at the tip or centre in every racemose type.",
+          "Drawing the umbel pedicels from different points - they must leave ONE point.",
+          "Ending the raceme axis in a flower. The tip is a growing point, so draw the arrow."
+        ],
+        "memory_tip": "Draw the axis first, put an arrow on its tip, then hang the flowers oldest-first from the bottom.",
+        "margin_note": "These six schematics take 3-4 minutes total; label Flower, Pedicel, Bract, Peduncle once."
+      }
+    ]
+  }
+}

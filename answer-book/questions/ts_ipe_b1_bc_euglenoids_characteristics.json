@@ -1,0 +1,323 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_euglenoids_characteristics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the characteristics of Euglenoids?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Habitat and pellicle",
+      "marks": 1
+    },
+    {
+      "label": "Flagella and cell parts",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram of Euglena",
+      "marks": 1
+    },
+    {
+      "label": "Nutrition and reproduction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book omits the mixotrophic-nutrition point and the pigments-identical-to-higher-plants line; both are core syllabus facts and are included here. The book's figure labels Eye spot, Flagella and Pellicle; this card's figure adds Reservoir and Nucleus so the drawing shows what the answer text names."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biological Classification · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_habitat_pellicle",
+        "kind": "text",
+        "label": "Habitat and pellicle",
+        "marks": 1,
+        "mark_note": "Pellicle",
+        "lines": [
+          "Euglenoids are mostly fresh water organisms",
+          "found in stagnant water.",
+          "In place of a cell wall, the body has a",
+          "protein-rich layer called the pellicle.",
+          "The pellicle makes the body flexible."
+        ],
+        "why": "The pellicle is the defining covering of this group: because it is protein and not a rigid wall, the cell can change its shape as it moves.",
+        "common_mistakes": [
+          "Writing that euglenoids have a cellulose cell wall. They have no cell wall at all.",
+          "Leaving out flexible — that property is why the pellicle is worth naming."
+        ],
+        "memory_tip": "No wall — pellicle: a protein layer, so the body is flexible.",
+        "margin_note": "Habitat plus the pellicle point; protein-rich is the exact term."
+      },
+      {
+        "id": "s2_flagella_parts",
+        "kind": "text",
+        "label": "Flagella and cell parts",
+        "marks": 1,
+        "mark_note": "Flagella, parts",
+        "lines": [
+          "There are two flagella — one short, one long.",
+          "The anterior part has a cytostome,",
+          "a cytopharynx and a reservoir.",
+          "An eye spot lies on the membrane",
+          "of the reservoir."
+        ],
+        "why": "These are the structures the diagram must also show: the paired flagella for movement, the anterior gullet parts, and the light-sensitive eye spot beside the reservoir.",
+        "common_mistakes": [
+          "Writing one flagellum. The pair is one short plus one long.",
+          "Placing the eye spot at the posterior end; it lies near the reservoir at the anterior end."
+        ],
+        "memory_tip": "Front of the cell in order: cytostome, cytopharynx, reservoir — eye spot on the reservoir.",
+        "margin_note": "Two flagella and the three anterior parts; the diagram below repeats them."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram of Euglena",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "euglena_structure",
+          "width": 480,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "body_outline",
+              "d": "M 150 175 L 151.2 167.4 L 152.9 163.3 L 154.8 160 L 156.9 157.2 L 159.2 154.7 L 161.5 152.5 L 164 150.5 L 166.5 148.6 L 169.1 147 L 171.8 145.4 L 174.6 144 L 177.4 142.7 L 180.3 141.5 L 183.2 140.4 L 186.2 139.4 L 189.2 138.5 L 192.3 137.7 L 195.5 137.1 L 198.6 136.5 L 201.9 136 L 205.1 135.6 L 208.4 135.3 L 211.8 135.1 L 215.1 135 L 218.6 135 L 222 135.2 L 225.5 135.4 L 229 135.7 L 232.5 136 L 236.1 136.4 L 239.7 136.9 L 243.3 137.4 L 247 137.9 L 250.7 138.5 L 254.4 139.2 L 258.1 139.8 L 261.9 140.6 L 265.7 141.3 L 269.5 142.1 L 273.4 143 L 277.2 143.9 L 281.1 144.8 L 285 145.8 L 289 146.8 L 292.9 147.8 L 296.9 148.9 L 300.9 150 L 304.9 151.2 L 309 152.4 L 313.1 153.6 L 317.1 154.9 L 321.3 156.2 L 325.4 157.6 L 329.5 159 L 333.7 160.4 L 337.9 161.9 L 342.1 163.4 L 346.3 165 L 350.5 166.5 L 354.8 168.2 L 359.1 169.8 L 363.4 171.5 L 367.7 173.2 L 372 175 L 367.7 176.8 L 363.4 178.5 L 359.1 180.2 L 354.8 181.8 L 350.5 183.5 L 346.3 185 L 342.1 186.6 L 337.9 188.1 L 333.7 189.6 L 329.5 191 L 325.4 192.4 L 321.3 193.8 L 317.1 195.1 L 313.1 196.4 L 309 197.6 L 304.9 198.8 L 300.9 200 L 296.9 201.1 L 292.9 202.2 L 289 203.2 L 285 204.2 L 281.1 205.2 L 277.2 206.1 L 273.4 207 L 269.5 207.9 L 265.7 208.7 L 261.9 209.4 L 258.1 210.2 L 254.4 210.8 L 250.7 211.5 L 247 212.1 L 243.3 212.6 L 239.7 213.1 L 236.1 213.6 L 232.5 214 L 229 214.3 L 225.5 214.6 L 222 214.8 L 218.6 215 L 215.1 215 L 211.8 214.9 L 208.4 214.7 L 205.1 214.4 L 201.9 214 L 198.6 213.5 L 195.5 212.9 L 192.3 212.3 L 189.2 211.5 L 186.2 210.6 L 183.2 209.6 L 180.3 208.5 L 177.4 207.3 L 174.6 206 L 171.8 204.6 L 169.1 203 L 166.5 201.4 L 164 199.5 L 161.5 197.5 L 159.2 195.3 L 156.9 192.8 L 154.8 190 L 152.9 186.7 L 151.2 182.6 L 150 175 Z",
+              "ms": 950
+            },
+            {
+              "type": "stroke",
+              "id": "canal_top",
+              "d": "M 153 167.5 L 174.5 167",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "canal_bottom",
+              "d": "M 153 174.5 L 174.5 173",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "reservoir",
+              "d": "M 174 170 A 8 8 0 1 0 190 170 A 8 8 0 1 0 174 170",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "eyespot",
+              "d": "M 173.5 156 A 3.5 3.5 0 1 0 180.5 156 A 3.5 3.5 0 1 0 173.5 156",
+              "ms": 220,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "nucleus",
+              "d": "M 236 176 A 26 14 0 1 0 288 176 A 26 14 0 1 0 236 176",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "nucleolus",
+              "d": "M 258.5 176 A 3.5 3.5 0 1 0 265.5 176 A 3.5 3.5 0 1 0 258.5 176",
+              "ms": 160,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "chloro_1",
+              "d": "M 292 168 A 8 5 0 1 0 308 168 A 8 5 0 1 0 292 168",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "chloro_2",
+              "d": "M 312 185 A 8 5 0 1 0 328 185 A 8 5 0 1 0 312 185",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "chloro_3",
+              "d": "M 262 197 A 8 5 0 1 0 278 197 A 8 5 0 1 0 262 197",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "flagellum_long",
+              "d": "M 150 170 L 146.7 167.1 L 142.8 164.7 L 139 162.2 L 136 159.1 L 134.1 154.9 L 133.2 150 L 132.5 144.9 L 131.3 140.3 L 129 136.5 L 125.6 133.7 L 121.2 131.6 L 116.4 130 L 111.6 128.3 L 107.4 126.2 L 104.1 123.3 L 101.9 119.5 L 100.5 114.9 L 99.6 110 L 98.7 105.1 L 97.2 100.7 L 94.8 97 L 91.5 94.1 L 87.4 91.8 L 82.8 90 L 78.3 88.1 L 74.3 85.8 L 71 82.8 L 68.7 79.1 L 67.2 74.7 L 66 70",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "flagellum_short",
+              "d": "M 150.5 173.5 L 148.9 175.7 L 147.6 178.5 L 145.7 180.3 L 142.8 180.9 L 139.6 181.1 L 136.6 181.5 L 134.2 182.7 L 132.5 184.8 L 131.2 187.5 L 130 190.4 L 128.6 192.8 L 126.5 194.5 L 123.9 195.5 L 121 196",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "lead_flagellum",
+              "d": "M 98 58 L 100.2 108.9",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "arr_flagellum",
+              "d": "M 103.4 107.5 L 100.5 114.9 L 96.9 107.8",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_flagellum",
+              "x": 24,
+              "y": 46,
+              "text": "Flagellum",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_eyespot",
+              "d": "M 158 112 L 173.5 145.6",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "arr_eyespot",
+              "d": "M 175.9 143 L 176 151 L 170 145.7",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_eyespot",
+              "x": 118,
+              "y": 104,
+              "text": "Eye spot",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_reservoir",
+              "d": "M 238 62 L 190.6 158.6",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "arr_reservoir",
+              "d": "M 194.1 158.9 L 188 164 L 188.3 156",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_reservoir",
+              "x": 205,
+              "y": 52,
+              "text": "Reservoir",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_pellicle",
+              "d": "M 412 96 L 351.1 160.6",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "arr_pellicle",
+              "d": "M 354.4 161.9 L 347 165 L 349.6 157.4",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_pellicle",
+              "x": 388,
+              "y": 84,
+              "text": "Pellicle",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "lead_nucleus",
+              "d": "M 322 242 L 284.5 190.8",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "arr_nucleus",
+              "d": "M 282.7 193.8 L 281 186 L 287.9 190",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_nucleus",
+              "x": 300,
+              "y": 258,
+              "text": "Nucleus",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_title",
+              "x": 120,
+              "y": 262,
+              "text": "Euglena",
+              "ms": 240,
+              "em": true
+            }
+          ]
+        },
+        "why": "The book prints a labelled Euglena beside this answer, and the diagram mark is earned by the labelled parts: flagellum, eye spot, reservoir, pellicle and nucleus on a spindle-shaped cell.",
+        "common_mistakes": [
+          "Drawing the body as a plain oval. The spindle shape with a pointed posterior end is expected.",
+          "Leaving labels off. An unlabelled diagram earns very little."
+        ],
+        "memory_tip": "Draw front to back: flagellum, eye spot with reservoir, nucleus in the middle, pointed end last.",
+        "margin_note": "Five labels are enough: flagellum, eye spot, reservoir, pellicle, nucleus."
+      },
+      {
+        "id": "s4_nutrition_repro",
+        "kind": "boxed_final",
+        "label": "Nutrition and reproduction",
+        "marks": 1,
+        "mark_note": "Mixotrophic",
+        "lines": [
+          "In sunlight they are photosynthetic; without",
+          "light they feed as heterotrophs (mixotrophic).",
+          "Their pigments are identical to those of",
+          "higher plants.",
+          "Reproduction is by binary fission.",
+          {
+            "text": "Example: Euglena — pellicle, two flagella, mixotrophic.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The double mode of nutrition is the examination point of this group: the same cell photosynthesises in light and feeds heterotrophically in the dark, which is why euglenoids stand between plants and animals.",
+        "common_mistakes": [
+          "Writing photosynthetic only. The change to heterotrophy without light is the tested point.",
+          "Forgetting the example; Euglena is expected in the answer."
+        ],
+        "memory_tip": "Light on — photosynthesis; light off — heterotrophy: that is mixotrophic.",
+        "margin_note": "The nutrition point plus pigments and binary fission; end with the example."
+      }
+    ]
+  },
+  "insider_note": "Four scoring points and a diagram: pellicle, two flagella with anterior parts, the labelled figure, and mixotrophic nutrition — the diagram is the mark students most often skip."
+}

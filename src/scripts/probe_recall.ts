@@ -23,7 +23,10 @@ import { join } from 'path';
 import { gradeRecall } from '../lib/answerBook/recallGrader';
 import { answerBookQuestionSchema } from '../schemas/answerBook';
 
-const questionId = process.argv[2] ?? 'ts_ipe_p1_vec_parallelogram_law';
+// Default target. The old default named a physics question that no longer exists in
+// this mathematics-only book; the CASES below are still written against it, so pass
+// an id explicitly when probing anything else.
+const questionId = process.argv[2] ?? 'ts_ipe_m1a_fn_gof_bijective';
 
 /** Written the way students actually speak: no punctuation, code-mixed, STT-mangled. */
 const CASES: Array<{ name: string; expect: string; transcript: string }> = [

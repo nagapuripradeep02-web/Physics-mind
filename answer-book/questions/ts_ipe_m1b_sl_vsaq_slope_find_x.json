@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_slope_find_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the value of x, if the slope of the line passing through (2,5) and (x,3) is 2.",
+  "appearances": [
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the slope from the two points",
+      "marks": 1
+    },
+    {
+      "label": "Equate to the given slope and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 14 Straight Lines, answer 88.1, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS J-16 (June 2016). ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — name the slope formula, and say what you do with the given slope.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_slope",
+        "kind": "equation",
+        "label": "Write the slope from the two points",
+        "marks": 1,
+        "margin_note": "First mark. The slope between two points is the difference of the y's over the difference of the x's, taken in the same order both times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (2, 5), B = (x, 3); then",
+          "Slope of AB is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (3 − 5)/(x − 2) = −2/(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of AB is written as (3 − 5)/(x − 2) = −2/(x − 2).",
+          "accept": [
+            "slope is three minus five over x minus two",
+            "y two minus y one over x two minus x one",
+            "the slope of A B is minus two over x minus two",
+            "slope formula rasukovali",
+            "write the slope from the two points"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of A B",
+            "y two minus y one",
+            "minus two over x minus two"
+          ]
+        },
+        "why": "Both differences must be taken in the same order — B minus A on top and B minus A underneath — or the sign of the slope flips.",
+        "common_mistakes": [
+          "Taking (5 − 3) on top but (x − 2) underneath.",
+          "Writing the differences upside down."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_equate_and_solve",
+        "kind": "boxed_final",
+        "label": "Equate to the given slope and solve",
+        "marks": 1,
+        "margin_note": "Second mark. The given slope is 2, so set the two equal and solve the short linear equation.",
+        "lines": [
+          "But given slope m₂ = 2",
+          "Now, m₁ = m₂",
+          "∴ −2/(x − 2) = 2  ⇒  x − 2 = −2/2 = −1",
+          {
+            "text": "⇒ x = −1 + 2  ∴ x = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating to 2 and solving gives x = 1.",
+          "accept": [
+            "set it equal to two and solve to get x equals one",
+            "equate the two slopes and solve",
+            "x minus two is minus one so x is one",
+            "rendu slopes equal chesi solve cheyyali",
+            "x equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equate",
+            "x equals one",
+            "solve"
+          ]
+        },
+        "why": "The unknown sits in the denominator, so cross-multiplying is the quickest route and avoids a fraction on both sides.",
+        "common_mistakes": [
+          "Solving −2/(x − 2) = 2 as x − 2 = −1/2.",
+          "Forgetting to add the 2 back at the end."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

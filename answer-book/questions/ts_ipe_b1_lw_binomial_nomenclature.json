@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_binomial_nomenclature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Binomial nomenclature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The two components",
+      "marks": 1
+    },
+    {
+      "label": "Rules of writing",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (SAQ 1 — the only Short Answer question in this chapter), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1+1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented. BOOK NOTES: the book prints 'Gaspard bauhin' and 'Carolus von linnaeus' (case/scan errors — the card writes Gaspard Bauhin and Carolus Linnaeus; NCERT credits the working system to Linnaeus, and Bauhin's earlier introduction is the book's added point, kept because it is historically correct), and the book's example line calls indica the 'species name' where strictly indica is the specific epithet — the card teaches the strict form."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Living World · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Binomial nomenclature: the system in which",
+            "style": "boxed"
+          },
+          {
+            "text": "each scientific name has two components.",
+            "style": "boxed"
+          },
+          "It was introduced by Gaspard Bauhin and",
+          "popularised by Carolus Linnaeus."
+        ],
+        "why": "'Bi' means two — the whole system is one agreed name of exactly two parts for every organism. The book credits Gaspard Bauhin with introducing it and Linnaeus with popularising it (printed as 'bauhin' and 'von linnaeus' — case errors); NCERT credits the working system to Linnaeus.",
+        "common_mistakes": [
+          "Writing only the names of the scientists with no definition. Define the system first.",
+          "Misspelling Linnaeus. Practise it once: L-i-n-n-a-e-u-s."
+        ],
+        "memory_tip": "Bi means two — a binomial name always has exactly two components.",
+        "margin_note": "Box the definition; the Bauhin–Linnaeus line goes under it."
+      },
+      {
+        "id": "s2_components",
+        "kind": "text",
+        "label": "The two components",
+        "marks": 1,
+        "mark_note": "Components",
+        "lines": [
+          "Each scientific name has two components:",
+          "1. Generic name — the name of the genus",
+          "2. Specific epithet — the word that marks",
+          "   the species within that genus"
+        ],
+        "why": "The two components are what make the name binomial: the first word places the organism in its genus, and the second word marks the species inside that genus.",
+        "common_mistakes": [
+          "Writing the components as 'genus and species'. The second component is the specific epithet, not the full species name.",
+          "Listing the components in the wrong order. The generic name always comes first."
+        ],
+        "memory_tip": "First word: which genus. Second word: which species within it.",
+        "margin_note": "Two numbered lines, one per component."
+      },
+      {
+        "id": "s3_rules",
+        "kind": "text",
+        "label": "Rules of writing",
+        "marks": 1,
+        "mark_note": "Rules",
+        "lines": [
+          {
+            "text": "Rules of writing (ICBN):",
+            "style": "heading"
+          },
+          "1. Names are in Latin and are printed in",
+          "   italics.",
+          "2. When handwritten, both words are",
+          "   underlined separately.",
+          "3. Generic name starts with a capital letter;",
+          "   the specific epithet with a small letter.",
+          "4. The author's name, in abbreviated form,",
+          "   follows the specific epithet."
+        ],
+        "why": "These are the ICBN conventions every written binomial must follow — they make one plant's name read the same way everywhere in the world.",
+        "common_mistakes": [
+          "Underlining the whole name with one line. Each of the two words is underlined separately.",
+          "Starting the specific epithet with a capital letter. Only the generic name takes the capital.",
+          "Skipping the author-citation rule. In an 'explain' answer it is one of the standard listed points."
+        ],
+        "memory_tip": "Four rules in writing order: Latin, italics-or-underline, capital-small, author last.",
+        "margin_note": "Number the rules — a numbered list is easy to write and easy to mark."
+      },
+      {
+        "id": "s4_example",
+        "kind": "text",
+        "label": "Example: mango",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: Mangifera indica Linn. (mango)",
+          "Mangifera — the generic name",
+          "indica — the specific epithet",
+          "Linn. — the author citation (Linnaeus)"
+        ],
+        "why": "One worked example shows every rule in action, and the mango binomial is the example this chapter itself uses. Strictly, indica is the specific epithet — the book's line calling it the 'species name' is loose; the species name is the full combination Mangifera indica.",
+        "common_mistakes": [
+          "Writing a capital I in indica. The epithet keeps a small letter even in an example.",
+          "Leaving the example out. In an 'explain' answer the example is usually a listed point in the scheme."
+        ],
+        "memory_tip": "Mango is the chapter's own example — Mangifera indica, genus then epithet.",
+        "margin_note": "Underline Mangifera and indica separately in your answer script."
+      }
+    ]
+  },
+  "insider_note": "'Explain' at 4 marks means four listed points — definition, the two components, the writing rules and one example; a definition alone reads as a 2-mark answer."
+}

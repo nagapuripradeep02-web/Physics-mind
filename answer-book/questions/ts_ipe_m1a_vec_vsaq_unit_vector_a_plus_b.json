@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_unit_vector_a_plus_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let a = i + 2j + 3k and b = 3i + j. Find a unit vector in the direction of a + b.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Add and find the magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 114.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,19 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would find a unit vector in the direction of a sum of two vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Add and find the magnitude",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Add first, THEN take the magnitude — |a+b| is not |a|+|b|. Note b has no k term, so the k component of the sum is just 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a + b = (i + 2j + 3k) + (3i + j)",
+          "  = 4i + 3j + 3k",
+          "⇒ |a + b| = √(4² + 3² + 3²)",
+          "  = √(16 + 9 + 9) = √34"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + b is found first as 4i + 3j + 3k, and its magnitude is √34.",
+          "accept": [
+            "add them to get four i plus three j plus three k then the magnitude is root thirty four",
+            "first add the vectors then take the modulus",
+            "the sum is four i plus three j plus three k with magnitude root thirty four",
+            "modata add chesi tarvata magnitude teeskovali, root thirty four",
+            "add componentwise and find the length"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four i plus three j",
+            "root thirty four",
+            "add",
+            "magnitude"
+          ]
+        },
+        "why": "Adding vectors is componentwise, but magnitudes do not add — the length of a sum depends on the directions, which is why the addition must happen first.",
+        "common_mistakes": [
+          "Adding the magnitudes of a and b separately.",
+          "Missing that b has a zero k component."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Same finish as any unit-vector question: the sum over its own length.",
+        "lines": [
+          "∴ Required unit vector = (a + b)/|a + b|",
+          {
+            "text": "= (4i + 3j + 3k)/√34",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unit vector is (a+b) divided by |a+b|, giving (4i+3j+3k)/√34.",
+          "accept": [
+            "divide the sum by root thirty four",
+            "the unit vector is four i plus three j plus three k over root thirty four",
+            "a plus b over mod a plus b",
+            "sum ni magnitude tho divide cheyyali",
+            "answer is the sum divided by its length"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "unit vector",
+            "root thirty four",
+            "divide",
+            "a plus b"
+          ]
+        },
+        "why": "The direction of the answer is the direction of the SUM, not of a or b separately — which is what the question asked for.",
+        "common_mistakes": [
+          "Dividing a and b separately and adding the results.",
+          "Leaving the answer unnormalised."
+        ]
+      }
+    ]
+  }
+}

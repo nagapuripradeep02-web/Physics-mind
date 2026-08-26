@@ -1,0 +1,420 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_powers_abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Show that the determinant with rows (a, b, c), (a², b², c²) and (a³, b³, c³) is equal to abc(a−b)(b−c)(c−a).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take a, b, c common from the columns",
+      "marks": 1
+    },
+    {
+      "label": "Column operations C₂−C₁ and C₃−C₁",
+      "marks": 1
+    },
+    {
+      "label": "Factorise the differences of squares",
+      "marks": 1
+    },
+    {
+      "label": "Take (b−a) and (c−a) common",
+      "marks": 1
+    },
+    {
+      "label": "Expand along the first row",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the bracket",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange to the required form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 3 Matrices, answer 12, the chapter's opening question. The chapter header reads '★★★ 3. MATRICES ★★★ 7+7 = 14 Marks': Matrices carries TWO Section-C slots (Q20 and Q21), so it is the largest single block on the paper. The mark split is PRINTED in that book's margin as [1 Mark] against each of the seven working lines — a fully sourced 1+1+1+1+1+1+1, not an inference, and the cleanest split in the book. Star rank is the CHAPTER's ★★★, not this question's; the book stars chapters in its LAQ section. Appearance is printed as the single tag 'TS 17'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this determinant identity — name each operation you would do, in order, and say what comes out at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own, but write it. Naming the left side Δ means every later line can start with '=' instead of copying the whole determinant again.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\text{L.H.S} = \\begin{vmatrix} a & b & c \\\\ a^2 & b^2 & c^2 \\\\ a^3 & b^3 & c^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the left-hand side determinant. Naming it is full credit — there is nothing to compute yet.",
+          "accept": [
+            "first I write the left hand side determinant",
+            "start by writing delta equals the given determinant",
+            "take LHS as the determinant with a b c in the first row",
+            "modata LHS determinant rasta",
+            "write down the determinant we are asked to prove"
+          ],
+          "reject": [
+            "I start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "LHS",
+            "left hand side"
+          ]
+        },
+        "why": "Every step after this one changes the determinant without changing its value. Writing it once at the top is what makes that chain readable.",
+        "common_mistakes": [
+          "Writing the right-hand side and working backwards; the question says show LHS = RHS.",
+          "Copying the full determinant on every line instead of naming it Δ."
+        ]
+      },
+      {
+        "id": "s2_take_common",
+        "kind": "equation",
+        "label": "Take a, b, c common",
+        "marks": 1,
+        "mark_note": "Common factors",
+        "margin_note": "The first mark. Column 1 is a, a², a³ — every entry has an a, so a comes out. Same for b in column 2 and c in column 3. This is the move that turns the powers into the standard pattern.",
+        "lines": [
+          "Taking a, b, c common from C₁, C₂, C₃:",
+          {
+            "text": "\\Delta = abc \\begin{vmatrix} 1 & 1 & 1 \\\\ a & b & c \\\\ a^2 & b^2 & c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is taken common from the first column, b from the second and c from the third, leaving abc outside and a row of 1s on top. Saying 'take common' without naming columns is partial.",
+          "accept": [
+            "take a common from the first column b from the second and c from the third so abc comes outside",
+            "each column has a common factor a b and c so pull abc out and the top row becomes one one one",
+            "take abc common from the three columns leaving one one one in the first row",
+            "first column lo a common, second lo b, third lo c so abc bayataki vasthundi",
+            "pull a b c out of the columns and you get abc times the determinant with ones on top"
+          ],
+          "reject": [
+            "take something common",
+            "I simplify the determinant",
+            "take a common"
+          ],
+          "heard_as": [
+            "common",
+            "abc",
+            "column",
+            "C1",
+            "C one",
+            "first column"
+          ]
+        },
+        "why": "A common factor comes out of a COLUMN (or a row), never out of the whole determinant at once. Three columns each give one factor, so abc comes out — not a³b³c³.",
+        "common_mistakes": [
+          "Taking a, b, c out of the rows instead of the columns.",
+          "Writing a³b³c³ outside — each column gives its factor once only.",
+          "Forgetting that the top row becomes 1, 1, 1 after the factor leaves."
+        ]
+      },
+      {
+        "id": "s3_column_ops",
+        "kind": "equation",
+        "label": "Do C₂−C₁ and C₃−C₁",
+        "marks": 1,
+        "mark_note": "Column operations",
+        "margin_note": "Second mark. Subtracting column 1 from the other two puts two zeros in the top row. A determinant with two zeros in one row is cheap to expand, and that is the whole point of the move.",
+        "lines": [
+          "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
+          {
+            "text": "\\Delta = abc \\begin{vmatrix} 1 & 0 & 0 \\\\ a & b-a & c-a \\\\ a^2 & b^2-a^2 & c^2-a^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That column 1 is subtracted from column 2 and from column 3, which makes the first row 1, 0, 0. Both operations must be named.",
+          "accept": [
+            "apply C two minus C one and C three minus C one so the first row becomes one zero zero",
+            "subtract the first column from the second and the third to get two zeros in the top row",
+            "do column two minus column one and column three minus column one",
+            "C2 ki C1 teesi, C3 ki kuda C1 teeste first row one zero zero avthundi",
+            "take away column one from both the other columns so the top row is one zero zero"
+          ],
+          "reject": [
+            "do some column operations",
+            "apply row operations",
+            "subtract the columns"
+          ],
+          "heard_as": [
+            "C2",
+            "C three",
+            "column two minus column one",
+            "zeros",
+            "one zero zero"
+          ]
+        },
+        "why": "Adding or subtracting one column from another leaves a determinant's value unchanged. So you may buy zeros for free, and zeros are what make the expansion short.",
+        "common_mistakes": [
+          "Doing C₁ − C₂ instead of C₂ − C₁ and getting the sign of the answer wrong.",
+          "Changing column 1 as well; the column you subtract BY must stay as it is.",
+          "Multiplying a column by a number and forgetting to divide the determinant by it."
+        ]
+      },
+      {
+        "id": "s4_factorise",
+        "kind": "equation",
+        "label": "Factorise the bottom row",
+        "marks": 1,
+        "mark_note": "Difference of squares",
+        "margin_note": "Third mark. b²−a² and c²−a² are differences of squares. Writing them as products is what exposes the (b−a) and (c−a) that come out on the next line.",
+        "lines": [
+          "b² − a² = (b−a)(b+a),  c² − a² = (c−a)(c+a)",
+          {
+            "text": "\\Delta = abc \\begin{vmatrix} 1 & 0 & 0 \\\\ a & b-a & c-a \\\\ a^2 & (b-a)(b+a) & (c-a)(c+a) \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b²−a² and c²−a² are written as (b−a)(b+a) and (c−a)(c+a), so that each column now has a visible common factor.",
+          "accept": [
+            "write b squared minus a squared as b minus a into b plus a and the same for c",
+            "factorise the last row using difference of squares so each column shows b minus a and c minus a",
+            "split b square minus a square into b minus a times b plus a",
+            "difference of squares formula use chesi b minus a into b plus a ga rasta",
+            "break the bottom entries into products so the common factor shows up"
+          ],
+          "reject": [
+            "I factorise it",
+            "simplify the last row",
+            "expand the squares"
+          ],
+          "heard_as": [
+            "difference of squares",
+            "b squared minus a squared",
+            "b minus a",
+            "b plus a",
+            "factorise"
+          ]
+        },
+        "why": "You cannot take a factor out of a column until it is visibly a factor of every entry in that column. Factorising is what makes it visible.",
+        "common_mistakes": [
+          "Multiplying the bracket out again instead of leaving it as a product.",
+          "Writing b² − a² = (b−a)² — that is wrong; it is (b−a)(b+a).",
+          "Factorising only one of the two columns."
+        ]
+      },
+      {
+        "id": "s5_common_again",
+        "kind": "equation",
+        "label": "Take (b−a) and (c−a) common",
+        "marks": 1,
+        "mark_note": "Common factors again",
+        "margin_note": "Fourth mark. Column 2 now has (b−a) in both non-zero entries and column 3 has (c−a). Both come out, and the determinant left behind is small enough to expand by eye.",
+        "lines": [
+          "Taking (b−a) from C₂ and (c−a) from C₃:",
+          {
+            "text": "\\Delta = abc(b-a)(c-a) \\begin{vmatrix} 1 & 0 & 0 \\\\ a & 1 & 1 \\\\ a^2 & b+a & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (b−a) comes out of column 2 and (c−a) out of column 3, leaving 1 and 1 in the middle row.",
+          "accept": [
+            "take b minus a common from the second column and c minus a from the third column",
+            "pull out b minus a and c minus a so the middle row becomes one and one",
+            "b minus a and c minus a come outside leaving a simple determinant",
+            "second column nunchi b minus a, third nunchi c minus a common teesukuntam",
+            "the two brackets come out in front and the middle entries become ones"
+          ],
+          "reject": [
+            "take common again",
+            "take out the factors",
+            "simplify further"
+          ],
+          "heard_as": [
+            "b minus a",
+            "c minus a",
+            "common",
+            "second column",
+            "third column"
+          ]
+        },
+        "why": "This is the same move as step 2, used a second time. Recognising that a determinant proof is usually 'make a common factor appear, then take it out, repeat' is what makes the whole chapter one method instead of six tricks.",
+        "common_mistakes": [
+          "Taking (b−a) out of the row instead of the column.",
+          "Leaving the (b+a) and (c+a) behind in the wrong row.",
+          "Taking the factor out twice — it leaves the column once."
+        ]
+      },
+      {
+        "id": "s6_expand",
+        "kind": "equation",
+        "label": "Expand along the first row",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Fifth mark. The top row is 1, 0, 0, so only the first term survives. The minor is the bottom-right 2×2 block, and its value is (c+a)·1 − (b+a)·1.",
+        "lines": [
+          "Expanding along R₁ (only the 1 contributes):",
+          "Δ = abc(b−a)(c−a)[(c+a)·1 − (b+a)·1]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant is expanded along the first row, and because that row is 1, 0, 0 only one 2×2 minor survives — giving (c+a) − (b+a).",
+          "accept": [
+            "expand along the first row and since it is one zero zero only one minor is left",
+            "the two zeros kill the other terms so we get c plus a minus b plus a",
+            "expand by the top row to get the two by two determinant c plus a minus b plus a",
+            "first row lo zeros unnai kabatti oke term migulutundi",
+            "open the determinant along the first row only the one gives a term"
+          ],
+          "reject": [
+            "I expand the determinant",
+            "solve the determinant",
+            "expand along the column"
+          ],
+          "heard_as": [
+            "expand",
+            "first row",
+            "minor",
+            "two by two",
+            "zeros"
+          ]
+        },
+        "why": "Expanding along a row with zeros is the reason for every earlier step. Two zeros turn a three-term expansion into a one-term expansion.",
+        "common_mistakes": [
+          "Expanding along a row or column that has no zeros and creating three terms of work.",
+          "Getting the minor wrong — it is the block left after deleting the 1's own row and column.",
+          "Losing the factors already taken outside."
+        ]
+      },
+      {
+        "id": "s7_simplify",
+        "kind": "equation",
+        "label": "Simplify the bracket",
+        "marks": 1,
+        "mark_note": "Simplification",
+        "margin_note": "Sixth mark. The a inside the bracket cancels: (c+a) − (b+a) = c − b. One line, but it is a marked line, so write it out rather than doing it in your head.",
+        "lines": [
+          "(c + a) − (b + a) = c − b",
+          "Δ = abc(b−a)(c−a)(c−b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the a values cancel inside the bracket, leaving c − b.",
+          "accept": [
+            "the a cancels so c plus a minus b plus a is just c minus b",
+            "inside the bracket a goes away leaving c minus b",
+            "simplify to get c minus b",
+            "a cancel aipoyi c minus b migulutundi",
+            "both a terms cancel and we are left with c minus b"
+          ],
+          "reject": [
+            "simplify it",
+            "then I get the answer",
+            "cancel the terms"
+          ],
+          "heard_as": [
+            "c minus b",
+            "cancel",
+            "bracket",
+            "a cancels"
+          ]
+        },
+        "why": "This cancellation is why the answer has three brackets and not four. The a that was added to both terms was never going to survive.",
+        "common_mistakes": [
+          "Writing (c+a) − (b+a) = c − b + 2a by forgetting to distribute the minus sign.",
+          "Skipping the line and losing a marked step."
+        ]
+      },
+      {
+        "id": "s8_final",
+        "kind": "boxed_final",
+        "label": "Rearrange to the given form",
+        "marks": 1,
+        "mark_note": "Required form",
+        "margin_note": "Last mark. The answer is already correct, but the question asked for (a−b)(b−c)(c−a). Flipping (b−a) to −(a−b) and (c−b) to −(b−c) uses two minus signs, and two minus signs cancel — so the value does not change.",
+        "lines": [
+          "(b−a) = −(a−b)  and  (c−b) = −(b−c)",
+          "Two sign changes cancel each other.",
+          {
+            "text": "Δ = abc(a−b)(b−c)(c−a) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets are rewritten into the order the question asked for, and that the two sign flips cancel so the value is unchanged. Just saying 'hence proved' is not enough.",
+          "accept": [
+            "flip b minus a to minus a minus b and c minus b to minus b minus c so the two minus signs cancel",
+            "rearrange the brackets into a minus b b minus c c minus a using two sign changes that cancel",
+            "change the order of the brackets with two minus signs which cancel to give the required form",
+            "rendu minus signs cancel avthai so abc into a minus b b minus c c minus a vasthundi",
+            "write it as abc a minus b b minus c c minus a which is the right hand side"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so LHS equals RHS"
+          ],
+          "heard_as": [
+            "a minus b",
+            "b minus c",
+            "c minus a",
+            "sign",
+            "minus signs cancel",
+            "RHS"
+          ]
+        },
+        "why": "An examiner is looking for the exact form the question named. Reaching an equal but differently-ordered answer and stopping there is the commonest way to drop the last mark on this question.",
+        "common_mistakes": [
+          "Stopping at abc(b−a)(c−a)(c−b) and never writing the asked-for form.",
+          "Flipping only one bracket, which changes the sign of the answer.",
+          "Writing 'hence proved' with no final line to point at."
+        ]
+      }
+    ]
+  }
+}

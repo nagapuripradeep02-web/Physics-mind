@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_bal_cr2o7_so2_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Balance the following redox reaction by the ion-electron method (in acidic medium): Cr₂O₇²⁻(aq) + SO₂(g) → Cr³⁺(aq) + SO₄²⁻(aq).",
+  "appearances": [
+    {
+      "year": 2009
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identifying the two half reactions",
+      "marks": 1
+    },
+    {
+      "label": "Balanced oxidation half",
+      "marks": 1
+    },
+    {
+      "label": "Balanced reduction half",
+      "marks": 1
+    },
+    {
+      "label": "Adding and the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank, the citation [March-09] and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The final equation was independently re-checked: atoms Cr 2=2, S 3=3, O 13=13, H 2=2; charge 0 on each side."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halves",
+        "kind": "equation",
+        "label": "Identifying the two half reactions",
+        "marks": 1,
+        "mark_note": "Half reactions",
+        "lines": [
+          "S in SO₂ is +4 → +6 in SO₄²⁻ : oxidation",
+          "Cr in Cr₂O₇²⁻ is +6 → +3 in Cr³⁺ : reduction",
+          {
+            "text": "Oxidation half: SO₂ → SO₄²⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Reduction half: Cr₂O₇²⁻ → Cr³⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "Sulphur rises two units and each of the two chromium atoms falls three, which fixes the halves and later the multipliers 3 and 1.",
+        "common_mistakes": [
+          "Mislabelling the halves. Dichromate is the oxidising agent, so it is itself reduced.",
+          "Computing Cr in Cr₂O₇²⁻ as +7 — the sum 2x − 14 = −2 gives +6."
+        ],
+        "memory_tip": "Write the oxidation numbers over the changing atoms in all four species before splitting the halves.",
+        "margin_note": "Both skeleton halves with the +4→+6 and +6→+3 changes earn this mark."
+      },
+      {
+        "id": "s2_oxidation_half",
+        "kind": "equation",
+        "label": "Balanced oxidation half",
+        "marks": 1,
+        "mark_note": "Oxidation half",
+        "lines": [
+          "Balance O with H₂O, H with H⁺, charge with e⁻:",
+          "SO₂ + 2H₂O → SO₄²⁻ (oxygen: 2 + 2 = 4)",
+          "SO₂ + 2H₂O → SO₄²⁻ + 4H⁺ (hydrogen: 4 = 4)",
+          {
+            "text": "SO₂ + 2H₂O → SO₄²⁻ + 4H⁺ + 2e⁻ … (1)",
+            "style": "eq"
+          },
+          "Charge check: 0 = (−2) + (+4) + (−2) = 0 ✓"
+        ],
+        "why": "Two waters supply the two extra oxygens and release all four hydrogens as H⁺ this time, since sulphate holds no hydrogen; the charge check fixes two electrons.",
+        "common_mistakes": [
+          "Writing 3H⁺ from the HSO₄⁻ variant of this question. Sulphate keeps no hydrogen — all four leave.",
+          "Placing the electrons on the reactant side."
+        ],
+        "memory_tip": "SO₄²⁻ product: 4H⁺ out. HSO₄⁻ product: 3H⁺ out. Read which product the question gives.",
+        "margin_note": "Equation (1) with its charge check earns this mark."
+      },
+      {
+        "id": "s3_reduction_half",
+        "kind": "equation",
+        "label": "Balanced reduction half",
+        "marks": 1,
+        "mark_note": "Reduction half",
+        "lines": [
+          "Cr₂O₇²⁻ → 2Cr³⁺ + 7H₂O (Cr: 2 = 2; oxygen: 7 = 7)",
+          "Cr₂O₇²⁻ + 14H⁺ → 2Cr³⁺ + 7H₂O (hydrogen: 14 = 14)",
+          {
+            "text": "Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O … (2)",
+            "style": "eq"
+          },
+          "Charge check: (−2) + (+14) + (−6) = +6 = 2(+3) ✓"
+        ],
+        "why": "Both chromium atoms drop three units each, so the half consumes six electrons, confirmed by the charge check.",
+        "common_mistakes": [
+          "Writing 3e⁻ for a single chromium and forgetting the ion carries two.",
+          "Using 7H⁺ instead of 14H⁺."
+        ],
+        "memory_tip": "Dichromate in acid: 14H⁺ in, 7H₂O out, 6e⁻ gained — the same stock line every time.",
+        "margin_note": "Equation (2) with its charge check earns this mark."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Adding and the final equation",
+        "marks": 1,
+        "mark_note": "Final equation",
+        "lines": [
+          "Equalise electrons: (1) × 3 (6e⁻ each).",
+          "3SO₂ + 6H₂O → 3SO₄²⁻ + 12H⁺ + 6e⁻",
+          "Add (2) and cancel 12H⁺ and 6H₂O from both sides:",
+          {
+            "text": "3SO₂ + Cr₂O₇²⁻ + 2H⁺ → 3SO₄²⁻ + 2Cr³⁺ + H₂O",
+            "style": "boxed"
+          },
+          "Check: Cr 2=2, S 3=3, O 13=13, H 2=2; charge 0 = 0"
+        ],
+        "why": "Tripling the sulphur half matches six electrons; cancelling 12 of the 14 H⁺ and 6 of the 7 H₂O leaves 2H⁺ on the left and one H₂O on the right.",
+        "common_mistakes": [
+          "Cancelling every H⁺ or every H₂O. Exactly 2H⁺ and 1H₂O survive.",
+          "Multiplying the dichromate half by 3 as well.",
+          "Skipping the final atom-and-charge check."
+        ],
+        "memory_tip": "14 minus 12 leaves 2H⁺; 7 minus 6 leaves one water. Small leftover terms are normal in these additions.",
+        "margin_note": "The boxed equation with the atom and charge check earns this mark."
+      }
+    ]
+  },
+  "insider_note": "Asked in March 2009 alongside the permanganate variant. The examiner looks first at the electron cancellation line and the remaining 2H⁺ — both must be visible, not implied."
+}

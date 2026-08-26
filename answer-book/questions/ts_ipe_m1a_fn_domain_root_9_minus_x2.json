@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_root_9_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function √(9 − x²).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 94.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when 9 − x² ≥ 0",
+          "⇒ x² − 9 ≤ 0",
+          "⇒ (x − 3)(x + 3) ≤ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a square root needs its inside to be greater than or equal to zero, so 9 − x² ≥ 0.",
+          "accept": [
+            "a square root needs the inside to be non negative so nine minus x squared is greater than or equal to zero",
+            "the expression under the root must be at least zero",
+            "nine minus x squared greater than or equal to zero",
+            "root lo unnadi zero kanna takkuva undakoodadu so nine minus x square ≥ 0",
+            "set the inside of the square root greater than or equal to zero"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "square root",
+            "nine minus x squared",
+            "greater than or equal",
+            "non negative",
+            "minus three"
+          ]
+        },
+        "why": "A square root of a negative number is not a real number, so the inside decides the whole domain.",
+        "common_mistakes": [
+          "Solving 9 − x² ≥ 0 as if it were x² ≥ 9, which gives the outside instead of the inside.",
+          "Writing the answer as (−3, 3) with round brackets, which drops two points that are in the domain."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ [−3, 3]",
+          "∴ Domain = [−3, 3]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the closed interval from minus 3 to 3, with both endpoints included.",
+          "accept": [
+            "the domain is minus three to three closed on both sides",
+            "x lies between minus three and three including both",
+            "closed interval minus three comma three",
+            "minus three nunchi three varaku both included",
+            "domain is the closed interval from minus 3 to 3"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "square root",
+            "nine minus x squared",
+            "greater than or equal",
+            "non negative",
+            "minus three",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "The inequality is ≤ 0 after moving the terms, so the solution is the piece BETWEEN the roots, and the endpoints are included because equality is allowed.",
+        "common_mistakes": [
+          "Taking the outside interval, (−∞,−3] ∪ [3,∞) — that is the answer to the opposite inequality.",
+          "Using round brackets where the endpoints are allowed."
+        ]
+      }
+    ]
+  }
+}

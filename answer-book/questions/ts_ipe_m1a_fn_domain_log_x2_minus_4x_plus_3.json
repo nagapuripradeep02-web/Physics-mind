@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_log_x2_minus_4x_plus_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function log(x² − 4x + 3).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 96.1, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when x² − 4x + 3 > 0",
+          "⇒ (x − 1)(x − 3) > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a logarithm needs its input STRICTLY greater than zero — not greater than or equal — so x² − 4x + 3 > 0.",
+          "accept": [
+            "log needs the inside strictly positive so x squared minus four x plus three greater than zero",
+            "the argument of the logarithm must be positive not zero",
+            "for log the inside has to be strictly greater than zero",
+            "log ki inside strictly positive undali zero kaadu",
+            "set the quadratic strictly greater than zero because it is a log"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "log",
+            "logarithm",
+            "strictly positive",
+            "greater than zero",
+            "one",
+            "three"
+          ]
+        },
+        "why": "log 0 is undefined and log of a negative number is not real, so the input must be strictly positive — this is the one place the bracket type changes.",
+        "common_mistakes": [
+          "Using ≥ 0, the square-root condition, which wrongly lets in the points where the input is zero.",
+          "Factorising to (x − 1)(x − 4) and moving the second root."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ (−∞, 1) ∪ (3, ∞)",
+          "∴ Domain = (−∞, 1) ∪ (3, ∞)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer uses OPEN brackets: minus infinity to 1, union 3 to infinity, endpoints excluded.",
+          "accept": [
+            "minus infinity to one union three to infinity with open brackets",
+            "x less than one or greater than three strictly",
+            "open intervals because log of zero is undefined",
+            "one kanna takkuva or three kanna ekkuva strictly",
+            "the two open intervals outside one and three"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "log",
+            "logarithm",
+            "strictly positive",
+            "greater than zero",
+            "one",
+            "three",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Because the inequality is strict, 1 and 3 are excluded, so every bracket here is round.",
+        "common_mistakes": [
+          "Writing square brackets at 1 and 3, where log is undefined.",
+          "Giving the middle interval (1, 3), where the input is negative."
+        ]
+      }
+    ]
+  }
+}

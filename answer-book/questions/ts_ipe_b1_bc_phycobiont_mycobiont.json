@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_phycobiont_mycobiont",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do the terms phycobiont and mycobiont signify?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two terms",
+      "marks": 1
+    },
+    {
+      "label": "Role of each partner",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_terms",
+        "kind": "text",
+        "label": "The two terms",
+        "marks": 1,
+        "mark_note": "Terms",
+        "lines": [
+          "In a lichen, the algal partner is the phycobiont.",
+          "The fungal partner is the mycobiont."
+        ],
+        "why": "A lichen is a symbiotic association of an alga and a fungus, and these two terms name the two partners.",
+        "common_mistakes": [
+          "Swapping the two terms. Phyco- means alga; myco- means fungus.",
+          "Writing lichen as a single organism with no partners."
+        ],
+        "memory_tip": "Phyco- as in phycology (study of algae); myco- as in mycology (study of fungi).",
+        "margin_note": "Name both partners; one term alone is half the point."
+      },
+      {
+        "id": "s2_roles",
+        "kind": "boxed_final",
+        "label": "Role of each partner",
+        "marks": 1,
+        "mark_note": "Roles",
+        "lines": [
+          "The phycobiont is autotrophic: it prepares",
+          "food by photosynthesis.",
+          "The mycobiont is heterotrophic: it provides",
+          "shelter and absorbs water and mineral",
+          "nutrients for the alga.",
+          {
+            "text": "Phycobiont = alga; mycobiont = fungus of a lichen.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two partners survive together because each supplies what the other cannot make: food from the alga; shelter, water and minerals from the fungus.",
+        "common_mistakes": [
+          "Stopping after naming the partners. The word signify asks what each one does.",
+          "Writing that the fungus makes food. Only the algal partner photosynthesises."
+        ],
+        "memory_tip": "Alga feeds; fungus houses. One role line for each.",
+        "margin_note": "One role line for each partner completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The word signify asks for the role of each partner, not only the naming — the second mark sits in the role lines."
+}

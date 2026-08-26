@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_primary_and_secondary_metabolites",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are primary and secondary metabolites?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Primary metabolites",
+      "marks": 1
+    },
+    {
+      "label": "Secondary metabolites",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.27, VSAQ 7. BOOK CLAIM NOT FOLLOWED IN FULL: the book writes that secondary metabolites 'do not have identifiable functions in the host organism'. NCERT says their role in the host is often not clearly known while many of them are useful, so this card writes 'their role in the host plant is often not clearly known' instead of a flat denial of function. The book's examples (alkaloids, lectins, pigments) are NCERT examples and are kept. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_primary",
+        "kind": "text",
+        "label": "Primary metabolites",
+        "marks": 1,
+        "mark_note": "Definition + examples",
+        "lines": [
+          "Primary metabolites are the biomolecules that",
+          "take a direct part in the normal growth,",
+          "development and physiology of the organism.",
+          "They are found in almost every living cell.",
+          "Ex: amino acids, sugars, proteins, lipids,",
+          "nucleic acids."
+        ],
+        "why": "Primary means first in importance to the cell's own working: without these the organism cannot grow or run its normal chemistry, so they occur in every cell.",
+        "common_mistakes": [
+          "Giving no examples. One mark here expects the definition AND named examples.",
+          "Listing alkaloids or rubber here. Those are secondary metabolites."
+        ],
+        "memory_tip": "Primary metabolites keep the cell running; every cell has them.",
+        "margin_note": "One definition line plus three or four examples fills this mark."
+      },
+      {
+        "id": "s2_secondary",
+        "kind": "boxed_final",
+        "label": "Secondary metabolites",
+        "marks": 1,
+        "mark_note": "Definition + examples",
+        "lines": [
+          {
+            "text": "Secondary metabolites — no direct role in normal physiology",
+            "style": "boxed"
+          },
+          "They are products of metabolism whose role",
+          "in the host plant is often not clearly known.",
+          "Many of them are useful to humans.",
+          "Ex: alkaloids, lectins, pigments, essential",
+          "oils, rubber, gums, drugs."
+        ],
+        "why": "Secondary metabolites are not needed for the cell's basic growth, and their use to the plant itself is often not established. They are grouped by this absence of a direct role, not by any one chemical type.",
+        "common_mistakes": [
+          "Writing that secondary metabolites are useless. Many are used as drugs, dyes, spices and rubber.",
+          "Mixing the two lists. Proteins and sugars are primary; alkaloids and pigments are secondary."
+        ],
+        "memory_tip": "Primary keeps the plant alive; secondary is what humans collect from the plant.",
+        "margin_note": "Keep each definition beside its own examples, never as one mixed list."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two definitions with examples on both sides. An answer with examples on only one side loses half."
+}

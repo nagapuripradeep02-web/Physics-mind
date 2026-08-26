@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_s_minus_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If A + B + C = 2S, then prove that sin(S−A) + sin(S−B) + sinC = 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 2
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.1. Printed appearances: TS 16. The S-family. The condition is A + B + C = 2S, so (A+B) + C = 2S and (S−A) + (S−B) = 2S − (A+B) = C — the substitution every step below turns on. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark, and the key observation: the two shifted angles ADD to C. Work that out before starting or none of the substitutions below will be visible.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = 2S  ⇒  (S−A) + (S−B) = 2S − (A+B) = C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first in the form the proof needs",
+            "state the given condition and rearrange it",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "rearrange",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "lines": [
+          "L.H.S = sin(S−A) + sin(S−B) + sinC",
+          "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
+          "  [∵ sinC + sinD formula]",
+          "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first two terms are paired with the sin C + sin D formula, giving a half-sum of 2S − (A+B) and a half-difference of (B−A)/2.",
+          "accept": [
+            "pair the first two with sin C plus sin D, the half sum is two S minus A plus B over two",
+            "apply sum to product to the two shifted terms",
+            "combine sin S minus A and sin S minus B",
+            "modati rendu ni sum to product cheyyali",
+            "use the sine sum formula on the first pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C plus sin D",
+            "half sum",
+            "B minus A over two",
+            "sum to product"
+          ]
+        },
+        "why": "The two S-terms differ only in which of A and B is subtracted, so their sum and difference are both simple — which is exactly what the formula needs.",
+        "common_mistakes": [
+          "Pairing one S-term with sin C instead.",
+          "Getting the half-difference as (A−B)/2 and picking up a sign."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "lines": [
+          "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
+          "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2S − (A+B) is replaced by C so the half-sum becomes C/2, and that sin C is expanded as 2 sin(C/2) cos(C/2) so both terms share sin(C/2).",
+          "accept": [
+            "two S minus A plus B is C so the half sum is C over two, and expand sin C as two sin half C cos half C",
+            "use the condition to get C over two and expand the last sine",
+            "both terms now carry sin C over two",
+            "two S minus A plus B ante C, so C by two vasthundi",
+            "substitute and expand so both terms share a factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "C over two",
+            "two S minus",
+            "two sin cos",
+            "common factor"
+          ]
+        },
+        "why": "Expanding sin C into half angles is what lets the third term join the other two. Without it there is no common factor to take out.",
+        "common_mistakes": [
+          "Leaving sin C unexpanded.",
+          "Substituting 2S − (A+B) as something other than C."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "lines": [
+          "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
+          "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          "  [∵ C = (S−A) + (S−B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 sin(C/2) is taken out and cos(C/2) rewritten using C = (S−A) + (S−B), so both bracket terms are in the shifted angles.",
+          "accept": [
+            "take two sin C over two common then write C over two back in terms of S minus A and S minus B",
+            "factor out and convert the cosine back to the shifted angles",
+            "the bracket becomes two cosines in S minus A and S minus B",
+            "two sin C by two common teesi, C ni S minus A plus S minus B ga marchali",
+            "rewrite so the bracket is in the shifted angles"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin C over two",
+            "S minus A",
+            "S minus B",
+            "common factor"
+          ]
+        },
+        "why": "The condition is used a second time, in reverse — C back into (S−A) + (S−B) — because the answer is stated in those shifted angles, not in C.",
+        "common_mistakes": [
+          "Leaving the bracket in terms of C and B − A, which cannot combine.",
+          "Losing the factor of 2."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "lines": [
+          "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          {
+            "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of cosines becomes 2 cos((S−A)/2) cos((S−B)/2), giving 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).",
+          "accept": [
+            "the sum of cosines gives two cos S minus A over two cos S minus B over two so the answer is four of those times sin half C",
+            "apply the cosine sum formula to finish",
+            "the bracket becomes two cos half S minus A cos half S minus B",
+            "cos sum formula tho answer vasthundi, four cos cos sin",
+            "the final answer is four cos half S minus A cos half S minus B sin half C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos",
+            "S minus A over two",
+            "four",
+            "sum formula"
+          ]
+        },
+        "why": "The 2 outside and the 2 from the formula multiply to the 4 in the answer, exactly as in answer 29.",
+        "common_mistakes": [
+          "Finishing with 2 instead of 4.",
+          "Getting the arguments of the two cosines swapped."
+        ]
+      }
+    ]
+  }
+}

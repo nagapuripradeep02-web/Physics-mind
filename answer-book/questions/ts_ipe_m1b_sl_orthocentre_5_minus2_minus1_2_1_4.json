@@ -1,0 +1,369 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_orthocentre_5_minus2_minus1_2_1_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the orthocentre of the triangle whose vertices are (5,−2), (−1,2), (1,4).",
+  "appearances": [
+    {
+      "year": 2019
+    },
+    {
+      "year": 2017
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the orthocentre",
+      "marks": 1
+    },
+    {
+      "label": "First altitude through A",
+      "marks": 2
+    },
+    {
+      "label": "Second altitude through B",
+      "marks": 2
+    },
+    {
+      "label": "Solve the pair",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 The Straight Line, answer 2.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · TS M-17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say which lines meet at the orthocentre, and how you get each one's slope.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up_the_orthocentre",
+        "kind": "text",
+        "label": "Set up the orthocentre",
+        "marks": 1,
+        "margin_note": "First mark. The orthocentre is where the three altitudes meet. An altitude runs through one vertex PERPENDICULAR to the opposite side, so every altitude needs two things: a point and a perpendicular slope.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take O(x, y) as Orthocentre",
+          "Vertices A = (5, −2), B = (−1, 2), C = (1, 4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That O(x, y) is taken as the orthocentre, the meeting point of the altitudes.",
+          "accept": [
+            "take O x y as the orthocentre where the altitudes meet",
+            "the orthocentre is the intersection of the three altitudes",
+            "let O be x comma y and write the three vertices",
+            "orthocentre ni O x y ga teesukovali",
+            "an altitude goes through a vertex perpendicular to the opposite side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "orthocentre",
+            "altitudes",
+            "perpendicular",
+            "opposite side"
+          ]
+        },
+        "why": "Circumcentre and orthocentre are the two points this chapter asks for, and they use DIFFERENT lines: perpendicular bisectors for the circumcentre, altitudes for the orthocentre. Naming which one is wanted keeps the method straight.",
+        "common_mistakes": [
+          "Using perpendicular bisectors, which give the circumcentre instead.",
+          "Drawing the altitude through the wrong vertex for the side chosen."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the triangle",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark is the whole definition of an altitude.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a triangle ABC is sketched with two altitudes drawn and their meeting point marked O. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the triangle and the two altitudes meeting at O",
+            "sketch triangle A B C with altitudes from A and from B",
+            "make a diagram showing the altitudes crossing at the orthocentre",
+            "triangle geesi rendu altitudes mark cheyyali",
+            "draw the triangle with its altitudes"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "triangle",
+            "altitudes",
+            "orthocentre",
+            "right angle"
+          ]
+        },
+        "why": "An altitude goes through one vertex PERPENDICULAR to the opposite side. Drawing it is how you check you have paired the right vertex with the right side before computing any slope.",
+        "common_mistakes": [
+          "Drawing the perpendicular BISECTOR of a side, which gives the circumcentre instead.",
+          "Drawing the altitude to a side that touches the vertex it starts from."
+        ],
+        "figure": {
+          "id": "triangle_altitudes",
+          "width": 280,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 45 190 L 245 190",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 45 190 L 132 38",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_ac",
+              "d": "M 132 38 L 245 190",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "alt_a",
+              "d": "M 132 38 L 132 190",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "rt_a",
+              "d": "M 132 178 L 144 178 L 144 190",
+              "ms": 180,
+              "pen": "pencil"
+            },
+            {
+              "type": "stroke",
+              "id": "alt_b",
+              "d": "M 45 190 L 190 118",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "rt_b",
+              "d": "M 184 106 L 195 112 L 189 123",
+              "ms": 180,
+              "pen": "pencil"
+            },
+            {
+              "type": "stroke",
+              "id": "dot_o",
+              "d": "M 129 155 A 3 3 0 1 0 135 155 A 3 3 0 1 0 129 155",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 127,
+              "y": 26,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 30,
+              "y": 208,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 250,
+              "y": 208,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 142,
+              "y": 150,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_first_altitude",
+        "kind": "equation",
+        "label": "First altitude through A",
+        "marks": 2,
+        "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, flip-and-negate it for the perpendicular, then the point-slope form through the vertex.",
+        "lines": [
+          "Step-1: Finding altitude through A(5, −2):",
+          "Slope of BC is m = (y₂ − y₁)/(x₂ − x₁) = (4 − 2)/(1 + 1) = 2/2 = 1",
+          "Its perpendicular slope is −1/m = −1/1 = −1",
+          "Eq. of line through A(5, −2) with slope −1 is",
+          "y − y₁ = (−1/m)(x − x₁)",
+          "⇒ y + 2 = −1(x − 5)   ⇒   y + 2 = −x + 5",
+          "⇒ x + y − 3 = 0  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of the opposite side is found, negated and inverted, and the altitude through A is written.",
+          "accept": [
+            "find the slope of B C, take minus one over it, and write the line through A",
+            "slope of the opposite side then its perpendicular slope then point slope form",
+            "the altitude through A is perpendicular to B C",
+            "B C slope teesi, perpendicular slope teesi, A gundaa line rayali",
+            "this gives the first altitude equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of B C",
+            "perpendicular slope",
+            "minus one by m",
+            "altitude through A"
+          ]
+        },
+        "why": "The altitude from A is perpendicular to BC, so its slope is −1/m where m is BC's slope. Getting the opposite side right is the step most often rushed.",
+        "common_mistakes": [
+          "Using the slope of AB or AC instead of the opposite side BC.",
+          "Taking the perpendicular slope as −m rather than −1/m."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_second_altitude",
+        "kind": "equation",
+        "label": "Second altitude through B",
+        "marks": 2,
+        "margin_note": "Two marks. The same three moves from a different vertex. Two altitudes are enough — the third passes through their intersection automatically.",
+        "lines": [
+          "Step-2: Finding altitude through B(−1, 2):",
+          "Slope of AC is m = (4 − (−2))/(1 − 5) = 6/(−4) = −3/2",
+          "Its perpendicular slope is −1/m = −1/(−3/2) = 2/3",
+          "Eq. of line through B(−1, 2) with slope 2/3 is",
+          "y − 2 = (2/3)(x + 1)   ⇒   3y − 6 = 2(x + 1)",
+          "⇒ 3y − 6 = 2x + 2   ⇒   2x − 3y + 8 = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the altitude through B, perpendicular to AC, is found the same way.",
+          "accept": [
+            "do the same from B using the slope of A C",
+            "find the slope of A C, its perpendicular, and the line through B",
+            "the second altitude is perpendicular to A C through B",
+            "A C slope teesi B gundaa second altitude rayali",
+            "this gives the second altitude equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of A C",
+            "perpendicular",
+            "altitude through B",
+            "second equation"
+          ]
+        },
+        "why": "Two altitudes fix the point. The third is a check, not extra information — all three are concurrent by the theorem.",
+        "common_mistakes": [
+          "Reusing the slope of BC for the second altitude.",
+          "Sign slip when the perpendicular slope is a negative fraction."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_solve_the_pair",
+        "kind": "boxed_final",
+        "label": "Solve the pair",
+        "marks": 2,
+        "margin_note": "The last two marks. Two linear equations, one point. Like the circumcentre, this point may lie outside the triangle when the triangle is obtuse.",
+        "lines": [
+          "Step-3: Solving (1), (2), we get O;",
+          "(1) ⇒ x + y − 3 = 0;   (2) ⇒ 2x − 3y + 8 = 0",
+          "x / [1(8) − (−3)(−3)] = y / [(−3)(2) − (8)(1)] = 1 / [1(−3) − (2)(1)]",
+          "⇒ x / (8 − 9) = y / (−6 − 8) = 1 / (−3 − 2)",
+          "⇒ x/(−1) = y/(−14) = 1/(−5)",
+          "⇒ x = −1/(−5) = 1/5,  y = −14/(−5) = 14/5",
+          {
+            "text": "∴ Orthocentre O(x, y) = (1/5, 14/5)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the two altitude equations gives (1/5, 14/5).",
+          "accept": [
+            "solve the two altitude equations together",
+            "use cross multiplication or elimination on one and two",
+            "solving the pair gives the orthocentre",
+            "rendu altitude equations solve chesthe orthocentre vasthundi",
+            "the orthocentre is this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve",
+            "orthocentre is",
+            "cross multiplication",
+            "the point"
+          ]
+        },
+        "why": "In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, which is a quick sanity check when the numbers look surprising.",
+        "common_mistakes": [
+          "Arithmetic slip in the elimination.",
+          "Writing the coordinates the wrong way round."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

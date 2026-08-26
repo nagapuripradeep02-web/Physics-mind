@@ -1,0 +1,325 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_cm_three_particles_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the centre of mass of three particles at the vertices of an equilateral triangle. The masses of the particles are 100 g, 150 g and 200 g respectively. Each side of the equilateral triangle is 0.5 m long.",
+  "appearances": [
+    {
+      "year": 2004
+    },
+    {
+      "year": 2005
+    },
+    {
+      "year": 2010
+    },
+    {
+      "year": 2011
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The coordinates",
+      "marks": 1
+    },
+    {
+      "label": "x of the CM",
+      "marks": 1
+    },
+    {
+      "label": "y of the CM",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER 8 — printed exam years \"(2004, 05, 10, 11)\", recorded as TS appearances (claims until a teacher confirms; the pre-2014 papers are united-AP-era). The split is invented. Arithmetic hand-checked: x = 125/450 = 5/18 m; y = 86.6/450 = 1/(3√3) m."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Choose the axes",
+        "marks": 1,
+        "mark_note": "Coordinates",
+        "lines": [
+          "Put the 100 g mass at the origin O and",
+          "the 150 g mass on the x-axis. Then:",
+          {
+            "text": "O(0, 0) — 100 g;  A(0.5, 0) — 150 g",
+            "style": "eq"
+          },
+          {
+            "text": "B(0.25, 0.25√3) — 200 g",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "B sits above the midpoint of OA at height (√3/2)·side. Write all three coordinate pairs before any formula.",
+        "why": "A good axis choice puts two masses on one axis — two zeros in the sums that follow. The physics is the same for any axes; the arithmetic is not.",
+        "common_mistakes": [
+          "Taking B at (0.25, 0.5) — the height of an equilateral triangle is (√3/2)·side, not the side."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vertices get coordinates with 100 g at the origin and B at (0.25, 0.25√3).",
+          "accept": [
+            "put hundred grams at the origin",
+            "B is at point two five comma point two five root three",
+            "coordinates rasali"
+          ],
+          "reject": [
+            "x of centre of mass is five by eighteen"
+          ],
+          "heard_as": [
+            "origin",
+            "coordinates",
+            "root three"
+          ]
+        },
+        "memory_tip": "Side 0.5 m gives height 0.25√3 ≈ 0.43 m. Height = (√3/2) × side, never the side."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The triangle",
+        "marks": 0,
+        "margin_note": "Drawn to scale, the CM cross sits visibly nearer the 200 g vertex — a built-in sanity check on the answer.",
+        "why": "The centre of mass must lean towards the heaviest particle. If the computed point lands elsewhere, the arithmetic is wrong.",
+        "common_mistakes": [
+          "Placing the CM at the centroid. The centroid is for EQUAL masses only."
+        ],
+        "figure": {
+          "id": "cm_triangle",
+          "width": 400,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_oa",
+              "d": "M 60 250 L 260 250",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 260 250 L 160 77",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "side_bo",
+              "d": "M 160 77 L 60 250",
+              "ms": 480
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 40,
+              "y": 268,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_m1",
+              "x": 8,
+              "y": 222,
+              "text": "100 g",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 268,
+              "y": 268,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_m2",
+              "x": 292,
+              "y": 236,
+              "text": "150 g",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 152,
+              "y": 62,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_m3",
+              "x": 186,
+              "y": 70,
+              "text": "200 g",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_side",
+              "x": 138,
+              "y": 278,
+              "text": "0.5 m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "cm_cross1",
+              "d": "M 164 166 L 178 180",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "cm_cross2",
+              "d": "M 178 166 L 164 180",
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_cm",
+              "x": 188,
+              "y": 180,
+              "text": "CM",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the triangle is drawn with the three masses and the centre of mass marked.",
+          "accept": [
+            "draw the triangle with the masses",
+            "mark the centre of mass",
+            "triangle figure geyyali"
+          ],
+          "reject": [
+            "put hundred grams at the origin"
+          ],
+          "heard_as": [
+            "triangle",
+            "figure",
+            "centre of mass"
+          ]
+        },
+        "memory_tip": "Whatever the numbers give, the point must lie INSIDE the triangle. Outside means an error."
+      },
+      {
+        "id": "s3_xcm",
+        "kind": "equation",
+        "label": "x of the CM",
+        "marks": 1,
+        "mark_note": "x꜀ₘ",
+        "lines": [
+          {
+            "text": "x꜀ₘ = (m₁x₁ + m₂x₂ + m₃x₃)/(m₁+m₂+m₃)",
+            "style": "eq"
+          },
+          "= [100(0) + 150(0.5) + 200(0.25)]/450",
+          {
+            "text": "= 125/450 = 5/18 m ≈ 0.28 m",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One substitution line with all three products visible, then the fraction. Grams cancel — no unit conversion needed.",
+        "why": "Grams appear in every term of the numerator and the denominator, so they cancel; converting to kg first is honest work for nothing.",
+        "common_mistakes": [
+          "Converting each mass to kg and losing a factor of 1000 in one term."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x of the centre of mass is the mass-weighted average, giving 5/18 m.",
+          "accept": [
+            "x c m formula",
+            "five by eighteen metres",
+            "weighted average of x"
+          ],
+          "reject": [
+            "one by three root three"
+          ],
+          "heard_as": [
+            "five by eighteen",
+            "x c m"
+          ]
+        },
+        "memory_tip": "125/450 = 5/18 ≈ 0.28 m, between 0.25 and 0.5 where the two heavier masses sit."
+      },
+      {
+        "id": "s4_ycm",
+        "kind": "boxed_final",
+        "label": "y of the CM and the result",
+        "marks": 2,
+        "mark_note": "y꜀ₘ",
+        "lines": [
+          {
+            "text": "y꜀ₘ = [100(0) + 150(0) + 200(0.25√3)]/450",
+            "style": "eq"
+          },
+          {
+            "text": "= 50√3/450 = 1/(3√3) m ≈ 0.19 m",
+            "style": "eq"
+          },
+          {
+            "text": "CM = (5/18, 1/(3√3)) m",
+            "style": "boxed"
+          },
+          "The point lies towards the 200 g mass,",
+          "as it must."
+        ],
+        "margin_note": "Close with the sanity line — \"towards the heaviest mass\". It costs nothing and shows understanding.",
+        "why": "Only B has a y-coordinate, so the y-sum has one term. The final check against the figure is the habit that catches sign and height errors.",
+        "common_mistakes": [
+          "Writing 1/3√3 ambiguously — bracket the denominator: 1/(3√3)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y of the centre of mass is 1/(3√3) m and the CM is (5/18, 1/(3√3)).",
+          "accept": [
+            "one by three root three",
+            "y c m has only the B term",
+            "towards the two hundred gram mass"
+          ],
+          "reject": [
+            "five by eighteen metres"
+          ],
+          "heard_as": [
+            "three root three",
+            "y c m",
+            "towards"
+          ]
+        },
+        "memory_tip": "1/(3√3) = √3/9 ≈ 0.19 m, well below B’s own height of 0.43 m."
+      }
+    ]
+  },
+  "insider_note": "Half the marks sit on the y-coordinate, and its one hard number is the height (√3/2) × side. The rest is substitution."
+}

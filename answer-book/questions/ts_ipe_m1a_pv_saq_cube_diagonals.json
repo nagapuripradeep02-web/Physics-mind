@@ -1,0 +1,351 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_saq_cube_diagonals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that the smaller angle θ between any two diagonals of a cube is given by cos θ = 1/3.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up a unit cube on the axes",
+      "marks": 1
+    },
+    {
+      "label": "Write the two diagonals as vectors",
+      "marks": 1
+    },
+    {
+      "label": "Apply the cosine formula and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 Product of Vectors, answer 62. Printed appearances: AP 17. The only PROOF in this chapter and the only answer with a figure. The book notes the same question appears in Maths-1B. It is proved on a UNIT cube because the angle does not depend on the size — a choice worth stating rather than assuming.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print splits for answers 58 and 59 on book p.63 (1+1+1+1) and for answer 61 on p.64 (1+2+1), so the shape used here is the chapter's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q13 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would prove this — say what cube you set up and which two diagonals you take.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set up a unit cube",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Put one corner at the origin and three edges along the axes. A UNIT cube is enough: scaling a cube does not change the angle between its diagonals.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Consider a unit cube with vertices O, A, B, C,",
+          "M, N, P, L placed on the coordinate axes,",
+          "with O at the origin.",
+          "We take OA = i, OB = j, OC = k."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a unit cube is set up with one corner at the origin and edges i, j, k along the axes.",
+          "accept": [
+            "take a unit cube with a corner at the origin and edges along i j and k",
+            "set up the cube on the coordinate axes with unit edges",
+            "let OA be i, OB be j and OC be k",
+            "unit cube ni origin daggara petti, edges i j k ga teeskuntam",
+            "place the cube on the axes with one vertex at O"
+          ],
+          "reject": [
+            "draw a cube",
+            "take a cube"
+          ],
+          "heard_as": [
+            "unit cube",
+            "origin",
+            "axes",
+            "i j k",
+            "OA"
+          ]
+        },
+        "why": "The angle between diagonals is the same for every cube, so choosing side 1 loses no generality and makes every vector a sum of unit vectors.",
+        "common_mistakes": [
+          "Using a cube of side a and carrying it through pointlessly.",
+          "Placing the cube off the axes, which makes the vectors messy."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the cube",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. Mark the two diagonals OP and CL — with them on the page you can read their components straight off instead of deriving them.",
+        "figure": {
+          "id": "unit_cube_diagonals",
+          "width": 270,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "front_face",
+              "ms": 900,
+              "d": "M 100 195 L 210 195 L 210 100 L 100 100 Z"
+            },
+            {
+              "type": "stroke",
+              "id": "back_face",
+              "ms": 900,
+              "d": "M 50 240 L 160 240 L 160 145 L 50 145 Z"
+            },
+            {
+              "type": "stroke",
+              "id": "edge_oc",
+              "ms": 260,
+              "d": "M 100 195 L 50 240"
+            },
+            {
+              "type": "stroke",
+              "id": "edge_an",
+              "ms": 260,
+              "d": "M 210 195 L 160 240"
+            },
+            {
+              "type": "stroke",
+              "id": "edge_lp",
+              "ms": 260,
+              "d": "M 210 100 L 160 145"
+            },
+            {
+              "type": "stroke",
+              "id": "edge_bm",
+              "ms": 260,
+              "d": "M 100 100 L 50 145"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_op",
+              "ms": 520,
+              "d": "M 100 195 L 160 145"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_cl",
+              "ms": 700,
+              "d": "M 50 240 L 210 100"
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 84,
+              "y": 212,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 220,
+              "y": 212,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 84,
+              "y": 92,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 220,
+              "y": 92,
+              "text": "L",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 28,
+              "y": 258,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 168,
+              "y": 260,
+              "text": "N",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 26,
+              "y": 136,
+              "text": "M",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 172,
+              "y": 136,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a labelled cube is drawn with the two diagonals marked. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the cube and mark the two diagonals OP and CL",
+            "sketch the labelled cube with its diagonals",
+            "make a diagram showing the cube and the two space diagonals",
+            "cube geesi rendu diagonals OP and CL mark cheyyali",
+            "draw a labelled cube with the diagonals shown"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "cube",
+            "diagonals",
+            "OP",
+            "CL"
+          ]
+        },
+        "why": "A space diagonal runs from a corner to the corner diagonally opposite through the middle. The picture is how you check you have picked two such diagonals and not a face diagonal.",
+        "common_mistakes": [
+          "Taking a face diagonal, which gives a different angle.",
+          "Labelling the vertices so that OP and CL are the same diagonal."
+        ]
+      },
+      {
+        "id": "s3_diagonals",
+        "kind": "equation",
+        "label": "Write the diagonals",
+        "marks": 1,
+        "mark_note": "Diagonals",
+        "margin_note": "Second mark. Walk each diagonal edge by edge and add the steps. OP goes along i, then j, then k; CL goes along i, then j, then BACK along k — hence the minus.",
+        "lines": [
+          "Consider the diagonals OP and CL.",
+          "OP = OA + AL + LP = i + j + k   …(1)",
+          "CL = CN + NP + PL = i + j − k   …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That OP = i + j + k and CL = i + j − k, the minus arising because that diagonal runs back along the k direction.",
+          "accept": [
+            "OP is i plus j plus k and CL is i plus j minus k",
+            "walk each diagonal along the edges and add, one has a minus k",
+            "the two diagonals are i plus j plus k and i plus j minus k",
+            "OP i plus j plus k, CL i plus j minus k, minus vasthundi",
+            "add the edge steps to get each diagonal"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "OP",
+            "CL",
+            "i plus j plus k",
+            "minus k",
+            "diagonal"
+          ]
+        },
+        "why": "Every space diagonal of a unit cube has components ±1, ±1, ±1. Two different diagonals differ in exactly one sign, and that single sign is what produces the 1/3.",
+        "common_mistakes": [
+          "Giving both diagonals as i + j + k, which are the same line.",
+          "Losing the minus on the k component."
+        ]
+      },
+      {
+        "id": "s4_cosine",
+        "kind": "boxed_final",
+        "label": "Apply the cosine formula",
+        "marks": 2,
+        "mark_note": "The angle",
+        "margin_note": "Half the marks. The dot product gives 1 + 1 − 1 = 1, and each magnitude is √3, so the denominator is 3. Both diagonals have the same length, which is what makes it so clean.",
+        "lines": [
+          {
+            "text": "\\cos\\theta = \\frac{OP \\cdot CL}{|OP|\\,|CL|}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= (1×1) + (1×1) + (1×−1)  over  √3 · √3",
+          "= (1 + 1 − 1)/3",
+          {
+            "text": "∴ cos θ = 1/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ is the dot product over the product of the magnitudes, giving (1+1−1)/(√3·√3) = 1/3.",
+          "accept": [
+            "cos theta is the dot product over the two magnitudes, one plus one minus one over three which is one third",
+            "the dot product is one and each magnitude is root three so cos theta is one third",
+            "apply the cosine formula to get one over three",
+            "dot product one, magnitudes root three each, cos theta one by three",
+            "the answer is cos theta equals one third"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos theta",
+            "one third",
+            "dot product",
+            "root three",
+            "one by three"
+          ]
+        },
+        "why": "The two diagonals agree in two components and differ in one, so the dot product is 1 + 1 − 1 = 1 while each length stays √3. That is the whole reason the answer is exactly a third.",
+        "common_mistakes": [
+          "Adding the magnitudes instead of multiplying them.",
+          "Getting the dot product as 3 by ignoring the minus sign.",
+          "Reporting the angle instead of its cosine when the cosine was asked for."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_viroid_vs_virus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How are viroids different from viruses?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Viroid points",
+      "marks": 1
+    },
+    {
+      "label": "Virus points",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_viroid",
+        "kind": "text",
+        "label": "Viroid",
+        "marks": 1,
+        "mark_note": "Viroid",
+        "lines": [
+          {
+            "text": "Viroid",
+            "style": "heading"
+          },
+          "It contains only RNA.",
+          "A protein coat (capsid) is absent.",
+          "The RNA is of low molecular weight.",
+          "Example: potato spindle tuber disease."
+        ],
+        "why": "A viroid is defined by what it lacks: it is free RNA with no protein coat, so every difference from a virus follows from this one point.",
+        "common_mistakes": [
+          "Writing that a viroid has DNA. A viroid has only RNA.",
+          "Writing capsid present for the viroid. The missing capsid is the main difference."
+        ],
+        "memory_tip": "Viroid = RNA alone: no protein coat, low molecular weight.",
+        "margin_note": "Two clear viroid points earn this mark; the disease example supports them."
+      },
+      {
+        "id": "s2_virus",
+        "kind": "boxed_final",
+        "label": "Virus",
+        "marks": 1,
+        "mark_note": "Virus",
+        "lines": [
+          {
+            "text": "Virus",
+            "style": "heading"
+          },
+          "It contains either RNA or DNA.",
+          "A protein coat (capsid) is present.",
+          "Its molecular weight is higher than a viroid's.",
+          {
+            "text": "Viroid = naked RNA; virus = RNA or DNA in a capsid.",
+            "style": "boxed"
+          }
+        ],
+        "why": "A virus is a nucleoprotein: nucleic acid (RNA or DNA) packed inside a protein capsid. Writing each virus point opposite the matching viroid point completes the difference the question asks for.",
+        "common_mistakes": [
+          "Writing that a virus has both RNA and DNA. It has one of them, never both.",
+          "Giving only virus points. The question asks for the difference, so both columns are needed."
+        ],
+        "memory_tip": "Virus = nucleic acid + protein coat; viroid = the RNA without the coat.",
+        "margin_note": "Write matched pairs: genetic material, capsid, molecular weight."
+      }
+    ]
+  },
+  "insider_note": "Examiners look for point-against-point differences; three matched pairs earn more than a sentence about each organism."
+}

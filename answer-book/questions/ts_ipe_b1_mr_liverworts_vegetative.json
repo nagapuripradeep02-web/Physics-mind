@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_liverworts_vegetative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do liverworts reproduce vegetatively?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Gemmae named", "marks": 1 },
+    { "label": "What gemmae are", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book's model answer stops at 'specialised structures called gemmae'; the card adds the standard gemma-cup detail (NCERT) that a 2-mark answer needs."
+  },
+  "insider_note": "Most answers stop at the word gemmae; the second mark needs the detail — green multicellular buds formed in gemma cups on the thallus.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Modes of Reproduction · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_means",
+        "kind": "text",
+        "label": "The means: gemmae",
+        "marks": 1,
+        "mark_note": "Gemmae named",
+        "lines": [
+          "Liverworts reproduce vegetatively by",
+          "fragmentation of the thallus, and by",
+          "special structures called gemmae."
+        ],
+        "why": "The one word the question is testing is gemmae; fragmentation is the second standard route for liverworts.",
+        "common_mistakes": [
+          "Writing 'spores' — spore formation is asexual reproduction, not vegetative.",
+          "Misspelling gemmae (it has two m's and ends in -ae)."
+        ],
+        "memory_tip": "Two routes: the body breaks (fragmentation) or the body buds (gemmae).",
+        "margin_note": "Fragmentation + gemmae — one sentence carries the mark."
+      },
+      {
+        "id": "s2_gemmae",
+        "kind": "boxed_final",
+        "label": "What gemmae are",
+        "marks": 1,
+        "mark_note": "What gemmae are",
+        "lines": [
+          { "text": "Gemmae = green, multicellular asexual buds", "style": "boxed" },
+          "They form in small cups (gemma cups) on",
+          "the thallus. A gemma separates from the",
+          "parent and germinates into a new",
+          "individual."
+        ],
+        "why": "The mark is for what a gemma is and what it does: a bud that separates and germinates — no gametes at any point, which is why this is vegetative reproduction.",
+        "common_mistakes": [
+          "Calling gemmae unicellular — they are multicellular buds.",
+          "Saying gemmae are formed by fertilization — no gametes are involved."
+        ],
+        "memory_tip": "Three g-words in order: gemma, gemma cup, germinate.",
+        "margin_note": "Definition line + where they form + what they do."
+      }
+    ]
+  }
+}

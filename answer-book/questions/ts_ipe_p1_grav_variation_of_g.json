@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_variation_of_g",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the variation of acceleration due to gravity (a) above and (b) below the surface of the earth.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Above the surface",
+      "marks": 2
+    },
+    {
+      "label": "Below the surface",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_above",
+        "kind": "equation",
+        "label": "Above the surface",
+        "marks": 2,
+        "mark_note": "Above",
+        "lines": [
+          "On the surface g = G M / R². At a height h above",
+          "it the distance from the centre becomes (R + h):",
+          {
+            "text": "g_h = G M / (R + h)²",
+            "style": "eq"
+          },
+          "Dividing the second by the first,",
+          {
+            "text": "g_h / g = R² / (R + h)² = (1 + h/R)⁻²",
+            "style": "eq"
+          },
+          "For h much smaller than R this gives",
+          {
+            "text": "g_h = g (1 − 2h/R)",
+            "style": "eq"
+          }
+        ],
+        "why": "The factor 2 comes from expanding a SQUARE — it is the sign that this is the height formula and not the depth one.",
+        "common_mistakes": [
+          "Dropping the factor 2, which is exactly what turns this into the depth formula.",
+          "Using g(1 − 2h/R) when h is not small compared with R. The linear form is an approximation; the exact value at any height is GM/(R + h)²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g at height h is G M by R plus h squared, giving g into one minus two h by R for small h.",
+          "accept": [
+            "G M by R plus h squared",
+            "g into one minus two h by R",
+            "factor of two"
+          ],
+          "reject": [
+            "only the sphere below pulls"
+          ],
+          "heard_as": [
+            "height",
+            "two h by R"
+          ]
+        },
+        "memory_tip": "The height formula has the 2, the depth formula does not: 1 − 2h/R against 1 − d/R.",
+        "margin_note": "Two marks. Write the exact inverse-square form before the small-h approximation."
+      },
+      {
+        "id": "s2_below",
+        "kind": "boxed_final",
+        "label": "Below the surface",
+        "marks": 2,
+        "mark_note": "Below",
+        "lines": [
+          "At a depth d only the sphere of radius (R − d)",
+          "below you pulls; the shell above pulls equally",
+          "in all directions and cancels. With uniform",
+          "density ρ, M = (4/3)πR³ρ, so g = (4/3)πGRρ and",
+          {
+            "text": "g_d = (4/3) π G (R − d) ρ",
+            "style": "eq"
+          },
+          "Dividing by g,",
+          {
+            "text": "g_d = g (1 − d/R)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two results differ in shape: above the surface g falls as an inverse square, below it falls in a straight line to zero at the centre.",
+        "common_mistakes": [
+          "Using the whole mass M of the earth at a depth d, instead of only the mass below."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That only the sphere below pulls, giving g at depth equal to g into one minus d by R.",
+          "accept": [
+            "only the sphere below pulls",
+            "g into one minus d by R",
+            "shell above cancels"
+          ],
+          "reject": [
+            "g into one minus two h by R"
+          ],
+          "heard_as": [
+            "depth",
+            "one minus d by R"
+          ]
+        },
+        "memory_tip": "Check the two ends: d = 0 gives g and d = R gives 0, in a straight line between.",
+        "margin_note": "Two marks. Say why only the inner sphere counts, then box g(1 − d/R)."
+      }
+    ]
+  },
+  "insider_note": "The two halves are worth two marks each, so the height derivation alone can earn only half — and the depth half needs the shell reason, not only the formula."
+}

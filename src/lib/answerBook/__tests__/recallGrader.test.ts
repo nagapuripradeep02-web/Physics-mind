@@ -11,12 +11,17 @@ import { gradeRecall, normalizeForQuote, findInNormalized, normalizeForRescue } 
 import { answerBookQuestionSchema, type AnswerBookQuestion } from '../../../schemas/answerBook';
 import type { RecallCheck } from '../../../schemas/answerBookRecall';
 
+// The grader is subject-agnostic, so this reads a FIXTURE the test owns rather than
+// a shipping content file. It used to read answer-book/questions/ directly, and
+// deleting physics Unit 4 from the (now mathematics-only) book broke the whole suite
+// with ENOENT — a content decision should never be able to do that. The fixture is a
+// verbatim copy of the Physics-I parallelogram-law answer, kept because these tests
+// need shapes mathematics does not currently author: an 8-mark total and a ZERO-mark
+// step (s8_special_cases) that must earn nothing. It is still parsed through the real
+// schema, so a schema change still breaks it here, which is the point.
 const question: AnswerBookQuestion = answerBookQuestionSchema.parse(
     JSON.parse(
-        readFileSync(
-            join(process.cwd(), 'answer-book', 'questions', 'ts_ipe_p1_vec_parallelogram_law.json'),
-            'utf8',
-        ),
+        readFileSync(join(__dirname, 'fixtures', 'parallelogram_law.question.json'), 'utf8'),
     ),
 );
 

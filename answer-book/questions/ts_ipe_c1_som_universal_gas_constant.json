@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_universal_gas_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is the gas constant R called the universal gas constant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists R = 0.0821 L atm and 1.987 cal values; this card adds the SI value 8.314 J mol⁻¹ K⁻¹, which the book itself uses in its SAQ 8 answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "In PV = nRT the constant R has the same value",
+          "for ALL gases, whatever their nature — hydrogen,",
+          "oxygen or any other gas.",
+          "Because its value does not depend on the gas,",
+          "R is called the universal gas constant."
+        ],
+        "why": "The van der Waals constants a and b change from gas to gas, but R does not. Same value for every gas is exactly what the word universal claims, so the reason must state that independence.",
+        "common_mistakes": [
+          "Saying R is constant at all temperatures. The point is that it is the same for all GASES.",
+          "Quoting values without stating the reason. The why carries its own mark."
+        ],
+        "memory_tip": "Universal = same for every gas. Contrast with a and b, which are different for every gas.",
+        "margin_note": "The phrase same for all gases must appear in the sentence."
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "The values",
+        "marks": 1,
+        "mark_note": "Values",
+        "lines": [
+          {
+            "text": "R = 8.314 J mol⁻¹ K⁻¹",
+            "style": "boxed"
+          },
+          "R = 0.0821 L atm mol⁻¹ K⁻¹",
+          "R ≈ 1.987 cal mol⁻¹ K⁻¹"
+        ],
+        "why": "One constant, three unit systems: joules for SI work, litre-atmospheres for gas-law problems in atm and L, calories for the older energy questions. All three describe the same R.",
+        "common_mistakes": [
+          "Attaching the wrong unit to a value, such as 0.0821 J mol⁻¹ K⁻¹.",
+          "Writing 8.314 with no unit at all."
+        ],
+        "memory_tip": "Match the size to the unit: 8.314 goes with J, 0.0821 with L atm, about 2 with cal.",
+        "margin_note": "Any one value with its correct unit earns the mark; the three together are the safe answer."
+      }
+    ]
+  },
+  "insider_note": "The mark is in the pairing of number and unit — examiners see 0.0821 with J mol⁻¹ K⁻¹ every year and it earns nothing."
+}

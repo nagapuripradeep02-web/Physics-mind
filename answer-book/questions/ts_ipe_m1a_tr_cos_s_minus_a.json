@@ -1,0 +1,265 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_s_minus_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cosC = −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 2
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.42 — LAQ chapter 5 T-Ratios upto Transformations, answer 30.2. Printed appearances: TS 17. The twin of 30.1 with cosines throughout. The book calls the pair a \"Superb Pairing\". The −1 arises exactly as it did in answer 26.2, from choosing cos C = 2cos²(C/2) − 1. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The same S-condition as its twin — and the same observation, that the two shifted angles add to C.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = 2S  ⇒  (S−A) + (S−B) = 2S − (A+B) = C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first in the form the proof needs",
+            "state the given condition and rearrange it",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "rearrange",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "lines": [
+          "L.H.S = cos(S−A) + cos(S−B) + cosC",
+          "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
+          "  [∵ cosC + cosD formula]",
+          "= 2 cos((2S−(A+B))/2) cos((B−A)/2) + cosC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two shifted cosines are paired with the cos C + cos D formula.",
+          "accept": [
+            "pair the first two with cos C plus cos D",
+            "apply sum to product to the two shifted cosines",
+            "combine cos S minus A and cos S minus B",
+            "modati rendu cosines ni combine cheyyali",
+            "use the cosine sum formula on the pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos C plus cos D",
+            "sum to product",
+            "B minus A over two"
+          ]
+        },
+        "why": "Identical opening to the twin question — only the formula changes from sine to cosine.",
+        "common_mistakes": [
+          "Using the sine formula by habit.",
+          "Pairing the wrong two terms."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "lines": [
+          "= 2 cos(C/2) cos((B−A)/2) + (2cos²(C/2) − 1)",
+          "  [∵ 2S − (A+B) = C, and cosθ = 2cos²(θ/2) − 1]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2S − (A+B) becomes C, and cos C is expanded as 2cos²(C/2) − 1 — producing the −1 and a shared cos(C/2).",
+          "accept": [
+            "the half sum becomes C over two and cos C is two cos squared half C minus one which gives the minus one",
+            "expand cos C in half angles so both terms carry cos C over two",
+            "the minus one comes from the double angle expansion",
+            "cos C ni two cos square C by two minus one ga rasta, minus one vasthundi",
+            "substitute and expand to get the common factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos squared",
+            "minus one",
+            "C over two",
+            "half angle"
+          ]
+        },
+        "why": "Choosing 2cos²(θ/2) − 1 rather than 1 − 2sin²(θ/2) is deliberate: it produces both the −1 the answer needs and a cos(C/2) that matches the other term.",
+        "common_mistakes": [
+          "Using the sine form and getting +1 with sines that will not factor.",
+          "Forgetting the −1."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "lines": [
+          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(C/2)]",
+          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          "  [∵ C = (S−A) + (S−B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −1 is set aside, 2 cos(C/2) taken out, and cos(C/2) rewritten in the shifted angles.",
+          "accept": [
+            "separate the minus one, take two cos C over two common, then convert C back to S minus A plus S minus B",
+            "set the minus one aside and factor out two cos half C",
+            "the bracket becomes two cosines in the shifted angles",
+            "minus one veru chesi two cos C by two common teeyyali",
+            "rewrite the bracket in S minus A and S minus B"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus one",
+            "two cos C over two",
+            "S minus A",
+            "common factor"
+          ]
+        },
+        "why": "Setting the constant aside before factoring is the same tactic used in answers 26.2 and 28 — it keeps the line short and the common factor visible.",
+        "common_mistakes": [
+          "Trying to factor the −1 into the bracket.",
+          "Leaving the bracket in terms of C."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "lines": [
+          "= −1 + 2 cos(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          {
+            "text": "= −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of cosines becomes 2 cos((S−A)/2) cos((S−B)/2), giving −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2).",
+          "accept": [
+            "the sum gives two cos half S minus A cos half S minus B so the answer is minus one plus four of those times cos half C",
+            "apply the cosine sum formula and keep the minus one",
+            "the answer is minus one plus four cos cos cos",
+            "minus one plus four cos half S minus A cos half S minus B cos half C",
+            "finish with the cosine sum formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "four",
+            "minus one plus",
+            "cos half C",
+            "sum formula"
+          ]
+        },
+        "why": "Every factor in this answer is a cosine, where its twin finished with a sine. The difference traces back to one choice made three steps earlier.",
+        "common_mistakes": [
+          "Finishing with sin(C/2) by copying the twin.",
+          "Losing the −1."
+        ]
+      }
+    ]
+  }
+}

@@ -34,9 +34,10 @@ header over the same steps. There is no country/board fact inside any step.
 U+2212 minus, never hyphen). This is deliberate: a KaTeX-typeset fraction inside a Kalam
 notebook page breaks the illusion, char-by-char reveal is trivial on a text node and hostile
 to KaTeX, and the one-line slash form is exactly what a hand writes in a booklet in 15
-minutes. Upgrade path if a question ever needs a stacked fraction/integral: an optional
-per-line `"render": "katex"` with a width-clip reveal (KaTeX is already vendored — see
-`writeVendorAssets()` in `build_review_site.ts` for the copy pattern). Not before.
+minutes. **That upgrade path was taken on 2026-08-21** when Maths-1A arrived — matrices
+are 5 of its 24 questions and a capital-letter subscript (Iᴀ) has no Unicode form at all.
+See *Mechanism 3* below. The rule the original note was protecting still stands: a
+fraction, root or power that reads honestly on one line stays plain Unicode.
 
 ## Mechanism 1 — pagination: measure → freeze → clear → type
 
@@ -78,15 +79,335 @@ body is exactly 32 rules (1024px). Placement:
   on low-end Android). If wobble is ever added it must be **seeded/authored, never
   `Math.random()`** — every load must render identically (Rule 18 posture).
 
-## AI-chatbot seam (exists; nothing more)
+**`figure.height` is a PAGINATION decision, not just a drawing one** (learned 2026-08-24, the
+Maths-1A altitudes LAQ). `buildFigure` reserves `Math.ceil(fig.height / 32) * 32` px so the block
+below stays on the ruled lines, so a figure costs whole rules, not its own height — 208 and 224
+cost exactly the same, and 176 and 208 differ by a full rule. Adding a 7-rule figure to that LAQ
+pushed its `Total : 7 / 7 marks` line onto an otherwise-empty page 2 **by two pixels**. Dropping
+the figure one rule to 176 brought it back. The `.page-body` is 1024px = 32 rules; after
+authoring a figure, count the pages, and if a new one holds nothing but the total, take a rule
+off the figure before anything else.
 
-1. Data attributes on every rendered node: `.step-block[data-step-id][data-kind][data-marks]`,
-   `.line[data-line-index]`, notebook root `[data-question-id]`.
-2. `window.PM_ANSWER` (frozen): `{ version, question, getState(), goToStep(id),
-   revealNext(), revealAll() }`.
-3. `pm:step-revealed` CustomEvent per completed step + `<aside id="pm-assistant-slot" hidden>`
-   in the rail. `margin_note` per step is the grounding text a future assistant reads.
-   No fetch, no button, no transcript store until the chatbot actually lands.
+**Leave ~7px of headroom inside the viewBox under an `em` label.** `em` is 25px Kalam and its
+rendered box runs roughly `y-20 … y+5`, so a baseline at `height − 10` still spills. Measured:
+`y=188` in a 200-tall figure passes, `y=190` does not. Where the canvas is short, put vertex
+labels **beside** their vertices rather than under them — which is usually where the source book
+puts them anyway. The browser gate catches this too, but only as "label outside its own svg"; the
+`overflow: visible` on `.figure-wrap svg` means it looks fine on screen while overlapping the
+block below.
+
+## Mechanism 3 — typeset lines (`render: "katex"`, added 2026-08-21)
+
+Some mathematics simply cannot be written on one line of text: a 3×3 matrix, a
+determinant, and — less obviously — `I_A`, because **Unicode has no subscript capital
+letters** (it stops at lowercase ₐ ₑ ᵢ). Maths-1A needs both: Matrices is Q3, Q4, Q11,
+Q20, Q21, and the Functions chapter's identity-function LAQs are unwritable without the
+subscript.
+
+- **A line opts in**: `{ "text": "<TeX source>", "render": "katex" }`. `text` is TeX, not
+  text. Default stays `plain`.
+- **Typeset by the BUILD, never the browser.** `build_answer_book.ts` calls
+  `katex.renderToString(..., { throwOnError: true, output: 'html' })` and stores the HTML.
+  The page ships no KaTeX JS. A bad macro fails the build naming the question and step —
+  it can never reach a student as a red error string (Rule 18 posture, unchanged).
+  Cut-substituted `lines` are typeset too; missing them would ship a cut whose matrix
+  arrived as raw TeX.
+- **Revealed by a width wipe**, not typed — a typeset tree has no characters to type.
+  `.kx-clip` is `overflow:hidden`, its natural width frozen then collapsed to 0 and
+  animated back, paced off the TeX length so it does not outrun the plain line above it.
+- **Height snaps to whole rules.** `Math.ceil(h / 32) * 32` in `placeStep`, the same thing
+  `buildFigure` does. Skip it and every later line walks off the ruled paper.
+- **Over-wide lines are the one silent failure** — the `overflow:hidden` that makes the
+  wipe possible also truncates invisibly. `placeStep` warns to the console, and
+  `e2e/answer_book.spec.ts` asserts no clip is truncated.
+- **The hand, borrowed.** KaTeX keeps its layout and its big drawn brackets, but
+  `.mathnormal`/`.mathrm`/`.text` are re-set in **Kalam**, so a matrix reads as
+  handwriting rather than as a printed textbook dropped onto a written page.
+  **Digits deliberately stay KaTeX**: Kalam's "1" is a bare stroke, so a Kalam subscript
+  turns `a₁ b₁ c₁` into "a, b, c," — built, looked at, rejected.
+- **Fonts**: KaTeX's stylesheet is inlined with every `@font-face` rewritten to an
+  embedded woff2 data URI (the page must stay ONE file that works from `file://`).
+  Emitted **only when a typeset line exists**, so a physics-only book is unchanged:
+  177 KB without, ~645 KB with.
+- **The graders never see TeX.** `recallGrader` builds its prompt from the `recall`
+  rubric and `photoGrader` never reads `lines`, so TeX source reaches no model.
+
+**When NOT to use it.** Every typeset line is a small break in the handwriting illusion.
+Use it for matrices, determinants and capital-letter subscripts. `R = √(P² + Q² + 2PQ cos θ)`,
+`Tan⁻¹((x+y)/(1−xy))` and `Δ = √(s(s−a)(s−b)(s−c))` stay plain Unicode.
+
+## Subject dimension in the catalog (added 2026-08-21)
+
+`units.json` units carry `subject`; **absent means physics**, exactly the way an
+appearance with no `board` means TS. The catalog's subject chip row renders only from
+the **second** subject on, so a physics-only build is visually untouched. Section
+headings read their mark value off the questions in the group rather than hardcoding it —
+a Physics-I long answer is 8 marks, a Maths-1A long answer is 7, and the hardcoded
+"· 8 marks" printed the wrong number over the maths section the day it landed.
+
+**Unit numbers namespace PER SUBJECT** (physics Unit 3 and maths Unit 3 Matrices are
+different chapters), so every unit identity keys on `unitKey(u)` = `subject-number`
+(`physics-4`): the chapter chips (`data-unit`), the triage lookup, the exam-eve route
+(`#/exam-eve/physics-4`; a bare number is accepted for historic links and means the
+first — physics — unit with that number), and **the planner** — `plan.units` and
+`Plan.itemsFor` carry keys, never bare numbers. The planner half is a scar, not
+foresight: at the 2026-08-23 physics+maths merge the checkboxes still pushed bare
+numbers, so a student picking physics Units 2+3 silently also scheduled maths Units
+2+3 — Matrices' 17 LAQs — and every plan flipped into crunch. A colliding dimension
+has to be re-keyed EVERYWHERE the old key travels, not just where it renders.
+
+## Vidi — the assistant layer (landed 2026-08-22; design: docs/ANSWER_BOOK_VIDI_DESIGN.md)
+
+The seam grew into the layer. What exists now:
+
+1. The original wiring, unchanged: `.step-block[data-step-id][data-kind][data-marks]`,
+   `.line[data-line-index]`, `[data-question-id]`, frozen `window.PM_ANSWER`,
+   `pm:step-revealed`. `#pm-assistant-slot` now holds the Vidi panel.
+2. **Deterministic Vidi** (works offline, `file://` included): per-question greeting
+   (stars + asked years + `insider_note`), four chips (Will this come? / Why this step? /
+   How to remember? / How much to write?) answered from `PM_QUESTIONS`/`PM_UNITS`, the
+   catalog triage strip, the `#/exam-eve/<unit>` view (weakest self-checks + 3-star set),
+   the self-check verdict line, and the rename-after-first-check flow (localStorage:
+   `pm_vidi_name`, `pm_vidi_history`, `pm_vidi_rename_done`, `pm_vidi_session` — every
+   access try/catch-wrapped; names are display data, never identifiers).
+3. **Flag-gated live chat**: `window.PM_VIDI_BASE` (build env `ANSWER_BOOK_VIDI_BASE`,
+   `npm run build:answers:hosted`). Empty — the default — means the ask row and the
+   telemetry flush DO NOT EXIST and the offline e2e gates hold by construction. Set, the
+   page talks to `supabase/functions/answerbook-vidi-chat` (own `task_type` ledger, own
+   $2/day cap, 4/min + 40/day per hashed IP, fail-closed; `{type:'events'}` batches →
+   `simulation_feedback`). Context is assembled client-side, byte-stable per question+cut,
+   from the authored steps — the bank is the brain, Vidi is the voice.
+4. **New authored fields** (both optional+sparse, precedent `margin_note`): per-step
+   `memory_tip` (the "How to remember?" chip; authored 3★+LAQ first — 179 steps across
+   56 questions, 2026-08-22) and per-question `insider_note` (one examiner-insight
+   sentence). Rule 41 applies to every one.
+5. **Hard constraints that keep the gates green**: nothing Vidi renders enters
+   `.step-block` (rail/overlay/fixed layers only); no bare `display:` that beats
+   `[hidden]`; the panel never uses `.card-title`; triage links never use `.cat-card`;
+   every network path is build-flag-gated, default off. Hosting runbook:
+   `docs/notes/answer_book_hosting.md`.
+6. **What actually reaches the model** (fixed 2026-08-22). `buildVidiContext()` emits
+   `WHY` / `MISTAKES` / `EARNS THE MARK FOR` / `REMEMBER` / `NOTE` per step, plus
+   `CHAPTER`, `STARS`, `MARK SPLIT`, `VERIFICATION`, `INSIDER POINT`, the other cuts and
+   the chapter's 3★ mates. **`mark_note` (405 of 423 steps), `insider_note`, `chapter`
+   and `verification` were authored and never sent** — and a *missing* mark fact is what
+   made Vidi invent a mark scheme in the founder's real chat. Context grew ~10% (max
+   7,687 chars against the server's silent 10,000 slice, which now logs past 9,000).
+   Still never sent: `recall` (stripped from the browser copy by design) and `figure`
+   geometry — a diagram step sends its LABELS only.
+7. **One builder, no copies.** The page owns `buildVidiContext()`; `PM_ANSWER.vidiContext()`
+   exposes it read-only and `npm run vidi:contexts` dumps all 162 contexts for the
+   shakedown to consume. The harness previously re-implemented the builder and had
+   drifted on seven axes (cut-projected steps, per-cut `mark_split`, cut-aware stars, the
+   other-cuts skip, the cut's `question_text`, section/marks/time, and the `cut_key` it
+   reported), so every probe grounded the model in text no student ever sees. Same rule
+   now holds for the persona (Edge Function ↔ local mirror, parity-tested) and the Rule 41
+   word list (imported from `src/lib/answerBook/vidiChecks.ts`, never copied).
+8. **Rule 41 is mechanical now.** `build:answers` scans every authored `why`,
+   `common_mistakes`, `memory_tip`, `margin_note` and `insider_note` with the same word
+   list the shakedown grades Vidi's replies with. It caught a real violation on its first
+   run — "the whole trick" in the parallelogram's own `s3_construction.why`, a WHY line
+   the model had been grounded in since day one. Match on WORD BOUNDARIES: a plain
+   `includes` finds "ace it" inside "repl**ace it**" (a false positive on a real card).
+
+## The study planner (landed 2026-08-22 — personalized, deterministic, offline)
+
+Vidi's first experience is now the STUDENT'S, not the bank's (founder direction): no stars, no
+asked-years in any greeting. The planner is a chat-guided onboarding — exam date (native date
+input in a bubble) → chapter checklist → deterministic analysis → hours-per-day → day-by-day plan
+→ [Implement this plan] → countdown. Everything computes from PM_UNITS/PM_QUESTIONS +
+localStorage; the LLM is never in the plan path.
+
+- **Scheduling**: cost = authored `expected_time_min`; learn books 2× on its learn day, revision
+  ½× the NEXT day (learn-today-revise-tomorrow); priority = stars → LAQ>SAQ>VSAQ → asked before
+  predicted; the final ~15% of days are a full-revision block (weakest self-check first); overflow
+  falls off the BOTTOM into an honest `optional` bucket. Module `Plan` in notebook.js.
+- **Stages (TWO since 2026-08-23 — founder removed "Test myself" for now)**: Understand
+  is CLAIMED, never auto-ticked (founder, 2026-08-23, superseding the same-day auto-tick):
+  navigating away from a fully revealed answer raises the leave-question ask
+  ("Did you understand and practice this?" — `askGuard()`/`#askOverlay`); Yes = the YELLOW
+  tick + "we will revise this one tomorrow". A question understood on an EARLIER day asks
+  the revision form on the way out instead ("Did you revise this answer once more?"); Yes —
+  or the [Mark revised ✓] chip (now also plan-less once `s.u < today`) — completes the GREEN
+  tick. Green = u && r. The catalog chip is day-aware: "✓ revise tomorrow" → "✓ revise today"
+  → "✓ done". Without a plan the home chat still queues yesterday's understood questions
+  (`Plan.dueWithoutPlan`) before anything new — learn-today-revise-tomorrow holds planless. The `p` tick in `pm_stage_v1` is VESTIGIAL: the self-check
+  that set it is dormant, the stored shape is unchanged, no migration. The rename offer moved
+  from the first completed self-check to the FIRST [Mark revised ✓] — which means rename is
+  now only reachable by a student with a plan (accepted trade-off). Exam-eve's
+  "weakest self-check first" list stays empty forever and its most-asked fallback renders
+  (verified graceful). Ticks are DATE STRINGS via `todayStr()`, which honours the test-only
+  `pm_today_override` key — the whole feature is clock-injectable.
+- **Keys**: `pm_plan_v1` (the plan), `pm_stage_v1` (ticks), `pm_intro_done`/`pm_intro_seen`,
+  `pm_today_override` (tests only). All through the Vidi lsGet/lsSet wrapper.
+- **Nudges**: once a day (`lastNudgeDay`), on home-open or question-open: on-pace / behind /
+  exam-day-archive. Behind ⇒ a PROPOSED re-plan card — [Use this plan] / [Keep the old plan];
+  nothing ever changes silently.
+- **Chrome**: the window + pill now live on the CATALOG too (`syncView`/`minWin` know the view);
+  the countdown strip `#vidiPlanStrip` sits OUTSIDE the thread so question switches never wipe
+  it; onboarding widgets are `.vidi-widget` bubbles whose controls FREEZE after use (no replay);
+  planner chips are APPENDED to #vidiChips, never prepended (the offline gate clicks chips[0]);
+  catalog cards get a `.cc-chip.pm-upr` badge + `.pm-done` green margin on the authored branch
+  only. The model sees the plan via `body.plan_status` folded into the per-request situation
+  block — deliberately NOT tutor_context, which is byte-stable for the DeepSeek prefix cache.
+- **CRUNCH MODE** (founder, 2026-08-23): when the time left cannot fit the work — the classic
+  ignored-45-day-plan, one-week-left student — the priority FLIPS from stars-first to marks-first:
+  LAQs, then SAQs (stars within), and every VSAQ goes to the back regardless of stars, mostly
+  landing in `optional` with the strategy said out loud ("long answers and short answers first —
+  they carry the marks; the very short answers wait for exam-eve"). Trigger: demand
+  (Σ2.5×mins) > capacity ×1.15. The revision block shrinks to 1 day so learning days survive.
+  Applies to fresh builds AND re-plans, so the ignored plan replans INTO crunch. `plan.crunch`
+  rides the model's plan-status line too.
+- **QTYPE SCOPE** (founder, 2026-08-23): "I finished all LAQs elsewhere — plan only SAQs and
+  VSAQs." A deterministic plan dimension, never the model's. Onboarding gained a scope step
+  between chapters and analysis (three pre-checked `.vw-scope-box` checkboxes; all ticked =
+  `scope: null` = everything, so the default student never notices); `Plan.itemsFor/build/replan`
+  all carry it; the plan object stores `scope` (old plans lack it → null, no migration).
+  Mid-plan: the [Change my plan] chip (home AND question view) opens `changePlanWidget` —
+  [Change question types] runs `Plan.rescope` over everything not-yet-green in the NEW scope
+  (widening brings questions in) and presents the standard [Use this plan] / [Keep the old plan]
+  proposal; nothing changes until accept. Crunch computes over the already-scoped queue. The
+  persona ROUTES free-text "I only need VSAQs" statements to the chip — it never edits the
+  plan. `plan_status` says what the scope excludes so hosted answers stay honest.
+- **The chat field ships only in hosted builds — and the smoke suite OVERWRITES dist with the
+  offline build.** "There is no chat field" (founder, twice now: 2026-08-22 and 2026-08-23) has
+  both times meant the offline `build:answers` dist was being served after a test run. After any
+  smoke run, re-run `npm run build:answers:hosted` before serving to a person. Second cause found
+  2026-08-23: `renderHome` never set `#vidiAskRow`, so the CATALOG home chat had no input even
+  when hosted — fixed; a home ask sends `question_id:'home'` with a byte-stable catalog context,
+  never PM_QUESTIONS[0]'s.
+- **Gates**: the planner tests (intro-no-stars + offline onboarding · deterministic math ·
+  the leave-question ask (Yes→yellow / Not-yet→unmarked) + green tick + card counts · behind
+  → proposal → accept · silent no-plan open · plan-less next-day revision queue · crunch ·
+  Test-myself dormancy · scope-at-onboarding · mid-plan re-scope proposal · rename on
+  first Mark-revised). The five self-check overlay gates were REMOVED with the feature
+  (2026-08-23): suite went 42 → 40; the ask + plan-less revision took it back to 42. Caveat for test authors: `addInitScript` re-runs on reload
+  and resets the clock override — advance the day in-page and re-open the window instead of
+  reloading.
+
+## Anonymous progress sync (P2, landed 2026-08-23)
+
+No login, ever, at this rung: identity is a random UUIDv4 minted in the browser
+(`pm_device_id`). Unguessable (122 bits) but deliberately NOT a security boundary
+— it protects progress ticks, nothing more. Phone numbers arrive in P4 and get
+their own table; no PII lives anywhere in this feature.
+
+- **Offline first, always.** localStorage stays the source of truth; sync is an
+  accelerator, never a dependency. `PM_SYNC_BASE` unset (every non-hosted build)
+  ⇒ the `Sync` module is INERT — no device id minted, no timer armed, zero
+  requests — asserted by its own gate, because every other gate in the suite
+  runs in that configuration.
+- **One POST, both directions.** The client sends all its ticks + its plan; the
+  server merges and returns the merged truth. Endpoint: `answerbook-sync`
+  (sibling of the chat function — same origin allowlist, same salted-IP
+  discipline, no spend ceiling because there is no model call). The whole merge
+  is ONE atomic RPC (`ab_sync`).
+- **The merge rule is the safety story**: a stage tick is a DATE and the
+  EARLIEST wins — `LEAST()` in SQL, the same comparison in `Vidi.mergeStages`.
+  Commutative + associative + idempotent ⇒ two devices converge in any order and
+  a retried request can never lose or move a tick; no locking, no versioning, no
+  conflict UI. The rule exists twice ON PURPOSE (browser + SQL); vitest
+  (`syncMerge.test.ts`) proves the properties against the SHIPPED notebook.js
+  (mutation-checked: inverting earliest→latest fails 3 tests) and greps the
+  migration for `least(...)` so the two copies cannot drift apart silently.
+- **The plan is the one last-write-wins value** (a single blob the student can
+  rebuild wholesale), ordered by CLIENT `saved_at` — stamped in `Vidi.setPlan`.
+  A stale push is REFUSED by a `where` on the upsert, never merged. Sync adopts
+  a remote plan via `Vidi.storePlanRaw` (no re-stamp): using setPlan would mark
+  the adopted plan newer than the device it came from and ping-pong forever.
+- **Only device MINTING is IP-limited** (default 20/day/IP, enforced in the
+  RPC). An existing device is never IP-limited: students share school and cafe
+  networks, and locking one out of their own progress is worse than the abuse
+  it prevents.
+- **Tables** (`ab_devices`/`ab_progress`/`ab_plans`, currently in the dev
+  project `dxwpkjfypzxrzgbevfnx` — the free tier's 2-project cap made the
+  planned `physicsmind-students` project impossible without paying; founder
+  accepted, and moving later is a dump/restore + one env var): RLS on, ZERO
+  policies — service-role only, and `ab_sync` has execute revoked from
+  public/anon/authenticated (the advisor confirms it is not anon-callable).
+- **Live-verified 2026-08-23**: 403 foreign origin · earliest-wins merge through
+  the real endpoint · 400 malformed device · stale-plan refusal · mint quota —
+  all against the deployed function, then the probe rows deleted.
+- **Test-author scar**: multi-step RPC tests CANNOT share one SQL statement —
+  CTEs share a snapshot and evaluate in unspecified order, which produced a
+  phantom "stale plan won" result. Sequential statements only.
+
+## The chapter gate (P3, landed 2026-08-23 — PARKED, not live)
+
+The gated build (`npm run build:answers:gated` → `answer-book/dist-gated/`, 1.5 MB vs
+4 MB) ships the full CATALOG — question texts, stars, marks, the sell — and NO answer
+bodies. Answers live in `ab_content` and leave through `answerbook-content` only for a
+device `ab_entitlements` allows. Every device gets ONE free chapter, claimed by an
+EXPLICIT tap on the lock sheet (founder: a stray tap must never burn the slot).
+**The live site still serves the full book** — the founder flips at launch (pairs with
+P4's price): point `wrangler.answers.toml` assets at `dist-gated` + deploy, after
+`content:push`.
+
+- **The projection**: everything metadata stays; the answer reduces to a BOOT-SAFE
+  skeleton — steps as `{id, marks}` only, cut-step overrides to `{marks}` — because
+  notebook.js dereferences `question.answer.steps` at module init (`applyCut(0)`).
+  The gate itself is ONE line at the top of `loadQuestion` (both routes funnel
+  there): `gated: true` → `Gate.showLockFlow`.
+- **The Gate module** (sibling of Sync, inert without `PM_CONTENT_BASE` — every full
+  build): boot `list` call → lock chips on the catalog (only AFTER the list answers —
+  no flicker) + accurate sheet copy; unlock → bundle merges into `questions` IN
+  MEMORY (re-fetched per session — 550 KB bundles are localStorage roulette);
+  identity = `Sync.deviceId()` (one identity, both doors).
+- **The free-slot atomicity is an INDEX, not code**: partial unique on
+  `ab_entitlements(device_id) where source='free_chapter'`; `ab_claim_free` turns a
+  lost race into `free_used` and a same-unit replay into idempotent success. Only
+  device MINTING is IP-capped, same as sync.
+- **A locked reply never carries an answer byte** — asserted by gates on the built
+  page (probe: a real physics answer line + a maths TeX source, positive-controlled
+  against the full build) and on the endpoint (curl).
+- **The price is data**: `ab_skus.price_inr` NULL → the sheet says "coming soon" and
+  never a number the founder has not set. P4 fills it.
+- **Scar**: node/undici to Supabase REST dies on large bodies (a 550 KB jsonb upsert
+  TransformError'd on row one) — `content:push` uses the recorded curl bypass
+  (temp file → `curl -H "Expect:"` → retry until 2xx).
+- **Gates**: own spec (`e2e/answer_book_gated.spec.ts`, 6) against dist-gated with a
+  routed endpoint serving the REAL bundle files; the main 48-gate suite still runs
+  the untouched offline full build.
+
+## Payments (P4, landed 2026-08-24 — built + deployed, awaiting keys)
+
+RS99/31 days for the first 500 devices, RS249 after — and **the founding price is
+grandfathered forever**: a device that has ever paid RS99 renews at RS99. Nobody's
+price ever rises; January's step-up reaches only students who never saw RS99. That
+is the trust story, it is enforced in `ab_price_for` (not the client), and the
+sheet says it out loud ("Once you join at this price, it stays yours") with a gate
+on that sentence. Full operator doc: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md`.
+
+- **The client never names a price.** `ab_price_for(device)` returns the number,
+  the label, the slots left and `founding_locked`; the page only renders what it
+  was told, and `answerbook-pay` re-reads the price server-side when it mints the
+  link. A client that posts its own amount is ignored — gate-asserted (the pay
+  request carries no amount at all).
+- **The device id is the whole identity.** `answerbook-pay` puts it in Razorpay
+  `notes.device_id`; the webhook reads it back and grants that device. No login,
+  no OTP, nothing typed — which is also why nothing here waits on SMS/DLT.
+- **Idempotent on payment_id** (Razorpay retries any non-2xx for 24h): a repeat
+  returns `duplicate` and the entitlement is EXTENDED, never stacked — proven in
+  SQL (same id twice → one row; a renewal moved Sep 23 → Oct 24, i.e. from the
+  existing expiry, so paying early never burns paid days).
+- **The founder slot cannot be double-spent**: `ab_apply_payment` reads
+  `ab_price_for` BEFORE writing the payment row, so the 500th and 501st payer
+  cannot both take the last place.
+- **Money is never lost.** A payment with no `notes.device_id` is banked in
+  `ab_payments` with `applied_at = null` and a note, attachable by hand.
+- **`expires_at` on entitlements**: NULL = permanent (the free chapter is a gift,
+  not a rental); a paid pass stops opening the book the moment it lapses, which is
+  what makes a renewal mean anything. The content endpoint filters on it.
+- **Fail-closed everywhere, verified live**: no Razorpay keys → `payments_unconfigured`
+  and NO pay button (never a button that leads nowhere); foreign origin → 403;
+  unsigned or wrongly-signed webhook → 401 (so a forged "payment" grants nothing).
+- **The operational trap**: the Vidi spend ceiling is $2/day, sized for a pilot.
+  500 paying students would hit it by mid-morning and the function fails closed —
+  paying customers seeing "Vidi is resting". `AB_DAILY_USD_CAP=15` is step 2.3 of
+  the runbook and must happen BEFORE launch.
+- **Not built, deliberately**: autopay mandates (friction kills student
+  conversion — they re-tap), phone OTP / second-device restore (needs SMS/DLT,
+  weeks of lead), in-app refunds (dashboard + expire the pass).
 
 ## Rule tensions — resolved, do not relitigate
 
@@ -303,6 +624,12 @@ and it caught three over-packed lines in the first SAQ draft that no other gate 
 
 # Test yourself — photo + mic (2026-08-20, replaces the three-mode toggle)
 
+> **DORMANT since 2026-08-23 (founder): the "Test myself" entry is removed for now.** #btnTest
+> lost its `nb-only` class so the view sweep never un-hides it; the overlay, self-check, photo
+> and mic code all stay in the page, unreachable — reversible by restoring the class. Completion
+> is two stages (Understand → Revise); the rename offer moved to the first [Mark revised ✓].
+> Everything below describes the dormant surface as built.
+
 The Study / Exam / Test-myself toggle is **removed**. There is one entry — a **Test myself**
 button in the top-right corner — opening an overlay with two ways to be checked:
 
@@ -406,3 +733,307 @@ The rail `<select>` (`#qCard`) is gone; `← All questions` in the topbar return
 goes back. Cut overrides gained `margin_note` and `why` — the root wording can state a mark count
 a reduced cut contradicts ("the two marks are for the words alone" beside a 1-mark step), and the
 first catalog screenshot caught exactly that on the parallelogram SAQ cut.
+
+## Board landscape 2026-27 — the two IPE patterns diverged (researched 2026-08-20)
+
+The product is built on the TS pattern. In 2026 the two states stopped being variants of one exam,
+and the analysis below is what the authoring model rests on. Multi-source web research 2026-08-20;
+none of it is from an official circular yet — re-verify against tsbie.cgg.gov.in /
+bieap.apcfss.in model papers when they publish.
+
+### Telangana (TGBIE) — our board: theory UNCHANGED, syllabus revised
+
+- **Physics theory stays 60 marks** — explicitly stated in the reform coverage, and the March 2026
+  paper ran exactly our structure: Section A 10×2 compulsory · B 6-of-8 ×4 · C 2-of-3 ×8,
+  21 questions, 3 hours, English + Telugu. **The Answer Book's model is safe for March 2027.**
+- What changes 2026-27 (FIRST year; second year follows 2027-28): the old 30-mark second-year-only
+  practicals split into **15 marks per year**, conducted externally at each year's end. Maths goes
+  75 written → **60 written + 15 Activity-Based Learning** per paper. Humanities/Languages
+  100 → 80 + 20 internal. ("60 + 15 ABL" is the MATHS formula — for Physics the 15 is practicals.)
+- **The real exposure is the syllabus revision**, not the pattern: NCERT-aligned for 2026-27,
+  ~30% cuts in some subjects (Chemistry named), non-JEE/NEET topics removed, a new "Artificial
+  Intelligence in Physics" chapter, QR-coded textbooks. Our inventory is sourced from the 2024
+  Fastrack, which compiles the OLD syllabus's exam history. Mechanics (Units 4-6) is NCERT-stable;
+  the per-unit inventory still needs a diff against the new TGBIE textbooks when they publish.
+
+### Andhra Pradesh (BIEAP) — already switched, March 2026
+
+AP ran its reformed paper in March 2026 (first year; second year reforms 2026-27). NCERT syllabus
+(first year since 2025-26), CBSE-style format. **Physics Paper-I (NEW), Max Marks 85, 3 hours:**
+
+| Section | Questions | Marks | Choice |
+|---|---|---|---|
+| A | 9 | 1 each = 9 | ALL compulsory — mix of MCQ, fill-in-blank, one-liner |
+| B | 14 | 2 each = 28 | ALL compulsory — no choice |
+| C | 12 | 4 each, answer 8 = 32 | 8 of 12 |
+| D | 3 | 8 each, answer 2 = 16 | 2 of 3 |
+
+Plus 20 internal assessment; practicals separate (pass 11). Pass mark 29/85 (Yr 1).
+Source scan: `C:\Users\PRADEEEP\Downloads\AP-Inter-1stYear-Physics-QP-March2026-newpattern.pdf`
+(page 1 of 3 — the testbook CDN copy; the full paper is 3 pages). A near-complete transcription
+was recovered from exam-day coverage: Section A and B complete, C 6 of 12, D 1 of 3.
+
+### The finding that matters: the AP paper asks OUR questions
+
+From the March 2026 AP paper, transcribed:
+- B-13 "What is inertia? What gives the measure of inertia?" — our `ts_ipe_p1_lom_inertia_measure`
+  (TS VSAQ 2M ↔ AP Section B 2M: same length, both compulsory sections).
+- B-14 "State the relation between kinetic energy and momentum of a body." — our
+  `ts_ipe_p1_wpe_kinetic_energy_momentum` (2M in both).
+- C-26 "Mention the methods used to decrease friction." — our
+  `ts_ipe_p1_lom_methods_to_decrease_friction` (4M in both).
+- C-24 "Explain the terms average velocity and instantaneous velocity. When are they equal?" — our
+  `ts_ipe_p1_mp_average_instantaneous_velocity` (4M in BOTH — one transcription labelled it
+  Section D, but the numbering disproves that: A ends at 9, B at 23, so C runs 24-35 and D 36-38;
+  Q24 is a Section C 4-mark question. Every known C question — 24, 26, 27, 30, 31, 32, 35 —
+  falls inside 24-35, consistent).
+
+Both boards now draw from the same NCERT-shaped bank at different lengths — which is exactly what
+`cuts[]` + the `board` header field model. An AP edition is a re-heading + re-cutting exercise
+over the same authored step lists, not a rewrite.
+
+### What an AP edition would need (scoped, not planned)
+
+1. `board: 'ap_ipe'` headers (the field exists) + AP cuts on shared step lists.
+2. A `qtype` slot for AP Section A (1-mark objective/fill-in) — the current enum is VSAQ/SAQ/LAQ.
+3. AP-specific inventory: the Fastrack star-ranks are TS exam-frequency data and do NOT transfer;
+   AP's new-pattern history starts with the March 2026 paper (the seed frequency signal).
+4. Note AP Section B: 14 compulsory 2-mark questions, no choice — 2M coverage is worth far more
+   there than in TS, where a student can dodge within the section.
+
+### Deliberately NOT done
+
+No pattern_version field, no AP authoring, no schema change. The TS product is structurally safe;
+the trigger points are (a) TGBIE's revised theory model papers appearing, (b) the new TS textbooks
+publishing (→ per-unit inventory diff), (c) a founder decision to open the AP edition.
+
+## The enumeration method — the VSAQ/SAQ space per chapter is closed (Session 89, 2026-08-21)
+
+A 2-mark answer must fit 2-4 lines, so every VSAQ is one of ~8 archetypes applied to the chapter's
+finite object inventory. Archetypes, each evidenced by authored cards / real papers:
+
+| Archetype | Evidence |
+|---|---|
+| Define X (+ SI unit) | inertia · unit/null vector · work-power-energy |
+| State the law | Hooke's law (AP 2026 B) · Kepler's areas (AP 2026 A) |
+| Explain with a law | gun recoil · bomb pieces · horse at start |
+| Yes/No + reason | can mu exceed 1 · zero vector with non-zero components |
+| What-if / special case | mu when weight doubles · a at projectile top · SHM energy at 2A (AP 2026) |
+| Relation between two quantities | KE-momentum (both boards, both years) |
+| Mini-numerical (2 steps) | batsman 3.6 N s · t = 4 s · the 7-24 resultant |
+| Condition / comparison | when is work zero · elastic vs inelastic constants |
+
+Method per chapter: (1) extract the **object inventory** from the textbook (every definition, law,
+formula, named phenomenon — ~15-20 objects; use the NEW NCERT-aligned book once published);
+(2) cross with the archetypes, delete non-sensical cells → **~30-40 askable VSAQs**, ~10-15 SAQs
+(SAQ archetypes add sub-derivations, definition sets, distinguish tables, list-with-reasons,
+state-the-laws, medium numericals — numericals enumerate at the FORMULA level, the boards lift
+their numbers from textbook examples); (3) rank: asked (appearances) > book-listed (stars) >
+predicted; (4) **back-test**: every question actually asked 2019-2026 in either state must fall
+inside the grid, else fix the archetype set before the map ships. Honest ceiling ~95% — the claim
+is "every question of the last N years plus the full predicted space", never "cannot be surprised".
+
+**Tiered authoring** (the cost half of the doctrine): full cards (figures, full rubrics) ONLY for
+the asked core; the predicted tail ships as **lean cards** — schema-valid steps + marks + short
+rubric, no figures — promoted to full cards only when a paper season or the teacher pass validates
+the cell. Manifest entries carry `source`: absent = Fastrack, `"blm"` = TSBIE BLM only,
+`"enumerated"` = predicted; cards render a plain "Predicted — not asked yet" chip (Rule 41).
+Empirical footing: the two source books are not supersets of each other even within one unit
+(Unit 7: the BLM holds 2 VSAQs the Fastrack lacks; the Fastrack holds 6 SAQs the BLM lacks) —
+**the union is the starting bank; enumeration extends past the union.**
+
+### Run 2 — Units 4, 5 and 6 (2026-08-21): the method holds, and the union check flips
+
+The sweep was run over three already-complete chapters. Two findings worth keeping:
+
+**(a) Neither book is reliably the superset, but which one is thinner changes per unit.** Unit 7
+needed the union because the BLM held VSAQs the Fastrack lacked. Units 4, 5 and 6 are the opposite:
+re-running the check over the BLM's *short-answer* sections (earlier sessions had only checked them
+for a Section C) shows the BLM is a strict **subset** in all three — 6 VSAQ + 4 SAQ in Unit 4,
+7 VSAQ + 3 SAQ in Unit 5, LAQs only in Unit 6, every one of them already in the Fastrack list.
+The asked cores stayed at 20 / 17 / 12 and nothing was added. **The check still has to run per
+unit — its ANSWER is what varies, not its necessity.** It also corrected a sourcing claim: Unit 4's
+two LAQ entries are *invented* Section-C forms, not the BLM's — neither book has a Unit 4 Section C.
+
+**(b) The archetype set survived three more chapters.** +11 predicted cells in Unit 4, +12 in
+Unit 5, +10 in Unit 6 (44 predicted across the four swept chapters). Back-test: every question
+either book asks in these units, plus all four March-2026 AP hits from these chapters (B-13, B-14,
+C-26, C-24), falls inside the grid. Nothing landed outside — six chapters in, the eight archetypes
+have not needed an addition.
+
+**What the sweep found missing is itself a signal about the source books.** The gaps were not
+exotic: Unit 5 had neither Newton's **first** nor **third** law anywhere in the bank, and nothing
+on angle of repose, the rough incline, or banking; Unit 6 had no scalar product at all, though
+NCERT introduces it in that chapter. A star-ranked commercial question bank tracks what was asked,
+so it inherits whatever the examiners happened to skip — which is precisely the hole enumeration
+exists to fill.
+
+**Cross-unit duplication is a real failure mode of this method** and has to be checked by hand: the
+grid for Unit 4 proposes "define angular velocity, derive v = rω", which is already Unit 7 SAQ 7,
+and the grid for Unit 6 proposes the vector product, which is Unit 7 SAQ 2. Both were dropped;
+the scalar product went to Unit 6 and the vector product stayed in Unit 7, following NCERT's own
+placement. **Sweep a chapter against the whole bank, not against its own unit.**
+
+### Run 3 — Unit 8 (2026-08-21): the back-test was too weak, and a real paper proved it
+
+Unit 8 Oscillations was built from both books read page by page (Fastrack pp.23–27, BLM pp.21–24).
+The union came back the **Unit 6 shape**: the BLM carries exactly the three LAQs and nothing else,
+so both books agree on the 8-mark set and the 3 VSAQ + 2 SAQ list is the Fastrack's alone. 8 asked
+entries — the thinnest asked core of any unit — plus 11 predicted, so here the tail is larger than
+the core. That is a property of the chapter, not of the method.
+
+**The correction this run forced.** The back-test as written asks: *does every question a real paper
+asked fall INSIDE the archetype grid?* Unit 8 passed it, as every unit has. But reading the March-2026
+AP paper directly turned up **Section A question 7, "When are two vectors said to be equal vectors?"** —
+a **Unit 4** question that neither source book lists, and that the Unit 4 sweep run *earlier the same
+day* did not author. "Equal vectors" was in that sweep's object inventory; the cell was dropped when
+selecting what to author. The archetype set held perfectly. The **selection from the grid** did not.
+
+> **Back-testing the archetype set is not back-testing the output.** When a real paper is in the
+> corpus, diff the sweep's authored list against that paper question by question. "Everything asked
+> falls inside the grid" is a statement about the grid; it says nothing about what you actually wrote.
+
+**A third provenance appeared with it.** That card is neither `blm` nor `enumerated` — it was *asked*,
+just not by either book. It ships as `source: "ap_2026_paper"` with a real `appearances` entry.
+`notebook.js` branches only on `source === 'enumerated'`, so an unknown source value falls through to
+the asked-chip path and needed no code change — but that is a property worth knowing before adding a
+fourth.
+
+**The corpus now exists — seven real TS papers, and the diff has been run (2026-08-26).** Seven Telangana Physics Paper-I papers (March 2016, 2017, 2019, 2020, 2023, 2024, 2025) are transcribed into `answer-book/papers/`, every one of their 154 slots is mapped by hand in `matches.json`, and `npm run backtest:physics` re-derives the whole diff from the bank on demand. The full narrative, including what the diff found and the two things it surfaced that are NOT fixed, is `docs/IPE_PHYSICS_1_PAPERS.md`. It also settled the PROBLEMS question below: **six of the seven papers print a numerical inside a Section-C question**, so the founder lifted the deferral for paper-attested numericals and they are authored.
+
+**PROBLEMS, deferred, keep turning out to be examined.** Unit 6 problem 3 carries printed years;
+Unit 8 problem 2 (energy when the amplitude is doubled) is the what-if the AP 2026 paper asked, and is
+authored here as a predicted VSAQ rather than left in the deferred pile. Two for two. The founder's
+2026-08-20 deferral stands, but the evidence against it is now a pattern, not an anecdote.
+
+**The browser label gate earns its place on every new figure.** Four figures were authored for Unit 8
+(spring, pendulum, reference circle, energy graph) with a local geometric pre-check that reported
+clean. The browser gate still caught two rounds of collisions — `P`/`ω` on the reference circle, then
+`mg sin θ` against both `O` and `x` on the pendulum. The reason the pre-check was wrong is worth
+knowing: the gate measures `getBoundingClientRect()` on the RENDERED `<text>`, and the SVG is scaled
+to the notebook page, so a gap expressed in figure units shrinks on screen while the font does not.
+**Empirical rule: leave ≥ 40 figure units of vertical clearance between any two labels whose
+horizontal extents overlap** (28 was not enough at these figure widths). Pre-checks triage; the gate
+decides.
+
+### Run 4 — Unit 9 (2026-08-21): the corrected back-test pays on its first use
+
+Unit 9 Gravitation, both books read directly. **The corrected back-test worked exactly as intended.**
+The Unit-8 run had recorded that AP March 2026 Section A question 8 is *"State Kepler's law of areas"*
+and flagged it as a Unit-9 cell waiting. The Fastrack asks all **three** Kepler laws together at 4
+marks; a standalone statement of the law of areas is a different cell, and it is the one the paper
+asked. Authored as `source: "ap_2026_paper"` — the second card with that provenance. **Diffing the
+sweep against a real paper is a standing step now, not an idea.**
+
+**The union check has produced three distinct outcomes in six units.** It is worth tabulating,
+because the lesson is that the answer is genuinely unpredictable:
+
+| Unit | What the two-book check found |
+|---|---|
+| 4, 5, 6 | BLM is a strict **subset** of the Fastrack — nothing added |
+| 7 | **Each book holds questions the other lacks** — BLM 2 VSAQs, Fastrack 6 SAQs |
+| 8 | BLM is **LAQ-only**; both books agree on the 8-mark set, short answers are the Fastrack's |
+| 9 | BLM adds **one SAQ** the Fastrack lacks (the 11.2 km/s question) |
+
+No unit so far has had a Section C in *both* books, and four of the six have no Section C in either —
+so the standing rule holds: **invent an 8-mark form only when a book sources one.**
+
+**What the sweep found missing keeps indicting the source books, and the pattern is now specific:
+whole NCERT SECTIONS go missing, not scattered questions.** Unit 9's gaps were the chapter's entire
+gravitational potential / potential-energy section and its entire satellite-energy section — neither
+book asks a single question from either. Compare Unit 5 (neither Newton's first nor third law) and
+Unit 6 (no scalar product at all). A question bank tracks what was asked; it inherits every section
+the examiners have happened to skip, and it inherits them *whole*.
+
+**Where the book is wrong, write the mark and put the truth in `why`.** The Fastrack's answer to
+Unit 9 VSAQ 2 gives the vector form of the law of gravitation **without the minus sign**. NCERT keeps
+it, and without it the formula describes a repulsion. The card writes the minus and records the
+discrepancy in that step's `why` — the same house rule already used for the rolling-friction "laws"
+and for "μ > 1 because polishing increases adhesion".
+
+### Run 5 — Units 2 and 3 (2026-08-22): the book opens BACKWARDS, and the union check finds two more shapes
+
+Authored on founder request, going backwards from the Unit-10 roadmap. Both source books were read
+directly (Fastrack pp.4-8, TSBIE BLM pp.2-5) — no prior transcription of these units existed.
+
+**Two NEW union-check outcomes, taking the tally to six distinct shapes across eight units:**
+
+| Unit | Shape |
+|---|---|
+| 2 | **Both books VSAQ-only.** No Short Answer and no Long Answer section in either. The BLM adds ONE cell the Fastrack lacks (different units for one quantity). |
+| 3 | **Each book holds a whole SECTION the other lacks** — the Fastrack has VSAQ + SAQ + PROBLEMS and no LAQ; the BLM has SAQ *only*, with no VSAQ section at all. |
+
+Four of eight units now have no Section C in either book, so the standing rule holds firmly: invent an
+8-mark form only when a book sources one.
+
+**A PROBLEM was promoted for the second time.** The BLM lists the roof-jump (9 m s⁻¹) as Short Answer 5;
+the Fastrack files the same question as PROBLEM 3. A book sources it as an SAQ, so it ships as one —
+the same precedent as the Unit 8 problem the AP paper asked. The deferral stands for the other three.
+
+**The first RE-HOME.** `ts_ipe_p1_mp_average_instantaneous_velocity` was filed under Unit 4 by the
+AP-paper session, before Unit 3 existed. Both books put it in Unit 3 — and they disagree on its
+SECTION (Fastrack VSAQ 2 at 3 stars; BLM Short Answer 1). It moved to Unit 3 and gained `cuts[]`, so it
+now appears twice in one unit at two lengths. **The `question_id` kept its `mp_` prefix**: ids are
+stable forever, and renaming would have broken its AP-2026 appearance record. A stale prefix is
+history, not a defect — the same reasoning as the `peter_parker:renderer_primitives` DB tag.
+
+**Catalog order is ARRAY order.** `notebook.js` builds the chapter chips by iterating `UNITS` with no
+sort, so new low-numbered units must be `unshift`ed into `units.json`, never appended. Appending would
+have shown a student chapters 4, 5, 6, 7, 8, 9, 2, 3.
+
+**The hand register pass still earns its place.** The build-time Rule 41 gate landed the same session
+and caught two hits across the existing bank — but on 41 NEW cards it caught **zero**, while a hand
+scan for personification and metaphor found **six** the fixed word list cannot see: displacement that
+"knows" its end points, a slow half that "eats more of the clock", a term that must "wear" the units of
+v, a constant that "loses two seconds". No word list finds those. Automate what is mechanical; keep
+reading everything else.
+
+**Sweep budgets raised** 240s → 360s on all three fleet sweeps, in the same commit that grew the fleet
+157 → 198 files (the deliberate-raise procedure; never trim). `smoke:answers` 36/36 in ~11 min.
+
+## The term-pack design (designed Session 89 — NOT built)
+
+The student's year is unit tests → quarterly (late Sept) → half-yearly (Dec) → pre-finals → IPE
+(March); every internal exam is the board paper over a smaller chapter window. Design: the student
+declares `{exam_date, chapters[]}` (two-tap picker; a later chat shell parses free text into the
+same struct — **chatbot is the doorman, never the building**; the offline single file must work
+fully without it). Deterministic outputs: filtered bank view · a board-format practice paper over
+those chapters (real section counts + choice structure) · a marks-weighted day-by-day plan ·
+a term-scoped readiness meter. AI boundaries (Rule 18 as the trust position — "every answer
+human-verified; AI only checks YOU"): explain-a-step = DeepSeek grounded strictly in the authored
+`why`/`margin_note`/`common_mistakes` (cacheable per step); **memory tips are authored and
+measured** (tip → did the next recall pass?), never improvised live. Cost basis: DeepSeek
+₹0.045/check (₹0.014 cached), Web Speech free/on-device.
+
+## Marks arithmetic — what full-bank mastery buys (Session 89)
+
+| | TS (60M) | AP (85M) |
+|---|---|---|
+| LAQ/8M section | 16M, dodge 1-of-3 | 16M, dodge 1-of-3 |
+| SAQ/4M section | 24M, dodge 2-of-8 | 32M, dodge 4-of-12 |
+| **Choice-protected total** | **40M** | **48M** |
+| 2M section | 20M, NO choice | 28M (14 q), NO choice |
+| 1M section | — | 9M, NO choice, MCQ/fill-in/one-liner |
+| No-choice exposure | 20M (33%) | 37M (43%) |
+
+Full-bank mastery ⇒ ~38-40 choice-protected in TS plus most of Section A → honest ~50-56/60 target.
+In AP the compulsory B section makes complete 2M coverage LOAD-BEARING, not garnish. Caveats that
+keep "guaranteed" honest: year-one-of-new-syllabus draw risk (absorbed by choice; resolved by model
+papers), knowing ≠ producing (the checking loop is the guarantee's enforcement mechanism), and all
+mark splits are claims until the teacher pass.
+
+## Board picker = a lens over ONE bank (founder question, Session 89)
+
+When login/state selection lands: the student picks TS or AP once; the catalog stays ONE inventory.
+The board choice re-labels section groupings (TS "Section A - VSAQ" content appears under AP's
+"Section B" name), selects which header/cut a card opens with, foregrounds that board's Asked
+years, and drives that board's marks arithmetic/readiness. TS+AP share the 2/4/8 mark values, so
+most cards are valid in both at the same marks; AP adds the 1M drill surface. **Never two
+catalogs, never duplicated files** — one card = one question stays law; board affects presentation
+and cuts only. Today's `appearances[].board` tags are the data foundation for that view.
+
+## AP paper-merge facts (2025-26 revision, for the record)
+
+Maths 1A+1B merged into ONE 100M paper (was 75+75; objective questions added; pass 26→35).
+Botany+Zoology merged into one Biology paper (43+42=85, separate booklets). Physics/Chemistry 85M
+each (+20 internal; practicals separate, pass 11; theory pass 29/85 Yr-1).

@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_satellite_time_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the time period of a satellite revolving at a height h above the surface of the earth.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The orbital speed",
+      "marks": 2
+    },
+    {
+      "label": "The time period",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_speed",
+        "kind": "equation",
+        "label": "The orbital speed",
+        "marks": 2,
+        "mark_note": "Speed",
+        "lines": [
+          "A satellite of mass m at a height h moves on a",
+          "circle of radius (R + h) about the centre of the",
+          "earth. The gravitational pull provides the",
+          "centripetal force:",
+          {
+            "text": "m v² / (R + h) = G M m / (R + h)²",
+            "style": "eq"
+          },
+          {
+            "text": "v = √(G M / (R + h))",
+            "style": "eq"
+          }
+        ],
+        "why": "Everything downstream depends on getting the radius right: it is measured from the CENTRE of the earth, not from the ground.",
+        "common_mistakes": [
+          "Using h alone, or R alone, as the radius of the circular path."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating the gravitational pull to the centripetal force gives v equal to root G M by R plus h.",
+          "accept": [
+            "root G M by R plus h",
+            "gravitational pull is the centripetal force"
+          ],
+          "reject": [
+            "T is 2 pi R plus h by v"
+          ],
+          "heard_as": [
+            "R plus h",
+            "orbital speed"
+          ]
+        },
+        "memory_tip": "Check it with h = 0: v becomes √(GM/R) = √(gR), the close-orbit speed.",
+        "margin_note": "Two marks. The force balance first, then the square root for v."
+      },
+      {
+        "id": "s2_period",
+        "kind": "boxed_final",
+        "label": "The time period",
+        "marks": 2,
+        "mark_note": "Time period",
+        "lines": [
+          "The time period is the circumference of the",
+          "orbit divided by the speed:",
+          {
+            "text": "T = 2π (R + h) / v",
+            "style": "eq"
+          },
+          "Substituting v and simplifying,",
+          {
+            "text": "T = 2π √((R + h)³ / G M)",
+            "style": "boxed"
+          },
+          "Close to the surface this comes to about 84",
+          "minutes."
+        ],
+        "why": "Squaring both sides gives T² ∝ (R + h)³ — Kepler’s third law following directly from Newton’s law of gravitation.",
+        "common_mistakes": [
+          "Writing T = 2πr v instead of 2πr / v.",
+          "Calling T = 2π√((R + h)³ / GM) a cube-root form. It is a SQUARE root of (R + h) cubed; squaring both sides gives T² ∝ (R + h)³."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T is 2 pi times R plus h all over v, giving 2 pi root of R plus h cubed by G M.",
+          "accept": [
+            "2 pi R plus h by v",
+            "2 pi root R plus h cubed by G M",
+            "about 84 minutes"
+          ],
+          "reject": [
+            "root G M by R plus h"
+          ],
+          "heard_as": [
+            "time period",
+            "cubed"
+          ]
+        },
+        "memory_tip": "The cube sits inside the root. Square both sides and Kepler’s T² ∝ r³ appears.",
+        "margin_note": "Two marks. Show the substitution of v, then box T with the cube inside the root."
+      }
+    ]
+  },
+  "insider_note": "Two marks are in the speed half, and they depend on the radius being R + h measured from the centre, not h."
+}

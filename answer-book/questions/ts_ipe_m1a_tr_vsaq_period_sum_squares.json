@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_period_sum_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the period of tan(x + 4x + 9x + … + n²x).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sum the coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Apply the tangent formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 125.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,16,17 · TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Sum the coefficients",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole question. The coefficients are 1, 4, 9, … — the squares — so their sum is the standard result n(n+1)(2n+1)/6.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x + 4x + 9x + … + n²x = (1² + 2² + 3² + … + n²)x",
+          "= [n(n+1)(2n+1)/6] x",
+          "  [∵ Σn² = n(n+1)(2n+1)/6]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients are the squares 1², 2², …, n², whose sum is n(n+1)(2n+1)/6.",
+          "accept": [
+            "the coefficients are the squares so their sum is n into n plus one into two n plus one over six",
+            "recognise one four nine as the squares and use the sum of squares formula",
+            "add the coefficients using sigma n squared",
+            "coefficients squares kabatti sum of squares formula vaadali",
+            "the sum is n n plus one two n plus one by six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum of squares",
+            "n into n plus one",
+            "two n plus one",
+            "over six"
+          ]
+        },
+        "why": "The whole bracket is one angle, and its coefficient is what the period formula needs. Recognising 1, 4, 9 as squares is what makes that coefficient findable.",
+        "common_mistakes": [
+          "Treating each term as a separate function with its own period.",
+          "Using the sum of n rather than the sum of n²."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the tangent formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Dividing π by a fraction with 6 underneath brings the 6 up top, which is where the 6π comes from.",
+        "lines": [
+          "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
+          {
+            "text": "∴ Period = 6π / [n(n+1)(2n+1)]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent period formula gives 6π/[n(n+1)(2n+1)].",
+          "accept": [
+            "pi divided by that fraction gives six pi over n into n plus one into two n plus one",
+            "the six comes up top so the answer is six pi over the product",
+            "the period is six pi by n n plus one two n plus one",
+            "six pi by n into n plus one into two n plus one",
+            "dividing brings the six to the numerator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "six pi",
+            "n n plus one two n plus one",
+            "period"
+          ]
+        },
+        "why": "Dividing by a sixth multiplies by six, which is why a 6 appears in a formula that started with none.",
+        "common_mistakes": [
+          "Leaving the 6 in the denominator.",
+          "Using 2π and getting 12π."
+        ]
+      }
+    ]
+  }
+}

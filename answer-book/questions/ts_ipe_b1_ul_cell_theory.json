@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_cell_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Briefly describe the cell theory.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Schleiden and Schwann",
+      "marks": 1
+    },
+    {
+      "label": "The theory as first stated",
+      "marks": 1
+    },
+    {
+      "label": "Virchow's addition",
+      "marks": 1
+    },
+    {
+      "label": "Modern statement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_proposers",
+        "kind": "text",
+        "label": "Who proposed it",
+        "marks": 1,
+        "mark_note": "The proposers",
+        "lines": [
+          "In 1838 Matthias Schleiden, a botanist,",
+          "examined many plants and concluded that all",
+          "plants are made of cells.",
+          "In 1839 Theodor Schwann, a zoologist, studied",
+          "animal tissues and found that animal cells",
+          "have a thin outer layer, the plasma membrane."
+        ],
+        "why": "Two workers on two different kingdoms reached the same conclusion, and that agreement between plants and animals is what made a general theory possible.",
+        "common_mistakes": [
+          "Giving credit to Robert Hooke. Hooke first saw and named cells; he did not propose the theory.",
+          "Writing that Schleiden worked on animals. He was a botanist."
+        ],
+        "memory_tip": "Schleiden the botanist for plants in 1838, Schwann the zoologist for animals in 1839.",
+        "margin_note": "Both names with their subjects earns this mark."
+      },
+      {
+        "id": "s2_statement",
+        "kind": "text",
+        "label": "The theory",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "Schleiden and Schwann together put forward the",
+          "cell theory.",
+          "They proposed that all living organisms are",
+          "composed of cells and of the products of",
+          "cells."
+        ],
+        "why": "The phrase 'and products of cells' is part of the original wording — it covers non-living material such as the cell wall and the matrix of a tissue.",
+        "common_mistakes": [
+          "Leaving out 'products of cells'. It is part of the marked sentence.",
+          "Writing the modern three-point form here instead of the original statement."
+        ],
+        "memory_tip": "Cells, and the things cells make — that is the whole first statement.",
+        "margin_note": "Write the statement as a sentence, not as a list."
+      },
+      {
+        "id": "s3_virchow",
+        "kind": "text",
+        "label": "Virchow's addition",
+        "marks": 1,
+        "mark_note": "Virchow",
+        "lines": [
+          "The theory could not explain how new cells",
+          "arise.",
+          "In 1855 Rudolf Virchow supplied the answer:",
+          "cells divide, and new cells are formed only",
+          "from pre-existing cells",
+          "(Omnis cellula-e cellula)."
+        ],
+        "why": "The original theory said what organisms are made of but not where cells come from. Virchow closed that gap, and closing it is what completed the theory.",
+        "common_mistakes": [
+          "Writing that Virchow proposed the cell theory. He extended it.",
+          "Giving the year as 1838. Virchow's addition is 1855."
+        ],
+        "memory_tip": "Schleiden and Schwann said what cells build; Virchow said where cells come from.",
+        "margin_note": "The Latin phrase is a bonus, not a requirement."
+      },
+      {
+        "id": "s4_modern",
+        "kind": "boxed_final",
+        "label": "Modern statement",
+        "marks": 1,
+        "mark_note": "Modern form",
+        "lines": [
+          {
+            "text": "Cell = structural, functional, hereditary unit",
+            "style": "boxed"
+          },
+          "In its present form the cell theory states:",
+          "1) all organisms are made of one or more",
+          "cells,",
+          "2) the cell is the structural, functional and",
+          "hereditary unit of all living organisms,",
+          "3) all cells arise from pre-existing cells."
+        ],
+        "why": "The modern theory is the two original statements plus Virchow's, written as three numbered points — the form an examiner can tick quickly.",
+        "common_mistakes": [
+          "Writing only that cells are the unit of life. The three points are separately marked.",
+          "Leaving out point 3, which is Virchow's contribution."
+        ],
+        "memory_tip": "Three points: made of cells, the cell is the unit, cells come from cells.",
+        "margin_note": "Number the three points; the examiner ticks them one by one."
+      }
+    ]
+  },
+  "insider_note": "Dates and names carry marks in this question — 1838 Schleiden, 1839 Schwann, 1855 Virchow."
+}

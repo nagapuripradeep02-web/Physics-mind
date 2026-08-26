@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_different_units_same_quantity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do we have different units for the same physical quantity?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "One physical quantity can take a very wide",
+          "range of magnitudes, so a single unit would",
+          "be clumsy at one end of that range."
+        ],
+        "why": "A unit is chosen so the measured number is convenient. Quoting a person’s mass in tonnes or a truck’s mass in milligrams is correct but unusable.",
+        "common_mistakes": [
+          "Saying different countries use different units. The reason asked for is the range of magnitudes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a quantity covers a wide range of magnitudes, so different units suit different ranges.",
+          "accept": [
+            "wide range",
+            "range of magnitudes",
+            "convenient number"
+          ],
+          "reject": [
+            "different countries"
+          ],
+          "heard_as": [
+            "range",
+            "magnitude"
+          ]
+        },
+        "memory_tip": "The unit is picked so the NUMBER is convenient. Range drives the choice.",
+        "margin_note": "One reason, then straight to the example."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Mass: milligram, gram, kilogram, tonne",
+            "style": "boxed"
+          },
+          "Length: millimetre, metre, kilometre.",
+          "Each unit keeps the measured number in a",
+          "range that is easy to write and read."
+        ],
+        "why": "Giving two different quantities shows the reason is general, not a fact about mass alone. Length itself runs from a nucleus (about 10⁻¹⁵ m, 1 fermi) and an atom (about 10⁻¹⁰ m, 1 ångström) to the earth–sun distance (1.5 × 10¹¹ m, 1 AU). No single unit serves that whole range.",
+        "common_mistakes": [
+          "Giving units of two different quantities, such as metre and kilogram, as if they were alternatives for one quantity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mass can be measured in milligram, gram, kilogram or tonne, and length in millimetre, metre or kilometre.",
+          "accept": [
+            "milligram gram kilogram",
+            "millimetre metre kilometre"
+          ],
+          "reject": [
+            "metre and kilogram"
+          ],
+          "heard_as": [
+            "kilogram",
+            "kilometre"
+          ]
+        },
+        "memory_tip": "Give one ladder of units for ONE quantity, smallest to largest.",
+        "margin_note": "A ladder of units reads better than a list."
+      }
+    ]
+  },
+  "insider_note": "This one is in the TSBIE material but not the Fastrack. One reason plus one example is the whole answer."
+}

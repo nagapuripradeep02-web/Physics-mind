@@ -1,0 +1,582 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_pulling_vs_pushing_roller",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why is pulling the lawn roller preferred to pushing it?",
+  "appearances": [
+    {
+      "year": 2004
+    },
+    {
+      "year": 2006
+    },
+    {
+      "year": 2012
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Pulling",
+      "marks": 1
+    },
+    {
+      "label": "Pushing",
+      "marks": 1
+    },
+    {
+      "label": "Comparison",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER 5 — the one Unit 5 question with printed exam years, \"(May-12, Mar-04, 06)\", recorded here as 2012, 2004, 2006. The years and the mark split are both claims until a Telangana IPE teacher confirms them; the two figures are authored as unmarked aids, which a real mark scheme may well disagree with."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pull_figure",
+        "kind": "diagram",
+        "label": "Pulling — the forces",
+        "marks": 0,
+        "margin_note": "Draw both cases. The whole answer is one sign change, and the eye catches it faster than the algebra.",
+        "why": "The pull is aimed up-and-forward, so its vertical part points AWAY from the ground and takes some load off the roller.",
+        "common_mistakes": [
+          "Drawing only one figure, which leaves nothing for the comparison to compare."
+        ],
+        "figure": {
+          "id": "roller_pull",
+          "width": 470,
+          "height": 290,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 45 197 L 425 197",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "roller",
+              "d": "M 123 145 A 52 52 0 1 0 227 145 A 52 52 0 1 0 123 145",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "force",
+              "d": "M 175 145 L 282 70",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "force_head",
+              "d": "M 275 80 L 282 70 L 270 73",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 293,
+              "y": 60,
+              "text": "F",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "comp_h",
+              "d": "M 175 145 L 282 145",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_fcos",
+              "x": 236,
+              "y": 168,
+              "text": "F cos θ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "comp_v",
+              "d": "M 282 145 L 282 70",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_fsin",
+              "x": 292,
+              "y": 112,
+              "text": "F sin θ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 245 145 A 70 70 0 0 0 232 105",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 252,
+              "y": 128,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "normal",
+              "d": "M 175 145 L 175 82",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "normal_head",
+              "d": "M 168 92 L 175 82 L 182 92",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 183,
+              "y": 78,
+              "text": "N",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "weight",
+              "d": "M 175 145 L 175 193",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "weight_head",
+              "d": "M 168 183 L 175 193 L 182 183",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_mg",
+              "x": 186,
+              "y": 188,
+              "text": "mg",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "friction",
+              "d": "M 175 197 L 88 197",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "friction_head",
+              "d": "M 98 190 L 88 197 L 98 204",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_fr",
+              "x": 78,
+              "y": 213,
+              "text": "f",
+              "ms": 200
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure for the pulling case is drawn, with F at an angle above the horizontal.",
+          "accept": [
+            "draw the pulling figure",
+            "diagram with F above the horizontal",
+            "pulling case figure",
+            "pulling ki figure geyyali"
+          ],
+          "reject": [
+            "N equals mg minus F sin theta"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "pulling"
+          ]
+        },
+        "memory_tip": "Draw the arrow leaving the handle upward. Arrowhead above the handle means this is the pull."
+      },
+      {
+        "id": "s2_pull",
+        "kind": "equation",
+        "label": "Pulling — normal force",
+        "marks": 1,
+        "mark_note": "Pulling",
+        "lines": [
+          "Let F act at angle θ above the",
+          "horizontal. Vertical forces balance:",
+          {
+            "text": "N + F sin θ = mg",
+            "style": "eq"
+          },
+          {
+            "text": "N = mg − F sin θ",
+            "style": "eq"
+          },
+          "Friction f = μ(mg − F sin θ)"
+        ],
+        "margin_note": "Get to N on its own line before writing the friction. The minus sign is the mark.",
+        "why": "F sin θ points up, so it shares the job of holding the roller up. The ground is left with less to push back with.",
+        "common_mistakes": [
+          "Writing N = mg for both cases, which makes the two frictions equal and kills the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That while pulling, N = mg − F sin θ, so friction is μ(mg − F sin θ).",
+          "accept": [
+            "N equals mg minus F sin theta",
+            "normal force decreases while pulling",
+            "friction is mu into mg minus F sin theta",
+            "pulling lo N thaggutundi"
+          ],
+          "reject": [
+            "N equals mg plus F sin theta"
+          ],
+          "heard_as": [
+            "mg minus",
+            "F sin theta",
+            "normal force"
+          ]
+        },
+        "memory_tip": "F = 100 N at 30° gives F sin θ = 50 N, so N is 50 N below mg."
+      },
+      {
+        "id": "s3_push_figure",
+        "kind": "diagram",
+        "label": "Pushing — the forces",
+        "marks": 0,
+        "margin_note": "Same roller, same angle, force flipped below the horizontal. Keeping them identical is what makes the comparison fair.",
+        "why": "The push is aimed down-and-forward, so its vertical part presses the roller INTO the ground and the ground pushes back harder.",
+        "common_mistakes": [
+          "Drawing the pushing force pointing up, which is the pulling case again."
+        ],
+        "figure": {
+          "id": "roller_push",
+          "width": 470,
+          "height": 290,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 45 197 L 425 197",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "roller",
+              "d": "M 123 145 A 52 52 0 1 0 227 145 A 52 52 0 1 0 123 145",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "force",
+              "d": "M 68 70 L 175 145",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "force_head",
+              "d": "M 163 142 L 175 145 L 168 135",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 52,
+              "y": 62,
+              "text": "F",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "comp_h",
+              "d": "M 68 145 L 175 145",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_fcos",
+              "x": 78,
+              "y": 168,
+              "text": "F cos θ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "comp_v",
+              "d": "M 68 70 L 68 145",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_fsin",
+              "x": 74,
+              "y": 112,
+              "text": "F sin θ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 113 145 A 62 62 0 0 0 124 109",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 136,
+              "y": 133,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "normal",
+              "d": "M 175 145 L 175 52",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "normal_head",
+              "d": "M 168 62 L 175 52 L 182 62",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 183,
+              "y": 48,
+              "text": "N",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "weight",
+              "d": "M 175 145 L 175 193",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "weight_head",
+              "d": "M 168 183 L 175 193 L 182 183",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_mg",
+              "x": 186,
+              "y": 188,
+              "text": "mg",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "friction",
+              "d": "M 175 197 L 88 197",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "friction_head",
+              "d": "M 98 190 L 88 197 L 98 204",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_fr",
+              "x": 78,
+              "y": 213,
+              "text": "f",
+              "ms": 200
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure for the pushing case is drawn, with F at an angle below the horizontal.",
+          "accept": [
+            "draw the pushing figure",
+            "diagram with F below the horizontal",
+            "pushing case figure",
+            "pushing ki figure geyyali"
+          ],
+          "reject": [
+            "draw the pulling figure"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "pushing"
+          ]
+        },
+        "memory_tip": "Put the two figures side by side. The comparison is then visible before any algebra."
+      },
+      {
+        "id": "s4_push",
+        "kind": "equation",
+        "label": "Pushing — normal force",
+        "marks": 1,
+        "mark_note": "Pushing",
+        "lines": [
+          "Now F acts at angle θ below the",
+          "horizontal. Vertical forces balance:",
+          {
+            "text": "N = mg + F sin θ",
+            "style": "eq"
+          },
+          "Friction f = μ(mg + F sin θ)"
+        ],
+        "margin_note": "Only the sign changes from the previous step. Say so — do not re-derive it from scratch.",
+        "why": "The same component that helped when pulling now works against you: the roller is pressed down by F sin θ as well as by its own weight.",
+        "common_mistakes": [
+          "Carrying the minus sign over from the pulling case out of habit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That while pushing, N = mg + F sin θ, so friction is μ(mg + F sin θ).",
+          "accept": [
+            "N equals mg plus F sin theta",
+            "normal force increases while pushing",
+            "friction is mu into mg plus F sin theta",
+            "pushing lo N perugutundi"
+          ],
+          "reject": [
+            "N equals mg minus F sin theta"
+          ],
+          "heard_as": [
+            "mg plus",
+            "F sin theta",
+            "increases"
+          ]
+        },
+        "memory_tip": "Same 100 N at 30°, and N is now 50 N ABOVE mg. The same 50 has changed sign."
+      },
+      {
+        "id": "s5_compare",
+        "kind": "equation",
+        "label": "Compare the two",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "Comparing the two frictional forces,",
+          {
+            "text": "μ(mg + F sin θ) > μ(mg − F sin θ)",
+            "style": "eq"
+          },
+          "so friction is larger while pushing."
+        ],
+        "margin_note": "Write the inequality out. An examiner cannot award a comparison that was only implied.",
+        "why": "Both expressions share μ and mg, so the comparison rests entirely on the sign in front of F sin θ.",
+        "common_mistakes": [
+          "Jumping straight to the conclusion without ever placing the two frictions side by side."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the friction while pushing is greater than the friction while pulling.",
+          "accept": [
+            "friction while pushing is greater",
+            "pushing friction is more than pulling",
+            "pushing lo friction ekkuva"
+          ],
+          "reject": [
+            "N equals mg plus F sin theta"
+          ],
+          "heard_as": [
+            "greater",
+            "more friction",
+            "pushing"
+          ]
+        },
+        "memory_tip": "The two normal forces differ by 2F sin θ — 100 N in the worked case."
+      },
+      {
+        "id": "s6_conclude",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Pulling is easier than pushing.",
+            "style": "boxed"
+          },
+          "The vertical part of F lifts the roller",
+          "a little when it is pulled and presses",
+          "it down when it is pushed."
+        ],
+        "margin_note": "Answer the question in one line, then give the reason in plain words.",
+        "why": "Less normal force means less friction to overcome, so the same roller moves with a smaller effort when pulled.",
+        "common_mistakes": [
+          "Ending on the inequality and never saying which is easier."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pulling is easier than pushing because the normal force and friction are smaller.",
+          "accept": [
+            "pulling is easier than pushing",
+            "less friction so pulling is preferred",
+            "pulling easy, endukante friction thakkuva"
+          ],
+          "reject": [
+            "friction while pushing is greater"
+          ],
+          "heard_as": [
+            "pulling is easier",
+            "preferred",
+            "less effort"
+          ]
+        },
+        "memory_tip": "The same reason a wheeled suitcase is easier to pull by its handle than to push down on."
+      }
+    ]
+  },
+  "insider_note": "The most repeated Unit 5 question — 2004, 2006 and 2012. The comparison carries its own mark, so write the inequality out instead of implying it."
+}

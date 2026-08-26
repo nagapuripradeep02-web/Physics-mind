@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_cos48_cos12",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of cos48° · cos12°.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Introduce a 2 and use the product formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 134. Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Introduce a 2 and use the product formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiplying and dividing by 2 lets 2 cosA cosB = cos(A+B) + cos(A−B) be applied, turning a product into a sum.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given expression = cos48° cos12°",
+          "= (1/2)(2 cos48° cos12°)",
+          "= (1/2)[cos(48° + 12°) + cos(48° − 12°)]",
+          "= (1/2)[cos60° + cos36°]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a 2 is introduced so 2cosA cosB = cos(A+B) + cos(A−B) applies, giving (1/2)[cos60° + cos36°].",
+          "accept": [
+            "multiply and divide by two then use two cos A cos B equals cos of the sum plus cos of the difference",
+            "introduce a two so the product formula applies, giving cos sixty plus cos thirty six",
+            "turn the product into a sum of cosines",
+            "two techi product formula vaadali, cos sixty plus cos thirty six vasthundi",
+            "convert the product to a sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cos A cos B",
+            "cos sixty",
+            "cos thirty six",
+            "product formula"
+          ]
+        },
+        "why": "The formula needs a 2 in front, and there is none — so one is manufactured and paid for with the 1/2 outside.",
+        "common_mistakes": [
+          "Applying the formula without the 2 and being out by a factor.",
+          "Using the sine formula."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos60° = 1/2 and cos36° = (√5+1)/4 — the second is a standard result and is quoted, not derived.",
+        "lines": [
+          "cos60° = 1/2,  cos36° = (√5 + 1)/4",
+          "= (1/2)[1/2 + (√5 + 1)/4]",
+          "= (1/2)[(2 + √5 + 1)/4]",
+          {
+            "text": "= (3 + √5)/8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos60° = 1/2 and cos36° = (√5+1)/4 are substituted, giving (3+√5)/8.",
+          "accept": [
+            "cos sixty is a half and cos thirty six is root five plus one over four giving three plus root five over eight",
+            "substitute the exact values and simplify",
+            "the answer is three plus root five over eight",
+            "cos thirty six ante root five plus one by four, answer three plus root five by eight",
+            "combine the fractions to get three plus root five over eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root five plus one",
+            "over four",
+            "three plus root five",
+            "over eight"
+          ]
+        },
+        "why": "cos36° is one of the pentagon values, like sin18° and sin54°. They are quoted results in this course, not things to derive under exam pressure.",
+        "common_mistakes": [
+          "Trying to derive cos 36°.",
+          "Adding the fractions without a common denominator."
+        ]
+      }
+    ]
+  }
+}

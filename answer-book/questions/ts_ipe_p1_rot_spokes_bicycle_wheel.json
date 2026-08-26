@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_spokes_bicycle_wheel",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are spokes provided in a bicycle wheel?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What spokes do",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect",
+        "kind": "text",
+        "label": "What spokes do",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          "Spokes connect the rim to the axle, so",
+          "most of the wheel’s mass sits at the",
+          "rim. This increases the moment of",
+          "inertia of the wheel."
+        ],
+        "margin_note": "The phrase that earns the mark is \"increases the moment of inertia\".",
+        "why": "Moment of inertia grows as mr² — the same mass placed farther from the axis resists changes of rotation more. Spokes let the wheel be light AND have its mass at the rim.",
+        "common_mistakes": [
+          "Saying spokes are only for strength. The examiner wants the moment-of-inertia reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That spokes concentrate the mass at the rim, increasing the moment of inertia.",
+          "accept": [
+            "mass goes to the rim",
+            "moment of inertia increases",
+            "spokes valla M I perugutundi"
+          ],
+          "reject": [
+            "the cycle runs smoothly"
+          ],
+          "heard_as": [
+            "moment of inertia",
+            "rim",
+            "increases"
+          ]
+        },
+        "memory_tip": "Spokes let the mass sit at the rim — in mr², a larger r means a larger moment of inertia."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "A large moment of inertia resists",
+          "sudden changes in rotation, so the",
+          {
+            "text": "wheel turns smoothly and steadily.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Close on the smooth, steady motion — that is what the question is really asking about.",
+        "why": "The board words this as \"ensures uniform speed\". The honest mechanism is rotational inertia smoothing out small jerks from the road and the pedalling — the wheel resists CHANGES, it does not create uniformity by itself.",
+        "common_mistakes": [
+          "Stopping at \"moment of inertia increases\" without saying what that does for the ride."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the large moment of inertia makes the rotation smooth and steady.",
+          "accept": [
+            "resists sudden changes in rotation",
+            "the wheel runs smoothly",
+            "jerks thaggutayi smooth ga untundi"
+          ],
+          "reject": [
+            "mass goes to the rim"
+          ],
+          "heard_as": [
+            "smooth",
+            "steady",
+            "resists changes"
+          ]
+        },
+        "memory_tip": "A large I resists changes in rotation, so the wheel turns steadily between pedal strokes."
+      }
+    ]
+  },
+  "insider_note": "The first mark is the phrase \"increases the moment of inertia\". A strength-only answer scores nothing."
+}

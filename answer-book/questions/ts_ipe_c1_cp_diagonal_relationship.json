@@ -1,0 +1,285 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_diagonal_relationship",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is diagonal relationship?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's printed definition is garbled — 'In a group 1st element of second period has similar properties with second element of next higher group in third period diagonally is known as diagonal relationship' — and the card states the standard definition instead: a second-period element resembles the third-period element placed diagonally below it, one group to the right. The book's example table prints the columns IA IIA IIIA IVA with Li Be B C over Na Mg Al Si and diagonal arrows; the card keeps the three true diagonal pairs Li–Mg, Be–Al, B–Si. AI chemistry check 2026-08-25 (audit round 3): the insider note said examiners accept the answer without a diagram, while the 1-mark example step is the figure ('the arrows carry this mark') and the named-pairs step carries no mark, so a student who skipped the figure had no route to the second mark; the insider note now matches the mark map. Marks and mark split untouched. OPEN for the teacher gate: whether the three pairs written in words, with no sketch, earn the example mark — if they do, the mark map should move that mark to the named-pairs step. Also checked: the figure draws only the Li→Mg, Be→Al and B→Si arrows, so it does not prescribe the C–Si pair that the next step calls an error; C and Si are drawn as table cells and the why now says so."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Some elements of the second period show",
+          "similar properties to the elements of the",
+          "third period placed diagonally below them,",
+          "one group to the right.",
+          "This similarity between diagonal neighbours",
+          "is called the diagonal relationship."
+        ],
+        "why": "Moving down a group makes an atom larger; moving one group to the right makes it smaller and more charged. The two moves nearly cancel, so the diagonal pair ends with a similar size-to-charge ratio and therefore similar properties.",
+        "common_mistakes": [
+          "Writing that the similar element is directly below in the same group. It is one group to the right in the next period.",
+          "Naming the pair the wrong way, for example Li with Al. Each second-period element pairs with its own diagonal neighbour."
+        ],
+        "memory_tip": "One step down and one step right — the two changes in size nearly cancel, so the properties match.",
+        "margin_note": "The words second period, third period and diagonally must all appear."
+      },
+      {
+        "id": "s2_pairs_figure",
+        "kind": "diagram",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "figure": {
+          "id": "diagonal_pairs",
+          "width": 440,
+          "height": 210,
+          "elements": [
+            {
+              "type": "label",
+              "id": "hdr_ia",
+              "x": 162,
+              "y": 38,
+              "text": "IA",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "hdr_iia",
+              "x": 228,
+              "y": 38,
+              "text": "IIA",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "hdr_iiia",
+              "x": 296,
+              "y": 38,
+              "text": "IIIA",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "hdr_iva",
+              "x": 364,
+              "y": 38,
+              "text": "IVA",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_p2",
+              "x": 20,
+              "y": 92,
+              "text": "Period 2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "el_li",
+              "x": 165,
+              "y": 92,
+              "text": "Li",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_be",
+              "x": 233,
+              "y": 92,
+              "text": "Be",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_b",
+              "x": 303,
+              "y": 92,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_c",
+              "x": 369,
+              "y": 92,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "cap_p3",
+              "x": 20,
+              "y": 178,
+              "text": "Period 3",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "el_na",
+              "x": 162,
+              "y": 178,
+              "text": "Na",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_mg",
+              "x": 230,
+              "y": 178,
+              "text": "Mg",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_al",
+              "x": 300,
+              "y": 178,
+              "text": "Al",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "el_si",
+              "x": 368,
+              "y": 178,
+              "text": "Si",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_li_mg",
+              "d": "M 185 104 L 228 164",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_li_mg_h1",
+              "d": "M 228 164 L 217 159",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_li_mg_h2",
+              "d": "M 228 164 L 224 151",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_be_al",
+              "d": "M 253 104 L 296 164",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_be_al_h1",
+              "d": "M 296 164 L 285 159",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_be_al_h2",
+              "d": "M 296 164 L 292 151",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_b_si",
+              "d": "M 321 104 L 364 164",
+              "ms": 360
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_b_si_h1",
+              "d": "M 364 164 L 353 159",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_b_si_h2",
+              "d": "M 364 164 L 360 151",
+              "ms": 120
+            }
+          ]
+        },
+        "why": "The relationship is a position on the periodic table, so the clearest example is the table itself: two rows of elements with an arrow joining each diagonal pair. Column IVA (C above Si) is drawn because the B–Si arrow has to end on silicon and the row would stop short without it; C and Si are table cells here, not a pair. The figure draws exactly three arrows, Li→Mg, Be→Al and B→Si, so no arrow joins C to Si: the C–Si pair that the next step lists as a mistake is not drawn here. C and Si are in the same group, one directly above the other.",
+        "common_mistakes": [
+          "Drawing the arrows straight down, which shows group-mates instead of diagonal pairs.",
+          "Leaving out the period names, so the two rows cannot be told apart."
+        ],
+        "memory_tip": "Two rows, three arrows, each arrow going one column to the right as it goes down.",
+        "margin_note": "The arrows carry this mark. Each one must start on a second-period element and end one group to the right below."
+      },
+      {
+        "id": "s3_pairs_named",
+        "kind": "boxed_final",
+        "label": "The pairs",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Diagonal pairs: Li–Mg, Be–Al, B–Si",
+            "style": "boxed"
+          }
+        ],
+        "why": "Naming the three pairs in one line makes the example readable even without the diagram, and it is the line an examiner scans for.",
+        "common_mistakes": [
+          "Writing C–Si as a diagonal pair. Carbon and silicon are in the same group, so they are group-mates, not diagonal neighbours."
+        ],
+        "memory_tip": "Three pairs only: lithium with magnesium, beryllium with aluminium, boron with silicon.",
+        "margin_note": "This summary line carries no separate mark, but it makes the example unmistakable."
+      }
+    ]
+  },
+  "insider_note": "Draw the two-row sketch. On this card the second mark sits on the example step, and that step is the sketch with its diagonal arrows; the line naming Li–Mg, Be–Al and B–Si carries no separate mark here, so skipping the sketch leaves no route to that mark. Write both anyway: the sketch for the mark, the named pairs under it so the example reads at a glance. Whether an examiner also accepts the three pairs written in words with no sketch is not settled on this card and is flagged for the teacher gate."
+}

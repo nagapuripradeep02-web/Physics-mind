@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_rydberg_equation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State the Rydberg equation for the hydrogen spectrum and explain the terms in it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation and its terms",
+      "marks": 2
+    },
+    {
+      "label": "How the series follow from it",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 2+2 mark split are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation and its terms",
+        "marks": 2,
+        "mark_note": "Equation and terms",
+        "lines": [
+          {
+            "text": "ν̄ = R (1/n₁² − 1/n₂²)",
+            "style": "eq"
+          },
+          "ν̄ = wave number of the spectral line",
+          "R = Rydberg constant = 109677 cm⁻¹",
+          "n₁ = the lower level the electron lands on",
+          "n₂ = the higher level it falls from,  n₂ > n₁"
+        ],
+        "why": "The equation was found from the measured lines before any model explained them, and Bohr's theory later produced exactly this form. Because n₂ is larger than n₁, the bracket is always positive and the wave number comes out positive.",
+        "common_mistakes": [
+          "Writing 1/n₂² − 1/n₁², which makes the wave number negative.",
+          "Using n and not squaring it. Both terms are reciprocals of squares."
+        ],
+        "memory_tip": "Smaller level first inside the bracket. Then the answer is positive.",
+        "margin_note": "Write the value of R with its unit. It is part of naming the terms."
+      },
+      {
+        "id": "s2_series",
+        "kind": "boxed_final",
+        "label": "How the series follow from it",
+        "marks": 2,
+        "mark_note": "The series",
+        "lines": [
+          {
+            "text": "Fixing n₁ gives one series; changing n₂ gives its lines",
+            "style": "boxed"
+          },
+          "n₁ = 1 → Lyman series (ultraviolet)",
+          "n₁ = 2 → Balmer series (visible)",
+          "n₁ = 3 → Paschen series (infrared)",
+          "For the first line of the Lyman series,",
+          "n₁ = 1 and n₂ = 2."
+        ],
+        "why": "One equation produces every line in the spectrum, and the series are simply the groups that share a landing level. That is why the series are named by n₁ and not by where the electron started.",
+        "common_mistakes": [
+          "Fixing n₂ instead of n₁. The series is decided by the level the electron lands on.",
+          "Naming the series without saying which value of n₁ each one uses."
+        ],
+        "memory_tip": "n₁ picks the series, n₂ picks the line inside it.",
+        "margin_note": "Working one line, such as the first Lyman line, shows the equation being used."
+      }
+    ]
+  }
+}

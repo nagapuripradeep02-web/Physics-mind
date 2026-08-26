@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_unified_atomic_mass_unit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express unified atomic mass unit in kg.",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The value in kg",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "One unified atomic mass unit is defined as",
+          "1/12 of the mass of one atom of the",
+          "carbon-12 isotope."
+        ],
+        "why": "The unit is defined against carbon-12 because that isotope is the agreed standard for atomic masses, so every atomic mass is quoted on the same scale.",
+        "common_mistakes": [
+          "Defining it against a hydrogen atom. The standard is carbon-12."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one unified atomic mass unit is one twelfth of the mass of a carbon-12 atom.",
+          "accept": [
+            "one twelfth",
+            "carbon twelve",
+            "1/12 of carbon-12"
+          ],
+          "reject": [
+            "hydrogen atom"
+          ],
+          "heard_as": [
+            "carbon twelve",
+            "one twelfth"
+          ]
+        },
+        "memory_tip": "One twelfth of a carbon-12 atom. The 12 in the name and the 12 in the fraction are the same 12.",
+        "margin_note": "Write the definition first. The number alone is half the answer."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value in kg",
+        "marks": 1,
+        "mark_note": "The value",
+        "lines": [
+          {
+            "text": "1 u = 1.66 × 10⁻²⁷ kg",
+            "style": "boxed"
+          }
+        ],
+        "why": "The value is close to the mass of one proton, which is a useful check that the power of ten is right.",
+        "common_mistakes": [
+          "Writing 10⁻²⁴ or 10⁻³⁰. The exponent is −27.",
+          "Leaving off the unit kg."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one unified atomic mass unit equals 1.66 times ten to the minus twenty-seven kilograms.",
+          "accept": [
+            "1.66",
+            "ten to the minus twenty seven",
+            "kg"
+          ],
+          "reject": [
+            "ten to the minus twenty four"
+          ],
+          "heard_as": [
+            "one point six six",
+            "minus twenty seven"
+          ]
+        },
+        "memory_tip": "1.66 × 10⁻²⁷ kg — about the mass of one proton, which checks the exponent.",
+        "margin_note": "Box the value and keep the kg."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. The definition and the number are separate marks — write both, not just the number."
+}

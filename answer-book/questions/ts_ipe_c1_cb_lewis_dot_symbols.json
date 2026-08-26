@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_lewis_dot_symbols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are Lewis dot symbols? What is their significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: Lewis dot symbols open the NCERT Chemical Bonding chapter, and the Fastrack chemistry section (book pp.56-61) skips the section entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Lewis dot symbols show the valence",
+          "electrons of an atom as dots placed around",
+          "the symbol of the element.",
+          "Ex: nitrogen has five valence electrons,",
+          "so its Lewis symbol shows five dots",
+          "around N."
+        ],
+        "why": "The symbol is a counting device: only the outermost electrons take part in bonding, so only they are drawn.",
+        "common_mistakes": [
+          "Drawing ALL the electrons as dots. Only the valence (outermost) electrons are shown.",
+          "Writing the number of dots equal to the atomic number."
+        ],
+        "memory_tip": "Dots equal the outer electrons only — for nitrogen, five.",
+        "margin_note": "One sentence plus one named example is the full mark."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          {
+            "text": "The number of dots equals the valence electrons",
+            "style": "boxed"
+          },
+          "The symbols are used to count the electrons",
+          "available for bonding and to show how atoms",
+          "complete an octet by losing, gaining or",
+          "sharing electrons."
+        ],
+        "why": "The significance is the use: the dots make octet counting visible, which is the basis of every Lewis structure in this chapter.",
+        "common_mistakes": [
+          "Stopping at the definition. The significance sentence — counting bonding electrons — is the second mark."
+        ],
+        "memory_tip": "The dots show what the atom can lose, gain or share in bonding.",
+        "margin_note": "Box the dots-equal-valence-electrons line."
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_sqp_i_squared_minus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (i, 0) and (0, −i), then show that A² = −I.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply A by A",
+      "marks": 1
+    },
+    {
+      "label": "Use i² = −1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.100 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 146. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: the bank heading reads \"MATRICES-VSAQ\", so the mark cut here IS the book's. Printed appearances: none — this answer carries no year tag.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply_a_by_a",
+        "kind": "equation",
+        "label": "Multiply A by A",
+        "marks": 1,
+        "mark_note": "Product",
+        "margin_note": "First mark. A is diagonal, so each diagonal entry simply squares: i² and (−i)². Both come to −1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A^2 = A \\times A = \\begin{bmatrix} i & 0 \\\\ 0 & -i \\end{bmatrix}\\begin{bmatrix} i & 0 \\\\ 0 & -i \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} i^2 & 0 \\\\ 0 & (-i)^2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A² is A times A, giving i² and (−i)² on the diagonal.",
+          "accept": [
+            "multiply the matrix by itself so the diagonal entries square",
+            "A squared has i squared and minus i squared on the diagonal",
+            "row into column multiplication on a diagonal matrix",
+            "diagonal entries square avthai",
+            "compute A into A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A squared",
+            "i squared",
+            "diagonal",
+            "multiply"
+          ]
+        },
+        "why": "A diagonal matrix squares entry by entry — but only because the off-diagonal zeros make every cross term zero, not as a general rule.",
+        "common_mistakes": [
+          "Squaring the entries without doing the multiplication.",
+          "Forgetting that (−i)² is also −1."
+        ]
+      },
+      {
+        "id": "s2_use_i_1",
+        "kind": "boxed_final",
+        "label": "Use i² = −1",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Second mark. i² = −1 and (−i)² = i² = −1, so both diagonal entries are −1 — which is −I.",
+        "lines": [
+          "Since i² = −1 and (−i)² = i² = −1:",
+          {
+            "text": "A^2 = \\begin{bmatrix} -1 & 0 \\\\ 0 & -1 \\end{bmatrix} = (-1)\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A² = −I",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That i² = −1 and (−i)² = −1, so A² = −I.",
+          "accept": [
+            "i squared is minus one and minus i squared is also minus one so A squared is minus I",
+            "both diagonal entries are minus one giving minus the identity",
+            "the answer is minus I",
+            "i square minus one, so A square equals minus I",
+            "it comes to negative the identity matrix"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "i squared",
+            "minus one",
+            "minus I",
+            "identity"
+          ]
+        },
+        "why": "(−i)² = (−1)²i² = i² — the minus squares away. Both entries land on −1 for slightly different reasons.",
+        "common_mistakes": [
+          "Writing (−i)² = +1.",
+          "Leaving the answer as a grid of −1s without naming it −I."
+        ]
+      }
+    ]
+  }
+}

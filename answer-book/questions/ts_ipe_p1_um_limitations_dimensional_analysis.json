@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_limitations_dimensional_analysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the limitations of dimensional analysis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It cannot give constants",
+      "marks": 1
+    },
+    {
+      "label": "The other limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constant",
+        "kind": "text",
+        "label": "It cannot give constants",
+        "marks": 1,
+        "mark_note": "Constants",
+        "lines": [
+          "Dimensional analysis cannot find the value of a",
+          "pure number in a formula, because a number",
+          "has no dimensions to compare.",
+          "The 2π in T = 2π√(l/g) is an example."
+        ],
+        "why": "The method compares powers of M, L and T. A pure number contributes nothing to any of those powers, so it leaves no trace to recover.",
+        "common_mistakes": [
+          "Saying it cannot be used at all for such formulas. It gives every power correctly; only the number is missing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it cannot give the value of a dimensionless constant such as two pi.",
+          "accept": [
+            "cannot give the constant",
+            "two pi",
+            "dimensionless number"
+          ],
+          "reject": [
+            "cannot be used"
+          ],
+          "heard_as": [
+            "constant",
+            "two pi"
+          ]
+        },
+        "memory_tip": "It finds the powers, never the number in front.",
+        "margin_note": "Give the 2π example. It makes the limitation concrete."
+      },
+      {
+        "id": "s2_others",
+        "kind": "boxed_final",
+        "label": "The other limits",
+        "marks": 1,
+        "mark_note": "Other limits",
+        "lines": [
+          {
+            "text": "It fails for sums, and for more than three unknowns",
+            "style": "boxed"
+          },
+          "An equation with added terms such as",
+          "s = ut + ½at² cannot be derived this way.",
+          "It also cannot handle trigonometric,",
+          "exponential or logarithmic functions."
+        ],
+        "why": "The method assumes a single product of powers. A sum of two terms is not of that form, so there is nothing for the method to match.",
+        "common_mistakes": [
+          "Saying it cannot check s = ut + ½at². It can check that equation; it cannot derive it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it cannot derive equations with added terms, cannot handle more than three unknowns, and cannot handle trigonometric or exponential functions.",
+          "accept": [
+            "sum of terms",
+            "more than three unknowns",
+            "trigonometric or exponential"
+          ],
+          "reject": [
+            "cannot check any equation"
+          ],
+          "heard_as": [
+            "sum",
+            "three unknowns"
+          ]
+        },
+        "memory_tip": "The method builds ONE product of powers, so a sum defeats it.",
+        "margin_note": "Derive versus check is the distinction to keep."
+      }
+    ]
+  },
+  "insider_note": "Four limitations are listed here (constant; sums; more than three unknowns; trigonometric, exponential or logarithmic functions); two written clearly is enough for two marks. Lead with the constant."
+}

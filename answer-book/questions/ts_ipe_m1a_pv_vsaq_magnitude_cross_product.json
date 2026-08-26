@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_magnitude_cross_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a = 2i − j + k and b = i − 3j − 5k, then find |a × b|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 1
+    },
+    {
+      "label": "Take the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 123.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the magnitude of a cross product.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Straight determinant. Watch the double negatives — (−1)(−5) is +5, not −5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -1 & 1 \\\\ 1 & -3 & -5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(5 + 3) − j(−10 − 1) + k(−6 + 1)",
+          "= 8i + 11j − 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a×b is computed as a determinant, giving 8i + 11j − 5k.",
+          "accept": [
+            "expand the determinant to get eight i plus eleven j minus five k",
+            "take the cross product of a and b",
+            "a cross b is eight i plus eleven j minus five k",
+            "determinant expand cheste eight i plus eleven j minus five k",
+            "compute the cross product first"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "eight i",
+            "eleven j",
+            "determinant"
+          ]
+        },
+        "why": "The magnitude cannot be found without the vector first — there is no shortcut from the components of a and b directly.",
+        "common_mistakes": [
+          "Sign slip on a product of two negatives.",
+          "Forgetting the minus in front of the j term."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Square, add, root. 210 has no square factor, so the surd is the final answer.",
+        "lines": [
+          "|a × b| = √(8² + 11² + (−5)²)",
+          "= √(64 + 121 + 25)",
+          {
+            "text": "= √210",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude is √(64 + 121 + 25) = √210.",
+          "accept": [
+            "square the components and add to get two hundred ten so the magnitude is root two ten",
+            "the modulus is root two hundred and ten",
+            "sixty four plus one twenty one plus twenty five is two ten",
+            "root two hundred ten vasthundi",
+            "the magnitude is root two ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root two ten",
+            "two hundred ten",
+            "magnitude",
+            "sixty four"
+          ]
+        },
+        "why": "Every term in a magnitude is a square, so the negative component contributes +25. A negative under the root would mean an arithmetic slip.",
+        "common_mistakes": [
+          "Forgetting to square the negative and subtracting 5.",
+          "Trying to simplify √210, which has no square factor."
+        ]
+      }
+    ]
+  }
+}

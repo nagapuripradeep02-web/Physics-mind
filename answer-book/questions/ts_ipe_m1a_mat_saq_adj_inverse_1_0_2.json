@@ -1,0 +1,204 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_adj_inverse_1_0_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the adjoint and the inverse of the matrix A with rows (1, 0, 2), (2, 1, 0) and (3, 2, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find det A and check it is not zero",
+      "marks": 1
+    },
+    {
+      "label": "Find the cofactor matrix",
+      "marks": 2
+    },
+    {
+      "label": "Transpose to Adj A and divide by det A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.52 — SAQ chapter 7 Matrices, answer 41.2. Printed appearances: none — this answer carries no year tag. THE 1+2+1 SPLIT IS EFFECTIVELY THE BOOK'S, by a route worth stating: the book asserts on book p.30 that \"Just finding A⁻¹ gives u 4 Marks\", and this SAQ asks for exactly that and is worth exactly 4 marks — so the whole question IS the book's own 4-mark chunk. The division of that chunk into 1 (determinant) + 2 (nine cofactors) + 1 (transpose and divide) is OURS, and is the same division the matrix-inversion LAQs in this unit use. The SAME split and the SAME step ids are used on all four \"find the inverse\" SAQs in this unit, deliberately: they are one method over different numbers. The book's SAQ chapter header carries ★★★ and reads \"4 Marks\"; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q11 is the Matrices slot."
+  },
+  "recall_prompt": "Say how you would find the inverse of this matrix — name each thing you have to work out, in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_det",
+        "kind": "equation",
+        "label": "Find det A",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "margin_note": "First mark. det A comes to 3. Expanding along the top row is easiest here because the middle entry is 0, which kills one of the three terms outright.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} 1 & 0 & 2 \\\\ 2 & 1 & 0 \\\\ 3 & 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "\\det A = \\begin{vmatrix} 1 & 0 & 2 \\\\ 2 & 1 & 0 \\\\ 3 & 2 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(1−0) − 0(2−0) + 2(4−3)",
+          "= 1 − 0 + 2 = 3",
+          "det A = 3 ≠ 0, so A is non-singular and A⁻¹ exists."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That det A is computed, comes to 3, and that being non-zero is what guarantees A⁻¹ exists.",
+          "accept": [
+            "find the determinant of A which is 3 and it is not zero so the inverse exists",
+            "compute det A and check it is non zero so A is non singular",
+            "expand the determinant, it is not zero so A inverse exists",
+            "det A kanukoni, zero kaadu kabatti inverse untundi",
+            "the determinant must be non zero for the inverse to exist"
+          ],
+          "reject": [
+            "find the determinant",
+            "calculate det A",
+            "expand it"
+          ],
+          "heard_as": [
+            "det A",
+            "determinant",
+            "non singular",
+            "not equal to zero",
+            "inverse exists"
+          ]
+        },
+        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line is a gate, not a warm-up.",
+        "common_mistakes": [
+          "Computing det A but never writing that it is non-zero.",
+          "Getting the sign pattern wrong: plus, minus, plus along the top row.",
+          "Starting the cofactors before checking the determinant."
+        ]
+      },
+      {
+        "id": "s2_cofactors",
+        "kind": "equation",
+        "label": "Find the cofactor matrix",
+        "marks": 2,
+        "mark_note": "Cofactors",
+        "margin_note": "Half the marks, and nine small determinants. Delete the entry’s own row and column, take the 2×2 determinant of what is left, then apply the sign board + − + / − + − / + − +. Work along the rows in order so none is missed.",
+        "lines": [
+          "Delete each entry’s row and column, take the 2×2",
+          "determinant, then apply + − + / − + − / + − +:",
+          {
+            "text": "\\text{Cofactor matrix} = \\begin{bmatrix} 1 & -2 & 1 \\\\ 4 & -5 & -2 \\\\ -2 & 4 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each cofactor is the 2×2 determinant left after deleting that entry’s row and column, with the alternating sign applied.",
+          "accept": [
+            "for each entry delete its row and column take the two by two determinant and apply the plus minus sign",
+            "find the nine cofactors from the minors with the alternating sign pattern",
+            "cross out the row and column of each entry and take the determinant of what is left with the right sign",
+            "prathi entry ki row column teesesi two by two determinant teeskoni sign pettali",
+            "build the cofactor matrix from the nine minors with signs plus minus plus"
+          ],
+          "reject": [
+            "find the cofactors",
+            "make the cofactor matrix",
+            "take the minors"
+          ],
+          "heard_as": [
+            "cofactor",
+            "minor",
+            "two by two",
+            "sign",
+            "plus minus plus"
+          ]
+        },
+        "why": "A minor is the smaller determinant; a cofactor is that minor with a sign attached, and the sign depends only on the position. That is why the board is worth learning once instead of re-deriving nine times.",
+        "common_mistakes": [
+          "Writing the minors and forgetting the sign board entirely.",
+          "Applying the signs to the wrong positions; all four corners are plus.",
+          "Deleting the wrong row or column for the off-diagonal entries."
+        ]
+      },
+      {
+        "id": "s3_adj_inverse",
+        "kind": "boxed_final",
+        "label": "Transpose and divide",
+        "marks": 1,
+        "mark_note": "Adjoint and inverse",
+        "margin_note": "Last mark. det A is 3, so every entry of the adjoint is divided by 3 and the inverse carries thirds. Leaving the answer as one-third times the adjoint is also acceptable and is less error-prone than writing nine fractions.",
+        "lines": [
+          "Adj A is the TRANSPOSE of the cofactor matrix:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} 1 & 4 & -2 \\\\ -2 & -5 & 4 \\\\ 1 & -2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\frac{1}{3}\\begin{bmatrix} 1 & 4 & -2 \\\\ -2 & -5 & 4 \\\\ 1 & -2 & 1 \\end{bmatrix} = \\begin{bmatrix} 1/3 & 4/3 & -2/3 \\\\ -2/3 & -5/3 & 4/3 \\\\ 1/3 & -2/3 & 1/3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A⁻¹ is the matrix above.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adjoint is the TRANSPOSE of the cofactor matrix, and that A⁻¹ is that adjoint divided by det A.",
+          "accept": [
+            "take the transpose of the cofactor matrix to get adj A then divide by det A",
+            "adjoint is the transpose of the cofactors and A inverse is adj A over det A",
+            "transpose the cofactor matrix and divide every entry by the determinant",
+            "cofactor matrix transpose teeste adj A, det A tho divide cheste inverse",
+            "A inverse equals one by det A times the adjoint"
+          ],
+          "reject": [
+            "find adj A",
+            "divide by the determinant",
+            "get the inverse"
+          ],
+          "heard_as": [
+            "adjoint",
+            "adj A",
+            "transpose",
+            "A inverse",
+            "one by det A"
+          ]
+        },
+        "why": "Skipping the transpose gives a matrix that looks right and is wrong, and nothing in the question will reveal it. Writing the word \"transpose\" on the page is the habit that prevents it.",
+        "common_mistakes": [
+          "Using the cofactor matrix directly as the adjoint without transposing.",
+          "Dividing only one row by det A instead of every entry.",
+          "Multiplying by det A instead of dividing."
+        ]
+      }
+    ]
+  }
+}

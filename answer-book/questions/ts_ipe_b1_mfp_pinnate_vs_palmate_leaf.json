@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_pinnate_vs_palmate_leaf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is a pinnately compound leaf different from a palmately compound leaf? Explain with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pinnately compound",
+      "marks": 1
+    },
+    {
+      "label": "Palmately compound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Rachis present versus rachis absent is the sentence examiners scan for - write those exact words.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pinnate",
+        "kind": "text",
+        "label": "Pinnately compound",
+        "marks": 1,
+        "mark_note": "Pinnate + example",
+        "lines": [
+          "Pinnately compound leaf: the lamina is cut",
+          "from the margin up to the midrib, so the",
+          "leaflets sit along a common axis called the",
+          "rachis. Rachis present.",
+          "Ex: Azadirachta indica (neem)."
+        ],
+        "why": "The incision pattern decides the type: cuts reaching the MIDRIB leave a central axis (rachis) carrying leaflets on both sides, like a feather.",
+        "common_mistakes": [
+          "Calling the leaflets separate leaves. A bud sits in the axil of the whole leaf, never of a leaflet."
+        ],
+        "memory_tip": "Pinna means feather - leaflets in two rows on a central rachis.",
+        "margin_note": "Definition + 'rachis present' + neem is the complete half."
+      },
+      {
+        "id": "s2_palmate",
+        "kind": "boxed_final",
+        "label": "Palmately compound",
+        "marks": 1,
+        "mark_note": "Palmate + example",
+        "lines": [
+          {
+            "text": "Palmately compound leaf: the incisions run",
+            "style": "boxed"
+          },
+          "to the tip of the petiole, so all leaflets",
+          "attach at one point. Rachis absent.",
+          "Ex: Bombax ceiba (silk cotton)."
+        ],
+        "why": "When the cuts reach the petiole tip there is no axis left - all leaflets share a single attachment point, like fingers from a palm.",
+        "common_mistakes": [
+          "Writing rachis present for palmate. The absence of the rachis IS the difference."
+        ],
+        "memory_tip": "Palm - all fingers from one point; feather - leaflets along a shaft.",
+        "margin_note": "State 'rachis absent' explicitly - it is the marked contrast."
+      }
+    ]
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_newton_second_law_f_ma",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "a) State Newton’s second law of motion. Hence derive F = ma from it. b) A body is moving along a circular path such that its speed always remains constant. Should there be a force acting on the body?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "a) The statement",
+      "marks": 2
+    },
+    {
+      "label": "a) The derivation",
+      "marks": 3
+    },
+    {
+      "label": "b) The figure",
+      "marks": 1
+    },
+    {
+      "label": "b) The answer",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 LONG ANSWER 1 — the only 8-mark form the book prints for this unit, and the TSBIE Basic Learning Material prints no Section C for Laws of Motion at all. The 2+3+1+2 split across the two parts is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Laws of Motion · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "a) The statement",
+        "marks": 2,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "a) Newton’s second law of motion:",
+            "style": "heading"
+          },
+          "The rate of change of momentum of a",
+          "body is directly proportional to the",
+          "external force applied on it, and takes",
+          "place in the direction of that force."
+        ],
+        "margin_note": "Both halves earn marks — the proportionality AND the direction. Do not stop after the first.",
+        "why": "The law is stated in momentum, not in acceleration. F = ma is a consequence of it, which is exactly what part (a) asks you to show.",
+        "common_mistakes": [
+          "Stating the law as \"F = ma\", which is the thing you are being asked to derive.",
+          "Leaving out \"in the direction of the force\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rate of change of momentum is proportional to the applied force and is in the direction of that force.",
+          "accept": [
+            "rate of change of momentum is proportional to the force",
+            "and it acts in the direction of the force",
+            "momentum change rate force ki proportional"
+          ],
+          "reject": [
+            "F equals k times dp by dt"
+          ],
+          "heard_as": [
+            "rate of change of momentum",
+            "proportional",
+            "direction of the force"
+          ]
+        },
+        "memory_tip": "State the law in MOMENTUM: rate of change of momentum, in the direction of the force. F = ma comes later."
+      },
+      {
+        "id": "s2_setup",
+        "kind": "equation",
+        "label": "Write it in symbols",
+        "marks": 1,
+        "mark_note": "Derivation 1",
+        "lines": [
+          "Let a force F act on a body of mass m.",
+          "By the statement above,",
+          {
+            "text": "F ∝ dp/dt",
+            "style": "eq"
+          },
+          {
+            "text": "F = k · dp/dt",
+            "style": "eq"
+          },
+          "where k is a constant of proportionality."
+        ],
+        "margin_note": "Introduce k here and say what it is. It has to be dealt with before the derivation can end.",
+        "why": "A proportionality cannot be used for calculation. Turning it into an equation is what k is for, and disposing of k is the last step.",
+        "common_mistakes": [
+          "Writing F = dp/dt straight away, skipping the constant and losing the step."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the proportionality is written as F = k dp/dt with a constant k.",
+          "accept": [
+            "F is proportional to dp by dt",
+            "F equals k times dp by dt",
+            "k is the constant of proportionality",
+            "k ane constant pedatam"
+          ],
+          "reject": [
+            "rate of change of momentum is proportional to the force"
+          ],
+          "heard_as": [
+            "dp by dt",
+            "k",
+            "proportionality"
+          ]
+        },
+        "memory_tip": "Proportionality first: F ∝ dp/dt. Then insert k to make it an equation."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Put p = m v",
+        "marks": 1,
+        "mark_note": "Derivation 2",
+        "lines": [
+          "Momentum p = m v, and the mass of the",
+          "body is constant, so",
+          {
+            "text": "F = k · d(mv)/dt = k m (dv/dt)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State that m is constant before taking it outside. That is the assumption the step rests on.",
+        "why": "Only a constant mass may be pulled out of the derivative. For a rocket, whose mass changes, this line would not be allowed.",
+        "common_mistakes": [
+          "Taking m out of the derivative without saying it is constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = m v is substituted and m, being constant, comes out of the derivative.",
+          "accept": [
+            "p equals m v so substitute it",
+            "mass is constant so it comes out",
+            "F equals k m dv by dt",
+            "mass constant kabatti bayataki vastundi"
+          ],
+          "reject": [
+            "dv by dt is the acceleration"
+          ],
+          "heard_as": [
+            "m v",
+            "constant",
+            "dv by dt"
+          ]
+        },
+        "memory_tip": "You may pull m out of d(mv)/dt only because m is constant — write that line."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "a) The result",
+        "marks": 1,
+        "mark_note": "Derivation 3",
+        "lines": [
+          "But dv/dt is the acceleration a, so",
+          {
+            "text": "F = k m a",
+            "style": "eq"
+          },
+          "In SI units the unit of force is chosen",
+          "so that k = 1. Therefore",
+          {
+            "text": "F = m a",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say WHY k = 1 — it is a choice of unit, not a piece of algebra.",
+        "why": "One newton is DEFINED as the force that gives 1 kg an acceleration of 1 m/s². That definition is what makes k exactly one.",
+        "common_mistakes": [
+          "Setting k = 1 with no reason given."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dv/dt is the acceleration and k = 1 in SI units, giving F = ma.",
+          "accept": [
+            "dv by dt is the acceleration",
+            "in SI units k is one",
+            "so F equals m a",
+            "SI units lo k equals one"
+          ],
+          "reject": [
+            "p equals m v so substitute it"
+          ],
+          "heard_as": [
+            "acceleration",
+            "k is one",
+            "F equals m a"
+          ]
+        },
+        "memory_tip": "k becomes 1 by the definition of the newton: 1 N gives 1 kg exactly 1 m/s²."
+      },
+      {
+        "id": "s5_figure",
+        "kind": "diagram",
+        "label": "b) The circular path",
+        "marks": 1,
+        "mark_note": "Figure",
+        "margin_note": "One circle, the body, the tangential v and the force to the centre. Four strokes carry the whole of part (b).",
+        "why": "The picture shows the two directions that matter: velocity along the tangent, force towards the centre — permanently at right angles.",
+        "common_mistakes": [
+          "Drawing the velocity along the radius instead of along the tangent."
+        ],
+        "figure": {
+          "id": "circular_motion_force",
+          "width": 430,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "path",
+              "d": "M 105 150 A 95 95 0 1 0 295 150 A 95 95 0 1 0 105 150",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "centre_h",
+              "d": "M 194 150 L 206 150",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "centre_v",
+              "d": "M 200 144 L 200 156",
+              "ms": 160
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 178,
+              "y": 143,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "radius",
+              "d": "M 200 150 L 295 150",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 243,
+              "y": 143,
+              "text": "r",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "body",
+              "d": "M 193 55 A 7 7 0 1 0 207 55 A 7 7 0 1 0 193 55",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "vel",
+              "d": "M 207 55 L 297 55",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "vel_head",
+              "d": "M 287 48 L 297 55 L 287 62",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 301,
+              "y": 48,
+              "text": "v",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "force",
+              "d": "M 200 62 L 200 128",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "force_head",
+              "d": "M 193 118 L 200 128 L 207 118",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_f",
+              "x": 209,
+              "y": 100,
+              "text": "F",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a circular path is drawn with the velocity along the tangent and the force towards the centre.",
+          "accept": [
+            "draw the circle with v tangent and F to the centre",
+            "circular path figure",
+            "circle geesi tangent lo v force centre ki"
+          ],
+          "reject": [
+            "the direction of the velocity changes"
+          ],
+          "heard_as": [
+            "figure",
+            "circle",
+            "tangent"
+          ]
+        },
+        "memory_tip": "Draw the circle with two arrows: velocity along the tangent, force toward the centre."
+      },
+      {
+        "id": "s6_partb",
+        "kind": "text",
+        "label": "b) The answer",
+        "marks": 2,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "b) Yes, a force must act on the body.",
+            "style": "heading"
+          },
+          "On a circular path the DIRECTION of the",
+          "velocity changes at every point, even",
+          "though the speed does not. A changing",
+          "velocity means the body is accelerating,",
+          "and an acceleration needs a force."
+        ],
+        "margin_note": "Answer yes first, then give the reason. The reason is the direction change, not the speed.",
+        "why": "Velocity is a vector, so it changes when its direction changes even if its size is fixed. Constant SPEED is not constant velocity.",
+        "common_mistakes": [
+          "Answering \"no, because the speed is constant\" — the commonest error in this chapter."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, a force acts, because the direction of the velocity keeps changing so the body accelerates.",
+          "accept": [
+            "yes a force is needed",
+            "direction of velocity changes so it accelerates",
+            "speed is constant but velocity is not",
+            "velocity direction marutundi kabatti force kavali"
+          ],
+          "reject": [
+            "it is called centripetal force"
+          ],
+          "heard_as": [
+            "yes",
+            "direction changes",
+            "accelerating"
+          ]
+        },
+        "memory_tip": "Constant speed is not constant velocity — the direction changes, so there is acceleration, so there is a force."
+      },
+      {
+        "id": "s7_note",
+        "kind": "text",
+        "label": "The name and formula",
+        "marks": 0,
+        "lines": [
+          "This acceleration points to the centre.",
+          "It is the centripetal acceleration, and",
+          "the force causing it is",
+          {
+            "text": "F = m v² / r, towards the centre.",
+            "style": "eq"
+          },
+          "For a stone whirled on a string, the",
+          "tension in the string supplies it."
+        ],
+        "margin_note": "Unmarked in this split, but it names the force and costs two lines. Write it if there is time.",
+        "why": "Naming the force and giving its size turns a qualitative \"yes\" into a complete answer, and it is the same idea the next chapter builds on.",
+        "common_mistakes": [
+          "Calling it centrifugal force. That is not a real force on the body."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the force is named centripetal and F = mv²/r is given.",
+          "accept": [
+            "it is called centripetal force",
+            "F equals m v squared by r",
+            "centripetal acceleration towards the centre",
+            "centripetal force ani antaru"
+          ],
+          "reject": [
+            "yes a force is needed"
+          ],
+          "heard_as": [
+            "centripetal",
+            "m v squared by r",
+            "centre"
+          ]
+        },
+        "memory_tip": "Name it: centripetal force, F = mv²/r, pointing to the centre."
+      }
+    ]
+  },
+  "insider_note": "Part b) is 3 of the 8 marks. Answer it as its own question, with its own figure."
+}

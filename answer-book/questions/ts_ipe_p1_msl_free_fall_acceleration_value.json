@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_free_fall_acceleration_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the value of the acceleration of a freely falling body?",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 4,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The value",
+      "marks": 1
+    },
+    {
+      "label": "The direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. This cell is not listed by either source book. It was asked in the AP March 2026 paper, Section A question 4, and is authored from that paper."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_value",
+        "kind": "equation",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "The value",
+        "lines": [
+          "A freely falling body has only gravity acting",
+          "on it, so its acceleration is g:",
+          {
+            "text": "g = 9.8 m s⁻² (about 9.8, often taken as 10)",
+            "style": "eq"
+          }
+        ],
+        "why": "Free fall means no force other than gravity, so the acceleration is the same for every body regardless of its mass.",
+        "common_mistakes": [
+          "Giving the value without the unit. The unit is part of the answer.",
+          "Saying a heavier body falls with a larger acceleration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the acceleration of a freely falling body is g, about 9.8 metre per second squared.",
+          "accept": [
+            "nine point eight",
+            "g",
+            "metre per second squared"
+          ],
+          "reject": [
+            "depends on mass"
+          ],
+          "heard_as": [
+            "nine point eight",
+            "g"
+          ]
+        },
+        "memory_tip": "g = 9.8 m s⁻², the same for every body, whatever its mass.",
+        "margin_note": "Number AND unit. Both are needed."
+      },
+      {
+        "id": "s2_direction",
+        "kind": "boxed_final",
+        "label": "The direction",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          {
+            "text": "It is directed vertically downwards",
+            "style": "boxed"
+          },
+          "towards the centre of the earth, and stays",
+          "downward even while the body is rising."
+        ],
+        "why": "The direction is set by the force, not by the motion, which is why g still points down while a body thrown upward is still going up.",
+        "common_mistakes": [
+          "Saying the acceleration points upward while the body rises."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the acceleration is directed vertically downwards, towards the centre of the earth.",
+          "accept": [
+            "vertically downwards",
+            "towards the centre of the earth"
+          ],
+          "reject": [
+            "upwards while rising"
+          ],
+          "heard_as": [
+            "downwards",
+            "centre of the earth"
+          ]
+        },
+        "memory_tip": "g points down always — even while the body is still going up.",
+        "margin_note": "Acceleration is a vector. The direction earns this mark."
+      }
+    ]
+  },
+  "insider_note": "Asked in AP March 2026. Give the number with its unit and its direction — a bare number is an incomplete answer."
+}

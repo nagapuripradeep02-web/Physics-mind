@@ -1,0 +1,286 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_two_triple_products",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "If a = i−2j+3k, b = 2i+j+k and c = i+j+2k, then find |(a×b)×c| and |a×(b×c)|.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 2
+    },
+    {
+      "label": "Find |(a×b)×c|",
+      "marks": 2
+    },
+    {
+      "label": "Find b×c",
+      "marks": 2
+    },
+    {
+      "label": "Find |a×(b×c)|",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.36 — LAQ chapter 4 Product of Vectors, answer 22.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,18. TWO answers are wanted, and they are DIFFERENT — 5√14 and 3√6. That is the point of the question: the vector triple product is not associative, so the bracket position changes the answer.⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find both of these — and say what the two answers show.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "a = i − 2j + 3k,  b = 2i + j + k,",
+          "c = i + j + 2k"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the given vectors are written out before any product is computed. Naming the step is full credit.",
+          "accept": [
+            "write the given vectors out first",
+            "copy down a b and c before starting",
+            "note the given vectors in i j k form",
+            "ichina vectors ni modata rasta",
+            "start by writing what is given"
+          ],
+          "reject": [
+            "write the question",
+            "start the sum"
+          ],
+          "heard_as": [
+            "given",
+            "vectors",
+            "write down"
+          ]
+        },
+        "why": "A cross product is a determinant whose rows ARE these vectors. Laying them out once, aligned, is what makes each determinant readable.",
+        "common_mistakes": [
+          "Missing a zero component and shifting a whole row.",
+          "Copying a sign wrongly and carrying it through every product."
+        ]
+      },
+      {
+        "id": "s2_first",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 2,
+        "mark_note": "First product",
+        "margin_note": "Two of the seven marks. First part, inner bracket: the product a×b, which the c then crosses from the right.",
+        "lines": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 2 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 − 3) − j(1 − 6) + k(1 + 4)",
+          "= −5i + 5j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first part starts with the inner bracket a×b, giving −5i + 5j + 5k.",
+          "accept": [
+            "for the first part work out a cross b which is minus five i plus five j plus five k",
+            "the inner bracket is a cross b",
+            "compute a cross b first for part one",
+            "modata a cross b, minus five i plus five j plus five k",
+            "start with the bracket a cross b"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "inner bracket",
+            "minus five i",
+            "first part"
+          ]
+        },
+        "why": "In (a×b)×c the bracket is on the LEFT, so a×b is computed first and then crossed by c. Reading which bracket comes first is the whole skill here.",
+        "common_mistakes": [
+          "Computing b×c because it looks similar.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s3_second",
+        "kind": "equation",
+        "label": "Find |(a×b)×c|",
+        "marks": 2,
+        "mark_note": "Second product",
+        "margin_note": "Two more marks. Cross that result by c, take out the common 5, and then the magnitude.",
+        "lines": [
+          {
+            "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ -5 & 5 & 5 \\\\ 1 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(10 − 5) − j(−10 − 5) + k(−5 − 5)",
+          "= 5i + 15j − 10k = 5(i + 3j − 2k)",
+          "|(a×b)×c| = 5√(1 + 9 + 4) = 5√14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is crossed by c and its magnitude taken, giving 5√14.",
+          "accept": [
+            "cross that by c and take the magnitude to get five root fourteen",
+            "the first answer is five root fourteen",
+            "multiply out and the modulus is five root fourteen",
+            "c tho cross chesi magnitude teeste five root fourteen",
+            "part one gives five root fourteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "five root fourteen",
+            "magnitude",
+            "cross by c",
+            "first answer"
+          ]
+        },
+        "why": "Factoring the 5 out before the root keeps the arithmetic small, exactly as in the previous question.",
+        "common_mistakes": [
+          "Crossing c×(a×b) instead, which reverses the sign.",
+          "Leaving the 5 inside the square root."
+        ]
+      },
+      {
+        "id": "s4_combine",
+        "kind": "equation",
+        "label": "Find b×c",
+        "marks": 2,
+        "mark_note": "Combine",
+        "margin_note": "One mark. Second part now — a DIFFERENT inner bracket. Here the bracket is on the right, so b×c is what gets computed first.",
+        "lines": [
+          "For the second part the bracket is b×c:",
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & 1 \\\\ 1 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 − 1) − j(4 − 1) + k(2 − 1)",
+          "= i − 3j + k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second part uses a different inner bracket, b×c, which comes to i − 3j + k.",
+          "accept": [
+            "for the second part the bracket is b cross c which gives i minus three j plus k",
+            "now the bracket is on the right so compute b cross c",
+            "the inner bracket changes to b cross c",
+            "rendo part lo bracket b cross c avthundi",
+            "compute b cross c for the second answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "second part",
+            "different bracket",
+            "i minus three j"
+          ]
+        },
+        "why": "The bracket position is the only difference between the two halves of this question, and it is enough to change the answer completely.",
+        "common_mistakes": [
+          "Reusing a×b from the first part.",
+          "Assuming the second answer must equal the first."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Find |a×(b×c)|",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last two marks together. Cross a into that result and take the magnitude. √54 simplifies to 3√6 — and 3√6 is NOT 5√14, which is the point.",
+        "lines": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 1 & -3 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 + 9) − j(1 − 3) + k(−3 + 2)",
+          "= 7i + 2j − k",
+          "|a×(b×c)| = √(49 + 4 + 1) = √54 = 3√6",
+          {
+            "text": "|(a×b)×c| = 5√14,  |a×(b×c)| = 3√6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second magnitude is √54 = 3√6, and that it DIFFERS from the first — the cross product is not associative.",
+          "accept": [
+            "the second one is root fifty four which is three root six, different from the first answer",
+            "three root six, so the two answers are not equal",
+            "the cross product is not associative so the bracket matters",
+            "moodu root six vasthundi, first answer tho same kaadu",
+            "root fifty four simplifies to three root six"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "three root six",
+            "root fifty four",
+            "not equal",
+            "not associative",
+            "different"
+          ]
+        },
+        "why": "Cross multiplication is NOT associative: (a×b)×c and a×(b×c) are genuinely different vectors. Two unequal answers here is the correct result, not an error to hunt for.",
+        "common_mistakes": [
+          "Assuming the two answers must match and going back to look for a mistake.",
+          "Leaving √54 unsimplified."
+        ]
+      }
+    ]
+  }
+}

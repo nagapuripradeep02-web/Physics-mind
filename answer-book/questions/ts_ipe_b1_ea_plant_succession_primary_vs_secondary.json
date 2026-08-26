@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_plant_succession_primary_vs_secondary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define plant succession. Differentiate primary and secondary succession.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Definition", "marks": 1 },
+    { "label": "Where each one starts", "marks": 1 },
+    { "label": "Soil", "marks": 1 },
+    { "label": "Time taken", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.37, SAQ 7 — the last question in the book. BOOK ERROR, the clearest one in this book: its comparison table gives the PRIMARY succession column both '3) Long time for completion.' and '4) It is a fastest process.' — two statements that contradict each other — while the SECONDARY column reads '3) Less time for completion.' and '4) It is a slow process.', the same contradiction mirrored. Row 4 has its two columns swapped. The truth: primary succession starts on a bare area with NO soil and is SLOW, because soil has to form first; secondary succession starts where soil is already present and is comparatively FAST. Row 3 of the book is correct and row 4 is wrong, so the card writes row 4 correctly and states the book's contradiction in step s4_time's why, so a student who compares the card with the book is not left confused. Also cleaned: the book's spellings 'begining', 'abonded', 'orderely', 'communites'. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Plant succession: the orderly process in",
+          "which one plant community is replaced by",
+          "another in the same area, one after the",
+          "other, until a stable climax community is",
+          "established."
+        ],
+        "why": "The definition must carry three parts — an orderly sequence, replacement of one community by another, and an end point at the climax. A sentence missing the climax is incomplete.",
+        "common_mistakes": [
+          "Leaving out the word climax. The end point is part of the definition.",
+          "Writing that the plants change. It is the whole community that is replaced, not individual plants."
+        ],
+        "memory_tip": "Orderly, one after another, ending at the climax. Three parts, one sentence.",
+        "margin_note": "Definition first in one sentence, then draw the table. Both are asked."
+      },
+      {
+        "id": "s2_where_it_starts",
+        "kind": "text",
+        "label": "Where each one starts",
+        "marks": 1,
+        "mark_note": "Starting area",
+        "lines": [
+          "Primary: it starts on a bare area where no",
+          "community has ever lived — bare rock,",
+          "cooled lava, a new sand dune, a new pond.",
+          "Secondary: it starts on an area that held a",
+          "community and lost it — abandoned farm",
+          "land, a burnt forest, flooded land."
+        ],
+        "why": "The two kinds are separated by the history of the site: primary succession begins where there has never been a community, secondary where one was destroyed. Every other difference follows from this one.",
+        "common_mistakes": [
+          "Writing that secondary succession starts on a bare area. Bare area is the primary case.",
+          "Giving no example of a site. One named site on each side is what the row is marked on."
+        ],
+        "memory_tip": "Primary = never lived in. Secondary = lived in before and cleared.",
+        "margin_note": "Write the answer as a two-column table. Each row is worth one mark."
+      },
+      {
+        "id": "s3_soil",
+        "kind": "text",
+        "label": "Soil",
+        "marks": 1,
+        "mark_note": "Soil",
+        "lines": [
+          "Primary: soil is absent at the beginning.",
+          "It has to form first, from rock broken down",
+          "by lichens and by weathering.",
+          "Secondary: soil is already present at the",
+          "beginning, and it still holds seeds, spores",
+          "and root stocks."
+        ],
+        "why": "Soil is the difference that sets the pace. Making soil out of rock is the slowest part of any succession, and secondary succession skips it entirely.",
+        "common_mistakes": [
+          "Writing that soil is absent in secondary succession. Its presence is the definition of secondary.",
+          "Saying soil forms quickly in primary succession. It is the slowest step of all."
+        ],
+        "memory_tip": "No soil, make soil. Soil already there, skip the slowest step.",
+        "margin_note": "This row explains the next one, so keep them next to each other."
+      },
+      {
+        "id": "s4_time",
+        "kind": "boxed_final",
+        "label": "Time taken",
+        "marks": 1,
+        "mark_note": "Time",
+        "lines": [
+          { "text": "Primary is SLOW. Secondary is FAST.", "style": "boxed" },
+          "Primary: takes a long time to reach the",
+          "climax, because soil must form first.",
+          "It is a slow process.",
+          "Secondary: takes much less time, because",
+          "the soil is ready.",
+          "It is a comparatively fast process."
+        ],
+        "why": "Soil already present means less time, so primary is the slow one and secondary the fast one. Note that the Fastrack book contradicts itself in this row: its primary column prints both 'Long time for completion' and 'It is a fastest process', and its secondary column prints both 'Less time for completion' and 'It is a slow process'. Row 4 of that table has its two columns swapped. Row 3 is the correct one, and this step follows it.",
+        "common_mistakes": [
+          "Copying the book's row 4, which calls primary succession the fastest process. That is a printing error.",
+          "Writing that both take the same time. The time difference is the whole point of the comparison."
+        ],
+        "memory_tip": "Tie it to the soil row: making soil takes the time, so no soil means slow.",
+        "margin_note": "Say slow and fast in plain words, and put them beside the soil row so the reason is visible."
+      }
+    ]
+  },
+  "insider_note": "The Fastrack book prints this table with row 4 reversed — it calls primary succession the fastest process. Primary succession is the SLOW one, because it has to build the soil first. Check your own notes against that before the exam."
+}

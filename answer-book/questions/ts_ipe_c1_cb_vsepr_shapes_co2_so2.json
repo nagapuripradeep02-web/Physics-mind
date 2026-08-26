@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_vsepr_shapes_co2_so2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Using VSEPR theory, predict the shapes of the CO₂ and SO₂ molecules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "CO₂",
+      "marks": 1
+    },
+    {
+      "label": "SO₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book teaches VSEPR only through NH₃ and H₂O inside its long answer and never asks a fresh predict-the-shape question, which is the standard examination use of the theory. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_co2",
+        "kind": "text",
+        "label": "CO₂",
+        "marks": 1,
+        "mark_note": "CO₂",
+        "lines": [
+          "CO₂: the central C atom has two bonding",
+          "regions (two double bonds) and NO lone",
+          "pair.",
+          "The two bonding regions move as far apart",
+          "as possible: 180°.",
+          "Shape: linear, O=C=O."
+        ],
+        "why": "With no lone pair on carbon there is nothing to bend the molecule, so the two bonds settle exactly opposite each other.",
+        "common_mistakes": [
+          "Counting a double bond as two separate repulsion regions. Each double bond acts as ONE region.",
+          "Drawing CO₂ bent like water. Carbon here has no lone pair."
+        ],
+        "memory_tip": "Two regions, no lone pair: a straight line.",
+        "margin_note": "State the pair count first; the shape follows from it."
+      },
+      {
+        "id": "s2_so2",
+        "kind": "boxed_final",
+        "label": "SO₂",
+        "marks": 1,
+        "mark_note": "SO₂",
+        "lines": [
+          "SO₂: the central S atom has two bonding",
+          "regions and ONE lone pair.",
+          "The lone pair occupies more space and",
+          "repels the bond pairs, reducing the angle",
+          "below 120°.",
+          {
+            "text": "CO₂ — linear (180°); SO₂ — bent (about 119°)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The single lone pair is the whole difference between the two molecules: it pushes the two S−O bonds together, so SO₂ is bent while CO₂ stays linear.",
+        "common_mistakes": [
+          "Writing SO₂ as linear by copying CO₂. Sulphur keeps one lone pair; carbon has none.",
+          "Giving the angle as exactly 120°. The lone pair reduces it slightly, to about 119°."
+        ],
+        "memory_tip": "Same formula shape, one lone pair different: CO₂ straight, SO₂ bent.",
+        "margin_note": "Box the two shapes together — the contrast is the answer."
+      }
+    ]
+  }
+}

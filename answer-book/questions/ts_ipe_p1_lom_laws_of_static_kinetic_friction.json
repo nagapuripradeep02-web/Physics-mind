@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_laws_of_static_kinetic_friction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State the laws of static friction and the laws of kinetic friction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Laws of static friction",
+      "marks": 2
+    },
+    {
+      "label": "Laws of kinetic friction",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_static",
+        "kind": "text",
+        "label": "Laws of static friction",
+        "marks": 2,
+        "mark_note": "Static",
+        "lines": [
+          {
+            "text": "Laws of static friction:",
+            "style": "heading"
+          },
+          "1) Static friction adjusts itself to equal",
+          "the applied force, up to a maximum value.",
+          "2) That maximum, the limiting friction, is",
+          "proportional to the normal force: f_s = μ_s N.",
+          "3) It does not depend on the area of contact."
+        ],
+        "why": "The first law is the one students miss: below the limit, friction is not μ_s N at all — it is whatever the push happens to be.",
+        "common_mistakes": [
+          "Writing f_s = μ_s N for every case; that is only the MAXIMUM value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That static friction adjusts up to a maximum, the maximum is mu s N, and it does not depend on the area of contact.",
+          "accept": [
+            "adjusts itself up to a maximum",
+            "maximum is mu s N",
+            "independent of the area of contact"
+          ],
+          "reject": [
+            "f k equals mu k N"
+          ],
+          "heard_as": [
+            "static friction",
+            "limiting"
+          ]
+        },
+        "memory_tip": "Push a resting box with 3 N and friction is exactly 3 N. μ_s N is only the maximum.",
+        "margin_note": "First and second marks. Three numbered laws, and the self-adjusting one must be first."
+      },
+      {
+        "id": "s2_kinetic",
+        "kind": "boxed_final",
+        "label": "Laws of kinetic friction",
+        "marks": 2,
+        "mark_note": "Kinetic",
+        "lines": [
+          {
+            "text": "Laws of kinetic friction:",
+            "style": "heading"
+          },
+          "1) Kinetic friction is proportional to the",
+          "normal force: f_k = μ_k N.",
+          "2) It does not depend on the area of contact",
+          "or, over ordinary speeds, on the speed.",
+          {
+            "text": "μ_k is always less than μ_s",
+            "style": "boxed"
+          }
+        ],
+        "why": "Kinetic friction has a fixed value while static friction has a range — that single difference explains why a sliding load is easier to move than a stationary one.",
+        "common_mistakes": [
+          "Saying kinetic friction grows with speed; over ordinary speeds it does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That kinetic friction is mu k N, independent of area and of speed, and mu k is less than mu s.",
+          "accept": [
+            "f k equals mu k N",
+            "independent of area and speed",
+            "mu k is less than mu s"
+          ],
+          "reject": [
+            "adjusts itself up to a maximum"
+          ],
+          "heard_as": [
+            "kinetic friction",
+            "mu k"
+          ]
+        },
+        "memory_tip": "Static has three laws, kinetic has two — kinetic has no self-adjusting law.",
+        "margin_note": "Third and fourth marks. The kinetic list, then the closing line μ_k < μ_s."
+      }
+    ]
+  },
+  "insider_note": "An even split: 2 marks for the static laws, 2 for the kinetic. Number them so each law can be counted separately."
+}

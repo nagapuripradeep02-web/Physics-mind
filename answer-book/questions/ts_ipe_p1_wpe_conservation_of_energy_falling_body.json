@@ -1,0 +1,545 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_conservation_of_energy_falling_body",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State and prove the law of conservation of energy in the case of a freely falling body.",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 2
+    },
+    {
+      "label": "The figure",
+      "marks": 1
+    },
+    {
+      "label": "At A",
+      "marks": 1
+    },
+    {
+      "label": "At B",
+      "marks": 2
+    },
+    {
+      "label": "At C",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER — and the TSBIE Basic Learning Material carries the same question in its own Unit 6 Long Answer set, so both sources agree this is an 8-mark form. The split across the steps is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip); a factually wrong marked line was corrected."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Work Power Energy · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 2,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Law of conservation of energy:",
+            "style": "heading"
+          },
+          "Energy can neither be created nor",
+          "destroyed. It can only be converted from",
+          "one form into another, and the total",
+          "energy of an isolated system stays constant."
+        ],
+        "margin_note": "Both halves earn marks — \"neither created nor destroyed\" AND \"total stays constant\".",
+        "why": "The proof that follows is one worked case of this statement: the potential energy is not lost as the body falls, it becomes kinetic energy.",
+        "common_mistakes": [
+          "Stating only that energy changes form, without saying the total is constant.",
+          "Using 'closed' where the exact word is 'isolated' — a system exchanging neither energy nor matter. If energy can enter or leave the system, the total inside can change."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That energy is neither created nor destroyed, only converted, and the total stays constant.",
+          "accept": [
+            "energy can neither be created nor destroyed",
+            "it changes from one form to another",
+            "total energy remains constant",
+            "energy create cheyyalemu destroy cheyyalemu"
+          ],
+          "reject": [
+            "at A the potential energy is m g h"
+          ],
+          "heard_as": [
+            "created nor destroyed",
+            "converted",
+            "total energy constant"
+          ]
+        },
+        "memory_tip": "The statement has two halves: energy is never created or destroyed; it only changes form."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The three points",
+        "marks": 1,
+        "mark_note": "Figure",
+        "margin_note": "Mark A, B and C with h, x and (h − x). The proof is three heights and this is where they are defined.",
+        "why": "Every line below says \"at A\", \"at B\", \"at C\". Without the figure those names mean nothing and the marks for them are hard to award.",
+        "common_mistakes": [
+          "Drawing the fall but not labelling x and (h − x), so the B calculation has no distances to use."
+        ],
+        "figure": {
+          "id": "freely_falling_abc",
+          "width": 380,
+          "height": 330,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ground",
+              "d": "M 40 285 L 340 285",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "hatch1",
+              "d": "M 70 285 L 58 298",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch2",
+              "d": "M 130 285 L 118 298",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch3",
+              "d": "M 250 285 L 238 298",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "hatch4",
+              "d": "M 310 285 L 298 298",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "fall_line",
+              "d": "M 200 55 L 200 285",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "body_a",
+              "d": "M 186 55 A 14 14 0 1 0 214 55 A 14 14 0 1 0 186 55",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 166,
+              "y": 50,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_ua",
+              "x": 222,
+              "y": 50,
+              "text": "u = 0",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "body_b",
+              "d": "M 186 170 A 14 14 0 1 0 214 170 A 14 14 0 1 0 186 170",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 166,
+              "y": 165,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_vb",
+              "x": 222,
+              "y": 165,
+              "text": "v₁",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "body_c",
+              "d": "M 186 271 A 14 14 0 1 0 214 271 A 14 14 0 1 0 186 271",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 166,
+              "y": 266,
+              "text": "C",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_vc",
+              "x": 222,
+              "y": 266,
+              "text": "v₂",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "h_line",
+              "d": "M 110 55 L 110 285",
+              "ms": 480,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "h_top",
+              "d": "M 104 65 L 110 55 L 116 65",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "h_bot",
+              "d": "M 104 275 L 110 285 L 116 275",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_h",
+              "x": 90,
+              "y": 175,
+              "text": "h",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "x_line",
+              "d": "M 290 55 L 290 170",
+              "ms": 400,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "x_top",
+              "d": "M 284 65 L 290 55 L 296 65",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "x_bot",
+              "d": "M 284 160 L 290 170 L 296 160",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 300,
+              "y": 115,
+              "text": "x",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "hx_line",
+              "d": "M 290 170 L 290 285",
+              "ms": 400,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "hx_top",
+              "d": "M 284 180 L 290 170 L 296 180",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "hx_bot",
+              "d": "M 284 275 L 290 285 L 296 275",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_hx",
+              "x": 300,
+              "y": 232,
+              "text": "h − x",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn showing the body at A, B and C with h, x and (h − x) marked.",
+          "accept": [
+            "draw the figure with A B and C",
+            "mark h and x and h minus x",
+            "A B C points tho figure geyyali"
+          ],
+          "reject": [
+            "at A the potential energy is m g h"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "A B C"
+          ]
+        },
+        "memory_tip": "Draw three labelled points on one vertical line: A at height h, B after falling x, C at the ground."
+      },
+      {
+        "id": "s3_at_a",
+        "kind": "equation",
+        "label": "At A — the top",
+        "marks": 1,
+        "mark_note": "At A",
+        "lines": [
+          {
+            "text": "At A (height h, at rest):",
+            "style": "heading"
+          },
+          "u = 0, so KE = ½mu² = 0",
+          "PE = mgh",
+          {
+            "text": "E_A = 0 + mgh = mgh",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Take each point the same way: KE, then PE, then their sum. The pattern is what makes the proof readable.",
+        "why": "At the top all the energy is potential. This is the value every later total has to match.",
+        "common_mistakes": [
+          "Writing KE = ½mv² at A without setting u = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at A the kinetic energy is zero and the total is mgh.",
+          "accept": [
+            "at A kinetic energy is zero",
+            "potential energy is m g h",
+            "total at A is m g h",
+            "A daggara KE zero, PE mgh"
+          ],
+          "reject": [
+            "at C the potential energy is zero"
+          ],
+          "heard_as": [
+            "at A",
+            "zero",
+            "m g h"
+          ]
+        },
+        "memory_tip": "At A everything is potential: total = mgh. This number must repeat at B and C."
+      },
+      {
+        "id": "s4_at_b",
+        "kind": "equation",
+        "label": "At B — after falling x",
+        "marks": 2,
+        "mark_note": "At B",
+        "lines": [
+          {
+            "text": "At B (after falling a distance x):",
+            "style": "heading"
+          },
+          "Height above the ground = (h − x), so",
+          "PE = mg(h − x)",
+          "Using v² − u² = 2as with u = 0, a = g,",
+          "s = x:",
+          {
+            "text": "v₁² = 2gx",
+            "style": "eq"
+          },
+          "KE = ½mv₁² = ½m(2gx) = mgx",
+          {
+            "text": "E_B = mg(h − x) + mgx = mgh",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "B is the step worth the most. The x cancels — show that line, do not just assert the total.",
+        "why": "B is the only point where both energies are non-zero, so it is the real test: the mgx gained as kinetic is exactly the mgx lost as potential.",
+        "common_mistakes": [
+          "Using height h instead of (h − x) for the potential energy at B.",
+          "Forgetting the ½ when squaring, giving KE = 2mgx."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at B, PE = mg(h − x), KE = mgx from v₁² = 2gx, and the total is again mgh.",
+          "accept": [
+            "at B potential energy is m g h minus x",
+            "v squared equals two g x",
+            "kinetic energy is m g x",
+            "total at B is again m g h",
+            "B daggara kuda mgh vastundi"
+          ],
+          "reject": [
+            "at A kinetic energy is zero"
+          ],
+          "heard_as": [
+            "h minus x",
+            "two g x",
+            "m g x"
+          ]
+        },
+        "memory_tip": "B is the real test: PE = mg(h − x), KE = mgx from v² = 2gx — the total is mgh again."
+      },
+      {
+        "id": "s5_at_c",
+        "kind": "equation",
+        "label": "At C — the ground",
+        "marks": 1,
+        "mark_note": "At C",
+        "lines": [
+          {
+            "text": "At C (on the ground):",
+            "style": "heading"
+          },
+          "Height = 0, so PE = 0",
+          "Using v² − u² = 2as with s = h:",
+          {
+            "text": "v₂² = 2gh",
+            "style": "eq"
+          },
+          "KE = ½m(2gh) = mgh",
+          {
+            "text": "E_C = mgh + 0 = mgh",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Same three lines as before. At C the energy is all kinetic — the mirror image of A.",
+        "why": "At the ground every joule that was potential at A is now kinetic. That is the conversion the law describes, seen at its extreme.",
+        "common_mistakes": [
+          "Leaving a potential-energy term at C when the height is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at C the potential energy is zero and the kinetic energy is mgh.",
+          "accept": [
+            "at C potential energy is zero",
+            "kinetic energy is m g h",
+            "v squared equals two g h",
+            "C daggara PE zero, KE mgh"
+          ],
+          "reject": [
+            "at B potential energy is m g h minus x"
+          ],
+          "heard_as": [
+            "at C",
+            "zero",
+            "two g h"
+          ]
+        },
+        "memory_tip": "At C everything is kinetic: v² = 2gh gives KE = mgh."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "The three totals are equal:",
+          {
+            "text": "E_A = E_B = E_C = mgh",
+            "style": "boxed"
+          },
+          "So the total mechanical energy of a",
+          "freely falling body stays constant.",
+          "The law is proved."
+        ],
+        "margin_note": "Put the three totals side by side, then say what it proves. Do not leave the reader to compare them.",
+        "why": "A proof is not finished until the three separate results are put together. The equality IS the law for this case.",
+        "common_mistakes": [
+          "Calculating all three totals and never writing the line that compares them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That E at A, B and C are all equal to mgh, so the energy is conserved.",
+          "accept": [
+            "all three are equal to m g h",
+            "total energy is the same at A B and C",
+            "so energy is conserved",
+            "moodu chotla energy same"
+          ],
+          "reject": [
+            "at C potential energy is zero"
+          ],
+          "heard_as": [
+            "all equal",
+            "same",
+            "conserved"
+          ]
+        },
+        "memory_tip": "Finish by writing the three totals side by side: mgh at A = at B = at C."
+      }
+    ]
+  },
+  "insider_note": "The figure with A, B, C carries its own mark, and point B carries 2 — the middle point is the real proof."
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_triangle_area_sides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the area of the triangle having 3i + 4j and −5i + 7j as adjacent sides.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 1
+    },
+    {
+      "label": "Halve the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.91 — VSAQ chapter 17 Product of Vectors, answer 123.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the area of a triangle from two adjacent sides.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both vectors lie flat in the xy-plane, so the cross product points purely along k — the i and j components vanish.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 3i + 4j, b = −5i + 7j",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 3 & 4 & 0 \\\\ -5 & 7 & 0 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(0 − 0) − j(0 − 0) + k(21 + 20)",
+          "= 41k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product is computed and comes to 41k, with zero i and j components.",
+          "accept": [
+            "cross them and only the k component survives, forty one k",
+            "both are in the xy plane so the cross product is along k, forty one k",
+            "the cross product is forty one k",
+            "rendu xy plane lo unnai kabatti k direction lo, forty one k",
+            "compute a cross b, it comes to forty one k"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "forty one k",
+            "cross product",
+            "k component",
+            "xy plane"
+          ]
+        },
+        "why": "A cross product is perpendicular to both factors. Two vectors lying flat in the xy-plane can only have a perpendicular pointing straight up or down it.",
+        "common_mistakes": [
+          "Omitting the zero k components and misaligning the determinant.",
+          "Sign slip: 3(7) − 4(−5) is 21 + 20, not 21 − 20."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Halve the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Triangle, so halve. |41k| is just 41 — a vector along one axis has magnitude equal to its coefficient.",
+        "lines": [
+          "Area = ½ |a × b| = ½ |41k|",
+          "= ½ (41) = 41/2",
+          {
+            "text": "= 20.5 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the triangle area is half the magnitude, giving 41/2 = 20.5 square units.",
+          "accept": [
+            "half of forty one is twenty point five square units",
+            "the area is forty one over two which is twenty point five",
+            "halve the magnitude to get twenty point five square units",
+            "half teeste twenty point five square units",
+            "the area is twenty point five"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "twenty point five",
+            "forty one over two",
+            "half",
+            "square units"
+          ]
+        },
+        "why": "The half is what distinguishes a triangle from the parallelogram on the same two sides.",
+        "common_mistakes": [
+          "Forgetting the half and reporting 41.",
+          "Trying to take a square root of 41k."
+        ]
+      }
+    ]
+  }
+}

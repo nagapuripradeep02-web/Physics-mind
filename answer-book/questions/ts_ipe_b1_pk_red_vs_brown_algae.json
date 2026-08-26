@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_red_vs_brown_algae",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the differences between red algae and brown algae.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Pigments", "marks": 1 },
+    { "label": "Cell wall", "marks": 1 },
+    { "label": "Stored food", "marks": 1 },
+    { "label": "Sexual reproduction", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.8, SAQ 1. The book's table prints 'Floridian starch' and 'laminarian'; the correct names floridean starch and laminarin are used here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The four-row 1-mark-each split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pigments",
+        "kind": "text",
+        "label": "Pigments",
+        "marks": 1,
+        "mark_note": "Pigments",
+        "lines": [
+          "Red algae: chlorophyll a, d and",
+          "r-phycoerythrin.",
+          "Brown algae: chlorophyll a, c and",
+          "fucoxanthin."
+        ],
+        "why": "The accessory pigment decides the colour and the class name: phycoerythrin makes Rhodophyceae red, fucoxanthin makes Phaeophyceae brown.",
+        "common_mistakes": [
+          "Writing chlorophyll b for either group — b belongs to green algae; red has a and d, brown has a and c.",
+          "Swapping the two accessory pigments."
+        ],
+        "memory_tip": "Chlorophyll pairs in order: green a + b, brown a + c, red a + d — the letters b, c, d follow the three groups.",
+        "margin_note": "One contrast row = one mark; write both sides of every row."
+      },
+      {
+        "id": "s2_cell_wall",
+        "kind": "text",
+        "label": "Cell wall",
+        "marks": 1,
+        "mark_note": "Cell wall",
+        "lines": [
+          "Red algae: cellulose, pectin and",
+          "poly-sulphate esters.",
+          "Brown algae: cellulose with an outer",
+          "gelatinous coat of algin."
+        ],
+        "why": "Both walls start with cellulose; the outer layer differs — sulphate esters in red algae, the gelatinous algin coat in brown algae.",
+        "common_mistakes": [
+          "Writing 'algin' for red algae — algin is the brown-algae coat.",
+          "Writing chitin — chitin belongs to fungal walls, not algae."
+        ],
+        "memory_tip": "Brown → algin: brown algae are the commercial source of algin, so the wall coat and the product are the same word.",
+        "margin_note": "Cellulose alone is not a difference — name the outer layer on each side."
+      },
+      {
+        "id": "s3_stored_food",
+        "kind": "text",
+        "label": "Stored food",
+        "marks": 1,
+        "mark_note": "Stored food",
+        "lines": [
+          "Red algae: floridean starch (similar to",
+          "amylopectin and glycogen).",
+          "Brown algae: laminarin or mannitol."
+        ],
+        "why": "Each class keeps its own reserve carbohydrate. The book prints 'Floridian starch' and 'laminarian'; the correct names are floridean starch and laminarin.",
+        "common_mistakes": [
+          "Spelling errors — it is floridean starch and laminarin; the book itself prints both words wrongly."
+        ],
+        "memory_tip": "The word 'florid' means reddish — floridean starch belongs to the red algae.",
+        "margin_note": "Name the reserve on both sides; the bracket detail is a safe extra."
+      },
+      {
+        "id": "s4_reproduction",
+        "kind": "boxed_final",
+        "label": "Sexual reproduction",
+        "marks": 1,
+        "mark_note": "Reproduction",
+        "lines": [
+          { "text": "Red: oogamy only · Brown: iso/aniso/oogamy", "style": "boxed" },
+          "Red algae: gametes are non-motile;",
+          "oogamous, with complex post-fertilisation",
+          "development.",
+          "Brown algae: gametes are motile (two",
+          "flagella); isogamy, anisogamy or oogamy."
+        ],
+        "why": "Red-algae gametes cannot swim, so reproduction is only oogamous; brown-algae gametes swim with two flagella, so all three forms occur.",
+        "common_mistakes": [
+          "Writing motile gametes for red algae — non-motile gametes are their marked feature.",
+          "Listing only 'oogamy' for brown algae — they show all three forms."
+        ],
+        "memory_tip": "Red = one method, no swimming; brown = all three methods, swimming gametes.",
+        "margin_note": "Four rows earn the four marks; examples (Polysiphonia vs Laminaria) are optional extras."
+      }
+    ]
+  },
+  "insider_note": "Write this as a two-column table with four rows — pigments, wall, food, reproduction; examiners award one mark per correct row."
+}

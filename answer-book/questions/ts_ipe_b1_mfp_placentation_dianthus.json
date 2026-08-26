@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_placentation_dianthus",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define placentation. What type of placentation is found in Dianthus?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Type in Dianthus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "The no-septa line is what shows an examiner you know free central from axile - write it even for two marks.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Placentation — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The arrangement of ovules on the placenta",
+          "within the ovary is called placentation."
+        ],
+        "why": "The definition places the ovules in space: how they are arranged inside the ovary, on the tissue called the placenta.",
+        "common_mistakes": [
+          "Defining it as the arrangement of seeds. Ovules, not seeds - seeds come after fertilisation."
+        ],
+        "memory_tip": "Placenta holds the ovules; placentation is how it holds them.",
+        "margin_note": "One sentence with ovules, placenta and ovary in it."
+      },
+      {
+        "id": "s2_dianthus",
+        "kind": "boxed_final",
+        "label": "Type in Dianthus",
+        "marks": 1,
+        "mark_note": "Type",
+        "lines": [
+          {
+            "text": "Dianthus shows free central placentation -",
+            "style": "boxed"
+          },
+          "the ovules are borne on a central axis and",
+          "the septa are absent."
+        ],
+        "why": "Free central = a free-standing central column of ovules with NO septa; Dianthus and Primula are the fixed examples.",
+        "common_mistakes": [
+          "Writing axile for Dianthus. Axile has septa; free central has none - that is the difference."
+        ],
+        "memory_tip": "Dianthus - a free-standing pillar of ovules, no walls around it.",
+        "margin_note": "Name the type and add the no-septa line to show it is understood."
+      }
+    ]
+  }
+}

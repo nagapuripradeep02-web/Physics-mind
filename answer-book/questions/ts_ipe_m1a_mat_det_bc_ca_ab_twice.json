@@ -1,0 +1,338 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_bc_ca_ab_twice",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "Show that the determinant with rows (b+c, c+a, a+b), (c+a, a+b, b+c) and (a+b, b+c, c+a) is equal to twice the determinant with rows (a, b, c), (b, c, a) and (c, a, b).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Row operation R₁ → R₁+R₂+R₃",
+      "marks": 1
+    },
+    {
+      "label": "Write each entry as 2(a+b+c)",
+      "marks": 1
+    },
+    {
+      "label": "Take the 2 out",
+      "marks": 1
+    },
+    {
+      "label": "Row operations R₂−R₁ and R₃−R₁",
+      "marks": 2
+    },
+    {
+      "label": "Second R₁ → R₁+R₂+R₃",
+      "marks": 1
+    },
+    {
+      "label": "Take −1 from R₂ and R₃ to finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 3 Matrices, answer 17, the last determinant proof before the chapter turns to solving systems. The mark split is PRINTED in that book's margin as 1+1+1+2+1+1 across the six working lines — a sourced split, and the one this answer book uses as the model for the two questions on book p.24 where no split is printed. The book's own margin note reads 'I was asked TWICE', matching the two printed appearances (AP 15,16). Star rank is the CHAPTER's ★★★, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — this one uses the same row-adding move twice, so say where each one goes and what happens in between.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own. Note that the right-hand side is a determinant, not a number — so the job is to TRANSFORM this one into that one, not to evaluate anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} b+c & c+a & a+b \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the given determinant. Naming it is full credit.",
+          "accept": [
+            "write the given determinant first",
+            "take delta as the determinant of b plus c c plus a a plus b",
+            "start with the LHS determinant",
+            "modata ichina determinant rasta",
+            "write down the determinant on the left side"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "LHS"
+          ]
+        },
+        "why": "The answer is another determinant with a 2 in front. That tells you the proof ends by reshaping, not by expanding — so never expand this one.",
+        "common_mistakes": [
+          "Expanding both sides and trying to match the results.",
+          "Reading the right-hand side as a number."
+        ]
+      },
+      {
+        "id": "s2_row_sum",
+        "kind": "equation",
+        "label": "Add all three rows into R₁",
+        "marks": 2,
+        "mark_note": "Row sum and the common entry",
+        "margin_note": "The first two marks, one for the operation and one for doing the sum correctly. Down every column the three entries add to 2a+2b+2c — each of a, b and c appears exactly twice.",
+        "lines": [
+          "R₁ → R₁ + R₂ + R₃",
+          "Column 1:  (b+c) + (c+a) + (a+b) = 2(a+b+c)",
+          "Every column gives the same:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 2(a{+}b{+}c) & 2(a{+}b{+}c) & 2(a{+}b{+}c) \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rows 2 and 3 are added into row 1, and that every entry of the new top row is 2(a+b+c).",
+          "accept": [
+            "add row two and row three into row one so the top row becomes two into a plus b plus c",
+            "apply R one plus R two plus R three and each entry of the first row is two a plus two b plus two c",
+            "sum the rows into the first row where every entry comes out the same",
+            "R1 ki R2 R3 kalipithe top row anni two into a plus b plus c avthai",
+            "each of a b and c appears twice so the sum is two a plus b plus c"
+          ],
+          "reject": [
+            "do a row operation",
+            "add the rows",
+            "apply R one plus R two"
+          ],
+          "heard_as": [
+            "R1 plus R2 plus R3",
+            "first row",
+            "two a plus b plus c",
+            "add the rows"
+          ]
+        },
+        "why": "Each column holds b+c, c+a and a+b in some order. Adding them gives 2a+2b+2c whichever order they came in, which is why the operation works on all three columns at once.",
+        "common_mistakes": [
+          "Writing a+b+c instead of 2(a+b+c) — count again, each letter appears twice.",
+          "Adding columns instead of rows.",
+          "Changing rows 2 and 3 as well; only row 1 is replaced."
+        ]
+      },
+      {
+        "id": "s3_take_two",
+        "kind": "equation",
+        "label": "Take the 2 out",
+        "marks": 1,
+        "mark_note": "Common factor 2",
+        "margin_note": "Third mark. Only the 2 comes out here, not the (a+b+c). Taking the whole bracket out as well would be wrong — the rows below still need it.",
+        "lines": [
+          "Taking 2 common from R₁:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ c+a & a+b & b+c \\\\ a+b & b+c & c+a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the factor 2 is taken common out of row 1, leaving a+b+c in each entry of that row.",
+          "accept": [
+            "take two common from the first row leaving a plus b plus c in each entry",
+            "pull the two outside the determinant",
+            "the factor two comes out and the top row is a plus b plus c three times",
+            "first row nunchi two common teeste a plus b plus c migulutundi",
+            "take only the two out and keep a plus b plus c inside"
+          ],
+          "reject": [
+            "take common",
+            "take a plus b plus c common",
+            "take out the factor"
+          ],
+          "heard_as": [
+            "two",
+            "common",
+            "first row",
+            "a plus b plus c"
+          ]
+        },
+        "why": "This 2 is the 2 in the answer. It comes out here and simply waits at the front while the rest of the determinant is reshaped.",
+        "common_mistakes": [
+          "Taking 2(a+b+c) out and being left with a row of 1s that cannot recover the letters.",
+          "Forgetting the 2 entirely and finishing with the right determinant but no factor."
+        ]
+      },
+      {
+        "id": "s4_row_ops",
+        "kind": "equation",
+        "label": "Do R₂−R₁ and R₃−R₁",
+        "marks": 2,
+        "mark_note": "Row operations",
+        "margin_note": "Two more marks. Subtracting the top row from each lower row leaves single negative letters — because (c+a) − (a+b+c) is just −b. Do all six entries the same way.",
+        "lines": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          "(c+a) − (a+b+c) = −b, and so on for each entry:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a{+}b{+}c & a{+}b{+}c & a{+}b{+}c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 1 is subtracted from rows 2 and 3, and that each resulting entry is a single negative letter — minus b, minus c, minus a and so on.",
+          "accept": [
+            "subtract row one from row two and row three so each entry becomes a single negative letter",
+            "apply R two minus R one and R three minus R one leaving minus b minus c minus a in the second row",
+            "take the top row away from both lower rows and only single letters with minus signs are left",
+            "R2 minus R1 cheste minus b minus c minus a vasthundi",
+            "each entry becomes minus one letter because the rest cancels"
+          ],
+          "reject": [
+            "do row operations",
+            "subtract the rows",
+            "apply R two minus R one"
+          ],
+          "heard_as": [
+            "R two minus R one",
+            "R three minus R one",
+            "minus b",
+            "minus c",
+            "single letters"
+          ]
+        },
+        "why": "Every lower entry was a sum of two letters and the top row was the sum of all three. Subtracting leaves exactly the one letter that was missing, with a minus sign.",
+        "common_mistakes": [
+          "Doing R₁ − R₂ and getting the letters positive but the top row destroyed.",
+          "Working out one entry and assuming the pattern rather than checking each.",
+          "Losing the 2 that is standing outside."
+        ]
+      },
+      {
+        "id": "s5_second_row_sum",
+        "kind": "equation",
+        "label": "Add the rows into R₁ again",
+        "marks": 1,
+        "mark_note": "Second row sum",
+        "margin_note": "Sixth mark, and the move students do not expect: the same operation is used a second time. Down column 1, (a+b+c) − b − c leaves a. Columns 2 and 3 leave b and c.",
+        "lines": [
+          "R₁ → R₁ + R₂ + R₃ once more:",
+          "(a+b+c) − b − c = a,  and likewise b and c:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ -b & -c & -a \\\\ -c & -a & -b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the row-adding operation is applied a second time, and that the top row collapses from a+b+c to the single letters a, b, c.",
+          "accept": [
+            "apply R one plus R two plus R three again so the top row becomes a b c",
+            "do the row sum a second time and a plus b plus c minus b minus c leaves a",
+            "add the rows into the first row once more to get single letters on top",
+            "malli R1 ki R2 R3 kalipithe top row a b c avthundi",
+            "the same operation is used twice and now the first row is just a b c"
+          ],
+          "reject": [
+            "do the row operation again",
+            "add the rows",
+            "repeat the step"
+          ],
+          "heard_as": [
+            "again",
+            "second time",
+            "R1 plus R2 plus R3",
+            "a b c"
+          ]
+        },
+        "why": "The negative letters produced by the last step are exactly what is needed to cancel the surplus in the top row. That is why the same operation, repeated, does something completely different the second time.",
+        "common_mistakes": [
+          "Assuming an operation can only be used once and getting stuck here.",
+          "Adding only one row instead of both.",
+          "Getting the cancellation backwards and leaving −a on top."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Take −1 from R₂ and R₃",
+        "marks": 1,
+        "mark_note": "Sign factors",
+        "margin_note": "Last mark. A −1 leaves each of the two lower rows, and (−1)(−1) = 1 — so the signs vanish and only the 2 is left in front, which is exactly what was to be shown.",
+        "lines": [
+          "Taking −1 common from R₂ and from R₃:",
+          "(−1)(−1) = 1, so the signs cancel:",
+          {
+            "text": "\\Delta = 2\\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} = \\text{R.H.S}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −1 is taken out of row 2 and out of row 3, and that the two minus signs multiply to +1, leaving 2 times the required determinant.",
+          "accept": [
+            "take minus one common from row two and row three and the two negatives cancel leaving two times the determinant",
+            "pull out minus one twice which gives plus one so only the two stays in front",
+            "the sign factors cancel and we get two into the determinant a b c b c a c a b",
+            "rendu rows nunchi minus one teeste minus signs cancel avthai, two matrame untundi",
+            "minus one from each of the two rows multiplies to one so the answer is twice the determinant"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "take the minus out"
+          ],
+          "heard_as": [
+            "minus one",
+            "row two",
+            "row three",
+            "cancel",
+            "twice the determinant"
+          ]
+        },
+        "why": "Taking −1 out of a row is the same as taking any other common factor out of a row. Doing it twice puts (−1)(−1) in front, and that is 1 — so the sign disappears without any extra work.",
+        "common_mistakes": [
+          "Taking −1 out of only one row and finishing with a negative answer.",
+          "Taking −1 out of the whole determinant instead of row by row.",
+          "Losing the 2 at the very last line."
+        ]
+      }
+    ]
+  }
+}

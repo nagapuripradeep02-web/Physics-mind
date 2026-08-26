@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_mi_rod_about_end",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 14,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The known result",
+      "marks": 1
+    },
+    {
+      "label": "Parallel axes",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_known",
+        "kind": "equation",
+        "label": "The known result",
+        "marks": 1,
+        "mark_note": "Known",
+        "lines": [
+          "About the perpendicular axis through",
+          "its CENTRE, a uniform rod has",
+          {
+            "text": "I₀ = ML²/12",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Name the axis of the known result precisely — through the centre, perpendicular to the rod.",
+        "why": "The strategy of this whole question class: quote the centre-of-mass result, then carry it to the asked axis with the parallel axes theorem.",
+        "common_mistakes": [
+          "Quoting ML²/3 here — that is the answer, not the starting point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rod about its centre has I₀ = ML²/12.",
+          "accept": [
+            "M L squared by twelve",
+            "about the centre",
+            "I naught is M L square by 12"
+          ],
+          "reject": [
+            "M L squared by three"
+          ],
+          "heard_as": [
+            "by twelve",
+            "centre"
+          ]
+        },
+        "memory_tip": "Centre gives the 12, end gives the 3. Start from the 12 every time."
+      },
+      {
+        "id": "s2_shift",
+        "kind": "equation",
+        "label": "Shift the axis",
+        "marks": 2,
+        "mark_note": "Parallel axes",
+        "lines": [
+          "The end axis is parallel to the centre",
+          "axis, at a distance a = L/2. By the",
+          "parallel axes theorem,",
+          {
+            "text": "I = I₀ + Ma² = ML²/12 + M(L/2)²",
+            "style": "eq"
+          },
+          {
+            "text": "= ML²/12 + ML²/4",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State a = L/2 before substituting — the distance is the only thing that can go wrong here.",
+        "why": "The theorem does the work the integral would otherwise do. Note the end axis I is LARGER — mass sits farther from an end than from the middle, on average.",
+        "common_mistakes": [
+          "Taking a = L instead of L/2.",
+          "Subtracting Ma² — the parallel axes theorem always ADDS."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the parallel axes theorem with a = L/2 gives ML²/12 + ML²/4.",
+          "accept": [
+            "a is L by two",
+            "I naught plus M a squared",
+            "parallel axes theorem vadali"
+          ],
+          "reject": [
+            "M L squared by twelve"
+          ],
+          "heard_as": [
+            "L by two",
+            "plus M a squared"
+          ]
+        },
+        "memory_tip": "M(L/2)² = ML²/4. Square the whole of L/2, the 2 as well as the L."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Adding the fractions,",
+          {
+            "text": "I = ML²/3",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "1/12 + 1/4 = 1/12 + 3/12 = 4/12 = 1/3. Show the fraction line if time allows.",
+        "why": "Four times the centre value — a useful sanity anchor worth remembering for MCQ papers too.",
+        "common_mistakes": [
+          "Adding 1/12 + 1/4 as 2/16."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the moment of inertia about the end is ML²/3.",
+          "accept": [
+            "M L squared by three",
+            "one third M L square"
+          ],
+          "reject": [
+            "a is L by two"
+          ],
+          "heard_as": [
+            "by three",
+            "M L squared"
+          ]
+        },
+        "memory_tip": "For M = 1 kg and L = 1 m: 0.083 about the centre, 0.333 about the end."
+      }
+    ]
+  },
+  "insider_note": "The parallel-axes step carries 2 of the 4 marks, and naming a = L/2 in words before substituting is what is checked there."
+}

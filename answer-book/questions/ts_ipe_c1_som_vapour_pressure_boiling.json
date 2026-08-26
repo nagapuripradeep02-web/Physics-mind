@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_vapour_pressure_boiling",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is vapour pressure? How is it related to the boiling point?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The boiling-point relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) leans on the vapour-pressure idea in its pressure-cooker answer but never defines vapour pressure or its boiling-point link — core NCERT liquid-state material. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Definition and the boiling condition (vapour pressure = external pressure) verified. One common_mistakes entry was garbled — \"not greater than the liquid's depth pressure\" named no clear mistake — and was rewritten to state the actual error (that boiling needs the two pressures EQUAL, not the vapour pressure greater). No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Vapour pressure is the pressure exerted by the",
+          "vapour of a liquid when the vapour is in",
+          "equilibrium with the liquid at a given",
+          "temperature.",
+          "It increases as the temperature increases."
+        ],
+        "why": "In a closed vessel, evaporation and condensation reach a balance; the pressure of the vapour at that balance is the liquid's vapour pressure, and higher temperature shifts the balance toward more vapour.",
+        "common_mistakes": [
+          "Leaving out in equilibrium with the liquid — pressure of any vapour is not vapour pressure.",
+          "Saying it depends on the amount of liquid. It depends on the liquid's nature and temperature only."
+        ],
+        "memory_tip": "Closed vessel, balance reached, vapour's pressure read — that reading is the vapour pressure.",
+        "margin_note": "Equilibrium and at a given temperature are the marked phrases."
+      },
+      {
+        "id": "s2_boiling",
+        "kind": "boxed_final",
+        "label": "The boiling-point relation",
+        "marks": 1,
+        "mark_note": "Boiling point",
+        "lines": [
+          {
+            "text": "A liquid boils when its vapour pressure equals the external pressure",
+            "style": "boxed"
+          },
+          "The boiling point is the temperature at which",
+          "this happens. Lower external pressure (hills)",
+          "lowers the boiling point; higher pressure",
+          "(pressure cooker) raises it."
+        ],
+        "why": "Boiling is bubble formation inside the liquid, and a bubble can only survive when the vapour pushing it open matches the outside pressure pressing it shut. That equality defines the boiling point.",
+        "common_mistakes": [
+          "Giving 100 °C as the definition of boiling point. 100 °C is water's boiling point only at 1 atm.",
+          "Saying the vapour pressure must EXCEED the external pressure. Boiling starts when the two are equal."
+        ],
+        "memory_tip": "Boiling happens when the vapour pressure reaches the outside pressure.",
+        "margin_note": "The hills and cooker examples tie this card to the asked pressure-cooker question."
+      }
+    ]
+  }
+}

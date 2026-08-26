@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_root_x2_minus_3x_plus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function √(x² − 3x + 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 95.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when x² − 3x + 2 ≥ 0",
+          "⇒ (x − 1)(x − 2) ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 3x + 2 ≥ 0, and that it factors as (x − 1)(x − 2).",
+          "accept": [
+            "x squared minus three x plus two must be non negative and it factors as x minus one into x minus two",
+            "set the quadratic greater than or equal to zero then factorise",
+            "the inside of the root is at least zero so factor into x minus one x minus two",
+            "quadratic ni factorise chesi non negative pettali",
+            "factorise the expression under the root and set it at least zero"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "x squared minus three x plus two",
+            "factorise",
+            "one",
+            "two",
+            "non negative"
+          ]
+        },
+        "why": "Once it is factorised, the question is only where the product of two factors is not negative.",
+        "common_mistakes": [
+          "Not factorising, so there is nothing to reason about.",
+          "Factorising to (x − 1)(x + 2), which changes the roots."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ (−∞, 1] ∪ [2, ∞)",
+          "∴ Domain = (−∞, 1] ∪ [2, ∞)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is outside the roots: minus infinity to 1, union 2 to infinity, endpoints included.",
+          "accept": [
+            "minus infinity to one union two to infinity",
+            "x less than or equal to one or greater than or equal to two",
+            "outside the roots one and two with both included",
+            "one kanna takkuva or two kanna ekkuva",
+            "domain is everything except strictly between one and two"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "x squared minus three x plus two",
+            "factorise",
+            "one",
+            "two",
+            "non negative",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Between the roots one factor is positive and the other negative, so the product is negative there — that gap is exactly what is cut out.",
+        "common_mistakes": [
+          "Giving [1, 2], the gap, which is where the function is NOT defined.",
+          "Dropping one of the two pieces of the union."
+        ]
+      }
+    ]
+  }
+}

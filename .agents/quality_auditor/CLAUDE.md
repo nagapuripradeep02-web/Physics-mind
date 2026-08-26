@@ -244,6 +244,12 @@ table (archetype + delta columns — their absence is a Gate 0 FAIL) and the shi
    pose, no teleport-rebuild; camera moves only to frame the new thing.
 7. **Single focal (mechanical):** no overlapping glow windows in the teacher_script/choreography —
    exactly ONE glow focal at any instant (Rule 32e; Rule 29 governs how, 3f#7 governs how many).
+   **Focus Overlay (2026-08-19): `glow` and the per-sentence `focus` binding share this ONE focal
+   budget** — a sentence carrying both must resolve to the SAME target (the glow brightens it, the
+   overlay points at it); two different targets on one sentence = split attention = FAIL here. A
+   `focus.target` must be a REAL built id (never the `*_label` glow vocabulary — the faraday audit
+   proved those resolve to nothing); after a live walk, `window.PM_focusMisses` in the player
+   console must be EMPTY — every entry is an authored binding pointing at nothing.
 
 Violations: word budget / delta cue → json_author (text) or architect (two-ideas split); timeline /
 cause-effect ordering → physics_author; archetype/table design → architect; panel/continuity engine

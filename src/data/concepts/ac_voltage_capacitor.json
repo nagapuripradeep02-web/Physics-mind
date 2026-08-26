@@ -204,7 +204,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s2_1", "text_en": "Here's the dashed guess: last lesson's coil current, arriving a quarter cycle late.", "glow": "ghost_trace" },
-            { "id": "s2_2", "text_en": "But this capacitor's charges refuse to obey — they surge at full flood, not backward.", "glow": "beads" },
+            { "id": "s2_2", "text_en": "But this capacitor's charges do not follow that guess — they surge forward, not backward.", "glow": "beads" },
             { "id": "s2_3", "text_en": "Watch the real current sweep in — same size, but arriving early instead.", "glow": "i_trace", "scenario_cue": "real_sweep_start" },
             { "id": "s2_4", "text_en": "It crests a full quarter cycle before the voltage — ninety degrees ahead.", "glow": "lead_bracket", "scenario_cue": "lead_bracket_land" }
           ]
@@ -218,7 +218,7 @@
         ]
       },
       "STATE_3": {
-        "title": "The plates fill and push back against the source",
+        "title": "The plates fill, and their voltage matches the source",
         "duration": 15,
         "depth_ring": "core",
         "focal_primitive_id": "s3_track_label",
@@ -230,8 +230,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Zoom into the plates: as voltage climbs, charge pours in, current dies away.", "glow": "plates" },
-            { "id": "s3_2", "text_en": "At the crest the plates are full — current is zero, right where the field burns brightest.", "glow": "efield" },
+            { "id": "s3_1", "text_en": "Zoom into the plates: as voltage climbs, charge pours in, current falls to zero.", "glow": "plates" },
+            { "id": "s3_2", "text_en": "At the crest the plates are full — current is zero, right where the field glows brightest.", "glow": "efield" },
             { "id": "s3_3", "text_en": "The source eases, charge pours back out — current reverses before the voltage does; charge never crosses this ideal, resistance-free, demo-scale capacitor's gap.", "glow": "charge" }
           ]
         }
@@ -266,14 +266,14 @@
         "advance_mode": "manual_click",
         "scene_composition": [
           { "type": "annotation", "id": "s5_reactance_label", "position": { "x": 380, "y": 60 }, "text": "opposition equals one over angular frequency times capacitance", "color": "#80DEEA" },
-          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 200, "y": 250 }, "text": "faster swing: current swells", "color": "#A5D6A7" },
-          { "type": "annotation", "id": "s5_starve_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current starves", "color": "#EF9A9A" }
+          { "type": "annotation", "id": "s5_swell_label", "position": { "x": 200, "y": 250 }, "text": "faster swing: current grows", "color": "#A5D6A7" },
+          { "type": "annotation", "id": "s5_starve_label", "position": { "x": 560, "y": 400 }, "text": "slower swing: current drops", "color": "#EF9A9A" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "This opposition isn't fixed like a resistor's — frequency makes it, and it runs backward.", "glow": "xc_readout" },
-            { "id": "s5_2", "text_en": "Watch the swing speed up — the current swells, slipping through easily each cycle.", "glow": "xc_readout", "scenario_cue": "ramp_window_start" },
-            { "id": "s5_3", "text_en": "Slow it down and the current starves — steady voltage gets blocked completely.", "glow": "beads" },
+            { "id": "s5_1", "text_en": "This opposition isn't fixed like a resistor's — it falls as frequency rises.", "glow": "xc_readout" },
+            { "id": "s5_2", "text_en": "Watch the swing speed up — the current grows, slipping through easily each cycle.", "glow": "xc_readout", "scenario_cue": "ramp_window_start" },
+            { "id": "s5_3", "text_en": "Slow it down and the current drops — steady voltage gets blocked completely.", "glow": "beads" },
             { "id": "s5_4", "text_en": "The trick lets a speaker capacitor pass the treble, blocking the bass.", "glow": "xc_readout" }
           ]
         },
@@ -300,7 +300,7 @@
           "tts_sentences": [
             { "id": "s6_1", "text_en": "Multiply voltage by current — power swings both positive and negative.", "glow": "p_strip" },
             { "id": "s6_2", "text_en": "When they share a sign, power is positive — the field fills, storing energy.", "glow": "u_gauge", "scenario_cue": "product_walk_start" },
-            { "id": "s6_3", "text_en": "When the signs disagree, power turns negative — the field drains, paying energy back.", "glow": "u_gauge" },
+            { "id": "s6_3", "text_en": "When the signs disagree, power turns negative — the field drains, returning energy to the source.", "glow": "u_gauge" },
             { "id": "s6_4", "text_en": "That shaded area equals exactly what the gauge just filled — nothing is lost.", "glow": "p_strip", "scenario_cue": "area_label" }
           ]
         }
@@ -314,15 +314,15 @@
         "has_prebuilt_deep_dive": true,
         "drill_downs": ["capacitor_charging_heats_misconception", "where_field_energy_goes_capacitor", "zero_power_but_current_flows_capacitor"],
         "scene_composition": [
-          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: dead at zero", "color": "#66BB6A" },
+          { "type": "annotation", "id": "s7_meter_label", "position": { "x": 380, "y": 60 }, "text": "average-power meter: reads zero", "color": "#66BB6A" },
           { "type": "annotation", "id": "s7_alive_label", "position": { "x": 200, "y": 250 }, "text": "current still flows, field still breathes", "color": "#4FC3F7" },
           { "type": "annotation", "id": "s7_cold_label", "position": { "x": 560, "y": 400 }, "text": "plates: never warm", "color": "#90A4AE" }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it stay dead at zero, cycle after cycle.", "glow": "meter" },
+            { "id": "s7_1", "text_en": "Here's an averaging wattmeter — watch it read zero, cycle after cycle.", "glow": "meter" },
             { "id": "s7_2", "text_en": "Peak current is clearly flowing, the field keeps breathing, and the gauge keeps filling and draining.", "glow": "efield" },
-            { "id": "s7_3", "text_en": "But the plates never warm — they borrow energy and hand it back; only resistance actually eats.", "glow": "meter" }
+            { "id": "s7_3", "text_en": "But the plates never warm — they store energy and return it; only resistance actually dissipates energy.", "glow": "meter" }
           ]
         },
         "misconception_watch": [
@@ -367,7 +367,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "It's all yours now — drag peak voltage, frequency, and capacitance, and watch the lead, the field, and the current respond live.", "glow": "formula" }
+            { "id": "s9_1", "text_en": "Try the controls now — drag peak voltage, frequency, and capacitance, and watch the lead, the field, and the current respond live.", "glow": "formula" }
           ]
         }
       }
@@ -594,10 +594,10 @@
         }
       },
       "STATE_3": {
-        "label": "The plates fill and push back — volt for volt with the source",
+        "label": "The plates fill, and their voltage matches the source, volt for volt",
         "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
         "camera_position": [2.3, 0.6, 5.0],
-        "caption": "Plates answer volt for volt",
+        "caption": "Plate voltage matches the source",
         "show_sliders": true,
         "formula_overlay": "",
         "variable_overrides": { "vm": 10.0, "f_demo": 0.25, "C": 0.1273 },
@@ -653,7 +653,7 @@
         }
       },
       "STATE_5": {
-        "label": "Reactance falls with frequency — the same capacitor welcomes fast AC",
+        "label": "Reactance falls with frequency — the same capacitor passes fast AC more easily",
         "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
         "camera_position": [1.0, 1.2, 9.0],
         "caption": "Faster swing, weaker choke",
@@ -714,7 +714,7 @@
         }
       },
       "STATE_7": {
-        "label": "Nothing consumed — the meter sits dead at zero while current visibly flows",
+        "label": "Nothing consumed — the meter reads zero while current visibly flows",
         "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge", "acc_meter", "acc_u_gauge"],
         "camera_position": [1.0, 1.2, 9.0],
         "caption": "Average power: exactly zero",
@@ -778,7 +778,7 @@
         "label": "Explore — the whole capacitor circuit, live",
         "visible_elements": ["acc_source", "acc_beads", "acc_arrow", "acc_plates", "acc_efield", "acc_charge"],
         "camera_position": [1.0, 1.2, 9.0],
-        "caption": "All yours",
+        "caption": "Try the controls",
         "show_sliders": true,
         "formula_overlay": "i leads v by ¼ cycle (90°)",
         "ac_capacitor": {

@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_ph_calculations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define pH. Calculate the pH of a) 10⁻³ M HCl, b) 10⁻³ M H₂SO₄, c) 0.001 M NaOH, d) 0.0008 M Ba(OH)₂.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition and (a) HCl",
+      "marks": 1
+    },
+    {
+      "label": "(b) H₂SO₄",
+      "marks": 1
+    },
+    {
+      "label": "(c) NaOH",
+      "marks": 1
+    },
+    {
+      "label": "(d) Ba(OH)₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. All four of the book's pH values were re-computed independently and are correct: 3, 2.6990, 11 and 11.2041."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition_hcl",
+        "kind": "equation",
+        "label": "Definition and (a) HCl",
+        "marks": 1,
+        "mark_note": "Definition + (a)",
+        "lines": [
+          "pH is the negative logarithm (base 10) of",
+          "the hydrogen ion concentration.",
+          {
+            "text": "pH = −log[H⁺]",
+            "style": "eq"
+          },
+          "a) 10⁻³ M HCl:  [H⁺] = 10⁻³ M",
+          {
+            "text": "pH = −log(10⁻³) = 3",
+            "style": "eq"
+          }
+        ],
+        "why": "HCl is a strong monobasic acid, so it ionises completely and [H⁺] equals the acid concentration — the definition then gives the pH in one line.",
+        "common_mistakes": [
+          "Writing pH = log[H⁺] and dropping the minus sign.",
+          "Writing the definition without base 10. The logarithm in pH is the common logarithm."
+        ],
+        "memory_tip": "pH of 10⁻ˣ M strong monobasic acid is just x.",
+        "margin_note": "The definition line and part (a) share this mark."
+      },
+      {
+        "id": "s2_h2so4",
+        "kind": "equation",
+        "label": "(b) H₂SO₄",
+        "marks": 1,
+        "mark_note": "(b)",
+        "lines": [
+          "b) H₂SO₄ gives 2 H⁺ per molecule",
+          "(basicity 2):",
+          {
+            "text": "[H⁺] = 2 × 10⁻³ M",
+            "style": "eq"
+          },
+          {
+            "text": "pH = −log(2 × 10⁻³) = 3 − log 2",
+            "style": "eq"
+          },
+          {
+            "text": "pH = 3 − 0.3010 = 2.6990 ≈ 2.70",
+            "style": "eq"
+          }
+        ],
+        "why": "The concentration that enters the formula is the H⁺ concentration, not the acid concentration — H₂SO₄ supplies two protons per molecule, so the molarity is multiplied by 2 first.",
+        "common_mistakes": [
+          "Forgetting the basicity and writing pH = 3. The factor 2 makes the answer 2.70.",
+          "Writing log 2 = 0.3 but then subtracting it from the wrong term. The split is −log 2 − log 10⁻³ = −0.3010 + 3."
+        ],
+        "memory_tip": "Multiply by the number of H⁺ per molecule BEFORE taking the logarithm.",
+        "margin_note": "The factor 2 for basicity is the whole mark here. log 2 = 0.3010."
+      },
+      {
+        "id": "s3_naoh",
+        "kind": "equation",
+        "label": "(c) NaOH",
+        "marks": 1,
+        "mark_note": "(c)",
+        "lines": [
+          "c) NaOH gives 1 OH⁻ per formula unit:",
+          {
+            "text": "[OH⁻] = 0.001 × 1 = 10⁻³ M",
+            "style": "eq"
+          },
+          {
+            "text": "pOH = −log(10⁻³) = 3",
+            "style": "eq"
+          },
+          "At 25 °C, pH + pOH = 14",
+          {
+            "text": "pH = 14 − 3 = 11",
+            "style": "eq"
+          }
+        ],
+        "why": "A base gives OH⁻, not H⁺, so the direct calculation gives pOH; the relation pH + pOH = 14, which holds at 25 °C, converts it to pH.",
+        "common_mistakes": [
+          "Reporting pH = 3 for NaOH. The value 3 is the pOH; the pH is 14 − 3 = 11.",
+          "Using pH + pOH = 14 without stating 25 °C. The 14 comes from Kw at that temperature."
+        ],
+        "memory_tip": "Base: find pOH first, then subtract from 14 (at 25 °C).",
+        "margin_note": "Write 'at 25 °C' beside pH + pOH = 14 — the 14 belongs to that temperature."
+      },
+      {
+        "id": "s4_baoh2",
+        "kind": "boxed_final",
+        "label": "(d) Ba(OH)₂",
+        "marks": 1,
+        "mark_note": "(d)",
+        "lines": [
+          "d) Ba(OH)₂ gives 2 OH⁻ per formula unit",
+          "(acidity 2):",
+          {
+            "text": "[OH⁻] = 2 × 8 × 10⁻⁴ = 1.6 × 10⁻³ M",
+            "style": "eq"
+          },
+          {
+            "text": "pOH = 3 − log 1.6 = 3 − 0.2041 = 2.7959",
+            "style": "eq"
+          },
+          {
+            "text": "pH = 14 − 2.7959 = 11.2041 (at 25 °C)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Part (d) combines both traps of this question: multiply by 2 for the two OH⁻ ions, then convert pOH to pH with the 25 °C relation. 0.0008 M × 2 = 1.6 × 10⁻³ M.",
+        "common_mistakes": [
+          "Forgetting the factor 2 for the two OH⁻ ions of Ba(OH)₂.",
+          "Stopping at pOH = 2.7959. The question asks for pH, which is 14 minus that.",
+          "Taking log 1.6 as 0.16. It is 0.2041."
+        ],
+        "memory_tip": "Ba(OH)₂ is the double trap: times 2 first, then 14 minus pOH.",
+        "margin_note": "Box the final pH with 'at 25 °C' written beside it."
+      }
+    ]
+  },
+  "insider_note": "The four parts are one mark each, and parts b and d are where the marks go — multiply by the basicity or acidity before taking the logarithm, and finish bases with 14 minus pOH."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_aufbau_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the Aufbau principle?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The filling order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the filling order and the (n + l) arithmetic for 4s and 3d verified; a memory tip reworded to drop tie and win (explanation text only, marked lines and marks untouched)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Aufbau principle: in the building up of an",
+          "atom, electrons enter the available orbitals",
+          "in the increasing order of their energies.",
+          "The lowest energy orbital is filled first."
+        ],
+        "why": "An atom in its ground state has the lowest total energy it can have, so each electron takes the lowest orbital still available. Aufbau is the German word for building up.",
+        "common_mistakes": [
+          "Writing that electrons fill in the order of the shell number n. The order is by energy, and 4s is filled before 3d."
+        ],
+        "memory_tip": "Aufbau means building up. Build from the lowest energy upward.",
+        "margin_note": "The words increasing order of energy must appear."
+      },
+      {
+        "id": "s2_order",
+        "kind": "boxed_final",
+        "label": "The filling order",
+        "marks": 1,
+        "mark_note": "Order of filling",
+        "lines": [
+          {
+            "text": "1s < 2s < 2p < 3s < 3p < 4s < 3d < 4p …",
+            "style": "boxed"
+          },
+          "The order is fixed by the (n + l) rule:",
+          "lower (n + l) is filled first; for equal",
+          "(n + l), the lower n is filled first."
+        ],
+        "why": "The (n + l) rule is what makes 4s come before 3d: 4s has n + l = 4 + 0 = 4, while 3d has 3 + 2 = 5. Quoting the rule shows the order was derived, not memorised.",
+        "common_mistakes": [
+          "Placing 3d before 4s in the written order.",
+          "Stopping the sequence at 3p and not reaching 4s and 3d, which is where the order becomes interesting."
+        ],
+        "memory_tip": "Compare (n + l) first. When two orbitals have the same (n + l), the one with the smaller n is filled first.",
+        "margin_note": "Write the sequence at least as far as 3d. That is the part the examiner reads."
+      }
+    ]
+  },
+  "insider_note": "Almost every student writes the statement and stops. The second mark is the filling order, and it is worth reaching 4s and 3d to show the order is not simply by shell number."
+}

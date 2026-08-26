@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_parallel_through_1_1_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the plane passing through the point (1,1,1) and parallel to the plane x+2y+3z−7=0.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the parallel-plane form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 16 The Plane, answer 107.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17,18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what parallel planes share, and what changes between them.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_parallel_form",
+        "kind": "equation",
+        "label": "Write the parallel-plane form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Parallel planes share a normal, so the new plane keeps the SAME coefficients — only its constant changes. The point-form a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both at once.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here, (x₁, y₁, z₁) = (1, 1, 1) and a = 1, b = 2, c = 3",
+          "The equation of the plane passing through (x₁, y₁, z₁) and parallel to the plane",
+          "ax + by + cz + d = 0 is",
+          "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That parallel planes share coefficients, so the point-form a(x−x₁)+b(y−y₁)+c(z−z₁)=0 is used.",
+          "accept": [
+            "parallel planes have the same coefficients so only the constant changes",
+            "use a into x minus x one plus b into y minus y one plus c into z minus z one equals zero",
+            "keep the coefficients and put the point in",
+            "parallel planes ki same coefficients",
+            "write the point form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parallel planes",
+            "same coefficients",
+            "a into x minus x one",
+            "only the constant changes"
+          ]
+        },
+        "why": "Two planes are parallel exactly when their normals point the same way, and the normal is carried by the coefficients — so keeping them is the whole condition.",
+        "common_mistakes": [
+          "Changing a coefficient, which tilts the plane.",
+          "Using the original constant d, which reproduces the SAME plane rather than a parallel one."
+        ]
+      },
+      {
+        "id": "s2_substitute_and_simplify",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Put the given point and coefficients in, expand, and collect the constants.",
+        "lines": [
+          "⇒ 1(x − 1) + 2(y − 1) + 3(z − 1) = 0",
+          "⇒ x − 1 + 2y − 2 + 3z − 3 = 0",
+          {
+            "text": "⇒ x + 2y + 3z − 6 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting and expanding gives x + 2y + 3z − 6 = 0.",
+          "accept": [
+            "substitute the point and the coefficients then expand",
+            "multiply out and collect the constant terms",
+            "this gives the required plane",
+            "point ni substitute chesi expand cheyyali",
+            "the required plane is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "expand",
+            "collect",
+            "required plane"
+          ]
+        },
+        "why": "The coefficients are unchanged from the given plane, so a final answer whose x, y, z coefficients differ from it is a sign that something went wrong.",
+        "common_mistakes": [
+          "Sign slip when the point has a negative coordinate.",
+          "Forgetting to expand one of the three brackets."
+        ]
+      }
+    ]
+  }
+}

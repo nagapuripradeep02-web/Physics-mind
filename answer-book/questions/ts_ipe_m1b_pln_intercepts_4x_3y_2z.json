@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_intercepts_4x_3y_2z",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the intercepts of the plane 4x+3y−2z+2=0 on the coordinate axes.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Move the constant across",
+      "marks": 1
+    },
+    {
+      "label": "Read off the three intercepts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 102, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18 · TS 18. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what must be on the right-hand side, and what the denominators mean.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_move_the_constant",
+        "kind": "equation",
+        "label": "Move the constant across",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Intercept form needs 1 on the right, so the constant term goes across first and every term is then divided by it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given equation of the plane is  4x + 3y − 2z + 2 = 0",
+          "⇒ 4x + 3y − 2z = −2",
+          "⇒ 4x/(−2) + 3y/(−2) − 2z/(−2) = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the constant is moved to the right and every term divided by it.",
+          "accept": [
+            "move the constant across and divide everything by it",
+            "intercept form needs one on the right hand side",
+            "divide each term by the number on the right",
+            "constant ni right side ki teesi divide cheyyali",
+            "get one on the right"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "move the constant",
+            "divide by",
+            "one on the right",
+            "intercept form"
+          ]
+        },
+        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. So the constant is moved across and everything divided by it, and the three denominators that appear ARE the intercepts.",
+        "common_mistakes": [
+          "Leaving a number other than 1 on the right.",
+          "Dividing only some of the terms."
+        ]
+      },
+      {
+        "id": "s2_read_off",
+        "kind": "boxed_final",
+        "label": "Read off the three intercepts",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
+        "lines": [
+          "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
+          "which is in the intercept form  x/a + y/b + z/c = 1",
+          {
+            "text": "Hence, x-intercept = −1/2,  y-intercept = −2/3,  z-intercept = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three intercepts are −1/2, −2/3 and 1.",
+          "accept": [
+            "read off the three denominators as the intercepts",
+            "x over a plus y over b plus z over c equals one",
+            "the denominators are the intercepts",
+            "denominators ye intercepts",
+            "this gives the intercept form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "denominators",
+            "intercepts",
+            "x over a",
+            "equals one"
+          ]
+        },
+        "why": "The intercept on an axis is where the plane cuts it, which is found by setting the other two coordinates to zero — and the intercept form displays all three at once.",
+        "common_mistakes": [
+          "Reading the numerator as the intercept.",
+          "Losing a minus sign on a negative intercept."
+        ]
+      }
+    ]
+  }
+}

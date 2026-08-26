@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_cot_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, prove that cot A + cot B + cot C = (a² + b² + c²)/(4Δ).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use the cosine rule and the area",
+      "marks": 2
+    },
+    {
+      "label": "Add and conclude",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.75 — SAQ chapter 13 Properties of Triangles, answer 81, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15 · AP 16. The whole-angle partner of answer 80. Here the route is through the cosine rule and the area formula rather than a standard cotangent result. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use_the_cosine_rule_and_th",
+        "kind": "equation",
+        "label": "Use the cosine rule and the area",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Write cot as cos/sin, put the cosine rule on top, and note that 2bc sinA is 4Δ — because Δ = ½ bc sinA.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cotA + cotB + cotC = cosA/sinA + cosB/sinB + cosC/sinC",
+          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB) + (a²+b²−c²)/(2ab sinC)",
+          "Now Δ = ½ bc sinA ⇒ 2bc sinA = 4Δ, and similarly for the others"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot = cos/sin, the cosine rule is used on each numerator, and 2bc sinA = 4Δ.",
+          "accept": [
+            "write cot as cos over sin then use the cosine rule on top and delta equals half b c sin A underneath",
+            "each denominator becomes four delta",
+            "two b c sin A is four delta",
+            "cosine rule and area formula vaadali, four delta vasthundi",
+            "convert every denominator to four delta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos over sin",
+            "cosine rule",
+            "four delta",
+            "half b c sin A"
+          ]
+        },
+        "why": "Δ = ½ bc sinA gives 2bc sinA = 4Δ — so every one of the three denominators becomes the same thing, which is what lets the numerators simply add.",
+        "common_mistakes": [
+          "Writing 2bc sinA = 2Δ.",
+          "Using the sine rule where the area formula is needed."
+        ]
+      },
+      {
+        "id": "s2_add_and_conclude",
+        "kind": "boxed_final",
+        "label": "Add and conclude",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. With a common denominator of 4Δ, the three numerators add — and every squared term survives exactly once.",
+        "lines": [
+          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
+          "a²: −a² + a² + a² = a²  (and likewise for b², c²)",
+          {
+            "text": "= (a² + b² + c²)/(4Δ) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three numerators add over 4Δ and each squared term survives once, giving (a²+b²+c²)/(4Δ).",
+          "accept": [
+            "add the three numerators over four delta and each square appears once giving a squared plus b squared plus c squared",
+            "minus a squared plus a squared plus a squared leaves one a squared",
+            "the answer is the sum of the squares over four delta",
+            "anni kalipithe a square plus b square plus c square by four delta",
+            "the numerators collapse to the sum of squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared plus b squared plus c squared",
+            "four delta",
+            "survives once"
+          ]
+        },
+        "why": "Each squared term appears three times — twice positive, once negative — so exactly one of each survives. Tracking that is the whole of the last step.",
+        "common_mistakes": [
+          "Cancelling all the squared terms to zero.",
+          "Getting 2(a²+b²+c²) by miscounting."
+        ]
+      }
+    ]
+  }
+}

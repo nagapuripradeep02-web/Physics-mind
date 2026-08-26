@@ -1,0 +1,260 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_a_b_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A, B, C are angles in a triangle, prove that sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group the first two terms",
+      "marks": 2
+    },
+    {
+      "label": "Replace (A+B)/2 by 90° − C/2",
+      "marks": 1
+    },
+    {
+      "label": "Expand sin C and factor",
+      "marks": 2
+    },
+    {
+      "label": "Replace sin(C/2) inside",
+      "marks": 1
+    },
+    {
+      "label": "Apply the difference formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 171. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. The MINUS in front of sin C is what puts sines rather than cosines on the right-hand side. The same question with a plus would end in cosines. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios upto Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_first_two_terms",
+        "kind": "equation",
+        "label": "Group the first two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. sin A + sin B = 2 sin((A+B)/2) cos((A−B)/2), with sin C left outside for now.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 180° ⇒ (A + B + C)/2 = 90°",
+          "L.H.S = (sin A + sin B) − sin C",
+          "= 2 sin((A+B)/2) cos((A−B)/2) − sin C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A + sin B becomes 2 sin((A+B)/2) cos((A−B)/2).",
+          "accept": [
+            "group the first two and apply sin plus sin to get two sin of A plus B by two into cos of A minus B by two",
+            "apply the sum to product formula to the first pair",
+            "leave sin C outside for now",
+            "modati rendu group chesi sum to product apply cheyyali",
+            "convert the first pair to a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin A plus B by two",
+            "cos A minus B by two",
+            "sum to product"
+          ]
+        },
+        "why": "Halving the angle sum gives 90°, which is the fact every later substitution leans on. Writing it at the start saves repeating it.",
+        "common_mistakes": [
+          "Grouping sin B − sin C.",
+          "Forgetting to halve the angles."
+        ]
+      },
+      {
+        "id": "s2_replace_a_b_2_by_90_c_2",
+        "kind": "equation",
+        "label": "Replace (A+B)/2 by 90° − C/2",
+        "marks": 1,
+        "mark_note": "Angle sum",
+        "margin_note": "Third mark. (A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
+        "lines": [
+          "(A + B)/2 = 90° − C/2",
+          "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          "L.H.S = 2 cos(C/2) cos((A−B)/2) − sin C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (A+B)/2 = 90° − C/2 gives sin((A+B)/2) = cos(C/2).",
+          "accept": [
+            "A plus B by two is ninety minus C by two so its sine is cos C by two",
+            "sin of ninety minus theta is cos theta",
+            "use the half angle sum to turn the sine into a cosine",
+            "A plus B by two ante ninety minus C by two, sin adi cos C by two",
+            "apply the half angle sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety minus C by two",
+            "cos C by two",
+            "half angle"
+          ]
+        },
+        "why": "The right-hand side ends in cos(C/2), and this is where that factor first appears. Everything after this keeps it.",
+        "common_mistakes": [
+          "Writing sin(90° − C/2) = sin(C/2).",
+          "Using (A+B)/2 = 180° − C/2."
+        ]
+      },
+      {
+        "id": "s3_expand_sin_c_and_factor",
+        "kind": "equation",
+        "label": "Expand sin C and factor",
+        "marks": 2,
+        "mark_note": "Double angle",
+        "margin_note": "Two marks. sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
+        "lines": [
+          "sin C = 2 sin(C/2) cos(C/2)",
+          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
+          "      − 2 sin(C/2) cos(C/2)",
+          "= 2 cos(C/2) [cos((A−B)/2) − sin(C/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin C = 2 sin(C/2) cos(C/2), and 2 cos(C/2) is factored out.",
+          "accept": [
+            "sin C is two sin C by two cos C by two so both terms have two cos C by two which comes out",
+            "expand sin C as a double angle then factor",
+            "the bracket is cos of A minus B by two minus sin C by two",
+            "sin C ni double angle ga rasi two cos C by two common teeyali",
+            "expand and factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin C by two",
+            "cos C by two",
+            "factor",
+            "bracket"
+          ]
+        },
+        "why": "sin C has to be written in HALF angles before anything can be factored — the rest of the expression is already in halves and C is not.",
+        "common_mistakes": [
+          "Writing sin C = sin(C/2) cos(C/2) without the 2.",
+          "Factoring 2 sin(C/2) instead."
+        ]
+      },
+      {
+        "id": "s4_replace_sin_c_2_inside",
+        "kind": "equation",
+        "label": "Replace sin(C/2) inside",
+        "marks": 1,
+        "mark_note": "Second substitution",
+        "margin_note": "Sixth mark. Inside the bracket, sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2) — so both terms are cosines.",
+        "lines": [
+          "Inside the bracket, C/2 = 90° − (A+B)/2, so",
+          "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
+          "Bracket = cos((A−B)/2) − cos((A+B)/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(C/2) inside the bracket becomes cos((A+B)/2), giving a difference of two cosines.",
+          "accept": [
+            "sin C by two inside the bracket becomes cos of A plus B by two",
+            "reverse the substitution inside the bracket only",
+            "the bracket becomes a difference of two cosines",
+            "bracket lo sin C by two ni cos A plus B by two ga marchali",
+            "substitute inside the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A plus B by two",
+            "inside the bracket",
+            "difference"
+          ]
+        },
+        "why": "The cos(C/2) outside is kept and the sin(C/2) inside is converted. The same angle is treated two ways because the bracket needs matching functions.",
+        "common_mistakes": [
+          "Converting the cos(C/2) outside as well.",
+          "Writing sin(C/2) = cos(C/2)."
+        ]
+      },
+      {
+        "id": "s5_apply_the_difference_formu",
+        "kind": "boxed_final",
+        "label": "Apply the difference formula",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. cos X − cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 sin(A/2) sin(B/2).",
+        "lines": [
+          "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
+          "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
+          {
+            "text": "∴ sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is 2 sin(A/2) sin(B/2), giving 4 sin(A/2) sin(B/2) cos(C/2).",
+          "accept": [
+            "the bracket is two sin A by two sin B by two so the answer is four sin A by two sin B by two cos C by two",
+            "a difference of cosines gives a product of sines",
+            "the two twos multiply to four",
+            "bracket two sin A by two sin B by two, rendu twos four",
+            "close the proof"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin A by two",
+            "sin B by two",
+            "four"
+          ]
+        },
+        "why": "A DIFFERENCE of cosines gives sines; a SUM gives cosines. That is why the minus in the question puts sines on the right-hand side.",
+        "common_mistakes": [
+          "Writing 2 cos(A/2) cos(B/2).",
+          "Getting the bracket order backwards and losing a sign."
+        ]
+      }
+    ]
+  }
+}

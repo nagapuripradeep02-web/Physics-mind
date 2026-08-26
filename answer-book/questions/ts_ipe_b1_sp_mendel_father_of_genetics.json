@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_mendel_father_of_genetics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is Mendel considered as the father of Genetics?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "His experiments",
+      "marks": 1
+    },
+    {
+      "label": "His laws",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_experiments",
+        "kind": "text",
+        "label": "His experiments",
+        "marks": 1,
+        "mark_note": "Experiments",
+        "lines": [
+          "Mendel conducted hybridization experiments",
+          "on pea plants (Pisum sativum)."
+        ],
+        "why": "The title rests on what he did: controlled crosses (hybridization) between pea plants with contrasting characters gave him the counts his laws came from.",
+        "common_mistakes": [
+          "Writing 'pea plants' without 'hybridization experiments' — the experiment type is the marked phrase.",
+          "Naming fruit flies — those were Morgan's material, not Mendel's."
+        ],
+        "memory_tip": "Picture Mendel in a garden of pea plants — peas are the one material tied to his name.",
+        "margin_note": "One line on the experiments, one step on the laws."
+      },
+      {
+        "id": "s2_laws",
+        "kind": "boxed_final",
+        "label": "His laws",
+        "marks": 1,
+        "mark_note": "Laws",
+        "lines": [
+          {
+            "text": "He introduced the laws of inheritance.",
+            "style": "boxed"
+          },
+          "Because he showed how characters pass from",
+          "parents to offspring, Mendel is called the",
+          "father of Genetics."
+        ],
+        "why": "The reason he is 'father of Genetics' is the conclusion he drew: the laws of inheritance, the founding laws of the whole subject.",
+        "common_mistakes": [
+          "Writing 'law of evolution' — evolution goes with Darwin; inheritance goes with Mendel.",
+          "Trying to list the laws by name and mixing them up — the phrase 'laws of inheritance' is enough here."
+        ],
+        "memory_tip": "Genetics is the study of inheritance; its father is the man who wrote inheritance's first laws.",
+        "margin_note": "The boxed law line plus the because-sentence completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two marked phrases decide this answer: 'hybridization experiments on pea plants' and 'laws of inheritance' — write both exactly."
+}

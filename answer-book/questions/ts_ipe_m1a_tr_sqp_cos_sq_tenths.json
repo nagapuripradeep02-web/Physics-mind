@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_cos_sq_tenths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 7,
+  "question_text": "Show that cos²(π/10) + cos²(4π/10) + cos²(6π/10) + cos²(9π/10) = 2.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Convert to degrees",
+      "marks": 1
+    },
+    {
+      "label": "Rewrite the two larger angles",
+      "marks": 1
+    },
+    {
+      "label": "Use cos(90° + θ) = −sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Pair by Pythagoras",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.109 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 173. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 22. None of these four angles is standard, and none needs to be. The two larger ones turn into sines of the two smaller ones, and then Pythagoras closes it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios upto Transformations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_degrees",
+        "kind": "equation",
+        "label": "Convert to degrees",
+        "marks": 1,
+        "mark_note": "Degrees",
+        "margin_note": "First mark. π radians is 180°, so π/10 is 18°. The four angles are 18°, 72°, 108° and 162°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "π/10 = 18°, 4π/10 = 72°,",
+          "6π/10 = 108°, 9π/10 = 162°",
+          "L.H.S = cos²18° + cos²72° + cos²108° + cos²162°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four angles are 18°, 72°, 108° and 162°.",
+          "accept": [
+            "pi by ten is eighteen degrees so the angles are eighteen seventy two one hundred and eight and one sixty two",
+            "convert the radians to degrees first",
+            "the four angles in degrees are eighteen seventy two one oh eight and one sixty two",
+            "pi by ten ante eighteen degrees",
+            "change to degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eighteen",
+            "seventy two",
+            "one oh eight",
+            "one sixty two"
+          ]
+        },
+        "why": "Degrees make the 90° shift in the next step easy to see. The proof works in radians too, but the pattern is harder to spot there.",
+        "common_mistakes": [
+          "Converting 4π/10 to 40°.",
+          "Working in radians and missing the π/2 shifts."
+        ]
+      },
+      {
+        "id": "s2_rewrite_the_two_larger_ang",
+        "kind": "equation",
+        "label": "Rewrite the two larger angles",
+        "marks": 1,
+        "mark_note": "Shift",
+        "margin_note": "Second mark. 108° = 90° + 18° and 162° = 90° + 72° — each larger angle is 90° more than one of the smaller two.",
+        "lines": [
+          "108° = 90° + 18°,  162° = 90° + 72°",
+          "L.H.S = cos²18° + cos²72°",
+          "      + cos²(90° + 18°) + cos²(90° + 72°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 108° = 90° + 18° and 162° = 90° + 72°.",
+          "accept": [
+            "one oh eight is ninety plus eighteen and one sixty two is ninety plus seventy two",
+            "each larger angle is ninety more than one of the smaller ones",
+            "rewrite the two large angles with a ninety degree shift",
+            "ninety plus eighteen, ninety plus seventy two",
+            "shift the two larger angles by ninety"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety plus",
+            "eighteen",
+            "seventy two",
+            "shift"
+          ]
+        },
+        "why": "The four angles were chosen so that they pair up under a 90° shift. Spotting that pairing is the whole question.",
+        "common_mistakes": [
+          "Writing 108° as 180° − 72°, which works but leads to a longer route.",
+          "Pairing 108° with 72° instead of 18°."
+        ]
+      },
+      {
+        "id": "s3_use_cos_90_sin",
+        "kind": "equation",
+        "label": "Use cos(90° + θ) = −sin θ",
+        "marks": 1,
+        "mark_note": "Conversion",
+        "margin_note": "Third mark. The shift turns each cosine into a negative sine — and the SQUARE removes the minus sign entirely.",
+        "lines": [
+          "cos(90° + θ) = −sin θ, and squaring removes the sign:",
+          "cos²(90° + 18°) = sin²18°",
+          "cos²(90° + 72°) = sin²72°",
+          "L.H.S = cos²18° + cos²72° + sin²18° + sin²72°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(90° + θ) = −sin θ, and squaring makes the two terms sin²18° and sin²72°.",
+          "accept": [
+            "cos of ninety plus theta is minus sine theta and squaring removes the minus so they become sin squared",
+            "the two large terms become sin squared eighteen and sin squared seventy two",
+            "the square kills the negative sign",
+            "square kabatti minus poddi, sin square avthundi",
+            "convert the cosines to sines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus sine",
+            "squaring removes",
+            "sin squared",
+            "ninety plus"
+          ]
+        },
+        "why": "The minus would matter if the terms were not squared. Because they are, only the size carries through — which is what makes the pairing work.",
+        "common_mistakes": [
+          "Keeping the minus sign after squaring.",
+          "Writing cos(90° + θ) = sin θ."
+        ]
+      },
+      {
+        "id": "s4_pair_by_pythagoras",
+        "kind": "boxed_final",
+        "label": "Pair by Pythagoras",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Regroup so each pair shares an angle: cos²18° + sin²18° = 1 and cos²72° + sin²72° = 1.",
+        "lines": [
+          "= (cos²18° + sin²18°) + (cos²72° + sin²72°)",
+          "= 1 + 1 = 2 = R.H.S",
+          {
+            "text": "∴ The sum equals 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That regrouping gives two Pythagorean pairs, each equal to 1, so the sum is 2.",
+          "accept": [
+            "group each cosine with the sine of the same angle so each pair is one and the total is two",
+            "cos squared plus sin squared is one for each angle",
+            "one plus one is two",
+            "prathi angle ki cos square plus sin square one, so total two",
+            "the answer is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared plus sin squared",
+            "one",
+            "two",
+            "pair"
+          ]
+        },
+        "why": "The regrouping is the point — the terms are not in Pythagorean pairs as first written, and rearranging them is what makes the identity apply.",
+        "common_mistakes": [
+          "Pairing cos²18° with cos²72°.",
+          "Trying to find the numerical value of cos 18°."
+        ]
+      }
+    ]
+  }
+}

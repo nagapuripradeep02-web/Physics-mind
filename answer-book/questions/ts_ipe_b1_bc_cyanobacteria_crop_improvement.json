@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_cyanobacteria_crop_improvement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle underlying the use of cyanobacteria in agricultural fields for crop improvement?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nitrogen fixation in heterocysts",
+      "marks": 1
+    },
+    {
+      "label": "Effect on the soil",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "Nitrogen fixation",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "Cyanobacteria such as Nostoc and Anabaena",
+          "fix atmospheric nitrogen.",
+          "Fixation occurs in specialised cells",
+          "called heterocysts."
+        ],
+        "why": "Crops cannot use nitrogen gas directly; these cyanobacteria convert it into usable nitrogen compounds, and the heterocyst is the cell where this happens.",
+        "common_mistakes": [
+          "Writing photosynthesis as the principle. The principle here is nitrogen fixation.",
+          "Leaving out the word heterocyst — the named cell is usually the marked word."
+        ],
+        "memory_tip": "Two genus names and one cell: Nostoc, Anabaena — heterocyst.",
+        "margin_note": "The genus names and the word heterocyst are the words to include."
+      },
+      {
+        "id": "s2_soil",
+        "kind": "boxed_final",
+        "label": "Effect on the soil",
+        "marks": 1,
+        "mark_note": "Soil fertility",
+        "lines": [
+          "The fixed nitrogen enriches the soil,",
+          "so soil fertility increases.",
+          {
+            "text": "N₂ fixed in heterocysts → soil fertility rises.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The agricultural value is the end result: fixed nitrogen added to the soil raises fertility, which is why these organisms serve as biofertilisers.",
+        "common_mistakes": [
+          "Stopping at nitrogen fixation without linking it to soil fertility, which is what crop improvement asks about."
+        ],
+        "memory_tip": "Fix nitrogen, enrich soil, improve crop — state the chain in one line.",
+        "margin_note": "Close with the fertility line — it answers the crop improvement part."
+      }
+    ]
+  },
+  "insider_note": "This is a cause-to-effect question: name the organisms and the heterocyst, then say the soil becomes more fertile."
+}

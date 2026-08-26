@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_fig_hypanthodium_blastophaga",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What type of inflorescence is found in fig trees? Why does the insect Blastophaga visit the inflorescence of the fig tree?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inflorescence type",
+      "marks": 1
+    },
+    {
+      "label": "Reason for the visit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Gall flowers is the phrase that separates a full answer from a vague one - the examiner looks for it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_type",
+        "kind": "text",
+        "label": "Hypanthodium",
+        "marks": 1,
+        "mark_note": "Type",
+        "lines": [
+          "Fig trees bear a hypanthodium - a closed,",
+          "fleshy, flask-shaped receptacle with the",
+          "flowers on its inner wall."
+        ],
+        "why": "The name plus its one identifying feature - flowers hidden INSIDE a fleshy receptacle - is what makes the first mark complete.",
+        "common_mistakes": [
+          "Writing hypanthium. The fig inflorescence is the hypanthodium."
+        ],
+        "memory_tip": "The fig you eat is the closed receptacle - the flowers are inside it.",
+        "margin_note": "Name + one line on the closed receptacle."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why Blastophaga visits",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "The wasp Blastophaga enters the",
+            "style": "boxed"
+          },
+          "hypanthodium to lay its eggs in the gall",
+          "flowers.",
+          "While moving inside, it pollinates the fig",
+          "flowers."
+        ],
+        "why": "The asked reason is egg-laying in the GALL flowers - the fig's special sterile flowers; pollination is the consequence the plant gains.",
+        "common_mistakes": [
+          "Writing that the wasp comes only for nectar. It comes to lay eggs in the gall flowers."
+        ],
+        "memory_tip": "Gall flowers are the wasp's nursery; pollination is the fig's payment.",
+        "margin_note": "Say gall flowers by name; the pollination line completes the biology."
+      }
+    ]
+  }
+}

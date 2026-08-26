@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_swing_girl_stands",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A girl is swinging while seated in a swing. What is the effect on the frequency of oscillation if she stands up?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The length changes",
+      "marks": 1
+    },
+    {
+      "label": "The frequency changes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_length",
+        "kind": "text",
+        "label": "The length changes",
+        "marks": 1,
+        "mark_note": "Length",
+        "lines": [
+          "A swing is a simple pendulum whose length is",
+          "measured down to the centre of mass of the",
+          "girl. When she stands up her centre of mass",
+          "rises, so the effective length l DECREASES."
+        ],
+        "why": "The mass of the girl never appears in T = 2π√(l/g) — only WHERE her mass sits does, and standing moves it up.",
+        "common_mistakes": [
+          "Saying nothing changes because it is the same swing and the same girl."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That standing raises her centre of mass, so the effective length of the pendulum decreases.",
+          "accept": [
+            "centre of mass rises",
+            "effective length decreases",
+            "length is to the centre of mass"
+          ],
+          "reject": [
+            "frequency increases"
+          ],
+          "heard_as": [
+            "centre of mass",
+            "length decreases"
+          ]
+        },
+        "memory_tip": "Standing raises the centre of mass, so the pendulum LENGTH becomes shorter.",
+        "margin_note": "First mark. Name the centre of mass. Without it the length change is unexplained."
+      },
+      {
+        "id": "s2_frequency",
+        "kind": "boxed_final",
+        "label": "The frequency changes",
+        "marks": 1,
+        "mark_note": "Frequency",
+        "lines": [
+          "For a simple pendulum T = 2π√(l/g), so a",
+          "smaller l gives a smaller T. Since n = 1/T,",
+          {
+            "text": "n ∝ 1/√l  →  the frequency INCREASES",
+            "style": "boxed"
+          }
+        ],
+        "why": "Shorter pendulum, quicker swing — the same reason a short rope swings faster than a long one.",
+        "common_mistakes": [
+          "Concluding the frequency decreases by reading n ∝ √l instead of 1/√l."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T is 2 pi root l by g, so a smaller l means a smaller T and a higher frequency.",
+          "accept": [
+            "frequency increases",
+            "n is one by root l",
+            "time period decreases"
+          ],
+          "reject": [
+            "centre of mass rises"
+          ],
+          "heard_as": [
+            "frequency increases",
+            "root l"
+          ]
+        },
+        "memory_tip": "T = 2π√(l/g): shorter l, smaller T, higher frequency.",
+        "margin_note": "Second mark. End with the word increases, not only the proportionality."
+      }
+    ]
+  },
+  "insider_note": "Two marks for a one-line answer: one for the length, one for the frequency. An answer that never mentions the centre of mass earns only one."
+}

@@ -1,0 +1,364 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_perpendicular_axes_theorem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and prove the perpendicular axes theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The proof",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Perpendicular axes theorem:",
+            "style": "heading"
+          },
+          "For a PLANE lamina, the sum of the",
+          "moments of inertia about two mutually",
+          "perpendicular axes in its plane equals",
+          "the moment of inertia about the axis",
+          "perpendicular to the plane through",
+          "their point of intersection:",
+          {
+            "text": "I_z = I_x + I_y",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say \"plane lamina\" — the theorem is for flat bodies only, and the examiner checks for the word.",
+        "why": "This theorem is flat-body-only because it needs every particle to have z = 0; for a solid body the proof line r² = x² + y² fails.",
+        "common_mistakes": [
+          "Applying it to a sphere or cylinder — it holds only for a plane lamina."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a plane lamina, I_z = I_x + I_y for two perpendicular in-plane axes and the normal axis through their intersection.",
+          "accept": [
+            "I z equals I x plus I y",
+            "plane lamina only",
+            "two perpendicular axes in the plane"
+          ],
+          "reject": [
+            "I equals I naught plus M r squared"
+          ],
+          "heard_as": [
+            "I z",
+            "I x plus I y",
+            "lamina"
+          ]
+        },
+        "memory_tip": "I_z = I_x + I_y — and say \"plane lamina\": the theorem works only for flat bodies."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "margin_note": "x and y in the plane of the lamina, z coming out of it, one particle at P with its x and y distances shown.",
+        "why": "The one line the proof needs — r² = x² + y² — is visible in the figure as the right triangle O, foot, P.",
+        "common_mistakes": [
+          "Drawing z inside the plane. z must be perpendicular to the lamina."
+        ],
+        "figure": {
+          "id": "perpendicular_axes",
+          "width": 400,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "lamina",
+              "d": "M 80 170 A 125 62 0 1 0 330 170 A 125 62 0 1 0 80 170",
+              "ms": 700,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 190 165 L 340 165",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 331 159 L 340 165 L 331 171",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 346,
+              "y": 172,
+              "text": "x",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 190 165 L 96 232",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y_head",
+              "d": "M 107 229 L 96 232 L 103 222",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 82,
+              "y": 244,
+              "text": "y",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z",
+              "d": "M 190 165 L 190 46",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z_head",
+              "d": "M 184 56 L 190 46 L 196 56",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_z",
+              "x": 197,
+              "y": 46,
+              "text": "z",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 172,
+              "y": 186,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "body_p",
+              "d": "M 275 130 A 5 5 0 1 0 285 130 A 5 5 0 1 0 275 130",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 299,
+              "y": 110,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 262,
+              "y": 114,
+              "text": "m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "line_r",
+              "d": "M 190 165 L 276 133",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 224,
+              "y": 138,
+              "text": "r",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "comp_px",
+              "d": "M 280 133 L 280 165",
+              "ms": 320,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "comp_ox",
+              "d": "M 190 172 L 280 172",
+              "ms": 320,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_comp_x",
+              "x": 228,
+              "y": 190,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_comp_y",
+              "x": 291,
+              "y": 160,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn with x, y in the lamina plane, z perpendicular, and a particle P at distance r.",
+          "accept": [
+            "draw the lamina with x y z axes",
+            "figure with particle P and r",
+            "lamina figure geyyali"
+          ],
+          "reject": [
+            "I z equals I x plus I y"
+          ],
+          "heard_as": [
+            "figure",
+            "axes",
+            "lamina"
+          ]
+        },
+        "memory_tip": "Draw the lamina in the xy-plane with one particle at (x, y); the right triangle shows r² = x² + y²."
+      },
+      {
+        "id": "s3_proof",
+        "kind": "equation",
+        "label": "The proof",
+        "marks": 2,
+        "mark_note": "Proof",
+        "lines": [
+          "Take a particle of mass m at P, at",
+          "distance r from O, with coordinates",
+          "(x, y). Since the lamina lies in the",
+          "x-y plane,",
+          {
+            "text": "r² = x² + y²",
+            "style": "eq"
+          },
+          "Moment of inertia about the z-axis:",
+          {
+            "text": "I_z = Σmr² = Σmx² + Σmy²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "One particle first, then the sum over all particles — the same two-beat shape as the parallel axes proof.",
+        "why": "Distance from the z-axis is r; distance from the x-axis is y; distance from the y-axis is x. The Pythagoras line converts one sum into the other two.",
+        "common_mistakes": [
+          "Writing I_x = Σmx² — the distance from the x-axis is y, so I_x = Σmy²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r² = x² + y² for each particle, so summing gives I_z as two sums.",
+          "accept": [
+            "r squared is x squared plus y squared",
+            "sigma m r squared splits into two sums",
+            "Pythagoras vadali"
+          ],
+          "reject": [
+            "hence the theorem is proved"
+          ],
+          "heard_as": [
+            "r squared",
+            "x squared plus y squared",
+            "sum"
+          ]
+        },
+        "memory_tip": "One Pythagoras: Σmr² = Σmx² + Σmy²."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "But Σmy² = I_x and Σmx² = I_y, so",
+          {
+            "text": "I_z = I_x + I_y",
+            "style": "boxed"
+          },
+          "Hence the perpendicular axes theorem",
+          "is proved."
+        ],
+        "margin_note": "Name each sum as it becomes I_x or I_y — that line carries the mark, not the final box alone.",
+        "why": "The proof is two definitions and one Pythagoras — which is why the theorem costs so little and appears so often.",
+        "common_mistakes": [
+          "Swapping which sum is I_x and which is I_y."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That naming the two sums as I_x and I_y gives I_z = I_x + I_y.",
+          "accept": [
+            "sigma m y squared is I x",
+            "so I z equals I x plus I y",
+            "theorem proved"
+          ],
+          "reject": [
+            "r squared is x squared plus y squared"
+          ],
+          "heard_as": [
+            "I x",
+            "I y",
+            "proved"
+          ]
+        },
+        "memory_tip": "Name the sums back carefully: Σmy² = I_x and Σmx² = I_y — the distance FROM the x-axis is y."
+      }
+    ]
+  },
+  "insider_note": "The proof carries 2 of the 4 marks and depends on one line, r² = x² + y². The figure earns no marks but the proof needs it."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_speed_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the ratio of RMS, average and most probable speeds of gas molecules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three speeds",
+      "marks": 1
+    },
+    {
+      "label": "The ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ROUNDING: the book prints the ratio as 1 : 0.9213 : 0.8166. The exact third value is √(2/3) = 0.81650, which rounds to 0.8165. The card prints 0.8165 and records the book's 0.8166 here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_speeds",
+        "kind": "equation",
+        "label": "The three speeds",
+        "marks": 1,
+        "mark_note": "Formulas",
+        "lines": [
+          "U(rms) = √(3RT/M)",
+          "U(av) = √(8RT/πM)",
+          "U(mp) = √(2RT/M)",
+          {
+            "text": "U(rms) : U(av) : U(mp) = √3 : √(8/π) : √2",
+            "style": "eq"
+          }
+        ],
+        "why": "All three speeds share the factor √(RT/M), so the ratio is fixed by the numbers under the roots alone — 3, 8/π and 2 — and is the same for every gas at every temperature.",
+        "common_mistakes": [
+          "Mixing up which number goes with which speed: 3 with rms, 8/π with average, 2 with most probable.",
+          "Treating the ratio as temperature-dependent. The RT/M part cancels."
+        ],
+        "memory_tip": "Under the roots: 3, then 8 over π (about 2.5), then 2 — decreasing order, same as the speeds.",
+        "margin_note": "The three formulas justify the decimal ratio; either form earns the mark."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "boxed_final",
+        "label": "The ratio",
+        "marks": 1,
+        "mark_note": "Ratio",
+        "lines": [
+          {
+            "text": "U(rms) : U(av) : U(mp) = 1 : 0.9213 : 0.8165",
+            "style": "boxed"
+          },
+          "So U(rms) > U(av) > U(mp) always."
+        ],
+        "why": "Dividing each root by √3 gives 1, 0.9213 and 0.8165. Writing the ratio with rms scaled to 1 makes the other two speeds direct multipliers, which is exactly how numericals use them.",
+        "common_mistakes": [
+          "Reversing the order — the most probable speed is the SMALLEST of the three.",
+          "Quoting 0.9213 against the most probable speed instead of the average."
+        ],
+        "memory_tip": "1, then 0.92, then 0.82 — each about 8 to 10 percent below the one before.",
+        "margin_note": "Some books print 0.8166; the exact rounding of √(2/3) is 0.8165. Either is accepted."
+      }
+    ]
+  },
+  "insider_note": "This ratio is also the working tool of the CO₂ speeds numerical — examiners reward students who know 0.9213 and 0.8165 as multipliers of the RMS speed."
+}

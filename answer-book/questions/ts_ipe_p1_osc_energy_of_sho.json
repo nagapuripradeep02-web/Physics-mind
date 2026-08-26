@@ -1,0 +1,376 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_energy_of_sho",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Derive the equations for the kinetic energy and the potential energy of a simple harmonic oscillator, and show that the total energy of a particle in simple harmonic motion is constant at any point on its path.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kinetic energy",
+      "marks": 2
+    },
+    {
+      "label": "Potential energy",
+      "marks": 2
+    },
+    {
+      "label": "At the three positions",
+      "marks": 2
+    },
+    {
+      "label": "The graph",
+      "marks": 1
+    },
+    {
+      "label": "Total energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Oscillations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kinetic",
+        "kind": "equation",
+        "label": "Kinetic energy",
+        "marks": 2,
+        "mark_note": "Kinetic energy",
+        "lines": [
+          "A particle of mass m in SHM has displacement",
+          {
+            "text": "y = A sin ωt",
+            "style": "eq"
+          },
+          "so its velocity is v = A ω cos ωt, which can",
+          "be written in terms of y as",
+          {
+            "text": "v = ω √(A² − y²)",
+            "style": "eq"
+          },
+          "Therefore its kinetic energy is",
+          {
+            "text": "KE = ½ m v² = ½ m ω² (A² − y²)",
+            "style": "eq"
+          }
+        ],
+        "why": "Writing v in terms of y rather than t is the key move — it lets KE and PE be added at the SAME position later.",
+        "common_mistakes": [
+          "Leaving v as A ω cos ωt, so KE and PE end up in different variables and cannot be added."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v is omega root A squared minus y squared, so KE is half m omega squared into A squared minus y squared.",
+          "accept": [
+            "v is omega root A squared minus y squared",
+            "KE is half m omega squared A squared minus y squared"
+          ],
+          "reject": [
+            "PE is half m omega squared y squared"
+          ],
+          "heard_as": [
+            "A squared minus y squared",
+            "kinetic energy"
+          ]
+        },
+        "memory_tip": "Write v in terms of y, not t: v = ω√(A² − y²), so KE = ½mω²(A² − y²).",
+        "margin_note": "First two marks. The line v = ω√(A² − y²) has to come before KE."
+      },
+      {
+        "id": "s2_potential",
+        "kind": "equation",
+        "label": "Potential energy",
+        "marks": 2,
+        "mark_note": "Potential energy",
+        "lines": [
+          "At a displacement y the restoring force is",
+          "F = −m ω² y. The work done AGAINST it in",
+          "moving a further small distance dy is",
+          {
+            "text": "dW = m ω² y dy",
+            "style": "eq"
+          },
+          "Integrating from 0 to y, this work is stored",
+          "in the particle as potential energy:",
+          {
+            "text": "PE = ½ m ω² y²",
+            "style": "eq"
+          }
+        ],
+        "why": "The force is not constant, so the work has to be integrated — using F × y directly would give twice the right answer.",
+        "common_mistakes": [
+          "Writing PE = m ω² y² by multiplying force and distance without integrating."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done against the restoring force integrates to PE equal to half m omega squared y squared.",
+          "accept": [
+            "work against the restoring force",
+            "integrate m omega squared y dy",
+            "PE is half m omega squared y squared"
+          ],
+          "reject": [
+            "KE is half m omega squared A squared minus y squared"
+          ],
+          "heard_as": [
+            "potential energy",
+            "integrate"
+          ]
+        },
+        "memory_tip": "The force grows with y, so integrate — PE = ½mω²y². Using F × y directly gives twice the answer.",
+        "margin_note": "Second two marks. The integration earns them — show dW = mω²y dy first."
+      },
+      {
+        "id": "s3_positions",
+        "kind": "equation",
+        "label": "At the three positions",
+        "marks": 2,
+        "mark_note": "Three positions",
+        "lines": [
+          "At the mean position, y = 0:",
+          {
+            "text": "KE = ½ m ω² A²,    PE = 0",
+            "style": "eq"
+          },
+          "At an extreme position, y = ±A:",
+          {
+            "text": "KE = 0,    PE = ½ m ω² A²",
+            "style": "eq"
+          },
+          "At any position y, both are non-zero:",
+          {
+            "text": "KE = ½ m ω²(A² − y²),  PE = ½ m ω² y²",
+            "style": "eq"
+          }
+        ],
+        "why": "The energy simply moves back and forth between the two forms — fastest at the middle, still at the ends.",
+        "common_mistakes": [
+          "Saying the kinetic energy is zero at the mean position; that is where it is largest."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That KE is maximum and PE zero at the mean position, and the reverse at the extremes.",
+          "accept": [
+            "KE maximum at the mean position",
+            "PE maximum at the extremes",
+            "KE zero at the ends"
+          ],
+          "reject": [
+            "integrate m omega squared y dy"
+          ],
+          "heard_as": [
+            "mean position",
+            "extreme"
+          ]
+        },
+        "memory_tip": "Three positions to quote: mean (all kinetic), extreme (all potential), in between (shared).",
+        "margin_note": "Third pair of marks. All three positions, each with both KE and PE."
+      },
+      {
+        "id": "s4_graph",
+        "kind": "diagram",
+        "label": "The graph",
+        "marks": 1,
+        "mark_note": "Graph",
+        "figure": {
+          "id": "shm_energy_graph",
+          "width": 360,
+          "height": 280,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "yaxis",
+              "d": "M 180 22 L 180 246",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "xaxis",
+              "d": "M 40 230 L 322 230",
+              "ms": 380
+            },
+            {
+              "type": "label",
+              "id": "lbl_energy",
+              "x": 188,
+              "y": 22,
+              "text": "Energy",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_disp",
+              "x": 326,
+              "y": 236,
+              "text": "y",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "total",
+              "d": "M 60 60 L 300 60",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 60,
+              "y": 50,
+              "text": "E = KE + PE",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "pe_curve",
+              "d": "M 60 60 Q 180 400 300 60",
+              "ms": 720
+            },
+            {
+              "type": "label",
+              "id": "lbl_pe",
+              "x": 262,
+              "y": 150,
+              "text": "PE",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ke_curve",
+              "d": "M 60 230 Q 180 -110 300 230",
+              "ms": 720
+            },
+            {
+              "type": "label",
+              "id": "lbl_ke",
+              "x": 146,
+              "y": 108,
+              "text": "KE",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "tick_ma",
+              "d": "M 60 226 L 60 234",
+              "ms": 90
+            },
+            {
+              "type": "stroke",
+              "id": "tick_pa",
+              "d": "M 300 226 L 300 234",
+              "ms": 90
+            },
+            {
+              "type": "label",
+              "id": "lbl_ma",
+              "x": 46,
+              "y": 250,
+              "text": "−A",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 172,
+              "y": 250,
+              "text": "O",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_pa",
+              "x": 292,
+              "y": 250,
+              "text": "+A",
+              "ms": 180
+            }
+          ]
+        },
+        "why": "The two curves are mirror parabolas, and the flat line on top is the statement being proved: their sum never changes.",
+        "common_mistakes": [
+          "Drawing the total-energy line sloping instead of flat."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That KE and PE are drawn as opposite parabolas against y, with their sum a flat line.",
+          "accept": [
+            "draw the KE and PE parabolas",
+            "flat total energy line"
+          ],
+          "reject": [
+            "E is half m omega squared A squared"
+          ],
+          "heard_as": [
+            "graph",
+            "curves"
+          ]
+        },
+        "memory_tip": "Two mirror parabolas and one flat line on top — the flat line is the total energy.",
+        "margin_note": "One mark for the figure. Label both curves and the flat total line."
+      },
+      {
+        "id": "s5_total",
+        "kind": "boxed_final",
+        "label": "Total energy",
+        "marks": 1,
+        "mark_note": "Total",
+        "lines": [
+          "Adding the two at any position y, the y² terms",
+          "cancel exactly:",
+          {
+            "text": "E = KE + PE = ½ m ω² A²",
+            "style": "boxed"
+          },
+          "The total energy is the same at every point of",
+          "the path. It depends only on m, ω and A, and",
+          "not on where the particle happens to be."
+        ],
+        "why": "The cancellation of y² IS the proof — the position drops out, which is what \"constant at any point on its path\" means.",
+        "common_mistakes": [
+          "Checking only the mean and extreme positions and calling that a proof for every point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the y squared terms cancel, giving total energy half m omega squared A squared everywhere.",
+          "accept": [
+            "the y squared terms cancel",
+            "E is half m omega squared A squared",
+            "same at every point"
+          ],
+          "reject": [
+            "draw the KE and PE parabolas"
+          ],
+          "heard_as": [
+            "total energy",
+            "cancel"
+          ]
+        },
+        "memory_tip": "Add KE and PE: the y² terms cancel. That cancellation IS the proof.",
+        "margin_note": "The last mark. Add KE and PE at a general y, not only at the two ends."
+      }
+    ]
+  },
+  "insider_note": "The graph carries its own mark: two mirror curves and the flat total line."
+}

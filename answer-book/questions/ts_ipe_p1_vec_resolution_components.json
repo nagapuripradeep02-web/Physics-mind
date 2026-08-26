@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_resolution_components",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show how a vector is resolved into two perpendicular components. Obtain expressions for its magnitude and direction in terms of these components.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The components",
+      "marks": 1
+    },
+    {
+      "label": "The two expressions",
+      "marks": 2
+    },
+    {
+      "label": "Magnitude and direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_components",
+        "kind": "text",
+        "label": "The components",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "lines": [
+          "Let a vector A make an angle θ with the",
+          "x-axis. Drop perpendiculars from the tip",
+          "of A on to the two axes. The two pieces",
+          "along the axes are its components A_x, A_y."
+        ],
+        "margin_note": "First mark. Define θ and drop the two perpendiculars before any formula.",
+        "why": "Resolution is addition run backwards: the two components are the two vectors that would add back to A.",
+        "common_mistakes": [
+          "Drawing the components along any two directions — they must be perpendicular for these formulas."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dropping perpendiculars from the tip of A on to the axes gives the two components A x and A y.",
+          "accept": [
+            "drop perpendiculars on to the axes",
+            "components along x and y"
+          ],
+          "reject": [
+            "A cos theta and A sin theta"
+          ],
+          "heard_as": [
+            "components",
+            "perpendiculars"
+          ]
+        },
+        "memory_tip": "A vector and its two components make a right-angled triangle, and A is always the hypotenuse."
+      },
+      {
+        "id": "s2_expressions",
+        "kind": "equation",
+        "label": "The two expressions",
+        "marks": 2,
+        "mark_note": "Components",
+        "lines": [
+          "From the right-angled triangle formed,",
+          {
+            "text": "A_x = A cos θ",
+            "style": "eq"
+          },
+          {
+            "text": "A_y = A sin θ",
+            "style": "eq"
+          },
+          "and A_x i + A_y j builds A back again."
+        ],
+        "margin_note": "Two marks. Both components, and one line showing they add back to A.",
+        "why": "The cosine goes with the axis the angle is measured FROM — that one habit removes most sign and swap errors.",
+        "common_mistakes": [
+          "Swapping sine and cosine when the angle is measured from the y-axis instead."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A x is A cos theta and A y is A sin theta.",
+          "accept": [
+            "A cos theta",
+            "A sin theta",
+            "cosine along x"
+          ],
+          "reject": [
+            "drop perpendiculars on to the axes"
+          ],
+          "heard_as": [
+            "A cos theta",
+            "A sin theta"
+          ]
+        },
+        "memory_tip": "Test θ = 0°: the vector lies on the x-axis, A_x = A cos 0 = A and A_y = 0. That fixes which is which."
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "boxed_final",
+        "label": "Magnitude and direction",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Squaring and adding, then dividing,",
+          {
+            "text": "A = √(A_x² + A_y²),   tan θ = A_y / A_x",
+            "style": "boxed"
+          },
+          "The two components act independently of",
+          "each other."
+        ],
+        "margin_note": "Fourth mark. Box both results — magnitude and direction are asked for separately.",
+        "why": "Independence is the useful part: projectile motion works because the horizontal and vertical components never affect each other.",
+        "common_mistakes": [
+          "Writing tan θ = A_x / A_y, the ratio upside down."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is the root of A x squared plus A y squared, and tan theta is A y over A x.",
+          "accept": [
+            "root of A x squared plus A y squared",
+            "tan theta is A y by A x"
+          ],
+          "reject": [
+            "A cos theta"
+          ],
+          "heard_as": [
+            "root",
+            "tan theta"
+          ]
+        },
+        "memory_tip": "If θ is less than 45° then A_x is the larger component. Use that to check tan θ = A_y / A_x."
+      }
+    ]
+  },
+  "insider_note": "A_x = A cos θ and A_y = A sin θ carry 2 of the 4 marks. Draw the labelled right-angled triangle they are read from."
+}

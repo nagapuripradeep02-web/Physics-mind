@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_perpendicular_through_intersection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the required slope",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the point",
+      "marks": 1
+    },
+    {
+      "label": "Write the point-slope form",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.62 — SAQ chapter 9 The Straight Line, answer 56.2. No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say how you get the slope, and how you get a point on the line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_required_slope",
+        "kind": "equation",
+        "label": "Find the required slope",
+        "marks": 1,
+        "margin_note": "First mark. The new line is perpendicular to a given line, so its slope is fixed before any point is known. Read the given slope off the coefficients as −a/b, then flip and negate it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is 5x − 2y − 7 = 0",
+          "It's slope  m = −a/b = −5/(−2) = 5/2",
+          "⇒ Slope of its perpendicular is −1/m = −2/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of the given line is found as −a/b and the required slope is −1/m, because the lines are perpendicular.",
+          "accept": [
+            "perpendicular so take minus one over the given slope",
+            "read the slope as minus a over b then flip and negate",
+            "the required slope is minus one by m",
+            "perpendicular kabatti minus one by m",
+            "the perpendicular slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a over b",
+            "slope",
+            "perpendicular",
+            "minus one by m"
+          ]
+        },
+        "why": "Slope comes first because it needs only the OTHER line, not the point — and the point takes more work.",
+        "common_mistakes": [
+          "Using the same slope, which would give a parallel line instead.",
+          "Reading the slope as −b/a."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_solve_for_point",
+        "kind": "equation",
+        "label": "Solve for the point",
+        "marks": 1,
+        "margin_note": "Second mark. The new line passes through the meeting point of two OTHER lines, so solve that pair. This half is independent of the slope work above.",
+        "lines": [
+          "Given  2x + 3y − 1 = 0 ……(1),  3x + 4y − 6 = 0 ……(2)",
+          "Solving (1) & (2) we get P",
+          "x / [3(−6) − 4(−1)] = y / [(−1)(3) − (−6)(2)] = 1 / [2(4) − 3(3)]",
+          "⇒ x/(−18 + 4) = y/(−3 + 12) = 1/(8 − 9)",
+          "⇒ x/(−14) = y/9 = 1/(−1)   ⇒   x = 14,  y = −9"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines are solved together to find the point the required line passes through.",
+          "accept": [
+            "solve the two given lines to find their point of intersection",
+            "use cross multiplication on the pair",
+            "the required line passes through this point",
+            "rendu lines solve chesthe point vasthundi",
+            "find the point of intersection"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve",
+            "point of intersection",
+            "cross multiplication"
+          ]
+        },
+        "why": "The question gives the line's direction one way and its position another, and the two are found independently before being combined.",
+        "common_mistakes": [
+          "Solving the wrong pair of lines.",
+          "Slip in the cross-multiplication denominators."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_point_slope",
+        "kind": "equation",
+        "label": "Write the point-slope form",
+        "marks": 1,
+        "margin_note": "Third mark. With a point and a slope, the point-slope form y − y₁ = m(x − x₁) writes the line in one line.",
+        "lines": [
+          "∴ Point of intersection is P(14, −9)",
+          "∴ Perpendicular through P(14, −9) with slope −2/5 is",
+          "y − y₁ = (−1/m)(x − x₁)  ⇒  y + 9 = (−2/5)(x − 14)",
+          "⇒ 5(y + 9) = −2(x − 14)",
+          "⇒ 5y + 45 = −2x + 28"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form is written with the found point and slope.",
+          "accept": [
+            "use y minus y one equals m into x minus x one",
+            "write the point slope form with the point and the slope",
+            "put the point and slope into the formula",
+            "point slope form lo pettali",
+            "write the equation through that point with that slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point slope form",
+            "y minus y one",
+            "m into x minus x one"
+          ]
+        },
+        "why": "A point and a slope determine a line uniquely, which is why the two independent halves are enough between them.",
+        "common_mistakes": [
+          "Using the slope-intercept form and having to find c separately.",
+          "Swapping x₁ and y₁ in the formula."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the line",
+        "marks": 1,
+        "margin_note": "Last mark. Clear the fractions and collect into ax + by + c = 0 form.",
+        "lines": [
+          {
+            "text": "∴ Required line is 2x + 5y + 17 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That clearing fractions and collecting gives 2x + 5y + 17 = 0.",
+          "accept": [
+            "clear the fractions and write it in the standard form",
+            "cross multiply and collect all terms on one side",
+            "simplify to a x plus b y plus c equals zero",
+            "simplify chesi standard form lo rayali",
+            "the required line is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "clear fractions",
+            "collect",
+            "required line",
+            "equals zero"
+          ]
+        },
+        "why": "The board expects the answer in ax + by + c = 0 form, so the tidy-up is worth its own mark.",
+        "common_mistakes": [
+          "Leaving fractions in the final answer.",
+          "Sign slip when multiplying through by a denominator."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

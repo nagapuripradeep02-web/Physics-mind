@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_four_fifths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 3,
+  "question_text": "If sin θ = 4/5 and θ is not in the first quadrant, find the value of cos θ.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Fix the quadrant",
+      "marks": 1
+    },
+    {
+      "label": "Find cos θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.106 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 164. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed VSAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. The mirror of the previous question. sin θ POSITIVE means Q1 or Q2; ruling out Q1 leaves Q2, where cos θ is negative. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios upto Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fix_the_quadrant",
+        "kind": "equation",
+        "label": "Fix the quadrant",
+        "marks": 1,
+        "mark_note": "Quadrant",
+        "margin_note": "First mark. sin θ = 4/5 is positive, so θ is in Q1 or Q2. Q1 is ruled out, leaving Q2 — where cos θ is negative.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin θ = 4/5 is positive, so θ is in Q₁ or Q₂.",
+          "Since θ is not in Q₁, θ lies in Q₂.",
+          "In Q₂, cos θ < 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ positive gives Q1 or Q2, Q1 is ruled out, so θ is in Q2 where cos θ is negative.",
+          "accept": [
+            "sine is positive in the first and second quadrants and the first is ruled out so theta is in the second where cosine is negative",
+            "theta lies in the second quadrant so the cosine is negative",
+            "the quadrant fixes the sign as negative",
+            "Q one ruled out kabatti Q two, akkada cos negative",
+            "settle the quadrant first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second quadrant",
+            "cosine is negative",
+            "positive sine",
+            "Q2"
+          ]
+        },
+        "why": "Only the sine is given, and a sine value alone fits two different angles. The quadrant clause is what makes the answer unique.",
+        "common_mistakes": [
+          "Assuming Q1 out of habit and writing 3/5.",
+          "Reporting both signs."
+        ]
+      },
+      {
+        "id": "s2_find_cos",
+        "kind": "boxed_final",
+        "label": "Find cos θ",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Second mark. cos²θ = 1 − 16/25 = 9/25, so cos θ = ±3/5 — and the quadrant picks the minus.",
+        "lines": [
+          "cos²θ = 1 − sin²θ = 1 − (4/5)² = 1 − 16/25",
+          "= 9/25 ⇒ cos θ = ±3/5",
+          {
+            "text": "∴ cos θ = −3/5   (since cos θ < 0)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²θ = 9/25 gives ±3/5, and the quadrant selects cos θ = −3/5.",
+          "accept": [
+            "cos squared is nine over twenty five so cos theta is plus or minus three fifths and the quadrant picks minus three fifths",
+            "the answer is minus three by five",
+            "take the negative root because theta is in the second quadrant",
+            "nine by twenty five, so minus three fifths",
+            "cos theta is minus three fifths"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine over twenty five",
+            "minus three fifths",
+            "negative root"
+          ]
+        },
+        "why": "Writing ±3/5 and then choosing shows the examiner that the quadrant was used, rather than the right sign appearing by luck.",
+        "common_mistakes": [
+          "Writing +3/5.",
+          "Leaving the answer as ±3/5."
+        ]
+      }
+    ]
+  }
+}

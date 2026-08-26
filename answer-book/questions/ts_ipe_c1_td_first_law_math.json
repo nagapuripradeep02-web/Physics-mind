@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_first_law_math",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the mathematical form of the first law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The law in words",
+      "marks": 1
+    },
+    {
+      "label": "Meaning of q and w",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "Special cases",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question (as 'Give the mathematical formation of first law of thermodynamics'), its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. SIGN CONVENTION: the book's answer takes W as work done BY the system and writes Q = ΔE + W (the older convention). This card writes the NCERT/IUPAC convention ΔU = q + w with w = work done ON the system; the book's version is recorded here, not followed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The law in words",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "First law of thermodynamics: energy can",
+          "neither be created nor destroyed; it can",
+          "only change from one form to another.",
+          "The total energy of the universe is",
+          "constant."
+        ],
+        "why": "The equation only records this sentence in symbols: any energy a system gains must arrive as heat or as work.",
+        "common_mistakes": [
+          "Confusing the first law (energy conservation) with the second law (entropy increase)."
+        ],
+        "memory_tip": "First law: the total energy stays the same; only its form changes.",
+        "margin_note": "One or two lines; the remaining marks sit in the equation."
+      },
+      {
+        "id": "s2_terms",
+        "kind": "text",
+        "label": "Meaning of q and w",
+        "marks": 1,
+        "mark_note": "Convention stated",
+        "lines": [
+          "Let the system absorb heat q from the",
+          "surroundings, and let w be the work done",
+          "on the system.",
+          "Both q and w bring energy into the system,",
+          "so both count as positive when they do."
+        ],
+        "why": "The equation needs its sign convention stated first: q is positive for heat absorbed, w is positive for work done on the system. The source book instead takes W as work done by the system (the older convention) and writes Q = ΔE + W — the same physics with the sign of the work term reversed.",
+        "common_mistakes": [
+          "Mixing the two conventions in one answer — with w as work done on the system the sign is plus; with work done by the system it is minus.",
+          "Leaving q and w undefined and writing the equation bare."
+        ],
+        "memory_tip": "In the NCERT convention both q and w are energy given to the system, so both enter with plus signs.",
+        "margin_note": "State whose work w is — done on the system — before writing the equation."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Mathematical form",
+        "lines": [
+          "The internal energy rises by both",
+          "contributions:",
+          {
+            "text": "ΔU = q + w",
+            "style": "eq"
+          },
+          "For expansion against a constant external",
+          "pressure, w = −p(ext) ΔV, so",
+          {
+            "text": "ΔU = q − p(ext) ΔV",
+            "style": "eq"
+          }
+        ],
+        "why": "An expanding gas pushes the surroundings outward, so the work done on the system is negative — w = −p(ext)ΔV — while compression makes w positive.",
+        "common_mistakes": [
+          "Writing w = +p(ext)ΔV for expansion — for an expanding gas the work done on it is negative.",
+          "Writing ΔU = q − w while also calling w the work done on the system."
+        ],
+        "memory_tip": "Expansion: the system gives out work, so its w is negative. Compression: w is positive.",
+        "margin_note": "ΔU = q + w is the required form; the expansion case shows the sign working."
+      },
+      {
+        "id": "s4_special",
+        "kind": "boxed_final",
+        "label": "Special cases",
+        "marks": 1,
+        "mark_note": "Cases",
+        "lines": [
+          "At constant volume (ΔV = 0): ΔU = qv.",
+          "For an isolated system (q = 0, w = 0):",
+          "ΔU = 0 — its internal energy is constant.",
+          {
+            "text": "ΔU = q + w, with w = work done on the system",
+            "style": "boxed"
+          }
+        ],
+        "why": "The special cases show the equation working: heat supplied at constant volume measures ΔU directly, and an isolated system's internal energy cannot change.",
+        "common_mistakes": [
+          "Writing qp instead of qv for the constant-volume case — qp measures ΔH, not ΔU."
+        ],
+        "memory_tip": "Constant volume: no expansion work, so all the heat goes into internal energy.",
+        "margin_note": "Box the equation with its convention written beside it."
+      }
+    ]
+  },
+  "insider_note": "Signs are where this answer is lost. Say once that w is work done on the system and every sign follows; the book's own printed answer uses the older work-done-by convention Q = ΔE + W."
+}

@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_cos_a_2a_4a_8a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply and divide by 2⁴ sinA",
+      "marks": 1
+    },
+    {
+      "label": "Apply the double angle repeatedly",
+      "marks": 2
+    },
+    {
+      "label": "State the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 69. Printed appearances: AP 17. The angles DOUBLE each time — A, 2A, 4A, 8A — and the answer is in 16A. That doubling chain is the whole method: each application of sin2θ = 2 sinθ cosθ moves one step up it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply_and_divide_by_2",
+        "kind": "equation",
+        "label": "Multiply and divide by 2⁴ sinA",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the trick of the question. There is no sinA on the left, so one is introduced deliberately — multiplied AND divided, which changes nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cosA cos2A cos4A cos8A",
+          "= (2⁴ sinA)/(2⁴ sinA) · cosA cos2A cos4A cos8A",
+          "= (1/(16 sinA)) (2 sinA cosA)(2 cos2A)(2 cos4A)(2 cos8A)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2⁴ sinA is introduced by multiplying and dividing, so a sinA is available to start the doubling chain.",
+          "accept": [
+            "multiply and divide by sixteen sin A so a sine appears to start the chain",
+            "introduce two to the fourth sin A top and bottom",
+            "bring in a sin A so the double angle formula can be used",
+            "sixteen sin A tho multiply and divide cheyyali",
+            "manufacture a sine to begin with"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixteen sin A",
+            "multiply and divide",
+            "two to the fourth",
+            "introduce"
+          ]
+        },
+        "why": "sin2θ = 2 sinθ cosθ needs a sine to pair with the cosine. There is none on the left, so one is manufactured — and dividing by the same thing keeps the value unchanged.",
+        "common_mistakes": [
+          "Multiplying by sinA without dividing, which changes the expression.",
+          "Introducing only one 2 instead of four."
+        ]
+      },
+      {
+        "id": "s2_apply_the_double_angle_r",
+        "kind": "equation",
+        "label": "Apply the double angle repeatedly",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Each 2 pairs with the sine just made and the next cosine, doubling the angle: A → 2A → 4A → 8A → 16A. Four applications, one per 2.",
+        "lines": [
+          "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin8A)(2 cos8A)",
+          "= (1/(16 sinA)) (sin16A)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin2θ = 2 sinθ cosθ is applied four times in succession, doubling the angle each time up to sin16A.",
+          "accept": [
+            "apply the double angle four times so the angle doubles each step up to sin sixteen A",
+            "each two pairs with the sine and the next cosine to double the angle",
+            "repeat the formula until you reach sin sixteen A",
+            "prathi sari angle double avthundi, sin sixteen A varaku",
+            "use two sin cos four times in a row"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two A",
+            "sin four A",
+            "sin eight A",
+            "sin sixteen A",
+            "double"
+          ]
+        },
+        "why": "Each step consumes one 2 and one cosine and doubles the angle. Four cosines means four 2s and four doublings — which is exactly why the denominator is 2⁴.",
+        "common_mistakes": [
+          "Running out of 2s partway through.",
+          "Applying the formula to the wrong pair."
+        ]
+      },
+      {
+        "id": "s3_state_the_result",
+        "kind": "boxed_final",
+        "label": "State the result",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The chain ends at sin16A over the 16 sinA that was introduced at the start.",
+        "lines": [
+          {
+            "text": "= sin16A / (16 sinA) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is sin16A/(16 sinA).",
+          "accept": [
+            "the answer is sin sixteen A over sixteen sin A",
+            "the chain ends at sin sixteen A over the sixteen sin A introduced",
+            "that gives the right hand side",
+            "sin sixteen A by sixteen sin A vasthundi",
+            "the final answer is sin sixteen A over sixteen sin A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin sixteen A",
+            "sixteen sin A",
+            "right hand side"
+          ]
+        },
+        "why": "The 16 in the answer is the 2⁴ introduced at the start, and the sinA is the one manufactured with it. Nothing was added that did not have to be paid back.",
+        "common_mistakes": [
+          "Writing 8 sinA by miscounting the 2s.",
+          "Leaving the answer as a product."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ta_shift_minus1_2_circle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Transformation of Axes"
+  },
+  "chapter": "Transformation of Axes",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "When the origin is shifted to (−1,2) by the translation of axes, find the transformed equation of x²+y²+2x−4y+1=0.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take the given equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the change of axes",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the equation",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Transformation of Axes, answer 49.1, on a ★★★ SSP (Super Scoring Page). Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. But the four STEPS are the book's own: p.59 prints a boxed 'SOLUTION STEPS' panel beside answers 52 and 53 giving the method in exactly four moves — (1) take the given equation as the original (or as the new one), (2) write the change-of-axes formulas, (3) put them into the given equation, (4) simplify to get the answer. This answer is cut on those four printed moves at one mark each, so the DECOMPOSITION is sourced even though the per-step marks are not. Four equal marks also matches the only 4-mark shape the sister chapter prints (Locus answers 44 and 46 carry printed tags, and this chapter's answers are the same length). The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Transformation of Axes is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Transformation of Axes LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-20). Chapter scoped by BOUNDARY WALK: book p.61 is SAQ chapter 9, The Straight Line. The book's separate STAR QUESTIONS PLUS bank (pp.104-108, answers 181-196) was also surveyed, and its ONLY Transformation of Axes question is answer 181, authored here as sqp1."
+  },
+  "recall_prompt": "Say how you would solve this — say what x and y become under the shift, and say which letters the answer must be written in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Transformation of Axes · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_given_equation",
+        "kind": "text",
+        "label": "Take the given equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The equation you are handed is the ORIGINAL one, so it is the one written in small x and small y. Number it (1) — the last step refers back to it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given original equation is",
+          "x² + y² + 2x − 4y + 1 = 0  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given equation is named as the original equation, in x and y.",
+          "accept": [
+            "the given equation is the original one in small x and small y",
+            "take the given equation as the original equation",
+            "write the given equation and call it one",
+            "ichchina equation ni original ga teesukovali",
+            "this is the original equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "original equation",
+            "given equation",
+            "small x and y"
+          ]
+        },
+        "why": "The first move is to label which equation you were handed. A transformation question is always one of two shapes — given the original find the new, or given the new find the original — and every later step depends on which.",
+        "common_mistakes": [
+          "Treating the given equation as the NEW equation and solving the wrong way round.",
+          "Losing the equals-zero when copying the equation down."
+        ]
+      },
+      {
+        "id": "s2_write_the_change_of_axes",
+        "kind": "equation",
+        "label": "Write the change of axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. A shift of origin to (−1, 2) means x = X + h and y = Y + k. Substituting the numbers gives the two lines to carry forward.",
+        "lines": [
+          "We take new origin (h, k) = (−1, 2), then",
+          "x = X + h  ⇒  x = X − 1",
+          "y = Y + k  ⇒  y = Y + 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the new origin is (−1, 2) and the change of axes is x = X + h, y = Y + k.",
+          "accept": [
+            "x equals capital X plus h and y equals capital Y plus k",
+            "the new origin is h comma k so substitute x equals X plus h",
+            "write the translation formulas with the given shift",
+            "new origin teesukoni x equals X plus h ani rayali",
+            "shift of origin means x is X plus h and y is Y plus k"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "X plus h",
+            "Y plus k",
+            "new origin",
+            "translation"
+          ]
+        },
+        "why": "A shift of origin to (h, k) means an old coordinate is the new coordinate plus the shift: x = X + h and y = Y + k. Nothing rotates, so x depends only on X and y only on Y.",
+        "common_mistakes": [
+          "Writing x = X − h instead of x = X + h.",
+          "Swapping h and k when the shift has a negative coordinate."
+        ]
+      },
+      {
+        "id": "s3_substitute_into_the_equation",
+        "kind": "equation",
+        "label": "Substitute into the equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Put those two lines into equation (1). Every x and every y goes, including the ones inside brackets and squares.",
+        "lines": [
+          "From (1), transformed equation is",
+          "(X−1)² + (Y+2)² + 2(X−1) − 4(Y+2) + 1 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two change-of-axes lines are put into the given equation.",
+          "accept": [
+            "substitute the x and y expressions into the given equation",
+            "put capital X minus one and capital Y plus two into equation one",
+            "replace every x and y in the original equation",
+            "equation one lo substitute cheyyali",
+            "put these x and y into the given equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "from one",
+            "put these",
+            "transformed equation"
+          ]
+        },
+        "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
+        "common_mistakes": [
+          "Substituting into only some of the terms.",
+          "Forgetting to substitute inside a squared bracket."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to the answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Expand, collect and read off the transformed equation in capital X and capital Y. The answer must be written in the NEW letters, never mixed with the old ones.",
+        "lines": [
+          "⇒ (X² − 2X + 1) + (Y² + 4Y + 4) + 2X − 2 − 4Y − 8 + 1 = 0",
+          "⇒ X² + Y² + (−2X + 2X) + (4Y − 4Y) + (1 + 4 − 2 − 8 + 1) = 0",
+          {
+            "text": "∴ Transformed equation is X² + Y² − 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding and collecting gives X² + Y² − 4 = 0.",
+          "accept": [
+            "expand and collect to get the transformed equation",
+            "simplify and write the answer in capital X and capital Y",
+            "after expanding the terms cancel and this is what is left",
+            "expand chesi simplify chesthe transformed equation vasthundi",
+            "the transformed equation is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand",
+            "collect",
+            "transformed equation",
+            "capital X",
+            "capital Y"
+          ]
+        },
+        "why": "The answer is an equation in the NEW axes, so it must contain only X and Y. A stray x or y means a term was missed in the substitution.",
+        "common_mistakes": [
+          "Leaving the answer in small x and y.",
+          "Sign slip when expanding a squared bracket."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_conservation_angular_momentum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and prove the principle of conservation of angular momentum. Explain the principle with examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The proof",
+      "marks": 2
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Conservation of angular momentum:",
+            "style": "heading"
+          },
+          "If no external torque acts on a system,",
+          "the total angular momentum of the",
+          "system remains constant."
+        ],
+        "margin_note": "The condition \"no external torque\" is half the statement — the law is false without it.",
+        "why": "This is the rotational twin of conservation of linear momentum, with torque playing the role force played there.",
+        "common_mistakes": [
+          "Stating it without the no-external-torque condition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with no external torque, the total angular momentum stays constant.",
+          "accept": [
+            "no external torque so L is constant",
+            "angular momentum is conserved",
+            "torque lekapothe L constant"
+          ],
+          "reject": [
+            "torque is d L by d t"
+          ],
+          "heard_as": [
+            "external torque",
+            "constant",
+            "conserved"
+          ]
+        },
+        "memory_tip": "The rotational twin of momentum conservation: no external TORQUE → L is constant."
+      },
+      {
+        "id": "s2_proof",
+        "kind": "equation",
+        "label": "The proof",
+        "marks": 2,
+        "mark_note": "Proof",
+        "lines": [
+          "Torque is the rate of change of angular",
+          "momentum:",
+          {
+            "text": "τ = dL/dt",
+            "style": "eq"
+          },
+          "If the external torque is zero,",
+          {
+            "text": "dL/dt = 0  →  L = constant",
+            "style": "eq"
+          },
+          "So L₁ = L₂, that is,",
+          {
+            "text": "I₁ω₁ = I₂ω₂",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Three lines: the definition of torque, set it to zero, read off the constancy. Finish with I₁ω₁ = I₂ω₂ — the form the examples use.",
+        "why": "The proof is one definition plus one substitution — but the final form Iω = constant is what does all the explaining: shrink I and ω must grow.",
+        "common_mistakes": [
+          "Proving it for constant I only. The law holds even while I changes — that is its whole point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That τ = dL/dt, zero torque makes L constant, so I₁ω₁ = I₂ω₂.",
+          "accept": [
+            "torque is d L by d t",
+            "d L by d t is zero",
+            "I one omega one equals I two omega two"
+          ],
+          "reject": [
+            "a dancer folds her arms"
+          ],
+          "heard_as": [
+            "d L by d t",
+            "constant",
+            "I omega"
+          ]
+        },
+        "memory_tip": "τ = dL/dt; put τ = 0 and Iω = constant follows."
+      },
+      {
+        "id": "s3_examples",
+        "kind": "boxed_final",
+        "label": "The examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Examples:",
+            "style": "heading"
+          },
+          "1. A dancer or skater spins faster on",
+          {
+            "text": "folding her arms: I decreases, so ω",
+            "style": "indent"
+          },
+          {
+            "text": "increases, keeping Iω constant.",
+            "style": "indent"
+          },
+          "2. A helicopter needs a tail rotor —",
+          {
+            "text": "with one propeller the body would",
+            "style": "indent"
+          },
+          {
+            "text": "spin the opposite way to conserve L.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Each example must SAY which quantity changed and which way — \"I down, ω up\" — not just name the dancer.",
+        "why": "The dancer is conservation with I changing; the helicopter is conservation with L exchanged between parts. Two different faces of the same law.",
+        "common_mistakes": [
+          "Naming the examples without the I-and-ω reasoning, which earns nothing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the folding dancer (I down, ω up) and the helicopter tail rotor are the examples.",
+          "accept": [
+            "a dancer folds her arms and spins faster",
+            "I decreases omega increases",
+            "helicopter tail rotor example"
+          ],
+          "reject": [
+            "no external torque so L is constant"
+          ],
+          "heard_as": [
+            "dancer",
+            "spins faster",
+            "helicopter"
+          ]
+        },
+        "memory_tip": "Two examples, two mechanisms: the dancer changes I (arms in → spins faster); the helicopter needs a tail rotor because L is exchanged between its parts."
+      }
+    ]
+  },
+  "insider_note": "State, prove, examples: three separate demands in one question, and the examples are a full mark on their own."
+}

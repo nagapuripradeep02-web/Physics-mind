@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_sinh_three_quarters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sinh x = 3/4, then find cosh 2x and sinh 2x.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find cosh x",
+      "marks": 1
+    },
+    {
+      "label": "Apply the double-angle formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 139.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16 · TS 22.  ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find cosh x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The hyperbolic identity is cosh²x − sinh²x = 1, so cosh x = √(sinh²x + 1) — note the PLUS, where the circular version would have a minus.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sinh x = 3/4",
+          "cosh x = √(sinh²x + 1)   [∵ cosh²x − sinh²x = 1]",
+          "= √((3/4)² + 1) = √(9/16 + 1)",
+          "= √(25/16) = 5/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh x = √(sinh²x + 1) = 5/4, using cosh²x − sinh²x = 1.",
+          "accept": [
+            "cosh x is root of sinh squared plus one which gives five over four",
+            "use cosh squared minus sinh squared equals one to get cosh x as five fourths",
+            "the identity gives cosh x equals five by four",
+            "cosh square minus sinh square one, so cosh x five by four",
+            "find cosh x from the identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosh x",
+            "five fourths",
+            "sinh squared plus one",
+            "identity"
+          ]
+        },
+        "why": "The hyperbolic identity has a MINUS between the squares where the circular one has a plus — so solving it for cosh gives a plus under the root, not a minus.",
+        "common_mistakes": [
+          "Using √(1 − sinh²x), which is the circular formula.",
+          "Getting 9/16 + 1 as 10/16."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the double-angle formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cosh2x = cosh²x + sinh²x — a PLUS, unlike the circular cos2x which has a minus. sinh2x = 2 sinh x cosh x matches its circular twin exactly.",
+        "lines": [
+          "cosh 2x = cosh²x + sinh²x = 25/16 + 9/16 = 34/16 = 17/8",
+          "sinh 2x = 2 sinh x cosh x = 2(3/4)(5/4) = 30/16 = 15/8",
+          {
+            "text": "∴ cosh 2x = 17/8,  sinh 2x = 15/8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh2x = cosh²x + sinh²x = 17/8 and sinh2x = 2 sinh x cosh x = 15/8.",
+          "accept": [
+            "cosh two x is cosh squared plus sinh squared which is seventeen over eight and sinh two x is two sinh cosh which is fifteen over eight",
+            "apply both double angle formulas to get seventeen eighths and fifteen eighths",
+            "the answers are seventeen over eight and fifteen over eight",
+            "cosh two x seventeen by eight, sinh two x fifteen by eight",
+            "use the two double angle formulas"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosh two x",
+            "sinh two x",
+            "seventeen over eight",
+            "fifteen over eight"
+          ]
+        },
+        "why": "cosh2x ADDS the two squares where cos2x subtracts them. That single sign is the commonest place a circular formula gets used by mistake.",
+        "common_mistakes": [
+          "Using cosh2x = cosh²x − sinh²x, which is always 1.",
+          "Giving only one of the two answers."
+        ]
+      }
+    ]
+  }
+}

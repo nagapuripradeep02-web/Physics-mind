@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cos_two_tan_four_tan",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that cos(2 Tan⁻¹(1/7)) = sin(4 Tan⁻¹(1/3)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Evaluate the left side",
+      "marks": 1
+    },
+    {
+      "label": "Find tan2β first",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate sin4β and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 12 Inverse Trig Functions, answer 78.2. Printed appearances: none — this answer carries no year tag. The twin of 78.1, with a FOUR on the right instead of a two. sin4β is handled as sin(2(2β)) — the double-angle formula applied twice, with tan2β computed in between. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_evaluate_the_left_side",
+        "kind": "equation",
+        "label": "Evaluate the left side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Identical left side to the twin, and it gives the same 24/25.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take Tan⁻¹(1/7) = α ⇒ tanα = 1/7",
+          "and Tan⁻¹(1/3) = β ⇒ tanβ = 1/3",
+          "L.H.S = cos2α = (1 − tan²α)/(1 + tan²α)",
+          "= (1 − 1/49)/(1 + 1/49) = 48/50 = 24/25   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side is cos2α with tanα = 1/7, giving 24/25.",
+          "accept": [
+            "the left side is cos two alpha which comes to twenty four over twenty five as before",
+            "same left hand side as the twin, twenty four twenty fifths",
+            "evaluate cos two alpha with tan alpha one seventh",
+            "left side twenty four by twenty five, twin lantidi",
+            "the left hand side is twenty four over twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two alpha",
+            "twenty four over twenty five",
+            "one seventh"
+          ]
+        },
+        "why": "The left side is word for word the twin question, so its value is already known — only the right side is new.",
+        "common_mistakes": [
+          "Recomputing it differently and getting a mismatch.",
+          "Using tanβ by mistake."
+        ]
+      },
+      {
+        "id": "s2_find_tan2_first",
+        "kind": "equation",
+        "label": "Find tan2β first",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. sin4β cannot be reached in one step. Compute tan2β first — then 4β is just 2(2β) and the same formula applies again.",
+        "lines": [
+          "tanβ = 1/3 ⇒ tan2β = 2tanβ/(1 − tan²β)",
+          "= 2(1/3)/(1 − 1/9) = (2/3)/(8/9)",
+          "= (2/3)(9/8) = 3/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan2β is computed first as 3/4, so that 4β can be treated as 2(2β).",
+          "accept": [
+            "find tan two beta first which is three quarters then four beta is two times two beta",
+            "compute tan of double beta before going to four beta",
+            "tan two beta comes to three by four",
+            "modata tan two beta kanukovali, three by four vasthundi",
+            "get tan two beta so the formula can be applied again"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan two beta",
+            "three quarters",
+            "two tan beta",
+            "one minus tan squared"
+          ]
+        },
+        "why": "There is no formula for sin4θ in terms of tanθ directly. Stepping through tan2θ is what makes the second application possible.",
+        "common_mistakes": [
+          "Trying to double the angle twice in one line.",
+          "Using the sin2θ formula where the tan2θ one is needed."
+        ]
+      },
+      {
+        "id": "s3_evaluate_sin4_and_compare",
+        "kind": "boxed_final",
+        "label": "Evaluate sin4β and compare",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Now sin4β = sin(2(2β)) uses the same tangent form, with tan2β = 3/4 — which is exactly the twin question’s β, so the answer is the same 24/25.",
+        "lines": [
+          "R.H.S = sin(4Tan⁻¹(1/3)) = sin4β = sin(2(2β))",
+          "= 2tan2β/(1 + tan²2β) = 2(3/4)/(1 + 9/16)",
+          "= (3/2)(16/25) = 24/25   …(2)",
+          "From (1) and (2), both sides equal 24/25.",
+          {
+            "text": "∴ cos(2Tan⁻¹(1/7)) = sin(4Tan⁻¹(1/3))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin4β is evaluated as sin(2(2β)) using tan2β = 3/4, giving 24/25, and that both sides are then stated equal.",
+          "accept": [
+            "sin four beta is sin of two times two beta which with tan two beta three quarters gives twenty four over twenty five so both sides agree",
+            "apply the formula again to get twenty four twenty fifths and compare",
+            "both sides equal twenty four over twenty five so it is proved",
+            "sin four beta kuda twenty four by twenty five vasthundi, rendu equal",
+            "the right side matches the left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin four beta",
+            "twenty four over twenty five",
+            "both equal",
+            "from one and two"
+          ]
+        },
+        "why": "tan2β came out as 3/4 — exactly the tangent in the twin question. That is why both twins land on the same number, and it is not a coincidence.",
+        "common_mistakes": [
+          "Using tanβ instead of tan2β in the final formula.",
+          "Never stating that the two sides agree."
+        ]
+      }
+    ]
+  }
+}

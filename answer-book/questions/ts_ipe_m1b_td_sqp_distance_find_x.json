@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_sqp_distance_find_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If the distance between the points (5,−1,7) and (x,5,1) is 9 units, find the values of x.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the distance equation",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.106 — the STAR QUESTIONS PLUS bank, under its '3D GEOEMTRY' heading, answer 188. Printed appearance: AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from VSAQ chapter 15 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as VSAQ because 3D-Coordinates has ONLY a Section-A slot on the paper, so VSAQ is the only cut this unit admits. The bank prints no [N Marks] tags anywhere. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what you square, and why there are two answers.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_distance_equation",
+        "kind": "equation",
+        "label": "Write the distance equation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Put both points into the 3D distance formula and set it equal to 9. Squaring both sides at once clears the root before any expansion.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A(x₁,y₁,z₁) = (5,−1,7) and B(x₂,y₂,z₂) = (x,5,1)",
+          "Given distance AB = 9",
+          "⇒ √((x₂−x₁)² + (y₂−y₁)² + (z₂−z₁)²) = 9",
+          "⇒ √((x−5)² + (5+1)² + (1−7)²) = 9,  squaring on both sides, we get",
+          "(x−5)² + 36 + 36 = 81"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 3D distance formula is set equal to 9 and both sides squared.",
+          "accept": [
+            "put both points into the distance formula and set it equal to nine then square",
+            "root of the three squared differences equals nine",
+            "square both sides to clear the root",
+            "distance formula rasi square cheyyali",
+            "this gives x minus five squared plus seventy two equals eighty one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "equals nine",
+            "square both sides",
+            "seventy two"
+          ]
+        },
+        "why": "Two of the three squared differences are pure numbers, so squaring leaves a single unknown in one bracket — which is why this reduces to a two-line solve.",
+        "common_mistakes": [
+          "Forgetting the third squared difference.",
+          "Sign slip on (5 + 1), which comes from 5 − (−1)."
+        ]
+      },
+      {
+        "id": "s2_solve_for_x",
+        "kind": "boxed_final",
+        "label": "Solve for x",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Isolate the bracket and take the square root — remembering that a square root gives PLUS OR MINUS, which is why there are two answers.",
+        "lines": [
+          "⇒ (x−5)² + 72 = 81  ⇒  (x−5)² = 81 − 72 = 9 = 3²",
+          "⇒ x − 5 = ±3",
+          "⇒ x = 5 + 3 = 8  (or)  x = 5 − 3 = 2",
+          {
+            "text": "∴ x = 8 or 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − 5)² = 9 gives x − 5 = ±3, so x = 8 or 2.",
+          "accept": [
+            "x minus five squared is nine so x minus five is plus or minus three",
+            "x is eight or two",
+            "the square root gives two values",
+            "plus or minus three kabatti rendu values",
+            "both values of x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus three",
+            "x is eight",
+            "or two",
+            "two values"
+          ]
+        },
+        "why": "Two points on the line through (5,−1,7) sit at distance 9 in the x-direction, one on each side — so two answers are expected, not a sign of error.",
+        "common_mistakes": [
+          "Reporting only x = 8.",
+          "Taking the square root of 9 as 4.5."
+        ]
+      }
+    ]
+  }
+}

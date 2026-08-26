@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_quadratic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the vectors λi − 3j + 5k and 2λi − λj − k are perpendicular to each other, then find λ.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set the dot product to zero",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 119.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find lambda here — and say how many answers you expect.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Set the dot product to zero",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same condition as the previous question, but λ appears in BOTH vectors — so the equation will be quadratic, not linear.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = λi − 3j + 5k, b = 2λi − λj − k",
+          "Given a ⊥ b  ⇒  a·b = 0",
+          "∴ λ(2λ) − 3(−λ) + 5(−1) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·b = 0 is written down, and that λ appears in both vectors so the equation is quadratic.",
+          "accept": [
+            "set the dot product to zero, lambda is in both vectors so it will be quadratic",
+            "a dot b equals zero gives an equation with lambda squared",
+            "write the perpendicular condition, it produces a quadratic",
+            "dot product zero, rendu vectors lo lambda undi kabatti quadratic vasthundi",
+            "the condition gives a quadratic in lambda"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a dot b",
+            "zero",
+            "quadratic",
+            "lambda squared",
+            "both vectors"
+          ]
+        },
+        "why": "λ multiplying λ is what makes this quadratic. Noticing that up front is what tells you to expect two answers rather than one.",
+        "common_mistakes": [
+          "Assuming there will be a single answer.",
+          "Dropping the minus signs when multiplying."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve the quadratic",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Factorise rather than reaching for the formula. BOTH roots are valid answers — the question did not exclude either.",
+        "lines": [
+          "⇒ 2λ² + 3λ − 5 = 0",
+          "⇒ (λ − 1)(2λ + 5) = 0",
+          "⇒ λ − 1 = 0 or 2λ + 5 = 0",
+          {
+            "text": "∴ λ = 1 or λ = −5/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic 2λ² + 3λ − 5 = 0 factorises to give TWO answers, λ = 1 and λ = −5/2.",
+          "accept": [
+            "factorise to lambda minus one into two lambda plus five so lambda is one or minus five by two",
+            "there are two answers, one and minus five over two",
+            "solving the quadratic gives lambda equals one or minus five halves",
+            "rendu answers vasthai, one and minus five by two",
+            "both roots are valid so lambda is one or minus two point five"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "lambda equals one",
+            "minus five by two",
+            "two answers",
+            "factorise",
+            "quadratic"
+          ]
+        },
+        "why": "A quadratic has two roots and nothing in the question rules either out, so both must be reported. Giving only one is giving half the answer.",
+        "common_mistakes": [
+          "Reporting only λ = 1.",
+          "Discarding the negative root for no reason."
+        ]
+      }
+    ]
+  }
+}

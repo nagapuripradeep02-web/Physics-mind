@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_buffer_solutions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are buffer solutions? Explain the types of buffer solutions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 2
+    },
+    {
+      "label": "Acidic buffer",
+      "marks": 1
+    },
+    {
+      "label": "Basic buffer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's alternative definition line is garbled in print ('A solution reserves its acidity or alkalinity'); the standard definition is written here. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 ('pushes', 'mirror/twin'). FLAGGED FOR A TEACHER, not changed: the marked lines assert an acidic buffer has pH below 7 and a basic buffer above 7 — true for the named examples and standard board wording, but a weak-acid buffer with a very large salt-to-acid ratio can exceed pH 7."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "A buffer solution is a solution whose pH",
+          "changes very little when a small amount of",
+          "a strong acid or a strong base is added to",
+          "it, or when it is diluted.",
+          "Buffer solutions are of two types:",
+          "a) acidic buffer  b) basic buffer"
+        ],
+        "why": "The definition has three test conditions — small added acid, small added base, dilution — and the buffer holds its pH nearly constant under all three. Naming the two types sets up the rest of the answer.",
+        "common_mistakes": [
+          "Writing that the pH does not change at all. It changes very little, not zero.",
+          "Writing that a buffer works against ANY amount of added acid. The definition says a small amount."
+        ],
+        "memory_tip": "Three small changes — added acid, added base, dilution — and the pH stays nearly the same.",
+        "margin_note": "The two marks are for the full definition with 'small amount' in it."
+      },
+      {
+        "id": "s2_acidic",
+        "kind": "text",
+        "label": "Acidic buffer",
+        "marks": 1,
+        "mark_note": "Acidic buffer",
+        "lines": [
+          "Acidic buffer: a mixture of a weak acid and",
+          "its salt with a strong base. Its pH is",
+          "below 7.",
+          {
+            "text": "Example: CH₃COOH + CH₃COONa",
+            "style": "eq"
+          }
+        ],
+        "why": "The weak acid and its salt supply a conjugate acid-base pair in one solution — the acid can react with added base and the salt's anion with added acid, which is what keeps the pH nearly steady.",
+        "common_mistakes": [
+          "Writing strong acid + its salt. A buffer needs the WEAK acid; a strong acid ionises completely and leaves no reserve.",
+          "Pairing the weak acid with a random salt. The salt must contain the acid's own anion (its salt with a strong base)."
+        ],
+        "memory_tip": "Weak acid + its own sodium salt: acetic acid + sodium acetate is the standard pair.",
+        "margin_note": "The example pair CH₃COOH/CH₃COONa is expected by name."
+      },
+      {
+        "id": "s3_basic",
+        "kind": "boxed_final",
+        "label": "Basic buffer",
+        "marks": 1,
+        "mark_note": "Basic buffer",
+        "lines": [
+          "Basic buffer: a mixture of a weak base and",
+          "its salt with a strong acid. Its pH is",
+          "above 7.",
+          {
+            "text": "Example: NH₄OH + NH₄Cl",
+            "style": "eq"
+          },
+          {
+            "text": "Buffer = weak acid or weak base + its own salt; pH changes very little on small additions",
+            "style": "boxed"
+          }
+        ],
+        "why": "The basic buffer is the mirror of the acidic one: weak base plus its salt with a strong acid gives the conjugate pair on the basic side of 7.",
+        "common_mistakes": [
+          "Writing NaOH + NaCl as a basic buffer. NaOH is a strong base; the buffer needs the weak base NH₄OH.",
+          "Swapping the salt types — the basic buffer's salt comes from a strong ACID (NH₄Cl)."
+        ],
+        "memory_tip": "The basic pair is ammonia solution + ammonium chloride; the acidic pair is acetic acid + sodium acetate.",
+        "margin_note": "Box the one-line summary; both named pairs sit above it."
+      }
+    ]
+  },
+  "insider_note": "Definition plus the two named mixtures — CH₃COOH with CH₃COONa and NH₄OH with NH₄Cl are the expected examples, and an answer without them loses the type marks."
+}

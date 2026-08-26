@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_polyembryony_ploidy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In case of polyembryony, if an embryo develops from the synergid and another from the nucellus, which is haploid and which is diploid?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Embryo from the synergid",
+      "marks": 1
+    },
+    {
+      "label": "Embryo from the nucellus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.17, VSAQ 3). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book's answer lines ('Embryo develops from synergid is haploid', 'Embryo develops from nucellus is diploid') agree with this card; only the grammar is cleaned and the ploidy reasons added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_synergid",
+        "kind": "text",
+        "label": "Embryo from the synergid",
+        "marks": 1,
+        "mark_note": "Haploid",
+        "lines": [
+          "The embryo from the synergid is haploid (n).",
+          "A synergid is an unfertilised cell of the",
+          "embryo sac, so it carries only one set of",
+          "chromosomes."
+        ],
+        "why": "Every cell of the embryo sac comes from the haploid megaspore by mitosis. A synergid is never fertilised, so an embryo built from it stays haploid.",
+        "common_mistakes": [
+          "Calling the synergid embryo diploid because 'embryos are diploid' — this one skips fertilisation.",
+          "Giving the answer without the reason. The n/2n label alone reads as a guess."
+        ],
+        "memory_tip": "Inside the sac = haploid. No fusion happened in a synergid, so nothing doubled.",
+        "margin_note": "State n and add the one-line reason: the synergid is unfertilised."
+      },
+      {
+        "id": "s2_nucellus",
+        "kind": "boxed_final",
+        "label": "Embryo from the nucellus",
+        "marks": 1,
+        "mark_note": "Diploid",
+        "lines": [
+          "The embryo from the nucellus is diploid (2n).",
+          "The nucellus is sporophytic tissue of the",
+          "ovule, so its cells have two chromosome sets.",
+          {
+            "text": "Synergid embryo = n; nucellus embryo = 2n",
+            "style": "boxed"
+          }
+        ],
+        "why": "The nucellus belongs to the parent sporophyte, outside the embryo sac, so any embryo budding from it inherits the parent's diploid number.",
+        "common_mistakes": [
+          "Mixing the two up. Fix the boundary: inside the embryo sac n, ovule tissue outside it 2n.",
+          "Writing 3n — that is the endosperm after triple fusion, not a nucellar embryo."
+        ],
+        "memory_tip": "Sac cells n, ovule body 2n. Synergid sits in the sac; nucellus is the ovule body.",
+        "margin_note": "The boxed pairing is the answer the examiner underlines — write both ploidies."
+      }
+    ]
+  },
+  "insider_note": "This is really a boundary question: cells of the embryo sac are haploid, tissues of the ovule around it are diploid — say that boundary and both marks follow."
+}

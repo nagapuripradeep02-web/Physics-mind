@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_rms_velocity_temperature_tripled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The absolute temperature of a gas is increased 3 times. What will be the increase in rms velocity of the gas molecule?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 9,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 10,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 10,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The rms speed goes as √T",
+      "marks": 1
+    },
+    {
+      "label": "The increase",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2019 (Q10), March 2020 (Q10) and March 2025 (Q9) — three of the seven papers held. Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from those papers. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Arithmetic hand-checked: v_rms = √(3RT/M), so v_rms ∝ √T; tripling T gives v′ = √3 v = 1.7320508 v, and the INCREASE asked for is v′ − v = (√3 − 1)v = 0.7320508 v, that is 73.205% ≈ 73.2% of the original. The card states the new value and the increase side by side so the two cannot be confused."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The rms speed goes as √T",
+        "marks": 1,
+        "mark_note": "v_rms ∝ √T",
+        "lines": [
+          "For a gas of molar mass M at absolute",
+          "temperature T,",
+          {
+            "text": "v_rms = √(3RT / M),  so  v_rms ∝ √T",
+            "style": "eq"
+          },
+          "Only T changes here, so the rms velocity",
+          "is multiplied by √3."
+        ],
+        "margin_note": "First mark. Write v_rms ∝ √T before any number is worked out.",
+        "why": "The temperature sits under a square root, so multiplying T by 3 multiplies v_rms by √3 and not by 3. Every later line of the answer follows from that one square root.",
+        "common_mistakes": [
+          "Multiplying the rms velocity by 3 because the temperature was multiplied by 3. The square root makes it √3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v rms is proportional to root T, so tripling T multiplies the speed by root three.",
+          "accept": [
+            "v rms is proportional to root T",
+            "root three times",
+            "square root of three RT by M"
+          ],
+          "reject": [
+            "seventy three point two percent"
+          ],
+          "heard_as": [
+            "root T",
+            "root three"
+          ]
+        },
+        "memory_tip": "Temperature sits under the square root: three times T gives √3 times the speed."
+      },
+      {
+        "id": "s2_increase",
+        "kind": "boxed_final",
+        "label": "The increase",
+        "marks": 1,
+        "mark_note": "Increase ≈ 73.2%",
+        "lines": [
+          "New value:",
+          {
+            "text": "v′ = √3 v = 1.732 v",
+            "style": "eq"
+          },
+          "The question asks for the INCREASE, not",
+          "the new value:",
+          {
+            "text": "v′ − v = (√3 − 1)v = 0.732 v",
+            "style": "eq"
+          },
+          {
+            "text": "Increase = 0.732 v, about 73.2%",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Subtract the original speed: 1.732 v is the new value, 0.732 v is the increase.",
+        "why": "The new speed is 1.732 v and the increase is 0.732 v. The two numbers differ by exactly one whole v, and writing the first when the question asks for the second is the usual way this mark is lost.",
+        "common_mistakes": [
+          "Answering 1.732 v or 173.2%. That is the NEW value; the increase is 0.732 v.",
+          "Writing the increase as √3 v without subtracting the original speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the increase is root three minus one times v, about 0.732 v or 73.2 percent.",
+          "accept": [
+            "root three minus one",
+            "zero point seven three two v",
+            "seventy three point two percent"
+          ],
+          "reject": [
+            "one point seven three two v is the increase"
+          ],
+          "heard_as": [
+            "seventy three percent",
+            "root three minus one"
+          ]
+        },
+        "memory_tip": "√3 = 1.732. Take away the 1 that was already there: the increase is 0.732 v."
+      }
+    ]
+  },
+  "insider_note": "Asked in three of the seven recent papers, and every time it asks for the INCREASE — writing 1.732 v answers a question that was not set."
+}

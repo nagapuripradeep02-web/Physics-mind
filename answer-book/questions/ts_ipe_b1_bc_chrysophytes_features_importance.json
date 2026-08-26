@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_chrysophytes_features_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the salient features and importance of chrysophytes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group and habitat",
+      "marks": 1
+    },
+    {
+      "label": "Cell wall",
+      "marks": 1
+    },
+    {
+      "label": "Diatomaceous earth",
+      "marks": 1
+    },
+    {
+      "label": "Producers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'Given the salient features...' — a grammar slip for Give. It also lists only diatoms as the example; the syllabus group includes desmids (golden algae), which this card adds."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biological Classification · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_habitat",
+        "kind": "text",
+        "label": "Group and habitat",
+        "marks": 1,
+        "mark_note": "Diatoms, desmids",
+        "lines": [
+          "Chrysophytes include diatoms and",
+          "desmids (golden algae).",
+          "They occur in fresh water as well as",
+          "marine environments.",
+          "They are microscopic and float passively",
+          "in water currents (plankton)."
+        ],
+        "why": "Placing the group first — which organisms, where they live, how they float — frames the features that follow. (The book lists only diatoms; the syllabus group also includes the desmids, called golden algae.)",
+        "common_mistakes": [
+          "Writing chrysophytes as only diatoms. Desmids (golden algae) belong here too.",
+          "Calling them large algae. They are microscopic plankton."
+        ],
+        "memory_tip": "Chrysophytes = diatoms + desmids; fresh and marine; planktonic.",
+        "margin_note": "Members, habitat and the word plankton in the opening lines."
+      },
+      {
+        "id": "s2_cell_wall",
+        "kind": "text",
+        "label": "Cell wall",
+        "marks": 1,
+        "mark_note": "Soap-box wall",
+        "lines": [
+          "In diatoms the cell wall forms two thin",
+          "overlapping shells — the epitheca over the",
+          "hypotheca — fitting as a soap box.",
+          "The walls are embedded with silica",
+          "and are indestructible."
+        ],
+        "why": "The soap-box wall is the identifying feature of diatoms, and the silica in it explains why the walls survive after the cell dies.",
+        "common_mistakes": [
+          "Swapping epitheca and hypotheca. Epi- means upon, so it is the upper shell.",
+          "Writing cellulose in place of silica."
+        ],
+        "memory_tip": "Two shells, one lid: epitheca upon hypotheca, hardened with silica.",
+        "margin_note": "Shell names, soap box and silica — the three marked terms."
+      },
+      {
+        "id": "s3_diatomaceous_earth",
+        "kind": "text",
+        "label": "Diatomaceous earth",
+        "marks": 1,
+        "mark_note": "Diatomaceous earth",
+        "lines": [
+          "Diatom walls left behind over billions of",
+          "years form diatomaceous earth.",
+          "This gritty soil is used in polishing and",
+          "in the filtration of oils and syrups."
+        ],
+        "why": "Because the silica walls do not decay, they accumulate on the sea floor; the deposit and its uses are the economic importance the question asks for.",
+        "common_mistakes": [
+          "Writing that living diatoms are used for polishing. It is the wall deposit, diatomaceous earth, that is used.",
+          "Forgetting the uses. Polishing and filtration are the marked words."
+        ],
+        "memory_tip": "Dead walls accumulate — diatomaceous earth — polishing and filtration.",
+        "margin_note": "The deposit name plus its two uses."
+      },
+      {
+        "id": "s4_producers",
+        "kind": "boxed_final",
+        "label": "Producers",
+        "marks": 1,
+        "mark_note": "Chief producers",
+        "lines": [
+          {
+            "text": "Diatoms are the chief producers in the oceans.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Their photosynthesis feeds ocean food chains, so the syllabus calls diatoms the chief producers in the oceans — the most quoted line of this topic.",
+        "common_mistakes": [
+          "Writing chief producers on land. The claim is about the oceans."
+        ],
+        "memory_tip": "One boxed line to end: chief producers in the oceans.",
+        "margin_note": "Box this line; it is the standard closing sentence of this answer."
+      }
+    ]
+  },
+  "insider_note": "The word importance is worth half the marks here — diatomaceous earth with its uses, and the chief-producers line."
+}

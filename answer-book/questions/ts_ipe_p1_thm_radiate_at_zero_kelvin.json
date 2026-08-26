@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_radiate_at_zero_kelvin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Does a body radiate heat at 0 K? Does it radiate heat at 0°C?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 7,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "At 0 K",
+      "marks": 1
+    },
+    {
+      "label": "At 0 °C",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2025 (Q7) — Section A, 2 marks. The 1 + 1 mark split, one mark for each of the two parts asked, is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: by Stefan’s law the emitted power goes as T⁴, so at T = 0 K it is exactly zero; 0 °C = 273 K, which is above absolute zero, so a body at 0 °C does radiate."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zero_kelvin",
+        "kind": "equation",
+        "label": "At 0 K — no",
+        "marks": 1,
+        "mark_note": "No at 0 K",
+        "lines": [
+          "No. At 0 K the absolute temperature is",
+          "zero, so by Stefan’s law",
+          {
+            "text": "E = σT⁴ = 0",
+            "style": "eq"
+          },
+          "A body at absolute zero radiates nothing."
+        ],
+        "margin_note": "First mark. The answer no, with T = 0 put into Stefan’s law.",
+        "why": "Stefan’s law makes the emitted power proportional to the fourth power of the absolute temperature, so it becomes zero only when the absolute temperature itself is zero.",
+        "common_mistakes": [
+          "Saying a body at 0 K still radiates a little. At T = 0 the emitted power is exactly zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at 0 K the body does not radiate, because E = σT⁴ is zero.",
+          "accept": [
+            "no at zero kelvin",
+            "sigma T to the fourth is zero",
+            "absolute zero no radiation"
+          ],
+          "reject": [
+            "zero degree Celsius is 273 kelvin"
+          ],
+          "heard_as": [
+            "zero kelvin",
+            "sigma T fourth",
+            "no"
+          ]
+        },
+        "memory_tip": "E = σT⁴. Put T = 0 and the emitted power is exactly zero."
+      },
+      {
+        "id": "s2_zero_celsius",
+        "kind": "boxed_final",
+        "label": "At 0 °C — yes",
+        "marks": 1,
+        "mark_note": "Yes at 0 °C",
+        "lines": [
+          {
+            "text": "Yes at 0 °C, because 0 °C = 273 K",
+            "style": "boxed"
+          },
+          "Every body above absolute zero radiates.",
+          "At 0 °C the absolute temperature is 273 K,",
+          "so the body does radiate, only weakly."
+        ],
+        "margin_note": "Second mark. The answer yes, with the conversion 0 °C = 273 K.",
+        "why": "Absolute zero is at −273 °C, so 0 °C is 273 degrees above it. Radiation stops only at the zero of the kelvin scale, not at the zero of the Celsius scale.",
+        "common_mistakes": [
+          "Reading 0 °C as no temperature at all. On the kelvin scale it is 273 K."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at 0 °C the body does radiate, because 0 °C is 273 K.",
+          "accept": [
+            "yes at zero degree Celsius",
+            "zero degree Celsius is 273 kelvin",
+            "above absolute zero"
+          ],
+          "reject": [
+            "sigma T to the fourth is zero"
+          ],
+          "heard_as": [
+            "two seventy three",
+            "yes",
+            "zero degree Celsius"
+          ]
+        },
+        "memory_tip": "0 °C is 273 K, not zero. Only 0 K stops the radiation."
+      }
+    ]
+  },
+  "insider_note": "Two questions, one mark each. The conversion 0 °C = 273 K is the line that earns the second mark — a bare yes does not."
+}

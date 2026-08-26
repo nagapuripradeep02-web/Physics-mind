@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_elastic_vs_inelastic_distinguish",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between elastic and inelastic collisions with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Elastic collisions",
+      "marks": 2
+    },
+    {
+      "label": "Inelastic collisions",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_elastic",
+        "kind": "text",
+        "label": "Elastic collisions",
+        "marks": 2,
+        "mark_note": "Elastic",
+        "lines": [
+          {
+            "text": "Elastic collision",
+            "style": "heading"
+          },
+          "1) Both momentum and kinetic energy are",
+          "conserved.",
+          "2) The bodies separate after the collision.",
+          "3) The coefficient of restitution e = 1.",
+          "Example: the collision of two atomic or",
+          "sub-atomic particles."
+        ],
+        "margin_note": "Two marks. Number the points, then the example. The example is easy to forget.",
+        "why": "Momentum is conserved in both kinds, so it is kinetic energy alone that separates them — that is the line the mark is for.",
+        "common_mistakes": [
+          "Listing \"momentum is conserved\" as a difference; it holds for both."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in an elastic collision both momentum and kinetic energy are conserved, the bodies separate, and e is one.",
+          "accept": [
+            "kinetic energy is conserved",
+            "e equals one",
+            "collision of atomic particles"
+          ],
+          "reject": [
+            "the bodies move on together"
+          ],
+          "heard_as": [
+            "elastic",
+            "kinetic energy conserved"
+          ]
+        },
+        "memory_tip": "Elastic means no loss: e = 1, and the kinetic energy after equals the kinetic energy before."
+      },
+      {
+        "id": "s2_inelastic",
+        "kind": "boxed_final",
+        "label": "Inelastic collisions",
+        "marks": 2,
+        "mark_note": "Inelastic",
+        "lines": [
+          {
+            "text": "Inelastic collision",
+            "style": "heading"
+          },
+          "1) Momentum is conserved but kinetic energy",
+          "is NOT.",
+          "2) In a perfectly inelastic collision the",
+          "bodies move on together.",
+          "3) e lies between 0 and 1, and e = 0 when",
+          "perfectly inelastic.",
+          "Example: a bat striking a ball."
+        ],
+        "margin_note": "Two marks. Keep the same three-point order as the elastic column, then the example.",
+        "why": "The lost kinetic energy is not missing: it goes into heat, sound and permanent deformation, and saying so is what makes the answer complete.",
+        "common_mistakes": [
+          "Saying momentum is lost as well; only kinetic energy is."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in an inelastic collision momentum is conserved but kinetic energy is not, with e between zero and one.",
+          "accept": [
+            "kinetic energy is not conserved",
+            "momentum is still conserved",
+            "e between zero and one"
+          ],
+          "reject": [
+            "e equals one"
+          ],
+          "heard_as": [
+            "inelastic",
+            "not conserved"
+          ]
+        },
+        "memory_tip": "Put the e values on a line: 1 elastic, 0 perfectly inelastic, in between for a real one."
+      }
+    ]
+  },
+  "insider_note": "Give three points a side and match them one to one — the conserved quantities, what happens after, the value of e."
+}

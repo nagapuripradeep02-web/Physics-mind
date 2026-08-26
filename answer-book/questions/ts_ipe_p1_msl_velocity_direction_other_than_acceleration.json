@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Can the velocity of an object be in a direction other than the direction of acceleration of the object? Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 2
+    },
+    {
+      "label": "The general point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "text",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          "Yes. The velocity and the acceleration need",
+          "not point the same way.",
+          "The acceleration points along the net force,",
+          "whatever the velocity happens to be doing."
+        ],
+        "why": "Velocity records how the body is moving now; acceleration records how that motion is being changed. They are set by different things, so they need not agree.",
+        "common_mistakes": [
+          "Answering no, on the belief that acceleration must always follow the motion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, velocity and acceleration can point in different directions.",
+          "accept": [
+            "yes",
+            "need not be the same",
+            "along the net force"
+          ],
+          "reject": [
+            "no"
+          ],
+          "heard_as": [
+            "yes",
+            "different directions"
+          ]
+        },
+        "memory_tip": "Velocity is where it is going. Acceleration is where the force is pushing.",
+        "margin_note": "Say yes in the first line, then prove it."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example",
+        "marks": 2,
+        "mark_note": "Example",
+        "lines": [
+          "A body thrown vertically upwards:",
+          "while it rises, velocity is upward,",
+          "but the acceleration g is downward.",
+          {
+            "text": "Here velocity and acceleration are opposite",
+            "style": "eq"
+          },
+          "so the body slows down as it rises."
+        ],
+        "why": "When acceleration opposes velocity the speed falls; when it agrees the speed rises. This example is the clearest case of opposition.",
+        "common_mistakes": [
+          "Using a body falling downwards, where both point the same way and prove nothing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a body thrown vertically upwards the velocity is upward while the acceleration g is downward.",
+          "accept": [
+            "thrown upwards",
+            "velocity up acceleration down",
+            "opposite"
+          ],
+          "reject": [
+            "falling body"
+          ],
+          "heard_as": [
+            "upwards",
+            "opposite",
+            "g downward"
+          ]
+        },
+        "memory_tip": "Rising body: going up, being pulled down. Opposite at every instant of the rise.",
+        "margin_note": "Two marks here. Name both directions explicitly."
+      },
+      {
+        "id": "s3_general",
+        "kind": "boxed_final",
+        "label": "The general point",
+        "marks": 1,
+        "mark_note": "General point",
+        "lines": [
+          {
+            "text": "Acceleration changes velocity; it need not follow it",
+            "style": "boxed"
+          },
+          "In projectile motion the velocity is at an angle",
+          "while the acceleration stays vertically down."
+        ],
+        "why": "Projectile motion generalises the example: the two are neither parallel nor opposite, but at a changing angle throughout the flight.",
+        "common_mistakes": [
+          "Claiming they must be either parallel or opposite. Any angle is possible."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That acceleration changes the velocity and need not point along it, as in projectile motion.",
+          "accept": [
+            "projectile",
+            "any angle",
+            "changes the velocity"
+          ],
+          "reject": [
+            "always parallel or opposite"
+          ],
+          "heard_as": [
+            "projectile",
+            "angle"
+          ]
+        },
+        "memory_tip": "In a projectile the angle between them changes all through the flight.",
+        "margin_note": "One general sentence closes the answer."
+      }
+    ]
+  },
+  "insider_note": "Answer yes, then give one example. A body thrown upward is the cleanest — opposite directions, same instant."
+}

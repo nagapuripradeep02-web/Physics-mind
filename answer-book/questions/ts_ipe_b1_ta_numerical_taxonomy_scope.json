@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_numerical_taxonomy_scope",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the scope and significance of numerical taxonomy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Scope: how it works",
+      "marks": 1
+    },
+    {
+      "label": "Significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK THIN: the printed answer is one sentence (\"we can easily evaluate observable differences and similarities between taxonomic groups\"). The computer, coding and equal-weight points come from the NCERT/standard account and are written in here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scope",
+        "kind": "text",
+        "label": "Scope: how it works",
+        "marks": 1,
+        "lines": [
+          "Numerical taxonomy is carried out using",
+          "computers.",
+          "Every observable character is given a number",
+          "and a code. Hundreds of characters can be",
+          "handled at one time, and each character is given",
+          "equal weight."
+        ],
+        "why": "Equal weight and the large number of characters are the two working rules of the method, so they carry the scope mark.",
+        "common_mistakes": [
+          "Writing only that it \"uses numbers\". Say what is numbered and that weight is equal.",
+          "Saying only some characters are chosen. All observable characters are used."
+        ],
+        "memory_tip": "Number the characters, code them, weigh them all the same, let the computer count.",
+        "margin_note": "Two to three lines. Equal weight is the phrase examiners look for.",
+        "mark_note": "Scope"
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "It measures likeness between taxa",
+            "style": "boxed"
+          },
+          "Because no character is favoured over another,",
+          "the grouping does not depend on one",
+          "taxonomist’s opinion. Large data sets can be",
+          "compared quickly, and the work can be repeated."
+        ],
+        "why": "The value of the method is that it removes personal judgement from grouping and can be repeated by anyone.",
+        "common_mistakes": [
+          "Saying it proves evolutionary descent. It measures likeness, not ancestry.",
+          "Giving no use at all. The question asks for significance."
+        ],
+        "memory_tip": "Equal weight means no favourite character, so no personal opinion in the result.",
+        "margin_note": "One boxed line plus one reason is the full mark.",
+        "mark_note": "Significance"
+      }
+    ]
+  },
+  "insider_note": "The book answers this in a single line. Write the equal-weight point as well; it is the part that shows you know the method."
+}

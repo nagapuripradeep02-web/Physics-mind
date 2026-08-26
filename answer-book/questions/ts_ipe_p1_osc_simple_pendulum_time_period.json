@@ -1,0 +1,493 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_simple_pendulum_time_period",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is a seconds pendulum?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Resolving the weight",
+      "marks": 2
+    },
+    {
+      "label": "The small-angle step",
+      "marks": 2
+    },
+    {
+      "label": "The time period",
+      "marks": 2
+    },
+    {
+      "label": "Seconds pendulum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Oscillations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_figure",
+        "kind": "diagram",
+        "label": "The arrangement",
+        "marks": 1,
+        "mark_note": "Figure",
+        "figure": {
+          "id": "simple_pendulum",
+          "width": 400,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "support",
+              "d": "M 110 45 L 290 45",
+              "ms": 420,
+              "w": 2.6
+            },
+            {
+              "type": "stroke",
+              "id": "ph0",
+              "d": "M 132 45 L 120 32",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "ph1",
+              "d": "M 162 45 L 150 32",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "ph2",
+              "d": "M 192 45 L 180 32",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "ph3",
+              "d": "M 222 45 L 210 32",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "ph4",
+              "d": "M 252 45 L 240 32",
+              "ms": 80
+            },
+            {
+              "type": "stroke",
+              "id": "ph5",
+              "d": "M 282 45 L 270 32",
+              "ms": 80
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 188,
+              "y": 34,
+              "text": "S",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "plumb",
+              "d": "M 200 45 L 200 240",
+              "ms": 460,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "string",
+              "d": "M 200 45 L 280 217",
+              "ms": 560
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 219,
+              "y": 130,
+              "text": "L",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "bob",
+              "d": "M 271 217 A 9 9 0 1 0 289 217 A 9 9 0 1 0 271 217",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 291,
+              "y": 209,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 200 90 A 45 45 0 0 1 219 86",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 204,
+              "y": 79,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "arc_x",
+              "d": "M 200 235 A 190 190 0 0 1 280 217",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 176,
+              "y": 258,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 240,
+              "y": 254,
+              "text": "x",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "tension",
+              "d": "M 280 217 L 261 176",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "thead",
+              "d": "M 258 187 L 261 175 L 269 182",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_t",
+              "x": 241,
+              "y": 170,
+              "text": "T",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "mg",
+              "d": "M 280 226 L 280 284",
+              "ms": 320
+            },
+            {
+              "type": "stroke",
+              "id": "mghead",
+              "d": "M 274 275 L 280 285 L 286 275",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_mg",
+              "x": 264,
+              "y": 302,
+              "text": "mg",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "mgcos",
+              "d": "M 280 217 L 300 261",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "mgcoshead",
+              "d": "M 292 254 L 301 262 L 292 265",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_mgcos",
+              "x": 300,
+              "y": 278,
+              "text": "mg cos θ",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mgsin",
+              "d": "M 280 217 L 236 237",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "mgsinhead",
+              "d": "M 245 231 L 235 238 L 246 242",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_mgsin",
+              "x": 168,
+              "y": 208,
+              "text": "mg sin θ",
+              "ms": 220,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Everything in this proof comes off the figure: the two components of mg, the arc x, and the angle θ at the support.",
+        "common_mistakes": [
+          "Drawing mg along the string instead of vertically down — mg is always vertical, whatever the angle."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a bob of mass m hangs by a string of length L from a support, displaced through a small angle theta.",
+          "accept": [
+            "draw the pendulum with the two components",
+            "mark theta, L and the bob"
+          ],
+          "reject": [
+            "mg sin theta is the restoring force"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram"
+          ]
+        },
+        "memory_tip": "Draw first: bob at A, mean position O, string at angle θ, and mg split into two parts.",
+        "margin_note": "First mark. The figure earns it: mark θ, L and the two parts of mg."
+      },
+      {
+        "id": "s2_resolve",
+        "kind": "equation",
+        "label": "Resolving the weight",
+        "marks": 2,
+        "mark_note": "Resolving",
+        "lines": [
+          "A bob of mass m hangs by a light inextensible",
+          "string of length L from a rigid support S.",
+          "Pull it aside through a small angle θ and",
+          "release it. At A its weight m g splits into",
+          "two perpendicular parts:",
+          {
+            "text": "m g cos θ — balanced by the tension T",
+            "style": "eq"
+          },
+          {
+            "text": "m g sin θ — along the arc, unbalanced",
+            "style": "eq"
+          }
+        ],
+        "why": "Only the unbalanced part can accelerate the bob, so mg sin θ is the whole of the restoring force. The balance T = mg cos θ is exact only at the extreme points; while the bob moves, T is slightly larger to supply the centripetal force. For small swings the difference is negligible, so the board line stands.",
+        "common_mistakes": [
+          "Swapping sine and cosine — the component ALONG the string is the cosine one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mg splits into mg cos theta balanced by the tension and mg sin theta along the arc.",
+          "accept": [
+            "mg cos theta balanced by tension",
+            "mg sin theta is the restoring force"
+          ],
+          "reject": [
+            "sin theta is nearly theta"
+          ],
+          "heard_as": [
+            "mg cos theta",
+            "mg sin theta"
+          ]
+        },
+        "memory_tip": "mg cos θ is cancelled by the tension; mg sin θ survives as the restoring force.",
+        "margin_note": "Two marks here. Both components, and which one the tension balances."
+      },
+      {
+        "id": "s3_small_angle",
+        "kind": "equation",
+        "label": "The small-angle step",
+        "marks": 2,
+        "mark_note": "Small angle",
+        "lines": [
+          "The restoring force acts back towards O, so",
+          {
+            "text": "F = −m g sin θ",
+            "style": "eq"
+          },
+          "For a SMALL angle, sin θ ≈ θ, and from the",
+          "figure θ = x/L. With F = m a,",
+          {
+            "text": "m a = −m g (x/L)   ⇒   a = −(g/L) x",
+            "style": "eq"
+          },
+          "a ∝ −x, so the motion is simple harmonic."
+        ],
+        "why": "The small-angle step is where the approximation lives — a pendulum is only ACCURATELY simple harmonic for small swings, and saying so is honest physics.",
+        "common_mistakes": [
+          "Using sin θ ≈ θ with θ in degrees; the approximation holds only in radians."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F is minus mg sin theta, sin theta is nearly theta which is x by L, giving a equals minus g by L times x.",
+          "accept": [
+            "sin theta is nearly theta",
+            "theta is x by L",
+            "a equals minus g by L into x"
+          ],
+          "reject": [
+            "mg cos theta balanced by tension"
+          ],
+          "heard_as": [
+            "small angle",
+            "g by L"
+          ]
+        },
+        "memory_tip": "The approximation lives here: for small θ, sin θ ≈ θ = x/L. Writing it is what makes the motion SHM.",
+        "margin_note": "Two more marks. sin θ ≈ θ and θ = x/L are separate lines. Write both."
+      },
+      {
+        "id": "s4_period",
+        "kind": "equation",
+        "label": "The time period",
+        "marks": 2,
+        "mark_note": "Time period",
+        "lines": [
+          "Comparing a = −(g/L)x with a = −ω²x,",
+          {
+            "text": "ω² = g/L   ⇒   ω = √(g/L)",
+            "style": "eq"
+          },
+          {
+            "text": "T = 2π/ω = 2π√(L/g)",
+            "style": "eq"
+          },
+          "The period depends only on L and g — never on",
+          "the mass of the bob, and not on the amplitude",
+          "so long as the angle stays small."
+        ],
+        "why": "That the mass cancels is the famous part: a heavy bob and a light bob on the same string keep the same time.",
+        "common_mistakes": [
+          "Writing T = 2π√(g/L) with the fraction upside down."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That omega is root g by L, so T is 2 pi root L by g, independent of the mass.",
+          "accept": [
+            "T is 2 pi root L by g",
+            "omega is root g by L",
+            "independent of the mass"
+          ],
+          "reject": [
+            "sin theta is nearly theta"
+          ],
+          "heard_as": [
+            "2 pi root L by g",
+            "mass cancels"
+          ]
+        },
+        "memory_tip": "Match a = −(g/L)x with a = −ω²x: T = 2π√(L/g). The mass never appears.",
+        "margin_note": "Two marks. Compare with a = −ω²x first, then turn ω into T."
+      },
+      {
+        "id": "s5_seconds",
+        "kind": "boxed_final",
+        "label": "Seconds pendulum",
+        "marks": 1,
+        "mark_note": "Seconds pendulum",
+        "lines": [
+          {
+            "text": "Seconds pendulum: T = 2 s",
+            "style": "boxed"
+          },
+          "A simple pendulum whose time period of",
+          "oscillation is 2 seconds is called a seconds",
+          "pendulum. On the surface of the earth its",
+          "length works out to about 1 metre."
+        ],
+        "why": "Two seconds per full swing means one second per half swing — which is why the length was chosen for clocks.",
+        "common_mistakes": [
+          "Saying its time period is 1 second; it is 2 seconds, one for each half swing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a seconds pendulum has a time period of 2 seconds and a length of about 1 metre.",
+          "accept": [
+            "time period is two seconds",
+            "length about one metre"
+          ],
+          "reject": [
+            "T is 2 pi root L by g"
+          ],
+          "heard_as": [
+            "seconds pendulum",
+            "two seconds"
+          ]
+        },
+        "memory_tip": "Seconds pendulum: T = 2 s, length close to 1 metre.",
+        "margin_note": "The last mark. One sentence: T = 2 s, length about 1 metre."
+      }
+    ]
+  },
+  "insider_note": "The small-angle line sin θ ≈ θ carries 2 marks — do not skip it on the way to the formula."
+}

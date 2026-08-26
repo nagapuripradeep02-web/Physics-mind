@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_omega_taxonomy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is omega taxonomy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The evidence it uses",
+      "marks": 1
+    },
+    {
+      "label": "Definition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Taxonomy of Angiosperms · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_evidence",
+        "kind": "text",
+        "label": "The evidence it uses",
+        "marks": 1,
+        "lines": [
+          "Alpha taxonomy uses only the external form of",
+          "the plant. Omega taxonomy adds evidence from",
+          "every other branch:",
+          "embryology, cytology, palynology, phytochemistry",
+          "and serology, along with phylogenetic",
+          "(evolutionary) data."
+        ],
+        "why": "Listing the branches is what separates omega from alpha, so the list carries the first mark.",
+        "common_mistakes": [
+          "Writing only \"all characters\" without naming any branch.",
+          "Leaving out phylogenetic data, which the definition includes."
+        ],
+        "memory_tip": "Four of the extra branches end in -logy — embryology, cytology, palynology, serology — and the fifth is phytochemistry.",
+        "margin_note": "Name at least three branches. Two lines is enough here.",
+        "mark_note": "Sources of data"
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Omega taxonomy uses all available data",
+            "style": "boxed"
+          },
+          "It is the final stage of classification. The",
+          "grouping does not rest on any one character, so",
+          "it is as close to natural relationship as the",
+          "evidence allows."
+        ],
+        "why": "Omega is the last letter of the Greek alphabet, and this is the last, most complete stage of classifying a group.",
+        "common_mistakes": [
+          "Calling omega taxonomy a separate branch of biology. It is a stage of taxonomy.",
+          "Saying it uses only molecular data."
+        ],
+        "memory_tip": "Alpha is the first Greek letter and the first look, the outside only. Omega is the last letter and uses everything.",
+        "margin_note": "One boxed sentence earns this mark. Do not write a paragraph.",
+        "mark_note": "Definition"
+      }
+    ]
+  },
+  "insider_note": "Alpha and omega taxonomy are asked as a pair. If you can state the contrast in one line you have both cards."
+}

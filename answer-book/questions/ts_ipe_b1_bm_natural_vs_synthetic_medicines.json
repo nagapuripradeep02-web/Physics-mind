@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_natural_vs_synthetic_medicines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Medicines are either man made (synthetic) or obtained from living organisms like plants, bacteria and animals, and the latter are called natural products. Write against each of the following whether it was initially obtained as a natural product or as a synthetic chemical: penicillin, sulfonamide, vitamin C, growth hormone.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three natural products",
+      "marks": 1
+    },
+    {
+      "label": "The one synthetic chemical",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 1. The book's four answers (penicillin natural, sulfonamide synthetic, vitamin C natural, growth hormone natural) match the standard NCERT key and are used unchanged; the source of each natural product is added here because a bare one-word answer is thin for two marks. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_natural",
+        "kind": "text",
+        "label": "The three natural products",
+        "marks": 1,
+        "mark_note": "Three correct",
+        "lines": [
+          "Penicillin — natural product.",
+          "It is obtained from the fungus Penicillium.",
+          "Vitamin C — natural product.",
+          "It is obtained from plants such as citrus fruits.",
+          "Growth hormone — natural product.",
+          "It is obtained from the pituitary gland."
+        ],
+        "why": "A natural product is one that was first taken from a living organism. Penicillin came from a fungus, vitamin C from plants and growth hormone from an animal gland, so all three are natural products even though they are manufactured today.",
+        "common_mistakes": [
+          "Calling penicillin synthetic because it is manufactured now. The question asks how it was INITIALLY obtained.",
+          "Calling growth hormone synthetic. It was first taken from the pituitary gland."
+        ],
+        "memory_tip": "Three come from living things — a fungus, a plant and a gland. Only one is built in a laboratory.",
+        "margin_note": "One line per item is enough. Naming the source organism makes the answer safe."
+      },
+      {
+        "id": "s2_synthetic",
+        "kind": "boxed_final",
+        "label": "The one synthetic chemical",
+        "marks": 1,
+        "mark_note": "Synthetic one",
+        "lines": [
+          {
+            "text": "Sulfonamide — synthetic chemical",
+            "style": "boxed"
+          },
+          "It is made in the laboratory and is not",
+          "taken from any living organism."
+        ],
+        "why": "Sulfonamide is the only one of the four that was built by chemists from the start, so it is the single synthetic answer in the list.",
+        "common_mistakes": [
+          "Writing 'antibiotic' instead of 'synthetic chemical'. The question asks for natural or synthetic, not for the use.",
+          "Marking two items synthetic. Only sulfonamide is."
+        ],
+        "memory_tip": "Sulfonamide is the odd one out — the only man-made name in the list.",
+        "margin_note": "Write the word 'synthetic' clearly. That single word carries this mark."
+      }
+    ]
+  },
+  "insider_note": "The examiner looks for the words 'natural product' or 'synthetic chemical' written against each item. Three natural and one synthetic is the whole answer."
+}

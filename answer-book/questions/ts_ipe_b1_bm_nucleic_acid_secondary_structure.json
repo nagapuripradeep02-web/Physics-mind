@@ -1,0 +1,350 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_nucleic_acid_secondary_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "'Nucleic acid exhibits secondary structure.' Justify.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Watson and Crick double helix",
+      "marks": 1
+    },
+    {
+      "label": "Antiparallel strands and the backbone",
+      "marks": 1
+    },
+    {
+      "label": "Diagram of the double helix",
+      "marks": 1
+    },
+    {
+      "label": "Complementary base pairing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.27, the chapter's ONLY short-answer question. The book prints six answer points and a labelled DNA double-helix figure (sugar phosphate backbone, base pair, 5' and 3' ends, 2.0 nm width); the same points and the same four label names are carried here. The book's hydrogen-bond counts (two between A and T, three between G and C) are correct and are kept. The book's scanned figure appears to print 5' at the top left and at the bottom left, which would make the strands parallel; this card labels the ends 5'/3' at the top and 3'/5' at the bottom so the diagram agrees with the book's own sentence that the strands are antiparallel. The figure is redrawn as an exam-drawable line diagram, never traced. Chapter 10 has NO long-answer section in this book, so no 8-mark form is authored. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_double_helix",
+        "kind": "text",
+        "label": "Watson and Crick double helix",
+        "marks": 1,
+        "mark_note": "Model named",
+        "lines": [
+          "Secondary structure means the regular shape",
+          "that a long chain molecule folds into.",
+          "Watson and Crick showed that DNA is not a",
+          "straight chain: two polynucleotide strands",
+          "coil around one common axis and form a",
+          "double helix.",
+          "This regular helical shape is the secondary",
+          "structure of the nucleic acid."
+        ],
+        "why": "The question says 'justify', so the answer must first say what secondary structure means and then name the shape DNA takes. The Watson and Crick double helix is that shape, which is why the statement is true.",
+        "common_mistakes": [
+          "Describing the order of the bases. That is the primary structure, not the secondary structure.",
+          "Leaving out the names Watson and Crick. The model's name is expected in this answer."
+        ],
+        "memory_tip": "Primary structure is the order of the units; secondary structure is the shape they coil into.",
+        "margin_note": "Open with what secondary structure means, then name the double helix. Four or five lines."
+      },
+      {
+        "id": "s2_backbone",
+        "kind": "text",
+        "label": "Antiparallel strands and the backbone",
+        "marks": 1,
+        "mark_note": "Backbone + antiparallel",
+        "lines": [
+          "The two strands are antiparallel: one runs",
+          "in the 5′ → 3′ direction and the other runs",
+          "in the 3′ → 5′ direction.",
+          "The backbone of each strand is a repeating",
+          "sugar – phosphate – sugar chain and lies on",
+          "the outside of the helix.",
+          "The nitrogenous bases point inwards and the",
+          "helix is 2.0 nm wide all along."
+        ],
+        "why": "A helix stays regular only if the two strands are built the same way and run in opposite directions. Backbone outside and bases inside is what keeps the width the same at every point.",
+        "common_mistakes": [
+          "Writing that the strands are parallel. They are antiparallel, running in opposite directions.",
+          "Placing the bases outside and the backbone inside. It is the other way round."
+        ],
+        "memory_tip": "Backbone outside, bases inside, strands running opposite ways.",
+        "margin_note": "Three facts here: antiparallel, sugar-phosphate backbone, bases inside. One line each."
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram of the double helix",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "dna_double_helix",
+          "width": 460,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "strand_right",
+              "d": "M 205 84 L 204.6 86 L 203.2 88 L 201.1 90 L 198.3 92 L 194.7 94 L 190.7 96 L 186.1 98 L 181.3 100 L 176.3 102 L 171.2 104 L 166.3 106 L 161.6 108 L 157.2 110 L 153.4 112 L 150.2 114 L 147.7 116 L 146 118 L 145.1 120 L 145.1 122 L 146 124 L 147.7 126 L 150.2 128 L 153.4 130 L 157.2 132 M 194.7 148 L 198.3 150 L 201.1 152 L 203.2 154 L 204.6 156 L 205 158 L 204.6 160 L 203.2 162 L 201.1 164 L 198.3 166 L 194.7 168 L 190.7 170 L 186.1 172 L 181.3 174 L 176.3 176 L 171.2 178 L 166.3 180 L 161.6 182 L 157.2 184 L 153.4 186 L 150.2 188 L 147.7 190 L 146 192 L 145.1 194 L 145.1 196 L 146 198 L 147.7 200 L 150.2 202 L 153.4 204 L 157.2 206 M 194.7 222 L 198.3 224 L 201.1 226 L 203.2 228 L 204.6 230 L 205 232",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "strand_left",
+              "d": "M 145 84 L 145.4 86 L 146.8 88 L 148.9 90 L 151.7 92 L 155.3 94 M 192.8 110 L 196.6 112 L 199.8 114 L 202.3 116 L 204 118 L 204.9 120 L 204.9 122 L 204 124 L 202.3 126 L 199.8 128 L 196.6 130 L 192.8 132 L 188.4 134 L 183.7 136 L 178.8 138 L 173.7 140 L 168.7 142 L 163.9 144 L 159.3 146 L 155.3 148 L 151.7 150 L 148.9 152 L 146.8 154 L 145.4 156 L 145 158 L 145.4 160 L 146.8 162 L 148.9 164 L 151.7 166 L 155.3 168 M 192.8 184 L 196.6 186 L 199.8 188 L 202.3 190 L 204 192 L 204.9 194 L 204.9 196 L 204 198 L 202.3 200 L 199.8 202 L 196.6 204 L 192.8 206 L 188.4 208 L 183.7 210 L 178.8 212 L 173.7 214 L 168.7 216 L 163.9 218 L 159.3 220 L 155.3 222 L 151.7 224 L 148.9 226 L 146.8 228 L 145.4 230 L 145 232",
+              "ms": 1100
+            },
+            {
+              "type": "stroke",
+              "id": "rung_1",
+              "d": "M 150.2 91 L 199.8 91",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_2",
+              "d": "M 150.2 114 L 199.8 114",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_3",
+              "d": "M 145 121 L 205 121",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_4",
+              "d": "M 150.2 128 L 199.8 128",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_5",
+              "d": "M 150.2 151 L 199.8 151",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_6",
+              "d": "M 145 158 L 205 158",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_7",
+              "d": "M 150.2 165 L 199.8 165",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_8",
+              "d": "M 150.2 188 L 199.8 188",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_9",
+              "d": "M 145 195 L 205 195",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_10",
+              "d": "M 150.2 202 L 199.8 202",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "rung_11",
+              "d": "M 150.2 225 L 199.8 225",
+              "ms": 90,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "leader_backbone",
+              "d": "M 155 50 L 146 84",
+              "ms": 260,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lbl_backbone",
+              "x": 110,
+              "y": 28,
+              "text": "Sugar phosphate backbone",
+              "ms": 240,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "leader_basepair",
+              "d": "M 209 160 L 272 172",
+              "ms": 280,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lbl_basepair",
+              "x": 280,
+              "y": 180,
+              "text": "Base pair",
+              "ms": 240,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_5_top",
+              "x": 112,
+              "y": 101,
+              "text": "5′",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_3_top",
+              "x": 212,
+              "y": 101,
+              "text": "3′",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_3_bottom",
+              "x": 112,
+              "y": 244,
+              "text": "3′",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_5_bottom",
+              "x": 212,
+              "y": 244,
+              "text": "5′",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "guide_left",
+              "d": "M 145 236 L 145 254",
+              "ms": 200,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "guide_right",
+              "d": "M 205 236 L 205 254",
+              "ms": 200,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "width_line",
+              "d": "M 145 257 L 205 257",
+              "ms": 300,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "width_arrow_l",
+              "d": "M 152 253 L 145 257 L 152 261",
+              "ms": 120,
+              "w": 1.5
+            },
+            {
+              "type": "stroke",
+              "id": "width_arrow_r",
+              "d": "M 198 253 L 205 257 L 198 261",
+              "ms": 120,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lbl_width",
+              "x": 150,
+              "y": 277,
+              "text": "2.0 nm",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The diagram carries a mark of its own. Two coiled strands with rungs between them, the backbone and one base pair labelled, the 5′ and 3′ ends marked and the 2.0 nm width shown is everything the examiner looks for.",
+        "common_mistakes": [
+          "Drawing a flat ladder with no twist. The shape asked for is a helix.",
+          "Leaving the 5′ and 3′ ends off. Without them the diagram does not show that the strands are antiparallel."
+        ],
+        "memory_tip": "Draw a ladder first, then twist it. Label backbone, base pair, the four ends and the 2.0 nm width.",
+        "margin_note": "Keep the drawing small and label it. Four labels are enough for the mark."
+      },
+      {
+        "id": "s4_base_pairing",
+        "kind": "boxed_final",
+        "label": "Complementary base pairing",
+        "marks": 1,
+        "mark_note": "Base pairing",
+        "lines": [
+          {
+            "text": "A = T  (two H bonds)     G ≡ C  (three H bonds)",
+            "style": "boxed"
+          },
+          "Adenine of one strand always pairs with",
+          "thymine of the other strand.",
+          "Guanine of one strand always pairs with",
+          "cytosine of the other strand.",
+          "These hydrogen bonds hold the two strands",
+          "together and keep the helix regular."
+        ],
+        "why": "The pairing is fixed, so a purine always faces a pyrimidine and every rung is the same length. That is the reason the width stays 2.0 nm and the helix stays regular, which completes the justification.",
+        "common_mistakes": [
+          "Pairing A with C or G with T. Adenine pairs only with thymine, guanine only with cytosine.",
+          "Swapping the bond counts. A and T have two hydrogen bonds; G and C have three."
+        ],
+        "memory_tip": "A–T is the two-bond pair, G–C is the three-bond pair, so a G–C rich DNA is harder to separate.",
+        "margin_note": "The boxed pairing line plus the bond counts is what the examiner ticks here."
+      }
+    ]
+  },
+  "insider_note": "'Justify' means the answer must show WHY the helix counts as a secondary structure, so the diagram and the base-pairing rule matter as much as the definition."
+}

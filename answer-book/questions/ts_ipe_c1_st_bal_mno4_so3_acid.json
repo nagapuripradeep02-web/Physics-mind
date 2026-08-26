@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_bal_mno4_so3_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Balance the reaction MnO₄⁻ + SO₃²⁻ → Mn²⁺ + SO₄²⁻ in acid medium. (or) Write the balanced equation for the oxidation of sulphite ions to sulphate ions in acid medium by permanganate ion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identifying the two half reactions",
+      "marks": 1
+    },
+    {
+      "label": "Balanced oxidation half",
+      "marks": 1
+    },
+    {
+      "label": "Balanced reduction half",
+      "marks": 1
+    },
+    {
+      "label": "Adding and the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The final equation was independently re-checked: atoms Mn 2=2, S 5=5, O 23=23, H 6=6; charge −6 on each side."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halves",
+        "kind": "equation",
+        "label": "Identifying the two half reactions",
+        "marks": 1,
+        "mark_note": "Half reactions",
+        "lines": [
+          "S in SO₃²⁻ is +4 → +6 in SO₄²⁻ : oxidation",
+          "Mn in MnO₄⁻ is +7 → +2 in Mn²⁺ : reduction",
+          {
+            "text": "Oxidation half: SO₃²⁻ → SO₄²⁻",
+            "style": "eq"
+          },
+          {
+            "text": "Reduction half: MnO₄⁻ → Mn²⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "The ion-electron method splits the reaction into the electron-losing half and the electron-gaining half. The oxidation numbers identify which is which before any balancing starts.",
+        "common_mistakes": [
+          "Swapping the labels: MnO₄⁻ is the oxidising agent, so it is itself REDUCED.",
+          "Skipping the oxidation numbers and guessing the halves."
+        ],
+        "memory_tip": "Write the oxidation number over the changing atom first; the number that increases marks the oxidation half.",
+        "margin_note": "Both skeleton halves with the +4→+6 and +7→+2 changes earn this mark."
+      },
+      {
+        "id": "s2_oxidation_half",
+        "kind": "equation",
+        "label": "Balanced oxidation half",
+        "marks": 1,
+        "mark_note": "Oxidation half",
+        "lines": [
+          "Balance O with H₂O, H with H⁺, charge with e⁻:",
+          "SO₃²⁻ + H₂O → SO₄²⁻ (oxygen: 3 + 1 = 4)",
+          "SO₃²⁻ + H₂O → SO₄²⁻ + 2H⁺ (hydrogen: 2 = 2)",
+          {
+            "text": "SO₃²⁻ + H₂O → SO₄²⁻ + 2H⁺ + 2e⁻ … (1)",
+            "style": "eq"
+          },
+          "Charge check: −2 = (−2) + (+2) + (−2) = −2 ✓"
+        ],
+        "why": "In acid medium the fixed order is: atoms other than O and H, then O with H₂O, then H with H⁺, then charge with electrons. Electrons appear on the product side because sulphur is losing them.",
+        "common_mistakes": [
+          "Adding electrons to the left of an oxidation half. Lost electrons are products.",
+          "Skipping the final charge check, which is what fixes the electron count at 2."
+        ],
+        "memory_tip": "Order in acid: other atoms, O with H₂O, H with H⁺, charge with e⁻.",
+        "margin_note": "Equation (1) with its charge check earns this mark."
+      },
+      {
+        "id": "s3_reduction_half",
+        "kind": "equation",
+        "label": "Balanced reduction half",
+        "marks": 1,
+        "mark_note": "Reduction half",
+        "lines": [
+          "MnO₄⁻ → Mn²⁺ + 4H₂O (oxygen: 4 = 4)",
+          "MnO₄⁻ + 8H⁺ → Mn²⁺ + 4H₂O (hydrogen: 8 = 8)",
+          {
+            "text": "MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O … (2)",
+            "style": "eq"
+          },
+          "Charge check: (−1) + (+8) + (−5) = +2 = +2 ✓"
+        ],
+        "why": "The same fixed order balances the permanganate half. Manganese gains electrons, so the 5e⁻ sit on the reactant side, and the charge check confirms exactly five.",
+        "common_mistakes": [
+          "Writing 3e⁻ or 7e⁻ from the oxidation-number change without the charge check.",
+          "Putting the 8H⁺ on the product side."
+        ],
+        "memory_tip": "Permanganate to Mn²⁺ in acid is always MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O — it repeats across this chapter.",
+        "margin_note": "Equation (2) with its charge check earns this mark."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Adding and the final equation",
+        "marks": 1,
+        "mark_note": "Final equation",
+        "lines": [
+          "Equalise electrons: (1) × 5 and (2) × 2 (10e⁻ each).",
+          "5SO₃²⁻ + 5H₂O → 5SO₄²⁻ + 10H⁺ + 10e⁻",
+          "2MnO₄⁻ + 16H⁺ + 10e⁻ → 2Mn²⁺ + 8H₂O",
+          "Add and cancel 10H⁺ and 5H₂O from both sides:",
+          {
+            "text": "2MnO₄⁻ + 5SO₃²⁻ + 6H⁺ → 2Mn²⁺ + 5SO₄²⁻ + 3H₂O",
+            "style": "boxed"
+          },
+          "Check: Mn 2=2, S 5=5, O 23=23, H 6=6; charge −6 = −6"
+        ],
+        "why": "Electrons must cancel exactly, so each half is multiplied to the common count 10 before adding. Cancelling the H⁺ and H₂O common to both sides leaves the simplest balanced equation.",
+        "common_mistakes": [
+          "Leaving 16H⁺ and 8H₂O uncancelled. The final equation must be the simplest form.",
+          "Multiplying only one half reaction before adding.",
+          "Skipping the final atom-and-charge check."
+        ],
+        "memory_tip": "Cross-multiply by the electron numbers: 2 electrons and 5 electrons swap into coefficients 5 and 2.",
+        "margin_note": "The boxed equation with the atom and charge check earns this mark."
+      }
+    ]
+  },
+  "insider_note": "A three-star balancing question. The examiner ticks the two numbered half equations and the electron cancellation line — an answer that jumps straight to the final equation risks three of the four marks."
+}

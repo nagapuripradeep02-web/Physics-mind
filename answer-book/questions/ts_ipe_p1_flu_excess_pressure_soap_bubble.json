@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_excess_pressure_soap_bubble",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the expression for the excess pressure in a soap bubble.",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 6,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "A soap bubble has two surfaces",
+      "marks": 1
+    },
+    {
+      "label": "ΔP = 4T/r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a soap bubble in air is a thin liquid film with air on both faces, so it has TWO liquid–air surfaces; each curved surface of radius r contributes an excess pressure 2T/r, giving ΔP = 4T/r. This is the reason the soap bubble differs from a liquid drop and from an air bubble inside a liquid, which each have ONE surface and ΔP = 2T/r."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_surfaces",
+        "kind": "text",
+        "label": "A soap bubble has two surfaces",
+        "marks": 1,
+        "mark_note": "Two surfaces, inner and outer",
+        "lines": [
+          "A soap bubble in air is a thin film of",
+          "soap solution with air inside it and air",
+          "outside it.",
+          "So the film has TWO liquid surfaces: an",
+          "inner surface and an outer surface.",
+          "Each curved surface of radius r on its own",
+          "gives an excess pressure of 2T/r."
+        ],
+        "margin_note": "First mark. State that the film has two surfaces. This is what produces the 4.",
+        "why": "The number of liquid surfaces fixes the numerator of the formula. A soap film has air on both faces, so both faces are liquid surfaces under tension and both contribute.",
+        "common_mistakes": [
+          "Writing 2T/r, which is the value for one surface only.",
+          "Saying a soap bubble has two surfaces because it has an inside and an outside radius. The two radii are almost equal; it is the two liquid faces that matter."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a soap bubble is a film with air on both sides, so it has two liquid surfaces, each contributing 2T/r.",
+          "accept": [
+            "two surfaces, inner and outer",
+            "air inside and air outside the film",
+            "each surface gives 2T by r"
+          ],
+          "reject": [
+            "delta P is 4T by r"
+          ],
+          "heard_as": [
+            "two surfaces",
+            "soap film",
+            "inner and outer"
+          ]
+        },
+        "memory_tip": "Air inside, air outside, so both faces of the film are liquid surfaces."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "ΔP = 4T/r",
+        "marks": 1,
+        "mark_note": "ΔP = 4T/r",
+        "lines": [
+          "Adding the two surfaces together:",
+          {
+            "text": "ΔP = 2 × (2T/r) = 4T/r",
+            "style": "eq"
+          },
+          "ΔP is the pressure inside the bubble minus",
+          "the pressure outside, T is the surface",
+          "tension of the soap solution and r is the",
+          "radius of the bubble.",
+          {
+            "text": "ΔP = 4T/r",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The 4 is the number being checked. Write r to the first power.",
+        "why": "The surface count multiplies the single-surface result, so the formula follows from the first step and does not have to be memorised on its own.",
+        "common_mistakes": [
+          "Writing 4T/r² . The radius appears to the first power, not squared.",
+          "Calling ΔP the pressure inside the bubble. It is the difference between inside and outside."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the excess pressure in a soap bubble is 4T by r, with T the surface tension and r the radius.",
+          "accept": [
+            "delta P is 4T by r",
+            "four T by r",
+            "two into 2T by r"
+          ],
+          "reject": [
+            "the film has two surfaces"
+          ],
+          "heard_as": [
+            "4T by r",
+            "four T over r"
+          ]
+        },
+        "memory_tip": "Count surfaces, then multiply 2T/r by that count. Bubble: 2 × 2T/r = 4T/r."
+      }
+    ]
+  },
+  "insider_note": "One mark is the surface count, one is the formula, so 2T/r for a bubble loses both. The 4 is all that separates this from the drop."
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_state_parallel_axes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the parallel axes theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The moment of inertia of a body about",
+          "any axis equals its moment of inertia",
+          "about a parallel axis through the",
+          "centre of mass, plus the product of the",
+          "mass and the square of the distance",
+          "between the two axes."
+        ],
+        "why": "The statement-only form is how the new AP pattern asks theorems at 1-2 marks (Kepler’s law of areas was asked exactly this way in March 2026).",
+        "common_mistakes": [
+          "Dropping \"through the centre of mass\".",
+          "Explaining the +Mr² by saying every particle moves farther from the new axis — false, some particles are closer to it. The theorem holds because the cross term Σm·(distance from the CM) sums to zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I about any axis is I about the parallel axis through the CM plus mass times distance squared.",
+          "accept": [
+            "parallel axis through the centre of mass",
+            "plus M r squared"
+          ],
+          "reject": [
+            "sum about two perpendicular axes"
+          ],
+          "heard_as": [
+            "parallel",
+            "centre of mass"
+          ]
+        },
+        "memory_tip": "Parallel axes, and one of them through the centre of mass. Without that phrase the theorem is false.",
+        "margin_note": "First mark. Words only, and the words \"centre of mass\" must appear."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "I = I₀ + Mr²",
+            "style": "boxed"
+          }
+        ],
+        "why": "One line of symbols carries the whole theorem; the proof lives in the 4-mark form.",
+        "common_mistakes": [
+          "Writing I = I₀ − Mr². The theorem always adds."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I = I₀ + Mr².",
+          "accept": [
+            "I equals I naught plus M r squared"
+          ],
+          "reject": [
+            "I z equals I x plus I y"
+          ],
+          "heard_as": [
+            "I naught",
+            "M r squared"
+          ]
+        },
+        "memory_tip": "Always PLUS. Every other parallel axis has a larger moment of inertia than the centre one.",
+        "margin_note": "Second mark. One line, I = I₀ + Mr², with r named as the distance between the axes."
+      }
+    ]
+  },
+  "insider_note": "One mark for the words, one for I = I₀ + Mr². An equation with no statement above it collects half the marks."
+}

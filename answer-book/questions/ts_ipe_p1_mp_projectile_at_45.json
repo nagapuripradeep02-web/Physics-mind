@@ -90,7 +90,8 @@
             "sin two theta",
             "height and range formulas"
           ]
-        }
+        },
+        "memory_tip": "Height carries sin²θ, range carries sin 2θ. Squared in one, doubled in the other."
       },
       {
         "id": "s2_figure",
@@ -263,7 +264,8 @@
             "sketch",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "At 45° the path is wide and low — four times as wide as it is tall."
       },
       {
         "id": "s3_height_45",
@@ -311,7 +313,8 @@
             "one by root two",
             "u squared by four g"
           ]
-        }
+        },
+        "memory_tip": "Square first, then divide: (1/√2)² = ½, and ½ ÷ 2g gives 1/4g."
       },
       {
         "id": "s4_range_45",
@@ -355,7 +358,8 @@
             "two theta",
             "u squared by g"
           ]
-        }
+        },
+        "memory_tip": "2 × 45° = 90°, and sin 90° = 1, so the sine disappears and R = u²/g."
       },
       {
         "id": "s5_compare",
@@ -401,8 +405,10 @@
             "one quarter",
             "quarter of the range"
           ]
-        }
+        },
+        "memory_tip": "u²/4g is a quarter of u²/g, so the 4 belongs under R. The height is the smaller one."
       }
     ]
-  }
+  },
+  "insider_note": "No derivation is asked — the four marks are quote, substitute 45° twice, then replace u²/g by R. Stopping at H = u²/4g drops the last one."
 }

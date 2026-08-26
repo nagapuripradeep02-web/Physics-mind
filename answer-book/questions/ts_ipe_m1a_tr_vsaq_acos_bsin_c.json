@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_acos_bsin_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a cosθ − b sinθ = c, then show that a sinθ + b cosθ = ±√(a² + b² − c²).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the unknown and square both",
+      "marks": 1
+    },
+    {
+      "label": "Expand, cancel and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 136.1. Printed appearances: TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Name the unknown and square both",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole method. Call the wanted expression x, then SQUARE AND ADD the two — the cross terms cancel and only a² + b² survives.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a sinθ + b cosθ = x",
+          "Given a cosθ − b sinθ = c",
+          "Squaring and adding:",
+          "x² + c² = (a sinθ + b cosθ)² + (a cosθ − b sinθ)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the wanted expression is named x and the two expressions are squared and added.",
+          "accept": [
+            "let the required expression be x then square both and add them",
+            "name it x and square and add the two given expressions",
+            "squaring and adding is the method here",
+            "x ani peru petti, rendinni square chesi add cheyyali",
+            "square both sides and add"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let x",
+            "square and add",
+            "x squared plus c squared"
+          ]
+        },
+        "why": "Squaring and adding is the standard move whenever a sinθ + b cosθ and a cosθ − b sinθ appear together — the 2ab sinθ cosθ terms are equal and opposite.",
+        "common_mistakes": [
+          "Squaring only the given expression.",
+          "Subtracting instead of adding, which leaves the cross terms."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Expand, cancel and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The 2ab sinθ cosθ terms cancel, sin²θ + cos²θ = 1 twice over, and a² + b² is all that is left. The ± comes from the square root.",
+        "lines": [
+          "= a²sin²θ + 2ab sinθcosθ + b²cos²θ",
+          "  + a²cos²θ − 2ab sinθcosθ + b²sin²θ",
+          "= a²(sin²θ + cos²θ) + b²(sin²θ + cos²θ) = a² + b²",
+          "∴ x² + c² = a² + b²  ⇒  x² = a² + b² − c²",
+          {
+            "text": "⇒ x = ±√(a² + b² − c²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross terms cancel, sin²+cos² = 1 leaves a² + b², and taking the square root gives the ± answer.",
+          "accept": [
+            "the cross terms cancel and sin squared plus cos squared is one so we get a squared plus b squared, then square root gives plus or minus",
+            "expand, the middle terms cancel, leaving a squared plus b squared",
+            "x squared is a squared plus b squared minus c squared so x is plus or minus the root",
+            "cross terms cancel ayi a square plus b square vasthundi, root teeste plus or minus",
+            "the answer carries a plus minus from the square root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross terms cancel",
+            "a squared plus b squared",
+            "plus or minus",
+            "square root"
+          ]
+        },
+        "why": "A square root always has two signs, and nothing in the question rules either out — so the ± is part of the answer, not decoration.",
+        "common_mistakes": [
+          "Dropping the ± sign.",
+          "Failing to see that the 2ab terms cancel."
+        ]
+      }
+    ]
+  }
+}

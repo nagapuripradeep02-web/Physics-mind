@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_stage_of_chromosome_reduction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the stage of meiosis at which the actual reduction in chromosome number occurs.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stage",
+      "marks": 1
+    },
+    {
+      "label": "Why it is the reduction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, VSAQ 8) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "The stage",
+        "marks": 1,
+        "mark_note": "The stage",
+        "lines": [
+          "Meiosis I is the reduction division. Homologous",
+          "chromosomes pair in prophase I, line up as",
+          "bivalents in metaphase I, and separate in",
+          "anaphase I.",
+          "At anaphase I one whole chromosome of each",
+          "pair, still carrying its two chromatids, moves to",
+          "each pole."
+        ],
+        "why": "The number falls at the exact moment the two members of every homologous pair go to opposite poles, and that is anaphase I. Nothing before it changes the count.",
+        "common_mistakes": [
+          "Writing anaphase II. That separates sister chromatids and keeps the number the same.",
+          "Writing 'meiosis' with no stage. The question asks for a stage."
+        ],
+        "memory_tip": "Anaphase I separates whole chromosomes, so the number halves. Anaphase II separates chromatids, so the number stays.",
+        "margin_note": "Name the stage in the first line. Do not describe all of meiosis."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "Why it is the reduction",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "Anaphase I of meiosis I.",
+            "style": "boxed"
+          },
+          "Each pole now has half the number of",
+          "chromosomes, so the nuclei formed at telophase",
+          "I are haploid. This is why meiosis I is called the",
+          "reduction division."
+        ],
+        "why": "The book's key gives the same answer, 'Anaphase I of meiosis'. Adding the telophase I result shows the examiner you know WHY that stage is the reduction, and that is the second mark.",
+        "common_mistakes": [
+          "Saying the cells are haploid from prophase I. Pairing does not change the number."
+        ],
+        "memory_tip": "Reduction division is meiosis I. Equational division is meiosis II.",
+        "margin_note": "One sentence of reason. Use the word haploid."
+      }
+    ]
+  },
+  "insider_note": "Some keys accept 'meiosis I'. Writing 'anaphase I of meiosis I' covers both."
+}

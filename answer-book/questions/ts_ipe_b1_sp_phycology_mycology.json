@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_phycology_mycology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the branches of Botany which deal with the chlorophyllous autotrophic thallophytes and the non-chlorophyllous heterotrophic thallophytes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Phycology",
+      "marks": 1
+    },
+    {
+      "label": "Mycology",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phycology",
+        "kind": "text",
+        "label": "Phycology (algae)",
+        "marks": 1,
+        "mark_note": "Phycology",
+        "lines": [
+          "Chlorophyllous autotrophic thallophytes are",
+          "the algae. The branch of Botany that deals",
+          "with them is phycology."
+        ],
+        "why": "The long phrase decodes first: thallophytes that have chlorophyll and make their own food are the algae — and the study of algae is phycology.",
+        "common_mistakes": [
+          "Answering 'algae' and stopping — the question asks for the branch, phycology.",
+          "Writing mycology for algae — myco- means fungus, not alga."
+        ],
+        "memory_tip": "Phyco- = alga: green, self-feeding thallophyte → alga → phycology.",
+        "margin_note": "Decode the phrase to the group, then name the branch."
+      },
+      {
+        "id": "s2_mycology",
+        "kind": "boxed_final",
+        "label": "Mycology (fungi)",
+        "marks": 1,
+        "mark_note": "Mycology",
+        "lines": [
+          "Non-chlorophyllous heterotrophic thallophytes",
+          "are the fungi; the branch that deals with",
+          "them is mycology.",
+          {
+            "text": "Algae → Phycology · Fungi → Mycology",
+            "style": "boxed"
+          }
+        ],
+        "why": "Thallophytes without chlorophyll cannot make their own food and feed on other matter — the fungi; their study is mycology.",
+        "common_mistakes": [
+          "Swapping the two branch names — mycology is fungi, phycology is algae.",
+          "Writing 'fungology' — the branch name is mycology."
+        ],
+        "memory_tip": "Myco- = fungus, as in mycorrhiza (fungus root); the other prefix, phyco-, is the alga.",
+        "margin_note": "The boxed pair line shows both answers at a glance."
+      }
+    ]
+  },
+  "insider_note": "The question hides two one-word answers behind two long phrases; translate each phrase to its plant group first, then attach the -logy name."
+}

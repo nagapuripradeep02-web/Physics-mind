@@ -1,0 +1,72 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_mycorrhiza_coralloid_roots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the gymnosperms which contain mycorrhiza and coralloid roots respectively.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Mycorrhiza — Pinus", "marks": 1 },
+    { "label": "Coralloid roots — Cycas", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 4. The book prints 'Corolloid roots'; the correct spelling, coralloid, is used here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pinus",
+        "kind": "text",
+        "label": "Mycorrhiza — Pinus",
+        "marks": 1,
+        "mark_note": "Pinus",
+        "lines": [
+          "Mycorrhiza (a root–fungus association)",
+          "is found in Pinus."
+        ],
+        "why": "In Pinus the roots live in symbiotic association with a fungus; the fungus increases absorption of water and minerals. This is NCERT's own example.",
+        "common_mistakes": [
+          "Writing Cycas for mycorrhiza — Cycas has the coralloid roots.",
+          "Calling mycorrhiza a disease. It is a symbiotic association; both partners benefit."
+        ],
+        "memory_tip": "Keep the question's order: mycorrhiza–Pinus first, coralloid roots–Cycas second — P before C.",
+        "margin_note": "Genus name plus one identifying phrase is enough."
+      },
+      {
+        "id": "s2_cycas",
+        "kind": "boxed_final",
+        "label": "Coralloid roots — Cycas",
+        "marks": 1,
+        "mark_note": "Cycas",
+        "lines": [
+          { "text": "Coralloid roots → Cycas", "style": "boxed" },
+          "These specialised roots contain nitrogen-",
+          "fixing cyanobacteria."
+        ],
+        "why": "In Cycas, small specialised roots called coralloid roots hold nitrogen-fixing cyanobacteria. The book spells them 'corolloid'; the correct word is coralloid — the roots look like coral.",
+        "common_mistakes": [
+          "Spelling it 'corolloid' as the book prints — the word is coralloid, from coral.",
+          "Writing that the roots fix nitrogen themselves — the cyanobacteria inside them do."
+        ],
+        "memory_tip": "Coralloid roots look like coral — the name describes the shape.",
+        "margin_note": "Underline the genus names Pinus and Cycas."
+      }
+    ]
+  },
+  "insider_note": "The word 'respectively' fixes the order — mycorrhiza with Pinus first, coralloid roots with Cycas second; a swapped order loses both marks."
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_shm_terms_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define amplitude, time period, frequency and phase of a particle in simple harmonic motion.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Amplitude and time period",
+      "marks": 2
+    },
+    {
+      "label": "Frequency and phase",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_amplitude_period",
+        "kind": "text",
+        "label": "Amplitude and time period",
+        "marks": 2,
+        "mark_note": "A and T",
+        "lines": [
+          {
+            "text": "Amplitude (A):",
+            "style": "heading"
+          },
+          "the maximum displacement of the particle from",
+          "its mean position. SI unit: metre.",
+          {
+            "text": "Time period (T):",
+            "style": "heading"
+          },
+          "the time taken for one complete oscillation.",
+          "SI unit: second."
+        ],
+        "why": "Amplitude is measured from the MEAN position, not from one end of the path to the other — the end-to-end span is 2A, and one full oscillation covers a path of 4A.",
+        "common_mistakes": [
+          "Calling the whole span of the motion the amplitude; that is twice the amplitude."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That amplitude is the maximum displacement from the mean position and the time period is the time for one complete oscillation.",
+          "accept": [
+            "maximum displacement from the mean position",
+            "time for one complete oscillation"
+          ],
+          "reject": [
+            "number of oscillations per second"
+          ],
+          "heard_as": [
+            "amplitude",
+            "time period"
+          ]
+        },
+        "memory_tip": "One time period is a return to the same point moving the same way, not just a return.",
+        "margin_note": "Two marks here, one for each definition. Add the SI unit to both."
+      },
+      {
+        "id": "s2_frequency_phase",
+        "kind": "boxed_final",
+        "label": "Frequency and phase",
+        "marks": 2,
+        "mark_note": "n and phase",
+        "lines": [
+          {
+            "text": "Frequency (n):",
+            "style": "heading"
+          },
+          "the number of oscillations made in one second.",
+          "SI unit: hertz (Hz).",
+          {
+            "text": "Phase:",
+            "style": "heading"
+          },
+          "the quantity (ωt + φ) that fixes where the",
+          "particle is and which way it is moving at that",
+          "instant.",
+          {
+            "text": "n = 1/T,    phase = ωt + φ",
+            "style": "boxed"
+          }
+        ],
+        "why": "Phase is what separates two particles with the same amplitude and period but caught at different moments of their swing.",
+        "common_mistakes": [
+          "Confusing phase with phase DIFFERENCE, which compares two oscillations rather than describing one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That frequency is the number of oscillations per second, equal to one by T, and phase is omega t plus phi.",
+          "accept": [
+            "oscillations per second",
+            "n is one by T",
+            "phase is omega t plus phi"
+          ],
+          "reject": [
+            "maximum displacement from the mean position"
+          ],
+          "heard_as": [
+            "frequency",
+            "phase"
+          ]
+        },
+        "memory_tip": "Hertz is oscillations per second, so n = 1/T reads off the unit. Phase is the whole angle ωt + φ, not just φ.",
+        "margin_note": "The other two marks. Frequency needs its unit; phase needs the whole ωt + φ."
+      }
+    ]
+  },
+  "insider_note": "Four terms, four marks — one each, so a missing term costs a whole mark. Give the SI unit with each of the first three."
+}

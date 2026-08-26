@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_parachutist_motion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A parachutist flying in an aeroplane jumps when it is at a height of 3 km above the ground. He opens his parachute when he is about 1 km above the ground. Describe his motion.",
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Before opening",
+      "marks": 2
+    },
+    {
+      "label": "After opening",
+      "marks": 1
+    },
+    {
+      "label": "Terminal velocity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_before",
+        "kind": "text",
+        "label": "Before opening",
+        "marks": 2,
+        "mark_note": "Before",
+        "lines": [
+          "From 3 km to 1 km he falls freely.",
+          "His initial vertical velocity is zero, and he",
+          "keeps the horizontal velocity of the aeroplane.",
+          "He accelerates downward at g, so his",
+          "downward speed increases steadily."
+        ],
+        "why": "He leaves a horizontally moving aeroplane, so his motion begins as a projectile: steady horizontal velocity with a vertical velocity that grows from zero. The marked answer neglects air resistance until the parachute opens; in reality drag also acts during this 2 km stage, but the exam answer treats it as free fall at g.",
+        "common_mistakes": [
+          "Saying he starts with a downward velocity. He starts with zero vertical velocity.",
+          "Forgetting the horizontal velocity carried from the aeroplane."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That from 3 km to 1 km he falls freely, starting with zero vertical velocity and accelerating downward at g while keeping the aeroplane’s horizontal velocity.",
+          "accept": [
+            "free fall",
+            "accelerates at g",
+            "horizontal velocity of the plane"
+          ],
+          "reject": [
+            "starts with downward velocity"
+          ],
+          "heard_as": [
+            "free fall",
+            "g",
+            "horizontal"
+          ]
+        },
+        "memory_tip": "Before the parachute: free fall at g, plus the plane’s horizontal velocity.",
+        "margin_note": "Two marks. Give both the vertical and horizontal parts."
+      },
+      {
+        "id": "s2_after",
+        "kind": "text",
+        "label": "After opening",
+        "marks": 1,
+        "mark_note": "After",
+        "lines": [
+          "At 1 km the parachute opens. Air resistance",
+          "and buoyancy now act upward, opposing his",
+          "weight. For a while the upward force is larger",
+          "than his weight, so the net force points upward",
+          "and he decelerates."
+        ],
+        "why": "The parachute increases the surface area enormously, so the upward drag becomes large enough to exceed his weight for a while and slow him down.",
+        "common_mistakes": [
+          "Saying he stops instantly when the parachute opens. He decelerates over a distance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when the parachute opens air resistance acts upward, the net force falls and he decelerates.",
+          "accept": [
+            "air resistance",
+            "decelerates",
+            "opposes the weight"
+          ],
+          "reject": [
+            "stops immediately"
+          ],
+          "heard_as": [
+            "parachute opens",
+            "air resistance"
+          ]
+        },
+        "memory_tip": "The parachute adds AREA, so drag jumps and he slows.",
+        "margin_note": "Name the upward force: air resistance."
+      },
+      {
+        "id": "s3_terminal",
+        "kind": "boxed_final",
+        "label": "Terminal velocity",
+        "marks": 1,
+        "mark_note": "Terminal velocity",
+        "lines": [
+          {
+            "text": "Drag soon balances weight, so a = 0",
+            "style": "boxed"
+          },
+          "From then he falls with a constant terminal",
+          "velocity in a straight line until he reaches",
+          "the ground."
+        ],
+        "why": "Drag grows with speed, so as he slows the drag falls until it exactly matches his weight. At that point the acceleration is zero and the speed stops changing.",
+        "common_mistakes": [
+          "Saying he keeps decelerating all the way to the ground. He settles at a constant terminal velocity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the drag soon balances his weight, the acceleration becomes zero and he falls at a constant terminal velocity.",
+          "accept": [
+            "terminal velocity",
+            "acceleration zero",
+            "constant velocity"
+          ],
+          "reject": [
+            "keeps slowing to zero"
+          ],
+          "heard_as": [
+            "terminal velocity",
+            "constant"
+          ]
+        },
+        "memory_tip": "Drag rises with speed until it equals weight. Then a = 0 — terminal velocity.",
+        "margin_note": "The phrase \"terminal velocity\" is the mark."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. Split the answer at the moment the parachute opens — before and after are two different motions."
+}

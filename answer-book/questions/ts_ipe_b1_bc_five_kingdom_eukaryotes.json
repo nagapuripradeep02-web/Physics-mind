@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_five_kingdom_eukaryotes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Who proposed five kingdom classification? How many kingdoms of this classification contain eukaryotes?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Proposer",
+      "marks": 1
+    },
+    {
+      "label": "Eukaryotic kingdoms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_proposer",
+        "kind": "text",
+        "label": "Proposer",
+        "marks": 1,
+        "mark_note": "Whittaker",
+        "lines": [
+          "R.H. Whittaker (1969) proposed the",
+          "five kingdom classification.",
+          "The five kingdoms: Monera, Protista,",
+          "Fungi, Plantae and Animalia."
+        ],
+        "why": "Naming the scientist with the year and listing the five kingdoms sets up the count the second part of the question asks for.",
+        "common_mistakes": [
+          "Writing Linnaeus. Linnaeus gave the two kingdom system; Whittaker gave five.",
+          "Missing one kingdom from the list — usually Protista."
+        ],
+        "memory_tip": "Whittaker, 1969, five kingdoms: Monera, Protista, Fungi, Plantae, Animalia.",
+        "margin_note": "Name plus year is the safe form; the list supports the second part."
+      },
+      {
+        "id": "s2_eukaryotes",
+        "kind": "boxed_final",
+        "label": "Eukaryotic kingdoms",
+        "marks": 1,
+        "mark_note": "Four",
+        "lines": [
+          "Only Monera is prokaryotic.",
+          "Protista, Fungi, Plantae and Animalia",
+          "are eukaryotic.",
+          {
+            "text": "Four kingdoms of the five contain eukaryotes.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Only bacteria and cyanobacteria (kingdom Monera) are prokaryotic, so the remaining four kingdoms are all eukaryotic.",
+        "common_mistakes": [
+          "Answering five. Monera is prokaryotic, so the eukaryotic count is four.",
+          "Placing Protista with the prokaryotes. Protists are eukaryotic."
+        ],
+        "memory_tip": "Five kingdoms minus Monera = four eukaryotic kingdoms.",
+        "margin_note": "The number four with the four names is the full second mark."
+      }
+    ]
+  },
+  "insider_note": "The second part is the catch: many students write five; subtracting Monera gives the marked answer, four."
+}

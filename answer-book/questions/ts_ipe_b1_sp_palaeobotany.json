@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_palaeobotany",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is palaeobotany? What is its use?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Its use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The study of fossil plants is called",
+          "palaeobotany."
+        ],
+        "why": "'What is palaeobotany' is a definition mark, and the marked phrase is 'fossil plants' — the branch reads plants preserved from past ages.",
+        "common_mistakes": [
+          "Writing 'study of old plants' — the marked phrase is fossil plants.",
+          "Confusing it with palynology, the study of pollen and spores."
+        ],
+        "memory_tip": "Palaeo- means ancient — palaeobotany is the botany of ancient (fossil) plants.",
+        "margin_note": "One line for the definition."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "Its use",
+        "marks": 1,
+        "mark_note": "Use",
+        "lines": [
+          {
+            "text": "Use: it traces the course of evolution in plants.",
+            "style": "boxed"
+          },
+          "Fossil plants show what plants of past ages",
+          "looked like; comparing them with living",
+          "plants shows how plants changed with time."
+        ],
+        "why": "The second half asks the use: fossils are the direct record of past plants, so comparing them with living plants reveals the path plant evolution took.",
+        "common_mistakes": [
+          "Stopping at the definition — the use is a separate mark.",
+          "Writing 'it tells the age of rocks' — that is geology's use of fossils, not the botany answer."
+        ],
+        "memory_tip": "Fossil = past plant, living = present plant; the change from past to present is evolution.",
+        "margin_note": "The boxed use-line plus one supporting sentence."
+      }
+    ]
+  },
+  "insider_note": "Two-part VSAQs mark the parts separately — label the second part with the word 'Use:' so the examiner cannot miss it."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_open_closed_systems",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are open and closed systems? Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Open system",
+      "marks": 1
+    },
+    {
+      "label": "Closed system",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) asks Define system (VSAQ 1) and the isolated system (VSAQ 9) but never the open and closed types, so this cell fills that gap. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Definitions and examples verified against the isolated-system card. Replaced a Rule 41 metaphor in the closed-system memory tip (closed door, open window) with the literal statement. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_open",
+        "kind": "text",
+        "label": "Open system",
+        "marks": 1,
+        "mark_note": "Definition + example",
+        "lines": [
+          "Open system: exchanges both matter and",
+          "energy with its surroundings.",
+          "Example: water heated in an open beaker —",
+          "steam leaves (matter) and heat enters",
+          "(energy)."
+        ],
+        "why": "The three system types are separated by one test: what crosses the boundary. In an open system both matter and energy cross.",
+        "common_mistakes": [
+          "Giving an example without naming what crosses — say which part is the matter and which is the energy."
+        ],
+        "memory_tip": "Open beaker: steam out, heat in — both kinds of exchange in one picture.",
+        "margin_note": "Definition plus one example with both exchanges named."
+      },
+      {
+        "id": "s2_closed",
+        "kind": "boxed_final",
+        "label": "Closed system",
+        "marks": 1,
+        "mark_note": "Definition + example",
+        "lines": [
+          "Closed system: exchanges energy but not",
+          "matter with its surroundings.",
+          "Example: water heated in a sealed copper",
+          "vessel — heat passes through the walls,",
+          "but no water leaves.",
+          {
+            "text": "Open: matter and energy cross. Closed: only energy.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Sealing the vessel stops matter, but conducting walls still pass heat — that one difference is what makes the system closed rather than open or isolated.",
+        "common_mistakes": [
+          "Confusing closed with isolated — an isolated system blocks energy as well, a closed system does not."
+        ],
+        "memory_tip": "Sealed but conducting walls: matter is stopped, energy still passes.",
+        "margin_note": "The boundary material decides: sealed but conducting = closed."
+      }
+    ]
+  }
+}

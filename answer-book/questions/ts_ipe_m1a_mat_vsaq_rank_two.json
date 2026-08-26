@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rank_two",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the rank of the matrix with rows (1, 2, 3), (2, 3, 4) and (0, 1, 2).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Test the 3×3 determinant",
+      "marks": 1
+    },
+    {
+      "label": "Find a non-zero 2×2 minor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 15 Matrices, answer 112.2. Printed appearances: TS 15 · AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find the rank of this matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_det",
+        "kind": "equation",
+        "label": "Test the 3×3 determinant",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Start with the largest minor — the whole determinant. It comes to 0, so the rank is less than 3 and you must look at a smaller minor.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "|A| = \\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 3 & 4 \\\\ 0 & 1 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(6−4) − 2(4−0) + 3(2−0)",
+          "= 2 − 8 + 6 = 0",
+          "So the rank is less than 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 3×3 determinant is computed first, comes to 0, and that this rules out rank 3.",
+          "accept": [
+            "take the full determinant first, it is zero so the rank cannot be three",
+            "the three by three determinant is zero so the rank is less than three",
+            "expand the determinant and get zero",
+            "three by three determinant zero kabatti rank three kaadu",
+            "the largest minor is zero so we go down a size"
+          ],
+          "reject": [
+            "find the determinant",
+            "take the rank"
+          ],
+          "heard_as": [
+            "determinant",
+            "zero",
+            "rank",
+            "less than three"
+          ]
+        },
+        "why": "Rank is the size of the largest non-zero minor, so the search always starts at the top and works down. A zero determinant only rules out the largest size.",
+        "common_mistakes": [
+          "Answering 3 because the matrix is 3×3.",
+          "Answering 0 as soon as the determinant is zero."
+        ]
+      },
+      {
+        "id": "s2_minor",
+        "kind": "boxed_final",
+        "label": "Find a non-zero 2×2 minor",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Only ONE non-zero 2×2 minor is needed — you are not checking them all. The top-left block gives 3 − 4 = −1, which is enough.",
+        "lines": [
+          "Take the 2×2 minor from the top-left:",
+          {
+            "text": "\\begin{vmatrix} 1 & 2 \\\\ 2 & 3 \\end{vmatrix} = 3 - 4 = -1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A non-zero 2×2 minor exists, so the rank is 2.",
+          {
+            "text": "∴ Rank A = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one non-zero 2×2 minor is found (value −1), which is enough to fix the rank at 2.",
+          "accept": [
+            "find any two by two minor that is not zero, the top left gives minus one, so the rank is two",
+            "one non zero two by two minor is enough so rank equals two",
+            "the minor one two two three is minus one which is not zero so rank is two",
+            "oka two by two minor zero kaakapothe rank two",
+            "rank A equals two"
+          ],
+          "reject": [
+            "the rank is",
+            "find a minor"
+          ],
+          "heard_as": [
+            "rank two",
+            "two by two",
+            "minus one",
+            "minor",
+            "not zero"
+          ]
+        },
+        "why": "Finding ONE non-zero minor of a given size is enough — the definition asks whether one exists, not whether all of them do.",
+        "common_mistakes": [
+          "Checking every 2×2 minor and wasting time.",
+          "Finding a 2×2 minor that happens to be zero and concluding the rank is 1."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_foot_of_perpendicular_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If Q(h,k) is the foot of the perpendicular of P(x₁,y₁) on the line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −(ax₁+by₁+c) : (a²+b²).",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Both slopes",
+      "marks": 1
+    },
+    {
+      "label": "Use the perpendicularity",
+      "marks": 2
+    },
+    {
+      "label": "Write h and k through r",
+      "marks": 2
+    },
+    {
+      "label": "Find r from the condition",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 1 The Straight Line, answer 5.1. Printed appearance: AP 20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ The book prints a note between answers 5.1 and 5.2 reading 'First half of the solution is same to same' — the two proofs share their first three steps EXACTLY, and differ only in the closing condition. The step ids and labels here are deliberately identical across the two files for that reason, which follows the Maths-1A precedent of giving one method over different conditions one shared skeleton. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would prove this — say what perpendicularity gives you, and what condition on Q finishes it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_slopes",
+        "kind": "equation",
+        "label": "Both slopes",
+        "marks": 1,
+        "margin_note": "First mark. Two slopes are needed — the one joining the two points, and the one of the given line. The second reads straight off the coefficients as −a/b.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given P = (x₁, y₁), Q = (h, k)",
+          "Slope of PQ is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (k − y₁)/(h − x₁)",
+          "Slope of the line ax + by + c = 0 is  m₂ = −a/b"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of PQ is (k − y₁)/(h − x₁) and the slope of the line is −a/b.",
+          "accept": [
+            "slope of P Q is k minus y one over h minus x one and the line's slope is minus a over b",
+            "write both slopes, one from the two points and one from the coefficients",
+            "the line a x plus b y plus c has slope minus a over b",
+            "rendu slopes rayali, P Q di and line di",
+            "both slopes first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope of P Q",
+            "minus a over b",
+            "k minus y one",
+            "h minus x one"
+          ]
+        },
+        "why": "Everything in this proof follows from PQ being perpendicular to the line, so both slopes have to be on the page before that fact can be used.",
+        "common_mistakes": [
+          "Reading the line's slope as −b/a.",
+          "Writing the slope of PQ upside down."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw P, the line and the foot",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The picture carries the one fact the second half turns on: Q sits ON the line, so its coordinates satisfy the line's equation.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That P, the line and the foot Q are sketched, with Q lying on the line. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw P above the line and drop a perpendicular to Q on the line",
+            "sketch the point, the line and the foot of the perpendicular",
+            "show Q lying on the line with a right angle at Q",
+            "P nunchi perpendicular geesi Q ni line meeda mark cheyyali",
+            "draw the foot of the perpendicular"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "perpendicular",
+            "foot",
+            "Q on the line",
+            "right angle"
+          ]
+        },
+        "why": "The foot of a perpendicular lies ON the line by definition — the drawing is what makes that obvious, and it is the only thing separating this proof from its neighbour.",
+        "common_mistakes": [
+          "Drawing Q off the line, which is the image rather than the foot.",
+          "Omitting the right-angle mark, which is the whole reason PQ is perpendicular."
+        ],
+        "figure": {
+          "id": "foot_of_perpendicular",
+          "width": 280,
+          "height": 196,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "the_line",
+              "d": "M 24 132 L 256 132",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pq",
+              "d": "M 146 44 L 146 132",
+              "ms": 520,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "rt",
+              "d": "M 146 120 L 158 120 L 158 132",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "dot_q",
+              "d": "M 143 129 A 3 3 0 1 0 149 129 A 3 3 0 1 0 143 129",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 112,
+              "y": 36,
+              "text": "P(x₁,y₁)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 158,
+              "y": 154,
+              "text": "Q(h,k)",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_line",
+              "x": 28,
+              "y": 116,
+              "text": "ax+by+c=0",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_use_the_perpendicularity",
+        "kind": "equation",
+        "label": "Use the perpendicularity",
+        "marks": 2,
+        "margin_note": "Two marks. PQ meets the line at a right angle, so m₁m₂ = −1. Rearranged, that says (h − x₁)/a and (k − y₁)/b are EQUAL — and giving that common value the name r is what makes the rest of the proof short.",
+        "lines": [
+          "Two lines are perpendicular ⇒ m₁m₂ = −1",
+          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
+          "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
+          "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁m₂ = −1 gives (h − x₁)/a = (k − y₁)/b, and this common value is named r.",
+          "accept": [
+            "perpendicular means m one m two equals minus one, rearrange and call the common value r",
+            "the product of the slopes is minus one",
+            "h minus x one over a equals k minus y one over b, take it as r",
+            "perpendicular kabatti m one into m two equals minus one",
+            "name the common ratio r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m one m two",
+            "minus one",
+            "equals r",
+            "common value"
+          ]
+        },
+        "why": "Naming the common ratio r converts two unknowns h and k into ONE unknown, which is the move that makes a two-variable problem solvable in a line.",
+        "common_mistakes": [
+          "Setting m₁m₂ = 1 instead of −1.",
+          "Keeping h and k separate and ending with two unknowns and one equation."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_write_h_and_k",
+        "kind": "equation",
+        "label": "Write h and k through r",
+        "marks": 2,
+        "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
+        "lines": [
+          "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
+          "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h = x₁ + ar and k = y₁ + br.",
+          "accept": [
+            "h is x one plus a r and k is y one plus b r",
+            "read the ratio both ways to get h and k in terms of r",
+            "express both coordinates through r",
+            "h equals x one plus a r, k equals y one plus b r",
+            "write h and k using r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "h equals x one plus a r",
+            "k equals y one plus b r",
+            "in terms of r"
+          ]
+        },
+        "why": "With h and k both written through r, any single condition on Q becomes a single equation in r — and that condition is the only place the two proofs differ.",
+        "common_mistakes": [
+          "Writing h = x₁ + br and k = y₁ + ar, with a and b swapped.",
+          "Dropping the x₁ or y₁ when rearranging."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_find_r",
+        "kind": "boxed_final",
+        "label": "Find r from the condition",
+        "marks": 2,
+        "margin_note": "The last two marks, and the ONLY place this proof differs from its neighbour. The FOOT of the perpendicular lies ON the line, so its coordinates satisfy the line's equation — substitute and solve for r.",
+        "lines": [
+          "But Q(h, k) lies on ax + by + c = 0",
+          "⇒ ah + bk + c = 0",
+          "⇒ a(x₁ + ar) + b(y₁ + br) + c = 0",
+          "⇒ ax₁ + a²r + by₁ + b²r + c = 0",
+          "⇒ r(a² + b²) = −(ax₁ + by₁ + c)",
+          "⇒ r = −(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
+          "From (1) & (2),",
+          {
+            "text": "∴ (h − x₁)/a = (k − y₁)/b = −(ax₁ + by₁ + c)/(a² + b²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q lies on the line, so ah + bk + c = 0, which gives r = −(ax₁+by₁+c)/(a²+b²).",
+          "accept": [
+            "the foot lies on the line so a h plus b k plus c is zero",
+            "substitute h and k into the line equation and solve for r",
+            "Q is on the line, that is the condition",
+            "foot line meeda untundi kabatti a h plus b k plus c equals zero",
+            "this gives r equals minus the bracket over a squared plus b squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "lies on the line",
+            "a h plus b k plus c",
+            "solve for r",
+            "a squared plus b squared"
+          ]
+        },
+        "why": "The foot of a perpendicular is by definition the point where the perpendicular MEETS the line, so it lies on the line — that single fact is the whole of the second half.",
+        "common_mistakes": [
+          "Using the midpoint condition, which belongs to the image proof and gives a factor of 2.",
+          "Forgetting to take (a² + b²) common before dividing."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

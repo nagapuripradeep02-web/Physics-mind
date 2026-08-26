@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_area_2_3_minus3_4_eight_point_five",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "A(2,3) and B(−3,4) are two given points. Find the equation of the locus of P so that the area of the triangle PAB is 8.5 sq.units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the coordinates",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.54 — SAQ chapter 7 Locus, answer 43.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, because it is set two-to-a-page in two columns and the columns take the margin those tags would occupy. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answers 44 (book p.54) and 46 (book p.55), both times against these exact three moves — write the given condition, substitute the coordinates, simplify to the locus. This answer takes the same three moves, so the shape is the book's own. The chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. NOTE: Locus is an SAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 4 marks in Section B and nothing in Section A or Section C, and the book has no Locus LAQ chapter (its LAQ chapters are 1-6) and no Locus VSAQ chapter (its VSAQ chapters are 14-20). It is the 1B counterpart of 1A's Units 7 and 8. Chapter scoped by BOUNDARY WALK, not from the TOP 35 SAQ hit list: that list names only 6 of this chapter's 12 questions. Verified by reading book p.57, where SAQ chapter 8 Transformation of Axes begins."
+  },
+  "recall_prompt": "Say how you would solve this — name the area formula you would use, and say how many lines the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. A and B are the fixed ends of the base; P is the vertex that moves.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (2, 3), B = (−3, 4)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The area of a triangle from three coordinate pairs is the half-determinant form. Writing it with the given area on the right earns the mark.",
+        "lines": [
+          "Given condition: area of △PAB = 8.5 sq.units",
+          {
+            "text": "\\Delta = \\tfrac{1}{2} \\begin{vmatrix} x_1-x_2 & x_1-x_3 \\\\ y_1-y_2 & y_1-y_3 \\end{vmatrix}",
+            "render": "katex"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area is written as one half of the 2x2 determinant of coordinate differences, set equal to the given area.",
+          "accept": [
+            "area is half the determinant of the coordinate differences",
+            "use the half mod determinant formula for the area of a triangle",
+            "write delta equals half determinant equals the given area",
+            "area formula half determinant vaadali",
+            "half into the determinant of x one minus x two and so on"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half determinant",
+            "area of triangle",
+            "delta equals",
+            "modulus"
+          ]
+        },
+        "why": "Area is the one condition in this chapter that needs a determinant rather than a distance, and the half-determinant form is the one the board expects.",
+        "common_mistakes": [
+          "Forgetting the factor ½ in front of the determinant.",
+          "Dropping the modulus bars, which decides whether both branches survive."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the coordinates",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The determinant rows are differences of coordinates, so the moving point (x, y) enters as the third pair. Expand the 2×2 determinant as a cross product of diagonals.",
+        "lines": [
+          "Here (x₁, y₁) = (2, 3), (x₂, y₂) = (−3, 4), (x₃, y₃) = (x, y)",
+          {
+            "text": "\\Rightarrow \\tfrac{1}{2} \\begin{vmatrix} 2+3 & 2-x \\\\ 3-4 & 3-y \\end{vmatrix} = 8.5",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\begin{vmatrix} 5 & 2-x \\\\ -1 & 3-y \\end{vmatrix} = 2(8.5)",
+            "render": "katex"
+          },
+          "⇒ |5(3 − y) + 1(2 − x)| = 17",
+          "⇒ |15 − 5y + 2 − x| = 17"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given coordinates and (x, y) go into the determinant, which is then expanded to a modulus of a linear expression.",
+          "accept": [
+            "put the coordinates into the determinant and expand it",
+            "substitute A B and the moving point then open the two by two determinant",
+            "expand the determinant as the difference of the diagonal products",
+            "coordinates substitute chesi determinant expand cheyyali",
+            "the determinant becomes a modulus of a linear expression"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "expand the determinant",
+            "modulus",
+            "linear"
+          ]
+        },
+        "why": "Once the numbers are in, the determinant is a single 2×2 expansion and the whole condition collapses to one modulus of a linear expression.",
+        "common_mistakes": [
+          "Ordering the rows so the differences come out with the wrong sign.",
+          "Expanding the determinant as a sum of diagonals instead of a difference."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks, and the place this family differs from every other in the chapter. A modulus opens to PLUS OR MINUS, so there are TWO lines, and both are part of the locus. Write them as one product equal to zero.",
+        "lines": [
+          "⇒ |x + 5y − 17| = 17   ⇒   x + 5y − 17 = ±17",
+          "⇒ x + 5y − 34 = 0   (or)   x + 5y = 0",
+          {
+            "text": "∴ Locus of P is (x + 5y − 34)(x + 5y) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the modulus opens to plus or minus, giving TWO parallel lines, and the locus is their product equal to zero.",
+          "accept": [
+            "the modulus opens to plus or minus so there are two lines and the locus is their product",
+            "remove the mod as plus or minus and multiply the two factors",
+            "there are two parallel lines, write them as a product equal to zero",
+            "mod theeste plus or minus vasthundi so rendu lines untaayi",
+            "the locus is a pair of parallel lines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "two lines",
+            "product",
+            "pair of lines",
+            "locus of P is"
+          ]
+        },
+        "why": "A fixed area does not pin the point to one line: it can sit on either side of AB at the same perpendicular distance, so the locus is a PAIR of parallel lines and the answer must carry both.",
+        "common_mistakes": [
+          "Keeping only the + branch and reporting a single line.",
+          "Writing the two lines separately instead of as a product equal to zero."
+        ]
+      }
+    ]
+  }
+}

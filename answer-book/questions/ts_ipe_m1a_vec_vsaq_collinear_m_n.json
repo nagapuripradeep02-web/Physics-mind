@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_collinear_m_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a = 2i + 5j + k and b = 4i + mj + nk are collinear vectors, then find m and n.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the ratio condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for m and n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 16 Addition of Vectors, answer 115.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 20,22 · TS 15,17,18 — five printed tags. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would find the unknowns when two vectors are collinear.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Write the ratio condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Collinear means one vector is a multiple of the other, so corresponding components are in the same ratio. Write all three ratios equal.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = 2i + 5j + k and b = 4i + mj + nk",
+          "are collinear.",
+          "∴ 2/4 = 5/m = 1/n",
+          "⇒ 1/2 = 5/m = 1/n"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collinear vectors have their corresponding components in the same ratio, giving 2/4 = 5/m = 1/n.",
+          "accept": [
+            "collinear means the components are in the same ratio so two by four equals five by m equals one by n",
+            "write the ratios of corresponding components equal to each other",
+            "one is a scalar multiple of the other so the ratios match",
+            "collinear ante components ratio same, so 2 by 4 equals 5 by m equals 1 by n",
+            "set the three component ratios equal"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "collinear",
+            "ratio",
+            "two by four",
+            "five by m",
+            "one by n"
+          ]
+        },
+        "why": "Collinear means parallel — b = λa for some number λ. Equal ratios is just that statement written component by component.",
+        "common_mistakes": [
+          "Setting the ratios upside down inconsistently.",
+          "Using only two of the three ratios."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for m and n",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The ratio 2/4 simplifies to 1/2 first, which makes both solves one line each.",
+        "lines": [
+          "1/2 = 5/m ⇒ m = 2 × 5 = 10",
+          "1/2 = 1/n ⇒ n = 2",
+          {
+            "text": "∴ m = 10, n = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the ratios gives m = 10 and n = 2.",
+          "accept": [
+            "solving gives m equals ten and n equals two",
+            "m is ten and n is two",
+            "cross multiply to get m equals ten, n equals two",
+            "m ten, n two vasthundi",
+            "from the ratios m is ten and n is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m equals ten",
+            "n equals two",
+            "ten",
+            "two"
+          ]
+        },
+        "why": "The common ratio here is 1/2, meaning a is half of b. Once that is seen, every unknown component is just twice the matching one in a.",
+        "common_mistakes": [
+          "Getting m = 5/2 by cross-multiplying the wrong way.",
+          "Finding m and forgetting n."
+        ]
+      }
+    ]
+  }
+}

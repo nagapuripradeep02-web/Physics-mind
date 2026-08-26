@@ -1,0 +1,166 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_instantaneous_speed_equals_velocity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The instantaneous speed is always equal to the magnitude of the instantaneous velocity. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two definitions",
+      "marks": 2
+    },
+    {
+      "label": "Why they agree",
+      "marks": 1
+    },
+    {
+      "label": "Contrast with averages",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "equation",
+        "label": "The two definitions",
+        "marks": 2,
+        "mark_note": "Definitions",
+        "lines": [
+          "Instantaneous speed is the limit of",
+          "distance ÷ time as the interval shrinks:",
+          {
+            "text": "speed = lim (Δs/Δt) as Δt → 0",
+            "style": "eq"
+          },
+          "Instantaneous velocity is the same limit of",
+          "displacement ÷ time:",
+          {
+            "text": "velocity = lim (Δx/Δt) as Δt → 0",
+            "style": "eq"
+          }
+        ],
+        "why": "The two differ only in using path length Δs against displacement Δx. Everything else in the definitions is identical.",
+        "common_mistakes": [
+          "Defining these as total distance over total time. That is the AVERAGE, not the instantaneous value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That instantaneous speed is the limit of distance over time and instantaneous velocity is the limit of displacement over time, as the interval tends to zero.",
+          "accept": [
+            "limit as delta t tends to zero",
+            "distance over time",
+            "displacement over time"
+          ],
+          "reject": [
+            "total distance by total time"
+          ],
+          "heard_as": [
+            "limit",
+            "delta t",
+            "instantaneous"
+          ]
+        },
+        "memory_tip": "Same limit, two numerators: path length Δs against displacement Δx.",
+        "margin_note": "Write both limits. This is the two-mark step."
+      },
+      {
+        "id": "s2_why",
+        "kind": "text",
+        "label": "Why they agree",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Over a very small interval the path is",
+          "effectively straight, so the length of the path",
+          "Δs equals the magnitude of the displacement",
+          "|Δx|. In the limit the two are equal."
+        ],
+        "why": "A curve looks straight when you look at a small enough piece of it, so the distance travelled along it and the straight-line displacement stop differing.",
+        "common_mistakes": [
+          "Saying they are equal because speed and velocity are the same thing. They are not; only their instantaneous values agree."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That over a vanishing interval the path is straight, so distance equals the magnitude of displacement.",
+          "accept": [
+            "path becomes straight",
+            "delta s equals mod delta x",
+            "in the limit"
+          ],
+          "reject": [
+            "speed and velocity are the same"
+          ],
+          "heard_as": [
+            "straight",
+            "in the limit"
+          ]
+        },
+        "memory_tip": "Shrink the interval and any curve straightens. Then Δs and |Δx| are the same.",
+        "margin_note": "This one sentence is the actual answer to \"why\"."
+      },
+      {
+        "id": "s3_contrast",
+        "kind": "boxed_final",
+        "label": "Contrast with averages",
+        "marks": 1,
+        "mark_note": "Contrast",
+        "lines": [
+          {
+            "text": "Average speed and |average velocity| can differ",
+            "style": "boxed"
+          },
+          "they differ whenever the direction changes,",
+          "because distance then exceeds the magnitude of",
+          "displacement."
+        ],
+        "why": "Naming the case where the equality fails proves the answer was understood rather than remembered.",
+        "common_mistakes": [
+          "Claiming average speed always equals the magnitude of average velocity. That holds only for motion in one straight line without reversal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That average speed and the magnitude of average velocity can differ, because distance exceeds displacement when the direction changes.",
+          "accept": [
+            "average can differ",
+            "distance exceeds displacement",
+            "direction changes"
+          ],
+          "reject": [
+            "averages are always equal"
+          ],
+          "heard_as": [
+            "average",
+            "differ"
+          ]
+        },
+        "memory_tip": "Instantaneous: always equal. Average: equal only if the direction never reverses.",
+        "margin_note": "The contrast is what shows the limit was understood."
+      }
+    ]
+  },
+  "insider_note": "The whole answer turns on the interval shrinking to zero. Say that and the marks follow."
+}

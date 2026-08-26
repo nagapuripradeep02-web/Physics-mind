@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_emasculation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by emasculation? When and why does a plant breeder employ this technique?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 2
+    },
+    {
+      "label": "When it is done",
+      "marks": 1
+    },
+    {
+      "label": "Why it is done",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.18, SAQ 3). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The 2+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Emasculation = removal of the anthers from a",
+            "style": "boxed"
+          },
+          {
+            "text": "bisexual flower of the female parent",
+            "style": "boxed"
+          },
+          "It is done while the flower is still in the",
+          "bud condition, before the anthers open."
+        ],
+        "why": "The definition needs the organ removed (anthers), the flower type (bisexual), the plant (the chosen female parent) and the stage (bud) — each word closes a loophole through which selfing could happen.",
+        "common_mistakes": [
+          "Writing 'removal of stamens from any flower' — it is specifically the female parent in a planned cross.",
+          "Removing the anthers after the flower opens — by then its own pollen may already be shed."
+        ],
+        "memory_tip": "E-MASculation removes the MALE parts — anthers out, in the bud.",
+        "margin_note": "Both boxed lines together are the 2-mark definition; the bud timing sits with them."
+      },
+      {
+        "id": "s2_when",
+        "kind": "text",
+        "label": "When it is done",
+        "marks": 1,
+        "mark_note": "When",
+        "lines": [
+          "It is used during artificial hybridisation in",
+          "plant breeding programmes, on the flower bud",
+          "of the plant selected as the female parent."
+        ],
+        "why": "The 'when' has two layers: the programme (artificial hybridisation) and the stage (the bud, before anther dehiscence) — both must appear.",
+        "common_mistakes": [
+          "Answering only 'in plant breeding' without the bud stage.",
+          "Emasculating the male parent — its pollen is the one being used, not removed."
+        ],
+        "memory_tip": "Before the bud opens, before the pollen escapes — that is the only window.",
+        "margin_note": "One sentence naming hybridisation and the bud stage covers this mark."
+      },
+      {
+        "id": "s3_why",
+        "kind": "text",
+        "label": "Why it is done",
+        "marks": 1,
+        "mark_note": "Why",
+        "lines": [
+          "With its own anthers gone the flower cannot",
+          "self-pollinate.",
+          "The stigma then receives only the chosen",
+          "pollen, giving hybrid plants with the more",
+          "desirable characters."
+        ],
+        "why": "The purpose completes the technique: no self pollen means every seed on the female parent is the planned cross, which is how a breeder combines desired characters.",
+        "common_mistakes": [
+          "Stopping at 'to avoid self-pollination' — add what that buys: hybrids with desirable characters.",
+          "Mixing up emasculation with bagging. Cutting anthers is emasculation; the cover is bagging."
+        ],
+        "memory_tip": "Cut (emasculate) → cover (bag) → cross (dust chosen pollen). Emasculation is step one of the chain.",
+        "margin_note": "Give both halves of the why: stop selfing AND produce the desired hybrid."
+      }
+    ]
+  },
+  "insider_note": "The question asks what, when and why — three explicit asks. Answer them in that order with headings and no mark can be missed for structure."
+}

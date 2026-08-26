@@ -1,0 +1,196 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_tan_half_fifth_eighth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Combine the first two",
+      "marks": 2
+    },
+    {
+      "label": "Combine with the third",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate Tan⁻¹(1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 12 Inverse Trig Functions, answer 76.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 15,17,19,20 — five printed tags, the most-asked question in this unit. THREE terms, so the addition formula is applied TWICE — combine two, then combine the result with the third. There is no three-term formula to reach for. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine_the_first_two",
+        "kind": "equation",
+        "label": "Combine the first two",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. State the formula before using it. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) — both the numerator and the denominator land over 10, and the 10s cancel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We know Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy))",
+          "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5)",
+          "= Tan⁻¹((1/2 + 1/5)/(1 − (1/2)(1/5)))",
+          "= Tan⁻¹((7/10)/(9/10)) = Tan⁻¹(7/9)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Tan⁻¹ addition formula is stated and applied to the first two terms, giving Tan⁻¹(7/9).",
+          "accept": [
+            "state the tan inverse addition formula then combine the first two to get tan inverse seven ninths",
+            "apply the formula to one half and one fifth giving seven over nine",
+            "combine two of the three terms first",
+            "modati rendu ni formula tho kalipithe tan inverse seven by nine vasthundi",
+            "use tan inverse x plus tan inverse y formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan inverse addition",
+            "one minus x y",
+            "seven ninths",
+            "combine"
+          ]
+        },
+        "why": "The formula takes exactly two terms. With three, it has to be applied twice — and choosing which two to combine first only affects the arithmetic, not the answer.",
+        "common_mistakes": [
+          "Adding all three arguments at once.",
+          "Writing the denominator as 1 + xy."
+        ]
+      },
+      {
+        "id": "s2_combine_with_the_third",
+        "kind": "equation",
+        "label": "Combine with the third",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Same formula again, now with 7/9 and 1/8. Both parts land over 72, and 65/72 over 65/72 is exactly 1.",
+        "lines": [
+          "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
+          "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
+          "= Tan⁻¹((65/72)/(65/72))",
+          "= Tan⁻¹(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the formula is applied a second time to Tan⁻¹(7/9) + Tan⁻¹(1/8), giving Tan⁻¹(1).",
+          "accept": [
+            "apply the formula again with seven ninths and one eighth to get tan inverse one",
+            "the second application gives sixty five over seventy two over itself which is one",
+            "combine the result with the third term",
+            "malli formula apply cheste tan inverse one vasthundi",
+            "the numerator and denominator are equal so it is tan inverse of one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan inverse one",
+            "sixty five",
+            "seventy two",
+            "second application"
+          ]
+        },
+        "why": "Numerator and denominator coming out identical is the signal that the answer will be Tan⁻¹(1) — a standard angle rather than an awkward one.",
+        "common_mistakes": [
+          "Cancelling before combining and losing the exact match.",
+          "Restarting from the original three terms."
+        ]
+      },
+      {
+        "id": "s3_evaluate_tan_1",
+        "kind": "boxed_final",
+        "label": "Evaluate Tan⁻¹(1)",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Tan⁻¹(1) is π/4, since tan(π/4) = 1. Name the standard value rather than leaving it as an inverse.",
+        "lines": [
+          "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
+          {
+            "text": "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Tan⁻¹(1) = π/4.",
+          "accept": [
+            "tan inverse one is pi by four",
+            "since tan pi by four is one the answer is pi by four",
+            "the value is pi over four",
+            "tan inverse one ante pi by four",
+            "the answer is pi by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by four",
+            "tan inverse one",
+            "forty five degrees"
+          ]
+        },
+        "why": "Tan⁻¹(1) is one of the handful of exact inverse values worth knowing by sight — it appears in almost every question of this family.",
+        "common_mistakes": [
+          "Leaving the answer as Tan⁻¹(1).",
+          "Writing π/2."
+        ]
+      }
+    ]
+  }
+}

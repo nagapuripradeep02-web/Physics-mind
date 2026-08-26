@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_key_features_of_meiosis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Mention the key features of meiosis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Two divisions, one replication",
+      "marks": 1
+    },
+    {
+      "label": "Pairing and crossing over",
+      "marks": 1
+    },
+    {
+      "label": "Reduction and meiosis II",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.29, SAQ 4) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. The book spells the word 'meosis' and 'Meosis' throughout this answer and writes 'intiated' for 'initiated'; these are scan or spelling errors. The biology in its list is standard and is followed here, with the spelling corrected to meiosis."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Cell Cycle and Cell Division · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_divisions",
+        "kind": "text",
+        "label": "Two divisions, one replication",
+        "marks": 1,
+        "mark_note": "First feature",
+        "lines": [
+          "Meiosis is two sequential cycles of nuclear and",
+          "cell division, called meiosis I and meiosis II.",
+          "The DNA is replicated only once, in the S phase",
+          "before meiosis I. After replication each",
+          "chromosome carries two identical sister",
+          "chromatids."
+        ],
+        "why": "Two divisions after one replication is the single fact that makes the product haploid. Every other feature of meiosis follows from this arithmetic.",
+        "common_mistakes": [
+          "Writing that DNA replicates again before meiosis II. It does not.",
+          "Writing that meiosis is a single division."
+        ],
+        "memory_tip": "Two divisions, one replication. That is why four cells end with half the chromosomes.",
+        "margin_note": "Open with this. It is the feature every other one depends on."
+      },
+      {
+        "id": "s2_pairing",
+        "kind": "text",
+        "label": "Pairing and crossing over",
+        "marks": 1,
+        "mark_note": "Second feature",
+        "lines": [
+          "In prophase I the homologous chromosomes pair,",
+          "which is called synapsis, and each pair forms a",
+          "bivalent.",
+          "Crossing over takes place between non-sister",
+          "chromatids, and the points of exchange are seen",
+          "as chiasmata.",
+          "This exchange produces new combinations of",
+          "genes, which mitosis never does."
+        ],
+        "why": "Pairing and exchange are the features unique to meiosis; naming them is what separates this answer from a description of mitosis.",
+        "common_mistakes": [
+          "Writing that crossing over occurs between sister chromatids.",
+          "Leaving out the word bivalent or the word chiasmata. Both are marked terms."
+        ],
+        "memory_tip": "Synapsis, bivalent, crossing over, chiasmata — four words, all in prophase I.",
+        "margin_note": "Three short lines. Use the four technical words."
+      },
+      {
+        "id": "s3_reduction",
+        "kind": "text",
+        "label": "Reduction and meiosis II",
+        "marks": 1,
+        "mark_note": "Third feature",
+        "lines": [
+          "At anaphase I the homologous chromosomes",
+          "separate and move to opposite poles, so the",
+          "chromosome number is halved.",
+          "Meiosis II follows without any further DNA",
+          "replication, and at anaphase II the sister",
+          "chromatids separate."
+        ],
+        "why": "Meiosis I separates the partners and meiosis II separates the copies. Keeping those two events apart is what the examiner checks.",
+        "common_mistakes": [
+          "Saying sister chromatids separate in anaphase I.",
+          "Saying the chromosome number is halved in meiosis II."
+        ],
+        "memory_tip": "Meiosis I separates partners, meiosis II separates copies.",
+        "margin_note": "Two lines. Say which anaphase does which."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "The result",
+        "lines": [
+          {
+            "text": "One diploid cell → four haploid cells.",
+            "style": "boxed"
+          },
+          "Meiosis makes the haploid gametes or spores, so",
+          "fertilisation restores the diploid number and the",
+          "chromosome number of the species stays the",
+          "same from one generation to the next. The",
+          "crossing over in prophase I also makes each of",
+          "the four cells genetically different."
+        ],
+        "why": "The last mark is for the outcome, not the mechanism: four haploid cells, a constant species chromosome number across generations, and variation.",
+        "common_mistakes": [
+          "Writing that two cells are formed. Meiosis gives four.",
+          "Writing that the four cells are identical. Crossing over makes them different."
+        ],
+        "memory_tip": "One in, four out, each with half the chromosomes and a different combination of genes.",
+        "margin_note": "Finish with the boxed result line even if you are short of time."
+      }
+    ]
+  },
+  "insider_note": "This is a list question, so write it as separate features with the technical words — bivalent, chiasmata, haploid — rather than as a running paragraph."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_root_16_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function √(16 − x²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 94.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them. The only appearance printed for this one is 'IPE 09' — a pre-bifurcation paper (before the 2014 TS/AP split), for which appearances[].board has no value, so it is recorded here in prose rather than as data."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when 16 − x² ≥ 0",
+          "⇒ x² − 16 ≤ 0",
+          "⇒ (x − 4)(x + 4) ≤ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inside of the square root must be greater than or equal to zero: 16 − x² ≥ 0.",
+          "accept": [
+            "sixteen minus x squared must be greater than or equal to zero",
+            "the inside of the root is non negative",
+            "set sixteen minus x squared at least zero",
+            "root lo unnadi non negative undali",
+            "the expression under the square root cannot be negative"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "square root",
+            "sixteen minus x squared",
+            "non negative",
+            "minus four",
+            "four"
+          ]
+        },
+        "why": "The same rule as every square root: the inside cannot be negative, so it alone fixes the domain.",
+        "common_mistakes": [
+          "Reading the inequality the wrong way and taking the outside interval.",
+          "Forgetting to move x² across, so the factors come out wrong."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ [−4, 4]",
+          "∴ Domain = [−4, 4]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the closed interval from minus 4 to 4, both endpoints included.",
+          "accept": [
+            "the domain is minus four to four with both included",
+            "closed interval minus four comma four",
+            "x between minus four and four inclusive",
+            "minus four nunchi four varaku",
+            "domain is the closed interval minus 4 to 4"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "square root",
+            "sixteen minus x squared",
+            "non negative",
+            "minus four",
+            "four",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Because equality is allowed at 16 − x² = 0, x = ±4 belong to the domain, so the brackets are square.",
+        "common_mistakes": [
+          "Writing (−4, 4) and losing the two endpoints.",
+          "Giving the answer as a union, which is the solution to the opposite inequality."
+        ]
+      }
+    ]
+  }
+}

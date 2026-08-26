@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_distance_vs_displacement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between distance and displacement.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Distance",
+      "marks": 1
+    },
+    {
+      "label": "Displacement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_distance",
+        "kind": "text",
+        "label": "Distance",
+        "marks": 1,
+        "mark_note": "Distance",
+        "lines": [
+          "Distance is the total length of the path",
+          "actually travelled. It is a scalar and can",
+          "never be negative or zero for a moving body."
+        ],
+        "why": "Distance adds up every part of the journey regardless of direction, so it only ever grows.",
+        "common_mistakes": [
+          "Calling distance a vector. It has magnitude only."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That distance is the length of the path travelled and is a scalar.",
+          "accept": [
+            "length of the path",
+            "scalar"
+          ],
+          "reject": [
+            "vector"
+          ],
+          "heard_as": [
+            "distance",
+            "scalar",
+            "path"
+          ]
+        },
+        "memory_tip": "Distance is what the odometer reads. It only goes up.",
+        "margin_note": "Say \"scalar\" — it is half of the contrast."
+      },
+      {
+        "id": "s2_displacement",
+        "kind": "boxed_final",
+        "label": "Displacement",
+        "marks": 1,
+        "mark_note": "Displacement",
+        "lines": [
+          {
+            "text": "Displacement is the change in position",
+            "style": "boxed"
+          },
+          "measured in a straight line from start to",
+          "finish. It is a vector, and it is zero for any",
+          "round trip that returns to the start."
+        ],
+        "why": "Displacement depends only on the two end points, so a body that returns to where it began has zero displacement however far it walked.",
+        "common_mistakes": [
+          "Saying displacement can never be zero for a moving body. A round trip gives exactly zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That displacement is the straight-line change in position, is a vector, and is zero for a round trip.",
+          "accept": [
+            "change in position",
+            "vector",
+            "zero for a round trip"
+          ],
+          "reject": [
+            "always equals the distance"
+          ],
+          "heard_as": [
+            "displacement",
+            "vector",
+            "zero"
+          ]
+        },
+        "memory_tip": "Displacement uses only the two end points. A round trip gives zero.",
+        "margin_note": "The round-trip case is the sharpest contrast."
+      }
+    ]
+  },
+  "insider_note": "Two marks means two contrasts. Scalar against vector, and path length against straight-line change."
+}

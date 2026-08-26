@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_arrhenius_theory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an Arrhenius acid and an Arrhenius base? Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two definitions",
+      "marks": 1
+    },
+    {
+      "label": "Examples and limitation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the chapter's syllabus covers three acid-base theories, and the book asks Brønsted-Lowry (SAQ 6) and Lewis (SAQ 3, VSAQ 6) but never Arrhenius. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 (removed 'Arrhenius lives in water' and 'misfit that pushed chemistry past'). No marked line changed. AI chemistry check 2026-08-25 (audit round): step s2 mark_note read 'Examples' while the mark split row is 'Examples and limitation' — mark_note, why and margin_note now all say the limitation is part of this mark."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "The two definitions",
+        "marks": 1,
+        "mark_note": "Definitions",
+        "lines": [
+          "Arrhenius acid: a substance that gives H⁺",
+          "ions in aqueous solution.",
+          "Arrhenius base: a substance that gives OH⁻",
+          "ions in aqueous solution."
+        ],
+        "why": "The Arrhenius theory defines acid and base by the ion each releases IN WATER — H⁺ for acids, OH⁻ for bases. The phrase 'in aqueous solution' is part of both definitions.",
+        "common_mistakes": [
+          "Leaving out 'in aqueous solution'. The theory is defined for water only.",
+          "Writing proton acceptor for the base. The Arrhenius base gives OH⁻; proton acceptor is Brønsted-Lowry."
+        ],
+        "memory_tip": "The Arrhenius definitions hold in water only: acid gives H⁺, base gives OH⁻, both in aqueous solution.",
+        "margin_note": "Both definitions end with the same three words: in aqueous solution."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and limitation",
+        "marks": 1,
+        "mark_note": "Examples and limitation",
+        "lines": [
+          {
+            "text": "Acid: HCl  ·  Base: NaOH",
+            "style": "boxed"
+          },
+          "Limitation: the theory applies only to",
+          "aqueous solutions, and it cannot explain",
+          "the basic nature of substances without",
+          "OH⁻, such as NH₃."
+        ],
+        "why": "HCl and NaOH are the clearest examples — full ionisation in water into H⁺ and OH⁻. The NH₃ limitation is why the later theories were needed. This single mark covers the two examples AND the limitation together, so write both parts.",
+        "common_mistakes": [
+          "Giving NH₃ as an Arrhenius base. NH₃ has no OH⁻ — it is the standard counter-example.",
+          "Writing an example without naming which theory member it is."
+        ],
+        "memory_tip": "HCl and NaOH are the standard pair. NH₃ is the counter-example the Arrhenius theory cannot explain.",
+        "margin_note": "One example each, then the limitation line. Both parts sit inside this one mark."
+      }
+    ]
+  }
+}

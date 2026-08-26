@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_sin_cos_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the angles and find their other ratios",
+      "marks": 2
+    },
+    {
+      "label": "Apply the cos(A+B) formula",
+      "marks": 1
+    },
+    {
+      "label": "Convert back to an inverse",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.72 — SAQ chapter 12 Inverse Trig Functions, answer 74.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 74.1, but the two inverses are of DIFFERENT functions and the target is a Cos⁻¹ — so the cosine addition formula is used, and its middle sign is a MINUS. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_angles_and_find_t",
+        "kind": "equation",
+        "label": "Name the angles and find their other ratios",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. One angle arrives by its sine, the other by its cosine — so the missing ratio is found the other way round in each case. Both are 3-4-5 style triangles.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take Sin⁻¹(3/5) = α and Cos⁻¹(12/13) = β",
+          "RTP: α + β = Cos⁻¹(33/65), that is, cos(α+β) = 33/65",
+          "Sin⁻¹(3/5) = α ⇒ sinα = 3/5 ⇒ cosα = 4/5",
+          "Cos⁻¹(12/13) = β ⇒ cosβ = 12/13 ⇒ sinβ = 5/13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both inverses are named as angles and all four ratios found: sinα = 3/5, cosα = 4/5, cosβ = 12/13, sinβ = 5/13.",
+          "accept": [
+            "name them alpha and beta, one gives the sine and the other the cosine, then find the missing ratios",
+            "sin alpha is three fifths so cos alpha is four fifths, cos beta is twelve thirteenths so sin beta is five thirteenths",
+            "get all four ratios from the two triangles",
+            "rendintini angles ga peru petti, naalugu ratios kanukovali",
+            "find the other ratio for each angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "alpha",
+            "beta",
+            "four fifths",
+            "five thirteenths",
+            "twelve thirteenths"
+          ]
+        },
+        "why": "The cosine addition formula needs both sines AND both cosines, so all four ratios have to exist before it can be applied.",
+        "common_mistakes": [
+          "Assuming the second inverse is also a sine.",
+          "Getting sinβ = 12/13 by reading the wrong side."
+        ]
+      },
+      {
+        "id": "s2_apply_the_cos_a_b_formula",
+        "kind": "equation",
+        "label": "Apply the cos(A+B) formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The target is a Cos⁻¹, so the cosine formula is the one to use — and note the MINUS between the two products, where the sine formula had a plus.",
+        "lines": [
+          "cos(α + β) = cosα cosβ − sinα sinβ",
+          "= (4/5)(12/13) − (3/5)(5/13)",
+          "= 48/65 − 15/65 = 33/65"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(α+β) = cosα cosβ − sinα sinβ is applied, giving 33/65.",
+          "accept": [
+            "use cos A plus B equals cos A cos B minus sin A sin B to get thirty three over sixty five",
+            "apply the cosine addition formula with the minus sign",
+            "forty eight over sixty five minus fifteen over sixty five is thirty three over sixty five",
+            "cos alpha cos beta minus sin alpha sin beta apply cheyyali",
+            "the cosine of the sum is thirty three by sixty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A plus B",
+            "minus",
+            "forty eight",
+            "fifteen",
+            "thirty three"
+          ]
+        },
+        "why": "cos(A+B) carries a minus where sin(A+B) carries a plus. Using the sine formula here would give 63/65 and a wrong answer.",
+        "common_mistakes": [
+          "Using a plus between the two products.",
+          "Using the sine addition formula because the first inverse was a sine."
+        ]
+      },
+      {
+        "id": "s3_convert_back_to_an_inverse",
+        "kind": "boxed_final",
+        "label": "Convert back to an inverse",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. cos(α+β) = 33/65 means α+β = Cos⁻¹(33/65).",
+        "lines": [
+          "cos(α + β) = 33/65",
+          "⇒ α + β = Cos⁻¹(33/65)",
+          {
+            "text": "∴ Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(α+β) = 33/65 is converted back to α + β = Cos⁻¹(33/65).",
+          "accept": [
+            "since the cosine of the sum is thirty three over sixty five the sum is cos inverse of that",
+            "convert back to cos inverse form",
+            "alpha plus beta is cos inverse thirty three by sixty five",
+            "cos value nunchi cos inverse ki marchali",
+            "write the result in inverse form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos inverse",
+            "thirty three over sixty five",
+            "alpha plus beta"
+          ]
+        },
+        "why": "Which inverse function appears in the answer is decided by which compound formula was used — cosine here, sine in the twin.",
+        "common_mistakes": [
+          "Writing Sin⁻¹(33/65).",
+          "Stopping at the fraction."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,745 @@
+{
+  "concept_id": "rotational_kinematics",
+  "concept_name": "Rotational Kinematics — θ, ω, α and v = ωr",
+  "chapter": 7,
+  "section": "7.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 11 Physics Ch.7 (System of Particles and Rotational Motion) §7.6-7.7 — table-of-contents scope only, teaching authored from first principles. The atomic claim: rotation is described by three quantities — angle turned θ, turning rate ω, and rate of change of turning α — that obey the SAME equations as straight-line motion (ω = ω₀ + αt is v = u + at with new letters), and v = ωr ties each point's linear speed to the one shared turning rate. Built on the rigid_body_rotation field_3d engine (docs/loop_runs/rotmech/_engine/findings_d.md, the 0c-3 build). Does NOT cover what produces a change in spin (torque, moment_of_inertia — deliberately withheld: the words torque/I never appear anywhere in this concept, Rule 25) or ω as a vector along the axis (angular_momentum). Ships 8 states, not 9: the design's ninth state (calculus slope-of-the-graph beat, a theta(t)/omega(t) graph panel) was ratified DROPPED by founder ruling 2026-08-14 (K6_decision_brief.md) because the graph panel is not yet built chapter-wide — no fallback readout was authored in its place. The design is preserved and the state returns if/when the graph panel lands (revisit_when: graph_panel_lands in curriculum_tags).",
+
+  "prerequisites": [
+    "rigid_body_rotation"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "rigid_body_rotation"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A ceiling fan after the switch is turned off — it keeps turning and slows at a steady rate.",
+    "secondary": "A bicycle wheel — the rim moves faster than points near the hub."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "r": {
+        "name": "Radius of each sliding mass from the axle — fixed for this whole concept, never a slider",
+        "unit": "m",
+        "constant": 0.80
+      },
+      "m": {
+        "name": "Mass of each of the two symmetric masses — fixed for this whole concept, never a slider",
+        "unit": "kg",
+        "constant": 2.0
+      },
+      "I_frame": {
+        "name": "Fixed inertia of the turntable + rod, excluding the two masses",
+        "unit": "kg·m²",
+        "constant": 0.50
+      },
+      "R_drum": {
+        "name": "Radius where the motor wheel / brake pad contacts the turntable's rim",
+        "unit": "m",
+        "constant": 0.55
+      },
+      "rod_half_length": {
+        "name": "Rod half-length — apparatus geometry only",
+        "unit": "m",
+        "constant": 1.00
+      },
+      "rod_height_above_pad": {
+        "name": "Vertical clearance of the rod plane above the drum pad plane — apparatus geometry only",
+        "unit": "m",
+        "constant": 0.25
+      },
+      "theta0": {
+        "name": "Angular reference offset at state entry — the drum stripe's starting position relative to the base start line",
+        "unit": "rad",
+        "min": 0,
+        "max": 0,
+        "default": 0,
+        "note": "Every state authors theta0_rad: 0 — the stripe always starts ON the start line."
+      },
+      "omega0": {
+        "name": "Seed angular speed — sets the state's entry ω (guided states) or restarts ω live (explore sandbox)",
+        "unit": "rad/s",
+        "min": 0.0,
+        "max": 3.0,
+        "default": 1.5,
+        "step": 0.1
+      },
+      "omega": {
+        "name": "Live angular speed — the derived closed-form quantity, never itself an independent variable or slider",
+        "unit": "rad/s",
+        "derived": "omega(t) = omega0 + alpha_signed * engaged_seconds(t) while a torque source is engaged; constant (holds) once released"
+      },
+      "theta": {
+        "name": "Live angle turned — the derived accumulated integral of omega; the on-canvas arc draws theta mod 2*pi, the readout shows the full accumulated value",
+        "unit": "rad",
+        "derived": "theta(t) = theta(t-h) + omega(t)*h on the engine's fixed 16 ms grid"
+      },
+      "alpha": {
+        "name": "Angular acceleration readout (guided states) / live control (explore only) — a pure motion reading, never computed from torque/I inside this concept's own definitions",
+        "unit": "rad/s²",
+        "min": -0.60,
+        "max": 0.60,
+        "default": 0.0,
+        "step": 0.05,
+        "note": "In guided states alpha is a pure READOUT, driven by the authored drive/brake schedule below, never an authored slider. Explore-state control only."
+      },
+      "v": {
+        "name": "Live tangential speed of a marked point at radius r_point — derived, its own arrow-length map",
+        "unit": "m/s",
+        "derived": "v = omega * r_point"
+      },
+      "r_point_inner": {
+        "name": "S6/explore inner marked point — a paint mark on the rod",
+        "unit": "m",
+        "constant": 0.40
+      },
+      "r_point_outer": {
+        "name": "S6/explore outer marked point — the mass itself",
+        "unit": "m",
+        "constant": 0.80
+      }
+    },
+    "computed_outputs": {
+      "theta": { "formula": "angle turned, rad — the accumulated integral of omega from state entry; the on-canvas arc shows theta mod 2*pi" },
+      "omega": { "formula": "angular speed, rad/s — omega(t) = omega0 + alpha*(engaged seconds) while a torque source is engaged; holds constant once released" },
+      "alpha": { "formula": "angular acceleration, rad/s^2 — the finite difference of omega; +0.60 while the drive is engaged, −0.50 while the brake is engaged, 0.00 with no source engaged or at rest" },
+      "v": { "formula": "tangential speed of a marked point, m/s — v = omega * r_point" }
+    },
+    "formulas": {
+      "omega_theta_over_t": "ω = θ / t — steady turning; S2's definition of angular speed.",
+      "alpha_delta_omega_over_delta_t": "α = Δω / Δt — S3's definition of angular acceleration: how fast ω itself changes. Algebra-only, never d/dt.",
+      "omega_kinematics": "ω = ω₀ + αt — S4's equation, algebraically identical to v = u + at with new letters. Valid whenever α is constant over the measured interval.",
+      "theta_kinematics": "θ = ω₀t + ½αt² — S7's equation, algebraically identical to x = ut + ½at². Valid whenever α is constant, t measured from the state's own drive-engagement instant.",
+      "v_omega_r": "v = ωr — S6's link law: one shared ω, but each point's linear speed scales with its own distance from the axis."
+    },
+    "constraints": [
+      "ω = ω₀ + αt and θ = ω₀t + ½αt² hold exactly whenever α is constant over the measured interval — the same two equations as straight-line kinematics, new letters only.",
+      "α is how fast ω itself changes — it is zero for a body spinning at a constant rate (S1/S2/S6), even though ω itself is nonzero and large.",
+      "α is signed: positive α speeds the spin up, negative α slows it down. A negative α is still angular acceleration — never narrated as just stopping.",
+      "v = ωr — every point of one rigid turntable shares the same ω; each point's linear speed scales with its own radius from the axis.",
+      "r = 0.80 m and m = 2.0 kg are fixed constants for this entire concept — no radial slide, no mass change, anywhere, including the explore state.",
+      "torque and moment of inertia are never computed, displayed, or narrated inside this concept's own definitions — α is read directly off the motion (a rate of ω), never derived through torque/I (Rule 25)."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 20
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Rotation's ω = ω₀ + αt is v = u + at with new letters.",
+    "visual_confirmation": "A chip prints ‘predicted ω = 3.30’ before the wheel even moves; the live ω readout climbs from 1.50 and meets it exactly."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "v_and_omega": { "start": "STATE_6", "end": "STATE_6" },
+    "angle_equation": { "start": "STATE_7", "end": "STATE_7" }
+  },
+
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+
+      "STATE_1": {
+        "title": "The Angle Turned Is θ",
+        "duration": 10,
+        "focal_primitive_id": "rk_s1_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "θ: the angle turned",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s1_head", "position": { "x": 380, "y": 60 }, "text": "The turntable spins steadily; theta is the angle turned from the start line", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s1_watch", "position": { "x": 200, "y": 250 }, "text": "the stripe starts on the line; the arc grows; the readout counts up from 0.00", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s1_anchor", "position": { "x": 560, "y": 400 }, "text": "each full turn adds 2 pi radians, about 6.28, to the running count", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This turntable spins at a steady rate." },
+            { "id": "s1_2", "text_en": "A start line marks where the angle theta is measured from." },
+            { "id": "s1_3", "text_en": "A stripe sweeps a growing arc, and the readout counts the angle turned, in radians." },
+            { "id": "s1_4", "text_en": "Each full turn adds two pi radians -- about six point two eight -- to the running count." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "ω Is Radians Turned Per Second",
+        "duration": 10,
+        "focal_primitive_id": "rk_s2_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "equal-time-ticks (declared contrast pair with STATE_7)",
+        "delta_cue": "ω: radians per second",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s2_head", "position": { "x": 380, "y": 60 }, "text": "The turntable keeps spinning at the same steady rate", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s2_watch", "position": { "x": 200, "y": 250 }, "text": "a tick lands every second -- three ticks land equally spaced apart", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s2_anchor", "position": { "x": 560, "y": 400 }, "text": "omega = 1.50 rad/s -- the steady rate the angle grows", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The turntable keeps spinning at the same steady rate." },
+            { "id": "s2_2", "text_en": "A tick lands on the circle every second -- the marks land equally spaced apart." },
+            { "id": "s2_3", "text_en": "Equal spacing means the turntable turns through equal angles in equal times." },
+            { "id": "s2_4", "text_en": "This steady rate is the angular speed omega -- one point five oh radians per second." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "α Is How Fast ω Changes",
+        "duration": 12,
+        "focal_primitive_id": "rk_s3_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_5)",
+        "delta_cue": "α: the rate ω changes",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s3_head", "position": { "x": 380, "y": 60 }, "text": "A motor wheel moves in and presses onto the turntable's edge", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s3_watch", "position": { "x": 200, "y": 250 }, "text": "from rest, omega climbs steadily while alpha sits pinned at 0.60", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s3_anchor", "position": { "x": 560, "y": 400 }, "text": "even when omega is barely moving, alpha already reads its full value", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "A motor wheel moves in and presses onto the turntable's edge." },
+            { "id": "s3_2", "text_en": "The turntable starts from rest, and its spin rate omega climbs steadily." },
+            { "id": "s3_3", "text_en": "The rate at which omega changes is angular acceleration, alpha, steady at zero point six zero radians per second squared." },
+            { "id": "s3_4", "text_en": "Even when omega is barely moving, alpha already reads its full value." }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Same Equation, New Letters",
+        "duration": 13,
+        "focal_primitive_id": "rk_s4_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "converge-on-mark",
+        "delta_cue": "Same equation, new letters",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "radians_vs_revolutions",
+          "sign_of_alpha",
+          "linear_angular_mapping"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s4_head", "position": { "x": 380, "y": 60 }, "text": "omega = omega naught + alpha t predicts the answer before the motor even moves", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s4_watch", "position": { "x": 200, "y": 250 }, "text": "predicted omega = 3.30 prints first -- then the live readout climbs to meet it", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s4_anchor", "position": { "x": 560, "y": 400 }, "text": "just like a car speeding up steadily -- v = u + at, same equation", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Omega equals omega naught plus alpha t predicts: one point five oh plus zero point six zero times three is three point three oh." },
+            { "id": "s4_2", "text_en": "That number prints before the wheel even moves." },
+            { "id": "s4_3", "text_en": "The wheel presses on, and the live rate climbs to meet it, just like a car speeding up steadily, same equation, new letters." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Slowing Down Is Negative α",
+        "duration": 11,
+        "focal_primitive_id": "rk_s5_watch",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_3)",
+        "delta_cue": "Slowing down: negative α",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s5_head", "position": { "x": 380, "y": 60 }, "text": "A brake pad presses onto the turntable's edge", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s5_watch", "position": { "x": 200, "y": 250 }, "text": "omega falls in a straight line to zero while alpha holds at minus 0.50", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s5_anchor", "position": { "x": 560, "y": 400 }, "text": "like a ceiling fan after the switch is turned off", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A brake pad presses onto the turntable's edge." },
+            { "id": "s5_2", "text_en": "The spin rate omega falls in a straight line to zero, while the angular acceleration alpha holds at minus zero point five zero radians per second squared." },
+            { "id": "s5_3", "text_en": "The turntable stops, and alpha returns to zero -- like a ceiling fan after the switch is turned off." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "When the switch goes off, the story is over -- while it slows there is no acceleration.",
+            "visual_counter": "The alpha readout sits at minus 0.50 for the entire slow-down while omega falls in a straight line through 1.00, 0.50, to 0.00 -- and the moment omega stops changing, alpha returns to 0.00.",
+            "one_line_fix": "Slowing down IS angular acceleration, with a negative sign -- and it lasts exactly as long as the slowing does."
+          }
+        ]
+      },
+
+      "STATE_6": {
+        "title": "One ω, Many Speeds",
+        "duration": 12,
+        "focal_primitive_id": "rk_s6_watch",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "paired-tangent-ride",
+        "delta_cue": "One ω, many speeds",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "same_omega_different_v",
+          "which_r_in_v_omega_r",
+          "omega_vs_v_confusion"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s6_head", "position": { "x": 380, "y": 60 }, "text": "Two marks turn together, sharing one turning rate omega", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s6_watch", "position": { "x": 200, "y": 250 }, "text": "the outer point moves at 1.20 m/s, twice the inner point's 0.60", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s6_anchor", "position": { "x": 560, "y": 400 }, "text": "on a bicycle wheel, the rim moves faster than points near the hub", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Two marks turn together on the turntable, sharing one turning rate omega." },
+            { "id": "s6_2", "text_en": "Yet each point's speed is v equals omega r." },
+            { "id": "s6_3", "text_en": "The outer point moves at one point two zero metres per second, twice the inner point's zero point six zero." },
+            { "id": "s6_4", "text_en": "On a bicycle wheel, the rim moves faster than points near the hub." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Every point of a spinning body moves at the same speed.",
+            "visual_counter": "Both marked points stay on ONE straight rod line and finish the revolution together (one shared omega) -- while the outer tangent arrow is exactly twice the inner (1.20 vs 0.60 m/s).",
+            "one_line_fix": "One turning rate omega for the whole body, but each point's speed is v = omega r."
+          }
+        ]
+      },
+
+      "STATE_7": {
+        "title": "The Angle Grows As t Squared",
+        "duration": 11,
+        "focal_primitive_id": "rk_s7_watch",
+        "advance_mode": "manual_click",
+        "motion_archetype": "equal-time-ticks (declared contrast pair with STATE_2)",
+        "delta_cue": "Angle grows as t²",
+        "depth_ring": "extended",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s7_head", "position": { "x": 380, "y": 60 }, "text": "The turntable spins up from rest under the same steady alpha", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s7_watch", "position": { "x": 200, "y": 250 }, "text": "ticks land at 0.30, 1.20, 2.70 rad -- widening 1 to 3 to 5", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s7_anchor", "position": { "x": 560, "y": 400 }, "text": "theta = omega naught t + one half alpha t squared", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "The turntable spins up from rest under the same steady alpha." },
+            { "id": "s7_2", "text_en": "This time, the angle theta grows as t squared: theta equals omega naught t plus one half alpha t squared." },
+            { "id": "s7_3", "text_en": "Ticks now land wider apart each second: zero point three zero, zero point nine zero, one point five zero, one to three to five." }
+          ]
+        }
+      },
+
+      "STATE_8": {
+        "title": "Try It Yourself",
+        "duration": 0,
+        "focal_primitive_id": "rk_s8_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Try it yourself",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "rk_s8_head", "position": { "x": 380, "y": 60 }, "text": "Everything is yours now", "color": "#FFF176" },
+          { "type": "annotation", "id": "rk_s8_try", "position": { "x": 380, "y": 250 }, "text": "set omega naught, drag alpha -- watch theta, omega, alpha and the speed arrows answer", "color": "#66BB6A" },
+          { "type": "annotation", "id": "rk_s8_key", "position": { "x": 380, "y": 440 }, "text": "omega = omega naught + alpha t", "color": "#D4D4D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Now set the starting speed and drag alpha yourself." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "record_turntable_spin_up",
+      "type": "B",
+      "label": "A Record Turntable Spun Up From Rest",
+      "physical_world": "A record turntable sits still. A drive roller presses its rim and the turntable spins up steadily from rest, then holds a constant speed once the roller lifts away.",
+      "same_physics": "Identical alpha-as-rate-of-change-of-omega picture: a steady drive gives a constant angular acceleration, and omega = omega0 + alpha t predicts the speed at any instant -- only the labeled object changes.",
+      "scene_hint": "Same turntable rig, same apparatus, same numbers -- the object is relabeled a record turntable instead of a generic rotating platform."
+    },
+    {
+      "variant_id": "windmill_blade_slowing",
+      "type": "B",
+      "label": "A Windmill Blade Slowing As the Wind Drops",
+      "physical_world": "A windmill blade spins steadily, then the wind drops and a brake engages -- the blade's turning rate falls in a straight line to rest while its angular acceleration stays negative and constant.",
+      "same_physics": "Same negative-alpha slow-down physics as the concept's brake beat: a constant braking torque gives a constant negative angular acceleration until the body reaches rest, matching the ceiling-fan anchor exactly.",
+      "scene_hint": "Same turntable rig and same numbers -- only the labeled object and narration context change to a windmill blade."
+    }
+  ],
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Physics Ch.7 -- angular kinematics: theta, omega, alpha, omega = omega0 + alpha t, theta = omega0 t + half alpha t^2, v = omega r",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Rotational kinematics -- core + extended (angular kinematic equations, v = omega r); no calculus derivation required at this level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Rotational kinematics -- core + extended (angular kinematic equations, v = omega r)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP SL",
+        "coverage": "full",
+        "syllabus_unit": "Circular motion and rotational kinematics -- core + extended (algebra-only forms)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP HL",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational kinematics -- core + extended covered; the calculus (d-theta/dt, d-omega/dt as slope) beat is NOT shipped in this 8-state build",
+        "verified": false,
+        "needs_teacher_verification": true,
+        "revisit_when": "graph_panel_lands"
+      },
+      {
+        "curriculum": "A-level (Physics)",
+        "coverage": "full",
+        "syllabus_unit": "Rotational kinematics -- core + extended (algebra-only forms)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1",
+        "coverage": "full",
+        "syllabus_unit": "Rotational kinematics -- core + extended (algebra-only forms, no calculus expected)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational kinematics -- core + extended covered; the calculus derivation state (omega = d-theta/dt, alpha = d-omega/dt) is NOT shipped in this 8-state build",
+        "verified": false,
+        "needs_teacher_verification": true,
+        "revisit_when": "graph_panel_lands"
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "rigid_body_rotation",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "rigid_body_rotation_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "omega0": { "min": 0, "max": 3.0, "step": 0.1, "default": 1.5 },
+      "tau_applied": {
+        "label": "α",
+        "unit": " rad/s²",
+        "scale": "i_alpha",
+        "min": -0.60,
+        "max": 0.60,
+        "step": 0.01,
+        "default": 0,
+        "dp": 2
+      }
+    },
+    "states": {
+
+      "STATE_1": {
+        "label": "The angle turned, theta: measured from the start line, live from t=0",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "θ: the angle turned",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "readouts": ["theta"],
+          "hold_glow": ["theta"],
+          "phases": [
+            { "id": "p1_line_stripe", "at_ms": 0, "until_ms": 1200, "glow_focal": "rbr_drum_marker" },
+            { "id": "p2_arc", "at_ms": 1200, "until_ms": 2400, "glow_focal": "theta_arc" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "label": "Angular speed omega: three even-time ticks land equally spaced at constant omega",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "ω: radians per second",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "readouts": ["theta", "omega"],
+          "readout_at_ms": { "omega": 3000 },
+          "hold_glow": ["omega"],
+          "glow_focal": "rbr_drum_marker",
+          "time_ticks": { "start_ms": 0, "every_ms": 1000, "count": 3 },
+          "formula": "ω = θ / t"
+        }
+      },
+
+      "STATE_3": {
+        "label": "Angular acceleration alpha: motor wheel drives the table up from rest at constant alpha",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "α: the rate ω changes",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 0,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.84,
+            "engage_at_ms": 2000,
+            "release_at_ms": 6000,
+            "pad_travel_ms": 900
+          },
+          "readouts": ["theta", "omega", "alpha"],
+          "readout_at_ms": { "alpha": 2000 },
+          "hold_glow": ["alpha"],
+          "glow_focal": "rbr_drive_wheel",
+          "show_drum_line": true,
+          "formula": "α = Δω / Δt"
+        }
+      },
+
+      "STATE_4": {
+        "label": "omega = omega0 + alpha t predicts 3.30 before the wheel moves; the live readout meets the chip",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "Same equation, new letters",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.84,
+            "engage_at_ms": 3500,
+            "release_at_ms": 6500,
+            "pad_travel_ms": 900
+          },
+          "readouts": ["theta", "omega", "alpha"],
+          "reference_marks": [
+            { "id": "predicted_omega_chip", "surface": "omega", "form": "chip", "value": 3.30, "label": "predicted ω = 3.30", "at_ms": 2000, "match_tolerance": 0.01 }
+          ],
+          "hold_glow": ["omega"],
+          "glow_focal": "rbr_drive_wheel",
+          "show_drum_line": true,
+          "formula": "ω = ω₀ + αt"
+        }
+      },
+
+      "STATE_5": {
+        "label": "Brake pad slows the table in a straight line to rest; alpha holds at -0.50 then returns to 0.00",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "Slowing down: negative α",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "external_torque": {
+            "source": "brake",
+            "tau_brake_Nm": 1.53,
+            "engage_at_ms": 2000,
+            "release_at_ms": 5000,
+            "pad_travel_ms": 900
+          },
+          "readouts": ["theta", "omega", "alpha"],
+          "hold_glow": ["alpha"],
+          "glow_focal": "rbr_brake_pad",
+          "show_drum_line": true,
+          "formula": "ω = ω₀ + αt  (α < 0)"
+        }
+      },
+
+      "STATE_6": {
+        "label": "Two marked points share one omega; tangent arrows ride the revolution in a 2:1 speed ratio",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "One ω, many speeds",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "readouts": ["theta", "omega"],
+          "point_markers": [
+            { "id": "r_point_inner", "r_m": 0.40, "show_v_arrow": true, "show_radius_line": true },
+            { "id": "r_point_outer", "r_m": 0.80, "show_v_arrow": true, "show_radius_line": true }
+          ],
+          "glow_focal": "rbr_v_arrows",
+          "formula": "v = ωr"
+        }
+      },
+
+      "STATE_7": {
+        "label": "From rest under constant alpha, theta grows as t squared; ticks land 1:3:5 from the engage instant",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "Angle grows as t²",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 0,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 1.84,
+            "engage_at_ms": 2000,
+            "release_at_ms": 5000,
+            "pad_travel_ms": 900
+          },
+          "readouts": ["theta", "omega", "alpha"],
+          "time_ticks": { "start_ms": 2000, "every_ms": 1000, "count": 3 },
+          "hold_glow": ["theta"],
+          "glow_focal": "rbr_drive_wheel",
+          "show_drum_line": true,
+          "formula": "θ = ω₀t + ½αt²"
+        }
+      },
+
+      "STATE_8": {
+        "label": "Explore: set omega0, drag alpha -- theta, omega, alpha and the speed arrows all live",
+        "visible_elements": [],
+        "camera_position": [3.3, 2.6, 5.0],
+        "caption": "Try it yourself",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "sandbox",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "theta0_rad": 0,
+          "omega0_rad_s": 1.50,
+          "external_torque": {
+            "source": "applied_torque",
+            "applied_torque_Nm": 0,
+            "engage_at_ms": 0
+          },
+          "readouts": ["theta", "omega", "alpha"],
+          "point_markers": [
+            { "id": "r_point_inner", "r_m": 0.40, "show_v_arrow": true, "show_radius_line": true },
+            { "id": "r_point_outer", "r_m": 0.80, "show_v_arrow": true, "show_radius_line": true }
+          ],
+          "controls_visible": ["omega0", "tau_applied"],
+          "trusted_drag_seizes": true,
+          "formula": "ω = ω₀ + αt"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_youngs_bulk_shear_moduli",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define Young’s modulus, Bulk modulus and Shear modulus.",
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 17,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Modulus of elasticity",
+      "marks": 1
+    },
+    {
+      "label": "Young’s modulus",
+      "marks": 1
+    },
+    {
+      "label": "Bulk modulus",
+      "marks": 1
+    },
+    {
+      "label": "Shear modulus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2023 (Q17) — TS Inter I-Year Physics Paper-I, Section B, 4 marks. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Y = longitudinal stress / longitudinal strain = FL/Ae; K = −volume stress / volume strain = −PV/ΔV, the minus sign written because ΔV is negative when P rises, which keeps K positive; η = shearing stress / shearing strain = (F/A)/θ. All three carry the SI unit N m⁻²."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Modulus of elasticity",
+        "marks": 1,
+        "mark_note": "stress / strain",
+        "lines": [
+          "Inside the elastic limit, stress is",
+          "proportional to strain. The ratio of stress",
+          "to strain is a constant for the material and",
+          "is called its modulus of elasticity.",
+          {
+            "text": "Modulus of elasticity = stress / strain",
+            "style": "eq"
+          },
+          "Strain has no unit, so every modulus carries",
+          "the unit of stress, N m⁻²."
+        ],
+        "margin_note": "First mark. One sentence of Hooke's law plus the ratio, and the unit N m⁻² for all three.",
+        "why": "The three moduli in this question are the same ratio applied to the three types of stress, so writing the general form once makes each definition below one line long.",
+        "common_mistakes": [
+          "Writing strain / stress. The modulus is stress divided by strain.",
+          "Giving a modulus no unit because strain has none. Strain has no unit, so the modulus keeps the unit of stress."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inside the elastic limit stress is proportional to strain and their ratio is the modulus of elasticity, with unit newton per metre squared.",
+          "accept": [
+            "stress by strain is a constant",
+            "modulus of elasticity",
+            "unit newton per metre squared"
+          ],
+          "reject": [
+            "longitudinal stress by longitudinal strain"
+          ],
+          "heard_as": [
+            "stress by strain",
+            "modulus of elasticity"
+          ]
+        },
+        "memory_tip": "Every modulus is stress ÷ strain. Strain has no unit, so every modulus is in N m⁻²."
+      },
+      {
+        "id": "s2_young",
+        "kind": "equation",
+        "label": "Young’s modulus",
+        "marks": 1,
+        "mark_note": "Y = FL/Ae",
+        "lines": [
+          "1. Young’s modulus Y is the ratio of",
+          "longitudinal stress to longitudinal strain.",
+          {
+            "text": "Y = (F/A)/(e/L) = F L / A e",
+            "style": "eq"
+          },
+          "SI unit: N m⁻². It measures the change in",
+          "length of a wire under a stretching force."
+        ],
+        "margin_note": "Second mark. The words longitudinal stress and longitudinal strain earn it; the formula supports them.",
+        "why": "Y is the modulus for a stress that acts along one direction, which is why only the length changes and the strain is e/L.",
+        "common_mistakes": [
+          "Writing Y = F/Ae and losing the L. The original length L is in the numerator.",
+          "Using Young’s modulus for a body under fluid pressure. That case needs the bulk modulus."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Young’s modulus is longitudinal stress divided by longitudinal strain, equal to F L by A e.",
+          "accept": [
+            "longitudinal stress by longitudinal strain",
+            "F L by A e",
+            "Young’s modulus"
+          ],
+          "reject": [
+            "volume stress by volume strain"
+          ],
+          "heard_as": [
+            "F L by A e",
+            "Young’s modulus"
+          ]
+        },
+        "memory_tip": "Y is the length modulus: a stretched wire changes its length, so strain is e/L."
+      },
+      {
+        "id": "s3_bulk",
+        "kind": "equation",
+        "label": "Bulk modulus",
+        "marks": 1,
+        "mark_note": "K = −PV/ΔV",
+        "lines": [
+          "2. Bulk modulus K is the ratio of volume",
+          "stress to volume strain.",
+          {
+            "text": "K = −P/(ΔV/V) = −P V/ΔV",
+            "style": "eq"
+          },
+          "The minus sign is written because a rise in",
+          "pressure decreases the volume, so ΔV is",
+          "negative. The sign keeps K positive.",
+          "SI unit: N m⁻²."
+        ],
+        "margin_note": "Third mark. Write the minus sign and say in one line why it is there.",
+        "why": "Without the minus sign K would come out negative for every real material, because an increase in pressure always decreases the volume.",
+        "common_mistakes": [
+          "Omitting the minus sign. Some guides leave it out, but it is what keeps K positive.",
+          "Reading ΔV as the volume. ΔV is the CHANGE in volume and V is the original volume."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bulk modulus is minus volume stress divided by volume strain, minus P V by delta V, and the minus sign keeps K positive.",
+          "accept": [
+            "volume stress by volume strain",
+            "minus P V by delta V",
+            "the minus sign keeps K positive"
+          ],
+          "reject": [
+            "shearing stress by shearing strain"
+          ],
+          "heard_as": [
+            "bulk modulus",
+            "minus P V by delta V"
+          ]
+        },
+        "memory_tip": "Pressure up, volume down, so ΔV is negative. The minus sign turns K positive again."
+      },
+      {
+        "id": "s4_shear",
+        "kind": "boxed_final",
+        "label": "Shear modulus",
+        "marks": 1,
+        "mark_note": "η = (F/A)/θ",
+        "lines": [
+          "3. Shear modulus η, also called the modulus",
+          "of rigidity, is the ratio of shearing stress",
+          "to shearing strain θ.",
+          {
+            "text": "η = (F/A)/θ",
+            "style": "eq"
+          },
+          "SI unit: N m⁻². It measures the change in",
+          "shape of a body under a tangential force.",
+          {
+            "text": "Each modulus = its stress ÷ its strain",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The second name, modulus of rigidity, is worth writing — some papers use it.",
+        "why": "Shearing strain is measured as the angle θ through which a face is turned, so it is already a pure number and needs no division by a length.",
+        "common_mistakes": [
+          "Writing the shearing strain as a length divided by a length. It is the angle θ in radians.",
+          "Using the symbol G without saying it is the same as η. Both symbols are accepted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the shear modulus, or modulus of rigidity, is shearing stress divided by shearing strain theta, with unit newton per metre squared.",
+          "accept": [
+            "shearing stress by shearing strain",
+            "modulus of rigidity",
+            "F by A divided by theta"
+          ],
+          "reject": [
+            "minus P V by delta V"
+          ],
+          "heard_as": [
+            "rigidity modulus",
+            "shear modulus",
+            "eta"
+          ]
+        },
+        "memory_tip": "Shearing strain is the angle θ, so η = (F/A)/θ needs no length at all."
+      }
+    ]
+  },
+  "insider_note": "One mark for each modulus. The minus sign in K is part of its mark, and every definition needs its unit N m⁻²."
+}

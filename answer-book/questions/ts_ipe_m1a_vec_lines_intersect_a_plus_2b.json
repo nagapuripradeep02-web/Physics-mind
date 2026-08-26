@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_lines_intersect_a_plus_2b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a, b, c are non-coplanar, find the point of intersection of the line passing through the points 2a+3b−c and 3a+4b−2c with the line joining the points a−2b+3c and a−6b+6c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the vector equation of the first line",
+      "marks": 1
+    },
+    {
+      "label": "Write the vector equation of the second line",
+      "marks": 1
+    },
+    {
+      "label": "Equate and compare coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Substitute back to get the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Addition of Vectors, answer 54. Printed appearances: none — this answer carries no year tag. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would find where two lines meet in vector form.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_line1",
+        "kind": "equation",
+        "label": "Equation of the first line",
+        "marks": 1,
+        "mark_note": "First line",
+        "margin_note": "First mark. A line through two points P and Q is r = (1−t)P + tQ. Collect the a, b and c coefficients separately — that is the form the comparison below needs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = 2a + 3b − c,  Q = 3a + 4b − 2c",
+          "The line through P and Q is",
+          "r = (1−t)(2a + 3b − c) + t(3a + 4b − 2c),  t ∈ R",
+          "⇒ r = (2+t)a + (3+t)b + (−1−t)c   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line through two points is written as r = (1−t)P + tQ and its a, b, c coefficients are collected.",
+          "accept": [
+            "the line through P and Q is one minus t times P plus t times Q, then collect the a b and c coefficients",
+            "write the vector equation of the first line and gather the coefficients",
+            "use r equals one minus t P plus t Q for the first line",
+            "first line ki r equals one minus t into P plus t into Q, coefficients collect cheyyali",
+            "form the parametric equation of the line through the two points"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus t",
+            "vector equation",
+            "coefficients",
+            "parameter",
+            "line"
+          ]
+        },
+        "why": "Written this way, t = 0 gives P and t = 1 gives Q, so every point of the line is covered exactly once. Collecting coefficients is what turns a vector equation into three scalar ones.",
+        "common_mistakes": [
+          "Using r = P + tQ, which is not a line through both points.",
+          "Failing to collect the coefficients, leaving nothing to compare."
+        ]
+      },
+      {
+        "id": "s2_line2",
+        "kind": "equation",
+        "label": "Equation of the second line",
+        "marks": 1,
+        "mark_note": "Second line",
+        "margin_note": "Second mark. Same form, but a DIFFERENT parameter — s, not t. Reusing t would force the two lines to be travelled in step and would find only some of the intersections.",
+        "lines": [
+          "Let T = a − 2b + 3c,  S = a − 6b + 6c",
+          "The line through T and S is",
+          "r = (1−s)(a − 2b + 3c) + s(a − 6b + 6c),  s ∈ R",
+          "⇒ r = a + (−2−4s)b + (3+3s)c   …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second line is written the same way but with its OWN parameter s, and its coefficients collected.",
+          "accept": [
+            "write the second line the same way but with a different parameter s",
+            "use one minus s times T plus s times S so the parameters are independent",
+            "the second line needs its own parameter, not the same t",
+            "second line ki verey parameter s vaadali, same t kaadu",
+            "form the second vector equation with parameter s"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "parameter s",
+            "second line",
+            "different parameter",
+            "one minus s"
+          ]
+        },
+        "why": "The two lines are travelled independently. Sharing a parameter would ask where they are at the same instant, not where they cross.",
+        "common_mistakes": [
+          "Reusing t for both lines.",
+          "Collecting the a coefficient wrongly; here it is 1 for every s."
+        ]
+      },
+      {
+        "id": "s3_equate",
+        "kind": "equation",
+        "label": "Compare coefficients",
+        "marks": 1,
+        "mark_note": "Solve for t and s",
+        "margin_note": "Third mark. a, b, c are non-coplanar, so they are independent — which is what allows one vector equation to be split into three separate scalar equations.",
+        "lines": [
+          "At the point of intersection (1) = (2). Since a, b, c are",
+          "non-coplanar, compare coefficients:",
+          "2 + t = 1  …(i)      3 + t = −2 − 4s  …(ii)",
+          "From (i):  t = −1",
+          "From (ii):  3 − 1 = −2 − 4s ⇒ 4s = −4 ⇒ s = −1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because a, b, c are non-coplanar their coefficients can be compared separately, giving t = −1 and s = −1.",
+          "accept": [
+            "since a b c are non coplanar compare the coefficients separately and get t equals minus one and s equals minus one",
+            "equate the two expressions and match the a b and c coefficients to solve for t and s",
+            "comparing coefficients gives t and s both minus one",
+            "a b c non coplanar kabatti coefficients separate ga compare cheyyochu, t and s minus one",
+            "split the vector equation into scalar equations and solve"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "compare coefficients",
+            "non coplanar",
+            "t equals minus one",
+            "s equals minus one"
+          ]
+        },
+        "why": "Independence is the whole reason this works. If a, b, c were coplanar, one could be written in terms of the others and the coefficients could not be matched term by term.",
+        "common_mistakes": [
+          "Comparing coefficients without saying why it is allowed.",
+          "Solving only one equation and never checking it against the third."
+        ]
+      },
+      {
+        "id": "s4_point",
+        "kind": "boxed_final",
+        "label": "Substitute back",
+        "marks": 1,
+        "mark_note": "Point of intersection",
+        "margin_note": "Last mark. Put t = −1 into equation (1). The c coefficient becomes −1 + 1 = 0, so c drops out entirely and the point is a + 2b.",
+        "lines": [
+          "Substituting t = −1 in (1):",
+          "r = (2−1)a + (3−1)b + (−1+1)c",
+          "  = a + 2b + 0c",
+          {
+            "text": "∴ The point of intersection is a + 2b",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting t = −1 into the first line gives the point a + 2b, with the c term vanishing.",
+          "accept": [
+            "substitute t equals minus one into the first equation to get a plus two b, the c term goes to zero",
+            "put the parameter back in and the point of intersection is a plus two b",
+            "the intersection point is a plus two b",
+            "t equals minus one substitute cheste a plus two b vasthundi, c term zero",
+            "the c coefficient becomes zero so the answer is a plus two b"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a plus two b",
+            "substitute",
+            "point of intersection",
+            "c term zero"
+          ]
+        },
+        "why": "Either equation gives the same point — substituting s = −1 into (2) is a free check, and worth doing if there is time.",
+        "common_mistakes": [
+          "Leaving the answer as a value of t instead of a point.",
+          "Substituting s into equation (1) or t into (2)."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_dg_from_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The equilibrium constant for a reaction is 10. What will be the value of ΔG°? (R = 8.314 J K⁻¹ mol⁻¹, T = 300 K)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book's answer prints −5774.14 J/mole; 2.303 × 8.314 × 300 = 5744.1, so the correct value is −5744.1 J mol⁻¹ — the printed 5774 is an arithmetic slip. AI chemistry check 2026-08-25. Recomputed 2.303 × 8.314 × 300 = 5744.14; the boxed −5744.1 J mol⁻¹ is confirmed correct. Fixed the step-2 why, which printed the intermediate as 19.15 × 300 = 5744.1 (19.15 × 300 is 5745). No marked line changed. AI chemistry check 2026-08-25 (audit round 3). CARD OVERRIDES PRINTED SOURCE — a distinct and riskier category than an unverified mark split: the boxed −5744.1 J mol⁻¹ contradicts the number the book prints (−5774.14 J), so a student following this card writes a value the printed key does not show. The arithmetic itself is confirmed (2.303 × 8.314 × 300 = 5744.14). The insider_note previously asserted as fact that examiners mark the correct arithmetic; that is an unverifiable claim about examiner behaviour and is now written as an open question. OPEN QUESTION for the teacher gate: confirm how a Telangana IPE examiner marks −5744.1 against a key printing −5774.14. Marked lines unchanged."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "ΔG° = −RT ln K = −2.303 RT log K",
+            "style": "eq"
+          },
+          "K = 10, R = 8.314 J K⁻¹ mol⁻¹, T = 300 K",
+          "log 10 = 1"
+        ],
+        "why": "Standard Gibbs energy and the equilibrium constant are connected by ΔG° = −RT ln K; the factor 2.303 converts the natural logarithm to the base-10 logarithm that log tables use.",
+        "common_mistakes": [
+          "Dropping the minus sign in the formula.",
+          "Using 2.303 together with ln — 2.303 belongs with log, not with ln."
+        ],
+        "memory_tip": "K greater than 1 means products are favoured, so ΔG° must come out negative. Check the sign against this before moving on.",
+        "margin_note": "The formula with values substituted earns this mark, before any arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "ΔG° = −2.303 × 8.314 × 300 × log 10",
+          "ΔG° = −2.303 × 8.314 × 300 × 1",
+          {
+            "text": "ΔG° = −5744.1 J mol⁻¹ ≈ −5.74 kJ mol⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "2.303 × 8.314 = 19.1471, and 19.1471 × 300 = 5744.14, so ΔG° = −5744.14 J mol⁻¹, written here as −5744.1. The source book prints −5774.14 J; that is a digit transposition — the product of these numbers is 5744.14, not 5774.14.",
+        "common_mistakes": [
+          "Copying the book's −5774.14 — the correct product is 5744.1.",
+          "Writing the answer without the unit J mol⁻¹.",
+          "Losing the minus sign in the final line."
+        ],
+        "memory_tip": "Size check: 19 × 300 is about 5700, so the answer must sit near 5700 J mol⁻¹.",
+        "margin_note": "Box the signed value with its unit. Both are part of this mark."
+      }
+    ]
+  },
+  "insider_note": "One substitution and one multiplication — the marks are for the signed value with its unit. The printed key's 5774.14 is a digit transposition: 2.303 × 8.314 × 300 = 5744.14, so this card writes −5744.1 and differs from the printed source. How an examiner marks −5744.1 against a key printing −5774.14 is an open question — no teacher has confirmed it. Write the full substitution line either way: it shows where the product comes from, and it is what the first mark is for."
+}

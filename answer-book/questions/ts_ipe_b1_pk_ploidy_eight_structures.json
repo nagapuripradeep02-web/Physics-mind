@@ -1,0 +1,76 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_ploidy_eight_structures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the ploidy of any four of the following: (a) protonemal cell of a moss, (b) primary endosperm nucleus in a dicot, (c) leaf cell of a moss, (d) prothallus cell of a fern, (e) gemma cell in Marchantia, (f) meristem cell of a monocot, (g) ovum of a liverwort, (h) zygote of a fern.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Haploid structures", "marks": 1 },
+    { "label": "Diploid and triploid structures", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 11 — the NCERT in-text exercise. The book's scan garbles the list ('Protonema cell of mass', 'Leaf cell of a mass', 'Prothallus of a ferm', 'Zygote of ferm'); the question is restored to the NCERT wording (moss, fern, protonemal cell). The book's eight ploidy answers themselves are correct and are kept. This card answers all eight items because a student must know them all; the paper asks for any four. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_haploid",
+        "kind": "text",
+        "label": "Haploid (n) structures",
+        "marks": 1,
+        "mark_note": "The n group",
+        "lines": [
+          "(a) Protonemal cell of a moss — n",
+          "(c) Leaf cell of a moss — n",
+          "(d) Prothallus cell of a fern — n",
+          "(e) Gemma cell in Marchantia — n",
+          "(g) Ovum of a liverwort — n"
+        ],
+        "why": "Every structure that belongs to the gametophyte generation is haploid. The protonema, the moss leaf, the fern prothallus and the gemma are gametophyte parts, and the ovum is a gamete — so each is n.",
+        "common_mistakes": [
+          "Marking the moss leaf 2n by treating it like an ordinary plant leaf — the leafy moss body is the gametophyte, so its leaf cell is n.",
+          "Marking the gemma 2n — a gemma is a vegetative bud of the gametophyte, so it is n."
+        ],
+        "memory_tip": "Ask one question for each item: which body made it? Gametophyte body → n; sporophyte body → 2n.",
+        "margin_note": "Write the letter and the ploidy symbol — no working is expected."
+      },
+      {
+        "id": "s2_diploid_triploid",
+        "kind": "boxed_final",
+        "label": "Diploid (2n) and triploid (3n)",
+        "marks": 1,
+        "mark_note": "The 2n/3n group",
+        "lines": [
+          { "text": "Gametophyte n · sporophyte 2n · endosperm 3n", "style": "boxed" },
+          "(b) Primary endosperm nucleus (dicot) — 3n",
+          "(f) Meristem cell of a monocot — 2n",
+          "(h) Zygote of a fern — 2n"
+        ],
+        "why": "The zygote and the whole plant body of a monocot belong to the sporophyte, so they are 2n. The primary endosperm nucleus forms by triple fusion — two polar nuclei plus one male gamete — so it is 3n.",
+        "common_mistakes": [
+          "Writing 2n for the primary endosperm nucleus — triple fusion makes it 3n.",
+          "Writing n for the fern zygote — a zygote is always the fusion product, 2n."
+        ],
+        "memory_tip": "Only one 3n exists in the list — the endosperm nucleus, made of three fused nuclei.",
+        "margin_note": "Answer any four in the exam; the boxed rule line covers all eight."
+      }
+    ]
+  },
+  "insider_note": "The paper asks for any four, but all eight items rotate across papers, so this card answers all eight — in the exam pick the four you are surest of."
+}

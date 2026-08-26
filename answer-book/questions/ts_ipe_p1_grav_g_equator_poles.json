@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_g_equator_poles",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the factors that make g least at the equator and maximum at the poles?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rotation of the earth",
+      "marks": 1
+    },
+    {
+      "label": "The shape of the earth",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rotation",
+        "kind": "equation",
+        "label": "The rotation of the earth",
+        "marks": 1,
+        "mark_note": "Rotation",
+        "lines": [
+          "The earth spins, so part of the gravitational",
+          "pull is used up keeping a body moving on a",
+          "circle. At a latitude φ,",
+          {
+            "text": "g_φ = g − R ω² cos²φ",
+            "style": "eq"
+          },
+          "At the equator φ = 0 and the loss is largest;",
+          "at the poles cos φ = 0 and there is no loss."
+        ],
+        "why": "A body at the pole sits on the spin axis and travels in no circle at all, so it loses nothing to the rotation.",
+        "common_mistakes": [
+          "Claiming the earth’s rotation has no effect on g."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the earth spins, so g becomes g minus R omega squared cos squared phi, largest loss at the equator.",
+          "accept": [
+            "R omega squared cos squared phi",
+            "rotation reduces g at the equator",
+            "no loss at the poles"
+          ],
+          "reject": [
+            "the polar radius is smaller"
+          ],
+          "heard_as": [
+            "rotation",
+            "equator"
+          ]
+        },
+        "memory_tip": "Cause 1 — spin: the equator travels the biggest circle, so it loses the most to rotation; the poles lose nothing.",
+        "margin_note": "First mark. The rotation cause, with the cos²φ term written out."
+      },
+      {
+        "id": "s2_shape",
+        "kind": "boxed_final",
+        "label": "The shape of the earth",
+        "marks": 1,
+        "mark_note": "Shape",
+        "lines": [
+          "The earth is flattened at the poles, so the",
+          "polar radius is SMALLER than the equatorial",
+          "radius. Since g = G M / R²,",
+          {
+            "text": "Smaller R at the poles → larger g",
+            "style": "boxed"
+          }
+        ],
+        "why": "Two separate causes push the same way, which is why the difference between pole and equator is real but small.",
+        "common_mistakes": [
+          "Treating the earth as a perfect sphere, which leaves only one of the two reasons."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the polar radius is smaller and g equals G M by R squared, so g is larger at the poles.",
+          "accept": [
+            "polar radius is smaller",
+            "g is G M by R squared",
+            "flattened at the poles"
+          ],
+          "reject": [
+            "rotation reduces g at the equator"
+          ],
+          "heard_as": [
+            "radius",
+            "poles"
+          ]
+        },
+        "memory_tip": "Cause 2 — shape: the earth bulges at the equator, so the surface there is farther from the centre. Two causes, one direction.",
+        "margin_note": "Second mark. The shape cause — smaller polar radius, so larger g."
+      }
+    ]
+  },
+  "insider_note": "Two causes, one mark each. However well the rotation is explained, an answer without the shape of the earth can earn only half."
+}

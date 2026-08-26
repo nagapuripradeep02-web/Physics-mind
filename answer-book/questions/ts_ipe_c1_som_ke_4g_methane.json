@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ke_4g_methane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the kinetic energy (in SI units) of 4 g of methane at −73 °C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Moles, kelvin and formula",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: (3/2) × 0.25 × 8.314 × 200 = 623.55 J, matching the book's 623.6 J. AI chemistry check 2026-08-25 (audit round): the first step's common mistake named subtracting as the error when subtracting is the correct operation; it now names the real error, dropping the minus sign and adding 73 to reach 346. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Moles, kelvin and formula",
+        "marks": 1,
+        "mark_note": "Setup",
+        "lines": [
+          "n = 4 g / 16 g mol⁻¹ = 0.25 mol   (M of CH₄ = 16)",
+          "T = −73 + 273 = 200 K",
+          {
+            "text": "KE = (3/2) nRT ,  R = 8.314 J mol⁻¹ K⁻¹",
+            "style": "eq"
+          },
+          "KE = (3/2) × 0.25 × 8.314 × 200"
+        ],
+        "why": "The formula takes moles and kelvin, and the question gives grams and Celsius. Both conversions — 4 g to 0.25 mol, and −73 °C to 200 K — must appear before the substitution.",
+        "common_mistakes": [
+          "Substituting the mass 4 in place of the moles 0.25.",
+          "Dropping the minus sign and adding 73: 73 + 273 = 346 is wrong. The temperature is −73 °C, so −73 + 273 = 200 K."
+        ],
+        "memory_tip": "Grams to moles, Celsius to kelvin, then three halves n R T.",
+        "margin_note": "The two conversion lines carry this mark; the examiner reads them before the arithmetic."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "KE = 1.5 × 0.25 × 8.314 × 200",
+          {
+            "text": "KE ≈ 623.6 J",
+            "style": "boxed"
+          }
+        ],
+        "why": "0.25 × 8.314 = 2.0785; times 200 gives 415.7; times 1.5 gives 623.55, which rounds to 623.6 J. The question says in SI units, so the answer must be in joules.",
+        "common_mistakes": [
+          "Answering in calories. The question asks for SI, which is joules.",
+          "Writing 623.6 with no unit."
+        ],
+        "memory_tip": "A quarter mole at 200 K: smaller amount and lower temperature both make the energy much smaller than the room-temperature per-mole value of about 3.7 kJ.",
+        "margin_note": "Box the value with J. The bracket in the question makes the unit part of the mark."
+      }
+    ]
+  },
+  "insider_note": "The temperature is negative on purpose — the examiner is testing −73 + 273 = 200 K, and the in SI units bracket is testing that you reach for R = 8.314, not R = 2."
+}

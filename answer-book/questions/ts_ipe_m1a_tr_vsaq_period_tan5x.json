@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_period_tan5x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the period of tan5x.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the tangent formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute k = 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 125.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "State the tangent formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Tangent repeats twice as often as sine and cosine, so its formula has π on top, not 2π. Writing the right one is the mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = tan5x",
+          "Period of tan kx = π/|k|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the period of tan kx is π/|k| — π, not 2π.",
+          "accept": [
+            "the period of tan k x is pi over mod k not two pi",
+            "tangent has period pi over k",
+            "write the tan formula, pi by mod k",
+            "tan ki period pi by mod k",
+            "state the tangent period formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by k",
+            "tangent",
+            "not two pi",
+            "period formula"
+          ]
+        },
+        "why": "tan repeats every π because tan(θ + π) = tan θ. Using the cosine formula here doubles the answer.",
+        "common_mistakes": [
+          "Using 2π/|k| by habit.",
+          "Writing |k|/π upside down."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute k = 5",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. One substitution.",
+        "lines": [
+          "Here k = 5",
+          {
+            "text": "∴ Period = π/|5| = π/5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k = 5, so the period is π/5.",
+          "accept": [
+            "k is five so the period is pi over five",
+            "the answer is pi by five",
+            "substituting gives pi divided by five",
+            "k five kabatti pi by five",
+            "the period is pi over five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by five",
+            "k equals five"
+          ]
+        },
+        "why": "A larger coefficient compresses the graph, so the period shrinks — π/5 is much shorter than π, as expected.",
+        "common_mistakes": [
+          "Writing 5/π.",
+          "Giving 2π/5."
+        ]
+      }
+    ]
+  }
+}

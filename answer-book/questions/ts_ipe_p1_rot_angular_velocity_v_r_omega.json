@@ -1,0 +1,348 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_angular_velocity_v_r_omega",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define angular velocity. Derive v = rω.",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 15,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The derivation",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "Angular velocity",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Angular velocity:",
+            "style": "heading"
+          },
+          "the rate of change of angular",
+          "displacement.",
+          {
+            "text": "ω = dθ/dt,  SI unit: rad/s",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Definition, formula, unit — the standard one-mark trio.",
+        "why": "ω is to rotation what v is to straight-line motion; the derivation below is exactly the bridge between the two.",
+        "common_mistakes": [
+          "Giving the unit as degrees per second. The SI unit is radian per second."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular velocity is the rate of change of angular displacement, ω = dθ/dt, in rad/s.",
+          "accept": [
+            "rate of change of angular displacement",
+            "omega is d theta by d t",
+            "radian per second"
+          ],
+          "reject": [
+            "v equals r omega"
+          ],
+          "heard_as": [
+            "d theta by d t",
+            "angular displacement",
+            "rad per second"
+          ]
+        },
+        "memory_tip": "ω = dθ/dt — the rotational version of velocity."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The particle on the circle",
+        "marks": 0,
+        "margin_note": "A particle moving from P₁ to P₂ through Δθ, covering arc Δs, with v along the tangent.",
+        "why": "The derivation is one geometric fact — arc = radius × angle — and the figure is where that fact is visible.",
+        "common_mistakes": [
+          "Drawing v along the radius. Velocity is along the tangent."
+        ],
+        "figure": {
+          "id": "v_equals_r_omega",
+          "width": 400,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "circle",
+              "d": "M 90 150 A 90 90 0 1 0 270 150 A 90 90 0 1 0 90 150",
+              "ms": 800
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 160,
+              "y": 158,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "radius1",
+              "d": "M 180 150 L 270 150",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 222,
+              "y": 170,
+              "text": "r",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p1",
+              "x": 278,
+              "y": 158,
+              "text": "P₁",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "radius2",
+              "d": "M 180 150 L 254 98",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_p2",
+              "x": 258,
+              "y": 88,
+              "text": "P₂",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "arc_dtheta",
+              "d": "M 216 150 A 36 36 0 0 0 209 129",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_dtheta",
+              "x": 222,
+              "y": 126,
+              "text": "Δθ",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_ds",
+              "x": 284,
+              "y": 118,
+              "text": "Δs",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "vel",
+              "d": "M 254 98 L 231 65",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "vel_head",
+              "d": "M 232 77 L 231 65 L 242 70",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_v",
+              "x": 218,
+              "y": 56,
+              "text": "v",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "omega_arc",
+              "d": "M 148 108 A 55 55 0 0 1 212 108",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "omega_head",
+              "d": "M 203 100 L 212 108 L 200 111",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_omega",
+              "x": 172,
+              "y": 96,
+              "text": "ω",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a circle is drawn with the particle moving through Δθ, arc Δs, and tangential v.",
+          "accept": [
+            "draw the circle with delta theta and delta s",
+            "particle on the circle figure",
+            "circle figure geyyali"
+          ],
+          "reject": [
+            "arc equals radius into angle"
+          ],
+          "heard_as": [
+            "figure",
+            "circle",
+            "tangent"
+          ]
+        },
+        "memory_tip": "One particle on a circle, moving from P₁ to P₂: arc Δs, angle Δθ."
+      },
+      {
+        "id": "s3_derive",
+        "kind": "equation",
+        "label": "The derivation",
+        "marks": 2,
+        "mark_note": "Derivation",
+        "lines": [
+          "Let the particle move from P₁ to P₂",
+          "in time Δt, covering arc Δs while the",
+          "radius turns through Δθ. Since",
+          "angle = arc / radius,",
+          {
+            "text": "Δs = r·Δθ",
+            "style": "eq"
+          },
+          "Dividing both sides by Δt,",
+          {
+            "text": "Δs/Δt = r · Δθ/Δt",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two moves only: the arc-angle relation, then divide by Δt. Name both as you write them.",
+        "why": "Everything comes from the definition of the radian: an angle IS arc over radius. Divide by time and the two rates appear.",
+        "common_mistakes": [
+          "Starting from v = rω itself — that is the thing being derived."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That arc = radius × angle gives Δs = rΔθ, then dividing by Δt relates the two rates.",
+          "accept": [
+            "arc equals radius into angle",
+            "delta s is r delta theta",
+            "divide by delta t"
+          ],
+          "reject": [
+            "omega is d theta by d t"
+          ],
+          "heard_as": [
+            "arc",
+            "r delta theta",
+            "divide"
+          ]
+        },
+        "memory_tip": "The radian definition does everything: Δθ = Δs/r. Divide both sides by Δt."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "In the limit Δt → 0, Δs/Δt = v and",
+          "Δθ/Δt = ω, so",
+          {
+            "text": "v = r ω",
+            "style": "boxed"
+          },
+          "Linear velocity = radius × angular",
+          "velocity."
+        ],
+        "margin_note": "Say the limit line — that is what turns the ratios into v and ω.",
+        "why": "This single relation converts every rotational statement into a linear one and back; the whole chapter leans on it.",
+        "common_mistakes": [
+          "Writing ω = rv or v = ω/r from memory instead of reading it off the derivation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the limit the ratios become v and ω, giving v = rω.",
+          "accept": [
+            "v equals r omega",
+            "in the limit delta t tends to zero",
+            "linear velocity is r into omega"
+          ],
+          "reject": [
+            "arc equals radius into angle"
+          ],
+          "heard_as": [
+            "v equals r omega",
+            "limit"
+          ]
+        },
+        "memory_tip": "v = rω. Same ω, larger radius → faster rim."
+      }
+    ]
+  },
+  "insider_note": "The derivation carries 2 of the 4 marks and it is three lines: Δs = rΔθ, divide by Δt, take the limit."
+}

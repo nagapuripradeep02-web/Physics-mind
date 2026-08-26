@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_from_intercepts_2_3_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the plane which makes intercepts 2,3,4 on the x,y,z-axes respectively.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the intercept form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the fractions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 103 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say where the given intercepts go, and what you do at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_intercept_form",
+        "kind": "equation",
+        "label": "Write the intercept form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This question runs the other way: the intercepts are given, so they go straight into the denominators of x/a + y/b + z/c = 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The equation of the plane with intercepts a, b, c is  x/a + y/b + z/c = 1",
+          "∴ the required equation of the plane is  x/2 + y/3 + z/4 = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given intercepts are placed straight into x/a + y/b + z/c = 1.",
+          "accept": [
+            "put the given intercepts into the denominators of the intercept form",
+            "x over a plus y over b plus z over c equals one",
+            "the intercepts go straight in",
+            "intercepts ni denominators lo pettali",
+            "write the intercept form with the given numbers"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "denominators",
+            "x over a",
+            "given intercepts"
+          ]
+        },
+        "why": "The intercept form is built to display the intercepts, so a question that supplies them needs no rearranging at all — only clearing up afterwards.",
+        "common_mistakes": [
+          "Putting the intercepts in the numerators.",
+          "Assigning them to the wrong axes."
+        ]
+      },
+      {
+        "id": "s2_clear_the_fractions",
+        "kind": "boxed_final",
+        "label": "Clear the fractions",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Put everything over a common denominator and multiply through, so the answer is in the plain ax + by + cz = d form the board expects.",
+        "lines": [
+          "⇒ (6x + 4y + 3z)/12 = 1",
+          {
+            "text": "⇒ 6x + 4y + 3z = 12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That clearing the fractions gives 6x + 4y + 3z = 12.",
+          "accept": [
+            "put over a common denominator and multiply through",
+            "clear the fractions to get the standard form",
+            "multiply everything by the common denominator",
+            "common denominator teesi multiply cheyyali",
+            "this gives the required plane"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "clear the fractions",
+            "multiply through",
+            "required plane"
+          ]
+        },
+        "why": "Leaving fractions in a final answer costs marks even when the mathematics is right, so the tidy-up is part of the answer.",
+        "common_mistakes": [
+          "Multiplying only some terms by the common denominator.",
+          "Leaving the answer as a sum of fractions."
+        ]
+      }
+    ]
+  }
+}

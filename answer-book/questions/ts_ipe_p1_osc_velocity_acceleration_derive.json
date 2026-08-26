@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_velocity_acceleration_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain expressions for the velocity and the acceleration of a particle in simple harmonic motion at a displacement y from the mean position.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The displacement",
+      "marks": 1
+    },
+    {
+      "label": "The velocity",
+      "marks": 2
+    },
+    {
+      "label": "The acceleration",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_displacement",
+        "kind": "equation",
+        "label": "The displacement",
+        "marks": 1,
+        "mark_note": "Displacement",
+        "lines": [
+          "Take the particle to start from the mean",
+          "position. Its displacement after a time t is",
+          {
+            "text": "y = A sin ωt",
+            "style": "eq"
+          },
+          "where A is the amplitude and ω the angular",
+          "frequency."
+        ],
+        "why": "Starting at the mean position is a choice, not a law; starting at an extreme gives a cosine instead, with the same physics.",
+        "common_mistakes": [
+          "Treating y = A sin ωt as the only possible form rather than one choice of starting instant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the displacement is y equals A sin omega t.",
+          "accept": [
+            "y equals A sin omega t",
+            "A is the amplitude"
+          ],
+          "reject": [
+            "v equals omega root A squared minus y squared"
+          ],
+          "heard_as": [
+            "A sin omega t",
+            "displacement"
+          ]
+        },
+        "memory_tip": "sin 0 = 0, so y = A sin ωt starts the particle at the mean position.",
+        "margin_note": "First mark. Say where the particle starts before writing y = A sin ωt."
+      },
+      {
+        "id": "s2_velocity",
+        "kind": "equation",
+        "label": "The velocity",
+        "marks": 2,
+        "mark_note": "Velocity",
+        "lines": [
+          "Differentiating with respect to t,",
+          {
+            "text": "v = dy/dt = A ω cos ωt",
+            "style": "eq"
+          },
+          "To write this in terms of y instead of t, use",
+          "sin ωt = y/A and cos ωt = √(1 − sin²ωt):",
+          {
+            "text": "v = A ω √(1 − y²/A²) = ω √(A² − y²)",
+            "style": "eq"
+          }
+        ],
+        "why": "The version in y is the useful one — it gives the speed at a stated position without needing to know the time.",
+        "common_mistakes": [
+          "Leaving the answer as A ω cos ωt when the question asks for it at a displacement y."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v is A omega cos omega t, which becomes omega root A squared minus y squared.",
+          "accept": [
+            "A omega cos omega t",
+            "omega root A squared minus y squared"
+          ],
+          "reject": [
+            "y equals A sin omega t"
+          ],
+          "heard_as": [
+            "differentiate",
+            "root A squared minus y squared"
+          ]
+        },
+        "memory_tip": "Check the two ends: y = 0 gives ωA, and y = A gives 0. Both are correct.",
+        "margin_note": "Two marks here. Write v in terms of t first, then convert it to v in terms of y."
+      },
+      {
+        "id": "s3_acceleration",
+        "kind": "boxed_final",
+        "label": "The acceleration",
+        "marks": 1,
+        "mark_note": "Acceleration",
+        "lines": [
+          "Differentiating once more,",
+          {
+            "text": "a = dv/dt = −A ω² sin ωt = −ω² y",
+            "style": "eq"
+          },
+          {
+            "text": "v = ω√(A² − y²),    a = −ω² y",
+            "style": "boxed"
+          },
+          "v is largest at y = 0 and a is largest at y = ±A."
+        ],
+        "why": "a = −ω²y is the definition of SHM recovered from the algebra, which is the check that the whole derivation is consistent.",
+        "common_mistakes": [
+          "Losing the minus sign, which would describe a body pushed away from the centre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a equals minus omega squared y, and v is largest at the mean position while a is largest at the extremes.",
+          "accept": [
+            "a is minus omega squared y",
+            "v largest at the mean position",
+            "a largest at the extremes"
+          ],
+          "reject": [
+            "A omega cos omega t"
+          ],
+          "heard_as": [
+            "minus omega squared y",
+            "largest"
+          ]
+        },
+        "memory_tip": "Both boxed answers must be in y, with no t left anywhere.",
+        "margin_note": "The last mark. Box the pair together and keep the minus sign on a."
+      }
+    ]
+  },
+  "insider_note": "The velocity step is two of the four marks, and it must end in y — stopping at A ω cos ωt leaves the question unanswered."
+}

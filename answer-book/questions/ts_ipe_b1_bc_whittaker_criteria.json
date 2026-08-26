@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_whittaker_criteria",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the main criteria used for classification by Whittaker.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The five criteria",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_criteria",
+        "kind": "text",
+        "label": "The five criteria",
+        "marks": 2,
+        "mark_note": "Five criteria",
+        "lines": [
+          "Whittaker used the following criteria for",
+          "the five kingdom classification:",
+          {
+            "text": "1. Cell structure",
+            "style": "indent"
+          },
+          {
+            "text": "2. Thallus (body) organisation",
+            "style": "indent"
+          },
+          {
+            "text": "3. Mode of nutrition",
+            "style": "indent"
+          },
+          {
+            "text": "4. Reproduction",
+            "style": "indent"
+          },
+          {
+            "text": "5. Phylogenetic relationships",
+            "style": "indent"
+          }
+        ],
+        "why": "Each criterion separates kingdoms at a different level: cell structure splits prokaryotes from eukaryotes; body organisation and nutrition separate protists, fungi, plants and animals; reproduction and phylogeny confirm the groups.",
+        "common_mistakes": [
+          "Writing habitat as a criterion. Habitat is not one of Whittaker's criteria.",
+          "Listing only two or three criteria — the full list of five carries the two marks."
+        ],
+        "memory_tip": "Count five: cell structure, body organisation, nutrition, reproduction, phylogeny.",
+        "margin_note": "A numbered list of all five criteria is the complete answer."
+      },
+      {
+        "id": "s2_recap",
+        "kind": "boxed_final",
+        "label": "Recap",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Five criteria decide the five kingdoms.",
+            "style": "boxed"
+          }
+        ],
+        "why": "A one-line recap fixes the count: five criteria, five kingdoms — quick to recall in the exam hall.",
+        "common_mistakes": [
+          "Writing the five kingdom names instead of the five criteria — the question asks for the criteria."
+        ],
+        "memory_tip": "Five criteria for five kingdoms — the two fives pair up.",
+        "margin_note": "Optional recap line; the marks are in the list above."
+      }
+    ]
+  },
+  "insider_note": "All five criteria named earns full marks; three criteria typically earns one of the two."
+}

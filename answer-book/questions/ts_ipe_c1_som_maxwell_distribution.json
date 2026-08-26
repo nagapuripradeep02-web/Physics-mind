@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_maxwell_distribution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the Maxwell distribution of molecular speeds. What happens to the distribution when the temperature is raised?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The shape of the distribution",
+      "marks": 2
+    },
+    {
+      "label": "The effect of temperature",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the book asks the three characteristic speeds and their ratio, but never the Maxwell distribution those speeds live on — the curve itself and its temperature dependence are NCERT States of Matter material. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "The shape of the distribution",
+        "marks": 2,
+        "mark_note": "The curve",
+        "lines": [
+          "The molecules of a gas do not all move at one",
+          "speed — the speeds are spread over a range.",
+          "Plotting the fraction of molecules against speed",
+          "gives the Maxwell distribution curve:",
+          "· it starts at zero (no molecules at rest),",
+          "· rises to a maximum at the most probable",
+          "  speed U(mp),",
+          "· then falls, with a long tail at high speeds.",
+          "U(mp) < U(av) < U(rms) all sit on this curve."
+        ],
+        "why": "Collisions continuously exchange energy between molecules, so a single shared speed is impossible; a stable spread with one peak is what remains, and the peak position defines the most probable speed.",
+        "common_mistakes": [
+          "Drawing or describing a symmetric curve. The high-speed tail makes it unsymmetric.",
+          "Placing the average or RMS speed at the peak. The PEAK is the most probable speed; the other two lie to its right."
+        ],
+        "memory_tip": "Rise, peak at most probable, long tail — and the three named speeds sit left to right: mp, average, rms.",
+        "margin_note": "The three bullet features are the marked description; a labelled sketch may replace the words."
+      },
+      {
+        "id": "s2_temperature",
+        "kind": "boxed_final",
+        "label": "The effect of temperature",
+        "marks": 2,
+        "mark_note": "Temperature effect",
+        "lines": [
+          "When the temperature is raised:",
+          "· the peak shifts to a higher speed (all three",
+          "  characteristic speeds increase as √T),",
+          "· the peak becomes lower and the curve broader —",
+          "  the speeds are spread over a wider range,",
+          "· the total area under the curve stays the same,",
+          "  since it counts all the molecules.",
+          {
+            "text": "Higher temperature: peak moves to higher speed, curve becomes lower and broader",
+            "style": "boxed"
+          }
+        ],
+        "why": "Heating raises the average kinetic energy, moving the whole spread toward higher speeds; and since the same molecules now cover a wider range of speeds, the fraction at any one speed drops, flattening the peak.",
+        "common_mistakes": [
+          "Raising the peak with temperature. The peak LOWERS as the curve broadens.",
+          "Changing the area under the curve. The molecule count is fixed, so the area is fixed."
+        ],
+        "memory_tip": "Hotter gas: same area, wider spread — so the peak must sit lower and farther right.",
+        "margin_note": "Constant area is the understanding check examiners reward."
+      }
+    ]
+  }
+}
