@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer sentence is garbled in print ('continue to take place simultaneously with equal rates. is known as'); the chemistry is correct and is restated here in full sentences."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer sentence is garbled in print ('continue to take place simultaneously with equal rates. is known as'); the chemistry is correct and is restated here in full sentences. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 ('two runs look like standing still', 'totals stand still'). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -56,7 +56,7 @@
           "Writing that the reaction stops at equilibrium. Both reactions continue.",
           "Writing that the concentrations of reactants and products become equal. They become constant, not equal to each other."
         ],
-        "memory_tip": "Rates equal, amounts steady. Two runs at the same speed in opposite directions look like standing still.",
+        "memory_tip": "Rates equal, amounts steady. Two opposite reactions at the same rate give no net change.",
         "margin_note": "The words equal rates must appear in the definition."
       },
       {
@@ -78,7 +78,7 @@
         "common_mistakes": [
           "Calling the equilibrium static because nothing appears to change from outside."
         ],
-        "memory_tip": "Dynamic means moving. The reaction keeps running in both directions; only the totals stand still.",
+        "memory_tip": "Dynamic means moving. Both reactions continue; only the total amounts stay constant.",
         "margin_note": "One example written with the ⇌ arrow supports the definition."
       }
     ]

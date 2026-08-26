@@ -315,6 +315,45 @@
       never the bare number. */
   function unitKey(u) { return subjectOf(u) + '-' + u.number; }
 
+  /** A QUESTION's unit key. A question carries its subject at the TOP level, and its
+      unit as {number, name} with no subject of its own (src/schemas/answerBook.ts:232),
+      so unitKey(question.unit) would read EVERY card as physics. Build it from the
+      question's own subject instead — same absent-means-physics rule as subjectOf. */
+  function questionUnitKey(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
+
+  /** The chapter's 3-star set, for Vidi's grounding text. Keyed on subject-number,
+      never the bare number: keying on the number told a Maths Unit 3 (Matrices) card
+      that its chapter-mates were Physics Unit 3 (Motion in a Straight Line) questions,
+      and physics sorts first in UNITS, so the maths mates were never reached at all. */
+  function chapterMates(q, limit) {
+    var mates = [];
+    var want = questionUnitKey(q);
+    var cap = limit || 6;
+    for (var u2 = 0; u2 < UNITS.length; u2++) {
+      if (unitKey(UNITS[u2]) !== want) continue;
+      var qs2 = UNITS[u2].questions;
+      for (var e2 = 0; e2 < qs2.length && mates.length < cap; e2++) {
+        var me2 = qs2[e2];
+        if (me2.question_id && me2.stars === 3 && me2.question_id !== q.question_id) {
+          // Finish the word. A bare slice(0,80) cut mid-word — three graders quoted
+          // "...completely burn 100 ml of acetylen" and "...in acid medium (or) Write t"
+          // out of this list, and Vidi repeats it to students verbatim. Extend FORWARD
+          // to the next space so the clip can only ever ADD characters; trimming
+          // backwards could drop a word a caller asserts on.
+          var t2 = String(me2.text);
+          if (t2.length > 80) {
+            var end2 = t2.indexOf(' ', 80);
+            t2 = (end2 > 0 && end2 <= 100) ? t2.slice(0, end2) : t2.slice(0, 80);
+            t2 = t2.replace(/[\s,;:.]+$/, '') + '…';
+          }
+          mates.push(me2.section + ' ' + me2.number + ': ' + t2);
+        }
+      }
+    }
+    return mates;
+  }
+  // --- end of the Vidi context key helpers ---
+
   function entryMatches(e, u) {
     if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return false;
     if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
@@ -3475,8 +3514,27 @@
         ' marks · about ' + cut.expected_time_min + ' minutes');
       if (question.chapter) out.push('CHAPTER: ' + question.chapter);
       var e = manifestEntry();
-      if (e) out.push('STARS: ' + e.stars + (e.source === 'enumerated' ? ' · predicted, not asked yet' : ''));
+      // Say what the rank MEANS, both ways. The old line emitted a bare "STARS: 0" on a
+      // sourced card and "STARS: 0 · predicted, not asked yet" on an enumerated one, and
+      // four independent graders caught the model reading those as two different
+      // rankings — "the book predicts it IS likely to be asked" on one card and "predicts
+      // it is not asked often" on another, from the same underlying 0. The second half
+      // fixes a separate contradiction they all hit: cards carrying STARS 0 alongside
+      // five Asked years. Stars are the book's rank; the Asked line is exam history; the
+      // context never said they were independent.
+      // Compute the Asked line FIRST: the rank gloss may only point at it when
+      // it exists. Measured 2026-08-25 -- only 7 of 204 chemistry cards carry
+      // one, and an earlier version of this gloss told the model to read a line
+      // that was absent on the other 197. Four graders reported the dangling
+      // pointer; every reply had to improvise the absence.
       var asked = askedLine(question);
+      if (e) {
+        out.push(e.source === 'enumerated'
+          ? 'STARS: none — this question is PREDICTED BY THIS ANSWER BOOK. The source book does not ask it, so there is no frequency rank and no exam history to report. If you must name who expects it, say this answer book or this card — never the book, which does not contain the question.'
+          : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
+          + (asked ? ' An Asked line below gives this question’s exam history.'
+                   : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
+      }
       if (asked) out.push(asked);
       var split = [];
       for (var i = 0; i < cut.mark_split.length; i++) {
@@ -3487,8 +3545,15 @@
       // teacher confirms it (verification.needs_teacher_verification is true on
       // all 157). The model must be able to say so when asked instead of
       // presenting the split as a board-issued rubric; the persona governs WHEN.
+      // An enumerated question is NOT in the source book, so the book cannot
+      // have printed a mark split for it. Saying otherwise launders an authored
+      // split as a sourced one -- four graders in four slices named this the
+      // highest-value defect in the round-2 corpus, because this is the sentence
+      // that licenses a reply to say "the book gives 1 mark for ...".
       if (question.verification && question.verification.needs_teacher_verification) {
-        out.push('VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
+        out.push(e && e.source === 'enumerated'
+          ? 'VERIFICATION: this mark split was authored by THIS ANSWER BOOK for a predicted question; it was not copied from the source book, which does not contain the question, and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
+          : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic
       // greeting; the model was never given it, so it could not build on it.
@@ -3509,19 +3574,14 @@
         }
       }
       // The chapter's 3-star set — the #1 follow-up question a crammer asks.
-      var mates = [];
-      for (var u2 = 0; u2 < UNITS.length; u2++) {
-        if (UNITS[u2].number !== question.unit.number) continue;
-        var qs2 = UNITS[u2].questions;
-        for (var e2 = 0; e2 < qs2.length && mates.length < 6; e2++) {
-          var me2 = qs2[e2];
-          if (me2.question_id && me2.stars === 3 && me2.question_id !== question.question_id) {
-            mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
-          }
-        }
-      }
+      // Say SOME. The cap of 6 silently drops 3-star questions in the bigger
+      // chapters, and graders caught replies quoting this list to a student as the
+      // complete set ("the book lists disproportionation and comproportionation as
+      // the 3-star ones") while two 3-star SAQs in that very chapter were invisible
+      // to it. A partial list presented as whole is a wrong answer, not a short one.
+      var mates = chapterMates(question, 6);
       if (mates.length) {
-        out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
+        out.push('SOME OF THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS (a partial list, never present it as the complete set): ' + mates.join(' | '));
       }
       out.push('THE MODEL ANSWER, step by step:');
       for (var k = 0; k < steps.length; k++) {

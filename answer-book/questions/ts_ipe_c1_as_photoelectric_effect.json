@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: hν = W₀ + KE, W₀ = hν₀ and KE = h(ν − ν₀) verified; a memory tip reworded, since a higher frequency gives each photon more energy rather than making it stronger (explanation text only, marked lines and marks untouched). AI chemistry check 2026-08-25 (audit round): the insider note said three of the four marks sit on the energy balance, while the mark split gives the equation 2M; reworded to two marks plus the threshold mark that follows from it."
   },
   "answer": {
     "page_header": [
@@ -110,10 +110,10 @@
           "Saying bright enough light will always eject electrons. Frequency decides, not brightness.",
           "Naming no metal at all. The alkali metals are the expected example."
         ],
-        "memory_tip": "Brightness sends more photons. Frequency makes each photon stronger. Only the second one matters here.",
+        "memory_tip": "Brightness sends more photons. Frequency gives each photon more energy. Only the energy of each photon matters here.",
         "margin_note": "Naming the threshold frequency and one alkali metal completes the answer."
       }
     ]
   },
-  "insider_note": "A three-star question that appears in almost every model paper. The energy balance hν = W₀ + KE with every symbol explained is where three of the four marks sit."
+  "insider_note": "A three-star question that appears in almost every model paper. The energy balance hν = W₀ + KE with every symbol explained carries two of the four marks, and the threshold mark in the last step comes from the same balance through W₀ = hν₀."
 }

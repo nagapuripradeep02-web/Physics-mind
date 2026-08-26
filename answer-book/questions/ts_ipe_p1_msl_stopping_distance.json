@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -49,7 +49,8 @@
           "Stopping distance is the distance a vehicle",
           "travels after the brakes are applied, before",
           "it comes to rest.",
-          "With v = 0 in v² = u² + 2as (a negative):",
+          "With v = 0 in v² = u² + 2as, writing a for the",
+          "magnitude of the retardation:",
           {
             "text": "s = u² / (2a)",
             "style": "eq"
@@ -57,7 +58,7 @@
         ],
         "why": "Setting the final velocity to zero is what turns the general equation into a formula for the distance needed to stop.",
         "common_mistakes": [
-          "Forgetting that the acceleration is negative during braking, which flips the sign of s."
+          "Keeping a negative sign inside s = u²/(2a). In that formula a is the magnitude of the retardation; with a signed negative acceleration the relation is s = −u²/(2a), the same positive distance."
         ],
         "recall": {
           "credit": "say_it",
@@ -76,7 +77,7 @@
           ]
         },
         "memory_tip": "Set v = 0 in v² = u² + 2as and the stopping distance falls out.",
-        "margin_note": "Note that a is negative when braking."
+        "margin_note": "Braking acceleration is negative; in s = u²/(2a) the a is its magnitude."
       },
       {
         "id": "s2_factors",

@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "A parachutist flying in an aeroplane jumps when it is at a height of 3 km above the ground. He opens his parachute when he is about 1 km above the ground. Describe his motion.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Before opening",
@@ -34,7 +40,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "Unit 3 has NO Long Answer section in either source book, so no 8-mark form is invented. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions plus a PROBLEMS section; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY (5 questions) and no VSAQ section. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -56,7 +62,7 @@
           "He accelerates downward at g, so his",
           "downward speed increases steadily."
         ],
-        "why": "He leaves a horizontally moving aeroplane, so his motion begins as a projectile: steady horizontal velocity with a vertical velocity that grows from zero.",
+        "why": "He leaves a horizontally moving aeroplane, so his motion begins as a projectile: steady horizontal velocity with a vertical velocity that grows from zero. The marked answer neglects air resistance until the parachute opens; in reality drag also acts during this 2 km stage, but the exam answer treats it as free fall at g.",
         "common_mistakes": [
           "Saying he starts with a downward velocity. He starts with zero vertical velocity.",
           "Forgetting the horizontal velocity carried from the aeroplane."
@@ -90,8 +96,9 @@
         "lines": [
           "At 1 km the parachute opens. Air resistance",
           "and buoyancy now act upward, opposing his",
-          "weight, so the net downward force falls",
-          "sharply and he decelerates."
+          "weight. For a while the upward force is larger",
+          "than his weight, so the net force points upward",
+          "and he decelerates."
         ],
         "why": "The parachute increases the surface area enormously, so the upward drag becomes large enough to exceed his weight for a while and slow him down.",
         "common_mistakes": [

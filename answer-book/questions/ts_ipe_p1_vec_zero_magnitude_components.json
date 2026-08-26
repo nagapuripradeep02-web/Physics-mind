@@ -76,7 +76,8 @@
             "sum of squares",
             "never negative"
           ]
-        }
+        },
+        "memory_tip": "Try a = 3i − 3j: |a| = √(9 + 9) = √18, not 0. The minus sign disappears in the square."
       },
       {
         "id": "s2_conclude",
@@ -111,8 +112,10 @@
             "all zero",
             "no"
           ]
-        }
+        },
+        "memory_tip": "Read it backwards as well: zero magnitude and all components zero say the same thing."
       }
     ]
-  }
+  },
+  "insider_note": "The word No carries no mark on its own. One mark is the square-root reason, the other is stating that all three components are zero."
 }

@@ -77,7 +77,9 @@
             "A sin omega t",
             "displacement"
           ]
-        }
+        },
+        "memory_tip": "sin 0 = 0, so y = A sin ωt starts the particle at the mean position.",
+        "margin_note": "First mark. Say where the particle starts before writing y = A sin ωt."
       },
       {
         "id": "s2_velocity",
@@ -116,7 +118,9 @@
             "differentiate",
             "root A squared minus y squared"
           ]
-        }
+        },
+        "memory_tip": "Check the two ends: y = 0 gives ωA, and y = A gives 0. Both are correct.",
+        "margin_note": "Two marks here. Write v in terms of t first, then convert it to v in terms of y."
       },
       {
         "id": "s3_acceleration",
@@ -155,8 +159,11 @@
             "minus omega squared y",
             "largest"
           ]
-        }
+        },
+        "memory_tip": "Both boxed answers must be in y, with no t left anywhere.",
+        "margin_note": "The last mark. Box the pair together and keep the minus sign on a."
       }
     ]
-  }
+  },
+  "insider_note": "The velocity step is two of the four marks, and it must end in y — stopping at A ω cos ωt leaves the question unanswered."
 }

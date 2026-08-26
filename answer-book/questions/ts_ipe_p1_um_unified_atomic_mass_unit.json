@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Express unified atomic mass unit in kg.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",

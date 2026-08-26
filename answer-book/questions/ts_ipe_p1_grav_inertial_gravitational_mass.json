@@ -69,7 +69,9 @@
             "inertial",
             "F equals m a"
           ]
-        }
+        },
+        "memory_tip": "Inertia, so F = ma: the mass found by pushing and measuring the acceleration.",
+        "margin_note": "First mark. Give the formula and how it is measured, not the formula alone."
       },
       {
         "id": "s2_gravitational",
@@ -106,8 +108,11 @@
             "gravitational mass",
             "equal"
           ]
-        }
+        },
+        "memory_tip": "PUSH the body to find inertial mass. WEIGH it to find gravitational mass.",
+        "margin_note": "Second mark. Close with the boxed line that experiment finds the two equal."
       }
     ]
-  }
+  },
+  "insider_note": "One mark each, and each is earned by its equation — F = m a against F = G M m / r² — not by describing mass in words."
 }

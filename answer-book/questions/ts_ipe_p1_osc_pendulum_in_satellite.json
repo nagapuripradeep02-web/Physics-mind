@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Can a simple pendulum be used in an artificial satellite?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The answer",
@@ -30,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -70,7 +76,8 @@
             "cannot be used"
           ]
         },
-        "memory_tip": "The answer is no — say it first, then give the reason."
+        "memory_tip": "The answer is no — say it first, then give the reason.",
+        "margin_note": "First mark. Write No on its own line, before any reason."
       },
       {
         "id": "s2_reason",
@@ -90,7 +97,8 @@
         ],
         "why": "The satellite and the bob fall around the earth at the same rate, so relative to the satellite the bob feels no pull at all.",
         "common_mistakes": [
-          "Saying there is no gravity in orbit — there is; the satellite and the bob are simply falling together."
+          "Saying there is no gravity in orbit — there is; the satellite and the bob are simply falling together.",
+          "Putting the value of g at the satellite's height into T = 2π√(l/g). The bob responds to the effective g inside the satellite, which is zero; the local field value does not set the period."
         ],
         "recall": {
           "credit": "say_it",
@@ -108,8 +116,10 @@
             "infinite"
           ]
         },
-        "memory_tip": "Inside the satellite everything is in free fall: effective g is zero, so T = 2π√(l/g) has no meaning — the bob never swings back."
+        "memory_tip": "Inside the satellite everything is in free fall: effective g is zero, so T = 2π√(l/g) has no meaning — the bob never swings back.",
+        "margin_note": "Second mark. The reason is free fall, which makes the effective g zero."
       }
     ]
-  }
+  },
+  "insider_note": "An answer that says there is no gravity in orbit loses the second mark; the reason has to be free fall, which makes the effective g zero."
 }

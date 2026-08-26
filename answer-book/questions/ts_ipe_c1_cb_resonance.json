@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: resonance is an NCERT Chemical Bonding section that the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: resonance is an NCERT Chemical Bonding section that the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Added the formal charges of the ozone canonical forms (central O +1, singly bonded terminal O −1) to the s2 `why` — the marked line draws them uncharged, which the formal-charge card of this same chapter computes as +1. The 128 / 121 / 148 pm bond lengths verified correct."
   },
   "answer": {
     "page_header": [
@@ -83,7 +83,7 @@
           "side of the central O atom, so neither",
           "structure alone is correct."
         ],
-        "why": "Ozone is the standard example because its two forms are mirror placements of one double bond — the simplest possible pair of canonical forms.",
+        "why": "Ozone is the standard example because its two forms are mirror placements of one double bond — the simplest possible pair of canonical forms. In a complete Lewis structure each form also carries formal charges: the central O is +1, the singly bonded terminal O is −1 and the doubly bonded terminal O is 0. Board answers accept the plain forms written here, so the marked line keeps them.",
         "common_mistakes": [
           "Using a plain arrow → between the forms. The resonance symbol is the double-headed arrow ↔.",
           "Drawing ozone as a ring of three O atoms. It is bent and open."

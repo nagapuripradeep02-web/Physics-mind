@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -53,7 +53,7 @@
           "and in DIRECTION."
         ],
         "margin_note": "The key word is DIRECTION — the conserved direction of L is what resists tilting.",
-        "why": "Angular momentum is a vector. Tilting the bicycle would change the direction of L, and that needs a torque — so small disturbances fail to tip it.",
+        "why": "Angular momentum is a vector. Tilting the bicycle would change the direction of L, and that needs a torque — so small disturbances fail to tip it. This is the board answer. In full detail a rider also balances by steering the wheels back under the centre of mass; write the angular-momentum reason in the exam.",
         "common_mistakes": [
           "Saying only \"because of speed\". Speed alone balances nothing; the spinning wheels do."
         ],
@@ -73,7 +73,8 @@
             "direction",
             "conserved"
           ]
-        }
+        },
+        "memory_tip": "L points along the wheel axle, sideways. Say where it points, not only that it exists."
       },
       {
         "id": "s2_result",
@@ -111,8 +112,10 @@
             "does not tip",
             "balanced"
           ]
-        }
+        },
+        "memory_tip": "A spinning top stays upright; the same top at rest falls over. Same reason."
       }
     ]
-  }
+  },
+  "insider_note": "Both marks are language marks: name angular momentum for the first, connect it to not tipping for the second."
 }

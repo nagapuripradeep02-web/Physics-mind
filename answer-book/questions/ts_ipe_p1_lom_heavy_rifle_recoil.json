@@ -117,5 +117,6 @@
         "memory_tip": "Recoil speed = that momentum ÷ rifle mass. Heavier rifle, smaller speed."
       }
     ]
-  }
+  },
+  "insider_note": "The second mark is the relation V ∝ 1/M written down. \"Because it is heavier\" is the answer most students give, and it earns nothing."
 }

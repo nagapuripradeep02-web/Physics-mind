@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the inequality Δx · Δp ≥ h/4π and every term verified; two notes that demanded the word simultaneously now match the written line, which says at the same time (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -57,11 +57,11 @@
         ],
         "why": "The two quantities cannot be pinned down together, however good the instrument. The limit is a property of small particles themselves, not a shortcoming of the measurement.",
         "common_mistakes": [
-          "Writing position and velocity without the word simultaneously. Either one alone can be measured exactly.",
+          "Writing position and velocity without saying at the same time. Either one alone can be measured exactly.",
           "Saying the principle applies to all objects in practice. It matters only for very small masses."
         ],
         "memory_tip": "Both at once is what is forbidden. Either one alone is allowed.",
-        "margin_note": "The word simultaneously must appear, or the statement is not the principle."
+        "margin_note": "The words at the same time must appear, or the statement is not the principle."
       },
       {
         "id": "s2_equation",
@@ -84,7 +84,7 @@
           "Writing the sign as less than or equal to. The product is never smaller than h/4π.",
           "Writing h/2π or h/4 instead of h/4π."
         ],
-        "memory_tip": "The product has a floor. Push one uncertainty down and the other must rise.",
+        "memory_tip": "The product has a fixed minimum value. Make one uncertainty smaller and the other must grow.",
         "margin_note": "Both marks are here. Write the inequality and name every symbol."
       },
       {

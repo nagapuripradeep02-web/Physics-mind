@@ -75,7 +75,9 @@
             "minus G M m by 2 r",
             "total energy"
           ]
-        }
+        },
+        "memory_tip": "KE is +GMm/2r and PE is −GMm/r. Adding them halves the PE and keeps its sign.",
+        "margin_note": "First mark. Write KE and PE on separate lines, then add them."
       },
       {
         "id": "s2_why",
@@ -112,8 +114,11 @@
             "bound",
             "negative"
           ]
-        }
+        },
+        "memory_tip": "Negative means bound, zero is the escape threshold, positive means it leaves.",
+        "margin_note": "Second mark. The word BOUND, and what raising E to zero would do."
       }
     ]
-  }
+  },
+  "insider_note": "The reason is a separate mark: say the satellite is bound and cannot reach infinity, rather than only quoting the minus sign."
 }

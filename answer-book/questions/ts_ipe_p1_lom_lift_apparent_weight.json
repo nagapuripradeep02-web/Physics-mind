@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -56,7 +56,8 @@
         ],
         "why": "A weighing machine never measures weight — it measures the force it has to push back with, which is only equal to the weight when there is no acceleration.",
         "common_mistakes": [
-          "Writing N − mg = ma, which is the equation for a lift going UP."
+          "Writing N − mg = ma, which is the equation for a lift going UP.",
+          "Here a is a downward acceleration. A lift moving down but slowing has an upward acceleration, so then N − mg = ma and the reading is m(g + a), more than the weight."
         ],
         "recall": {
           "credit": "say_it",
@@ -72,7 +73,9 @@
             "normal force",
             "m g minus N"
           ]
-        }
+        },
+        "memory_tip": "Check the sign with a = 0: mg − N = 0 gives N = mg, the ordinary reading.",
+        "margin_note": "First mark. Fix the positive direction, then write the equation. N is what the dial shows."
       },
       {
         "id": "s2_reading",
@@ -91,7 +94,8 @@
         ],
         "why": "The a = g check is the useful one: it shows weightlessness is not the absence of gravity but the absence of a supporting force.",
         "common_mistakes": [
-          "Concluding the person’s mass has changed; only the reading has."
+          "Concluding the person’s mass has changed; only the reading has.",
+          "Using N = m(g − a) when a > g: the floor cannot pull the person down, so the person leaves it and the reading is zero, never negative. For a < g the floor still pushes up."
         ],
         "recall": {
           "credit": "say_it",
@@ -108,8 +112,11 @@
             "g minus a",
             "less"
           ]
-        }
+        },
+        "memory_tip": "60 kg with a = 2 m/s² reads 60(9.8 − 2) = 468 N instead of 588 N.",
+        "margin_note": "Second mark. Box N = m(g − a) and say the reading is less than the true weight."
       }
     ]
-  }
+  },
+  "insider_note": "One mark for m g − N = m a, one for the reading m (g − a). Write the equation first; the sign is where the mark is lost."
 }

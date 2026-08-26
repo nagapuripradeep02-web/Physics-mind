@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 14,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The known result",
@@ -77,7 +83,8 @@
             "by twelve",
             "centre"
           ]
-        }
+        },
+        "memory_tip": "Centre gives the 12, end gives the 3. Start from the 12 every time."
       },
       {
         "id": "s2_shift",
@@ -119,7 +126,8 @@
             "L by two",
             "plus M a squared"
           ]
-        }
+        },
+        "memory_tip": "M(L/2)² = ML²/4. Square the whole of L/2, the 2 as well as the L."
       },
       {
         "id": "s3_result",
@@ -153,8 +161,10 @@
             "by three",
             "M L squared"
           ]
-        }
+        },
+        "memory_tip": "For M = 1 kg and L = 1 m: 0.083 about the centre, 0.333 about the end."
       }
     ]
-  }
+  },
+  "insider_note": "The parallel-axes step carries 2 of the 4 marks, and naming a = L/2 in words before substituting is what is checked there."
 }

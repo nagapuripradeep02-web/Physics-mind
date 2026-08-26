@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 4+2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's six postulates are grouped into two marked steps of two marks each; the book's H₂O angle 104°30′ equals the 104.5° that NCERT prints — both notations are correct and the card uses 104°30′ with 104.5° in brackets once."
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 4+2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's six postulates are grouped into two marked steps of two marks each; the book's H₂O angle 104°30′ equals the 104.5° that NCERT prints — both notations are correct and the card uses 104°30′ with 104.5° in brackets once. AI chemistry check 2026-08-25 (audit round 3): the Postulates row of the mark split is 4 marks but is written as two steps of 2, the only card in this chapter whose split does not map one to one onto steps; a reader took step 1 as the whole row and reallocated the remaining marks to the applications. Both postulate steps' mark_note and the insider note now state the 2 plus 2 shape. No mark, split or step changed."
   },
   "answer": {
     "page_header": [
@@ -51,7 +51,7 @@
         "kind": "text",
         "label": "Postulates — shape from repulsions",
         "marks": 2,
-        "mark_note": "Postulates 1",
+        "mark_note": "Postulates 1 and 2 — this step earns 2 of the 4 marks in the Postulates row",
         "lines": [
           "VSEPR theory (valence shell electron pair",
           "repulsion theory) — postulates:",
@@ -76,7 +76,7 @@
         "kind": "text",
         "label": "Postulates — lone pair rules",
         "marks": 2,
-        "mark_note": "Postulates 2",
+        "mark_note": "Postulates 3 to 6 — this step earns the other 2 of the 4 marks in the Postulates row",
         "lines": [
           "3. A lone pair occupies more space than a",
           "bond pair, because it belongs to one atom",
@@ -341,5 +341,5 @@
       }
     ]
   },
-  "insider_note": "The angle ladder 109°28′, 107°, 104°30′ carries the application marks — one added lone pair reduces the angle each time, and all three numbers must appear."
+  "insider_note": "The Postulates row is worth 4 marks, written here as two steps of 2 marks each: postulates 1 and 2, then postulates 3 to 6. The angle ladder 109°28′, 107°, 104°30′ carries the application marks — one added lone pair reduces the angle each time, and all three numbers must appear."
 }

@@ -72,7 +72,9 @@
             "minus k y",
             "force law"
           ]
-        }
+        },
+        "memory_tip": "F = ma with a = −ω²y gives F = −mω²y. The single letter k stands for mω².",
+        "margin_note": "First mark. F = −ky with k = mω². The equation earns it on its own."
       },
       {
         "id": "s2_sign",
@@ -108,8 +110,11 @@
             "opposite",
             "restoring"
           ]
-        }
+        },
+        "memory_tip": "Minus means OPPOSITE in direction, not a negative number. Below the mean position the force points up.",
+        "margin_note": "Second mark. Explain the sign in words. Repeating the formula earns nothing here."
       }
     ]
-  }
+  },
+  "insider_note": "The negative sign carries its own mark, so answer it in words: the force always points opposite to the displacement."
 }

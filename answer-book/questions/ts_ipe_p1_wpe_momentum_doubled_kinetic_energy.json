@@ -54,6 +54,7 @@
           "The mass does not change, so K depends on",
           "p squared alone."
         ],
+        "margin_note": "First mark. Write K = p²/2m and say the mass is fixed. That sets up the second mark.",
         "why": "Writing K in terms of p first is what makes the question one line; going through the speed takes three.",
         "common_mistakes": [
           "Using K = ½mv² and forgetting that doubling p also doubles v."
@@ -72,7 +73,8 @@
             "p squared by 2 m",
             "kinetic energy"
           ]
-        }
+        },
+        "memory_tip": "K = p²/2m comes from ½mv² with v = p/m. Rebuild it in one line if you forget it."
       },
       {
         "id": "s2_answer",
@@ -89,6 +91,7 @@
           "In the same way, doubling the kinetic energy",
           "multiplies the momentum by √2 only."
         ],
+        "margin_note": "Second mark. Say FOUR times plainly, then add the reverse case in one line.",
         "why": "The reverse statement is worth writing because boards ask the question both ways round.",
         "common_mistakes": [
           "Answering \"it doubles\", by treating K as proportional to p."
@@ -107,8 +110,10 @@
             "four times",
             "quadruples"
           ]
-        }
+        },
+        "memory_tip": "K goes as p², so ×2 on p is ×4 on K. Backwards, ×2 on K is only ×√2 on p."
       }
     ]
-  }
+  },
+  "insider_note": "Four times is the answer, but it is only one mark. K = p²/2m written first is the other, and it is the one usually skipped."
 }

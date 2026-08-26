@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -56,7 +56,7 @@
           "Gravitational POTENTIAL at the point is that",
           "same work per unit mass: V = U / m."
         ],
-        "why": "Potential belongs to the point in space; potential energy belongs to the body you put there.",
+        "why": "Potential belongs to the point in space; potential energy belongs to the body you put there. In both definitions \"work done\" means work done BY AN EXTERNAL AGENT (against the field) — the negative of the work done by the pull, which step 2 computes as +GMm/r.",
         "common_mistakes": [
           "Using the two words as if they meant the same thing."
         ],
@@ -75,7 +75,9 @@
             "potential",
             "per unit mass"
           ]
-        }
+        },
+        "memory_tip": "Divide U by m and the mass is gone: V = U/m belongs to the point, not the body.",
+        "margin_note": "First mark. Two definitions, one line each, with V = U/m between them."
       },
       {
         "id": "s2_work",
@@ -117,7 +119,9 @@
             "integrate",
             "G M m by r"
           ]
-        }
+        },
+        "memory_tip": "Find the pull’s work first, +GMm/r, then change the sign at the end. Two steps.",
+        "margin_note": "Two marks. Integrate a changing force; force × distance is not available here."
       },
       {
         "id": "s3_result",
@@ -153,8 +157,11 @@
             "minus",
             "zero at infinity"
           ]
-        }
+        },
+        "memory_tip": "The outside agent’s work is the negative of the pull’s, so U = −GMm/r.",
+        "margin_note": "Last mark. Box U and V together and name the zero at infinity."
       }
     ]
-  }
+  },
+  "insider_note": "The two definitions share a single mark; the integration of G M m / x² is worth two, so write that part out in full."
 }

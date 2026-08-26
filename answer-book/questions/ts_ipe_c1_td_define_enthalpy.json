@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) uses ΔH in five questions but never asks what enthalpy itself is. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) uses ΔH in five questions but never asks what enthalpy itself is. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. H = U + pV and qp = ΔH verified. Added the truth caveat that total heat content is board wording, not H = q (H is a state function; only ΔH at constant pressure equals a heat), and replaced a dimensionally loose memory tip that called pV the room the system occupies. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -55,12 +55,12 @@
           "It is a state function and an extensive",
           "property."
         ],
-        "why": "H bundles the internal energy with the pV term so that one quantity tracks the heat exchanged when the pressure, not the volume, is held constant.",
+        "why": "H bundles the internal energy with the pV term so that one quantity tracks the heat exchanged when the pressure, not the volume, is held constant. The board wording total heat content is loose and must not be read as H = q: H is a state function while heat is a path function, so the only link to heat is that the CHANGE in H equals the heat exchanged at constant pressure, qp = ΔH.",
         "common_mistakes": [
           "Writing H = U − pV. The pV term is added.",
           "Calling H a path function — like U, it is a state function."
         ],
-        "memory_tip": "H is U plus the pV term: internal energy plus the room the system occupies at pressure p.",
+        "memory_tip": "H is U plus the pV term: the internal energy plus the product of pressure and volume, which is itself an energy.",
         "margin_note": "The equation H = U + pV must appear."
       },
       {

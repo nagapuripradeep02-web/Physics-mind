@@ -55,6 +55,7 @@
           "as measured by an observer moving along",
           "with B."
         ],
+        "margin_note": "First mark. One sentence, and it must name the observer.",
         "why": "Every velocity is measured against something; naming the observer is what makes the number mean anything at all.",
         "common_mistakes": [
           "Treating relative velocity as a difference of speeds — it is a difference of vectors."
@@ -73,7 +74,8 @@
             "relative velocity",
             "observer"
           ]
-        }
+        },
+        "memory_tip": "Two cars both at 60 km/h in the same direction have relative velocity 0, not 120."
       },
       {
         "id": "s2_expression",
@@ -92,6 +94,7 @@
           },
           "and v_BA = v_B − v_A = −v_AB."
         ],
+        "margin_note": "Two marks. Write v_AB = v_A − v_B as a vector equation, arrows and all.",
         "why": "Subtracting v_B is the same as riding on B: it cancels B’s own motion out of every measurement.",
         "common_mistakes": [
           "Adding the two velocities instead of subtracting them."
@@ -111,7 +114,8 @@
             "minus",
             "v A minus v B"
           ]
-        }
+        },
+        "memory_tip": "Read the subscripts left to right: v_AB = v_A − v_B. Swap them and only the sign changes."
       },
       {
         "id": "s3_magnitude",
@@ -128,6 +132,7 @@
           "The minus sign is there because v_B is",
           "subtracted, not added."
         ],
+        "margin_note": "Fourth mark. Box the magnitude and say what θ is the angle between.",
         "why": "It is the parallelogram formula with θ replaced by (180° − θ), which is exactly what reversing v_B does.",
         "common_mistakes": [
           "Using a plus sign before the 2 v_A v_B cos θ term, which is the formula for a SUM."
@@ -146,8 +151,10 @@
             "minus 2 v A v B cos theta",
             "magnitude"
           ]
-        }
+        },
+        "memory_tip": "Check θ = 0: the root gives |v_A − v_B|, two bodies moving together. That confirms the minus."
       }
     ]
-  }
+  },
+  "insider_note": "One mark is the definition alone. Name the observer moving with B — a bare v_A − v_B does not define the quantity."
 }

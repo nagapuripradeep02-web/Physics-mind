@@ -68,7 +68,9 @@
             "angle of repose",
             "just slides"
           ]
-        }
+        },
+        "memory_tip": "Tilt a plank with a coin on it. The angle at the moment the coin starts to slide is θ.",
+        "margin_note": "First mark. The words \"just begins to slide\" carry it — an angle of rest is a different claim."
       },
       {
         "id": "s2_relation",
@@ -104,8 +106,11 @@
             "tan theta",
             "mu s"
           ]
-        }
+        },
+        "memory_tip": "TAN, not sin — it is mg sin θ over mg cos θ, and the mg cancels.",
+        "margin_note": "Second mark. The boxed tan θ = μ_s, plus the line saying the mass never enters."
       }
     ]
-  }
+  },
+  "insider_note": "The definition is one mark, tan θ = μ_s is the other. A definition on its own answers only half of what is asked."
 }

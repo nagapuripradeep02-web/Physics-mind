@@ -69,7 +69,9 @@
             "centripetal force",
             "centre"
           ]
-        }
+        },
+        "memory_tip": "Centripetal means centre-seeking. The name gives the direction.",
+        "margin_note": "First mark. The words \"towards the centre\" are what is marked here."
       },
       {
         "id": "s2_expression",
@@ -105,8 +107,11 @@
             "m v squared by r",
             "tension"
           ]
-        }
+        },
+        "memory_tip": "r is below in mv²/r and above in mω²r. Substitute v = ωr to check which is which.",
+        "margin_note": "Second mark. Formula, then example, then name the force — tension. Three short lines."
       }
     ]
-  }
+  },
+  "insider_note": "The second mark covers the formula and the example together. Name the real force that supplies it — tension, gravity or friction."
 }

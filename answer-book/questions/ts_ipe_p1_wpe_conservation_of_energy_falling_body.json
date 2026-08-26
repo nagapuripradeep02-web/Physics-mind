@@ -16,7 +16,33 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "State and prove the law of conservation of energy in the case of a freely falling body.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The statement",
@@ -46,7 +72,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER — and the TSBIE Basic Learning Material carries the same question in its own Unit 6 Long Answer set, so both sources agree this is an 8-mark form. The split across the steps is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 LONG ANSWER — and the TSBIE Basic Learning Material carries the same question in its own Unit 6 Long Answer set, so both sources agree this is an 8-mark form. The split across the steps is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip); a factually wrong marked line was corrected."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -69,12 +95,13 @@
           "Energy can neither be created nor",
           "destroyed. It can only be converted from",
           "one form into another, and the total",
-          "energy of a closed system stays constant."
+          "energy of an isolated system stays constant."
         ],
         "margin_note": "Both halves earn marks — \"neither created nor destroyed\" AND \"total stays constant\".",
         "why": "The proof that follows is one worked case of this statement: the potential energy is not lost as the body falls, it becomes kinetic energy.",
         "common_mistakes": [
-          "Stating only that energy changes form, without saying the total is constant."
+          "Stating only that energy changes form, without saying the total is constant.",
+          "Using 'closed' where the exact word is 'isolated' — a system exchanging neither energy nor matter. If energy can enter or leave the system, the total inside can change."
         ],
         "recall": {
           "credit": "say_it",

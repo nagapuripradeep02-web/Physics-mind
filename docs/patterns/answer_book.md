@@ -899,6 +899,8 @@ just not by either book. It ships as `source: "ap_2026_paper"` with a real `appe
 the asked-chip path and needed no code change — but that is a property worth knowing before adding a
 fourth.
 
+**The corpus now exists — seven real TS papers, and the diff has been run (2026-08-26).** Seven Telangana Physics Paper-I papers (March 2016, 2017, 2019, 2020, 2023, 2024, 2025) are transcribed into `answer-book/papers/`, every one of their 154 slots is mapped by hand in `matches.json`, and `npm run backtest:physics` re-derives the whole diff from the bank on demand. The full narrative, including what the diff found and the two things it surfaced that are NOT fixed, is `docs/IPE_PHYSICS_1_PAPERS.md`. It also settled the PROBLEMS question below: **six of the seven papers print a numerical inside a Section-C question**, so the founder lifted the deferral for paper-attested numericals and they are authored.
+
 **PROBLEMS, deferred, keep turning out to be examined.** Unit 6 problem 3 carries printed years;
 Unit 8 problem 2 (energy when the amplitude is doubled) is the what-if the AP 2026 paper asked, and is
 authored here as a predicted VSAQ rather than left in the deferred pile. Two for two. The founder's

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): the s1 margin note named the empirical formula weight 30 as the line that earns mark 1 while the insider note named n = 90 / 30, so the two fields answered the same question differently. Both now say the same thing — mark 1 is Finding n per the mark_split, and it needs the whole of step 1. No mark moved; no marked line changed."
   },
   "answer": {
     "page_header": [
@@ -59,7 +59,7 @@
           "Inverting the ratio and writing n = 30 / 90."
         ],
         "memory_tip": "n asks how many empirical units fit inside one molecule: big weight divided by small weight.",
-        "margin_note": "The empirical formula weight 30 with its sum shown earns this mark."
+        "margin_note": "This mark is Finding n, and the whole of this step earns it: the empirical formula weight 30 with its sum shown, then n = 90 / 30 = 3."
       },
       {
         "id": "s2_answer",
@@ -85,5 +85,5 @@
       }
     ]
   },
-  "insider_note": "A three-star staple. The examiner looks for the empirical formula weight 30 computed on the page — the answer C₃H₆O₃ with no visible n = 90/30 loses the first mark."
+  "insider_note": "A three-star staple. The first mark is Finding n, and it needs both lines of step 1 on the page: the empirical formula weight 30 computed from its sum, and n = 90 / 30 = 3. C₃H₆O₃ written with that working missing loses the first mark."
 }

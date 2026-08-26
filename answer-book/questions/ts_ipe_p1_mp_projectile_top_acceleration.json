@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "What is the acceleration of a projectile at the top of its trajectory?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The answer",
@@ -30,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 7 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 7 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -90,7 +96,8 @@
         "margin_note": "Name the trap out loud: velocity zero does not mean acceleration zero.",
         "why": "The top is special for the velocity, not for the force. Nothing switches off at the peak — that is why the path bends back down.",
         "common_mistakes": [
-          "Confusing the zero vertical velocity with zero acceleration."
+          "Confusing the zero vertical velocity with zero acceleration.",
+          "Saying the projectile stops or pauses at the top — it never stops. The horizontal velocity u cos θ continues; only the vertical component of velocity is zero."
         ],
         "recall": {
           "credit": "say_it",
@@ -112,5 +119,6 @@
         "memory_tip": "What is zero at the top is the vertical VELOCITY, not the acceleration. Gravity never switches off."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks for two sentences: the value g with its direction, then the reason. The word \"downward\" is what the examiner checks."
 }

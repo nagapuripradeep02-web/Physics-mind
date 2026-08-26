@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -69,7 +69,9 @@
             "seconds pendulum",
             "two seconds"
           ]
-        }
+        },
+        "memory_tip": "The word seconds refers to the tick, not the full period: one second per tick, two seconds per period.",
+        "margin_note": "First mark. Two seconds for the full period, said in words."
       },
       {
         "id": "s2_length",
@@ -90,7 +92,7 @@
           "Since g changes from place to place, this",
           "length is not exactly the same everywhere."
         ],
-        "why": "The length depends on g, so a seconds pendulum has to be adjusted slightly when a clock is moved a long way.",
+        "why": "The arithmetic gives L = 39.2/39.48 ≈ 0.99 m; the book rounds this to 1 metre. Quote 0.99 m when a numerical value is asked. The length depends on g, so it differs slightly from place to place.",
         "common_mistakes": [
           "Quoting 1 metre as an exact universal value."
         ],
@@ -108,8 +110,11 @@
             "one metre",
             "length"
           ]
-        }
+        },
+        "memory_tip": "4π² ≈ 39.5 and gT² = 9.8 × 4 = 39.2. The two nearly cancel, which is why L is near 1 m.",
+        "margin_note": "Second mark. Show T = 2 s going into T = 2π√(L/g) before writing the length."
       }
     ]
-  }
+  },
+  "insider_note": "The length is a separate mark, so finish the arithmetic — quote 0.99 m, or 1 metre stated as a rounded value."
 }

@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "A horse has to pull harder during the start of the motion than later. Explain.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 4,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "At the start",
@@ -114,5 +120,6 @@
         "memory_tip": "Moving faces only kinetic friction, which is smaller. The order to remember: static maximum > kinetic."
       }
     ]
-  }
+  },
+  "insider_note": "The examiner scans for two words, limiting and kinetic. An answer that never names either friction earns one mark at best."
 }

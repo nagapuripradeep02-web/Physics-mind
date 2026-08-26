@@ -16,7 +16,18 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 3,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Adding the vectors",
@@ -77,7 +88,8 @@
             "twenty four",
             "component wise"
           ]
-        }
+        },
+        "memory_tip": "Stack them and add straight down: 2+4, 4+4, 14+10. Nothing crosses between the columns."
       },
       {
         "id": "s2_mag",
@@ -120,8 +132,10 @@
             "root six seven six",
             "26"
           ]
-        }
+        },
+        "memory_tip": "36 + 64 + 576 = 676, and √676 = 26. A whole-number root means the addition was right."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, two lines: the sum in components, then the root. Show all three squares — 24² = 576 is where the arithmetic slips."
 }

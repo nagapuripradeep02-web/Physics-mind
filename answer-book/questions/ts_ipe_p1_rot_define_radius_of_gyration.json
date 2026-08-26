@@ -69,7 +69,9 @@
             "radius of gyration",
             "concentrated"
           ]
-        }
+        },
+        "memory_tip": "A ring about its own axis has all its mass at R, so k = R. That is the clearest case.",
+        "margin_note": "First mark. The words \"same moment of inertia\" must appear — that is the definition."
       },
       {
         "id": "s2_relation",
@@ -102,8 +104,11 @@
             "M k squared",
             "root"
           ]
-        }
+        },
+        "memory_tip": "Compare I = Mk² with I = mr²: k sits where r sits, so k is a distance, in metres.",
+        "margin_note": "Second mark. Both forms, I = Mk² and k = √(I/M), and the unit."
       }
     ]
-  }
+  },
+  "insider_note": "The words come before the symbols here: the definition is one mark, I = Mk² the other. Add the unit, the metre."
 }

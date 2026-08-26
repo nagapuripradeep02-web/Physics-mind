@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties; the card groups them into four marked lines (state with melting points, solubility, conductivity, reactivity with isomerism), each carrying its reason."
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book lists six properties; the card groups them into four marked lines (state with melting points, solubility, conductivity, reactivity with isomerism), each carrying its reason. AI chemistry check 2026-08-25 (audit round): in the last step the boxed summary sat between property 5 and property 6, so the reader met the summary before the fact it summarises; the same lines are now ordered 5, 6, then the box. No words, marks or line counts changed."
   },
   "answer": {
     "page_header": [
@@ -118,12 +118,12 @@
           "5. Reactions between ionic compounds in",
           "aqueous solution are very fast, because",
           "the free ions combine directly.",
+          "6. The ionic bond is non-directional, so",
+          "ionic compounds do not show isomerism.",
           {
             "text": "Fast reactions in solution; no isomerism",
             "style": "boxed"
-          },
-          "6. The ionic bond is non-directional, so",
-          "ionic compounds do not show isomerism."
+          }
         ],
         "why": "The last two book properties share one theme: what the ionic bond is (a non-directional attraction between free ions) fixes both the reaction speed and the absence of isomerism.",
         "common_mistakes": [

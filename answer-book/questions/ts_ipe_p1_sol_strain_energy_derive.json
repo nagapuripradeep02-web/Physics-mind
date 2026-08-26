@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_strain_energy_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define strain energy and derive an expression for it.",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 17,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Force at extension x",
+      "marks": 1
+    },
+    {
+      "label": "Work as the area under the line",
+      "marks": 1
+    },
+    {
+      "label": "Energy per unit volume",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2019 (Q17) — TS Inter I-Year Physics Paper-I, Section B, 4 marks. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: inside the elastic limit F = (YA/L)x, so W = ∫F dx = ½(YA/L)e² = ½ × F × e, and the energy per unit volume u = W/(AL) = ½ × stress × strain."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Strain energy — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A stretching force does work on a wire. Inside",
+          "the elastic limit that work is stored in the",
+          "wire as potential energy. This stored energy",
+          "is called strain energy."
+        ],
+        "margin_note": "First mark. Two ideas earn it: work is done, and the work is stored as potential energy.",
+        "why": "The work done is not lost, because inside the elastic limit no permanent set is produced and no energy goes into heat, so all of it is stored.",
+        "common_mistakes": [
+          "Calling strain energy a form of kinetic energy. It is potential energy, stored because the wire is stretched.",
+          "Leaving out the words \"inside the elastic limit\". Past that limit some of the work goes into permanent deformation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work done by the stretching force is stored in the wire as potential energy, and that stored energy is the strain energy.",
+          "accept": [
+            "work done is stored as potential energy",
+            "strain energy is the energy stored in a stretched wire",
+            "inside the elastic limit"
+          ],
+          "reject": [
+            "half into F into e"
+          ],
+          "heard_as": [
+            "strain energy",
+            "potential energy",
+            "work done"
+          ]
+        },
+        "memory_tip": "Work done in stretching is stored, not lost. The stored energy is the strain energy."
+      },
+      {
+        "id": "s2_force_at_x",
+        "kind": "equation",
+        "label": "The force at extension x",
+        "marks": 1,
+        "mark_note": "F = (YA/L)x",
+        "lines": [
+          "Let a wire of length L and area of cross-",
+          "section A be stretched by a force. When the",
+          "extension is x, Young’s modulus gives",
+          {
+            "text": "Y = (F/A)/(x/L)   ⇒   F = (YA/L)x",
+            "style": "eq"
+          },
+          "so the restoring force is proportional to the",
+          "extension."
+        ],
+        "margin_note": "Second mark. Rearranging Young’s modulus into F = (YA/L)x is the whole of this mark.",
+        "why": "The force is not constant during the stretch, so it cannot simply be multiplied by the extension. Writing F as a function of x is what makes the work an integral.",
+        "common_mistakes": [
+          "Taking the force as constant and writing W = F × e. The force grows from zero, so the work is half of that.",
+          "Writing Y = (F/A)/(L/x) with the strain upside down. Strain is x/L, the extension divided by the original length."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Young’s modulus rearranges to F equals Y A by L times x, so the force is proportional to the extension.",
+          "accept": [
+            "F is Y A by L into x",
+            "force is proportional to the extension",
+            "from Young’s modulus"
+          ],
+          "reject": [
+            "the work is stored as potential energy"
+          ],
+          "heard_as": [
+            "Y A by L",
+            "F equals k x",
+            "Young’s modulus"
+          ]
+        },
+        "memory_tip": "F = (YA/L)x has the same form as F = kx, so the stiffness of the wire is YA/L."
+      },
+      {
+        "id": "s3_work_done",
+        "kind": "equation",
+        "label": "Work done in stretching",
+        "marks": 1,
+        "mark_note": "Area under the line",
+        "lines": [
+          "The force grows from 0 to F as the extension",
+          "grows from 0 to e. Work done in a further",
+          "small extension dx is",
+          {
+            "text": "dW = F dx = (YA/L) x dx",
+            "style": "eq"
+          },
+          "Integrating from x = 0 to x = e,",
+          {
+            "text": "W = ½ (YA/L) e² = ½ × F × e",
+            "style": "eq"
+          },
+          "This is the area of the triangle under the",
+          "straight force–extension line."
+        ],
+        "margin_note": "Third mark. The ½ is the mark. It comes from the triangle, because the force grows from zero.",
+        "why": "A force–extension graph that is a straight line from the origin encloses a triangle, and the area of a triangle carries the factor ½. That is where the ½ in the formula comes from.",
+        "common_mistakes": [
+          "Dropping the ½ and writing W = F e. That would be the area of a rectangle, which needs a constant force.",
+          "Integrating F as a constant. F is (YA/L)x and depends on x."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work is the integral of F dx from 0 to e, which gives half Y A by L into e squared, equal to half F into e, the area of the triangle under the line.",
+          "accept": [
+            "integral of F dx from zero to e",
+            "half into F into e",
+            "area under the force extension line"
+          ],
+          "reject": [
+            "half into stress into strain"
+          ],
+          "heard_as": [
+            "half F e",
+            "area under the graph",
+            "triangle"
+          ]
+        },
+        "memory_tip": "Triangle, not rectangle: the force starts at zero, so the work is ½ × F × e."
+      },
+      {
+        "id": "s4_per_volume",
+        "kind": "boxed_final",
+        "label": "Energy per unit volume",
+        "marks": 1,
+        "mark_note": "u = ½ × stress × strain",
+        "lines": [
+          "The volume of the wire is A × L, so the strain",
+          "energy stored per unit volume is",
+          {
+            "text": "u = (½ F e)/(A L) = ½ × (F/A) × (e/L)",
+            "style": "eq"
+          },
+          {
+            "text": "U = ½ F e   ·   u = ½ × stress × strain",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Split the division as (F/A) and (e/L) so the stress and the strain appear on their own.",
+        "why": "Dividing by the volume A × L separates neatly into F/A, which is the stress, and e/L, which is the strain, so the same energy is written in a form that holds for any body and not only for this wire.",
+        "common_mistakes": [
+          "Dividing by the length only. The energy per unit VOLUME needs division by A × L.",
+          "Writing u = stress × strain and dropping the ½."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by the volume A L gives energy per unit volume u equal to half into stress into strain.",
+          "accept": [
+            "divide by the volume A into L",
+            "half into stress into strain",
+            "energy per unit volume"
+          ],
+          "reject": [
+            "integral of F dx"
+          ],
+          "heard_as": [
+            "per unit volume",
+            "half stress strain"
+          ]
+        },
+        "memory_tip": "Divide ½ F e by A × L: F/A is the stress and e/L is the strain."
+      }
+    ]
+  },
+  "insider_note": "The ½ is the third mark. It comes from the triangle under the line, and it is the line most answers drop."
+}

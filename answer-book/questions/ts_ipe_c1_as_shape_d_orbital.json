@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book draws all five d orbitals. This card draws the two DIFFERENT shapes — the four-lobed one that four of them share, and the distinct dz² — and names all five in the second step, because five small sketches on one page are not legible."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. FIGURE SCOPE: the book draws all five d orbitals. This card draws the two DIFFERENT shapes — the four-lobed one that four of them share, and the distinct dz² — and names all five in the second step, because five small sketches on one page are not legible. AI chemistry check 2026-08-25: the five d orbitals, l = 2, the five m values and the angular-node count verified; one common mistake corrected, since the xy-plane ring is what tells dz² from a p orbital and not what makes an orbital a d orbital (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -174,7 +174,7 @@
         "why": "Four of the five d orbitals share one shape, the four-lobed double dumb-bell, so drawing it once shows the shape the question asks for. The dz² orbital is drawn separately because it is the one that looks different.",
         "common_mistakes": [
           "Drawing a two-lobed dumb-bell. That is a p orbital, not a d orbital.",
-          "Leaving the ring off dz². The ring in the xy plane is what makes it a d orbital."
+          "Leaving the ring off dz². Without the ring in the xy plane the sketch is a p orbital, not dz²."
         ],
         "memory_tip": "A d orbital has four lobes, twice as many as a p orbital. Only dz² is different.",
         "margin_note": "One clear four-lobed sketch is enough. Add dz² if there is room."
@@ -196,7 +196,7 @@
           "the xy plane.",
           "Shape: double dumb-bell. Angular nodes = l = 2."
         ],
-        "why": "For d orbitals l = 2, so m takes five values and there are five orbitals. Four of them are four-lobed and differ only in how they sit relative to the axes; dz² is the fifth and the odd one.",
+        "why": "For d orbitals l = 2, so m takes five values and there are five orbitals. Four of them are four-lobed and differ only in how they lie relative to the axes; dz² is the fifth and has a different shape.",
         "common_mistakes": [
           "Writing that there are three d orbitals. Three is the count for p.",
           "Saying all five have the same shape. dz² has a ring the others do not."

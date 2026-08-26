@@ -16,7 +16,18 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Define simple harmonic motion. Show that the motion of the projection of a particle performing uniform circular motion, on any diameter, is simple harmonic.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",
@@ -46,7 +57,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "cuts": [
@@ -138,7 +149,8 @@
         },
         "s2_examples": {
           "marks": 2,
-          "mark_note": "Examples"
+          "mark_note": "Examples",
+          "margin_note": "Two marks in this shorter answer, so the examples carry as much as the definition."
         }
       }
     }
@@ -187,7 +199,8 @@
             "proportional"
           ]
         },
-        "memory_tip": "Two conditions, not one: proportional to the displacement AND directed toward the mean position. The minus sign states the second."
+        "memory_tip": "Two conditions, not one: proportional to the displacement AND directed toward the mean position. The minus sign states the second.",
+        "margin_note": "Two marks here. Both halves of the definition, then a ∝ −y."
       },
       {
         "id": "s2_examples",
@@ -227,7 +240,8 @@
             "spring"
           ]
         },
-        "memory_tip": "Keep a list of four: pendulum, loaded spring, vibrating string, and the projection of circular motion."
+        "memory_tip": "Keep a list of four: pendulum, loaded spring, tuning fork, and the projection of circular motion.",
+        "margin_note": "One mark for the list. Number them; four short lines is enough."
       },
       {
         "id": "s3_figure",
@@ -416,7 +430,8 @@
             "reference circle"
           ]
         },
-        "memory_tip": "Draw the reference circle: P moves on the circle, N is its shadow on the diameter."
+        "memory_tip": "Draw the reference circle: P moves on the circle, N is its shadow on the diameter.",
+        "margin_note": "One mark for the figure. Label P, N, the diameter and the angle θ."
       },
       {
         "id": "s4_displacement",
@@ -460,7 +475,8 @@
             "omega t"
           ]
         },
-        "memory_tip": "One trigonometry line does it: y = A sin ωt — the shadow of uniform circular motion."
+        "memory_tip": "One trigonometry line does it: y = A sin ωt — the shadow of uniform circular motion.",
+        "margin_note": "Two marks. The triangle line sin θ = y/A comes before y = A sin ωt."
       },
       {
         "id": "s5_acceleration",
@@ -500,7 +516,8 @@
             "omega squared"
           ]
         },
-        "memory_tip": "Differentiate twice: each step brings down one ω, and the second brings back the sine with a minus."
+        "memory_tip": "Differentiate twice: each step brings down one ω, and the second brings back the sine with a minus.",
+        "margin_note": "One mark. Two differentiations, written out rather than quoted."
       },
       {
         "id": "s6_conclusion",
@@ -539,7 +556,8 @@
             "hence SHM"
           ]
         },
-        "memory_tip": "a = −ω²y matches the definition word for word — say so to close the proof."
+        "memory_tip": "a = −ω²y matches the definition word for word — say so to close the proof.",
+        "margin_note": "The last mark. Put y back in so a = −ω²y appears, then name it as SHM."
       }
     ]
   },

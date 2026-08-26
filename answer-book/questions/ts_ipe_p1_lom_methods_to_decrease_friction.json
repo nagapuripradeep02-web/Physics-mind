@@ -18,6 +18,26 @@
   "question_text": "Mention the methods used to decrease friction.",
   "appearances": [
     {
+      "year": 2025,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 12,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
       "year": 2026,
       "q_no": 26,
       "board": "ap_ipe"
@@ -44,7 +64,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -71,7 +91,8 @@
         "margin_note": "Give the method a number and a one-line reason. The reason is what earns the mark.",
         "why": "Friction comes from surface roughness meshing together. Take the roughness away and there is less to mesh.",
         "common_mistakes": [
-          "Naming the four methods with no reason for any of them."
+          "Naming the four methods with no reason for any of them.",
+          "Claiming polishing always lowers friction. Very high polishing brings the molecules of the two surfaces so close that adhesion raises friction again — the same fact the μ > 1 answer uses."
         ],
         "recall": {
           "credit": "say_it",
@@ -216,5 +237,6 @@
         "memory_tip": "Method 4 is for FLUID friction: shape the body so air or water parts smoothly."
       }
     ]
-  }
+  },
+  "insider_note": "Asked in AP March 2026. One mark a method, so four methods is the full answer, and each mark needs its one-line reason as well as the name."
 }

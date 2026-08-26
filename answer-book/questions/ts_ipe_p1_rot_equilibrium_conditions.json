@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -71,7 +71,9 @@
             "forces",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "ΣF = 0 is the same condition as in Laws of Motion. Nothing new here, only the first half.",
+        "margin_note": "First mark. ΣF = 0, and say the sum is a VECTOR sum."
       },
       {
         "id": "s2_rotational",
@@ -89,7 +91,7 @@
         ],
         "why": "The couple question shows why both conditions are needed: a couple satisfies ΣF = 0 and still rotates the body.",
         "common_mistakes": [
-          "Computing torques about one special point only — in equilibrium the sum vanishes about ANY point."
+          "Computing torques about one special point only — in equilibrium the sum vanishes about ANY point. But once ΣF = 0 holds, a zero torque sum about ONE point makes it zero about every point, so checking a single convenient point is enough."
         ],
         "recall": {
           "credit": "say_it",
@@ -105,8 +107,11 @@
             "torques",
             "zero"
           ]
-        }
+        },
+        "memory_tip": "ΣF = 0 stops the sliding; Στ = 0 stops the turning. One condition for each motion.",
+        "margin_note": "Second mark. Στ = 0, with the words \"about any point\"."
       }
     ]
-  }
+  },
+  "insider_note": "One mark per condition, so both must appear. ΣF = 0 alone is half the answer; Στ = 0 needs the words about any point."
 }

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE DISAGREEMENT, recorded not resolved: the Fastrack (p.4) lists THREE types — systematic, random and gross. The TSBIE BLM (p.2) lists TWO — systematic and random. This card writes the Fastrack’s three and records the BLM’s two in the step’s why line."
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. SOURCE DISAGREEMENT, recorded not resolved: the Fastrack (p.4) lists THREE types — systematic, random and gross. The TSBIE BLM (p.2) lists TWO — systematic and random. This card writes the Fastrack’s three and records the BLM’s two in the step’s why line. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -54,7 +54,7 @@
         "why": "The Fastrack lists three. The TSBIE Basic Learning Material lists only systematic and random, treating gross errors as mistakes by the observer. Write all three; systematic and random are the two both books agree on.",
         "common_mistakes": [
           "Listing only one type when the question says \"types\", which is plural.",
-          "Writing \"least count error\" as a fourth type. It is one kind of systematic error."
+          "Writing \"least count error\" as a fourth type. It is not a separate type. NCERT places it under random errors (limited in size); it is reduced by a finer instrument and by averaging."
         ],
         "recall": {
           "credit": "say_it",
@@ -94,7 +94,7 @@
         ],
         "why": "The difference is direction. A systematic error pushes every reading the same way, so averaging never removes it; a random error changes sign, so averaging does reduce it.",
         "common_mistakes": [
-          "Saying random errors can be removed by taking a better instrument. Averaging reduces them; a better instrument does not."
+          "Saying random errors can be removed completely. They are reduced, never removed: averaging many readings shrinks them, and a finer least count shrinks the least count part (NCERT counts it as random)."
         ],
         "recall": {
           "credit": "say_it",

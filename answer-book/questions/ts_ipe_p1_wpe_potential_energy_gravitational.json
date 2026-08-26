@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -79,7 +79,8 @@
             "potential energy",
             "by virtue"
           ]
-        }
+        },
+        "memory_tip": "Potential goes with POSITION, kinetic with MOTION. One word separates the two definitions."
       },
       {
         "id": "s2_figure",
@@ -249,7 +250,8 @@
             "diagram",
             "draw"
           ]
-        }
+        },
+        "memory_tip": "Four things on the figure: the box, F pointing up, mg pointing down, and the height h."
       },
       {
         "id": "s3_force",
@@ -287,7 +289,8 @@
             "balances",
             "slowly"
           ]
-        }
+        },
+        "memory_tip": "Slowly means zero acceleration, and zero acceleration means F = mg exactly."
       },
       {
         "id": "s4_work",
@@ -310,7 +313,8 @@
         "margin_note": "Two lines: the general formula, then the substitution. Do not jump straight to mgh.",
         "why": "This is the same W = F s cos θ as every other work question. Nothing special happens because the force is gravity.",
         "common_mistakes": [
-          "Writing W = mgh with no formula above it."
+          "Writing W = mgh with no formula above it.",
+          "Calling mgh the work done by gravity. The +mgh here is the work done by the applied lifting force; gravity does −mgh during the lift."
         ],
         "recall": {
           "credit": "say_it",
@@ -329,7 +333,8 @@
             "m g h",
             "cos zero"
           ]
-        }
+        },
+        "memory_tip": "cos 0° = 1, so W = F s cos θ becomes plain F × s. Then F = mg and s = h give mgh."
       },
       {
         "id": "s5_result",
@@ -366,8 +371,10 @@
             "potential energy",
             "m g h"
           ]
-        }
+        },
+        "memory_tip": "Check it with a number: 1 kg raised 1 m stores about 10 J, since mgh is force × distance."
       }
     ]
-  }
+  },
+  "insider_note": "One mark each: the definition, F = mg, W = mgh, then U = mgh. Naming the work as STORED energy is the line most students leave out."
 }

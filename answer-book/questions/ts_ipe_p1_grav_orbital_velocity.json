@@ -16,7 +16,23 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "What is orbital velocity? Obtain an expression for it.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition and figure",
@@ -34,7 +50,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -165,7 +181,7 @@
             }
           ]
         },
-        "why": "The whole derivation turns on one length — the orbit radius is (R + h), not R — and the figure is what fixes it.",
+        "why": "The whole derivation turns on one length — the orbit radius is (R + h), not R — and the figure is what fixes it. The definition sentence itself opens the next step — write \"orbital velocity is the velocity with which a body must revolve to stay in a circular orbit\" beside the figure to earn this mark.",
         "common_mistakes": [
           "Using R instead of (R + h) as the radius of the circular path."
         ],
@@ -184,7 +200,8 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw the orbit and mark the radius as R + h from the CENTRE, not from the surface."
+        "memory_tip": "Draw the orbit and mark the radius as R + h from the CENTRE, not from the surface.",
+        "margin_note": "First mark is the figure. Draw it, and write the definition sentence beside it."
       },
       {
         "id": "s2_forces",
@@ -222,7 +239,8 @@
             "equate"
           ]
         },
-        "memory_tip": "One balance line: gravity supplies the centripetal force, GMm/(R+h)² = mv₀²/(R+h)."
+        "memory_tip": "One balance line: gravity supplies the centripetal force, GMm/(R+h)² = mv₀²/(R+h).",
+        "margin_note": "Two marks. The definition sentence and the balance equation, on separate lines."
       },
       {
         "id": "s3_expression",
@@ -263,8 +281,10 @@
             "7.9"
           ]
         },
-        "memory_tip": "v₀ = √(GM/(R+h)). Pair it with escape velocity: v_e = √2 × v₀."
+        "memory_tip": "v₀ = √(GM/(R+h)). Pair it with escape velocity: v_e = √2 × v₀.",
+        "margin_note": "Last mark. Cancel, then box √(gR) ≈ 7.9 km s⁻¹."
       }
     ]
-  }
+  },
+  "insider_note": "The figure carries one of the four marks even though the question asks only for an expression — draw the orbit and label R + h."
 }

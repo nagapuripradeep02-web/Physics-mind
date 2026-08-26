@@ -359,5 +359,6 @@
         "memory_tip": "Name the sums back carefully: Σmy² = I_x and Σmx² = I_y — the distance FROM the x-axis is y."
       }
     ]
-  }
+  },
+  "insider_note": "The proof carries 2 of the 4 marks and depends on one line, r² = x² + y². The figure earns no marks but the proof needs it."
 }

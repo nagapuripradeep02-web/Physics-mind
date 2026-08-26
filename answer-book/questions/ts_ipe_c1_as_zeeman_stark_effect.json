@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): corrected a false marked line that credited the magnetic quantum number m with explaining the Stark effect."
   },
   "answer": {
     "page_header": [
@@ -68,15 +68,16 @@
             "text": "Stark effect: splitting of spectral lines in an electric field",
             "style": "boxed"
           },
-          "Both effects are explained by the magnetic",
-          "quantum number m."
+          "Both effects show that an external field",
+          "splits one spectral line into several lines."
         ],
-        "why": "The two effects are the same idea in two different fields, which is why the paper asks them together. Bohr's model cannot explain either of them, and that is one of its listed limitations.",
+        "why": "The two effects are asked together because both show line splitting in an external field, but they do not share one explanation. The Zeeman effect comes from the magnetic quantum number m, which fixes how an orbital is oriented in space, so a magnetic field gives those orientations different energies. The Stark effect comes from the interaction of the electric field with the electric dipole moment of the atom. Bohr's model cannot explain either effect, and that is one of its listed limitations.",
         "common_mistakes": [
-          "Writing that the Stark effect happens in a magnetic field."
+          "Writing that the Stark effect happens in a magnetic field.",
+          "Saying the magnetic quantum number m explains both effects. It explains the Zeeman effect only; the Stark effect comes from the electric dipole moment of the atom."
         ],
         "memory_tip": "Two fields, two names: magnetic is Zeeman, electric is Stark.",
-        "margin_note": "The last line links this question to the limitations of Bohr's model."
+        "margin_note": "The last line states what the two effects have in common: an external field splits one line into several."
       }
     ]
   },

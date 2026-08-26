@@ -71,7 +71,9 @@
             "lamina",
             "perpendicular"
           ]
-        }
+        },
+        "memory_tip": "Two axes IN the plane add up to the one PERPENDICULAR to it. Flat bodies only.",
+        "margin_note": "First mark. \"Plane lamina\" and \"point of intersection\" are both marked words."
       },
       {
         "id": "s2_equation",
@@ -102,8 +104,11 @@
             "I z",
             "I x plus I y"
           ]
-        }
+        },
+        "memory_tip": "z is the axis out of the plane, so I_z is the one by itself: I_z = I_x + I_y.",
+        "margin_note": "Second mark. One line, and say which axis z is."
       }
     ]
-  }
+  },
+  "insider_note": "Name the axes as you write I_z = I_x + I_y — an unlabelled equation is not the theorem, and it is half the marks here."
 }

@@ -1224,7 +1224,9 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
 }
 
 /** Drive the whole onboarding conversation and return the stored plan. */
-async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] = [0, 1], hoursLabel = '1 hour', scopeUntick: string[] = []) {
+async function buildPlanViaChat(page: any, examDate: string,
+    unitNames: string[] = ['Units and Measurements', 'Motion in a Straight Line'],
+    hoursLabel = '1 hour', scopeUntick: string[] = []) {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
     // intro not done → the intro widget; done → the offer chip
@@ -1235,7 +1237,15 @@ async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] =
     await lastW().locator('input[type=date]').fill(examDate);
     await lastW().locator('.vw-btn.primary').click();                       // Set date
     await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
-    for (const i of unitIdx) await lastW().locator('.vw-check input').nth(i).check();
+    // Pick chapters BY NAME, never by array index. units.json is ordered by unit
+    // number, so a new low-numbered chapter shifts every index: physics Unit 1
+    // landed on 2026-08-26 and silently re-pointed [0,1] from units 2+3 to units
+    // 1+2 — a 3-question chapter paired with a 22-question one, which changes how
+    // deep day 1 has to dig into the star ranking. The planner was correct; the
+    // selection was not what the test meant.
+    for (const name of unitNames) {
+        await lastW().locator('.vw-check', { hasText: name }).locator('input').check();
+    }
     await lastW().locator('.vw-btn.primary').click();                       // These chapters →
     await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });   // the qtype scope step
     for (const t of scopeUntick) await lastW().locator(`.vw-scope-box[value="${t}"]`).uncheck();
@@ -1421,7 +1431,7 @@ test('crunch mode: one week and too much work flips the plan to marks-first — 
     // and says so; very short answers wait for exam-eve.
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     // Units 4+5 (they hold real LAQs) · 7 days · 30 min/day — cannot fit
-    const plan = await buildPlanViaChat(page, '2026-09-08', [2, 3], '30 min');
+    const plan = await buildPlanViaChat(page, '2026-09-08', ['Motion in a Plane', 'Laws of Motion'], '30 min');
     expect(plan.crunch).toBe(true);
 
     // in the learn order, no VSAQ is ever scheduled before an LAQ or SAQ
@@ -1491,7 +1501,7 @@ test('Test myself is dormant: the entry stays hidden and Understand alone comple
 test('the plan can skip question types: unticked LAQs never appear anywhere in the plan', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     // Units 4+5 hold real LAQs (the crunch gate uses them for the same reason)
-    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3], '1 hour', ['LAQ']);
+    const plan = await buildPlanViaChat(page, '2026-09-21', ['Motion in a Plane', 'Laws of Motion'], '1 hour', ['LAQ']);
     expect(plan.scope).toEqual(['SAQ', 'VSAQ']);
 
     const qids: string[] = Object.keys(plan.learnDay).concat(plan.optional);
@@ -1510,7 +1520,7 @@ test('the plan can skip question types: unticked LAQs never appear anywhere in t
 
 test('mid-plan "Change my plan" re-scopes by proposal — nothing changes until the student accepts', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
-    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3]);
+    const plan = await buildPlanViaChat(page, '2026-09-21', ['Motion in a Plane', 'Laws of Motion']);
     expect(plan.scope).toBe(null);
 
     // the student has finished the very short answers elsewhere

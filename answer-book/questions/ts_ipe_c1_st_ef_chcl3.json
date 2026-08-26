@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic re-checked: CHCl₃ back-computes to 10.04% C, 0.84% H, 89.12% Cl — consistent with the given data."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic re-checked: CHCl₃ back-computes to 10.04% C, 0.84% H, 89.12% Cl — consistent with the given data. AI chemistry check 2026-08-25 (audit round 3): the s2 why said the other entries land on whole numbers directly, which the step’s own marked line (Cl: 2.51 / 0.84 = 2.99 ≈ 3) contradicts — rewritten to state when a near-whole value may be read as whole and when it may not. The s1 common mistake named 17.75 (half of 35.5), which is not a real student error; replaced with 71, the Cl₂ molecular weight. CROSS-CARD MARK-MAP DIFFERENCE, recorded for a teacher to settle: the move divide everything by the smallest value sits INSIDE the 2-mark step s1_moles on st_ef_c2h3cl3o2 and st_ef_k2cr2o7, but is the whole of the 1-mark step s2_ratio on st_ef_chcl3. The same piece of working therefore carries a different mark weight on the two card shapes. Nothing was moved — mark_split is the authority on each card, and both splits are still unconfirmed claims. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -65,7 +65,7 @@
         ],
         "why": "In 100 g of the compound the percentages ARE the masses in grams, so dividing each by its atomic weight converts the mass data into relative numbers of moles of atoms.",
         "common_mistakes": [
-          "Using 35 or 17.75 for chlorine. The atomic weight of Cl is 35.5.",
+          "Using 35 for chlorine, or using 71, the weight of the Cl₂ molecule. The ATOMIC weight of Cl is 35.5.",
           "Dividing the atomic weight by the percentage instead of the other way.",
           "Copying a percentage wrongly from the question — recheck 10.06, 0.84, 89.10."
         ],
@@ -88,7 +88,7 @@
             "style": "eq"
           }
         ],
-        "why": "Dividing every mole value by the smallest one scales the ratio so its smallest entry is 1, and here the other entries land on whole numbers directly.",
+        "why": "Dividing every mole value by the smallest one scales the ratio so its smallest entry is 1. Carbon and hydrogen come out at exactly 1. Chlorine comes out at 2.99, which is read as 3: the percentages are measured values, so a result within about 0.05 of a whole number is that whole number. A result such as 1.5 or 3.5 is NOT near a whole number and must never be rounded — a ratio ending in .5 is doubled instead.",
         "common_mistakes": [
           "Rounding 2.99 down to 2.",
           "Dividing by the largest value instead of the smallest."

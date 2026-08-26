@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer (configuration ending 4s² 3d¹⁰ 4p⁴, group VIA, 4th period) is correct; the card adds the modern group number 16 and the reasoning from the configuration to the position."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer (configuration ending 4s² 3d¹⁰ 4p⁴, group VIA, 4th period) is correct; the card adds the modern group number 16 and the reasoning from the configuration to the position. AI chemistry check 2026-08-25 (audit round 3): a common mistake read 'counting the 3d electrons as valence electrons and writing group 16 as group VIB', in which the stated cause does not produce the stated wrong answer; it is now split into two errors a student can check. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -79,7 +79,8 @@
         ],
         "why": "The period equals the highest shell number in the configuration, and for a p-block element the group is fixed by the six valence electrons in 4s² 4p⁴.",
         "common_mistakes": [
-          "Counting the 3d electrons as valence electrons and writing group 16 as group VIB. The d¹⁰ shell is full and inner.",
+          "Counting the 3d electrons as valence electrons. 4s² 3d¹⁰ 4p⁴ adds to 16, but the filled 3d¹⁰ shell is inner, so only 4s² 4p⁴ counts and the valence count is six.",
+          "Writing group VIB in place of VIA. The B groups are the d-block elements; here the last electron enters a 4p orbital, so the element is p-block and the group is VIA (group 16).",
           "Writing period 3 because the configuration contains 3d. The period follows the outermost shell, which is n = 4."
         ],
         "memory_tip": "Period from the biggest shell number; group from the outer s and p electrons: 2 + 4 = 6 → VIA.",

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book reaches the same 250 mL through a 22400 mL molar-volume detour; this card uses the direct Gay-Lussac volume ratio, which is the shorter exam route."
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book reaches the same 250 mL through a 22400 mL molar-volume detour; this card uses the direct Gay-Lussac volume ratio, which is the shorter exam route. AI chemistry check 2026-08-25. Corrected the s2 memory tip, which read 'two O' where two O₂ molecules are meant (2 O₂ → 2CO₂, ½ O₂ → H₂O). No marked line changed; the 250 mL answer is unaffected."
   },
   "answer": {
     "page_header": [
@@ -59,7 +59,7 @@
           "Using an unbalanced equation such as C₂H₂ + O₂ → CO₂ + H₂O.",
           "Balancing with whole numbers as 2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O and then forgetting the ratio is still 5 O₂ per 2 C₂H₂."
         ],
-        "memory_tip": "Acetylene C₂H₂ needs 5/2 O₂: two O for the two CO₂ pairs and half an O₂ for the single H₂O.",
+        "memory_tip": "Acetylene C₂H₂ needs 5/2 O₂: two O₂ make the two CO₂, and half an O₂ makes the single H₂O.",
         "margin_note": "The balanced equation with the 1 : 5/2 volume ratio earns this mark."
       },
       {

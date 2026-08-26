@@ -57,6 +57,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. Write both ranges from the same formula before comparing them.",
         "why": "Doubling (90° − θ) gives (180° − 2θ), so the second range is the same formula at a supplementary angle.",
         "common_mistakes": [
           "Writing the second angle inside the sine as (90° − 2θ) instead of (180° − 2θ)."
@@ -75,7 +76,8 @@
             "180 minus 2 theta",
             "second range"
           ]
-        }
+        },
+        "memory_tip": "Double the angle first: 2(90° − θ) is 180° − 2θ. With θ = 30° that is 120°, not 30°."
       },
       {
         "id": "s2_compare",
@@ -92,6 +94,7 @@
           "Example: 30° and 60° land at the same spot,",
           "though the 60° body flies higher and longer."
         ],
+        "margin_note": "Second mark. State R₁ = R₂ in words. One worked pair of angles secures it.",
         "why": "Equal ranges do not mean equal flights: the steeper throw trades forward speed for time in the air, and the two effects cancel exactly.",
         "common_mistakes": [
           "Concluding the two paths are identical — the heights and the times of flight differ."
@@ -111,8 +114,10 @@
             "equal",
             "same range"
           ]
-        }
+        },
+        "memory_tip": "sin 120° = sin 60° = 0.866. Supplementary angles share a sine, and that closes the proof."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks: both ranges written out, then the single line sin(180° − 2θ) = sin 2θ. That identity is the second mark."
 }

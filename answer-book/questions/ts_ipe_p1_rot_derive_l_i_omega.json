@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -60,7 +60,8 @@
         ],
         "why": "The particle definition is the seed; the rigid body is a sum of particles.",
         "common_mistakes": [
-          "Starting from L = Iω itself — that is the thing to be derived."
+          "Starting from L = Iω itself — that is the thing to be derived.",
+          "Reading L = mvr as the general magnitude. In general |r × p| = mvr sinθ; it equals mvr here because each particle of a rotating rigid body moves on a circle with v perpendicular to r."
         ],
         "recall": {
           "credit": "say_it",
@@ -76,7 +77,9 @@
             "r cross p",
             "m v r"
           ]
-        }
+        },
+        "memory_tip": "Start at ONE particle on a circle. There v is perpendicular to r, so L = mvr with no sine.",
+        "margin_note": "First mark. The particle definition only. The rigid body comes next."
       },
       {
         "id": "s2_derive",
@@ -113,7 +116,9 @@
             "sum",
             "r omega"
           ]
-        }
+        },
+        "memory_tip": "Two substitutions and nothing else: v = rω, then collect Σmr².",
+        "margin_note": "Two marks. Show v = rω put in, then ω taken outside the sum."
       },
       {
         "id": "s3_result",
@@ -145,8 +150,11 @@
           "heard_as": [
             "I omega"
           ]
-        }
+        },
+        "memory_tip": "Check the unit at the end: kg·m² times rad/s gives kg·m²/s, the unit of angular momentum.",
+        "margin_note": "Final mark. Naming Σmr² as I is the line that finishes the derivation."
       }
     ]
-  }
+  },
+  "insider_note": "The derivation is 2 of the 4 marks and depends on one line: v = rω inside the sum, which leaves Σmr² as I."
 }

@@ -36,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number."
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed in the Fastrack; the single appearances[] row is the AP March 2026 paper described below. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -125,5 +125,6 @@
         "memory_tip": "KE = p²/2m. Same momentum, smaller mass → larger kinetic energy."
       }
     ]
-  }
+  },
+  "insider_note": "Asked in AP March 2026, question 14. One of the two marks is for the substitution line, so a page with only KE = p²/2m on it collects one."
 }

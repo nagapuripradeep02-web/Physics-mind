@@ -55,6 +55,7 @@
           "point of the path, so no single F can be put",
           "into that formula."
         ],
+        "margin_note": "First mark. Say why W = F S cos θ cannot be used here. That sentence is the mark.",
         "why": "Naming why the constant-force formula fails is what earns the first mark; the rest of the answer is the repair.",
         "common_mistakes": [
           "Using the average of the first and last values of F, which is only correct for a force that grows linearly."
@@ -73,7 +74,8 @@
             "variable force",
             "changes"
           ]
-        }
+        },
+        "memory_tip": "A spring is the standard example: F = kx is different at every point of the stretch."
       },
       {
         "id": "s2_split",
@@ -95,6 +97,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "Two marks. One for the small piece ΔW = F(x)Δx, one for the sum over the whole path.",
         "why": "Every hard quantity in physics is handled this way: cut the change into pieces small enough for the easy formula to hold, then add them up.",
         "common_mistakes": [
           "Taking Δx large, so that F is not constant over the piece and the step is not valid."
@@ -114,7 +117,8 @@
             "small displacements",
             "add up"
           ]
-        }
+        },
+        "memory_tip": "Thin rectangles under a curve: each one is F(x)Δx, and the sum of them is the work."
       },
       {
         "id": "s3_result",
@@ -131,6 +135,7 @@
           },
           "Area below the axis counts as negative work."
         ],
+        "margin_note": "Last mark. Box the area statement, then add the line about area below the axis.",
         "why": "The graph reading is what an examiner tests, and it makes the sign of the work visible without any algebra.",
         "common_mistakes": [
           "Ignoring the sign of the area, so that a retarding force adds instead of subtracting."
@@ -149,8 +154,10 @@
             "area under",
             "graph"
           ]
-        }
+        },
+        "memory_tip": "Spring: the F–x line is straight, so the area is the triangle ½kx². The same answer."
       }
     ]
-  }
+  },
+  "insider_note": "Splitting the path carries 2 of the 4 marks. Write ΔW = F(x)Δx and the sum; the graph area alone is only the last mark."
 }

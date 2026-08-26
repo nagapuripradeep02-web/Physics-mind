@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "What is escape velocity? Obtain an expression for it.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 16,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",
@@ -34,7 +45,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -74,7 +85,8 @@
             "minimum"
           ]
         },
-        "memory_tip": "The word that earns the mark is MINIMUM — the least speed that never comes back."
+        "memory_tip": "The word that earns the mark is MINIMUM — the least speed that never comes back.",
+        "margin_note": "First mark. The one word MINIMUM is what is being marked here."
       },
       {
         "id": "s2_energy",
@@ -99,7 +111,7 @@
         ],
         "why": "Escaping is an energy question, not a force question: the body needs enough energy to climb all the way out, however long that takes.",
         "common_mistakes": [
-          "Setting the kinetic energy equal to m g R, which uses a constant g that is only valid near the surface."
+          "Justifying the energy as force mg times distance R with g held constant — that reasoning is invalid (g falls with height), even though mgR happens to equal GMm/R because GM = gR²."
         ],
         "recall": {
           "credit": "say_it",
@@ -116,7 +128,8 @@
             "G M m by R"
           ]
         },
-        "memory_tip": "It is an energy balance, not a force balance: ½mv² = GMm/R — kinetic energy pays for the whole climb."
+        "memory_tip": "It is an energy balance, not a force balance: ½mv² = GMm/R — kinetic energy pays for the whole climb.",
+        "margin_note": "Two of the four marks. Write the potential energy line before the energy balance."
       },
       {
         "id": "s3_expression",
@@ -157,8 +170,10 @@
             "11.2"
           ]
         },
-        "memory_tip": "v_e = √(2gR). The m cancels — a feather and a rocket need the same speed."
+        "memory_tip": "v_e = √(2gR). The m cancels — a feather and a rocket need the same speed.",
+        "margin_note": "Last mark. Show the m cancelling, then box the 11.2 km s⁻¹ value."
       }
     ]
-  }
+  },
+  "insider_note": "Write the 11.2 km s⁻¹ value inside the box as well as the formula — an answer that stops at √(2gR) has not finished the last mark."
 }

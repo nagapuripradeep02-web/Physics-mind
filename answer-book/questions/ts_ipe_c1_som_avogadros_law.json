@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) uses Avogadro's law inside its ideal-gas derivation and its gram molar volume answer, but never asks the law itself — a standard board archetype for a named law. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: the Fastrack chemistry section (book pp.62-66) uses Avogadro's law inside its ideal-gas derivation and its gram molar volume answer, but never asks the law itself — a standard board archetype for a named law. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Statement and V ∝ n verified. The 22.4 L claim carried no STP convention while the gram_molar_volume card of the same chapter states one; the convention (0 °C and 1 atm; 22.7 L at 0 °C and 1 bar) is now recorded in the step's margin_note so the two cards agree. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -76,7 +76,7 @@
           "Writing V ∝ 1/n. More gas takes MORE room — the proportion is direct."
         ],
         "memory_tip": "Boyle gave P, Charles gave T, Avogadro gave n — the three inputs of PV = nRT.",
-        "margin_note": "The 22.4 L line ties this law to the gram molar volume question of the same chapter."
+        "margin_note": "The 22.4 L line ties this law to the gram molar volume question of the same chapter; that 22.4 L is at the older STP of 0 °C and 1 atm (at 0 °C and 1 bar the value is 22.7 L)."
       }
     ]
   }

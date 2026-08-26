@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The relation used",
@@ -30,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -92,7 +98,8 @@
         ],
         "why": "The speed contributes 6 of the 8 percent, which shows why a careful speed measurement matters more here than a careful mass measurement.",
         "common_mistakes": [
-          "Getting 5% by leaving out the factor 2."
+          "Getting 5% by leaving out the factor 2.",
+          "Squaring the speed error to get 9%, or combining as √(2² + 6²) ≈ 6.3%. The power multiplies the percentage error; it never raises it to a power. The ½ is exact and adds no error."
         ],
         "recall": {
           "credit": "say_it",

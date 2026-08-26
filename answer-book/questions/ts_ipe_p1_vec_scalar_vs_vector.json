@@ -51,6 +51,7 @@
           "and scalars add by ordinary arithmetic.",
           "Examples: mass, time, speed, work."
         ],
+        "margin_note": "First mark. Definition plus one example. Speed belongs on this side, not velocity.",
         "why": "The real test is not \"does it point somewhere in the picture\" but \"do I need a direction to add two of them correctly\".",
         "common_mistakes": [
           "Calling speed a vector — speed is the size of velocity and carries no direction."
@@ -70,7 +71,8 @@
             "scalar",
             "magnitude only"
           ]
-        }
+        },
+        "memory_tip": "Test by adding: 2 h and 3 h always make 5 h. No direction is needed, so time is a scalar."
       },
       {
         "id": "s2_vector",
@@ -84,6 +86,7 @@
           "parallelogram law, not by arithmetic.",
           "Examples: displacement, velocity, force."
         ],
+        "margin_note": "Second mark. Give the addition law as well as the direction — both are wanted.",
         "why": "The addition law is the working definition: 3 N and 4 N can give 5 N, which no pair of scalars ever does.",
         "common_mistakes": [
           "Saying only \"it has direction\" — the mark scheme also requires the addition law."
@@ -103,8 +106,10 @@
             "vector",
             "direction"
           ]
-        }
+        },
+        "memory_tip": "Two 5 N forces can give anything from 0 N to 10 N, depending on the angle. That is what makes force a vector."
       }
     ]
-  }
+  },
+  "insider_note": "One mark for the scalar, one for the vector, and each example is inside its own mark, not an optional extra."
 }

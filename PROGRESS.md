@@ -1,5 +1,287 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📏 MEASURED SESSION — Answer Book: **SEVEN REAL TELANGANA PAPERS TRANSCRIBED, DIFFED AND CLOSED — physics goes 8 chapters → 14, and the bank gains its first TS exam provenance** (2026-08-26, desk `physics-mind-ipe-answerbook`)
+
+**Bottom line: the founder supplied seven TS Inter I-Year Physics Paper-I papers (March 2016, 2017, 2019, 2020, 2023, 2024, 2025). They are now a committed corpus, every one of their 154 answerable slots is mapped to a card by hand, and coverage is 100%.** 45 cards authored, 154 appearance tags written across 85 cards, six new chapters opened (units 1, 10, 11, 12, 13, 14). Verified: build:answers green · katex unmoved at 278 · tsc 0 · vitest 443/443 · **smoke:answers 48/48 (46.7 m)** · check:papers green · backtest:physics --strict green · wrap 0/45 on the new cards · both new figures rendered and looked at.
+
+### The corpus the doctrine has asked for since Unit 8 did not exist
+`docs/patterns/answer_book.md` has carried *"back-testing the archetype set is not back-testing the OUTPUT — when a real paper is in the corpus, diff the sweep's authored list against that paper question by question"* since 2026-08-21. **There was no corpus.** The one AP paper lived as a PDF in Downloads, twelve `appearances[]` entries and a fifteen-line prose summary — nothing a script could check, nothing a later session could re-read. `answer-book/papers/` is now that corpus: seven papers, `ipe_paper_v1`, verbatim, with provenance and a `date_confidence` field.
+
+### What the first real diff found
+**The bank had ZERO Telangana exam provenance.** 184 of 198 physics cards had `appearances: []`, and **not one appearance anywhere in the book carried `board: "ts_ipe"`** — the only boarded entries were twelve AP-2026 tags, plus seven bare years (2004–2012) on two cards from the Fastrack's printed lists, whose frequency data is a 2015 compilation. The newest Telangana signal in the book was eleven years stale.
+
+Three findings:
+1. **The units that existed were in good shape** — 40 of 48 questions in units 2–9 already had a card. The eight misses were two conceptual (winter/summer pendulum, asked in **three of seven papers**, with no card; skating on snow) and six numericals.
+2. **Six of the fourteen chapters did not exist** — units 1, 10, 11, 12, 13, 14, carrying roughly half of every paper's marks. Ranked by exam frequency: 12 Thermal (17 slots) · 11 Fluids (14) · 14 Kinetic Theory (14) · 1 Physical World (7) · 10 Solids (7) · 13 Thermodynamics (7). **Unit 13 is the highest value per card in the book: two LAQs cover a guaranteed 8 marks on every paper in the corpus.**
+3. **The PROBLEMS deferral was made without this evidence.** Six of the seven papers print a numerical INSIDE a Section-C question, sharing the 8 marks with the derivation. The 2026-08-20 note said deferred problems were "2-for-2 on being examined"; against a real corpus it is 6-for-7. Founder lifted the deferral for paper-attested numericals; the six are authored as standalone 4-mark cards.
+
+### The `enumerated` trap did not bite, and that is evidence
+`e2e/answer_book.spec.ts:642` fails if an entry with `source: "enumerated"` shows an asked chip, and `notebook.js:3532` tells Vidi such a question has "no exam history to report" then prints the Asked line anyway — the round-2 dangling-pointer defect. So tagging a predicted card would have broken two things at once. **None of the 40 originally-tagged cards needed flipping**: every question these seven papers ask came from the *asked* tier, never the enumerated one. Independent evidence the enumeration doctrine is splitting asked from predicted correctly.
+
+### The wrap measurer was broken, and physics is not at 0.1%
+`answer-book/tools/measure_wrap.mjs` was ported from the zoology desk and **crashed on its first run here**: it iterates `cut.steps` as an array, but the schema keys that Record by step id. Zoology has no cards with cuts (physics has 5), so the bug had never fired. Fixed in the ported copy. Measured after: **0 of the 45 new cards wraps a line**, and the physics fleet rate is **0.7% (21 lines, all pre-existing)** — the tool's own header still claims 0.1%. Note the e2e wrap gate calls `openFirst(page)` and checks ONE question, so none of this is visible to CI.
+
+### The gate that broke was selecting chapters by ARRAY INDEX
+`smoke:answers` came back 47/48. The failure was `the plan math is deterministic` at
+`e2e/answer_book.spec.ts:1314` — `expect(Math.min(...stars)).toBeGreaterThanOrEqual(2)` received 1.
+
+**It was not a product regression, and the test's own comment said so**: *"day 1 learns are the
+3-star core first — never a 0-star predicted card"*. The received value was 1, not 0. Probed the
+planner directly with both chapter pairs rather than trusting either the test or the assumption:
+
+```
+unitIdx [0,1] → 1. Physical World (3 q) + 2. Units and Measurements (22 q)
+  25 learn items over 17 days → day 1 takes 7 → stars 3,3,3,2,2,2,1   min 1
+unitIdx [1,2] → 2. Units and Measurements (22 q) + 3. Motion in a Straight Line (22 q)
+  43 learn items over 17 days → day 1 takes 5 → stars 3,3,3,3,3       min 3
+```
+
+In BOTH cases the star order is strictly non-increasing and **zero predicted (`enumerated`) cards
+reach day 1** — the invariant holds. What changed is that `buildPlanViaChat` ticks
+`.vw-check input` at **indices** `[0,1]`, and `units.json` is ordered by unit number. Physics Unit 1
+had never existed, so inserting it shifted every index by one: `[0,1]` stopped meaning units 2+3 and
+started meaning units 1+2. Pairing a 3-question chapter with a 22-question one leaves fewer total
+items, so a 17-day plan must take MORE per day, and day 1 digs one rank deeper.
+
+**All eleven callers of that helper selected by index**, so the three that pass `[2, 3]` had silently
+moved from units 4+5 to units 3+4 as well — they stayed green while testing something else. Fixed by
+selecting chapters **by name**, which no future unit insertion can shift. No assertion was weakened.
+
+This is [[feedback-tests-encode-fleet-size]] in a new shape: not "the fleet grew past a budget" but
+**"the fleet's ORDER changed and an index-based selector silently re-pointed"**. A gate that names
+what it wants cannot drift; one that counts to it can.
+
+### Two things the corpus surfaced that are NOT fixed
+1. **`appearances` drives no ranking anywhere.** `itemsFor()` sorts on `stars`, then qtype, then `enumerated`. Exam-eve "most-asked" and the study planner never read `appearances`, so a question asked in five of seven papers still sorts below a 3-star Fastrack question it beats on real evidence. Making paper years drive the order is a founder call.
+2. **`source` is unvalidated by the build** — `check:papers` now validates the vocabulary (`blm | enumerated | ap_2026_paper | ts_paper`), which is the cheap half; the build still does not.
+
+### New tooling
+`npm run check:papers` (corpus structure + source vocabulary) · `npm run tag:appearances` (idempotent, never overwrites, **preserves each file's line endings** — 18 physics cards and `units.json` are CRLF and a naive writer turns each into a whole-file diff) · `npm run backtest:physics [--strict]` (re-derives every claim in `matches.json` from the bank; fails on a mapping that resolves to nothing, a card that lost its tag, or a `ts_ipe` tag in a corpus year no row justifies; an absent unit is reported and counted, never an error).
+
+### Numbers
+| | before | after |
+|---|---|---|
+| physics chapters | 8 (units 2–9) | **14 (units 1–14)** |
+| physics card files | 198 | **243** |
+| physics catalog entries | 204 | **249** |
+| all card files | 946 | **991** |
+| cards with a Telangana year tag | **0** | **85** |
+| such appearances | **0** | **154** |
+| corpus coverage | — | **154/154 = 100%** |
+| depth 100/100/100 | 8 units | **all 14** |
+
+All 45 new cards ship `needs_teacher_verification: true`; every mark split is invented and stays a claim. The March-2023 paper prints no year — 2023 is inferred from the scan's camera timestamp, confirmed by the founder, recorded in `provenance.year_source`, and printed by `backtest:physics` on every run.
+
+Docs: `docs/IPE_PHYSICS_1_PAPERS.md` (the narrative) · `answer-book/papers/README.md` (the format) · a 3-line pointer added to `docs/patterns/answer_book.md`.
+
+
+
+## 📏 MEASURED SESSION — Answer Book: **CHEMISTRY AUDITED AND ITS BANK FIXED — 9.73 → 9.78, AND THE OUTOFBANK SPEC IS WRITTEN** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `122b5efd` · `4bbe2006` · `cb555ab8` · `c50ab998`)
+
+**Bottom line: chemistry is the third subject to be measured and the second to have its content read for truth. Baseline 9.73/10 (2.919/3, 204 contexts × 10 asks, ten independent graders); after 9.78 (2.935). Reported as flat — the +0.05 is inside grader noise. What is NOT flat is the thing the round was aimed at: `outofbank` moved 9.31 → 9.80, three times any other template, and the mechanical evidence is unambiguous.** Seven examiners read all 196 cards and found 11 errors, 36 ambiguities, 54 gaps; two fix agents then closed 30 more defects the graders found that the examiners structurally could not see. Verified: build:answers green · katex unmoved at 278 · tsc 0 · vitest 438/438 · smoke:answers 48/48 (47.3 m). Model spend ₹80 across both rounds.
+
+### The chemistry bank had never been checked for truth, and the arithmetic was the good news
+Git history confirmed it: the only post-authoring commit on any chemistry card had changed one word in one `insider_note`. Seven examiners (one per chapter) recomputed everything. **Chapters 4 and 5 — 76 numerical cards — came back with every boxed answer, half-reaction, molar mass and oxidation number correct. Zero wrong.** The ch.6 sign convention held on all 25 cards (only two write a work term at all, which is why: q is positive-in under both conventions).
+
+**All eleven errors were in the explanation layer** — the layer Vidi is grounded on and no gate reads. Four of them named the CORRECT move as the mistake: `cb_bond_order_he2` listed "bonding minus antibonding" (its own boxed formula); `ce_lechatelier_principle` called "the system opposes the change" an error (NCERT's own wording); `som_ke_4g_methane` named *subtracting* as the error where 273 − 73 = 200 is right; `cp_highest_ea_en` named chlorine where the trap is fluorine. Plus a margin note telling students to write four points on a five-point answer whose fifth point its own mistakes line says must not be dropped.
+
+### The outofbank spec — owed since August, now written and measured
+All 204 declines fired correctly in the baseline. What failed was everything after: replies that declined and then sketched the Nernst derivation, asserted which chapter holds it, asserted what an examiner checks, or invented an app capability ("tap Change my plan to add it to your list" — `changePlanWidget` only re-plans by question type). Both physics graders isolated this same deficit in August and the physics NEXT list called for a spec; it was never written.
+
+Placement was the load-bearing decision. Physics Trap 3: the same rule in the cached persona prefix was disobeyed on 71% of replies and obeyed at 13% from the per-request block. The hard constraint went in `situation`. Measured with identical checker code over both corpora:
+
+| | before | after |
+|---|---|---|
+| `outofbank` replies flagged | 30 | **10** |
+| mentions the out-of-bank topic at all | 183 | **60** |
+| asserts which chapter holds it | 3 | **0** |
+| asserts what an examiner checks | 2 | **0** |
+| claims "Change my plan" can add it | 7 | **0** |
+| `ANSWERED_OUT_OF_BANK` | 1 | **0** |
+| `LEAKED_INTERNAL` | 13 | **3** |
+
+### What the GRADERS see that the EXAMINERS cannot
+Examiners read raw JSON; graders read the **assembled grounding context**. Every defect below was invisible to the first pass and obvious to the second: `insider_note` contradicting its own `mark_split` (8 cards, and it caused a harmful reply), 4-mark insider text served to 2-mark students, `STARS: 0` shipping in two string forms the model read as two different rankings, a chapter roster truncated mid-word that replies quoted verbatim. **Run both, and run the audit second so its findings feed back.**
+
+**The cut limit you cannot author around:** `applyCut` overrides only `marks`/`label`/`lines`/`margin_note`/`why`/`memory_tip`/`mark_note`. **`common_mistakes` and `insider_note` are silently un-overridable**, so a card served at two lengths needs BASE text true at every length.
+
+### I introduced a defect and the second round caught it
+My round-1 STARS fix ended "read the Asked line below for exam history". Only **7 of 204** chemistry cards carry an Asked line, so on 197 the grounding text pointed at a field that is not there. Four graders in four slices reported it. Fixed: the Asked line is computed first and the gloss points at it only when it exists. **A fix that is not re-measured is a guess — and this one was wrong in a way only the re-measurement could show.**
+
+The same round found a pre-existing twin: the `VERIFICATION` line said "this mark split is the source book's" unconditionally, while an enumerated card's own STARS line says the book does not ask the question at all. On 58 of 204 cards it laundered an authored split as a sourced one — and it is the sentence that licenses every reply to say "the book gives 1 mark for…". Both now branch honestly (dangling pointers 197 → 0).
+
+### Where the remaining harm lives
+Harmful replies went 2 → 4 and `why` regressed 9.74 → 9.48. **Three of the four zeros are mark-value inventions on cards whose `MARK SPLIT` does not map one-to-one onto steps** — `as_plancks_quantum_theory` (EARNS THE MARK FOR names half its own 2M step), `cb_vsepr_theory` (one 4M bucket split across two 2M steps — the only such card in its slice, and the only one that produced a wrong split), `td_reaction_enthalpies` (five definitions in four marks). The fourth is a model chemistry falsehood (Cr³⁺ in dichromate). **That is the next target and it is an authoring fix, not a prompt fix.**
+
+### ROUND 3 — the 38 defects the second audit named, closed
+
+The first two fix rounds ran BEFORE the round-2 graders reported, so their findings sat unaddressed. Four agents closed them across **40 cards**. Every item was verified still live in the current file before the work order was written — two earlier passes had already fixed some, and a fix applied twice is how a card ends up saying the same thing in two voices.
+
+**The checker lied first, again.** The liveness script reported two defects as already fixed. Both were false negatives: `lines[]` is an array of short display lines, so *"the energy available to do / useful work"* and *"Both effects are explained by the magnetic / quantum number m"* never appear as contiguous strings. Found by opening the cards. Real count 38, not 36.
+
+**Four marked lines changed, each an outright falsehood.** `as_zeeman_stark_effect` attributed the **Stark** effect to the magnetic quantum number (m explains Zeeman only — and step 1 of the same card said so). `cp_transition_elements_properties` attributed alloys to "similar atomic sizes … such as brass and **steel**", where steel is interstitial, so the book's own example refuted the book's own mechanism. `td_define_entropy_terms` defined **standard molar entropy S°** and called it absolute entropy, which its own `why` already said; the definition now attaches to the third-law zero and the 298 K survives on S° where it belongs (the recorded 273 → 298 departure is NOT reverted). `td_reaction_enthalpies` invited the 6.0 + 40.8 sum its own mistakes line forbids; the same-temperature qualifier is now ON the line.
+
+**The two redox cards were recomputed, not trusted.** `st_bal_cr2o7_no2_acid` and `st_bal_croh3_io3_basic` both told students to cancel amounts that MUST survive — 14H⁺/7H₂O and 10OH⁻/8H₂O are the half-equations' coefficients and never reach the final line. The agent re-derived the remainders from each card's own marked lines (**8H⁺ and 4H₂O**; **4OH⁻ and 5H₂O**), confirmed each against its boxed answer, and rewrote both bullets into the surviving-remainder form the two CORRECT sibling cards already use. One reply had already repeated the bad phrasing verbatim.
+
+**The harmful-reply root cause, addressed without moving a mark.** Three of the corpus's four zeros were mark-value inventions on cards whose `MARK SPLIT` does not map one-to-one onto steps. Eight `mark_note` fields now state which portion of which row each step earns — `cb_vsepr_theory` (a 4M Postulates row across two 2M steps), `as_plancks_quantum_theory` (a 2M step labelled with one of its two required equations), `td_reaction_enthalpies` (fusion and vapourisation SHARING one mark), plus `td_spontaneous_process`, `td_state_function` and `som_surface_tension`.
+
+Verified over 40 cards / 120 steps, proven not asserted: **0** changes to marks/marks_total/mark_split/qtype/ids · **4** marked-line changes, all named · **0** unexpected fields · cuts touched only in `why`/`margin_note`/`label` on one cut, no membership and no marks.
+
+### THE TRUNCATION NOBODY COULD SEE — and the check that finds it
+
+Three graders reported replies cut off mid-word, each dropping whole mark-carrying properties, and all three noted the same two things: nothing catches it, and no regex over CONTENT ever could, because the reply is correct right up to where it stops.
+
+`looksTruncated()` now ships: the last non-empty character is not terminal punctuation (Latin stops, the Telugu/Devanagari danda, an ellipsis, closing brackets and quotes all count as a legitimate ending). An EMPTY reply is deliberately NOT truncation — that is the guard reply, and conflating them would hide both. **Measured over the full 2,040-reply corpus before shipping: 3 fires, 3 genuinely truncated, 0 false positives.** Wired into `vidi_audit` as a CRITICAL flag.
+
+The fix it found: Telugu `max_tokens` **500 → 800**. Measured, not guessed — the dead replies stopped at 720–782 chars while survivors reach 905, so the cap was binding on token density, not on how long the answer needs to be. **Two of the three were 4-MARK questions, not the 8-mark LAQs assumed**, so scaling the budget by marks would have missed them. Re-measured on 204 Telugu replies against the same contexts: **truncated 3 → 0, median 447 → 449 chars, p90 654 → 626.** The median not moving is the point — the higher cap is not inflating replies, only letting the few that needed room finish. Walkthroughs keep 500 and ordinary asks 300: zero truncation across 1,836 non-Telugu replies.
+
+### THE THIRD MEASUREMENT — 9.73 → 9.78 → **9.64**, and why the drop is the fix working
+
+Same 204 contexts, same 10-ask battery, same 10 slices, same frozen rubric, third
+run. The headline went **down**. It is not a regression, and the evidence is
+mechanical rather than editorial.
+
+Round 3's dominant grade-1 class, named independently by all ten graders, is a
+reply saying *"the book gives 1 mark for ..."* on a **predicted** card — a card the
+source book does not contain. That became a violation only in round 3, because
+round 3 is when the grounding stopped asserting the same falsehood: until then the
+VERIFICATION line told the model, of every card, *"this mark split is the source
+book's"*. The identical reply was FAITHFUL in rounds 1–2 and graders scored it 3.
+
+Measured as behaviour rather than as score (Trap 5), with identical code over all
+three corpora: false book-attribution on **predicted** cards **20.9% → 23.1% →
+15.2%**, against a flat **~20%** negative control on sourced cards where the claim
+is TRUE. Harmful (grade-0) replies **4 → 1**. Grade 1 tripled because a class of
+reply that was previously ungradeable became gradeable. The bank got more honest
+and the number got worse; both are true at once, and only one of them matters.
+
+**The residual 15% was mine, and the graders diagnosed it unanimously:** the
+predicted-card lines were AGENTLESS. *"Never call it the book's split"* states the
+prohibition and never supplies the permitted alternative, so a model that must
+attribute the split to someone had exactly one noun available on the card.
+Predicted-card grade-1 ran **8.6%** against **1.4%** elsewhere. Both lines now name
+**this answer book** as the owner. Verified before writing: all 140 enumerated
+entries carry `stars: 0`, so *"STARS: none"* is a fact and not a fresh claim.
+
+**The second defect was also mine.** Five round-3 fix agents wrote WHAT THEY
+CHANGED AND WHEN into `why` — student-facing teaching text. Three graders flagged
+it; nothing stopped a reply telling a student what an earlier version of the card
+used to say. The chemistry in each note is kept; the revision history moved to
+`verification.note`, where every other pass put it. 5 of 5 stripped, 0 remaining.
+
+`notebook.js` is shared by all four subjects, so the predicted-card wording changes
+physics/maths/botany grounding too. It only makes a false attribution harder, so no
+re-measure is owed — but their baselines were taken on the old string, and that is
+the honest caveat.
+
+### NEXT
+1. **The two round-3 grounding fixes are committed but NOT re-measured.** Whether
+   naming the owner actually moves the 15.2% is unproven — the prediction is
+   testable and unverified. ≈₹30 and one grading pass.
+2. **`ts_ipe_c1_cp_periodic_properties_trends` is at 9,616 chars** of the server's 10,000-char slice and grew again this round. One authoring pass from silently dropping its tail steps.
+3. **Several mark splits are resolved TO rather than answered.** `td_spontaneous_process`, `td_state_function`, `td_reaction_enthalpies`, `cp_diagonal_relationship` and the three `st_law_*` cards now have prose consistent with their split — but the splits themselves are unconfirmed claims. Each is recorded for the teacher gate.
+4. **Maths (358 cards) has still never been truth-checked.** Physics found 15 errors, chemistry 11 + 38. Maths is the largest unread bank in the book.
+5. Still owed and NOT closed by any of this: the Telangana teacher gate. All 196 chemistry cards stay `unverified`, chapters 8–13 are unauthored, and the two-book union check and back-test remain structurally impossible for chemistry.
+
+---
+## 📏 MEASURED SESSION — Answer Book: **MATHS-1B SHIPPED, MATHS AUDITED TWICE — 9.62/10, AND THE SCORE DID NOT MOVE** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `f0deee41` · `21ffb260`, site `417d266f`, function v7)
+
+**Bottom line: the deploy was the real win; the persona round was not.** Maths-1B (108 questions, 7 units) and the 24-Aug physics content fixes reached students — before this, `answers.viditra.co` served physics cards with the 15 known errors still in them. Then maths was measured for the first time ever: **9.67/10** (2.900, 3,580 replies, 15 graders). After a persona + checker round it re-measured **9.62** (2.885), and physics **9.85 → 9.71** on a 596-reply sample. **Reported as flat, not as a win.** All three physics graders independently judged their slice UNCHANGED. Verified: build:answers green · tsc 0 · vitest 432/432 · smoke:answers 48/48 (43.4 min — the fleet grew 644 → 752, sweeps run longer, budget NOT trimmed). Model spend ₹168 across both rounds.
+
+### The one that would have shipped into 1B
+`buildVidiContext` picked the chapter 3-star set by BARE unit number (`notebook.js:3508`), the last site never re-keyed when `subject-number` identity landed — so **227 of 250 Maths-1A cards told the model their chapter-mates were PHYSICS questions** (Matrices got Motion in a Straight Line, because physics sorts first). The obvious `unitKey(question.unit)` fix is WRONG: a question carries `subject` at TOP level and `unit` is `{number,name}` with no subject, so that reads every card as physics and preserves the bug silently. Now a named `chapterMates()` keyed on the question own subject, extracted from the SHIPPED file by the seam test, negative-controlled both ways.
+
+### Four ways the second round lied, and what survived
+- **The grader rubric changed between rounds** (I added register-counting), so the means are non-comparable and the drop landed exactly in `outofbank` where the padding lives. Freeze the rubric next time; new questions go in a separate pass.
+- **The success metric went narrow.** I reported closers 34% → 0.1% by grepping `"you can do this"` — the phrase the persona RECOMMENDED. The model substituted "Good luck with your revision". Behaviour-measured: 34% → 9%.
+- **Two checks withdrawn after measurement.** The LaTeX arm fired 209/3,580 where readers found 2 (a heredoc collapsed `\\left` to `\left`, which JS reads as the literal word "left"). A `skiplast` step-name matcher hit 1-of-3 recall and false-positived in 8 of 18 slices — it does NOT ship; `skiplast` is deliberately uninstrumented with the reasoning in the code.
+- **What survived, because identical code scored both corpora:** stock closers 34–38% → 9%, machinery words 43 → 1, markdown 3 → 0, romanised Telugu 2 → 0, `MARK_SUM` noise 109 → 4, `LONG` 385 → 0 (replaced by 28 targeted word-budget fires).
+
+### The persona was causing the defect it was blamed for
+It literally said `say "you can do this"`. Removed, plus bans on naming the machinery ("ANSWER FACTS", raw step ids), raw LaTeX, and the named metaphors readers found. Subject term list now derived per request from the question-id prefix (a Maths student was being handed the physics whitelist); the physics string rebuilt **byte-identical**, positive-controlled, so its baseline stayed comparable. Function deployed **v7**; site redeployed with two corrected cards.
+
+### Bank defects — no prompt change can fix these
+`sl_vsaq_ratio_divides_2_3_2_10` answer is `−(−7):14 = 1:2`, POSITIVE i.e. internal, but its `WHY` and `NOTE` both said the ratio signals EXTERNAL division — it poisoned 3–4 replies **per round**. `sl_concurrent_point_of_concurrency` notes were copy-pasted from its find-k sibling and kept saying "the unknown" on a question that has none. **Both fixed here** (explanation text only; no marked line, no mark value). Readers report ~6 more cards whose step `NOTE` contradicts its own `MARK SPLIT`, and that a share of surviving metaphors are inherited verbatim from authored `WHY` lines. **When a defect reproduces on the same card across independent runs, suspect the card.**
+
+### NEXT — ranked, and the ranking is the finding
+1. **The maths correctness audit.** 358 cards, never truth-checked by anyone. Physics found **15 real errors** in 198 cards when someone finally read them. This outranks everything below.
+2. **Teacher verification.** All 752 cards ship `needs_teacher_verification: true`, and **0 of 250 replies pass that caveat on** to the student.
+3. **The depth layer: 1,168 memory tips + 358 insider notes = 1,526 strings across 17 units** (~3 sessions at the physics rate of 599). `remember` was the weakest template in EVERY round of both books because maths has 0 tips authored, so every tip is improvised and the wrong ones are wrong at formula level. A maths equivalent of `PHYSICS_BACKFILL_START_HERE.md` comes first.
+4. **An `outofbank` spec.** Both physics graders isolated the deficit there: the decline fires reliably, the follow-through is unconstrained — and that is where the single physics 0 got in.
+
+### Ops scars
+**The DeepSeek balance ran out mid-run and took LIVE student chat down with no alert** — every question returned the friendly-down message while the deterministic book kept working. There is no monitoring on this. `AB_DAILY_USD_CAP` is still **$2**; the runbook says $15 before launch. Also: killing an audit process does NOT kill its wrapper script — it marched on to Maths-1B against a dead account and wrote 1,080 "done" markers with zero content, which the resume logic would have honoured as a completed paper. Purge failed rows before resuming.
+
+---
+
+## 📏 MEASURED SESSION — Answer Book: **VIDI PHYSICS AUDITED, THE BANK'S PHYSICS FIXED, DEPTH COMPLETED — 9.7 → 9.9 / 10** (2026-08-24, desk `physics-mind-ipe-answerbook`, commits `8054cf65` · `d01fdfa4` · `a028d953` · `aff17003`, function deployed twice)
+
+**Bottom line: Vidi was answering physics well and NO STUDENT COULD REACH HER — `answers.viditra.co` returned `403 origin not allowed` on every free-text question, because `answerbook-vidi-chat` was the only one of the four functions whose code default lacked the production domain (content/pay/sync all had it). Fixed, deployed, verified live from the real Origin. Then the thing nobody had ever done: the PHYSICS OF THE BANK ITSELF was read card by card and was wrong in 15 places. Measured before and after on the same harness — 2,040 live calls (204 physics contexts × 10 student asks) graded 0–3 by ten independent readers: precise replies 91.4% → 96.1%, weak/misleading 1.2% → 0.5%, harmful 0 → 0, grader mean 2.902 → 2.955 (9.7 → 9.9 / 10). Verified: build:answers green · tsc 0 · vitest 421/421 · vidi:contexts 658/658 under the 10,000-char slice (widest 87%). Total model spend for every audit run: ≈ ₹170.**
+
+### The method — and it is reusable for maths and chemistry tomorrow
+`vidi_physics_audit.ts` (scratchpad, kept): every context from `.answerbook_logs/vidi_contexts.json` × a 10-ask student battery (marks · whystep · remember · explain · mistakes · important · skiplast · physics · outofbank · telugu), fired at the LOCAL mirror (`npm run vidi:server`, no rate limit, no ledger) at concurrency 8. **2,040 calls in ~9 minutes for ₹30.** Writes JSONL incrementally so an interrupted run keeps its evidence, then splits into 10 markdown slices; ten grading agents score every reply against the authored bank and write JSONL back. The main session never loads the replies — same discipline as eye-walker.
+
+### THREE TRAPS, all of which changed a conclusion
+1. **The checker lied before the model did.** All 7 "CRITICAL" flags in the first run were false: `markClaims` had `/i` on `M\b`, so `24 m/s`, `9.8 m/s²` and `10^11 m` read as invented marks. The MIRROR bug was worse — the same slip in `authoredMarks` WHITELISTED physics quantities and would have HIDDEN a real invention. Now case-sensitive, `0 marks` exempt, `answeredOutOfBank` takes the probe's own topic instead of hardcoding ideal gas. Five red-first tests; `personaBlock` now strips `\r` (autocrlf is on with no `.gitattributes`, so a CRLF checkout would have reported all 26 persona lines as drift).
+2. **"Works locally" is not "works."** Model quality 9.7/10, product experience 0/10. **Probe the live endpoint from the real Origin** — `curl -H "Origin: https://answers.viditra.co"` — never just localhost.
+3. **Persona rules are ignored where they sit.** The persona's own 5-sentence cap was disobeyed on 71% of "explain the physics" asks. Moving the same instruction into the PER-REQUEST situation block took it to 13%. Cached-prefix rules are weak; per-request steering is obeyed, and it costs nothing because the situation block is already outside the cache prefix.
+
+### THE BANK'S PHYSICS HAD NEVER BEEN CHECKED FOR TRUTH — 15 real errors
+Every build gate is STRUCTURAL (mark sums, field presence, id/filename, an idiom word list); e2e never reads content for meaning; all 198 files are `status: "unverified"` and **no teacher pass has ever run**. Confirmed by history: **no commit in this bank had ever corrected a formula, a sign or a claim** — every prior "fix" was marks bookkeeping or Rule 41 register. `verification` was scoped to MARK SPLITS from birth; physics was never in scope.
+
+Eight examiner agents (one per unit) read all 198 cards end to end, recomputing every numerical: **125 cards clean, 84 issues on 73 cards — 15 errors, 32 ambiguities, 37 gaps.** The errors that were shipping to students AND feeding Vidi as ground truth:
+- `osc_spring_frequency` — "the mean position O is where the spring force is zero". False for a loaded vertical spring (at O it is stretched by mg/k and balances the weight), and it contradicted its own `common_mistakes`.
+- `vec_parallelogram_law` — `θ = 180° → R = P − Q` for a MAGNITUDE; must be `|P − Q|`, and the sibling card names that exact omission as the mistake.
+- `osc_pendulum_in_lift` — "the floor pushes up harder on the bob". The bob hangs from a string; the TENSION increases.
+- `um_types_of_errors` — least-count error called a kind of systematic error; NCERT 2.6 places it under random.
+- `msl_parachutist_motion` — decelerating from a *reduced downward* net force.
+- `msl_stopping_distance` — "(a negative)" paired with `s = u²/(2a)`.
+- `wpe_conservation_of_energy_falling_body` — "closed system" where the law needs "isolated".
+- `grav_escape_velocity` — condemned ½mv² = mgR, which is algebraically identical to the credited form via GM = gR²; only the constant-g reasoning is wrong.
+- `grav_hydrogen_sun_earth` — asserted the earth's escape velocity is BELOW hydrogen's r.m.s. speed (11.2 vs ~2 km/s; escape is via the fast tail).
+- plus two arithmetic slips inside explanation text and a figure label marking a height that was not u.
+
+**The largest class was ambiguity, not error** — the SIGN TRAP: `grav_potential_energy_derive` and `grav_gravitational_potential_energy` both defined U as "the work done in bringing the body from infinity" with no agent named, while one computed +GMm/r and the other boxed −GMm/r. That silence is exactly what made the model state the sign backwards in the first audit. Both now say **work done BY AN EXTERNAL AGENT**, the negative of the field's work.
+
+**House rule kept throughout:** what earns the mark stays as the book writes it, the truth goes in `why` (the `vector_form_gravitation` minus sign is the exemplar). Only **7 marked lines** were touched, each factually wrong. No `marks`, `mark_split`, `qtype` or step id moved. Every touched card records an `AI physics check 2026-08-24` line in `verification.note` — **`status` stays `unverified`; this does NOT substitute for the Telangana teacher gate.**
+
+### DEPTH BAR — Units 4–9 now match Units 2–3
+Units 4–9 sat at their instructed target ("optional and sparse, 3★ + LAQ first"): 27–48% `memory_tip`, **0–67% `margin_note` (Units 8 and 9 at ZERO)**, 3–17% `insider_note`. The audit proved the cost: **the "How to remember?" chip does not render at all on a step with no tip**, and where the model had to improvise a mnemonic it produced wrong ones ("a kilometre is a derived unit"). `REMEMBER:` / `NOTE:` / `INSIDER POINT:` are lines in Vidi's grounding text — absent field, absent line, model fills the silence.
+
+**599 strings authored**, one agent per unit: 241 `memory_tip` · 214 `margin_note` · 144 `insider_note`. **Every physics unit now reads 100% / 100% / 100%.** Register held across all 599: zero hits on the imported `IDIOMS` list, zero katex added, zero straight apostrophes, zero ASCII math. Lengths on the house medians (tip 81 chars vs 78, insider 117 vs 117).
+
+`docs/PHYSICS_BACKFILL_START_HERE.md` (NEW) is the doc that produced them — the five moves a tip may make (contrast pair with a capitalised pivot · a concrete number · a name-is-the-definition hook · a physical anchor · an arithmetic sanity check), insider_note as marks economics rather than physics, exemplars quoted from Units 2–3.
+
+**One correction to that doc mid-pass, worth keeping:** it first copied chemistry's "insider_note on ASKED cards only". **Physics does not follow that** — Units 2–3 carry one on all 42 cards, predicted included, because a predicted card can still say how the marks sit even though it cannot cite frequency. The 66 predicted cards in 4–9 were then written too; none claims exam history (checked mechanically).
+
+### The regression the final run caught — and why the final run was worth doing
+Out-of-bank replies went from 11% over the 5-sentence cap to **68%**. Cause: my own per-request length trigger listed "full answer", which is the exact phrasing of the out-of-bank ask ("the full answer for the derivation of the ideal gas equation"), so every **refusal** was being granted three paragraphs. Word removed; re-probed 204 asks → 11 over the cap (baseline 22), 204/204 still refuse, 0 leak PV = nRT. **A fix that is not re-measured is a guess** — three persona iterations were needed, and iteration 2 regressed two templates.
+
+### Before → after, the six defect classes
+| | before | after |
+|---|---|---|
+| skiplast naming the SKIPPED step as the minimum | 5% | **0%** |
+| fabricated "asked years" on cards with no Asked line | 11% | **0%** |
+| Telugu truncated mid-sentence (max_tokens 300) | 34% | **1%** |
+| Telugu translating physics terms (శక్తి for force) | 41% | **6%** |
+| "explain the physics" over 5 sentences | 71% | **13%** |
+| named 22-probe regression battery | 7 flagged | **1 flagged, 0 critical** |
+
+Per template out of 10 (final): outofbank **10.0** · explain 10.0 · skiplast 10.0 · marks 9.9 · whystep 9.9 · mistakes 9.9 · important 9.8 · remember 9.7 · physics 9.7 · telugu 9.5.
+
+### Telglish — founder call, taken this session
+"Work on telgish not purely on english." So Telugu chat STAYS and was fixed rather than dropped: `max_tokens` 300 → 500 for Telugu (and walkthrough) asks so nothing truncates, plus a per-request line pinning **Telugu SCRIPT with the physics terms in English** (velocity, force, energy, mass…). Note this is chat only and does not touch Rule 30i, which governs authored narration.
+
+### Files
+`supabase/functions/answerbook-vidi-chat/index.ts` (persona + origin default + per-request steering; **DEPLOYED twice**, `--use-api`) — `src/scripts/answerbook_vidi_server.ts` (byte-identical mirror) — `src/lib/answerBook/vidiChecks.ts` (mark regex, parameterised out-of-bank) — `src/lib/answerBook/__tests__/vidiChecker.test.ts` (+5 red-first) — `__tests__/vidiSeam.test.ts` (+4 load-bearing rules, `\r` strip) — **73 question files** (physics fixes) — **150 question files** (depth backfill) — `docs/PHYSICS_BACKFILL_START_HERE.md` (NEW). **No Rule-40 platform file touched.**
+
+### NEXT
+1. **Maths is the queued track and the tooling now exists.** The session opened by measuring maths against physics: Maths-1A is 250 cards / 10 units complete, but **0 memory_tip, 0 insider_note, 0 cuts**, and its cards are *worked problems*, so a student's next question is usually a variant the bank does not hold — a different demand from physics theory. Two known client bugs are maths-specific: `buildVidiContext` picks chapter mates by BARE unit number, so **227 of 250 maths cards are told their chapter-mates are physics questions** (`notebook.js:3508`, the one site never re-keyed to `unitKey`), and `plain()` strips a leading `-`, which would sign-flip an equation (fires 0× in physics, a real risk in maths). Maths-1B has zero cards.
+2. Run the identical audit on chemistry (196) — it has never had a correctness pass either.
+3. **Still owed and NOT closed by this session: the Telangana-teacher verification pass.** All 198 stay `unverified`.
+4. There is still **no automatic physics gate**; the only semantic check is re-running this audit.
+5. **`npm run smoke:answers` (48 Playwright gates, ~25 min) was NOT run this session** — vitest, build and tsc were. Run it before the PR.
+6. Carried over from P4: `AB_DAILY_USD_CAP` $2 → $15 before launch. The `AB_ALLOWED_ORIGINS` secret remains UNSET — the 403 was fixed in the function's code default instead, which is why the other three functions were left untouched.
 ## 🌿 SESSION — Answer Book: **BOTANY OPENS — the whole Junior Botany book, 13 chapters, 194 cards, 35 figures** (2026-08-25, desk `physics-mind-ipe-botany`, `feat/ipe-answerbook-botany`, commits `624b58af`/`a8ffb0d1`, **PR #137 open, PUSHED, NOT merged, NOT deployed**)
 
 **Bottom line: the fourth subject is authored end to end. All 13 chapters of the Sri Chaitanya Junior Botany Fastrack (book pp.3-37) — The Living World 10 · Biological Classification 13 · Science of Plants 14 · Plant Kingdom 17 · Morphology 29 · Modes of Reproduction 10 · Sexual Reproduction 14 · Taxonomy 15 · The Unit of Life 21 · Biomolecules 9 · Cell Cycle 14 · Histology & Anatomy 13 · Ecological Adaptations 15 — taking the catalog to 45 units / 946 questions (198 physics · 196 chemistry · 250 Maths-1A · 108 Maths-1B · 194 botany). Every botany unit ships 100% memory_tip / margin_note / insider_note, the richest coverage in the book. Verified: build green — tsc 0 — vitest 416/416 — smoke **48/48 (45.9 m)**. NOT DEPLOYED (Rule 17).**
@@ -85,8 +367,8 @@ NULL = permanent (the free chapter is a gift, not a rental); a date = a paid pas
 ### CHEMISTRY LANDED MID-BUILD — and cost almost nothing
 Master gained 204 chemistry entries (PR #135) while P4 was in flight; the push was rejected, the merge was CLEAN (zero conflicts). The P3 subject dimension absorbed a THIRD subject with no code changes — which is the entire reason it exists. Cost: a rebuild (gated 1.5 → 1.9 MB), `content:push` (18 → 25 units, 644 questions), and a label fix (the SKU said "both subjects"). A chemistry chapter correctly shows the RS99 offer. Also de-hardcoded the bundle-count gate — it asserted 448 and would have gone red on a CORRECT book the day chemistry opened (the recorded lesson: a test must never encode fleet size).
 
-### FIRST REAL STUDENTS — unprompted
-`ab_devices` holds **10 real devices** from 2026-08-23 19:53—21:47 UTC across android/ios/windows/mac/linux, two with progress ticks (4 and 1 questions). Nobody was told; P2 sync recorded them. Rows untouched.
+### CORRECTION (2026-08-24) — those were not real students
+The 14 devices previously logged here as "first real students" were the founder's own team/friends test-opening the site on their phones, not organic student traffic. Confirmed by founder and cleared: all 14 rows deleted from `ab_devices` (cascading `ab_progress`/`ab_plans`); none held an entitlement or payment, so nothing else needed unwinding. Table is at zero. The "never delete" rule stays in force for whenever genuine unprompted student devices show up.
 
 ### FOUNDER STEPS — nothing charges until all three
 1. `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` (dashboard → API Keys).

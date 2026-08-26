@@ -18,6 +18,11 @@
   "question_text": "What is inertia? What gives the measure of inertia?",
   "appearances": [
     {
+      "year": 2017,
+      "q_no": 4,
+      "board": "ts_ipe"
+    },
+    {
       "year": 2026,
       "q_no": 13,
       "board": "ap_ipe"
@@ -117,5 +122,6 @@
         "memory_tip": "The measure is mass — more mass, more resistance to the same force."
       }
     ]
-  }
+  },
+  "insider_note": "Asked in AP March 2026. Two marks for two things — the definition, then MASS. Naming weight loses the second mark outright."
 }

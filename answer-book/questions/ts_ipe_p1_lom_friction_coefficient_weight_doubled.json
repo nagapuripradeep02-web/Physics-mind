@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "What happens to the coefficient of friction if the weight of the body is doubled?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 4,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The reason",
@@ -74,7 +80,8 @@
             "normal force",
             "friction force"
           ]
-        }
+        },
+        "memory_tip": "N goes 50 → 100 N and f goes 20 → 40 N. Both numbers in the ratio double."
       },
       {
         "id": "s2_conclude",
@@ -112,8 +119,10 @@
             "same",
             "surfaces"
           ]
-        }
+        },
+        "memory_tip": "20/50 = 0.4 and 40/100 = 0.4. Doubling top and bottom leaves the ratio unchanged."
       }
     ]
-  }
+  },
+  "insider_note": "The first mark is for showing that BOTH f and N double. An answer that goes straight to \"no change\" collects the second mark only."
 }

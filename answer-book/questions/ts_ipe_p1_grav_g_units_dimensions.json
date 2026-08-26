@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -55,7 +55,8 @@
         ],
         "why": "Rearranging the law of gravitation for G is quicker and safer than trying to remember either answer on its own.",
         "common_mistakes": [
-          "Writing N m kg⁻² and losing the square on the metre."
+          "Writing N m kg⁻² and losing the square on the metre.",
+          "Giving the unit of g instead — g is an acceleration (m s⁻², dimensions [L T⁻²]); G is the constant in F = Gm₁m₂/r², with unit N m² kg⁻²."
         ],
         "recall": {
           "credit": "say_it",
@@ -72,7 +73,8 @@
             "unit of G"
           ]
         },
-        "memory_tip": "Do not memorise the unit — rearrange G = Fr²/m₁m₂ and read it off: N m² kg⁻²."
+        "memory_tip": "Do not memorise the unit — rearrange G = Fr²/m₁m₂ and read it off: N m² kg⁻².",
+        "margin_note": "First mark. Show G = Fr²/(m₁m₂) above the unit, then read the unit off it."
       },
       {
         "id": "s2_dimensions",
@@ -107,8 +109,10 @@
             "L cubed"
           ]
         },
-        "memory_tip": "Same method with brackets: [M⁻¹ L³ T⁻²]."
+        "memory_tip": "Same method with brackets: [M⁻¹ L³ T⁻²].",
+        "margin_note": "Second mark. The same rearrangement in brackets. Keep the power on M negative."
       }
     ]
-  }
+  },
+  "insider_note": "Unit and dimensions are one mark each and one cannot replace the other; the negative power in [M⁻¹ L³ T⁻²] is the part checked."
 }

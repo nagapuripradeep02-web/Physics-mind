@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_hydrostatic_paradox",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by hydrostatic paradox?",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 6,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Statement of the paradox",
+      "marks": 1
+    },
+    {
+      "label": "P = P₀ + ρgh, no shape term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2019 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for a liquid at rest the pressure at a depth h below the free surface is P = P₀ + ρgh, which contains only the vertical height h, the density ρ and g. Vessels of different shape filled with the same liquid to the same height therefore have the same base pressure, however different the volumes of liquid they hold. With equal base areas the force on the base is equal too."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of the paradox",
+        "marks": 1,
+        "mark_note": "Same height, same base pressure",
+        "lines": [
+          "Take vessels of different shapes, all with",
+          "bases of the same area, and fill them with",
+          "the same liquid to the same height.",
+          "The pressure at the base is the same in",
+          "every one of them, even though they hold",
+          "very different amounts of liquid.",
+          "This result is called the hydrostatic",
+          "paradox."
+        ],
+        "margin_note": "First mark. State the comparison: different shapes, same liquid height, same base pressure.",
+        "why": "The name paradox points at the surprise, so the statement has to carry the comparison. Without the different shapes at equal height there is nothing surprising to name.",
+        "common_mistakes": [
+          "Saying the pressure at the base is the same even when the liquid heights differ. The heights must be equal.",
+          "Answering with the formula alone and never describing the vessels."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That vessels of different shapes filled to the same height with the same liquid have the same pressure at the base.",
+          "accept": [
+            "different shapes, same base pressure",
+            "same liquid to the same height",
+            "the amount of liquid does not matter"
+          ],
+          "reject": [
+            "P is P naught plus rho g h"
+          ],
+          "heard_as": [
+            "hydrostatic paradox",
+            "different shapes",
+            "same height"
+          ]
+        },
+        "memory_tip": "Different shapes, same liquid height, same base pressure. That is the paradox."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "P = P₀ + ρgh, no shape term",
+        "marks": 1,
+        "mark_note": "P = P₀ + ρgh",
+        "lines": [
+          "The pressure at a depth h below the free",
+          "surface of a liquid at rest is",
+          {
+            "text": "P = P₀ + ρgh",
+            "style": "eq"
+          },
+          "where P₀ is the atmospheric pressure, ρ is",
+          "the density of the liquid, g is the",
+          "acceleration due to gravity and h is the",
+          "vertical height of the liquid column.",
+          "Shape, volume and mass do not appear.",
+          {
+            "text": "P depends on h, ρ and g only",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The formula has no shape term, and saying so is what earns it.",
+        "why": "The formula is the explanation. Once a student sees that only h, ρ and g are in it, the equal base pressures stop being surprising.",
+        "common_mistakes": [
+          "Taking h along the slant of a sloping vessel. Only the vertical height counts.",
+          "Saying the force on the base is also equal in every case. It is equal only when the base areas are equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P = P naught plus rho g h, so the pressure depends only on the vertical height, the density and g.",
+          "accept": [
+            "P naught plus rho g h",
+            "only height, density and g",
+            "shape does not enter the formula"
+          ],
+          "reject": [
+            "different shapes hold different amounts"
+          ],
+          "heard_as": [
+            "rho g h",
+            "P naught",
+            "vertical height"
+          ]
+        },
+        "memory_tip": "Only h, ρ and g sit in P = P₀ + ρgh. No shape, no volume, no mass."
+      }
+    ]
+  },
+  "insider_note": "One mark states the paradox, one gives P = P₀ + ρgh. The formula alone, with no vessels of different shape, reads as an unrelated answer."
+}

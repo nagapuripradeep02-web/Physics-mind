@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split over three definitions is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines absolute entropy in the standard state at 273 K and 1 atm; standard thermodynamic data are reported at 298 K, and this card writes 298 K."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split over three definitions is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the book defines absolute entropy in the standard state at 273 K and 1 atm; standard thermodynamic data are reported at 298 K, and this card writes 298 K. AI chemistry check 2026-08-25. Confirmed the 273 K to 298 K correction stands and that the third law is referenced to 0 K, not 273 K. Sharpened the why: the third-law zero needs pure and perfectly crystalline, and 298 K is the tabulation temperature, not part of the meaning of absolute. No marked line changed. AI chemistry check 2026-08-25 (audit round 3): the c) marked line defined the STANDARD MOLAR ENTROPY S°, not absolute entropy — the card's own why already said so. The line now names the third-law zero first and then gives S° as the tabulated standard value; the mark_note, common_mistakes and margin_note follow. The 273 K to 298 K departure recorded above STANDS and was not touched. OPEN QUESTION for the teacher gate: the source book's own wording conflates the two quantities, so a Telangana IPE teacher must confirm whether an examiner accepts (or requires) the corrected two-part wording, or credits only the book's single sentence."
   },
   "answer": {
     "page_header": [
@@ -67,23 +67,26 @@
         "marks": 1,
         "mark_note": "Third definition",
         "lines": [
-          "c) Absolute entropy: the entropy of one mole",
-          "of a pure substance in its standard state",
-          "at 298 K (25 °C).",
-          "It is counted from the true zero fixed by",
-          "the third law: S = 0 at 0 K.",
+          "c) Absolute entropy: the total entropy of a",
+          "substance counted from the zero fixed by the",
+          "third law, S = 0 at 0 K for a pure perfect",
+          "crystal.",
+          "Its tabulated value is the standard molar",
+          "entropy S°: one mole of the pure substance in",
+          "its standard state at 298 K (25 °C).",
           {
-            "text": "Absolute entropy: entropy of one mole at 298 K, standard state",
+            "text": "Absolute entropy: counted from S = 0 at 0 K; S° quoted at 298 K",
             "style": "boxed"
           }
         ],
-        "why": "The third law fixes S = 0 for a perfect crystal at 0 K, so a real total (absolute) entropy can be counted from that zero. The source book prints the standard state as 273 K; standard thermodynamic data are reported at 298 K, so this card writes 298 K.",
+        "why": "The third law fixes S = 0 for a pure, perfectly crystalline substance at 0 K, so a real total (absolute) entropy can be counted up from that zero. An absolute entropy exists at every temperature; 298 K is simply the temperature at which standard values are tabulated, not part of what makes the entropy absolute. The tabulated value has its own name, the standard molar entropy S°, so the marked line gives both parts in order: what makes the entropy absolute, then the conditions under which its standard value is quoted. The source book prints the standard state as 273 K; standard thermodynamic data are reported at 298 K, so this card writes 298 K.",
         "common_mistakes": [
-          "Writing 273 K for the standard state — thermodynamic tables use 298 K.",
-          "Leaving out per mole."
+          "Writing 273 K for the standard-state value — standard molar entropies S° are tabulated at 298 K.",
+          "Leaving out per mole — S° is quoted for one mole.",
+          "Saying an absolute entropy exists only at 298 K. It exists at every temperature; 298 K is only the temperature at which the standard values are tabulated."
         ],
         "memory_tip": "Absolute means counted from a true zero: S = 0 at 0 K for a perfect crystal.",
-        "margin_note": "298 K and one mole are the two details to include."
+        "margin_note": "Name the third-law zero first, then give S° for one mole at 298 K."
       }
     ]
   },

@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -61,6 +61,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. Write both components. The word \"unchanged\" beside v_x earns it.",
         "why": "The horizontal and vertical motions are independent, so each component is handled as a separate straight-line problem.",
         "common_mistakes": [
           "Letting g change the horizontal component as well."
@@ -79,7 +80,8 @@
             "u cos theta",
             "u sin theta minus g t"
           ]
-        }
+        },
+        "memory_tip": "The horizontal part stays u cos θ for the whole flight. Only the VERTICAL part carries the −gt."
       },
       {
         "id": "s2_magnitude",
@@ -99,6 +101,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "Two marks. Show the expansion and the sin²θ + cos²θ = 1 step, not only the final root.",
         "why": "The u² remains because sin²θ + cos²θ = 1 — the same identity that collapses every projectile expression.",
         "common_mistakes": [
           "Adding the components directly instead of taking the square root of the sum of squares."
@@ -117,7 +120,8 @@
             "root",
             "v x squared plus v y squared"
           ]
-        }
+        },
+        "memory_tip": "Check t = 0: the expression must reduce to v = u. If it does not, the expansion slipped."
       },
       {
         "id": "s3_direction",
@@ -133,9 +137,11 @@
           },
           "At the top v_y = 0, so α = 0 and v = u cos θ."
         ],
+        "margin_note": "Fourth mark. Box tan α. The check at the top is worth one more line.",
         "why": "The check at the top is worth writing: it shows the body is still moving there, which is the commonest misconception in this chapter.",
         "common_mistakes": [
-          "Saying the velocity is zero at the top — only its vertical part is."
+          "Saying the velocity is zero at the top — only its vertical part is.",
+          "Reading α as always above the horizontal — after the top, v_y = u sin θ − g t is negative, so tan α is negative and the velocity points below the horizontal."
         ],
         "recall": {
           "credit": "say_it",
@@ -151,8 +157,10 @@
             "tan alpha",
             "at the top"
           ]
-        }
+        },
+        "memory_tip": "Direction is always tan α = v_y / v_x — the changing part on top, the fixed part below."
       }
     ]
-  }
+  },
+  "insider_note": "The magnitude carries 2 of the 4 marks, and the direction is a separate mark — write tan α = v_y / v_x, do not imply it."
 }

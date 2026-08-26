@@ -76,7 +76,8 @@
             "r F",
             "arm"
           ]
-        }
+        },
+        "memory_tip": "Torque is force times arm. The hand supplies F; the spanner supplies r."
       },
       {
         "id": "s2_reason",
@@ -114,8 +115,10 @@
             "more torque",
             "less effort"
           ]
-        }
+        },
+        "memory_tip": "Double the arm and the torque doubles, with the same hand force."
       }
     ]
-  }
+  },
+  "insider_note": "Both marks depend on the words \"for the same force\". Without that phrase no comparison has been made."
 }

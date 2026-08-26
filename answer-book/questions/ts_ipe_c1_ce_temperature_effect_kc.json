@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book's Le Chatelier SAQ describes how temperature shifts the equilibrium POSITION, but never asks the sharper point that temperature is the only factor that changes the equilibrium CONSTANT. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book's Le Chatelier SAQ describes how temperature shifts the equilibrium POSITION, but never asks the sharper point that temperature is the only factor that changes the equilibrium CONSTANT. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Both directions verified correct and consistent with ionic_product_water (Kw rises with temperature) and catalyst_effect; two memory tips rewritten for Rule 41 ('K carries a label / nothing touches it', 'heat helps'). No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -57,7 +57,7 @@
           "Writing that adding reactant increases K. It shifts the position; K stays the same.",
           "Quoting a K value without its temperature."
         ],
-        "memory_tip": "K carries a temperature label. Change the label, change the constant — nothing else touches it.",
+        "memory_tip": "Every K value is stated at a temperature. Change the temperature and K changes; no other factor changes it.",
         "margin_note": "Position can shift for many reasons; the CONSTANT moves for one."
       },
       {
@@ -81,7 +81,7 @@
           "Writing that heating always increases K. The sign of ΔH decides the direction.",
           "Mixing up the shift of position with the change of K — at a new temperature BOTH change."
         ],
-        "memory_tip": "Heat helps the heat-absorbing direction: endothermic K rises with temperature.",
+        "memory_tip": "Raising the temperature increases K for an endothermic reaction and decreases K for an exothermic one.",
         "margin_note": "Two lines, one for each sign of ΔH."
       }
     ]
