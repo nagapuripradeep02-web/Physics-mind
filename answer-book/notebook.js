@@ -302,6 +302,30 @@
     return 'Asked: ' + parts.join(' · ');
   }
 
+  /** The study planner is DORMANT (founder, 2026-08-27) — removed for now, NOT
+      deleted, exactly the way "Test myself" was.
+
+      The scheduling itself is sound, but every minute it books rests on an
+      authored `expected_time_min` (LAQ 15, SAQ 8, VSAQ 4) that has never been
+      timed against a real student, and the book goes to real students now. A
+      plan a student follows for two weeks before discovering it was built on a
+      guess costs more trust than offering no plan at all — and trust is the
+      whole product.
+
+      Revive by setting `window.PM_PLANNER = true` or `pm_planner=1` in
+      localStorage. The e2e planner gates set exactly that, so the feature
+      stays PROVEN while it sleeps rather than rotting out of use. Revive it for
+      real once the three timings are measured, not estimated.
+
+      Everything that does not depend on a schedule keeps working: asking Vidi,
+      memory tips, insider notes, the step-by-step answers, the Understand and
+      Revise ticks, the plan-less next-day revision queue, and the exam-eve
+      chapter lists. */
+  function plannerOn() {
+    try { if (window.PM_PLANNER === true) return true; } catch (e) { /* ignore */ }
+    try { return localStorage.getItem('pm_planner') === '1'; } catch (e) { return false; }
+  }
+
   /** A unit's subject. Absent = physics: physics units predate the field, exactly the
       way an appearance with no board means TS. */
   function subjectOf(u) { return u.subject || 'physics'; }
@@ -2674,6 +2698,7 @@
 
     /** A compact factual block for the hosted model — read, never generated. */
     function modelStatus(qid) {
+      if (!plannerOn()) return null;      // dormant: no plan line reaches Vidi
       var plan = Vidi.getPlan();
       if (!plan || !plan.implemented || plan.archived) return null;
       var today = Vidi.todayStr();
@@ -3227,17 +3252,23 @@
       say('Hi, I am ' + Vidi.getName() + ' — welcome to Viditra.');
       // Subject-neutral: the book has held physics, chemistry AND mathematics
       // since 2026-08-23, and this line greets a student on any of them.
-      say('This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
+      say(plannerOn()
+        ? 'This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.'
+        : 'This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. Ask me about any step and I will explain it.', 700);
       var g = gen;
       setTimeout(function () {
         if (g !== gen) return;
         widget(function (w) {
-          w.appendChild(document.createTextNode('Shall we plan your exam preparation, or jump straight in?'));
+          w.appendChild(document.createTextNode(plannerOn()
+            ? 'Shall we plan your exam preparation, or jump straight in?'
+            : 'Ready to start?'));
           var row = el('div', 'vw-row');
-          row.appendChild(wBtn('Plan my first-term exam', true, function () {
-            Vidi.markIntroDone(); startOnboarding();
-          }));
-          row.appendChild(wBtn('Start learning now', false, function () {
+          if (plannerOn()) {
+            row.appendChild(wBtn('Plan my first-term exam', true, function () {
+              Vidi.markIntroDone(); startOnboarding();
+            }));
+          }
+          row.appendChild(wBtn('Start learning now', !plannerOn(), function () {
             Vidi.markIntroDone();
             say('Great — open any question and start. Each answer writes itself step by step, the way the examiner wants it. When you move on from a question I will ask how it went; anything you understood comes back tomorrow for one revision. That is what makes it stick.');
           }));
@@ -3836,6 +3867,7 @@
     function updatePlanStrip() {
       var strip = $('vidiPlanStrip');
       var plan = Vidi.getPlan();
+      if (!plannerOn()) { strip.hidden = true; return; }
       if (!plan || !plan.implemented || plan.archived) { strip.hidden = true; return; }
       var today = Vidi.todayStr();
       var left = Plan.daysLeft(plan, today);
@@ -3918,6 +3950,7 @@
     /** The once-a-day check-in: progress, pace, and — when the pace shows the
         plan cannot finish — a proposed re-plan the student must accept. */
     function planCheckin(plan) {
+      if (!plannerOn()) return;
       var today = Vidi.todayStr();
       if (plan.lastNudgeDay === today) return;
       plan.lastNudgeDay = today;
@@ -4010,9 +4043,9 @@
       var chips = $('vidiChips');
       chips.innerHTML = '';
       var plan = Vidi.getPlan();
-      if (ob.active) { resumeOnboarding(); return; }
+      if (ob.active && plannerOn()) { resumeOnboarding(); return; }
       if (!Vidi.introDone()) { startIntro(); return; }
-      if (plan && plan.implemented && !plan.archived) {
+      if (plannerOn() && plan && plan.implemented && !plan.archived) {
         updatePlanStrip();
         planCheckin(plan);
         // the check-in may have just archived the plan (exam day passed)
@@ -4046,11 +4079,13 @@
             w.appendChild(a);
           })(due[i]);
         });
-        chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+        if (plannerOn()) chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
         return;
       }
-      say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
-      chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+      if (plannerOn()) {
+        say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
+        chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+      }
     }
 
     function currentStep() {
@@ -4100,10 +4135,10 @@
           if (!Vidi.renameOffered()) offerRename();
         }));
       }
-      if (plan && plan.implemented && !plan.archived) {
+      if (plannerOn() && plan && plan.implemented && !plan.archived) {
         row.appendChild(chipBtn('Change my plan', changePlanWidget));
       }
-      if (!plan || !plan.implemented || plan.archived) {
+      if (plannerOn() && (!plan || !plan.implemented || plan.archived)) {
         row.appendChild(chipBtn('Want a study plan?', function () {
           Vidi.markIntroDone();
           startOnboarding();
