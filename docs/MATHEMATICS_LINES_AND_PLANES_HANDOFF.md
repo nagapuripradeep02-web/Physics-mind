@@ -4,8 +4,9 @@
 > is open, what is broken, and the exact order to fix it in. Written because every finding below
 > otherwise exists only in a chat log — the failure mode this chapter has now recorded five times.
 >
-> **Status (2026-08-26 night): BASELINE-LOCKED AND VOICED. `visual:approve` done (9 states, on the ENGINE
-> desk — see the F1 coupling below); 37/37 English clips rendered, 0 stale. NOT MERGED. Remaining: two PRs.**
+> **Status (2026-08-26 night): ✅ MERGED TO MASTER. Both PRs are in — #143 (engine) at `33b1e11b`, then
+> #96 (concept) at `954cdc9f`, in that order. Baselines and 37 EN clips ship with the concept.**
+> ~~Status: BASELINE-LOCKED AND VOICED … NOT MERGED. Remaining: two PRs.~~ (superseded)
 > ~~Status (2026-08-26 late): `founder_proxy` CHECKPOINT B = APPROVE — AUTHORING SIGN-OFF COMPLETE.~~
 > F-2 · F-3 · F-7 and the P1 that F-7's fix introduced are all CLOSED. **NOT SHIPPED: no founder visual
 > approval, no `visual:approve`, no baselines, NEVER VOICED, NOT MERGED.** Every remaining step is
@@ -330,6 +331,48 @@ count was never corrected. **37/37 available, 0 stale, 0 unavailable, 159.8 s of
 - Durable copy: **`tts_audio/lines_and_planes_in_space/` (37 mp3 + manifest) — git-tracked, and the ONLY
   cache.** `review-site/` is gitignored. Commit it with the concept PR; a re-render is real Sarvam spend.
 - `text_hi` = 0 across all 37 — an FYI, never a refusal (Rule 30i).
+
+---
+
+### ✅ MERGED — the sequence is complete (2026-08-26 night)
+
+| PR | what | merged as |
+|---|---|---|
+| **#143** | `fix(field_3d)`: a readout row that names an authored object derives that name from the object | **`33b1e11b`** |
+| **#96** | `feat(mathematics)`: lines_and_planes_in_space #9 — Checkpoint B APPROVE, voiced | **`954cdc9f`** |
+
+**#143 went first, and the order mattered.** Its `vgDotLabelText` changes STATE_4's HUD row label, which
+is pixel-visible in a frozen frame, and the approved baselines were captured on that build.
+
+**The coupling was then discharged empirically, not asserted.** After #143 landed, master was merged into
+the chapter desk, the cache re-seeded from THAT desk, and THE EYE re-run with the baselines in place — so
+H2 **RAN** instead of skipping:
+
+```
+57 deterministic checks · 56 passed · 1 failed · 9 skipped (compare:false animated states, by design)
+ALL NINE __frozen comparisons: 0.00% pixels differ vs approved baseline (tolerance 2.0%)
+the single failure is STATE_9:D5 — the known false positive, EIGHTH consecutive run
+```
+
+0.00 % on STATE_4's frozen frame is the proof: master reproduces the approved baseline byte-for-byte.
+**The baselines were deliberately held out of #96 until #143 was on master** — committing a baseline master
+could not reproduce would have been the defect, not the fix.
+
+**The §31 gate that blocked #143 is repaired and green (1186 PASS).** It was NOT a copy-paste: the B2
+re-budget moved every reveal window, the handover gap moved 9500–10300 → **12000–13300 ms**, `17500` became
+the exact `X_live`→`X` boundary where printing NO row is correct, and STATE_2's segment windows moved
+6500–11200 / 11150+ → **4800–15300 / 15250+** (its "moving number" probe had to straddle both windows,
+because in-plane `n·v` is 0 **by construction** and two in-plane samples can never differ). The planted
+negative control is untouched and still fires at all 7 samples — green on merit, not by relaxation.
+
+**One Rule-40 artefact found in passing:** the chapter desk carried a 1-line §28 fixture addition that had
+been authored **independently and identically** on the engine desk. Same tooling line, twice, on two desks
+that had not pushed — the exact origin story Rule 40 was written for. The chapter copy was discarded; #143
+delivers it.
+
+**Still open, deliberately:** **12 scar rows drafted and unfiled** (applying is a founder action), including
+E-1 (no gate reaches a non-default `scene_group`) and E-2 (the Rule-37 probe fires after its own drags).
+F-5, F-6 and the three P3s remain graded and unfixed. **F-1 is closed by the audio** (see the pacing block).
 
 ---
 
