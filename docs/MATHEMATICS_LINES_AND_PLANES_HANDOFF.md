@@ -391,7 +391,41 @@ F-5, F-6 and the three P3s remain graded and unfixed. **F-1 is closed by the aud
 **Desk sync warning:** the chapter desk is **275 commits behind `origin/master`** (269 on 08-22; master keeps
 moving). `npm run desk:sync` before PR'ing; expect the Rule-40 conflict hazard.
 
-### SCAR ROWS — 12 DRAFTED AND UNFILED, 1 FILED
+### SCAR ROWS — 7 FILED (2026-08-26), 6 UNRECONSTRUCTABLE
+
+**FILED and verified by read-back on all 14 columns** (`_seed_engine_bug_queue_lines_and_planes_cpb_verification.ts`,
+plus the cpb2_f2 script which had been **committed but never run**):
+
+| bug_class | sev | owner | status |
+|---|---|---|---|
+| `explore_animation_sweeps_geometry_through_the_degenerate_configuration_its_own_view_label_denies` | CRITICAL | alex:json_author | **FIXED** |
+| `every_visual_gate_captures_only_the_default_scene_group_so_a_partitioned_explore_states_other_view_is_ungated` | MAJOR | peter_parker:renderer_primitives | **OPEN** |
+| `founder_drive_rule37_motion_probe_runs_after_its_own_slider_drags_so_a_drag_seized_scene_is_scored_by_noise` | MODERATE | peter_parker:renderer_primitives | **OPEN** |
+| `a_label_widened_after_placement_is_certified_by_absence_of_overlap_instead_of_against_the_margin_it_was_placed_with` | MODERATE | alex:json_author | **OPEN** |
+| `a_claim_corrected_across_every_rendered_surface_survives_verbatim_in_the_unrendered_spec_field_that_defines_it` | MODERATE | alex:json_author | **FIXED** |
+| `vg_lambda_marker_label_field_read_by_consumer_never_written_by_producer` | MODERATE | peter_parker:field3d_surgeon | **OPEN** |
+| `readout_family_label_is_a_hardcoded_constant_so_renaming_an_authored_object_makes_the_panel_name_the_wrong_one` | CRITICAL | peter_parker:field3d_surgeon | FIXED *(filed 08-21)* |
+
+**The two OPEN `renderer_primitives` rows are the ones with reach beyond this concept.** Between them they
+are why F-7's original freeze AND the P1 its own fix introduced both survived to Checkpoint B cycle 3.
+
+**⚠ 6 of the 7 cycle-3 drafts CANNOT BE FILED — their SQL does not exist anywhere.** This file recorded only
+their *topics* (the timeline re-budget sweep · THE EYE sampling `duration` instead of `timelineTotal` · the
+Latin-only symbol sweep that missed Greek · a case split narrated as exhaustive · `founder_drive` targeting a
+stale server root · `focal_primitive_id` having no consumer). The seventh —
+"a group-partitioned explore state freezing on its other view" — **was already filed** as
+`vg_explore_state_is_a_still_picture_for_its_entire_captured_life`. Reconstructing the other six would mean
+inventing `root_cause`/`prevention_rule`/`probe_logic` text another agent authored and this file did not keep,
+which is fabricating evidence into the moat. **If they are wanted, re-derive them from scratch as new
+findings — do not guess at the originals.** The lesson is the chapter's own: a draft that lives only in a
+report is a draft that does not exist.
+
+> **Verification note for whoever checks the queue:** a plain `select` on `engine_bug_queue` returns **at most
+> 1000 rows**, and the table now holds **1131**. Scanning that capped result and concluding a `bug_class` is
+> absent is a FALSE NEGATIVE — query the ids directly (`.in('bug_class', [...])`) or use an exact
+> `count`. This bit the filing session itself.
+
+~~### SCAR ROWS — 12 DRAFTED AND UNFILED, 1 FILED~~
 
 The seven from cycle 3, plus **five new ready-to-run rows** from this pass (in the verification-pass report):
 the degenerate-configuration sweep (the P1) · every visual gate capturing only the default scene_group (E-1) ·
