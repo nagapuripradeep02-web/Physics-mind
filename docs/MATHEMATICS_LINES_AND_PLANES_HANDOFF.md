@@ -4,7 +4,15 @@
 > is open, what is broken, and the exact order to fix it in. Written because every finding below
 > otherwise exists only in a chat log — the failure mode this chapter has now recorded five times.
 >
-> **Status: AUTHORED, WALKED TWICE, REVIEWED, NOT MERGED, NOT APPROVED.**
+> **Status (2026-08-26 night): BASELINE-LOCKED AND VOICED. `visual:approve` done (9 states, on the ENGINE
+> desk — see the F1 coupling below); 37/37 English clips rendered, 0 stale. NOT MERGED. Remaining: two PRs.**
+> ~~Status (2026-08-26 late): `founder_proxy` CHECKPOINT B = APPROVE — AUTHORING SIGN-OFF COMPLETE.~~
+> F-2 · F-3 · F-7 and the P1 that F-7's fix introduced are all CLOSED. **NOT SHIPPED: no founder visual
+> approval, no `visual:approve`, no baselines, NEVER VOICED, NOT MERGED.** Every remaining step is
+> founder-gated (Rule 17).
+> ~~Status (2026-08-26): ALL THREE CHECKPOINT-B P1s FIXED AND PIXEL-VERIFIED · NOT RE-GRADED~~ (superseded by the pass below)
+> ~~Status (2026-08-22): REPAIRED · GATED GREEN · quality_auditor PASS~~ (still accurate, superseded by the fix round)
+> ~~AUTHORED, WALKED TWICE, REVIEWED, NOT MERGED, NOT APPROVED~~ (the 2026-08-09 record)
 > Concept JSON is complete and gated green; a 60-agent review then found **15 confirmed defects**, none
 > fixed. **PR #96 must NOT merge as-is.**
 >
@@ -14,7 +22,31 @@
 > queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
 > the 2026-08-09 record, kept verbatim.
 >
-> **⚠ START AT §0.00 (2026-08-21 late).** CP-B **cycle 2** returned FIX(engine) BLOCKING + one
+> **⚠ START AT §0.00000 (2026-08-26 late) — IT IS THE FIRST-ACTION BLOCK.** The Checkpoint B
+> verification pass RAN and returned **FIX**: F-2 and F-3 CLOSED, but F-7's fix introduced a P1 —
+> the explore state's "skew pair" view animated the two lines through an exact intersection twice per
+> loop while its own caption said they miss each other. Fixed (two numbers), gated, and verified LIVE
+> against founder_proxy's own criterion; a re-grade of that one finding is in flight. §0.00000 also
+> records the round's biggest structural find: **no automated gate ever enters a partitioned explore
+> state's second scene_group**, and `founder_drive`'s Rule-37 probe cannot fail.
+>
+> ~~START AT §0.0000~~ (superseded; still accurate for the three-P1 fix record)
+> **⚠ §0.0000 (2026-08-26).** Checkpoint B cycle 3 ran and
+> returned **FIX**, the founder authorised a fix round overriding the spent cycle budget, and all three
+> P1s (F-2 · F-3 · F-7) are now fixed and verified in pixels. **The concept has NOT been re-graded —
+> Checkpoint B's standing verdict is still FIX until founder_proxy looks again.** §0.0000 opens with
+> the exact first action for a fresh session (a founder_proxy verification pass), then the full ordered
+> sequence that follows it through to TTS and the two PRs.
+>
+> ~~START AT §0.000~~ (superseded; still accurate for the 2026-08-22 repair record)
+> **⚠ §0.000 (2026-08-22).** The concept is **REPAIRED and GREEN** — `quality_auditor`
+> returned **PASS**, all three blockers (B1/B2/B3) are closed, and it is cleared for `founder_proxy`
+> Checkpoint B **cycle 3 of 3**. Nothing is in flight; nothing is committed. §0.000 carries the exact
+> uncommitted state of both desks, the verify chain, one optional pre-TTS fix, and the corrections to
+> earlier findings that must NOT be re-fixed.
+>
+> ~~START AT §0.00~~ (superseded; still accurate for the cycle-2 record)
+> **⚠ §0.00 (2026-08-21 late).** CP-B **cycle 2** returned FIX(engine) BLOCKING + one
 > authoring FIX; both were dispatched and TWO AGENTS WERE STILL IN FLIGHT when the session ended — their
 > EDITS ARE ON DISK, their reports are not. §0.00 says exactly where to find each and what to re-verify
 > before committing. Cycle 3 is the LAST before ESCALATE.
@@ -43,6 +75,687 @@
 
 ---
 
+## 0.00000 RESUME 2026-08-26 (late) — CHECKPOINT B = APPROVE. THE NEXT STEP IS THE FOUNDER'S. Read this first.
+
+**Status: `founder_proxy` returned APPROVE — authoring sign-off, and authoring sign-off ONLY (Rule 17).**
+The verification pass first returned **FIX**: F-2 and F-3 CLOSED, but **F-7's fix had introduced a P1**
+in the same state. That P1 is now fixed (two numbers), gated, verified live against founder_proxy's own
+pre-written criterion, and **re-graded CLOSED by founder_proxy on a build it hash-verified itself.**
+**Nothing is committed on either desk. Nothing is shipped.**
+
+---
+
+### THE FINDING F-7's FIX INTRODUCED — and why every gate missed it
+
+`M2.offset.along` is `[0.287668, −0.838664, −0.462482]`, which is **exactly the unit common perpendicular**
+`d₁×d₂/‖d₁×d₂‖` (verified independently: dot with `unit(cross(d₁,d₂))` = 1.0, norm = 1.0). So the
+`line2_offset` knob translates M2 along **the very axis `skew_distance` is measured on**:
+
+```
+D(t) = |1.800 + t|        zero at t = −1.800
+```
+
+F-7 copied `lambda`'s window shape **and its amplitude (±2.5)**. The window shape was transferable between
+knobs; **the amplitude was not** — it had to be derived from the geometry the knob drives. ±2.5 straddles
+−1.800, so the explore state's "skew pair" view animated the two lines **through an exact intersection
+twice per 18 s loop**, at t ≈ 1260 ms and t ≈ 16740 ms — the first 1.3 s after the view opens, unattended.
+
+At the crossing: the lines visibly meet at one point, the green `common_perp` (the object carrying
+STATE_8's entire "the gap runs along d₁ × d₂" lesson) collapses to nothing, the HUD reads
+`shortest distance = 0.047`, the picker reads `view: skew pair`, and the caption reads *"the two lines
+that **miss each other**"*. `q5`'s distractor B is *"intersecting — every non-parallel pair meets"*; the
+idle loop demonstrated the distractor. Second half of the same defect: the sweep started at −2.5, so the
+view **opened at D = 0.700** instead of the **D = 1.800** STATE_8 teaches with byte-identical M1/M2 anchors
+— a Rule 32d home-pose break across the S8→S9 cut.
+
+**THE FIX (data only, both halves, two numbers).** `line2_offset` sweeps **`0.0 → +2.5` then `+2.5 → 0.0`**;
+windows `[0,9000]`/`[9000,18000]` and `linear` unchanged. `D ∈ [1.800, 4.300]` — never degenerate, opens on
+STATE_8's taught value, and closes the loop on the authored `zero: 0` so the `t=1000 ≡ t=19000` argument
+survives verbatim. `lambda` untouched, `animate_loop_ms` still 18000. The **slider range stays −2.5…2.5**
+deliberately: a teacher dragging the pair into contact is a good teaching move; the defect was the *idle
+loop* doing it unbidden.
+
+> **Verified LIVE, not analytically** — founder_proxy's own prescribed probe (drive to STATE_9, select
+> `skew pair`, sample `skew_distance` every 300 ms across the loop). 80/80 samples carried a reading over
+> ~23 s: **min 1.804 · max 4.276**; trough at t=18016 ms (the loop wrap, `line2_offset = 0`); wrap
+> continuity 17728: 1.876 → 18016: 1.804 → 18304: 1.884. **The bar was "never below ~1.7".**
+
+**Also applied, the P3 residual F-3 missed:** `assessment.mastery_definition` still read *"classify a
+line-plane pair as meeting once or never"* — the sixth instance of the exact claim F-3 corrected on five
+rendered surfaces. It renders nowhere (0 hits in built `index.html`/`sim.html`), so it reached no student,
+but it is the spec a future author reads. Now *"classify a line off the plane as meeting it once or never"*.
+`q4` had been correctly scoped all along.
+
+---
+
+### ⚠ THE BIGGEST THING THIS ROUND FOUND — the group-B half of STATE_9 is UNGATED
+
+**`founder_drive` never enters scene_group B.** `dragVisibleSliders` selects `input[type="range"]:visible`,
+and the group-B rows are `display:none` while A is selected — so `line2_offset` and `theta_deg` appear in
+**zero** of its 11 recorded drags, and the Rule-37 motion probe measures group A. THE EYE likewise captures
+STATE_9 at the authored `scene_group: "A"` only. **Neither harness operates the `<select>`.**
+
+Consequence, stated plainly: **every automated gate in the pipeline reports on half of this explore state.**
+That is why F-7's original freeze survived to cycle 3, and why the P1 above would have shipped.
+
+**And the Rule-37 probe cannot fail.** `founder_drive` shoots its two motion-probe frames *after* its own
+drag pass, so on any concept whose only animated explore knob is also a slider it measures a scene the
+harness itself froze by drag-seize. Measured: group A moved 838 px/3 s **before** a `lambda` drag and
+**0 px/3 s and 0 px/4 s after** it — while the same run's manifest recorded `bytesEqual: false`, i.e.
+"alive". **A `founder_drive` manifest reading `motionProbe.bytesEqual: false` is NOT evidence that an
+explore state moves.** Both are `peter_parker` harness fixes (E-1, E-2 in the scar drafts), unaddressed.
+
+---
+
+### F-2's REAL NUMBER — the margin, not the overlap
+
+`arc_plane_tag` → `"θ = 35.0°"` is **CLOSED** and correct: it is the only binding of θ in the state
+(narration says "thirty-five degrees", never "theta"), and binding the 35° tag rather than the 55° one is
+right because `|d·n|/(‖d‖‖n‖) = cos 55° = sin 35°`.
+
+But the earlier pixel check verified **absence of overlap**, which is a different question from the one
+`json_author` refused to certify. Per-column measurement of clear background gives **7 px** at
+t=14700/16100/frozen and **6 px** at t=19600/23800 — against the placement note's own recorded **16.1 px**
+and this concept's declared **12 px collision bar**. A 56 % erosion, below its own bar. Graded **P3**, not
+higher: at 10× there is zero overlap, zero clipping, full contrast, and it reads instantly at 1×. Recorded
+so the number is on the table. If it is ever moved, extend the 0.950/0.100 offset coefficients outward —
+**not** drop the ` = `, which would weaken the binding the fix exists to make.
+
+**Rule to carry forward:** when a label's POSITION was solved against a measured margin, changing its TEXT
+invalidates that measurement. "No overlap" does not answer it.
+
+---
+
+### GATES AFTER THE P1 FIX (run by the session, not reported by an agent)
+
+```
+npx tsc --noEmit              0 errors
+validate:mathematics          5/5 PASS — lines_and_planes PASS, ZERO warnings on target
+check:renderer-syntax         OK (both desks)
+THE EYE  20260826-183041      40 checks · 39 passed · 1 skipped (H2, expected) · 1 failed
+                              failed_ids: ["STATE_9:D5"] — known FP, SEVENTH consecutive run
+```
+
+**Fixture parity restored BEFORE THE EYE** (mandatory — the staleness gate hard-fails by design):
+both desks `sha256 9ebe0e7d4156b0e7537c7aa4c90a2d9659df73f85753bc1c6b4bec261a6afe67`,
+`_seed_subject_cache.ts` re-run, engine-desk `review-site` rebuilt.
+
+`check:vector-geometry-3d` remains RED on the engine desk — **pre-existing, out of scope, blocks the ENGINE
+PR only.** Reconfirmed this session: 4 failures, first divergence **4900 ms (STATE_2)** and **9500 ms
+(STATE_4)**, exactly the pre-B2-repair reveal windows. `field3d_surgeon` work; the §31 sample times must be
+re-derived because the handover gap moved 9500–10300 → 12000–13300 ms.
+
+---
+
+### ⚠ THE SERVER TRAP SPRUNG AGAIN, DIFFERENTLY — there are TWO stale listeners, not one
+
+A fresh `http-server` on **8091** died with `EADDRINUSE`; **PID 69160** (started Aug 26 13:41, rooted on the
+**engine desk**) answered instead. The previously recorded **PID 29337** (Aug 21, rooted on the **main repo**)
+still holds **8087**. Both return 200.
+
+**The content check caught it, and the content check is the only thing that will.** `curl -s <url> | shasum -a 256`
+against the desk's own `review-site/<id>/sim.html`. In this instance the interloper happened to serve the
+*correct* build, which is precisely why a status code proves nothing. Note `index.html` was **byte-identical
+across both desks** while `sim.html` differed by ~6.8 KB (the engine desk bakes in the unmerged F1 renderer
+fix) — so **hashing `index.html` alone would have passed a stale sim.** Hash `sim.html`.
+
+---
+
+### THE RE-GRADE — APPROVE, measured not accepted
+
+`founder_proxy` re-ran its own criterion against the rebuilt build, content-verified
+(`sim.html` = `sha256 1095e539295199f6cb…`, and **a different hash from the build it measured pre-fix**
+(`c2b5b516…`) — so it knew it was looking at the edit, which is the discipline the server trap exists to force).
+
+```
+85/85 samples carried a reading
+MIN skew_distance = 1.800  at t=36000 ms (line2_offset = 0.00)   ← the bar was 1.7
+MAX skew_distance = 4.262
+wrap: t=35664 → 1.898 | t=36000 → 1.800 | t=36368 → 1.898       ← clean V, no discontinuity
+```
+
+Since `D(t) = |1.800 + t|` with `t ∈ [0, 2.5]`, **the wrap IS the minimum by construction as well as by
+measurement.** Worst-case frame now reads `shortest distance = 1.809` with the green common perpendicular
+clearly drawn and the two lines plainly apart — the caption "the two lines that miss each other" is true at
+the tightest instant of the loop.
+
+**Nothing introduced.** Group A unaffected (849 px / 3 s against a 597–838 baseline). **All nine states'
+narration timing byte-identical** to the pre-edit table (STATE_4 still 30834 ms @ rate 0.7 vs 31000 = 166 ms).
+F-2/F-3 surfaces intact; `arc_normal_tag` correctly still bare. `lambda`, `animate_loop_ms`, `M2.offset.along`,
+`zero` and `control_ranges` all untouched. `line2_offset` drags 0.2 → 1.85 and holds, `D = 3.650 = |1.800 + 1.85|`
+— arithmetic exact. Per-knob seize intact. 0 console / page errors.
+
+> **ONE TRADE, PRICED NOT HIDDEN.** Bounding the sweep halved its amplitude (5.0 → 2.5 wu), so view B's motion
+> halved: **1291–2240 px / 3 s**, down from 2988 / 2834. Judged acceptable and defended: the readout still
+> swings 1.800 → 4.262, the translation is obvious frame-to-frame, and a smaller CORRECT motion beats a larger
+> one that contradicts its own caption. Not a finding — but the number moved, and the founder should know it did.
+
+**Scar-row amendments before filing.** Two of the five drafts are now historical, not open:
+row 1 (the degenerate-configuration sweep) and row 5 (the `mastery_definition` miss) → `status = 'FIXED'`,
+`fixed_in_files = ARRAY['src/data/concepts/mathematics/lines_and_planes_in_space.json']::text[]`. Their
+`prevention_rule` and `probe_logic` are the parts worth keeping — the CLASS is what ratchets, and row 1's
+probe is exactly the check that cleared it. Rows 2 (E-1), 3 (E-2) and 4 (the label-margin class) stay `'OPEN'`.
+
+**FYI recorded, deliberately NOT fixed.** `mastery_definition` ends "…from the **sign** of n·d", which is
+loose — the classification turns on whether `n·d` is *zero*, not on its sign. Unrendered, predates every fix
+round, cannot reach a student. **Left alone on purpose: the concept has just been given authoring sign-off,
+and editing the approved artifact to chase an unrendered wording nit re-opens "is this the approved build?"
+for no student-visible gain.** Sweep it on next touch.
+
+---
+
+### ⚠ SHIPPING AUDIO CHANGED THE PACING MODEL — read before trusting any rate-based finding
+
+**`build_review_site.ts:1862`: `if (HAS_AUDIO && rateEl) { rateEl.disabled = true; }`** — *"Baked audio
+can't be re-paced by the slider — disable it when clips exist."* And `sentDurMs` (~:1122) returns the
+**real clip duration** whenever a clip is available, falling back to `estSentenceMs` only when one is missing.
+
+**So rendering the 37 clips replaced this concept's estimator-driven, rate-scalable narration timeline with
+fixed measured durations, and REMOVED the Speed slider.** Every "worst case at rate 0.7 / 1.1" figure in
+this file was computed under the pre-audio model and no longer describes the shipped product.
+
+Measured from the real manifest (clip durations + `GAP_MS` 280), narration end vs authored `duration`:
+
+| state | duration | narration end | margin |
+|---|---|---|---|
+| STATE_1 | 23000 | 20893 | **+2107** |
+| STATE_2 | 27000 | 16883 | +10117 |
+| STATE_3 | 29000 | 20296 | +8704 |
+| STATE_4 | 31000 | 20491 | **+10509** (the estimator said 166) |
+| STATE_5 | 28000 | 20149 | +7851 |
+| STATE_6 | 30000 | 20467 | +9533 |
+| STATE_7 | 24000 | 16199 | +7801 |
+| STATE_8 | 30000 | 20662 | +9338 |
+| STATE_9 | 20000 | 11629 | +8371 |
+
+**Every state now ends narration INSIDE its authored duration**, tightest +2.1 s. Consequences:
+
+- **F-1 is CLOSED by the audio.** It was "STATE_1's duration under-declares its narration at rate 0.7
+  (29.1 s vs 23 s)". At real clip durations STATE_1 ends at **20893 ms**, +2.1 s inside. The rate-0.7 case
+  no longer exists — the slider is gone. **Do not "fix" F-1.**
+- **F-3's 166 ms margin is obsolete** — the real margin is **10.5 s**. The `−9/+9` character-neutrality
+  constraint that governed the F-3 fix no longer binds anything. It was correct under the model in force
+  when it was applied.
+- **F-5's grading is now unmeasurable as written** — "empty 94 % of its window at rate 1.1, 46 % at 0.9"
+  cites rates that cannot be selected. If F-5 is revisited, re-measure against the fixed audio timeline.
+- **B2's guarantee is now stronger than when it was repaired**, and no longer depends on rate at all.
+
+**This cuts both ways: `duration` is now the binding constraint, not narration.** Every state holds its
+final picture for 2–10 s after the last word. That is Rule 26-correct for guided states (and STATE_9 is
+`interaction_complete`, so Rule 37 free-runs it), but it is a real change in feel that no gate measures.
+**Founder should watch STATE_2/4 end-to-end once with sound on.**
+
+### THE BASELINE LOCK — and the F1 coupling it exposed
+
+`npm run visual:approve -- lines_and_planes_in_space` → **9 baselines**, from run `20260826-183041`:
+each state stored twice, `compare:false` on the animated capture (reference only) and
+**`compare_frozen:true`** on the deterministic pinned frame. So H2 rides on the FROZEN frames.
+
+**They live on the ENGINE desk (`fix/vg-readout-subject-label/visual_baselines/`), and that is forced, not
+chosen.** Approving from the chapter desk was attempted first and the staleness gate **correctly refused**:
+
+```
+cached  c39bedc6f8ea  (5094599 chars)   ← engine desk build, carries the F1 fix
+source  ff3b07c3cbd6  (5087842 chars)   ← chapter desk build, does NOT
+```
+
+That 6.8 KB is F1. **`vgDotLabelText` count: engine desk 4 · chapter desk 0 · `origin/master` 0.** F1 changes
+STATE_4's HUD row label (`n·d` → derived from the resolved subject), which is **pixel-visible in a frozen
+frame**. So:
+
+> **The approved baseline encodes a renderer state that is NOT on master.** The concept was graded on the
+> engine build, so baselining anything else would approve a picture nobody reviewed — but it means the
+> concept's baseline and the engine PR are coupled. **Merge the engine PR (`fix/vg-readout-subject-label`)
+> BEFORE or WITH the concept PR**, or STATE_4's frozen H2 will diff on master. The engine PR is itself
+> blocked on the §31 gate. Do not "resolve" this by re-baselining on the chapter desk — that would lock in
+> the very defect F1 fixes (the readout naming the wrong line).
+
+Baselines are untracked on the engine desk and **must NOT be staged into the engine PR** (Rule 40 — stage
+exactly the four non-fixture paths). They belong to the concept PR once master carries F1.
+
+### TTS — DONE, English-only
+
+`npm run tts:generate -- lines_and_planes_in_space --langs=en` · `bulbul:v3` / `priya` / `en` (Rule 30/30i).
+
+**37 sentences, not the 38 this file has said throughout** — `s5_6` was deleted in the 08-22 repair and the
+count was never corrected. **37/37 available, 0 stale, 0 unavailable, 159.8 s of audio.**
+
+- **First run: 36 written, 1 FAILED — `s1_1_en`, the concept's opening sentence.** Re-run fetched only it
+  (36 skipped as existing), so exactly one clip was re-billed. **Always check the failure count, not just
+  the "✓ N clips in manifest" line** — the manifest lists a failed clip with `available:false, duration_ms:0`,
+  so the headline count is 37 either way.
+- **There is no system `ffmpeg` on this machine** — the `ffmpeg-static` fallback (`resolveFfmpeg()`) carried
+  the render. That guard is what stopped this becoming the recorded `definite_integral` failure (all clips
+  billed, none kept). It works; do not remove it.
+- Durable copy: **`tts_audio/lines_and_planes_in_space/` (37 mp3 + manifest) — git-tracked, and the ONLY
+  cache.** `review-site/` is gitignored. Commit it with the concept PR; a re-render is real Sarvam spend.
+- `text_hi` = 0 across all 37 — an FYI, never a refusal (Rule 30i).
+
+---
+
+### THE ORDERED SEQUENCE FROM HERE
+
+1. ~~`founder_proxy` re-grade of the STATE_9 P1~~ — **DONE: APPROVE.** It pre-authorised the cheap path: the
+   `skew_distance` probe above, no full cycle.
+2. ~~Founder visual approval → `npm run visual:approve`~~ — **DONE 2026-08-26** (9 baselines, engine desk)
+   (founder-triggered). **Expect a FULL re-baseline**; there is no `visual_baselines/` entry on the engine desk, which is why H2 skips.
+3. ~~TTS~~ — **DONE 2026-08-26**: 37/37 EN clips, 0 stale, 159.8 s. See the TTS block above.
+4. **← YOU ARE HERE. Two PRs.** Chapter desk → its own PR (**PR #96 predates the entire repair and must
+   NOT merge as-is**); it must carry `tts_audio/lines_and_planes_in_space/`. Engine desk
+   (`fix/vg-readout-subject-label`) → its own PR, Rule 40 — **blocked on the §31 gate**, and now also
+   **gating the concept's H2 baseline** (see the F1 coupling above). Merge order matters.
+
+**Desk sync warning:** the chapter desk is **275 commits behind `origin/master`** (269 on 08-22; master keeps
+moving). `npm run desk:sync` before PR'ing; expect the Rule-40 conflict hazard.
+
+### SCAR ROWS — 12 DRAFTED AND UNFILED, 1 FILED
+
+The seven from cycle 3, plus **five new ready-to-run rows** from this pass (in the verification-pass report):
+the degenerate-configuration sweep (the P1) · every visual gate capturing only the default scene_group (E-1) ·
+the Rule-37 probe running after its own drags (E-2) · a widened label certified by absence-of-overlap
+instead of against its margin (F-2 residual) · a corrected claim surviving in the unrendered spec field
+(the `mastery_definition` miss). **None is applied — applying is a founder action.**
+
+### ADDITIONS TO THE DO-NOT-RE-FIX LIST
+
+- **F-2 and F-3 are CLOSED.** Do not re-open. F-3's five surfaces are complete and no sixth *rendered*
+  surface exists; `q4` was already correctly scoped.
+- **STATE_9's post-drag stillness is NOT a defect.** After a drag seizes the only animated knob, the view
+  goes to 0 px. Control experiment: group A does the same (838 px/3 s → 0 px after a `lambda` drag). It is
+  the documented `knob()` drag-seize contract (`field_3d_renderer.ts:15216`), fleet-wide, predating F-7, and
+  correct — a teacher who sets a value wants it held.
+- **F-3's timing claim is right but "by construction" overstates it.** `estSentenceMs` rounds per sentence,
+  so equal total chars can shift the total ±1 ms. Both halves land on 13922 ms exactly; narration end is
+  30834 ms at rate 0.7 before and after, margin 166 ms. The result holds.
+- **F-1, F-5, F-6 and the three P3s stay open and deliberately unfixed.** Each was checked only for whether
+  a fix made it worse. None did.
+
+---
+
+## 0.0000 RESUME 2026-08-26 — THREE P1s FIXED. START BY RE-GRADING THEM. Read this first.
+
+**Status: F-2, F-3 and F-7 are fixed, gated, and verified in pixels by the session that made them.
+`founder_proxy` has NOT seen them. Checkpoint B's standing verdict is therefore still FIX.
+Nothing is committed on either desk. Nothing is in flight.**
+
+---
+
+### ▶ FIRST ACTION ON RESUME — dispatch `founder_proxy`, Checkpoint B VERIFICATION PASS
+
+Not a fresh cycle. The 3-cycle budget was spent at cycle 3; the founder then authorised a fix round
+explicitly, on the record, overriding it. This dispatch asks one question: **do the three fixes close
+their findings, and did they introduce anything?** Give it:
+
+- **Scope: F-2, F-3, F-7 only** — plus anything it finds that the fixes themselves caused. It should
+  NOT re-open settled items (see the do-not-re-fix list in §0.000 and the additions below).
+- **The fresh artifacts** (all 2026-08-26, all produced by the dispatching session, none second-hand):
+  - THE EYE: `.visual_runs/lines_and_planes_in_space/20260826-163907/` on the ENGINE desk —
+    **40 checks, 39 passed, 1 skipped, 1 failed.** The failure is `STATE_9:D5`, now the **SIXTH**
+    consecutive run of the confirmed false positive. Do not re-litigate. The skip is H2 (no
+    `visual_baselines/` on that desk — expected).
+  - `founder_drive`: `.founder_runs/lines_and_planes_in_space/2026-08-26T11-41-23-742Z/` —
+    11/11 drags moved, 0 reverted, 0 collisions, 0 console errors. **⚠ This dump PREDATES the three
+    fixes.** If cycle-3's verdict turns on drag behaviour, re-run it first — and see the server trap
+    below, which invalidated the previous one.
+- **The reminder that its APPROVE is authoring sign-off ONLY** — shipping stays founder-only (Rule 17).
+
+**⚠ THE SERVER TRAP — read before running any `founder_drive`.** A `founder_drive` on 2026-08-26
+recorded 11/11 clean drags **against a five-day-old build**. `npx http-server … -p 8087` had died with
+`EADDRINUSE`, `curl` returned **200** from a pre-existing listener (PID 29337, started Aug 21, rooted on
+a different desk), and the 200 was read as proof. **Verify the CONTENT, never the status code:** diff
+`curl -s <url> | shasum -a 256` against the `review-site/<id>/index.html` of the desk under review, and
+check the embedded per-state `duration` list. The repaired build reads `23, 27, 29, 31, 28, 30, 24, 30, 20`.
+Note also that `field_3d_config` lives in **`sim.html`**, not `index.html` — a grep for vg content in
+`index.html` returns nothing and does not mean the build is stale.
+
+---
+
+### WHAT THIS SESSION DID (2026-08-26)
+
+**① The optional pre-TTS pass from §0.000 — DONE.** All four items applied:
+`s2_3` → `"the reading is not zero"` (byte-identical length, so STATE_2's +302 ms margin is untouched);
+`glow` deleted on `s2_3`, `s3_3`, `s4_3b`, `s5_1` (C-1); `STATE_2.focal_primitive_id` `P1_normal` →
+`P1.normal` (audited: STATE_2 was the only state of nine whose focal id resolved to no vg object);
+`real_world_anchor.secondary` "runs over" → "passes above", matching `s5_2`.
+
+**② Checkpoint B cycle 3 ran → FIX.** Four P1s initially. Then, on a corrected drive, founder_proxy
+**downgraded its own F-1 to P2** (it had claimed a 7.1 s frozen tail on STATE_1; measured, λ holds ~3 s
+then moves again) and **added F-7**, which was undiscoverable until the drive was fixed. It also
+**withdrew both of its cycle-2 findings** (`par_tag`, `variable_choreography`) after re-deriving them.
+
+**③ The founder authorised a fix round.** F-2, F-3, F-7 applied by `json_author` in ONE pass so
+STATE_4's narration budget was solved once, holistically.
+
+**④ Two engine PRs, one merged.** See "PRs" below.
+
+---
+
+### THE THREE FIXES, AND HOW EACH WAS VERIFIED
+
+**F-3 — STATE_4's false dichotomy (5 surfaces).** `mathematics_author` ruled: **scope the third case
+out honestly, do not teach it.** STATE_4's picture holds two lines both built off the plane and has no
+visual referent for containment, so naming it would assert an unshown case (Rule 25). It verified case C
+is genuinely *reachable* — re-anchoring `Lpar` onto its own foot gives `n̂·(p−a) ≈ 0` — so this was a
+false universal, not a vacuous edge case. Fix is one qualifier, **"a line off the plane"**, reusing
+wording already taught in `s2_3`/`s2_4`/`s3_1`. Also fixed the same defect one level down in
+`one_line_fix`. Surfaces: state `title`, `field_3d_config` `label`, `one_line_fix`, `s4_4`, and `s4_1`
+trimmed to fund it.
+
+> **Timing, verified twice independently (session + json_author):** net character delta **exactly 0**
+> (−9 on `s4_1`, +9 on `s4_4`). Rate-0.7 margin **166 ms before and after**; 0.9 → 6770 ms; 1.1 →
+> 10970 ms. Words 51 → 52. **B2 stays closed by construction, not by luck.**
+
+**F-2 — STATE_7's unbound θ.** `arc_plane_tag.label` `"35.0°"` → **`"θ = 35.0°"`**, binding the
+`sin θ = |d·n| ⁄ (‖d‖‖n‖)` surface to the angle-to-plane arc (the 35° one it names; the numerator
+`|d·n|` visually cues the wrong one). Labels are not on the narration timeline, so this cost zero budget.
+`json_author` **refused to certify the placement** — the label grows from a centred anchor, so ~half the
+added width eats the recorded 16.1 px margin, and this concept's analytic estimates have run ~55 px
+optimistic before. **Discharged in pixels by the session:** at 5× on `STATE_7__frozen.png` the label sits
+clear below the shadow-line stroke with no clipping, and the contact sheet confirms it holds at every
+frame from its reveal (~13300 ms) onward.
+
+**STATE_6 deliberately left unbound** — and the reason is better than "non-blocking": its arc measures a
+**live, animating** θ (69.3846° → 115°), while `points[].label` is a hardcoded static string
+(`label: o.label || null` in `vgResolveLinesPlanes`, no value substitution). A static `θ = …` tag would
+go wrong the instant the angle moves. Printing θ in the HUD row instead needs `VG_READOUT_LABEL`
+(`field_3d_renderer.ts` ~:14163) — engine code, Rule 40, a separate PR. **Do not "fix" STATE_6 by
+authoring a static tag.**
+
+**F-7 — STATE_9's frozen explore view B.** Two `line2_offset` entries appended, mirroring `lambda`'s
+window shape exactly (`[0,9000]` / `[9000,18000]`, linear, ±2.5). `M2` already carries
+`offset: {knob: "line2_offset"}`, so this drives the skew line and the live `skew_distance` readout.
+
+> **Measured, untouched, past narration end, 3 s windows:**
+> view A `line + plane` 1520 / 834 px **before** → 9235 / 42776 px after (group A unaffected);
+> view B `skew pair` **0 / 0 px before → 75671 / 80599 px after.**
+> Loop integrity: `animate_loop_ms` stays 18000 and is applied to `stateMs` once upstream of every knob
+> lookup in `vgAnimValue`, so `t=1000 ≡ t=19000` holds for any knob **by construction**. `lambda`'s two
+> entries are byte-for-byte unchanged.
+
+---
+
+### GATES AS OF SESSION CLOSE (run by the session, not reported by an agent)
+
+```
+npx tsc --noEmit             0 errors
+npm run validate:mathematics 5/5 PASS — lines_and_planes PASS, ZERO warnings on target
+check:renderer-syntax        OK (all three renderers)
+THE EYE 20260826-163907      40 checks · 39 passed · 1 skipped (H2, expected) · 1 failed (STATE_9:D5, known FP)
+```
+
+**⚠ `check:vector-geometry-3d` is RED on the ENGINE desk — 4 failed assertions. PRE-EXISTING, and it
+blocks the ENGINE PR, not the concept.** Proven unrelated: the identical 4 failures reproduce against the
+byte-identical pre-repair JSON (`sha256 e5420e8f…`). Cause: the §31 fixtures (`STATE_2_VG` ~:7392,
+`STATE_4_VG` ~:7371 in `check_vector_geometry_3d.ts`) still carry PRE-B2-repair reveal windows
+(STATE_2 `test_v_inplane` 6500/11200 vs the shipped 4800/15300; STATE_4's three intersections retimed).
+The gate is doing its job — its own comment says it must fail on "a retimed reveal". **Fixing it is NOT a
+copy-paste:** §31's hardcoded sample times must be re-derived, because the authored handover gap moved
+from 9500–10300 ms to 12000–13300 ms. `peter_parker:field3d_surgeon` work.
+**The earlier "ALL SECTIONS PASSED / 1186 PASS" record was taken on the CHAPTER desk, whose copy of the
+gate has no §31 section at all.** Run engine gates on the engine desk.
+
+---
+
+### THE ORDERED SEQUENCE FROM HERE
+
+1. **`founder_proxy` verification pass** — the first action above.
+2. **If it returns FIX:** route each finding to ONE owner, fix, re-verify, re-run THE EYE, re-dispatch.
+   **If it APPROVES:** that is authoring sign-off only. Continue to 3.
+3. **Founder visual approval**, then `npm run visual:approve -- lines_and_planes_in_space`
+   (founder-triggered). **Expect a FULL re-baseline** — all eight guided states changed timing in the
+   08-22 repair, and STATE_4/7/9 changed again on 08-26. There is no `visual_baselines/` entry for this
+   concept on the engine desk today, which is why H2 skips.
+4. **TTS** — `shipper`, `tts:generate --langs=en`. English-only (Rule 30i). **38 sentences; the concept
+   has NEVER been voiced and no audio manifest exists.** Each render is real paid Sarvam spend with no
+   free restore, so narration text MUST be final first. `text_hi` = 0 is an FYI, never a refusal.
+5. **Two PRs.** The chapter desk → its own PR (PR #96 is open, predates the entire repair, and must NOT
+   merge as-is). The engine desk (`fix/vg-readout-subject-label`, the F1 fix) → its own PR against
+   master, Rule 40 — **blocked until the §31 gate above is repaired.**
+
+**Desk sync warning:** the chapter desk is **~269 commits behind `origin/master`** (it read 0 behind on
+08-22; master has moved). `npm run desk:sync` before PR'ing, and expect the Rule-40 conflict hazard.
+
+---
+
+### WHERE THE WORK SITS (nothing committed, nothing pushed)
+
+**Chapter desk — `feat/mathematics-lines-and-planes`** @ `64d48d2d`, at
+`/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-lines-and-planes`
+
+| path | state |
+|---|---|
+| `src/data/concepts/mathematics/lines_and_planes_in_space.json` | M — the 08-22 repair + the 08-26 pass + all three P1 fixes |
+| `docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md` | M — this file |
+| `PROGRESS.md` | M |
+| `src/scripts/check_vector_geometry_3d.ts` | M (+1 line) |
+| `docs/skeletons/lines_and_planes_in_space_repair_2026-08-22.md` | ?? |
+| `src/scripts/_seed_engine_bug_queue_lines_and_planes_cpb2_f2_migration.ts` + its SQL | ?? |
+
+**Engine desk — `fix/vg-readout-subject-label`** @ `91c55b0f`, at
+`/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-fix/vg-readout-subject-label`
+— `field_3d_renderer.ts` M +112 (the F1 fix, **DO NOT TOUCH**) · `check_vector_geometry_3d.ts` M +530 ·
+the scar seed + SQL (??) · **two concept JSONs (??) that are THE EYE FIXTURES — NEVER STAGE, NEVER DELETE.**
+Stage EXACTLY the four non-fixture paths. Never `git add -A` on this desk.
+
+**Fixture parity: both concept copies are `sha256 04fa806b7613d687f572…` and `simulation_cache` was
+re-seeded from that exact source.** If you edit the JSON you MUST re-copy it to the engine desk and re-run
+`npx tsx --env-file=.env.local src/scripts/_seed_subject_cache.ts lines_and_planes_in_space`
+before THE EYE, or the staleness gate hard-fails by design.
+
+---
+
+### PRs
+
+| PR | what | state |
+|---|---|---|
+| **#139** | `fix(field_3d)`: a teacher's force-shown slider row is a live control (Rule 39b) | **MERGED to master `631fcaab`** |
+| **#140** | `fix(desk)`: ahead/behind measured against `origin/master`, never the local ref | **OPEN — founder merge call** |
+| **#96** | the concept PR | OPEN, predates the repair, **must NOT merge as-is** |
+
+**PR #139 — what it fixed, because it changes how every field_3d concept behaves.** `knob()` in
+`updateVectorGeometry3DFrame` gated the drag-seize branch on `stateDef.show_sliders`, so on any state
+omitting that key (here: STATE_3/4/5/7/8) a teacher's drag was discarded. `field3d_surgeon` found two
+more clauses of the same shape — `vgApplyControlRows` set `slEl.disabled = !(key in controls)` (the one a
+teacher hits FIRST: the row arrives greyed, no `input` event fires at all) and `vgSyncRampedRows` skipped
+the drag-owned row only `if (showSliders && …)`. It **rejected** the dispatching session's proposed
+visibility-based gate in favour of the trusted-drag flag, correctly: a visibility test can be true with
+no user action, and hiding a row mid-state would release the seize and snap geometry under the teacher's
+hand. Fleet-verified; THE EYE cannot reach either branch (no `SET_WIDGET_VIS` / `mouse.down` / `Dragged`
+anywhere in `visual_eyes.ts` or `validators/visual/`), so **no re-baseline was needed.**
+
+---
+
+### NOT FIXED — open, graded, deliberately left
+
+| id | pri | what |
+|---|---|---|
+| **F-1** | P2 | STATE_1's `duration` (23 s) under-declares its narration at rate 0.7 (29.1 s); measured ~3 s hold at the λ endpoint. Fix = extend the ping-pong past 29099 ms and raise `duration`. |
+| **F-5** | P2 | `s4_3a`'s `glow` is the **fifth** C-1 row and was NOT deleted with the other four. Empty 94 % of its window at rate 1.1, 46 % at 0.9. One key deletion; grading it differently from its four siblings is inconsistent. |
+| **F-6** | P2 | STATE_4 label hierarchy inverted — `d`/`d′` render **11 ink px** each against a **480 ink px / 20 px cap** `n·d′ = 0` tag. The tag's own `_design_note` claims a 73 px `n` separation; the rendered frame gives **17 px**. Open row `label_separation_is_a_function_of_the_authored_camera…`. |
+| — | P3 | STATE_7's `sin θ` formula is on canvas from **t=0** while `θ = 35.0°` reveals at **~13300 ms** — a ~13 s window where the formula still names an unbound θ. Open engine row `vg_formula_overlay_has_no_timed_reveal…`; a label fix cannot reach it. |
+| — | P3 | `focal_primitive_id` has **no consumer at all** (schema-only, `conceptJson.ts:102`); STATE_6/STATE_7 name angle-arc ids, and arcs are never stamped. Harmless today. |
+| — | P3 | STATE_7 preposition drift: title/`s7_4` say "Measure **to** the normal", caption says "**from**". |
+| — | — | `parallel_currents_force`: **13 stale H2 baselines** drifting 2.07–3.69 %, states flipping across the 2 % line between runs. Proven pre-existing by a revert control. **Founder re-baseline call, still open.** |
+
+### SCAR ROWS — 7 DRAFTED AND UNFILED, 1 FILED
+
+`founder_proxy` drafted **seven** rows (cycle 3 + supplementary) as ready-to-run SQL; **none is applied** —
+applying is a founder action. They cover: the timeline re-budget that swept 8 of 9 states · THE EYE
+sampling `duration` instead of `timelineTotal` · the Latin-only symbol sweep that missed Greek · a case
+split narrated as exhaustive · `founder_drive` targeting a stale server root · `focal_primitive_id`
+having no consumer · a group-partitioned explore state freezing on its other view.
+`field3d_surgeon` **filed one** under its own contract:
+`teacher_forced_slider_row_is_inert_because_the_authored_state_flag_still_owns_the_control` (FIXED).
+
+### ADDITIONS TO THE DO-NOT-RE-FIX LIST (extends §0.000's)
+
+- **`par_tag` and `variable_choreography` are settled twice over.** founder_proxy filed both, then
+  withdrew both at cycle 3 after re-deriving them itself: `par_tag`'s perpendicular residual is
+  ~4.8e-5 wu at its terminal knob value, and the 2.50 wu figure corresponds to `t ≈ 3384 ms` — 8.6 s
+  before the tag reveals at 12000. `variable_choreography` has **0** consumers in `field_3d_renderer.ts`
+  against 17 in `parametric_renderer.ts`.
+- **STATE_4's "near-end-on `Lpar` (~30 px stub)" founder-taste item is STALE** — measured 117 px wide
+  (x608–725), 800–1000 ink px after ghosting, steady t=12600→30800. Not a finding.
+- **`arc_plane_tag` is NOT outside its wedge** (§0.000), and its label is now `θ = 35.0°` — verified
+  clear in pixels at 5×. Do not "re-place" it without a rendered-frame measurement.
+
+---
+
+## 0.000 RESUME 2026-08-22 — REPAIRED AND GREEN. `quality_auditor` PASS, cleared for Checkpoint B. Read this first.
+
+**Status: `quality_auditor` returned PASS (with non-blocking Concerns). All three blockers CLOSED.
+Nothing is in flight. Nothing is committed. Two desks hold uncommitted work — exact paths below.**
+
+### The one-line state
+B1, B2 and B3 are fixed and verified. The concept is cleared for `founder_proxy` Checkpoint B **cycle 3
+of 3** (the last before ESCALATE). After that: founder visual approval → `visual:approve` → **TTS**
+(38 English clips; the concept has NEVER been voiced — no audio manifest exists).
+
+### FIRST DECISION ON RESUME — take it or skip it, but decide deliberately
+A short `json_author` pass was RECOMMENDED and NOT YET RUN. Four items, all non-blocking:
+
+1. **`s2_3` wording — the only one that matters.** It reads *"the reading leaves zero"*, which an ESL
+   student parses as "results in zero" — the OPPOSITE of the intent. **This phrase was introduced by
+   the 2026-08-22 repair itself**, and TTS will make it permanent.
+   **CONSTRAINT: the fix MUST be character-neutral.** STATE_2's B2 margin is **+302 ms at rate 0.7**;
+   the auditor's suggested rewording adds ~7 chars ≈ **+727 ms** of narration and would SILENTLY
+   RE-OPEN B2. Use **`"the reading is not zero"`** — byte-identical length to `"the reading leaves
+   zero"`, +1 word (STATE_2 49 → 50, still in budget).
+2. **C-1, four `glow` deletions** — delete the `glow` key on `s2_3`, `s3_3`, `s4_3b`, `s5_1`. See below.
+3. **C-4, one typo** — `STATE_2.focal_primitive_id` is `"P1_normal"`; the stamped id is `"P1.normal"`.
+   Inert today, but it has no referent under any future fix.
+4. **Doc drift** — `real_world_anchor.secondary` still carries the retired phrase *"one runs over the
+   other"* (fixed in `s5_2`, missed here).
+
+Any wording change must be **character-neutral or shorter**, or it eats a B2 margin. Margins are thin:
+S4's is **166 ms**.
+
+### WHERE THE WORK SITS (nothing committed, nothing pushed)
+
+**Engine desk — `fix/vg-readout-subject-label`** @ `91c55b0f`, at
+`/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-fix/vg-readout-subject-label`
+
+| path | state |
+|---|---|
+| `src/lib/renderers/field_3d_renderer.ts` | M, **+112** — the F1 fix. DO NOT TOUCH. |
+| `src/scripts/check_vector_geometry_3d.ts` | M, **+530** — F1 section + rewritten fixtures |
+| `src/scripts/_seed_engine_bug_queue_vg_readout_subject_label.ts` | ?? new — the scar row |
+| `supabase_migrations/supabase_2026-08-21_seed_engine_bug_queue_vg_readout_subject_label_migration.sql` | ?? new |
+| `src/data/concepts/mathematics/*.json` (×2) | ?? **THE EYE FIXTURES — NEVER STAGE, NEVER DELETE** |
+
+**Stage EXACTLY the four non-fixture paths. Never `git add -A` on this desk.** Then commit, push,
+`gh pr create` against master (Rule 40: its own PR).
+
+**Chapter desk — `feat/mathematics-lines-and-planes`** @ `64d48d2d`, **0 behind master**, at
+`/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-lines-and-planes`
+- `src/data/concepts/mathematics/lines_and_planes_in_space.json` — M, **+147/−77** (the whole repair)
+- `docs/skeletons/lines_and_planes_in_space_repair_2026-08-22.md` — ?? the architect's design artifact
+- `src/scripts/_seed_engine_bug_queue_lines_and_planes_cpb2_f2_migration.ts` + its SQL — ?? (F2 round)
+
+**Fixture parity: both concept copies are sha256 `e5420e8f…`. `simulation_cache` was re-seeded from
+that exact source.** If you edit the JSON, you MUST re-copy it to the engine desk and re-run
+`npx tsx --env-file=.env.local src/scripts/_seed_subject_cache.ts lines_and_planes_in_space`
+before THE EYE, or the staleness gate hard-fails (by design).
+
+### VERIFY CHAIN — all green as of 2026-08-22, run by the session, not reported by an agent
+```
+check:renderer-syntax        exit 0    (all three renderers)
+npx tsc --noEmit             exit 0
+check:vector-geometry-3d     exit 0    ALL SECTIONS PASSED (1186 PASS)
+validate:mathematics         exit 0    lines_and_planes PASS, zero warnings on target
+THE EYE  20260822-020702      40 checks, 39 passed, 1 failed
+```
+The single EYE failure is **`STATE_9:D5`** — now the **FOURTH consecutive run**, independently
+confirmed a FALSE POSITIVE by `quality_auditor` from slider evidence (λ −3.44 → 2.16, thumb moves
+75 → 212 px, marker translates ~370 px). Filed as
+`visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_explore_states`. **Do not re-litigate.**
+H2 skips: this desk has no `visual_baselines/` entry. Expected.
+
+### WHAT THE 2026-08-22 REPAIR DID (all three blockers closed)
+
+**B2 — the big one.** Reveal times had been budgeted against each state's authored `duration` (18–22 s),
+but the player computes `Math.max(narrationEnd, duration*1000)` and narration runs 21.5–27 s — so
+`duration` was **dead metadata** and all eight guided states ended with 6–11 s of narration over a
+frozen picture. Worst case: STATE_2 HEARD *"a vector in the plane gives zero dot product"* while the
+screen SHOWED the vector tipping out and the readout going nonzero — Rule 32a inverted for 3.1 s, and
+it did not tune away across the Speed range. Re-budgeted in all 8 states, narration trimmed in 7,
+`s5_6` deleted, every state given a terminal motion so motion outlasts narration at every rate.
+Verified in pixels: `n·v = 0.000` holds through 14700 ms, tip-out first registers at 15400.
+
+**B1** — closed by DROPPING `numerator_triple_product` and `cross_norm` from STATE_8's `value_readouts`
+(leaving `["skew_distance"]`), not by pulling `cross_vec` earlier — pulling it would have destroyed the
+build-then-slide beat that IS s8_2/s8_3. The scar's failure mode is now **unrepresentable**, not merely
+rescheduled. **When Δ12 lands, restore both tokens gated on their own vectors' arrivals.**
+
+**B3** — STATE_7's two angle tags were placed with a RADIAL margin from the apex, which buys almost no
+clearance from the stroke in a narrow wedge (for the 35° angle the bisector is only 17.5° off the `d`
+line ⇒ ~0.38 wu perpendicular clearance). Recomputed for **screen-perpendicular** clearance.
+eye-walker and the auditor both confirm no overlap at either camera pose.
+
+### CORRECTIONS TO EARLIER SESSIONS' FINDINGS — do not re-fix these
+- **`par_tag` was NEVER misplaced.** founder_proxy cycle 2 filed it "2.50 wu off the line it tags".
+  Its perpendicular distance is **4.9e-7 wu at every instant it is visible**. The 2.50 wu figure
+  corresponds to `aux_a ≈ 0.049`, reached at **t ≈ 3104 ms** — 6.4 s before the tag reveals at 9500.
+  The filed item measured a distance at a time when the tag does not exist. Confirmed independently
+  by `json_author` and `quality_auditor`.
+- **`variable_choreography` must NOT be authored here.** 0 consumers in `field_3d_renderer.ts`, 17 in
+  `parametric_renderer.ts`. All SIX siblings carrying it are `panel_a: parametric`; this and
+  `vector_products_in_space` are the only `field_3d` ones and both carry zero. Its native equivalent
+  `vg.animate` is already authored on every state that needs it.
+- **`arc_plane_tag` is NOT outside its wedge** (a mid-session claim, since disproved). Its in-plane
+  component sits **6.0° from the shadow leg, inside the 0–35° wedge**, at its arc's own radius. The
+  "below the shadow line" look comes from the `−0.925·f̂` term, and `f̂ = n̂ × ŝ` lies IN the plane —
+  the tag is slid sideways along the plane surface, not pushed out of the angular region.
+
+### C-1 — a NEW defect class, real and structurally invisible to THE EYE
+`applyReveal()` sends the glow for a whole sentence window; the renderer dims every non-focal element
+to 0.4 and skips the named object when it is not yet revealed or already hidden — so the scene **dims
+with nothing brightened**. Percentage of each sentence for which its own glow target does not exist:
+
+| sentence | glow | @0.7 | @0.9 | @1.1 |
+|---|---|---|---|---|
+| `s2_3` | `test_v_offplane` | 0 % | **81 %** | **100 %** |
+| `s4_3b` | `X` | 0 % | **70 %** | **100 %** |
+| `s3_3` | `cmp` | **100 %** | 41 % | 0 % |
+| `s4_3a` | `Lcut` | 0 % | 46 % | **94 %** |
+| `s5_1` | `crossing_mark` | 64 % | 62 % | 76 % |
+
+THE EYE cannot see this — glow targets stay empty under capture (renderer `:7744`). Cheap fix: delete
+those four `glow` keys. **More valuable: seed it as a queue row so it becomes a permanent fleet probe —**
+`a_sentence_glow_names_an_object_that_is_not_on_screen_during_its_own_window_so_the_scene_dims_with_no_focal`
+— probe: for each state × rate ∈ {0.7, 0.9, 1.1}, assert the named object's visible interval covers
+≥ 60 % of its sentence window.
+
+### THE REMAINING SEQUENCE
+1. (optional) the short `json_author` pass above → re-verify → re-sync fixture → re-seed → THE EYE
+2. `founder_proxy` Checkpoint B **cycle 3 of 3**. Narrowed list: STATE_4, STATE_7, and its own two
+   refuted findings (`par_tag`, `variable_choreography`) for adjudication. **Its APPROVE is authoring
+   sign-off ONLY — shipping stays founder-only (Rule 17).**
+   **NOTE: the `founder_drive` dump on record (11/11 drags, 0 errors) PREDATES the repair and was not
+   re-run.** If cycle 3's verdict depends on drag behaviour, re-run it first.
+3. Founder visual approval → `visual:approve` (founder-triggered; expect a FULL re-baseline — all eight
+   guided states changed timing)
+4. **TTS**: `shipper`, `tts:generate --langs=en`. English-only (Rule 30i). 38 sentences, `text_hi` = 0
+   (an FYI, never a refusal). Each render is real paid Sarvam spend with no free restore — so the
+   narration text MUST be final first. That is why item 1 above matters.
+5. Engine desk → its own PR against master (Rule 40).
+
+### FOR CONCEPT #10 — the process change the founder asked for
+**Have the architect compute the narration timeline at DESIGN time and budget `reveal_at_ms` against
+it**, instead of against `duration`. Nothing enforces this today; B2 was found only by audit, after the
+concept was otherwise gated green. A rebuild by the same pipeline reproduces the same defect.
+Model: `build_review_site.ts` ~857-872 / ~1111-1155 — `max(1400, round(chars/5.5/(150·rate)·60000))`,
+GAP 280, `timelineTotal = max(narrationEnd, duration·1000)`. Rate slider is 0.7–1.1, default 0.9, so
+**0.7 is the binding case**.
+
+**The deeper fix (Rule 40, platform, separate master PR):** the vg region consumes **no cue time** —
+`vgRevealFrac` reads `o.reveal_at_ms` directly, so every reveal is an absolute constant while narration
+scales 1/rate. Perfect per-sentence sync at every rate is therefore *arithmetically impossible* past
+about the second sentence. Routing vg reveal/animate anchors through `cueTriggerMs` (as 225 other sites
+already do) would make it correct at every rate automatically, with the authored ms as THE EYE's
+deterministic fallback.
+
+---
 ## 0.1 SESSION 2026-08-10 — the fix round (read this first)
 
 **On the chapter branch** (`feat/mathematics-lines-and-planes`, commits `5a97b1c → 64690fb → bf72027

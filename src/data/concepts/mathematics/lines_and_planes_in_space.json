@@ -24,7 +24,7 @@
   },
   "real_world_anchor": {
     "primary": "A straight track has a starting post and one heading. After that, a single number — how far along you are — names every place on it. Delivered verbatim in STATE_1's narration and cashed by the extending line and the live lambda marker. Universal — a straight track exists everywhere, and the claim is only that one number names a position on it.",
-    "secondary": "On a flat map two straight roads cross. On the ground one runs over the other, and they never touch. Assigned to STATE_5, where the skew case is taught, so the reveal is not spoiled earlier. Universal — a road overpass exists everywhere, and the claim is only that two straight things can look like they cross while passing at different depths."
+    "secondary": "On a flat map two straight roads cross. On the ground one passes above the other, and they never touch. Assigned to STATE_5, where the skew case is taught, so the reveal is not spoiled earlier. Universal — a road overpass exists everywhere, and the claim is only that two straight things can look like they cross while passing at different depths."
   },
   "entry_state_map": {
     "foundational": [
@@ -138,7 +138,7 @@
     "states": {
       "STATE_1": {
         "title": "One Number Names Every Point on a Line",
-        "duration": 20,
+        "duration": 23,
         "eye_capture_ms": 12000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -193,7 +193,8 @@
             },
             {
               "id": "s1_2",
-              "text_en": "After that, a single number, how far along you are, names every place on it."
+              "text_en": "After that, a single number, how far along you are, names every place on it.",
+              "glow": "L1_lambda"
             },
             {
               "id": "s1_3",
@@ -210,11 +211,11 @@
       },
       "STATE_2": {
         "title": "A Normal Direction Sets a Whole Plane",
-        "duration": 18,
+        "duration": 27,
         "eye_capture_ms": 12000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
-        "focal_primitive_id": "P1_normal",
+        "focal_primitive_id": "P1.normal",
         "scene_composition": [
           {
             "type": "plane",
@@ -254,18 +255,17 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Naming a plane needs one more idea: a perpendicular direction, called the normal.",
+              "text_en": "To name a plane, use a perpendicular direction: the normal.",
               "glow": "P1.normal"
             },
             {
               "id": "s2_2",
-              "text_en": "A vector in the plane gives zero dot product — also called scalar product — with the normal.",
+              "text_en": "A vector in the plane gives a zero dot product, or scalar product, with the normal.",
               "glow": "test_v_inplane"
             },
             {
               "id": "s2_3",
-              "text_en": "Tip it out of the plane, and the reading leaves zero.",
-              "glow": "test_v_offplane"
+              "text_en": "Tip it out of the plane: the reading is not zero."
             },
             {
               "id": "s2_4",
@@ -276,8 +276,8 @@
       },
       "STATE_3": {
         "title": "The Perpendicular Is the Shortest Segment",
-        "duration": 20,
-        "eye_capture_ms": 17500,
+        "duration": 29,
+        "eye_capture_ms": 15200,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "perp",
@@ -345,24 +345,24 @@
             },
             {
               "id": "s3_4",
-              "text_en": "That perpendicular is the distance. Replace the point with a line: does it reach the plane, or miss it?",
+              "text_en": "That perpendicular is the distance. Now replace the point with a line.",
               "glow": "perp"
             }
           ]
         }
       },
       "STATE_4": {
-        "title": "A Line Meets a Plane Once, or Never",
-        "duration": 20,
-        "eye_capture_ms": 17500,
+        "title": "A Line off the Plane Meets It Once, or Never",
+        "duration": 31,
+        "eye_capture_ms": 18200,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "X",
         "misconception_watch": [
           {
             "belief": "n · d = 0 means the line is perpendicular to the plane.",
-            "visual_counter": "The line with n·d′ = 0 is shown doing what that condition actually forces: it glides past the plane, staying perpendicular to the normal the whole time (90 degrees), and never touches it. The readout panel prints no meeting point the whole time it is active. From 9.5 seconds it dims to a ghost carrying its own tag — n·d′ = 0 — while the cutting line, labelled d, reads n·d = 0.574 in the readout panel beside its marker X, plainly not zero.",
-            "one_line_fix": "n · d = 0 means the direction is perpendicular to the normal, which puts the line parallel to the plane."
+            "visual_counter": "The line with n·d′ = 0 is shown doing what that condition actually forces: it glides past the plane, staying perpendicular to the normal the whole time (90 degrees), and never touches it. The readout panel prints no meeting point the whole time it is active. From 12.0 seconds it dims to a ghost carrying its own tag — n·d′ = 0 — while the cutting line, labelled d, reads n·d = 0.574 in the readout panel beside its marker X, plainly not zero.",
+            "one_line_fix": "n · d = 0 means the direction is perpendicular to the normal, so a line off the plane runs parallel to it and never meets it."
           }
         ],
         "scene_composition": [
@@ -383,7 +383,7 @@
             "id": "Lpar",
             "label": "d′ (n·d′ = 0 case)",
             "colour_role": "second direction",
-            "note": "cyan; slides sideways above the plane at a constant 1.400 height, crossing over it — no marker ever appears; dims to a ghost at 9.5 s and stays to the pin, carrying the on-scene tag n·d′ = 0 (shortened from the long form per the par_tag escape-hatch note below — the HUD already said 'no meeting point' for the whole 0-9500ms window)"
+            "note": "cyan; slides sideways above the plane at a constant 1.400 height, crossing over it — no marker ever appears; dims to a ghost at 12.0 s and stays to the pin, carrying the on-scene tag n·d′ = 0 (shortened from the long form per the par_tag escape-hatch note below — the HUD already said 'no meeting point' for the whole 0-12000ms window)"
           },
           {
             "type": "line",
@@ -397,21 +397,21 @@
             "id": "X",
             "label": "X",
             "colour_role": "derived object",
-            "note": "green; snaps on at the meeting point at the 15s intersection beat — DELIBERATELY 5s after Lcut's 9.5s arrival, because the two intersections' readout windows must stay disjoint (the engine refuses co-arrived intersections rather than picking a winner); readouts arrive at 10300 via the invisible carrier X_live and hand over to X at 15000; the windows must stay disjoint (engine refuses co-arrived intersections)"
+            "note": "green; snaps on at the meeting point at the 17.5s intersection beat — DELIBERATELY 5s after Lcut's 12.0s arrival, because the two intersections' readout windows must stay disjoint (the engine refuses co-arrived intersections rather than picking a winner); readouts arrive at 13300 via the invisible carrier X_live and hand over to X at 17500; the windows must stay disjoint (engine refuses co-arrived intersections)"
           },
           {
             "type": "point",
             "id": "par_tag",
             "label": "n·d′ = 0",
             "colour_role": "neutral",
-            "note": "label-only annotation (size 0) on the ghosted parallel line, from 9.5 s; RE-PROBED at the S4 dist=9.6 camera fix (2026-08-21): at the ORIGINAL long text (\"n·d′ = 0, no meeting point\", a ~310px-wide centre-anchored sprite, half-width ~155px) the best achievable position on the drawn segment (param -4.5, the far sphere-clip end) still only separates 69-105px from the d / d-prime / n labels that share this corner of the scene by construction -- full clean separation is NOT reachable by repositioning alone, confirmed by a dense param sweep across the whole -4.509..4.245 drawn span, not just the original -1.8/-4.3 spot-checks. Took the architect's documented shorten escape hatch, ALL the way to the bare form -- the intermediate fallback (\"n·d′ = 0, never meets\", estimated ~262px wide from the renderer's own char-width proxy) was assessed and rejected as still too wide before rendering it, since even that would not clear the ~62-73px n separation: bare \"n·d′ = 0\" measures far narrower (half-width ~48px vs the original ~155px), and combined with sliding to param -4.45 (near the line's own sphere-clip end, -4.509) it clears d (~105px sep), d-prime (~131px sep) and n (~73px sep) with real margin -- pixel-verified against the rendered frame, not just the projection estimate. The dropped \"no meeting point\" half is not lost: the HUD's live no_meeting_point readout already carries that half of the message for the whole 0-9500ms window while Lpar is un-ghosted and active; the tag's only job after the ghost is to keep the ARITHMETIC fact (n·d′ = 0) riding the object, which the bare form still does."
+            "note": "label-only annotation (size 0) on the ghosted parallel line, from 12.0 s; RE-PROBED at the S4 dist=9.6 camera fix (2026-08-21): at the ORIGINAL long text (\"n·d′ = 0, no meeting point\", a ~310px-wide centre-anchored sprite, half-width ~155px) the best achievable position on the drawn segment (param -4.5, the far sphere-clip end) still only separates 69-105px from the d / d-prime / n labels that share this corner of the scene by construction -- full clean separation is NOT reachable by repositioning alone, confirmed by a dense param sweep across the whole -4.509..4.245 drawn span, not just the original -1.8/-4.3 spot-checks. Took the architect's documented shorten escape hatch, ALL the way to the bare form -- the intermediate fallback (\"n·d′ = 0, never meets\", estimated ~262px wide from the renderer's own char-width proxy) was assessed and rejected as still too wide before rendering it, since even that would not clear the ~62-73px n separation: bare \"n·d′ = 0\" measures far narrower (half-width ~48px vs the original ~155px), and combined with sliding to param -4.45 (near the line's own sphere-clip end, -4.509) it clears d (~105px sep), d-prime (~131px sep) and n (~73px sep) with real margin -- pixel-verified against the rendered frame, not just the projection estimate. The dropped \"no meeting point\" half is not lost: the HUD's live no_meeting_point readout already carries that half of the message for the whole 0-12000ms window while Lpar is un-ghosted and active; the tag's only job after the ghost is to keep the ARITHMETIC fact (n·d′ = 0) riding the object, which the bare form still does."
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "This line is perpendicular to the normal. Watch it slide sideways.",
+              "text_en": "This line is perpendicular to the normal. Watch it slide.",
               "glow": "Lpar"
             },
             {
@@ -426,19 +426,18 @@
             },
             {
               "id": "s4_3b",
-              "text_en": "A marker appears where the line settles.",
-              "glow": "X"
+              "text_en": "A marker appears where the line crosses."
             },
             {
               "id": "s4_4",
-              "text_en": "A line meets a plane in two ways. Two lines will show a third, one only three dimensions allow."
+              "text_en": "A line off the plane meets it once, or never. Two lines can do a third thing."
             }
           ]
         }
       },
       "STATE_5": {
         "title": "Two Lines That Never Meet",
-        "duration": 21,
+        "duration": 28,
         "eye_capture_ms": 17500,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -493,7 +492,8 @@
             },
             {
               "id": "s5_2",
-              "text_en": "On the ground, one runs over the other, and they never touch."
+              "text_en": "On the ground, one passes above the other, and they never touch.",
+              "glow": "common_perp"
             },
             {
               "id": "s5_3",
@@ -501,23 +501,20 @@
             },
             {
               "id": "s5_4",
-              "text_en": "These are called skew lines: not parallel, and never meeting."
+              "text_en": "Not parallel, and never meeting: these are skew lines.",
+              "glow": "M2"
             },
             {
               "id": "s5_5",
-              "text_en": "The true gap lies between their nearest points.",
+              "text_en": "The true gap runs between their nearest points.",
               "glow": "common_perp"
-            },
-            {
-              "id": "s5_6",
-              "text_en": "The angle must come from directions alone."
             }
           ]
         }
       },
       "STATE_6": {
         "title": "Directions Alone Set the Angle",
-        "duration": 22,
+        "duration": 30,
         "eye_capture_ms": 15000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -561,7 +558,8 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Both directions return from one shared point, with the angle between them."
+              "text_en": "Both directions start from one shared point, with the angle between them.",
+              "glow": "a1"
             },
             {
               "id": "s6_2",
@@ -570,18 +568,19 @@
             },
             {
               "id": "s6_3",
-              "text_en": "Turn one direction past perpendicular: the angle rises to ninety, then falls back to sixty-five."
+              "text_en": "Turn one direction past ninety: the reading rises, then falls back to sixty-five.",
+              "glow": "M2"
             },
             {
               "id": "s6_4",
-              "text_en": "The angle between two lines is the smaller one, never above ninety, and comes from directions alone."
+              "text_en": "The angle between two lines is the smaller one, never above ninety."
             }
           ]
         }
       },
       "STATE_7": {
         "title": "Measure to the Normal, Then Subtract",
-        "duration": 19,
+        "duration": 24,
         "eye_capture_ms": 16000,
         "depth_ring": "extended",
         "advance_mode": "manual_click",
@@ -644,7 +643,7 @@
             },
             {
               "id": "s7_4",
-              "text_en": "Measure to the normal first, then subtract from ninety: that is the angle to the plane.",
+              "text_en": "Measure to the normal, then subtract from ninety.",
               "glow": "shadow"
             }
           ]
@@ -652,8 +651,8 @@
       },
       "STATE_8": {
         "title": "The Gap Runs Along d₁ × d₂",
-        "duration": 20,
-        "eye_capture_ms": 17500,
+        "duration": 30,
+        "eye_capture_ms": 19000,
         "depth_ring": "advanced",
         "teaching_method": "derivation_first_principles",
         "advance_mode": "manual_click",
@@ -704,7 +703,7 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "The two lines return, gap already drawn.",
+              "text_en": "The two lines return, with the gap already drawn.",
               "glow": "common_perp"
             },
             {
@@ -724,7 +723,7 @@
             },
             {
               "id": "s8_5",
-              "text_en": "Every measurement is now a number you can change. The last state gives the controls."
+              "text_en": "Next, every number becomes a control."
             }
           ]
         }
@@ -795,7 +794,7 @@
     }
   },
   "assessment": {
-    "mastery_definition": "A student has mastered this concept when they can name a point on a line as the anchor plus a multiple of the direction; use the dot product with the normal as the test for lying in a plane; state that the distance from a point to a plane is measured along the perpendicular, never any other segment; classify a line-plane pair as meeting once or never from the sign of n·d; recognise that two non-parallel, non-meeting lines in space are skew rather than intersecting; and state that the angle between two lines depends only on their directions, never on where they are placed.",
+    "mastery_definition": "A student has mastered this concept when they can name a point on a line as the anchor plus a multiple of the direction; use the dot product with the normal as the test for lying in a plane; state that the distance from a point to a plane is measured along the perpendicular, never any other segment; classify a line off the plane as meeting it once or never from the sign of n·d; recognise that two non-parallel, non-meeting lines in space are skew rather than intersecting; and state that the angle between two lines depends only on their directions, never on where they are placed.",
     "questions": [
       {
         "q_id": "q1",
@@ -1069,12 +1068,16 @@
               "reveal_at_ms": 2000,
               "grow_ms": 2000,
               "show_lambda_marker": true,
-              "lambda": { "knob": "lambda" }
+              "lambda": { "knob": "lambda" },
+              "lambda_label": "r",
+              "note": "F2 item 2 (2026-08-21): the λ marker at a+λd IS r, the formula's own point. lambda_label is the consumer field field_3d_renderer.ts reads at the point-collection step (~14713: res.lines[li].lambda_label) for exactly this marker, but the F11 lines producer (~13204-13239) never assigns rec.lambda_label from the authored line -- so today this field is INERT and the marker still renders with no text. Authored forward-compatible; verified NOT yet visible in the rendered frame. Needs a one-line engine fix (rec.lambda_label = o.lambda_label || null; inside the show_lambda_marker block) before it will show. See engine_bug_queue bug_class vg_lambda_marker_label_field_read_by_consumer_never_written_by_producer."
             }
           ],
           "animate": [
-            { "knob": "lambda", "from": -3.5, "to": 3.5, "start_ms": 4000, "duration_ms": 13000, "easing": "linear" }
+            { "knob": "lambda", "from": -3.5, "to": 3.5, "start_ms": 4000, "duration_ms": 9000, "easing": "linear" },
+            { "knob": "lambda", "from": 3.5, "to": -3.5, "start_ms": 13000, "duration_ms": 9000, "easing": "linear" }
           ],
+          "animate_loop_ms": 22000,
           "value_readouts": [],
           "controls": ["lambda"],
           "control_ranges": {
@@ -1087,7 +1090,7 @@
         "caption": "One point, one normal",
         "formula_overlay": "n·(r − a) = 0",
         "show_sliders": true,
-        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_seg"],
+        "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_point", "vg_lp_seg"],
         "camera_position": [3.217652, 1.965298, -6.051547],
         "vg": {
           "mode": "lines_planes",
@@ -1104,6 +1107,16 @@
               "role": "region",
               "show_normal": true,
               "normal_label": "n"
+            }
+          ],
+          "points": [
+            {
+              "id": "a",
+              "position": [0, -0.4, 0],
+              "role": "neutral",
+              "label": "a",
+              "reveal_at_ms": 0,
+              "grow_ms": 400
             }
           ],
           "lines": [
@@ -1123,8 +1136,8 @@
               "label": "v",
               "from": "P1",
               "to": { "lerp": [ { "on": "P1", "u": -1.3, "v": 0.6 }, { "on": "P1", "u": 1.1, "v": -0.8 } ], "t": { "knob": "aux_a" } },
-              "reveal_at_ms": 6500,
-              "hide_at_ms": 11200,
+              "reveal_at_ms": 4800,
+              "hide_at_ms": 15300,
               "readout": "n_dot_v",
               "against": "P1"
             },
@@ -1134,7 +1147,7 @@
               "label": "v",
               "from": "P1",
               "to": { "lerp": [ { "on": "P1", "u": 1.1, "v": -0.8 }, [1.556288, 0.716738, 1.192001] ], "t": { "knob": "aux_b" } },
-              "reveal_at_ms": 11150,
+              "reveal_at_ms": 15250,
               "grow_ms": 0,
               "readout": "n_dot_v",
               "against": "P1"
@@ -1142,8 +1155,10 @@
           ],
           "animate": [
             { "knob": "half_extent", "from": 0.4, "to": 3.0, "start_ms": 0, "duration_ms": 4000, "easing": "smoothstep" },
-            { "knob": "aux_a", "from": 0, "to": 1, "start_ms": 6500, "duration_ms": 4000, "easing": "smoothstep" },
-            { "knob": "aux_b", "from": 0, "to": 1, "start_ms": 11200, "duration_ms": 2800, "easing": "smoothstep" }
+            { "knob": "aux_a", "from": 0, "to": 1, "start_ms": 4800, "duration_ms": 10450, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 0, "to": 1, "start_ms": 15300, "duration_ms": 3000, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 1, "to": 0.62, "start_ms": 18600, "duration_ms": 3400, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 0.62, "to": 1, "start_ms": 22300, "duration_ms": 4400, "easing": "smoothstep" }
           ],
           "value_readouts": ["n_dot_v"],
           "controls": ["half_extent"]
@@ -1152,7 +1167,7 @@
       "STATE_3": {
         "label": "The perpendicular is the shortest segment",
         "caption": "The perpendicular is shortest",
-        "formula_overlay": "D = |n·(q − a)| ⁄ ‖n‖",
+        "formula_overlay": "distance = |n·(q − a)| ⁄ ‖n‖",
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_point", "vg_lp_seg"],
         "camera_position": [4.918101, 6.155995, -4.749317],
         "vg": {
@@ -1174,10 +1189,19 @@
           ],
           "points": [
             {
+              "id": "a",
+              "position": [0, -0.4, 0],
+              "role": "neutral",
+              "label": "a",
+              "reveal_at_ms": 0,
+              "grow_ms": 400
+            },
+            {
               "id": "q",
               "position": [1.93, 1.19, 0.51],
               "role": "neutral",
               "label": "q",
+              "offset": { "along": [0, 1, 0], "zero": 1.19, "knob": "q_height" },
               "reveal_at_ms": 0,
               "grow_ms": 400
             },
@@ -1197,7 +1221,7 @@
               "from": "q",
               "to": "foot_sweep",
               "reveal_at_ms": 0,
-              "hide_at_ms": 15500,
+              "hide_at_ms": 14200,
               "readout": "length"
             }
           ],
@@ -1207,20 +1231,22 @@
             "to": "P1",
             "foot_id": "true_foot",
             "role": "derived",
-            "reveal_at_ms": 15450,
+            "reveal_at_ms": 14150,
             "grow_ms": 0,
             "show_right_angle": true
           },
           "animate": [
-            { "knob": "aux_a", "from": -2.2, "to": 1.6, "start_ms": 2500, "duration_ms": 9500, "easing": "linear" },
-            { "knob": "aux_a", "from": 1.6, "to": 0, "start_ms": 12000, "duration_ms": 3500, "easing": "smoothstep" }
+            { "knob": "aux_a", "from": -2.2, "to": 1.6, "start_ms": 2500, "duration_ms": 9000, "easing": "linear" },
+            { "knob": "aux_a", "from": 1.6, "to": 0, "start_ms": 11500, "duration_ms": 2600, "easing": "smoothstep" },
+            { "knob": "q_height", "from": 1.19, "to": 2.2, "start_ms": 15500, "duration_ms": 6000, "easing": "smoothstep" },
+            { "knob": "q_height", "from": 2.2, "to": 1.19, "start_ms": 21800, "duration_ms": 6700, "easing": "smoothstep" }
           ],
           "value_readouts": ["segment_length", "point_plane_distance"],
           "controls": []
         }
       },
       "STATE_4": {
-        "label": "A line meets a plane once, or never",
+        "label": "A line off the plane meets it once, or never",
         "caption": "Crosses, or never touches",
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_arc", "vg_lp_point"],
         "camera_position": [-8.568386, 4.057115, -1.510821],
@@ -1248,7 +1274,7 @@
               "size": 0,
               "role": "neutral",
               "label": "n·d′ = 0",
-              "reveal_at_ms": 9500
+              "reveal_at_ms": 12000
             }
           ],
           "lines": [
@@ -1259,7 +1285,7 @@
               "role": "dir2",
               "label": "d′",
               "reveal_at_ms": 0,
-              "ghost_at_ms": 9500,
+              "ghost_at_ms": 12000,
               "offset": { "along": [0.379337, 1.083821, -4.866357], "zero": 0.5, "knob": "aux_a" }
             },
             {
@@ -1268,7 +1294,7 @@
               "dir": [0.957580, 0.256298, 0.131726],
               "role": "dir1",
               "label": "d",
-              "reveal_at_ms": 9500,
+              "reveal_at_ms": 12050,
               "grow_ms": 800,
               "offset": { "along": [0.32152, 0.91862, 0.22966], "zero": 0, "knob": "aux_b" }
             }
@@ -1279,7 +1305,7 @@
               "between": ["Lpar", "P1.normal"],
               "readout": "angle_line_normal_deg",
               "reveal_at_ms": 500,
-              "hide_at_ms": 9500
+              "hide_at_ms": 12000
             }
           ],
           "intersections": [
@@ -1289,7 +1315,7 @@
               "plane": "P1",
               "role": "derived",
               "reveal_at_ms": 1000,
-              "hide_at_ms": 9500,
+              "hide_at_ms": 12000,
               "grow_ms": 600,
               "show_right_angle": false
             },
@@ -1298,8 +1324,8 @@
               "line": "Lcut",
               "plane": "P1",
               "role": "derived",
-              "reveal_at_ms": 10300,
-              "hide_at_ms": 15000,
+              "reveal_at_ms": 13300,
+              "hide_at_ms": 17500,
               "size": 0,
               "show_right_angle": false
             },
@@ -1308,14 +1334,16 @@
               "line": "Lcut",
               "plane": "P1",
               "role": "derived",
-              "reveal_at_ms": 15000,
+              "reveal_at_ms": 17500,
               "grow_ms": 0,
               "show_right_angle": false
             }
           ],
           "animate": [
-            { "knob": "aux_a", "from": 0, "to": 0.55, "start_ms": 2000, "duration_ms": 6000, "easing": "smoothstep" },
-            { "knob": "aux_b", "from": 1.4, "to": 0, "start_ms": 10500, "duration_ms": 4500, "easing": "smoothstep" }
+            { "knob": "aux_a", "from": 0, "to": 0.55, "start_ms": 1500, "duration_ms": 10500, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 1.4, "to": 0, "start_ms": 12900, "duration_ms": 4600, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 0, "to": 0.5, "start_ms": 18500, "duration_ms": 6000, "easing": "smoothstep" },
+            { "knob": "aux_b", "from": 0.5, "to": 0, "start_ms": 24800, "duration_ms": 6200, "easing": "smoothstep" }
           ],
           "value_readouts": ["angle_line_normal_deg", "d_dot_n", "no_meeting_point", "lambda", "intersection_point"],
           "controls": []
@@ -1331,8 +1359,8 @@
           "reveal_ms": 1,
           "camera_mode": "steps",
           "camera_steps": [
-            { "at_ms": 5000, "az": -38, "el": 56, "dist": 9.5, "ease_ms": 12000 },
-            { "at_ms": 20000, "ease_ms": 0 }
+            { "at_ms": 5000, "az": -38, "el": 56, "dist": 9.5, "ease_ms": 22900 },
+            { "at_ms": 28200, "ease_ms": 0 }
           ],
           "lines": [
             {
@@ -1423,11 +1451,12 @@
             }
           ],
           "animate": [
-            { "knob": "aux_a", "from": 0, "to": 1.5, "start_ms": 1500, "duration_ms": 3500, "easing": "smoothstep" },
-            { "knob": "aux_a", "from": 1.5, "to": -1.5, "start_ms": 5000, "duration_ms": 4000, "easing": "smoothstep" },
-            { "knob": "aux_a", "from": -1.5, "to": 0, "start_ms": 9000, "duration_ms": 1500, "easing": "smoothstep" },
-            { "knob": "theta_deg", "from": 69.3846, "to": 69.3846, "start_ms": 0, "duration_ms": 10500, "easing": "linear" },
-            { "knob": "theta_deg", "from": 69.3846, "to": 115, "start_ms": 10500, "duration_ms": 9000, "easing": "linear" }
+            { "knob": "aux_a", "from": 0, "to": 1.5, "start_ms": 1500, "duration_ms": 4000, "easing": "smoothstep" },
+            { "knob": "aux_a", "from": 1.5, "to": -1.5, "start_ms": 5500, "duration_ms": 5000, "easing": "smoothstep" },
+            { "knob": "aux_a", "from": -1.5, "to": 0, "start_ms": 10500, "duration_ms": 3200, "easing": "smoothstep" },
+            { "knob": "theta_deg", "from": 69.3846, "to": 69.3846, "start_ms": 0, "duration_ms": 13700, "easing": "linear" },
+            { "knob": "theta_deg", "from": 69.3846, "to": 90, "start_ms": 13700, "duration_ms": 3600, "easing": "linear" },
+            { "knob": "theta_deg", "from": 90, "to": 115, "start_ms": 17300, "duration_ms": 12400, "easing": "linear" }
           ],
           "value_readouts": ["angle_lines_deg"],
           "controls": ["theta_deg"],
@@ -1448,7 +1477,8 @@
           "camera_mode": "steps",
           "camera_steps": [
             { "at_ms": 0, "az": 140, "el": 26, "dist": 8.0, "ease_ms": 1800 },
-            { "at_ms": 17000, "ease_ms": 0 }
+            { "at_ms": 14300, "az": 140, "el": 26, "dist": 8.85, "ease_ms": 9400 },
+            { "at_ms": 24000, "ease_ms": 0 }
           ],
           "planes": [
             {
@@ -1491,14 +1521,34 @@
               "grow_ms": 2500
             }
           ],
+          "points": [
+            {
+              "id": "arc_normal_tag",
+              "position": [1.379818, 0.455831, 0.298285],
+              "size": 0,
+              "role": "neutral",
+              "label": "55.0°",
+              "reveal_at_ms": 9100,
+              "note": "B3 repair (2026-08-22): repositioned to SCREEN-PERPENDICULAR clearance from the arc_normal stroke, not radial distance from the apex -- the prior radial placement put half of '55.0°''s glyphs on top of the d line. position = apex + 0.900*b1hat + 0.500*nhat, where apex = Lcut.anchor, b1hat is the arc's tangent-perpendicular basis vector and nhat = P1's normal direction. Worst measured screen gap from the stroke: 15.6 px at camera entry (dist 8.0), 14.1 px at the STATE_7 camera_steps mid pose (dist 8.85) -- both clear of the 12 px collision bar. Analytic figure from the shipped vgResolveLinesPlanes geometry, NOT yet pixel-verified against a rendered frame -- quality_auditor/eye_walker to confirm against THE EYE's real captured frames."
+            },
+            {
+              "id": "arc_plane_tag",
+              "position": [1.428782, -1.022028, 0.923360],
+              "size": 0,
+              "role": "neutral",
+              "label": "θ = 35.0°",
+              "reveal_at_ms": 14100,
+              "note": "B3 repair (2026-08-22) companion tag for arc_plane -- same screen-perpendicular mechanism as arc_normal_tag's note. position = apex + 0.950*shat - 0.925*fhat + 0.100*nhat, where shat/fhat are the arc's own in-plane tangent basis vectors at its shared apex (Lcut.anchor). Worst measured screen gap from the stroke: 16.1 px at camera entry, 14.6 px at the dist 8.85 mid pose -- MEASURED AGAINST THE OLD BARE '35.0°' STRING. F2 repair (2026-08-26): relabelled to 'θ = 35.0°' to bind the formula_overlay's unbound θ (sin θ = |d·n| / (‖d‖‖n‖) named no on-screen object). This is a POST-HOC widening of the same string this note's margin was measured on -- 5 glyphs ('35.0°') to 9 ('θ = 35.0°'), roughly +80% of ink width, added via pmCreateAutoLabel's CENTERED auto-width canvas (ctx.textAlign='center' at c.width/2, sprite anchored at its quad centre), so the growth is NOT purely one-sided -- it pushes the ink's near edge toward the arc_plane stroke by roughly HALF of whatever the added width measures on the actual capture, eating into the 16.1 px / 14.6 px margins from both this change and the pre-existing measurement's own recorded ~55 px optimism bias elsewhere in this same concept (the STATE_5 label-sweep note). I could not obtain a same-environment (THE EYE's headless Chromium, Cambria-Math-capable) canvas measurement of 'θ = 35.0°' at this sprite's exact font/scale from authoring alone, and this concept's own history shows analytic estimates for this exact kind of question have been wrong before. NOT CERTIFIED SAFE -- flagged for the founder's pixel check (THE EYE) at both camera poses (entry dist 8.0, mid-ease dist 8.85) before this is treated as resolved; if the rendered gap has dropped below the 12 px collision bar, the mitigation is to drop the ' = ' (label 'θ 35.0°', 2 fewer glyphs) or extend the 0.950/0.100 offset coefficients outward -- not attempted here, since doing either without a pixel-verification loop would be a second unverified guess stacked on the first."
+            }
+          ],
           "angle_arcs": [
             {
               "id": "arc_normal",
               "between": ["Lcut", "P1.normal"],
               "readout": "angle_line_normal_deg",
               "radius": 0.62,
-              "reveal_at_ms": 8000,
-              "grow_ms": 2500,
+              "reveal_at_ms": 7100,
+              "grow_ms": 2000,
               "note": "radius stepped BELOW the default 0.9 for two reasons, both measured on the post-#118 capture: at 0.9 the arc drew ~208px while the normal arm drew ~180px, so it terminated PAST the tip of the arm it measures to; and arc_plane sits at 0.95, so the 53% step is what lets a reader see 55 and 35 as two arcs rather than one continuous 90 curve"
             },
             {
@@ -1506,8 +1556,8 @@
               "between": ["Lcut", "P1"],
               "readout": "angle_line_plane_deg",
               "radius": 0.95,
-              "reveal_at_ms": 12000,
-              "grow_ms": 3000,
+              "reveal_at_ms": 12100,
+              "grow_ms": 2000,
               "note": "the outer of the stepped pair; both arms here are full-length lines, so 0.95 terminates on both"
             }
           ],
@@ -1524,6 +1574,11 @@
         "vg": {
           "mode": "lines_planes",
           "reveal_ms": 1,
+          "camera_mode": "steps",
+          "camera_steps": [
+            { "at_ms": 19200, "az": -38, "el": 56, "dist": 8.8, "ease_ms": 10800 },
+            { "at_ms": 30300, "ease_ms": 0 }
+          ],
           "aux_a": 0,
           "lines": [
             {
@@ -1561,8 +1616,8 @@
               "of": ["M1", "M2"],
               "scale": 1,
               "label": "d₁×d₂",
-              "reveal_at_ms": 3000,
-              "grow_ms": 3000
+              "reveal_at_ms": 5200,
+              "grow_ms": 2600
             },
             {
               "id": "a2_minus_a1",
@@ -1576,9 +1631,9 @@
             }
           ],
           "animate": [
-            { "knob": "aux_a", "from": 0, "to": 1, "start_ms": 8500, "duration_ms": 7000, "easing": "smoothstep" }
+            { "knob": "aux_a", "from": 0, "to": 1, "start_ms": 11700, "duration_ms": 7000, "easing": "smoothstep" }
           ],
-          "value_readouts": ["numerator_triple_product", "cross_norm", "skew_distance"],
+          "value_readouts": ["skew_distance"],
           "controls": []
         }
       },
@@ -1619,7 +1674,9 @@
               "bind_lambda_span": true,
               "show_lambda_marker": true,
               "lambda": { "knob": "lambda" },
-              "reveal_at_ms": 0
+              "lambda_label": "r",
+              "reveal_at_ms": 0,
+              "note": "F2 item 2 (2026-08-21): same lambda_label wiring gap as STATE_1's L1 -- authored forward-compatible, currently INERT (renders no text) until field_3d_renderer.ts's F11 lines producer assigns rec.lambda_label from the authored line. See engine_bug_queue bug_class vg_lambda_marker_label_field_read_by_consumer_never_written_by_producer."
             },
             {
               "id": "M1",
@@ -1658,6 +1715,14 @@
             }
           ],
           "points": [
+            {
+              "id": "a",
+              "position": [-0.8, 0.6, -0.5],
+              "role": "neutral",
+              "label": "a",
+              "groups": ["A"],
+              "reveal_at_ms": 0
+            },
             {
               "id": "q",
               "position": [1.93, 1.19, 0.51],
@@ -1698,7 +1763,9 @@
           },
           "animate": [
             { "knob": "lambda", "from": -3.5, "to": 3.5, "start_ms": 0, "duration_ms": 9000, "easing": "linear" },
-            { "knob": "lambda", "from": 3.5, "to": -3.5, "start_ms": 9000, "duration_ms": 9000, "easing": "linear" }
+            { "knob": "lambda", "from": 3.5, "to": -3.5, "start_ms": 9000, "duration_ms": 9000, "easing": "linear" },
+            { "knob": "line2_offset", "from": 0.0, "to": 2.5, "start_ms": 0, "duration_ms": 9000, "easing": "linear" },
+            { "knob": "line2_offset", "from": 2.5, "to": 0.0, "start_ms": 9000, "duration_ms": 9000, "easing": "linear" }
           ],
           "animate_loop_ms": 18000
         }
