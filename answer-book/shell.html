@@ -12,10 +12,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Answer Book</title>
+<!-- Title + social-preview card are BUILT, not static: they name the stream the
+     artifact actually contains, so a shared link can never advertise subjects
+     the file does not hold. This link's first impression IS a WhatsApp preview
+     card, which makes it product surface rather than metadata. -->
+<!--__HEAD_META__-->
+<!-- The Viditra mark as the tab icon. Inlined as a data: URI rather than linked,
+     because the book ships as ONE self-contained file that must also work from
+     file:// — an external favicon would 404 there and in the emailed copy. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23CB6843'/%3E%3Cg transform='translate(4 4)'%3E%3Cellipse cx='12' cy='12' rx='9.6' ry='4' stroke='%23fff' stroke-width='1.5' fill='none' transform='rotate(45 12 12)'/%3E%3Cellipse cx='12' cy='12' rx='9.6' ry='4' stroke='%23fff' stroke-width='1.5' fill='none' transform='rotate(135 12 12)'/%3E%3Ccircle cx='18.79' cy='18.79' r='1.5' fill='%23fff'/%3E%3Ccircle cx='5.21' cy='5.21' r='1.5' fill='%23fff'/%3E%3Ccircle cx='12' cy='12' r='2.3' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<!-- Fraunces is the Viditra display face (website/css/site.css --font-disp); it
+     replaced Source Serif 4 so the book and the marketing site speak in one
+     voice. Kalam stays — it is the page's handwriting, not brand chrome. -->
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 /*__CSS__*/
 </style>
@@ -24,7 +35,12 @@
 
 <header class="topbar">
   <div class="brand">
-    <svg class="brand-mark" width="22" height="26" viewBox="0 0 22 26" aria-hidden="true"><rect x="1" y="1" width="20" height="24" rx="2" fill="#FDFBF4" stroke="#1A2F6B" stroke-width="1.6"/><line x1="6" y1="1.8" x2="6" y2="24.2" stroke="#C62828" stroke-width="1.4"/><line x1="9" y1="8" x2="18" y2="8" stroke="#1A2F6B" stroke-width="1.2" opacity="0.55"/><line x1="9" y1="12.5" x2="18" y2="12.5" stroke="#1A2F6B" stroke-width="1.2" opacity="0.55"/><line x1="9" y1="17" x2="15" y2="17" stroke="#1A2F6B" stroke-width="1.2" opacity="0.55"/></svg>
+    <!-- The Viditra mark: the same two-orbit atom the marketing site and the
+         teacher app carry, in the same clay rounded square. It replaced a
+         bespoke notebook glyph that belonged to no other surface. -->
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg>
+    </span>
     <span class="brand-name">Answer Book</span>
     <span class="brand-sub" id="boardLabel"></span>
   </div>
@@ -49,16 +65,30 @@
   <div class="cat-hero">
     <!-- Subject-neutral since the book stopped being physics-only: it now carries
          physics, chemistry and mathematics. The subject chips below say which. -->
-    <p class="cat-eyebrow">Telangana IPE · First year</p>
+    <p class="cat-eyebrow" id="catEyebrow">Telangana IPE · First year</p>
     <h1>Question Bank</h1>
     <p class="cat-tag">Every answer, written the way the examiner marks it.</p>
     <p class="cat-sub" id="catSub"></p>
   </div>
 
   <div class="cat-filters">
-    <div class="cat-chips" id="subjectChips" role="group" aria-label="Subject" hidden></div>
+    <!-- Subject and chapter are NATIVE selects, not chip rows: 4 subjects and 38
+         chapters rendered as chips was a wall of ~40 taps a student had to scroll
+         past before reaching a single answer, and the chapter row showed every
+         subject's chapters at once. A native select opens the phone's own picker,
+         costs two lines of page height, and is the control students already know.
+         Question type stays chips — 4 options, flipped often, one tap not two. -->
+    <div class="cat-selects">
+      <label class="cat-field" id="subjectField" hidden>
+        <span class="cat-field-label">Subject</span>
+        <select class="cat-select" id="subjectSelect" aria-label="Subject"></select>
+      </label>
+      <label class="cat-field" id="unitField" hidden>
+        <span class="cat-field-label">Chapter</span>
+        <select class="cat-select" id="unitSelect" aria-label="Chapter"></select>
+      </label>
+    </div>
     <div class="cat-chips" id="qtypeChips" role="group" aria-label="Question type"></div>
-    <div class="cat-chips" id="unitChips" role="group" aria-label="Chapter" hidden></div>
     <input type="search" class="cat-search" id="catSearch"
            placeholder="Search questions&hellip; (e.g. parallelogram, projectile, 45)">
   </div>

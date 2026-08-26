@@ -711,42 +711,48 @@ test('chapter chips appear from the second unit and filter to their own chapter'
     // The row is stubbed in shell.html but was never populated, so for one whole unit
     // it sat hidden and empty. It has to stay hidden while there is one chapter (a
     // filter with a single choice is noise) and appear the moment there are two.
+    // The chapter filter became a native <select> (2026-08-26): 38 chapters as
+    // chips was a wall a student had to scroll past to reach one answer. With no
+    // subject chosen every chapter is still offered — grouped by paper through
+    // <optgroup> — so this gate still sees the whole inventory.
     const shape = await page.evaluate(() => {
         const units = (window as any).PM_UNITS as any[];
-        const row = document.getElementById('unitChips')!;
+        const sel = document.getElementById('unitSelect') as HTMLSelectElement;
         return {
             unitCount: units.length,
-            hidden: row.hidden,
-            chips: [...row.querySelectorAll('.cat-chip')].map((c) => c.getAttribute('data-unit')),
+            hidden: document.getElementById('unitField')!.hidden,
+            options: [...sel.querySelectorAll('option')].map((o) => o.getAttribute('data-unit')),
             want: ['ALL', ...units.map((u: any) => ((u.subject || 'physics') + '-' + u.number))],
         };
     });
     expect(shape.unitCount).toBeGreaterThanOrEqual(2);   // else this gate proves nothing
     expect(shape.hidden).toBe(false);
-    expect(shape.chips).toEqual(shape.want);             // All chapters, then one per unit in order
+    expect(shape.options).toEqual(shape.want);           // All chapters, then one per unit in order
 
-    // Each chip shows only its own chapter, and its count is that chapter's whole
-    // inventory — coming-soon entries included, exactly like the qtype chips.
+    // Each option filters to only its own chapter, and its count is that chapter's
+    // whole inventory — coming-soon entries included, like the qtype chips.
     for (const key of shape.want) {
-        await page.click('#unitChips .cat-chip[data-unit="' + key + '"]');
+        await page.selectOption('#unitSelect', key);
         await page.waitForTimeout(200);
         const r = await page.evaluate((k) => {
             const units = (window as any).PM_UNITS as any[];
             const mine = k === 'ALL' ? units : units.filter((u: any) => ((u.subject || 'physics') + '-' + u.number) === k);
-            const chip = document.querySelector('#unitChips .cat-chip[data-unit="' + k + '"]')!;
+            const sel = document.getElementById('unitSelect') as HTMLSelectElement;
+            const opt = sel.querySelector('option[data-unit="' + k + '"]')!;
+            const m = /\((\d+)\)\s*$/.exec(opt.textContent || '');   // trailing "(N)"
             return {
                 visible: document.querySelectorAll('.cat-card').length,
                 headings: document.querySelectorAll('.cat-section').length,
                 want: mine.reduce((a: number, u: any) => a + u.questions.length, 0),
                 wantHeadings: mine.length,
-                chipCount: Number(chip.querySelector('.ct')!.textContent),
-                chipOn: chip.classList.contains('on'),
+                optCount: m ? Number(m[1]) : -1,
+                selected: sel.value === k,
             };
         }, key);
-        expect(r.chipOn, key + ' chip active').toBe(true);
+        expect(r.selected, key + ' option selected').toBe(true);
         expect(r.visible, key + ' visible cards').toBe(r.want);
         expect(r.headings, key + ' chapter headings').toBe(r.wantHeadings);
-        expect(r.chipCount, key + ' chip count').toBe(r.want);
+        expect(r.optCount, key + ' option count').toBe(r.want);
     }
 });
 
@@ -1071,7 +1077,7 @@ test('the triage strip appears under a chapter filter and card counts stay exact
     }));
     expect(landing.triageHidden).toBe(true);     // no chapter filter → no strip
 
-    await page.click('.cat-chip[data-unit="physics-4"]');
+    await page.selectOption('#unitSelect', 'physics-4');
     await page.waitForTimeout(150);
     const filtered = await page.evaluate(() => {
         const u4 = ((window as any).PM_UNITS as any[]).find((u) => ((u.subject || 'physics') + '-' + u.number) === 'physics-4');
@@ -1631,8 +1637,9 @@ test('the catalog filters by subject and each section shows its own mark value',
         return by;
     });
     const names = Object.keys(subjects);
-    const row = page.locator('#subjectChips');
-    // One subject = no row at all; the physics-only build must look untouched.
+    // The subject filter is a native <select> (2026-08-26) — see the chapter test.
+    const row = page.locator('#subjectField');
+    // One subject = no picker at all; the physics-only build must look untouched.
     if (names.length < 2) {
         await expect(row).toBeHidden();
         return;
@@ -1640,7 +1647,7 @@ test('the catalog filters by subject and each section shows its own mark value',
     await expect(row).toBeVisible();
 
     for (const s of names) {
-        await page.click(`#subjectChips [data-subject="${s}"]`);
+        await page.selectOption('#subjectSelect', s);
         await page.waitForTimeout(200);
         const shown = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
         expect(shown, `cards shown for ${s}`).toBe(subjects[s]);
@@ -1648,7 +1655,7 @@ test('the catalog filters by subject and each section shows its own mark value',
 
     // The section heading's mark value is read off the questions, never hardcoded:
     // a Physics-I long answer is 8 marks and a Maths-1A long answer is 7.
-    await page.click('#subjectChips [data-subject="ALL"]');
+    await page.selectOption('#subjectSelect', 'ALL');
     await page.waitForTimeout(200);
     const heads = await page.evaluate(() =>
         [...document.querySelectorAll('#catSections .cat-subhead')].map((h) => h.textContent || ''));

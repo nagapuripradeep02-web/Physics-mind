@@ -315,6 +315,20 @@
       never the bare number. */
   function unitKey(u) { return subjectOf(u) + '-' + u.number; }
 
+  /** The chapter name as a student should READ it in the chapter picker.
+      units.json disambiguates across papers by suffixing the subject —
+      "Atomic Structure (Chemistry)", "Functions (Maths-1A)" — which exists only
+      because every subject's chapters used to be listed together. The picker now
+      scopes by subject (or groups by it), so that suffix is noise to read past.
+      Only a KNOWN subject label is stripped, so a chapter whose real name ends in
+      brackets is never mangled, and the underlying data is untouched — this is a
+      display concern, and the notebook header still shows the full name. */
+  function chapterLabel(u) {
+    return String(u.name || '').replace(
+      /\s*\((?:Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+    );
+  }
+
   /** A QUESTION's unit key. A question carries its subject at the TOP level, and its
       unit as {number, name} with no subject of its own (src/schemas/answerBook.ts:232),
       so unitKey(question.unit) would read EVERY card as physics. Build it from the
@@ -373,52 +387,82 @@
     var coming = allEntries.length - ready;
     $('catSub').textContent = ready + ' answers ready' + (coming ? ' · ' + coming + ' more coming' : '');
 
-    // Subject chips. Hidden while the book holds ONE subject, so a physics-only
-    // build looks exactly as it did — the row appears the moment a second subject
-    // is authored. Counts are whole-inventory, static like the qtype counts below.
-    var subjRow = $('subjectChips');
-    subjRow.innerHTML = '';
+    // Name the STREAM beside the board and the year. This link is forwarded
+    // between students, so the header has to answer "is this book for me?"
+    // before the reader scrolls — the subject chips alone make that an
+    // inference. Absent (the full build) leaves the eyebrow subject-neutral.
+    var eyebrow = $('catEyebrow');
+    if (eyebrow && window.PM_STREAM) {
+      var base = 'Telangana IPE · First year';
+      eyebrow.textContent = base + ' · ' + window.PM_STREAM;
+    }
+
+    // The subject picker. Hidden while the book holds ONE subject, so a
+    // physics-only build looks exactly as it did — it appears the moment a
+    // second subject is authored. Counts are whole-inventory, static like the
+    // qtype counts below.
+    var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
+                       mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+                       botany: 'Botany' };
+    var subjField = $('subjectField');
+    var subjSel = $('subjectSelect');
     var subjects = [];
     UNITS.forEach(function (u) {
       if (subjects.indexOf(subjectOf(u)) < 0) subjects.push(subjectOf(u));
     });
-    subjRow.hidden = subjects.length < 2;
+    subjField.hidden = subjects.length < 2;
     if (subjects.length >= 2) {
-      // The chip names the PAPER, which is what a student picks by.
-      var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
-                         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-                         botany: 'Botany' };
-      var subjChips = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
+      subjSel.innerHTML = '';
+      // The option names the PAPER, which is what a student picks by.
+      var subjOpts = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
       subjects.forEach(function (sName) {
         var n = 0;
         UNITS.forEach(function (u) { if (subjectOf(u) === sName) n += u.questions.length; });
-        subjChips.push({ key: sName, label: SUBJ_LABEL[sName] || sName, n: n });
+        subjOpts.push({ key: sName, label: SUBJ_LABEL[sName] || sName, n: n });
       });
-      subjChips.forEach(function (c) {
-        var sb = document.createElement('button');
-        sb.type = 'button';
-        sb.className = 'cat-chip' + (catFilter.subject === c.key ? ' on' : '');
-        sb.setAttribute('data-subject', String(c.key));
-        sb.setAttribute('aria-pressed', catFilter.subject === c.key ? 'true' : 'false');
-        sb.appendChild(document.createTextNode(c.label));
-        var sct = document.createElement('span');
-        sct.className = 'ct';
-        sct.textContent = String(c.n);
-        sb.appendChild(sct);
-        sb.addEventListener('click', function () { catFilter.subject = c.key; catFilter.unit = 'ALL'; renderCatalog(); });
-        subjRow.appendChild(sb);
+      subjOpts.forEach(function (c) {
+        var o = document.createElement('option');
+        o.value = String(c.key);
+        o.setAttribute('data-subject', String(c.key));
+        o.textContent = c.label + ' (' + c.n + ')';
+        subjSel.appendChild(o);
       });
+      subjSel.value = catFilter.subject;
+      subjSel.className = 'cat-select' + (catFilter.subject !== 'ALL' ? ' on' : '');
+      // Rebuilt on every render, so the handler is assigned (not added) — an
+      // addEventListener here would stack a new listener per render and fire
+      // renderCatalog N times on the Nth change.
+      subjSel.onchange = function () {
+        catFilter.subject = subjSel.value;
+        // Changing subject invalidates the chapter: a physics chapter is not in
+        // the chemistry list, and a stale key would filter everything to zero.
+        catFilter.unit = 'ALL';
+        renderCatalog();
+      };
     }
 
-    // qtype chips, counts static across the whole build so they read as an
-    // inventory, not as a moving target
+    // qtype chips. The counts follow the chosen SUBJECT and CHAPTER (2026-08-26).
+    // They used to be whole-book constants, which was right while the book held
+    // one paper; once a student can pick Chemistry, "LAQ 118" beside 204 visible
+    // chemistry cards is simply a false number. Scoped this way "All N" always
+    // equals what is on screen. Search is deliberately NOT part of the scope —
+    // counts that moved on every keystroke would read as flicker, not inventory.
+    var scopedEntries = [];
+    UNITS.forEach(function (u) {
+      if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return;
+      if (catFilter.unit !== 'ALL' && unitKey(u) !== catFilter.unit) return;
+      u.questions.forEach(function (e) { scopedEntries.push(e); });
+    });
     var chipRow = $('qtypeChips');
     chipRow.innerHTML = '';
     ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
       var n = t === 'ALL'
-        ? allEntries.length
-        : allEntries.filter(function (e) { return e.section === t; }).length;
-      if (t !== 'ALL' && n === 0) return;
+        ? scopedEntries.length
+        : scopedEntries.filter(function (e) { return e.section === t; }).length;
+      // A zero chip is hidden — except when it is the ACTIVE filter. Hiding the
+      // active one strands the student: the page empties, and the control that
+      // emptied it is no longer on screen to switch off.
+      if (t !== 'ALL' && n === 0 && catFilter.qtype !== t) return;
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'cat-chip' + (catFilter.qtype === t ? ' on' : '');
@@ -434,32 +478,68 @@
       chipRow.appendChild(b);
     });
 
-    // Chapter chips, labelled by chapter NAME because that is what a student is
-    // looking for. The row appears only from the second unit on: with one chapter a
-    // chapter filter is noise, and with several a single scroll stops being usable.
-    // Counts are whole-chapter inventory, static like the qtype counts above.
-    var unitRow = $('unitChips');
-    unitRow.innerHTML = '';
-    unitRow.hidden = UNITS.length < 2;
+    // The chapter picker, labelled by chapter NAME because that is what a student
+    // looks for. Appears only from the second unit on: with one chapter a chapter
+    // filter is noise. Counts are whole-chapter inventory, static like the qtype
+    // counts above.
+    //
+    // Chapters are SCOPED to the chosen subject. Listing all 38 at once was the
+    // core defect: a student reading physics had to scroll past every chemistry
+    // and maths chapter to reach theirs. With no subject chosen the full list is
+    // still reachable, but grouped by paper via <optgroup> so the phone's own
+    // picker shows the subject as a heading.
+    var unitField = $('unitField');
+    var unitSel = $('unitSelect');
+    var scoped = UNITS.filter(function (u) {
+      return catFilter.subject === 'ALL' || subjectOf(u) === catFilter.subject;
+    });
+    unitField.hidden = UNITS.length < 2;
     if (UNITS.length >= 2) {
-      var unitChips = [{ key: 'ALL', label: 'All chapters', n: allEntries.length }];
-      UNITS.forEach(function (u) {
-        unitChips.push({ key: unitKey(u), label: u.name, n: u.questions.length });
-      });
-      unitChips.forEach(function (c) {
-        var ub = document.createElement('button');
-        ub.type = 'button';
-        ub.className = 'cat-chip' + (catFilter.unit === c.key ? ' on' : '');
-        ub.setAttribute('data-unit', String(c.key));
-        ub.setAttribute('aria-pressed', catFilter.unit === c.key ? 'true' : 'false');
-        ub.appendChild(document.createTextNode(c.label));
-        var uct = document.createElement('span');
-        uct.className = 'ct';
-        uct.textContent = String(c.n);
-        ub.appendChild(uct);
-        ub.addEventListener('click', function () { catFilter.unit = c.key; renderCatalog(); });
-        unitRow.appendChild(ub);
-      });
+      unitSel.innerHTML = '';
+      var scopedTotal = 0;
+      scoped.forEach(function (u) { scopedTotal += u.questions.length; });
+      var allOpt = document.createElement('option');
+      allOpt.value = 'ALL';
+      allOpt.setAttribute('data-unit', 'ALL');
+      allOpt.textContent = 'All chapters (' + scopedTotal + ')';
+      unitSel.appendChild(allOpt);
+
+      var addUnit = function (u, parent) {
+        var o = document.createElement('option');
+        o.value = unitKey(u);
+        o.setAttribute('data-unit', unitKey(u));
+        // Once the subject is known — either picked, or the optgroup heading
+        // says it — a trailing "(Chemistry)" on the chapter name is noise the
+        // student has to read past. Strip ONLY a known subject label, so a
+        // chapter whose real name contains brackets is never mangled.
+        o.textContent = chapterLabel(u) + ' (' + u.questions.length + ')';
+        parent.appendChild(o);
+      };
+
+      if (catFilter.subject === 'ALL' && subjects.length >= 2) {
+        subjects.forEach(function (sName) {
+          var inSubj = UNITS.filter(function (u) { return subjectOf(u) === sName; });
+          if (!inSubj.length) return;
+          var g = document.createElement('optgroup');
+          g.label = SUBJ_LABEL[sName] || sName;
+          inSubj.forEach(function (u) { addUnit(u, g); });
+          unitSel.appendChild(g);
+        });
+      } else {
+        scoped.forEach(function (u) { addUnit(u, unitSel); });
+      }
+
+      // A chapter key from the previously-selected subject is not in this list;
+      // fall back to ALL rather than leaving the select showing a value it does
+      // not contain (browsers silently blank it, which reads as broken).
+      var hasCurrent = catFilter.unit === 'ALL' || scoped.some(function (u) { return unitKey(u) === catFilter.unit; });
+      if (!hasCurrent) catFilter.unit = 'ALL';
+      unitSel.value = catFilter.unit;
+      unitSel.className = 'cat-select' + (catFilter.unit !== 'ALL' ? ' on' : '');
+      unitSel.onchange = function () {
+        catFilter.unit = unitSel.value;
+        renderCatalog();
+      };
     }
 
     var sections = $('catSections');
@@ -474,7 +554,12 @@
       var sec = document.createElement('section');
       sec.className = 'cat-section';
       var h = document.createElement('h2');
-      h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + u.name));
+      // With a subject chosen, the "(Chemistry)" suffix is redundant and costs a
+      // second line on a phone. With ALL subjects showing it is load-bearing —
+      // physics Unit 1 and chemistry Unit 1 are both on screen. The search blob
+      // keeps the full name plus the subject either way, so search is unaffected.
+      var headName = catFilter.subject === 'ALL' ? u.name : chapterLabel(u);
+      h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + headName));
       var pill = document.createElement('span');
       pill.className = 'cat-count';
       var uReady = u.questions.filter(function (e) { return e.question_id !== undefined; }).length;
@@ -829,7 +914,10 @@
       red.className = 'red-mark';
       red.innerHTML =
         '<svg width="40" height="30" viewBox="0 0 40 30">' +
-        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" stroke="#C62828" ' +
+        // The examiner's tick. style=, not stroke=, because var() is invalid in
+        // an SVG presentation attribute — the same trap that kept the figure
+        // pens navy through a full sweep of notebook.css.
+        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
         'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         '<span class="red-num">' + step.marks + '</span>';
       block.appendChild(red);
@@ -864,7 +952,12 @@
         path.setAttribute('stroke-linecap', 'round');
         path.setAttribute('stroke-linejoin', 'round');
         if (el.pen === 'pencil') {
-          path.setAttribute('stroke', '#7D8CA8');
+          // Bound to the CSS token, not a literal: a figure is drawn with the
+          // same two pens the page is written with, so a palette change must
+          // reach it. Set via .style because var() is invalid in a presentation
+          // attribute — this is exactly how the old navy survived a sweep of
+          // notebook.css, and why a computed-style scan could not see it.
+          path.style.stroke = 'var(--pencil)';
           path.setAttribute('stroke-width', String(el.w || 1.6));
           path.setAttribute('stroke-dasharray', '6 5');
           // dasharray is spent on the dashes → reveal via clip wipe
@@ -880,7 +973,7 @@
           svg.appendChild(g);
           el._node = path; el._clipRect = rect;
         } else {
-          path.setAttribute('stroke', '#1A2F6B');
+          path.style.stroke = 'var(--ink)';        /* the pen — see --pencil above */
           path.setAttribute('stroke-width', String(el.w || 2.25));
           svg.appendChild(path);
           el._node = path;
