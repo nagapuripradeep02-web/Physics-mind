@@ -12681,6 +12681,38 @@ export const FIELD_3D_RENDERER_CODE = `
         return "|a×b| = |b×a|";
     }
 
+    // ── THE DOT-PRODUCT ROW'S NAME, DERIVED FROM THE OBJECT IT MEASURES ─────
+    //   bug_class readout_family_label_is_a_hardcoded_constant_so_renaming_an_
+    //   authored_object_makes_the_panel_name_the_wrong_one (CRITICAL).
+    //   VG_READOUT_LABEL.d_dot_n was the constant string "n·d", and the comment
+    //   above the intersection publish site justified it by quoting a fact
+    //   about CONCEPT DATA: "on the state this exists for, both lines carry the
+    //   same generic label d". That was true when written. An authoring fix
+    //   then renamed lines_and_planes_in_space STATE_4's parallel line to d′
+    //   (to cure a DIFFERENT defect — two lines both labelled d) and falsified
+    //   it, silently: for the first 9.5 s of the concept's misconception state
+    //   the panel printed "n·d = 0.000" while the only line on screen was
+    //   labelled d′ and no line called d existed yet, then printed
+    //   "n·d = 0.574" for the OTHER line at t = 17500. One symbol, two lines,
+    //   one state — and the state's whole job is to attach that arithmetic to
+    //   the right line. Nothing recomputed the constant, because a constant has
+    //   no link back to the data its comment depended on.
+    //
+    //   THE RULE, which is the transferable part: a display label that NAMES AN
+    //   AUTHORED OBJECT is derived from that object's authored label, never
+    //   from a constant. A constant is legal only for a token whose subject can
+    //   never be renamed (|a|, θ, λ, "distance" — the quantity IS the name).
+    //   And a code comment that justifies a constant by quoting a fact about
+    //   concept data is a dependency on that data with no link back to it: when
+    //   the comment states a data fact, derive from the data instead.
+    //
+    //   The sibling of vgCrossMagLabelText above, and the same doctrine: ONE
+    //   source for the name and the thing it names.
+    function vgDotLabelText(fixedSym, subjectLabel, fallbackSym) {
+        var s = (typeof subjectLabel === "string" && subjectLabel !== "") ? subjectLabel : fallbackSym;
+        return fixedSym + "·" + s;
+    }
+
     // ── F21 · vg.animate[] — per-state parameter ramps ──────────────────────
     //   A PORT of two mechanisms this renderer already ships, not an
     //   invention: param_ramp (nlbRunParamRamp) and idle_auto_sweep
@@ -13459,7 +13491,18 @@ export const FIELD_3D_RENDERER_CODE = `
             // The readout tokens NO subject could claim unambiguously this frame.
             // Empty on every well-authored state; never silently dropped, on the
             // PM_vgPoolOverflow precedent.
-            readout_conflicts: []
+            readout_conflicts: [],
+            // ── A LABEL THAT NAMES AN AUTHORED OBJECT IS DERIVED FROM THAT
+            //    OBJECT, NEVER FROM A CONSTANT (bug_class readout_family_label_
+            //    is_a_hardcoded_constant_so_renaming_an_authored_object_makes_
+            //    the_panel_name_the_wrong_one). Token -> the label text the
+            //    panel must print for the subject THIS frame resolved,
+            //    published at the SAME statement as the value so the two can
+            //    never separate. A token absent from this bag renders its
+            //    VG_READOUT_LABEL constant unchanged — which is every
+            //    products-mode token, and every lines/planes token whose
+            //    subject is fixed by the token itself.
+            readout_labels: {}
         };
         var i, o, frac;
 
@@ -13615,6 +13658,13 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
                 if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac)) {
                     out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
+                    // The row NAMES THE SEGMENT IT MEASURES, off the same
+                    // authored label the sprite beside the segment draws. Both
+                    // of today's authored segments carry "v", so this renders
+                    // the constant it replaces byte for byte — which is the
+                    // point: the panel now survives a rename it used to
+                    // contradict, and one publish site owns name AND number.
+                    out.readout_labels.n_dot_v = vgDotLabelText("n", o.label, "v");
                 }
             }
         }
@@ -13706,16 +13756,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
             // Δ2b — the four numbers describe THIS intersection's line, so they
-            // wait for THIS intersection's own reveal instant.
-            if (vgArrived(ifrac)) arrivedMeets.push({ id: iId, meet: meet });
+            // wait for THIS intersection's own reveal instant. The line's own
+            // AUTHORED LABEL rides along, because the panel has to say which
+            // line it is describing and iL is the only place that knows.
+            if (vgArrived(ifrac)) arrivedMeets.push({ id: iId, meet: meet, subject: iL.label });
         }
         // ── ONE SUBJECT AT A TIME, AND NEVER A SILENT WINNER ────────────────
-        //   The four tokens below are NAMES, not addresses: d_dot_n means "n·d"
-        //   for whichever line the panel is describing. Two arrived
-        //   intersections both claim all four — and on the state this exists
-        //   for, both lines carry the same generic label d — so any precedence
-        //   rule (first authored, last authored, the one that exists) prints a
-        //   number the reader cannot attach to a line. That is
+        //   The four tokens below are NAMES, not addresses: d_dot_n describes
+        //   whichever line the panel is describing, and the name it PRINTS is
+        //   derived from that line's authored label (out.readout_labels), never
+        //   from a constant. Two arrived intersections both claim all four, so
+        //   any precedence rule (first authored, last authored, the one that
+        //   exists) prints a number the reader cannot attach to a line. That is
         //   vg_lines_planes_segment_readouts_compute_regardless_of_reveal_state
         //   one level up: the number is arithmetically right and describes
         //   something other than what the reader is looking at.
@@ -13728,6 +13780,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (arrivedMeets.length === 1) {
             var mt = arrivedMeets[0].meet;
             out.readouts.d_dot_n = mt.d_dot_n;
+            // ...and the row says WHICH line's direction it dotted. The
+            // one-subject-at-a-time invariant above is what makes this
+            // answerable at all: exactly one line is being described, so its
+            // authored label is the honest name for the number beside it.
+            out.readout_labels.d_dot_n = vgDotLabelText("n", arrivedMeets[0].subject, "d");
             if (mt.exists) {
                 out.readouts.lambda = mt.lambda;
                 out.readouts.intersection_point = mt.point;
@@ -14424,6 +14481,16 @@ export const FIELD_3D_RENDERER_CODE = `
         segment_length: "segment length",
         angle_lines_deg: "angle", angle_line_plane_deg: "angle to plane",
         angle_line_normal_deg: "angle to normal",
+        // These two entries are the UNLABELLED-SUBJECT form only, kept here so
+        // the tokens have a label for the §11c union check and as the fallback
+        // when an authored line/segment carries no label of its own. THE TEXT
+        // THAT REACHES THE SCREEN is derived per frame from the authored label
+        // of the subject the resolver described (out.readout_labels, via
+        // vgDotLabelText) — exactly the cross_mag arrangement above, and for
+        // exactly the same reason: a constant that names an authored object
+        // starts lying the day that object is renamed (bug_class
+        // readout_family_label_is_a_hardcoded_constant_so_renaming_an_authored_
+        // object_makes_the_panel_name_the_wrong_one).
         d_dot_n: "n·d", n_dot_v: "n·v",
         lambda: "λ", intersection_point: "meeting point",
         n_norm: "‖n‖", cross_norm: "‖d₁×d₂‖",
@@ -14533,6 +14600,16 @@ export const FIELD_3D_RENDERER_CODE = `
     function vgReadoutLine(key, vals) {
         var lab = VG_READOUT_LABEL[key];
         if (!lab) return null;
+        // ── THE DERIVED NAME WINS OVER THE TABLE ────────────────────────────
+        //   vals.__readout_labels is the resolver's per-frame token -> label
+        //   bag (out.readout_labels), carrying a name only for the tokens whose
+        //   SUBJECT IS AN AUTHORED OBJECT that can be renamed — today n·d and
+        //   n·v, each published at the same statement as its value. The table
+        //   entry stays the fallback and is what products mode always renders
+        //   (the resolver never runs there, so the bag is never present): this
+        //   line cannot change a single character of vector_products_in_space.
+        var derivedLab = (vals && vals.__readout_labels) ? vals.__readout_labels[key] : null;
+        if (typeof derivedLab === "string" && derivedLab !== "") lab = derivedLab;
         if (key === "theta_deg") return lab + " = " + vgFx(vals.theta_deg, 0) + "°";
         // The cross magnitude NAMES THE ARROW THAT IS ON SCREEN, derived from
         // the same flip_frac the arrow and its sprite are drawn from, so the
@@ -15481,7 +15558,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 // this frame (empty on every well-authored state). Published for
                 // the same reason PM_vgPoolOverflow is: a resolver that cannot
                 // say something says so out loud, where a probe can read it.
-                readout_conflicts: lpRes.readout_conflicts
+                readout_conflicts: lpRes.readout_conflicts,
+                // The NAME each of those tokens is printed under this frame,
+                // derived from the authored label of the subject the resolver
+                // described. Published for the same reason readouts is: a probe
+                // (and THE CALCULATOR's DOM harvest) must be able to check that
+                // the panel names the object on screen, not a constant.
+                readout_labels: lpRes.readout_labels
             };
         } else {
             window.PM_vgLinesPlanes = null;
@@ -15641,6 +15724,15 @@ export const FIELD_3D_RENDERER_CODE = `
                     for (var rk in lpRes.readouts) {
                         if (Object.prototype.hasOwnProperty.call(lpRes.readouts, rk)) vals[rk] = lpRes.readouts[rk];
                     }
+                    // ...and the NAMES the resolver derived for the subjects it
+                    // actually described this frame. Carried in its own bag
+                    // rather than merged into vals as tokens, because the token
+                    // key set of lpRes.readouts is itself an asserted surface
+                    // (a state's readouts arrive beat by beat, and a probe
+                    // reads that key set) — a label must not look like a value.
+                    // Set ONLY inside the mode gate: in products mode the bag
+                    // is absent and vgReadoutLine falls back to the table.
+                    vals.__readout_labels = lpRes.readout_labels;
                 }
                 var html = "";
                 for (var ri = 0; ri < keys.length; ri++) {
