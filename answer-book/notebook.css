@@ -941,6 +941,25 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   font-size: 12.5px; cursor: pointer; }
 .vw-check input { accent-color: var(--ink); }
 
+/* One row per PAPER in the plan's opening step: tick the subject, set its own
+   exam date. A board student sits three or four papers on different days, so
+   subject and date are one question, asked once. */
+.vw-subject { align-items: center; gap: 8px; }
+.vw-subject .vw-subject-date { margin-left: auto; }
+.vidi-widget input[type="date"].vw-subject-date { padding: 4px 8px; font-size: 12px; }
+.vidi-widget input[type="date"].vw-subject-date:disabled {
+  opacity: 0.4; background: rgba(43, 38, 32, 0.04); cursor: not-allowed;
+}
+/* Heads a group of chapters, or a subject's rows in today's card. */
+.vw-subhead { margin-top: 10px; font: 700 11.5px Inter, system-ui, sans-serif;
+  letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.72; }
+.vw-subhead:first-child { margin-top: 2px; }
+.vw-toggle { margin-top: 5px; font: 600 11px Inter, system-ui, sans-serif;
+  cursor: pointer; padding: 2px 9px; border-radius: 999px;
+  border: 1px solid rgba(43, 38, 32, 0.25); background: transparent;
+  color: var(--ink); opacity: 0.8; }
+.vw-toggle:hover { opacity: 1; }
+
 /* the plan preview / today list rows */
 .vw-plan { margin-top: 8px; border-top: 1px dashed rgba(43, 38, 32, 0.25); padding-top: 7px; }
 .vw-day { display: flex; gap: 8px; font-size: 12px; margin-top: 3px; }
