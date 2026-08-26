@@ -119,10 +119,7 @@
     var chips = [
       question.class_label,
       // The chip names the PAPER, same table as the catalog's subject chips.
-      ({ physics: 'Physics', chemistry: 'Chemistry',
-         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-         botany: 'Botany' })[question.subject] ||
-        question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
+      subjLabel(question.subject),
       'Unit ' + question.unit.number + ' · ' + question.unit.name,
       cut.paper_section + ' · ' + cut.qtype,
       'about ' + cut.expected_time_min + ' minutes'
@@ -309,6 +306,17 @@
       way an appearance with no board means TS. */
   function subjectOf(u) { return u.subject || 'physics'; }
 
+  /** The PAPER a student picks by — the one table every surface names a subject
+      from: the question chips, the catalog filter, and the plan's subject-and-date
+      picker. Module-scoped because the study plan now names subjects too, and two
+      copies would drift the day a sixth paper lands. */
+  var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
+                     mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+                     botany: 'Botany', zoology: 'Zoology' };
+  function subjLabel(s) {
+    return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
+  }
+
   /** Unit numbers namespace PER SUBJECT (physics Unit 3 and maths Unit 3 are
       different chapters), so everything that identifies a unit — the chapter
       chips, the triage box, the exam-eve route — keys on subject-number,
@@ -401,9 +409,6 @@
     // physics-only build looks exactly as it did — it appears the moment a
     // second subject is authored. Counts are whole-inventory, static like the
     // qtype counts below.
-    var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
-                       mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-                       botany: 'Botany' };
     var subjField = $('subjectField');
     var subjSel = $('subjectSelect');
     var subjects = [];
@@ -2211,6 +2216,12 @@
       return Date.UTC(+m[1], +m[2] - 1, +m[3]);
     }
     function diffDays(a, b) { return Math.round((parseDay(a) - parseDay(b)) / 86400000); }
+    /** 'YYYY-MM-DD' + n days, as 'YYYY-MM-DD'. */
+    function addDays(a, n) {
+      var d = new Date(parseDay(a) + n * 86400000);
+      var mm = d.getUTCMonth() + 1, dd = d.getUTCDate();
+      return d.getUTCFullYear() + '-' + (mm < 10 ? '0' : '') + mm + '-' + (dd < 10 ? '0' : '') + dd;
+    }
 
     var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
     var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers' };
@@ -2242,6 +2253,13 @@
             qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
             qtype: q.qtype, mins: q.expected_time_min,
             ref: e.section + ' ' + e.number, text: e.text,
+            // The SUBJECT rides on the item, because a plan now carries one
+            // exam date PER SUBJECT. Read it from the UNIT being walked, never
+            // derive it downstream from q.unit — a question holds its subject
+            // at the top level and its unit as {number,name} with no subject
+            // of its own, so a later derivation reads every card as physics
+            // (the chapterMates scar, 2026-08-25).
+            subject: subjectOf(UNITS[u]),
             unit: UNITS[u].number, predicted: e.source === 'enumerated'
           });
         }
@@ -2263,71 +2281,249 @@
                text: q.question_text, unit: q.unit.number };
     }
 
-    /** The scheduler. Day 1 = startDate; the last plan day is exam-eve. The
-        final ~15% of days are a full-revision block (weakest first, the
-        exam-eve logic). Items that do not fit fall off the BOTTOM of the
-        priority list into `optional` — and the plan says so, honestly. */
-    function build(examDate, unitNums, minsPerDay, startDate, itemsOverride, scope) {
-      var D = diffDays(examDate, startDate);
-      if (D < 1) return null;
-      var R = Math.max(1, Math.ceil(D * 0.15));
-      if (R >= D) R = D > 1 ? 1 : 0;
-      var L = D - R;
-      var queue = (itemsOverride || itemsFor(unitNums, scope)).slice();
+    /** The subject half of a unit key: 'mathematics_1b-3' → 'mathematics_1b'.
+        Split at the LAST dash — a subject name may hold an underscore but
+        never a dash, while the number after it always follows one. */
+    function subjectOfKey(k) {
+      var s = String(k), c = s.lastIndexOf('-');
+      return c > 0 ? s.slice(0, c) : '';
+    }
 
-      // ── CRUNCH MODE (founder, 2026-08-23) ─────────────────────────────────
-      // When the time left cannot fit the work — the student who ignored a
-      // 45-day plan and opens the book with one week to go — the priority
-      // FLIPS from stars-first to marks-first: long answers, then short
-      // answers, carry the paper; the very short answers move to the back and
-      // mostly land in `optional` ("do them on exam-eve"). The revision block
-      // shrinks to one day so learning days survive.
-      var demand = 0;
-      for (var di = 0; di < queue.length; di++) demand += Math.ceil(queue[di].mins * 2.5);
-      var crunch = demand > minsPerDay * L * 1.15;
-      if (crunch) {
-        if (D > 1) { R = 1; L = D - R; }
-        queue.sort(function (a, b) {
-          var av = a.qtype === 'VSAQ' ? 1 : 0, bv = b.qtype === 'VSAQ' ? 1 : 0;
-          if (av !== bv) return av - bv;                     // VSAQs last, whatever their stars
-          if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
-          if (b.stars !== a.stars) return b.stars - a.stars;
-          if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
-          return a.unit - b.unit;
-        });
+    /** {subject: date} for every subject present in a units list. */
+    function spreadOneDate(unitNums, date) {
+      var out = {}, us = unitNums || [], any = false;
+      for (var i = 0; i < us.length; i++) {
+        var s = subjectOfKey(us[i]);
+        if (s) { out[s] = date; any = true; }
+      }
+      if (!any && date) out.physics = date;
+      return out;
+    }
+
+    /** A plan's exam dates as {subject: 'YYYY-MM-DD'}.
+
+        Plans written before 2026-08-26 carry ONE `examDate` for the whole
+        plan, and they arrive both from localStorage and — at any moment, from
+        another device — through sync. So this is a lazy READ-side normalizer,
+        never a migration step: an old plan reads as "every subject sits on
+        that one date", which is exactly what it meant. */
+    function examDatesOf(plan) {
+      if (!plan) return {};
+      if (plan.examDates) return plan.examDates;
+      return spreadOneDate(plan.units, plan.examDate);
+    }
+
+    /** The soonest paper not yet written, or null once they are all done. */
+    function nextExam(plan, today) {
+      var dates = examDatesOf(plan), best = null;
+      for (var s in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, s)) continue;
+        var d = diffDays(dates[s], today);
+        if (d < 0) continue;                       // already written
+        if (!best || d < best.days) best = { subject: s, date: dates[s], days: d };
+      }
+      return best;
+    }
+
+    /** Has this subject's paper already been written? */
+    function subjectDone(plan, subject, today) {
+      var dates = examDatesOf(plan);
+      return !!dates[subject] && diffDays(dates[subject], today) < 0;
+    }
+
+    /** A planned question's subject. Read from the plan's own map; a plan
+        written before per-subject dates has none, and every question in it
+        shared one date anyway, so the units list answers it. */
+    function subjectOfQid(plan, qid) {
+      if (plan.subjectByQid && plan.subjectByQid[qid]) return plan.subjectByQid[qid];
+      var us = plan.units || [];
+      return us.length ? subjectOfKey(us[0]) : 'physics';
+    }
+
+    /** The day this subject's full-revision block opens. */
+    function revStartFor(plan, subject) {
+      if (plan.revBlockStartBy && plan.revBlockStartBy[subject]) return plan.revBlockStartBy[subject];
+      return plan.revBlockStart;
+    }
+
+    // ── CRUNCH MODE (founder, 2026-08-23) ───────────────────────────────────
+    // When the time left cannot fit the work — the student who ignored a
+    // 45-day plan and opens the book with one week to go — the priority FLIPS
+    // from stars-first to marks-first: long answers, then short answers, carry
+    // the paper; the very short answers move to the back and mostly land in
+    // `optional` ("do them on exam-eve"). The revision block shrinks to one
+    // day so learning days survive. Now decided PER SUBJECT: maths in five
+    // days can be in crunch while chemistry in three weeks is comfortable.
+    function crunchSort(a, b) {
+      var av = a.qtype === 'VSAQ' ? 1 : 0, bv = b.qtype === 'VSAQ' ? 1 : 0;
+      if (av !== bv) return av - bv;                     // VSAQs last, whatever their stars
+      if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
+      if (b.stars !== a.stars) return b.stars - a.stars;
+      if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
+      return a.unit - b.unit;
+    }
+
+    /** The scheduler. Day 1 = startDate.
+
+        Each SUBJECT runs its own race to its own exam date: its last ~15% of
+        days are its full-revision block, and none of its questions is ever
+        scheduled on or after its paper. Within a day the minutes split across
+        the subjects still ahead, weighted by urgency — work left ÷ that
+        subject's own days left — so early days mix every subject, the nearest
+        exam takes a growing share as it approaches, and a written paper frees
+        its minutes to the rest automatically.
+
+        Items that never fit fall off the BOTTOM of each subject's priority
+        list into `optional` — and the plan says so, honestly.
+
+        A bare date string is still accepted and means "every subject sits that
+        day": the old single-date plan is the DEGENERATE CASE of this
+        scheduler, not a separate path. */
+    function build(examDates, unitNums, minsPerDay, startDate, itemsOverride, scope) {
+      if (typeof examDates === 'string') examDates = spreadOneDate(unitNums, examDates);
+      if (!examDates) return null;
+      var all = (itemsOverride || itemsFor(unitNums, scope)).slice();
+
+      // ── one race per subject ──────────────────────────────────────────────
+      var S = {}, subjects = [], subjectByQid = {}, i, k;
+      for (i = 0; i < all.length; i++) {
+        var sName = all[i].subject || 'physics';
+        subjectByQid[all[i].qid] = sName;
+        if (!S[sName]) {
+          // No date, or a paper already written: that subject is not planned.
+          var d = examDates[sName] ? diffDays(examDates[sName], startDate) : -1;
+          if (d < 1) continue;
+          var r = Math.max(1, Math.ceil(d * 0.15));
+          if (r >= d) r = d > 1 ? 1 : 0;
+          S[sName] = { name: sName, queue: [], D: d, R: r, L: d - r,
+                       demand: 0, crunch: false, reviseNext: [], w: 0 };
+          subjects.push(sName);
+        }
+        S[sName].queue.push(all[i]);
+        S[sName].demand += Math.ceil(all[i].mins * 2.5);
+      }
+      if (!subjects.length) return null;
+
+      // Crunch is judged against a subject's SHARE of each day, not the whole
+      // day — with three papers running, no subject ever owns all 60 minutes.
+      // Share ≈ minsPerDay × (its demand ÷ all demand), which reduces to the
+      // original single-subject test exactly when there is only one subject.
+      var totalDemand = 0, maxD = 0, maxL = 0;
+      for (k = 0; k < subjects.length; k++) totalDemand += S[subjects[k]].demand;
+      for (k = 0; k < subjects.length; k++) {
+        var st = S[subjects[k]];
+        var share = totalDemand > 0 ? minsPerDay * (st.demand / totalDemand) : minsPerDay;
+        st.crunch = st.demand > share * Math.max(1, st.L) * 1.15;
+        if (st.crunch) {
+          if (st.D > 1) { st.R = 1; st.L = st.D - 1; }
+          st.queue.sort(crunchSort);
+        }
+        if (st.L > maxL) maxL = st.L;
+        if (st.D > maxD) maxD = st.D;
       }
 
-      var learnDay = {}, byDay = [], reviseNext = [];
-      for (var day = 1; day <= L; day++) {
-        var budget = minsPerDay;
+      var learnDay = {}, byDay = [];
+      for (var day = 1; day <= Math.max(1, maxL); day++) {
         var row = { learn: [], revise: [] };
-        for (var r = 0; r < reviseNext.length; r++) {
-          budget -= Math.ceil(reviseNext[r].mins / 2);
-          row.revise.push(reviseNext[r].qid);
+        var budget = minsPerDay, st2, nx;
+
+        // 1. Revisions first — yesterday's learning, every subject. Cheap
+        //    (half cost) and time-critical, so never dropped or deferred.
+        for (k = 0; k < subjects.length; k++) {
+          st2 = S[subjects[k]];
+          for (var rv = 0; rv < st2.reviseNext.length; rv++) {
+            budget -= Math.ceil(st2.reviseNext[rv].mins / 2);
+            row.revise.push(st2.reviseNext[rv].qid);
+          }
+          st2.reviseNext = [];
         }
-        reviseNext = [];
-        while (queue.length && queue[0].mins * 2 <= budget) {
-          var nx = queue.shift();
-          budget -= nx.mins * 2;
-          row.learn.push(nx.qid);
-          learnDay[nx.qid] = day;
-          reviseNext.push(nx);
+
+        // 2. The rest of the day splits by URGENCY = minutes of work left per
+        //    remaining learning day. A subject past its learning days, or with
+        //    an empty queue, drops out and its minutes go to the others.
+        var active = [], wTotal = 0;
+        for (k = 0; k < subjects.length; k++) {
+          st2 = S[subjects[k]];
+          if (day > st2.L || !st2.queue.length) continue;
+          var left = 0;
+          for (var qi = 0; qi < st2.queue.length; qi++) left += st2.queue[qi].mins * 2;
+          st2.w = left / Math.max(1, st2.L - day + 1);
+          wTotal += st2.w;
+          active.push(st2);
+        }
+        // Most urgent first, so it also gets first refusal on the spill.
+        active.sort(function (a, b) { return b.w - a.w; });
+
+        var pot = Math.max(0, budget);
+        for (k = 0; k < active.length; k++) {
+          st2 = active[k];
+          var quota = wTotal > 0 ? pot * (st2.w / wTotal) : 0;
+          while (st2.queue.length && st2.queue[0].mins * 2 <= quota
+                                  && st2.queue[0].mins * 2 <= budget) {
+            nx = st2.queue.shift();
+            quota -= nx.mins * 2;
+            budget -= nx.mins * 2;
+            row.learn.push(nx.qid);
+            learnDay[nx.qid] = day;
+            st2.reviseNext.push(nx);
+          }
+        }
+
+        // 3. Spill. A quota too small for its subject's cheapest question
+        //    would waste those minutes, so what is left goes to the most
+        //    urgent subject that can still use it. Nothing stays starved: a
+        //    skipped subject's urgency rises tomorrow, so its quota grows.
+        for (k = 0; k < active.length; k++) {
+          st2 = active[k];
+          while (st2.queue.length && st2.queue[0].mins * 2 <= budget) {
+            nx = st2.queue.shift();
+            budget -= nx.mins * 2;
+            row.learn.push(nx.qid);
+            learnDay[nx.qid] = day;
+            st2.reviseNext.push(nx);
+          }
         }
         byDay.push(row);
       }
+
+      var optional = [], optionalBySubject = {}, revBlockStartBy = {},
+          crunchBy = {}, anyCrunch = false, revStartMin = 0, lastDate = '',
+          plannedDates = {};
+      for (k = 0; k < subjects.length; k++) {
+        var sn = subjects[k], st3 = S[sn];
+        optionalBySubject[sn] = st3.queue.map(function (x) { return x.qid; });
+        optional = optional.concat(optionalBySubject[sn]);
+        revBlockStartBy[sn] = st3.L + 1;
+        crunchBy[sn] = st3.crunch;
+        if (st3.crunch) anyCrunch = true;
+        if (!revStartMin || revBlockStartBy[sn] < revStartMin) revStartMin = revBlockStartBy[sn];
+        plannedDates[sn] = examDates[sn];
+        // ISO dates compare correctly as strings, so the last paper is the max.
+        if (!lastDate || examDates[sn] > lastDate) lastDate = examDates[sn];
+      }
+
       return {
-        v: 1, start: startDate, examDate: examDate,
+        v: 2, start: startDate,
+        examDates: plannedDates,
+        // Kept as the LAST paper so every pre-existing reader — daysLeft, the
+        // archived check, the sync blob comparison — still answers sensibly.
+        examDate: lastDate,
         units: unitNums.slice(), minsPerDay: minsPerDay,
         scope: scope || null,
         days: byDay, learnDay: learnDay,
-        optional: queue.map(function (x) { return x.qid; }),
-        revBlockStart: L + 1, totalDays: D,
-        crunch: crunch,
+        subjectByQid: subjectByQid, subjects: subjects.slice(),
+        optional: optional, optionalBySubject: optionalBySubject,
+        revBlockStart: revStartMin || 1, revBlockStartBy: revBlockStartBy,
+        totalDays: maxD,
+        crunch: anyCrunch, crunchBy: crunchBy,
+        datesProvisional: false,
         implemented: false, lastNudgeDay: '', archived: false
       };
     }
 
     function dayN(plan, today) { return diffDays(today, plan.start) + 1; }
+    /** Days to the LAST paper — the whole plan's horizon. For the countdown a
+        student actually cares about, use nextExam(). */
     function daysLeft(plan, today) { return diffDays(plan.examDate, today); }
 
     // Two stages since 2026-08-23 (founder): the p tick is vestigial — the
@@ -2360,11 +2556,20 @@
         self-check first. */
     function todays(plan, today) {
       var n = dayN(plan, today);
-      var out = { day: n, learn: [], revise: [], finalBlock: n >= plan.revBlockStart };
-      var qid;
+      // The final block is now decided PER SUBJECT: each paper has its own
+      // revision run-in. `finalBlock` stays true when ANY subject still in the
+      // plan has entered its block, which is what the display asks about.
+      var out = { day: n, learn: [], revise: [], finalBlock: false, bySubject: {} };
+      var qid, subj;
       for (qid in plan.learnDay) {
         if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
-        if (plan.learnDay[qid] <= Math.min(n, plan.revBlockStart - 1) && !learned(qid)) {
+        subj = subjectOfQid(plan, qid);
+        // A written paper leaves the plan: its questions are neither learned
+        // nor revised any more, and its minutes went to the other subjects.
+        if (subjectDone(plan, subj, today)) continue;
+        var rs = revStartFor(plan, subj);
+        if (n >= rs) out.finalBlock = true;
+        if (plan.learnDay[qid] <= Math.min(n, rs - 1) && !learned(qid)) {
           out.learn.push(qid);
         }
         var s = Vidi.stageFor(qid);
@@ -2376,6 +2581,10 @@
         for (qid in plan.learnDay) {
           if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
           if (green(qid)) continue;
+          subj = subjectOfQid(plan, qid);
+          if (subjectDone(plan, subj, today)) continue;
+          // Only a subject that has REACHED its own block sweeps everything in.
+          if (n < revStartFor(plan, subj)) continue;
           if (out.learn.indexOf(qid) >= 0 || out.revise.indexOf(qid) >= 0) continue;
           rest.push(qid);
         }
@@ -2389,6 +2598,14 @@
       }
       // keep the scheduler's priority order for learns
       out.learn.sort(function (a, b) { return plan.learnDay[a] - plan.learnDay[b]; });
+      // Grouped counts, so today's card can head each subject's rows.
+      var bs = function (q) {
+        var sj = subjectOfQid(plan, q);
+        if (!out.bySubject[sj]) out.bySubject[sj] = { learn: [], revise: [] };
+        return out.bySubject[sj];
+      };
+      for (var li = 0; li < out.learn.length; li++) bs(out.learn[li]).learn.push(out.learn[li]);
+      for (var ri = 0; ri < out.revise.length; ri++) bs(out.revise[ri]).revise.push(out.revise[ri]);
       return out;
     }
 
@@ -2422,7 +2639,15 @@
         var inPlan = Object.prototype.hasOwnProperty.call(plan.learnDay, all[i].qid);
         if (inPlan && !green(all[i].qid)) remaining.push(all[i]);
       }
-      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, plan.scope || null);
+      return carryFlags(plan,
+        build(examDatesOf(plan), plan.units, plan.minsPerDay, today, remaining, plan.scope || null));
+    }
+
+    /** A re-plan keeps what the student told us that the scheduler cannot
+        re-derive: that some exam dates were guessed, not known. */
+    function carryFlags(plan, draft) {
+      if (draft && plan && plan.datesProvisional) draft.datesProvisional = true;
+      return draft;
     }
 
     /** A fresh schedule from today with a NEW qtype scope — everything in the
@@ -2436,7 +2661,8 @@
         if (!green(all[i].qid)) remaining.push(all[i]);
       }
       if (!remaining.length) return null;
-      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, scope);
+      return carryFlags(plan,
+        build(examDatesOf(plan), plan.units, plan.minsPerDay, today, remaining, scope));
     }
 
     /** A compact factual block for the hosted model — read, never generated. */
@@ -2446,8 +2672,21 @@
       var today = Vidi.todayStr();
       var p = progress(plan);
       var t = todays(plan, today);
-      var lines = 'exam on ' + plan.examDate + ', ' + daysLeft(plan, today) +
-        ' days left; finished ' + p.done + ' of ' + p.total + ' planned questions' +
+      // One clause per paper still ahead, nearest first. The hosted model
+      // slices this to 400 characters, so it stays terse by construction:
+      // "Physics 12 Nov (3 days), Chemistry 15 Nov (6 days)".
+      var dates = examDatesOf(plan), pending = [], sj;
+      for (sj in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, sj)) continue;
+        var dl = diffDays(dates[sj], today);
+        if (dl >= 0) pending.push({ s: sj, date: dates[sj], days: dl });
+      }
+      pending.sort(function (a, b) { return a.days - b.days; });
+      var when = pending.map(function (x) {
+        return subjLabel(x.s) + ' ' + x.date + ' (' + x.days + ' days)';
+      }).join(', ');
+      var lines = (pending.length > 1 ? 'exams: ' : 'exam: ') + (when || plan.examDate) +
+        '; finished ' + p.done + ' of ' + p.total + ' planned questions' +
         '; today: learn ' + t.learn.length + ', revise ' + t.revise.length;
       if (plan.crunch) {
         lines += '; time is SHORT so the plan does long and short answers first, very short answers on exam-eve';
@@ -2467,9 +2706,11 @@
       itemsFor: itemsFor, itemInfo: itemInfo, build: build, replan: replan,
       rescope: rescope, scopeWords: scopeWords,
       todays: todays, progress: progress, behindBy: behindBy,
-      dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
+      dayN: dayN, daysLeft: daysLeft, diffDays: diffDays, addDays: addDays,
       green: green, learned: learned, modelStatus: modelStatus,
-      dueWithoutPlan: dueWithoutPlan
+      dueWithoutPlan: dueWithoutPlan,
+      examDatesOf: examDatesOf, nextExam: nextExam, subjectDone: subjectDone,
+      subjectOfQid: subjectOfQid, revStartFor: revStartFor
     };
   })();
 
@@ -2945,7 +3186,8 @@
     // Widgets are tutor bubbles that hold controls (.vidi-widget, never
     // .vidi-chip — the chip gates count #vidiChips only). All deterministic.
 
-    var ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
+    var ob = { active: false, step: '', dates: {}, subjects: [], units: [],
+               mins: 0, scope: null, draft: null, provisional: false };
 
     function widget(build) {
       var w = el('div', 'vidi-msg tutor vidi-widget');
@@ -2999,54 +3241,222 @@
     }
 
     function startOnboarding() {
-      ob = { active: true, step: 'date', date: '', units: [], mins: 0, scope: null, draft: null };
-      askDate();
+      ob = { active: true, step: 'subjects', dates: {}, subjects: [], units: [],
+             mins: 0, scope: null, draft: null, provisional: false };
+      askSubjectsAndDates();
     }
 
-    function askDate() {
-      ob.step = 'date';
-      say('When is your exam?');
+    /** Every subject the book holds, in units.json order. */
+    function bookSubjects() {
+      var out = [];
+      for (var i = 0; i < UNITS.length; i++) {
+        var s = subjectOf(UNITS[i]);
+        if (out.indexOf(s) < 0) out.push(s);
+      }
+      return out;
+    }
+
+    /** The next rung of the date ladder: two days after the latest date already
+        given, so ticking a second and third paper usually needs no typing. A
+        student with no date yet gets a blank — we do not invent the first one. */
+    function ladderFrom(dates) {
+      var latest = '';
+      for (var s in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, s)) continue;
+        if (dates[s] && (!latest || dates[s] > latest)) latest = dates[s];
+      }
+      return latest ? Plan.addDays(latest, 2) : '';
+    }
+
+    /** Subjects AND their exam dates, in ONE step.
+
+        A real board student sits three or four papers on DIFFERENT days, and
+        the gap between two papers is the time they actually revise the second
+        one in. One shared date cannot express that: read as the first paper
+        the plan stops early, read as the last it schedules maths revision for
+        after the maths exam. So each ticked subject carries its own date, and
+        the scheduler races each one to its own paper. */
+    function askSubjectsAndDates() {
+      ob.step = 'subjects';
+      var subs = bookSubjects();
+      var one = subs.length === 1;
+      say(one ? 'When is your exam?' : 'Which subjects are in this exam, and when is each paper?');
       widget(function (w) {
-        var inp = document.createElement('input');
-        inp.type = 'date';
-        var t = Vidi.todayStr();
-        inp.min = t;
-        inp.value = ob.date || '';
+        var rows = [], today = Vidi.todayStr();
+        for (var i = 0; i < subs.length; i++) {
+          (function (s) {
+            var lab = el('label', 'vw-check vw-subject');
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.className = 'vw-subject-box';
+            cb.value = s;
+            cb.checked = one || ob.subjects.indexOf(s) >= 0;
+            var dt = document.createElement('input');
+            dt.type = 'date';
+            dt.className = 'vw-subject-date';
+            dt.setAttribute('data-subject', s);
+            dt.min = today;
+            dt.value = ob.dates[s] || '';
+            dt.disabled = !cb.checked;
+            cb.addEventListener('change', function () {
+              dt.disabled = !cb.checked;
+              if (!cb.checked) { dt.value = ''; return; }
+              // Ticking a later paper prefills the next rung of the ladder.
+              if (!dt.value) dt.value = ladderFrom(collect(rows).dates);
+            });
+            lab.appendChild(cb);
+            lab.appendChild(document.createTextNode(one ? subjLabel(s) + ' exam' : subjLabel(s)));
+            lab.appendChild(dt);
+            w.appendChild(lab);
+            rows.push({ subject: s, cb: cb, dt: dt });
+          })(subs[i]);
+        }
+
         var row = el('div', 'vw-row');
-        row.appendChild(inp);
-        row.appendChild(wBtn('Set date', true, function () {
-          var v = inp.value;
-          if (!v || Plan.diffDays(v, Vidi.todayStr()) < 1) {
-            say('Pick a date after today — the plan needs at least one day.');
-            askDate();
-            return;
+        row.appendChild(wBtn(one ? 'Set date' : 'These subjects →', true, function () {
+          var got = collect(rows);
+          if (!got.subjects.length) {
+            say('Tick at least one subject.'); askSubjectsAndDates(); return;
           }
-          ob.date = v;
-          bubble('My exam is on ' + v, 'student');
+          var missing = [], bad = [];
+          for (var k = 0; k < got.subjects.length; k++) {
+            var s2 = got.subjects[k], v = got.dates[s2];
+            if (!v) missing.push(subjLabel(s2));
+            else if (Plan.diffDays(v, Vidi.todayStr()) < 1) bad.push(subjLabel(s2));
+          }
+          if (bad.length) {
+            say('Pick a date after today for ' + listWords(bad) + ' — the plan needs at least one day.');
+            askSubjectsAndDates(); return;
+          }
+          if (missing.length) {
+            say('I still need the date for ' + listWords(missing) +
+              '. If the timetable is not out yet, tap "I do not know the rest yet" and I will assume the papers are two days apart.');
+            askSubjectsAndDates(); return;
+          }
+          ob.subjects = got.subjects;
+          ob.dates = got.dates;
+          bubble(got.subjects.map(function (s3) {
+            return subjLabel(s3) + ' on ' + got.dates[s3];
+          }).join(', '), 'student');
           askUnits();
         }));
+
+        if (!one) {
+          // The timetable is often announced one paper at a time. Guessing a
+          // date beats refusing to plan — but the plan remembers it guessed,
+          // and asks again at the next check-in.
+          row.appendChild(wBtn('I do not know the rest yet', false, function () {
+            var got = collect(rows);
+            if (!got.subjects.length) { say('Tick at least one subject.'); askSubjectsAndDates(); return; }
+            var anchor = '';
+            for (var k = 0; k < got.subjects.length; k++) {
+              var v = got.dates[got.subjects[k]];
+              if (v && (!anchor || v > anchor)) anchor = v;
+            }
+            if (!anchor) {
+              say('Give me one date first — any paper you do know — and I will space the rest two days apart from it.');
+              askSubjectsAndDates(); return;
+            }
+            var guessed = [];
+            for (k = 0; k < got.subjects.length; k++) {
+              var s4 = got.subjects[k];
+              if (got.dates[s4]) continue;
+              anchor = Plan.addDays(anchor, 2);
+              got.dates[s4] = anchor;
+              guessed.push(subjLabel(s4) + ' ' + anchor);
+            }
+            ob.subjects = got.subjects;
+            ob.dates = got.dates;
+            ob.provisional = guessed.length > 0;
+            if (guessed.length) {
+              say('I have assumed ' + listWords(guessed) +
+                '. Tell me the real dates when the timetable is out and I will re-plan.');
+            }
+            askUnits();
+          }));
+        }
         w.appendChild(row);
       });
     }
 
+    /** Read the ticked subjects and their dates out of the live widget rows. */
+    function collect(rows) {
+      var subjects = [], dates = {};
+      for (var i = 0; i < rows.length; i++) {
+        if (!rows[i].cb.checked) continue;
+        subjects.push(rows[i].subject);
+        dates[rows[i].subject] = rows[i].dt.value || '';
+      }
+      return { subjects: subjects, dates: dates };
+    }
+
+    /** {subject: how many of these qids belong to it}. */
+    function countBySubject(plan, qids) {
+      var out = {};
+      for (var i = 0; i < qids.length; i++) {
+        var s = Plan.subjectOfQid(plan, qids[i]);
+        out[s] = (out[s] || 0) + 1;
+      }
+      return out;
+    }
+
+    /** ['Physics','Maths-1A'] → 'Physics and Maths-1A'. */
+    function listWords(xs) {
+      if (xs.length <= 1) return xs[0] || '';
+      return xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+    }
+
     function askUnits() {
       ob.step = 'units';
-      say('Which chapters are in this exam? Tick every one.');
+      var multi = ob.subjects.length > 1;
+      say(multi
+        ? 'Which chapters are in these papers? Everything is ticked — untick what your exam leaves out.'
+        : 'Which chapters are in this exam? Everything is ticked — untick what your exam leaves out.');
       widget(function (w) {
         var boxes = [];
-        for (var i = 0; i < UNITS.length; i++) {
-          (function (u) {
-            var lab = el('label', 'vw-check');
-            var cb = document.createElement('input');
-            cb.type = 'checkbox';
-            cb.value = unitKey(u);
-            if (ob.units.indexOf(unitKey(u)) >= 0) cb.checked = true;
-            lab.appendChild(cb);
-            lab.appendChild(document.createTextNode(
-              u.number + '. ' + u.name + ' (' + u.questions.length + ' questions)'));
-            w.appendChild(lab);
-            boxes.push(cb);
-          })(UNITS[i]);
+        // Grouped under the picked subjects only. The whole book is 51 chapters
+        // across five papers, and one flat list of them is unreadable — and
+        // most of it belongs to a subject this student did not even pick.
+        for (var si = 0; si < ob.subjects.length; si++) {
+          (function (s) {
+            var mine = [];
+            for (var i = 0; i < UNITS.length; i++) {
+              if (subjectOf(UNITS[i]) === s) mine.push(UNITS[i]);
+            }
+            if (!mine.length) return;
+            if (multi) {
+              var head = el('div', 'vw-subhead', subjLabel(s) + ' · ' + ob.dates[s]);
+              w.appendChild(head);
+            }
+            var group = [];
+            for (var j = 0; j < mine.length; j++) {
+              (function (u) {
+                var lab = el('label', 'vw-check');
+                var cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.value = unitKey(u);
+                // Default is EVERY chapter of a picked paper: a first-term exam
+                // usually covers the lot, so the common case is one tap.
+                cb.checked = ob.units.length ? ob.units.indexOf(unitKey(u)) >= 0 : true;
+                lab.appendChild(cb);
+                lab.appendChild(document.createTextNode(
+                  u.number + '. ' + chapterLabel(u) + ' (' + u.questions.length + ' questions)'));
+                w.appendChild(lab);
+                boxes.push(cb);
+                group.push(cb);
+              })(mine[j]);
+            }
+            if (multi && group.length > 1) {
+              var t = el('button', 'vw-toggle', 'All / none');
+              t.type = 'button';
+              t.addEventListener('click', function () {
+                var anyOff = false;
+                for (var g = 0; g < group.length; g++) if (!group[g].checked) anyOff = true;
+                for (g = 0; g < group.length; g++) group[g].checked = anyOff;
+              });
+              w.appendChild(t);
+            }
+          })(ob.subjects[si]);
         }
         var row = el('div', 'vw-row');
         row.appendChild(wBtn('These chapters →', true, function () {
@@ -3054,6 +3464,14 @@
           for (var b = 0; b < boxes.length; b++) if (boxes[b].checked) picked.push(boxes[b].value);
           if (!picked.length) { say('Tick at least one chapter.'); askUnits(); return; }
           ob.units = picked;
+          // A subject whose every chapter was unticked is not in this exam.
+          var kept = [];
+          for (var s5 = 0; s5 < ob.subjects.length; s5++) {
+            for (var p = 0; p < picked.length; p++) {
+              if (picked[p].indexOf(ob.subjects[s5] + '-') === 0) { kept.push(ob.subjects[s5]); break; }
+            }
+          }
+          ob.subjects = kept;
           askScope();
         }));
         w.appendChild(row);
@@ -3116,9 +3534,21 @@
         mins += Math.ceil(items[i].mins * 2.5);
       }
       var hours = Math.round(mins / 30) / 2;      // half-hour precision
-      var D = Plan.diffDays(ob.date, Vidi.todayStr());
+      // Name each paper and its own countdown, nearest first — with three
+      // papers there is no single "that is N days away" to report.
+      var order = ob.subjects.slice().sort(function (a, b) {
+        return Plan.diffDays(ob.dates[a], Vidi.todayStr()) - Plan.diffDays(ob.dates[b], Vidi.todayStr());
+      });
+      var when = order.map(function (s) {
+        var d = Plan.diffDays(ob.dates[s], Vidi.todayStr());
+        return subjLabel(s) + ' in ' + d + ' day' + (d === 1 ? '' : 's');
+      });
+      var D = Plan.diffDays(ob.dates[order[0]], Vidi.todayStr());
+      var away = order.length > 1
+        ? listWords(when) + '.'
+        : 'That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away.';
       if (!ob.scope) {
-        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. Those chapters hold ' +
+        say(away + ' Those chapters hold ' +
           n.LAQ + ' long answers, ' + n.SAQ + ' short answers and ' + n.VSAQ +
           ' very short answers — about ' + hours + ' hours of work including revision.');
       } else {
@@ -3129,7 +3559,7 @@
           else skipped.push(allT[t]);
         }
         var list = parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1] : parts[0];
-        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. You are keeping ' + list +
+        say(away + ' You are keeping ' + list +
           ' — about ' + hours + ' hours of work including revision.');
         say('The plan skips ' + Plan.scopeWords(skipped) + ' because you did not tick them.', 400);
       }
@@ -3162,22 +3592,34 @@
 
     function preview() {
       ob.step = 'preview';
-      var plan = Plan.build(ob.date, ob.units, ob.mins, Vidi.todayStr(), null, ob.scope);
-      if (!plan) { askDate(); return; }
+      var plan = Plan.build(ob.dates, ob.units, ob.mins, Vidi.todayStr(), null, ob.scope);
+      if (!plan) { askSubjectsAndDates(); return; }
+      plan.datesProvisional = !!ob.provisional;
       ob.draft = plan;
       var total = 0; for (var q in plan.learnDay) if (Object.prototype.hasOwnProperty.call(plan.learnDay, q)) total++;
       say('Here is your plan — ' + plan.totalDays + ' days, ' + total + ' questions, revision built in.');
       widget(function (w) {
         w.appendChild(document.createTextNode(plan.totalDays + ' days · ' +
           (plan.minsPerDay >= 60 ? (plan.minsPerDay / 60) + ' hour' + (plan.minsPerDay > 60 ? 's' : '') : plan.minsPerDay + ' min') + ' a day'));
+        var subs = plan.subjects || [];
+        var multi = subs.length > 1;
         var box = el('div', 'vw-plan');
         var show = Math.min(4, plan.days.length);
         for (var d = 0; d < show; d++) {
           var row = el('div', 'vw-day');
           row.appendChild(el('span', 'vwd-n', 'Day ' + (d + 1)));
           var parts = [];
-          if (plan.days[d].revise.length) parts.push('revise ' + plan.days[d].revise.length);
-          if (plan.days[d].learn.length) parts.push('learn ' + plan.days[d].learn.length);
+          if (multi) {
+            // With several papers running, the useful thing to show is WHICH
+            // subjects the day touches — that is the promise being made.
+            var by = countBySubject(plan, plan.days[d].learn.concat(plan.days[d].revise));
+            for (var bi = 0; bi < subs.length; bi++) {
+              if (by[subs[bi]]) parts.push(subjLabel(subs[bi]) + ' ' + by[subs[bi]]);
+            }
+          } else {
+            if (plan.days[d].revise.length) parts.push('revise ' + plan.days[d].revise.length);
+            if (plan.days[d].learn.length) parts.push('learn ' + plan.days[d].learn.length);
+          }
           row.appendChild(el('span', '', parts.join(' · ') || 'catch-up'));
           box.appendChild(row);
         }
@@ -3186,15 +3628,38 @@
           dots.appendChild(el('span', 'vwd-n', '…'));
           box.appendChild(dots);
         }
-        var rb = el('div', 'vw-day');
-        rb.appendChild(el('span', 'vwd-n', 'Day ' + plan.revBlockStart + '–' + plan.totalDays));
-        rb.appendChild(el('span', '', 'full revision, weakest first'));
-        box.appendChild(rb);
+        // Each paper gets its OWN revision run-in, ending on its own exam-eve.
+        if (multi) {
+          for (var ri = 0; ri < subs.length; ri++) {
+            var s = subs[ri];
+            var from = Plan.revStartFor(plan, s);
+            var to = Plan.diffDays(plan.examDates[s], plan.start);
+            var rbm = el('div', 'vw-day');
+            rbm.appendChild(el('span', 'vwd-n', 'Day ' + from + '–' + to));
+            rbm.appendChild(el('span', '', subjLabel(s) + ' revision, weakest first'));
+            box.appendChild(rbm);
+          }
+        } else {
+          var rb = el('div', 'vw-day');
+          rb.appendChild(el('span', 'vwd-n', 'Day ' + plan.revBlockStart + '–' + plan.totalDays));
+          rb.appendChild(el('span', '', 'full revision, weakest first'));
+          box.appendChild(rb);
+        }
         w.appendChild(box);
+        if (plan.datesProvisional) {
+          w.appendChild(el('div', 'vw-warn', 'Some of these dates are my guess, two days apart. Tell me the real ones when the timetable is out and I will re-plan.'));
+        }
         if (plan.crunch) {
           // The founder's crunch strategy, said out loud: with little time,
           // long and short answers score the marks; very short answers wait.
-          w.appendChild(el('div', 'vw-warn', 'Time is short, so this plan puts long answers and short answers first — they carry the marks.' +
+          var tight = [];
+          for (var ci = 0; ci < subs.length; ci++) {
+            if (plan.crunchBy && plan.crunchBy[subs[ci]]) tight.push(subjLabel(subs[ci]));
+          }
+          w.appendChild(el('div', 'vw-warn',
+            (multi && tight.length && tight.length < subs.length
+              ? 'Time is short for ' + listWords(tight) + ', so the plan puts their long answers and short answers first — they carry the marks.'
+              : 'Time is short, so this plan puts long answers and short answers first — they carry the marks.') +
             (plan.optional.length ? ' ' + plan.optional.length + ' questions, mostly very short answers, are left for exam-eve — do not start with them.' : '')));
         } else if (plan.optional.length) {
           w.appendChild(el('div', 'vw-warn', 'At this pace ' + plan.optional.length +
@@ -3213,9 +3678,16 @@
       plan.implemented = true;
       plan.lastNudgeDay = Vidi.todayStr();
       Vidi.setPlan(plan);
-      ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
-      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay, units: plan.units.join(','), scope: (plan.scope || []).join(',') || 'all' });
-      say('Done — ' + Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock. Here is today:');
+      ob = { active: false, step: '', dates: {}, subjects: [], units: [],
+             mins: 0, scope: null, draft: null, provisional: false };
+      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay,
+        units: plan.units.join(','), scope: (plan.scope || []).join(',') || 'all',
+        subjects: (plan.subjects || []).join(','),
+        provisional: plan.datesProvisional ? 1 : 0 });
+      var nx = Plan.nextExam(plan, Vidi.todayStr());
+      say('Done — ' + (nx && (plan.subjects || []).length > 1
+          ? subjLabel(nx.subject) + ' first, in ' + nx.days + ' days'
+          : Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock') + '. Here is today:');
       renderTodayCard(plan);
       updatePlanStrip();
       renderVidiChips();
@@ -3223,7 +3695,7 @@
     }
 
     function resumeOnboarding() {
-      if (ob.step === 'date') askDate();
+      if (ob.step === 'date' || ob.step === 'subjects') askSubjectsAndDates();
       else if (ob.step === 'units') askUnits();
       else if (ob.step === 'scope') askScope();
       else if (ob.step === 'analyze' || ob.step === 'hours') askHours();
@@ -3249,9 +3721,28 @@
           a.appendChild(el('span', 'vwi-what', info.qtype + ' · ' + what));
           w.appendChild(a);
         };
-        var i;
-        for (i = 0; i < t.revise.length && i < 5; i++) mk(t.revise[i], 'revise');
-        for (i = 0; i < t.learn.length && i < 6; i++) mk(t.learn[i], 'learn');
+        var i, subs = plan.subjects || [];
+        if (subs.length > 1) {
+          // Headed per paper, nearest exam first — the student reads today as
+          // "my physics bit, then my chemistry bit", which is how they work.
+          var order = subs.slice().sort(function (a, b) {
+            var da = Plan.diffDays(plan.examDates[a], today);
+            var db = Plan.diffDays(plan.examDates[b], today);
+            return da - db;
+          });
+          for (var si = 0; si < order.length; si++) {
+            var s = order[si], g = t.bySubject[s];
+            if (!g || (!g.learn.length && !g.revise.length)) continue;
+            var dl = Plan.diffDays(plan.examDates[s], today);
+            w.appendChild(el('div', 'vw-subhead',
+              subjLabel(s) + ' · ' + (dl === 0 ? 'exam tomorrow' : dl + ' days')));
+            for (i = 0; i < g.revise.length && i < 4; i++) mk(g.revise[i], 'revise');
+            for (i = 0; i < g.learn.length && i < 4; i++) mk(g.learn[i], 'learn');
+          }
+        } else {
+          for (i = 0; i < t.revise.length && i < 5; i++) mk(t.revise[i], 'revise');
+          for (i = 0; i < t.learn.length && i < 6; i++) mk(t.learn[i], 'learn');
+        }
         if (!any) w.appendChild(document.createTextNode(
           t.finalBlock ? 'Everything is revised — you are ready.' : 'Nothing due today — you are ahead.'));
       });
@@ -3277,10 +3768,20 @@
       if (left < 0) { strip.hidden = true; return; }
       var p = Plan.progress(plan);
       strip.innerHTML = '';
+      // The countdown a student cares about is the NEXT paper, not the last
+      // one — with three papers, "18 days left" is the wrong number to show.
+      var nx = Plan.nextExam(plan, today);
+      var subs = plan.subjects || [];
+      var countdown;
+      if (nx && subs.length > 1) {
+        countdown = subjLabel(nx.subject) + ' ' +
+          (nx.days === 0 ? 'exam tomorrow' : 'in ' + nx.days + ' days');
+      } else {
+        countdown = left === 0 ? 'exam tomorrow' : left + ' days left';
+      }
       strip.appendChild(document.createTextNode(
         'Day ' + Math.min(Plan.dayN(plan, today), plan.totalDays) + ' of ' + plan.totalDays +
-        ' · ' + (left === 0 ? 'exam tomorrow' : left + ' days left') +
-        ' · done ' + p.done + ' of ' + p.total));
+        ' · ' + countdown + ' · done ' + p.done + ' of ' + p.total));
       var behind = Plan.behindBy(plan, today);
       if (behind) strip.appendChild(el('span', 'vps-late', ' · behind by ' + behind));
       strip.hidden = false;
@@ -3354,6 +3855,34 @@
         say('Your exam day has come — all the best. When the next exam is announced, I can plan for it too.');
         updatePlanStrip();
         return;
+      }
+      // A paper written mid-plan LEAVES the plan — its questions stop being
+      // scheduled and its minutes go to whatever is next. Said once, on the
+      // first check-in after that date, and only while other papers remain.
+      var subs = plan.subjects || [];
+      if (subs.length > 1) {
+        var sat = [];
+        for (var si = 0; si < subs.length; si++) {
+          if (!Plan.subjectDone(plan, subs[si], today)) continue;
+          if ((plan.doneSubjects || []).indexOf(subs[si]) >= 0) continue;
+          sat.push(subs[si]);
+        }
+        if (sat.length) {
+          plan.doneSubjects = (plan.doneSubjects || []).concat(sat);
+          Vidi.setPlan(plan);
+          var nx0 = Plan.nextExam(plan, today);
+          say(listWords(sat.map(subjLabel)) + ' is done — all the best.' +
+            (nx0 ? ' ' + subjLabel(nx0.subject) + ' is next, in ' + nx0.days + ' day' +
+              (nx0.days === 1 ? '' : 's') + '. Those hours are yours now.' : ''), 400);
+          updatePlanStrip();
+        }
+      }
+      // Dates the student let me guess: ask once, the day the plan starts
+      // running, so a wrong guess does not quietly misschedule a whole paper.
+      if (plan.datesProvisional && !plan.datesAsked) {
+        plan.datesAsked = true;
+        Vidi.setPlan(plan);
+        say('Some exam dates in this plan are my guess. If the timetable is out now, tap "Change my plan" and start over with the real dates.', 500);
       }
       var p = Plan.progress(plan);
       var behind = Plan.behindBy(plan, today);
