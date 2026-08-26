@@ -16,7 +16,23 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Define angular velocity. Derive v = rω.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 14,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 15,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",

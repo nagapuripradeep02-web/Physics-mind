@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "The percentage errors in the mass and the speed are 2% and 3% respectively. What is the maximum error in the kinetic energy calculated using these quantities?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The relation used",

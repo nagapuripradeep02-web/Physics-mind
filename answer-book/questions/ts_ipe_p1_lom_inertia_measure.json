@@ -18,6 +18,11 @@
   "question_text": "What is inertia? What gives the measure of inertia?",
   "appearances": [
     {
+      "year": 2017,
+      "q_no": 4,
+      "board": "ts_ipe"
+    },
+    {
       "year": 2026,
       "q_no": 13,
       "board": "ap_ipe"

@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Explain the advantages and disadvantages of friction.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 13,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Advantages",

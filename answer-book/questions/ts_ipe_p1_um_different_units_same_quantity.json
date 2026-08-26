@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Why do we have different units for the same physical quantity?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The reason",

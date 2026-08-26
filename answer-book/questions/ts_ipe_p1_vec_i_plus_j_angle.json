@@ -16,7 +16,23 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "A = i + j. What is the angle between the vector and the x-axis?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 10,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 3,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Setting up tan α",

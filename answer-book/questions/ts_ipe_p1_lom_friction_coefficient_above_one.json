@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Can the coefficient of friction be greater than one?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The answer",

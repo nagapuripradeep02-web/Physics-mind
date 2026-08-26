@@ -16,7 +16,13 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "What are collisions? Explain the possible types of collisions. Develop the theory of one-dimensional elastic collision.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "What a collision is",

@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The formula and substitution",

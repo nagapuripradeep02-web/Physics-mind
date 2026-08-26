@@ -1,5 +1,81 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📏 MEASURED SESSION — Answer Book: **SEVEN REAL TELANGANA PAPERS TRANSCRIBED, DIFFED AND CLOSED — physics goes 8 chapters → 14, and the bank gains its first TS exam provenance** (2026-08-26, desk `physics-mind-ipe-answerbook`)
+
+**Bottom line: the founder supplied seven TS Inter I-Year Physics Paper-I papers (March 2016, 2017, 2019, 2020, 2023, 2024, 2025). They are now a committed corpus, every one of their 154 answerable slots is mapped to a card by hand, and coverage is 100%.** 45 cards authored, 154 appearance tags written across 85 cards, six new chapters opened (units 1, 10, 11, 12, 13, 14). Verified: build:answers green · katex unmoved at 278 · tsc 0 · vitest 443/443 · **smoke:answers 48/48 (46.7 m)** · check:papers green · backtest:physics --strict green · wrap 0/45 on the new cards · both new figures rendered and looked at.
+
+### The corpus the doctrine has asked for since Unit 8 did not exist
+`docs/patterns/answer_book.md` has carried *"back-testing the archetype set is not back-testing the OUTPUT — when a real paper is in the corpus, diff the sweep's authored list against that paper question by question"* since 2026-08-21. **There was no corpus.** The one AP paper lived as a PDF in Downloads, twelve `appearances[]` entries and a fifteen-line prose summary — nothing a script could check, nothing a later session could re-read. `answer-book/papers/` is now that corpus: seven papers, `ipe_paper_v1`, verbatim, with provenance and a `date_confidence` field.
+
+### What the first real diff found
+**The bank had ZERO Telangana exam provenance.** 184 of 198 physics cards had `appearances: []`, and **not one appearance anywhere in the book carried `board: "ts_ipe"`** — the only boarded entries were twelve AP-2026 tags, plus seven bare years (2004–2012) on two cards from the Fastrack's printed lists, whose frequency data is a 2015 compilation. The newest Telangana signal in the book was eleven years stale.
+
+Three findings:
+1. **The units that existed were in good shape** — 40 of 48 questions in units 2–9 already had a card. The eight misses were two conceptual (winter/summer pendulum, asked in **three of seven papers**, with no card; skating on snow) and six numericals.
+2. **Six of the fourteen chapters did not exist** — units 1, 10, 11, 12, 13, 14, carrying roughly half of every paper's marks. Ranked by exam frequency: 12 Thermal (17 slots) · 11 Fluids (14) · 14 Kinetic Theory (14) · 1 Physical World (7) · 10 Solids (7) · 13 Thermodynamics (7). **Unit 13 is the highest value per card in the book: two LAQs cover a guaranteed 8 marks on every paper in the corpus.**
+3. **The PROBLEMS deferral was made without this evidence.** Six of the seven papers print a numerical INSIDE a Section-C question, sharing the 8 marks with the derivation. The 2026-08-20 note said deferred problems were "2-for-2 on being examined"; against a real corpus it is 6-for-7. Founder lifted the deferral for paper-attested numericals; the six are authored as standalone 4-mark cards.
+
+### The `enumerated` trap did not bite, and that is evidence
+`e2e/answer_book.spec.ts:642` fails if an entry with `source: "enumerated"` shows an asked chip, and `notebook.js:3532` tells Vidi such a question has "no exam history to report" then prints the Asked line anyway — the round-2 dangling-pointer defect. So tagging a predicted card would have broken two things at once. **None of the 40 originally-tagged cards needed flipping**: every question these seven papers ask came from the *asked* tier, never the enumerated one. Independent evidence the enumeration doctrine is splitting asked from predicted correctly.
+
+### The wrap measurer was broken, and physics is not at 0.1%
+`answer-book/tools/measure_wrap.mjs` was ported from the zoology desk and **crashed on its first run here**: it iterates `cut.steps` as an array, but the schema keys that Record by step id. Zoology has no cards with cuts (physics has 5), so the bug had never fired. Fixed in the ported copy. Measured after: **0 of the 45 new cards wraps a line**, and the physics fleet rate is **0.7% (21 lines, all pre-existing)** — the tool's own header still claims 0.1%. Note the e2e wrap gate calls `openFirst(page)` and checks ONE question, so none of this is visible to CI.
+
+### The gate that broke was selecting chapters by ARRAY INDEX
+`smoke:answers` came back 47/48. The failure was `the plan math is deterministic` at
+`e2e/answer_book.spec.ts:1314` — `expect(Math.min(...stars)).toBeGreaterThanOrEqual(2)` received 1.
+
+**It was not a product regression, and the test's own comment said so**: *"day 1 learns are the
+3-star core first — never a 0-star predicted card"*. The received value was 1, not 0. Probed the
+planner directly with both chapter pairs rather than trusting either the test or the assumption:
+
+```
+unitIdx [0,1] → 1. Physical World (3 q) + 2. Units and Measurements (22 q)
+  25 learn items over 17 days → day 1 takes 7 → stars 3,3,3,2,2,2,1   min 1
+unitIdx [1,2] → 2. Units and Measurements (22 q) + 3. Motion in a Straight Line (22 q)
+  43 learn items over 17 days → day 1 takes 5 → stars 3,3,3,3,3       min 3
+```
+
+In BOTH cases the star order is strictly non-increasing and **zero predicted (`enumerated`) cards
+reach day 1** — the invariant holds. What changed is that `buildPlanViaChat` ticks
+`.vw-check input` at **indices** `[0,1]`, and `units.json` is ordered by unit number. Physics Unit 1
+had never existed, so inserting it shifted every index by one: `[0,1]` stopped meaning units 2+3 and
+started meaning units 1+2. Pairing a 3-question chapter with a 22-question one leaves fewer total
+items, so a 17-day plan must take MORE per day, and day 1 digs one rank deeper.
+
+**All eleven callers of that helper selected by index**, so the three that pass `[2, 3]` had silently
+moved from units 4+5 to units 3+4 as well — they stayed green while testing something else. Fixed by
+selecting chapters **by name**, which no future unit insertion can shift. No assertion was weakened.
+
+This is [[feedback-tests-encode-fleet-size]] in a new shape: not "the fleet grew past a budget" but
+**"the fleet's ORDER changed and an index-based selector silently re-pointed"**. A gate that names
+what it wants cannot drift; one that counts to it can.
+
+### Two things the corpus surfaced that are NOT fixed
+1. **`appearances` drives no ranking anywhere.** `itemsFor()` sorts on `stars`, then qtype, then `enumerated`. Exam-eve "most-asked" and the study planner never read `appearances`, so a question asked in five of seven papers still sorts below a 3-star Fastrack question it beats on real evidence. Making paper years drive the order is a founder call.
+2. **`source` is unvalidated by the build** — `check:papers` now validates the vocabulary (`blm | enumerated | ap_2026_paper | ts_paper`), which is the cheap half; the build still does not.
+
+### New tooling
+`npm run check:papers` (corpus structure + source vocabulary) · `npm run tag:appearances` (idempotent, never overwrites, **preserves each file's line endings** — 18 physics cards and `units.json` are CRLF and a naive writer turns each into a whole-file diff) · `npm run backtest:physics [--strict]` (re-derives every claim in `matches.json` from the bank; fails on a mapping that resolves to nothing, a card that lost its tag, or a `ts_ipe` tag in a corpus year no row justifies; an absent unit is reported and counted, never an error).
+
+### Numbers
+| | before | after |
+|---|---|---|
+| physics chapters | 8 (units 2–9) | **14 (units 1–14)** |
+| physics card files | 198 | **243** |
+| physics catalog entries | 204 | **249** |
+| all card files | 946 | **991** |
+| cards with a Telangana year tag | **0** | **85** |
+| such appearances | **0** | **154** |
+| corpus coverage | — | **154/154 = 100%** |
+| depth 100/100/100 | 8 units | **all 14** |
+
+All 45 new cards ship `needs_teacher_verification: true`; every mark split is invented and stays a claim. The March-2023 paper prints no year — 2023 is inferred from the scan's camera timestamp, confirmed by the founder, recorded in `provenance.year_source`, and printed by `backtest:physics` on every run.
+
+Docs: `docs/IPE_PHYSICS_1_PAPERS.md` (the narrative) · `answer-book/papers/README.md` (the format) · a 3-line pointer added to `docs/patterns/answer_book.md`.
+
+
+
 ## 📏 MEASURED SESSION — Answer Book: **CHEMISTRY AUDITED AND ITS BANK FIXED — 9.73 → 9.78, AND THE OUTOFBANK SPEC IS WRITTEN** (2026-08-25, desk `physics-mind-ipe-answerbook`, commits `122b5efd` · `4bbe2006` · `cb555ab8` · `c50ab998`)
 
 **Bottom line: chemistry is the third subject to be measured and the second to have its content read for truth. Baseline 9.73/10 (2.919/3, 204 contexts × 10 asks, ten independent graders); after 9.78 (2.935). Reported as flat — the +0.05 is inside grader noise. What is NOT flat is the thing the round was aimed at: `outofbank` moved 9.31 → 9.80, three times any other template, and the mechanical evidence is unambiguous.** Seven examiners read all 196 cards and found 11 errors, 36 ambiguities, 54 gaps; two fix agents then closed 30 more defects the graders found that the examiners structurally could not see. Verified: build:answers green · katex unmoved at 278 · tsc 0 · vitest 438/438 · smoke:answers 48/48 (47.3 m). Model spend ₹80 across both rounds.

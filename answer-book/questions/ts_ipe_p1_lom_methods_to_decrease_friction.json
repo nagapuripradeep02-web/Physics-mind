@@ -18,6 +18,26 @@
   "question_text": "Mention the methods used to decrease friction.",
   "appearances": [
     {
+      "year": 2025,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 12,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 13,
+      "board": "ts_ipe"
+    },
+    {
       "year": 2026,
       "q_no": 26,
       "board": "ap_ipe"

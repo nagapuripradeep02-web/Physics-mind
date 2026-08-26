@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "A horse has to pull harder during the start of the motion than later. Explain.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 4,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "At the start",

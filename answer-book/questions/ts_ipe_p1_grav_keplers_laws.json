@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "State Kepler’s laws of planetary motion.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 16,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Law of orbits",

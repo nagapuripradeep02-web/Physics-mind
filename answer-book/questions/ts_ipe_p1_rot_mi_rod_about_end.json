@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to the rod and passing through one end?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 14,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The known result",

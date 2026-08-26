@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Can a simple pendulum be used in an artificial satellite?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The answer",

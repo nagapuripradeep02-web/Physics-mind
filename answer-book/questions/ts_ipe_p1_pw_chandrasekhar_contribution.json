@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pw_chandrasekhar_contribution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Physical World"
+  },
+  "chapter": "Physical World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the contribution of S. Chandrasekhar to Physics?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 1,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 1,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "q_no": 1,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The Chandrasekhar limit",
+      "marks": 1
+    },
+    {
+      "label": "The value and what it means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2019 (Q1), March 2023 (Q1) and March 2025 (Q1) — Section A, 2 marks each time. The 2023 paper prints the name as \"S. Chandra Sekhar\", the same question with a board typo. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from those papers. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Content hand-checked against NCERT Class-11 Chapter 1: S. Chandrasekhar's contribution is the Chandrasekhar limit, the maximum mass of a stable white dwarf star, about 1.4 solar masses; he was awarded the Nobel Prize in Physics in 1983."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physical World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_limit",
+        "kind": "text",
+        "label": "The Chandrasekhar limit",
+        "marks": 1,
+        "mark_note": "Chandrasekhar limit",
+        "lines": [
+          "S. Chandrasekhar worked on the structure",
+          "and evolution of stars. His contribution",
+          "is the Chandrasekhar limit: the largest",
+          "mass a stable white dwarf star can have."
+        ],
+        "margin_note": "First mark. The words maximum mass and white dwarf are both checked.",
+        "why": "A white dwarf is held up against its own gravity by the pressure of its electrons. That pressure has an upper limit, so above a certain mass it is no longer enough to support the star.",
+        "common_mistakes": [
+          "Saying the limit is the maximum mass of any star. It is the maximum mass of a stable WHITE DWARF."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S Chandrasekhar gave the Chandrasekhar limit, the maximum mass of a stable white dwarf star.",
+          "accept": [
+            "Chandrasekhar limit",
+            "maximum mass of a white dwarf",
+            "structure and evolution of stars"
+          ],
+          "reject": [
+            "Raman effect"
+          ],
+          "heard_as": [
+            "chandrasekhar limit",
+            "white dwarf"
+          ]
+        },
+        "memory_tip": "The Chandrasekhar limit is a MASS, and it belongs to white dwarf stars only."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value and what it means",
+        "marks": 1,
+        "mark_note": "≈ 1.4 solar masses",
+        "lines": [
+          "Its value is about 1.4 times the mass of",
+          "the sun.",
+          {
+            "text": "Chandrasekhar limit ≈ 1.4 solar masses",
+            "style": "boxed"
+          },
+          "A star heavier than this limit cannot",
+          "settle as a white dwarf. He received the",
+          "Nobel Prize in Physics in 1983."
+        ],
+        "margin_note": "Second mark. The number 1.4 together with the words solar masses.",
+        "why": "The number is what makes the limit useful, because it sorts the end states of stars: below about 1.4 solar masses a star ends as a white dwarf, and above it the collapse continues.",
+        "common_mistakes": [
+          "Writing 1.4 kg or 1.4 × 10³⁰ kg without saying solar masses.",
+          "Giving the limit as 1.4 times the mass of the earth."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit is about 1.4 solar masses, and a heavier star cannot stay a white dwarf.",
+          "accept": [
+            "one point four solar masses",
+            "1.4 times the mass of the sun",
+            "heavier star cannot be a white dwarf"
+          ],
+          "reject": [
+            "maximum mass of a white dwarf"
+          ],
+          "heard_as": [
+            "one point four",
+            "solar masses"
+          ]
+        },
+        "memory_tip": "One point four suns. Under the limit, a white dwarf; over it, the collapse goes on."
+      }
+    ]
+  },
+  "insider_note": "Name the limit and give 1.4 solar masses — the name with no number, or the number with no name, is one mark of the two."
+}

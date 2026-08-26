@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_skating_on_snow",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is it easier to perform the skating on the snow?",
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The pressure",
+      "marks": 1
+    },
+    {
+      "label": "The water film",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2017 (Q8) — TS Inter I-Year Physics Paper-I, Section A, 2 marks. appearances[] is left empty deliberately: a separate reviewed tagging pass fills that field from a reviewed mapping, so a hand-written entry here would read as an invented tag. The 1+1 split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against the board's marked answer: P = F/A, so the same weight on the very small contact area of the blade gives a large pressure; a large pressure lowers the melting point of ice; a thin film of water forms under the blade and acts as a lubricant, so friction is small. The marked answer is written as the board states it. The second step's `why` records, without altering the marked answer, that modern measurements attribute the film to frictional heating and to a liquid-like surface layer on ice as well as to pressure."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pressure",
+        "kind": "equation",
+        "label": "The pressure is large",
+        "marks": 1,
+        "mark_note": "Pressure",
+        "lines": [
+          "The skate blade touches the snow over a",
+          "very small area, so the pressure under it",
+          "is large:",
+          {
+            "text": "P = F/A,  small A gives large P",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Small contact area, large pressure. Write P = F/A.",
+        "why": "Pressure is force divided by area. The skater's weight does not change, so the small contact area of the blade edge is the only reason the pressure is large.",
+        "common_mistakes": [
+          "Saying the skater weighs less on snow. The weight is the same; only the contact area is small."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the blade has a very small contact area, so the pressure under it is large.",
+          "accept": [
+            "small area of contact",
+            "pressure is large",
+            "P is F by A",
+            "area thakkuva kabatti pressure ekkuva"
+          ],
+          "reject": [
+            "a thin water film forms"
+          ],
+          "heard_as": [
+            "small area",
+            "pressure",
+            "F by A"
+          ]
+        },
+        "memory_tip": "Same weight, much smaller area. P = F/A makes the pressure under the blade large."
+      },
+      {
+        "id": "s2_water_film",
+        "kind": "boxed_final",
+        "label": "The water film lubricates",
+        "marks": 1,
+        "mark_note": "Water film",
+        "lines": [
+          "A large pressure lowers the melting point",
+          "of ice. A thin film of water forms under",
+          "the blade and acts as a lubricant.",
+          {
+            "text": "Less friction → skating is easy",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the water film and call it a lubricant.",
+        "why": "The marked answer runs through the melting point of ice: a large pressure lowers it, a thin water film forms and lubricates the blade, so the friction is small. Modern measurements show that heating from the sliding itself, and a liquid-like layer already present on the ice surface, also add to that film.",
+        "common_mistakes": [
+          "Stopping at \"the pressure is large\" without saying what the pressure does to the ice.",
+          "Calling the water film a result of warm air rather than of the pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the large pressure lowers the melting point of ice, a thin water film forms, and that film acts as a lubricant so friction is small.",
+          "accept": [
+            "melting point comes down",
+            "a thin water film forms",
+            "the film acts as a lubricant",
+            "water film lubricant la pani chestundi"
+          ],
+          "reject": [
+            "the contact area is small"
+          ],
+          "heard_as": [
+            "melting point",
+            "water film",
+            "lubricant"
+          ]
+        },
+        "memory_tip": "Pressure up, melting point down, water film, friction small. Four links in that order."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two links: the large pressure, then the water film that lowers the friction. Naming only the pressure earns one of the two."
+}

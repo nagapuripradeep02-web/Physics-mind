@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_stress_and_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define stress and explain the types of stress.",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 17,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Stress and its unit",
+      "marks": 1
+    },
+    {
+      "label": "Longitudinal stress",
+      "marks": 1
+    },
+    {
+      "label": "Volume stress",
+      "marks": 1
+    },
+    {
+      "label": "Shearing stress",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2016 (Q17) — TS Inter I-Year Physics Paper-I, Section B, 4 marks. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: stress = restoring force per unit area, SI unit N m⁻², dimensions [ML⁻¹T⁻²]; the three types are longitudinal (tensile and compressive), volume (bulk) and shearing (tangential)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "Stress — the definition",
+        "marks": 1,
+        "mark_note": "σ = F/A",
+        "lines": [
+          "A deforming force applied to a body changes",
+          "its shape or size. The body sets up an",
+          "internal restoring force that is equal and",
+          "opposite to the applied force. Stress is this",
+          "restoring force per unit area of the surface.",
+          {
+            "text": "Stress σ = F/A",
+            "style": "eq"
+          },
+          "SI unit: N m⁻²   Dimensions: [ML⁻¹T⁻²]"
+        ],
+        "margin_note": "First mark. The formula alone does not earn it — the words \"restoring force per unit area\" must be there.",
+        "why": "The restoring force and the applied force are equal in size while the body stays in equilibrium, so stress can be calculated from the applied force, which is the quantity a problem gives you.",
+        "common_mistakes": [
+          "Calling stress the applied force per unit area. Stress is the RESTORING force per unit area; the two are equal in size only while the body is in equilibrium.",
+          "Writing the unit as N m². The unit is N m⁻², the same unit as pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That stress is the internal restoring force per unit area, sigma equals F by A, with unit newton per metre squared.",
+          "accept": [
+            "restoring force per unit area",
+            "sigma is F by A",
+            "unit is newton per metre squared"
+          ],
+          "reject": [
+            "the force acts parallel to the surface"
+          ],
+          "heard_as": [
+            "F by A",
+            "restoring force",
+            "newton per metre square"
+          ]
+        },
+        "memory_tip": "Stress is a force divided by an area, so it carries the unit of pressure: N m⁻²."
+      },
+      {
+        "id": "s2_longitudinal",
+        "kind": "equation",
+        "label": "Longitudinal stress",
+        "marks": 1,
+        "mark_note": "Longitudinal",
+        "lines": [
+          "1. Longitudinal stress. The force acts normal",
+          "to the cross-section, along the length of the",
+          "body, so the length changes.",
+          {
+            "text": "Longitudinal stress = F/A",
+            "style": "eq"
+          },
+          "It has two forms. Tensile stress stretches",
+          "the body; compressive stress shortens it."
+        ],
+        "margin_note": "Second mark. Name the type, say where the force acts, and give both of its forms.",
+        "why": "Longitudinal stress is the one used in Young's modulus, so naming its two forms here is what the later definition of Y rests on.",
+        "common_mistakes": [
+          "Writing only tensile stress and leaving out compressive stress. Both are longitudinal.",
+          "Saying the force is tangential. In longitudinal stress the force is normal to the area."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That longitudinal stress has the force normal to the cross-section along the length, and has tensile and compressive forms.",
+          "accept": [
+            "longitudinal stress along the length",
+            "tensile and compressive",
+            "force normal to the cross-section"
+          ],
+          "reject": [
+            "force acts on every face of the body"
+          ],
+          "heard_as": [
+            "longitudinal",
+            "tensile",
+            "compressive"
+          ]
+        },
+        "memory_tip": "Along the length: pull it and the stress is tensile, push it and the stress is compressive."
+      },
+      {
+        "id": "s3_volume",
+        "kind": "equation",
+        "label": "Volume stress",
+        "marks": 1,
+        "mark_note": "Volume",
+        "lines": [
+          "2. Volume stress, also called bulk stress.",
+          "The force acts normal to every face of the",
+          "body, as when it is placed in a fluid under",
+          "pressure. The volume changes; the shape does",
+          "not.",
+          {
+            "text": "Volume stress = F/A = P",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The words \"normal to every face\" are what separate it from longitudinal stress.",
+        "why": "The force is normal in this type as well, so what marks volume stress out is that it acts on every face at once, not that it acts in a different direction.",
+        "common_mistakes": [
+          "Saying the shape changes. Under a uniform pressure the volume changes and the shape stays the same.",
+          "Treating volume stress as a separate quantity from pressure. Under a fluid it is the pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That volume or bulk stress acts normal to every face, as under fluid pressure, and changes the volume.",
+          "accept": [
+            "volume stress or bulk stress",
+            "force on every face",
+            "the volume changes"
+          ],
+          "reject": [
+            "tensile and compressive"
+          ],
+          "heard_as": [
+            "bulk stress",
+            "volume stress",
+            "pressure"
+          ]
+        },
+        "memory_tip": "Pressed from all sides at once: the volume changes and the shape stays the same."
+      },
+      {
+        "id": "s4_shearing",
+        "kind": "boxed_final",
+        "label": "Shearing stress",
+        "marks": 1,
+        "mark_note": "Shearing",
+        "lines": [
+          "3. Shearing stress, also called tangential",
+          "stress. The force acts parallel to the surface",
+          "while the opposite face is held fixed.",
+          "The shape changes; the volume does not.",
+          {
+            "text": "Shearing stress = F/A  (F along the surface)",
+            "style": "eq"
+          },
+          {
+            "text": "Stress = F/A: longitudinal, volume, shear",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. The word \"tangential\", or \"parallel to the surface\", is what earns it.",
+        "why": "Shearing stress is the one where the force lies in the surface instead of across it, and that is exactly why it changes the shape and not the volume.",
+        "common_mistakes": [
+          "Confusing shear with compression. In shear the two faces slide sideways and nothing is squeezed.",
+          "Saying shear changes the volume. Shear changes the shape only."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That shearing or tangential stress has the force parallel to the surface and changes the shape, not the volume.",
+          "accept": [
+            "shearing stress is tangential",
+            "force parallel to the surface",
+            "the shape changes"
+          ],
+          "reject": [
+            "force on every face of the body"
+          ],
+          "heard_as": [
+            "shearing",
+            "tangential",
+            "shear stress"
+          ]
+        },
+        "memory_tip": "Shear slides one face past the other: shape changes, volume does not."
+      }
+    ]
+  },
+  "insider_note": "Three of the four marks are the three types. A long definition with only two types still loses a mark."
+}

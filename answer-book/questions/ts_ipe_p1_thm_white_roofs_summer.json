@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_white_roofs_summer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The roof of the buildings are often painted white during summer. Why?",
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 7,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "White reflects radiation",
+      "marks": 1
+    },
+    {
+      "label": "The rooms stay cooler",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q7) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: a white surface has low absorptance and high reflectance for solar radiation, so it takes in less energy and reaches a lower temperature than a black surface in the same sunlight."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reflect",
+        "kind": "text",
+        "label": "White reflects radiation",
+        "marks": 1,
+        "mark_note": "Reflection",
+        "lines": [
+          "A white surface reflects most of the",
+          "radiation that falls on it and absorbs",
+          "very little of it.",
+          "A black surface would absorb almost all",
+          "of the radiation instead."
+        ],
+        "margin_note": "First mark. Say that white is a good reflector and a poor absorber.",
+        "why": "The colour of a surface determines how much of the radiation falling on it is absorbed and how much is sent back, and white reflects across the whole visible range.",
+        "common_mistakes": [
+          "Saying white paint works because it is a poor conductor. The reason is reflection, not conduction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a white surface reflects most of the radiation and absorbs very little.",
+          "accept": [
+            "white reflects the radiation",
+            "poor absorber",
+            "black would absorb it"
+          ],
+          "reject": [
+            "the rooms stay cooler"
+          ],
+          "heard_as": [
+            "reflects",
+            "white",
+            "absorbs"
+          ]
+        },
+        "memory_tip": "White reflects, black absorbs. That is the whole reason for the paint."
+      },
+      {
+        "id": "s2_cooler",
+        "kind": "boxed_final",
+        "label": "The rooms stay cooler",
+        "marks": 1,
+        "mark_note": "Cooler rooms",
+        "lines": [
+          "So a white roof takes in less heat from",
+          "the Sun during the day, and the rooms",
+          "below it stay cooler.",
+          {
+            "text": "White reflects, black absorbs",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Connect the reflection to the cooler room below.",
+        "why": "A roof that absorbs less radiation reaches a lower temperature, so less heat is conducted down through it into the rooms.",
+        "common_mistakes": [
+          "Stopping at the words white is cool. The answer must say that less radiation is absorbed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That less heat is absorbed, so the rooms below the roof stay cooler.",
+          "accept": [
+            "less heat enters the building",
+            "rooms stay cooler",
+            "roof stays at a lower temperature"
+          ],
+          "reject": [
+            "white reflects the radiation"
+          ],
+          "heard_as": [
+            "cooler",
+            "less heat",
+            "rooms"
+          ]
+        },
+        "memory_tip": "Less absorbed means less heat entering, so the rooms below stay cooler."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two steps — white reflects, therefore less heat enters. An answer that names the colour but not the reflection earns one mark."
+}

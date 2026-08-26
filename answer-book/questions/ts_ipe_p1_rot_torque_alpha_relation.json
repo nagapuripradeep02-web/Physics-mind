@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Define angular acceleration and torque. Establish the relation between angular acceleration and torque.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 15,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 15,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Angular acceleration",

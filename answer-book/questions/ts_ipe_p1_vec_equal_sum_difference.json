@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "If |a + b| = |a − b|, prove that the angle between a and b is 90°.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 12,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The two magnitudes",

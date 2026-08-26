@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "O is a point on the ground chosen as origin. A body first suffers a displacement of 10√2 m north-east, next 10 m north and finally 10√2 m north-west. How far is it from the origin?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 12,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Resolving the displacements",

@@ -16,7 +16,18 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Define simple harmonic motion. Show that the motion of the projection of a particle performing uniform circular motion, on any diameter, is simple harmonic.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 20,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 20,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",

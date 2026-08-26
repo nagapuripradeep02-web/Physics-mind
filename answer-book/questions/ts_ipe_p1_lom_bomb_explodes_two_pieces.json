@@ -16,7 +16,18 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "If a bomb at rest explodes into two pieces, the pieces must travel in opposite directions. Explain.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 4,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 4,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Before the blast",

@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "What is the acceleration of a projectile at the top of its trajectory?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The answer",

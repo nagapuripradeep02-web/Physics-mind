@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Derive the equation s = ut + ½at² using the graphical method.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The v–t graph",

@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "State the laws of rolling friction.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 13,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "What it is",

@@ -16,7 +16,18 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 3,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Adding the vectors",

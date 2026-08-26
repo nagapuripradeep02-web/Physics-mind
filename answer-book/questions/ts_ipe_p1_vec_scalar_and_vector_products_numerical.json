@@ -1,0 +1,188 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_scalar_and_vector_products_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the scalar and vector products of two vectors a = (3i − 4j + 5k) and b = (−2i + j − 3k).",
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 14,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The scalar product",
+      "marks": 1
+    },
+    {
+      "label": "The determinant",
+      "marks": 1
+    },
+    {
+      "label": "The vector product",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2020 (Q14) — TS Inter I-Year Physics Paper-I, Section B, 4 marks. appearances[] is left empty deliberately: a separate reviewed tagging pass fills that field from a reviewed mapping, so a hand-written entry here would read as an invented tag. The 1+1+2 split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Arithmetic hand-checked. Scalar product: a · b = (3)(−2) + (−4)(1) + (5)(−3) = −6 − 4 − 15 = −25. Vector product, expanding the determinant along the top row: i = (−4)(−3) − (5)(1) = 12 − 5 = 7; j = −[(3)(−3) − (5)(−2)] = −[−9 + 10] = −1; k = (3)(1) − (−4)(−2) = 3 − 8 = −5, so a × b = 7i − j − 5k. Perpendicularity check: a · (a × b) = 3(7) + (−4)(−1) + 5(−5) = 21 + 4 − 25 = 0."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scalar_product",
+        "kind": "equation",
+        "label": "The scalar product",
+        "marks": 1,
+        "mark_note": "a · b",
+        "lines": [
+          "The scalar product multiplies the matching",
+          "components and adds the three products:",
+          {
+            "text": "a · b = (3)(−2) + (−4)(1) + (5)(−3)",
+            "style": "eq"
+          },
+          {
+            "text": "a · b = −6 − 4 − 15 = −25",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The number −25, with its minus sign.",
+        "why": "The scalar product pairs each component with the matching one and adds, so the result is a single number with no direction. All three products here are negative, which is why the sum is −25.",
+        "common_mistakes": [
+          "Adding 6 + 4 + 15 and writing 25 without the minus sign.",
+          "Giving the scalar product a direction. It is one number, with no i, j or k."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a · b = (3)(−2) + (−4)(1) + (5)(−3) = −25.",
+          "accept": [
+            "multiply matching components and add",
+            "minus twenty five",
+            "minus twenty five vasthundi"
+          ],
+          "reject": [
+            "seven i minus j minus five k"
+          ],
+          "heard_as": [
+            "a dot b",
+            "minus twenty five",
+            "dot product"
+          ]
+        },
+        "memory_tip": "Matching components only: i with i, j with j, k with k. The answer is one number."
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "The determinant",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "lines": [
+          "The vector product is a determinant with",
+          "i, j, k on the top row, a next, b last:",
+          {
+            "text": "a × b = | i  j  k ; 3 −4 5 ; −2 1 −3 |",
+            "style": "eq"
+          },
+          "Each group between the bars is one row."
+        ],
+        "margin_note": "Second mark. The determinant written with a above b.",
+        "why": "The determinant is only the bookkeeping for the vector product. The order of the rows fixes the sign: a above b gives a × b, and swapping them gives b × a.",
+        "common_mistakes": [
+          "Writing b in the second row and a in the third, which reverses every component."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vector product is the determinant with i, j, k on the top row, then a, then b.",
+          "accept": [
+            "determinant with i j k on top",
+            "a in the second row and b in the third",
+            "determinant ni raastha"
+          ],
+          "reject": [
+            "a dot b is minus twenty five"
+          ],
+          "heard_as": [
+            "determinant",
+            "i j k",
+            "cross product"
+          ]
+        },
+        "memory_tip": "Top row i, j, k. Second row a, third row b. That order fixes the sign of a × b."
+      },
+      {
+        "id": "s3_vector_product",
+        "kind": "boxed_final",
+        "label": "The vector product",
+        "marks": 2,
+        "mark_note": "a × b",
+        "lines": [
+          "Expand along the top row. The j term",
+          "carries an extra minus sign:",
+          {
+            "text": "i: (−4)(−3) − (5)(1) = 12 − 5 = 7",
+            "style": "eq"
+          },
+          {
+            "text": "j: −[(3)(−3) − (5)(−2)] = −[1] = −1",
+            "style": "eq"
+          },
+          {
+            "text": "k: (3)(1) − (−4)(−2) = 3 − 8 = −5",
+            "style": "eq"
+          },
+          {
+            "text": "a × b = 7i − j − 5k",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The last two marks. All three components, with the j term negative.",
+        "why": "Expanding along the top row alternates the signs +, −, +, so the j component carries an extra minus. That alternating sign is the only difference between this expansion and an ordinary sum of products.",
+        "common_mistakes": [
+          "Expanding the j term without the extra minus sign, which gives +1 instead of −1.",
+          "Writing the k component as 3 + 8 = 11. The product (−4)(−2) is +8 and is subtracted."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b = 7i − j − 5k.",
+          "accept": [
+            "seven i minus j minus five k",
+            "seven minus one minus five",
+            "seven i minus j minus five k vasthundi"
+          ],
+          "reject": [
+            "a dot b is minus twenty five"
+          ],
+          "heard_as": [
+            "seven",
+            "minus one",
+            "minus five"
+          ]
+        },
+        "memory_tip": "Check it: a · (a × b) = 21 + 4 − 25 = 0. A vector product is perpendicular to both."
+      }
+    ]
+  },
+  "insider_note": "Two answers are asked and both are marked — the number −25 and the vector 7i − j − 5k. The minus on the j component is where the marks go."
+}

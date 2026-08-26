@@ -16,7 +16,13 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "A parachutist flying in an aeroplane jumps when it is at a height of 3 km above the ground. He opens his parachute when he is about 1 km above the ground. Describe his motion.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2017,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Before opening",

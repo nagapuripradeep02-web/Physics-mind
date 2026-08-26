@@ -16,7 +16,23 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "How can systematic errors be minimised or eliminated?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 2,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 5,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 2,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Why they need removing",

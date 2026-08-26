@@ -16,7 +16,18 @@
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "What is escape velocity? Obtain an expression for it.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 16,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 16,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The definition",
