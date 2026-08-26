@@ -16,7 +16,11 @@ export default defineConfig({
   retries: 0,
   workers: 1,
   reporter: [['list']],
-  timeout: 30_000,
+  // 30s flaked once per full answer-book run on a cold page.goto once the
+  // physics+maths merge took dist to ~4 MB (2026-08-23; always passed in
+  // isolation). Raised per the recorded protocol — the fleet sweeps set their
+  // own longer test.setTimeout and are unaffected by this default.
+  timeout: 60_000,
   expect: { timeout: 5_000 },
   use: {
     trace: 'on-first-retry',

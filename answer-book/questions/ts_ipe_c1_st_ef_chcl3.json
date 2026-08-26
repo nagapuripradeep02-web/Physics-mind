@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ef_chcl3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Chemical analysis of a carbon compound gave the following percentage composition by weight of the elements present: carbon = 10.06%, hydrogen = 0.84%, chlorine = 89.10%. Calculate the empirical formula of the compound.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relative moles of each element",
+      "marks": 2
+    },
+    {
+      "label": "Simplest whole-number ratio",
+      "marks": 1
+    },
+    {
+      "label": "The empirical formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic re-checked: CHCl₃ back-computes to 10.04% C, 0.84% H, 89.12% Cl — consistent with the given data. AI chemistry check 2026-08-25 (audit round 3): the s2 why said the other entries land on whole numbers directly, which the step’s own marked line (Cl: 2.51 / 0.84 = 2.99 ≈ 3) contradicts — rewritten to state when a near-whole value may be read as whole and when it may not. The s1 common mistake named 17.75 (half of 35.5), which is not a real student error; replaced with 71, the Cl₂ molecular weight. CROSS-CARD MARK-MAP DIFFERENCE, recorded for a teacher to settle: the move divide everything by the smallest value sits INSIDE the 2-mark step s1_moles on st_ef_c2h3cl3o2 and st_ef_k2cr2o7, but is the whole of the 1-mark step s2_ratio on st_ef_chcl3. The same piece of working therefore carries a different mark weight on the two card shapes. Nothing was moved — mark_split is the authority on each card, and both splits are still unconfirmed claims. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Relative moles of each element",
+        "marks": 2,
+        "mark_note": "% ÷ atomic weight",
+        "lines": [
+          "Divide each percentage by the atomic weight:",
+          {
+            "text": "C: 10.06 / 12 = 0.84",
+            "style": "eq"
+          },
+          {
+            "text": "H: 0.84 / 1 = 0.84",
+            "style": "eq"
+          },
+          {
+            "text": "Cl: 89.10 / 35.5 = 2.51",
+            "style": "eq"
+          }
+        ],
+        "why": "In 100 g of the compound the percentages ARE the masses in grams, so dividing each by its atomic weight converts the mass data into relative numbers of moles of atoms.",
+        "common_mistakes": [
+          "Using 35 for chlorine, or using 71, the weight of the Cl₂ molecule. The ATOMIC weight of Cl is 35.5.",
+          "Dividing the atomic weight by the percentage instead of the other way.",
+          "Copying a percentage wrongly from the question — recheck 10.06, 0.84, 89.10."
+        ],
+        "memory_tip": "Percent means grams per 100 g, so percent over atomic weight is moles straight away.",
+        "margin_note": "Both marks are here: the three divisions written out, in a table or as lines."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "equation",
+        "label": "Simplest whole-number ratio",
+        "marks": 1,
+        "mark_note": "Simple ratio",
+        "lines": [
+          "Divide each value by the smallest (0.84):",
+          "C: 0.84 / 0.84 = 1",
+          "H: 0.84 / 0.84 = 1",
+          "Cl: 2.51 / 0.84 = 2.99 ≈ 3",
+          {
+            "text": "C : H : Cl = 1 : 1 : 3",
+            "style": "eq"
+          }
+        ],
+        "why": "Dividing every mole value by the smallest one scales the ratio so its smallest entry is 1. Carbon and hydrogen come out at exactly 1. Chlorine comes out at 2.99, which is read as 3: the percentages are measured values, so a result within about 0.05 of a whole number is that whole number. A result such as 1.5 or 3.5 is NOT near a whole number and must never be rounded — a ratio ending in .5 is doubled instead.",
+        "common_mistakes": [
+          "Rounding 2.99 down to 2.",
+          "Dividing by the largest value instead of the smallest."
+        ],
+        "memory_tip": "Always divide by the SMALLEST — the smallest entry then reads 1 and the rest line up.",
+        "margin_note": "The 1 : 1 : 3 line earns this mark."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "The empirical formula",
+        "marks": 1,
+        "mark_note": "Empirical formula",
+        "lines": [
+          "The atoms are in the ratio C₁H₁Cl₃.",
+          {
+            "text": "Empirical formula = CHCl₃",
+            "style": "boxed"
+          }
+        ],
+        "why": "The whole-number ratio 1 : 1 : 3 written as subscripts gives the empirical formula, the simplest formula the analysis can determine.",
+        "common_mistakes": [
+          "Writing C₁H₁Cl₃ and not simplifying the notation to CHCl₃.",
+          "Calling it the molecular formula. Without a molecular weight, only the empirical formula is known."
+        ],
+        "memory_tip": "Subscript 1 is never written: C₁H₁Cl₃ reads CHCl₃.",
+        "margin_note": "Box CHCl₃ and name it the EMPIRICAL formula."
+      }
+    ]
+  },
+  "insider_note": "The three-column working table (%, % over atomic weight, simple ratio) is what the examiner expects to see — the same layout answers every empirical-formula question in this chapter."
+}

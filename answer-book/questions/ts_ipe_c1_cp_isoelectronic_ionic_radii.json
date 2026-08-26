@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_isoelectronic_ionic_radii",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Among N³⁻, O²⁻, F⁻, Na⁺, Mg²⁺ and Al³⁺ (a) what is common in them? (b) arrange them in the increasing order of ionic radii.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What is common",
+      "marks": 1
+    },
+    {
+      "label": "The order",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's printed order Al³⁺ < Mg²⁺ < Na⁺ < F⁻ < O²⁻ < N³⁻ is correct and the card keeps it; the card adds the electron count and the nuclear-charge reason the book leaves out."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common",
+        "kind": "text",
+        "label": "What is common",
+        "marks": 1,
+        "mark_note": "Part (a)",
+        "lines": [
+          "(a) All six are isoelectronic species: each ion",
+          "has 10 electrons, the same configuration as",
+          "neon (1s² 2s² 2p⁶).",
+          "N³⁻ = 7+3, O²⁻ = 8+2, F⁻ = 9+1, Na⁺ = 11−1,",
+          "Mg²⁺ = 12−2, Al³⁺ = 13−3 → 10 electrons each."
+        ],
+        "why": "Anions have gained electrons and cations have lost them, so six different elements can end at the same count. Showing the count for each ion proves the claim instead of only naming it.",
+        "common_mistakes": [
+          "Writing that they belong to the same period. They are isoelectronic; their elements sit in two different periods.",
+          "Saying isoelectronic without the number 10. The electron count is the evidence."
+        ],
+        "memory_tip": "All six ions land on the neon count: 10 electrons each.",
+        "margin_note": "The word isoelectronic plus the count 10 earns this mark."
+      },
+      {
+        "id": "s2_order",
+        "kind": "boxed_final",
+        "label": "The order",
+        "marks": 1,
+        "mark_note": "Part (b)",
+        "lines": [
+          {
+            "text": "Al³⁺ < Mg²⁺ < Na⁺ < F⁻ < O²⁻ < N³⁻",
+            "style": "boxed"
+          },
+          "All six hold the same 10 electrons, but the",
+          "nuclear charge rises from 7 (N) to 13 (Al).",
+          "More protons pull the same electron cloud in",
+          "more strongly, so the ion with the highest",
+          "nuclear charge is the smallest."
+        ],
+        "why": "In an isoelectronic series the electron count is fixed, so the nuclear charge is the only thing that changes — the more protons, the smaller the ion.",
+        "common_mistakes": [
+          "Writing the anions as smaller than the cations. With the same electron cloud, fewer protons means a larger ion.",
+          "Ordering by the size of the charge alone without saying which way. The reason is the proton count, and it must be stated."
+        ],
+        "memory_tip": "Same electrons, so count protons: 13 protons pull the cloud in most strongly (Al³⁺ smallest), 7 protons pull it least (N³⁻ largest).",
+        "margin_note": "Box the order and give the one-line reason: same electrons, different nuclear charge."
+      }
+    ]
+  },
+  "insider_note": "The order alone earns the second mark only with its reason — same electrons, rising nuclear charge — written beside it."
+}

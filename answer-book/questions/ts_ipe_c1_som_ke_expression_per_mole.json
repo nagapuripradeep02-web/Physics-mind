@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_ke_expression_per_mole",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write an expression for the kinetic energy of a gas molecule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Derivation from the kinetic gas equation",
+      "marks": 2
+    },
+    {
+      "label": "The expressions",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it. TITLE VS ANSWER: the book's title asks the kinetic energy of a gas MOLECULE, but its model answer derives the per-MOLE expression (3/2)RT and stops there. The card derives per mole as the book does and adds the per-molecule form (3/2)kT, so the answer also matches the title. AI chemistry check 2026-08-25. The derivation ⅓MU² → ⅔Eₖ = RT → Eₖ = (3/2)RT and the per-molecule form (3/2)kT are both correct. Added one sentence to the final step's why saying (3/2)RT is the TRANSLATIONAL kinetic energy — the kinetic gas equation models a molecule as a moving point — so a student who knows a diatomic molecule also rotates is not told the card is wrong. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_derivation",
+        "kind": "equation",
+        "label": "Derivation from the kinetic gas equation",
+        "marks": 2,
+        "mark_note": "Derivation",
+        "lines": [
+          {
+            "text": "PV = ⅓ mnU²   (kinetic gas equation)",
+            "style": "eq"
+          },
+          "For 1 mole: mn = M (molar mass), so PV = ⅓ MU²",
+          "PV = ⅔ (½ MU²) = ⅔ Eₖ   … (1)",
+          "(Eₖ = kinetic energy of one mole)",
+          "For 1 mole of an ideal gas: PV = RT   … (2)",
+          "From (1) and (2): ⅔ Eₖ = RT"
+        ],
+        "why": "½MU² is the kinetic energy of one mole, so PV is rewritten to expose it: ⅓ = ⅔ × ½. Setting the result against PV = RT eliminates PV and ties the kinetic energy directly to temperature.",
+        "common_mistakes": [
+          "Losing the ⅔ factor when converting ⅓MU² into kinetic-energy form.",
+          "Using PV = nRT here — for ONE mole the right side is RT."
+        ],
+        "memory_tip": "Split one third into two thirds times one half; the one half forms the kinetic energy term.",
+        "margin_note": "Numbering the two equations and combining them is the structure the examiner rewards."
+      },
+      {
+        "id": "s2_expressions",
+        "kind": "boxed_final",
+        "label": "The expressions",
+        "marks": 2,
+        "mark_note": "Final expressions",
+        "lines": [
+          {
+            "text": "Eₖ = (3/2) RT per mole ;  for n moles Eₖ = (3/2) nRT",
+            "style": "boxed"
+          },
+          "Per molecule: divide by the Avogadro number N,",
+          "Eₖ(molecule) = (3/2) (R/N) T = (3/2) kT",
+          "(k = Boltzmann's constant)"
+        ],
+        "why": "Rearranging ⅔Eₖ = RT gives the per-mole energy (3/2)RT, and dividing by the number of molecules in a mole scales it to one molecule, where R/N is Boltzmann's constant k. This is the TRANSLATIONAL kinetic energy: the kinetic gas equation treats a molecule as a moving point, so (3/2)RT is the expected answer for every gas, monatomic or diatomic.",
+        "common_mistakes": [
+          "Stopping at (3/2)RT when the question says molecule — add (3/2)kT.",
+          "Writing (2/3) in the final expression instead of (3/2)."
+        ],
+        "memory_tip": "Three halves R T per mole; swap R for k and the same shape is per molecule.",
+        "margin_note": "The n-mole and per-molecule lines make the expression usable in every numerical of this chapter."
+      }
+    ]
+  },
+  "insider_note": "The question says molecule but most model answers stop at (3/2)RT per mole — writing (3/2)kT as the per-molecule line is the difference between following the book and answering the question."
+}

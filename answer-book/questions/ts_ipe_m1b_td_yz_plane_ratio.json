@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_yz_plane_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the ratio in which the YZ-plane divides the line joining A(2,4,5) and B(3,5,−4). Also find the point of intersection.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the ratio",
+      "marks": 1
+    },
+    {
+      "label": "Find the point of intersection",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 3-D Coordinates, answer 99.2, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this answer. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer, whose page is set two and three answers to a page in columns. It is not a bare guess: answer 98 in THIS SAME CHAPTER (book p.83) carries a printed 1+1 against exactly this shape — one mark for the setting-up equation and one for the answer read off it — and every answer in the unit takes those two moves. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: 3D-Coordinates is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no 3D LAQ chapter (its LAQ chapters are 1-6) and no 3D SAQ chapter (its SAQ chapters are 7-13). Its chapter header reads '2 Marks' and carries the note 'Just 2 Pages - 2 Marks'. Chapter scoped by BOUNDARY WALK: book p.85 opens VSAQ chapter 16, The Plane. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what is special about a point on that plane, and what a negative ratio means.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_ratio",
+        "kind": "equation",
+        "label": "Write the ratio",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A coordinate plane is where one coordinate is ZERO, so the YZ-plane divides the join in the ratio −x₁ : x₂ — the two x-coordinates, with a minus on the first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A(x₁, y₁, z₁) = (2, 4, 5) and",
+          "B(x₂, y₂, z₂) = (3, 5, −4)",
+          "The ratio that the YZ plane divides AB is",
+          "−x₁ : x₂ = −2 : 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the YZ-plane divides AB in the ratio −x₁ : x₂.",
+          "accept": [
+            "the ratio is minus the first coordinate to the second",
+            "the plane is where that coordinate is zero so use minus x one to x two",
+            "write the ratio from the two x coordinates",
+            "ratio minus x one ratio x two",
+            "the dividing ratio is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ratio",
+            "minus",
+            "plane",
+            "coordinate is zero"
+          ]
+        },
+        "why": "The YZ-plane is exactly the set of points whose x-coordinate is zero, so asking where it cuts AB is asking where x becomes zero along AB — and the section formula turns that into this ratio directly.",
+        "common_mistakes": [
+          "Using the wrong coordinate for the plane named.",
+          "Dropping the minus sign, which reverses internal and external division."
+        ]
+      },
+      {
+        "id": "s2_find_the_point",
+        "kind": "boxed_final",
+        "label": "Find the point of intersection",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Put that ratio into the section formula. A NEGATIVE ratio means the plane cuts the line EXTERNALLY, outside the segment — a real answer, not an error.",
+        "lines": [
+          "∴ the point which divides A(2,4,5) and B(3,5,−4) in the ratio −2 : 3 is",
+          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n), (mz₂ + nz₁)/(m+n))",
+          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3), (−2×−4 + 3×5)/(−2+3))",
+          "= ((−6+6)/1, (−10+12)/1, (8+15)/1)",
+          {
+            "text": "∴ Point of intersection = (0, 2, 23)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the section formula with that ratio gives (0, 2, 23).",
+          "accept": [
+            "put the ratio into the section formula to get the point",
+            "m x two plus n x one over m plus n for each coordinate",
+            "this gives the point of intersection",
+            "section formula lo ratio pettali",
+            "the point is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "section formula",
+            "m x two plus n x one",
+            "point of intersection"
+          ]
+        },
+        "why": "A negative ratio is the standard signal for EXTERNAL division, and it is what makes the denominator m + n small — which is why the coordinates can come out large.",
+        "common_mistakes": [
+          "Swapping m and n in the section formula.",
+          "Treating a negative ratio as an error and flipping its sign."
+        ]
+      }
+    ]
+  }
+}

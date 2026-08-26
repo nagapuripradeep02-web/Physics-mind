@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_work_power_energy_units",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define work, power and energy. State their SI units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work and power",
+      "marks": 1
+    },
+    {
+      "label": "Energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_work_power",
+        "kind": "equation",
+        "label": "Work and power",
+        "marks": 1,
+        "mark_note": "Work, power",
+        "lines": [
+          {
+            "text": "Work:",
+            "style": "heading"
+          },
+          "the product of the force and the",
+          "displacement along the force.",
+          {
+            "text": "W = F S cos θ,  SI unit: joule (J)",
+            "style": "eq"
+          },
+          {
+            "text": "Power:",
+            "style": "heading"
+          },
+          "the work done per unit time.",
+          {
+            "text": "P = W / t,  SI unit: watt (W)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Definition, formula and unit for each. The unit is a separate thing to lose.",
+        "why": "Power is the rate, not the amount. Two engines can do the same work, and the faster one is the more powerful.",
+        "common_mistakes": [
+          "Giving power the unit joule. A watt is a joule PER SECOND."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is force times displacement in joules, and power is work per unit time in watts.",
+          "accept": [
+            "work is force into displacement, joule",
+            "power is work per unit time, watt",
+            "power ante work by time, watt"
+          ],
+          "reject": [
+            "energy is the capacity to do work"
+          ],
+          "heard_as": [
+            "joule",
+            "watt",
+            "per unit time"
+          ]
+        },
+        "memory_tip": "Work in joule; power is work PER TIME, in watt."
+      },
+      {
+        "id": "s2_energy",
+        "kind": "boxed_final",
+        "label": "Energy",
+        "marks": 1,
+        "mark_note": "Energy",
+        "lines": [
+          {
+            "text": "Energy:",
+            "style": "heading"
+          },
+          "the capacity of a body to do work.",
+          {
+            "text": "SI unit: joule (J)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Energy and work share the joule — say so, it shows you know why.",
+        "why": "Energy is measured by how much work it could do, so it cannot have any other unit than work has.",
+        "common_mistakes": [
+          "Defining energy as \"power\" or listing calories as the SI unit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That energy is the capacity to do work, measured in joules.",
+          "accept": [
+            "energy is the capacity to do work",
+            "its unit is joule",
+            "work cheyagalige samardhyam"
+          ],
+          "reject": [
+            "power is work per unit time"
+          ],
+          "heard_as": [
+            "capacity",
+            "do work",
+            "joule"
+          ]
+        },
+        "memory_tip": "Energy is the capacity to do work, so it shares the joule."
+      }
+    ]
+  },
+  "insider_note": "Three definitions and three units for two marks: work and power share the first mark, so both of them must be complete to earn it."
+}

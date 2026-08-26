@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_centripetal_acceleration_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is centripetal acceleration? Write its expression and its direction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The idea",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_idea",
+        "kind": "text",
+        "label": "The idea",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "In uniform circular motion the speed stays",
+          "the same, but the direction of the velocity",
+          "keeps turning. That change of direction is",
+          "an acceleration, called centripetal."
+        ],
+        "margin_note": "First mark. The change of direction is the definition — say it in words before any formula.",
+        "why": "Acceleration means a change of VELOCITY, and a velocity changes when its direction changes even if its size never does.",
+        "common_mistakes": [
+          "Saying there is no acceleration because the speed is constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the direction of velocity keeps changing in circular motion, and that change is the centripetal acceleration.",
+          "accept": [
+            "direction of velocity changes",
+            "constant speed but changing direction"
+          ],
+          "reject": [
+            "v squared by r"
+          ],
+          "heard_as": [
+            "centripetal",
+            "direction changes"
+          ]
+        },
+        "memory_tip": "Constant SPEED is not constant VELOCITY. A turning direction is already an acceleration."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          {
+            "text": "a = v²/r = ω²r",
+            "style": "boxed"
+          },
+          "It points along the radius, towards the",
+          "centre of the circle. That is why it is",
+          "called centripetal, meaning centre-seeking."
+        ],
+        "margin_note": "Second mark. The formula alone will not earn it — the words \"towards the centre\" must appear.",
+        "why": "The direction is the part students drop, and it is the part that makes the motion circular rather than straight.",
+        "common_mistakes": [
+          "Writing the direction as along the velocity, or outward instead of inward."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is v squared by r, equal to omega squared r, directed towards the centre.",
+          "accept": [
+            "v squared by r",
+            "omega squared r",
+            "towards the centre"
+          ],
+          "reject": [
+            "direction of velocity changes"
+          ],
+          "heard_as": [
+            "v squared by r",
+            "towards the centre"
+          ]
+        },
+        "memory_tip": "v²/r and ω²r are the same number, since v = ωr. Use whichever the question gives."
+      }
+    ]
+  },
+  "insider_note": "Two marks: what it is, then a = v²/r. The direction towards the centre is part of the second mark, so write it."
+}

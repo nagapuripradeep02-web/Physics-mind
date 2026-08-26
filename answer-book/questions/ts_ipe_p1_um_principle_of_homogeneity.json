@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_principle_of_homogeneity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the principle of homogeneity of dimensions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "What it is used for",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The principle of homogeneity states that every",
+          "term on both sides of a correct physical",
+          "equation must have the same dimensions."
+        ],
+        "why": "Quantities of different kinds cannot be added, in the same way that a length cannot be added to a time. The principle is that fact written as a rule.",
+        "common_mistakes": [
+          "Saying the two sides must be equal in value. The principle is about dimensions, not numbers."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every term on both sides of a correct equation must have the same dimensions.",
+          "accept": [
+            "same dimensions",
+            "every term",
+            "both sides"
+          ],
+          "reject": [
+            "equal in value"
+          ],
+          "heard_as": [
+            "homogeneity",
+            "same dimensions"
+          ]
+        },
+        "memory_tip": "You cannot add a length to a time. That is the whole principle.",
+        "margin_note": "Say \"every term\", not \"both sides\" alone."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "What it is used for",
+        "marks": 1,
+        "mark_note": "Its use",
+        "lines": [
+          {
+            "text": "Used to check an equation, and to find",
+            "style": "boxed"
+          },
+          {
+            "text": "unknown units",
+            "style": "boxed"
+          },
+          "A dimensionally wrong equation is certainly",
+          "wrong; a dimensionally right one may still be",
+          "wrong, because pure numbers have no",
+          "dimensions."
+        ],
+        "why": "The check is one-way. It can prove an equation false but never prove it true, because a missing factor of ½ or 2π leaves the dimensions untouched.",
+        "common_mistakes": [
+          "Saying a dimensionally correct equation must be correct. The constant is invisible to this test."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is used to check equations and find unknown units, but cannot prove an equation is right.",
+          "accept": [
+            "check the equation",
+            "find unknown units",
+            "cannot prove correct"
+          ],
+          "reject": [
+            "proves the equation is right"
+          ],
+          "heard_as": [
+            "check",
+            "cannot prove"
+          ]
+        },
+        "memory_tip": "It can prove an equation WRONG, never prove it right — the ½ is invisible.",
+        "margin_note": "The one-way nature of the check is worth one line."
+      }
+    ]
+  },
+  "insider_note": "State it, then say what it is used for. The use is the second mark."
+}

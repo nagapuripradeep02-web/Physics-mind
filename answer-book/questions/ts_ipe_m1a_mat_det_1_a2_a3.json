@@ -1,0 +1,384 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_1_a2_a3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Show that the determinant with rows (1, a², a³), (1, b², b³) and (1, c², c³) is equal to (a−b)(b−c)(c−a)(ab+bc+ca).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Row operations R₂−R₁ and R₃−R₁",
+      "marks": 1
+    },
+    {
+      "label": "Factorise the differences of squares and cubes",
+      "marks": 1
+    },
+    {
+      "label": "Take (b−a) and (c−a) common",
+      "marks": 1
+    },
+    {
+      "label": "Row operation R₃−R₂",
+      "marks": 1
+    },
+    {
+      "label": "Take (c−b) common",
+      "marks": 1
+    },
+    {
+      "label": "Expand and simplify to the required form",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.23 — LAQ chapter 3 Matrices, answer 13, on a ★★★ SSP (Super Scoring Page), and the book's self-declared 'No.1 in Dets'. The mark split is PRINTED in that book's margin as [1 Mark] against five working lines and [2 Marks] against the closing expansion — a sourced 1+1+1+1+1+2, not an inference. Appearances are printed board-split (TS 19 · AP 17,18). Star rank is the CHAPTER's ★★★, not this question's. ONE PRESENTATION CHANGE, made deliberately: the book prints a full intermediate determinant whose third-column entries are (b−a)(b²+ba+a²) and (c−a)(c²+ca+a²). That line is far wider than this page's body, so the two factorisations are written on their own line first and the determinant is then shown AFTER the common factors leave. Same mathematics, same number of marked steps, one fewer unreadable line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this one — name the row operations in order, say what you take common at each stage, and say what the last bracket works out to.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own. Note that column 1 is all 1s — that is the clue telling you to use ROW operations here, not column operations.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\text{L.H.S} = \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 1 & b^2 & b^3 \\\\ 1 & c^2 & c^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the left-hand side determinant. Naming it is full credit.",
+          "accept": [
+            "write the left hand side determinant first",
+            "take delta as the given determinant with ones in the first column",
+            "start with LHS the determinant of one a square a cube",
+            "modata LHS determinant rasta",
+            "write down the determinant that has to be proved"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "LHS",
+            "a square",
+            "a cube"
+          ]
+        },
+        "why": "The first column being 1, 1, 1 is what makes row subtraction free of fractions. Spotting that decides the whole method before you write a second line.",
+        "common_mistakes": [
+          "Reaching for column operations because the last question used them.",
+          "Expanding the determinant directly and producing six messy terms."
+        ]
+      },
+      {
+        "id": "s2_row_ops",
+        "kind": "equation",
+        "label": "Do R₂−R₁ and R₃−R₁",
+        "marks": 1,
+        "mark_note": "Row operations",
+        "margin_note": "First mark. Subtracting row 1 from the other two puts zeros down the first column, because every entry there is 1.",
+        "lines": [
+          "R₂ → R₂ − R₁ and R₃ → R₃ − R₁:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & b^2-a^2 & b^3-a^3 \\\\ 0 & c^2-a^2 & c^3-a^3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 1 is subtracted from row 2 and from row 3, putting zeros in the first column. Both operations must be named.",
+          "accept": [
+            "apply R two minus R one and R three minus R one to get zeros in the first column",
+            "subtract the first row from the second and the third row",
+            "do row two minus row one and row three minus row one",
+            "R2 ki R1 teesi R3 ki kuda R1 teeste first column lo zeros vasthai",
+            "take away row one from both the lower rows so the first column becomes one zero zero"
+          ],
+          "reject": [
+            "do some row operations",
+            "apply column operations",
+            "subtract the rows"
+          ],
+          "heard_as": [
+            "R2",
+            "R three",
+            "row two minus row one",
+            "zeros",
+            "first column"
+          ]
+        },
+        "why": "Subtracting one row from another never changes a determinant's value. Because column 1 is all 1s, this single move buys two zeros at no cost.",
+        "common_mistakes": [
+          "Doing R₁ − R₂ instead of R₂ − R₁, which flips the sign of the final answer.",
+          "Changing row 1 as well; the row you subtract BY must stay as it is."
+        ]
+      },
+      {
+        "id": "s3_factorise",
+        "kind": "equation",
+        "label": "Factorise the entries",
+        "marks": 1,
+        "mark_note": "Standard factorisations",
+        "margin_note": "Second mark. Two standard results do all the work here. Both leave the SAME bracket, (b−a), and that shared bracket is what comes out on the next line.",
+        "lines": [
+          "b² − a² = (b−a)(a+b)",
+          "b³ − a³ = (b−a)(a² + ab + b²)",
+          "The same two results hold with c in place of b.",
+          "So R₂ has (b−a) in both entries, R₃ has (c−a)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b²−a² and b³−a³ are factorised using the difference of squares and difference of cubes, and that both share the factor (b−a) — likewise (c−a) in row 3.",
+          "accept": [
+            "use difference of squares and difference of cubes so both entries in row two have b minus a",
+            "b square minus a square is b minus a into a plus b and b cube minus a cube is b minus a into a square plus ab plus b square",
+            "factorise both entries of the row and b minus a is common to both",
+            "difference of cubes formula use chesi b minus a common ga vasthundi",
+            "each row has a common bracket b minus a for row two and c minus a for row three"
+          ],
+          "reject": [
+            "I factorise the rows",
+            "simplify the entries",
+            "expand the cubes"
+          ],
+          "heard_as": [
+            "difference of squares",
+            "difference of cubes",
+            "b cube minus a cube",
+            "a square plus ab plus b square",
+            "b minus a"
+          ]
+        },
+        "why": "The difference of cubes is the one factorisation this question is really testing. Everything after it is bookkeeping.",
+        "common_mistakes": [
+          "Writing b³ − a³ = (b−a)³, which is wrong.",
+          "Getting the middle sign wrong: the second bracket is a² + ab + b², all plus.",
+          "Factorising the squares but leaving the cubes alone."
+        ]
+      },
+      {
+        "id": "s4_common",
+        "kind": "equation",
+        "label": "Take (b−a) and (c−a) common",
+        "marks": 1,
+        "mark_note": "Common factors",
+        "margin_note": "Third mark. (b−a) leaves row 2 and (c−a) leaves row 3, and what stays behind is small enough to read.",
+        "lines": [
+          "Taking (b−a) from R₂ and (c−a) from R₃:",
+          {
+            "text": "\\Delta = (b-a)(c-a) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & a+c & a^2+ac+c^2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (b−a) comes out of row 2 and (c−a) out of row 3, leaving a+b and a+c in the middle column.",
+          "accept": [
+            "take b minus a common from row two and c minus a from row three",
+            "pull b minus a and c minus a outside the determinant",
+            "the common brackets leave the rows and sit in front",
+            "row two nunchi b minus a, row three nunchi c minus a common teesukuntam",
+            "b minus a into c minus a comes outside and a simpler determinant is left"
+          ],
+          "reject": [
+            "take common",
+            "take out the factors",
+            "simplify it"
+          ],
+          "heard_as": [
+            "b minus a",
+            "c minus a",
+            "common",
+            "row two",
+            "row three"
+          ]
+        },
+        "why": "A common factor leaves a ROW once. Two rows give two brackets — which is already two of the three brackets in the final answer.",
+        "common_mistakes": [
+          "Taking the factor out of a column instead of a row.",
+          "Taking (b−a) out twice because it appeared in two entries of the same row."
+        ]
+      },
+      {
+        "id": "s5_row3_minus_row2",
+        "kind": "equation",
+        "label": "Do R₃−R₂",
+        "marks": 1,
+        "mark_note": "Row operation",
+        "margin_note": "Fourth mark. Rows 2 and 3 now look alike, so subtracting one from the other is what makes the third bracket (c−b) appear. This is the step students most often cannot see.",
+        "lines": [
+          "R₃ → R₃ − R₂:",
+          "Middle entry:  (a+c) − (a+b) = c − b",
+          "Last entry:  (a²+ac+c²) − (a²+ab+b²)",
+          "  = a(c−b) + (c−b)(c+b) = (c−b)(a+b+c)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 3 minus row 2 is applied, and that both new entries carry the factor (c−b) — the middle entry becoming c−b and the last becoming (c−b)(a+b+c).",
+          "accept": [
+            "apply row three minus row two so the entries become c minus b and c minus b into a plus b plus c",
+            "subtract row two from row three and c minus b comes out of both entries",
+            "do R three minus R two which gives c minus b times a plus b plus c in the last entry",
+            "R3 nunchi R2 teeste c minus b common ga vasthundi",
+            "take row three minus row two and factor c minus b out of what is left"
+          ],
+          "reject": [
+            "do another row operation",
+            "subtract the rows again",
+            "simplify row three"
+          ],
+          "heard_as": [
+            "R three minus R two",
+            "c minus b",
+            "a plus b plus c",
+            "row three"
+          ]
+        },
+        "why": "Rows 2 and 3 differ only by swapping b for c. Any two such rows subtract to leave a multiple of (c−b) — which is exactly the bracket the answer still needs.",
+        "common_mistakes": [
+          "Doing R₂ − R₃ and getting the opposite sign.",
+          "Expanding (a²+ac+c²) − (a²+ab+b²) into loose terms and never spotting the (c−b).",
+          "Forgetting that a² cancels between the two entries."
+        ]
+      },
+      {
+        "id": "s6_take_c_minus_b",
+        "kind": "equation",
+        "label": "Take (c−b) common",
+        "marks": 1,
+        "mark_note": "Third bracket",
+        "margin_note": "Fifth mark. The third bracket now leaves the determinant, so all three brackets of the answer are outside and only the (ab+bc+ca) is still to come.",
+        "lines": [
+          "Taking (c−b) common from R₃:",
+          {
+            "text": "\\Delta = (b-a)(c-a)(c-b) \\begin{vmatrix} 1 & a^2 & a^3 \\\\ 0 & a+b & a^2+ab+b^2 \\\\ 0 & 1 & a+b+c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (c−b) is taken common out of row 3, leaving 1 and (a+b+c) in that row.",
+          "accept": [
+            "take c minus b common from row three leaving one and a plus b plus c",
+            "pull c minus b outside so now all three brackets are in front",
+            "c minus b comes out of the last row",
+            "row three nunchi c minus b common teeste one and a plus b plus c migulutundi",
+            "the third bracket leaves the determinant and the row becomes zero one a plus b plus c"
+          ],
+          "reject": [
+            "take common again",
+            "take out c minus b and finish",
+            "simplify the last row"
+          ],
+          "heard_as": [
+            "c minus b",
+            "common",
+            "row three",
+            "a plus b plus c"
+          ]
+        },
+        "why": "Three brackets outside and a 2×2 job left inside is the shape this proof is aiming for. If your working does not reach that shape, something earlier went wrong.",
+        "common_mistakes": [
+          "Leaving (c−b) inside and trying to expand with it still there.",
+          "Writing (b−c) instead of (c−b) and losing a sign."
+        ]
+      },
+      {
+        "id": "s7_expand",
+        "kind": "boxed_final",
+        "label": "Expand and finish",
+        "marks": 2,
+        "mark_note": "Expansion and final form",
+        "margin_note": "The last two marks together. Expand along column 1 — only the 1 at the top contributes — then multiply out carefully: a² and b² both cancel, and what survives is exactly ab+bc+ca.",
+        "lines": [
+          "Expanding along C₁:",
+          "Δ = (b−a)(c−a)(c−b)[(a+b)(a+b+c) − (a²+ab+b²)]",
+          "(a+b)(a+b+c) = a² + 2ab + b² + ca + cb",
+          "Subtracting:  ab + bc + ca",
+          "Δ = (b−a)(c−a)(c−b)(ab+bc+ca)",
+          "Two sign flips give the asked-for order:",
+          {
+            "text": "Δ = (a−b)(b−c)(c−a)(ab+bc+ca) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant is expanded along the first column, the bracket multiplies out to ab+bc+ca, and the three brackets are then reordered into (a−b)(b−c)(c−a) using sign flips that cancel.",
+          "accept": [
+            "expand along the first column and the bracket simplifies to ab plus bc plus ca then rearrange the signs to get a minus b b minus c c minus a",
+            "only the one contributes so we get a plus b into a plus b plus c minus a square plus ab plus b square which is ab plus bc plus ca",
+            "multiply out and the squares cancel leaving ab plus bc plus ca then flip the brackets to the required order",
+            "expand chesthe ab plus bc plus ca vasthundi and sign flips tho required form vasthundi",
+            "the last bracket works out to ab plus bc plus ca and then reorder to the given form"
+          ],
+          "reject": [
+            "expand and get the answer",
+            "hence proved",
+            "simplify to get RHS"
+          ],
+          "heard_as": [
+            "ab plus bc plus ca",
+            "expand",
+            "first column",
+            "a minus b",
+            "b minus c",
+            "c minus a"
+          ]
+        },
+        "why": "The cancellation is the point: a² + 2ab + b² + ca + cb minus a² + ab + b² leaves one ab, not two. Rushing this line is where the two marks are lost.",
+        "common_mistakes": [
+          "Dropping the minus sign across the whole second bracket and getting 2a² + 3ab + 2b².",
+          "Stopping at (b−a)(c−a)(c−b) and never writing the order the question asked for.",
+          "Flipping only one bracket, which changes the sign of the answer."
+        ]
+      }
+    ]
+  }
+}

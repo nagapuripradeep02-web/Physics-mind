@@ -1,0 +1,258 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_divisible_2_4_2n1_3_3n1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Using P.M.I, show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — the PRACTICE question printed at the foot of LAQ chapter 2. IMPORTANT: the book poses this question but gives NO worked solution and NO mark split, so unlike every other question in this unit BOTH the solution and the 1+1+1+3+1 split are ours — the split copied from the chapter's solved questions, the working done and checked here (n=1 gives 209 = 11 × 19; the step turns on 16 − 27 being a multiple of 11). No appearance years are printed. Everything here needs a teacher's confirmation."
+  },
+  "recall_prompt": "Say how you would prove this by induction — how each power grows, and which subtraction produces the 11.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark. Same first move as every divisibility proof: turn the word into an equation.",
+        "lines": [
+          "Let S(n): 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ = 11q,",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That divisible by 11 is written as the expression equalling 11q for an integer q.",
+          "accept": [
+            "write it as equal to eleven q with q an integer",
+            "divisible by eleven means eleven times an integer",
+            "set the expression equal to eleven q",
+            "eleven q ki equal ga rastam"
+          ],
+          "reject": [
+            "let s of n be",
+            "state the statement",
+            "it is divisible by eleven"
+          ],
+          "heard_as": [
+            "eleven q",
+            "integer",
+            "divisible"
+          ]
+        },
+        "why": "The same opening as the two solved questions before it — which is why this one is set as practice.",
+        "common_mistakes": [
+          "Reading 2·4 as the decimal two point four.",
+          "Leaving it in words."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Work out both powers at n = 1 and name the multiple of 11.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "2·4³ + 3⁴ = 2(64) + 81",
+          "= 128 + 81 = 209 = 11(19)",
+          "which is divisible by 11. So S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the value is 2(64) + 81 = 209, and that 209 = 11 × 19.",
+          "accept": [
+            "two times sixty four plus eighty one is two hundred nine which is eleven times nineteen",
+            "at n equals one you get two zero nine a multiple of eleven",
+            "four cubed is sixty four and three to the fourth is eighty one giving two zero nine",
+            "n equals one ki two zero nine vasthundi eleven into nineteen"
+          ],
+          "reject": [
+            "s of one is true",
+            "base case holds",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "two hundred nine",
+            "eleven",
+            "nineteen",
+            "sixty four",
+            "eighty one"
+          ]
+        },
+        "why": "Naming 209 as 11 × 19 is what the examiner marks — 'divisible' on its own is an assertion.",
+        "common_mistakes": [
+          "Exponent slip: at n = 1, 2n+1 is 3 and 3n+1 is 4.",
+          "Writing 209 without showing the factor 11."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume for k, number the line, and rearrange to isolate the first power — that is what Step 3 substitutes.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 2·4⁽²ᵏ⁺¹⁾ + 3⁽³ᵏ⁺¹⁾ = 11q   …(1)",
+          "⇒ 2·4⁽²ᵏ⁺¹⁾ = 11q − 3⁽³ᵏ⁺¹⁾"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the statement is assumed for one k as 2·4⁽²ᵏ⁺¹⁾ + 3⁽³ᵏ⁺¹⁾ = 11q, and rearranged to give 2·4⁽²ᵏ⁺¹⁾ = 11q − 3⁽³ᵏ⁺¹⁾.",
+          "accept": [
+            "assume it for k then make two times four to the two k plus one the subject",
+            "suppose s of k holds and rearrange to isolate the first term",
+            "take it as true for k and write the first power in terms of q",
+            "k ki assume chesi first term ni subject ga rastam"
+          ],
+          "reject": [
+            "assume s of k",
+            "let it be true for k",
+            "take the assumption"
+          ],
+          "heard_as": [
+            "assume",
+            "eleven q",
+            "equation one",
+            "rearrange",
+            "two k plus one"
+          ]
+        },
+        "why": "Isolating one power means Step 3 substitutes once and leaves a single leftover term to collect.",
+        "common_mistakes": [
+          "Assuming it for all k.",
+          "Rearranging for the wrong power, which makes the last step messier."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three marks. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",
+          "= 16(2·4⁽²ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
+          "= 16(11q − 3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)   [from (1)]",
+          "= 16(11q) − 16(3⁽³ᵏ⁺¹⁾) + 27(3⁽³ᵏ⁺¹⁾)",
+          "= 16(11q) + 11(3⁽³ᵏ⁺¹⁾)",
+          "= 11(16q + 3⁽³ᵏ⁺¹⁾)",
+          "which is divisible by 11."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first power grows by 16 and the second by 27, that (1) replaces 2·4⁽²ᵏ⁺¹⁾ by 11q − 3⁽³ᵏ⁺¹⁾, and that 27 − 16 = 11 leaves a factor of 11.",
+          "accept": [
+            "the first term picks up sixteen and the second twenty seven then substitute and twenty seven minus sixteen is eleven",
+            "after substituting you get eleven times sixteen q plus three to the three k plus one",
+            "twenty seven minus sixteen equals eleven which is why it factors",
+            "twenty seven minus sixteen eleven kabatti factor avuthundi"
+          ],
+          "reject": [
+            "substitute and simplify",
+            "show the next case",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "sixteen",
+            "twenty seven",
+            "eleven",
+            "substitute",
+            "three to the three k plus one"
+          ]
+        },
+        "why": "27 − 16 = 11 is the hidden reason the question was chosen. Every divisibility proof of this shape is built around one such difference.",
+        "common_mistakes": [
+          "Growth factors wrong: 4⁽²ᵏ⁺³⁾ is 16 × 4⁽²ᵏ⁺¹⁾ and 3⁽³ᵏ⁺⁴⁾ is 27 × 3⁽³ᵏ⁺¹⁾.",
+          "Substituting for both powers, leaving nothing to collect.",
+          "Not saying the final bracket is an integer."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the statement holds for every natural number.",
+          "accept": [
+            "since the first case is true and each case gives the next by p m i it is true for all n",
+            "hence by the principle of mathematical induction it holds for every natural number",
+            "base case plus inductive step gives it for all n in n",
+            "p m i prakaram anni n ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is divisible",
+            "that completes it"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the principle."
+        ]
+      }
+    ]
+  }
+}

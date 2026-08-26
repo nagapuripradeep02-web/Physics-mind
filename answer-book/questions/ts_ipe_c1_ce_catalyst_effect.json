@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_catalyst_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of a catalyst on a chemical equilibrium?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "No shift, K unchanged",
+      "marks": 1
+    },
+    {
+      "label": "What the catalyst does change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the book's Le Chatelier SAQ discusses concentration, pressure and temperature but never asks the catalyst case on its own, and 'a catalyst does not shift the equilibrium' is a standard board ask. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Chemistry verified correct and consistent with lechatelier_principle s4 and temperature_effect_kc s1; two memory tips rewritten for Rule 41 ('balance point', 'destination/journey'). No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_shift",
+        "kind": "text",
+        "label": "No shift, K unchanged",
+        "marks": 1,
+        "mark_note": "No shift",
+        "lines": [
+          "A catalyst does not change the equilibrium",
+          "position and does not change the value of",
+          "the equilibrium constant.",
+          "It increases the forward and the backward",
+          "reaction rates EQUALLY."
+        ],
+        "why": "The equilibrium position depends on the ratio of the two rates. A catalyst multiplies both rates by the same factor, so the ratio — and with it the position and K — stays the same.",
+        "common_mistakes": [
+          "Writing that a catalyst shifts the equilibrium forward. It shifts nothing.",
+          "Writing that a catalyst increases the yield. The amounts at equilibrium are unchanged."
+        ],
+        "memory_tip": "Both rates rise by the same factor, so the equilibrium position does not move.",
+        "margin_note": "The word equally is the reason — write it."
+      },
+      {
+        "id": "s2_faster",
+        "kind": "boxed_final",
+        "label": "What the catalyst does change",
+        "marks": 1,
+        "mark_note": "Time effect",
+        "lines": [
+          "The composition at equilibrium stays the",
+          "same; the system only arrives at that",
+          "composition sooner.",
+          {
+            "text": "A catalyst only reduces the time needed to reach equilibrium",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the one real effect: with both rates raised, every stage of the approach to equilibrium runs faster, so the same final state is reached in less time.",
+        "common_mistakes": [
+          "Writing that the catalyst is used up. It is recovered unchanged.",
+          "Confusing faster arrival with a different destination — the equilibrium mixture is identical."
+        ],
+        "memory_tip": "The same equilibrium mixture is reached, only in less time.",
+        "margin_note": "Two sentences: what stays the same, and the one thing that changes."
+      }
+    ]
+  }
+}

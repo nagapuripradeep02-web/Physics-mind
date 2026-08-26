@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh_2x_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cosh 2x = 2 cosh²x − 1.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand the right side",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to cosh 2x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.97 — VSAQ chapter 19 Hyperbolic Functions, answer 141.2. Printed appearances: AP 18. Worked from the RIGHT side rather than the left — because the right side is the messier one, and simplifying it is easier than building it up. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Expand the right side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Start from 2cosh²x − 1, which is the side with something to simplify. Squaring gives three terms over 4, and the 2 outside cancels one of the factors.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "R.H.S = 2 cosh²x − 1",
+          "= 2((eˣ + e⁻ˣ)/2)² − 1",
+          "= 2 · (e²ˣ + e⁻²ˣ + 2)/4 − 1",
+          "= (e²ˣ + e⁻²ˣ + 2)/2 − 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2cosh²x − 1 is expanded to (e²ˣ + e⁻²ˣ + 2)/2 − 1.",
+          "accept": [
+            "expand two cosh squared minus one to get e to the two x plus e to the minus two x plus two over two minus one",
+            "start from the right side and square the definition",
+            "the middle term is two because e to the x times e to the minus x is one",
+            "right side nunchi start chesi square cheyyali",
+            "expand the squared cosh"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cosh squared",
+            "e to the two x",
+            "plus two",
+            "over two"
+          ]
+        },
+        "why": "The middle term of the square is 2·eˣ·e⁻ˣ = 2, not 2e⁰ˣ or anything else — the exponentials cancel to give a plain number.",
+        "common_mistakes": [
+          "Getting the middle term wrong and losing the +2.",
+          "Cancelling the 2 outside against the wrong factor."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to cosh 2x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The +2/2 is exactly 1, which the −1 removes — and what is left is the definition of cosh 2x.",
+        "lines": [
+          "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
+          "= (e²ˣ + e⁻²ˣ)/2",
+          {
+            "text": "= cosh 2x = L.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the +2 and the −1 cancel, leaving (e²ˣ + e⁻²ˣ)/2 which IS cosh 2x.",
+          "accept": [
+            "the plus two over two is one which the minus one cancels leaving e to the two x plus e to the minus two x over two which is cosh two x",
+            "the constants cancel and what remains is the definition of cosh two x",
+            "it simplifies to cosh two x",
+            "constants cancel ayi cosh two x vasthundi",
+            "the result is cosh two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "cosh two x",
+            "e to the two x",
+            "definition"
+          ]
+        },
+        "why": "Recognising (e²ˣ + e⁻²ˣ)/2 as cosh 2x rather than leaving it in exponentials is what finishes the proof — the definition read backwards.",
+        "common_mistakes": [
+          "Leaving the answer in exponential form.",
+          "Forgetting that the −1 cancels the +2/2 exactly."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_phase_occupying_most_of_24_hours",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "One cycle of cell division in a human cell takes about 24 hours. Which phase of the cell cycle occupies the maximum part of this time?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The split of the 24 hours",
+      "marks": 1
+    },
+    {
+      "label": "The phase",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.28, VSAQ 7) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it. BOOK ERROR: its key answers 'Synthesis phase of Interphase'. This card answers interphase and records the book's wording in the second step's why."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "text",
+        "label": "The split of the 24 hours",
+        "marks": 1,
+        "mark_note": "The split",
+        "lines": [
+          "Of the 24 hours, division proper (M phase) takes",
+          "about 1 hour.",
+          "The remaining 23 hours are interphase, which is",
+          "more than 95% of the cycle."
+        ],
+        "why": "The question hands you the total time, so the answer is expected to come with the split. One hour for M phase against 23 for interphase settles it in a line.",
+        "common_mistakes": [
+          "Answering with a phase name and no numbers when the question gives you 24 hours.",
+          "Writing that M phase takes most of the time."
+        ],
+        "memory_tip": "24 hours in the cycle: 23 for interphase, 1 for division.",
+        "margin_note": "One line for the split. The numbers carry this mark."
+      },
+      {
+        "id": "s2_phase",
+        "kind": "boxed_final",
+        "label": "The phase",
+        "marks": 1,
+        "mark_note": "The phase",
+        "lines": [
+          {
+            "text": "Interphase — about 23 of the 24 hours.",
+            "style": "boxed"
+          },
+          "Inside those 23 hours the cell grows in G₁, copies",
+          "its DNA in S, and makes proteins in G₂."
+        ],
+        "why": "This book's key answers 'Synthesis phase of Interphase'. The phase of the CELL CYCLE that occupies the maximum time is interphase itself; among its sub-phases G₁ is usually the longest in a human cell, about 11 hours against 8 for S — so name interphase, then break it into sub-phases if you want the extra detail.",
+        "common_mistakes": [
+          "Naming S phase on its own. S is inside interphase, and it is not even the longest part of it."
+        ],
+        "memory_tip": "Name the whole phase first, then break it into G₁, S and G₂.",
+        "margin_note": "Box the phase name with its share of the 24 hours."
+      }
+    ]
+  },
+  "insider_note": "This is the same fact as 'which phase is longest', asked with numbers. Quote 23 hours out of 24 and the mark is safe."
+}

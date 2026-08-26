@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_equality_2x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the matrix with rows (x−3, 2y−8) and (z+2, 6) equals the matrix with rows (5, 2) and (−2, a−4), then find the values of x, y, z and a.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Equate corresponding elements",
+      "marks": 1
+    },
+    {
+      "label": "Solve each equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 15 Matrices, answer 99.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 18 · AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find the four unknowns from this matrix equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equate",
+        "kind": "equation",
+        "label": "Equate corresponding elements",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two matrices are equal only when EVERY corresponding entry is equal. That turns one matrix equation into four ordinary equations.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\begin{bmatrix} x-3 & 2y-8 \\\\ z+2 & 6 \\end{bmatrix} = \\begin{bmatrix} 5 & 2 \\\\ -2 & a-4 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Equating corresponding elements:",
+          "x − 3 = 5,  2y − 8 = 2,",
+          "z + 2 = −2,  a − 4 = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal matrices have equal corresponding entries, giving four separate equations.",
+          "accept": [
+            "equal matrices means every corresponding element is equal so I get four equations",
+            "equate the corresponding entries one by one",
+            "compare each position to get four small equations",
+            "corresponding elements equate cheste four equations vasthai",
+            "match each entry with the entry in the same position"
+          ],
+          "reject": [
+            "equate them",
+            "compare the matrices"
+          ],
+          "heard_as": [
+            "corresponding elements",
+            "equate",
+            "four equations",
+            "equal matrices"
+          ]
+        },
+        "why": "Matrix equality is defined entry by entry — same size, same entry in every position. That definition is the whole question.",
+        "common_mistakes": [
+          "Equating the matrices as though they were numbers.",
+          "Matching entries in the wrong positions."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve each equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Four one-line solves. Watch z: z + 2 = −2 gives z = −4, not 0.",
+        "lines": [
+          "x = 5 + 3 = 8",
+          "2y = 2 + 8 = 10  ⇒  y = 5",
+          "z = −2 − 2 = −4",
+          "a = 6 + 4 = 10",
+          {
+            "text": "∴ x = 8, y = 5, z = −4, a = 10",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four equations are solved to give x = 8, y = 5, z = −4 and a = 10.",
+          "accept": [
+            "solve each one to get x is eight y is five z is minus four and a is ten",
+            "x equals eight, y equals five, z equals minus four, a equals ten",
+            "work out the four values from the four equations",
+            "four equations solve cheste x eight y five z minus four a ten vasthai",
+            "each equation gives one unknown"
+          ],
+          "reject": [
+            "solve them",
+            "find the values"
+          ],
+          "heard_as": [
+            "eight",
+            "five",
+            "minus four",
+            "ten"
+          ]
+        },
+        "why": "Each equation involves only one unknown, so none of them needs the others. That is why this is a 2-mark question and not a simultaneous-equations one.",
+        "common_mistakes": [
+          "Getting z = 0 by solving z + 2 = −2 as though it were z + 2 = 2.",
+          "Forgetting to halve when solving 2y = 10."
+        ]
+      }
+    ]
+  }
+}

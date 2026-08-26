@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_venation_dicot_monocot",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define venation. How do dicots differ from monocots with respect to venation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Dicot vs monocot",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Reticulate and parallel are the two words being tested; the examples confirm you can attach them to real leaves.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Venation — definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The arrangement of veins and veinlets in the",
+          "lamina of a leaf is called venation."
+        ],
+        "why": "The definition needs both words - veins AND veinlets - and the place, the lamina (leaf blade).",
+        "common_mistakes": [
+          "Writing only 'arrangement of veins'. Veinlets are part of the definition."
+        ],
+        "memory_tip": "Veins + veinlets in the lamina - three v-l words in one line.",
+        "margin_note": "One sentence with veins, veinlets and lamina in it."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "boxed_final",
+        "label": "Dicot vs monocot",
+        "marks": 1,
+        "mark_note": "Both types",
+        "lines": [
+          {
+            "text": "Dicots: reticulate venation - the veinlets",
+            "style": "boxed"
+          },
+          "form a network. Ex: Hibiscus.",
+          "Monocots: parallel venation - the veins run",
+          "parallel to one another. Ex: Musa (banana)."
+        ],
+        "why": "One contrast pair with one example each: net-like in dicots, parallel in monocots.",
+        "common_mistakes": [
+          "Swapping the examples - Hibiscus is the dicot, Musa the monocot."
+        ],
+        "memory_tip": "Monocot leaves such as banana show straight parallel lines; dicot leaves show a net.",
+        "margin_note": "Both terms with one example each - four short items in all."
+      }
+    ]
+  }
+}

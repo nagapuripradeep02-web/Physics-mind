@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_algal_bloom_red_tides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do the terms algal bloom and red tides signify?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Algal bloom",
+      "marks": 1
+    },
+    {
+      "label": "Red tides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'Medeterranian' (spelling) and says the algal bloom causes eutrophication; standard botany runs the other way — nutrient-rich (eutrophic) water allows the bloom, and the bloom then harms the water body — and the card states the standard relation, recording the book's position in the step's why."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biological Classification · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_algal_bloom",
+        "kind": "text",
+        "label": "Algal bloom",
+        "marks": 1,
+        "mark_note": "Algal bloom",
+        "lines": [
+          {
+            "text": "Algal bloom",
+            "style": "heading"
+          },
+          "Excessive growth of cyanobacteria in stagnant,",
+          "polluted water is called an algal bloom.",
+          "It lowers water quality and kills fish."
+        ],
+        "why": "Cyanobacteria multiply fast in nutrient-rich, stagnant water; the thick growth colours the water and uses up oxygen as it decays, so fish die. (The book prints that the bloom causes eutrophication; in standard botany, eutrophication — nutrient enrichment — is what allows the bloom, and the bloom then damages the water body.)",
+        "common_mistakes": [
+          "Placing algal blooms in the sea. The bloom described here is in stagnant, polluted water bodies.",
+          "Leaving out the harm. The effect on water quality and fish is part of what the term signifies."
+        ],
+        "memory_tip": "Bloom = too much cyanobacterial growth in still, polluted water.",
+        "margin_note": "Definition plus one effect line earns this mark."
+      },
+      {
+        "id": "s2_red_tides",
+        "kind": "boxed_final",
+        "label": "Red tides",
+        "marks": 1,
+        "mark_note": "Red tides",
+        "lines": [
+          {
+            "text": "Red tides",
+            "style": "heading"
+          },
+          "Red dinoflagellates (Gonyaulax) multiply so",
+          "rapidly that the sea appears red, as in the",
+          "red tides of the Mediterranean Sea.",
+          "Their toxins kill fish and other marine animals.",
+          {
+            "text": "Bloom = cyanobacteria; red tide = Gonyaulax.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The red colour is only the visible sign; the danger of a red tide is the toxins the multiplying Gonyaulax cells release into the sea.",
+        "common_mistakes": [
+          "Naming Nostoc or Anabaena here. Red tides are caused by the dinoflagellate Gonyaulax.",
+          "Writing only the colour change and not the toxin effect."
+        ],
+        "memory_tip": "Red tide: red dinoflagellate, red sea — Gonyaulax is the name to write.",
+        "margin_note": "The name Gonyaulax and the toxin effect are the two things to write."
+      }
+    ]
+  },
+  "insider_note": "The two terms are marked separately, and the organism names — cyanobacteria and Gonyaulax — are what the examiner underlines."
+}

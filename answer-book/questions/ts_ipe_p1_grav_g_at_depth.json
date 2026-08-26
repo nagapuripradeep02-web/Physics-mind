@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_g_at_depth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the equation for the value of g at a depth d below the surface of the earth. What is the value of g at the centre of the earth?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "At the centre",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "At a depth d below the surface of the earth,",
+          {
+            "text": "g_d = g (1 − d/R)",
+            "style": "eq"
+          },
+          "where R is the radius of the earth and g its",
+          "value at the surface."
+        ],
+        "why": "Only the sphere BELOW your feet pulls you down; the shell above you pulls equally in every direction and cancels.",
+        "common_mistakes": [
+          "Using the height formula g(1 − 2h/R) for depth as well; the depth formula has no factor 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g at a depth d is g into one minus d by R.",
+          "accept": [
+            "g into one minus d by R",
+            "g d equals g times one minus d over R"
+          ],
+          "reject": [
+            "g is zero at the centre"
+          ],
+          "heard_as": [
+            "one minus d by R",
+            "depth"
+          ]
+        },
+        "memory_tip": "g_d = g(1 − d/R): only the sphere below your feet still pulls.",
+        "margin_note": "First mark. The formula, with R and d named underneath it."
+      },
+      {
+        "id": "s2_centre",
+        "kind": "boxed_final",
+        "label": "At the centre",
+        "marks": 1,
+        "mark_note": "At the centre",
+        "lines": [
+          "At the centre of the earth the depth d equals",
+          "the radius R, so",
+          {
+            "text": "g_d = g (1 − R/R) = g (1 − 1)",
+            "style": "eq"
+          },
+          {
+            "text": "g = 0 at the centre of the earth",
+            "style": "boxed"
+          }
+        ],
+        "why": "At the centre there is no sphere left below you, so there is nothing to pull you — the mass all around cancels.",
+        "common_mistakes": [
+          "Saying g is largest at the centre because that is where the earth’s mass is concentrated."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at the centre d equals R, so g is zero.",
+          "accept": [
+            "g is zero at the centre",
+            "d equals R so it vanishes"
+          ],
+          "reject": [
+            "g into one minus d by R"
+          ],
+          "heard_as": [
+            "zero",
+            "centre"
+          ]
+        },
+        "memory_tip": "At the centre d = R, so g = 0 — there is no sphere left below you.",
+        "margin_note": "Second mark. Substitute d = R and show that line, then box g = 0."
+      }
+    ]
+  },
+  "insider_note": "Two questions in one sentence, one mark each — the formula alone answers only half of what was asked."
+}

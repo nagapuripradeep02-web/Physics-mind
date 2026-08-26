@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_lichens_lichenology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the groups of plants that live as symbionts in lichens? Name the study of lichens.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two symbionts",
+      "marks": 1
+    },
+    {
+      "label": "Study of lichens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_symbionts",
+        "kind": "text",
+        "label": "The two symbionts",
+        "marks": 1,
+        "mark_note": "Symbionts",
+        "lines": [
+          "Algae and fungi live together as symbionts",
+          "in lichens. The alga prepares the food; the",
+          "fungus provides shelter, water and minerals."
+        ],
+        "why": "The first half asks for the two partner groups; naming both, with one line on what each contributes, shows the symbiosis is understood.",
+        "common_mistakes": [
+          "Naming only one partner — both algae and fungi are required.",
+          "Writing bacteria in place of algae — the lichen partners are an alga and a fungus."
+        ],
+        "memory_tip": "Remember the pair by their jobs: alga = food maker, fungus = water, minerals and cover.",
+        "margin_note": "Two group names plus one line on their roles."
+      },
+      {
+        "id": "s2_lichenology",
+        "kind": "boxed_final",
+        "label": "Study of lichens",
+        "marks": 1,
+        "mark_note": "Lichenology",
+        "lines": [
+          {
+            "text": "The study of lichens is called lichenology.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The second half is a single term: add -logy to lichen and the branch name is lichenology.",
+        "common_mistakes": [
+          "Misspelling it 'lichnology' — the full word lichen stays inside lichenology.",
+          "Writing mycology — that is the study of fungi alone, not of the lichen partnership."
+        ],
+        "memory_tip": "lichen + ology — the whole word lichen stays inside the branch name.",
+        "margin_note": "One boxed line answers the second half."
+      }
+    ]
+  },
+  "insider_note": "Two short asks, two marks: the pair of symbionts and the term lichenology — write both even though each is one line."
+}

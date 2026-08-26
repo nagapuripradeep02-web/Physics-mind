@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_theta_third_quadrant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If tanθ = (cos11° + sin11°)/(cos11° − sin11°) and θ is in the third quadrant, then find θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Simplify to a tangent",
+      "marks": 1
+    },
+    {
+      "label": "Use the quadrant condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 130.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. The same opening as answer 130.1, but the QUADRANT condition at the end is what decides the answer — the acute value alone would be wrong.⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Simplify to a tangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same division by cos11° as the twin, giving tan(45° + 11°) = tan56°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Divide numerator and denominator by cos11°:",
+          "tanθ = (1 + tan11°)/(1 − tan11°)",
+          "= (tan45° + tan11°)/(1 − tan45° tan11°)",
+          "= tan(45° + 11°) = tan56°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by cos11° and applying tan(A+B) gives tanθ = tan56°.",
+          "accept": [
+            "divide by cos eleven and apply tan A plus B to get tan fifty six",
+            "the right hand side simplifies to tan fifty six",
+            "same method as the other question, giving tan fifty six",
+            "cos eleven tho divide chesi tan A plus B apply cheste tan fifty six",
+            "tan theta equals tan fifty six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan fifty six",
+            "tan forty five",
+            "divide by cos eleven"
+          ]
+        },
+        "why": "Identical simplification to the twin. What differs is what happens next, not how the expression is handled.",
+        "common_mistakes": [
+          "Dividing by sin 11°.",
+          "Stopping here and answering 56°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Use the quadrant condition",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and the point of the question. tan is positive in the third quadrant too, and the third-quadrant angle with the same tangent is 180° + 56°.",
+        "lines": [
+          "θ is in the third quadrant, and",
+          "tan56° = tan(180° + 56°) = tan236°",
+          {
+            "text": "∴ θ = 236°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the third-quadrant condition gives θ = 180° + 56° = 236°, not 56°.",
+          "accept": [
+            "tan repeats every one eighty so the third quadrant angle is one eighty plus fifty six which is two thirty six",
+            "add one eighty because theta is in the third quadrant",
+            "the answer is two hundred thirty six degrees",
+            "third quadrant kabatti one eighty plus fifty six, two thirty six",
+            "theta is two thirty six degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two thirty six",
+            "one eighty plus",
+            "third quadrant",
+            "tan repeats"
+          ]
+        },
+        "why": "tan has period 180°, so two angles in a full turn share any given tangent. The quadrant condition is what picks which one is meant.",
+        "common_mistakes": [
+          "Answering 56° and ignoring the quadrant.",
+          "Adding 360° instead of 180°."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_find_abc_from_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "In a △ABC, if r₁ = 8, r₂ = 12 and r₃ = 24, then find a, b and c.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find r from the three ex-radii",
+      "marks": 2
+    },
+    {
+      "label": "Find Δ and s",
+      "marks": 2
+    },
+    {
+      "label": "Find each side from its ex-radius",
+      "marks": 2
+    },
+    {
+      "label": "State the sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 6 Properties of Triangles, answer 31.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 15,16,18. The book pairs it with 31.2 and calls the two \"Always be cheerful with this a,b,c question\" — the same chain of standard results run in the same order. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_r_from_the_three_ex_r",
+        "kind": "equation",
+        "label": "Find r from the three ex-radii",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two of the seven marks. The three ex-radii determine the in-radius through 1/r = 1/r₁ + 1/r₂ + 1/r₃ — one of the standard results, quoted rather than derived.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given r₁ = 8, r₂ = 12, r₃ = 24",
+          "We know 1/r = 1/r₁ + 1/r₂ + 1/r₃",
+          "⇒ 1/r = 1/8 + 1/12 + 1/24 = (3 + 2 + 1)/24 = 6/24 = 1/4",
+          "∴ r = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/r = 1/r₁ + 1/r₂ + 1/r₃ is used to find r = 4.",
+          "accept": [
+            "use one over r equals the sum of the reciprocals of the three ex radii to get r equals four",
+            "the reciprocal formula gives r as four",
+            "add the reciprocals of r one r two r three to get one over r",
+            "one by r equals one by r one plus one by r two plus one by r three, r equals four",
+            "find the in radius first, it is four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one over r",
+            "reciprocals",
+            "r equals four",
+            "ex radii"
+          ]
+        },
+        "why": "Nothing else in the chain can start without r. That single standard result is what unlocks Δ, then s, then the sides.",
+        "common_mistakes": [
+          "Adding r₁ + r₂ + r₃ directly instead of their reciprocals.",
+          "Forgetting to invert at the end, giving r = 1/4."
+        ]
+      },
+      {
+        "id": "s2_find_and_s",
+        "kind": "equation",
+        "label": "Find Δ and s",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Δ = √(r r₁ r₂ r₃) is the standard result that turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
+        "lines": [
+          "We know Δ = √(r r₁ r₂ r₃)",
+          "= √(4 × 8 × 12 × 24) = √(4 × 8 × (3×4) × (3×8))",
+          "= √(3² × 4² × 8²) = 3 × 4 × 8 = 96",
+          "Now r = Δ/s ⇒ s = Δ/r = 96/4 = 24"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ = √(r r₁ r₂ r₃) = 96 and s = Δ/r = 24.",
+          "accept": [
+            "delta is the square root of r times r one r two r three which is ninety six and s is delta over r which is twenty four",
+            "the area is ninety six and the semi perimeter is twenty four",
+            "use delta equals root of the product of all four radii",
+            "delta root r r1 r2 r3 equals ninety six, s equals twenty four",
+            "find the area then the semi perimeter"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "delta",
+            "ninety six",
+            "s equals twenty four",
+            "semi perimeter",
+            "product of radii"
+          ]
+        },
+        "why": "Grouping the product as 3²×4²×8² is what makes the root come out whole. Multiplying it out to 9216 first works but wastes time.",
+        "common_mistakes": [
+          "Multiplying the four radii out before factorising.",
+          "Using s = rΔ instead of Δ/r."
+        ]
+      },
+      {
+        "id": "s3_find_each_side_from_its_ex",
+        "kind": "equation",
+        "label": "Find each side from its ex-radius",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Each ex-radius names one side: r₁ = Δ/(s−a) gives s−a, and s is known — so a follows. Same for b and c.",
+        "lines": [
+          "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 96/8 = 12",
+          "  ∴ 24 − a = 12 ⇒ a = 12",
+          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 96/12 = 8 ⇒ b = 16",
+          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 96/24 = 4 ⇒ c = 20"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each side comes from its own ex-radius via r₁ = Δ/(s−a), giving a = 12, b = 16, c = 20.",
+          "accept": [
+            "each ex radius gives its own side, s minus a is delta over r one and so on, giving twelve sixteen and twenty",
+            "use r one equals delta over s minus a to find a, similarly for b and c",
+            "the three sides are twelve sixteen and twenty",
+            "prathi ex radius oka side isthundi, a twelve b sixteen c twenty",
+            "find s minus a, s minus b, s minus c then the sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s minus a",
+            "delta over r one",
+            "twelve",
+            "sixteen",
+            "twenty"
+          ]
+        },
+        "why": "The subscript on the ex-radius tells you which side it belongs to: r₁ pairs with a, r₂ with b, r₃ with c. That pairing is the whole bookkeeping of the question.",
+        "common_mistakes": [
+          "Pairing r₁ with b or c.",
+          "Computing s − a and reporting it as a."
+        ]
+      },
+      {
+        "id": "s4_state_the_sides",
+        "kind": "boxed_final",
+        "label": "State the sides",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. A quick check worth doing: a + b + c should be 2s, and 12 + 16 + 20 = 48 = 2 × 24.",
+        "lines": [
+          "Check: a + b + c = 12 + 16 + 20 = 48 = 2s ✓",
+          {
+            "text": "∴ a = 12, b = 16, c = 20",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three sides are a = 12, b = 16, c = 20.",
+          "accept": [
+            "the sides are twelve sixteen and twenty",
+            "a is twelve b is sixteen c is twenty",
+            "state the three sides",
+            "a twelve, b sixteen, c twenty",
+            "the answer is twelve sixteen twenty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twelve",
+            "sixteen",
+            "twenty",
+            "sides"
+          ]
+        },
+        "why": "a + b + c = 2s is a free check that costs one line and catches any slip in the previous step.",
+        "common_mistakes": [
+          "Reporting s − a values as the sides.",
+          "Skipping the check and missing an arithmetic error."
+        ]
+      }
+    ]
+  }
+}

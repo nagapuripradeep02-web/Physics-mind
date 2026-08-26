@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_conservation_mechanical_energy_condition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the law of conservation of mechanical energy. Under what condition does it hold?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The total mechanical energy of a body, that",
+          "is its kinetic energy plus its potential",
+          "energy, stays constant.",
+          {
+            "text": "KE + PE = constant",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The sentence, then KE + PE = constant. The word total is what earns it.",
+        "why": "Only the SUM is fixed; each part rises and falls freely, which is what makes the law useful for finding a speed without touching time.",
+        "common_mistakes": [
+          "Saying the kinetic energy stays constant, instead of the sum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum of kinetic and potential energy stays constant.",
+          "accept": [
+            "KE plus PE is constant",
+            "the total mechanical energy stays constant"
+          ],
+          "reject": [
+            "only conservative forces act"
+          ],
+          "heard_as": [
+            "kinetic plus potential",
+            "constant"
+          ]
+        },
+        "memory_tip": "All PE at the top of a fall, all KE at the bottom. The total reads the same number."
+      },
+      {
+        "id": "s2_condition",
+        "kind": "boxed_final",
+        "label": "The condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          {
+            "text": "Only conservative forces may act.",
+            "style": "boxed"
+          },
+          "Gravity and a spring force are conservative.",
+          "If friction or air resistance acts, some",
+          "mechanical energy turns into heat and the",
+          "total no longer stays constant."
+        ],
+        "margin_note": "Second mark. Name the condition, then say what friction does to the total.",
+        "why": "The condition is what stops the law being used on a sliding block, which is where students most often misuse it.",
+        "common_mistakes": [
+          "Applying the law to a body sliding on a rough surface.",
+          "Thinking the string tension in a pendulum breaks the law. A force perpendicular to the motion does no work; the exact condition is that non-conservative forces do zero work."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it holds only when the forces acting are conservative, so no friction.",
+          "accept": [
+            "only conservative forces",
+            "no friction acting",
+            "gravity and spring forces"
+          ],
+          "reject": [
+            "KE plus PE is constant"
+          ],
+          "heard_as": [
+            "conservative",
+            "friction"
+          ]
+        },
+        "memory_tip": "The name is the condition: conservative forces conserve the total. Friction does not."
+      }
+    ]
+  },
+  "insider_note": "The condition is a full mark on its own. State the law, then write that only conservative forces may act."
+}

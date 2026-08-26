@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_significant_figures_meaning",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are significant figures and what do they represent when reporting the result of a measurement?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Applied to 0.002308",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The significant figures of a measurement are",
+          "the digits that are known reliably, plus the",
+          "first digit that is uncertain.",
+          "They show how precise the measurement is."
+        ],
+        "why": "The last digit is an estimate between two scale marks, so it is uncertain but still carries information. That is why it is counted.",
+        "common_mistakes": [
+          "Saying every digit written down is significant, which counts the leading zeros too."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That significant figures are the reliably known digits plus the first uncertain digit.",
+          "accept": [
+            "reliable digits plus one uncertain",
+            "known plus estimated"
+          ],
+          "reject": [
+            "all the digits"
+          ],
+          "heard_as": [
+            "reliable",
+            "uncertain digit"
+          ]
+        },
+        "memory_tip": "Reliable digits PLUS one uncertain one. The last digit is the estimated one.",
+        "margin_note": "The phrase \"plus the first uncertain digit\" is the mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Applied to 0.002308",
+        "marks": 1,
+        "mark_note": "The count",
+        "lines": [
+          "In 0.002308 the three leading zeros only fix",
+          "the decimal point, so they do not count.",
+          {
+            "text": "∴ 0.002308 has 4 significant figures",
+            "style": "boxed"
+          }
+        ],
+        "why": "The zero between 3 and 8 is trapped between non-zero digits, so it was genuinely measured and does count.",
+        "common_mistakes": [
+          "Answering 6 by counting every digit after the point, or 7 by counting the zero before the point as well.",
+          "Answering 3 by dropping the zero inside the number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 0.002308 has four significant figures.",
+          "accept": [
+            "four",
+            "4"
+          ],
+          "reject": [
+            "seven",
+            "three"
+          ],
+          "heard_as": [
+            "four"
+          ]
+        },
+        "memory_tip": "Leading zeros out, trapped zeros in: 2, 3, 0, 8 — four.",
+        "margin_note": "Name which zeros were dropped and why."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this. Define it, then apply it to the number given — the applied count is the second mark."
+}

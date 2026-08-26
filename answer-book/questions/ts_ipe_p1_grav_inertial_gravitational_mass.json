@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_inertial_gravitational_mass",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between inertial mass and gravitational mass.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Inertial mass",
+      "marks": 1
+    },
+    {
+      "label": "Gravitational mass",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inertial",
+        "kind": "text",
+        "label": "Inertial mass",
+        "marks": 1,
+        "mark_note": "Inertial",
+        "lines": [
+          "Inertial mass is the mass that appears in",
+          "F = m a. It measures how hard a body is to",
+          "accelerate, and it is found by applying a known",
+          "force and measuring the acceleration produced."
+        ],
+        "why": "Inertial mass has nothing to do with gravity — it would still be measurable far out in empty space.",
+        "common_mistakes": [
+          "Defining inertial mass by weighing, which measures the gravitational one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That inertial mass appears in F equals m a and measures resistance to acceleration.",
+          "accept": [
+            "F equals m a",
+            "resistance to acceleration"
+          ],
+          "reject": [
+            "appears in the law of gravitation"
+          ],
+          "heard_as": [
+            "inertial",
+            "F equals m a"
+          ]
+        },
+        "memory_tip": "Inertia, so F = ma: the mass found by pushing and measuring the acceleration.",
+        "margin_note": "First mark. Give the formula and how it is measured, not the formula alone."
+      },
+      {
+        "id": "s2_gravitational",
+        "kind": "boxed_final",
+        "label": "Gravitational mass",
+        "marks": 1,
+        "mark_note": "Gravitational",
+        "lines": [
+          "Gravitational mass is the mass that appears in",
+          "F = G M m / r². It measures how strongly a body",
+          "is pulled by gravity, and it is found by",
+          "weighing the body.",
+          {
+            "text": "Experiment finds the two equal",
+            "style": "boxed"
+          }
+        ],
+        "why": "There is no obvious reason the two should be equal, and that they are is the observation Einstein built general relativity on.",
+        "common_mistakes": [
+          "Saying one is always larger than the other."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gravitational mass appears in the law of gravitation and is found by weighing, and experiment finds the two equal.",
+          "accept": [
+            "appears in the law of gravitation",
+            "found by weighing",
+            "the two are equal"
+          ],
+          "reject": [
+            "F equals m a"
+          ],
+          "heard_as": [
+            "gravitational mass",
+            "equal"
+          ]
+        },
+        "memory_tip": "PUSH the body to find inertial mass. WEIGH it to find gravitational mass.",
+        "margin_note": "Second mark. Close with the boxed line that experiment finds the two equal."
+      }
+    ]
+  },
+  "insider_note": "One mark each, and each is earned by its equation — F = m a against F = G M m / r² — not by describing mass in words."
+}

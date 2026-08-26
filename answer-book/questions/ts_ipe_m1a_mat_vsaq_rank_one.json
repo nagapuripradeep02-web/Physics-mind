@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rank_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the rank of the matrix with all nine entries equal to 1.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Test the 3×3 and 2×2 minors",
+      "marks": 1
+    },
+    {
+      "label": "Take a 1×1 minor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 15 Matrices, answer 112.1. Printed appearances: TS 16 · TS 18 · AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find the rank of this matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_try_3_then_2",
+        "kind": "equation",
+        "label": "Test the 3×3 and 2×2 minors",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Rank is the size of the LARGEST non-zero minor, so start big and come down. Every row here is identical, so the 3×3 and every 2×2 are zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 1 \\\\ 1 & 1 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "|A| = 0   (two rows are identical)",
+          "Any 2×2 minor is also 0, for the same reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rank is the size of the largest non-zero minor, and that here both the 3×3 determinant and every 2×2 minor are zero because the rows are identical.",
+          "accept": [
+            "rank is the biggest non zero minor, the three by three is zero and every two by two is zero too because the rows are the same",
+            "start with the full determinant which is zero since two rows are identical then try a two by two which is also zero",
+            "all the larger minors vanish because every row is the same",
+            "rows anni same kabatti three by three and two by two rendu zero",
+            "check the three by three then the two by two, both are zero"
+          ],
+          "reject": [
+            "find the rank",
+            "take the determinant"
+          ],
+          "heard_as": [
+            "rank",
+            "minor",
+            "identical rows",
+            "zero",
+            "three by three",
+            "two by two"
+          ]
+        },
+        "why": "Rank counts how many rows are genuinely independent. Identical rows carry no new information, which is why every minor above size 1 collapses to zero.",
+        "common_mistakes": [
+          "Answering 3 because the matrix is 3×3 — rank is not the size.",
+          "Stopping at |A| = 0 and answering 0."
+        ]
+      },
+      {
+        "id": "s2_one_by_one",
+        "kind": "boxed_final",
+        "label": "Take a 1×1 minor",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A single entry counts as a 1×1 minor, and |1| = 1, which is not zero. So the largest non-zero minor is 1×1 and the rank is 1.",
+        "lines": [
+          "Take a 1×1 minor:  |1| = 1 ≠ 0",
+          "So the largest non-zero minor is 1×1.",
+          {
+            "text": "∴ Rank A = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a single entry is a 1×1 minor equal to 1, which is non-zero, so the rank is 1.",
+          "accept": [
+            "a one by one minor is just the entry one which is not zero so the rank is one",
+            "the largest non zero minor is one by one so rank equals one",
+            "rank A is one",
+            "one by one minor one, zero kaadu, so rank one",
+            "since only the single entries are non zero the rank is one"
+          ],
+          "reject": [
+            "the rank is",
+            "find the rank"
+          ],
+          "heard_as": [
+            "rank one",
+            "one by one",
+            "minor",
+            "not zero"
+          ]
+        },
+        "why": "The rank of a non-zero matrix is at least 1, because some single entry is non-zero. Rank 0 belongs only to the zero matrix.",
+        "common_mistakes": [
+          "Answering 0 for a matrix that is clearly not the zero matrix.",
+          "Forgetting that a single entry counts as a minor."
+        ]
+      }
+    ]
+  }
+}

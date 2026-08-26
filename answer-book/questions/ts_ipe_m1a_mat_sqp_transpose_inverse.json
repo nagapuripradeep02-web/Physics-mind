@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_sqp_transpose_inverse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If A is the matrix with rows (1, −2, 3), (0, −1, 4) and (−2, 2, 1), then find (A′)⁻¹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write A′ and find its determinant",
+      "marks": 1
+    },
+    {
+      "label": "Find the cofactor matrix",
+      "marks": 2
+    },
+    {
+      "label": "Transpose and divide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.101 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 150. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape — finding the inverse of a 3×3 matrix is Section B work on the real paper and matches Unit 3's SAQ answers 41-42. NOTE THE TENSION: the book prints no heading on p.101, so this answer falls inside the run of the p.100 heading \"MATRICES-VSAQ\", which would make it a 2-mark VSAQ. We overrule that, because the same bank puts answers 151 and 152 — both genuine VSAQ shapes — under a p.102 heading that reads only \"MATRICES\", so these page banners are chapter labels rather than reliable section markers. This classification is OURS. Printed appearances: none — this answer carries no year tag. The dash and the inverse can be done in either order: (A′)⁻¹ = (A⁻¹)′. Taking the transpose FIRST is chosen here because it costs one line and the cofactors then follow the ordinary route. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_a_and_find_its_deter",
+        "kind": "equation",
+        "label": "Write A′ and find its determinant",
+        "marks": 1,
+        "mark_note": "Transpose",
+        "margin_note": "First mark. Transpose first — rows become columns — then take the determinant. Transposing never changes a determinant, so |A′| = |A|.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A' = \\begin{bmatrix} 1 & 0 & -2 \\\\ -2 & -1 & 2 \\\\ 3 & 4 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "|A'| = 1(−1−8) − 0(−2−6) + (−2)(−8+3)",
+          "= −9 − 0 + 10 = 1 ≠ 0, so the inverse exists."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A′ is written by exchanging rows and columns, and |A′| = 1, which is non-zero.",
+          "accept": [
+            "transpose A then take the determinant which is one",
+            "the transpose has the rows and columns swapped and its determinant is one",
+            "find A dash and its determinant",
+            "A transpose teeskoni determinant kanukovali, one vasthundi",
+            "the determinant is one so the inverse exists"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "transpose",
+            "determinant",
+            "one",
+            "inverse exists"
+          ]
+        },
+        "why": "A determinant is unchanged by transposing, so |A′| could equally be found from A. Either route gives 1.",
+        "common_mistakes": [
+          "Reversing the rows instead of exchanging rows with columns.",
+          "Skipping the non-zero check."
+        ]
+      },
+      {
+        "id": "s2_find_the_cofactor_matrix",
+        "kind": "equation",
+        "label": "Find the cofactor matrix",
+        "marks": 2,
+        "mark_note": "Cofactors",
+        "margin_note": "Half the marks. Nine 2×2 determinants with the sign board + − + / − + − / + − +.",
+        "lines": [
+          "Deleting each entry’s row and column and applying",
+          "the sign board:",
+          {
+            "text": "\\text{Cofactor matrix} = \\begin{bmatrix} -9 & 8 & -5 \\\\ -8 & 7 & -4 \\\\ -2 & 2 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the nine cofactors of A′ are computed with the correct signs.",
+          "accept": [
+            "find the nine cofactors using the minors and the sign board",
+            "delete each row and column, take the two by two, apply the sign",
+            "build the cofactor matrix",
+            "nine cofactors sign board tho kanukovali",
+            "compute the cofactor matrix"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cofactor",
+            "minor",
+            "sign board",
+            "two by two"
+          ]
+        },
+        "why": "The cofactors are of A′, not of A — transposing first means everything after it is ordinary, with no extra bookkeeping.",
+        "common_mistakes": [
+          "Computing the cofactors of A instead of A′.",
+          "Omitting the sign board."
+        ]
+      },
+      {
+        "id": "s3_transpose_and_divide",
+        "kind": "boxed_final",
+        "label": "Transpose and divide",
+        "marks": 1,
+        "mark_note": "Inverse",
+        "margin_note": "Last mark. The adjoint is the cofactor matrix transposed; dividing by |A′| = 1 leaves it unchanged.",
+        "lines": [
+          "Adj(A′) = (cofactor matrix)′",
+          {
+            "text": "(A')^{-1} = \\frac{1}{1}\\begin{bmatrix} -9 & -8 & -2 \\\\ 8 & 7 & 2 \\\\ -5 & -4 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ (A′)⁻¹ has rows (−9, −8, −2), (8, 7, 2), (−5, −4, −1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adjoint is the transposed cofactor matrix and, since |A′| = 1, that is the inverse.",
+          "accept": [
+            "transpose the cofactor matrix to get the adjoint and divide by one",
+            "the determinant is one so the adjoint is the inverse",
+            "transpose then divide by the determinant",
+            "cofactor matrix transpose chesi one tho divide cheyyali",
+            "the adjoint is the answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "adjoint",
+            "transpose",
+            "divide by one",
+            "inverse"
+          ]
+        },
+        "why": "Two transposes appear in this question — one on A at the start and one on the cofactor matrix at the end. They are unrelated, and both are required.",
+        "common_mistakes": [
+          "Skipping the second transpose.",
+          "Dividing by |A| when it is not 1."
+        ]
+      }
+    ]
+  }
+}

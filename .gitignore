@@ -101,6 +101,9 @@ __pycache__/
 # Static review-site build artifact (build:review) — not tracked
 review-site/
 
+# Quick Learn chat/interaction logs (quicklearn_chat_server.ts) — local only
+.quicklearn_logs/
+
 # Local Netlify folder
 .netlify
 review-site-archive/
@@ -118,3 +121,29 @@ nul
 
 # Answer-book build artifact (build:answers) — not tracked
 /answer-book/dist/
+
+# Vidi local dev logs (shakedown transcripts, usage JSONL, dev-server log)
+.answerbook_logs/
+
+# rbr probe outputs (desk A, rotmech): assembled sim HTML + captures. The
+# PROBES themselves are tracked under src/scripts/_scratch_rbr_*.ts — only
+# their generated artifacts are ignored.
+/.scratch_rbr_formula/
+/.scratch_rbr_e4/
+/.scratch_rbr_e5/
+/.scratch_rbr_narr/
+/.scratch_rbr_theta/
+/.scratch_rbr_a28/
+
+# Quick Learn generated output — regenerable, never tracked:
+#   ql-deploy/site/   <- node ql-deploy/prepare_site.mjs (from review-site/)
+#   website/learn/    <- npm run build:quicklearn:public
+ql-deploy/site/
+ql-deploy/.wrangler/
+website/learn/
+answer-book/content/
+answer-book/dist-gated/
+# Per-stream book builds: --stream=mpc → answer-book/dist-mpc/ (index.html +
+# og.png), and any stream added later. Same rule as dist/ and dist-gated/ —
+# a ~6 MB generated artifact, rebuilt by npm run build:answers:<stream>.
+answer-book/dist-*/

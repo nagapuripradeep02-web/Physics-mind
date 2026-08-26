@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_cos52_sin22",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of cos²52½° − sin²22½°.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the cos² − sin² identity",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 135.2. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Apply the cos² − sin² identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cos²A − sin²B = cos(A+B)cos(A−B). The halves add and subtract cleanly: 52½ + 22½ = 75 and 52½ − 22½ = 30.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos²52½° − sin²22½°",
+          "= cos(52½° + 22½°) cos(52½° − 22½°)",
+          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "= cos75° cos30°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²A − sin²B = cos(A+B)cos(A−B) is applied, giving cos75° cos30°.",
+          "accept": [
+            "use cos squared minus sin squared equals cos of the sum times cos of the difference giving cos seventy five cos thirty",
+            "the halves add to seventy five and subtract to thirty",
+            "apply the identity to get cos seventy five cos thirty",
+            "identity apply cheste cos seventy five cos thirty vasthundi",
+            "the sum and difference are seventy five and thirty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos seventy five",
+            "cos thirty",
+            "sum and difference",
+            "identity"
+          ]
+        },
+        "why": "This identity mixes a cosine squared with a sine squared, unlike the previous question — so no conversion is needed first, only the right formula.",
+        "common_mistakes": [
+          "Converting one term and then using the wrong identity.",
+          "Getting 52½ + 22½ as 74."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
+        "lines": [
+          "cos75° = (√3 − 1)/(2√2),  cos30° = √3/2",
+          "= [(√3 − 1)/(2√2)] × [√3/2]",
+          "= (3 − √3)/(4√2)",
+          {
+            "text": "∴ Value = (3 − √3)/(4√2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the exact values are substituted and multiplied to give (3 − √3)/(4√2).",
+          "accept": [
+            "cos seventy five is root three minus one over two root two and cos thirty is root three over two",
+            "multiply the two exact values to get three minus root three over four root two",
+            "the answer is three minus root three over four root two",
+            "rendu values multiply cheste three minus root three by four root two",
+            "substitute and multiply out"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three minus one",
+            "two root two",
+            "three minus root three",
+            "four root two"
+          ]
+        },
+        "why": "Multiplying √3 into (√3 − 1) gives 3 − √3, since √3 × √3 is 3. That is the only real simplification in the line.",
+        "common_mistakes": [
+          "Writing √3 × √3 as √9 and leaving it.",
+          "Rationalising unnecessarily and making an error."
+        ]
+      }
+    ]
+  }
+}

@@ -71,7 +71,8 @@
             "length",
             "same"
           ]
-        }
+        },
+        "memory_tip": "Turn a pencil on the table. Its length does not change, only the way it points."
       },
       {
         "id": "s2_changes",
@@ -109,8 +110,10 @@
             "changed",
             "two pi"
           ]
-        }
+        },
+        "memory_tip": "The components change as well: V cos θ and V sin θ both take new values after the turn."
       }
     ]
-  }
+  },
+  "insider_note": "The answer is yes, and the two marks split across what stays and what changes. Writing only \"the magnitude is unchanged\" scores one."
 }

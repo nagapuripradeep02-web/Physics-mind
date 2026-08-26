@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_check_equation_by_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Check the correctness of the equation v² = u² + 2as using dimensional analysis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dimensions of each term",
+      "marks": 1
+    },
+    {
+      "label": "The verdict",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_terms",
+        "kind": "equation",
+        "label": "Dimensions of each term",
+        "marks": 1,
+        "mark_note": "Each term",
+        "lines": [
+          "[v²] = [L T⁻¹]² = [L² T⁻²]",
+          "[u²] = [L T⁻¹]² = [L² T⁻²]",
+          {
+            "text": "[2as] = [L T⁻²][L] = [L² T⁻²]",
+            "style": "eq"
+          },
+          "The 2 is a pure number and has no dimensions."
+        ],
+        "why": "The constant 2 is dropped because a pure number has dimensions M⁰L⁰T⁰, so it cannot change the dimensional formula of the term it multiplies.",
+        "common_mistakes": [
+          "Giving the 2 a dimension of its own.",
+          "Squaring only the L in v² and leaving T⁻¹ unsquared."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three terms have dimensions L squared T to the minus two.",
+          "accept": [
+            "L squared T minus two",
+            "all three the same"
+          ],
+          "reject": [
+            "different dimensions"
+          ],
+          "heard_as": [
+            "L squared",
+            "T minus two"
+          ]
+        },
+        "memory_tip": "Square the WHOLE bracket: [L T⁻¹]² = L² T⁻², not L² T⁻¹.",
+        "margin_note": "One line per term keeps the comparison visible."
+      },
+      {
+        "id": "s2_verdict",
+        "kind": "boxed_final",
+        "label": "The verdict",
+        "marks": 1,
+        "mark_note": "Verdict",
+        "lines": [
+          {
+            "text": "All three terms have the same dimensions",
+            "style": "boxed"
+          },
+          {
+            "text": "∴ the equation is dimensionally correct",
+            "style": "boxed"
+          }
+        ],
+        "why": "Dimensional correctness is necessary but not sufficient, so the honest verdict is \"dimensionally correct\" rather than simply \"correct\".",
+        "common_mistakes": [
+          "Writing only \"correct\". The check establishes dimensional correctness alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is dimensionally correct because all terms match.",
+          "accept": [
+            "dimensionally correct",
+            "all terms match"
+          ],
+          "reject": [
+            "proved correct"
+          ],
+          "heard_as": [
+            "dimensionally correct"
+          ]
+        },
+        "memory_tip": "Write \"dimensionally correct\" — the word dimensionally is the honest part.",
+        "margin_note": "One sentence. Do not overclaim."
+      }
+    ]
+  },
+  "insider_note": "Take each term separately and show all three match. Ending with a verdict sentence is what closes the answer."
+}

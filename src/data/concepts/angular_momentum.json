@@ -1,0 +1,808 @@
+{
+  "concept_id": "angular_momentum",
+  "concept_name": "Angular Momentum — L = Iω",
+  "chapter": 7,
+  "section": "7.9",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.7 System of Particles and Rotational Motion, §7.9-7.10 — table-of-contents scope only, teaching authored from first principles. The atomic concept: a spinning body carries angular momentum L = Iω, set by both the spin rate ω and the moment of inertia I, and drawn as a vector along the rotation axis by the right-hand grip rule. Does NOT cover conservation of angular momentum (conservation_of_angular_momentum), how I is computed from the mass distribution (moment_of_inertia), τ = Iα (tau_eq_i_alpha), or rotational work/kinetic energy (rotational_work_energy). The advanced form L = r × p is out of scope — it needs cross_product_construction, declared but not yet implemented in the frozen rigid_body_rotation contract, and lands later as an insertion between STATE_4 and the explore state. Built on the rigid_body_rotation field_3d engine (docs/loop_runs/rotmech/APPARATUS_CONTRACT.md), pure configuration, zero renderer edits — the scenario is built and merged. DC Pandey used for chapter table-of-contents scope confirmation only; no teaching method, example problem, or figure imported.",
+
+  "prerequisites": [
+    "rigid_body_rotation",
+    "rotational_kinematics",
+    "torque",
+    "moment_of_inertia"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": ["rigid_body_rotation"]
+  },
+
+  "real_world_anchor": {
+    "primary": "A playground merry-go-round — a flat platform spinning on a vertical axle with mass out on its arms, carrying angular momentum the same way this turntable does.",
+    "secondary": "A spinning bicycle wheel held by its axle — the axle in the hands is the direction L points along."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "r": {
+        "name": "Radius of each sliding mass from the axle — ramp-only in STATE_3's still-platform slide (0.80 → 0.20 m); fixed at the home pose in every other state; never a live slider anywhere in this concept",
+        "unit": "m",
+        "min": 0.15,
+        "max": 0.90,
+        "default": 0.80
+      },
+      "m": {
+        "name": "Mass of each of the two sliding masses, symmetric about the axle — restart-seed-only; live-drivable only in the explore state via the narrowed slider band",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 3.0,
+        "default": 2.0
+      },
+      "omega0": {
+        "name": "Seed angular speed magnitude — sets L only at t = 0 or at an explicit restart; never applied continuously mid-run",
+        "unit": "rad/s",
+        "min": 1.0,
+        "max": 2.0,
+        "default": 1.5
+      },
+      "omega": {
+        "name": "Live angular speed — always the derived quantity omega = L / I, recomputed every step; never itself an independent variable, slider, or integrated quantity",
+        "unit": "rad/s",
+        "derived": "omega = L / I"
+      },
+      "spin_sign": {
+        "name": "Spin direction — a discrete restart control (+1 or −1), never eased through zero",
+        "unit": "dimensionless",
+        "min": -1,
+        "max": 1,
+        "default": 1
+      },
+      "tau_brake": {
+        "name": "Brake torque magnitude while the pad is engaged against the turntable's rim — never a live slider in this concept; authored per-state magnitude only",
+        "unit": "N·m",
+        "min": 0,
+        "max": 2.0,
+        "default": 0
+      },
+      "I_frame": {
+        "name": "Fixed moment of inertia of the turntable and rod, excluding the two sliding masses",
+        "unit": "kg·m²",
+        "constant": 0.50
+      },
+      "rod_half_length": {
+        "name": "Rod half-length — apparatus geometry only, not a formula input",
+        "unit": "m",
+        "constant": 1.00
+      },
+      "brake_drum_radius": {
+        "name": "Braked radius where the pad contacts the turntable's rim — apparatus geometry only, never drawn or narrated in this concept",
+        "unit": "m",
+        "constant": 0.55
+      },
+      "rod_height_above_pad": {
+        "name": "Vertical clearance of the rod plane above the brake pad's plane — apparatus geometry only, guarantees no fouling at any r including r = 0.20",
+        "unit": "m",
+        "constant": 0.25
+      },
+      "theta0_rad": {
+        "name": "Rod's azimuth at state entry — a per-state authored constant, never a teacher control. Default 0 everywhere; STATE_3 authors 1.739 rad so the mass slide projects near the maximum screen travel through the renderer's fixed oblique camera",
+        "unit": "rad",
+        "constant": 0
+      }
+    },
+    "computed_outputs": {
+      "I": { "formula": "I_frame + 2*m*r*r" },
+      "L": { "formula": "(I_frame + 2*m*r*r)*omega0*spin_sign" },
+      "KE": { "formula": "0.5*(I_frame + 2*m*r*r)*omega0*omega0" }
+    },
+    "formulas": {
+      "angular_momentum_definition": "L = I·ω — the one relation this concept teaches. I and ω are each independently legible on screen (the mass spread; the spin rate); L is their product.",
+      "moment_of_inertia": "I(t) = I_frame + 2·m·r(t)² — recomputed live from r(t); r(t) is constant in every guided state except STATE_3's still-platform slide, so I is a held constant everywhere else.",
+      "brake_torque_decay": "L(t) = sign(L0)·max(0, |L0| − τ_brake·braked_seconds(t)) — the rest clamp acts on L only; ω is never independently clamped or reversed.",
+      "omega_derived": "ω(t) = L(t) / I(t) — always derived, never itself integrated or stored.",
+      "restart_reseed": "At a restart, L is re-pinned to L0 = I(r at the restart's effective time)·ω0·spin_sign, after a ≥500 ms blank, so the discontinuity always reads as a restart, never as an uncaused torque.",
+      "theta0_azimuth_solve_STATE_3": "theta0_rad = ((π/2 − θ_cam) − ω0·(t_engage + t_decay/2)) mod π, θ_cam = π/4; t_decay = I0·ω0/τ. Verified by projecting the actual world points through the renderer's real camera, not by algebra alone."
+    },
+    "constraints": [
+      "L = I·ω at every instant; ω is always derived from L and I, never independently stored or integrated.",
+      "I(t) = I_frame + 2·m·r(t)²; I_frame = 0.50 kg·m² is a fixed apparatus constant, never adjustable.",
+      "tau_brake in [0, 2.0] N·m is frictional — it can only decelerate toward rest; the rest clamp on L means no authored or reachable tau_brake/engagement-window combination ever reverses the spin.",
+      "r changes only while the platform is at rest (STATE_3's slide, L = 0.00 rest-clamped throughout) — in every other guided state r is held fixed at 0.80 m, so ω never appears to conserve L while the platform is spinning.",
+      "spin_sign is a discrete restart parameter, never eased through zero, at any reachable slider or button value.",
+      "m and omega0 are restart/seed parameters — they set L fresh at t = 0 or at an explicit restart event, never applied as a continuous per-frame drive during an ordinary state.",
+      "r in [0.15, 0.90] m is a hard mechanical range; both taught poses (0.80, 0.20) sit strictly inside it.",
+      "the L-arrow's drawn length is exactly proportional to |L| within [0.22, 1.80] world units; STATE_3 hides the arrow entirely rather than draw a false nonzero stub at L = 0."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 18
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The same spin speed carries far less angular momentum when mass moves inward.",
+    "visual_confirmation": "L reads 0.99 beside the 'before: 4.59' chip, while ω matches its 'same speed: 1.50' chip."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "vector_direction": { "start": "STATE_4", "end": "STATE_4" }
+  },
+
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "A spinning body carries angular momentum",
+        "duration": 24,
+        "focal_primitive_id": "am_s1_detail",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Spin carries angular momentum",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "am_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A turntable already spinning, two masses out on its arms",
+            "color": "#FFF176"
+          },
+          {
+            "id": "am_s1_detail",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "I builds first, then ω, then their product L — the axial arrow shows how much, from the very first frame",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "am_s1_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a playground merry-go-round carrying it the same way",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This turntable spins steadily, with two masses out on its arms, like a playground merry-go-round." },
+            { "id": "s1_2", "text_en": "The spread of its mass is its moment of inertia — rotational inertia — I." },
+            { "id": "s1_3", "text_en": "Its spin rate is the angular speed omega." },
+            { "id": "s1_4", "text_en": "Their product is the angular momentum L — the arrow on the axle shows how much." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Slower spin, smaller L",
+        "duration": 22,
+        "focal_primitive_id": "am_s2_detail",
+        "advance_mode": "manual_click",
+        "motion_archetype": "decay-track",
+        "delta_cue": "L falls with the spin",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "am_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A brake approaches the rim while the turntable keeps spinning",
+            "color": "#FFF176"
+          },
+          {
+            "id": "am_s2_detail",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "L falls in proportion to omega onto the pre-printed prediction — I holds fixed the whole time",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "am_s2_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the same product L = I omega from the previous state still holds",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Recall L equals I omega — a brake now approaches the rim." },
+            { "id": "s2_2", "text_en": "The equation predicts angular momentum will settle at one point five three." },
+            { "id": "s2_3", "text_en": "The pad presses onto the rim and slows the spin." },
+            { "id": "s2_4", "text_en": "L falls in proportion to speed omega — inertia I stays fixed." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "Mass position changes L",
+        "duration": 23,
+        "focal_primitive_id": "am_s3_detail",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "stop-and-reconfigure",
+        "delta_cue": "Same speed, smaller L",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "l_vs_spin_speed_identity",
+          "why_mass_position_matters",
+          "stopped_body_zero_L"
+        ],
+        "scene_composition": [
+          {
+            "id": "am_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The turntable stops, the masses slide in while it is still",
+            "color": "#FFF176"
+          },
+          {
+            "id": "am_s3_detail",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "restarted at the same speed as before, the closer-in masses carry less angular momentum — L reads 0.99, not 4.59",
+            "color": "#EF5350"
+          },
+          {
+            "id": "am_s3_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "moving mass toward the axle changes what the spin carries, even at the same rate",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Angular momentum L now reads four point five nine." },
+            { "id": "s3_2", "text_en": "The brake stops it completely: angular speed omega is zero, so is L." },
+            { "id": "s3_3", "text_en": "While it stays still, the masses slide in and I falls." },
+            { "id": "s3_4", "text_en": "The turntable restarts, spinning again at the same speed." },
+            { "id": "s3_5", "text_en": "L reads point nine nine now, not four point five nine." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Angular momentum is just spin speed with a fancier name — same spin rate, same L.",
+            "visual_counter": "The omega readout matches its 'same speed: 1.50' chip while the L readout shows 0.99 beside the 'before: 4.59' baseline chip, with the masses visibly sitting close to the axle.",
+            "one_line_fix": "L = Iω — the same spin speed carries less angular momentum when the mass sits near the axis."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "L points along the axis",
+        "duration": 22,
+        "focal_primitive_id": "am_s4_detail",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "L points along the axis",
+        "depth_ring": "extended",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "which_way_does_L_point",
+          "right_hand_rule_how",
+          "why_axis_not_tangent"
+        ],
+        "scene_composition": [
+          {
+            "id": "am_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A right hand curls with the spin, thumb along the axle",
+            "color": "#FFF176"
+          },
+          {
+            "id": "am_s4_detail",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "spin one way, thumb up, arrow up, blue — spin the other way, thumb down, arrow down, amber, same line",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "am_s4_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "hold a spinning bicycle wheel by its axle — L lies along that line",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Hold a spinning bicycle wheel by its axle — L lies along that line." },
+            { "id": "s4_2", "text_en": "Curl the right hand's fingers with the spin — this way, the thumb points up." },
+            { "id": "s4_3", "text_en": "Now it spins the other way — the thumb points down, same line." },
+            { "id": "s4_4", "text_en": "L follows this one axis, not any mass's moving direction." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Momentum points the way things move — so L should point along the motion.",
+            "visual_counter": "Each mass's heading changes every instant, always on screen, while the L arrow stands fixed along the axle; flip the spin and the arrow flips along the same line.",
+            "one_line_fix": "No single motion direction fits a spinning body — L points along the axis, by the right-hand grip rule."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "Try it yourself",
+        "duration": 0,
+        "focal_primitive_id": "am_s5_detail",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Try it yourself",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "am_s5_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change the mass or the spin speed freely",
+            "color": "#FFF176"
+          },
+          {
+            "id": "am_s5_detail",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "watch the arrow track the product live — the numbers re-pin half a second after you let go",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "am_s5_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "L = Iω — the same relation, for any spinning body",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Change the mass or the spin speed, and try it yourself." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "ice_skater_spin",
+      "type": "B",
+      "label": "A Figure Skater Pulling In Their Arms",
+      "physical_world": "A figure skater spins on the ice, arms held wide, then pulls them in close to the body.",
+      "same_physics": "The same L = Iω: pulling the arms in lowers the moment of inertia exactly as sliding the masses toward the axle does on the turntable, and the same product-of-two-quantities logic applies to the skater's own spin.",
+      "scene_hint": "Same physics, told through a human body rather than a machine: mass-in vs mass-out on a spinning turntable maps directly to arms-in vs arms-out on a skater."
+    },
+    {
+      "variant_id": "playground_carousel_riders",
+      "type": "B",
+      "label": "Children on a Playground Carousel Moving Toward the Centre",
+      "physical_world": "Children ride a playground carousel spinning at a steady rate, then climb inward toward the centre pole while it is stopped.",
+      "same_physics": "Identical L = Iω relation: the riders' distance from the axle sets the carousel's moment of inertia exactly as the sliding masses set the turntable's, and the same spin speed carries less angular momentum once they move inward.",
+      "scene_hint": "Same rig, same physics — the sliding masses are relabeled riders on a playground carousel instead of a lab turntable."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state L = Iω and compute it from a given moment of inertia and angular speed; explain why the same spin speed carries different angular momentum when the moment of inertia differs; recognize that a body at rest has zero angular momentum whatever its moment of inertia; and identify the direction of angular momentum along the rotation axis using the right-hand grip rule, distinguishing it from the tangential direction of any single moving mass.",
+    "questions": [
+      {
+        "q_id": "q1_definition_L_equals_I_omega",
+        "stem": "A turntable has moment of inertia I = 3.06 kg·m² and spins at angular speed ω = 1.50 rad/s. What is its angular momentum L?",
+        "options": {
+          "A": "4.59 kg·m²/s",
+          "B": "2.04 kg·m²/s",
+          "C": "3.06 kg·m²/s",
+          "D": "4.59 kg·m/s"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "divides I by ω instead of multiplying them",
+          "C": "confuses angular momentum with the moment of inertia itself, ignoring the spin rate",
+          "D": "multiplies correctly but keeps the linear-momentum unit kg·m/s instead of the rotational unit kg·m²/s"
+        },
+        "tested_idea": "L = Iω is the product of two independently legible quantities",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A wheel has moment of inertia I = 2.0 kg·m² and spins at 3.0 rad/s. Find its angular momentum."
+      },
+      {
+        "q_id": "q2_proportional_decay",
+        "stem": "A turntable spinning with L = 4.59 kg·m²/s (I = 3.06 kg·m², held fixed) is braked, and its angular speed falls from 1.50 rad/s to 0.50 rad/s. What is the new angular momentum?",
+        "options": {
+          "A": "3.06 kg·m²/s",
+          "B": "4.59 kg·m²/s",
+          "C": "0.50 kg·m²/s",
+          "D": "1.53 kg·m²/s"
+        },
+        "correct": "D",
+        "distractor_misconceptions": {
+          "A": "confuses the constant I value with the new L, reading off the held quantity instead of recomputing",
+          "B": "believes angular momentum stays the same as long as the body is still spinning, ignoring that ω changed",
+          "C": "reports the new ω value itself as if it were L, copying the number without applying the formula"
+        },
+        "tested_idea": "L falls in exact proportion to ω when I is held fixed",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A disc spinning at L = 6.0 kg·m²/s (I = 4.0 kg·m², held fixed) is braked so ω falls from 1.5 rad/s to 0.5 rad/s. Find the new L."
+      },
+      {
+        "q_id": "q3_same_omega_different_L",
+        "stem": "Two turntables spin at the exact same angular speed, ω = 1.50 rad/s. Turntable A has its masses far from the axle (I = 3.06 kg·m²); turntable B has its masses pulled in close (I = 0.66 kg·m²). Compare their angular momenta.",
+        "options": {
+          "A": "A and B have the same L, since ω is the same",
+          "B": "B has a larger L than A, since it spins more easily",
+          "C": "Neither has any angular momentum, since ω is the same for both",
+          "D": "A has a much larger L than B"
+        },
+        "correct": "D",
+        "distractor_misconceptions": {
+          "A": "believes angular momentum is set by spin rate alone, ignoring moment of inertia's role in L = Iω",
+          "B": "assumes a smaller moment of inertia means more angular momentum, inverting the direct proportionality",
+          "C": "confuses 'same ω' with 'no motion', missing that both bodies are actively spinning"
+        },
+        "tested_idea": "the same spin speed carries different angular momentum when moment of inertia differs — mass position matters as much as speed",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A skater spins with arms out (I = 3.0 kg·m²) and later with arms tucked in (I = 1.0 kg·m²), both times at exactly 2.0 rad/s. Compare the angular momentum in the two cases."
+      },
+      {
+        "q_id": "q4_rest_zero_L",
+        "stem": "A turntable is braked completely to rest, ω = 0. While it is still not spinning, its masses are slid to a new position and I falls. What is its angular momentum during this still interval?",
+        "options": {
+          "A": "Equal to the fixed I_frame value",
+          "B": "Equal to its angular momentum just before it stopped",
+          "C": "Exactly zero, whatever I is",
+          "D": "It becomes negative because the masses moved inward"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "confuses moment of inertia with angular momentum, treating I_frame as a leftover L",
+          "B": "believes angular momentum is 'stored' and survives after the spin stops, instead of depending on ω = 0",
+          "D": "invents a sign-reversal rule for mass motion that L = Iω does not contain"
+        },
+        "tested_idea": "a body at rest carries zero angular momentum, regardless of its moment of inertia",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A rotor is braked to a complete stop. While stationary, its arms are folded inward, lowering I. What is its angular momentum during that stationary interval?"
+      },
+      {
+        "q_id": "q5_grip_rule_direction",
+        "stem": "A turntable spins counterclockwise as seen from above. Curling the right hand's fingers in the direction of the spin, which way does the thumb point, and what does that direction represent?",
+        "options": {
+          "A": "Upward along the rotation axis — the direction of L",
+          "B": "Tangent to the rim, in the direction of the spin itself",
+          "C": "Downward along the rotation axis, opposite to L",
+          "D": "Outward from the axle, along the sliding masses"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the axial direction the grip rule gives with the tangential direction of the spinning motion itself",
+          "C": "applies the grip rule with the fingers curled the wrong way, flipping the thumb's direction",
+          "D": "confuses the radial direction of the sliding masses with the axial direction of L"
+        },
+        "tested_idea": "the right-hand grip rule turns a spin direction into an axial direction — the direction of L",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A wheel spins clockwise as seen from the right side. Using the right-hand grip rule, which way does its angular momentum point?"
+      },
+      {
+        "q_id": "q6_axis_not_tangent",
+        "stem": "Which statement correctly describes the direction of a spinning body's angular momentum L?",
+        "options": {
+          "A": "L points along the instantaneous velocity of whichever mass is on screen",
+          "B": "L has no fixed direction because each part of the body moves a different way",
+          "C": "L points radially outward, along the sliding masses",
+          "D": "L points along the fixed rotation axis, the same for every point on the body"
+        },
+        "correct": "D",
+        "distractor_misconceptions": {
+          "A": "assumes angular momentum must point the way something moves, carrying over linear-momentum intuition",
+          "B": "concludes wrongly that a spinning body has no single well-defined vector because its parts move in different directions",
+          "C": "confuses the radial mass position with the axial direction of L"
+        },
+        "tested_idea": "L points along one fixed axis, not along any single mass's changing direction of motion",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A rotating disc has points on its rim moving in different directions at every instant. In which direction does the disc's angular momentum point?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_definition_L_equals_I_omega"],
+      "STATE_2": ["q2_proportional_decay"],
+      "STATE_3": ["q3_same_omega_different_L", "q4_rest_zero_L"],
+      "STATE_4": ["q5_grip_rule_direction", "q6_axis_not_tangent"]
+    },
+    "non_assessed_states": ["STATE_5"]
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 System of Particles and Rotational Motion — §7.9-7.10 Angular momentum L = Iω, moment of inertia, right-hand rule direction",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational Motion — angular momentum L = Iω (the L = r × p cross-product form is not covered by this concept)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational Motion — angular momentum L = Iω (the L = r × p cross-product form is not covered by this concept)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational Motion — angular momentum definition and direction",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Engineering physics — angular momentum L = Iω",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "partial",
+        "syllabus_unit": "Circular motion and rotational dynamics — angular momentum",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 7 Torque and Rotational Motion — angular momentum L = Iω",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "rigid_body_rotation",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "rigid_body_rotation_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#42A5F5",
+      "negative": "#FFB74D",
+      "field_line": "#66BB6A"
+    },
+    "slider_controls": {
+      "m": { "min": 0.5, "max": 3.0, "step": 0.1, "default": 2.0, "label": "m" },
+      "omega0": { "min": 1.0, "max": 2.0, "step": 0.1, "default": 1.5, "label": "ω₀" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A spinning body carries angular momentum",
+        "visible_elements": [],
+        "caption": "Spin carries angular momentum",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "theta0_rad": 0,
+          "show_l_arrow": true,
+          "show_pull_arrows": false,
+          "show_r_line": false,
+          "show_drum_line": false,
+          "formula": "L = Iω",
+          "readouts": ["I", "omega", "L"],
+          "readout_at_ms": { "I": 12000, "omega": 15500, "L": 21500 },
+          "controls_visible": [],
+          "glow_focal": "rbr_drum_marker",
+          "phases": [
+            { "id": "s1_p1", "at_ms": 0, "glow_focal": "rbr_drum_marker" },
+            { "id": "s1_p2", "at_ms": 6300, "glow_focal": "rbr_mass" },
+            { "id": "s1_p3", "at_ms": 11700, "glow_focal": "rbr_drum_marker" },
+            { "id": "s1_p4", "at_ms": 15200, "glow_focal": "rbr_l_arrow" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "label": "Slower spin, smaller L",
+        "visible_elements": [],
+        "caption": "L falls with the spin",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "external_torque": {
+            "source": "brake",
+            "tau_brake_Nm": 0.45,
+            "engage_at_ms": 11600,
+            "release_at_ms": 18400,
+            "pad_travel_ms": 2200
+          },
+          "show_l_arrow": true,
+          "show_pull_arrows": false,
+          "show_r_line": false,
+          "show_drum_line": false,
+          "formula": "L = Iω",
+          "readouts": ["I", "omega", "L"],
+          "hold_glow": ["I"],
+          "reference_marks": [
+            { "id": "s2_predicted_L", "surface": "L", "form": "chip", "value": 1.53, "label": "predicted L = 1.53", "at_ms": 10500 }
+          ],
+          "controls_visible": [],
+          "glow_focal": "rbr_brake_pad",
+          "phases": [
+            { "id": "s2_p1", "at_ms": 12600, "glow_focal": "rbr_l_arrow" }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "label": "Mass position changes L",
+        "visible_elements": [],
+        "caption": "Same speed, smaller L",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "theta0_rad": 1.739,
+          "external_torque": {
+            "source": "brake",
+            "tau_brake_Nm": 2.00,
+            "engage_at_ms": 4500,
+            "release_at_ms": 7500,
+            "pad_travel_ms": 600
+          },
+          "param_ramp": { "param": "r", "from": 0.80, "to": 0.20, "start_ms": 9000, "end_ms": 16000 },
+          "restart": { "at_ms": 17500, "every_ms": 99000, "flip_spin": false },
+          "repin_cue": { "blank_ms": 500 },
+          "show_l_arrow": false,
+          "show_pull_arrows": false,
+          "show_r_line": false,
+          "show_drum_line": false,
+          "formula": "L = Iω",
+          "readouts": ["I", "omega", "L"],
+          "reference_marks": [
+            { "id": "s3_before_L", "surface": "L", "form": "chip", "value": 4.59, "label": "before: 4.59", "at_ms": 7800 },
+            { "id": "s3_same_omega", "surface": "omega", "form": "chip", "value": 1.50, "label": "same speed: 1.50", "at_ms": 17000 }
+          ],
+          "controls_visible": [],
+          "glow_focal": "rbr_drum_marker",
+          "phases": [
+            { "id": "s3_p1", "at_ms": 3900, "glow_focal": "rbr_brake_pad" },
+            { "id": "s3_p2", "at_ms": 9000, "glow_focal": "rbr_mass" },
+            { "id": "s3_p3", "at_ms": 17500, "glow_focal": "rbr_drum_marker" }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "label": "L points along the axis",
+        "visible_elements": [],
+        "caption": "L points along the axis",
+        "show_sliders": true,
+        "eye_capture_ms": 13000,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "theta0_rad": 0,
+          "restart": { "at_ms": 11000, "every_ms": 8000, "flip_spin": true },
+          "repin_cue": { "blank_ms": 500 },
+          "show_l_arrow": true,
+          "show_grip_hand": true,
+          "show_pull_arrows": false,
+          "show_r_line": false,
+          "show_drum_line": false,
+          "readouts": ["I", "omega", "L"],
+          "controls_visible": ["spin_dir"],
+          "glow_focal": "rbr_l_arrow",
+          "phases": [
+            { "id": "s4_p1", "at_ms": 0, "glow_focal": "rbr_l_arrow" },
+            { "id": "s4_p2", "at_ms": 4200, "glow_focal": "rbr_grip_hand" },
+            { "id": "s4_p3", "at_ms": 11800, "glow_focal": "rbr_l_arrow" },
+            { "id": "s4_p4", "at_ms": 15500, "glow_focal": "rbr_mass" }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "label": "Try it yourself",
+        "visible_elements": [],
+        "caption": "Try it yourself",
+        "show_sliders": true,
+        "rigid_body_rotation": {
+          "mode": "sandbox",
+          "apparatus": {
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "theta0_rad": 0,
+          "repin_cue": { "blank_ms": 500 },
+          "show_l_arrow": true,
+          "show_pull_arrows": false,
+          "show_r_line": false,
+          "show_drum_line": false,
+          "formula": "L = Iω",
+          "readouts": ["I", "omega", "L"],
+          "controls_visible": ["m", "omega0"]
+        }
+      }
+    }
+  }
+}

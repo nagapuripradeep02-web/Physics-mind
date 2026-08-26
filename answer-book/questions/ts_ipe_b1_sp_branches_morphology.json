@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_branches_morphology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the different branches of Botany that deal with the morphology of plants? Give their salient features.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Morphology defined",
+      "marks": 1
+    },
+    {
+      "label": "External morphology",
+      "marks": 1
+    },
+    {
+      "label": "Internal morphology",
+      "marks": 1
+    },
+    {
+      "label": "Histology and anatomy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it. The card keeps the syllabus framing the book prints — histology (tissues) and anatomy (gross internal details) as the two branches of internal morphology — which is the framing that is marked."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Science of Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_morphology",
+        "kind": "text",
+        "label": "Morphology defined",
+        "marks": 1,
+        "mark_note": "Morphology",
+        "lines": [
+          "Morphology deals with the study and",
+          "description of the different organs of a",
+          "plant. It is a fundamental requirement for",
+          "the classification of plants. It has two",
+          "parts."
+        ],
+        "why": "The answer opens with what morphology is and why it matters: organs are described first, and classification is built on those descriptions.",
+        "common_mistakes": [
+          "Defining physiology (functions) instead of morphology (form and organs).",
+          "Dropping the classification line — 'fundamental for classification' is a marked feature."
+        ],
+        "memory_tip": "Morphology = form. Describe the organs first; classification follows from the description.",
+        "margin_note": "Definition plus the classification line, then announce the two parts."
+      },
+      {
+        "id": "s2_external",
+        "kind": "text",
+        "label": "External morphology",
+        "marks": 1,
+        "mark_note": "External",
+        "lines": [
+          "a) External morphology is the study and",
+          "description of the external characters of",
+          "plant organs such as root, stem, leaf,",
+          "flower, fruit and seed."
+        ],
+        "why": "The first branch covers what is visible from outside; the six organs, root to seed, are the standard list to name.",
+        "common_mistakes": [
+          "Naming fewer organs — root, stem, leaf, flower, fruit and seed is the expected list.",
+          "Writing 'outside of the cell' — external here means the outside of the plant's organs, not of cells."
+        ],
+        "memory_tip": "Six organs from bottom to top: root, stem, leaf, flower, fruit, seed.",
+        "margin_note": "One sentence with the six organs named."
+      },
+      {
+        "id": "s3_internal",
+        "kind": "text",
+        "label": "Internal morphology",
+        "marks": 1,
+        "mark_note": "Internal",
+        "lines": [
+          "b) Internal morphology is the study of the",
+          "internal structure of different plant",
+          "organs. It has two branches."
+        ],
+        "why": "The second branch looks inside the organs, and it subdivides — saying 'it has two branches' sets up histology and anatomy for the final mark.",
+        "common_mistakes": [
+          "Ending here without the two sub-branches — the question asks for the salient features of each branch.",
+          "Calling internal morphology 'anatomy' directly — in this syllabus, anatomy is one of its two branches."
+        ],
+        "memory_tip": "External is one level; internal opens into two more — histology and anatomy.",
+        "margin_note": "Two lines; the sub-branches follow in the next step."
+      },
+      {
+        "id": "s4_histology_anatomy",
+        "kind": "boxed_final",
+        "label": "Histology and anatomy",
+        "marks": 1,
+        "mark_note": "Sub-branches",
+        "lines": [
+          "i) Histology is the study of the different",
+          "tissues present in the plant body.",
+          "ii) Anatomy deals with the gross internal",
+          "details of plant organs such as root, stem",
+          "and leaf.",
+          {
+            "text": "Morphology = external + internal (histology and anatomy).",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two sub-branches split by depth of view: histology reads tissues, anatomy reads the gross (whole-organ) internal plan — the syllabus framing the book prints.",
+        "common_mistakes": [
+          "Swapping the two definitions — tissues go with histology; gross organ interiors go with anatomy.",
+          "Writing cytology here — cell study is a different branch and not part of this answer."
+        ],
+        "memory_tip": "Histo- means tissue, so histology is tissues; the other one, anatomy, takes the whole organ.",
+        "margin_note": "Both sub-branches defined, then the boxed summary line."
+      }
+    ]
+  },
+  "insider_note": "Keep the outline lettering visible — a), b), i), ii) mirrors how the four marks are counted."
+}

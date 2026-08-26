@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_ef_mf_c2h4cl2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A carbon compound contains 4.07% hydrogen, 24.27% carbon and 71.65% chlorine. Its molar mass is 98.96 g mol⁻¹. What are its empirical and molecular formulas?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relative moles and simple ratio",
+      "marks": 1
+    },
+    {
+      "label": "Empirical formula and its weight",
+      "marks": 1
+    },
+    {
+      "label": "Finding n",
+      "marks": 1
+    },
+    {
+      "label": "The molecular formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints 'its nuclear mass is 98.96 gm' — the intended quantity is the MOLAR (molecular) mass, 98.96 g mol⁻¹, as its own working confirms (n = 98.96/49.5). This card asks and works with molar mass and records the book's wording here. AI chemistry check 2026-08-25 (audit round): step s2 memory_tip said the formula and its weight were 'one mark each', which read as 5 marks on a 4-mark question; it now says the two together earn the single mark."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Relative moles and simple ratio",
+        "marks": 1,
+        "mark_note": "% ÷ atomic weight",
+        "lines": [
+          "Divide each percentage by the atomic weight:",
+          "C: 24.27 / 12 = 2.02",
+          "H: 4.07 / 1 = 4.07",
+          "Cl: 71.65 / 35.5 = 2.02",
+          "Divide by the smallest (2.02):",
+          {
+            "text": "C : H : Cl = 1 : 2.01 : 1 ≈ 1 : 2 : 1",
+            "style": "eq"
+          }
+        ],
+        "why": "The percentages are the masses in 100 g of compound, so dividing by atomic weights gives relative moles, and dividing by the smallest exposes the whole-number ratio.",
+        "common_mistakes": [
+          "Using 35 for chlorine instead of 35.5.",
+          "Reading the question's element order carelessly — hydrogen is listed first here."
+        ],
+        "memory_tip": "Percent over atomic weight, then everything over the smallest.",
+        "margin_note": "The three divisions with the 1 : 2 : 1 ratio earn this mark."
+      },
+      {
+        "id": "s2_ef",
+        "kind": "equation",
+        "label": "Empirical formula and its weight",
+        "marks": 1,
+        "mark_note": "Empirical formula",
+        "lines": [
+          {
+            "text": "Empirical formula = CH₂Cl",
+            "style": "eq"
+          },
+          "Empirical formula weight = 12 + (2 × 1) + 35.5",
+          "= 49.5"
+        ],
+        "why": "The ratio 1 : 2 : 1 as subscripts gives CH₂Cl. Its weight 49.5 is the divisor for the next step, so it is computed at once.",
+        "common_mistakes": [
+          "Computing 12 + 1 + 35.5 = 48.5 by forgetting the second hydrogen.",
+          "Reporting CH₂Cl as the final answer. The question asks for BOTH formulas."
+        ],
+        "memory_tip": "Write the empirical formula AND its weight — the two together earn this single mark, and the weight is needed for n.",
+        "margin_note": "CH₂Cl with its weight 49.5 earns this mark."
+      },
+      {
+        "id": "s3_n",
+        "kind": "equation",
+        "label": "Finding n",
+        "marks": 1,
+        "mark_note": "n",
+        "lines": [
+          {
+            "text": "n = molar mass / empirical formula weight",
+            "style": "eq"
+          },
+          "n = 98.96 / 49.5 = 2"
+        ],
+        "why": "The molecular formula holds n whole empirical units; 98.96 over 49.5 is 1.999, which is the whole number 2.",
+        "common_mistakes": [
+          "Rounding 1.999 to 1.",
+          "Inverting the division as 49.5 / 98.96."
+        ],
+        "memory_tip": "n is a small whole number. If the division lands near 2, it is 2.",
+        "margin_note": "n = 2 with the division shown earns this mark."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The molecular formula",
+        "marks": 1,
+        "mark_note": "Molecular formula",
+        "lines": [
+          "Molecular formula = (CH₂Cl)₂",
+          {
+            "text": "Empirical formula CH₂Cl ; Molecular formula C₂H₄Cl₂",
+            "style": "boxed"
+          },
+          "Check: (2 × 12) + (4 × 1) + (2 × 35.5) = 99 ≈ 98.96"
+        ],
+        "why": "Doubling every subscript of CH₂Cl gives C₂H₄Cl₂ (dichloroethane), and its weight 99 matches the given 98.96.",
+        "common_mistakes": [
+          "Boxing only the molecular formula. The question asks for the empirical formula too.",
+          "Writing (CH₂Cl)₂ without expanding it."
+        ],
+        "memory_tip": "Answer exactly what was asked: TWO formulas, both in the final box.",
+        "margin_note": "Box both formulas; the weight check is a free safety line."
+      }
+    ]
+  },
+  "insider_note": "The question asks for two things, and answers that box only C₂H₄Cl₂ silently drop the empirical-formula mark. Write both names against both formulas."
+}

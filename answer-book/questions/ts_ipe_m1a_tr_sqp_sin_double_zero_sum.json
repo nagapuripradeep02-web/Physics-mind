@@ -1,0 +1,265 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sqp_sin_double_zero_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = 0, then prove that sin 2A + sin 2B + sin 2C = −4 sin A sin B sin C.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Group the first two terms",
+      "marks": 2
+    },
+    {
+      "label": "Replace A + B by −C",
+      "marks": 1
+    },
+    {
+      "label": "Expand sin 2C and factor",
+      "marks": 2
+    },
+    {
+      "label": "Replace cos C inside the bracket",
+      "marks": 1
+    },
+    {
+      "label": "Apply the difference formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.108 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 169. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed LAQ on its length and shape — a transformation identity on a triangle, the exact shape of Unit 6's own LAQ chapter. The bank prints no mark cut, so this classification is OURS. Printed appearances: AP 19. The condition is ZERO, not π. That is what puts the minus sign on the right-hand side, and it appears at a single identifiable step. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios upto Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_first_two_terms",
+        "kind": "equation",
+        "label": "Group the first two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. sin C + sin D = 2 sin((C+D)/2) cos((C−D)/2), applied to sin 2A + sin 2B.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 0.",
+          "L.H.S = (sin 2A + sin 2B) + sin 2C",
+          "= 2 sin((2A + 2B)/2) cos((2A − 2B)/2) + sin 2C",
+          "= 2 sin(A + B) cos(A − B) + sin 2C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin 2A + sin 2B becomes 2 sin(A+B) cos(A−B).",
+          "accept": [
+            "group the first two and apply sin C plus sin D to get two sin of A plus B into cos of A minus B",
+            "apply the sum to product formula to the first pair",
+            "the halves cancel the twos",
+            "modati rendu group chesi sum to product",
+            "convert the first pair to a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin A plus B",
+            "cos A minus B",
+            "sum to product"
+          ]
+        },
+        "why": "Note the shape: for a sum of SINES the sine takes the sum and the cosine takes the difference. For cosines it is the other way round.",
+        "common_mistakes": [
+          "Using the cos C + cos D formula.",
+          "Putting the cosine on the sum."
+        ]
+      },
+      {
+        "id": "s2_replace_a_b_by_c",
+        "kind": "equation",
+        "label": "Replace A + B by −C",
+        "marks": 1,
+        "mark_note": "Angle sum",
+        "margin_note": "Third mark, and where the minus sign first appears. A + B = −C, and sin(−C) = −sin C.",
+        "lines": [
+          "A + B = −C",
+          "⇒ sin(A + B) = sin(−C) = −sin C",
+          "L.H.S = −2 sin C cos(A − B) + sin 2C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = −C gives sin(A+B) = −sin C, introducing the minus sign.",
+          "accept": [
+            "A plus B is minus C and sine of minus C is minus sin C",
+            "the sine is an odd function so the minus comes out",
+            "this is where the minus sign on the answer comes from",
+            "A plus B ante minus C, sin minus C ante minus sin C",
+            "apply the zero sum condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus C",
+            "minus sin C",
+            "odd function"
+          ]
+        },
+        "why": "sin(−θ) = −sin θ, so the minus comes straight out. That single sign is the minus in the final answer.",
+        "common_mistakes": [
+          "Writing sin(−C) = sin C.",
+          "Using A + B = π − C out of habit."
+        ]
+      },
+      {
+        "id": "s3_expand_sin_2c_and_factor",
+        "kind": "equation",
+        "label": "Expand sin 2C and factor",
+        "marks": 2,
+        "mark_note": "Double angle",
+        "margin_note": "Two marks. sin 2C = 2 sin C cos C, so both terms now carry 2 sin C — take it out, keeping the minus outside.",
+        "lines": [
+          "sin 2C = 2 sin C cos C",
+          "L.H.S = −2 sin C cos(A − B) + 2 sin C cos C",
+          "= −2 sin C [cos(A − B) − cos C]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin 2C = 2 sin C cos C, and −2 sin C is factored out leaving cos(A−B) − cos C.",
+          "accept": [
+            "sin two C is two sin C cos C and taking minus two sin C out leaves cos A minus B minus cos C",
+            "both terms have two sin C so factor it out",
+            "keep the minus sign outside the bracket",
+            "sin two C ante two sin C cos C, minus two sin C common teeyali",
+            "expand the double angle and factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin C cos C",
+            "minus two sin C",
+            "factor",
+            "bracket"
+          ]
+        },
+        "why": "Taking out −2 sin C rather than +2 sin C flips the sign of the second term inside — which is what sets up the difference formula next.",
+        "common_mistakes": [
+          "Factoring +2 sin C and getting the bracket signs the wrong way round.",
+          "Writing sin 2C = sin C cos C."
+        ]
+      },
+      {
+        "id": "s4_replace_cos_c_inside_the_b",
+        "kind": "equation",
+        "label": "Replace cos C inside the bracket",
+        "marks": 1,
+        "mark_note": "Second substitution",
+        "margin_note": "Sixth mark. Inside the bracket, cos C = cos(−(A+B)) = cos(A+B), because cosine ignores the sign.",
+        "lines": [
+          "Inside the bracket, C = −(A + B), so",
+          "cos C = cos(−(A + B)) = cos(A + B)",
+          "Bracket = cos(A − B) − cos(A + B)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C = cos(A + B) inside the bracket, since cos(−θ) = cos θ.",
+          "accept": [
+            "cos C equals cos of A plus B because cosine ignores the sign",
+            "cos of minus theta is cos theta so the minus disappears here",
+            "the bracket becomes cos A minus B minus cos A plus B",
+            "cos minus theta ante cos theta, so cos C ante cos A plus B",
+            "substitute inside the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A plus B",
+            "ignores the sign",
+            "even function"
+          ]
+        },
+        "why": "The cosine is even, so no minus appears here — unlike the sine in step 2. Knowing which function keeps the sign is the whole difference.",
+        "common_mistakes": [
+          "Writing cos C = −cos(A + B).",
+          "Converting the sin C outside as well."
+        ]
+      },
+      {
+        "id": "s5_apply_the_difference_formu",
+        "kind": "boxed_final",
+        "label": "Apply the difference formula",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. cos(X−Y) − cos(X+Y) = 2 sin X sin Y with X = A, Y = B gives 2 sin A sin B.",
+        "lines": [
+          "cos(A − B) − cos(A + B) = 2 sin A sin B",
+          "L.H.S = −2 sin C · 2 sin A sin B",
+          {
+            "text": "∴ sin 2A + sin 2B + sin 2C = −4 sin A sin B sin C",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is 2 sin A sin B, giving −4 sin A sin B sin C.",
+          "accept": [
+            "the bracket is two sin A sin B so the answer is minus four sin A sin B sin C",
+            "multiply by minus two sin C to get minus four",
+            "the two twos give four and the minus is carried through",
+            "bracket two sin A sin B, minus two sin C tho multiply cheste minus four",
+            "apply the difference formula and close"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin A sin B",
+            "minus four",
+            "difference formula"
+          ]
+        },
+        "why": "The minus has been carried from step 2 to here without changing. Tracking one sign through five steps is what this proof is really testing.",
+        "common_mistakes": [
+          "Dropping the minus at the last line.",
+          "Writing the bracket as 2 cos A cos B."
+        ]
+      }
+    ]
+  }
+}

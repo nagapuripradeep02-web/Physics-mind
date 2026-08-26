@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_sine_period_two_thirds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find a sine function whose period is 2/3.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set the period equal to 2/3",
+      "marks": 1
+    },
+    {
+      "label": "Solve for k and write the function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.92 — VSAQ chapter 18 T-Ratios upto Transformations, answer 126.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16,22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Set the period equal to 2/3",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same as the cosine version — sine has the same period formula, so nothing changes but the name.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let sin kx be the required sine function.",
+          "Period of sin kx = 2π/k",
+          "∴ 2π/k = 2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin kx is assumed and 2π/k set equal to 2/3.",
+          "accept": [
+            "let it be sin k x and set two pi over k equal to two thirds",
+            "equate the period formula to two by three",
+            "sine has the same period formula as cosine",
+            "sin k x anukoni two pi by k equals two by three",
+            "set up the equation for k"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin k x",
+            "two pi by k",
+            "two thirds",
+            "equation"
+          ]
+        },
+        "why": "sin and cos have identical periods — only tan differs. So the same formula serves both.",
+        "common_mistakes": [
+          "Using π/k because it is a sine.",
+          "Guessing sin(2x/3)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for k and write the function",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cross-multiplying gives 2k = 6π, so k = 3π.",
+        "lines": [
+          "⇒ 2k = 6π  ⇒  k = 3π",
+          {
+            "text": "∴ sin(3πx) is the required sine function",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k = 3π, so the function is sin(3πx).",
+          "accept": [
+            "cross multiplying gives two k equals six pi so k is three pi and the function is sin three pi x",
+            "k is three pi so the answer is sin of three pi x",
+            "the required function is sin three pi x",
+            "k equals three pi, function sin three pi x",
+            "solve to get three pi and write the sine function"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three pi",
+            "sin three pi x",
+            "six pi",
+            "cross multiply"
+          ]
+        },
+        "why": "A period smaller than 2π needs a coefficient larger than 1 — and 3π is indeed larger, which checks out.",
+        "common_mistakes": [
+          "Getting k = π/3 by dividing the wrong way.",
+          "Giving k instead of the function."
+        ]
+      }
+    ]
+  }
+}

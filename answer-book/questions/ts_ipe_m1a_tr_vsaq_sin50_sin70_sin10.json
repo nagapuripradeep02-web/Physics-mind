@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_sin50_sin70_sin10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin50° − sin70° + sin10° = 0.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Pair the first two terms",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate and cancel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 T-Ratios upto Transformations, answer 131.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Pair the first two terms",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Pair sin50° with −sin70° using the sine sum formula. Note the half-difference comes out NEGATIVE, and that is what makes it cancel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = (sin50° − sin70°) + sin10°",
+          "= 2 cos((50°+70°)/2) sin((50°−70°)/2) + sin10°",
+          "= 2 cos60° sin(−10°) + sin10°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first two terms are paired, giving 2 cos60° sin(−10°).",
+          "accept": [
+            "pair the first two with the sine formula to get two cos sixty sin minus ten",
+            "combine sin fifty minus sin seventy into a product",
+            "the half difference is minus ten degrees",
+            "modati rendu ni combine cheste two cos sixty sin minus ten vasthundi",
+            "apply the sine difference formula to the first pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos sixty",
+            "sin minus ten",
+            "pair",
+            "half difference"
+          ]
+        },
+        "why": "Pairing the two 50s and 70s leaves an angle of 10°, which is exactly the third term — that match is why the expression vanishes.",
+        "common_mistakes": [
+          "Pairing sin 70° with sin 10° instead.",
+          "Getting the half-difference as +10°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Evaluate and cancel",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos60° is 1/2, so the 2 cancels; and sin(−10°) is −sin10°, which cancels the third term exactly.",
+        "lines": [
+          "= 2 × (1/2) × sin(−10°) + sin10°",
+          "= sin(−10°) + sin10°",
+          "= −sin10° + sin10°",
+          {
+            "text": "= 0 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos60° = 1/2 cancels the 2, and sin(−10°) = −sin10° cancels the remaining term to give 0.",
+          "accept": [
+            "cos sixty is a half so the two cancels and sin minus ten is minus sin ten which cancels the last term",
+            "everything cancels to zero",
+            "minus sin ten plus sin ten is zero",
+            "cos sixty half kabatti two cancel, minus sin ten plus sin ten zero",
+            "the expression comes to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos sixty is a half",
+            "minus sin ten",
+            "cancel",
+            "zero"
+          ]
+        },
+        "why": "sin is an odd function, so sin(−θ) = −sin θ. That sign is what makes the last two terms annihilate rather than double.",
+        "common_mistakes": [
+          "Writing sin(−10°) = sin 10° and getting 2 sin 10°.",
+          "Writing cos 60° = √3/2."
+        ]
+      }
+    ]
+  }
+}

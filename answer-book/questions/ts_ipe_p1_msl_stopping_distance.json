@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_stopping_distance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is stopping distance? On what factors does it depend?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The factors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; a factually wrong marked line was corrected."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Stopping distance is the distance a vehicle",
+          "travels after the brakes are applied, before",
+          "it comes to rest.",
+          "With v = 0 in v² = u² + 2as, writing a for the",
+          "magnitude of the retardation:",
+          {
+            "text": "s = u² / (2a)",
+            "style": "eq"
+          }
+        ],
+        "why": "Setting the final velocity to zero is what turns the general equation into a formula for the distance needed to stop.",
+        "common_mistakes": [
+          "Keeping a negative sign inside s = u²/(2a). In that formula a is the magnitude of the retardation; with a signed negative acceleration the relation is s = −u²/(2a), the same positive distance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That stopping distance is the distance travelled after braking until rest, and equals u squared over two a.",
+          "accept": [
+            "u squared by two a",
+            "after the brakes are applied",
+            "v is zero"
+          ],
+          "reject": [
+            "u by two a"
+          ],
+          "heard_as": [
+            "stopping distance",
+            "u squared"
+          ]
+        },
+        "memory_tip": "Set v = 0 in v² = u² + 2as and the stopping distance falls out.",
+        "margin_note": "Braking acceleration is negative; in s = u²/(2a) the a is its magnitude."
+      },
+      {
+        "id": "s2_factors",
+        "kind": "boxed_final",
+        "label": "The factors",
+        "marks": 1,
+        "mark_note": "The factors",
+        "lines": [
+          {
+            "text": "s ∝ u², so twice the speed gives",
+            "style": "boxed"
+          },
+          {
+            "text": "four times the stopping distance",
+            "style": "boxed"
+          },
+          "It also depends on the braking deceleration a,",
+          "which is set by the brakes, the tyres and the",
+          "road surface."
+        ],
+        "why": "The square on u is why a small rise in speed produces a large rise in stopping distance, which is the reason speed limits matter so much.",
+        "common_mistakes": [
+          "Saying the stopping distance doubles when the speed doubles. It becomes four times larger."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That stopping distance goes as the square of the speed and also depends on the braking deceleration.",
+          "accept": [
+            "proportional to u squared",
+            "four times",
+            "braking deceleration"
+          ],
+          "reject": [
+            "doubles when speed doubles"
+          ],
+          "heard_as": [
+            "u squared",
+            "four times"
+          ]
+        },
+        "memory_tip": "Twice the speed, FOUR times the stopping distance. The square does it.",
+        "margin_note": "Give the four-times consequence in words."
+      }
+    ]
+  },
+  "insider_note": "Use v² = u² + 2as with v = 0. The u² is the point — doubling the speed quadruples the distance."
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_zero_velocity_nonzero_acceleration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give an example where the velocity of an object is zero but the acceleration is not zero.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The example",
+      "marks": 1
+    },
+    {
+      "label": "Why a is not zero",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_example",
+        "kind": "text",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "A body thrown vertically upwards, at the",
+          "highest point of its path.",
+          "There its velocity v = 0, because it has",
+          "stopped rising and has not yet fallen."
+        ],
+        "why": "The velocity passes through zero because it changes sign from upward to downward. Passing through zero takes only an instant.",
+        "common_mistakes": [
+          "Giving a body at rest on a table. There both velocity and acceleration are zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at the highest point of a body thrown vertically upwards the velocity is zero.",
+          "accept": [
+            "highest point",
+            "thrown vertically upwards",
+            "top of the path"
+          ],
+          "reject": [
+            "body at rest on a table"
+          ],
+          "heard_as": [
+            "highest point",
+            "thrown upwards"
+          ]
+        },
+        "memory_tip": "At the top the velocity is changing SIGN, so it passes through zero for an instant.",
+        "margin_note": "Name the highest point exactly. \"Somewhere in flight\" is not enough."
+      },
+      {
+        "id": "s2_acceleration",
+        "kind": "boxed_final",
+        "label": "Why a is not zero",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "Gravity still acts, so a = g downwards",
+            "style": "boxed"
+          },
+          "Acceleration depends on the force acting,",
+          "not on the value of the velocity. Nothing",
+          "switches gravity off at the top."
+        ],
+        "why": "Acceleration is the RATE of change of velocity. The velocity is zero for one instant but is changing quickly, so its rate of change is large.",
+        "common_mistakes": [
+          "Saying acceleration is zero because velocity is zero. The two are independent at any instant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the acceleration equals g downwards because gravity still acts, and acceleration does not depend on the value of the velocity.",
+          "accept": [
+            "g downwards",
+            "gravity still acts",
+            "rate of change"
+          ],
+          "reject": [
+            "acceleration is zero"
+          ],
+          "heard_as": [
+            "g",
+            "gravity",
+            "still acts"
+          ]
+        },
+        "memory_tip": "Zero velocity does not mean zero acceleration. Gravity does not pause at the top.",
+        "margin_note": "Say what still acts: gravity. That is the mark."
+      }
+    ]
+  },
+  "insider_note": "A 3-star cell. The example alone is half the answer — say WHY the acceleration survives at that instant."
+}

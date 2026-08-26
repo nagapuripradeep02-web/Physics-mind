@@ -1,0 +1,531 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_sexuality_in_organisms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of sexuality in organisms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Bisexual and unisexual defined",
+      "marks": 1
+    },
+    {
+      "label": "Homothallic and monoecious",
+      "marks": 1
+    },
+    {
+      "label": "Heterothallic and dioecious",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book pp.16-17), which prints the question, a model answer and the two labelled figures (Chara, Marchantia) but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. FIGURE SCOPE: the book draws Chara with a magnified node inset; the card draws the exam-standard simplified plant with the oogonium and antheridium labelled directly, and the two Marchantia plants with archegoniophore, antheridiophore, gemma cup and rhizoids — the same structure names the book labels."
+  },
+  "insider_note": "The paired examples are what distinguish this answer — Rhizopus sexualis vs Rhizopus stolonifer, Chara vs Marchantia; one swapped example usually costs that step's mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bisexual_unisexual",
+        "kind": "text",
+        "label": "Bisexual vs unisexual",
+        "marks": 1,
+        "mark_note": "The two conditions",
+        "lines": [
+          "Plants that bear both male and female",
+          "reproductive structures on the same",
+          "plant are bisexual plants; plants that",
+          "bear them on different plants are",
+          "unisexual plants."
+        ],
+        "why": "The whole account is one contrast — both sexes together, or on separate individuals — described at three levels: fungi, plants, and flowers.",
+        "common_mistakes": [
+          "Writing bisexual = two plants — bisexual means BOTH organs on ONE plant."
+        ],
+        "memory_tip": "Bi = both organs in one body; uni = one sex per body.",
+        "margin_note": "Open with the two definitions in one sentence pair."
+      },
+      {
+        "id": "s2_bisexual_terms",
+        "kind": "text",
+        "label": "Homothallic and monoecious",
+        "marks": 1,
+        "mark_note": "Bisexual terms",
+        "lines": [
+          "For the bisexual condition:",
+          "Homothallic — male and female sex organs",
+          "on the same thallus (fungi).",
+          "Ex: Rhizopus sexualis.",
+          "Monoecious — both sex organs on the same",
+          "plant. Ex: Chara, maize, cucurbits,",
+          "coconut."
+        ],
+        "why": "Two names for one condition at two body levels: homothallic for a thallus (fungi), monoecious for a plant body.",
+        "common_mistakes": [
+          "Pairing homothallic with dioecious — homothallic goes with MONOecious (both mean bisexual).",
+          "Writing Rhizopus stolonifer here — sexualis is the homothallic species; stolonifer is heterothallic."
+        ],
+        "memory_tip": "Homo = same thallus, mono = one plant — both mean the two organs occur on one body.",
+        "margin_note": "Both terms + one example each."
+      },
+      {
+        "id": "s3_unisexual_terms",
+        "kind": "text",
+        "label": "Heterothallic and dioecious",
+        "marks": 1,
+        "mark_note": "Unisexual terms",
+        "lines": [
+          "For the unisexual condition:",
+          "Heterothallic — the two sex organs on",
+          "different thalli of the same species.",
+          "Ex: Rhizopus stolonifer.",
+          "Dioecious — male and female organs on",
+          "separate plants. Ex: Marchantia, papaya,",
+          "date palm.",
+          "A unisexual male flower (only stamens)",
+          "is a staminate flower; a female flower",
+          "(only pistils) is a pistillate flower.",
+          "Ex: papaya."
+        ],
+        "why": "The unisexual side mirrors the bisexual side term for term, and the flower-level names (staminate, pistillate) complete the account in flowering plants.",
+        "common_mistakes": [
+          "Swapping staminate and pistillate — the staminate flower carries STAMENS (male).",
+          "Writing papaya as monoecious — papaya is the standard dioecious example."
+        ],
+        "memory_tip": "Each flower is named for the organ it keeps: staminate = stamens only (male); pistillate = pistils only (female).",
+        "margin_note": "Mirror the previous step: two terms, examples, then the two flower names."
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Labelled diagrams",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "chara_marchantia_sexuality",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ch_axis",
+              "d": "M 75 285 L 76 92",
+              "ms": 500
+            },
+            {
+              "type": "stroke",
+              "id": "ch_tuft_l",
+              "d": "M 76 92 L 65 70",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ch_tuft_m",
+              "d": "M 76 92 L 75 64",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ch_tuft_r",
+              "d": "M 76 92 L 87 71",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n1_l1",
+              "d": "M 75 150 L 47 128",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n1_l2",
+              "d": "M 75 150 L 61 119",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n1_r1",
+              "d": "M 75 150 L 103 128",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n1_r2",
+              "d": "M 75 150 L 89 119",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n2_l1",
+              "d": "M 75 200 L 47 178",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n2_l2",
+              "d": "M 75 200 L 61 169",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n3_l1",
+              "d": "M 75 250 L 47 228",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_n3_l2",
+              "d": "M 75 250 L 61 219",
+              "ms": 150
+            },
+            {
+              "type": "stroke",
+              "id": "ch_oog_stalk",
+              "d": "M 75 200 L 96 197",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ch_oog_body",
+              "d": "M 93 190 A 9 13 0 1 0 111 190 A 9 13 0 1 0 93 190",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ch_oog_sp1",
+              "d": "M 96 196 Q 102 188 108 194",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ch_oog_sp2",
+              "d": "M 96 186 Q 102 179 108 185",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "ch_ant_stalk",
+              "d": "M 75 200 L 97 218",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "ch_ant_body",
+              "d": "M 95 222 A 8 8 0 1 0 111 222 A 8 8 0 1 0 95 222",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "ch_ant_dot",
+              "d": "M 100 222 Q 103 219 106 222",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "ch_oog_lead",
+              "d": "M 112 189 L 126 183",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "ch_oog_lbl",
+              "x": 130,
+              "y": 184,
+              "text": "Oogonium (female)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ch_ant_lead",
+              "d": "M 112 223 L 126 227",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "ch_ant_lbl",
+              "x": 130,
+              "y": 228,
+              "text": "Antheridium (male)",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ch_caption",
+              "x": 8,
+              "y": 310,
+              "text": "Chara (monoecious)",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "mf_thallus",
+              "d": "M 272 240 C 280 228, 300 224, 315 232 C 325 224, 345 226, 355 234 C 368 228, 378 236, 376 246 C 370 254, 350 252, 335 250 C 315 256, 290 254, 272 240",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "mf_rh0",
+              "d": "M 290 253 L 287 271",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mf_rh1",
+              "d": "M 302 253 L 299 271",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mf_rh2",
+              "d": "M 314 253 L 311 271",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mf_rh3",
+              "d": "M 326 253 L 323 271",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mf_rh4",
+              "d": "M 338 253 L 335 271",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mf_stalk",
+              "d": "M 330 236 L 331 128",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "mf_dome",
+              "d": "M 312 124 Q 330 106 348 124",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "mf_ray1",
+              "d": "M 314 122 L 303 138",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "mf_ray2",
+              "d": "M 321 116 L 313 133",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "mf_ray3",
+              "d": "M 339 116 L 347 133",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "mf_ray4",
+              "d": "M 346 122 L 357 138",
+              "ms": 130
+            },
+            {
+              "type": "stroke",
+              "id": "mf_cup",
+              "d": "M 346 230 Q 352 244 358 230",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "mf_cup_rim",
+              "d": "M 346 230 A 6 2 0 1 0 358 230",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "mm_thallus",
+              "d": "M 420 242 C 428 230, 448 226, 462 234 C 472 226, 492 228, 502 236 C 512 232, 517 240, 514 248 C 506 256, 486 254, 470 252 C 452 258, 430 256, 420 242",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "mm_rh0",
+              "d": "M 438 255 L 435 272",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mm_rh1",
+              "d": "M 450 255 L 447 272",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mm_rh2",
+              "d": "M 462 255 L 459 272",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mm_rh3",
+              "d": "M 474 255 L 471 272",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mm_rh4",
+              "d": "M 486 255 L 483 272",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "mm_stalk",
+              "d": "M 470 232 L 469 130",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "mm_disc",
+              "d": "M 446 124 A 24 7 0 1 0 494 124 A 24 7 0 1 0 446 124",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "mm_knob",
+              "d": "M 465 117 Q 470 111 475 117",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "mm_cup",
+              "d": "M 439 234 Q 445 246 451 234",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "mm_cup_rim",
+              "d": "M 439 234 A 6 2 0 1 0 451 234",
+              "ms": 140
+            },
+            {
+              "type": "label",
+              "id": "m_caption",
+              "x": 250,
+              "y": 28,
+              "text": "Marchantia (dioecious)",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "m_arch_lbl",
+              "x": 180,
+              "y": 84,
+              "text": "Archegoniophore",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "m_arch_lead",
+              "d": "M 300 92 L 323 114",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "m_anth_lbl",
+              "x": 376,
+              "y": 84,
+              "text": "Antheridiophore",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "m_anth_lead",
+              "d": "M 448 92 L 458 114",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "m_cup_lbl",
+              "x": 382,
+              "y": 210,
+              "text": "Gemma cup",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "m_cup_lead",
+              "d": "M 380 206 L 357 228",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "m_rh_lbl",
+              "x": 180,
+              "y": 268,
+              "text": "Rhizoids",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "m_rh_lead",
+              "d": "M 254 264 L 288 263",
+              "ms": 130
+            },
+            {
+              "type": "label",
+              "id": "mf_lbl",
+              "x": 270,
+              "y": 300,
+              "text": "Female plant",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mm_lbl",
+              "x": 420,
+              "y": 300,
+              "text": "Male plant",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The book prints these two labelled figures beside this answer: Chara carries the antheridium and oogonium on one plant (monoecious), while Marchantia has separate male and female plants (dioecious) — the diagrams show the contrast directly.",
+        "common_mistakes": [
+          "Drawing the archegoniophore on the male plant — the FEMALE plant carries the archegoniophore; the male carries the disc-shaped antheridiophore.",
+          "Leaving the labels off — the structure names are what the examiner marks."
+        ],
+        "memory_tip": "ARCHEgoniophore = the female stalk (archegonia hold the eggs); ANTHERidiophore = the male stalk (antheridia make the male gametes).",
+        "margin_note": "Two simple sketches with 3–4 labels each; 3–4 minutes."
+      }
+    ]
+  }
+}

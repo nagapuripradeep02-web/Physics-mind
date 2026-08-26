@@ -1,0 +1,117 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_centripetal_force_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is centripetal force? Write its expression and give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Expression and example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The force that keeps a body moving on a",
+          "circular path, always directed towards the",
+          "centre of the circle, is called the",
+          "centripetal force."
+        ],
+        "why": "It is not a new kind of force: in different situations tension, gravity or friction is the force that points to the centre.",
+        "common_mistakes": [
+          "Treating it as an extra force that appears on its own, separate from tension or gravity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That centripetal force keeps a body on a circular path and points towards the centre.",
+          "accept": [
+            "towards the centre",
+            "keeps the body on a circular path"
+          ],
+          "reject": [
+            "m v squared by r"
+          ],
+          "heard_as": [
+            "centripetal force",
+            "centre"
+          ]
+        },
+        "memory_tip": "Centripetal means centre-seeking. The name gives the direction.",
+        "margin_note": "First mark. The words \"towards the centre\" are what is marked here."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "Expression and example",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          {
+            "text": "F = m v² / r = m ω² r",
+            "style": "boxed"
+          },
+          "Example: when a stone tied to a string is",
+          "whirled in a circle, the tension in the",
+          "string is the centripetal force."
+        ],
+        "why": "Naming which real force provides it is what the second mark is for; \"centripetal force\" alone names nothing.",
+        "common_mistakes": [
+          "Writing the expression with r in the numerator, as m v² r."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F equals m v squared by r, equal to m omega squared r, and the tension in a whirled string is an example.",
+          "accept": [
+            "m v squared by r",
+            "m omega squared r",
+            "tension in the string"
+          ],
+          "reject": [
+            "towards the centre"
+          ],
+          "heard_as": [
+            "m v squared by r",
+            "tension"
+          ]
+        },
+        "memory_tip": "r is below in mv²/r and above in mω²r. Substitute v = ωr to check which is which.",
+        "margin_note": "Second mark. Formula, then example, then name the force — tension. Three short lines."
+      }
+    ]
+  },
+  "insider_note": "The second mark covers the formula and the example together. Name the real force that supplies it — tension, gravity or friction."
+}

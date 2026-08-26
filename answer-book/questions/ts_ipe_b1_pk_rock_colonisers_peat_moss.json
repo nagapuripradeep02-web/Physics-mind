@@ -1,0 +1,72 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_rock_colonisers_peat_moss",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the first organisms to colonise rocks? Give the generic name of the moss which provides peat.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "First colonisers of rocks", "marks": 1 },
+    { "label": "The peat moss", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 5. The book's answer matches the NCERT sentence (mosses along with lichens; Sphagnum). Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_colonisers",
+        "kind": "text",
+        "label": "Mosses along with lichens",
+        "marks": 1,
+        "mark_note": "Colonisers",
+        "lines": [
+          "Mosses, along with lichens, are the first",
+          "organisms to colonise rocks."
+        ],
+        "why": "Bare rock has no soil. Lichens and mosses can still grow on it, and their growth and decay slowly build the first soil layer — so they begin plant succession on rocks.",
+        "common_mistakes": [
+          "Naming only mosses or only lichens — the accepted answer names both together.",
+          "Writing 'fungi' or 'algae' — succession on bare rock starts with lichens and mosses."
+        ],
+        "memory_tip": "Rock succession starts small: a lichen crust first, a moss carpet with it, then larger plants.",
+        "margin_note": "One NCERT sentence answers the first part."
+      },
+      {
+        "id": "s2_sphagnum",
+        "kind": "boxed_final",
+        "label": "Sphagnum — the peat moss",
+        "marks": 1,
+        "mark_note": "Sphagnum",
+        "lines": [
+          { "text": "Sphagnum — the moss that provides peat", "style": "boxed" },
+          "Dead Sphagnum accumulates in bogs and is",
+          "compressed into peat over many years."
+        ],
+        "why": "Sphagnum grows in wet bogs; its dead remains pile up and pack into peat. The question asks only for the generic (genus) name, so 'Sphagnum' is the answer.",
+        "common_mistakes": [
+          "Writing 'Funaria' — Funaria is the common moss; Sphagnum is the peat moss.",
+          "Writing the genus without underlining it — a handwritten genus name should be underlined."
+        ],
+        "memory_tip": "Sphagnum and peat appear in one NCERT line — learn them as one pair: peat = Sphagnum.",
+        "margin_note": "The genus name alone earns the mark; underline it."
+      }
+    ]
+  },
+  "insider_note": "This is two half-questions in one; a full answer names lichens together with mosses AND Sphagnum — students often stop after the first half."
+}

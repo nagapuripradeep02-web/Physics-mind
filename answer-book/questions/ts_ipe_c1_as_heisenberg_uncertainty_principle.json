@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_heisenberg_uncertainty_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain Heisenberg's uncertainty principle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation and its terms",
+      "marks": 2
+    },
+    {
+      "label": "What it rules out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the inequality Δx · Δp ≥ h/4π and every term verified; two notes that demanded the word simultaneously now match the written line, which says at the same time (explanation text only, marked lines and marks untouched)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Atomic Structure · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Heisenberg's uncertainty principle: it is",
+          "impossible to determine at the same time",
+          "both the exact position and the exact",
+          "momentum of a small particle such as an",
+          "electron."
+        ],
+        "why": "The two quantities cannot be pinned down together, however good the instrument. The limit is a property of small particles themselves, not a shortcoming of the measurement.",
+        "common_mistakes": [
+          "Writing position and velocity without saying at the same time. Either one alone can be measured exactly.",
+          "Saying the principle applies to all objects in practice. It matters only for very small masses."
+        ],
+        "memory_tip": "Both at once is what is forbidden. Either one alone is allowed.",
+        "margin_note": "The words at the same time must appear, or the statement is not the principle."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation and its terms",
+        "marks": 2,
+        "mark_note": "Equation and terms",
+        "lines": [
+          {
+            "text": "Δx · Δp ≥ h / 4π      or      Δx · mΔv ≥ h / 4π",
+            "style": "eq"
+          },
+          "Δx = uncertainty in position",
+          "Δp = uncertainty in momentum",
+          "Δv = uncertainty in velocity",
+          "m = mass of the particle,  h = Planck's constant"
+        ],
+        "why": "The product of the two uncertainties has a fixed lower limit, so making one small forces the other to grow. Because h is extremely small, the limit only shows itself for particles of very small mass.",
+        "common_mistakes": [
+          "Writing the sign as less than or equal to. The product is never smaller than h/4π.",
+          "Writing h/2π or h/4 instead of h/4π."
+        ],
+        "memory_tip": "The product has a fixed minimum value. Make one uncertainty smaller and the other must grow.",
+        "margin_note": "Both marks are here. Write the inequality and name every symbol."
+      },
+      {
+        "id": "s3_significance",
+        "kind": "boxed_final",
+        "label": "What it rules out",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          "If Δx = 0 then Δp = ∞;  if Δp = 0 then Δx = ∞.",
+          {
+            "text": "So a fixed orbit for an electron is not possible",
+            "style": "boxed"
+          },
+          "This is why Bohr's definite circular orbits",
+          "are replaced by orbitals, which give only",
+          "the probability of finding an electron."
+        ],
+        "why": "A Bohr orbit fixes the position and the momentum of the electron at the same time, which the principle forbids. This is the direct link between this principle and the limitations of Bohr's model.",
+        "common_mistakes": [
+          "Stopping at the two cases without saying what they rule out. The conclusion about orbits is the mark."
+        ],
+        "memory_tip": "Zero uncertainty in one means infinite uncertainty in the other. A fixed orbit needs both to be zero.",
+        "margin_note": "Naming the consequence for Bohr's orbits is what earns this final mark."
+      }
+    ]
+  },
+  "insider_note": "Many students write the statement and the formula and stop. The last mark is the consequence, that fixed orbits are impossible, and it is the cheapest mark in the question."
+}

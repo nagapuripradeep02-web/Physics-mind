@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sqp_unit_normal_pqr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, −1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Build two edge vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find PQ × PR",
+      "marks": 2
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 160. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS — the same shape as Unit 5's own SAQ answer 59. Printed appearances: none — this answer carries no year tag. Three POINTS, not vectors — so two edge vectors have to be built first. The ± in the answer is required: a plane has two unit normals, one on each side. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_build_two_edge_vectors",
+        "kind": "equation",
+        "label": "Build two edge vectors",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Subtract the position vector of P from the other two to get PQ and PR — both lie in the plane.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "OP = i − j + 2k, OQ = 2i − k, OR = 2j + k",
+          "PQ = OQ − OP = (2i − k) − (i − j + 2k)",
+          "   = i + j − 3k",
+          "PR = OR − OP = (2j + k) − (i − j + 2k)",
+          "   = −i + 3j − k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PQ = i + j − 3k and PR = −i + 3j − k are formed by subtracting OP.",
+          "accept": [
+            "subtract O P from O Q and O R to get the two edge vectors",
+            "P Q is i plus j minus three k and P R is minus i plus three j minus k",
+            "build two vectors that lie in the plane first",
+            "O P teesi rendu edge vectors ravali",
+            "form P Q and P R"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P Q",
+            "P R",
+            "subtract",
+            "edge vectors"
+          ]
+        },
+        "why": "A cross product needs vectors, and the question gives points. Both edges must start at the SAME point, or they will not span the plane.",
+        "common_mistakes": [
+          "Crossing the position vectors OP and OQ directly.",
+          "Building PQ from P and QR from Q, which do not share a starting point."
+        ]
+      },
+      {
+        "id": "s2_find_pq_pr",
+        "kind": "equation",
+        "label": "Find PQ × PR",
+        "marks": 2,
+        "mark_note": "Normal vector",
+        "margin_note": "Half the marks. The cross product of two vectors in the plane is perpendicular to the plane. Factor out the common 4 — it makes the next step much lighter.",
+        "lines": [
+          {
+            "text": "\\begin{vmatrix} i & j & k \\\\ 1 & 1 & -3 \\\\ -1 & 3 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−1 + 9) − j(−1 − 3) + k(3 + 1)",
+          "= 8i + 4j + 4k = 4(2i + j + k)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PQ × PR = 8i + 4j + 4k = 4(2i + j + k).",
+          "accept": [
+            "the cross product is eight i plus four j plus four k which is four times two i plus j plus k",
+            "take the common factor four out of the cross product",
+            "the normal vector is four times two i plus j plus k",
+            "cross product lo four common teeyali",
+            "compute P Q cross P R"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight i",
+            "four",
+            "two i plus j plus k",
+            "common factor"
+          ]
+        },
+        "why": "Factoring out the 4 does not change the direction, and the magnitude that follows is far easier to compute from (2, 1, 1) than from (8, 4, 4).",
+        "common_mistakes": [
+          "Sign slip on the j term.",
+          "Skipping the common factor and squaring 8, 4, 4."
+        ]
+      },
+      {
+        "id": "s3_divide_by_the_magnitude",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. A unit vector is the vector over its own length, and BOTH signs are correct answers — write the ±.",
+        "lines": [
+          "|PQ × PR| = 4|2i + j + k| = 4√(4 + 1 + 1) = 4√6",
+          "Required unit vector = ± (PQ × PR)/|PQ × PR|",
+          "= ± 4(2i + j + k)/(4√6)",
+          {
+            "text": "∴ Unit vector = ± (2i + j + k)/√6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by the magnitude 4√6 gives ± (2i + j + k)/√6, with both signs.",
+          "accept": [
+            "divide by four root six to get plus or minus two i plus j plus k over root six",
+            "the unit vector is plus or minus that vector over root six",
+            "both signs are valid because a plane has two normals",
+            "plus or minus rendu correct, root six tho divide cheyyali",
+            "the answer is plus or minus two i plus j plus k by root six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "root six",
+            "unit vector",
+            "divide"
+          ]
+        },
+        "why": "A plane has two sides, so there are two unit normals pointing opposite ways. Dropping the ± reports only one of two correct answers.",
+        "common_mistakes": [
+          "Omitting the ±.",
+          "Dividing by |PQ| instead of |PQ × PR|."
+        ]
+      }
+    ]
+  }
+}

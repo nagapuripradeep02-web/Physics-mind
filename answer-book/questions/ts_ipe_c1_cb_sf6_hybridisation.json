@@ -1,0 +1,245 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_sf6_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the hybridization involved in the SF₆ molecule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "sp³d² hybridisation of S",
+      "marks": 1
+    },
+    {
+      "label": "Overlap with fluorine",
+      "marks": 1
+    },
+    {
+      "label": "The diagram",
+      "marks": 1
+    },
+    {
+      "label": "Shape and bond angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "sp³d² hybridisation of S",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "lines": [
+          "In SF₆ the central atom S undergoes sp³d²",
+          "hybridisation.",
+          "Ground state of S :",
+          "1s² 2s² 2p⁶ 3s² 3p⁴",
+          "Second excited state of S :",
+          "1s² 2s² 2p⁶ 3s¹ 3px¹ 3py¹ 3pz¹ 3d¹ 3d¹",
+          "One 3s, three 3p and two 3d orbitals mix to",
+          "give six identical sp³d² hybrid orbitals."
+        ],
+        "why": "Sulphur has only two unpaired electrons in the ground state, but SF₆ needs six bonds. Two excitations give six half-filled orbitals, which mix into six sp³d² hybrids.",
+        "common_mistakes": [
+          "Writing sp³d instead of sp³d². Six bonds need six hybrids, so TWO d orbitals join.",
+          "Writing first excited state. Six unpaired electrons need the SECOND excited state of sulphur."
+        ],
+        "memory_tip": "Count the bonds first: six bonds means six hybrids, so s + three p + two d.",
+        "margin_note": "The words second excited state matter here — one excitation gives only four unpaired electrons."
+      },
+      {
+        "id": "s2_overlap",
+        "kind": "text",
+        "label": "Overlap with fluorine",
+        "marks": 1,
+        "mark_note": "Overlap",
+        "lines": [
+          "Fluorine :",
+          "1s² 2s² 2px² 2py² 2pz¹",
+          "Each half-filled sp³d² hybrid orbital of S",
+          "axially overlaps the half-filled 2p orbital",
+          "of one F atom.",
+          "Six σ(sp³d²–p) bonds are formed."
+        ],
+        "why": "Six hybrids on S meet six half-filled 2p orbitals, one from each F atom, so exactly six axial overlaps and six σ bonds form.",
+        "common_mistakes": [
+          "Writing 3p for fluorine. Fluorine's half-filled orbital is a 2p orbital.",
+          "Calling the bonds π. Axial overlap gives σ bonds."
+        ],
+        "memory_tip": "Each F brings one half-filled 2p orbital; each S hybrid meets one of them.",
+        "margin_note": "Name the bond type in full: σ(sp³d²–p)."
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "The diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "sf6_octahedron",
+          "width": 500,
+          "height": 360,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bond_top",
+              "d": "M 250 165 L 250 82",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "bond_bottom",
+              "d": "M 250 195 L 250 278",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "bond_right",
+              "d": "M 266 180 L 358 180",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "bond_left",
+              "d": "M 234 180 L 142 180",
+              "ms": 280
+            },
+            {
+              "type": "stroke",
+              "id": "bond_back",
+              "d": "M 262 168 L 322 122",
+              "ms": 280,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "bond_front",
+              "d": "M 238 192 L 178 238",
+              "ms": 280
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 255,
+              "y": 207,
+              "text": "S",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_top",
+              "x": 243,
+              "y": 64,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_bottom",
+              "x": 243,
+              "y": 312,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_right",
+              "x": 368,
+              "y": 186,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_left",
+              "x": 122,
+              "y": 186,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_back",
+              "x": 330,
+              "y": 112,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_f_front",
+              "x": 162,
+              "y": 260,
+              "text": "F",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_angle",
+              "x": 288,
+              "y": 150,
+              "text": "90°",
+              "ms": 180,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The shape mark needs the drawn arrangement: four bonds in a plane and two on the vertical axis, all at 90°. The dashed bond shows one F behind the plane of the page.",
+        "common_mistakes": [
+          "Drawing SF₆ as a hexagon of six F atoms around S in one plane. The shape is octahedral, not planar.",
+          "Leaving the 90° label off the diagram."
+        ],
+        "memory_tip": "Up, down, left, right, front, back — six directions at right angles, one F on each.",
+        "margin_note": "A neat small diagram is enough. Label one 90° angle."
+      },
+      {
+        "id": "s4_shape",
+        "kind": "boxed_final",
+        "label": "Shape and bond angle",
+        "marks": 1,
+        "mark_note": "Shape + angle",
+        "lines": [
+          {
+            "text": "Shape: octahedral — bond angle 90°",
+            "style": "boxed"
+          },
+          "All six S−F bonds are equivalent, and",
+          "every adjacent pair of bonds is at 90°."
+        ],
+        "why": "Unlike PCl₅, all six positions of an octahedron are equivalent, so one bond angle describes the whole molecule.",
+        "common_mistakes": [
+          "Writing 60° because a hexagon has 60° angles. The shape is a three-dimensional octahedron with 90° angles.",
+          "Calling the shape hexagonal."
+        ],
+        "memory_tip": "Six directions at right angles: every neighbouring pair is 90°.",
+        "margin_note": "One shape name, one angle — this line closes the answer."
+      }
+    ]
+  },
+  "insider_note": "The contrast with PCl₅ is what examiners probe: SF₆ needs the SECOND excited state and gives one single bond angle, 90°, because all six positions are equivalent."
+}

@@ -1,0 +1,186 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_c_is_60",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, if 1/(a+c) + 1/(b+c) = 3/(a+b+c), then show that C = 60°.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Clear the fractions",
+      "marks": 2
+    },
+    {
+      "label": "Expand and simplify",
+      "marks": 1
+    },
+    {
+      "label": "Apply the cosine rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.77 — SAQ chapter 13 Properties of Triangles, answer 86. Printed appearances: TS 17,19. The only question in the chapter that FINDS an angle rather than proving an identity. Everything is algebra until the very last line, where the cosine rule turns a side relation into an angle. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_fractions",
+        "kind": "equation",
+        "label": "Clear the fractions",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Combine the left side over one denominator, then cross-multiply. Nothing trigonometric happens yet — this is ordinary algebra.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 1/(a+c) + 1/(b+c) = 3/(a+b+c)",
+          "⇒ [(b+c) + (a+c)]/[(a+c)(b+c)] = 3/(a+b+c)",
+          "⇒ [(a+b+c) + c]/[(a+c)(b+c)] = 3/(a+b+c)",
+          "⇒ (a+b+c)² + c(a+b+c) = 3(a+c)(b+c)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side is combined over one denominator, the numerator written as (a+b+c) + c, and the equation cross-multiplied.",
+          "accept": [
+            "combine the fractions and notice the numerator is a plus b plus c plus another c then cross multiply",
+            "put over a common denominator and cross multiply",
+            "the numerator becomes the perimeter plus c",
+            "common denominator teeskoni cross multiply cheyyali",
+            "clear the fractions first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "a plus b plus c",
+            "cross multiply",
+            "plus c"
+          ]
+        },
+        "why": "Writing b + c + a + c as (a+b+c) + c is the move that makes the cross-multiplication land on a recognisable expansion rather than a mess.",
+        "common_mistakes": [
+          "Adding the fractions by adding numerators and denominators.",
+          "Cross-multiplying before combining."
+        ]
+      },
+      {
+        "id": "s2_expand_and_simplify",
+        "kind": "equation",
+        "label": "Expand and simplify",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Expand both sides fully. Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions left.",
+        "lines": [
+          "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²) = 3(ab+ac+cb+c²)",
+          "⇒ a²+b²+c²+2ab+2bc+2ca+ca+cb+c² = 3ab+3ac+3cb+3c²",
+          "⇒ a² + b² − c² = ab"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides expand and cancel down to a² + b² − c² = ab.",
+          "accept": [
+            "expand both sides and everything cancels leaving a squared plus b squared minus c squared equals a b",
+            "the algebra reduces to a side relation",
+            "it simplifies to a squared plus b squared minus c squared equals ab",
+            "expand cheste a square plus b square minus c square equals ab vasthundi",
+            "simplify to the side relation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared plus b squared minus c squared",
+            "equals a b",
+            "expand",
+            "cancel"
+          ]
+        },
+        "why": "a² + b² − c² is exactly the numerator of the cosine rule for C. Reaching that expression is the signal that the angle is one step away.",
+        "common_mistakes": [
+          "Slipping a sign while expanding.",
+          "Stopping before everything cancels."
+        ]
+      },
+      {
+        "id": "s3_apply_the_cosine_rule",
+        "kind": "boxed_final",
+        "label": "Apply the cosine rule",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Divide both sides by 2ab: the left becomes cos C exactly, and the right becomes 1/2.",
+        "lines": [
+          "Dividing both sides by 2ab:",
+          "(a² + b² − c²)/(2ab) = ab/(2ab)",
+          "⇒ cos C = 1/2 = cos 60°",
+          {
+            "text": "∴ C = 60°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 2ab gives cos C = 1/2, so C = 60°.",
+          "accept": [
+            "divide by two a b so the left is cos C and the right is a half giving C equals sixty degrees",
+            "the cosine rule turns it into cos C equals a half",
+            "C is sixty degrees",
+            "two ab tho divide cheste cos C half, C sixty degrees",
+            "the angle is sixty degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos C",
+            "one half",
+            "sixty degrees",
+            "divide by two a b"
+          ]
+        },
+        "why": "Dividing by 2ab is chosen precisely because it makes the left side the cosine rule. Any other division would leave something unrecognisable.",
+        "common_mistakes": [
+          "Stopping at a² + b² − c² = ab.",
+          "Writing cos C = 1/2 and giving C = 30°."
+        ]
+      }
+    ]
+  }
+}

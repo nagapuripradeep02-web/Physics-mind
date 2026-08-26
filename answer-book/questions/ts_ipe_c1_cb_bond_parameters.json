@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_bond_parameters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define bond length, bond angle and bond enthalpy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Bond length and bond angle",
+      "marks": 1
+    },
+    {
+      "label": "Bond enthalpy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: bond parameters are an NCERT Chemical Bonding section that the Fastrack chemistry section (book pp.56-61) skips entirely. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemical Bonding · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_length_angle",
+        "kind": "text",
+        "label": "Bond length and bond angle",
+        "marks": 1,
+        "mark_note": "Length + angle",
+        "lines": [
+          "Bond length: the equilibrium distance",
+          "between the nuclei of two bonded atoms in",
+          "a molecule.",
+          "Bond angle: the angle between the orbitals",
+          "containing bonding electron pairs around",
+          "the central atom.",
+          "Ex: the H−O−H bond angle in water is 104.5°."
+        ],
+        "why": "Both parameters describe geometry: length fixes how far apart two bonded nuclei sit, angle fixes the direction of one bond against another at the same atom.",
+        "common_mistakes": [
+          "Measuring bond length between electron clouds. It is nucleus to nucleus.",
+          "Leaving out equilibrium — the atoms vibrate about this distance."
+        ],
+        "memory_tip": "Length is nucleus to nucleus; angle is bond direction against bond direction.",
+        "margin_note": "One definition per line, each with its measuring points named."
+      },
+      {
+        "id": "s2_enthalpy",
+        "kind": "boxed_final",
+        "label": "Bond enthalpy",
+        "marks": 1,
+        "mark_note": "Enthalpy",
+        "lines": [
+          {
+            "text": "Bond enthalpy: energy to break one mole of a bond",
+            "style": "boxed"
+          },
+          "The energy required to break one mole of",
+          "bonds of a particular type between two",
+          "atoms in the gaseous state.",
+          "Its unit is kJ mol⁻¹. A larger bond",
+          "enthalpy means a stronger bond."
+        ],
+        "why": "Bond enthalpy is the strength parameter of the set: it measures the bond's strength as an energy, and the gaseous-state condition keeps other interactions out of the measurement.",
+        "common_mistakes": [
+          "Leaving out one mole or gaseous state — both are part of the definition.",
+          "Writing the unit as kJ. It is kJ per mole: kJ mol⁻¹."
+        ],
+        "memory_tip": "One mole, gas phase, energy in — the three pieces of the definition.",
+        "margin_note": "Close with the unit; it is asked with the definition."
+      }
+    ]
+  }
+}

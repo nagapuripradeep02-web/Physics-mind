@@ -1,0 +1,294 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_gauss_infinite_solutions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "By the Gauss-Jordan method, solve x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Clear column 1 below the leading entry",
+      "marks": 2
+    },
+    {
+      "label": "Reach the row of zeros",
+      "marks": 1
+    },
+    {
+      "label": "Write the equivalent system and find z",
+      "marks": 2
+    },
+    {
+      "label": "Introduce a parameter and state the solution set",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.3. Printed appearance: TS 17. THIS IS ONE OF ONLY TWO QUESTIONS IN THE WHOLE MATRICES CHAPTER WHOSE ANSWER IS NOT A SINGLE TRIPLE — the other is answer 20.4, which has no solution at all. A student who has practised only the unique-solution questions will try to force x, y and z out of a row of zeros; that is the specific failure this question exists to catch, and it was set in a real TS paper. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the two unique-solution Gauss-Jordan answers in this unit, so the split does not imply this question is harder than it is; the weight simply moves from clearing upwards (impossible here) to interpreting the zero row. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — and say what you would do if a whole row turns into zeros.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_augmented",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. Nothing about the setup warns you that this system is unusual — it is written down exactly like any other. The surprise arrives two steps later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 1 & 1 & 1 \\\\ 2 & 2 & -1 \\\\ 1 & 1 & -1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 3 \\\\ 3 \\\\ 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The augmented matrix is",
+          {
+            "text": "[A \\mid D] = \\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 2 & 2 & -1 & 3 \\\\ 1 & 1 & -1 & 1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written — the coefficient matrix with the constants column attached.",
+          "accept": [
+            "write the augmented matrix A D with the constants joined to the coefficient matrix",
+            "form A given D by putting the right hand side as a fourth column",
+            "write the coefficient matrix together with the constants column",
+            "augmented matrix rasta, coefficients tho patu constants column kuda",
+            "attach the constants to A to make the augmented matrix"
+          ],
+          "reject": [
+            "write the matrix",
+            "make the augmented matrix",
+            "write A and D"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants column",
+            "fourth column"
+          ]
+        },
+        "why": "Every row of the augmented matrix is one of the original equations. Holding on to that is what lets you read meaning out of a row of zeros later instead of panicking at it.",
+        "common_mistakes": [
+          "Writing A alone and losing the constants.",
+          "Noticing that columns 1 and 2 are identical and stopping; that observation is useful but is not an answer."
+        ]
+      },
+      {
+        "id": "s2_forward",
+        "kind": "equation",
+        "label": "Clear column 1",
+        "marks": 2,
+        "mark_note": "Forward elimination",
+        "margin_note": "Two marks. The top-left entry is already 1, so no swap is needed. Subtract multiples of row 1 from the rows below exactly as usual — the method does not change just because the answer will.",
+        "lines": [
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & -2 & -2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Note that column 2 has gone to zero as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 1 is used to clear column 1 below it, and that column 2 goes to zero at the same time.",
+          "accept": [
+            "subtract two times row one from row two and row one from row three to clear the first column",
+            "use the leading one to make the first column zero and the second column also becomes zero",
+            "clear column one with row operations and notice column two clears too",
+            "R2 minus 2R1 and R3 minus R1 cheste first column zero avthundi, second column kuda",
+            "eliminate below the leading one and both the first two columns go to zero"
+          ],
+          "reject": [
+            "do row operations",
+            "clear the column",
+            "reduce the matrix"
+          ],
+          "heard_as": [
+            "R2 minus 2R1",
+            "first column",
+            "second column",
+            "zeros",
+            "eliminate"
+          ]
+        },
+        "why": "Columns 1 and 2 of A are identical, so any operation that clears one clears the other. That is the algebraic reason this system cannot pin down x and y separately.",
+        "common_mistakes": [
+          "Treating the zero second column as a mistake and going back to redo the arithmetic.",
+          "Applying an operation to part of a row and not to the constant after the rule."
+        ]
+      },
+      {
+        "id": "s3_zero_row",
+        "kind": "equation",
+        "label": "Reach the row of zeros",
+        "marks": 1,
+        "mark_note": "Zero row",
+        "margin_note": "Fourth mark. Rows 2 and 3 are proportional, so one of them cancels completely. A row of all zeros — INCLUDING the constant after the rule — means that equation carried no information, not that something went wrong.",
+        "lines": [
+          "R₃ → R₃ − (2/3)R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & 0 & 0 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The last row is all zeros, so the system has",
+          "an infinite solution set."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the third row reduces to all zeros, including the constant, and that this means the system has infinitely many solutions rather than a unique one.",
+          "accept": [
+            "row three becomes all zeros including the constant so the system has infinitely many solutions",
+            "the last row vanishes completely which means an infinite solution set",
+            "one equation was a repeat so the row goes to zero and there is no unique answer",
+            "last row moththam zero avthundi kabatti infinite solutions untai",
+            "rows two and three are proportional so one cancels and the solution set is infinite"
+          ],
+          "reject": [
+            "the row becomes zero",
+            "then I get zeros",
+            "there is no solution"
+          ],
+          "heard_as": [
+            "row of zeros",
+            "all zeros",
+            "infinite solutions",
+            "infinite solution set",
+            "no unique solution"
+          ]
+        },
+        "why": "A zero row with a zero constant says 0 = 0, which is true but useless. Two real equations for three unknowns can never fix all three, and that is precisely why the answer has to carry a free letter.",
+        "common_mistakes": [
+          "Confusing this with the no-solution case; there the constant is NOT zero.",
+          "Writing 'no solution' when there are in fact infinitely many.",
+          "Trying to divide by the zero row to get a pivot."
+        ]
+      },
+      {
+        "id": "s4_equivalent",
+        "kind": "equation",
+        "label": "Write the equivalent system",
+        "marks": 2,
+        "mark_note": "Back to equations",
+        "margin_note": "Two marks. Turn the surviving rows back into equations. Row 2 fixes z outright; row 1 then ties x and y together but cannot separate them.",
+        "lines": [
+          "The reduced matrix is equivalent to:",
+          "x + y + z = 3    …(1)",
+          "−3z = −3  ⇒  z = 1    …(2)",
+          "Putting z = 1 into (1):",
+          "x + y + 1 = 3  ⇒  x + y = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two surviving rows are written back as equations, that row 2 gives z = 1, and that substituting it leaves x + y = 2.",
+          "accept": [
+            "write the rows back as equations, minus three z equals minus three gives z equals one, then x plus y equals two",
+            "row two gives z equals one and substituting into row one leaves x plus y equals two",
+            "convert the remaining rows to equations and find z is one so x plus y is two",
+            "row two nunchi z equals one vasthundi, substitute cheste x plus y equals two",
+            "z comes out as one and the first equation then only says x plus y is two"
+          ],
+          "reject": [
+            "write the equations",
+            "substitute back",
+            "find z"
+          ],
+          "heard_as": [
+            "z equals one",
+            "x plus y equals two",
+            "equivalent system",
+            "substitute"
+          ]
+        },
+        "why": "z is pinned down but x and y are not — only their SUM is. One equation can never separate two unknowns, and recognising that is the whole answer to this question.",
+        "common_mistakes": [
+          "Trying to find a numerical value for x by guessing.",
+          "Dropping the z = 1 result and leaving all three letters free.",
+          "Writing x + y = 3 by forgetting to substitute z."
+        ]
+      },
+      {
+        "id": "s5_parameter",
+        "kind": "boxed_final",
+        "label": "Introduce a parameter",
+        "marks": 1,
+        "mark_note": "Solution set",
+        "margin_note": "Last mark. Name the free unknown with a letter — k is the usual choice — and write everything else in terms of it. Say that k can be any real number; without that the answer is incomplete.",
+        "lines": [
+          "Let x = k, where k ∈ R. Then y = 2 − k.",
+          {
+            "text": "∴ x = k, y = 2 − k, z = 1, k ∈ R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a parameter k is introduced for the free unknown, giving x = k, y = 2 − k, z = 1 with k any real number.",
+          "accept": [
+            "take x equals k where k is any real number then y is two minus k and z is one",
+            "put a parameter k for x so the solution set is k, two minus k, one",
+            "let x be k then y equals two minus k and z equals one for all real k",
+            "x ni k anukunte y equals two minus k, z equals one, k any real number",
+            "introduce a parameter and write the solution set in terms of it"
+          ],
+          "reject": [
+            "that is the answer",
+            "there are infinite solutions",
+            "x and y can be anything"
+          ],
+          "heard_as": [
+            "k",
+            "parameter",
+            "two minus k",
+            "belongs to R",
+            "any real number",
+            "solution set"
+          ]
+        },
+        "why": "Each value of k gives one genuine solution — k = 0 gives (0, 2, 1) and k = 2 gives (2, 0, 1), and both satisfy all three original equations. The parameter is how you write down infinitely many answers on one line.",
+        "common_mistakes": [
+          "Writing 'infinite solutions' and stopping, with no solution set given.",
+          "Forgetting to state that k is a real number.",
+          "Giving one particular solution such as (0, 2, 1) as if it were the whole answer."
+        ]
+      }
+    ]
+  }
+}

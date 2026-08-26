@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_coplanar_6a_2b_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the four points 6a+2b−c, 2a−b+3c, −a+2b−4c and −12a−b−3c are coplanar, where a, b, c are non-coplanar vectors.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the four position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find PQ, PR and PS",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the scalar triple product",
+      "marks": 1
+    },
+    {
+      "label": "Conclude that the points are coplanar",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Addition of Vectors, answer 48.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19 · TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+1+1+1 above follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The SAME split and the SAME step ids are used on all four coplanarity answers in this unit, deliberately: they are one method over different vectors. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would show four points are coplanar — say what vectors you build first and what test you apply to them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Name the four points P, Q, R, S and take O as the origin. The names are what let every later line stay short.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take",
+          "OP = 6a + 2b − c,  OQ = 2a − b + 3c,",
+          "OR = −a + 2b − 4c,  OS = −12a − b − 3c",
+          "where 'O' is the origin."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four given vectors are named as the position vectors OP, OQ, OR, OS of four points P, Q, R, S, measured from an origin O.",
+          "accept": [
+            "call the four position vectors OP OQ OR OS with O as the origin",
+            "name the four points P Q R S and write their position vectors from O",
+            "take the given vectors as position vectors of four points from the origin",
+            "naalugu points ni P Q R S ani peru petti, O origin ga teeskuntam",
+            "let the four given vectors be the position vectors of P Q R and S"
+          ],
+          "reject": [
+            "write the vectors",
+            "take the points",
+            "write them down"
+          ],
+          "heard_as": [
+            "position vector",
+            "OP",
+            "OQ",
+            "origin",
+            "P Q R S"
+          ]
+        },
+        "why": "A position vector is measured from the origin; the vector BETWEEN two points is the difference of their position vectors. Setting the origin up front is what makes that subtraction legal.",
+        "common_mistakes": [
+          "Treating the given vectors as the sides of the figure rather than as positions.",
+          "Never naming an origin, so the differences below have nothing to be measured from."
+        ]
+      },
+      {
+        "id": "s2_edges",
+        "kind": "equation",
+        "label": "Find PQ, PR and PS",
+        "marks": 1,
+        "mark_note": "Edge vectors",
+        "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner is what makes them testable for coplanarity; three edges picked at random is not. PR has no b term at all, so its middle entry is 0 — write the 0 in, a blank there is the commonest way to lose the determinant.",
+        "lines": [
+          "∴ PQ = OQ − OP = (2a − b + 3c) − (6a + 2b − c)",
+          "  = −4a − 3b + 4c",
+          "PR = OR − OP = (−a + 2b − 4c) − (6a + 2b − c)",
+          "  = −7a − 3c",
+          "PS = OS − OP = (−12a − b − 3c) − (6a + 2b − c)",
+          "  = −18a − 3b − 2c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PQ, PR and PS are found by subtracting OP from each of the other three position vectors — all three starting from the same point P.",
+          "accept": [
+            "find PQ PR and PS by subtracting OP from OQ OR and OS so all three start at P",
+            "each edge vector is the far position vector minus OP",
+            "take the differences from the same point P to get three vectors",
+            "OQ minus OP, OR minus OP, OS minus OP — anni P nunchi start avthai",
+            "subtract the first position vector from the other three"
+          ],
+          "reject": [
+            "find the vectors",
+            "subtract them",
+            "get PQ PR PS"
+          ],
+          "heard_as": [
+            "PQ",
+            "PR",
+            "PS",
+            "OQ minus OP",
+            "same point",
+            "difference"
+          ]
+        },
+        "why": "Four points are coplanar exactly when three vectors joining ONE of them to the other three lie in a plane. Anchoring all three at P is not a convention — it is the condition.",
+        "common_mistakes": [
+          "Building PQ, QR and RS, a chain rather than three edges from one corner.",
+          "Subtracting the wrong way round; OQ − OP, not OP − OQ.",
+          "A sign slip when the subtracted term is already negative."
+        ]
+      },
+      {
+        "id": "s3_triple",
+        "kind": "equation",
+        "label": "Evaluate the determinant",
+        "marks": 1,
+        "mark_note": "Scalar triple product",
+        "margin_note": "Third mark. Write the three vectors as the rows of a determinant, in order, and expand along the top row. Three vectors lie in a plane exactly when this comes out 0.",
+        "lines": [
+          "Now,",
+          {
+            "text": "[\\text{PQ PR PS}] = \\begin{vmatrix} -4 & -3 & 4 \\\\ -7 & 0 & -3 \\\\ -18 & -3 & -2 \\end{vmatrix} \\, [\\text{a b c}]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= [−4(0−9) + 3(14−54) + 4(21−0)] [a b c]",
+          "= [36 − 120 + 84] [a b c] = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vectors are put in as the rows of a determinant — the scalar triple product — and that it evaluates to 0.",
+          "accept": [
+            "put the three vectors as rows of a determinant, the scalar triple product, and it comes out zero",
+            "take the box product of PQ PR PS and expand the determinant to get zero",
+            "the scalar triple product is a three by three determinant and it is zero here",
+            "moodu vectors ni determinant rows ga rasi expand cheste zero vasthundi",
+            "evaluate the triple product determinant and it equals zero"
+          ],
+          "reject": [
+            "find the determinant",
+            "take the triple product",
+            "expand it"
+          ],
+          "heard_as": [
+            "scalar triple product",
+            "determinant",
+            "box product",
+            "zero",
+            "PQ PR PS"
+          ]
+        },
+        "why": "The scalar triple product is the volume of the box the three vectors span. Zero volume means the box is flat — which is exactly what it means for three vectors to lie in one plane.",
+        "common_mistakes": [
+          "Getting the sign pattern wrong when expanding: plus, minus, plus along the top row.",
+          "Putting the vectors in as columns and rows inconsistently.",
+          "Omitting a zero coefficient and shifting the whole row."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude coplanar",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark, and it is two statements, not one: the VECTORS are coplanar, therefore the POINTS are. Stopping at the vectors leaves the question half answered.",
+        "lines": [
+          "So PQ, PR, PS are coplanar.",
+          {
+            "text": "∴ The four points P, Q, R, S are coplanar.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a zero scalar triple product makes the three vectors coplanar, and therefore the four points are coplanar.",
+          "accept": [
+            "since the triple product is zero the three vectors are coplanar so the four points are coplanar",
+            "zero means the vectors lie in a plane and so do the four points",
+            "the vectors are coplanar hence the points P Q R S are coplanar",
+            "triple product zero kabatti vectors coplanar, so naalugu points kuda coplanar",
+            "therefore the four given points lie in one plane"
+          ],
+          "reject": [
+            "hence proved",
+            "so they are coplanar",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "coplanar",
+            "four points",
+            "one plane",
+            "zero"
+          ]
+        },
+        "why": "The three vectors all start at P, so if they lie in a plane that plane also contains P — and with it Q, R and S. That last sentence is what turns a fact about vectors into the answer about points.",
+        "common_mistakes": [
+          "Writing only that the vectors are coplanar and never mentioning the points.",
+          "Writing \"hence proved\" with nothing named."
+        ]
+      }
+    ]
+  }
+}

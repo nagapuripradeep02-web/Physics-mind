@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_molality_mole_fraction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define molality and mole fraction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Molality",
+      "marks": 1
+    },
+    {
+      "label": "Mole fraction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) exercises molarity, normality and mass percentage as calculations but never asks molality or mole fraction, both of which are syllabus concentration terms. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_molality",
+        "kind": "equation",
+        "label": "Molality",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Molality (m) is the number of moles of solute",
+          "dissolved in one kilogram of SOLVENT.",
+          {
+            "text": "m = moles of solute / mass of solvent in kg",
+            "style": "eq"
+          },
+          "Unit: mol kg⁻¹."
+        ],
+        "why": "Molality is defined per kilogram of solvent, not per litre of solution — that one word is the entire difference from molarity, and it makes molality independent of temperature.",
+        "common_mistakes": [
+          "Writing 'per kilogram of solution'. The denominator is the SOLVENT alone.",
+          "Confusing molality m with molarity M."
+        ],
+        "memory_tip": "MolaLity goes with kiLograms of soLvent; molaRity goes with litRes of solution.",
+        "margin_note": "The word solvent and the unit mol kg⁻¹ carry this mark."
+      },
+      {
+        "id": "s2_mole_fraction",
+        "kind": "boxed_final",
+        "label": "Mole fraction",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Mole fraction of a component is its number of",
+          "moles divided by the total moles in the mixture.",
+          {
+            "text": "x₁ = n₁ / (n₁ + n₂) ; x₁ + x₂ = 1 ; no unit",
+            "style": "boxed"
+          }
+        ],
+        "why": "A fraction of the total mole count needs no unit, and the fractions of all components must add to 1 — both properties follow directly from the definition.",
+        "common_mistakes": [
+          "Dividing by the OTHER component's moles instead of the total.",
+          "Attaching a unit. A mole fraction is a pure number."
+        ],
+        "memory_tip": "Part over whole: one component's moles over everyone's moles, and all the fractions sum to 1.",
+        "margin_note": "The sum-to-1 property is the standard follow-up — state it unprompted."
+      }
+    ]
+  }
+}

@@ -1,0 +1,455 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_liliaceae_essential_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the essential floral parts of plants belonging to Liliaceae.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Androecium",
+      "marks": 1
+    },
+    {
+      "label": "Gynoecium",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    },
+    {
+      "label": "Floral formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Taxonomy of Angiosperms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_androecium",
+        "kind": "text",
+        "label": "Androecium",
+        "marks": 1,
+        "lines": [
+          "The essential floral parts are the two whorls",
+          "that take part in reproduction: the androecium",
+          "and the gynoecium.",
+          "Androecium:",
+          "Six stamens in two whorls of three (3+3).",
+          "They are free and epiphyllous, attached to the",
+          "perianth.",
+          "Anthers are dithecous, basifixed and introrse,",
+          "and open by longitudinal dehiscence."
+        ],
+        "why": "Only the androecium and gynoecium are essential; naming that first shows the examiner you have read the word \"essential\".",
+        "common_mistakes": [
+          "Describing the perianth. The perianth is not an essential part.",
+          "Writing epipetalous instead of epiphyllous. Liliaceae has tepals, not petals."
+        ],
+        "memory_tip": "Everything in Liliaceae comes in threes: 3+3 tepals, 3+3 stamens, 3 carpels.",
+        "margin_note": "Head the block \"Androecium\" and give four short technical terms.",
+        "mark_note": "Androecium"
+      },
+      {
+        "id": "s2_gynoecium",
+        "kind": "text",
+        "label": "Gynoecium",
+        "marks": 1,
+        "lines": [
+          "Gynoecium:",
+          "Tricarpellary and syncarpous, with a trilocular",
+          "superior ovary.",
+          "Placentation is axile; each locule holds many",
+          "ovules.",
+          "The style is terminal and the stigma is trifid and",
+          "capitate."
+        ],
+        "why": "Three fused carpels give three chambers, and three chambers with a central column is exactly what axile placentation means.",
+        "common_mistakes": [
+          "Writing parietal placentation. A trilocular fused ovary has axile placentation.",
+          "Writing inferior ovary. In Liliaceae the ovary is superior."
+        ],
+        "memory_tip": "Three carpels joined gives three locules, and the join in the middle is the axis the ovules sit on.",
+        "margin_note": "Head the block \"Gynoecium\". Five terms, one line each.",
+        "mark_note": "Gynoecium"
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "liliaceae_flower_ls_ovary_ts",
+          "width": 520,
+          "height": 320,
+          "elements": [
+            {
+              "type": "label",
+              "id": "cap_ls",
+              "x": 14,
+              "y": 22,
+              "text": "(a) L.S. of flower",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cap_ts",
+              "x": 296,
+              "y": 22,
+              "text": "(b) T.S. of ovary",
+              "ms": 220,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ls_pedicel",
+              "d": "M 154 281 L 154 306 M 166 281 L 166 306",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ls_thalamus",
+              "d": "M 134 268 L 186 268 L 176 281 L 144 281 Z",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ls_ovary",
+              "d": "M 134 240 A 26 28 0 1 0 186 240 A 26 28 0 1 0 134 240",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "ls_placenta_axis",
+              "d": "M 160 216 L 160 264",
+              "ms": 240
+            },
+            {
+              "type": "stroke",
+              "id": "ls_ovules",
+              "d": "M 142 231 A 5 5 0 1 0 152 231 A 5 5 0 1 0 142 231 M 168 231 A 5 5 0 1 0 178 231 A 5 5 0 1 0 168 231 M 142 250 A 5 5 0 1 0 152 250 A 5 5 0 1 0 142 250 M 168 250 A 5 5 0 1 0 178 250 A 5 5 0 1 0 168 250",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ls_style",
+              "d": "M 160 76 L 160 212",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ls_stigma",
+              "d": "M 138 80 A 8 8 0 1 0 154 80 A 8 8 0 1 0 138 80 M 152 68 A 8 8 0 1 0 168 68 A 8 8 0 1 0 152 68 M 166 80 A 8 8 0 1 0 182 80 A 8 8 0 1 0 166 80",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "ls_tepal_l",
+              "d": "M 142 222 C 108 200 92 148 100 78 C 112 132 126 178 144 219 Z",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "ls_tepal_r",
+              "d": "M 178 222 C 212 200 228 148 220 78 C 208 132 194 178 176 219 Z",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "ls_filament_l",
+              "d": "M 141 216 L 130 131",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ls_filament_r",
+              "d": "M 179 216 L 190 131",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_l",
+              "d": "M 121 110 A 9 21 0 1 0 139 110 A 9 21 0 1 0 121 110",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_r",
+              "d": "M 181 110 A 9 21 0 1 0 199 110 A 9 21 0 1 0 181 110",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ls_anther_groove",
+              "d": "M 130 92 L 130 128 M 190 92 L 190 128",
+              "ms": 220,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "ts_wall_out",
+              "d": "M 290 160 A 50 50 0 1 0 390 160 A 50 50 0 1 0 290 160",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "ts_wall_in",
+              "d": "M 298 160 A 42 42 0 1 0 382 160 A 42 42 0 1 0 298 160",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "ts_septa",
+              "d": "M 340 160 L 340 118 M 340 160 L 303.6 181 M 340 160 L 376.4 181",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "ts_placenta",
+              "d": "M 331 160 A 9 9 0 1 0 349 160 A 9 9 0 1 0 331 160",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "ts_ovules_1",
+              "d": "M 354.6 153.9 A 5.5 5.5 0 1 0 365.6 153.9 A 5.5 5.5 0 1 0 354.6 153.9 M 349.9 145.7 A 5.5 5.5 0 1 0 360.9 145.7 A 5.5 5.5 0 1 0 349.9 145.7 M 362.2 144 A 5.5 5.5 0 1 0 373.2 144 A 5.5 5.5 0 1 0 362.2 144",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ts_ovules_2",
+              "d": "M 319.1 145.7 A 5.5 5.5 0 1 0 330.1 145.7 A 5.5 5.5 0 1 0 319.1 145.7 M 314.4 153.9 A 5.5 5.5 0 1 0 325.4 153.9 A 5.5 5.5 0 1 0 314.4 153.9 M 306.8 144 A 5.5 5.5 0 1 0 317.8 144 A 5.5 5.5 0 1 0 306.8 144",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ts_ovules_3",
+              "d": "M 329.8 180.5 A 5.5 5.5 0 1 0 340.8 180.5 A 5.5 5.5 0 1 0 329.8 180.5 M 339.2 180.5 A 5.5 5.5 0 1 0 350.2 180.5 A 5.5 5.5 0 1 0 339.2 180.5 M 334.5 192 A 5.5 5.5 0 1 0 345.5 192 A 5.5 5.5 0 1 0 334.5 192",
+              "ms": 340
+            },
+            {
+              "type": "stroke",
+              "id": "ld_anther",
+              "d": "M 76 62 L 122 96",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_anther",
+              "x": 6,
+              "y": 66,
+              "text": "Anther",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_style",
+              "d": "M 58 110 L 155 152",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_style",
+              "x": 6,
+              "y": 112,
+              "text": "Style",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_filament",
+              "d": "M 92 154 L 136 168",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_filament",
+              "x": 6,
+              "y": 158,
+              "text": "Filament",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_perianth",
+              "d": "M 88 200 L 110 192",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_perianth",
+              "x": 6,
+              "y": 204,
+              "text": "Perianth",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_thalamus",
+              "d": "M 99 252 L 140 273",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_thalamus",
+              "x": 6,
+              "y": 250,
+              "text": "Thalamus",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pedicel",
+              "d": "M 76 296 L 152 298",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_pedicel",
+              "x": 6,
+              "y": 296,
+              "text": "Pedicel",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_stigma",
+              "d": "M 212 42 L 177 76",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_stigma",
+              "x": 196,
+              "y": 26,
+              "text": "Stigma",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovarywall",
+              "d": "M 398 96 L 366 122",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_ovarywall",
+              "x": 402,
+              "y": 100,
+              "text": "Ovary wall",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ovule",
+              "d": "M 398 142 L 367 145",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_ovule",
+              "x": 402,
+              "y": 146,
+              "text": "Ovule",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_locule",
+              "d": "M 398 188 L 371 177",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_locule",
+              "x": 402,
+              "y": 192,
+              "text": "Locule",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_placentats",
+              "d": "M 398 234 L 348 168",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_placentats",
+              "x": 402,
+              "y": 238,
+              "text": "Placenta",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The L.S. shows where the stamens are attached and that the ovary sits above the other whorls; the T.S. shows the three locules and the central placenta that the words describe.",
+        "common_mistakes": [
+          "Drawing two locules in the T.S. Liliaceae is trilocular.",
+          "Putting the ovules on the ovary wall. In axile placentation they sit on the central axis."
+        ],
+        "memory_tip": "Draw the circle, cut it into three with three lines from the centre, and put the ovules where the three lines meet.",
+        "margin_note": "The T.S. of the ovary alone can carry this mark. Label ovary wall, locule, ovule and placenta."
+      },
+      {
+        "id": "s4_floral_formula",
+        "kind": "boxed_final",
+        "label": "Floral formula",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Br Ebrl ⊕ ⚥ P(3+3) A3+3 G(3)",
+            "style": "boxed"
+          },
+          "Underline the G — the ovary is superior.",
+          "P = perianth. The calyx and corolla look alike, so",
+          "they are written as one whorl of six tepals, not",
+          "as K and C."
+        ],
+        "why": "Liliaceae has no separate calyx and corolla, so the formula uses P instead of K and C, and that single letter is the family signature.",
+        "common_mistakes": [
+          "Writing K(3) C(3) instead of P(3+3).",
+          "Bracketing the androecium. The six stamens are free, so A3+3 takes no bracket."
+        ],
+        "memory_tip": "When sepals and petals cannot be told apart, they become one perianth: P, not K and C.",
+        "margin_note": "One line for the formula. Underline the G by hand.",
+        "mark_note": "Formula"
+      }
+    ]
+  },
+  "insider_note": "The word \"essential\" limits the answer to the androecium and the gynoecium. A student who describes the perianth here loses time and gains nothing."
+}

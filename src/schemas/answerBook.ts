@@ -64,6 +64,19 @@ const lineSchema = z.union([
         text: z.string().min(1),
         style: lineStyleSchema.optional(),
         pause_after_ms: z.number().int().nonnegative().optional(),
+        /**
+         * How `text` is drawn. Default `plain` — Unicode math in the handwriting font,
+         * typed character by character. `katex` means `text` is TeX SOURCE, typeset by
+         * KaTeX at BUILD time (never in the browser — Rule 18) and revealed by a
+         * width-clip wipe, because a typeset tree cannot be typed a character at a time.
+         *
+         * Use it ONLY for constructs with no honest one-line Unicode form: matrices and
+         * determinants, and capital-letter subscripts (Iᴀ, I_B) which Unicode simply does
+         * not encode. A fraction, a root or a power that reads fine on one line stays
+         * `plain` — the notebook is a handwritten answer script, and every KaTeX line is
+         * a small break in that illusion (docs/patterns/answer_book.md).
+         */
+        render: z.enum(['plain', 'katex']).optional(),
     }),
 ]);
 
@@ -122,6 +135,14 @@ const stepSchema = z
          * Rail only, same reasoning as `why`.
          */
         common_mistakes: z.array(z.string().min(1)).max(3).optional(),
+        /**
+         * One line: how to REMEMBER this step (Vidi's "How to remember?" chip).
+         * Plain literal English (Rule 41) — a real memory device (order, contrast,
+         * a named anchor image), never decoration. Optional and sparse by design
+         * (like margin_note): the chip shows only where a tip exists. Authored
+         * 3-star + LAQ first (founder, 2026-08-22).
+         */
+        memory_tip: z.string().min(1).optional(),
     })
     .superRefine((step, ctx) => {
         if (step.kind === 'diagram') {
@@ -161,6 +182,8 @@ const cutStepSchema = z
          */
         margin_note: z.string().optional(),
         why: z.string().min(1).optional(),
+        /** Override the memory tip when the shorter step covers different ground. */
+        memory_tip: z.string().min(1).optional(),
     })
     .superRefine((cs, ctx) => {
         if (cs.marks === 0 && cs.mark_note) {
@@ -200,7 +223,10 @@ export const answerBookQuestionSchema = z
         // identity: the only board-specific block in the file
         board: z.string().min(1), // e.g. "ts_ipe"
         board_label: z.string().min(1),
-        subject: z.enum(['physics', 'chemistry', 'mathematics']),
+        // One PAPER = one subject value (same list as build_answer_book.ts
+        // SUBJECTS): mathematics = Maths-1A (predates 1B), mathematics_1b =
+        // Maths-1B. Unit numbers namespace per subject.
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),
@@ -210,8 +236,18 @@ export const answerBookQuestionSchema = z
         paper_section: z.string().min(1),
         expected_time_min: z.number().int().positive(),
         question_text: z.string().min(1),
-        /** Exam appearances — claims until a teacher confirms (see verification). */
-        appearances: z.array(z.object({ year: z.number().int(), q_no: z.number().int().optional() })),
+        /**
+         * Exam appearances — claims until a teacher confirms (see verification).
+         * `board` absent = ts_ipe (the historical meaning; TS years predate the field).
+         * ap_ipe entries exist because both boards draw one NCERT bank at different
+         * lengths — the March 2026 AP paper asked six of our authored questions
+         * (docs/patterns/answer_book.md §Board landscape).
+         */
+        appearances: z.array(z.object({
+            year: z.number().int(),
+            q_no: z.number().int().optional(),
+            board: z.enum(['ts_ipe', 'ap_ipe']).optional(),
+        })),
         /** Human-readable mark breakdown shown in the rail (display only; steps[] is the truth). */
         mark_split: z.array(z.object({ label: z.string().min(1), marks: z.number().int().positive() })),
         /** Rule 38g spirit: mark split + appearances are claims until a TS IPE teacher confirms. */
@@ -223,6 +259,13 @@ export const answerBookQuestionSchema = z
 
         /** What the student is asked to say aloud in the recall check. Required when steps carry `recall`. */
         recall_prompt: z.string().min(1).optional(),
+
+        /**
+         * One authored sentence of examiner insight for Vidi's greeting — what the
+         * template line (stars + asked years) cannot say: "most students lose the
+         * figure mark here". Optional and sparse; plain literal English (Rule 41).
+         */
+        insider_note: z.string().min(1).optional(),
 
         /**
          * Optional: the same answer offered at more than one length. cuts[0] is the

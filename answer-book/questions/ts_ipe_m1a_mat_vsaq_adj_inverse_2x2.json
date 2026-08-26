@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_adj_inverse_2x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the adjoint and the inverse of the matrix A with rows (2, −3) and (4, 6).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find |A| and Adj A",
+      "marks": 1
+    },
+    {
+      "label": "Divide by |A|",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 15 Matrices, answer 111.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find the adjoint and inverse of a two by two matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_det_adj",
+        "kind": "equation",
+        "label": "Find |A| and Adj A",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No nine cofactors needed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "|A| = 2(6) − 4(−3) = 12 + 12 = 24 ≠ 0",
+          "For a 2×2: swap the diagonal, flip the signs",
+          "of the other two:",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |A| is found (24, non-zero) and that for a 2×2 the adjoint swaps the diagonal entries and changes the sign of the other two.",
+          "accept": [
+            "find the determinant which is twenty four and for a two by two swap the diagonal and change the signs of the others",
+            "the determinant is twenty four and the adjoint swaps a and d and negates b and c",
+            "use the two by two shortcut for the adjoint after checking the determinant",
+            "determinant twenty four, two by two ki diagonal swap chesi migatha rendu sign marchali",
+            "swap the diagonal entries and flip the sign of the off diagonal ones"
+          ],
+          "reject": [
+            "find adj A",
+            "find the determinant"
+          ],
+          "heard_as": [
+            "determinant",
+            "twenty four",
+            "adjoint",
+            "swap",
+            "diagonal",
+            "sign"
+          ]
+        },
+        "why": "The 2×2 shortcut IS the general cofactor rule, worked out once. Knowing it saves the whole cofactor calculation on every 2×2 you meet.",
+        "common_mistakes": [
+          "Swapping the off-diagonal entries instead of the diagonal ones.",
+          "Changing the sign of the diagonal entries."
+        ]
+      },
+      {
+        "id": "s2_inverse",
+        "kind": "boxed_final",
+        "label": "Divide by |A|",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide every entry by 24 and simplify each fraction: 6/24 = 1/4, 3/24 = 1/8, −4/24 = −1/6, 2/24 = 1/12.",
+        "lines": [
+          {
+            "text": "A^{-1} = \\frac{1}{24}\\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} 1/4 & 1/8 \\\\ -1/6 & 1/12 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A⁻¹ is the adjoint divided by |A| = 24, with each fraction simplified.",
+          "accept": [
+            "divide the adjoint by twenty four and simplify each fraction",
+            "A inverse is one over twenty four times the adjoint",
+            "divide every entry by the determinant to get the inverse",
+            "adjoint ni twenty four tho divide cheste inverse vasthundi",
+            "the inverse has quarter, one eighth, minus one sixth and one twelfth"
+          ],
+          "reject": [
+            "divide it",
+            "find the inverse"
+          ],
+          "heard_as": [
+            "one by twenty four",
+            "A inverse",
+            "divide",
+            "one quarter",
+            "one eighth"
+          ]
+        },
+        "why": "A⁻¹ = (Adj A)/|A| for every size. The 2×2 case is not a different rule, only a faster route to the adjoint.",
+        "common_mistakes": [
+          "Leaving the fractions unsimplified.",
+          "Dividing only one row by 24."
+        ]
+      }
+    ]
+  }
+}

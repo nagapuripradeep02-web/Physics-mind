@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ccd_ecoli_time_to_thirty_two_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Cell Cycle and Cell Division (Botany)"
+  },
+  "chapter": "Cell Cycle and Cell Division",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The average duplication time of E. coli is 20 minutes. How much time will two E. coli cells take to become 32 cells?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Number of generations",
+      "marks": 1
+    },
+    {
+      "label": "Total time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Junior Fastrack botany section, Chapter 11 Cell Cycle and Cell Division (book p.27, VSAQ 3) — question text only, never its prose. This book prints no star ranks and cites no years for botany, so stars and appearances are deliberately empty. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus, so the two-book union check and the back-test are STRUCTURALLY IMPOSSIBLE for this card, not merely unrun — do not read 'unverified' as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Cell Cycle and Cell Division · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_generations",
+        "kind": "equation",
+        "label": "Number of generations",
+        "marks": 1,
+        "mark_note": "Generations",
+        "lines": [
+          "Every duplication doubles the number of cells.",
+          {
+            "text": "2 → 4 → 8 → 16 → 32",
+            "style": "eq"
+          },
+          {
+            "text": "32 ÷ 2 = 16 = 2⁴, so 4 duplications are needed.",
+            "style": "eq"
+          }
+        ],
+        "why": "The count starts at 2, not at 1, so the growth factor is 32 ÷ 2 = 16, and 16 is 2 to the power 4. Writing the doubling chain out is the safest way to see the number of generations.",
+        "common_mistakes": [
+          "Starting from one cell and getting 5 generations. The question starts with two cells.",
+          "Multiplying 32 by 20 minutes."
+        ],
+        "memory_tip": "Count the arrows, not the cells: 2→4→8→16→32 is four arrows.",
+        "margin_note": "Show the doubling chain. It earns the first mark on its own."
+      },
+      {
+        "id": "s2_time",
+        "kind": "boxed_final",
+        "label": "Total time",
+        "marks": 1,
+        "mark_note": "Total time",
+        "lines": [
+          {
+            "text": "Time = 4 × 20 min = 80 min = 1 hour 20 minutes",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each generation takes one duplication time, so the total time is generations multiplied by 20 minutes. The book's key gives the same answer — '80 min (or) 1 hr 20 min by 4 generations' — and the arithmetic checks out: 2 × 2⁴ = 32.",
+        "common_mistakes": [
+          "Leaving the answer in minutes only. Give both forms, 80 minutes and 1 hour 20 minutes."
+        ],
+        "memory_tip": "Generations × duplication time = total time.",
+        "margin_note": "One line of arithmetic, then the answer in both minutes and hours."
+      }
+    ]
+  },
+  "insider_note": "Two cells, not one, is the whole point of this question — the examiner is checking whether you read the starting number."
+}

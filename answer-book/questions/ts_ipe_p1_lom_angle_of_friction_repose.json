@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_angle_of_friction_repose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the angle of friction and the angle of repose. Show that they are equal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two definitions",
+      "marks": 1
+    },
+    {
+      "label": "The two relations",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "The two definitions",
+        "marks": 1,
+        "mark_note": "Definitions",
+        "lines": [
+          "Angle of friction φ: the angle between the",
+          "normal force and the resultant of the normal",
+          "force and the limiting friction.",
+          "Angle of repose θ: the angle of an incline at",
+          "which a body on it just begins to slide."
+        ],
+        "why": "One is measured on a flat surface, the other on a slope — which is exactly why it is worth proving they are the same number.",
+        "common_mistakes": [
+          "Defining the angle of friction as the angle between the friction force and the surface.",
+          "Defining φ as the angle between the normal force and the limiting friction — that angle is always 90°. φ is between the normal and the RESULTANT of the normal force and the limiting friction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle of friction is between the normal force and the resultant, and the angle of repose is the incline angle at which the body just slides.",
+          "accept": [
+            "between the normal and the resultant",
+            "incline angle at which it just slides"
+          ],
+          "reject": [
+            "tan phi equals mu s"
+          ],
+          "heard_as": [
+            "angle of friction",
+            "angle of repose"
+          ]
+        },
+        "memory_tip": "φ is measured from the NORMAL, not from the surface. θ is measured from the horizontal.",
+        "margin_note": "First mark. Both definitions on the page. One is measured on a table, the other on a slope."
+      },
+      {
+        "id": "s2_relations",
+        "kind": "equation",
+        "label": "The two relations",
+        "marks": 2,
+        "mark_note": "Both relations",
+        "lines": [
+          "At the angle of friction, the resultant is",
+          "made of f_s across and N along, so",
+          {
+            "text": "tan φ = f_s / N = μ_s",
+            "style": "eq"
+          },
+          "At the angle of repose the body just slides,",
+          "so weight down the slope = limiting friction:",
+          {
+            "text": "m g sin θ = μ_s m g cos θ",
+            "style": "eq"
+          },
+          {
+            "text": "tan θ = μ_s",
+            "style": "eq"
+          }
+        ],
+        "why": "The mg cancels in the second line, which is why the angle of repose depends on the surfaces alone and never on the body. Here f_s is the limiting (maximum) static friction. Below the limit friction is smaller than μ_s N, and the resultant then makes an angle smaller than φ with the normal.",
+        "common_mistakes": [
+          "Forgetting that the normal force on an incline is mg cos θ, not mg."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan phi equals mu s from the resultant, and mg sin theta equals mu s mg cos theta gives tan theta equals mu s.",
+          "accept": [
+            "tan phi equals f by N equals mu",
+            "mg sin theta equals mu mg cos theta",
+            "tan theta equals mu"
+          ],
+          "reject": [
+            "between the normal and the resultant"
+          ],
+          "heard_as": [
+            "tan phi",
+            "tan theta"
+          ]
+        },
+        "memory_tip": "Tangent both times: f_s/N on the flat table, sin θ/cos θ on the slope.",
+        "margin_note": "Second and third marks. One relation for each angle, and each must end at μ_s."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Both tangents equal the same μ_s, so",
+          {
+            "text": "tan φ = tan θ   ∴   φ = θ",
+            "style": "boxed"
+          },
+          "The angle of repose IS the angle of friction,",
+          "measured on a slope instead of a flat table."
+        ],
+        "why": "Two different experiments give the same number because both are really measuring one thing: the ratio f/N for that pair of surfaces.",
+        "common_mistakes": [
+          "Stopping at the two tangents without stating that the angles themselves are equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both tangents equal mu s, so phi equals theta.",
+          "accept": [
+            "tan phi equals tan theta",
+            "phi equals theta",
+            "the two angles are equal"
+          ],
+          "reject": [
+            "mg sin theta equals mu mg cos theta"
+          ],
+          "heard_as": [
+            "equal",
+            "phi equals theta"
+          ]
+        },
+        "memory_tip": "μ_s = 0.6 gives φ = θ = 31°, whichever of the two ways it was measured.",
+        "margin_note": "Fourth mark. It is for the sentence φ = θ, not for the two tangents above it."
+      }
+    ]
+  },
+  "insider_note": "The two tan relations carry 2 of the 4 marks. End with φ = θ — stopping at tan φ = tan θ loses the last mark."
+}

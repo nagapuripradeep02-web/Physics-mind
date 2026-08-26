@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_asexual_vs_sexual",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between asexual and sexual reproduction. Why is vegetative reproduction also considered a type of asexual reproduction?",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Number of parents", "marks": 1 },
+    { "label": "Gamete fusion", "marks": 1 },
+    { "label": "Nature of offspring", "marks": 1 },
+    { "label": "Why vegetative is asexual", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book prints the question with a missing question mark ('reproduction Why is …') and non-standard grammar in the table ('capable to produce offsprings'); the card cleans both."
+  },
+  "insider_note": "Write the distinction as numbered pairs, not prose — examiners tick one mark per contrast row, then look for the vegetative reason as a separate closing sentence.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parents",
+        "kind": "text",
+        "label": "Number of parents",
+        "marks": 1,
+        "mark_note": "One parent vs two",
+        "lines": [
+          "1) Asexual: a single parent produces the",
+          "offspring on its own.",
+          "Sexual: two individuals are involved in",
+          "producing the offspring."
+        ],
+        "why": "The first contrast is the number of individuals involved: one in asexual, two in sexual.",
+        "common_mistakes": [
+          "Writing 'one cell vs two cells' — the contrast is parents (individuals), not cells."
+        ],
+        "memory_tip": "The three rows follow one order: parents (1 vs 2), gametes (none vs fusion), offspring (identical vs different).",
+        "margin_note": "Write each contrast as a numbered pair of lines."
+      },
+      {
+        "id": "s2_gametes",
+        "kind": "text",
+        "label": "Gamete fusion",
+        "marks": 1,
+        "mark_note": "Gamete fusion",
+        "lines": [
+          "2) Asexual: gametes are not formed and",
+          "no fusion of gametes takes place.",
+          "Sexual: a male gamete fuses with a",
+          "female gamete (fertilization)."
+        ],
+        "why": "This is the defining contrast — the other two rows follow from it: no fusion means one parent is enough and the offspring are identical.",
+        "common_mistakes": [
+          "Writing 'no reproductive cells' — use the word gametes.",
+          "Not naming the fusion: fertilization (syngamy)."
+        ],
+        "memory_tip": "No gametes → no mixing → identical offspring. Gametes → mixing → variation. The middle row explains the other two.",
+        "margin_note": "The word fusion (or syngamy) must appear."
+      },
+      {
+        "id": "s3_offspring",
+        "kind": "text",
+        "label": "Nature of offspring",
+        "marks": 1,
+        "mark_note": "Offspring",
+        "lines": [
+          "3) Asexual: offspring are genetically",
+          "identical to the parent and to each other",
+          "(clones).",
+          "Sexual: offspring are not identical to",
+          "the parents or to one another (variation)."
+        ],
+        "why": "With no gamete fusion there is no new gene combination, so asexual offspring are exact copies (clones); sexual offspring carry a new combination each time.",
+        "common_mistakes": [
+          "Writing 'similar' for asexual offspring — the point is IDENTICAL (clones).",
+          "Not naming variation on the sexual side."
+        ],
+        "memory_tip": "Asexual = an exact copy every time (clone); sexual = a new combination every time (variation).",
+        "margin_note": "Three contrasts earn 3 marks — one pair of lines each."
+      },
+      {
+        "id": "s4_vegetative",
+        "kind": "boxed_final",
+        "label": "Why vegetative is asexual",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          { "text": "One parent + no gamete fusion → asexual", "style": "boxed" },
+          "In vegetative reproduction, vegetative",
+          "parts (propagules) of a single parent",
+          "give rise to new plants, with no union",
+          "of gametes.",
+          "So it is a type of asexual reproduction."
+        ],
+        "why": "The test for asexual reproduction is the two-part check in the box: a single parent and no gamete fusion. Vegetative reproduction satisfies both, so it belongs under asexual reproduction.",
+        "common_mistakes": [
+          "Answering only 'because one parent is involved' — also state that NO gametes fuse.",
+          "Calling spore formation vegetative — spores are asexual structures but not vegetative propagules."
+        ],
+        "memory_tip": "Apply the two-part check: one parent? yes. Gamete fusion? no. Both answers place it under asexual.",
+        "margin_note": "End with the reason sentence — this mark is for the 'why'."
+      }
+    ]
+  }
+}

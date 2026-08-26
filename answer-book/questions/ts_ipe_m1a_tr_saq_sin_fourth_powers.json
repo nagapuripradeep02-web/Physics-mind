@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_saq_sin_fourth_powers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that sin⁴(π/8) + sin⁴(3π/8) + sin⁴(5π/8) + sin⁴(7π/8) = 3/2.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce the four angles to two",
+      "marks": 1
+    },
+    {
+      "label": "Group and use a² + b²",
+      "marks": 2
+    },
+    {
+      "label": "Turn the product into sin(π/4)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 10 T-Ratios upto Transformations, answer 66.1. Printed appearances: AP 20. Four angles, but only TWO distinct values once the allied-angle reductions are done. Spotting that is the whole question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Ratios · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce_the_four_angles_t",
+        "kind": "equation",
+        "label": "Reduce the four angles to two",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the idea. 3π/8 and 5π/8 both reduce to cos(π/8), and 7π/8 reduces to sin(π/8) — so the four terms are really two, each appearing twice.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
+          "sin(5π/8) = sin(π/2 + π/8) = cos(π/8)",
+          "sin(7π/8) = sin(π − π/8) = sin(π/8)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the allied-angle reductions turn the four angles into just sin(π/8) and cos(π/8), each twice.",
+          "accept": [
+            "reduce the angles, three pi by eight and five pi by eight both give cos pi by eight and seven pi by eight gives sin pi by eight",
+            "use allied angles so only two distinct values remain",
+            "the four terms collapse to two values each appearing twice",
+            "allied angles vaadi naalugu angles ni rendu ga marchali",
+            "convert them all to pi by eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "allied angles",
+            "cos pi by eight",
+            "sin pi by eight",
+            "reduce"
+          ]
+        },
+        "why": "Nothing can be combined while four different angles are on the page. The reductions are what make the expression a sum of two things, not four.",
+        "common_mistakes": [
+          "Trying to evaluate each fourth power separately.",
+          "Getting sin(5π/8) = −cos(π/8) and losing the symmetry."
+        ]
+      },
+      {
+        "id": "s2_group_and_use_a_b",
+        "kind": "equation",
+        "label": "Group and use a² + b²",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. The four terms become 2[sin⁴ + cos⁴], and a⁴ + b⁴ is handled by a² + b² = (a+b)² − 2ab applied to the SQUARES.",
+        "lines": [
+          "L.H.S = sin⁴(π/8) + cos⁴(π/8) + cos⁴(π/8) + sin⁴(π/8)",
+          "= 2[sin⁴(π/8) + cos⁴(π/8)]",
+          "= 2[(sin²(π/8) + cos²(π/8))² − 2sin²(π/8)cos²(π/8)]",
+          "  [∵ a² + b² = (a+b)² − 2ab]",
+          "= 2[1 − 2sin²(π/8)cos²(π/8)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the terms group as 2[sin⁴ + cos⁴], and that a² + b² = (a+b)² − 2ab is applied with a = sin² and b = cos², using sin² + cos² = 1.",
+          "accept": [
+            "group into two times sin fourth plus cos fourth then use a squared plus b squared equals a plus b all squared minus two ab",
+            "apply the algebraic identity to the squares and use sin squared plus cos squared is one",
+            "the bracket becomes one minus two sin squared cos squared",
+            "a square plus b square identity vaadi, sin square plus cos square one avthundi",
+            "group the four terms into two and apply the identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared plus b squared",
+            "two ab",
+            "sin fourth",
+            "one minus two"
+          ]
+        },
+        "why": "A fourth power is a square of a square. Treating sin² and cos² as the two quantities is what lets an ordinary algebraic identity do the work.",
+        "common_mistakes": [
+          "Trying to expand the fourth powers directly.",
+          "Applying the identity to sin and cos rather than to their squares."
+        ]
+      },
+      {
+        "id": "s3_turn_the_product_into_si",
+        "kind": "boxed_final",
+        "label": "Turn the product into sin(π/4)",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. 4sin²cos² is (2 sin cos)², which is sin²(π/4) — and sin(π/4) is 1/√2, so the square is 1/2.",
+        "lines": [
+          "= 2 − 4sin²(π/8)cos²(π/8)",
+          "= 2 − [2 sin(π/8) cos(π/8)]²",
+          "= 2 − [sin(π/4)]² = 2 − (1/√2)²",
+          {
+            "text": "= 2 − 1/2 = 3/2 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4sin²cos² is written as [2 sin cos]² = sin²(π/4) = 1/2, giving 2 − 1/2 = 3/2.",
+          "accept": [
+            "four sin squared cos squared is two sin cos all squared which is sin pi by four squared equal to a half",
+            "the product becomes sin pi by four squared which is one half",
+            "two minus a half is three halves",
+            "two sin cos ante sin pi by four, square cheste half vasthundi",
+            "the answer is three by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin pi by four",
+            "one half",
+            "three by two",
+            "two sin cos"
+          ]
+        },
+        "why": "The 4 was arranged so that it could be split as 2 × 2 and absorbed into the double-angle formula. Without it the product would not simplify.",
+        "common_mistakes": [
+          "Leaving 4sin²cos² unsimplified.",
+          "Writing sin(π/4) = 1/2 instead of 1/√2."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_parallel_axes_theorem",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "a) State and prove the parallel axes theorem. b) For a thin flat circular disk, the radius of gyration about a diameter as axis is k. If the disk is cut along a diameter AB into two equal pieces, find the radius of gyration of each piece about AB.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The proof",
+      "marks": 2
+    },
+    {
+      "label": "b) The cut disc",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "a) The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "Parallel axes theorem:",
+            "style": "heading"
+          },
+          "The moment of inertia of a rigid body",
+          "about any axis equals its moment of",
+          "inertia about a parallel axis through",
+          "the centre of mass, plus Mr² —",
+          {
+            "text": "I = I₀ + Mr²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say every part: parallel axis, THROUGH THE CENTRE OF MASS, r between the axes.",
+        "why": "The theorem lets you move a known moment of inertia from the centre of mass to any parallel axis — which is how the rod-about-one-end result in this same unit is obtained.",
+        "common_mistakes": [
+          "Dropping \"through the centre of mass\" — the theorem is false between two arbitrary parallel axes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I about any axis = I about the parallel axis through the centre of mass + Mr².",
+          "accept": [
+            "I equals I naught plus M r squared",
+            "parallel axis through the centre of mass",
+            "I0 plus M r square"
+          ],
+          "reject": [
+            "sum of moments about two perpendicular axes"
+          ],
+          "heard_as": [
+            "parallel axis",
+            "centre of mass",
+            "M r squared"
+          ]
+        },
+        "memory_tip": "The formula is the statement: I = I_G + M d² — the centre-of-mass value plus M times distance squared."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "margin_note": "Axis AB, the parallel axis CD through the centre of mass C, a particle at P, and PQ perpendicular to the base line. The proof reads off this picture.",
+        "why": "The whole proof is the expansion of AQ = AC + CQ inside one right triangle — the figure is where that triangle lives.",
+        "common_mistakes": [
+          "Drawing the two axes but not the particle P, leaving the proof with nothing to sum over."
+        ],
+        "figure": {
+          "id": "parallel_axes",
+          "width": 400,
+          "height": 270,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "lamina",
+              "d": "M 90 170 A 130 78 0 1 0 350 170 A 130 78 0 1 0 90 170",
+              "ms": 700,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_ab",
+              "d": "M 120 235 L 120 62",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 108,
+              "y": 54,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 104,
+              "y": 230,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "axis_cd",
+              "d": "M 210 235 L 210 62",
+              "ms": 460
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 216,
+              "y": 54,
+              "text": "D",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 196,
+              "y": 230,
+              "text": "C",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "baseline",
+              "d": "M 120 210 L 270 210",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 274,
+              "y": 230,
+              "text": "Q",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 158,
+              "y": 200,
+              "text": "r",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "body_p",
+              "d": "M 265 120 A 5 5 0 1 0 275 120 A 5 5 0 1 0 265 120",
+              "ms": 240
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 282,
+              "y": 116,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 244,
+              "y": 108,
+              "text": "m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "line_ap",
+              "d": "M 120 210 L 265 123",
+              "ms": 460
+            },
+            {
+              "type": "stroke",
+              "id": "line_cp",
+              "d": "M 210 210 L 266 125",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "line_pq",
+              "d": "M 270 125 L 270 210",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "y"
+            }
+          ]
+        },
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn with axis AB, parallel axis CD through C, particle P and foot Q.",
+          "accept": [
+            "draw the two parallel axes and the particle",
+            "figure with A B C D P Q",
+            "rendu axes tho figure"
+          ],
+          "reject": [
+            "I equals I naught plus M r squared"
+          ],
+          "heard_as": [
+            "figure",
+            "axes",
+            "particle"
+          ]
+        },
+        "memory_tip": "Draw the two parallel axes through C and A, one particle P, and the perpendicular foot Q."
+      },
+      {
+        "id": "s3_proof",
+        "kind": "equation",
+        "label": "The proof",
+        "marks": 2,
+        "mark_note": "Proof",
+        "lines": [
+          "For a particle of mass m at P, with",
+          "AQ = AC + CQ, the right triangle APQ",
+          "gives:",
+          {
+            "text": "AP² = AC² + CP² + 2·AC·CQ",
+            "style": "eq"
+          },
+          "Multiplying by m and summing over all",
+          "particles:",
+          {
+            "text": "Σm·AP² = Σm·AC² + Σm·CP² + 2·AC·Σm·CQ",
+            "style": "eq"
+          },
+          "The last sum is zero — C is the centre",
+          "of mass. With AC = r,",
+          {
+            "text": "I = Mr² + I₀",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The mark-winning line is WHY Σm·CQ = 0: distances measured from the centre of mass average to zero.",
+        "why": "Σm·CQ is the mass-weighted distance from the centre of mass — zero by the very definition of the centre of mass. Every parallel-axes proof turns on this one line.",
+        "common_mistakes": [
+          "Dropping the cross term instead of explaining why it vanishes.",
+          "Writing AP² = AC² + CP² and losing the 2·AC·CQ term entirely."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding AP² gives a cross term 2·AC·Σm·CQ which vanishes because C is the centre of mass, leaving I = I₀ + Mr².",
+          "accept": [
+            "expand A P squared",
+            "the cross term is zero because C is the centre of mass",
+            "sigma m C Q is zero",
+            "cross term zero avutundi"
+          ],
+          "reject": [
+            "each piece has half the mass"
+          ],
+          "heard_as": [
+            "cross term",
+            "centre of mass",
+            "zero"
+          ]
+        },
+        "memory_tip": "Expand (AC + CQ)². The cross term Σm·CQ is zero by the definition of the centre of mass."
+      },
+      {
+        "id": "s4_disc",
+        "kind": "boxed_final",
+        "label": "b) The cut disc",
+        "marks": 1,
+        "mark_note": "b)",
+        "lines": [
+          "For the whole disc about the diameter,",
+          "k = √(I/M). Cutting along AB halves",
+          "BOTH the mass and the moment of",
+          "inertia:",
+          {
+            "text": "M′ = M/2,  I′ = I/2",
+            "style": "eq"
+          },
+          {
+            "text": "k′ = √(I′/M′) = √(I/M) = k",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The surprise IS the answer: both halves shrink together, so k does not change. Say that in words.",
+        "why": "Radius of gyration is a RATIO. Cutting the disc removes mass and its contribution to I in the same proportion, so the ratio — and k — is untouched.",
+        "common_mistakes": [
+          "Halving only the mass and concluding k′ = k√2.",
+          "Calling the half disc a smaller disc of the same shape. It is not; k is unchanged because every remaining particle keeps its own distance from AB, so I and M halve in the same proportion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mass and moment of inertia both halve, so the radius of gyration stays k.",
+          "accept": [
+            "both halve so k is unchanged",
+            "k dash equals k",
+            "radius of gyration same untundi"
+          ],
+          "reject": [
+            "the cross term is zero"
+          ],
+          "heard_as": [
+            "unchanged",
+            "same k",
+            "both halve"
+          ]
+        },
+        "memory_tip": "Radius of gyration is a RATIO — cutting the disc scales I and M in the same proportion, so K stays the same."
+      }
+    ]
+  },
+  "insider_note": "Part b) is a separate mark — the answer (K unchanged) needs its reason stated: cutting scales I and M together."
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": "ipe_paper_v1",
+  "paper_id": "ts_ipe_p1_2025_03",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "paper": "Paper-I",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "year": 2025,
+  "month": 3,
+  "month_label": "March 2025",
+  "date_confidence": "printed",
+  "paper_code": "0119",
+  "set": "C",
+  "provenance": {
+    "source_pdf": "TG_Inter_I_yr_Physics_Paper1_EM_March_2025.pdf",
+    "transcribed_on": "2026-08-26",
+    "transcribed_from": "the PDF scan itself, read page by page — never a prior transcription",
+    "year_source": "printed on the paper",
+    "header_note": "Header reads \"Part -III PHYSICS, Paper - I (English Version)\"; booklet code 0119, set C. Total questions 21, printed pages 2."
+  },
+  "exam_pattern": {
+    "max_marks": 60,
+    "duration_hours": 3,
+    "sections": [
+      {
+        "name": "Section A",
+        "qtype": "VSAQ",
+        "marks_each": 2,
+        "count": 10,
+        "choose": 10,
+        "q_range": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Section B",
+        "qtype": "SAQ",
+        "marks_each": 4,
+        "count": 8,
+        "choose": 6,
+        "q_range": [
+          11,
+          18
+        ]
+      },
+      {
+        "name": "Section C",
+        "qtype": "LAQ",
+        "marks_each": 8,
+        "count": 3,
+        "choose": 2,
+        "q_range": [
+          19,
+          21
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q_no": 1,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the contribution of S. Chandrasekhar to Physics?"
+    },
+    {
+      "q_no": 2,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Why do we have different units for the same physical quantity?"
+    },
+    {
+      "q_no": 3,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q."
+    },
+    {
+      "q_no": 4,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "If a bomb at rest explodes into two pieces, the pieces must travel in opposite directions. Explain."
+    },
+    {
+      "q_no": 5,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Give the expression for the excess pressure in an air bubble inside the liquid."
+    },
+    {
+      "q_no": 6,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What are waterproofing agents and water wetting agents? What do they do?"
+    },
+    {
+      "q_no": 7,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Does a body radiate heat at 0 K? Does it radiate heat at 0°C?"
+    },
+    {
+      "q_no": 8,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is latent heat of vaporization?"
+    },
+    {
+      "q_no": 9,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "The absolute temperature of a gas is increased 3 times. What will be the increase in rms velocity of the gas molecule?"
+    },
+    {
+      "q_no": 10,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "When does a real gas behave like an ideal gas?"
+    },
+    {
+      "q_no": 11,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "A ball is dropped from the roof of a tall building and simultaneously another ball is thrown horizontally with some velocity from the same roof. Which ball lands first? Explain your answer."
+    },
+    {
+      "q_no": 12,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "If |a+b| = |a−b| prove that the angle between a and b is 90°."
+    },
+    {
+      "q_no": 13,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Distinguish between centre of mass and centre of gravity."
+    },
+    {
+      "q_no": 14,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define vector product. Explain the properties of a vector product with two examples."
+    },
+    {
+      "q_no": 15,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "What is orbital velocity? Obtain an expression for it."
+    },
+    {
+      "q_no": 16,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Describe the behaviour of a wire under gradually increasing load."
+    },
+    {
+      "q_no": 17,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Explain conduction, convection and radiation with examples."
+    },
+    {
+      "q_no": 18,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Mention the methods used to decrease friction."
+    },
+    {
+      "q_no": 19,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Develop the notions of work and kinetic energy and show that it leads to work-energy theorem. A machine gun fires 360 bullets per minute and each bullet travels with a velocity of 600 ms⁻¹. If the mass of each bullet is 5 gm, find the power of the machine gun.",
+      "parts": [
+        {
+          "part": "a",
+          "kind": "derivation",
+          "text": "Develop the notions of work and kinetic energy and show that it leads to work-energy theorem."
+        },
+        {
+          "part": "b",
+          "kind": "numerical",
+          "text": "A machine gun fires 360 bullets per minute and each bullet travels with a velocity of 600 ms⁻¹. If the mass of each bullet is 5 gm, find the power of the machine gun."
+        }
+      ]
+    },
+    {
+      "q_no": 20,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is seconds pendulum?"
+    },
+    {
+      "q_no": 21,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Explain reversible and irreversible processes. Describe the working of Carnot engine. Obtain an expression for the efficiency."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_hooke_cell_micrographia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Who discovered the cell and what was the book written by him?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Discoverer of the cell",
+      "marks": 1
+    },
+    {
+      "label": "His book",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it. The book's printed answer is partly hidden by scan noise but clearly reads Robert Hooke / Micrographia; the cork detail added here is the standard NCERT account."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hooke",
+        "kind": "text",
+        "label": "Discoverer of the cell",
+        "marks": 1,
+        "mark_note": "Name",
+        "lines": [
+          "Robert Hooke discovered the cell. He saw",
+          "small box-like compartments in a thin slice",
+          "of cork under his microscope and named",
+          "them cells."
+        ],
+        "why": "The first half asks for the discoverer; the one-line cork observation shows how the discovery happened and makes the name stick.",
+        "common_mistakes": [
+          "Writing Leeuwenhoek — he observed living cells later; Hooke saw the first (dead cork) cells.",
+          "Writing Robert Brown — he discovered the nucleus, not the cell."
+        ],
+        "memory_tip": "Cellula means a small room; Hooke saw cork divided into small rooms and named them cells.",
+        "margin_note": "Name plus one line on the cork observation."
+      },
+      {
+        "id": "s2_micrographia",
+        "kind": "boxed_final",
+        "label": "His book",
+        "marks": 1,
+        "mark_note": "Book",
+        "lines": [
+          {
+            "text": "Robert Hooke — Micrographia (1665)",
+            "style": "boxed"
+          },
+          "He described and drew his microscope",
+          "observations in this book."
+        ],
+        "why": "The second half asks for the book. Micrographia, where Hooke published his microscope drawings, completes the answer.",
+        "common_mistakes": [
+          "Misspelling the title — it is Micrographia, one word.",
+          "Writing De Historia Plantarum — that is Theophrastus' book."
+        ],
+        "memory_tip": "Micro-graphia = small drawings — a book of what the microscope showed.",
+        "margin_note": "The boxed name-and-book line carries this mark."
+      }
+    ]
+  },
+  "insider_note": "Discovery questions pair a person with a book; answer in that fixed pattern — name first, title second — and both marks are earned."
+}

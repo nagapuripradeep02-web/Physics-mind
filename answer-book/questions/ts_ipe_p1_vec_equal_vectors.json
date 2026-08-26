@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_equal_vectors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "When are two vectors said to be equal vectors?",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 7,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The condition",
+      "marks": 1
+    },
+    {
+      "label": "What does not matter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the March 2026 AP Inter Physics Paper-I (NEW) scan held in the corpus — Section A, question 7, read directly off the paper. Neither the Sri Chaitanya Fastrack nor the TSBIE Basic Learning Material lists this question for Unit 4. AP Section A carries 1 mark; this card is authored at the TS 2-mark VSAQ length because the bank is TS-shaped and TS has no 1-mark section. The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "text",
+        "label": "The condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          "Two vectors are said to be equal when they have",
+          "the SAME magnitude and the SAME direction.",
+          "Both conditions must hold together — equal",
+          "length alone is not enough."
+        ],
+        "margin_note": "First mark. Both conditions in one sentence. Magnitude alone does not earn it.",
+        "why": "A vector carries exactly two pieces of information, so matching both of them is the whole test.",
+        "common_mistakes": [
+          "Calling two vectors equal because their magnitudes are equal, ignoring direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two vectors are equal when they have the same magnitude and the same direction.",
+          "accept": [
+            "same magnitude and same direction",
+            "both magnitude and direction match"
+          ],
+          "reject": [
+            "they need not act at the same point"
+          ],
+          "heard_as": [
+            "equal vectors",
+            "same direction"
+          ]
+        },
+        "memory_tip": "Two 5 N forces, one east and one west, are not equal vectors. Same size, opposite direction."
+      },
+      {
+        "id": "s2_position",
+        "kind": "boxed_final",
+        "label": "What does not matter",
+        "marks": 1,
+        "mark_note": "Position",
+        "lines": [
+          {
+            "text": "Equal vectors need not act at the same point.",
+            "style": "boxed"
+          },
+          "A vector may be shifted parallel to itself",
+          "without changing it, so two equal vectors can",
+          "lie anywhere in space."
+        ],
+        "margin_note": "Second mark. Say that the point of application does not matter.",
+        "why": "This is exactly why vectors can be slid head to tail to add them — position carries no information at all.",
+        "common_mistakes": [
+          "Requiring the two vectors to start from the same point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal vectors need not act at the same point, since a vector can be shifted parallel to itself.",
+          "accept": [
+            "need not act at the same point",
+            "can be shifted parallel to itself"
+          ],
+          "reject": [
+            "same magnitude and same direction"
+          ],
+          "heard_as": [
+            "same point",
+            "parallel shift"
+          ]
+        },
+        "memory_tip": "Two arrows at opposite corners of the page are still equal if length and direction match."
+      }
+    ]
+  },
+  "insider_note": "Asked in AP March 2026, Section A. Two marks for two sentences, and the second — that position does not matter — is the one usually left out."
+}

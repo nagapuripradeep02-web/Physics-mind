@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_sinh_five",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sinh x = 5, then show that x = log(5 + √26).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the logarithmic form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.96 — VSAQ chapter 19 Hyperbolic Functions, answer 137.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16. The twin of 137.1 with a different number — same formula, same two steps. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ. The book's chapter header carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q10 is the Hyperbolic Functions slot. NOTE: Hyperbolic Functions is a VSAQ-ONLY unit — the paper gives it no Section-B and no Section-C slot, and this book has no hyperbolic LAQ chapter (LAQ chapters are 1-6) and no SAQ chapter (SAQ chapters are 7-13). Chapter 19 is the LAST VSAQ chapter; the boundary was walked to book p.98, where a separate 'Star Questions Plus' section begins."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "State the logarithmic form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same formula as the twin. Write it before substituting anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We know Sinh⁻¹x = logₑ(x + √(x² + 1))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Sinh⁻¹x = logₑ(x + √(x²+1)) is stated.",
+          "accept": [
+            "sinh inverse x is log of x plus root x squared plus one",
+            "write the sinh inverse logarithmic form",
+            "state the formula first",
+            "sinh inverse ki log form rasta",
+            "quote the logarithmic form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh inverse",
+            "log",
+            "x squared plus one"
+          ]
+        },
+        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic then slips.",
+        "common_mistakes": [
+          "Using the Cosh⁻¹ form with −1.",
+          "Starting from the exponential definition."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute x = 5",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
+        "lines": [
+          "Given sinh x = 5, so x = Sinh⁻¹(5)",
+          "= logₑ(5 + √(5² + 1))",
+          "= logₑ(5 + √(25 + 1))",
+          {
+            "text": "∴ x = logₑ(5 + √26)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting x = 5 gives logₑ(5 + √26).",
+          "accept": [
+            "substitute five to get log of five plus root twenty six",
+            "twenty five plus one is twenty six",
+            "the answer is log five plus root twenty six",
+            "five substitute cheste log five plus root twenty six vasthundi",
+            "x is log of five plus root twenty six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root twenty six",
+            "twenty five plus one",
+            "log",
+            "five"
+          ]
+        },
+        "why": "26 has no square factor, so √26 stands as it is. Trying to simplify it is wasted effort.",
+        "common_mistakes": [
+          "Attempting to simplify √26.",
+          "Writing √26 as 5.1 and losing exactness."
+        ]
+      }
+    ]
+  }
+}

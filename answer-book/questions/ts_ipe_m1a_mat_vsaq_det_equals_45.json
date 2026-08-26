@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_det_equals_45",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (1, 0, 0), (2, 3, 4) and (5, −6, x), and det A = 45, then find x.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand the determinant",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Matrices, answer 109, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 16 · TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find x from the determinant.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The top row is 1, 0, 0 — two zeros — so expanding along it leaves a single 2×2 minor. Keep x as a letter.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\begin{vmatrix} 1 & 0 & 0 \\\\ 2 & 3 & 4 \\\\ 5 & -6 & x \\end{vmatrix} = 45",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Expanding along R₁ (only the 1 contributes):",
+          "1(3x − 4(−6)) + 0 + 0 = 3x + 24"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant is expanded along the first row, which has two zeros, leaving 3x + 24.",
+          "accept": [
+            "expand along the first row since it has two zeros and you get three x plus twenty four",
+            "only the one contributes so the determinant is three x plus twenty four",
+            "the two zeros kill the other terms leaving a single two by two minor",
+            "first row lo zeros unnai kabatti oke term, three x plus twenty four",
+            "expanding gives three x plus twenty four"
+          ],
+          "reject": [
+            "expand it",
+            "find the determinant"
+          ],
+          "heard_as": [
+            "three x plus twenty four",
+            "first row",
+            "zeros",
+            "expand",
+            "minor"
+          ]
+        },
+        "why": "A row of zeros is a gift — expanding along it turns three 2×2 determinants into one. Choosing the right row to expand along is the skill this question tests.",
+        "common_mistakes": [
+          "Expanding along a row with no zeros and doing three times the work.",
+          "Substituting a guess for x before expanding."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Set the expansion equal to 45 and solve. Watch the double negative: 4 × (−6) = −24, and subtracting it ADDS 24.",
+        "lines": [
+          "3x + 24 = 45",
+          "3x = 45 − 24 = 21",
+          "x = 7",
+          {
+            "text": "∴ x = 7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3x + 24 is set equal to 45 and solved to give x = 7.",
+          "accept": [
+            "set three x plus twenty four equal to forty five so three x is twenty one and x is seven",
+            "solving gives x equals seven",
+            "three x equals twenty one so x is seven",
+            "three x plus twenty four equals forty five, x equals seven",
+            "x comes out as seven"
+          ],
+          "reject": [
+            "solve for x",
+            "find x"
+          ],
+          "heard_as": [
+            "x equals seven",
+            "seven",
+            "twenty one",
+            "forty five"
+          ]
+        },
+        "why": "The minor is 3x − 4(−6), and the two minus signs make +24. Reading it as 3x − 24 gives x = 23, which is the standard wrong answer here.",
+        "common_mistakes": [
+          "Writing the minor as 3x − 24.",
+          "Dividing 45 by 3 before subtracting the 24."
+        ]
+      }
+    ]
+  }
+}

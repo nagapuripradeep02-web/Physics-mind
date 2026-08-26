@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_normal_form_intercepts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².",
+  "appearances": [
+    {
+      "year": 2019
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Clear the fractions",
+      "marks": 1
+    },
+    {
+      "label": "Divide by √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Read off cosα, sinα and p",
+      "marks": 1
+    },
+    {
+      "label": "Deduce the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 61. Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what you divide by to reach normal form, and what you do to p at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_fractions",
+        "kind": "equation",
+        "label": "Clear the fractions",
+        "marks": 1,
+        "margin_note": "First mark. Normal form has no fractions, so the intercept form is cleared to ax + by = c shape before anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given equation is  x/a + y/b = 1",
+          "⇒ (bx + ay)/ab = 1   ⇒   bx + ay = ab"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intercept form is cleared to bx + ay = ab.",
+          "accept": [
+            "clear the fractions to get b x plus a y equals a b",
+            "multiply through by a b",
+            "put it over a common denominator first",
+            "fractions clear chesi b x plus a y equals a b",
+            "remove the denominators"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "clear fractions",
+            "b x plus a y",
+            "a b",
+            "common denominator"
+          ]
+        },
+        "why": "Normal form is xcosα + ysinα = p, which has no denominators — so the fractions have to go first.",
+        "common_mistakes": [
+          "Multiplying only one term by ab.",
+          "Writing ax + by = ab with a and b swapped."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_divide",
+        "kind": "equation",
+        "label": "Divide by √(a²+b²)",
+        "marks": 1,
+        "margin_note": "Second mark. Normal form needs the coefficients of x and y to square-and-add to 1, which is exactly what dividing by √(a²+b²) arranges.",
+        "lines": [
+          "On dividing by √(a² + b²), we get",
+          "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are divided by √(a² + b²).",
+          "accept": [
+            "divide throughout by the root of a squared plus b squared",
+            "make the coefficients square and add to one",
+            "divide both sides by root a square plus b square",
+            "root a square plus b square tho divide cheyyali",
+            "this puts it into normal form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide",
+            "root a squared plus b squared",
+            "normal form",
+            "coefficients"
+          ]
+        },
+        "why": "cos²α + sin²α = 1 forces this exact divisor — no other choice puts the equation into normal form.",
+        "common_mistakes": [
+          "Dividing by a + b instead of √(a² + b²).",
+          "Dividing only the left side."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_read_off",
+        "kind": "equation",
+        "label": "Read off cosα, sinα and p",
+        "marks": 1,
+        "margin_note": "Third mark. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b.",
+        "lines": [
+          "This is in the normal form  xcosα + ysinα = p,  where",
+          "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)   and   p = ab/√(a²+b²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing with xcosα + ysinα = p gives cosα = b/√(a²+b²), sinα = a/√(a²+b²) and p = ab/√(a²+b²).",
+          "accept": [
+            "compare with x cos alpha plus y sin alpha equals p and read off each part",
+            "cos alpha is b over the root and sin alpha is a over the root",
+            "p is a b over root a squared plus b squared",
+            "normal form tho compare chesi read off cheyyali",
+            "the perpendicular distance p is a b over the root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos alpha",
+            "sin alpha",
+            "p equals",
+            "a b over the root"
+          ]
+        },
+        "why": "Only p is needed for the deduction, but the comparison has to be written out — the question asks for the normal form as well as the result.",
+        "common_mistakes": [
+          "Assigning cosα = a/√(a²+b²), with a and b the wrong way round.",
+          "Forgetting to state p separately."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_deduce",
+        "kind": "boxed_final",
+        "label": "Deduce the result",
+        "marks": 1,
+        "margin_note": "Last mark. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
+        "lines": [
+          "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
+          "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
+          {
+            "text": "∴ 1/p² = 1/b² + 1/a² = 1/a² + 1/b²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring and inverting p gives 1/p² = 1/a² + 1/b².",
+          "accept": [
+            "square p then invert and split the fraction into two",
+            "one over p squared is a squared plus b squared over a squared b squared",
+            "split it as one over a squared plus one over b squared",
+            "p square chesi invert chesi split cheyyali",
+            "hence one by p squared equals one by a squared plus one by b squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p squared",
+            "invert",
+            "split the fraction",
+            "one over a squared"
+          ]
+        },
+        "why": "Inverting is what turns the sum in the numerator into a sum of two separate fractions, which is the form the question asks for.",
+        "common_mistakes": [
+          "Writing 1/p² = 1/(a² + b²) without inverting properly.",
+          "Cancelling a² against a²b² incorrectly."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

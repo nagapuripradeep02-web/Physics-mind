@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_free_damped_forced",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between free oscillations, damped oscillations and forced oscillations, with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Free oscillations",
+      "marks": 1
+    },
+    {
+      "label": "Damped oscillations",
+      "marks": 2
+    },
+    {
+      "label": "Forced oscillations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Oscillations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_free",
+        "kind": "text",
+        "label": "Free oscillations",
+        "marks": 1,
+        "mark_note": "Free",
+        "lines": [
+          "Free oscillations: a body displaced once and",
+          "then left alone oscillates at its OWN natural",
+          "frequency, with an amplitude that does not",
+          "change. Example: a tuning fork struck once in",
+          "a vacuum."
+        ],
+        "why": "Free oscillation is an idealisation — a real body always loses some energy, so the constant amplitude is a limiting case.",
+        "common_mistakes": [
+          "Giving a real swinging pendulum as the example; that is damped, because air resistance acts on it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That free oscillations happen at the natural frequency with unchanging amplitude, once the body is left alone.",
+          "accept": [
+            "own natural frequency",
+            "amplitude does not change",
+            "left alone"
+          ],
+          "reject": [
+            "amplitude decreases with time"
+          ],
+          "heard_as": [
+            "free",
+            "natural frequency"
+          ]
+        },
+        "memory_tip": "Free means left alone: one push at the start, and nothing touches it after that.",
+        "margin_note": "First mark. One definition and one example. Both are needed for it."
+      },
+      {
+        "id": "s2_damped",
+        "kind": "text",
+        "label": "Damped oscillations",
+        "marks": 2,
+        "mark_note": "Damped",
+        "lines": [
+          "Damped oscillations: friction or air resistance",
+          "takes energy away from the body, so the",
+          "amplitude decreases steadily with time while",
+          "the frequency stays nearly the same. The fall",
+          "in amplitude is exponential.",
+          "Example: a simple pendulum swinging in air."
+        ],
+        "why": "The energy is not lost, only moved: it leaves the oscillation as heat in the surrounding air.",
+        "common_mistakes": [
+          "Saying the frequency falls quickly as well; for light damping it barely changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That damping removes energy so the amplitude decreases with time while the frequency is nearly unchanged.",
+          "accept": [
+            "amplitude decreases with time",
+            "friction or air resistance",
+            "frequency nearly unchanged"
+          ],
+          "reject": [
+            "own natural frequency"
+          ],
+          "heard_as": [
+            "damped",
+            "amplitude decreases"
+          ]
+        },
+        "memory_tip": "Picture the peaks getting smaller each swing while the spacing between them stays the same.",
+        "margin_note": "Two marks here. Say what happens to the amplitude and what happens to the frequency."
+      },
+      {
+        "id": "s3_forced",
+        "kind": "boxed_final",
+        "label": "Forced oscillations",
+        "marks": 1,
+        "mark_note": "Forced",
+        "lines": [
+          "Forced oscillations: an outside periodic force",
+          "keeps the body oscillating at the FORCED",
+          "frequency, not at its own.",
+          {
+            "text": "Forced frequency = natural → resonance",
+            "style": "boxed"
+          },
+          "Example: a bridge shaken by feet marching",
+          "across it in step."
+        ],
+        "why": "In a forced oscillation the body oscillates at the driving frequency, not at its own — which is why the special case where the two are equal builds such a large amplitude.",
+        "common_mistakes": [
+          "Saying a forced oscillation always happens at the natural frequency; that is only the resonance case."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in forced oscillations an outside periodic force drives the body at the forced frequency, and resonance is when the two frequencies agree.",
+          "accept": [
+            "outside periodic force",
+            "oscillates at the forced frequency",
+            "resonance when they are equal"
+          ],
+          "reject": [
+            "amplitude decreases with time"
+          ],
+          "heard_as": [
+            "forced",
+            "driving force"
+          ]
+        },
+        "memory_tip": "Free: its own frequency. Damped: its own frequency, smaller each swing. Forced: the outside frequency.",
+        "margin_note": "The last mark. Name the driving frequency, then write the resonance condition."
+      }
+    ]
+  },
+  "insider_note": "Damped carries two of the four marks, and each of the three needs its example — an answer with definitions only is incomplete."
+}

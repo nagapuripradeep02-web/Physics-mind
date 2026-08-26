@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_svedberg_unit_s",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What does 'S' refer to in the 70S and 80S ribosome?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What S stands for",
+      "marks": 1
+    },
+    {
+      "label": "What it measures",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK GAP: the book defines S as an 'indirect measure of density and size of ribosome' and omits both shape and the fact that S values are not additive. This card writes the standard definition (sedimentation coefficient) and keeps the book's 'indirect measure' phrasing inside it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_svedberg",
+        "kind": "text",
+        "label": "The unit",
+        "marks": 1,
+        "mark_note": "Svedberg unit",
+        "lines": [
+          "'S' stands for the Svedberg unit.",
+          "It is the sedimentation coefficient of a",
+          "particle — how fast the particle settles",
+          "when it is spun in an ultracentrifuge."
+        ],
+        "why": "S is not a unit of mass or of length. It is a rate of settling, which is why the answer has to name the ultracentrifuge.",
+        "common_mistakes": [
+          "Writing that S stands for size. It stands for Svedberg.",
+          "Calling S a unit of mass or of weight."
+        ],
+        "memory_tip": "S for Svedberg, who built the ultracentrifuge. S measures settling.",
+        "margin_note": "Naming the Svedberg unit carries this mark."
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "boxed_final",
+        "label": "What it measures",
+        "marks": 1,
+        "mark_note": "Not additive",
+        "lines": [
+          {
+            "text": "S values are not additive",
+            "style": "boxed"
+          },
+          "Settling rate depends on size, shape and",
+          "density, so S is an indirect measure of the",
+          "three together.",
+          "That is why the 70S prokaryotic ribosome is",
+          "made of a 50S and a 30S subunit, and the 80S",
+          "eukaryotic ribosome of a 60S and a 40S."
+        ],
+        "why": "Because S measures a rate and not an amount, two subunits joined together do not give the sum of their S values — the joined particle has a different shape. The book's answer says only 'indirect measure of density and size'; shape counts too.",
+        "common_mistakes": [
+          "Writing 50S + 30S = 80S. The values do not add.",
+          "Saying S measures only density. Shape and size count as well."
+        ],
+        "memory_tip": "70 = 50 + 30 is bad arithmetic but good biology, because S is a rate, not an amount.",
+        "margin_note": "The 70S and 80S split is the line examiners look for."
+      }
+    ]
+  },
+  "insider_note": "The book answers this in one line. Adding shape, and the 50S + 30S example, is what turns it into a full 2-mark answer."
+}

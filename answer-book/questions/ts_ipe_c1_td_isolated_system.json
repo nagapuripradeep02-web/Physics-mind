@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_isolated_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is an isolated system? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): the s2 marked line writes hot water while the source book prints ice, and the departure was recorded only in the margin_note. It is now stated in the why as well, and the margin_note leads with the book's version, so the student sees it before writing. The marked line is unchanged — neither container is wrong. OPEN QUESTION for the teacher gate: confirm the two examples are accepted interchangeably."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An isolated system is a system that can",
+          "exchange neither matter nor energy with",
+          "its surroundings."
+        ],
+        "why": "The three system types differ only in what crosses the boundary: an open system passes both matter and energy, a closed system passes only energy, and an isolated system passes neither.",
+        "common_mistakes": [
+          "Confusing isolated with closed — a closed system still exchanges energy.",
+          "Saying only that it is closed on all sides. The answer must name both matter and energy."
+        ],
+        "memory_tip": "Isolated blocks both: no matter, no energy. Closed blocks only matter.",
+        "margin_note": "Both words — matter and energy — must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: hot water sealed in a thermos",
+          "flask. No water leaves, and the insulated",
+          "walls let almost no heat pass.",
+          {
+            "text": "Isolated: no matter and no energy cross the boundary",
+            "style": "boxed"
+          }
+        ],
+        "why": "A thermos flask is the standard example, although it is only approximately isolated — over many hours some heat still passes its walls. The source book prints the example as ice in a thermos flask; the hot water written above is the same physics in the same container, and either wording earns the mark.",
+        "common_mistakes": [
+          "Giving an open beaker or a sealed metal can as the example — the first is open, the second is closed."
+        ],
+        "memory_tip": "One picture: a sealed, insulated flask. Sealed stops matter; insulation stops energy.",
+        "margin_note": "The book prints ice in a thermos flask; the hot water written here is the same idea. Any sealed insulated flask is accepted."
+      }
+    ]
+  },
+  "insider_note": "The definition mark needs both halves — no matter AND no energy — and the example mark needs a container that blocks both, which is why the thermos flask is the expected answer."
+}

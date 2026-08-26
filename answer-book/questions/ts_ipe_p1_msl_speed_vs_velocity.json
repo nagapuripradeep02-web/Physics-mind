@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_speed_vs_velocity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between speed and velocity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Speed",
+      "marks": 1
+    },
+    {
+      "label": "Velocity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_speed",
+        "kind": "text",
+        "label": "Speed",
+        "marks": 1,
+        "mark_note": "Speed",
+        "lines": [
+          "Speed is the rate at which distance is",
+          "covered, that is distance ÷ time.",
+          "It is a scalar and is never negative."
+        ],
+        "why": "Speed is built from distance, which never decreases, so speed can never be negative. The speed itself can still rise and fall during the motion.",
+        "common_mistakes": [
+          "Giving speed a direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That speed is distance divided by time and is a scalar.",
+          "accept": [
+            "distance by time",
+            "scalar"
+          ],
+          "reject": [
+            "has direction"
+          ],
+          "heard_as": [
+            "speed",
+            "scalar"
+          ]
+        },
+        "memory_tip": "Speed comes from distance. Velocity comes from displacement.",
+        "margin_note": "Name the parent quantity: distance."
+      },
+      {
+        "id": "s2_velocity",
+        "kind": "boxed_final",
+        "label": "Velocity",
+        "marks": 1,
+        "mark_note": "Velocity",
+        "lines": [
+          {
+            "text": "Velocity is displacement ÷ time",
+            "style": "boxed"
+          },
+          "It is a vector, so it has direction, and it",
+          "can be negative or zero. Average velocity is",
+          "zero for any round trip."
+        ],
+        "why": "Because velocity is built from displacement, every property of displacement carries over: direction, sign, and zero for a round trip.",
+        "common_mistakes": [
+          "Saying average speed always equals the magnitude of average velocity. They are equal only when the body moves along one straight line in one direction, without reversing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That velocity is displacement divided by time, is a vector, and is zero on average for a round trip.",
+          "accept": [
+            "displacement by time",
+            "vector",
+            "zero for a round trip"
+          ],
+          "reject": [
+            "same as speed"
+          ],
+          "heard_as": [
+            "velocity",
+            "vector"
+          ]
+        },
+        "memory_tip": "Swap distance for displacement and speed becomes velocity.",
+        "margin_note": "Mirror the wording of the speed line so the contrast reads."
+      }
+    ]
+  },
+  "insider_note": "Pair it with the distance and displacement contrast — speed is built on one, velocity on the other."
+}

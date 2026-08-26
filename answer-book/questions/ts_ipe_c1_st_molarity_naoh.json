@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_molarity_naoh",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the molarity of NaOH in the solution prepared by dissolving 4 g in enough water to form 250 mL of the solution.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Molarity M = (weight / GMW) × (1000 / V in mL)",
+            "style": "eq"
+          },
+          "GMW of NaOH = 23 + 16 + 1 = 40 g mol⁻¹",
+          "M = (4 / 40) × (1000 / 250)"
+        ],
+        "why": "Molarity is moles of solute per litre of solution. Weight over GMW gives the moles, and 1000 over the volume in mL scales the given volume up to one litre.",
+        "common_mistakes": [
+          "Forgetting the 1000/V factor and answering 0.1 M.",
+          "Using the mass of water instead of the volume of the SOLUTION. Molarity is per litre of solution."
+        ],
+        "memory_tip": "Molarity is per litre of soLution. Molality (later) is per kilogram of solvent.",
+        "margin_note": "The formula with GMW = 40 substituted earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "M = 0.1 × 4",
+          {
+            "text": "M = 0.4 M (0.4 mol L⁻¹)",
+            "style": "boxed"
+          }
+        ],
+        "why": "4/40 = 0.1 mol of NaOH sits in 250 mL; one litre is four times 250 mL, so one litre would hold 0.4 mol.",
+        "common_mistakes": [
+          "Writing 0.4 with no unit. The unit M (mol L⁻¹) is part of the mark.",
+          "Computing 1000/250 as 2.5 instead of 4."
+        ],
+        "memory_tip": "A quarter litre holds 0.1 mol, so a full litre holds 4 times that: 0.4 mol.",
+        "margin_note": "Box 0.4 M. Writing mol L⁻¹ beside it is equally accepted."
+      }
+    ]
+  },
+  "insider_note": "The 1000/V factor is the whole trap: 0.1 M (moles alone) is the standard wrong answer, and the examiner looks for the volume scaling written out."
+}

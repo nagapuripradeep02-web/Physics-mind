@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_concurrent_find_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the value of p, if the straight lines x+p=0, y+2=0, 3x+2y+5=0 are concurrent.",
+  "appearances": [
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019
+    },
+    {
+      "year": 2022
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the third line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 14 Straight Lines, answer 96, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19,22 · AP 22. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on this chapter's pages, which are set two and three answers to a page in columns, taking the margin those tags would occupy. It is not a bare guess: the very next VSAQ chapter prints 1+1 on answer 98 (book p.83, 3-D Coordinates), and 1A's own VSAQ pages print 1-mark tags in the same style. The chapter header reads '2+2=4 Marks', meaning the paper asks TWO of these, each worth 2 — so one question is 2 marks, cut here as one for the method and one for the answer. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; The Straight Line holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say why the first two lines need no solving, and what concurrency gives you.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_point",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 1,
+        "margin_note": "First mark. Two of the three lines are as simple as they come — one fixes x, the other fixes y — so their meeting point can be written down without any solving.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line  x + p = 0  ⇒  x = −p",
+          "            y + 2 = 0  ⇒  y = −2",
+          "∴ Point of intersection is (−p, −2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −p and y = −2 give the point of intersection (−p, −2).",
+          "accept": [
+            "x plus p is zero so x is minus p and y is minus two",
+            "the first two lines give the point straight away",
+            "the point of intersection is minus p comma minus two",
+            "modati rendu lines nunchi point vasthundi",
+            "read the point off the two simple lines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals minus p",
+            "y equals minus two",
+            "point of intersection"
+          ]
+        },
+        "why": "A line of the form x + p = 0 is vertical and one of the form y + 2 = 0 is horizontal, so they cross at exactly one point that needs no algebra.",
+        "common_mistakes": [
+          "Treating x + p = 0 as a line in both variables and trying to solve a system.",
+          "Reading x = p instead of x = −p."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s2_substitute_third",
+        "kind": "boxed_final",
+        "label": "Substitute into the third line",
+        "marks": 1,
+        "margin_note": "Second mark. Concurrency puts that point on the third line as well, and the resulting equation has only p in it.",
+        "lines": [
+          "But (−p, −2) lies on 3x + 2y + 5 = 0  [∵ Given lines are concurrent]",
+          "⇒ 3(−p) + 2(−2) + 5 = 0",
+          "⇒ −3p − 4 + 5 = 0   ⇒   −3p + 1 = 0   ⇒   3p = 1",
+          {
+            "text": "∴ p = 1/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting into 3x + 2y + 5 = 0 gives p = 1/3.",
+          "accept": [
+            "put the point into the third line and solve for p",
+            "concurrent so the point lies on the third line",
+            "minus three p minus four plus five is zero so p is one third",
+            "third line lo substitute chesthe p vasthundi",
+            "p equals one third"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "third line",
+            "p equals one third",
+            "concurrent"
+          ]
+        },
+        "why": "Concurrency is the only condition given, and this substitution is the only place it can be used.",
+        "common_mistakes": [
+          "Substituting into one of the first two lines.",
+          "Sign slip on 3(−p), giving p = −1/3."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

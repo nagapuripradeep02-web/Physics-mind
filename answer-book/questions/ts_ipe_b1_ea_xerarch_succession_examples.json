@@ -1,0 +1,75 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_xerarch_succession_examples",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give any two examples of xerarch succession.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The two examples", "marks": 1 },
+    { "label": "The pioneer stages", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.35, VSAQ 3. BOOK ERROR: the book answers 'Lichens' and 'Bryophytes'. Those are the pioneer ORGANISMS of a xerarch succession, not examples of a xerarch succession — an example of a succession is named by the bare surface it starts on. This card gives the standard examples (lithosere on bare rock, psammosere on sand) in step 1 and keeps the book's two names, correctly labelled as pioneer stages, in step 2, so the answer is right and the book's expected words are still on the page. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_examples",
+        "kind": "text",
+        "label": "The two examples",
+        "marks": 1,
+        "mark_note": "Two examples",
+        "lines": [
+          "Xerarch succession starts on a dry surface",
+          "with no soil and no standing water.",
+          "1) Lithosere — succession on a bare rock.",
+          "2) Psammosere — succession on sand."
+        ],
+        "why": "An example of a succession is named by the surface it begins on. Bare rock gives a lithosere and sand gives a psammosere; both starts are dry, so both are xerarch.",
+        "common_mistakes": [
+          "Naming a pond or a lake. Water gives a hydrarch succession, not a xerarch one.",
+          "Writing only the word rock without the term lithosere."
+        ],
+        "memory_tip": "Litho means stone, psammo means sand. Both are dry, so both are xerarch.",
+        "margin_note": "Two named seres, one line each, is the whole first mark."
+      },
+      {
+        "id": "s2_pioneer_stages",
+        "kind": "boxed_final",
+        "label": "The pioneer stages",
+        "marks": 1,
+        "mark_note": "Pioneers",
+        "lines": [
+          { "text": "Lithosere: lichens first, then bryophytes", "style": "boxed" },
+          "The lichen stage breaks the rock and forms",
+          "the first thin soil.",
+          "The bryophyte (moss) stage grows on that",
+          "soil, and herbs follow after it."
+        ],
+        "why": "Naming the first two stages proves the example is a xerarch one, because a hydrarch succession begins with phytoplankton instead of lichens.",
+        "common_mistakes": [
+          "Calling lichens and bryophytes examples of xerarch succession. They are its pioneer stages; the book prints them this way and the wording is loose."
+        ],
+        "memory_tip": "Bare rock has no soil, so the first stage must make soil: lichen.",
+        "margin_note": "Keep this step short. The first mark is the two seres; this one supports it."
+      }
+    ]
+  },
+  "insider_note": "The book's own answer here is lichens and bryophytes. Write the two seres first and then those two names, so the answer is correct and still matches what a book-following examiner looks for."
+}

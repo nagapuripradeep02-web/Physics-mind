@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mr_fertilization_not_obligatory",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Modes of Reproduction (Botany)"
+  },
+  "chapter": "Modes of Reproduction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "“Fertilization is not an obligatory event for fruit production in certain plants.” Explain the statement.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Parthenocarpy with example", "marks": 2 },
+    { "label": "Apomixis", "marks": 1 },
+    { "label": "Conclusion", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 6 is sourced from the Junior Fastrack botany guide (book p.15), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely pending. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. BOOK POSITION: the book's model answer inserts 'embryo develop from unfertilized diploid female gamete … known as parthenogenesis' as a separate bullet between parthenocarpy and apomixis; in the NCERT wording that diploid-egg path IS apomixis, so this card folds it into the apomixis step and gives banana as the standard parthenocarpy example the book omits."
+  },
+  "insider_note": "The statement is quoted from NCERT, and the expected core is parthenocarpy with banana; apomixis is the marker's plus point.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Modes of Reproduction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parthenocarpy",
+        "kind": "text",
+        "label": "Parthenocarpy",
+        "marks": 2,
+        "mark_note": "Parthenocarpy",
+        "lines": [
+          "In some plants the ovary grows into a",
+          "fruit without fertilization. Fruit",
+          "formation without fertilization is",
+          "called parthenocarpy.",
+          "Ex: banana — the fruit is seedless."
+        ],
+        "why": "This is the direct answer to the statement: a fruit is a mature ovary, and in parthenocarpic plants the ovary matures without any fertilization.",
+        "common_mistakes": [
+          "Writing parthenogenesis where parthenocarpy is meant — carpy = fruit (carpel); genesis = a new individual.",
+          "Leaving out the example — banana is the standard one."
+        ],
+        "memory_tip": "Carpel → parthenoCARPY = fruit without fertilization. Compare: parthenoGENESIS = offspring from an unfertilized gamete.",
+        "margin_note": "Definition + the word parthenocarpy + banana: that is the 2-mark core."
+      },
+      {
+        "id": "s2_apomixis",
+        "kind": "text",
+        "label": "Apomixis",
+        "marks": 1,
+        "mark_note": "Apomixis",
+        "lines": [
+          "In apomixis, seeds form without",
+          "fertilization: a diploid egg cell forms",
+          "without meiosis and develops into the",
+          "embryo directly.",
+          "Ex: some Asteraceae and grasses."
+        ],
+        "why": "Apomixis extends the statement from fruit to seed: even the seed can form without fertilization. The book labels this development of the unfertilized diploid egg 'parthenogenesis'; the plant phenomenon as a whole is apomixis (NCERT).",
+        "common_mistakes": [
+          "Saying the apomictic egg is haploid — it is diploid because meiosis is skipped.",
+          "Mixing up apomixis (seed without fertilization) with parthenocarpy (fruit without fertilization)."
+        ],
+        "memory_tip": "Mixis = mixing of gametes. Apo-mixis = away from mixing — a seed formed with no fusion of gametes.",
+        "margin_note": "Two lines on the diploid egg + one example."
+      },
+      {
+        "id": "s3_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          { "text": "Fruits and seeds can form without fertilization", "style": "boxed" },
+          "Parthenocarpy and apomixis show that",
+          "fertilization is not an obligatory event",
+          "for fruit production."
+        ],
+        "why": "The question says 'explain the statement', so the answer must end by returning to the statement: two named phenomena prove it.",
+        "common_mistakes": [
+          "Stopping after the two definitions without linking back to the statement."
+        ],
+        "memory_tip": "Parthenocarpy = FRUIT without fertilization; apomixis = SEED without fertilization.",
+        "margin_note": "One closing sentence naming both phenomena."
+      }
+    ]
+  }
+}

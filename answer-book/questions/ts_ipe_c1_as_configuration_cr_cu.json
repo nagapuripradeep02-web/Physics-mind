@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_configuration_cr_cu",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the electronic configuration of Cr and Cu.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two configurations",
+      "marks": 1
+    },
+    {
+      "label": "The reason they are exceptions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints the two configurations only; the reason for the exception is added here because a bare pair of configurations is thin for 2 marks. AI chemistry check 2026-08-25: both configurations and the Aufbau predictions they replace verified against NCERT; the memory tip reworded to drop borrow (explanation text only, marked lines and marks untouched)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configurations",
+        "kind": "equation",
+        "label": "The two configurations",
+        "marks": 1,
+        "mark_note": "Configurations",
+        "lines": [
+          "Cr (Z = 24) = [Ar] 3d⁵ 4s¹",
+          "Cu (Z = 29) = [Ar] 3d¹⁰ 4s¹"
+        ],
+        "why": "Both end in 4s¹, not 4s². Aufbau filling alone would predict 3d⁴ 4s² for chromium and 3d⁹ 4s² for copper, so these two elements are the standard exceptions.",
+        "common_mistakes": [
+          "Writing Cr as [Ar] 3d⁴ 4s², which is the Aufbau prediction and not the observed configuration.",
+          "Writing Cu as [Ar] 3d⁹ 4s²."
+        ],
+        "memory_tip": "In both, one 4s electron moves into 3d. Chromium reaches 3d⁵, copper reaches 3d¹⁰.",
+        "margin_note": "Write [Ar] as the core. The full form is accepted but slower."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason they are exceptions",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Half-filled and fully filled d subshells are extra stable",
+            "style": "boxed"
+          },
+          "One 4s electron moves into 3d, giving",
+          "3d⁵ in Cr and 3d¹⁰ in Cu.",
+          "The 3d and 4s energies are very close, so",
+          "the shift costs almost nothing."
+        ],
+        "why": "A half-filled or fully filled d subshell is symmetric and its electrons can exchange places in more ways, which lowers the energy. Because 3d and 4s lie close in energy, this small gain is enough to change the configuration.",
+        "common_mistakes": [
+          "Naming the exception without giving the reason. The question is worth two marks and the reason is the second one."
+        ],
+        "memory_tip": "Five and ten are the stable d counts. Both exceptions exist to reach one of them.",
+        "margin_note": "Naming half-filled and fully filled stability is enough. No further theory is expected."
+      }
+    ]
+  },
+  "insider_note": "An unranked question in the book, but it is the standard way the exceptions to Aufbau are tested. Write both configurations first, then one line of reason."
+}

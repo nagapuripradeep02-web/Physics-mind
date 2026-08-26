@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_coordinate_covalent_bond",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the formation of coordinate covalent bond with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Donor and acceptor",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    },
+    {
+      "label": "The arrow notation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's example line is garbled in print ('Ex H F N atoms of ammonia B Boron trifluoride Donor acceptor'); the intended example is ammonia with boron trifluoride, written out fully on the card as H₃N → BF₃."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Coordinate covalent bond: a covalent bond",
+          "in which the shared pair of electrons is",
+          "contributed by only ONE of the two bonded",
+          "atoms.",
+          "Once formed, it is identical to a normal",
+          "covalent bond."
+        ],
+        "why": "The single phrase that defines this bond is contributed by only one atom — everything else about it is ordinary covalent sharing.",
+        "common_mistakes": [
+          "Writing that each atom gives one electron. That is a normal covalent bond; here one atom gives BOTH.",
+          "Calling it an ionic bond. No electron is transferred; the pair is shared."
+        ],
+        "memory_tip": "Normal covalent: one electron each. Coordinate: both electrons from one atom.",
+        "margin_note": "Underline only one — it is the defining phrase."
+      },
+      {
+        "id": "s2_donor_acceptor",
+        "kind": "text",
+        "label": "Donor and acceptor",
+        "marks": 1,
+        "mark_note": "Donor + acceptor",
+        "lines": [
+          "Donor: the atom that contributes the",
+          "electron pair. It must have a lone pair.",
+          "Acceptor: the atom that receives the pair.",
+          "It must have a vacant orbital.",
+          "The bond is written as an arrow from the",
+          "donor to the acceptor."
+        ],
+        "why": "The two conditions — a lone pair on one side and a vacant orbital on the other — are what make the bond possible, so they are named with the two terms.",
+        "common_mistakes": [
+          "Swapping the terms: the donor has the lone pair, the acceptor has the vacant orbital.",
+          "Writing the arrow from acceptor to donor. The arrow follows the electron pair."
+        ],
+        "memory_tip": "Donor gives from its lone pair; acceptor has the empty orbital that receives it.",
+        "margin_note": "Two definitions, one line each, then the arrow rule."
+      },
+      {
+        "id": "s3_example",
+        "kind": "text",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example — ammonia with boron trifluoride:",
+          "In NH₃ the N atom has one lone pair.",
+          "In BF₃ the B atom has a vacant orbital",
+          "(only six electrons around B).",
+          "N donates its lone pair into the vacant",
+          "orbital of B."
+        ],
+        "why": "The example works because each molecule supplies exactly one requirement: NH₃ the lone pair, BF₃ the vacant orbital.",
+        "common_mistakes": [
+          "Saying BF₃ donates. Boron is electron-deficient; it ACCEPTS the pair.",
+          "Forgetting to say why BF₃ can accept — boron has only six electrons around it."
+        ],
+        "memory_tip": "NH₃ has the pair, BF₃ has the space.",
+        "margin_note": "NH₄⁺ (NH₃ with H⁺) is an accepted alternative example."
+      },
+      {
+        "id": "s4_notation",
+        "kind": "boxed_final",
+        "label": "The arrow notation",
+        "marks": 1,
+        "mark_note": "Notation",
+        "lines": [
+          {
+            "text": "H₃N → BF₃",
+            "style": "boxed"
+          },
+          "The arrow starts at the donor N and points",
+          "to the acceptor B, showing that both",
+          "electrons of the shared pair came from N."
+        ],
+        "why": "The arrow is the notation the examiner checks: it records which atom gave the pair, which a plain dash cannot show.",
+        "common_mistakes": [
+          "Writing H₃N−BF₃ with a plain dash. The dash loses the donor information; the arrow is required."
+        ],
+        "memory_tip": "The arrow points the way the electron pair went: from N to B.",
+        "margin_note": "Box the formula with the arrow — it is the answer in one line."
+      }
+    ]
+  },
+  "insider_note": "The arrow from donor to acceptor is the notation the examiner looks for — write H₃N → BF₃ with the arrow, never a plain dash."
+}

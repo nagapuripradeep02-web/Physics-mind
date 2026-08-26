@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_banking_of_roads",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is banking of roads? Derive an expression for the angle of banking of a curved road.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What banking is",
+      "marks": 1
+    },
+    {
+      "label": "The two equations",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Laws of Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What banking is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A vehicle on a curve needs a force towards",
+          "the centre. Raising the outer edge of the",
+          "road above the inner edge is called banking.",
+          "The tilted normal force then supplies that",
+          "force, so friction is not relied on."
+        ],
+        "why": "Friction changes with rain, dust and worn tyres; a banked road works from geometry alone, which is why the design does not depend on the weather.",
+        "common_mistakes": [
+          "Saying the road is banked \"to reduce friction\" — it is banked so that friction is not needed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That banking means raising the outer edge so the tilted normal force supplies the centre-directed force.",
+          "accept": [
+            "outer edge raised",
+            "tilted normal force supplies the force",
+            "so friction is not needed"
+          ],
+          "reject": [
+            "N sin theta equals m v squared by r"
+          ],
+          "heard_as": [
+            "banking",
+            "outer edge"
+          ]
+        },
+        "memory_tip": "A cycle track is tilted inward on its curves. The tilt gives N a part pointing to the centre.",
+        "margin_note": "First mark. Say the outer edge is raised, and say what that does — friction is not needed."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "equation",
+        "label": "The two equations",
+        "marks": 2,
+        "mark_note": "Two equations",
+        "lines": [
+          "For a smooth road banked at an angle θ, the",
+          "horizontal part of N turns the vehicle and",
+          "the vertical part carries its weight:",
+          {
+            "text": "N sin θ = m v² / r",
+            "style": "eq"
+          },
+          {
+            "text": "N cos θ = m g",
+            "style": "eq"
+          }
+        ],
+        "why": "Splitting one force into its sideways part and its upward part is the whole method; dividing then removes N, which we never wanted.",
+        "common_mistakes": [
+          "Swapping sine and cosine, which puts the weight on the horizontal equation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That N sin theta equals m v squared by r and N cos theta equals m g.",
+          "accept": [
+            "N sin theta equals m v squared by r",
+            "N cos theta equals m g"
+          ],
+          "reject": [
+            "outer edge raised"
+          ],
+          "heard_as": [
+            "N sin theta",
+            "N cos theta"
+          ]
+        },
+        "memory_tip": "N is tilted θ from the VERTICAL, so cos θ goes with the weight and sin θ with the turning.",
+        "margin_note": "Second and third marks. One equation each, both starting from the same tilted N."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Dividing the first equation by the second,",
+          {
+            "text": "tan θ = v² / r g",
+            "style": "boxed"
+          },
+          "The mass cancels, so one banking angle suits",
+          "a light car and a loaded truck alike."
+        ],
+        "why": "The angle is fixed by the speed the road is designed for, which is why a sharp curve carries a speed limit sign.",
+        "common_mistakes": [
+          "Leaving m in the answer, or writing tan θ = rg/v² upside down."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan theta equals v squared by r g, with the mass cancelling.",
+          "accept": [
+            "tan theta equals v squared by r g",
+            "the mass cancels"
+          ],
+          "reject": [
+            "N cos theta equals m g"
+          ],
+          "heard_as": [
+            "tan theta",
+            "v squared by r g"
+          ]
+        },
+        "memory_tip": "v = 20 m/s on a 100 m curve gives tan θ = 400/980 ≈ 0.41, about 22°.",
+        "margin_note": "Fourth mark. Divide, do not substitute. The division is what removes both N and m."
+      }
+    ]
+  },
+  "insider_note": "One mark is the description, before any algebra. The two resolved equations carry 2 more, and dividing them gives the last."
+}

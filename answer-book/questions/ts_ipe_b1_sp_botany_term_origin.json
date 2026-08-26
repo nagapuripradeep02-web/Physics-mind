@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_botany_term_origin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain how the term Botany has emerged.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The Greek root",
+      "marks": 1
+    },
+    {
+      "label": "How the word emerged",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR recorded: the book derives Botany from Greek 'Bous' (cattle) and 'Bouskein' (cattle feed). The standard derivation is Greek botanē (pasture, herb, fodder plant), with boskein (to feed) and bous (cattle) as related roots; this card states the standard form and records the book's wording in step s1's why."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_greek_root",
+        "kind": "text",
+        "label": "The Greek root",
+        "marks": 1,
+        "mark_note": "Root word",
+        "lines": [
+          "The term Botany comes from the Greek word",
+          "botanē, which means pasture, grass or a",
+          "fodder plant (a herb)."
+        ],
+        "why": "The question asks where the word itself came from, so the answer must name the actual Greek root. The book derives it from 'Bous' (cattle) and 'Bouskein' (cattle feed); the standard derivation is botanē (pasture, fodder plant), with boskein (to feed) and bous (cattle) as the related words — this card states the standard form.",
+        "common_mistakes": [
+          "Writing 'Bouskein' as the root, as this guide prints — the Greek root is botanē; boskein (to feed) is a related word, not the root.",
+          "Giving the definition of Botany (study of plants) instead of the origin of the word."
+        ],
+        "memory_tip": "botanē already sounds like Botany — the root word is almost the word itself.",
+        "margin_note": "Two lines: the Greek word and what it means."
+      },
+      {
+        "id": "s2_emergence",
+        "kind": "boxed_final",
+        "label": "How the word emerged",
+        "marks": 1,
+        "mark_note": "Emergence",
+        "lines": [
+          {
+            "text": "Botany ← Greek botanē = pasture, fodder plant",
+            "style": "boxed"
+          },
+          "Early people watched cattle graze and learnt",
+          "which plants they fed on. From bous (cattle)",
+          "and boskein (to feed) came botanē — the grass",
+          "and herbs cattle eat — and from it the name",
+          "Botany, the science of plants."
+        ],
+        "why": "'Explain how the term has emerged' needs the short account linking cattle, fodder and the word — not a bare root alone. The related words bous and boskein carry that account.",
+        "common_mistakes": [
+          "Stopping at the root word with no explanation — the question says explain.",
+          "Writing that botanē means cattle — bous is cattle; botanē is the fodder plant."
+        ],
+        "memory_tip": "Cattle eat grass: bous (cattle) → boskein (to feed) → botanē (the fodder they eat) → Botany.",
+        "margin_note": "One boxed line plus two or three lines of the cattle-and-fodder account is full marks."
+      }
+    ]
+  },
+  "insider_note": "The mark is for the Greek word and its meaning; the cattle story alone, the way the guide prints it, never names the actual root botanē."
+}

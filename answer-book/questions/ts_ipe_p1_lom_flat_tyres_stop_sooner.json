@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_flat_tyres_stop_sooner",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does a car with flattened tyres stop sooner than one with inflated tyres?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Why friction is more",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "A flattened tyre deforms much more and",
+          "touches the road over a larger area.",
+          "Rolling friction grows with that",
+          "deformation."
+        ],
+        "margin_note": "Name ROLLING friction. \"More friction\" alone does not say which kind.",
+        "why": "Rolling resistance comes from energy lost as the tyre flexes and un-flexes. A soft tyre flexes more on every turn, so it loses more energy per metre.",
+        "common_mistakes": [
+          "Writing sliding friction. The wheel is rolling, not skidding."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a flat tyre deforms more and has a larger contact area, so rolling friction increases.",
+          "accept": [
+            "flat tyre deforms more",
+            "larger area of contact",
+            "rolling friction increases",
+            "tyre ekkuva deform ayi rolling friction perugutundi"
+          ],
+          "reject": [
+            "so the car stops sooner"
+          ],
+          "heard_as": [
+            "deformation",
+            "area of contact",
+            "rolling friction"
+          ]
+        },
+        "memory_tip": "A flat tyre bends more at every turn, and that bending wastes energy — rolling friction rises."
+      },
+      {
+        "id": "s2_conclude",
+        "kind": "boxed_final",
+        "label": "Why it stops sooner",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "More rolling friction → stops sooner.",
+            "style": "boxed"
+          },
+          "An inflated tyre deforms less, so it",
+          "rolls on further."
+        ],
+        "margin_note": "Close the loop — more friction, shorter distance. Answer the question that was asked.",
+        "why": "The car is losing kinetic energy faster, so it runs out of speed over a shorter distance.",
+        "common_mistakes": [
+          "Stopping at \"friction is more\" without saying what that does to the car."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the larger rolling friction makes the car stop sooner.",
+          "accept": [
+            "more friction so it stops sooner",
+            "stops in a shorter distance",
+            "friction ekkuva kabatti thondaraga aagipotundi"
+          ],
+          "reject": [
+            "flat tyre deforms more"
+          ],
+          "heard_as": [
+            "stops sooner",
+            "shorter distance"
+          ]
+        },
+        "memory_tip": "More rolling friction removes kinetic energy faster, so the car stops in less distance."
+      }
+    ]
+  },
+  "insider_note": "The examiner is checking for the word ROLLING. \"More friction\", without naming which kind, does not earn the first mark."
+}

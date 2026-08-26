@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_flywheel_torque_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The moment of inertia of a flywheel making 300 revolutions per minute is 0.3 kg·m². Find the torque required to bring it to rest in 20 s.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "ω from rpm",
+      "marks": 1
+    },
+    {
+      "label": "α",
+      "marks": 1
+    },
+    {
+      "label": "The torque",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER 10 (numerical; the book prints the answer 0.471 N·m). The split — ω, α, then τ — is invented and needs a Telangana IPE teacher. Arithmetic hand-checked: ω = 10π rad/s; α = π/2; τ = 0.15π ≈ 0.471 N·m."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_omega",
+        "kind": "equation",
+        "label": "ω from rpm",
+        "marks": 1,
+        "mark_note": "ω",
+        "lines": [
+          "Convert revolutions per minute to",
+          "radians per second:",
+          {
+            "text": "ω = 2πn/60 = 2π × 300/60 = 10π rad/s",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The 2π/60 conversion is where this class of numerical is won or lost. Write it out.",
+        "why": "One revolution is 2π radians and one minute is 60 seconds — the conversion is nothing but those two facts.",
+        "common_mistakes": [
+          "Using 300 directly as ω, skipping the 2π/60."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ω = 2πn/60 = 10π rad/s.",
+          "accept": [
+            "two pi n by sixty",
+            "ten pi radians per second",
+            "rpm ni convert cheyyali"
+          ],
+          "reject": [
+            "pi by two"
+          ],
+          "heard_as": [
+            "ten pi",
+            "two pi n"
+          ]
+        },
+        "memory_tip": "300 rpm is 5 revolutions per second, and 5 × 2π = 10π ≈ 31.4 rad/s."
+      },
+      {
+        "id": "s2_alpha",
+        "kind": "equation",
+        "label": "The retardation",
+        "marks": 1,
+        "mark_note": "α",
+        "lines": [
+          "The wheel comes to rest in t = 20 s, so",
+          {
+            "text": "α = ω/t = 10π/20 = π/2 rad/s²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Coming to REST means the change in ω is the whole 10π.",
+        "why": "Uniform retardation is assumed — the rotational twin of v = u − at with v = 0.",
+        "common_mistakes": [
+          "Using α = ω/2t or forgetting the wheel ends at rest."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α = ω/t = π/2 rad/s².",
+          "accept": [
+            "omega by t",
+            "pi by two",
+            "ten pi by twenty"
+          ],
+          "reject": [
+            "ten pi radians per second"
+          ],
+          "heard_as": [
+            "pi by two",
+            "omega by t"
+          ]
+        },
+        "memory_tip": "From 10π down to 0 in 20 s gives α = 10π/20 = π/2 ≈ 1.57 rad/s²."
+      },
+      {
+        "id": "s3_torque",
+        "kind": "boxed_final",
+        "label": "The torque",
+        "marks": 2,
+        "mark_note": "τ",
+        "lines": [
+          "By the rotational second law,",
+          {
+            "text": "τ = I α = 0.3 × π/2 = 0.15π",
+            "style": "eq"
+          },
+          {
+            "text": "τ ≈ 0.471 N·m",
+            "style": "boxed"
+          },
+          "(a retarding torque, opposing the spin)."
+        ],
+        "margin_note": "Name it a RETARDING torque — direction matters even in a magnitude answer.",
+        "why": "τ = Iα is the only physics in the problem; the other two steps only prepare its inputs.",
+        "common_mistakes": [
+          "Leaving the answer as 0.15π without evaluating, when the question asks for the torque."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That τ = Iα ≈ 0.471 N·m, retarding.",
+          "accept": [
+            "I into alpha",
+            "zero point four seven one",
+            "point one five pi newton metre"
+          ],
+          "reject": [
+            "omega by t"
+          ],
+          "heard_as": [
+            "0.471",
+            "I alpha",
+            "newton metre"
+          ]
+        },
+        "memory_tip": "0.3 × 1.57 ≈ 0.47 N·m. A small I and a small α must give a small torque."
+      }
+    ]
+  },
+  "insider_note": "The last step carries 2 of the 4 marks, and the decimal value with its unit, N·m, is what is checked there."
+}

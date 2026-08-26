@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_what_is_a_couple",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a couple? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Two equal and opposite forces whose",
+          "lines of action do not coincide form a",
+          "couple. A couple produces rotation",
+          "without translation."
+        ],
+        "why": "The net force of a couple is zero, so nothing accelerates in a line — but the torques add, so the body turns. That split is the definition.",
+        "common_mistakes": [
+          "Calling any two opposite forces a couple — their lines of action must be SEPARATED."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a couple is two equal, opposite, separated forces producing pure rotation.",
+          "accept": [
+            "equal and opposite forces not in the same line",
+            "rotation without translation"
+          ],
+          "reject": [
+            "opening a water tap"
+          ],
+          "heard_as": [
+            "couple",
+            "rotation"
+          ]
+        },
+        "memory_tip": "Three conditions: equal, opposite, and lines of action SEPARATED. All three are needed.",
+        "margin_note": "First mark. The definition plus the phrase \"rotation without translation\"."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Example: turning a tap, winding a",
+            "style": "boxed"
+          },
+          {
+            "text": "clock key, opening a bottle cap.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every two-finger twist in daily life is a couple; one example is enough for the mark.",
+        "common_mistakes": [
+          "Giving a single-force example such as pushing a door."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That turning a tap or winding a key is a couple.",
+          "accept": [
+            "turning a tap",
+            "winding a clock key",
+            "bottle cap"
+          ],
+          "reject": [
+            "equal and opposite forces not in the same line"
+          ],
+          "heard_as": [
+            "tap",
+            "key"
+          ]
+        },
+        "memory_tip": "One finger cannot make a couple. A single force is a torque, not a couple.",
+        "margin_note": "Second mark. One example is enough — name it and stop."
+      }
+    ]
+  },
+  "insider_note": "The example is the second mark, not an extra. Turning a tap is enough — one named example, one line."
+}

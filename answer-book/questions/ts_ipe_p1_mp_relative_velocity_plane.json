@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_relative_velocity_plane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is relative velocity? Obtain an expression for the velocity of one body relative to another when both are moving in a plane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 2
+    },
+    {
+      "label": "The magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The relative velocity of a body A with",
+          "respect to a body B is the velocity of A",
+          "as measured by an observer moving along",
+          "with B."
+        ],
+        "margin_note": "First mark. One sentence, and it must name the observer.",
+        "why": "Every velocity is measured against something; naming the observer is what makes the number mean anything at all.",
+        "common_mistakes": [
+          "Treating relative velocity as a difference of speeds — it is a difference of vectors."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That relative velocity of A with respect to B is the velocity of A as seen by an observer moving with B.",
+          "accept": [
+            "velocity of A as seen from B",
+            "observer moving with B"
+          ],
+          "reject": [
+            "v A minus v B"
+          ],
+          "heard_as": [
+            "relative velocity",
+            "observer"
+          ]
+        },
+        "memory_tip": "Two cars both at 60 km/h in the same direction have relative velocity 0, not 120."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "equation",
+        "label": "The expression",
+        "marks": 2,
+        "mark_note": "Expression",
+        "lines": [
+          "Let v_A and v_B be the velocities measured",
+          "from the ground. In one second A moves v_A",
+          "and B moves v_B, so the shift of A as seen",
+          "from B is",
+          {
+            "text": "v_AB = v_A − v_B",
+            "style": "eq"
+          },
+          "and v_BA = v_B − v_A = −v_AB."
+        ],
+        "margin_note": "Two marks. Write v_AB = v_A − v_B as a vector equation, arrows and all.",
+        "why": "Subtracting v_B is the same as riding on B: it cancels B’s own motion out of every measurement.",
+        "common_mistakes": [
+          "Adding the two velocities instead of subtracting them."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v of A with respect to B is v A minus v B, and the reverse is its negative.",
+          "accept": [
+            "v A minus v B",
+            "subtract the second velocity",
+            "v BA is minus v AB"
+          ],
+          "reject": [
+            "observer moving with B"
+          ],
+          "heard_as": [
+            "minus",
+            "v A minus v B"
+          ]
+        },
+        "memory_tip": "Read the subscripts left to right: v_AB = v_A − v_B. Swap them and only the sign changes."
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "boxed_final",
+        "label": "The magnitude",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "lines": [
+          "If θ is the angle between the two velocities,",
+          {
+            "text": "|v_AB| = √(v_A² + v_B² − 2 v_A v_B cos θ)",
+            "style": "boxed"
+          },
+          "The minus sign is there because v_B is",
+          "subtracted, not added."
+        ],
+        "margin_note": "Fourth mark. Box the magnitude and say what θ is the angle between.",
+        "why": "It is the parallelogram formula with θ replaced by (180° − θ), which is exactly what reversing v_B does.",
+        "common_mistakes": [
+          "Using a plus sign before the 2 v_A v_B cos θ term, which is the formula for a SUM."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude is the root of v A squared plus v B squared minus 2 v A v B cos theta.",
+          "accept": [
+            "root of v A squared plus v B squared minus 2 v A v B cos theta",
+            "minus sign because it is a subtraction"
+          ],
+          "reject": [
+            "v A minus v B"
+          ],
+          "heard_as": [
+            "minus 2 v A v B cos theta",
+            "magnitude"
+          ]
+        },
+        "memory_tip": "Check θ = 0: the root gives |v_A − v_B|, two bodies moving together. That confirms the minus."
+      }
+    ]
+  },
+  "insider_note": "One mark is the definition alone. Name the observer moving with B — a bare v_A − v_B does not define the quantity."
+}

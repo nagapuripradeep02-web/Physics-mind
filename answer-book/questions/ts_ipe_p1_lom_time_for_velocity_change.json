@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_time_for_velocity_change",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the time needed for a net force of 5 N to change the velocity of a 10 kg mass by 2 m/s.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER (numerical). The 1+1 split — formula, then value — is invented and needs a Telangana IPE teacher. The arithmetic is hand-checked; no exam appearance years are printed, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "Force = rate of change of momentum:",
+          {
+            "text": "F = m Δv / t   →   t = m Δv / F",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Rearrange for t on its own line before putting any number in.",
+        "why": "Newton second law in its momentum form answers this directly — a force applied for a time changes momentum by F t.",
+        "common_mistakes": [
+          "Multiplying instead of dividing, giving 100 s."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t = m times the change in velocity, divided by F.",
+          "accept": [
+            "t equals m delta v by F",
+            "force is rate of change of momentum",
+            "time is mass into change in velocity by force",
+            "t = m dv by F"
+          ],
+          "reject": [
+            "four seconds"
+          ],
+          "heard_as": [
+            "delta v",
+            "by F",
+            "rate of change"
+          ]
+        },
+        "memory_tip": "Check the rearrangement by its units: kg × m/s ÷ N comes out in seconds."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          "t = (10 × 2) / 5",
+          {
+            "text": "t = 4 s",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One substitution line, then the boxed answer with its unit.",
+        "why": "A 5 N force adds 5 kg m/s of momentum every second; 20 kg m/s is needed, so it takes 4 seconds.",
+        "common_mistakes": [
+          "Leaving the unit off the answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the time works out to 4 seconds.",
+          "accept": [
+            "four seconds",
+            "4 s",
+            "answer is four",
+            "naalugu seconds"
+          ],
+          "reject": [
+            "t equals m delta v by F"
+          ],
+          "heard_as": [
+            "four",
+            "seconds",
+            "4"
+          ]
+        },
+        "memory_tip": "4 s, not 100 s. A 5 N force on 10 kg gives 0.5 m/s², and 2 ÷ 0.5 = 4."
+      }
+    ]
+  },
+  "insider_note": "The formula mark survives an arithmetic slip, so write t = m Δv / F on its own line before any number goes in."
+}

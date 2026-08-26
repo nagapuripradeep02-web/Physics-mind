@@ -1,0 +1,277 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_half_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If A + B + C = π, then prove that cos²(A/2) + cos²(B/2) + cos²(C/2) = 2(1 + sin(A/2) sin(B/2) sin(C/2)).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 2
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.41 — LAQ chapter 5 T-Ratios upto Transformations, answer 28, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15,16 · TS 15,17. The answer has a 2 outside the whole bracket, which is unusual — it appears because the constant that survives is 2, not 1. The book notes it rains marks in the IPE. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). The 1+2+2+1+1 above follows the shape of the split the same book DOES print for LAQ answer 23 on book p.37, weighting the two substantial transformations against the set-up and the finish. The SAME split and the SAME step ids are used on all eight answers in this chapter, deliberately: they are ONE method over different identities — pair two terms, use the angle condition, factor, finish with a product formula. A student who learns that arc once can attempt any of them. The book's chapter header carries ★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q23 is the Transformations slot and is ALWAYS a question of this kind."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Transformations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. π is 180°, so this is the same halved condition as the previous two questions written in radians.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = π  ⇒  (A+B)/2 = 90° − C/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first in the form the proof needs",
+            "state the given condition and rearrange it",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "rearrange",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the seven marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "lines": [
+          "L.H.S = cos²(A/2) + cos²(B/2) + cos²(C/2)",
+          "= cos²(A/2) + (1 − sin²(B/2)) + cos²(C/2)",
+          "= 1 + (cos²(A/2) − sin²(B/2)) + cos²(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one squared cosine is written as 1 − sin² so a difference of squares appears, producing a leading 1.",
+          "accept": [
+            "write cos squared B over two as one minus sin squared so a difference of squares appears",
+            "convert one term to make a one and a difference of squares",
+            "replace the middle term with one minus sine squared",
+            "rendo term ni one minus sin square ga rasta",
+            "turn one cosine squared into one minus sine squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus sin squared",
+            "difference of squares",
+            "one"
+          ]
+        },
+        "why": "Two constants appear in this proof — this 1 and another later — and together they make the 2 that sits outside the answer.",
+        "common_mistakes": [
+          "Converting the wrong term.",
+          "Writing 1 + sin² instead of 1 − sin²."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "lines": [
+          "= 1 + cos((A+B)/2) cos((A−B)/2) + cos²(C/2)",
+          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "= 1 + sin(C/2) cos((A−B)/2) + (1 − sin²(C/2))",
+          "= 2 + sin(C/2) cos((A−B)/2) − sin²(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity is applied, cos((A+B)/2) becomes sin(C/2), and cos²(C/2) is written as 1 − sin²(C/2) — producing the second constant that makes the 2.",
+          "accept": [
+            "apply the identity, convert to sin C over two, and write cos squared C over two as one minus sin squared so the constant becomes two",
+            "the two ones add to give the two outside the answer",
+            "convert the last cosine squared as well and the constants add",
+            "rendu ones kalisi two avthundi",
+            "the second one comes from cos squared C over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C over two",
+            "two",
+            "one minus sin squared",
+            "constants add"
+          ]
+        },
+        "why": "This is where the 2 in the answer comes from: one constant from the first conversion and one from the second, added together.",
+        "common_mistakes": [
+          "Leaving cos²(C/2) alone and never producing the second 1.",
+          "Adding the constants wrongly."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "lines": [
+          "= 2 + sin(C/2) [cos((A−B)/2) − sin(C/2)]",
+          "= 2 + sin(C/2) [cos((A−B)/2) − cos((A+B)/2)]",
+          "  [∵ sin(C/2) = cos((A+B)/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(C/2) is taken out, leaving a difference of two cosines in the bracket.",
+          "accept": [
+            "take sin C over two common leaving a difference of cosines in the bracket",
+            "factor out sin C over two and convert the second term back to a cosine",
+            "the bracket becomes cos A minus B over two minus cos A plus B over two",
+            "sin C by two common teesi bracket lo cosines ga marchali",
+            "both bracket terms become cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C over two",
+            "common factor",
+            "difference of cosines"
+          ]
+        },
+        "why": "The 2 plays no further part, so setting it aside keeps the factorisation clean — the same tactic as the −1 in answer 26.2.",
+        "common_mistakes": [
+          "Trying to factor the 2 into the bracket.",
+          "Leaving a sine inside the bracket so no formula applies."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "lines": [
+          "= 2 + sin(C/2) (2 sin(A/2) sin(B/2))",
+          "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",
+          "= 2 + 2 sin(A/2) sin(B/2) sin(C/2)",
+          {
+            "text": "= 2(1 + sin(A/2) sin(B/2) sin(C/2)) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket becomes 2 sin(A/2) sin(B/2), and that a final 2 is taken out to match the required form.",
+          "accept": [
+            "the bracket gives two sin A over two sin B over two and then take two out to match the answer",
+            "finish with the cosine difference formula then factor the two out",
+            "take two common at the end to get two into one plus the product",
+            "chivarlo two common teeste required form vasthundi",
+            "factor out the two to match the right hand side"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin A over two",
+            "take two out",
+            "two into one plus"
+          ]
+        },
+        "why": "The answer was asked for in the factored form 2(1 + …), so the last line has to produce that form rather than 2 + 2(…).",
+        "common_mistakes": [
+          "Stopping at 2 + 2 sin(A/2)sin(B/2)sin(C/2) without factoring.",
+          "Forgetting the constant entirely."
+        ]
+      }
+    ]
+  }
+}

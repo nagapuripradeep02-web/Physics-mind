@@ -1,0 +1,276 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_axb_dot_bxc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "If a = 2i+j−k, b = −i+2j−4k and c = i+j+k, then find (a×b)·(b×c).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a×b",
+      "marks": 2
+    },
+    {
+      "label": "Find b×c",
+      "marks": 2
+    },
+    {
+      "label": "Take the dot product",
+      "marks": 2
+    },
+    {
+      "label": "State the value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.35 — LAQ chapter 4 Product of Vectors, answer 21.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17 · AP 15,19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer (its page is set two questions to a page in two columns, which takes the margin those tags would occupy). It follows the shape of the split the same chapter DOES print for answer 23 on book p.37, weighting each cross product against the closing step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would work out this product — say which pieces you compute first and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "a = 2i + j − k,  b = −i + 2j − 4k,",
+          "c = i + j + k"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the given vectors are written out before any product is computed. Naming the step is full credit.",
+          "accept": [
+            "write the given vectors out first",
+            "copy down a b and c before starting",
+            "note the given vectors in i j k form",
+            "ichina vectors ni modata rasta",
+            "start by writing what is given"
+          ],
+          "reject": [
+            "write the question",
+            "start the sum"
+          ],
+          "heard_as": [
+            "given",
+            "vectors",
+            "write down"
+          ]
+        },
+        "why": "A cross product is a determinant whose rows ARE these vectors. Laying them out once, aligned, is what makes each determinant readable.",
+        "common_mistakes": [
+          "Missing a zero component and shifting a whole row.",
+          "Copying a sign wrongly and carrying it through every product."
+        ]
+      },
+      {
+        "id": "s2_first",
+        "kind": "equation",
+        "label": "Find a×b",
+        "marks": 2,
+        "mark_note": "First product",
+        "margin_note": "Two of the seven marks. Write the determinant with i, j, k on top and the two vectors as the rows BELOW, in the order they appear in the product — a first, then b.",
+        "lines": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ -1 & 2 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−4 + 2) − j(−8 − 1) + k(4 + 1)",
+          "= −2i + 9j + 5k   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a×b is set out as a determinant with a on the first row and b on the second, and evaluates to −2i + 9j + 5k.",
+          "accept": [
+            "write the determinant with i j k on top then a then b and expand to get minus two i plus nine j plus five k",
+            "cross a with b using the determinant, the answer is minus two i plus nine j plus five k",
+            "expand the cross product determinant for a cross b",
+            "a cross b determinant rasi expand cheste minus two i plus nine j plus five k vasthundi",
+            "take the cross product of a and b first"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross b",
+            "determinant",
+            "i j k",
+            "minus two i",
+            "nine j"
+          ]
+        },
+        "why": "The middle term carries a minus sign in front — that is part of the expansion, not part of the numbers, and it is where most sign errors enter.",
+        "common_mistakes": [
+          "Writing b on the first row and a on the second, which reverses the answer.",
+          "Forgetting the minus in front of the j term."
+        ]
+      },
+      {
+        "id": "s3_second",
+        "kind": "equation",
+        "label": "Find b×c",
+        "marks": 2,
+        "mark_note": "Second product",
+        "margin_note": "Two more marks. Same construction, but the rows are b then c. Note that b appears in BOTH products — copy the same row, do not recompute it differently.",
+        "lines": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ -1 & 2 & -4 \\\\ 1 & 1 & 1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 + 4) − j(−1 + 4) + k(−1 − 2)",
+          "= 6i − 3j − 3k   …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b×c is computed the same way, with b on the first row and c on the second, giving 6i − 3j − 3k.",
+          "accept": [
+            "do the same for b cross c to get six i minus three j minus three k",
+            "cross b with c using the determinant",
+            "b cross c comes to six i minus three j minus three k",
+            "b cross c kuda ade vidhanga determinant tho",
+            "take the second cross product"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "six i",
+            "minus three j",
+            "determinant"
+          ]
+        },
+        "why": "b sits in both products, so its row is written twice. Checking that the two copies match is a free way to catch a transcription slip.",
+        "common_mistakes": [
+          "Computing c×b instead, which flips every sign.",
+          "Reusing a×b by mistake."
+        ]
+      },
+      {
+        "id": "s4_combine",
+        "kind": "equation",
+        "label": "Take the dot product",
+        "marks": 2,
+        "mark_note": "Combine",
+        "margin_note": "Two marks. This is a DOT product of the two results — multiply matching components and add. The answer is a single number, not a vector.",
+        "lines": [
+          "From (1) and (2),",
+          "(a×b)·(b×c) = (−2i + 9j + 5k)·(6i − 3j − 3k)",
+          "= (−2)(6) + (9)(−3) + (5)(−3)",
+          "= −12 − 27 − 15"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two results are combined with a DOT product — matching components multiplied and added — not another cross product.",
+          "accept": [
+            "dot the two results together, multiply matching components and add",
+            "take the scalar product of the two vectors found",
+            "this one is a dot product so the answer is a number",
+            "rendu results ni dot product cheyyali, number vasthundi",
+            "multiply component by component and add them"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "dot product",
+            "scalar product",
+            "multiply and add",
+            "number"
+          ]
+        },
+        "why": "The bracket in the question is a DOT between two cross products. Getting that outer operation right is what decides whether the answer is a number or a vector.",
+        "common_mistakes": [
+          "Taking a cross product of the two results.",
+          "Adding the components instead of multiplying first."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "State the value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Add the three terms. All three are negative here, so the total is negative — a positive answer means a sign was dropped.",
+        "lines": [
+          {
+            "text": "∴ (a×b)·(b×c) = −54",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three products add to −54.",
+          "accept": [
+            "minus twelve minus twenty seven minus fifteen is minus fifty four",
+            "the answer is minus fifty four",
+            "it comes to negative fifty four",
+            "minus fifty four vasthundi",
+            "the value is minus fifty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus fifty four",
+            "fifty four",
+            "negative"
+          ]
+        },
+        "why": "A scalar triple-style product like this is just a number, and the sign of that number carries meaning — so it must be reported, not dropped.",
+        "common_mistakes": [
+          "Reporting 54 without the sign.",
+          "Leaving the answer as three unadded terms."
+        ]
+      }
+    ]
+  }
+}

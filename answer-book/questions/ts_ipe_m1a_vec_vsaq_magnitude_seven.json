@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_magnitude_seven",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find a vector in the direction of the vector a = i − 2j that has magnitude 7 units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the unit vector",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by 7",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 16 Addition of Vectors, answer 113.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Addition of Vectors holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q5 and Q6 are the two Addition of Vectors slots."
+  },
+  "recall_prompt": "Say how you would build a vector of a given length in a given direction.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find the unit vector",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same opening as any direction question: get the length, then divide to get the unit vector. Note a lies in the xy-plane, so there is no k term.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = i − 2j, then",
+          "|a| = √(1² + (−2)²) = √5",
+          "∴ Unit vector = a/|a| = (i − 2j)/√5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a| = √5 and the unit vector in the direction of a is (i − 2j)/√5.",
+          "accept": [
+            "the magnitude is root five so the unit vector is i minus two j over root five",
+            "find mod a which is root five then divide",
+            "get the unit vector first by dividing by root five",
+            "magnitude root five, unit vector i minus two j by root five",
+            "first the unit vector in that direction"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root five",
+            "unit vector",
+            "magnitude",
+            "divide"
+          ]
+        },
+        "why": "A vector of any length in a direction is that length times the unit vector, so the unit vector is the piece worth building first.",
+        "common_mistakes": [
+          "Forgetting that (−2)² is +4.",
+          "Adding a k component that is not there."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Multiply by 7",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Length times direction: 7 times the unit vector has length exactly 7 and points the same way.",
+        "lines": [
+          "A vector of magnitude 7 in this direction is",
+          "7 × (unit vector):",
+          {
+            "text": "= 7(i − 2j)/√5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the unit vector by 7 gives a vector of magnitude 7 in the same direction.",
+          "accept": [
+            "multiply the unit vector by seven to get seven times i minus two j over root five",
+            "seven times the unit vector gives magnitude seven",
+            "scale the unit vector up by seven",
+            "unit vector ni seven tho multiply cheyyali",
+            "the answer is seven into i minus two j by root five"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "seven",
+            "multiply",
+            "unit vector",
+            "magnitude seven"
+          ]
+        },
+        "why": "Multiplying by a positive number changes only the length, never the direction — which is why this construction gives the right direction automatically.",
+        "common_mistakes": [
+          "Multiplying the original vector by 7 without dividing by √5 first.",
+          "Dividing by 7 instead of multiplying."
+        ]
+      }
+    ]
+  }
+}

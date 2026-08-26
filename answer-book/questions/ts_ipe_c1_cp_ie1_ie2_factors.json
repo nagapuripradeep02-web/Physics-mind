@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_ie1_ie2_factors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Define IE₁ and IE₂. Why is IE₂ > IE₁ for a given atom? Discuss the factors that affect the ionisation enthalpy of an element.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Defining IE₁",
+      "marks": 1
+    },
+    {
+      "label": "Defining IE₂",
+      "marks": 1
+    },
+    {
+      "label": "Why IE₂ > IE₁",
+      "marks": 2
+    },
+    {
+      "label": "The four factors",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+2+4 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING: the book's 'factors that effect IE' is regularised to affect. The book writes the factor relations as proportionalities (I.E ∝ 1/atomic size, I.E ∝ nuclear charge, I.E ∝ 1/screening effect); these are qualitative shorthands for trends, not numerical laws, and the card keeps them with that reading. The book's reason for IE₂ > IE₁ — 'in unipositive ion number of protons are more than the number of electrons, so the nuclear attraction increases' — is essentially right and the card states it precisely: the same nuclear charge acts on one electron fewer. AI chemistry check 2026-08-25: both definitions, the IE₂ > IE₁ reason and all four factors re-checked against NCERT Class-11; no chemistry changed; one memory tip reworded to plain literal language. AI chemistry check 2026-08-25 (audit round 3): the nuclear-charge margin note called itself 'the only direct (not inverse) relation among the four factors', but factor 4 on the same card (extra stability → higher I.E) is direct as well; the note now says which factors raise I.E and which lower it. No marked line changed. Status stays unverified."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Classification of Elements – Periodic Properties · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ie1",
+        "kind": "equation",
+        "label": "Defining IE₁",
+        "marks": 1,
+        "mark_note": "IE₁",
+        "lines": [
+          "IE₁ (first ionisation enthalpy): the energy",
+          "required to remove an electron from the",
+          "outermost orbital of an isolated neutral",
+          "gaseous atom.",
+          {
+            "text": "X(g) + IE₁ → X⁺(g) + e⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "Each qualifier closes a loophole: isolated rules out neighbours, gaseous rules out lattice energies, neutral marks this as the first removal. The equation states the same definition in symbols.",
+        "common_mistakes": [
+          "Dropping isolated, gaseous or neutral from the definition. All three are marked words.",
+          "Writing the equation without (g). The state symbol is part of the definition."
+        ],
+        "memory_tip": "One lone gas atom, one electron taken from its outer shell — that energy is IE₁.",
+        "margin_note": "Definition in words plus the equation; the same pattern repeats for IE₂."
+      },
+      {
+        "id": "s2_ie2",
+        "kind": "equation",
+        "label": "Defining IE₂",
+        "marks": 1,
+        "mark_note": "IE₂",
+        "lines": [
+          "IE₂ (second ionisation enthalpy): the energy",
+          "required to remove an electron from the",
+          "unipositive gaseous ion.",
+          {
+            "text": "X⁺(g) + IE₂ → X²⁺(g) + e⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "The second ionisation starts from X⁺, not from the atom — writing the starting species correctly is what the definition is testing.",
+        "common_mistakes": [
+          "Starting the IE₂ equation from X(g). It starts from X⁺(g).",
+          "Writing X²⁻ or a wrong charge on the product. Removing an electron from X⁺ gives X²⁺."
+        ],
+        "memory_tip": "IE₂ starts where IE₁ ended: the ion X⁺ loses the next electron.",
+        "margin_note": "Check the charges balance across the arrow: +1 on the left, +2 and −1 on the right."
+      },
+      {
+        "id": "s3_why_greater",
+        "kind": "text",
+        "label": "Why IE₂ > IE₁",
+        "marks": 2,
+        "mark_note": "The reason",
+        "lines": [
+          "In the ion X⁺ the number of electrons is one",
+          "less than the number of protons.",
+          "The same nuclear charge now acts on fewer",
+          "electrons, so each remaining electron is held",
+          "more strongly, and the ion is smaller than",
+          "the atom.",
+          "Removing the second electron therefore needs",
+          "more energy: IE₂ > IE₁."
+        ],
+        "why": "Nothing about the nucleus changes between the two removals — what changes is the electron count. Fewer electrons under the same pull means each one is held more strongly, and a strongly held electron needs more energy to remove.",
+        "common_mistakes": [
+          "Writing that the nuclear charge increases after ionisation. The proton count never changes; the electron count falls.",
+          "Giving the fact IE₂ > IE₁ without the fewer-electrons reason. The reason carries both marks."
+        ],
+        "memory_tip": "Same pull, fewer electrons to share it — every remaining electron is held more strongly, so the second removal needs more energy.",
+        "margin_note": "Two marks sit on this paragraph; the smaller-ion sentence strengthens it."
+      },
+      {
+        "id": "s4_factor_size",
+        "kind": "text",
+        "label": "Factor 1 — atomic size",
+        "marks": 1,
+        "mark_note": "Atomic size",
+        "lines": [
+          "Factors affecting ionisation enthalpy:",
+          "1. Atomic size: as the atomic size increases,",
+          "the outer electron lies farther from the",
+          "nucleus, and I.E decreases.",
+          {
+            "text": "I.E ∝ 1 / atomic size",
+            "style": "eq"
+          }
+        ],
+        "why": "The attraction between nucleus and electron falls with distance, so a larger atom releases its outer electron for less energy. The ∝ line is shorthand for this inverse trend.",
+        "common_mistakes": [
+          "Writing the proportionality the wrong way up. Bigger atom, lower I.E.",
+          "Stating the trend without the distance reason."
+        ],
+        "memory_tip": "Distance weakens the pull: the farther the electron, the less energy its removal needs.",
+        "margin_note": "Four numbered factors, one mark each; keep each to two lines and its relation."
+      },
+      {
+        "id": "s5_factor_nuclear_charge",
+        "kind": "text",
+        "label": "Factor 2 — nuclear charge",
+        "marks": 1,
+        "mark_note": "Nuclear charge",
+        "lines": [
+          "2. Nuclear charge: as the nuclear charge",
+          "increases (at nearly the same size), the outer",
+          "electrons are pulled in more strongly, and",
+          "I.E increases.",
+          {
+            "text": "I.E ∝ nuclear charge",
+            "style": "eq"
+          }
+        ],
+        "why": "More protons means a stronger pull on every electron, so more energy is needed to remove one — the direct partner of the size factor.",
+        "common_mistakes": [
+          "Confusing nuclear charge with ionic charge. Nuclear charge is the proton count Z.",
+          "Writing an inverse relation here. Nuclear charge and I.E rise together."
+        ],
+        "memory_tip": "Size and charge pull the ionisation enthalpy in opposite directions: size lowers it, charge raises it.",
+        "margin_note": "This is the only factor written as a direct proportionality, but not the only one that raises I.E: factor 4 (half-filled or completely filled orbitals) raises it too. Size and screening lower it."
+      },
+      {
+        "id": "s6_factor_screening",
+        "kind": "text",
+        "label": "Factor 3 — screening effect",
+        "marks": 1,
+        "mark_note": "Screening",
+        "lines": [
+          "3. Screening effect: the inner-shell electrons",
+          "reduce the nuclear pull on the outer electron.",
+          "The greater the screening, the lower the I.E.",
+          {
+            "text": "I.E ∝ 1 / screening effect",
+            "style": "eq"
+          }
+        ],
+        "why": "Screening cancels part of the nuclear charge before it reaches the outer electron, so it works against the pull and lowers the cost of removal.",
+        "common_mistakes": [
+          "Writing that screening increases I.E. More screening means a weaker hold and a lower I.E.",
+          "Attributing the screening to outer electrons. The inner shells do the screening."
+        ],
+        "memory_tip": "Screening is the nuclear charge factor in reverse: whatever the inner shells cancel, the outer electron never feels.",
+        "margin_note": "This factor links back to the very short answer question on the screening effect."
+      },
+      {
+        "id": "s7_factor_configuration",
+        "kind": "boxed_final",
+        "label": "Factor 4 — electronic configuration",
+        "marks": 1,
+        "mark_note": "Configuration",
+        "lines": [
+          "4. Electronic configuration: half-filled and",
+          "completely filled orbitals are extra stable, so",
+          "atoms having them need more energy to lose",
+          "an electron.",
+          {
+            "text": "Half-filled or completely filled orbitals → extra stability → higher I.E",
+            "style": "boxed"
+          },
+          "Example: N (2p³, half-filled) has a higher",
+          "IE₁ than O (2p⁴)."
+        ],
+        "why": "A stable arrangement takes extra energy to break, so stability shows up directly as a higher ionisation enthalpy — the factor that explains the exceptions the first three factors cannot.",
+        "common_mistakes": [
+          "Leaving out this fourth factor and listing only three.",
+          "Giving the N and O comparison the wrong way. Nitrogen's half-filled 2p³ makes its IE₁ the higher one."
+        ],
+        "memory_tip": "A half-filled 2p³ and a completely filled 2p⁶ are extra stable, so removing an electron from either needs more energy.",
+        "margin_note": "The N versus O example is the standard illustration and is worth the one extra line."
+      }
+    ]
+  },
+  "insider_note": "Three separate asks share these eight marks — definitions, the IE₂ > IE₁ reason, and the four factors — and the reason paragraph is where students most often write the fact without the fewer-electrons argument that carries its two marks."
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_girl_carrying_bag_cm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference in the positions of a girl carrying a bag in one of her hands and another girl carrying a bag in each of her two hands?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "One hand",
+      "marks": 1
+    },
+    {
+      "label": "Both hands",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "TSBIE Basic Learning Material (2021-22), Unit 7 VERY SHORT ANSWER — this question is NOT in the Sri Chaitanya Fastrack; the two source books are not supersets of each other, so the unit inventory is their union. The 1+1 split is invented and needs a Telangana IPE teacher."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_hand",
+        "kind": "text",
+        "label": "Bag in one hand",
+        "marks": 1,
+        "mark_note": "One hand",
+        "lines": [
+          "With a bag in ONE hand, the centre of",
+          "mass of the girl-and-bag system shifts",
+          "towards the hand holding the bag."
+        ],
+        "margin_note": "Name the system — girl AND bag together. The shift is of the combined centre of mass.",
+        "why": "Adding mass on one side moves the weighted average of all the mass towards that side. The girl leans the other way to bring it back over her feet.",
+        "common_mistakes": [
+          "Saying the girl’s own centre of mass moves. It is the SYSTEM’s centre of mass that shifts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with one bag the centre of mass shifts towards the loaded hand.",
+          "accept": [
+            "centre of mass shifts towards the bag",
+            "shifts to the side of the bag",
+            "bag unna side ki CM shift"
+          ],
+          "reject": [
+            "the centre of mass does not change"
+          ],
+          "heard_as": [
+            "shifts",
+            "towards the hand",
+            "one side"
+          ]
+        },
+        "memory_tip": "One bag: the centre of mass shifts TOWARDS that hand. Two equal bags: no shift. Learn the pair."
+      },
+      {
+        "id": "s2_two_hands",
+        "kind": "boxed_final",
+        "label": "Bags in both hands",
+        "marks": 1,
+        "mark_note": "Both hands",
+        "lines": [
+          "With equal bags in BOTH hands, the two",
+          "shifts cancel by symmetry, so",
+          {
+            "text": "the centre of mass does not change.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give the reason — symmetry — not just the answer.",
+        "why": "Equal masses at equal distances on both sides pull the average equally both ways. This is why carrying two balanced bags feels straighter than one heavy one.",
+        "common_mistakes": [
+          "Answering that the centre of mass \"shifts down\" — the question is about the sideways position."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with a bag in each hand the shifts cancel and the centre of mass stays in place.",
+          "accept": [
+            "both sides cancel by symmetry",
+            "centre of mass does not change",
+            "rendu bags aithe CM marade"
+          ],
+          "reject": [
+            "centre of mass shifts towards the bag"
+          ],
+          "heard_as": [
+            "does not change",
+            "symmetry",
+            "both hands"
+          ]
+        },
+        "memory_tip": "The cancellation needs the two bags EQUAL. Unequal bags still shift the centre of mass."
+      }
+    ]
+  },
+  "insider_note": "This one is in the TSBIE material only, not in the Fastrack. One mark for each of the two cases."
+}

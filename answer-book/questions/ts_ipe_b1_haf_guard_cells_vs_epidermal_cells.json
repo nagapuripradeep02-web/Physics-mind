@@ -1,0 +1,277 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_guard_cells_vs_epidermal_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The stomatal pore is guarded by two kidney shaped guard cells. Name the epidermal cells surrounding the guard cells. How does a guard cell differ from an epidermal cell? Use a diagram to illustrate your answer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name of the surrounding cells",
+      "marks": 1
+    },
+    {
+      "label": "How a guard cell differs",
+      "marks": 2
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_subsidiary",
+        "kind": "text",
+        "label": "The surrounding cells",
+        "marks": 1,
+        "mark_note": "Naming",
+        "margin_note": "Two lines. Give both accepted names.",
+        "lines": [
+          "The stomatal pore is bounded by two kidney",
+          "shaped, that is bean shaped, guard cells.",
+          "The epidermal cells that surround these guard",
+          "cells are called subsidiary cells or accessory",
+          "cells."
+        ],
+        "why": "The question names the guard cells for you and asks only for the cells around them, so this mark is a single term. Subsidiary and accessory are the two accepted words.",
+        "common_mistakes": [
+          "Writing complementary cells. Those belong to a lenticel, not to a stoma.",
+          "Answering epidermal cells only. The marked term is subsidiary or accessory cells."
+        ],
+        "memory_tip": "Subsidiary means helping, so these are the cells that assist the guard cells."
+      },
+      {
+        "id": "s2_differences",
+        "kind": "text",
+        "label": "How a guard cell differs",
+        "marks": 2,
+        "mark_note": "Five characters",
+        "margin_note": "Two marks here. Number the differences so the examiner can count them.",
+        "lines": [
+          "A guard cell differs from an ordinary",
+          "epidermal cell in the following characters:",
+          "1. It is smaller in size.",
+          "2. It is bean shaped in dicots and dumb-bell",
+          "shaped in monocots, while an epidermal cell",
+          "has no such fixed shape.",
+          "3. Its wall is unevenly thickened. In a bean",
+          "shaped guard cell the outer wall is thin and",
+          "the inner wall is thick. In a dumb-bell shaped",
+          "guard cell the middle wall is thick and the",
+          "end walls are thin.",
+          "4. It contains chloroplasts. The other",
+          "epidermal cells have none.",
+          "5. It opens and closes the pore, so it",
+          "controls transpiration and the exchange of",
+          "gases."
+        ],
+        "why": "Uneven wall thickening is the point the other differences hang on: because one wall is thicker than the other, the cell bends when it takes up water, and that bending is what opens the pore.",
+        "common_mistakes": [
+          "Saying every epidermal cell has chloroplasts. Only the guard cells do.",
+          "Reversing the thick wall. In a bean shaped guard cell the inner wall is the thick one.",
+          "Giving the shapes and stopping. The function is also marked."
+        ],
+        "memory_tip": "Small, shaped, unevenly thickened, green, and able to close: five differences in that order."
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "Diagram of a stoma",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "margin_note": "Label epidermal cell, subsidiary cells, guard cells, chloroplast and stomatal pore.",
+        "figure": {
+          "id": "stomata_bean_guard_cells",
+          "width": 500,
+          "height": 264,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "epi_outline",
+              "d": "M 104 96 L 128 50 L 232 50 L 256 96 L 298 138 L 256 186 L 230 230 L 130 230 L 104 186 L 62 138 Z",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "epi_walls",
+              "d": "M 155 91 L 128 50 M 141 98 L 104 96 M 205 91 L 232 50 M 219 98 L 256 96 M 141 182 L 104 186 M 155 189 L 130 230 M 219 182 L 256 186 M 205 189 L 230 230 M 112 140 L 62 138 M 248 140 L 298 138",
+              "ms": 620,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "sub_l",
+              "d": "M 180 86 C 146 88 112 112 112 140 C 112 168 146 192 180 194 C 154 184 142 166 142 140 C 142 114 154 96 180 86 Z",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "sub_r",
+              "d": "M 180 86 C 214 88 248 112 248 140 C 248 168 214 192 180 194 C 206 184 218 166 218 140 C 218 114 206 96 180 86 Z",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "guard_l",
+              "d": "M 180 96 C 156 98 142 116 142 140 C 142 164 156 182 180 184 C 168 166 166 154 166 140 C 166 126 168 114 180 96 Z",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "guard_r",
+              "d": "M 180 96 C 204 98 218 116 218 140 C 218 164 204 182 180 184 C 192 166 194 154 194 140 C 194 126 192 114 180 96 Z",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "chloro",
+              "d": "M 152 122 A 3 3 0 1 0 158 122 A 3 3 0 1 0 152 122 M 149 140 A 3 3 0 1 0 155 140 A 3 3 0 1 0 149 140 M 152 158 A 3 3 0 1 0 158 158 A 3 3 0 1 0 152 158 M 158 108 A 3 3 0 1 0 164 108 A 3 3 0 1 0 158 108 M 158 172 A 3 3 0 1 0 164 172 A 3 3 0 1 0 158 172 M 202 122 A 3 3 0 1 0 208 122 A 3 3 0 1 0 202 122 M 205 140 A 3 3 0 1 0 211 140 A 3 3 0 1 0 205 140 M 202 158 A 3 3 0 1 0 208 158 A 3 3 0 1 0 202 158 M 196 108 A 3 3 0 1 0 202 108 A 3 3 0 1 0 196 108 M 196 172 A 3 3 0 1 0 202 172 A 3 3 0 1 0 196 172",
+              "ms": 620,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "l_epi",
+              "x": 312,
+              "y": 52,
+              "text": "Epidermal cell",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi",
+              "d": "M 308 46 L 274 56 L 242 66",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_epi_ah",
+              "d": "M 249.0 60.3 L 242 66 L 251.0 66.7",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_sub",
+              "x": 312,
+              "y": 100,
+              "text": "Subsidiary cells",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sub",
+              "d": "M 308 94 L 272 100 L 236 108",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_sub_ah",
+              "d": "M 243.4 102.9 L 236 108 L 244.9 109.5",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_chl",
+              "x": 312,
+              "y": 148,
+              "text": "Chloroplast",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chl",
+              "d": "M 308 142 L 260 152 L 209 157",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_chl_ah",
+              "d": "M 217.0 152.8 L 209 157 L 217.6 159.5",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_pore",
+              "x": 312,
+              "y": 196,
+              "text": "Stomatal pore",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pore",
+              "d": "M 308 190 L 250 186 L 186 162",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pore_ah",
+              "d": "M 195.0 161.8 L 186 162 L 192.6 168.1",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_guard",
+              "x": 312,
+              "y": 240,
+              "text": "Guard cells",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_guard",
+              "d": "M 308 234 L 250 214 L 208 183",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_guard_ah",
+              "d": "M 216.7 185.2 L 208 183 L 212.7 190.7",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "The question asks for a diagram in so many words, so a drawing is a separate mark. The picture also proves the shapes and the position of the chloroplasts without any extra sentence.",
+        "common_mistakes": [
+          "Drawing the pore between the subsidiary cells. The pore lies between the two guard cells.",
+          "Putting chloroplast dots in the epidermal cells as well."
+        ],
+        "memory_tip": "Two beans facing each other, a gap between them, and dots inside the beans only."
+      }
+    ]
+  },
+  "insider_note": "The words 'use a diagram' in the question make the drawing compulsory. An answer with all five differences and no diagram still loses a mark."
+}

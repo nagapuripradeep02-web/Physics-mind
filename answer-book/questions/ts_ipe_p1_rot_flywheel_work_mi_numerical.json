@@ -1,0 +1,166 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_flywheel_work_mi_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "When 100 J of work is done on a flywheel, its angular velocity increases from 60 rpm to 180 rpm. What is the moment of inertia of the wheel?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two ω values",
+      "marks": 1
+    },
+    {
+      "label": "Work-energy",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 SHORT ANSWER 11 (numerical; the book prints the answer 0.63 kg·m²). The split is invented and needs a Telangana IPE teacher. Arithmetic hand-checked: ω₁ = 2π, ω₂ = 6π; 100 = ½I(36π² − 4π²) = 16π²I → I = 6.25/π² ≈ 0.63 kg·m²."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_omegas",
+        "kind": "equation",
+        "label": "The two ω values",
+        "marks": 1,
+        "mark_note": "ω₁, ω₂",
+        "lines": [
+          "Convert both speeds:",
+          {
+            "text": "ω₁ = 2π × 60/60 = 2π rad/s",
+            "style": "eq"
+          },
+          {
+            "text": "ω₂ = 2π × 180/60 = 6π rad/s",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Same 2π/60 conversion as every flywheel problem — done twice.",
+        "why": "Keeping both in terms of π makes the squares subtract cleanly in the next step; converting to decimals early invites rounding error.",
+        "common_mistakes": [
+          "Converting one speed and not the other."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ω₁ = 2π and ω₂ = 6π rad/s.",
+          "accept": [
+            "two pi and six pi",
+            "convert both rpm values",
+            "sixty and one eighty rpm"
+          ],
+          "reject": [
+            "half I omega squared"
+          ],
+          "heard_as": [
+            "two pi",
+            "six pi"
+          ]
+        },
+        "memory_tip": "60 rpm is 1 revolution per second, so ω₁ = 2π. 180 rpm is 3 per second, so ω₂ = 6π."
+      },
+      {
+        "id": "s2_work_energy",
+        "kind": "equation",
+        "label": "Work-energy theorem",
+        "marks": 1,
+        "mark_note": "The relation",
+        "lines": [
+          "The work done equals the change in",
+          "rotational kinetic energy:",
+          {
+            "text": "W = ½Iω₂² − ½Iω₁²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This is Unit 6’s work-energy theorem wearing rotational clothes — say the connection.",
+        "why": "The same theorem proved in Work Power Energy, with ½Iω² standing in for ½mv². Cross-chapter links like this are what the examiners reward.",
+        "common_mistakes": [
+          "Writing W = ½I(ω₂ − ω₁)² — the SQUARES are differenced, not the difference squared."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work equals the change in rotational kinetic energy, W = ½I(ω₂² − ω₁²).",
+          "accept": [
+            "work is change in rotational kinetic energy",
+            "half I omega two squared minus half I omega one squared",
+            "work energy theorem"
+          ],
+          "reject": [
+            "two pi and six pi"
+          ],
+          "heard_as": [
+            "change in kinetic energy",
+            "half I"
+          ]
+        },
+        "memory_tip": "Factor the I out first: W = ½I(ω₂² − ω₁²). One line, and the next step is a division."
+      },
+      {
+        "id": "s3_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 2,
+        "mark_note": "I",
+        "lines": [
+          "Substituting,",
+          {
+            "text": "100 = ½·I·(36π² − 4π²) = 16π²·I",
+            "style": "eq"
+          },
+          {
+            "text": "I = 100/(16π²) ≈ 0.63 kg·m²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "One substitution line, one boxed value with its unit — kg·m², the unit of moment of inertia.",
+        "why": "36π² − 4π² = 32π², halved is 16π². Keeping π symbolic to the last line is what makes the arithmetic this short.",
+        "common_mistakes": [
+          "Unit slip: writing kg·m/s² (a force unit) instead of kg·m²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I = 100/16π² ≈ 0.63 kg·m².",
+          "accept": [
+            "hundred by sixteen pi squared",
+            "zero point six three",
+            "point six three kg metre square"
+          ],
+          "reject": [
+            "work is change in rotational kinetic energy"
+          ],
+          "heard_as": [
+            "0.63",
+            "sixteen pi squared"
+          ]
+        },
+        "memory_tip": "16π² ≈ 158, so I ≈ 100/158 ≈ 0.63 kg·m². Keep π symbolic until this last division."
+      }
+    ]
+  },
+  "insider_note": "The value step is 2 of the 4 marks and the unit kg·m² is part of it — a bare 0.63 is not the whole answer."
+}

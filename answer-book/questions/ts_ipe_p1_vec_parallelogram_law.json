@@ -16,7 +16,28 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "State the parallelogram law of vectors. Derive an expression for the magnitude and direction of the resultant vector.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 11,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 12,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 12,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 12,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Statement of the law",
@@ -38,7 +59,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Two cuts ship: LAQ/8 (Section C, from the TSBIE Basic Learning Material) and SAQ/4 (Section B, from the Sri Chaitanya Fastrack, which lists this as SHORT ANSWER 1 of Unit 4 and has no LONG ANSWER section at all). The sources disagree on the section, so the student can switch. BOTH mark splits, and the choice of which steps the 4-mark answer omits, are claims until a Telangana IPE teacher confirms them. Star rank is the book’s; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Two cuts ship: LAQ/8 (Section C, from the TSBIE Basic Learning Material) and SAQ/4 (Section B, from the Sri Chaitanya Fastrack, which lists this as SHORT ANSWER 1 of Unit 4 and has no LONG ANSWER section at all). The sources disagree on the section, so the student can switch. BOTH mark splits, and the choice of which steps the 4-mark answer omits, are claims until a Telangana IPE teacher confirms them. Star rank is the book’s; no exam appearance years are printed for Unit 4, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip); a factually wrong marked line was corrected."
   },
   "answer": {
     "page_header": [
@@ -94,7 +115,8 @@
           "Writing only half the law — the two adjacent sides, but not that the diagonal is the resultant.",
           "Saying 'the resultant is the sum' instead of stating the law.",
           "Leaving out 'drawn from the same point', so the diagonal is not pinned down."
-        ]
+        ],
+        "memory_tip": "Remember the statement in two halves: the two vectors are two adjacent sides; the resultant is the diagonal from the same point."
       },
       {
         "id": "s2_figure",
@@ -331,7 +353,8 @@
           "Drawing the diagonal from the wrong corner of OACB.",
           "Leaving points unlabelled, so later steps refer to nothing.",
           "Forgetting to mark the angles theta and alpha."
-        ]
+        ],
+        "memory_tip": "Draw before you derive: base P, slanted Q at angle θ, diagonal R. Drop the perpendicular CD at once."
       },
       {
         "id": "s3_construction",
@@ -376,12 +399,13 @@
             "raastha"
           ]
         },
-        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the whole trick of the proof: it turns the parallelogram into a right triangle.",
+        "why": "This names what you drew so the algebra has something to attach to. The perpendicular CD is the key step of the proof: it turns the parallelogram into a right triangle.",
         "common_mistakes": [
           "Dropping the perpendicular to OA instead of to OA extended.",
           "Not saying which angle is theta and which is alpha."
         ],
-        "mark_note": "Construction"
+        "mark_note": "Construction",
+        "memory_tip": "One line to remember: extend OA and drop CD perpendicular onto it. That right triangle is the whole plan."
       },
       {
         "id": "s4_legs",
@@ -438,7 +462,8 @@
           "Forgetting that angle CAD equals theta because AC is parallel to OB.",
           "Writing OD = Q cos theta and leaving out the P."
         ],
-        "mark_note": "Triangle CAD"
+        "mark_note": "Triangle CAD",
+        "memory_tip": "AD and CD are cos and sin of the SAME angle: along the base Q cos θ, standing up Q sin θ."
       },
       {
         "id": "s5_pythagoras",
@@ -500,7 +525,8 @@
           "Writing R squared = P squared + Q squared + 2PQ, leaving out cos theta.",
           "Skipping the expansion and jumping to the final formula — the examiner looks for the middle line.",
           "Not using sin squared theta + cos squared theta = 1, so the answer never simplifies."
-        ]
+        ],
+        "memory_tip": "OD = P + Q cos θ. Square OD and DC and add — that is the whole magnitude step."
       },
       {
         "id": "s6_direction",
@@ -547,7 +573,8 @@
           "Writing tan alpha = Q sin theta / P, leaving out the Q cos theta.",
           "Assuming alpha is half of theta, which is only true when P and Q are equal."
         ],
-        "mark_note": "tan α"
+        "mark_note": "tan α",
+        "memory_tip": "Direction always comes from tan α in the same triangle ODC: Q sin θ over P + Q cos θ."
       },
       {
         "id": "s7_alpha",
@@ -590,7 +617,8 @@
         "common_mistakes": [
           "Stopping at tan alpha and never writing alpha = tan inverse.",
           "Leaving the answer unboxed among the working."
-        ]
+        ],
+        "memory_tip": "The answer is α itself — write α = tan⁻¹(…) and box R and α together."
       },
       {
         "id": "s8_special_cases",
@@ -612,7 +640,7 @@
             "style": "indent"
           },
           {
-            "text": "θ = 180° → R = P − Q  (minimum)",
+            "text": "θ = 180° → R = |P − Q|  (minimum)",
             "style": "indent"
           }
         ],
@@ -640,7 +668,8 @@
         "why": "These three cases are the fastest way to check your own formula. If theta = 0 does not give P + Q, something in your derivation is wrong.",
         "common_mistakes": [
           "Writing these instead of the derivation — they carry no marks in this question."
-        ]
+        ],
+        "memory_tip": "Check with θ = 0°, 90°, 180°: you must get P + Q, √(P² + Q²), |P − Q|. If θ = 0 fails, a sign slipped."
       }
     ]
   },
@@ -788,5 +817,6 @@
       "needs_teacher_verification": true,
       "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) lists this as SHORT ANSWER 1 of Unit 4, three-star. The 4-mark split AND the choice of which steps a 4-mark answer may omit are both invented here - no real IPE paper has been seen at 4 marks. A Telangana IPE teacher must confirm before this cut reaches a student."
     }
-  ]
+  ],
+  "insider_note": "The statement and the figure together carry 3 of the 8 marks — write them before any algebra."
 }

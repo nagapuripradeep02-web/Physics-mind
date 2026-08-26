@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cp_element_z34_position",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Classification of Elements – Periodic Properties (Chemistry)"
+  },
+  "chapter": "Classification of Elements – Periodic Properties",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "An element X has atomic number 34. Give its position in the periodic table.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Electronic configuration",
+      "marks": 1
+    },
+    {
+      "label": "Period and group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's answer (configuration ending 4s² 3d¹⁰ 4p⁴, group VIA, 4th period) is correct; the card adds the modern group number 16 and the reasoning from the configuration to the position. AI chemistry check 2026-08-25 (audit round 3): a common mistake read 'counting the 3d electrons as valence electrons and writing group 16 as group VIB', in which the stated cause does not produce the stated wrong answer; it is now split into two errors a student can check. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Classification of Elements – Periodic Properties · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configuration",
+        "kind": "equation",
+        "label": "Electronic configuration",
+        "marks": 1,
+        "mark_note": "Configuration",
+        "lines": [
+          {
+            "text": "Z = 34: 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁴",
+            "style": "eq"
+          },
+          "The differentiating electron enters a 4p",
+          "orbital, and the outermost shell is n = 4."
+        ],
+        "why": "Position in the periodic table is read off the electronic configuration: the outermost shell number gives the period, and the outer-shell electrons give the group. Writing the configuration first makes both readable.",
+        "common_mistakes": [
+          "Filling 3d before 4s or writing the total short of 34 electrons. Check: 2+2+6+2+6+2+10+4 = 34.",
+          "Stopping at the configuration without saying which orbital the last electron entered."
+        ],
+        "memory_tip": "Fill in the Aufbau order 1s 2s 2p 3s 3p 4s 3d 4p and stop at 34 electrons.",
+        "margin_note": "The configuration is the working; the position mark below depends on it."
+      },
+      {
+        "id": "s2_position",
+        "kind": "boxed_final",
+        "label": "Period and group",
+        "marks": 1,
+        "mark_note": "Position",
+        "lines": [
+          {
+            "text": "Period 4, group VIA (group 16), p-block",
+            "style": "boxed"
+          },
+          "Period = outermost shell number = 4.",
+          "The outer configuration 4s² 4p⁴ has six",
+          "valence electrons, so the element belongs to",
+          "group VIA (group 16). The element is",
+          "selenium."
+        ],
+        "why": "The period equals the highest shell number in the configuration, and for a p-block element the group is fixed by the six valence electrons in 4s² 4p⁴.",
+        "common_mistakes": [
+          "Counting the 3d electrons as valence electrons. 4s² 3d¹⁰ 4p⁴ adds to 16, but the filled 3d¹⁰ shell is inner, so only 4s² 4p⁴ counts and the valence count is six.",
+          "Writing group VIB in place of VIA. The B groups are the d-block elements; here the last electron enters a 4p orbital, so the element is p-block and the group is VIA (group 16).",
+          "Writing period 3 because the configuration contains 3d. The period follows the outermost shell, which is n = 4."
+        ],
+        "memory_tip": "Period from the biggest shell number; group from the outer s and p electrons: 2 + 4 = 6 → VIA.",
+        "margin_note": "Both the period and the group must appear for this mark. Naming selenium is extra."
+      }
+    ]
+  },
+  "insider_note": "Show the configuration even though only the position is asked — the examiner marks the position, but an unsupported position with a slip in it earns nothing."
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gof_bijective",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If f: A→B, g: B→C are two bijective functions then prove that gof: A→C is also a bijective function.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Proof that gof is one one",
+      "marks": 3
+    },
+    {
+      "label": "Proof that gof is onto",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 1, on a ★★★ SSP (Super Scoring Page). The 3+4 mark split is PRINTED in that book's margin, so it is a sourced claim rather than an invented one — but the book is a coaching publication, not a TSBIE document, so it stays unverified until a Telangana IPE teacher confirms it. Appearance years are printed board-split (TS 17,19 · AP 16,18) and are recorded here with the appearances[].board tag that feat/ipe-answerbook added for physics in its Session 89; on master's schema that key is simply ignored, so the signal is stored now and renders as the 'Asked:' chip the moment that branch merges. No question numbers are printed. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove that gof is bijective — name the two things you have to prove, and say how each proof goes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Functions · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "This earns no mark by itself, but it names the two properties the whole proof uses. Write it first so every later step has something to point back to.",
+        "lines": [
+          {
+            "text": "Given:",
+            "style": "heading"
+          },
+          "f: A→B and g: B→C are bijective functions.",
+          "So f and g are both one one and onto.",
+          {
+            "text": "To prove: gof: A→C is bijective, that is,",
+            "style": "normal"
+          },
+          "gof is one one and gof is onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f and g are given as bijections, and that a bijection means both one one and onto. Saying only 'they are bijective' without unpacking it into one one and onto is partial — confidence 0.5 or lower.",
+          "accept": [
+            "given f and g are bijective functions so both are one one and onto",
+            "f and g are bijections that means each one is one one and also onto",
+            "first write given both functions are bijective so they are injective and surjective",
+            "f and g rendu bijective functions so both one one and onto",
+            "start with f and g are bijections so one one and onto both hold"
+          ],
+          "reject": [
+            "first I write the given",
+            "f and g are functions",
+            "I write down the question"
+          ],
+          "heard_as": [
+            "bijective",
+            "bijection",
+            "by jective",
+            "one one",
+            "one to one",
+            "onto",
+            "injective",
+            "surjective"
+          ]
+        },
+        "why": "The proof has exactly two halves because bijective means exactly two things. Naming them at the start tells the examiner you know what has to be shown.",
+        "common_mistakes": [
+          "Starting the algebra without saying what has to be proved.",
+          "Writing 'f and g are bijective' but never using one one and onto separately."
+        ]
+      },
+      {
+        "id": "s2_one_one",
+        "kind": "equation",
+        "label": "Prove gof is one one",
+        "marks": 3,
+        "mark_note": "One one",
+        "margin_note": "Three of the seven marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
+        "lines": [
+          {
+            "text": "(i) To prove gof: A→C is one one",
+            "style": "heading"
+          },
+          "Let (gof)(a₁) = (gof)(a₂), where a₁, a₂ ∈ A",
+          "⇒ g[f(a₁)] = g[f(a₂)]",
+          "⇒ f(a₁) = f(a₂)   (∵ g is one one)",
+          "⇒ a₁ = a₂   (∵ f is one one)",
+          "∴ gof: A→C is one one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Set (gof)(a₁) = (gof)(a₂), remove g first because g is one one, then remove f because f is one one, and conclude a₁ = a₂. Both reasons must be spoken, and g must come before f.",
+          "accept": [
+            "let gof of a one equal gof of a two then g of f a one equals g of f a two since g is one one f a one equals f a two and since f is one one a one equals a two",
+            "assume the two images are equal cancel g because g is one one then cancel f because f is one one so a one equals a two",
+            "take a one and a two with the same image under gof work back through g then through f to get a one equals a two",
+            "gof a1 equals gof a2 anukoni g one one so f a1 equals f a2 and f one one so a1 equals a2",
+            "equate gof of a one and gof of a two use g one one first then f one one and get the elements equal"
+          ],
+          "reject": [
+            "I prove it is one one",
+            "gof is one one because f and g are one one",
+            "then I do the one one part",
+            "next I show it is injective"
+          ],
+          "heard_as": [
+            "gof",
+            "g of f",
+            "g o f",
+            "one one",
+            "one to one",
+            "a one",
+            "a two",
+            "a1",
+            "a2"
+          ]
+        },
+        "why": "One one means different inputs never share an output. The clean way to show it is to assume two inputs DO share an output and be forced to conclude they were the same input all along.",
+        "common_mistakes": [
+          "Peeling off f before g — the outer function is g, so g comes off first.",
+          "Writing the chain with no reasons in brackets; the reasons carry the marks.",
+          "Claiming gof is one one because f and g are, without the argument."
+        ]
+      },
+      {
+        "id": "s3_onto",
+        "kind": "equation",
+        "label": "Prove gof is onto",
+        "marks": 4,
+        "mark_note": "Onto",
+        "margin_note": "Four of the seven marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "lines": [
+          {
+            "text": "(ii) To prove gof: A→C is onto",
+            "style": "heading"
+          },
+          "g: B→C is onto, so for every c ∈ C there",
+          "is b ∈ B with g(b) = c   …(1)",
+          "f: A→B is onto, so for this b ∈ B there",
+          "is a ∈ A with f(a) = b   …(2)",
+          "Now (gof)(a) = g[f(a)]",
+          "        = g(b)   (from (2))",
+          "        = c   (from (1))",
+          "So for every c ∈ C there is a ∈ A with",
+          "(gof)(a) = c.  ∴ gof: A→C is onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "Start from an arbitrary c in C, use g onto to get b in B with g(b) = c, then use f onto to get a in A with f(a) = b, then show (gof)(a) = c. The order matters: c gives b, b gives a.",
+          "accept": [
+            "take any c in C since g is onto there is b in B with g of b equals c and since f is onto there is a in A with f of a equals b then gof of a equals g of f of a equals g of b equals c",
+            "start with c in the codomain use g onto to get b then f onto to get a and show gof of a is c",
+            "for every c there exists b such that g b equals c and there exists a such that f a equals b so gof a equals c",
+            "any c in C teeskoni g onto so b vasthundi then f onto so a vasthundi and gof of a equals c",
+            "pick c in C work back to b through g and back to a through f then gof a equals c so it is onto"
+          ],
+          "reject": [
+            "I prove it is onto",
+            "gof is onto because f and g are onto",
+            "then the onto part comes",
+            "next I show it is surjective"
+          ],
+          "heard_as": [
+            "onto",
+            "surjective",
+            "sur jective",
+            "codomain",
+            "c in C",
+            "b in B",
+            "a in A",
+            "there exists"
+          ]
+        },
+        "why": "Onto means nothing in C is left out. So you must be able to start at ANY c and produce an a that reaches it — which is why the proof runs backwards, from c to b to a.",
+        "common_mistakes": [
+          "Starting from a in A instead of from c in C; that proves nothing about coverage.",
+          "Using f onto first — you have no b to feed it until g gives you one.",
+          "Stopping at f(a) = b without showing that (gof)(a) = c."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude bijective",
+        "marks": 0,
+        "margin_note": "No separate mark, but write it. The question asked for bijective, so the last line must say bijective — both halves named together.",
+        "lines": [
+          "gof: A→C is one one and onto.",
+          "∴ gof: A→C is a bijective function."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof is bijective BECAUSE it was shown to be both one one and onto. The two halves must be tied to the conclusion.",
+          "accept": [
+            "since gof is one one and onto it is bijective",
+            "both parts are proved so gof is a bijection",
+            "we showed one one and onto therefore gof is bijective",
+            "one one and onto rendu unnai so gof bijective",
+            "hence gof is bijective because it is both one one and onto"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so it is proved"
+          ],
+          "heard_as": [
+            "bijective",
+            "bijection",
+            "hence",
+            "therefore",
+            "proved"
+          ]
+        },
+        "why": "The question used the word bijective, so the answer must end on that word. An examiner reading only your last line should see the question answered.",
+        "common_mistakes": [
+          "Ending at 'onto' and never writing the word bijective.",
+          "Writing only 'hence proved' with nothing named."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_metabolism_anabolism_catabolism",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define metabolism. What is the difference between anabolism and catabolism?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of metabolism",
+      "marks": 1
+    },
+    {
+      "label": "Anabolism vs catabolism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 8 of 9), which prints the question, a model answer and a two-column anabolism/catabolism table, but no star ranks and no year citations (a handwritten margin note in the scanned copy adds the examples photosynthesis and respiration — they are the standard examples and the card includes them). Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_metabolism",
+        "kind": "boxed_final",
+        "label": "Definition of metabolism",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Metabolism is the sum total of all chemical",
+          "reactions occurring in the body of a living",
+          "organism.",
+          {
+            "text": "Metabolism = sum of all chemical reactions",
+            "style": "boxed"
+          }
+        ],
+        "why": "'Sum total of all chemical reactions' is the phrase the examiner looks for — metabolism is not one reaction but the complete set going on in the body.",
+        "common_mistakes": [
+          "Writing 'metabolism is digestion' or 'energy production'. It is ALL the chemical reactions in the body, taken together.",
+          "Leaving out 'chemical reactions'. Without those words the definition is incomplete."
+        ],
+        "memory_tip": "Metabolism is the total; anabolism and catabolism are its two halves.",
+        "margin_note": "One sentence with 'sum total of all chemical reactions' earns the mark."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "text",
+        "label": "Anabolism vs catabolism",
+        "marks": 1,
+        "mark_note": "Difference",
+        "lines": [
+          "Anabolism: constructive process — simple",
+          "molecules are built into complex molecules.",
+          "Example: photosynthesis.",
+          "Catabolism: destructive process — complex",
+          "molecules are broken into simple molecules.",
+          "Example: respiration."
+        ],
+        "why": "The two halves of metabolism run in opposite directions: anabolism builds (simple to complex), catabolism breaks (complex to simple). Photosynthesis and respiration are the standard examples — the scanned book carries them as a handwritten margin note.",
+        "common_mistakes": [
+          "Swapping the two terms. Anabolism builds up; catabolism breaks down.",
+          "Giving the directions without examples. One example each (photosynthesis, respiration) completes the contrast."
+        ],
+        "memory_tip": "Anabolism Adds up; Catabolism Cuts down — match the first letters.",
+        "margin_note": "Write the contrast as two matched lines — direction plus one example on each side."
+      }
+    ]
+  },
+  "insider_note": "The definition must say 'sum total of all chemical reactions'; the contrast also earns full credit written as a small two-column table."
+}

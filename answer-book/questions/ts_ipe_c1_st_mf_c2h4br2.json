@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_mf_c2h4br2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A carbon compound contains 12.8% carbon, 2.1% hydrogen and 85.1% bromine. The molecular weight of the compound is 187.9. Calculate the molecular formula.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relative moles and simple ratio",
+      "marks": 1
+    },
+    {
+      "label": "Empirical formula and its weight",
+      "marks": 1
+    },
+    {
+      "label": "Finding n",
+      "marks": 1
+    },
+    {
+      "label": "The molecular formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK SLIP: the book's simple-ratio cell for hydrogen prints 2/1.067, dropping the .1 from the given 2.1%; both that value and the correct one round to 2, so the printed answer C₂H₄Br₂ is unchanged. This card divides every value by the true smallest, 1.064 (bromine): 2.1/1.064 = 1.97 ≈ 2. AI chemistry check 2026-08-25. Corrected a stale sentence in this note that described the card's own working as '2.1/1.067'; the card in fact divides by the smallest value 1.064. No answer or marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Stoichiometry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_moles",
+        "kind": "equation",
+        "label": "Relative moles and simple ratio",
+        "marks": 1,
+        "mark_note": "% ÷ atomic weight",
+        "lines": [
+          "Divide each percentage by the atomic weight:",
+          "C: 12.8 / 12 = 1.067",
+          "H: 2.1 / 1 = 2.1",
+          "Br: 85.1 / 80 = 1.064",
+          "Divide by the smallest (1.064):",
+          {
+            "text": "C : H : Br = 1 : 1.97 : 1 ≈ 1 : 2 : 1",
+            "style": "eq"
+          }
+        ],
+        "why": "The percentages are the masses in 100 g, so dividing by atomic weights gives relative moles, and dividing by the smallest value exposes the whole-number ratio.",
+        "common_mistakes": [
+          "Using 79 or 81 for bromine. This question uses Br = 80.",
+          "Rounding 1.97 down to 1 instead of up to 2."
+        ],
+        "memory_tip": "Percent over atomic weight, then everything over the smallest.",
+        "margin_note": "The three divisions with the 1 : 2 : 1 ratio earn this mark."
+      },
+      {
+        "id": "s2_ef",
+        "kind": "equation",
+        "label": "Empirical formula and its weight",
+        "marks": 1,
+        "mark_note": "Empirical formula",
+        "lines": [
+          {
+            "text": "Empirical formula = CH₂Br",
+            "style": "eq"
+          },
+          "Empirical formula weight = 12 + (2 × 1) + 80",
+          "= 94"
+        ],
+        "why": "The ratio 1 : 2 : 1 written as subscripts gives CH₂Br, and its formula weight 94 is needed for the next step's division.",
+        "common_mistakes": [
+          "Computing the weight as 12 + 1 + 80 = 93 by forgetting the second hydrogen.",
+          "Stopping at the empirical formula when the question asks for the molecular formula."
+        ],
+        "memory_tip": "The empirical formula weight is the bridge between the ratio and the molecular formula — compute it immediately.",
+        "margin_note": "CH₂Br with its weight 94 earns this mark."
+      },
+      {
+        "id": "s3_n",
+        "kind": "equation",
+        "label": "Finding n",
+        "marks": 1,
+        "mark_note": "n",
+        "lines": [
+          {
+            "text": "n = molecular weight / empirical formula weight",
+            "style": "eq"
+          },
+          "n = 187.9 / 94 = 2"
+        ],
+        "why": "The molecular formula contains n whole empirical units, so the two weights divide to a whole number — here 1.999, which is 2.",
+        "common_mistakes": [
+          "Inverting the division as 94 / 187.9.",
+          "Leaving n as 1.999 instead of recognising the whole number 2."
+        ],
+        "memory_tip": "n is always a small whole number — 1, 2 or 3. A value like 1.999 IS 2.",
+        "margin_note": "n = 2 with the division shown earns this mark."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The molecular formula",
+        "marks": 1,
+        "mark_note": "Molecular formula",
+        "lines": [
+          "Molecular formula = (empirical formula)ₙ = (CH₂Br)₂",
+          {
+            "text": "Molecular formula = C₂H₄Br₂",
+            "style": "boxed"
+          },
+          "Check: (2 × 12) + (4 × 1) + (2 × 80) = 188 ≈ 187.9"
+        ],
+        "why": "Doubling every subscript of CH₂Br gives the molecular formula, and its weight 188 matches the given 187.9, confirming the answer.",
+        "common_mistakes": [
+          "Writing (CH₂Br)₂ without expanding it to C₂H₄Br₂.",
+          "Doubling only the carbon subscript."
+        ],
+        "memory_tip": "Multiply every subscript by n, then confirm the weight matches the given molecular weight.",
+        "margin_note": "Box C₂H₄Br₂. The weight check is a free safety line."
+      }
+    ]
+  },
+  "insider_note": "The four marks follow the four rows of working: ratio, empirical formula with weight 94, n = 2, and the expanded C₂H₄Br₂. The examiner reads them as a checklist."
+}

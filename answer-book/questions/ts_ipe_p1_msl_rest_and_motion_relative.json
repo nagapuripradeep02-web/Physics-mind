@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_rest_and_motion_relative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The states of rest and motion are relative. Explain.",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 11,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What relative means",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 3 has NO Long Answer section in either source book. The Fastrack (pp.6-8) lists 4 Very Short Answer and 6 Short Answer questions; the TSBIE Basic Learning Material (pp.4-5) has a Short Answer section ONLY and no VSAQ section at all. So this VSAQ is the Fastrack’s alone. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. This exact cell was asked in the AP March 2026 paper, Section A question 11, which is recorded in appearances[]."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "What relative means",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "Rest and motion are not properties of a body",
+          "by itself. They are stated with respect to a",
+          "chosen frame of reference.",
+          "Change the frame and the answer changes."
+        ],
+        "why": "There is no way to test whether a body is truly at rest, so every statement about rest or motion is a statement about a comparison with something else.",
+        "common_mistakes": [
+          "Saying a body is \"really\" at rest. There is no frame that is at absolute rest."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rest and motion are stated with respect to a frame of reference, not on their own.",
+          "accept": [
+            "frame of reference",
+            "with respect to",
+            "depends on the observer"
+          ],
+          "reject": [
+            "absolute rest"
+          ],
+          "heard_as": [
+            "relative",
+            "frame of reference"
+          ]
+        },
+        "memory_tip": "Rest and motion are always \"with respect to\" something. Never on their own.",
+        "margin_note": "The phrase \"frame of reference\" is what earns this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "A person sitting in a moving bus",
+            "style": "boxed"
+          },
+          "is at rest with respect to the bus, and is in",
+          "motion with respect to a person standing on",
+          "the road. Both statements are correct."
+        ],
+        "why": "The same person is described two ways at the same instant, which is the clearest proof that neither description is a property of the person.",
+        "common_mistakes": [
+          "Giving an example with only one observer, which cannot show the idea at all."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a person in a moving bus is at rest with respect to the bus and in motion with respect to the road.",
+          "accept": [
+            "at rest with respect to the bus",
+            "moving with respect to the road"
+          ],
+          "reject": [
+            "the person is moving"
+          ],
+          "heard_as": [
+            "bus",
+            "road",
+            "at rest"
+          ]
+        },
+        "memory_tip": "One body, two observers, two correct answers. That is the whole idea.",
+        "margin_note": "Name BOTH observers or the example proves nothing."
+      }
+    ]
+  },
+  "insider_note": "Asked in AP March 2026. One example carries this answer — the same body at rest for one observer and moving for another."
+}

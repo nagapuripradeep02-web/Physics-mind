@@ -1,0 +1,74 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_antheridium_vs_archegonium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate between antheridium and archegonium.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Function of each organ", "marks": 1 },
+    { "label": "What each produces", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 1. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_organs",
+        "kind": "text",
+        "label": "Male organ vs female organ",
+        "marks": 1,
+        "mark_note": "Difference",
+        "lines": [
+          "Antheridium: the male sex organ of",
+          "bryophytes and pteridophytes.",
+          "Archegonium: the female sex organ of the",
+          "same groups. It is flask shaped."
+        ],
+        "why": "The two organs are named by the gamete they make, so the male–female contrast is the whole first difference. Both are multicellular and occur in bryophytes and pteridophytes; the flask shape belongs only to the archegonium.",
+        "common_mistakes": [
+          "Writing that the antheridium is the female organ. The archegonium is the female one.",
+          "Leaving out the flask shape of the archegonium — it is the one marked structural point."
+        ],
+        "memory_tip": "Antheridium and antherozoids share the start 'anther' — the male pair. The other organ, archegonium, holds the egg.",
+        "margin_note": "Two short contrast lines are enough — one for each organ."
+      },
+      {
+        "id": "s2_products",
+        "kind": "boxed_final",
+        "label": "What each produces",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          { "text": "Antheridium → antherozoids; archegonium → egg", "style": "boxed" },
+          "The antherozoids swim through water to",
+          "the archegonium; one fuses with the egg."
+        ],
+        "why": "What each organ produces is the second half of the difference — many motile antherozoids from the antheridium, a single non-motile egg inside the archegonium.",
+        "common_mistakes": [
+          "Writing 'eggs' — one archegonium holds a single egg.",
+          "Calling the antherozoids spores. They are gametes, not spores."
+        ],
+        "memory_tip": "Many swimmers, one egg: the male organ releases many antherozoids; the female organ keeps one egg.",
+        "margin_note": "The boxed contrast line alone can earn this mark."
+      }
+    ]
+  },
+  "insider_note": "A two-column table with one function row and one product row is the fastest full-mark form for this question."
+}

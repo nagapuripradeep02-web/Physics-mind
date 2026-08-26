@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_bagging_technique",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is bagging technique? How is it useful in plant breeding programmes?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 2
+    },
+    {
+      "label": "Unisexual flowers",
+      "marks": 1
+    },
+    {
+      "label": "Usefulness",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.18, SAQ 2). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The 2+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Bagging = covering the emasculated flower of",
+            "style": "boxed"
+          },
+          {
+            "text": "the female parent with a butter paper bag",
+            "style": "boxed"
+          },
+          "It is done during artificial hybridisation,",
+          "so no stray pollen lands on the stigma."
+        ],
+        "why": "The definition carries three parts the examiner checks: WHAT (covering with a butter paper bag), WHOM (the emasculated flower of the female parent), and WHEN (during artificial hybridisation).",
+        "common_mistakes": [
+          "Writing 'polythene bag' or just 'a cover' — the stated material is butter paper.",
+          "Leaving out 'emasculated' and 'female parent' — bagging follows emasculation on that plant."
+        ],
+        "memory_tip": "Emasculate first, then bag: remove the anthers, then seal the flower.",
+        "margin_note": "Both boxed lines together are the 2-mark definition — write the material, the flower and the timing."
+      },
+      {
+        "id": "s2_unisexual",
+        "kind": "text",
+        "label": "Unisexual flowers",
+        "marks": 1,
+        "mark_note": "Special case",
+        "lines": [
+          "If the female parent bears unisexual flowers,",
+          "the female flower buds are bagged without",
+          "emasculation — they have no anthers to remove."
+        ],
+        "why": "This special case shows you understand WHY emasculation exists at all: a female flower carries no stamens, so only the bag is needed.",
+        "common_mistakes": [
+          "Emasculating a female flower in the answer — there is nothing to remove.",
+          "Bagging after the flower opens. It is the BUD that is bagged."
+        ],
+        "memory_tip": "No anthers → nothing to cut → bag the bud directly.",
+        "margin_note": "One sentence on the unisexual case — the book states it as its own point."
+      },
+      {
+        "id": "s3_usefulness",
+        "kind": "text",
+        "label": "Usefulness",
+        "marks": 1,
+        "mark_note": "Use",
+        "lines": [
+          "The bag keeps unwanted pollen off the stigma.",
+          "When the stigma matures, only the chosen",
+          "pollen is dusted on it and the flower is",
+          "rebagged — the cross gives plants with the",
+          "desired characters."
+        ],
+        "why": "The use is contamination control: the breeder decides the male parent, so every seed formed is the intended cross, which is the whole point of a breeding programme.",
+        "common_mistakes": [
+          "Saying the bag 'protects the flower from insects' as the purpose — the purpose is pollen control.",
+          "Forgetting that the flower is rebagged after dusting the chosen pollen."
+        ],
+        "memory_tip": "Bag → dust chosen pollen → rebag. The stigma only ever meets the pollen the breeder picked.",
+        "margin_note": "Link the bag to the desired-character cross — that link is the mark."
+      }
+    ]
+  },
+  "insider_note": "Say 'butter paper bag', not just 'bag' — examiners look for the specific material as evidence the technique was actually studied."
+}

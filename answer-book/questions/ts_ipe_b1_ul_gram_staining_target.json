@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_gram_staining_target",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What part of the bacterial cell is targeted in gram staining?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The part targeted",
+      "marks": 1
+    },
+    {
+      "label": "Why it separates the two groups",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_target",
+        "kind": "text",
+        "label": "The target",
+        "marks": 1,
+        "mark_note": "The target",
+        "lines": [
+          "The cell envelope of the bacterium is the",
+          "part targeted, and within the envelope it is",
+          "the cell wall that holds the stain.",
+          "The envelope has three layers: glycocalyx,",
+          "cell wall and plasma membrane."
+        ],
+        "why": "Gram staining works only because bacteria differ in their envelope, so the envelope — and the peptidoglycan wall inside it — is what the stain is testing. The book answers 'cell envelope' alone; naming the wall inside it is what makes the answer complete.",
+        "common_mistakes": [
+          "Answering the nucleoid or the ribosome. The stain never reports on them.",
+          "Writing plasma membrane alone. It is the wall inside the envelope that holds the stain."
+        ],
+        "memory_tip": "Three envelope layers, outside in: glycocalyx, cell wall, plasma membrane.",
+        "margin_note": "Say cell envelope, then name the cell wall inside it."
+      },
+      {
+        "id": "s2_groups",
+        "kind": "boxed_final",
+        "label": "The two groups",
+        "marks": 1,
+        "mark_note": "The two groups",
+        "lines": [
+          {
+            "text": "Thick peptidoglycan holds the stain",
+            "style": "boxed"
+          },
+          "Bacteria whose wall has a thick peptidoglycan",
+          "layer keep the crystal violet stain and look",
+          "purple — these are Gram positive.",
+          "Bacteria with a thin layer lose that stain and",
+          "take the counterstain — these are Gram",
+          "negative."
+        ],
+        "why": "Both results of the test come from one difference: how thick the peptidoglycan layer is. That is the reason the wall is the target.",
+        "common_mistakes": [
+          "Writing that Gram negative bacteria have no cell wall. They have a thin one.",
+          "Writing that the stain enters the nucleoid."
+        ],
+        "memory_tip": "Positive keeps the purple; negative loses it.",
+        "margin_note": "Naming Gram positive and Gram negative earns this mark."
+      }
+    ]
+  },
+  "insider_note": "The book answers this in five words. Naming the peptidoglycan wall and the two groups is what turns it into a full 2-mark answer."
+}

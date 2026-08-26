@@ -1,0 +1,324 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_distance_ab_cd",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "If A = (1, −2, −1), B = (4, 0, −3), C = (1, 2, −1) and D = (2, −4, −5), then find the distance between the lines AB and CD.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the four position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Build the two lines in r = a + tb form",
+      "marks": 1
+    },
+    {
+      "label": "Find a − c",
+      "marks": 1
+    },
+    {
+      "label": "Find b×d",
+      "marks": 1
+    },
+    {
+      "label": "Find the numerator and |b×d|",
+      "marks": 1
+    },
+    {
+      "label": "Divide to get the distance",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 24, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP 17,17 (the book prints 17 twice). The same method as answer 23, but the lines are given as PAIRS OF POINTS rather than in r = a + tb form — so the directions have to be built before the formula can be used.⚠ THE MARK SPLIT IS OURS. No [N Marks] tags are printed against this answer, but the book DOES print them for answer 23 on book p.37 — the same method over different data — and that printed 1+1+1+1+1+2 is applied here step for step. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find the distance between two lines given by four points.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Turn the four coordinate triples into vectors before anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A(1,−2,−1), B(4,0,−3), C(1,2,−1), D(2,−4,−5)",
+          "OA = i − 2j − k,  OB = 4i − 3k,",
+          "OC = i + 2j − k,  OD = 2i − 4j − 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four coordinate points are written as position vectors from the origin.",
+          "accept": [
+            "write the four points as position vectors OA OB OC and OD",
+            "convert the coordinate triples into i j k form",
+            "turn the four points into vectors first",
+            "naalugu points ni position vectors ga rasta",
+            "write OA OB OC OD from the coordinates"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "position vectors",
+            "OA",
+            "OB",
+            "coordinates"
+          ]
+        },
+        "why": "The formula works on vectors, not on coordinate triples. Note B has no j term — write the 0 rather than leaving a gap.",
+        "common_mistakes": [
+          "Missing the zero j component of B.",
+          "Reading a coordinate in the wrong order."
+        ]
+      },
+      {
+        "id": "s2_lines",
+        "kind": "equation",
+        "label": "Build the two lines",
+        "marks": 1,
+        "mark_note": "Lines",
+        "margin_note": "Second mark. A line through two points has the first as its POINT and the difference as its DIRECTION. That is what turns four points into the r = a + tb form the formula needs.",
+        "lines": [
+          "(i) Line AB is r = a + tb, where",
+          "  a = OA = i − 2j − k",
+          "  b = AB = OB − OA = 3i + 2j − 2k",
+          "(ii) Line CD is r = c + sd, where",
+          "  c = OC = i + 2j − k",
+          "  d = CD = OD − OC = i − 6j − 4k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each line is written as point plus parameter times direction, with the direction found by subtracting the two points.",
+          "accept": [
+            "line AB has point A and direction AB which is OB minus OA, same for CD",
+            "build each line as a point plus t times a direction",
+            "the direction is the difference of the two points",
+            "prathi line ki point and direction, direction ante rendu points difference",
+            "convert the point pairs into the a plus t b form"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a plus t b",
+            "direction",
+            "AB",
+            "CD",
+            "difference"
+          ]
+        },
+        "why": "The formula from answer 23 needs a point and a direction for each line. Four points give exactly that, once the subtractions are done.",
+        "common_mistakes": [
+          "Using OB as the direction instead of OB − OA.",
+          "Subtracting the wrong way round."
+        ]
+      },
+      {
+        "id": "s3_a_minus_c",
+        "kind": "equation",
+        "label": "Find a − c",
+        "marks": 1,
+        "mark_note": "a − c",
+        "margin_note": "Third mark. The i and k terms cancel completely here, leaving a single j term — which makes the dot product below very short.",
+        "lines": [
+          "a − c = (i − 2j − k) − (i + 2j − k)",
+          "  = −4j"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a − c comes to −4j, with the i and k components cancelling.",
+          "accept": [
+            "a minus c is minus four j, the i and k parts cancel",
+            "subtracting gives only a j term, minus four j",
+            "the difference is minus four j",
+            "a minus c equals minus four j, i and k cancel avthai",
+            "only the j component survives"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus four j",
+            "a minus c",
+            "cancel",
+            "j term"
+          ]
+        },
+        "why": "A and C share their i and k coordinates, so the joining vector points purely along j. Spotting that saves work in the next step.",
+        "common_mistakes": [
+          "Getting −4j as +4j.",
+          "Carrying phantom i or k terms through."
+        ]
+      },
+      {
+        "id": "s4_cross",
+        "kind": "equation",
+        "label": "Find b×d",
+        "marks": 1,
+        "mark_note": "b × d",
+        "margin_note": "Fourth mark. Cross the two DIRECTIONS, not the points.",
+        "lines": [
+          {
+            "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 3 & 2 & -2 \\\\ 1 & -6 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−8 − 12) − j(−12 + 2) + k(−18 − 2)",
+          "= −20i + 10j − 20k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b×d is computed from the two direction vectors, giving −20i + 10j − 20k.",
+          "accept": [
+            "cross the two directions to get minus twenty i plus ten j minus twenty k",
+            "b cross d comes from the direction vectors",
+            "take the cross product of AB and CD",
+            "rendu directions cross cheste minus twenty i plus ten j minus twenty k",
+            "compute the cross product determinant"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross d",
+            "minus twenty",
+            "ten j",
+            "directions"
+          ]
+        },
+        "why": "The cross product is non-zero, which is what confirms the two lines are not parallel — a necessary condition before this formula applies at all.",
+        "common_mistakes": [
+          "Crossing the position vectors instead of the directions.",
+          "Sign slip on the j term."
+        ]
+      },
+      {
+        "id": "s5_pieces",
+        "kind": "equation",
+        "label": "Numerator and denominator",
+        "marks": 1,
+        "mark_note": "Both pieces",
+        "margin_note": "Fifth mark. Because a − c is only a j term, the dot product picks out just the j component of b×d — one multiplication instead of three.",
+        "lines": [
+          "(a − c)·(b × d) = (−4j)·(−20i + 10j − 20k)",
+          "  = −4(10) = −40",
+          "|b × d| = √(400 + 100 + 400) = √900 = 30"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is −40 and |b×d| is 30.",
+          "accept": [
+            "the dot product is minus forty and the magnitude is thirty",
+            "minus four times ten gives minus forty, and root nine hundred is thirty",
+            "numerator minus forty, denominator thirty",
+            "dot product minus forty, magnitude thirty",
+            "the two pieces are minus forty and thirty"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus forty",
+            "thirty",
+            "nine hundred",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "why": "A dot product with a single-component vector only ever picks up one term. Recognising that is a real time saving under exam conditions.",
+        "common_mistakes": [
+          "Multiplying all three components of b×d by −4.",
+          "Forgetting the square root of 900."
+        ]
+      },
+      {
+        "id": "s6_divide",
+        "kind": "boxed_final",
+        "label": "Divide",
+        "marks": 2,
+        "mark_note": "Distance",
+        "margin_note": "The last two marks. The modulus makes the −40 positive, and 40/30 cancels to 4/3. Leave it as a fraction — decimals are not expected.",
+        "lines": [
+          "S.D = |(a−c)·(b×d)| / |b×d|",
+          "= |−40| / 30 = 40/30",
+          {
+            "text": "∴ Distance = 4/3 units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the modulus makes it 40/30, which cancels to 4/3 units.",
+          "accept": [
+            "mod of minus forty over thirty is forty over thirty which is four thirds",
+            "the distance is four by three units",
+            "cancelling gives four over three",
+            "forty by thirty equals four by three units",
+            "the answer is four thirds"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "four by three",
+            "four thirds",
+            "forty over thirty",
+            "units"
+          ]
+        },
+        "why": "The modulus is what makes the sign of the numerator irrelevant — a distance cannot be negative however the subtraction was ordered.",
+        "common_mistakes": [
+          "Reporting −4/3.",
+          "Leaving the answer as 40/30 uncancelled."
+        ]
+      }
+    ]
+  }
+}

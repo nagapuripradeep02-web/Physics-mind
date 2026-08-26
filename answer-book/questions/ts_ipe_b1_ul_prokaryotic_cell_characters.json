@@ -1,0 +1,441 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_prokaryotic_cell_characters",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the characteristics of a prokaryotic cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Which organisms, no true nucleus",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    },
+    {
+      "label": "Genetic material",
+      "marks": 1
+    },
+    {
+      "label": "Envelope, ribosomes, mesosome",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERROR: the book prints 'Only 70S ribosomes, cell organelles are found in prokaryotic cell', which as written states that cell organelles ARE present. The correct statement is that prokaryotes have 70S ribosomes and NO membrane bound organelles; this card writes the correct form and records the book's sentence."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group",
+        "kind": "text",
+        "label": "No true nucleus",
+        "marks": 1,
+        "mark_note": "The group",
+        "lines": [
+          "Prokaryotic cells are found in bacteria, in",
+          "blue-green algae, in mycoplasma and in PPLO.",
+          "They are generally smaller than eukaryotic",
+          "cells and multiply more rapidly.",
+          "A prokaryotic cell has no well defined",
+          "nucleus."
+        ],
+        "why": "Pro-karyon means before the nucleus. Naming the four groups and saying there is no true nucleus covers the heart of the question in two sentences.",
+        "common_mistakes": [
+          "Including fungi or yeast. Both are eukaryotic.",
+          "Writing that blue-green algae are eukaryotic. They are cyanobacteria, and prokaryotic."
+        ],
+        "memory_tip": "Karyon means nucleus. Pro-karyotic = before a nucleus; eu-karyotic = a true nucleus.",
+        "margin_note": "All four groups named earns this mark."
+      },
+      {
+        "id": "s2_diagram",
+        "kind": "diagram",
+        "label": "Labelled diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "prokaryotic_cell",
+          "width": 520,
+          "height": 288,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "capsule",
+              "d": "M 202.0 88 L 318.0 88 L 318.0 88.0 L 328.8 88.9 L 339.2 91.7 L 349.0 96.3 L 357.9 102.5 L 365.5 110.1 L 371.7 119.0 L 376.3 128.8 L 379.1 139.2 L 380.0 150.0 L 379.1 160.8 L 376.3 171.2 L 371.7 181.0 L 365.5 189.9 L 357.9 197.5 L 349.0 203.7 L 339.2 208.3 L 328.8 211.1 L 318.0 212.0 L 202.0 212 L 202.0 212.0 L 191.2 211.1 L 180.8 208.3 L 171.0 203.7 L 162.1 197.5 L 154.5 189.9 L 148.3 181.0 L 143.7 171.2 L 140.9 160.8 L 140.0 150.0 L 140.9 139.2 L 143.7 128.8 L 148.3 119.0 L 154.5 110.1 L 162.1 102.5 L 171.0 96.3 L 180.8 91.7 L 191.2 88.9 L 202.0 88.0 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "cell_wall",
+              "d": "M 202.0 94 L 318.0 94 L 318.0 94.0 L 327.7 94.9 L 337.2 97.4 L 346.0 101.5 L 354.0 107.1 L 360.9 114.0 L 366.5 122.0 L 370.6 130.8 L 373.1 140.3 L 374.0 150.0 L 373.1 159.7 L 370.6 169.2 L 366.5 178.0 L 360.9 186.0 L 354.0 192.9 L 346.0 198.5 L 337.2 202.6 L 327.7 205.1 L 318.0 206.0 L 202.0 206 L 202.0 206.0 L 192.3 205.1 L 182.8 202.6 L 174.0 198.5 L 166.0 192.9 L 159.1 186.0 L 153.5 178.0 L 149.4 169.2 L 146.9 159.7 L 146.0 150.0 L 146.9 140.3 L 149.4 130.8 L 153.5 122.0 L 159.1 114.0 L 166.0 107.1 L 174.0 101.5 L 182.8 97.4 L 192.3 94.9 L 202.0 94.0 Z",
+              "ms": 820
+            },
+            {
+              "type": "stroke",
+              "id": "plasma_membrane",
+              "d": "M 202.0 100 L 318.0 100 L 318.0 100.0 L 326.7 100.8 L 335.1 103.0 L 343.0 106.7 L 350.1 111.7 L 356.3 117.9 L 361.3 125.0 L 365.0 132.9 L 367.2 141.3 L 368.0 150.0 L 367.2 158.7 L 365.0 167.1 L 361.3 175.0 L 356.3 182.1 L 350.1 188.3 L 343.0 193.3 L 335.1 197.0 L 326.7 199.2 L 318.0 200.0 L 202.0 200 L 202.0 200.0 L 193.3 199.2 L 184.9 197.0 L 177.0 193.3 L 169.9 188.3 L 163.7 182.1 L 158.7 175.0 L 155.0 167.1 L 152.8 158.7 L 152.0 150.0 L 152.8 141.3 L 155.0 132.9 L 158.7 125.0 L 163.7 117.9 L 169.9 111.7 L 177.0 106.7 L 184.9 103.0 L 193.3 100.8 L 202.0 100.0 Z",
+              "ms": 760
+            },
+            {
+              "type": "stroke",
+              "id": "nucleoid",
+              "d": "M 266.0 150.0 L 267.6 152.3 L 268.7 154.7 L 269.1 157.3 L 268.6 159.8 L 267.4 162.2 L 265.3 164.4 L 262.5 166.2 L 259.1 167.5 L 255.4 168.4 L 251.6 168.9 L 247.7 169.1 L 244.1 168.9 L 240.7 168.6 L 237.6 168.3 L 234.8 168.1 L 232.0 168.0 L 229.2 168.1 L 226.4 168.3 L 223.3 168.6 L 219.9 168.9 L 216.3 169.1 L 212.4 168.9 L 208.6 168.4 L 204.9 167.5 L 201.5 166.2 L 198.7 164.4 L 196.6 162.2 L 195.4 159.8 L 194.9 157.3 L 195.3 154.7 L 196.4 152.3 L 198.0 150.0 L 199.9 148.0 L 202.0 146.1 L 204.0 144.5 L 205.8 143.0 L 207.4 141.5 L 208.7 139.9 L 209.9 138.3 L 211.0 136.4 L 212.3 134.4 L 213.8 132.4 L 215.7 130.3 L 218.1 128.3 L 221.0 126.5 L 224.4 125.2 L 228.1 124.3 L 232.0 124.0 L 235.9 124.3 L 239.6 125.2 L 243.0 126.5 L 245.9 128.3 L 248.3 130.3 L 250.2 132.4 L 251.7 134.4 L 253.0 136.4 L 254.1 138.3 L 255.3 139.9 L 256.6 141.5 L 258.2 143.0 L 260.0 144.5 L 262.0 146.1 L 264.1 148.0 L 266.0 150.0 Z",
+              "ms": 620,
+              "w": 1.9
+            },
+            {
+              "type": "stroke",
+              "id": "plasmid",
+              "d": "M 335.2 128.0 L 335.4 129.1 L 335.3 130.1 L 334.8 131.1 L 334.0 132.0 L 332.9 132.8 L 331.6 133.4 L 330.2 133.8 L 328.8 134.1 L 327.4 134.3 L 326.2 134.4 L 325.0 134.5 L 324.0 134.7 L 323.0 134.9 L 322.1 135.2 L 321.1 135.6 L 320.0 136.0 L 318.8 136.5 L 317.5 136.9 L 316.0 137.1 L 314.5 137.3 L 312.9 137.2 L 311.4 136.9 L 310.1 136.3 L 309.0 135.6 L 308.2 134.7 L 307.7 133.7 L 307.5 132.6 L 307.6 131.6 L 307.8 130.6 L 308.3 129.6 L 308.7 128.8 L 309.2 128.0 L 309.6 127.3 L 309.8 126.6 L 309.9 125.9 L 310.0 125.1 L 310.0 124.3 L 310.0 123.4 L 310.1 122.4 L 310.4 121.4 L 310.9 120.4 L 311.7 119.4 L 312.8 118.6 L 314.0 118.0 L 315.5 117.7 L 317.0 117.6 L 318.5 117.7 L 320.0 118.0 L 321.3 118.6 L 322.5 119.2 L 323.5 119.9 L 324.4 120.6 L 325.2 121.3 L 325.9 121.9 L 326.6 122.4 L 327.4 122.9 L 328.3 123.3 L 329.3 123.7 L 330.4 124.1 L 331.6 124.7 L 332.7 125.3 L 333.8 126.1 L 334.6 127.0 L 335.2 128.0 Z",
+              "ms": 320,
+              "w": 1.7
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_1",
+              "d": "M 183.0 120.0 L 182.6 121.5 L 181.5 122.6 L 180.0 123.0 L 178.5 122.6 L 177.4 121.5 L 177.0 120.0 L 177.4 118.5 L 178.5 117.4 L 180.0 117.0 L 181.5 117.4 L 182.6 118.5 L 183.0 120.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_2",
+              "d": "M 199.0 178.0 L 198.6 179.5 L 197.5 180.6 L 196.0 181.0 L 194.5 180.6 L 193.4 179.5 L 193.0 178.0 L 193.4 176.5 L 194.5 175.4 L 196.0 175.0 L 197.5 175.4 L 198.6 176.5 L 199.0 178.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_3",
+              "d": "M 271.0 116.0 L 270.6 117.5 L 269.5 118.6 L 268.0 119.0 L 266.5 118.6 L 265.4 117.5 L 265.0 116.0 L 265.4 114.5 L 266.5 113.4 L 268.0 113.0 L 269.5 113.4 L 270.6 114.5 L 271.0 116.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_4",
+              "d": "M 253.0 186.0 L 252.6 187.5 L 251.5 188.6 L 250.0 189.0 L 248.5 188.6 L 247.4 187.5 L 247.0 186.0 L 247.4 184.5 L 248.5 183.4 L 250.0 183.0 L 251.5 183.4 L 252.6 184.5 L 253.0 186.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_5",
+              "d": "M 343.0 168.0 L 342.6 169.5 L 341.5 170.6 L 340.0 171.0 L 338.5 170.6 L 337.4 169.5 L 337.0 168.0 L 337.4 166.5 L 338.5 165.4 L 340.0 165.0 L 341.5 165.4 L 342.6 166.5 L 343.0 168.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_6",
+              "d": "M 213.0 192.0 L 212.6 193.5 L 211.5 194.6 L 210.0 195.0 L 208.5 194.6 L 207.4 193.5 L 207.0 192.0 L 207.4 190.5 L 208.5 189.4 L 210.0 189.0 L 211.5 189.4 L 212.6 190.5 L 213.0 192.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ribosome_7",
+              "d": "M 303.0 118.0 L 302.6 119.5 L 301.5 120.6 L 300.0 121.0 L 298.5 120.6 L 297.4 119.5 L 297.0 118.0 L 297.4 116.5 L 298.5 115.4 L 300.0 115.0 L 301.5 115.4 L 302.6 116.5 L 303.0 118.0 Z",
+              "ms": 140,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mesosome",
+              "d": "M 300.0 200.0 L 295.5 199.3 L 291.3 197.8 L 287.5 195.6 L 284.3 192.7 L 281.6 189.3 L 279.7 185.5 L 278.5 181.5 L 278.1 177.3 L 278.5 173.2 L 279.6 169.3 L 281.5 165.8 L 283.9 162.6 L 286.9 160.0 L 290.2 158.1 L 293.8 156.8 L 297.6 156.3 L 301.3 156.4 L 304.9 157.2 L 308.2 158.7 L 311.1 160.8 L 313.6 163.3 L 315.5 166.2 L 316.9 169.4 L 317.5 172.7 L 317.6 176.1 L 317.0 179.3 L 315.8 182.4 L 314.1 185.1 L 312.0 187.4 L 309.5 189.2 L 306.7 190.6 L 303.8 191.3 L 300.9 191.5 L 298.0 191.1 L 295.3 190.2 L 292.8 188.9 L 290.7 187.1 L 289.0 185.0 L 287.7 182.6 L 286.9 180.1 L 286.6 177.6 L 286.8 175.1 L 287.5 172.7 L 288.6 170.5 L 290.0 168.6 L 291.7 167.0 L 293.7 165.9 L 295.8 165.1 L 298.0 164.8 L 300.1 164.8 L 302.1 165.3 L 304.0 166.1 L 305.7 167.3 L 307.0 168.7 L 308.1 170.3 L 308.7 172.0 L 309.1 173.8 L 309.1 175.5 L 308.8 177.2 L 308.1 178.7 L 307.3 180.1 L 306.2 181.2 L 304.9 182.1 L 303.6 182.7 L 302.2 183.0 L 300.8 183.0 L 299.5 182.8 L 298.3 182.3 L 297.3 181.7 L 296.4 180.8 L 295.7 179.9 L 295.3 178.9 L 295.1 177.9 L 295.1 176.9",
+              "ms": 620,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_top_1",
+              "d": "M 220.0 88 L 223.0 68",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_top_2",
+              "d": "M 262.0 88 L 265.0 68",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_top_3",
+              "d": "M 304.0 88 L 307.0 68",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_top_4",
+              "d": "M 346.0 88 L 349.0 68",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_left",
+              "d": "M 154.5 110.1 L 140.7 98.5",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_bot_1",
+              "d": "M 250 212 L 246 232",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "pilus_bot_2",
+              "d": "M 300 212 L 302 232",
+              "ms": 150,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "flagellum",
+              "d": "M 142.0 158.0 L 138.3 157.8 L 134.9 157.8 L 131.9 158.2 L 129.5 159.1 L 127.8 160.6 L 126.8 162.8 L 126.4 165.5 L 126.6 168.7 L 127.2 172.2 L 127.9 175.9 L 128.5 179.4 L 128.8 182.7 L 128.6 185.5 L 127.7 187.8 L 126.1 189.4 L 123.9 190.5 L 121.0 191.0 L 117.6 191.0 L 113.9 190.8 L 110.2 190.6 L 106.7 190.6 L 103.6 190.9 L 101.1 191.7 L 99.2 193.1 L 98.1 195.1 L 97.6 197.7 L 97.7 200.8 L 98.2 204.3 L 98.9 207.9 L 99.6 211.5 L 100.0 214.9 L 99.9 217.8 L 99.1 220.2 L 97.7 222.0 L 95.6 223.1 L 92.8 223.7 L 89.5 223.8 L 85.9 223.7 L 82.2 223.5 L 78.6 223.4 L 75.4 223.6 L 72.8 224.3 L 70.8 225.5 L 69.5 227.4 L 68.9 229.9 L 68.9 233.0 L 69.3 236.4 L 70.0 240.0",
+              "ms": 820,
+              "w": 2.0
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pilus",
+              "d": "M 60 50 L 136 92",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pilus",
+              "x": 6,
+              "y": 44,
+              "text": "Pilus",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_capsule",
+              "d": "M 80 102 L 143 128",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_capsule",
+              "x": 6,
+              "y": 96,
+              "text": "Capsule",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_wall",
+              "d": "M 100 146 L 145 150",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_wall",
+              "x": 6,
+              "y": 148,
+              "text": "Cell wall",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_pm",
+              "d": "M 118 194 L 154 169",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_pm",
+              "x": 6,
+              "y": 200,
+              "text": "Plasmalemma",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_flagellum",
+              "d": "M 60 262 L 78 236",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_flagellum",
+              "x": 6,
+              "y": 268,
+              "text": "Flagellum",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cytoplasm",
+              "d": "M 396 58 L 338 104",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_cytoplasm",
+              "x": 400,
+              "y": 52,
+              "text": "Cytoplasm",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_plasmid",
+              "d": "M 396 106 L 334 126",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_plasmid",
+              "x": 400,
+              "y": 100,
+              "text": "Plasmid",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_nucleoid",
+              "d": "M 396 154 L 268 152",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_nucleoid",
+              "x": 400,
+              "y": 148,
+              "text": "Nucleoid",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_mesosome",
+              "d": "M 396 190 L 328 180",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_mesosome",
+              "x": 400,
+              "y": 196,
+              "text": "Mesosome",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ribosomes",
+              "d": "M 396 238 L 346 174",
+              "ms": 260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_ribosomes",
+              "x": 400,
+              "y": 244,
+              "text": "Ribosomes",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The marked labels are cell wall, plasma membrane, nucleoid, ribosomes and mesosome, with the capsule outside and the flagellum and pili on the surface.",
+        "common_mistakes": [
+          "Drawing a nucleus with a membrane round it. The DNA lies free as a nucleoid.",
+          "Drawing mitochondria or plastids inside. A prokaryote has none."
+        ],
+        "memory_tip": "Three coats outside — capsule, wall, membrane — and nothing membrane bound inside.",
+        "margin_note": "Draw the three envelope layers as three lines."
+      },
+      {
+        "id": "s3_genetic",
+        "kind": "text",
+        "label": "Genetic material",
+        "marks": 1,
+        "mark_note": "Nucleoid",
+        "lines": [
+          "The genetic material is naked: it is not",
+          "enclosed by a nuclear membrane.",
+          "It lies in the cytoplasm as a single circular",
+          "DNA molecule called the nucleoid.",
+          "Besides this genomic DNA, many bacteria carry",
+          "a small circular DNA called a plasmid, which",
+          "gives characters such as resistance to",
+          "antibiotics."
+        ],
+        "why": "Naked DNA is the defining feature of the group, and the plasmid is the extra circle that lies apart from the nucleoid.",
+        "common_mistakes": [
+          "Writing that the nucleoid is bound by a membrane.",
+          "Calling the plasmid the main genome. It is a small extra circle."
+        ],
+        "memory_tip": "One big circle is the nucleoid; the small extra circle is the plasmid.",
+        "margin_note": "The word 'naked' is worth writing — it is the marked word."
+      },
+      {
+        "id": "s4_envelope",
+        "kind": "boxed_final",
+        "label": "Envelope and organelles",
+        "marks": 1,
+        "mark_note": "Envelope + 70S",
+        "lines": [
+          {
+            "text": "No nuclear membrane, no bound organelles",
+            "style": "boxed"
+          },
+          "The cell envelope has three layers:",
+          "glycocalyx, cell wall and plasma membrane.",
+          "The ribosomes are 70S.",
+          "A mesosome is an infolding of the plasma",
+          "membrane.",
+          "Membrane bound organelles such as",
+          "mitochondria, plastids, Golgi and lysosomes",
+          "are all absent."
+        ],
+        "why": "Everything a prokaryote does with a membrane it does with the plasma membrane itself, folded inwards as a mesosome, because it has no separate membrane bound organelles. The book's printed sentence here is broken and reads as though organelles are present.",
+        "common_mistakes": [
+          "Writing 80S ribosomes. Prokaryotic ribosomes are 70S.",
+          "Writing that a mesosome is a separate organelle. It is a fold of the plasma membrane."
+        ],
+        "memory_tip": "70S ribosomes and a mesosome instead of organelles — that pair is the prokaryote signature.",
+        "margin_note": "Say clearly that membrane bound organelles are absent."
+      }
+    ]
+  },
+  "insider_note": "The book's own sentence here is broken and reads as though organelles are present. Write plainly that membrane bound organelles are absent — that is the marked point."
+}

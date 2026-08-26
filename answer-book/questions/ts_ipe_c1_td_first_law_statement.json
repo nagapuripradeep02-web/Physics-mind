@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_first_law_statement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the first law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Mathematical form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Thermodynamics syllabus: the Fastrack chemistry section (book pp.73-75) asks the second law (VSAQ 6), the third law (VSAQ 7) and the mathematical form of the first law as an SAQ, but never the plain two-mark statement of the first law itself. Only ONE source book is held for chemistry, so the two-book union check is PENDING — a second source may show this asked. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a claim until a Telangana IPE teacher confirms it. Sign convention: ΔU = q + w with w = work done ON the system (NCERT), matching the SAQ card ts_ipe_c1_td_first_law_math."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "First law of thermodynamics: energy can",
+          "neither be created nor destroyed; it can",
+          "only change from one form to another.",
+          "The total energy of the universe is",
+          "constant."
+        ],
+        "why": "The first law is the law of conservation of energy applied to heat and work — it counts every joule a system gains or loses.",
+        "common_mistakes": [
+          "Mixing in entropy — that is the second law, not the first."
+        ],
+        "memory_tip": "First law: energy is conserved. Second law: entropy increases. Keep the two sentences apart.",
+        "margin_note": "The conservation sentence earns this mark."
+      },
+      {
+        "id": "s2_math",
+        "kind": "boxed_final",
+        "label": "Mathematical form",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "For a system absorbing heat q, with w the",
+          "work done on the system:",
+          {
+            "text": "ΔU = q + w (w = work done on the system)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The equation is the law in symbols: the internal energy changes only by the heat and the work that cross the boundary. With w counted as work done on the system, both terms enter with plus signs.",
+        "common_mistakes": [
+          "Writing ΔU = q − w while calling w the work done on the system — the minus form belongs to the older work-done-by convention."
+        ],
+        "memory_tip": "Both q and w are energy given to the system, so both are added.",
+        "margin_note": "State whose work w is; the sign convention is part of the equation."
+      }
+    ]
+  }
+}

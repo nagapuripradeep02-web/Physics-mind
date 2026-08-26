@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_zwitterionic_form_amino_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the zwitterionic form of an amino acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two groups ionise",
+      "marks": 1
+    },
+    {
+      "label": "Definition of the zwitterion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 3. The book prints 'P^H' (scan noise for pH) and 'converting NH2 to NH3+ & COOH to COO-'; the chemistry is correct and is written out here in full symbols. The book does not say where this form dominates — the standard point (neutral pH) is added. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ionisation",
+        "kind": "text",
+        "label": "The two groups ionise",
+        "marks": 1,
+        "mark_note": "Ionisation",
+        "lines": [
+          "An amino acid carries an amino group –NH₂",
+          "and a carboxyl group –COOH on the same",
+          "carbon atom.",
+          "Depending on the pH of the solution:",
+          "amino group takes a proton, –NH₂ → –NH₃⁺",
+          "carboxyl group loses a proton, –COOH → –COO⁻"
+        ],
+        "why": "The two groups behave in opposite ways: the amino group is basic and accepts a proton, the carboxyl group is acidic and gives one away. That is how one amino acid can carry both charges at once.",
+        "common_mistakes": [
+          "Swapping the two changes. The amino group GAINS a proton; the carboxyl group LOSES one.",
+          "Leaving out the charges. –NH₃⁺ and –COO⁻ must be written with their signs."
+        ],
+        "memory_tip": "Amino group takes a proton and turns positive; carboxyl group gives one away and turns negative.",
+        "margin_note": "Write both changes with arrows. The two ionisation lines carry this mark."
+      },
+      {
+        "id": "s2_definition",
+        "kind": "boxed_final",
+        "label": "Definition of the zwitterion",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Zwitterion = one positive + one negative charge, net charge zero",
+            "style": "boxed"
+          },
+          "The amino acid then carries equal positive",
+          "and negative charges on the same molecule.",
+          "This dipolar form is called the zwitterionic",
+          "form. It is the usual form at neutral pH."
+        ],
+        "why": "'Zwitter' means double, so the name records that the molecule carries two opposite charges at the same time. The charges are equal, so the molecule as a whole is neutral.",
+        "common_mistakes": [
+          "Writing that the zwitterion has a net positive or net negative charge. The net charge is zero.",
+          "Calling it a neutral molecule with no charges. It has both charges; they cancel."
+        ],
+        "memory_tip": "Zwitter means double — double charge, zero total.",
+        "margin_note": "The words 'no net charge' must appear. That is what the examiner ticks."
+      }
+    ]
+  },
+  "insider_note": "The mark is lost most often for writing the charges without signs. Write –NH₃⁺ and –COO⁻ exactly."
+}

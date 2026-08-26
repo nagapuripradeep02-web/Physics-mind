@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_root2_sin_plus_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve √2(sinx + cosx) = √3.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand and divide by √(a²+b²)",
+      "marks": 1
+    },
+    {
+      "label": "Recognise the standard angles",
+      "marks": 1
+    },
+    {
+      "label": "Collapse to one function",
+      "marks": 1
+    },
+    {
+      "label": "Write the general solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.68 — SAQ chapter 11 Trigonometric Equations, answer 70.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15 · TS 16. The twin of 70.1. Here the two coefficients are EQUAL, so both become 1/√2 — which is cos45° and sin45° at once, and the equation collapses to a COSINE rather than a sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns, which takes the margin those tags would occupy). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used across this unit are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q15 is the Trigonometric Equations slot. NOTE: Trigonometric Equations is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Trigonometric Equations LAQ chapter (its LAQ chapters are 1-6) and no VSAQ chapter (its VSAQ chapters are 14-19). It is the mirror of Unit 2, which is LAQ-only. Verified by walking to p.72, where SAQ chapter 12 Inverse Trig Functions begins."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_and_divide_by_a_b",
+        "kind": "equation",
+        "label": "Expand and divide by √(a²+b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Multiply the bracket out first so the coefficients are visible, then divide by √(a²+b²) — which is 2 again, since (√2)² + (√2)² = 4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given √2(sinx + cosx) = √3",
+          "⇒ √2 sinx + √2 cosx = √3",
+          "Divide by √((√2)² + (√2)²) = √4 = 2:",
+          "⇒ (1/√2) sinx + (1/√2) cosx = √3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is expanded and both sides divided by 2, giving coefficients of 1/√2.",
+          "accept": [
+            "expand the bracket then divide by two so both coefficients become one over root two",
+            "multiply out and divide by the root of two plus two which is two",
+            "both coefficients come out as one over root two",
+            "bracket expand chesi two tho divide cheste one by root two vasthundi",
+            "divide by two after expanding"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one over root two",
+            "divide by two",
+            "expand the bracket"
+          ]
+        },
+        "why": "Leaving the √2 outside the bracket hides the coefficients. Expanding first is what lets √(a²+b²) be computed at all.",
+        "common_mistakes": [
+          "Dividing by √2 because it is outside the bracket.",
+          "Not expanding and taking a = 1, b = 1."
+        ]
+      },
+      {
+        "id": "s2_recognise_the_standard_ang",
+        "kind": "equation",
+        "label": "Recognise the standard angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so this pattern is cosA cosB + sinA sinB — the cos(A−B) form, not a sine one.",
+        "lines": [
+          "⇒ cosx cos45° + sinx sin45° = cos30°",
+          "⇒ cosx cos(π/4) + sinx sin(π/4) = cos(π/6)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/√2 is read as cos45° and sin45°, and √3/2 as cos30° — matching the cos(A−B) pattern.",
+          "accept": [
+            "one over root two is both cos forty five and sin forty five and root three over two is cos thirty",
+            "recognise the pattern as cos A cos B plus sin A sin B",
+            "the right side is cos thirty",
+            "one by root two ante cos forty five and sin forty five, root three by two cos thirty",
+            "match to the cosine compound angle pattern"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos forty five",
+            "sin forty five",
+            "cos thirty",
+            "cos A minus B"
+          ]
+        },
+        "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why this twin gives a cosine equation where the other gave a sine.",
+        "common_mistakes": [
+          "Reading √3/2 as sin60° and finishing with a sine equation.",
+          "Using the sin(A+B) pattern."
+        ]
+      },
+      {
+        "id": "s3_collapse_to_one_function",
+        "kind": "equation",
+        "label": "Collapse to one function",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. cosA cosB + sinA sinB is cos(A−B). The principal value is π/6.",
+        "lines": [
+          "⇒ cos(x − π/4) = cos(π/6)",
+          "  [∵ cosA cosB + sinA sinB = cos(A−B)]",
+          "Here the principal value is α = π/6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation becomes cos(x − π/4) = cos(π/6) with principal value π/6.",
+          "accept": [
+            "it becomes cos of x minus pi by four equals cos pi by six so the P V is pi by six",
+            "collapse to a single cosine, principal value pi by six",
+            "apply cos A minus B",
+            "cos x minus pi by four equals cos pi by six, P V pi by six",
+            "the principal value is pi by six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos x minus pi by four",
+            "cos pi by six",
+            "principal value"
+          ]
+        },
+        "why": "A cosine equation and a sine equation have DIFFERENT general solutions, so which function the left side collapses into decides the last line entirely.",
+        "common_mistakes": [
+          "Writing cos(x + π/4).",
+          "Taking the principal value as π/4."
+        ]
+      },
+      {
+        "id": "s4_write_the_general_solution",
+        "kind": "boxed_final",
+        "label": "Write the general solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. For a COSINE equation the general solution is 2nπ ± α — note the ± and the 2n, both different from the sine form.",
+        "lines": [
+          "For cosθ = cosα, the general solution is",
+          "θ = 2nπ ± α,  n ∈ Z",
+          "⇒ x − π/4 = 2nπ ± π/6",
+          {
+            "text": "∴ x = 2nπ ± π/6 + π/4,  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosine general solution θ = 2nπ ± α is used, giving x = 2nπ ± π/6 + π/4 with n ∈ Z.",
+          "accept": [
+            "for cosine the general solution is two n pi plus or minus alpha so x is two n pi plus or minus pi by six plus pi by four",
+            "use the cosine general solution with the plus minus",
+            "the answer is two n pi plus or minus pi by six plus pi by four",
+            "cosine ki two n pi plus or minus alpha",
+            "write the general solution with n belongs to Z"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two n pi",
+            "plus or minus",
+            "general solution",
+            "pi by four"
+          ]
+        },
+        "why": "Cosine is even, so both +α and −α satisfy the equation — which is why its general solution carries a ± where the sine form carries (−1)ⁿ.",
+        "common_mistakes": [
+          "Using nπ + (−1)ⁿα for a cosine equation.",
+          "Dropping the ± sign.",
+          "Forgetting to add π/4 back."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_xy_yz_zx_one",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If Tan⁻¹x + Tan⁻¹y + Tan⁻¹z = π/2, then prove that xy + yz + zx = 1.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Name the three angles",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange and take tangents",
+      "marks": 2
+    },
+    {
+      "label": "Substitute and rearrange",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 12 Inverse Trig Functions, answer 79. Printed appearances: TS 17. The only question in the chapter with no numbers at all. Nothing is evaluated — the three inverses are named as angles and the condition is pushed through the tangent addition formula. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_three_angles",
+        "kind": "equation",
+        "label": "Name the three angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Let each inverse be an angle, so its tangent is the corresponding letter. The condition then becomes a plain statement about three angles.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let Tan⁻¹x = A ⇒ tanA = x",
+          "Tan⁻¹y = B ⇒ tanB = y",
+          "Tan⁻¹z = C ⇒ tanC = z",
+          "Hence A + B + C = π/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three inverses are named A, B, C with tanA = x, tanB = y, tanC = z, and the condition becomes A + B + C = π/2.",
+          "accept": [
+            "let each inverse be an angle so tan A is x tan B is y tan C is z and A plus B plus C is pi by two",
+            "name the three angles and note their tangents",
+            "convert the condition into a statement about three angles",
+            "moodintini angles ga peru petti, tan values x y z",
+            "take the inverses as A B and C"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan A equals x",
+            "A plus B plus C",
+            "pi by two",
+            "name the angles"
+          ]
+        },
+        "why": "The letters x, y, z are tangents in disguise. Naming the angles is what lets the ordinary tangent formulas be used on them.",
+        "common_mistakes": [
+          "Trying to manipulate the inverses directly.",
+          "Forgetting to write down what each tangent equals."
+        ]
+      },
+      {
+        "id": "s2_rearrange_and_take_tangent",
+        "kind": "equation",
+        "label": "Rearrange and take tangents",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Move C across, then take the tangent of both sides. tan(π/2 − C) is cot C, which is 1/tan C — and that is where the z ends up in a denominator.",
+        "lines": [
+          "A + B + C = π/2 ⇒ A + B = π/2 − C",
+          "⇒ tan(A + B) = tan(π/2 − C)",
+          "⇒ (tanA + tanB)/(1 − tanA tanB) = cotC = 1/tanC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = π/2 − C, tangents are taken of both sides, and tan(π/2 − C) = cot C = 1/tan C.",
+          "accept": [
+            "move C across then take tan of both sides, tan of pi by two minus C is cot C which is one over tan C",
+            "rearrange and use the tangent addition formula on the left",
+            "the right side becomes cot C or one over tan C",
+            "C ni other side ki teesi tan teeskovali, cot C vasthundi",
+            "take tangents of both sides after rearranging"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan A plus B",
+            "pi by two minus C",
+            "cot C",
+            "one over tan C"
+          ]
+        },
+        "why": "tan(90° − θ) = cot θ is what turns the right side into a reciprocal — and it is that reciprocal that produces the symmetric answer.",
+        "common_mistakes": [
+          "Writing tan(π/2 − C) = tan C.",
+          "Taking tangents before rearranging, which leaves three angles inside one tangent."
+        ]
+      },
+      {
+        "id": "s3_substitute_and_rearrange",
+        "kind": "boxed_final",
+        "label": "Substitute and rearrange",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Put the letters back in and cross-multiply. The z distributes over (x+y), and moving the xy across gives the symmetric result.",
+        "lines": [
+          "⇒ (x + y)/(1 − xy) = 1/z",
+          "⇒ z(x + y) = 1 − xy",
+          "⇒ zx + yz = 1 − xy",
+          {
+            "text": "∴ xy + yz + zx = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives (x+y)/(1−xy) = 1/z, and cross-multiplying and rearranging gives xy + yz + zx = 1.",
+          "accept": [
+            "substitute the letters back and cross multiply to get z x plus y equals one minus x y then rearrange to x y plus y z plus z x equals one",
+            "cross multiply and move the x y across",
+            "the answer is x y plus y z plus z x equals one",
+            "substitute chesi cross multiply cheste xy plus yz plus zx equals one vasthundi",
+            "rearrange to get the symmetric result"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "x y plus y z plus z x",
+            "equals one",
+            "one minus x y"
+          ]
+        },
+        "why": "The result is symmetric in x, y and z even though the working singled out C — which is a good sign the algebra is right, since the original condition treats all three equally.",
+        "common_mistakes": [
+          "Cross-multiplying the wrong way to x + y = z(1 − xy).",
+          "Stopping at zx + yz = 1 − xy without collecting."
+        ]
+      }
+    ]
+  }
+}

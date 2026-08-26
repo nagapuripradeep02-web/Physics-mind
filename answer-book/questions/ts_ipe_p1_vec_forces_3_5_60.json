@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 3,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "The formula and substitution",
@@ -81,7 +87,8 @@
             "sixty degrees",
             "cos sixty"
           ]
-        }
+        },
+        "memory_tip": "One substitution into R = √(P² + Q² + 2PQ cos θ). Write the working line — the mark sits on it."
       },
       {
         "id": "s2_value",
@@ -120,8 +127,10 @@
             "root forty nine",
             "7"
           ]
-        }
+        },
+        "memory_tip": "cos 60° = 1/2, so the cross term is 15. Then 9 + 25 + 15 = 49 — a perfect square is your check."
       }
     ]
-  }
+  },
+  "insider_note": "Both marks are arithmetic on one formula. The substituted line earns the first even if the root is then worked out wrongly."
 }

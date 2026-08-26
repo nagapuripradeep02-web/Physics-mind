@@ -1,0 +1,244 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_coplanar_find_lambda",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the points with position vectors 3i−2j−k, 2i+3j−4k, −i+j+2k and 4i+5j+λk are coplanar, then show that λ = −146/17.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the four position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find PQ, PR and PS",
+      "marks": 1
+    },
+    {
+      "label": "Set the scalar triple product to 0",
+      "marks": 1
+    },
+    {
+      "label": "Expand and solve for λ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.58 — SAQ chapter 8 Addition of Vectors, answer 49.2. Printed appearances: AP 20 · TS 15,20. This is the coplanarity test run BACKWARDS — the same determinant, but set equal to zero and solved rather than evaluated, which is why it carries a solving step where the other four carry a concluding one. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It follows the split the same book prints for the one 4-mark answer that does carry tags, Matrices answer 40 on book p.51. The book's chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q12 is the Addition of Vectors slot. NOTE: Addition of Vectors has NO Section-C slot on the paper and no LAQ chapter in this book — the unit is SAQ and VSAQ only."
+  },
+  "recall_prompt": "Say how you would find lambda here — say what is different from an ordinary coplanarity question.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Same opening as any coplanarity question — but note that λ rides along inside OS and must be carried as a letter all the way to the last line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take",
+          "OP = 3i − 2j − k,  OQ = 2i + 3j − 4k,",
+          "OR = −i + j + 2k,  OS = 4i + 5j + λk,",
+          "where 'O' is the origin."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four given vectors are named as position vectors OP, OQ, OR, OS from an origin O, with λ kept as a letter inside OS.",
+          "accept": [
+            "name the four position vectors OP OQ OR OS with lambda still inside OS",
+            "take the four points from the origin keeping lambda as a letter",
+            "write the position vectors, the last one has lambda in it",
+            "naalugu position vectors rasi, lambda ni letter ga unchali",
+            "let the given vectors be OP OQ OR and OS"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "position vector",
+            "lambda",
+            "OS",
+            "origin"
+          ]
+        },
+        "why": "λ is unknown, so it cannot be evaluated — it has to survive every line until the equation that pins it down.",
+        "common_mistakes": [
+          "Guessing a value for λ and checking it.",
+          "Dropping λ when copying OS."
+        ]
+      },
+      {
+        "id": "s2_edges",
+        "kind": "equation",
+        "label": "Find PQ, PR and PS",
+        "marks": 1,
+        "mark_note": "Edge vectors",
+        "margin_note": "Second mark. All three from P. Only PS carries λ, and it becomes (λ+1) because −(−1) = +1 — a sign slip here changes the final answer.",
+        "lines": [
+          "∴ PQ = OQ − OP = (2i + 3j − 4k) − (3i − 2j − k)",
+          "  = −i + 5j − 3k",
+          "PR = OR − OP = (−i + j + 2k) − (3i − 2j − k)",
+          "  = −4i + 3j + 3k",
+          "PS = OS − OP = (4i + 5j + λk) − (3i − 2j − k)",
+          "  = i + 7j + (λ + 1)k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PQ, PR and PS are found by subtracting OP from the other three, and that the k component of PS becomes (λ+1).",
+          "accept": [
+            "subtract OP from the other three, and PS gets lambda plus one in the k component",
+            "find the three edge vectors from P, the last one has lambda plus one",
+            "PS is i plus seven j plus lambda plus one k",
+            "OP ni teesi migatha moodu nunchi, PS lo lambda plus one vasthundi",
+            "the three vectors from P, one of them still carrying lambda"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "PQ",
+            "PR",
+            "PS",
+            "lambda plus one",
+            "subtract"
+          ]
+        },
+        "why": "Subtracting −k from λk gives λ + 1, not λ − 1. That single sign is the difference between −146/17 and a wrong answer.",
+        "common_mistakes": [
+          "Writing (λ − 1)k by subtracting instead of adding.",
+          "Subtracting the wrong way round."
+        ]
+      },
+      {
+        "id": "s3_set_zero",
+        "kind": "equation",
+        "label": "Set the determinant to 0",
+        "marks": 1,
+        "mark_note": "Coplanarity condition",
+        "margin_note": "Third mark, and the whole idea. The points are GIVEN coplanar, so the scalar triple product is known to be zero — that known zero is the equation that determines λ.",
+        "lines": [
+          "The points are coplanar, so [PQ PR PS] = 0:",
+          {
+            "text": "\\begin{vmatrix} -1 & 5 & -3 \\\\ -4 & 3 & 3 \\\\ 1 & 7 & \\lambda+1 \\end{vmatrix} = 0",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That being coplanar means the scalar triple product is ZERO, and that this is written as an equation in λ rather than evaluated.",
+          "accept": [
+            "coplanar means the triple product is zero so set the determinant equal to zero",
+            "because they are coplanar the determinant is zero, that gives an equation in lambda",
+            "write the determinant and put it equal to zero",
+            "coplanar kabatti determinant zero, adi lambda equation isthundi",
+            "the scalar triple product must vanish, so equate it to zero"
+          ],
+          "reject": [
+            "find the determinant",
+            "expand it"
+          ],
+          "heard_as": [
+            "equals zero",
+            "determinant",
+            "coplanar",
+            "triple product",
+            "equation"
+          ]
+        },
+        "why": "Every other question in this chapter computes the determinant and finds it is zero. This one is told it is zero and works out what λ must be for that to happen.",
+        "common_mistakes": [
+          "Evaluating the determinant without setting it to zero.",
+          "Trying to show it is zero for every λ, which it is not."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Expand and solve",
+        "marks": 1,
+        "mark_note": "Value of λ",
+        "margin_note": "Last mark. Expand along the first row, collect the λ terms, and solve. The λ terms are −3λ and +20λ, which add to 17λ — the 17 in the answer comes from there.",
+        "lines": [
+          "Expanding along R₁:",
+          "−1[3(λ+1) − 21] − 5[−4(λ+1) − 3] − 3[−28 − 3] = 0",
+          "−1(3λ − 18) − 5(−4λ − 7) + 93 = 0",
+          "−3λ + 18 + 20λ + 35 + 93 = 0",
+          "17λ + 146 = 0",
+          {
+            "text": "∴ λ = −146/17",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant is expanded, the λ terms collect to 17λ, and 17λ + 146 = 0 gives λ = −146/17.",
+          "accept": [
+            "expand it, the lambda terms give seventeen lambda, so seventeen lambda plus one forty six equals zero and lambda is minus one forty six over seventeen",
+            "collecting lambda gives seventeen lambda plus one hundred forty six equals zero",
+            "solve to get lambda equals minus one forty six by seventeen",
+            "expand cheste seventeen lambda plus one forty six zero, lambda minus one forty six by seventeen",
+            "the answer is negative one hundred forty six over seventeen"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "seventeen lambda",
+            "one forty six",
+            "minus",
+            "lambda equals"
+          ]
+        },
+        "why": "The two λ terms come from different parts of the expansion and have opposite signs, so they must be collected carefully — −3λ + 20λ is 17λ, not 23λ.",
+        "common_mistakes": [
+          "Collecting the λ terms as 23λ by losing the minus.",
+          "Forgetting to distribute the −5 across both terms of its bracket.",
+          "Leaving the answer as 17λ = −146 without dividing."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_3sin_4cos_five",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 3sinθ + 4cosθ = 5, then find the value of 4sinθ − 3cosθ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the unknown and square both",
+      "marks": 1
+    },
+    {
+      "label": "Expand, cancel and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 136.2. Printed appearances: none — this answer carries no year tag. The same square-and-add method as answer 136.1, but with numbers — and it produces the striking result that the second expression is forced to be exactly 0.⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Name the unknown and square both",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Same method as the general case: call the wanted value x and square and add.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 4sinθ − 3cosθ = x",
+          "Given 3sinθ + 4cosθ = 5",
+          "Squaring and adding:",
+          "x² + 5² = (4sinθ − 3cosθ)² + (3sinθ + 4cosθ)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the wanted expression is named x and both are squared and added.",
+          "accept": [
+            "let four sin minus three cos be x then square both and add",
+            "name the unknown x and square and add the two",
+            "use the squaring and adding method",
+            "x ani peru petti square chesi add cheyyali",
+            "square both expressions and add them"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let x",
+            "square and add",
+            "x squared plus twenty five"
+          ]
+        },
+        "why": "The coefficients are swapped and one sign flipped between the two expressions, which is exactly the pattern that makes squaring and adding work.",
+        "common_mistakes": [
+          "Squaring only one of them.",
+          "Forgetting to square the 5 on the right."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Expand, cancel and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The 24 sinθ cosθ terms cancel, leaving 25(sin²θ + cos²θ) = 25 — so x² = 0 and x can only be 0.",
+        "lines": [
+          "= 16sin²θ − 24 sinθcosθ + 9cos²θ",
+          "  + 9sin²θ + 24 sinθcosθ + 16cos²θ",
+          "= 25(sin²θ + cos²θ) = 25",
+          "∴ x² + 25 = 25  ⇒  x² = 0",
+          {
+            "text": "∴ 4sinθ − 3cosθ = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross terms cancel to leave 25, so x² = 0 and x = 0.",
+          "accept": [
+            "the twenty four terms cancel leaving twenty five so x squared is zero and x is zero",
+            "x squared plus twenty five equals twenty five so x is zero",
+            "the answer is zero",
+            "cross terms cancel ayi twenty five vasthundi, x zero",
+            "four sin theta minus three cos theta is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "twenty five",
+            "x squared is zero",
+            "zero"
+          ]
+        },
+        "why": "x² = 0 has only ONE root, so unlike the general case there is no ± here — zero is its own negative.",
+        "common_mistakes": [
+          "Writing ±0 or ±5.",
+          "Concluding x = 5 by misreading the equation."
+        ]
+      }
+    ]
+  }
+}

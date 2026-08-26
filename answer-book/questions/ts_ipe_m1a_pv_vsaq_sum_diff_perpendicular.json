@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_sum_diff_perpendicular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a = i + 2j − 3k and b = 3i − j + 2k, then show that a+b and a−b are perpendicular to each other.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find a+b and a−b",
+      "marks": 1
+    },
+    {
+      "label": "Show the dot product is zero",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 118.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 22 · AP 18 · AP 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would show two vectors are perpendicular.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find a+b and a−b",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Add and subtract componentwise. Both results are needed before any test can be applied.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a + b = (i + 2j − 3k) + (3i − j + 2k)",
+          "  = 4i + j − k",
+          "a − b = (i + 2j − 3k) − (3i − j + 2k)",
+          "  = −2i + 3j − 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a+b and a−b are computed componentwise, giving 4i + j − k and −2i + 3j − 5k.",
+          "accept": [
+            "add and subtract componentwise to get four i plus j minus k and minus two i plus three j minus five k",
+            "work out the sum and the difference first",
+            "find a plus b and a minus b",
+            "sum and difference componentwise teeskovali",
+            "compute both the sum and the difference"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a plus b",
+            "a minus b",
+            "four i",
+            "minus two i"
+          ]
+        },
+        "why": "The question is about two NEW vectors built from a and b. They have to exist before they can be tested.",
+        "common_mistakes": [
+          "Subtracting the wrong way round.",
+          "Sign slip where a negative meets a negative."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Show the dot product is zero",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Perpendicular means dot product zero — that is the definition, and computing it is the whole proof.",
+        "lines": [
+          "(a+b)·(a−b) = (4i + j − k)·(−2i + 3j − 5k)",
+          "= 4(−2) + 1(3) + (−1)(−5)",
+          "= −8 + 3 + 5 = 0",
+          {
+            "text": "∴ a+b and a−b are perpendicular",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dot product of the two results is computed and comes to zero, which is what proves they are perpendicular.",
+          "accept": [
+            "dot them together and it comes to zero so they are perpendicular",
+            "minus eight plus three plus five is zero so the vectors are at right angles",
+            "the scalar product vanishes so they are perpendicular",
+            "dot product zero vasthundi kabatti perpendicular",
+            "compute the dot product and show it is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "dot product",
+            "zero",
+            "perpendicular",
+            "minus eight plus three plus five"
+          ]
+        },
+        "why": "A dot product is |a||b|cos θ, so it is zero exactly when cos θ is zero — that is, when the angle is 90°.",
+        "common_mistakes": [
+          "Asserting perpendicularity without computing.",
+          "Taking a cross product instead."
+        ]
+      }
+    ]
+  }
+}

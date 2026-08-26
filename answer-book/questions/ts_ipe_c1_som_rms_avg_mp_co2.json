@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_rms_avg_mp_co2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the RMS speed, average speed and most probable speed of CO₂ gas at 27 °C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "RMS formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "RMS value",
+      "marks": 1
+    },
+    {
+      "label": "Average speed",
+      "marks": 1
+    },
+    {
+      "label": "Most probable speed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark splits are CLAIMS until a Telangana IPE teacher confirms them; both question lengths are sourced, not invented (the 2-mark form is the book's three-star VSAQ 7, the 4-mark form is its SAQ 5). UNITS: the book computes U(rms) = 4.12 × 10⁴ cm/sec with the shortcut 1.58 × 10⁴ √(T/M) cm/sec, then continues as 4.12 × 10² m s⁻¹ for the average and most probable speeds without stating the conversion. This card works in SI throughout and shows the cm s⁻¹ equivalent once. AI chemistry check 2026-08-25. Arithmetic re-verified: √(3×8.314×300/0.044) = 412.4 m s⁻¹, ×0.9213 = 379.6, ×0.8165 = 336.4, and the book's 1.58 × 10⁴√(T/M) shortcut reproduces 4.13 × 10⁴ cm s⁻¹ — every printed value correct. insider_note reworded: it said \"all four marks\", which contradicts the 2-mark VSAQ cut that shares it and feeds the same sentence to the AI tutor. One memory_tip idiom (\"hang off\") replaced per Rule 41. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "States of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rms_formula",
+        "kind": "equation",
+        "label": "RMS formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "U(rms) = √(3RT / M)",
+            "style": "eq"
+          },
+          "R = 8.314 J mol⁻¹ K⁻¹",
+          "T = 27 + 273 = 300 K",
+          "M = 44 g mol⁻¹ = 0.044 kg mol⁻¹ (CO₂ = 12 + 2 × 16)",
+          "U(rms) = √( (3 × 8.314 × 300) / 0.044 )"
+        ],
+        "why": "The RMS speed comes from the kinetic gas equation, and in SI the molar mass must enter in kg mol⁻¹. The two conversions — 27 °C to 300 K and 44 g to 0.044 kg — are each a place where the answer goes wrong by a power of ten.",
+        "common_mistakes": [
+          "Substituting M = 44 with R = 8.314. In SI the molar mass must be 0.044 kg mol⁻¹.",
+          "Using T = 27 instead of 300 K."
+        ],
+        "memory_tip": "Three R T over M, all in SI: kelvin for T, kg mol⁻¹ for M.",
+        "margin_note": "Both conversions written on their own lines earn this mark before any arithmetic."
+      },
+      {
+        "id": "s2_rms_value",
+        "kind": "boxed_final",
+        "label": "RMS value",
+        "marks": 1,
+        "mark_note": "RMS speed",
+        "lines": [
+          "U(rms) = √(7482.6 / 0.044) = √170 059",
+          {
+            "text": "U(rms) ≈ 412 m s⁻¹  (= 4.12 × 10⁴ cm s⁻¹)",
+            "style": "boxed"
+          }
+        ],
+        "why": "3 × 8.314 × 300 = 7482.6, divided by 0.044 gives 170 059, and its square root is 412. Gas molecules at room temperature move at a few hundred metres per second.",
+        "common_mistakes": [
+          "Forgetting the square root and answering 1.7 × 10⁵.",
+          "Dropping the unit m s⁻¹."
+        ],
+        "memory_tip": "Room-temperature molecular speeds sit in the hundreds of m s⁻¹. An answer far from that range signals a unit slip.",
+        "margin_note": "In the 2-mark form of this question, this boxed value is the final answer."
+      },
+      {
+        "id": "s3_average",
+        "kind": "equation",
+        "label": "Average speed",
+        "marks": 1,
+        "mark_note": "Average speed",
+        "lines": [
+          {
+            "text": "U(av) = 0.9213 × U(rms)",
+            "style": "eq"
+          },
+          "U(av) = 0.9213 × 412 ≈ 380 m s⁻¹"
+        ],
+        "why": "The three characteristic speeds stand in the fixed ratio 1 : 0.9213 : 0.8165, so once the RMS speed is known the average speed is one multiplication.",
+        "common_mistakes": [
+          "Multiplying by 0.8165 here. That factor belongs to the most probable speed.",
+          "Recomputing √(8RT/πM) from scratch and losing time. The ratio is faster and is what the mark scheme expects."
+        ],
+        "memory_tip": "The order is rms > average > most probable, and the factors fall in the same order: 1, then 0.92, then 0.82.",
+        "margin_note": "One line of multiplication earns the mark once the factor is right."
+      },
+      {
+        "id": "s4_mp",
+        "kind": "boxed_final",
+        "label": "Most probable speed",
+        "marks": 1,
+        "mark_note": "Most probable speed",
+        "lines": [
+          "U(mp) = 0.8165 × U(rms) = 0.8165 × 412",
+          "U(mp) ≈ 336 m s⁻¹",
+          {
+            "text": "U(rms) ≈ 412 m s⁻¹,  U(av) ≈ 380 m s⁻¹,  U(mp) ≈ 336 m s⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "why": "The most probable speed is the smallest of the three, at 0.8165 of the RMS value. Collecting all three speeds in one boxed line closes the answer the way the question lists them.",
+        "common_mistakes": [
+          "Reporting the three speeds in the wrong order. rms is largest, most probable is smallest.",
+          "Mixing units between the three answers — keep all three in m s⁻¹."
+        ],
+        "memory_tip": "All three answers come from one number: find 412 once, then multiply by 0.92 and 0.82.",
+        "margin_note": "The final box repeats all three values so no marked value is left buried in the working."
+      }
+    ]
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "Short answer (4 marks)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "RMS formula and substitution",
+          "marks": 1
+        },
+        {
+          "label": "RMS value",
+          "marks": 1
+        },
+        {
+          "label": "Average speed",
+          "marks": 1
+        },
+        {
+          "label": "Most probable speed",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_rms_formula": {
+          "marks": 1,
+          "mark_note": "Formula"
+        },
+        "s2_rms_value": {
+          "marks": 1,
+          "mark_note": "RMS speed"
+        },
+        "s3_average": {
+          "marks": 1,
+          "mark_note": "Average speed"
+        },
+        "s4_mp": {
+          "marks": 1,
+          "mark_note": "Most probable speed"
+        }
+      },
+      "needs_teacher_verification": true
+    },
+    {
+      "key": "vsaq",
+      "label": "Very short answer (2 marks)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "Find the RMS speed of CO₂ gas at 27 °C.",
+      "mark_split": [
+        {
+          "label": "Formula and substitution",
+          "marks": 1
+        },
+        {
+          "label": "The answer with its unit",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_rms_formula": {
+          "marks": 1,
+          "mark_note": "Formula"
+        },
+        "s2_rms_value": {
+          "marks": 1,
+          "mark_note": "Answer with unit",
+          "margin_note": "At 2 marks the RMS value ends the answer. The average and most probable speeds belong to the 4-mark form."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The book's three-star VSAQ 7 asks the RMS speed alone; the average and most probable speeds are hidden in this cut."
+    }
+  ],
+  "insider_note": "One computed number carries the whole answer — find the RMS speed carefully. In the 4-mark form the average and most probable speeds are then single multiplications by 0.9213 and 0.8165; in the 2-mark form the RMS value alone ends the answer."
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_boyle_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Boyle temperature?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The Boyle temperature of a gas is the",
+          "temperature at which a real gas obeys the ideal",
+          "gas laws over an appreciable range of pressure.",
+          "At this temperature Z ≈ 1, because the attraction",
+          "and volume corrections cancel each other."
+        ],
+        "why": "A real gas deviates below ideal at some temperatures and above at others; at one temperature in between, the two deviations balance and the gas behaves ideally over a wide pressure range. That balancing temperature is named after Boyle.",
+        "common_mistakes": [
+          "Saying the gas becomes ideal at ALL pressures. The ideal behaviour holds over a range of pressure, not everywhere.",
+          "Confusing Boyle temperature with critical temperature. They are different quantities."
+        ],
+        "memory_tip": "The temperature where a REAL gas behaves like Boyle's IDEAL gas — hence the name.",
+        "margin_note": "Real gas, ideal behaviour, range of pressure: those three pieces make the definition."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "Expression",
+        "lines": [
+          {
+            "text": "T(B) = a / (R b)",
+            "style": "boxed"
+          },
+          "where a and b are the van der Waals constants",
+          "of the gas and R is the gas constant.",
+          "Each gas has its own Boyle temperature, since",
+          "a and b differ from gas to gas."
+        ],
+        "why": "The Boyle temperature comes from the van der Waals constants: a measures attraction and b measures molecular volume, and their ratio a/(Rb) is the temperature where the two corrections cancel.",
+        "common_mistakes": [
+          "Inverting the expression to Rb/a.",
+          "Treating the Boyle temperature as universal. It is different for each gas because a and b are."
+        ],
+        "memory_tip": "Attraction over volume: a on top, R times b below.",
+        "margin_note": "Defining a and b as the van der Waals constants completes the expression."
+      }
+    ]
+  },
+  "insider_note": "The unstarred tail of this chapter still turns up in papers — this one is a two-line answer, and the expression a/(Rb) is the half most scripts leave out."
+}

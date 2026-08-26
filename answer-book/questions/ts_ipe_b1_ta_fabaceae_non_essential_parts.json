@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_fabaceae_non_essential_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the non-essential floral parts of plants belonging to Fabaceae.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Calyx",
+      "marks": 1
+    },
+    {
+      "label": "Corolla",
+      "marks": 1
+    },
+    {
+      "label": "Diagram",
+      "marks": 1
+    },
+    {
+      "label": "Aestivation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Taxonomy of Angiosperms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_calyx",
+        "kind": "text",
+        "label": "Calyx",
+        "marks": 1,
+        "lines": [
+          "The non-essential (accessory) whorls are the",
+          "calyx and the corolla.",
+          "Calyx:",
+          "Five sepals, gamosepalous (fused into a tube).",
+          "Aestivation is valvate or imbricate.",
+          "The odd sepal is anterior."
+        ],
+        "why": "Non-essential means the whorls that do not take part in reproduction, so the answer is the calyx and the corolla only.",
+        "common_mistakes": [
+          "Describing the stamens. Those are essential parts and earn nothing here.",
+          "Writing polysepalous. Fabaceae sepals are fused."
+        ],
+        "memory_tip": "Non-essential = the two outer whorls. Essential = the two inner whorls.",
+        "margin_note": "Head the block \"Calyx\" and give three short facts.",
+        "mark_note": "Calyx"
+      },
+      {
+        "id": "s2_corolla",
+        "kind": "text",
+        "label": "Corolla",
+        "marks": 1,
+        "lines": [
+          "Corolla:",
+          "Five petals, polypetalous, and papilionaceous in",
+          "shape.",
+          "One large posterior standard petal (vexillum),",
+          "two lateral wing petals (alae), and",
+          "two anterior keel petals (carina) fused along",
+          "their lower edge, enclosing the stamens and the",
+          "pistil."
+        ],
+        "why": "The papilionaceous corolla is the one feature that names the whole sub-family, so the three kinds of petal must be named separately.",
+        "common_mistakes": [
+          "Writing five equal petals. The five petals are of three different kinds.",
+          "Writing gamopetalous. The petals are free; only the two keel petals are joined to each other."
+        ],
+        "memory_tip": "One standard, two wings, two keel: 1 + 2 + 2 = 5 petals.",
+        "margin_note": "Name all three petal types with their Latin names in brackets.",
+        "mark_note": "Corolla"
+      },
+      {
+        "id": "s3_diagram",
+        "kind": "diagram",
+        "label": "Diagram",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "figure": {
+          "id": "papilionaceous_corolla",
+          "width": 440,
+          "height": 256,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "std_petal",
+              "d": "M 134 122 C 124 78 154 50 194 54 C 200 62 208 62 214 54 C 254 50 284 78 274 122 C 230 108 178 108 134 122 Z",
+              "ms": 780
+            },
+            {
+              "type": "stroke",
+              "id": "std_midrib",
+              "d": "M 204 60 C 204 82 204 96 204 112",
+              "ms": 220,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "wing_l",
+              "d": "M 90.1 134.5 A 48 20 24 1 0 177.9 173.5 A 48 20 24 1 0 90.1 134.5",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "wing_r",
+              "d": "M 230.1 173.5 A 48 20 -24 1 0 317.9 134.5 A 48 20 -24 1 0 230.1 173.5",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "keel_outer",
+              "d": "M 162 182 C 176 224 244 230 260 194 C 230 200 190 194 162 182 Z",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "keel_inner",
+              "d": "M 170 186 C 186 218 236 222 252 196",
+              "ms": 380,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_std",
+              "d": "M 194 36 L 202 56",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_std",
+              "x": 118,
+              "y": 30,
+              "text": "Standard petal",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_wing",
+              "d": "M 328 132 L 300 146",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_wing",
+              "x": 332,
+              "y": 138,
+              "text": "Wing petal",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_keel",
+              "d": "M 300 222 L 258 202",
+              "ms": 180,
+              "w": 1.5
+            },
+            {
+              "type": "label",
+              "id": "lb_keel",
+              "x": 304,
+              "y": 228,
+              "text": "Keel petal",
+              "ms": 200
+            }
+          ]
+        },
+        "why": "The shape of the corolla is easier to show than to describe, and the examiner marks the drawing for the three named petal types in their correct positions.",
+        "common_mistakes": [
+          "Drawing five identical petals.",
+          "Putting the standard petal at the bottom. It is the posterior, uppermost petal."
+        ],
+        "memory_tip": "Draw it top down: the big standard first, the two wings next, the boat-shaped keel last.",
+        "margin_note": "A simple line drawing with the three petal types labelled earns the full diagram mark."
+      },
+      {
+        "id": "s4_aestivation",
+        "kind": "boxed_final",
+        "label": "Aestivation",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Aestivation is vexillary",
+            "style": "boxed"
+          },
+          "It is descendingly imbricate: the standard petal",
+          "covers the two wings, and each wing covers one",
+          "keel petal."
+        ],
+        "why": "Vexillary aestivation is named after the vexillum, and it simply records which petal overlaps which.",
+        "common_mistakes": [
+          "Writing twisted aestivation. That is Malvaceae.",
+          "Naming vexillary but not saying which petal overlaps which."
+        ],
+        "memory_tip": "Vexillum means flag or standard. Vexillary aestivation is named after it: the standard petal covers the rest.",
+        "margin_note": "Name the aestivation and give the overlap order in one line.",
+        "mark_note": "Aestivation"
+      }
+    ]
+  },
+  "insider_note": "The corolla carries this question. If time is short, draw the papilionaceous corolla and label it before writing the calyx."
+}

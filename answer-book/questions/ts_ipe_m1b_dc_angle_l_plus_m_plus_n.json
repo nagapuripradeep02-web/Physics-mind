@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dc_angle_l_plus_m_plus_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "D.C's & D.R's"
+  },
+  "chapter": "D.C's & D.R's",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the angle between the lines whose d.c's are related by l+m+n=0 and l²+m²−n²=0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the two relations",
+      "marks": 1
+    },
+    {
+      "label": "Eliminate and factorise",
+      "marks": 2
+    },
+    {
+      "label": "Case (i): the first line",
+      "marks": 1
+    },
+    {
+      "label": "Case (ii): the second line",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.27 — LAQ chapter 3 D.C's & D.R's, answer 16.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 19 · AP M-17. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would solve this — say which relation you rearrange first, and how many lines you expect.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "D.C's & D.R's · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_relations",
+        "kind": "equation",
+        "label": "Write the two relations",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given l + m + n = 0  ⇒  l = −(m + n)  ……(1),",
+          "l² + m² − n² = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the linear relation is rearranged to make one letter the subject.",
+          "accept": [
+            "make one letter the subject of the linear relation",
+            "rearrange the first equation and substitute into the second",
+            "the linear one is easier to rearrange",
+            "linear equation nunchi oka letter ni subject cheyyali",
+            "write both relations and rearrange the first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "linear relation",
+            "make the subject",
+            "substitute",
+            "two relations"
+          ]
+        },
+        "why": "Two relations connect three unknowns, so the pair fixes only the RATIO l : m : n — which is all a direction needs. Eliminating one letter turns the pair into a single quadratic, and its two roots are the two lines.",
+        "common_mistakes": [
+          "Rearranging the second-degree relation instead, which needs a square root.",
+          "Sign slip when moving a term across."
+        ]
+      },
+      {
+        "id": "s2_eliminate",
+        "kind": "equation",
+        "label": "Eliminate and factorise",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "lines": [
+          "Solving (1) & (2) we get",
+          "[−(m + n)]² + m² − n² = 0",
+          "⇒ (m² + n² + 2mn) + m² − n² = 0",
+          "⇒ 2m² + 2mn = 0   ⇒   2(m² + mn) = 0",
+          "⇒ m(m + n) = 0",
+          "⇒ m = 0  (or)  m + n = 0  ⇒  m = 0  (or)  m = −n"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives a homogeneous quadratic which factorises into two cases.",
+          "accept": [
+            "substitute into the second relation to get a quadratic then factorise it",
+            "the quadratic factors into two brackets, one for each line",
+            "each factor gives one of the two lines",
+            "substitute chesthe quadratic vasthundi, factorise cheyyali",
+            "this gives the two cases"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "quadratic",
+            "factorise",
+            "two cases"
+          ]
+        },
+        "why": "The quadratic is homogeneous, so it factors into two linear pieces — which is exactly why there are TWO lines rather than one. The problem is a pair from the start.",
+        "common_mistakes": [
+          "Trying to solve for numerical values of l, m, n rather than a ratio.",
+          "Missing one of the two factors and finding only one line."
+        ]
+      },
+      {
+        "id": "s3_first_case",
+        "kind": "equation",
+        "label": "Case (i): the first line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "lines": [
+          "Case (i): Put m = 0 in (1), then",
+          "l = −(0 + n) = −n   ∴ l = −n",
+          "Now, l : m : n = −n : 0 : n = −1 : 0 : 1",
+          "So, d.r's of L₁ = (a₁, b₁, c₁) = (−1, 0, 1)  ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first factor gives a ratio l : m : n and hence the first line's direction ratios.",
+          "accept": [
+            "put the first factor back into the linear relation and read off the ratio",
+            "cancel the common letter to get whole numbers",
+            "this gives the direction ratios of the first line",
+            "modati case nunchi ratio teesukovali",
+            "the first line's d r's"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first case",
+            "ratio",
+            "direction ratios",
+            "cancel"
+          ]
+        },
+        "why": "Only the RATIO matters, so any common factor may be cancelled — which is what turns fractions into the small whole numbers the answer carries.",
+        "common_mistakes": [
+          "Keeping the common letter and carrying fractions forward.",
+          "Reading the ratio in the wrong order."
+        ]
+      },
+      {
+        "id": "s4_second_case",
+        "kind": "equation",
+        "label": "Case (ii): the second line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "lines": [
+          "Case (ii): Put m = −n in (1), then",
+          "l = −(−n + n) = 0   ∴ l = 0",
+          "Now, l : m : n = 0 : −n : n = 0 : −1 : 1",
+          "So, d.r's of L₂ = (a₂, b₂, c₂) = (0, −1, 1)  ……(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second factor gives the second line's direction ratios the same way.",
+          "accept": [
+            "do the same with the second factor",
+            "put the second root back and read off the ratio",
+            "this gives the second line's direction ratios",
+            "rendo case ni kooda same ga cheyyali",
+            "the second line's d r's"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second case",
+            "the second line",
+            "direction ratios",
+            "same way"
+          ]
+        },
+        "why": "Both factors have to be used — the question asks about TWO lines, and stopping at one answers half of it.",
+        "common_mistakes": [
+          "Reusing the first factor by mistake.",
+          "Sign slip that makes the second line identical to the first."
+        ]
+      },
+      {
+        "id": "s5_finish",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
+        "lines": [
+          "If θ is the angle between the lines then from (3), (4), we get",
+          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          "= |(−1)(0) + (0)(−1) + (1)(1)| / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
+          "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
+          {
+            "text": "∴ Hence angle between the lines is 60°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle formula gives 60°.",
+          "accept": [
+            "use cos theta equals mod a one a two plus b one b two plus c one c two over the roots",
+            "apply the angle formula to the two triples",
+            "this gives the angle between the lines",
+            "angle formula apply cheyyali",
+            "the angle is this"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a one a two",
+            "angle between",
+            "the roots"
+          ]
+        },
+        "why": "The angle formula needs direction cosines in principle, but the normalising roots cancel between numerator and denominator — so direction RATIOS may be used directly, which is what the book does.",
+        "common_mistakes": [
+          "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
+          "Multiplying the two roots without keeping them under one square root."
+        ]
+      }
+    ]
+  }
+}

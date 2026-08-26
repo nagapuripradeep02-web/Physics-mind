@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_daltons_law_partial_pressures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Dalton’s law of partial pressures.",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 10,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 4,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 9,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 10,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Partial pressure and the sum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q10), March 2020 (Q9), March 2023 (Q4) and March 2024 (Q10) — four of the seven papers held. Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from those papers. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Physics hand-checked against NCERT Class-11 Chapter 13: for non-reacting gases P = P₁ + P₂ + P₃ + …, where each partial pressure is the pressure that gas would exert alone in the same volume at the same temperature."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "For a mixture of gases that do not react,",
+          "the total pressure is equal to the sum of",
+          "the partial pressures of the gases in the",
+          "mixture."
+        ],
+        "margin_note": "First mark. The words non-reacting and total pressure are what the examiner checks.",
+        "why": "The molecules of each gas strike the walls without regard to the other gases present, so each gas contributes its own share of the force on the wall and the shares add.",
+        "common_mistakes": [
+          "Leaving out the words do not react. The law holds only for non-reacting gases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for non-reacting gases the total pressure equals the sum of the partial pressures.",
+          "accept": [
+            "total pressure is the sum of the partial pressures",
+            "gases that do not react",
+            "non-reacting gases"
+          ],
+          "reject": [
+            "pressure it would exert alone in the same volume"
+          ],
+          "heard_as": [
+            "partial pressures",
+            "total pressure"
+          ]
+        },
+        "memory_tip": "Each gas pushes on the wall as if it were alone in the vessel, and the pushes add."
+      },
+      {
+        "id": "s2_partial",
+        "kind": "boxed_final",
+        "label": "Partial pressure and the sum",
+        "marks": 1,
+        "mark_note": "P = P₁ + P₂ + P₃ + …",
+        "lines": [
+          "The partial pressure of a gas is the",
+          "pressure it would exert alone in the same",
+          "volume at the same temperature.",
+          {
+            "text": "P = P₁ + P₂ + P₃ + …",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Define partial pressure first, then write the sum.",
+        "why": "Without this definition the statement has no meaning. The same volume and the same temperature are the conditions that make each gas's own pressure a well defined quantity.",
+        "common_mistakes": [
+          "Defining partial pressure without the words same volume and same temperature.",
+          "Adding the volumes instead of the pressures."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the partial pressure is the pressure a gas would exert alone in the same volume at the same temperature, and P equals P one plus P two plus P three.",
+          "accept": [
+            "pressure it would exert alone",
+            "same volume at the same temperature",
+            "P one plus P two plus P three"
+          ],
+          "reject": [
+            "gases that do not react"
+          ],
+          "heard_as": [
+            "partial pressure",
+            "P one plus P two"
+          ]
+        },
+        "memory_tip": "Same volume, same temperature, that gas on its own. That is what partial means."
+      }
+    ]
+  },
+  "insider_note": "Asked in four of the seven recent papers. P = P₁ + P₂ + P₃ is only half of it — the definition of partial pressure carries the other mark."
+}

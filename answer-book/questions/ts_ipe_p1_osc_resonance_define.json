@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_osc_resonance_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Oscillations"
+  },
+  "chapter": "Oscillations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is resonance? Give one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Condition and example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Oscillations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "When a body is driven by a periodic force whose",
+          "frequency is equal to the natural frequency of",
+          "the body, it oscillates with a very large",
+          "amplitude. This is called resonance."
+        ],
+        "why": "Resonance is a special case of forced oscillation, not a separate kind of motion.",
+        "common_mistakes": [
+          "Defining it as any large oscillation, without the frequency condition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That resonance is a very large amplitude when the driving frequency equals the natural frequency.",
+          "accept": [
+            "driving frequency equals natural frequency",
+            "very large amplitude"
+          ],
+          "reject": [
+            "pushing a swing in time"
+          ],
+          "heard_as": [
+            "resonance",
+            "natural frequency"
+          ]
+        },
+        "memory_tip": "Tuning a radio is resonance: the circuit oscillates strongly at one frequency only.",
+        "margin_note": "First mark. The frequency condition has to sit inside the definition sentence."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Condition and example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Condition: driving frequency = natural",
+            "style": "boxed"
+          },
+          "Example: pushing a swing in time with its own",
+          "swinging makes it rise higher and higher, while",
+          "pushing at any other rate does very little."
+        ],
+        "why": "Each push arrives exactly when it helps, so the energy fed in adds up instead of partly cancelling.",
+        "common_mistakes": [
+          "Giving an example where the two frequencies are unrelated."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is equal frequencies, as when a swing is pushed in time with its own swinging.",
+          "accept": [
+            "pushing a swing in time",
+            "equal frequencies"
+          ],
+          "reject": [
+            "very large amplitude"
+          ],
+          "heard_as": [
+            "swing",
+            "in time"
+          ]
+        },
+        "memory_tip": "A swing is pushed once per swing, not once per second. The rate has to match the swing.",
+        "margin_note": "Second mark. The condition and the example both belong to this mark."
+      }
+    ]
+  },
+  "insider_note": "The second mark holds both the condition and the example, and a definition without the frequency condition earns nothing."
+}

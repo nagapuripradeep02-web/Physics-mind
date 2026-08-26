@@ -1,0 +1,72 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_stored_food_phaeo_rhodo",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the stored food materials found in Phaeophyceae and Rhodophyceae.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Phaeophyceae", "marks": 1 },
+    { "label": "Rhodophyceae", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 2. The book prints 'Floridian starch'; the correct NCERT name, floridean starch, is used here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phaeophyceae",
+        "kind": "text",
+        "label": "Phaeophyceae — laminarin, mannitol",
+        "marks": 1,
+        "mark_note": "Phaeophyceae",
+        "lines": [
+          "Phaeophyceae (brown algae) store food as",
+          "laminarin or mannitol."
+        ],
+        "why": "Laminarin and mannitol are the reserve carbohydrates of brown algae. NCERT and the book both name the pair, so either name earns the point.",
+        "common_mistakes": [
+          "Writing plain 'starch' — brown algae do not store ordinary starch.",
+          "Writing 'Laminaria' — Laminaria is the alga; laminarin is the stored food."
+        ],
+        "memory_tip": "Laminaria is a brown alga and laminarin is the brown-algae food — the alga's name carries the food's name.",
+        "margin_note": "Name both reserves; 'or' between them is accepted."
+      },
+      {
+        "id": "s2_rhodophyceae",
+        "kind": "boxed_final",
+        "label": "Rhodophyceae — floridean starch",
+        "marks": 1,
+        "mark_note": "Rhodophyceae",
+        "lines": [
+          { "text": "Rhodophyceae → floridean starch", "style": "boxed" },
+          "Its structure is similar to amylopectin",
+          "and glycogen."
+        ],
+        "why": "Red algae store floridean starch, which resembles amylopectin and glycogen in structure. The book prints 'Floridian starch'; the correct name is floridean starch.",
+        "common_mistakes": [
+          "Writing 'Floridian starch' as the book prints — the word is floridean.",
+          "Swapping the two groups — floridean starch belongs to red algae, not brown."
+        ],
+        "memory_tip": "Pair each food with its alga: laminarin with Laminaria (brown), floridean starch with the red algae (Rhodophyceae).",
+        "margin_note": "The boxed line earns the mark; the structure line is a safe extra."
+      }
+    ]
+  },
+  "insider_note": "Examiners accept 'laminarin or mannitol' as one answer; the common loss is misspelling floridean starch — the book itself misspells it."
+}

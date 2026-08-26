@@ -1,0 +1,78 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_homosporous_vs_heterosporous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is meant by homosporous and heterosporous pteridophytes? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Homosporous pteridophytes", "marks": 2 },
+    { "label": "Heterosporous pteridophytes", "marks": 2 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.8, SAQ 4. The book prints 'Homosporus'/'heterosporus' and 'similar kindof spores' — scan and spelling noise; the standard spellings homosporous/heterosporous are used here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 2+2 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_homosporous",
+        "kind": "text",
+        "label": "Homosporous pteridophytes",
+        "marks": 2,
+        "mark_note": "Definition + examples",
+        "lines": [
+          "Homosporous pteridophytes produce only",
+          "one kind of spore; all the spores are of",
+          "the same size and type.",
+          "Each spore grows into a bisexual",
+          "prothallus bearing both sex organs.",
+          "Ex: Pteris, Dryopteris, Equisetum."
+        ],
+        "why": "'Homo' means same: the spore mother cells all give identical spores, and one spore type means one gametophyte carrying both antheridia and archegonia. Most ferns are homosporous.",
+        "common_mistakes": [
+          "Writing Selaginella as a homosporous example — it is the heterosporous one.",
+          "Leaving out the examples — one of the two marks here is for them."
+        ],
+        "memory_tip": "Same spores → one gametophyte → both sex organs on one prothallus.",
+        "margin_note": "Definition plus two named genera fills the two marks."
+      },
+      {
+        "id": "s2_heterosporous",
+        "kind": "boxed_final",
+        "label": "Heterosporous pteridophytes",
+        "marks": 2,
+        "mark_note": "Definition + examples",
+        "lines": [
+          { "text": "Heterosporous → microspores + megaspores", "style": "boxed" },
+          "Two kinds of spores form from separate",
+          "micro- and megaspore mother cells.",
+          "Microspores give male gametophytes;",
+          "megaspores give female gametophytes.",
+          "Ex: Selaginella, Salvinia."
+        ],
+        "why": "'Hetero' means different: small microspores give male gametophytes and large megaspores give female ones, so the sexes separate at the spore stage.",
+        "common_mistakes": [
+          "Writing that microspores give female gametophytes — micro goes with male, mega with female."
+        ],
+        "memory_tip": "Small goes with male, large with female — micro–male, mega–female.",
+        "margin_note": "Keep each definition next to its own examples, never as one mixed list."
+      }
+    ]
+  },
+  "insider_note": "This SAQ and the heterospory SAQ share content — if both appear in one paper, the significance part belongs only to the heterospory question."
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_conduction_convection_radiation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain conduction, convection and radiation with examples.",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 17,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 18,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 18,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Conduction",
+      "marks": 1
+    },
+    {
+      "label": "Convection",
+      "marks": 1
+    },
+    {
+      "label": "Radiation",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q18), March 2020 (Q18) and March 2025 (Q17) — Section B, 4 marks each time. The four-way split, one mark for each method and one for the comparison, is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from those papers. Physics hand-checked: conduction and convection need a material medium, radiation does not and travels at the speed of light; in conduction the particles stay in place, in convection the heated material itself moves."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermal Properties of Matter · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conduction",
+        "kind": "text",
+        "label": "Conduction",
+        "marks": 1,
+        "mark_note": "Conduction",
+        "lines": [
+          "Conduction is the transfer of heat through",
+          "a body from its hotter part to its colder",
+          "part, without the material itself moving.",
+          "The particles vibrate more strongly and",
+          "pass energy to their neighbours.",
+          "Example: the free end of a metal spoon",
+          "kept in hot water becomes warm."
+        ],
+        "margin_note": "First mark. The definition and one example together earn it.",
+        "why": "In a solid the particles are held in fixed positions, so the only way they can move energy along is by vibrating against their neighbours.",
+        "common_mistakes": [
+          "Saying the hot particles travel along the rod. In conduction the particles stay in place and only the energy moves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That conduction moves heat through a body without the material moving, as in a metal spoon in hot water.",
+          "accept": [
+            "heat passes without the material moving",
+            "particles vibrate and pass energy",
+            "metal spoon in hot water"
+          ],
+          "reject": [
+            "the heated liquid rises"
+          ],
+          "heard_as": [
+            "conduction",
+            "metal spoon",
+            "vibrate"
+          ]
+        },
+        "memory_tip": "Conduction: the energy moves, the material does not. A metal spoon in hot water."
+      },
+      {
+        "id": "s2_convection",
+        "kind": "text",
+        "label": "Convection",
+        "marks": 1,
+        "mark_note": "Convection",
+        "lines": [
+          "Convection is the transfer of heat by the",
+          "actual movement of the heated material.",
+          "A heated liquid or gas becomes less dense",
+          "and rises, and colder material comes down",
+          "to take its place.",
+          "Example: water heated at the bottom of a",
+          "vessel, and the land and sea breezes."
+        ],
+        "margin_note": "Second mark. Say that the heated material itself moves.",
+        "why": "A liquid or a gas can flow, so the heated portion carries its energy away with it. A solid cannot flow, which is why convection does not occur in solids.",
+        "common_mistakes": [
+          "Saying convection occurs in solids. A solid cannot flow, so the heated material cannot rise."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in convection the heated liquid or gas itself rises and carries the heat, as in water heated at the bottom.",
+          "accept": [
+            "heated liquid rises",
+            "the material itself moves",
+            "water heated in a vessel"
+          ],
+          "reject": [
+            "no medium is needed"
+          ],
+          "heard_as": [
+            "convection",
+            "rises",
+            "less dense"
+          ]
+        },
+        "memory_tip": "Convection: the hot material itself rises. It works in liquids and gases only."
+      },
+      {
+        "id": "s3_radiation",
+        "kind": "text",
+        "label": "Radiation",
+        "marks": 1,
+        "mark_note": "Radiation",
+        "lines": [
+          "Radiation is the transfer of heat by",
+          "electromagnetic waves. It needs no",
+          "material medium and travels at the speed",
+          "of light.",
+          "Example: the heat received from the Sun",
+          "across empty space."
+        ],
+        "margin_note": "Third mark. Write that no medium is needed.",
+        "why": "Electromagnetic waves carry energy by themselves, so no particles are needed to pass it along. That is why the heat of the Sun crosses the vacuum of space.",
+        "common_mistakes": [
+          "Saying radiation needs air to travel. It travels through vacuum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That radiation carries heat by electromagnetic waves and needs no medium, as in the heat from the Sun.",
+          "accept": [
+            "electromagnetic waves",
+            "no medium is needed",
+            "heat from the Sun"
+          ],
+          "reject": [
+            "the heated liquid rises"
+          ],
+          "heard_as": [
+            "radiation",
+            "no medium",
+            "Sun"
+          ]
+        },
+        "memory_tip": "Only radiation crosses a vacuum — that is how the heat of the Sun reaches us."
+      },
+      {
+        "id": "s4_compare",
+        "kind": "boxed_final",
+        "label": "How the three differ",
+        "marks": 1,
+        "mark_note": "The comparison",
+        "lines": [
+          "Conduction and convection need a material",
+          "medium; radiation does not.",
+          {
+            "text": "Radiation alone needs no medium",
+            "style": "boxed"
+          },
+          "In conduction the particles stay in place;",
+          "in convection they move with the heat."
+        ],
+        "margin_note": "Fourth mark. One line separating the three methods earns it.",
+        "why": "The three methods differ in what carries the energy — vibrating particles, moving material, or waves. Naming the carrier is what tells them apart.",
+        "common_mistakes": [
+          "Writing three definitions with no line comparing them. The comparison is a separate mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That conduction and convection need a medium while radiation does not.",
+          "accept": [
+            "radiation needs no medium",
+            "the first two need a medium",
+            "only radiation crosses vacuum"
+          ],
+          "reject": [
+            "metal spoon in hot water"
+          ],
+          "heard_as": [
+            "medium",
+            "vacuum",
+            "comparison"
+          ]
+        },
+        "memory_tip": "Vibration, flow, waves. Only the waves cross empty space."
+      }
+    ]
+  },
+  "insider_note": "Three definitions and three examples, one mark each — a definition written without its example rarely holds the full mark."
+}

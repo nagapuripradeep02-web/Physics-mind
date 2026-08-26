@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_most_probable_speed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is most probable speed?",
+  "appearances": [
+    {
+      "year": 2011
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. YEAR: the book prints Mar-2011 against this question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The most probable speed of a gas is the speed",
+          "possessed by the maximum number of molecules",
+          "in the given sample of the gas.",
+          "It is the peak of the Maxwell speed distribution."
+        ],
+        "why": "Molecular speeds are spread over a range, and the spread has a peak. The speed at that peak — the one held by more molecules than any other single speed — is the most probable speed.",
+        "common_mistakes": [
+          "Calling it the highest speed in the sample. It is the most COMMON speed, and it is the smallest of the three named speeds.",
+          "Confusing it with the average speed."
+        ],
+        "memory_tip": "Most probable = most common: the speed the largest number of molecules share.",
+        "margin_note": "The phrase maximum number of molecules is the marked wording."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "U(mp) = √(2RT / M)",
+            "style": "boxed"
+          },
+          "U(mp) = 0.8165 × U(rms), the smallest of the",
+          "three characteristic speeds."
+        ],
+        "why": "The factor under the root is 2 — smaller than the average speed's 8/π and the RMS speed's 3 — which is why the most probable speed is the smallest of the three.",
+        "common_mistakes": [
+          "Writing 3RT under the root. The 3 belongs to the RMS speed; most probable takes 2.",
+          "Dropping the unit when a numerical follows — the speed comes out in m s⁻¹ with SI inputs."
+        ],
+        "memory_tip": "Two for the most probable, three for RMS: the smaller number under the root gives the smaller speed.",
+        "margin_note": "The 0.8165 line links this card to the speed-ratio question the same paper may ask."
+      }
+    ]
+  },
+  "insider_note": "Asked in March 2011 in exactly these words — the marked pair is the phrase maximum number of molecules plus √(2RT/M)."
+}

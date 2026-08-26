@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_potential_energy_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define gravitational potential and gravitational potential energy. Obtain an expression for the gravitational potential energy of a body of mass m at a distance r from a body of mass M.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two definitions",
+      "marks": 1
+    },
+    {
+      "label": "The work done",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Gravitation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definitions",
+        "kind": "text",
+        "label": "The two definitions",
+        "marks": 1,
+        "mark_note": "Definitions",
+        "lines": [
+          "Gravitational potential ENERGY of a body at a",
+          "point is the work done in bringing it from",
+          "infinity to that point.",
+          "Gravitational POTENTIAL at the point is that",
+          "same work per unit mass: V = U / m."
+        ],
+        "why": "Potential belongs to the point in space; potential energy belongs to the body you put there. In both definitions \"work done\" means work done BY AN EXTERNAL AGENT (against the field) — the negative of the work done by the pull, which step 2 computes as +GMm/r.",
+        "common_mistakes": [
+          "Using the two words as if they meant the same thing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That potential energy is the work done from infinity to the point, and potential is that work per unit mass.",
+          "accept": [
+            "work done from infinity",
+            "potential is per unit mass",
+            "V equals U by m"
+          ],
+          "reject": [
+            "integrating the force from infinity to r"
+          ],
+          "heard_as": [
+            "potential",
+            "per unit mass"
+          ]
+        },
+        "memory_tip": "Divide U by m and the mass is gone: V = U/m belongs to the point, not the body.",
+        "margin_note": "First mark. Two definitions, one line each, with V = U/m between them."
+      },
+      {
+        "id": "s2_work",
+        "kind": "equation",
+        "label": "The work done",
+        "marks": 2,
+        "mark_note": "Work done",
+        "lines": [
+          "At a distance x from the mass M the pull on the",
+          "body is",
+          {
+            "text": "F = G M m / x²",
+            "style": "eq"
+          },
+          "This force is not constant, so the work must be",
+          "integrated. Integrating F over x from infinity",
+          "down to r gives the work done BY the pull:",
+          {
+            "text": "W = G M m / r",
+            "style": "eq"
+          }
+        ],
+        "why": "A 1/x² force integrates to a 1/x energy — one power of x is lost to the integration, which is why U goes as 1/r and not 1/r².",
+        "common_mistakes": [
+          "Multiplying force by distance directly, which is only valid for a constant force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force G M m by x squared is integrated from infinity down to r, giving G M m by r.",
+          "accept": [
+            "integrate the force from infinity to r",
+            "G M m by r",
+            "force is not constant"
+          ],
+          "reject": [
+            "V equals U by m"
+          ],
+          "heard_as": [
+            "integrate",
+            "G M m by r"
+          ]
+        },
+        "memory_tip": "Find the pull’s work first, +GMm/r, then change the sign at the end. Two steps.",
+        "margin_note": "Two marks. Integrate a changing force; force × distance is not available here."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "The potential energy is the work done AGAINST",
+          "the pull, which is the negative of this:",
+          {
+            "text": "U = − G M m / r,     V = − G M / r",
+            "style": "boxed"
+          },
+          "Both are taken as zero at infinity, by choice."
+        ],
+        "why": "The zero is a convention, but the DIFFERENCE between two points is not — and only differences are ever measured.",
+        "common_mistakes": [
+          "Giving U as positive, which would mean the masses repel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That U is minus G M m by r and V is minus G M by r, both zero at infinity.",
+          "accept": [
+            "minus G M m by r",
+            "minus G M by r",
+            "zero at infinity"
+          ],
+          "reject": [
+            "integrate the force from infinity to r"
+          ],
+          "heard_as": [
+            "minus",
+            "zero at infinity"
+          ]
+        },
+        "memory_tip": "The outside agent’s work is the negative of the pull’s, so U = −GMm/r.",
+        "margin_note": "Last mark. Box U and V together and name the zero at infinity."
+      }
+    ]
+  },
+  "insider_note": "The two definitions share a single mark; the integration of G M m / x² is worth two, so write that part out in full."
+}

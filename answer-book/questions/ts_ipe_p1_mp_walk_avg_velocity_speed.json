@@ -16,7 +16,13 @@
   "paper_section": "Section A",
   "expected_time_min": 4,
   "question_text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Average velocity",
@@ -79,7 +85,8 @@
             "displacement zero",
             "fifty minutes"
           ]
-        }
+        },
+        "memory_tip": "He ends at his own door, so the displacement is zero. Zero over any time is still zero."
       },
       {
         "id": "s2_speed",
@@ -122,8 +129,10 @@
             "6 km",
             "total distance"
           ]
-        }
+        },
+        "memory_tip": "More time is spent on the slower leg, so the answer is below 6.25 km/h — it is 6."
       }
     ]
-  }
+  },
+  "insider_note": "Two answers, one mark each: 0 for the velocity and 6 km/h for the speed. A number without its unit costs the second mark."
 }

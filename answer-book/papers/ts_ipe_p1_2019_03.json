@@ -1,0 +1,235 @@
+{
+  "schema_version": "ipe_paper_v1",
+  "paper_id": "ts_ipe_p1_2019_03",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "paper": "Paper-I",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "year": 2019,
+  "month": 3,
+  "month_label": "March 2019",
+  "date_confidence": "printed",
+  "paper_code": "0119",
+  "set": "A",
+  "provenance": {
+    "source_pdf": "TS_Inter_1st_Year_Physics_EM_March_2019.pdf",
+    "transcribed_on": "2026-08-26",
+    "transcribed_from": "the PDF scan itself, read page by page — never a prior transcription",
+    "year_source": "printed on the paper",
+    "header_note": "Header reads \"Part III PHYSICS, Paper - I (English Version)\"; booklet code 0119, set A. Total questions 21, printed pages 2."
+  },
+  "exam_pattern": {
+    "max_marks": 60,
+    "duration_hours": 3,
+    "sections": [
+      {
+        "name": "Section A",
+        "qtype": "VSAQ",
+        "marks_each": 2,
+        "count": 10,
+        "choose": 10,
+        "q_range": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Section B",
+        "qtype": "SAQ",
+        "marks_each": 4,
+        "count": 8,
+        "choose": 6,
+        "q_range": [
+          11,
+          18
+        ]
+      },
+      {
+        "name": "Section C",
+        "qtype": "LAQ",
+        "marks_each": 8,
+        "count": 3,
+        "choose": 2,
+        "q_range": [
+          19,
+          21
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q_no": 1,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the contribution of S. Chandrasekhar to Physics?"
+    },
+    {
+      "q_no": 2,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Define unified atomic mass unit and write its value in kg."
+    },
+    {
+      "q_no": 3,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the acceleration of the projectile at the top of its trajectory?"
+    },
+    {
+      "q_no": 4,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What happens to coefficient of friction if the weight of the body is doubled?"
+    },
+    {
+      "q_no": 5,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is Magnus effect?"
+    },
+    {
+      "q_no": 6,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is meant by hydrostatic paradox?"
+    },
+    {
+      "q_no": 7,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "If the maximum intensity of radiation for a black body is found at 1.45 μm, what is the temperature of radiating body? (Wien’s constant = 2.9 × 10⁻³ mk)"
+    },
+    {
+      "q_no": 8,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Why do liquids have no linear and areal expansions?"
+    },
+    {
+      "q_no": 9,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "When does real gas behave like an ideal gas?"
+    },
+    {
+      "q_no": 10,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "The absolute temperature of gas is increased by 3 times. What will be the increase in rms velocity of the gas molecule?"
+    },
+    {
+      "q_no": 11,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Derive the equation S = ut + ½at² from v–t graph."
+    },
+    {
+      "q_no": 12,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "O is the point on the ground chosen as origin. A body first suffers a displacement of 10√2 m North-East, next 10 m North and finally 10√2 m North-West. How far is it from the origin?"
+    },
+    {
+      "q_no": 13,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Explain the various methods to minimise the friction."
+    },
+    {
+      "q_no": 14,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "What is the moment of inertia of a rod of mass M and length L about an axis perpendicular to it and passing through one end?"
+    },
+    {
+      "q_no": 15,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define vector product of two vectors and write any two properties of it."
+    },
+    {
+      "q_no": 16,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define escape velocity and derive an expression for it."
+    },
+    {
+      "q_no": 17,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define strain energy and derive an expression for it."
+    },
+    {
+      "q_no": 18,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Pendulum clocks generally go fast in winter and slow in summer. Why?"
+    },
+    {
+      "q_no": 19,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State law of conservation of energy and verify in the case of freely falling body. Calculate the power of a pump required to lift 600 kg of water per minute from a well of 25 m deep.",
+      "parts": [
+        {
+          "part": "a",
+          "kind": "derivation",
+          "text": "State law of conservation of energy and verify in the case of freely falling body."
+        },
+        {
+          "part": "b",
+          "kind": "numerical",
+          "text": "Calculate the power of a pump required to lift 600 kg of water per minute from a well of 25 m deep."
+        }
+      ]
+    },
+    {
+      "q_no": 20,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Define simple harmonic motion. Show that the motion of (point) projection of a particle performing uniform circular motion on any diameter is simple harmonic. A mass of 2 kg is attached to a spring of force constant 200 Nm⁻¹. Find its time period.",
+      "parts": [
+        {
+          "part": "a",
+          "kind": "derivation",
+          "text": "Define simple harmonic motion. Show that the motion of (point) projection of a particle performing uniform circular motion on any diameter is simple harmonic."
+        },
+        {
+          "part": "b",
+          "kind": "numerical",
+          "text": "A mass of 2 kg is attached to a spring of force constant 200 Nm⁻¹. Find its time period."
+        }
+      ]
+    },
+    {
+      "q_no": 21,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Explain reversible and irreversible process. Describe the working of Carnot’s engine. Obtain the expression for the efficiency."
+    }
+  ]
+}

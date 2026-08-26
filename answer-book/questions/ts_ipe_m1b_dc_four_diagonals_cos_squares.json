@@ -1,0 +1,523 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dc_four_diagonals_cos_squares",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "D.C's & D.R's"
+  },
+  "chapter": "D.C's & D.R's",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If a ray makes angles α, β, γ, δ with the four diagonals of a cube then show that cos²α+cos²β+cos²γ+cos²δ = 4/3.",
+  "appearances": [
+    {
+      "year": 2016
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set the cube on the axes",
+      "marks": 1
+    },
+    {
+      "label": "Write all four diagonals",
+      "marks": 2
+    },
+    {
+      "label": "Find cosα for the first diagonal",
+      "marks": 2
+    },
+    {
+      "label": "Write the other three by symmetry",
+      "marks": 1
+    },
+    {
+      "label": "Add the four squares",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.31 — LAQ chapter 3 D.C's & D.R's, answer 20. Printed appearances: TS 16 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter. It is not a bare guess: the book prints 7-mark splits on three answers elsewhere in the book — LAQ answers 12 (p.24, 1+1+2+1+2), 15 (p.26, 1+1+1+1+1+2) and 21 (p.32, seven 1-mark tags) — so both an even 1-per-move cut and a weighted cut are the book's own shapes at this length. This answer is cut on the moves its own printed working takes, weighted so the two long eliminations carry the most. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: D.C's & D.R's is an LAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 7 marks in Section C and nothing in Section A or Section B, and the book has no D.C's SAQ chapter (its SAQ chapters are 7-13) and no VSAQ chapter (its VSAQ chapters are 14-20). The book's own LAQ chapter table calls it the EASIEST chapter of the six. Chapter scoped by BOUNDARY WALK: book p.32 opens LAQ chapter 4, Differentiation. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no D.C's or D.R's question. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say how many diagonals a cube has, and what identity collapses the sum.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "D.C's & D.R's · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_the_cube",
+        "kind": "text",
+        "label": "Set the cube on the axes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Nothing in the question fixes a cube, so one is CHOSEN: put a vertex at the origin and three edges along the axes. Every coordinate is then 0 or a, and the side a cancels at the end — so the answer does not depend on the choice.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let one of the vertices of the cube coincide with the origin O(0,0,0)",
+          "and edges coincide with the coordinate axes.",
+          "Let A, B, C be the vertices of the cube on the x-axis, y-axis, z-axis so that OA = OB = OC = a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cube is placed with a vertex at the origin and edges along the axes.",
+          "accept": [
+            "put one vertex at the origin and the edges along the axes",
+            "the cube has side a with O A equals O B equals O C",
+            "choose the cube's position first",
+            "cube ni origin daggara pettali",
+            "set up the coordinates"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "origin",
+            "edges along the axes",
+            "side a"
+          ]
+        },
+        "why": "Placing the cube on the axes is a free choice that costs nothing and makes every vertex a triple of 0's and a's. The answer is a pure number, so a must cancel — and it does.",
+        "common_mistakes": [
+          "Trying to work without coordinates.",
+          "Using different edge lengths, which is not a cube."
+        ]
+      },
+      {
+        "id": "s2_four_diagonals",
+        "kind": "equation",
+        "label": "Write all four diagonals",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. A cube has FOUR body diagonals, and the question needs all of them. Each joins a vertex to the one diagonally opposite through the body.",
+        "lines": [
+          "The vertices of the cube on xy-plane, yz-plane, zx-plane be L, M, N and P the remaining vertex in the space.",
+          "The 4 diagonals of the cube are  OP,  CL,  NB,  AM",
+          "The coordinates of the vertices are  A(a,0,0), B(0,a,0), C(0,0,a),",
+          "L(a,a,0), M(0,a,a), N(a,0,a) and P(a,a,a)",
+          "The d.r's of OP = (a−0, a−0, a−0) = (a, a, a)",
+          "The d.r's of CL = (a−0, a−0, 0−a) = (a, a, −a)",
+          "The d.r's of NB = (0−a, a−0, 0−a) = (−a, a, −a)",
+          "The d.r's of AM = (0−a, a−0, a−0) = (−a, a, a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four diagonals OP, CL, NB and AM have direction ratios (a,a,a), (a,a,−a), (−a,a,−a) and (−a,a,a).",
+          "accept": [
+            "a cube has four body diagonals, write the direction ratios of each",
+            "O P, C L, N B and A M",
+            "the four triples differ only in their signs",
+            "naalugu diagonals unnaayi, anni rayali",
+            "all four diagonals"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four diagonals",
+            "O P",
+            "C L",
+            "N B",
+            "A M",
+            "signs"
+          ]
+        },
+        "why": "The four triples are (±a, a, ±a) in all four sign combinations — which is what makes the final sum collapse so neatly.",
+        "common_mistakes": [
+          "Listing only two diagonals, as the previous question needed.",
+          "Including face diagonals among the four."
+        ]
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "Draw the cube",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. All FOUR body diagonals are needed here, and the drawing is what stops one being missed or a face diagonal being counted by mistake.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a labelled cube is drawn with all four diagonals OP, CL, NB and AM marked. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the cube and mark all four diagonals",
+            "sketch the labelled cube showing O P, C L, N B and A M",
+            "make a diagram with the four body diagonals",
+            "cube geesi naalugu diagonals mark cheyyali",
+            "draw the cube with all four diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "cube",
+            "four diagonals",
+            "O P",
+            "C L",
+            "N B",
+            "A M"
+          ]
+        },
+        "why": "A cube has exactly four body diagonals, one from each pair of opposite corners. Drawing them is the quickest way to see that there are four and not six.",
+        "common_mistakes": [
+          "Drawing only two diagonals, as the previous question needed.",
+          "Counting face diagonals among the four."
+        ],
+        "figure": {
+          "id": "cube_four_diagonals",
+          "width": 270,
+          "height": 292,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "front_face",
+              "d": "M 100 195 L 210 195 L 210 100 L 100 100 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "back_face",
+              "d": "M 50 240 L 160 240 L 160 145 L 50 145 Z",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "edge_oc",
+              "d": "M 100 195 L 50 240",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_an",
+              "d": "M 210 195 L 160 240",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_lp",
+              "d": "M 210 100 L 160 145",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "edge_bm",
+              "d": "M 100 100 L 50 145",
+              "ms": 260
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 210 195 L 246 195",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x_head",
+              "d": "M 238 190 L 246 195 L 238 200",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 100 100 L 100 62",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y_head",
+              "d": "M 95 70 L 100 62 L 105 70",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z",
+              "d": "M 50 240 L 28 262",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "axis_z_head",
+              "d": "M 36 260 L 28 262 L 30 254",
+              "ms": 110
+            },
+            {
+              "type": "stroke",
+              "id": "diag_op",
+              "d": "M 100 195 L 160 145",
+              "ms": 520,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "diag_cl",
+              "d": "M 50 240 L 210 100",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "diag_nb",
+              "d": "M 160 240 L 100 100",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "diag_am",
+              "d": "M 210 195 L 50 145",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 84,
+              "y": 212,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 216,
+              "y": 214,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 82,
+              "y": 94,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_l",
+              "x": 220,
+              "y": 92,
+              "text": "L",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 34,
+              "y": 236,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 168,
+              "y": 260,
+              "text": "N",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_m",
+              "x": 26,
+              "y": 140,
+              "text": "M",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 172,
+              "y": 140,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 250,
+              "y": 182,
+              "text": "X",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 108,
+              "y": 58,
+              "text": "Y",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_z",
+              "x": 14,
+              "y": 274,
+              "text": "Z",
+              "ms": 180,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_first_cosine",
+        "kind": "equation",
+        "label": "Find cosα for the first diagonal",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Let the ray have direction cosines (l, m, n), so l² + m² + n² = 1 — that identity is what makes the denominator collapse to √3·a.",
+        "lines": [
+          "Let (l, m, n) be the d.c's of the given ray, then we have  l² + m² + n² = 1",
+          "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
+          "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
+          "= a(l + m + n) / √(3a²(1)) = a(l + m + n) / (√3 a)",
+          "⇒ cosα = (l + m + n)/√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with l² + m² + n² = 1 the first cosine is (l + m + n)/√3.",
+          "accept": [
+            "let the ray have direction cosines l m n so their squares add to one",
+            "cos alpha is l plus m plus n over root three",
+            "the a cancels and the root of the sum of squares is one",
+            "ray ki d c's l m n, squares sum one",
+            "this gives the first cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "direction cosines",
+            "squares add to one",
+            "l plus m plus n",
+            "over root three"
+          ]
+        },
+        "why": "l² + m² + n² = 1 is the defining property of direction cosines, and using it here is what removes the second factor from the denominator entirely.",
+        "common_mistakes": [
+          "Treating (l, m, n) as direction RATIOS, whose squares need not add to 1.",
+          "Forgetting that a cancels."
+        ]
+      },
+      {
+        "id": "s4_by_symmetry",
+        "kind": "equation",
+        "label": "Write the other three by symmetry",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The other three diagonals differ only in signs, so their cosines are the same expression with signs changed — no new working is needed.",
+        "lines": [
+          "Similarly,  cosβ = (l + m − n)/√3,   cosγ = (−l + m − n)/√3,   cosδ = (−l + m + n)/√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the other three cosines are (l+m−n)/√3, (−l+m−n)/√3 and (−l+m+n)/√3.",
+          "accept": [
+            "the other three follow by changing signs the same way the diagonals do",
+            "cos beta is l plus m minus n over root three and so on",
+            "no new working is needed, just the signs",
+            "signs matrame maaruthaayi",
+            "the other three cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "similarly",
+            "changing signs",
+            "over root three",
+            "the other three"
+          ]
+        },
+        "why": "Each diagonal's sign pattern carries straight into its cosine, which is why one calculation serves for all four.",
+        "common_mistakes": [
+          "Recomputing each from scratch and slipping a sign.",
+          "Giving all four the same expression."
+        ]
+      },
+      {
+        "id": "s5_add_the_squares",
+        "kind": "boxed_final",
+        "label": "Add the four squares",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Pair the four terms and use (a+b)² + (a−b)² = 2(a² + b²) twice — the cross terms cancel and only l² + m² + n² survives, which is 1.",
+        "lines": [
+          "∴ cos²α + cos²β + cos²γ + cos²δ",
+          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
+          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
+          "= ⅓[2((l+m)² + n²) + 2((l−m)² + n²)]      [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
+          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
+          "= (4/3)(l² + m² + n²) = (4/3)(1)",
+          {
+            "text": "∴ cos²α + cos²β + cos²γ + cos²δ = 4/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pairing the squares gives (4/3)(l² + m² + n²) = 4/3.",
+          "accept": [
+            "add the four squares and use a plus b squared plus a minus b squared is twice the sum of squares",
+            "everything collapses to four thirds times l squared plus m squared plus n squared",
+            "since that is one the answer is four thirds",
+            "naalugu squares add chesthe four by three vasthundi",
+            "the result is four thirds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add the squares",
+            "twice the sum of squares",
+            "four thirds",
+            "equals one"
+          ]
+        },
+        "why": "The identity is applied TWICE — once to the pair carrying (l+m) and once to the pair carrying (l−m) — and every cross term cancels, leaving a result that does not depend on the ray at all.",
+        "common_mistakes": [
+          "Applying the identity to the wrong pairing of the four terms.",
+          "Forgetting that l² + m² + n² = 1 at the last step."
+        ]
+      }
+    ]
+  }
+}

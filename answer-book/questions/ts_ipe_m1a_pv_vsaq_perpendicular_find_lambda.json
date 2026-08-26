@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vsaq_perpendicular_find_lambda",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the vectors 2i + λj − k and 4i − 2j + 2k are perpendicular to each other, then find λ.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set the dot product to zero",
+      "marks": 1
+    },
+    {
+      "label": "Solve for λ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.89 — VSAQ chapter 17 Product of Vectors, answer 119.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 15,16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four questions to a page in two columns. It is not a bare guess: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark VSAQ, applied here to the two steps of this question. The book's chapter header carries ★★★ and reads '2 Marks'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q7 is the Product of Vectors slot."
+  },
+  "recall_prompt": "Say how you would find lambda when two vectors are perpendicular.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Product of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Set the dot product to zero",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Perpendicular means dot product zero — write that condition down as an equation before substituting anything.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 2i + λj − k, b = 4i − 2j + 2k",
+          "Given a ⊥ b  ⇒  a·b = 0",
+          "∴ (2i + λj − k)·(4i − 2j + 2k) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That perpendicularity is written as a·b = 0 and the two vectors substituted in.",
+          "accept": [
+            "perpendicular means a dot b is zero so set the dot product equal to zero",
+            "write the condition a dot b equals zero",
+            "use the perpendicular condition, dot product zero",
+            "perpendicular ante a dot b zero, aa condition rasta",
+            "set the scalar product to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a dot b",
+            "zero",
+            "perpendicular",
+            "condition"
+          ]
+        },
+        "why": "Every \"find the unknown given perpendicular\" question is this one equation. Writing the condition first is what turns geometry into algebra.",
+        "common_mistakes": [
+          "Setting the cross product to zero, which is the condition for PARALLEL.",
+          "Substituting before stating the condition."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for λ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand, collect, solve. One line each.",
+        "lines": [
+          "⇒ 2(4) − 2λ − 2 = 0",
+          "⇒ 8 − 2λ − 2 = 0",
+          "⇒ 6 = 2λ",
+          {
+            "text": "∴ λ = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives 6 − 2λ = 0, so λ = 3.",
+          "accept": [
+            "expand to get eight minus two lambda minus two equals zero so lambda is three",
+            "six equals two lambda so lambda is three",
+            "solving gives lambda equals three",
+            "lambda three vasthundi",
+            "the answer is lambda equals three"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "lambda equals three",
+            "three",
+            "two lambda"
+          ]
+        },
+        "why": "The dot product is linear in λ here, so there is exactly one answer — unlike the next question, where λ appears squared.",
+        "common_mistakes": [
+          "Sign slip on the k term: (−1)(2) = −2.",
+          "Getting λ = −3."
+        ]
+      }
+    ]
+  }
+}

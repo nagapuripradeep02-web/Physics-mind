@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_normal_form_x_2y_3z",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Reduce the equation x+2y−3z−6=0 of the plane to the normal form.",
+  "appearances": [
+    {
+      "year": 2019
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Move the constant across",
+      "marks": 1
+    },
+    {
+      "label": "Divide by the root of the squares",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 104, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 19 · AP,TS M-16 (March 2016). ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say what you divide by, and what the coefficients become afterwards.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_move_the_constant",
+        "kind": "equation",
+        "label": "Move the constant across",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Normal form is lx + my + nz = p, so the constant goes to the right and the coefficients are left alone for the moment.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Equation of the plane is  x + 2y − 3z − 6 = 0",
+          "⇒ x + 2y − 3z = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the constant is moved across to give x + 2y − 3z = 6.",
+          "accept": [
+            "move the constant to the right hand side",
+            "normal form is l x plus m y plus n z equals p",
+            "get the constant alone on the right",
+            "constant ni right side ki teesukovali",
+            "rearrange it first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "move the constant",
+            "normal form",
+            "equals p"
+          ]
+        },
+        "why": "Normal form differs from intercept form in what it divides by — the ROOT of the sum of the squared coefficients, not the constant — so the constant is left on the right rather than divided out.",
+        "common_mistakes": [
+          "Dividing by the constant, which gives intercept form instead.",
+          "Sign slip when moving −6 across."
+        ]
+      },
+      {
+        "id": "s2_divide_by_the_root",
+        "kind": "boxed_final",
+        "label": "Divide by the root of the squares",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Divide every term by √(a²+b²+c²). The three coefficients then square-and-add to 1, which is what makes them direction cosines of the normal.",
+        "lines": [
+          "Dividing the above equation by √(1² + 2² + (−3)²) = √(1 + 4 + 9) = √14, we have",
+          {
+            "text": "(1/√14)x + (2/√14)y + (−3/√14)z = 6/√14,  which is in the normal form",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by √14 gives (1/√14)x + (2/√14)y + (−3/√14)z = 6/√14.",
+          "accept": [
+            "divide every term by the root of one plus four plus nine which is root fourteen",
+            "the coefficients then square and add to one",
+            "this is the normal form",
+            "root fourteen tho divide cheyyali",
+            "divide by the root of the sum of the squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root fourteen",
+            "divide every term",
+            "square and add to one",
+            "normal form"
+          ]
+        },
+        "why": "After dividing, the coefficients ARE the direction cosines of the normal to the plane, and the right-hand side is the perpendicular distance from the origin.",
+        "common_mistakes": [
+          "Dividing by 1+4+9 = 14 instead of its square root.",
+          "Forgetting to divide the right-hand side."
+        ]
+      }
+    ]
+  }
+}

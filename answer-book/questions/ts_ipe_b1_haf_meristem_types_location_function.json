@@ -1,0 +1,302 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_haf_meristem_types_location_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Histology and Anatomy of Flowering Plants (Botany)"
+  },
+  "chapter": "Histology and Anatomy of Flowering Plants",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State the location and function of the different types of meristems.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apical meristem",
+      "marks": 1
+    },
+    {
+      "label": "Intercalary meristem",
+      "marks": 1
+    },
+    {
+      "label": "Lateral meristem",
+      "marks": 1
+    },
+    {
+      "label": "Labelled diagram",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 12 is sourced from the Junior Fastrack botany book (book pp.29-35), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany — the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed. BOOK WORDING RECORDED: the book writes that the apical meristem 'helps in linear growth of the plant body'; this card writes growth in length (primary growth), which is the phrase the syllabus uses."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Histology and Anatomy of Flowering Plants · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_apical",
+        "kind": "text",
+        "label": "Apical meristem",
+        "marks": 1,
+        "mark_note": "Location + function",
+        "margin_note": "Three types, three short blocks. Position first, then the job it does.",
+        "lines": [
+          "Meristems are groups of cells that keep",
+          "dividing. On the basis of their position they",
+          "are of three types.",
+          {
+            "text": "1. Apical meristem",
+            "style": "heading"
+          },
+          "Location: at the tip of the root and at the",
+          "tip of the shoot.",
+          "Function: it adds new cells at the tip, so the",
+          "root and the shoot grow in length. This is",
+          "primary growth.",
+          "Example: root apical meristem, shoot apical",
+          "meristem."
+        ],
+        "why": "Naming a meristem is naming its position, so both halves of the answer follow from where the dividing cells sit. Cells at a tip can only add cells ahead of themselves, which is growth in length.",
+        "common_mistakes": [
+          "Giving the location and leaving out the function. The question asks for both.",
+          "Saying the apical meristem increases thickness. A tip adds length."
+        ],
+        "memory_tip": "Apex means tip, and tip growth means growth in length."
+      },
+      {
+        "id": "s2_intercalary",
+        "kind": "text",
+        "label": "Intercalary meristem",
+        "marks": 1,
+        "mark_note": "Location + function",
+        "margin_note": "Two lines for the position, two for the function, one for the example.",
+        "lines": [
+          {
+            "text": "2. Intercalary meristem",
+            "style": "heading"
+          },
+          "Location: between two permanent tissues,",
+          "usually at the base of the internode or at the",
+          "leaf base.",
+          "Function: it adds length even after the tip",
+          "has been removed, so the parts eaten by",
+          "grazing animals or cut off grow back.",
+          "Example: grasses."
+        ],
+        "why": "Intercalary means placed in between. Because these dividing cells lie behind the tip, the shoot can still add length when the tip itself is gone.",
+        "common_mistakes": [
+          "Placing this meristem at the tip. It lies between permanent tissues, behind the tip.",
+          "Leaving out the grass example, which is the one the book gives."
+        ],
+        "memory_tip": "Inter means between. Cut grass grows back because its meristem is not at the tip."
+      },
+      {
+        "id": "s3_lateral",
+        "kind": "text",
+        "label": "Lateral meristem",
+        "marks": 1,
+        "mark_note": "Location + function",
+        "margin_note": "Say secondary growth in words. That is the phrase the examiner looks for.",
+        "lines": [
+          {
+            "text": "3. Lateral meristem",
+            "style": "heading"
+          },
+          "Location: along the sides of the stem and the",
+          "root, lying as a cylinder inside the organ.",
+          "Function: it adds cells towards the outside",
+          "and towards the inside, so the stem and the",
+          "root grow in thickness. This is secondary",
+          "growth.",
+          "Example: vascular cambium, cork cambium."
+        ],
+        "why": "Lateral means at the side. A cylinder of dividing cells along the flank can only add cells outward and inward, so what it increases is girth, not length.",
+        "common_mistakes": [
+          "Writing that the lateral meristem increases length. Sideways division gives thickness.",
+          "Leaving out the two examples. Vascular cambium and cork cambium are the marked ones."
+        ],
+        "memory_tip": "Lateral means side, and side growth means girth. Both cambiums are lateral."
+      },
+      {
+        "id": "s4_figure",
+        "kind": "diagram",
+        "label": "Diagram of the three meristems",
+        "marks": 1,
+        "mark_note": "Diagram",
+        "margin_note": "A quick outline with the three labels earns this mark. Two minutes is enough.",
+        "figure": {
+          "id": "meristem_types",
+          "width": 500,
+          "height": 256,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "stem_l",
+              "d": "M 170 228 L 170 88",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "stem_r",
+              "d": "M 212 228 L 212 88",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "apex",
+              "d": "M 170 88 C 170 58 178 42 191 42 C 204 42 212 58 212 88",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "stem_break",
+              "d": "M 170 228 L 178 236 L 187 228 L 196 236 L 204 228 L 212 236",
+              "ms": 240,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "apical_zone",
+              "d": "M 171 78 Q 191 90 211 78 M 175 62 Q 191 72 207 62",
+              "ms": 320,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "apical_cells",
+              "d": "M 183 62 L 182 78 M 199 62 L 200 78 M 191 50 L 191 62",
+              "ms": 300,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "leaf_l",
+              "d": "M 170 104 C 146 92 126 92 116 100 C 130 112 152 118 170 116",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "leaf_r",
+              "d": "M 212 104 C 236 92 256 92 266 100 C 252 112 230 118 212 116",
+              "ms": 380
+            },
+            {
+              "type": "stroke",
+              "id": "inter_band",
+              "d": "M 170 138 L 212 138 M 170 152 L 212 152",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "inter_cells",
+              "d": "M 178 138 L 178 152 M 187 138 L 187 152 M 196 138 L 196 152 M 205 138 L 205 152",
+              "ms": 320,
+              "w": 1.3
+            },
+            {
+              "type": "stroke",
+              "id": "lat_strips",
+              "d": "M 176 174 L 176 226 M 182 174 L 182 226 M 200 174 L 200 226 M 206 174 L 206 226",
+              "ms": 420,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "lat_ticks",
+              "d": "M 176 187 L 182 187 M 176 200 L 182 200 M 176 213 L 182 213 M 200 187 L 206 187 M 200 200 L 206 200 M 200 213 L 206 213",
+              "ms": 320,
+              "w": 1.2
+            },
+            {
+              "type": "label",
+              "id": "l_apical",
+              "x": 250,
+              "y": 48,
+              "text": "Apical meristem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_apical",
+              "d": "M 246 42 L 226 50 L 207 58",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_apical_ah",
+              "d": "M 213.4 51.7 L 207 58 L 216.0 57.9",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_inter",
+              "x": 250,
+              "y": 140,
+              "text": "Intercalary meristem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_inter",
+              "d": "M 246 134 L 230 142 L 214 146",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_inter_ah",
+              "d": "M 221.3 140.7 L 214 146 L 222.9 147.2",
+              "ms": 120,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "l_lat",
+              "x": 250,
+              "y": 214,
+              "text": "Lateral meristem",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lat",
+              "d": "M 246 208 L 228 204 L 208 200",
+              "ms": 260,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "ld_lat_ah",
+              "d": "M 216.8 198.3 L 208 200 L 215.5 204.9",
+              "ms": 120,
+              "w": 1.8
+            }
+          ]
+        },
+        "why": "One shoot outline holds all three positions at once, so the examiner can see that you know where each meristem sits without reading the words again.",
+        "common_mistakes": [
+          "Drawing the lateral meristem as a band across the stem. It runs along the sides.",
+          "Leaving the three labels off the sketch."
+        ],
+        "memory_tip": "Draw one shoot: the tip, then a band lower down, then two strips along the flanks."
+      }
+    ]
+  },
+  "insider_note": "Most students write the three names and stop. The location and the function are separate marks, so give both for each type."
+}

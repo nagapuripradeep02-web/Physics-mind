@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_derive_v2_u2_2as",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive the equation v² = u² + 2as.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Eliminate t",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    },
+    {
+      "label": "When to use it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 3 has no Long Answer section in the Fastrack (pp.6-8) or the TSBIE Basic Learning Material (pp.4-5), so predicted cards are authored as VSAQ or SAQ only. Both the question and the mark split are CLAIMS until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_eliminate",
+        "kind": "equation",
+        "label": "Eliminate t",
+        "marks": 2,
+        "mark_note": "Eliminate t",
+        "lines": [
+          "From v = u + at,  t = (v − u)/a.",
+          "Substitute into s = ut + ½at²:",
+          {
+            "text": "s = u(v−u)/a + ½a[(v−u)/a]²",
+            "style": "eq"
+          },
+          {
+            "text": "s = (uv − u² )/a + (v−u)²/(2a)",
+            "style": "eq"
+          }
+        ],
+        "why": "The two standard equations both contain t, so eliminating t between them produces a relation that connects v, u, a and s alone.",
+        "common_mistakes": [
+          "Squaring only the numerator of (v − u)/a and forgetting the a² underneath."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t is eliminated by substituting t equals v minus u over a into s equals u t plus half a t squared.",
+          "accept": [
+            "substitute t",
+            "v minus u over a",
+            "eliminate t"
+          ],
+          "reject": [
+            "assume the answer"
+          ],
+          "heard_as": [
+            "substitute",
+            "eliminate"
+          ]
+        },
+        "memory_tip": "Make t the subject of v = u + at, then put it into the s equation.",
+        "margin_note": "Two marks. Show the substitution before simplifying."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          "Multiplying through by 2a and simplifying:",
+          "2as = 2uv − 2u² + v² − 2uv + u²",
+          {
+            "text": "v² = u² + 2as",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cross terms 2uv cancel, which is what leaves a clean relation between the squares of the velocities.",
+        "common_mistakes": [
+          "Losing the factor 2 on the as term."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is v squared equals u squared plus two a s.",
+          "accept": [
+            "v squared equals u squared plus two a s"
+          ],
+          "reject": [
+            "v squared equals u squared plus a s"
+          ],
+          "heard_as": [
+            "v squared",
+            "two a s"
+          ]
+        },
+        "memory_tip": "The 2uv terms cancel. That cancellation is the tidy part.",
+        "margin_note": "Show the cancellation rather than jumping to the box."
+      },
+      {
+        "id": "s3_use",
+        "kind": "text",
+        "label": "When to use it",
+        "marks": 1,
+        "mark_note": "Its use",
+        "lines": [
+          "This equation contains no t, so it is the one",
+          "to use whenever the time is neither given",
+          "nor asked for, such as finding a stopping",
+          "distance from a known speed."
+        ],
+        "why": "Choosing the equation that leaves out the unknown you do not need turns a two-step problem into a one-step problem.",
+        "common_mistakes": [
+          "Using it to find a time. There is no t in it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation has no t, so it is used when time is not given and not asked for.",
+          "accept": [
+            "no t in it",
+            "time not given",
+            "stopping distance"
+          ],
+          "reject": [
+            "use it to find time"
+          ],
+          "heard_as": [
+            "no time",
+            "stopping distance"
+          ]
+        },
+        "memory_tip": "No t anywhere. Use it whenever time is not part of the question.",
+        "margin_note": "One sentence on when to reach for it."
+      }
+    ]
+  },
+  "insider_note": "This is the equation with no t in it. Say that — it is why the examiner asks for it separately."
+}

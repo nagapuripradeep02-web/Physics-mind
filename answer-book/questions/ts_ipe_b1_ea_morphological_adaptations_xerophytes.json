@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ea_morphological_adaptations_xerophytes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 13, "name": "Ecological Adaptations, Succession and Ecological Services (Botany)" },
+  "chapter": "Ecological Adaptations, Succession and Ecological Services",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Enumerate the morphological adaptations of xerophytes.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Root system", "marks": 1 },
+    { "label": "Stem", "marks": 1 },
+    { "label": "Leaves", "marks": 1 },
+    { "label": "Surface and further points", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 13, book p.36, SAQ 5. All five of the book's points are kept and grouped into four marked blocks; the fourth block adds standard points the book omits (phylloclade in Opuntia, cladode in Asparagus, leaf fall in the dry season, hairy surface, rolled leaves) with the examples they need. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The 1+1+1+1 split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ecological Adaptations, Succession and Ecological Services · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_roots",
+        "kind": "text",
+        "label": "Root system",
+        "marks": 1,
+        "mark_note": "Roots",
+        "lines": [
+          "Root system is very well developed.",
+          "The roots are long and much branched, and",
+          "reach the deeper layers of soil where",
+          "water is still present.",
+          "Root hairs and root caps are very well",
+          "developed."
+        ],
+        "why": "A xerophyte has to take in as much water as it can, so the absorbing surface is enlarged in two ways: length that reaches deep water, and root hairs that increase the surface area.",
+        "common_mistakes": [
+          "Writing only that roots are long. The branching and the root hairs are separate points.",
+          "Saying root caps are absent. That is a hydrophyte feature."
+        ],
+        "memory_tip": "Take in more, lose less. The root half of the answer is take in more.",
+        "margin_note": "Four blocks for four marks: root, stem, leaf, surface. Two or three lines each."
+      },
+      {
+        "id": "s2_stem",
+        "kind": "text",
+        "label": "Stem",
+        "marks": 1,
+        "mark_note": "Stem",
+        "lines": [
+          "Stem is hard and woody.",
+          "It is covered by a thick bark or by a waxy",
+          "coating, which reduces water loss from the",
+          "stem surface.",
+          "In some xerophytes the stem is underground",
+          "(rhizome, tuber) and survives the dry",
+          "season below the soil."
+        ],
+        "why": "The stem is the largest exposed surface after the leaves, so it is covered with bark or wax. Where even that is not enough the whole stem is kept below the soil.",
+        "common_mistakes": [
+          "Writing that the stem is soft and flexible. That is a hydrophyte stem.",
+          "Leaving out the covering. The thick bark or waxy coating is the marked point, not the hardness."
+        ],
+        "memory_tip": "Hard outside, sealed outside: bark or wax on every xerophyte stem.",
+        "margin_note": "Name the covering in the first line; the underground stem is the safe extra."
+      },
+      {
+        "id": "s3_leaves",
+        "kind": "text",
+        "label": "Leaves",
+        "marks": 1,
+        "mark_note": "Leaves",
+        "lines": [
+          "Leaves are reduced in size, and are often",
+          "reduced to spines or scales, which lowers",
+          "transpiration. Ex: Opuntia, Casuarina.",
+          "Leaves that remain are small, leathery and",
+          "coated with a thick cuticle or wax.",
+          "Ex: Nerium, Acacia."
+        ],
+        "why": "Almost all water loss happens through the leaf, so the leaf area is cut down. A spine has nearly no surface, and what surface is left is sealed with cuticle or wax.",
+        "common_mistakes": [
+          "Writing that leaves are broad and thin. That is a sciophyte or a hydrophyte leaf.",
+          "Saying spines are for defence only. In this answer the marked reason is reduced transpiration."
+        ],
+        "memory_tip": "Less leaf, less loss. A spine is a leaf with almost no surface left.",
+        "margin_note": "Give the reason with every point. Reduced leaves plus its reason is the mark."
+      },
+      {
+        "id": "s4_surface_extras",
+        "kind": "boxed_final",
+        "label": "Surface and further points",
+        "marks": 1,
+        "mark_note": "Further points",
+        "lines": [
+          { "text": "Absorb more from the soil, lose less to air", "style": "boxed" },
+          "The leaf surface is often hairy, or the",
+          "leaf rolls inward in dry weather, so the",
+          "stomata sit in still, moist air.",
+          "Where leaves are lost, a green stem takes",
+          "over photosynthesis: phylloclade in",
+          "Opuntia, cladode in Asparagus."
+        ],
+        "why": "Every point in this answer does one of two things — it increases uptake from the soil, or it reduces loss to the air — and the flattened green stem shows how photosynthesis still goes on after the leaves are gone.",
+        "common_mistakes": [
+          "Confusing phylloclade and cladode. A phylloclade has many internodes, a cladode has one or two.",
+          "Writing the summary line without any supporting point above it."
+        ],
+        "memory_tip": "Two effects only: more water in, less water out. Sort every point you recall into one of them.",
+        "margin_note": "Close with the summary line. It links the four blocks together for the examiner."
+      }
+    ]
+  },
+  "insider_note": "Morphological means the external form, so keep sunken stomata and multiple epidermis out — they belong to the anatomical question. Write root, stem and leaf in that order and the marks fall into place."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_skew_symmetric_find_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a skew symmetric matrix. If the matrix with rows (0, 2, 1), (−2, 0, −2) and (−1, x, 0) is skew symmetric, find the value of x.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Define skew symmetric",
+      "marks": 1
+    },
+    {
+      "label": "Equate the mirror entries",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 15 Matrices, answer 108.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP,TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say what a skew symmetric matrix is and how you would find x.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "Define skew symmetric",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Skew symmetric means A = −Aᵀ — the SAME as symmetric but with a minus sign, which is also why every diagonal entry has to be 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Skew Symmetric Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A is skew symmetric if A = −Aᵀ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a square matrix is skew symmetric when it equals the NEGATIVE of its transpose, A = −Aᵀ.",
+          "accept": [
+            "a square matrix is skew symmetric if it equals minus its transpose",
+            "skew symmetric means A equals negative A transpose",
+            "the matrix is the negative of its own transpose",
+            "skew symmetric ante A equals minus A transpose",
+            "transposing it and changing every sign gives back the same matrix"
+          ],
+          "reject": [
+            "it is skew symmetric",
+            "define it"
+          ],
+          "heard_as": [
+            "skew symmetric",
+            "minus A transpose",
+            "negative",
+            "transpose"
+          ]
+        },
+        "why": "Skew symmetry is symmetry with a sign flip. That flip also forces every diagonal entry to be zero, which the given matrix already satisfies — a useful check that the question is consistent.",
+        "common_mistakes": [
+          "Defining it as A = Aᵀ, which is plain symmetric.",
+          "Giving x with no definition."
+        ]
+      },
+      {
+        "id": "s2_equate",
+        "kind": "boxed_final",
+        "label": "Equate the mirror entries",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. In −Aᵀ the (3,2) entry is −(the (2,3) entry of A) = −(−2) = 2. Setting that equal to x gives the answer.",
+        "lines": [
+          "A = −Aᵀ, so the (3,2) entry of A equals",
+          "minus the (2,3) entry of A:",
+          "x = −(−2) = 2",
+          {
+            "text": "∴ x = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That skew symmetry makes the (3,2) entry the negative of the (2,3) entry, so x = −(−2) = 2.",
+          "accept": [
+            "the entry is minus the mirrored one so x equals minus of minus two which is two",
+            "skew symmetry gives x as the negative of the reflected entry so x is two",
+            "x equals minus negative two which is two",
+            "mirror entry ki minus kabatti x equals two",
+            "the reflected entry is minus two so x is plus two"
+          ],
+          "reject": [
+            "equate them",
+            "find x"
+          ],
+          "heard_as": [
+            "x equals two",
+            "two",
+            "minus",
+            "mirror",
+            "negative"
+          ]
+        },
+        "why": "Under skew symmetry mirrored entries are opposite in sign. Missing the sign flip gives x = −2, which is the wrong answer by exactly that flip.",
+        "common_mistakes": [
+          "Writing x = −2 by treating it as symmetric.",
+          "Equating x with a diagonal entry."
+        ]
+      }
+    ]
+  }
+}

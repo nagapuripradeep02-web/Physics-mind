@@ -1,0 +1,73 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_fern_characters_cycas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the fern characters found in Cycas.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Leaf characters", "marks": 1 },
+    { "label": "Reproductive characters", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 6. The book lists four characters: multiciliate male gametes, circinate vernation, ramenta, archegonia — the standard set. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_leaf_characters",
+        "kind": "text",
+        "label": "Leaf characters",
+        "marks": 1,
+        "mark_note": "Leaf points",
+        "lines": [
+          "Circinate vernation — the young leaf is",
+          "coiled and uncoils as it grows.",
+          "Ramenta — brown scaly hairs on the young",
+          "parts."
+        ],
+        "why": "These two vegetative characters are exactly what a fern leaf shows, so their presence in Cycas — a gymnosperm — is called its fern character.",
+        "common_mistakes": [
+          "Writing 'reticulate venation' for 'circinate vernation' — vernation is how the young leaf is rolled, not the vein pattern."
+        ],
+        "memory_tip": "Circinate comes from 'circle' — picture the coiled young fern leaf and the same coil on Cycas.",
+        "margin_note": "Any two correct characters usually earn full marks; four is the safe list."
+      },
+      {
+        "id": "s2_reproductive_characters",
+        "kind": "boxed_final",
+        "label": "Reproductive characters",
+        "marks": 1,
+        "mark_note": "Reproductive points",
+        "lines": [
+          { "text": "Multiciliate male gametes + archegonia", "style": "boxed" },
+          "Both are typical of ferns and are also",
+          "present in Cycas."
+        ],
+        "why": "Cycas keeps two fern-like reproductive features: its male gametes swim with many cilia, and its ovule carries archegonia.",
+        "common_mistakes": [
+          "Writing 'antheridia' — Cycas has archegonia but no antheridia.",
+          "Writing 'biciliate' — the male gametes of Cycas are multiciliate."
+        ],
+        "memory_tip": "Recall the answer as 2 + 2: two leaf points (vernation, ramenta) and two reproductive points (male gametes, archegonia).",
+        "margin_note": "Name the characters as short phrases; no explanation is expected."
+      }
+    ]
+  },
+  "insider_note": "Cycas questions repeat across chapters — the same four fern characters also serve the 'living fossil' discussions, so learn the list once."
+}

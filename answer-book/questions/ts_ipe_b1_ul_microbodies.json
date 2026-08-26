@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_microbodies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are microbodies? What do they contain?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "What they contain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Unit of Life · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Microbodies are very small sacs bound by a",
+          "single membrane, lying in the cytoplasm of",
+          "both plant and animal cells.",
+          "Peroxisomes and glyoxysomes are microbodies."
+        ],
+        "why": "The question has two halves. The first half is answered by size, one membrane, and the two named examples.",
+        "common_mistakes": [
+          "Writing that microbodies have two membranes. They have one.",
+          "Naming only peroxisomes. Glyoxysomes are microbodies too."
+        ],
+        "memory_tip": "Two microbodies, two jobs: peroxisome for peroxide, glyoxysome for fat to sugar.",
+        "margin_note": "Both names must appear for this mark."
+      },
+      {
+        "id": "s2_contents",
+        "kind": "boxed_final",
+        "label": "What they contain",
+        "marks": 1,
+        "mark_note": "Enzymes",
+        "lines": [
+          {
+            "text": "Peroxisome → H₂O₂; glyoxysome → fat to sugar",
+            "style": "boxed"
+          },
+          "Peroxisomes hold the enzymes of",
+          "photorespiration, the enzymes that break down",
+          "hydrogen peroxide (H₂O₂), and those that",
+          "break down long chain fatty acids.",
+          "Glyoxysomes hold the enzymes that convert",
+          "stored lipids into carbohydrates."
+        ],
+        "why": "Each microbody is named after the reaction it carries out. Peroxisome is named for hydrogen peroxide, glyoxysome for the glyoxylate cycle that turns fat into sugar.",
+        "common_mistakes": [
+          "Swapping the two. Fat to sugar is the glyoxysome.",
+          "Writing that microbodies make ATP. That is the mitochondrion."
+        ],
+        "memory_tip": "The name gives the answer: perox-isome breaks peroxide, glyox-ysome runs the glyoxylate cycle.",
+        "margin_note": "One enzyme job for each body earns this mark."
+      }
+    ]
+  },
+  "insider_note": "Germinating oil seeds are full of glyoxysomes — that is the example to add if the examiner asks where they occur."
+}

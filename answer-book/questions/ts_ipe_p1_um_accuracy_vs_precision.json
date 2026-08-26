@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_accuracy_vs_precision",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between accuracy and precision.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Accuracy",
+      "marks": 1
+    },
+    {
+      "label": "Precision",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_accuracy",
+        "kind": "text",
+        "label": "Accuracy",
+        "marks": 1,
+        "mark_note": "Accuracy",
+        "lines": [
+          "Accuracy is how close a measured value is",
+          "to the true value of the quantity.",
+          "It depends on how far the errors have",
+          "been reduced."
+        ],
+        "why": "Accuracy is measured against the TRUE value, so it needs an outside standard. A reading can be repeatable and still be far from the truth.",
+        "common_mistakes": [
+          "Saying accuracy is how close the readings are to each other. That is precision."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That accuracy is the closeness of a measured value to the true value.",
+          "accept": [
+            "close to the true value",
+            "closeness to true value"
+          ],
+          "reject": [
+            "close to each other"
+          ],
+          "heard_as": [
+            "true value",
+            "accuracy"
+          ]
+        },
+        "memory_tip": "Accuracy points OUTWARD to the true value. Precision points INWARD at the readings themselves.",
+        "margin_note": "One line each. The examiner is looking for the pair, not an essay."
+      },
+      {
+        "id": "s2_precision",
+        "kind": "boxed_final",
+        "label": "Precision",
+        "marks": 1,
+        "mark_note": "Precision",
+        "lines": [
+          {
+            "text": "Precision: how close the readings are to each other",
+            "style": "boxed"
+          },
+          "It depends on the least count of the",
+          "instrument, not on the true value."
+        ],
+        "why": "Precision is set by the instrument. A finer least count gives readings that cluster tightly, whether or not that cluster sits on the true value.",
+        "common_mistakes": [
+          "Writing that a precise measurement must be accurate. A zero error gives tight readings that are all wrong."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That precision is the closeness among several measured values, and depends on the least count.",
+          "accept": [
+            "close to each other",
+            "least count",
+            "among the measured values"
+          ],
+          "reject": [
+            "close to the true value"
+          ],
+          "heard_as": [
+            "precision",
+            "least count"
+          ]
+        },
+        "memory_tip": "Precision comes from the instrument — say \"least count\" and the second mark is earned.",
+        "margin_note": "Name the least count here. It is the word that separates the two ideas."
+      }
+    ]
+  },
+  "insider_note": "Both books ask this one. Two marks means two contrasts — write accuracy and precision as a pair, never one alone."
+}

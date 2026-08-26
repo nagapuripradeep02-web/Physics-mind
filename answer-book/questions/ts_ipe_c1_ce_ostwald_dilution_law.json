@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_ce_ostwald_dilution_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Chemical Equilibrium, Acids and Bases (Chemistry)"
+  },
+  "chapter": "Chemical Equilibrium, Acids and Bases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define degree of dissociation and derive Ostwald's dilution law for a weak acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Degree of dissociation",
+      "marks": 1
+    },
+    {
+      "label": "The derivation",
+      "marks": 2
+    },
+    {
+      "label": "The law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep: the degree of dissociation and Ostwald's dilution law are classic IPE asks in the ionic-equilibrium half of the syllabus, which the Fastrack chemistry section (book pp.75-79) skips entirely. Only ONE source book is held for chemistry, so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 1+2+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Equilibrium, Acids and Bases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alpha",
+        "kind": "text",
+        "label": "Degree of dissociation",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The degree of dissociation α is the",
+          "fraction of the total number of moles of an",
+          "electrolyte that dissociates into ions.",
+          {
+            "text": "α = (moles dissociated) / (total moles taken)",
+            "style": "eq"
+          }
+        ],
+        "why": "α is the single number the law is written in — a fraction between 0 and 1 that measures how much of the electrolyte has split into ions.",
+        "common_mistakes": [
+          "Writing α as a number of moles. It is a FRACTION, between 0 and 1.",
+          "Using the moles left undissociated in the numerator. The numerator is the moles that DID dissociate."
+        ],
+        "memory_tip": "α is a fraction: dissociated over taken. For a weak acid it is close to 0.",
+        "margin_note": "Definition plus the fraction line earns this mark."
+      },
+      {
+        "id": "s2_derivation",
+        "kind": "equation",
+        "label": "The derivation",
+        "marks": 2,
+        "mark_note": "Ka in terms of α",
+        "lines": [
+          "For a weak acid HA of concentration c:",
+          {
+            "text": "HA ⇌ H⁺ + A⁻",
+            "style": "eq"
+          },
+          "Initial moles per litre:  c,  0,  0",
+          "At equilibrium:  c(1 − α),  cα,  cα",
+          {
+            "text": "Ka = (cα)(cα) / c(1 − α) = cα² / (1 − α)",
+            "style": "eq"
+          },
+          "For a weak acid α is very small, so",
+          "1 − α ≈ 1, and",
+          {
+            "text": "Ka ≈ cα²",
+            "style": "eq"
+          }
+        ],
+        "why": "The three-row table (initial, change, equilibrium) turns the definition of α into concentrations; substituting them into the Ka expression and using the small-α approximation gives the working equation.",
+        "common_mistakes": [
+          "Writing the equilibrium concentration of HA as c − α. It is c(1 − α) — α is a fraction of c.",
+          "Applying 1 − α ≈ 1 to a strong acid. The approximation holds only when α is very small.",
+          "Cancelling one c wrongly: (cα)(cα)/c(1 − α) leaves cα²/(1 − α), not c²α²."
+        ],
+        "memory_tip": "Table first, Ka second, approximation last — three moves in a fixed order.",
+        "margin_note": "Both marks are here: the equilibrium table and the Ka algebra."
+      },
+      {
+        "id": "s3_law",
+        "kind": "boxed_final",
+        "label": "The law",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          {
+            "text": "α = √(Ka / c)",
+            "style": "boxed"
+          },
+          "When the solution is diluted, c decreases,",
+          "so α increases.",
+          "Ostwald's dilution law: the degree of",
+          "dissociation of a weak electrolyte",
+          "increases on dilution."
+        ],
+        "why": "Solving Ka ≈ cα² for α makes the dependence visible: α is inversely related to √c, so lowering the concentration (diluting) raises the fraction dissociated.",
+        "common_mistakes": [
+          "Reading the law backwards — dilution INCREASES α, it does not decrease it.",
+          "Writing α = √(c / Ka). The concentration goes in the denominator."
+        ],
+        "memory_tip": "More water, more splitting: dilute the weak acid and a larger fraction of it dissociates.",
+        "margin_note": "Box the α formula; the sentence under it is the law in words."
+      }
+    ]
+  }
+}

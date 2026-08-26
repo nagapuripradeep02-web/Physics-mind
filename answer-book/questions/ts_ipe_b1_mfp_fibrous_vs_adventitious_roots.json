@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_mfp_fibrous_vs_adventitious_roots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Morphology of Flowering Plants (Botany)"
+  },
+  "chapter": "Morphology of Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Differentiate fibrous roots from adventitious roots.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fibrous roots",
+      "marks": 1
+    },
+    {
+      "label": "Adventitious roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 is sourced from the Junior Fastrack botany book (pp.9-14), which prints the question and a model answer but NO star ranks and NO asked-year citations, so the missing stars/appearances record an absence of signal, not zero frequency. Only ONE source book is held for botany - the TSBIE Basic Learning Material on hand is physics-only and no botany board paper is in the corpus - so the two-book union check and the board-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending. The mark split is authored, not printed."
+  },
+  "insider_note": "Both definitions turn on the word radicle - use it in both sentences and the two marks are safe.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Morphology of Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fibrous",
+        "kind": "text",
+        "label": "Fibrous roots",
+        "marks": 1,
+        "mark_note": "Fibrous",
+        "lines": [
+          "Fibrous roots: a cluster of thin roots that",
+          "arises from the base of the stem after the",
+          "radicle degenerates.",
+          "Ex: monocots such as wheat and paddy."
+        ],
+        "why": "The scoring fact is the origin: fibrous roots come from the BASE OF THE STEM, and only after the seed's radicle has died.",
+        "common_mistakes": [
+          "Writing that fibrous roots grow from the radicle. They appear because the radicle degenerates."
+        ],
+        "memory_tip": "Fibrous = from the foot of the stem, after the radicle fails.",
+        "margin_note": "One origin line and one example per side; a small two-column table also works."
+      },
+      {
+        "id": "s2_adventitious",
+        "kind": "boxed_final",
+        "label": "Adventitious roots",
+        "marks": 1,
+        "mark_note": "Adventitious",
+        "lines": [
+          {
+            "text": "Adventitious roots arise from any part of",
+            "style": "boxed"
+          },
+          "the plant other than the radicle.",
+          "Ex: prop roots of banyan; roots of grasses",
+          "and Monstera."
+        ],
+        "why": "Adventitious is defined by exclusion - any origin EXCEPT the radicle. That one phrase is the whole definition.",
+        "common_mistakes": [
+          "Treating the two as opposites. Fibrous roots also arise outside the radicle, so they are adventitious in origin - the question asks how the terms differ, not which plant has which."
+        ],
+        "memory_tip": "Adventitious = arriving at an unusual place - anywhere but the radicle.",
+        "margin_note": "The phrase 'other than the radicle' is the mark; add one example."
+      }
+    ]
+  }
+}

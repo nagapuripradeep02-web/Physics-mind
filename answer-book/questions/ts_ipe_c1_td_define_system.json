@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_td_define_system",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Thermodynamics (Chemistry)"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define system. Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. DISCREPANCY: the question asks for an example but the book's printed answer gives none; this card adds the standard one. AI chemistry check 2026-08-25 (audit round): the insider_note stated as fact that a student copying the book 'loses that mark', which presents this card's inferred split with the authority of a printed key. The insider_note, the s2 why and the s2 common_mistakes entry now mark it as a reading of the question. Split unchanged; FLAGGED for the teacher gate."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A system is the part of the universe chosen",
+          "for thermodynamic study.",
+          "The rest of the universe, which can exchange",
+          "matter or energy with it, is called the",
+          "surroundings. A boundary separates the two."
+        ],
+        "why": "Thermodynamics compares energy before and after a change, so it must first fix exactly which part of the universe is being watched. Naming the surroundings shows where the rest of the universe stands.",
+        "common_mistakes": [
+          "Writing the universe instead of a part of the universe.",
+          "Mixing up system and surroundings."
+        ],
+        "memory_tip": "System is the part under study. Surroundings is everything else.",
+        "margin_note": "The words part of the universe must appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Example: for a reaction in a beaker, the",
+          "reaction mixture is the system; the beaker,",
+          "the air and everything else around it are",
+          "the surroundings.",
+          {
+            "text": "System: the part of the universe chosen for study",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question asks for an example, so a definition alone does not answer it. The printed model answer in the source book gives no example; write one anyway. This card scores the example as the second mark, which is a reading of the question and not a printed key.",
+        "common_mistakes": [
+          "Stopping after the definition when the question asks for an example."
+        ],
+        "memory_tip": "Picture one beaker on a bench. Contents are the system; bench and room are the surroundings.",
+        "margin_note": "Any clear example is accepted: a gas in a cylinder, water in a flask, a reaction mixture."
+      }
+    ]
+  },
+  "insider_note": "The question says give an example, and the book's printed model answer gives none. No printed key is held for this question, so the 1+1 split on this card is a reading of the question, not a copied marking scheme: it treats the example as one of the two marks. Either way the question asks for an example, so write one."
+}

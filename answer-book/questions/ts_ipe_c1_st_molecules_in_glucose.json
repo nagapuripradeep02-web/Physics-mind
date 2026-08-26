@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_molecules_in_glucose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many molecules of glucose are present in 5.23 g of glucose?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. ARITHMETIC: the book uses Nᴀ = 6 × 10²³ and prints 1.74 × 10²²; this card uses Nᴀ = 6.022 × 10²³ and gets 1.75 × 10²². Both come from the same working — only the rounding of Avogadro's number differs — so neither value should be marked wrong."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Number of molecules N = (mass / molar mass) × Nᴀ",
+            "style": "eq"
+          },
+          "Molar mass of glucose C₆H₁₂O₆ = 180 g mol⁻¹",
+          "Nᴀ = 6.022 × 10²³ mol⁻¹",
+          "N = (5.23 / 180) × 6.022 × 10²³"
+        ],
+        "why": "Mass must become moles first (divide by molar mass), and each mole holds Avogadro's number of molecules (multiply by Nᴀ). Two conversions, one line.",
+        "common_mistakes": [
+          "Multiplying the mass directly by Nᴀ without dividing by 180 first.",
+          "Dividing by Nᴀ instead of multiplying."
+        ],
+        "memory_tip": "Grams → moles → molecules: divide by molar mass, then multiply by Avogadro's number.",
+        "margin_note": "The formula with both numbers substituted earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "N = 0.02906 × 6.022 × 10²³",
+          {
+            "text": "N ≈ 1.75 × 10²² molecules",
+            "style": "boxed"
+          }
+        ],
+        "why": "5.23 / 180 = 0.02906 mol, and 0.02906 × 6.022 × 10²³ = 1.75 × 10²². The count of molecules has no unit, but the word molecules should close the sentence.",
+        "common_mistakes": [
+          "Losing a power of ten: the answer must be near 10²², not 10²³.",
+          "Rounding 5.23 / 180 too early and drifting to a wrong third digit."
+        ],
+        "memory_tip": "5.23 g is a small fraction of a mole (about 3%), so the count must be a small fraction of 6 × 10²³.",
+        "margin_note": "With Nᴀ taken as 6 × 10²³ the answer rounds to 1.74 × 10²²; both values are accepted."
+      }
+    ]
+  },
+  "insider_note": "The mark is in the two-step conversion, mass to moles to molecules. Writing 5.23/180 on its own line before touching Avogadro's number is what the examiner wants to see."
+}

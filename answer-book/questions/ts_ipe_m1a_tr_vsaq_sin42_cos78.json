@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_sin42_cos78",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin²42° − cos²78° = (√5 + 1)/8.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Make both terms sines",
+      "marks": 1
+    },
+    {
+      "label": "Apply the identity and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 135.1. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Make both terms sines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The identity needs two of the same function, so convert cos78° to sin12° using cos(90° − θ) = sin θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = sin²42° − cos²78°",
+          "= sin²42° − cos²(90° − 12°)",
+          "= sin²42° − sin²12°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos78° is converted to sin12°, so both terms are sines.",
+          "accept": [
+            "cos seventy eight is sin twelve so both terms become sines",
+            "convert the cosine to a sine using ninety minus",
+            "make both terms the same function",
+            "cos seventy eight ante sin twelve, rendu sines avthai",
+            "change cos to sin so the identity applies"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin twelve",
+            "ninety minus",
+            "cos seventy eight",
+            "both sines"
+          ]
+        },
+        "why": "The identity sin²A − sin²B = sin(A+B)sin(A−B) needs both terms to be sines. Mixing a sine and a cosine matches no formula.",
+        "common_mistakes": [
+          "Applying an identity to a mixed sin² − cos².",
+          "Writing cos 78° = sin 78°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the identity and evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sin²A − sin²B = sin(A+B)sin(A−B) gives sin54°sin30°, and both of those are known exactly.",
+        "lines": [
+          "= sin(42° + 12°) sin(42° − 12°)",
+          "  [∵ sin²A − sin²B = sin(A+B) sin(A−B)]",
+          "= sin54° sin30° = ((√5 + 1)/4)(1/2)",
+          {
+            "text": "= (√5 + 1)/8 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A − sin²B = sin(A+B)sin(A−B) gives sin54° sin30° = (√5+1)/8.",
+          "accept": [
+            "apply sin squared minus sin squared equals sin of the sum times sin of the difference to get sin fifty four sin thirty",
+            "sin fifty four is root five plus one over four and sin thirty is a half",
+            "the answer is root five plus one over eight",
+            "sin fifty four into sin thirty, root five plus one by eight",
+            "multiply the two exact values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin fifty four",
+            "sin thirty",
+            "root five plus one",
+            "over eight"
+          ]
+        },
+        "why": "The two angles were chosen so that their sum and difference are both standard angles — 54° and 30°. That is why an exact answer exists at all.",
+        "common_mistakes": [
+          "Getting the sum and difference the wrong way round.",
+          "Writing sin 30° = √3/2."
+        ]
+      }
+    ]
+  }
+}

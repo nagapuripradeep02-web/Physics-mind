@@ -7,16 +7,22 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
-    "name": "Motion in a Plane"
+    "number": 3,
+    "name": "Motion in a Straight Line"
   },
-  "chapter": "Motion in a Plane",
+  "chapter": "Motion in a Straight Line",
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
   "expected_time_min": 8,
   "question_text": "Explain the terms average velocity and instantaneous velocity. When are they equal?",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 24,
+      "board": "ap_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Average velocity",
@@ -34,13 +40,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), SHORT ANSWER 8 of Unit 4, unstarred. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Re-homed from Unit 4 to Unit 3 on 2026-08-22: both source books place this question in Motion in a Straight Line — the Fastrack as Very Short Answer 2 (p.6, 3 stars) and the TSBIE Basic Learning Material as Short Answer 1 (p.4). The two books DISAGREE on the section, so both lengths ship as cuts and the student chooses. The question_id keeps its original mp_ prefix because ids are stable forever. It was asked in the AP March 2026 paper, question 24, which is recorded in appearances[]. Both mark splits are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
-      "Motion in a Plane · 4 marks"
+      "Motion in a Straight Line · 4 marks"
     ],
     "steps": [
       {
@@ -64,7 +70,7 @@
           "between the two points."
         ],
         "margin_note": "Say DISPLACEMENT, not distance. That one word is what makes this velocity and not speed.",
-        "why": "Average velocity compresses a whole journey into one number, so it only sees the endpoints — which is exactly why the path does not matter to it.",
+        "why": "Average velocity uses only the first and last positions, so the path between them does not enter the calculation — which is exactly why the path does not matter to it.",
         "common_mistakes": [
           "Writing distance over time, which defines average speed instead."
         ],
@@ -87,7 +93,8 @@
             "delta r",
             "delta t"
           ]
-        }
+        },
+        "memory_tip": "Average velocity uses only the two END points. The path between them does not matter."
       },
       {
         "id": "s2_instantaneous",
@@ -110,7 +117,7 @@
           }
         ],
         "margin_note": "Two of the four marks sit here. Write the limit line — the words alone earn one mark, the limit earns the other.",
-        "why": "Shrinking the interval to nothing turns the average over a stretch into the value at a point — that limit is what a speedometer needle reads.",
+        "why": "Shrinking the interval to nothing turns the average over a stretch into the value at a point — the speedometer needle reads the magnitude of that limit.",
         "common_mistakes": [
           "Leaving out the limit and writing only dr/dt.",
           "Saying \"very small time\" instead of the limit as Δt approaches zero."
@@ -134,7 +141,8 @@
             "d r by d t",
             "instant"
           ]
-        }
+        },
+        "memory_tip": "Instantaneous is the SAME ratio with the interval shrunk to zero — that is what d r by d t means."
       },
       {
         "id": "s3_equal",
@@ -179,8 +187,80 @@
             "straight line",
             "constant"
           ]
-        }
+        },
+        "memory_tip": "They agree only when the velocity never changes. One steady direction, one steady speed."
       }
     ]
-  }
+  },
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "Short answer (4 marks)",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "Average velocity",
+          "marks": 1
+        },
+        {
+          "label": "Instantaneous velocity",
+          "marks": 2
+        },
+        {
+          "label": "When they are equal",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_average": {
+          "marks": 1,
+          "mark_note": "Average"
+        },
+        "s2_instantaneous": {
+          "marks": 2,
+          "mark_note": "Instantaneous"
+        },
+        "s3_equal": {
+          "marks": 1,
+          "mark_note": "When equal"
+        }
+      },
+      "needs_teacher_verification": true
+    },
+    {
+      "key": "vsaq",
+      "label": "Very short answer (2 marks)",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "question_text": "How is average velocity different from instantaneous velocity?",
+      "mark_split": [
+        {
+          "label": "Average velocity",
+          "marks": 1
+        },
+        {
+          "label": "Instantaneous velocity",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_average": {
+          "marks": 1,
+          "mark_note": "Average velocity"
+        },
+        "s2_instantaneous": {
+          "marks": 1,
+          "mark_note": "Instantaneous velocity",
+          "memory_tip": "At 2 marks give the two definitions only. The \"when are they equal\" part belongs to the 4-mark form."
+        }
+      },
+      "needs_teacher_verification": true
+    }
+  ],
+  "insider_note": "Both source books ask this, and they disagree on the length — the Fastrack at 2 marks, the TSBIE material at 4. Open the length your paper asks for."
 }

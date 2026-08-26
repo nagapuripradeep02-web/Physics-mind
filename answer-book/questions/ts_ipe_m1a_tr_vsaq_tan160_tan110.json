@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_vsaq_tan160_tan110",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Trigonometric Ratios upto Transformations"
+  },
+  "chapter": "Trigonometric Ratios upto Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If tan20° = λ, then show that (tan160° − tan110°)/(1 + tan160° · tan110°) = (1 − λ²)/(2λ).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Express both tangents in λ",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 T-Ratios upto Transformations, answer 133. Printed appearances: AP 16,20. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on these pages, which are set four or six questions to a page in two columns. It is not a bare guess on two counts: the Matrices VSAQ chapter DOES print 1+1 against its answers 100 and 101 on book p.82, and THIS chapter's own header note reads \"Writing Formula itself gets you 1 Mark in these Questions\" — which is why the first step of every answer here IS the formula or the set-up. The book's chapter header carries ★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because T-Ratios holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q8 and Q9 are the two T-Ratios slots."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Express both tangents in λ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 160° reduces to −tan20° = −λ; 110° is 90° + 20°, which gives −cot20° = −1/λ. Both are now in λ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "tan160° = tan(180° − 20°) = −tan20° = −λ",
+          "tan110° = tan(90° + 20°) = −cot20° = −1/λ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan160° = −λ and tan110° = −1/λ, both written in terms of λ.",
+          "accept": [
+            "tan one sixty is minus lambda and tan one ten is minus one over lambda",
+            "reduce both to lambda, one gives minus lambda and the other minus cot which is minus one by lambda",
+            "express both tangents in terms of lambda",
+            "tan one sixty minus lambda, tan one ten minus one by lambda",
+            "both reduce to lambda expressions"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus lambda",
+            "minus one by lambda",
+            "cot twenty",
+            "reduce"
+          ]
+        },
+        "why": "tan(90° + θ) gives a COTANGENT, not a tangent — which is why one of the two comes out as a reciprocal. Missing that leaves the expression unsolvable.",
+        "common_mistakes": [
+          "Writing tan(90° + 20°) = tan 20°.",
+          "Losing a minus sign on either reduction."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The denominator becomes 1 + 1 = 2, and the numerator combines over λ — giving the required form directly.",
+        "lines": [
+          "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
+          "= (1/λ − λ)/(1 + 1)",
+          "= ((1 − λ²)/λ)/2",
+          {
+            "text": "= (1 − λ²)/(2λ) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives (1/λ − λ)/2, which combines to (1 − λ²)/(2λ).",
+          "accept": [
+            "substitute to get one over lambda minus lambda all over two which is one minus lambda squared over two lambda",
+            "the denominator becomes two and the numerator combines over lambda",
+            "simplify to one minus lambda squared over two lambda",
+            "substitute cheste one minus lambda square by two lambda vasthundi",
+            "the answer is one minus lambda squared over two lambda"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus lambda squared",
+            "two lambda",
+            "denominator two",
+            "substitute"
+          ]
+        },
+        "why": "The product of the two tangents is (−λ)(−1/λ) = 1 exactly, which is what makes the denominator a clean 2 — the same mechanism as answers 132.1 and 132.2.",
+        "common_mistakes": [
+          "Getting the denominator as 1 − 1 = 0.",
+          "Failing to combine the numerator over a common denominator."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_liverworts_vs_mosses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Differentiate between liverworts and mosses.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Plant body", "marks": 1 },
+    { "label": "Vegetative reproduction", "marks": 1 },
+    { "label": "Position of sex organs", "marks": 1 },
+    { "label": "Spore dispersal", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.8, SAQ 2. The book's first table row is grammatically garbled by the scan ('Plant body is gametophyte exhibit Young Protonema and adult gametophore'); the facts are standard and are written cleanly here. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The four-row 1-mark-each split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Plant Kingdom · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plant_body",
+        "kind": "text",
+        "label": "Plant body",
+        "marks": 1,
+        "mark_note": "Plant body",
+        "lines": [
+          "Liverworts: thalloid, dorsiventral body",
+          "lying flat on the substrate (Marchantia).",
+          "Mosses: gametophyte in two stages — a",
+          "creeping protonema and a leafy, erect",
+          "gametophore (Funaria)."
+        ],
+        "why": "The first difference is visible to the eye: a flat green thallus in liverworts against the two-stage moss gametophyte that ends as a leafy shoot.",
+        "common_mistakes": [
+          "Calling the leafy moss plant a sporophyte — the leafy body is still the gametophyte.",
+          "Writing that liverworts have stems and leaves — the thallus has neither."
+        ],
+        "memory_tip": "Liverwort = a flat liver-shaped lobe; moss = a tiny leafy shoot — picture the two shapes side by side.",
+        "margin_note": "One contrast row = one mark; keep both sides in every row."
+      },
+      {
+        "id": "s2_vegetative",
+        "kind": "text",
+        "label": "Vegetative reproduction",
+        "marks": 1,
+        "mark_note": "Vegetative",
+        "lines": [
+          "Liverworts: by fragmentation of the",
+          "thallus and by gemmae in gemma cups.",
+          "Mosses: by fragmentation and budding in",
+          "the secondary protonema."
+        ],
+        "why": "Both groups fragment; the special organ differs — gemmae in gemma cups belong to liverworts, budding in the secondary protonema belongs to mosses.",
+        "common_mistakes": [
+          "Giving gemma cups to mosses — gemma cups belong to liverworts (Marchantia)."
+        ],
+        "memory_tip": "One special organ each: liverwort → gemma cup; moss → secondary protonema.",
+        "margin_note": "Name the special organ on each side; fragmentation alone is not a difference."
+      },
+      {
+        "id": "s3_sex_organs",
+        "kind": "text",
+        "label": "Position of sex organs",
+        "marks": 1,
+        "mark_note": "Sex organs",
+        "lines": [
+          "Liverworts: antheridia and archegonia",
+          "develop on the same or different thalli.",
+          "Mosses: sex organs develop at the apex of",
+          "the leafy shoots."
+        ],
+        "why": "Both groups make the same organs; this row asks only WHERE they sit — on the thallus in liverworts, at the shoot apex in mosses.",
+        "common_mistakes": [
+          "Describing the organs' structure instead of their position — this row is about where they develop."
+        ],
+        "memory_tip": "Apex is the moss word for this row — moss organs sit at the top of the leafy shoot.",
+        "margin_note": "One line per side; the word 'apex' carries the moss half."
+      },
+      {
+        "id": "s4_spore_dispersal",
+        "kind": "boxed_final",
+        "label": "Spore dispersal",
+        "marks": 1,
+        "mark_note": "Dispersal",
+        "lines": [
+          { "text": "Elaters (liverworts) vs peristome (mosses)", "style": "boxed" },
+          "Liverwort capsules have elaters that help",
+          "spore dispersal.",
+          "Moss capsules open by peristome teeth —",
+          "an elaborate dispersal mechanism."
+        ],
+        "why": "The capsule differs in its dispersal machinery: elaters in liverworts, a ring of peristome teeth in mosses — the book's fourth row and the standard one.",
+        "common_mistakes": [
+          "Swapping elaters and peristome teeth between the two groups."
+        ],
+        "memory_tip": "Pair by letters: Liverwort–Elaters, Moss–Peristome (L–E, M–P).",
+        "margin_note": "Any four correct rows earn full marks; these four are the book's own."
+      }
+    ]
+  },
+  "insider_note": "Keep each row about ONE feature on both sides — a mixed list of unrelated points on each side is the common way this table loses marks."
+}

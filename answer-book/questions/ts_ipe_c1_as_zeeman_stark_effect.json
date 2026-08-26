@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_zeeman_stark_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the Zeeman effect and the Stark effect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Zeeman effect",
+      "marks": 1
+    },
+    {
+      "label": "Stark effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): corrected a false marked line that credited the magnetic quantum number m with explaining the Stark effect."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zeeman",
+        "kind": "text",
+        "label": "Zeeman effect",
+        "marks": 1,
+        "mark_note": "Zeeman",
+        "lines": [
+          "Zeeman effect: the splitting of spectral",
+          "lines into several lines when the source is",
+          "placed in a magnetic field."
+        ],
+        "why": "The magnetic quantum number m fixes how an orbital is oriented in space. A magnetic field gives these orientations slightly different energies, so one line becomes several.",
+        "common_mistakes": [
+          "Swapping the two fields. Zeeman is the magnetic one.",
+          "Writing that the lines shift instead of split. The single line becomes several lines."
+        ],
+        "memory_tip": "Zeeman and magnet both carry the letter m.",
+        "margin_note": "Name the field and say split. Those two words carry the mark."
+      },
+      {
+        "id": "s2_stark",
+        "kind": "boxed_final",
+        "label": "Stark effect",
+        "marks": 1,
+        "mark_note": "Stark",
+        "lines": [
+          {
+            "text": "Stark effect: splitting of spectral lines in an electric field",
+            "style": "boxed"
+          },
+          "Both effects show that an external field",
+          "splits one spectral line into several lines."
+        ],
+        "why": "The two effects are asked together because both show line splitting in an external field, but they do not share one explanation. The Zeeman effect comes from the magnetic quantum number m, which fixes how an orbital is oriented in space, so a magnetic field gives those orientations different energies. The Stark effect comes from the interaction of the electric field with the electric dipole moment of the atom. Bohr's model cannot explain either effect, and that is one of its listed limitations.",
+        "common_mistakes": [
+          "Writing that the Stark effect happens in a magnetic field.",
+          "Saying the magnetic quantum number m explains both effects. It explains the Zeeman effect only; the Stark effect comes from the electric dipole moment of the atom."
+        ],
+        "memory_tip": "Two fields, two names: magnetic is Zeeman, electric is Stark.",
+        "margin_note": "The last line states what the two effects have in common: an external field splits one line into several."
+      }
+    ]
+  },
+  "insider_note": "The pair is always asked together. Write one line each and name the field correctly, because swapping the two fields loses both marks."
+}

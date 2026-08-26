@@ -1,0 +1,174 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_scalar_product_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the scalar product of two vectors. Explain the properties of a scalar product with two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The properties",
+      "marks": 2
+    },
+    {
+      "label": "Two examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The scalar product of two vectors A and B is",
+          "the product of their magnitudes and the",
+          "cosine of the angle between them:",
+          {
+            "text": "A · B = A B cos θ",
+            "style": "eq"
+          },
+          "The result is a SCALAR, not a vector."
+        ],
+        "margin_note": "First mark. Words, then A · B = A B cos θ, then the line saying the result is a scalar.",
+        "why": "The cosine gives how much of one vector lies along the other, which is why every \"along the direction of\" quantity turns out to be a dot product.",
+        "common_mistakes": [
+          "Giving the answer a direction; the scalar product has none."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A dot B is A B cos theta and the result is a scalar.",
+          "accept": [
+            "A B cos theta",
+            "the result is a scalar"
+          ],
+          "reject": [
+            "it is commutative"
+          ],
+          "heard_as": [
+            "A dot B",
+            "cos theta"
+          ]
+        },
+        "memory_tip": "Scalar product, scalar answer — the name says it. Only the vector product has a direction."
+      },
+      {
+        "id": "s2_properties",
+        "kind": "equation",
+        "label": "The properties",
+        "marks": 2,
+        "mark_note": "Properties",
+        "lines": [
+          "1) It is commutative:",
+          {
+            "text": "A · B = B · A",
+            "style": "eq"
+          },
+          "2) It is distributive over addition:",
+          {
+            "text": "A · (B + C) = A · B + A · C",
+            "style": "eq"
+          },
+          "3) For perpendicular vectors it is zero, and",
+          "for parallel vectors it is A B.",
+          {
+            "text": "i · i = 1,   i · j = 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks. Three numbered properties, each with its equation under it.",
+        "why": "The zero for perpendicular vectors is the property that gets used most: it is the reason a centripetal force does no work.",
+        "common_mistakes": [
+          "Claiming the scalar product is associative; A · (B · C) has no meaning, since B · C is a scalar."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the scalar product is commutative and distributive, zero for perpendicular vectors and A B for parallel ones.",
+          "accept": [
+            "commutative",
+            "distributive",
+            "zero for perpendicular vectors"
+          ],
+          "reject": [
+            "A B cos theta"
+          ],
+          "heard_as": [
+            "commutative",
+            "perpendicular"
+          ]
+        },
+        "memory_tip": "cos 0° = 1 and cos 90° = 0: parallel gives A B, perpendicular gives 0. That is i·i and i·j."
+      },
+      {
+        "id": "s3_examples",
+        "kind": "boxed_final",
+        "label": "Two examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Work:  W = F · S",
+            "style": "boxed"
+          },
+          {
+            "text": "Power:  P = F · v",
+            "style": "boxed"
+          },
+          "Both are scalars built from two vectors."
+        ],
+        "margin_note": "Last mark. Two examples are asked for. Write both, each as a one-line equation.",
+        "why": "Work is the example the chapter is named for, and it is why the scalar product is introduced here rather than in the vectors chapter.",
+        "common_mistakes": [
+          "Offering torque as an example; torque is a VECTOR product.",
+          "Writing the power relation with P on both sides, as P = P · v. Power is the dot product of force and velocity: P = F · v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work is F dot S and power is F dot v, both scalars.",
+          "accept": [
+            "work is F dot S",
+            "power is F dot v"
+          ],
+          "reject": [
+            "commutative"
+          ],
+          "heard_as": [
+            "work",
+            "power"
+          ]
+        },
+        "memory_tip": "Dot product gives work and power. Torque is a cross product, so it does not belong here."
+      }
+    ]
+  },
+  "insider_note": "The two examples are the last mark and take one line each: W = F · S and P = F · v. Do not stop after the properties."
+}

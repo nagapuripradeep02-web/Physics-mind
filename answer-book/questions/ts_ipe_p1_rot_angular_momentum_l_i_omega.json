@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_angular_momentum_l_i_omega",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the angular momentum of a rigid body and write its relation to the angular velocity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "For a particle, angular momentum is",
+          {
+            "text": "L = r × p",
+            "style": "eq"
+          },
+          "the moment of the linear momentum",
+          "about the axis."
+        ],
+        "why": "L is to rotation what p is to straight-line motion — the conserved quantity of this chapter. Strictly, r × p is the angular momentum about a POINT. The angular momentum about an axis is the component of that vector along the axis — that component is the L in L = Iω.",
+        "common_mistakes": [
+          "Calling L a scalar. It is a vector along the axis."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That angular momentum is r cross p, the moment of linear momentum.",
+          "accept": [
+            "L is r cross p",
+            "moment of momentum"
+          ],
+          "reject": [
+            "L equals I omega"
+          ],
+          "heard_as": [
+            "r cross p",
+            "angular momentum"
+          ]
+        },
+        "memory_tip": "Moment of MOMENTUM, exactly as torque is the moment of force. Both include the arm r.",
+        "margin_note": "First mark. Define L for a single particle — r × p — before naming the rigid-body form."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "For a rigid body about a fixed axis,",
+          {
+            "text": "L = I ω",
+            "style": "boxed"
+          },
+          "SI unit: kg·m²/s."
+        ],
+        "why": "The rotational p = mv: mass → moment of inertia, velocity → angular velocity.",
+        "common_mistakes": [
+          "Unit slip: kg·m/s belongs to LINEAR momentum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a rigid body L = Iω, in kg metre squared per second.",
+          "accept": [
+            "L equals I omega",
+            "kg metre squared per second"
+          ],
+          "reject": [
+            "L is r cross p"
+          ],
+          "heard_as": [
+            "I omega",
+            "unit"
+          ]
+        },
+        "memory_tip": "Read the unit off the formula: kg·m² from I, per second from ω, so kg·m²/s.",
+        "margin_note": "Second mark. The equation and its SI unit both belong on this line."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the definition in words, then L = Iω with its unit. A relation with no unit does not finish the second mark."
+}

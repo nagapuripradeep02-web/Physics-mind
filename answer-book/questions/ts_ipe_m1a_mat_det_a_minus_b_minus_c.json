@@ -1,0 +1,323 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_det_a_minus_b_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Show that the determinant with rows (a−b−c, 2a, 2a), (2b, b−c−a, 2b) and (2c, 2c, c−a−b) is equal to (a+b+c)³.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Row operation R₁ → R₁+R₂+R₃",
+      "marks": 2
+    },
+    {
+      "label": "Take (a+b+c) common from R₁",
+      "marks": 1
+    },
+    {
+      "label": "Column operations C₂−C₁ and C₃−C₁",
+      "marks": 2
+    },
+    {
+      "label": "Expand along the first row",
+      "marks": 1
+    },
+    {
+      "label": "State the final result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 3 Matrices, answer 15, on a ★★★ SSP (Super Scoring Page), the book's self-declared 'No.3 in Dets'. Printed appearance: AP 18 only. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this question, and the 2+1+2+1+1 above is inferred from the split the same book DOES print for the structurally identical answer 17 on book p.26 (1+1+1+2+1+1). It is deliberately the same split this book's answer 14 is given on the facing half of the page, because the two proofs are the same proof with rows and columns exchanged. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+  },
+  "recall_prompt": "Say how you would prove this — say which rows or columns you add together first, what comes out common, and how the determinant finishes.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the determinant",
+        "marks": 0,
+        "margin_note": "No mark of its own. Add the three entries of any COLUMN in your head: a−b−c + 2b + 2c = a+b+c. The columns sum to the same thing, so the first move works down the columns into a row.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} a-b-c & 2a & 2a \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the working starts from the given determinant. Naming it is full credit.",
+          "accept": [
+            "write the given determinant first",
+            "take delta as the determinant in the question",
+            "start with the LHS determinant",
+            "modata ichina determinant rasta",
+            "write down the determinant that has to be proved"
+          ],
+          "reject": [
+            "start the sum",
+            "write the question"
+          ],
+          "heard_as": [
+            "determinant",
+            "delta",
+            "LHS"
+          ]
+        },
+        "why": "The answer is a power of (a+b+c) while no single entry contains it. That mismatch always means something has to be added together first.",
+        "common_mistakes": [
+          "Expanding directly, which produces a page of terms.",
+          "Assuming the method must match the last question's; here it is rows where that one was columns."
+        ]
+      },
+      {
+        "id": "s2_row_sum",
+        "kind": "equation",
+        "label": "Add all three rows into R₁",
+        "marks": 2,
+        "mark_note": "Row operation",
+        "margin_note": "Two of the seven marks, and the whole idea. Down each column the entries cancel to a+b+c: for column 1 that is (a−b−c) + 2b + 2c. Do the arithmetic once and the rest is routine.",
+        "lines": [
+          "R₁ → R₁ + R₂ + R₃",
+          "Column 1:  (a−b−c) + 2b + 2c = a+b+c",
+          "Columns 2 and 3 give a+b+c in the same way:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} a+b+c & a+b+c & a+b+c \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rows 2 and 3 are added into row 1, and that this makes all three entries of row 1 equal to a+b+c.",
+          "accept": [
+            "add row two and row three to row one so every entry of the top row becomes a plus b plus c",
+            "apply R one goes to R one plus R two plus R three and the first row becomes identical",
+            "sum the three rows into the first row and each entry is a plus b plus c",
+            "R1 ki R2 and R3 kalipithe first row anni a plus b plus c avthai",
+            "add the rows together and the top row is the same value three times"
+          ],
+          "reject": [
+            "do a row operation",
+            "add the rows",
+            "apply R one plus R two"
+          ],
+          "heard_as": [
+            "R1 plus R2 plus R3",
+            "first row",
+            "a plus b plus c",
+            "add the rows"
+          ]
+        },
+        "why": "Adding other rows into one row never changes a determinant's value. It earns its place when it makes a whole row identical, because an identical row can be taken out as a common factor.",
+        "common_mistakes": [
+          "Adding columns instead of rows — here it is the rows that sum to a common value.",
+          "Getting the cancellation wrong: in column 1 the −b and −c are cancelled by 2b and 2c, leaving +b and +c.",
+          "Writing 2(a+b+c); unlike the previous question, there is no 2 here."
+        ]
+      },
+      {
+        "id": "s3_take_common",
+        "kind": "equation",
+        "label": "Take (a+b+c) common",
+        "marks": 1,
+        "mark_note": "Common factor",
+        "margin_note": "Third mark. Row 1 is now (a+b+c) three times over, so that factor comes out and the row becomes 1, 1, 1.",
+        "lines": [
+          "Taking (a+b+c) common from R₁:",
+          {
+            "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 1 & 1 \\\\ 2b & b-c-a & 2b \\\\ 2c & 2c & c-a-b \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a+b+c) is taken common out of row 1, leaving 1, 1, 1 in that row.",
+          "accept": [
+            "take a plus b plus c common from the first row leaving ones",
+            "pull out a plus b plus c so the top row becomes one one one",
+            "the common factor a plus b plus c comes outside the determinant",
+            "first row nunchi a plus b plus c common teeste ones migulutai",
+            "take a plus b plus c out in front and the row is all ones"
+          ],
+          "reject": [
+            "take common",
+            "take out the factor",
+            "simplify the row"
+          ],
+          "heard_as": [
+            "a plus b plus c",
+            "common",
+            "first row",
+            "one one one"
+          ]
+        },
+        "why": "This is the first of the three (a+b+c) factors in the answer. The other two come out of the determinant that is left.",
+        "common_mistakes": [
+          "Taking the factor out of a column instead of the row.",
+          "Cubing it here; it comes out once."
+        ]
+      },
+      {
+        "id": "s4_column_ops",
+        "kind": "equation",
+        "label": "Do C₂−C₁ and C₃−C₁",
+        "marks": 2,
+        "mark_note": "Column operations",
+        "margin_note": "Two more marks. Row 1 is all 1s now, so subtracting column 1 clears it. Watch the signs: both surviving entries come out NEGATIVE, and the two minus signs cancel at the end.",
+        "lines": [
+          "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
+          "(b−c−a) − 2b = −(a+b+c),  (c−a−b) − 2c = −(a+b+c)",
+          {
+            "text": "\\Delta = (a{+}b{+}c) \\begin{vmatrix} 1 & 0 & 0 \\\\ 2b & -(a{+}b{+}c) & 0 \\\\ 2c & 0 & -(a{+}b{+}c) \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That column 1 is subtracted from columns 2 and 3, leaving 1, 0, 0 on top and minus (a+b+c) on the diagonal.",
+          "accept": [
+            "subtract column one from column two and column three leaving minus a plus b plus c on the diagonal",
+            "apply C two minus C one and C three minus C one and the top row becomes one zero zero",
+            "do the column subtractions and the diagonal entries are negative a plus b plus c",
+            "C2 minus C1 and C3 minus C1 cheste diagonal lo minus a plus b plus c vasthundi",
+            "take column one away from the other two and only the diagonal is left, both negative"
+          ],
+          "reject": [
+            "do column operations",
+            "subtract the columns",
+            "apply C two minus C one"
+          ],
+          "heard_as": [
+            "C two minus C one",
+            "C three minus C one",
+            "minus a plus b plus c",
+            "diagonal",
+            "one zero zero"
+          ]
+        },
+        "why": "The minus signs are the trap in this question. Two of them appear, and because they multiply together the answer comes out positive — but only if you write both of them down.",
+        "common_mistakes": [
+          "Writing +(a+b+c) on the diagonal and reaching the right answer by luck.",
+          "Doing C₁ − C₂ instead of C₂ − C₁.",
+          "Missing that the off-diagonal entries cancel to zero."
+        ]
+      },
+      {
+        "id": "s5_expand",
+        "kind": "equation",
+        "label": "Expand along the first row",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Sixth mark. The top row is 1, 0, 0 so only one term survives, and its minor has zeros off the diagonal — its value is the product of the two diagonal entries.",
+        "lines": [
+          "Expanding along R₁:",
+          "Δ = (a+b+c)[−(a+b+c) · −(a+b+c) − 0]",
+          "The two minus signs cancel:",
+          "Δ = (a+b+c)·(a+b+c)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding along the first row leaves one term, whose 2×2 minor is minus (a+b+c) times minus (a+b+c) — and that the two minus signs cancel to give a positive square.",
+          "accept": [
+            "expand along the first row and the minor is minus a plus b plus c times minus a plus b plus c so the signs cancel",
+            "only the one contributes and the two negatives multiply to a positive square",
+            "the minor is the product of the diagonal which is a plus b plus c squared after the signs cancel",
+            "rendu minus signs cancel ayi a plus b plus c square vasthundi",
+            "expand and the two negative entries give a positive a plus b plus c whole squared"
+          ],
+          "reject": [
+            "expand the determinant",
+            "multiply the diagonal",
+            "solve it"
+          ],
+          "heard_as": [
+            "expand",
+            "first row",
+            "minor",
+            "minus signs cancel",
+            "a plus b plus c squared"
+          ]
+        },
+        "why": "A negative times a negative is a positive. That single fact is why the answer is +(a+b+c)³ and not −(a+b+c)³, and it is worth writing down rather than assuming.",
+        "common_mistakes": [
+          "Losing one minus sign and finishing with a negative answer.",
+          "Expanding along a row or column with no zeros.",
+          "Forgetting the (a+b+c) already standing outside."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "State the result",
+        "marks": 1,
+        "mark_note": "Final answer",
+        "margin_note": "Last mark. One factor of (a+b+c) came out of the row, two more came from the diagonal — three in all, and no 2 anywhere in this question.",
+        "lines": [
+          "One (a+b+c) from R₁ and two from the minor:",
+          {
+            "text": "Δ = (a+b+c)³ = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three factors of (a+b+c) multiply to give the cube, with no extra numerical factor.",
+          "accept": [
+            "three factors of a plus b plus c give a plus b plus c cubed",
+            "one from the row and two from the minor make the cube",
+            "the answer is a plus b plus c whole cubed",
+            "moodu factors kalipithe a plus b plus c cube avthundi",
+            "multiply them to get a plus b plus c cube which is the RHS"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer",
+            "so LHS equals RHS"
+          ],
+          "heard_as": [
+            "a plus b plus c cubed",
+            "cube",
+            "RHS"
+          ]
+        },
+        "why": "Counting where each (a+b+c) came from is the check. If you can only account for two, a diagonal entry went missing.",
+        "common_mistakes": [
+          "Writing 2(a+b+c)³ by copying the previous question's answer.",
+          "Writing (a+b+c)² by forgetting the factor that came out of the row."
+        ]
+      }
+    ]
+  }
+}

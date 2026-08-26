@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_dcs_of_normal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find a traid of d.c's of the normal to the plane x+2y+2z−4=0.",
+  "appearances": [
+    {
+      "year": 2016
+    },
+    {
+      "year": 2020
+    },
+    {
+      "year": 2022
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.85 — VSAQ chapter 16 The Plane, answer 105, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 16,20,22. ⚠ THE MARK SPLIT 1+1 IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter, whose pages are set two and three answers to a page in columns. It is not a bare guess: VSAQ answer 98 (book p.83, 3-D Coordinates) carries a printed 1+1 against exactly this shape — one mark for the setting-up move and one for the answer read off it — and the chapter header here reads '2 Marks' like that one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Plane is a VSAQ-ONLY unit — the book's IPE Blue Print (book p.3) gives it 2 marks in Section A and nothing in Section B or Section C, and the book has no Plane LAQ chapter (its LAQ chapters are 1-6) and no Plane SAQ chapter (its SAQ chapters are 7-13). Chapter scoped by BOUNDARY WALK: book p.87 opens VSAQ chapter 17, Limits. The STAR QUESTIONS PLUS bank (pp.104-108) contributes NOTHING to this unit — it holds no Plane question, so this is one of the three units (with 1 and 6) that receive none. Paper position: Maths-1B Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY."
+  },
+  "recall_prompt": "Say how you would solve this — say where the normal's direction comes from, and why there is a plus or minus.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_formula",
+        "kind": "equation",
+        "label": "Write the formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The coefficients of x, y and z ARE direction ratios of the normal — that is what the equation of a plane encodes. Turning them into cosines needs one division.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The d.c's of the plane ax + by + cz + d = 0 are",
+          "±( a/√(a²+b²+c²),  b/√(a²+b²+c²),  c/√(a²+b²+c²) )"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients are direction ratios of the normal, normalised by √(a²+b²+c²), with a ±.",
+          "accept": [
+            "the coefficients of x y and z are the direction ratios of the normal",
+            "divide them by the root of the sum of their squares",
+            "there is a plus or minus because a normal has two directions",
+            "coefficients ye normal ki d r's",
+            "write the formula with plus or minus"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "coefficients",
+            "direction ratios of the normal",
+            "root of the sum of squares",
+            "plus or minus"
+          ]
+        },
+        "why": "A plane's equation carries its normal direction in its coefficients, so no geometry is needed — only normalising. The ± is there because a normal points BOTH ways out of the plane.",
+        "common_mistakes": [
+          "Using the constant term d as one of the ratios.",
+          "Omitting the ±, which the word 'traid' in the question is asking about."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The numbers here were chosen so the root is exactly 3, giving a clean triple.",
+        "lines": [
+          "∴ d.c's of x + 2y + 2z − 4 = 0 are",
+          "±( 1/√(1+4+4),  2/√(1+4+4),  2/√(1+4+4) )",
+          "= ±( 1/√9, 2/√9, 2/√9 )",
+          {
+            "text": "∴ d.c's are ±(1/3, 2/3, 2/3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √(1+4+4) = 3, so the direction cosines are ±(1/3, 2/3, 2/3).",
+          "accept": [
+            "the root of one plus four plus four is three",
+            "the direction cosines are plus or minus one third two thirds two thirds",
+            "substitute and simplify",
+            "root nine equals three",
+            "this gives the triad"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root of nine",
+            "three",
+            "one third",
+            "two thirds",
+            "plus or minus"
+          ]
+        },
+        "why": "The squares of the three answers add to 1/9 + 4/9 + 4/9 = 1, which is the check that they really are direction cosines.",
+        "common_mistakes": [
+          "Dividing by 9 rather than by 3.",
+          "Dropping the ± from the final answer."
+        ]
+      }
+    ]
+  }
+}

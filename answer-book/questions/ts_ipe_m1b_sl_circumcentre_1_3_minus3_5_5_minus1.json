@@ -1,0 +1,400 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_circumcentre_1_3_minus3_5_5_minus1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the circumcentre of the triangle whose vertices are (1,3), (−3,5), (5,−1).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the equal-distance condition",
+      "marks": 1
+    },
+    {
+      "label": "First equation from SA = SB",
+      "marks": 2
+    },
+    {
+      "label": "Second equation from SB = SC",
+      "marks": 2
+    },
+    {
+      "label": "Solve the pair",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 The Straight Line, answer 1.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what property defines the circumcentre, and how many equations you need.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up_the_condition",
+        "kind": "text",
+        "label": "Set up the equal-distance condition",
+        "marks": 1,
+        "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the whole answer is the single line SA = SB = SC turned into algebra.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take S(x, y) as circumcentre",
+          "Vertices A = (1, 3), B = (−3, 5), C = (5, −1)",
+          "We know SA = SB = SC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(x, y) is taken as the circumcentre and SA = SB = SC is written down.",
+          "accept": [
+            "take S x y as the circumcentre and S A equals S B equals S C",
+            "the circumcentre is equidistant from all three vertices",
+            "let S be x comma y with S A equal to S B equal to S C",
+            "circumcentre ni S x y ga teesukoni S A equals S B equals S C rayali",
+            "the point is the same distance from all three corners"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "circumcentre",
+            "S A equals S B",
+            "equidistant",
+            "all three vertices"
+          ]
+        },
+        "why": "The circumcentre is DEFINED by being equidistant from the vertices, so that definition is the equation. Two of the three equalities are enough to pin one point.",
+        "common_mistakes": [
+          "Confusing the circumcentre with the centroid and averaging the coordinates.",
+          "Using only one equality, which leaves a whole line of possible points."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the triangle",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The dashed lines are perpendicular BISECTORS — they cut each side in half at a right angle, which is what the equal-distance condition means geometrically.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a triangle is sketched with two perpendicular bisectors meeting at S. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the triangle and the perpendicular bisectors meeting at S",
+            "sketch triangle A B C with the bisectors of two sides",
+            "make a diagram showing the circumcentre",
+            "triangle geesi perpendicular bisectors mark cheyyali",
+            "draw the triangle with its perpendicular bisectors"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "triangle",
+            "perpendicular bisector",
+            "circumcentre",
+            "S"
+          ]
+        },
+        "why": "The circumcentre is equally far from all three vertices, and the set of points equally far from two vertices IS the perpendicular bisector of the side joining them.",
+        "common_mistakes": [
+          "Drawing altitudes, which give the orthocentre instead.",
+          "Drawing medians, which give the centroid."
+        ],
+        "figure": {
+          "id": "triangle_perp_bisectors",
+          "width": 280,
+          "height": 220,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 45 190 L 245 190",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 45 190 L 132 38",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "side_ac",
+              "d": "M 132 38 L 245 190",
+              "ms": 620
+            },
+            {
+              "type": "stroke",
+              "id": "pb_bc",
+              "d": "M 145 190 L 145 96",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "rt_bc",
+              "d": "M 145 178 L 157 178 L 157 190",
+              "ms": 180,
+              "pen": "pencil"
+            },
+            {
+              "type": "stroke",
+              "id": "tick_b1",
+              "d": "M 92 184 L 92 196",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick_b2",
+              "d": "M 198 184 L 198 196",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "pb_ab",
+              "d": "M 88 114 L 176 146",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "tick_a1",
+              "d": "M 84 108 L 96 120",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "tick_a2",
+              "d": "M 102 74 L 114 86",
+              "ms": 160
+            },
+            {
+              "type": "stroke",
+              "id": "dot_s",
+              "d": "M 142 133 A 3 3 0 1 0 148 133 A 3 3 0 1 0 142 133",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 127,
+              "y": 26,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 30,
+              "y": 208,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 250,
+              "y": 208,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_s",
+              "x": 155,
+              "y": 128,
+              "text": "S",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_note",
+              "x": 132,
+              "y": 214,
+              "text": "SA = SB = SC",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_first_equation",
+        "kind": "equation",
+        "label": "First equation from SA = SB",
+        "marks": 2,
+        "margin_note": "Two marks. Square both sides at once — the square roots vanish and, better, the x² and y² terms cancel across the equals sign, so a SECOND-degree statement collapses to a FIRST-degree line. That collapse is the whole reason this method works.",
+        "lines": [
+          "Step-1: Take SA = SB",
+          "⇒ √((x−1)² + (y−3)²) = √((x+3)² + (y−5)²)",
+          "Squaring on both sides, we get",
+          "(x−1)² + (y−3)² = (x+3)² + (y−5)²",
+          "⇒ (x² + 1 − 2x) + (y² + 9 − 6y) = (x² + 9 + 6x) + (y² + 25 − 10y)",
+          "⇒ −2x − 6y + 10 = 6x − 10y + 34",
+          "⇒ 8x − 4y + 24 = 0   ⇒   4(2x − y + 6) = 0",
+          "⇒ 2x − y + 6 = 0  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring SA = SB and cancelling the squared terms gives the first linear equation.",
+          "accept": [
+            "square both sides of S A equals S B and the x squared and y squared cancel leaving a straight line",
+            "take S A equal to S B, square, and simplify to a linear equation",
+            "the second degree terms cancel so we get equation one",
+            "S A equals S B square chesthe x square y square cancel avuthaayi",
+            "this gives the first equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "square both sides",
+            "cancel",
+            "first equation",
+            "linear"
+          ]
+        },
+        "why": "Both sides carry x² + y², so subtracting removes them. What survives is the perpendicular bisector of AB — a line, which is far easier to work with than a circle.",
+        "common_mistakes": [
+          "Squaring only one side of the equality.",
+          "Forgetting to cancel and carrying x² terms into the next step."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_second_equation",
+        "kind": "equation",
+        "label": "Second equation from SB = SC",
+        "marks": 2,
+        "margin_note": "Two marks. Exactly the same move on a different pair. Use SB = SC rather than SA = SC — the arithmetic reuses the B expansion already written above.",
+        "lines": [
+          "Step-2: Take SB = SC",
+          "⇒ √((x+3)² + (y−5)²) = √((x−5)² + (y+1)²)",
+          "Squaring on both sides, we get",
+          "(x+3)² + (y−5)² = (x−5)² + (y+1)²",
+          "⇒ (x² + 9 + 6x) + (y² + 25 − 10y) = (x² + 25 − 10x) + (y² + 1 + 2y)",
+          "⇒ 6x − 10y + 34 = −10x + 2y + 26",
+          "⇒ 16x − 12y + 8 = 0   ⇒   4(4x − 3y + 2) = 0",
+          "⇒ 4x − 3y + 2 = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring SB = SC and cancelling gives the second linear equation.",
+          "accept": [
+            "do the same with S B equals S C to get the second equation",
+            "square S B equals S C and cancel the squared terms",
+            "repeat the same step on the second pair",
+            "S B equals S C tho malli same chesthe second equation vasthundi",
+            "this gives equation two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "S B equals S C",
+            "second equation",
+            "same step",
+            "cancel"
+          ]
+        },
+        "why": "Two perpendicular bisectors meet at exactly one point, so two equations are enough — the third equality carries no new information.",
+        "common_mistakes": [
+          "Using SA = SC and redoing the A expansion for no benefit.",
+          "Sign slip when expanding a bracket with a negative coordinate."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_solve_the_pair",
+        "kind": "boxed_final",
+        "label": "Solve the pair",
+        "marks": 2,
+        "margin_note": "The last two marks. Two linear equations in two unknowns — solve them any way you like; the book uses the cross-multiplication rule. The answer is a single point.",
+        "lines": [
+          "Step-3: Solving (1) and (2), we get S;",
+          "(1) ⇒ 2x − y + 6 = 0;   (2) ⇒ 4x − 3y + 2 = 0",
+          "x / [(−1)(2) − (−3)(6)] = y / [6(4) − 2(2)] = 1 / [2(−3) − 4(−1)]",
+          "⇒ x / (−2 + 18) = y / (24 − 4) = 1 / (−6 + 4)",
+          "⇒ x/16 = y/20 = 1/(−2)",
+          "⇒ x = −16/2 = −8,  y = −20/2 = −10",
+          {
+            "text": "∴ Circumcentre S(x, y) = (−8, −10)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the two equations gives ∴ Circumcentre S(x, y) = (−8, −10).",
+          "accept": [
+            "solve the two equations together to get the circumcentre",
+            "use cross multiplication on equation one and two",
+            "solving the pair gives the point",
+            "rendu equations solve chesthe circumcentre vasthundi",
+            "the circumcentre is this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve",
+            "cross multiplication",
+            "circumcentre is",
+            "the point"
+          ]
+        },
+        "why": "The circumcentre can sit outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
+        "common_mistakes": [
+          "Arithmetic slip in the cross-multiplication denominators.",
+          "Writing the coordinates the wrong way round."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

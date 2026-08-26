@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_inverse_log2_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the inverse function of f(x) = log₂x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite in exponent form",
+      "marks": 1
+    },
+    {
+      "label": "The inverse function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 92.2. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would invert log base two of x — the rewrite you use, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Rewrite as a power",
+        "marks": 1,
+        "mark_note": "Rewrite in exponent form",
+        "margin_note": "One mark. Undo a logarithm by writing it in exponent form — the definition of a log is all you need.",
+        "lines": [
+          "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "log₂x = y ⇒ x = 2ʸ",
+          "[∵ log_b a = c ⇒ a = b^c]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log₂x = y is rewritten by the definition of a logarithm as x = 2 to the power y.",
+          "accept": [
+            "log base two of x equals y means x equals two to the power y",
+            "rewrite the log in exponential form to get x is two to the y",
+            "by the definition of a logarithm x equals two power y",
+            "log form ni exponent form lo rasthe x equals two power y",
+            "convert the logarithm to index form"
+          ],
+          "reject": [
+            "I rewrite it",
+            "use the definition",
+            "convert the log"
+          ],
+          "heard_as": [
+            "log base two",
+            "two to the power",
+            "exponent form",
+            "index form"
+          ]
+        },
+        "why": "A logarithm and a power say the same thing two ways. Rewriting is not a calculation — it is the definition, and it is the whole method.",
+        "common_mistakes": [
+          "Writing x = y², swapping the base and the exponent.",
+          "Trying to divide by log 2 instead of rewriting."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Write the inverse",
+        "marks": 1,
+        "mark_note": "The inverse function",
+        "margin_note": "The second mark is the finished function, renamed in x.",
+        "lines": [
+          "⇒ f⁻¹(y) = 2ʸ",
+          "∴ f⁻¹(x) = 2ˣ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(x) = 2ˣ — the exponential with the same base as the logarithm.",
+          "accept": [
+            "f inverse of x is two to the power x",
+            "the inverse is two power x",
+            "two raised to x",
+            "f inverse ante two power x",
+            "the answer is 2 to the x"
+          ],
+          "reject": [
+            "it is an exponential",
+            "that is the inverse",
+            "so we get it"
+          ],
+          "heard_as": [
+            "two to the power x",
+            "two power x",
+            "exponential",
+            "base two"
+          ]
+        },
+        "why": "This is the previous question read backwards: the inverse of a logarithm is the exponential with the same base.",
+        "common_mistakes": [
+          "Writing x² instead of 2ˣ.",
+          "Changing the base to e or 10."
+        ]
+      }
+    ]
+  }
+}

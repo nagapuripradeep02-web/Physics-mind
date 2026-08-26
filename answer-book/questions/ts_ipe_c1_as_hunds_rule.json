@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_as_hunds_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Atomic Structure"
+  },
+  "chapter": "Atomic Structure",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Hund's rule?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25: the rule and the nitrogen 1s² 2s² 2p³ example verified; the memory tip reworded to drop the bus-seat comparison (explanation text only, marked lines and marks untouched)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Atomic Structure · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Hund's rule: in degenerate orbitals, pairing",
+          "of electrons begins only after every",
+          "degenerate orbital has one electron each.",
+          "The unpaired electrons have parallel spins."
+        ],
+        "why": "Degenerate orbitals have equal energy. Two electrons in one orbital repel each other, so the lower-energy arrangement puts one electron in each orbital first.",
+        "common_mistakes": [
+          "Leaving out the word degenerate. The rule applies only to orbitals of equal energy.",
+          "Forgetting to say the single electrons have parallel spins."
+        ],
+        "memory_tip": "Every degenerate orbital takes one electron before any of them takes a second.",
+        "margin_note": "The words degenerate and pairing must both appear."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Nitrogen (Z = 7): 1s² 2s² 2p³",
+            "style": "boxed"
+          },
+          "The three 2p electrons occupy 2px, 2py and",
+          "2pz singly, with parallel spins.",
+          "None of the three 2p orbitals holds a pair."
+        ],
+        "why": "Nitrogen is the standard example because its three 2p electrons exactly fill the three degenerate 2p orbitals one each, so the rule is visible in a single configuration.",
+        "common_mistakes": [
+          "Writing 2p³ as one orbital holding a pair and one holding a single electron."
+        ],
+        "memory_tip": "Nitrogen has exactly three 2p electrons for exactly three 2p orbitals. One each, no pairs.",
+        "margin_note": "Drawing the three boxes with single upward arrows is accepted here."
+      }
+    ]
+  },
+  "insider_note": "The rule alone is half the answer. The examiner expects a worked example, and nitrogen is the one every textbook uses."
+}

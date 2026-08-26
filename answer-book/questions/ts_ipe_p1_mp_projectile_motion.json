@@ -46,7 +46,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty."
+    "note": "Sources: the Sri Chaitanya IPE Junior Fastrack (Rev. May 2024) carries this material as TWO three-star SHORT ANSWER questions of Unit 4 — ***2 (maximum height and range) and ***4 (trajectory is a parabola) — and the chapter has no LONG ANSWER section at all. Three cuts ship: the 8-mark form combines both the way the paper asks the full question, and each three-star short question is a 4-mark cut of the SAME authored steps, so the derivation exists once. EVERY mark split here is invented, as is the choice of which steps each short cut omits. A Telangana IPE teacher must confirm them before a student sees them. No exam appearance years are printed for Unit 4, so appearances[] stays empty. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "cuts": [
     {
@@ -281,7 +281,8 @@
             "thrown at an angle",
             "under gravity"
           ]
-        }
+        },
+        "memory_tip": "Two facts to say: gravity is the only force, and the horizontal velocity never changes."
       },
       {
         "id": "s2_figure",
@@ -534,7 +535,8 @@
             "picture",
             "trajectory"
           ]
-        }
+        },
+        "memory_tip": "Mark three points as you draw: O at launch, A at the top, B at landing. The derivation visits them in that order."
       },
       {
         "id": "s3_components",
@@ -581,7 +583,8 @@
             "components",
             "resolve"
           ]
-        }
+        },
+        "memory_tip": "Split u once, use it twice: u cos θ runs every x-equation, u sin θ runs every y-equation."
       },
       {
         "id": "s4_trajectory",
@@ -618,7 +621,7 @@
           "which is the equation of a parabola."
         ],
         "margin_note": "Eliminate t between the two equations. Two of the eight marks are for this step, so show the substitution.",
-        "why": "x and y each depend on time, so neither alone shows the shape of the path. Removing t leaves a relation between x and y only — and that relation is what a parabola is.",
+        "why": "x and y each depend on time, so neither alone shows the shape of the path. Removing t leaves a relation between x and y only — and that relation is what a parabola is. In y = Ax − Bx², A and B are the constants tan θ and g/(2u² cos²θ), not the points A and B of the figure.",
         "common_mistakes": [
           "Stopping at x and y separately without eliminating t.",
           "Dropping the minus sign and getting an upward curve.",
@@ -645,7 +648,8 @@
             "eliminate t",
             "a x minus b x squared"
           ]
-        }
+        },
+        "memory_tip": "To get the path, write x and y in terms of t, then remove t. The result has the shape y = ax − bx² — a parabola."
       },
       {
         "id": "s5_time_of_flight",
@@ -694,7 +698,8 @@
             "two u sin theta by g",
             "T equals"
           ]
-        }
+        },
+        "memory_tip": "Landing means y = 0 again. T = 2u sin θ / g — twice the time to the top."
       },
       {
         "id": "s6_max_height",
@@ -744,7 +749,8 @@
             "H max",
             "u squared sin squared theta"
           ]
-        }
+        },
+        "memory_tip": "The top is where the vertical velocity is 0. Use v² = u² − 2gh with u sin θ: H = u² sin²θ / 2g."
       },
       {
         "id": "s7_range",
@@ -798,7 +804,8 @@
             "sine two theta",
             "u squared sin two theta by g"
           ]
-        }
+        },
+        "memory_tip": "Range = horizontal speed × time of flight. The identity 2 sin θ cos θ = sin 2θ compresses it to R = u² sin 2θ / g."
       },
       {
         "id": "s8_notes",
@@ -838,8 +845,10 @@
             "special cases",
             "complementary"
           ]
-        }
+        },
+        "memory_tip": "Two checks: range is largest at 45°, and θ and 90° − θ give the same range."
       }
     ]
-  }
+  },
+  "insider_note": "Three separate results are asked — time of flight, maximum height, range. Each carries its own mark; leave none out."
 }

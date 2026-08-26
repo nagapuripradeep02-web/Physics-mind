@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_nucleoside_vs_nucleotide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between a nucleoside and a nucleotide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nucleoside",
+      "marks": 1
+    },
+    {
+      "label": "Nucleotide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.27, VSAQ 8. The book prints 'nitrogen base' and the shorthand 'S + N2 base' / 'S + N2 base + P' — the 'N2' is scan noise for 'N-base'. The content is correct and is written out here in words, with examples added. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nucleoside",
+        "kind": "text",
+        "label": "Nucleoside",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A nucleoside has two parts:",
+          "a pentose sugar and a nitrogenous base,",
+          "joined by an N-glycosidic bond.",
+          "Nucleoside = sugar + base",
+          "Ex: adenosine, guanosine, cytidine, thymidine."
+        ],
+        "why": "The nucleoside is the smaller unit — sugar joined to base, with no phosphate. Fixing this two-part picture first makes the nucleotide easy to state.",
+        "common_mistakes": [
+          "Including phosphate in the nucleoside. A nucleoside has no phosphate.",
+          "Writing only 'sugar and base' with no bond named. The N-glycosidic bond is the detail that earns the mark."
+        ],
+        "memory_tip": "NucleoSide has two parts; nucleoTide adds the third. The T stands for the phosphate that is added.",
+        "margin_note": "Two lines and one example are enough for this mark."
+      },
+      {
+        "id": "s2_nucleotide",
+        "kind": "boxed_final",
+        "label": "Nucleotide",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          {
+            "text": "Nucleotide = nucleoside + phosphate = sugar + base + phosphate",
+            "style": "boxed"
+          },
+          "The phosphate is joined to carbon 5 of the",
+          "sugar by a phosphoester bond.",
+          "Nucleotides are the monomers of DNA and RNA.",
+          "Ex: adenosine monophosphate (AMP)."
+        ],
+        "why": "A nucleotide is a nucleoside with a phosphate group added, so the only difference between the two words is the phosphate. Nucleotides, not nucleosides, are the units that build a nucleic acid chain.",
+        "common_mistakes": [
+          "Swapping the two words. The one WITH phosphate is the nucleotide.",
+          "Writing that nucleosides build DNA. The monomers of DNA are nucleotides."
+        ],
+        "memory_tip": "Add a phosphate to a nucleoside and it becomes a nucleotide.",
+        "margin_note": "State the difference as one equation line. That single line earns the mark."
+      }
+    ]
+  },
+  "insider_note": "Write the difference as two short equations, sugar + base and sugar + base + phosphate. The examiner looks for the phosphate."
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_grav_geostationary_period_direction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Gravitation"
+  },
+  "chapter": "Gravitation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the time period of revolution of a geostationary satellite? Does it revolve from west to east or from east to west?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The time period",
+      "marks": 1
+    },
+    {
+      "label": "The direction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Gravitation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_period",
+        "kind": "equation",
+        "label": "The time period",
+        "marks": 1,
+        "mark_note": "Time period",
+        "lines": [
+          "A geostationary satellite keeps exact pace",
+          "with the earth’s own rotation, so its time",
+          "period equals one rotation of the earth:",
+          {
+            "text": "T = 24 hours",
+            "style": "eq"
+          }
+        ],
+        "why": "Anything other than 24 hours and the satellite would drift over the ground instead of staying put.",
+        "common_mistakes": [
+          "Giving 12 hours, or the ~90 minutes of a low-orbit satellite."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the time period is 24 hours, the same as the rotation of the earth.",
+          "accept": [
+            "24 hours",
+            "same as the earth rotation"
+          ],
+          "reject": [
+            "from west to east"
+          ],
+          "heard_as": [
+            "24 hours",
+            "time period"
+          ]
+        },
+        "memory_tip": "24 hours — exactly the earth’s own spin period.",
+        "margin_note": "First mark. 24 hours, with the reason on the same line."
+      },
+      {
+        "id": "s2_direction",
+        "kind": "boxed_final",
+        "label": "The direction",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          {
+            "text": "From WEST to EAST",
+            "style": "boxed"
+          },
+          "That is the direction in which the earth",
+          "itself rotates. Only by matching BOTH the",
+          "period and the direction can the satellite",
+          "stay above the same point on the ground."
+        ],
+        "why": "Matching the period alone is not enough — a satellite going the other way would pass overhead twice a day.",
+        "common_mistakes": [
+          "Answering east to west, the direction the sun appears to move."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it revolves from west to east, the same direction as the earth rotates.",
+          "accept": [
+            "west to east",
+            "same direction as the earth rotates"
+          ],
+          "reject": [
+            "24 hours"
+          ],
+          "heard_as": [
+            "west to east",
+            "direction"
+          ]
+        },
+        "memory_tip": "West to east — the same direction the earth turns.",
+        "margin_note": "Second mark. West to east — three words, one mark."
+      }
+    ]
+  },
+  "insider_note": "The direction is a separate question with its own mark, so an answer that gives only the 24-hour period scores half."
+}

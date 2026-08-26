@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_state_perpendicular_axes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the perpendicular axes theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "For a plane lamina, the sum of the",
+          "moments of inertia about two mutually",
+          "perpendicular axes in its plane equals",
+          "the moment of inertia about the axis",
+          "perpendicular to the plane, through",
+          "their point of intersection."
+        ],
+        "why": "The 2-mark form of the 4-mark theorem SAQ — the statement is the same words either way.",
+        "common_mistakes": [
+          "Forgetting \"plane lamina\" — the theorem is for flat bodies only."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a plane lamina, the two in-plane perpendicular axes sum to the normal axis.",
+          "accept": [
+            "plane lamina",
+            "two perpendicular axes in the plane"
+          ],
+          "reject": [
+            "parallel axis through the centre of mass"
+          ],
+          "heard_as": [
+            "lamina",
+            "perpendicular"
+          ]
+        },
+        "memory_tip": "Two axes IN the plane add up to the one PERPENDICULAR to it. Flat bodies only.",
+        "margin_note": "First mark. \"Plane lamina\" and \"point of intersection\" are both marked words."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "I_z = I_x + I_y",
+            "style": "boxed"
+          }
+        ],
+        "why": "Three symbols; the lamina condition does the rest.",
+        "common_mistakes": [
+          "Writing I_x = I_y + I_z with the roles scrambled."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That I_z = I_x + I_y.",
+          "accept": [
+            "I z equals I x plus I y"
+          ],
+          "reject": [
+            "I equals I naught plus M r squared"
+          ],
+          "heard_as": [
+            "I z",
+            "I x plus I y"
+          ]
+        },
+        "memory_tip": "z is the axis out of the plane, so I_z is the one by itself: I_z = I_x + I_y.",
+        "margin_note": "Second mark. One line, and say which axis z is."
+      }
+    ]
+  },
+  "insider_note": "Name the axes as you write I_z = I_x + I_y — an unlabelled equation is not the theorem, and it is half the marks here."
+}

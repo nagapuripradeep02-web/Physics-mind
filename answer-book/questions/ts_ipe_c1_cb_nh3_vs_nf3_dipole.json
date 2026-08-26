@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_nh3_vs_nf3_dipole",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare the dipole moment of NH₃ molecule with that of NF₃ molecule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Both shapes",
+      "marks": 1
+    },
+    {
+      "label": "NH₃ directions",
+      "marks": 1
+    },
+    {
+      "label": "NF₃ directions",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The numeric values 1.47 D and 0.23 D are the NCERT reference values; the book argues the comparison qualitatively only."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shapes",
+        "kind": "text",
+        "label": "Both shapes",
+        "marks": 1,
+        "mark_note": "Shapes",
+        "lines": [
+          "NH₃ and NF₃ both have a pyramidal shape,",
+          "with one lone pair of electrons on the",
+          "N atom.",
+          "So the difference in their dipole moments",
+          "cannot come from the shape — it comes from",
+          "the direction of the bond moments."
+        ],
+        "why": "Establishing that the two shapes are identical rules out geometry as the cause and points the answer at bond-moment directions, which is the actual argument.",
+        "common_mistakes": [
+          "Saying NF₃ is planar. Both molecules are pyramidal.",
+          "Forgetting the lone pair on N, whose moment the whole comparison is about."
+        ],
+        "memory_tip": "Same shape, same lone pair — only the arrow directions differ.",
+        "margin_note": "The one-line setup: same shape, so compare directions."
+      },
+      {
+        "id": "s2_nh3",
+        "kind": "text",
+        "label": "NH₃ directions",
+        "marks": 1,
+        "mark_note": "NH₃",
+        "lines": [
+          "In NH₃: N is more electronegative than H,",
+          "so each N−H bond moment points from H",
+          "toward N.",
+          "The resultant of the three N−H bond moments",
+          "points in the SAME direction as the lone",
+          "pair moment.",
+          "The two add, giving a large dipole moment."
+        ],
+        "why": "Both contributions point away from the hydrogens, up through the lone pair, so they reinforce each other and the total moment is large.",
+        "common_mistakes": [
+          "Drawing the N−H moments toward H. The arrow points to the more electronegative atom, which is N."
+        ],
+        "memory_tip": "In NH₃ everything points the same way: bond resultant and lone pair together.",
+        "margin_note": "The words same direction must appear for this mark."
+      },
+      {
+        "id": "s3_nf3",
+        "kind": "text",
+        "label": "NF₃ directions",
+        "marks": 1,
+        "mark_note": "NF₃",
+        "lines": [
+          "In NF₃: F is more electronegative than N,",
+          "so each N−F bond moment points from N",
+          "toward F.",
+          "The resultant of the three N−F bond moments",
+          "points OPPOSITE to the lone pair moment.",
+          "The two partly cancel, giving a small",
+          "dipole moment."
+        ],
+        "why": "Reversing the electronegativity order reverses the bond-moment resultant, so in NF₃ it works against the lone pair moment instead of with it.",
+        "common_mistakes": [
+          "Claiming full cancellation. The cancellation is partial — NF₃ still has a small non-zero moment.",
+          "Arguing from bond polarity strength alone. The DIRECTION of the resultant is the point."
+        ],
+        "memory_tip": "In NF₃ the arrows point opposite ways: bond resultant down to F, lone pair up.",
+        "margin_note": "The words opposite direction must appear for this mark."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          {
+            "text": "μ of NH₃ (1.47 D) > μ of NF₃ (0.23 D)",
+            "style": "boxed"
+          },
+          "Adding moments in NH₃ against partly",
+          "cancelling moments in NF₃ makes the dipole",
+          "moment of NH₃ much greater than that of NF₃."
+        ],
+        "why": "The boxed inequality is the asked comparison; the reference values make the size of the difference concrete.",
+        "common_mistakes": [
+          "Writing the inequality the wrong way round. NH₃ has the larger moment."
+        ],
+        "memory_tip": "Together in NH₃, opposed in NF₃ — so NH₃ is larger.",
+        "margin_note": "The inequality alone earns the mark; the D values strengthen it."
+      }
+    ]
+  },
+  "insider_note": "The direction comparison carries the marks: same direction in NH₃, opposite direction in NF₃. State which way each resultant points."
+}

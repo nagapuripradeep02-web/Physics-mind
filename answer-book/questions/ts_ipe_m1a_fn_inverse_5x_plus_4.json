@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_inverse_5x_plus_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: Q→Q is defined by f(x) = 5x + 4, find f⁻¹.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Solve for x",
+      "marks": 1
+    },
+    {
+      "label": "The inverse function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.80 — VSAQ chapter 14 Functions, question 91.1. The book prints NO internal mark split on its VSAQ pages (unlike its LAQ/SAQ pages): the 1+1 across the two steps is our division of the 2 marks, not the source's. Appearance years are the book's, board-split. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find the inverse — the first move, and the final function.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "kind": "equation",
+        "label": "Swap and solve",
+        "marks": 1,
+        "mark_note": "Solve for x",
+        "margin_note": "One mark for the method: put f(x) = y, then make x the subject. Write the swap line — it is what the examiner marks.",
+        "lines": [
+          "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "5x + 4 = y ⇒ 5x = y − 4",
+          "⇒ x = (y − 4)/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That you set f(x) = y, which means x = f⁻¹(y), and then solve the equation for x to get (y − 4)/5.",
+          "accept": [
+            "take f of x equals y so x is f inverse of y then solve five x plus four equals y to get x equals y minus four by five",
+            "put y equal to five x plus four and make x the subject",
+            "solve for x giving y minus four over five",
+            "f of x equals y anukoni x ni solve chesthe y minus four by five",
+            "rearrange to get x in terms of y"
+          ],
+          "reject": [
+            "I find the inverse",
+            "swap x and y",
+            "solve it"
+          ],
+          "heard_as": [
+            "f of x equals y",
+            "f inverse",
+            "five x plus four",
+            "y minus four by five"
+          ]
+        },
+        "why": "The inverse undoes the function, so making x the subject IS finding the inverse. Every inverse question in this chapter is this one move.",
+        "common_mistakes": [
+          "Writing f⁻¹ = 1/f, which is a reciprocal, not an inverse function.",
+          "Dividing before subtracting: (y/5) − 4 instead of (y − 4)/5."
+        ]
+      },
+      {
+        "id": "s2",
+        "kind": "boxed_final",
+        "label": "Write the inverse",
+        "marks": 1,
+        "mark_note": "The inverse function",
+        "margin_note": "The second mark is the finished function. Rename the variable back to x so the answer is a function of x.",
+        "lines": [
+          "⇒ f⁻¹(y) = (y − 4)/5",
+          "∴ f⁻¹(x) = (x − 4)/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(x) = (x − 4)/5, with the variable renamed back to x.",
+          "accept": [
+            "f inverse of x is x minus four by five",
+            "the inverse function is x minus four over five",
+            "rename y as x so f inverse of x equals x minus four by five",
+            "f inverse of x ante x minus four by five",
+            "the answer is x minus four divided by five"
+          ],
+          "reject": [
+            "that is the inverse",
+            "so we get the answer",
+            "f inverse is found"
+          ],
+          "heard_as": [
+            "f inverse of x",
+            "x minus four by five",
+            "over five",
+            "divided by five"
+          ]
+        },
+        "why": "A function is normally written in x, so the last line renames the variable. It is cosmetic mathematically but it is what the answer is expected to look like.",
+        "common_mistakes": [
+          "Leaving the answer in y and never renaming.",
+          "Writing (x + 4)/5, undoing the wrong sign."
+        ]
+      }
+    ]
+  }
+}

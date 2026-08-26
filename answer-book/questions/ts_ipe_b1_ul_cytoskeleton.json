@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ul_cytoskeleton",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "The Unit of Life (Botany)"
+  },
+  "chapter": "The Unit of Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the cytoskeleton? What functions is it involved in?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Three components",
+      "marks": 1
+    },
+    {
+      "label": "Functions",
+      "marks": 1
+    },
+    {
+      "label": "Role in cell division",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 9 'The Unit of Life' (book pp.23-26), which prints the question and a model answer but NO star rank and NO year citations - so stars are 0 and appearances are empty by fact, not by omission. Only ONE source book is held for botany: the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus. The two-book union check and the back-test are therefore STRUCTURALLY IMPOSSIBLE for this card, not merely unrun - never read this as 'checked and clean'. The mark split is this card's claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "The Unit of Life · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The cytoskeleton is a network of filamentous",
+          "proteinaceous structures present in the",
+          "cytoplasm.",
+          "It is found in eukaryotic cells."
+        ],
+        "why": "Three words carry the definition — network, filamentous and proteinaceous — and each of them is a separate marked idea.",
+        "common_mistakes": [
+          "Writing that the cytoskeleton is made of carbohydrate. It is protein.",
+          "Leaving out the word network, which is what the structures form."
+        ],
+        "memory_tip": "Cyto means cell, skeleton means framework: a protein framework inside the cell.",
+        "margin_note": "One sentence, but it must contain 'protein' and 'network'."
+      },
+      {
+        "id": "s2_components",
+        "kind": "text",
+        "label": "Three components",
+        "marks": 1,
+        "mark_note": "Components",
+        "lines": [
+          "The cytoskeleton has three major components:",
+          "1) Microfilaments — thin threads of actin.",
+          "2) Intermediate filaments — fibres thicker",
+          "than microfilaments, thinner than tubules.",
+          "3) Microtubules — hollow tubes of the protein",
+          "tubulin."
+        ],
+        "why": "The three components are named by thickness: microfilaments are the thinnest, microtubules the thickest, and the intermediate filaments sit between them.",
+        "common_mistakes": [
+          "Naming only two components.",
+          "Writing that microtubules are solid. They are hollow."
+        ],
+        "memory_tip": "Thin, middle, thick: microfilament, intermediate filament, microtubule.",
+        "margin_note": "All three names, numbered, earn this mark."
+      },
+      {
+        "id": "s3_functions",
+        "kind": "text",
+        "label": "Functions",
+        "marks": 1,
+        "mark_note": "Functions",
+        "lines": [
+          "The cytoskeleton gives mechanical support to",
+          "the cell and maintains the shape of the cell.",
+          "It moves organelles and vesicles from place to",
+          "place inside the cell, which is called",
+          "intracellular transport.",
+          "It also brings about cell motility."
+        ],
+        "why": "The same framework does two opposite jobs: it holds the cell in shape, and it moves things about inside it.",
+        "common_mistakes": [
+          "Writing that the cytoskeleton stores food. It does not.",
+          "Listing only support and forgetting movement."
+        ],
+        "memory_tip": "Support, shape, transport, motility — four function words, in that order.",
+        "margin_note": "Four function words is a full mark."
+      },
+      {
+        "id": "s4_division",
+        "kind": "boxed_final",
+        "label": "Cell division",
+        "marks": 1,
+        "mark_note": "Karyokinesis",
+        "lines": [
+          {
+            "text": "Cytoskeleton = microfilaments + IF + microtubules",
+            "style": "boxed"
+          },
+          "Microtubules also form the spindle fibres that",
+          "move the chromosomes during karyokinesis.",
+          "They build the centrioles, and the cilia and",
+          "flagella that project from the cell surface."
+        ],
+        "why": "The microtubule is the component that also works outside the resting cell — it forms the spindle, the centriole and the core of a cilium or flagellum.",
+        "common_mistakes": [
+          "Writing that microfilaments form the spindle. Microtubules do.",
+          "Leaving karyokinesis out; the book lists it as a function."
+        ],
+        "memory_tip": "The microtubule builds three things: spindle, centriole, cilium.",
+        "margin_note": "Karyokinesis is the word the book uses; use it."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves, so split the page: what it is, then what it does. Answering only the first half caps you at two marks."
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_ke_rolling_body",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain an expression for the kinetic energy of a body rolling without slipping.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two motions",
+      "marks": 1
+    },
+    {
+      "label": "The two energies",
+      "marks": 2
+    },
+    {
+      "label": "The result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Rotational Motion · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_motions",
+        "kind": "text",
+        "label": "The two motions",
+        "marks": 1,
+        "mark_note": "Two motions",
+        "lines": [
+          "A rolling body does two things at once:",
+          "its centre of mass moves forward with",
+          "speed v, and the body rotates about the",
+          "centre with angular velocity ω = v/R."
+        ],
+        "why": "Rolling IS translation plus rotation; the no-slipping condition v = Rω is the lock between them.",
+        "common_mistakes": [
+          "Forgetting the no-slip condition, which leaves ω unrelated to v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rolling is translation of the CM plus rotation with omega = v by R.",
+          "accept": [
+            "translation plus rotation",
+            "omega is v by R"
+          ],
+          "reject": [
+            "half m v squared plus half I omega squared"
+          ],
+          "heard_as": [
+            "rolling",
+            "v by R"
+          ]
+        },
+        "memory_tip": "At the contact point the two speeds cancel, and that is exactly what no slipping means.",
+        "margin_note": "First mark. Name both motions and write the no-slip link v = Rω."
+      },
+      {
+        "id": "s2_energies",
+        "kind": "equation",
+        "label": "The two energies",
+        "marks": 2,
+        "mark_note": "Energies",
+        "lines": [
+          "Each motion carries its own kinetic",
+          "energy, and they add:",
+          {
+            "text": "KE = ½mv² + ½Iω²",
+            "style": "eq"
+          },
+          "Substituting I = mk² and ω = v/R,",
+          {
+            "text": "KE = ½mv² [1 + k²/R²]",
+            "style": "eq"
+          }
+        ],
+        "why": "The bracket [1 + k²/R²] is the fingerprint of the body: ½ more for a disc, 2/5 more for a sphere — one formula, every shape.",
+        "common_mistakes": [
+          "Adding the energies with different speeds — the SAME v appears in both after the substitution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That KE is half m v squared plus half I omega squared, giving the bracket 1 + k squared by R squared.",
+          "accept": [
+            "half m v squared plus half I omega squared",
+            "one plus k squared by R squared"
+          ],
+          "reject": [
+            "omega is v by R"
+          ],
+          "heard_as": [
+            "both energies",
+            "bracket"
+          ]
+        },
+        "memory_tip": "k²/R² is the shape number: 1 for a ring, ½ for a disc, 2/5 for a solid sphere.",
+        "margin_note": "Two marks. Write the two energies separately, then substitute I = mk² and ω = v/R."
+      },
+      {
+        "id": "s3_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "Result",
+        "lines": [
+          {
+            "text": "KE = ½mv² (1 + k²/R²)",
+            "style": "boxed"
+          },
+          "Rolling always carries MORE energy than",
+          "sliding at the same speed."
+        ],
+        "why": "The closing sentence is the physical content: some of the work done on a rolling body hides in the spin.",
+        "common_mistakes": [
+          "Claiming a rolling and a sliding body at the same v have the same energy."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That KE of rolling = half m v squared times 1 + k squared by R squared, more than sliding.",
+          "accept": [
+            "more than sliding",
+            "the bracket formula"
+          ],
+          "reject": [
+            "translation plus rotation"
+          ],
+          "heard_as": [
+            "rolling",
+            "more energy"
+          ]
+        },
+        "memory_tip": "The 1 in the bracket is the sliding part; the k²/R² is the extra energy stored in the spin.",
+        "margin_note": "Final mark. Box the formula, then add the one-line comparison with sliding."
+      }
+    ]
+  },
+  "insider_note": "Both halves must appear before the bracket: ½mv² and ½Iω² carry 2 of the 4 marks, and ω = v/R is what joins them."
+}

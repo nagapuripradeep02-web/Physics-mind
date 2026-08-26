@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_one_over_root_x2_minus_a2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real function 1/√(x² − a²).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 14 Functions, question 96.2, on ★★★ SSP 81 (the book calls it 'the most dominating domain page'). Appearance years are printed board-split. UNLIKE the LAQ and SAQ pages, the book prints NO internal mark split on its VSAQ pages: the 1+1 across the two steps is our division of the 2 marks, not the source's. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would find this domain — the condition the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "lines": [
+          "f(x) is defined when x² − a² > 0",
+          "⇒ (x − a)(x + a) > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the root is in a DENOMINATOR, so the inside must be strictly greater than zero — it may not be zero, or the fraction is undefined.",
+          "accept": [
+            "the root is in the denominator so the inside must be strictly positive not zero",
+            "x squared minus a squared greater than zero strictly because it is in the denominator",
+            "cannot be zero since we divide by it so strictly greater than zero",
+            "denominator lo undi so zero avvakoodadu strictly positive undali",
+            "the expression under the root must be positive because dividing by zero is undefined"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "denominator",
+            "x squared minus a squared",
+            "strictly positive",
+            "minus a",
+            "a"
+          ]
+        },
+        "why": "Two rules stack here: the root needs a non-negative inside, and the denominator forbids zero. Together they force strictly positive.",
+        "common_mistakes": [
+          "Using ≥ 0 and forgetting the denominator, which wrongly includes ±a where the function blows up.",
+          "Assuming a is positive without saying so."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "lines": [
+          "⇒ x ∈ (−∞, −a) ∪ (a, ∞)",
+          "∴ Domain = (−∞, −a) ∪ (a, ∞)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the outside, with open brackets: minus infinity to minus a, union a to infinity.",
+          "accept": [
+            "minus infinity to minus a union a to infinity open brackets",
+            "x less than minus a or greater than a strictly",
+            "outside minus a and a with the endpoints excluded",
+            "minus a kanna takkuva or a kanna ekkuva",
+            "the two open intervals beyond minus a and a"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "denominator",
+            "x squared minus a squared",
+            "strictly positive",
+            "minus a",
+            "a",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "The strict inequality is what excludes ±a, so both brackets are round — the difference from question 95.1, where the root stood alone.",
+        "common_mistakes": [
+          "Writing square brackets at ±a, where the denominator is zero.",
+          "Giving the inside interval (−a, a), where x² − a² is negative."
+        ]
+      }
+    ]
+  }
+}

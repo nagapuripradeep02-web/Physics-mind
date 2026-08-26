@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_rot_door_force_at_hinges",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "System of Particles and Rotational Motion"
+  },
+  "chapter": "System of Particles and Rotational Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "We cannot open or close a door by applying force at the hinges. Why?",
+  "appearances": [
+    {
+      "year": 2026,
+      "q_no": 15,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 7 VERY SHORT ANSWER. The 1+1 split is invented and needs a Telangana IPE teacher. AP appearance: asked on the AP Inter 1st-year Physics paper, March 2026 (Section B, the first paper of the new 85-mark NCERT pattern) — transcription evidence, claim until the official paper PDF confirms the question number."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Rotational Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "The turning effect of a force is the",
+          "torque:",
+          {
+            "text": "τ = r F sin θ",
+            "style": "eq"
+          },
+          "where r is the distance of the force",
+          "from the axis (the hinges)."
+        ],
+        "margin_note": "Define r in words — \"distance from the hinge line\". The next step lives on it.",
+        "why": "A door turns about the hinge line, so only the torque about that line matters — not the force by itself.",
+        "common_mistakes": [
+          "Writing τ = rF and forgetting what r is measured from."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the turning effect is the torque, τ = r F sin θ, with r measured from the hinges.",
+          "accept": [
+            "torque is r F sin theta",
+            "turning effect is torque",
+            "torque formula rasali"
+          ],
+          "reject": [
+            "r is zero at the hinges"
+          ],
+          "heard_as": [
+            "torque",
+            "r F sin theta"
+          ]
+        },
+        "memory_tip": "Three factors in τ = rF sin θ. Only r changes in this question; the force does not."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "At the hinges the distance r = 0, so",
+          {
+            "text": "τ = 0 — there is no turning effect.",
+            "style": "boxed"
+          },
+          "That is why the door will not open or",
+          "close from a push at the hinges."
+        ],
+        "margin_note": "Two symbols do the work: r = 0, so τ = 0. Write both.",
+        "why": "However large the force, multiplying it by a zero arm gives zero torque. This is also why handles sit at the far edge — the largest r the door offers.",
+        "common_mistakes": [
+          "Saying the force is \"absorbed by the hinges\" — the force is fine; its ARM is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at the hinges r = 0 so the torque is zero and there is no turning effect.",
+          "accept": [
+            "r is zero at the hinges",
+            "torque becomes zero",
+            "no turning effect",
+            "hinge daggara r zero"
+          ],
+          "reject": [
+            "torque is r F sin theta"
+          ],
+          "heard_as": [
+            "r zero",
+            "torque zero",
+            "no turning"
+          ]
+        },
+        "memory_tip": "Anything multiplied by zero is zero. A 1000 N push at r = 0 still gives τ = 0."
+      }
+    ]
+  },
+  "insider_note": "The second mark is one line of symbols — r = 0, so τ = 0. An answer in words alone does not reach it."
+}

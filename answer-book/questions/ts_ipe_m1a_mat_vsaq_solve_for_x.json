@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_solve_for_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (1, 2) and (3, 4), B is the matrix with rows (3, 8) and (7, 2), and 2X + A = B, then find X.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rearrange and subtract",
+      "marks": 1
+    },
+    {
+      "label": "Divide by 2",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 15 Matrices, answer 101, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 15, plus the pre-bifurcation tags 'IPE 11,12,13' which appearances[] cannot carry. THE 1+1 SPLIT IS PRINTED in the book's margin against this answer as [1 mark] on each of two working lines — a sourced split. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find X from this matrix equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rearrange",
+        "kind": "equation",
+        "label": "Rearrange and subtract",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Treat it like an ordinary equation: move A across, then deal with the 2. B − A is an entry-by-entry subtraction.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "2X + A = B  ⇒  2X = B − A",
+          {
+            "text": "2X = \\begin{bmatrix} 3 & 8 \\\\ 7 & 2 \\end{bmatrix} - \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix} = \\begin{bmatrix} 2 & 6 \\\\ 4 & -2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is rearranged to 2X = B − A and the subtraction done entry by entry.",
+          "accept": [
+            "rearrange to two X equals B minus A then subtract entry by entry",
+            "move A to the other side so two X is B minus A",
+            "take A away from B to get two X",
+            "A ni other side ki teeste two X equals B minus A avthundi",
+            "first make it two X equals B minus A and subtract"
+          ],
+          "reject": [
+            "rearrange it",
+            "subtract A"
+          ],
+          "heard_as": [
+            "two X",
+            "B minus A",
+            "rearrange",
+            "subtract"
+          ]
+        },
+        "why": "Matrix equations rearrange exactly like number equations for addition and subtraction. It is only multiplication where the rules differ.",
+        "common_mistakes": [
+          "Computing A − B instead of B − A.",
+          "Trying to divide B by A, which is not a matrix operation."
+        ]
+      },
+      {
+        "id": "s2_halve",
+        "kind": "boxed_final",
+        "label": "Divide by 2",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Dividing a matrix by 2 halves EVERY entry, including the negative one: −2 becomes −1.",
+        "lines": [
+          "Dividing every entry by 2:",
+          {
+            "text": "X = \\begin{bmatrix} 1 & 3 \\\\ 2 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every entry of the matrix is divided by 2, giving X with rows (1, 3) and (2, −1).",
+          "accept": [
+            "divide every entry by two to get one three two minus one",
+            "halve each entry so X is one three and two minus one",
+            "divide the whole matrix by two",
+            "prathi entry ni two tho divide cheste X vasthundi",
+            "X has rows one three and two minus one"
+          ],
+          "reject": [
+            "divide by two",
+            "find X"
+          ],
+          "heard_as": [
+            "divide by two",
+            "one three",
+            "two minus one",
+            "halve"
+          ]
+        },
+        "why": "Dividing by a scalar reaches every entry, the same way multiplying does. Missing one entry is the only way to get this step wrong.",
+        "common_mistakes": [
+          "Halving only the positive entries.",
+          "Leaving the answer as 2X."
+        ]
+      }
+    ]
+  }
+}

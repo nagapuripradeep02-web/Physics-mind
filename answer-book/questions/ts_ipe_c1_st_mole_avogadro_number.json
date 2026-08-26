@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_mole_avogadro_number",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the mole. What is Avogadro's number?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The mole",
+      "marks": 1
+    },
+    {
+      "label": "Avogadro's number",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED, not asked. This card comes from the enumeration sweep of Chapter 5 (Stoichiometry): the Fastrack chemistry section (book pp.66-72) asks several mole CALCULATIONS but never the definition of the mole or of Avogadro's number. Only ONE source book is held for chemistry, so the two-book union check is PENDING. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. Rewrote the s2 memory tip: '6.022 with twenty-three zeros' misreads 6.022 × 10²³ (which is 6022 followed by 20 zeros). No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mole",
+        "kind": "text",
+        "label": "The mole",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "One mole is the amount of substance that",
+          "contains as many elementary particles (atoms,",
+          "molecules or ions) as there are atoms in",
+          "exactly 12 g of the carbon-12 isotope."
+        ],
+        "why": "The mole is defined by a counting standard: the number of atoms in 12 g of carbon-12. Naming the particles and the standard makes the definition complete.",
+        "common_mistakes": [
+          "Defining the mole as 'the molecular weight in grams'. That is a consequence, not the definition.",
+          "Leaving out carbon-12 and its 12 g."
+        ],
+        "memory_tip": "The definition has two anchors: 12 g and carbon-12.",
+        "margin_note": "Atoms, molecules or ions — say which particles are being counted."
+      },
+      {
+        "id": "s2_avogadro",
+        "kind": "boxed_final",
+        "label": "Avogadro's number",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          {
+            "text": "Avogadro's number Nᴀ = 6.022 × 10²³ mol⁻¹",
+            "style": "boxed"
+          },
+          "It is the number of elementary particles",
+          "present in one mole of any substance."
+        ],
+        "why": "Avogadro's number is the count fixed by the mole definition, and every mole of any substance holds exactly this many particles.",
+        "common_mistakes": [
+          "Writing 6.022 × 10²² or another wrong power of ten.",
+          "Omitting the unit mol⁻¹."
+        ],
+        "memory_tip": "6.022 multiplied by 10²³, and 10²³ is 1 followed by 23 zeros — the power 23 is the part to protect.",
+        "margin_note": "Box the value with its unit mol⁻¹."
+      }
+    ]
+  }
+}

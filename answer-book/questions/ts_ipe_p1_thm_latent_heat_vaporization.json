@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_latent_heat_vaporization",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is latent heat of vaporization?",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2025 (Q8) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: the latent heat of vaporization is the heat needed to convert unit mass of a liquid into vapour at its boiling point with no change of temperature, Q = mL, unit J kg⁻¹; for water L = 22.6 × 10⁵ J kg⁻¹ at 100 °C (NCERT Class-11 value)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The latent heat of vaporization is the",
+          "heat needed to change one kilogram of a",
+          "liquid into vapour at its boiling point,",
+          "with no change in temperature."
+        ],
+        "margin_note": "First mark. Unit mass and no temperature change must both appear.",
+        "why": "While a liquid boils the supplied energy goes into separating its molecules, not into raising their speed, so the thermometer stays at the boiling point throughout.",
+        "common_mistakes": [
+          "Leaving out the words unit mass. Latent heat is defined for one kilogram, not for the whole sample."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is the heat needed to change unit mass of a liquid into vapour at its boiling point without a change of temperature.",
+          "accept": [
+            "heat for one kilogram",
+            "liquid into vapour",
+            "no change in temperature"
+          ],
+          "reject": [
+            "Q equals m L"
+          ],
+          "heard_as": [
+            "latent heat",
+            "unit mass",
+            "boiling point"
+          ]
+        },
+        "memory_tip": "Latent means hidden: the heat is supplied but the temperature does not change."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula and its unit",
+        "marks": 1,
+        "mark_note": "Q = mL",
+        "lines": [
+          {
+            "text": "Q = mL,  L in J kg⁻¹",
+            "style": "boxed"
+          },
+          "L is the latent heat of vaporization of",
+          "the liquid and m is the mass vaporized.",
+          "For water L = 22.6 × 10⁵ J kg⁻¹ at 100 °C."
+        ],
+        "margin_note": "Second mark. The formula Q = mL together with the unit J kg⁻¹.",
+        "why": "The energy needed is proportional to the mass being vaporized, so the total heat is the mass multiplied by the heat needed for one kilogram.",
+        "common_mistakes": [
+          "Giving the unit of L as joule. It is joule per kilogram, J kg⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q = mL and the unit of L is J kg⁻¹.",
+          "accept": [
+            "Q equals m L",
+            "joule per kilogram",
+            "mass into latent heat"
+          ],
+          "reject": [
+            "no change in temperature"
+          ],
+          "heard_as": [
+            "Q is m L",
+            "joule per kg",
+            "latent heat"
+          ]
+        },
+        "memory_tip": "Multiply by the mass: Q = mL, where L is the heat for one kilogram."
+      }
+    ]
+  },
+  "insider_note": "Two marks — the definition carrying unit mass and no change of temperature, then Q = mL with the unit J kg⁻¹."
+}

@@ -1,0 +1,365 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_orthocentre_from_sides_x_y_10",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the orthocentre of the triangle whose sides are x+y+10=0, x−y−2=0, 2x+y−7=0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find vertex A",
+      "marks": 1
+    },
+    {
+      "label": "Altitude through A",
+      "marks": 2
+    },
+    {
+      "label": "Vertex B and its altitude",
+      "marks": 2
+    },
+    {
+      "label": "Solve the pair",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.16 — LAQ chapter 1 The Straight Line, answer 3 PQ. No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this LAQ chapter. It is not a bare guess: the book prints its own numbered 'Step-1 / Step-2 / Step-3' structure against this very answer, and the split follows those printed steps, giving the two long eliminations two marks each and the closing solve two, with one for setting up. The only printed splits in this UNIT are on SAQ answer 59 (book p.63, 1+1+2) and VSAQ answer 98 (p.83, 1+1) — both shorter cuts, so neither fixes a 7-mark shape. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. ⚠ NOTE ON THIS ANSWER: vertex A here IS the orthocentre, because the triangle is right angled — sides (1) x+y+10=0 and (2) x−y−2=0 have slopes −1 and 1, whose product is −1. In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, so altitude (5) coming out identical to side (1) is correct rather than an error. The book gives only the answer (−4,−6) and no working, so this observation is ours. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS — it is the same method the facing worked answer uses, and it lands on the book's own printed answer, which is the check. The 1A precedent for authoring a practice question this way is Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+  },
+  "recall_prompt": "Say how you would solve this — say what you must find first when the SIDES are given, and which side each altitude is perpendicular to.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_vertex_a",
+        "kind": "equation",
+        "label": "Find vertex A",
+        "marks": 1,
+        "margin_note": "First mark. The triangle is handed over as three SIDES, not three corners, so a vertex has to be manufactured first: two sides meeting is one vertex.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given lines are  x + y + 10 = 0 ……(1),  x − y − 2 = 0 ……(2),  2x + y − 7 = 0 ……(3)",
+          "Step-1: Finding altitude through A:",
+          "Solving (1) and (2), we get A;",
+          "(1) + (2) ⇒ 2x + 8 = 0   ⇒   x = −4",
+          "(1) ⇒ −4 + y + 10 = 0   ⇒   y = −6   ∴ A = (−4, −6)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two of the given lines are solved together to get a vertex.",
+          "accept": [
+            "solve two of the given lines together to get a vertex",
+            "the sides are given so first find a corner by solving a pair",
+            "solving line one and line two gives vertex A",
+            "rendu lines solve chesthe oka vertex vasthundi",
+            "find vertex A from the first two lines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve",
+            "two lines",
+            "vertex A",
+            "point of intersection"
+          ]
+        },
+        "why": "When sides are given rather than vertices, every method in this chapter needs the vertices first — that extra stage is the only difference from the vertices-given questions.",
+        "common_mistakes": [
+          "Trying to use the line coefficients as if they were coordinates.",
+          "Solving the wrong pair for the vertex the altitude will pass through."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the three lines",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. When the SIDES are given, the sketch is what shows which pair of lines meets at which vertex — and therefore which line is opposite each one.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the three given lines are sketched and their intersection points identified as the vertices. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the three lines and mark where they cross",
+            "sketch the triangle formed by the three given lines",
+            "label the vertices where each pair meets",
+            "moodu lines geesi vertices mark cheyyali",
+            "draw the three lines to see the triangle"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "three lines",
+            "vertices",
+            "triangle"
+          ]
+        },
+        "why": "The hardest part of a sides-given question is keeping track of which side is OPPOSITE which vertex. The sketch settles it at a glance.",
+        "common_mistakes": [
+          "Pairing a vertex with a line that passes through it.",
+          "Assuming the lines are given in the order the vertices are needed."
+        ],
+        "figure": {
+          "id": "triangle_from_three_lines",
+          "width": 280,
+          "height": 224,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "line1",
+              "d": "M 24 66 L 258 66",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "line2",
+              "d": "M 62 20 L 208 210",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "line3",
+              "d": "M 250 30 L 40 208",
+              "ms": 640
+            },
+            {
+              "type": "stroke",
+              "id": "alt_a",
+              "d": "M 112 66 L 158 156",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "alt_b",
+              "d": "M 196 66 L 96 134",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "dot_o",
+              "d": "M 141 122 A 3 3 0 1 0 147 122 A 3 3 0 1 0 141 122",
+              "ms": 200,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_1",
+              "x": 14,
+              "y": 60,
+              "text": "(1)",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_2",
+              "x": 54,
+              "y": 16,
+              "text": "(2)",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_3",
+              "x": 228,
+              "y": 26,
+              "text": "(3)",
+              "ms": 180,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 106,
+              "y": 54,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 200,
+              "y": 54,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 152,
+              "y": 118,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_altitude_through_a",
+        "kind": "equation",
+        "label": "Altitude through A",
+        "marks": 2,
+        "margin_note": "Two marks. The altitude from A is perpendicular to the side OPPOSITE A — that is the third line, the one not used to find A. Its slope comes straight off the coefficients as −a/b.",
+        "lines": [
+          "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
+          "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
+          "Eq. of line through A(−4, −6) with slope 1/2 is",
+          "y + 6 = (1/2)(x + 4)   ⇒   2y + 12 = x + 4",
+          "⇒ x − 2y − 8 = 0  ……(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the slope of the opposite side is read off, negated and inverted, and the altitude through A is written.",
+          "accept": [
+            "the opposite side is the line not used for A, take its slope and the perpendicular",
+            "slope from the coefficients is minus a over b, then minus one over that",
+            "write the altitude through A perpendicular to the third line",
+            "third line slope teesi perpendicular slope tho A gundaa line rayali",
+            "this gives the first altitude"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "opposite side",
+            "minus a over b",
+            "perpendicular slope",
+            "altitude through A"
+          ]
+        },
+        "why": "Reading a slope off ax + by + c = 0 as −a/b saves rearranging into y = mx + c every time, and the book uses it throughout this chapter.",
+        "common_mistakes": [
+          "Using one of the two lines that MEET at A as the opposite side.",
+          "Reading the slope as −b/a."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s3_vertex_b_and_altitude",
+        "kind": "equation",
+        "label": "Vertex B and its altitude",
+        "marks": 2,
+        "margin_note": "Two marks. The same pair of moves from a second vertex. Note which line is now the opposite side — it changes with the vertex.",
+        "lines": [
+          "Step-2: Finding altitude through B:",
+          "Solving (1) and (3), we get B;",
+          "(3) − (1) ⇒ x − 17 = 0   ⇒   x = 17",
+          "(1) ⇒ 17 + y + 10 = 0   ⇒   y = −27   ∴ B = (17, −27)",
+          "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
+          "Its perpendicular slope is −1/m = −1/1 = −1",
+          "Eq. of line through B(17, −27) with slope −1 is",
+          "y + 27 = −1(x − 17)   ⇒   x + y + 10 = 0  ……(5)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a second vertex is found and its altitude, perpendicular to the remaining side, is written.",
+          "accept": [
+            "find a second vertex then its altitude the same way",
+            "solve another pair for B and use the remaining line as the opposite side",
+            "repeat the whole move from the second vertex",
+            "rendo vertex B teesi daani altitude rayali",
+            "this gives the second altitude"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second vertex",
+            "vertex B",
+            "remaining line",
+            "second altitude"
+          ]
+        },
+        "why": "Each vertex pairs with the one side it is NOT on, so the opposite side is different for each altitude — keeping that straight is most of the care this question needs.",
+        "common_mistakes": [
+          "Reusing the same opposite side for both altitudes.",
+          "Solving for a vertex that is the same point as A."
+        ],
+        "mark_note": "Method"
+      },
+      {
+        "id": "s4_solve_the_pair",
+        "kind": "boxed_final",
+        "label": "Solve the pair",
+        "marks": 2,
+        "margin_note": "The last two marks. Two altitudes, one point.",
+        "lines": [
+          "Step-3: Solving (4) and (5), we get O;",
+          "(4) ⇒ x − 2y − 8 = 0;   (5) ⇒ x + y + 10 = 0",
+          "(4) − (5) ⇒ −3y − 18 = 0   ⇒   y = −6",
+          "(5) ⇒ x − 6 + 10 = 0   ⇒   x = −4",
+          {
+            "text": "∴ Orthocentre O(x, y) = (−4, −6)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the two altitude equations gives (−4, −6).",
+          "accept": [
+            "solve the two altitude equations to get the orthocentre",
+            "use elimination or cross multiplication on the two altitudes",
+            "solving gives the orthocentre",
+            "rendu altitudes solve chesthe orthocentre vasthundi",
+            "the orthocentre is this point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "solve",
+            "orthocentre is",
+            "the point"
+          ]
+        },
+        "why": "The third altitude passes through the same point by the concurrency theorem, so it is available as a check if time allows.",
+        "common_mistakes": [
+          "Solving one altitude against an original side instead of the other altitude.",
+          "Arithmetic slip in the final elimination."
+        ],
+        "mark_note": "Solution"
+      }
+    ]
+  }
+}

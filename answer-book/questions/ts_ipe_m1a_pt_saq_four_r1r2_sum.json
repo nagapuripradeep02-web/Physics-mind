@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_saq_four_r1r2_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, prove that 4(r₁r₂ + r₂r₃ + r₃r₁) = (a + b + c)².",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write each product",
+      "marks": 2
+    },
+    {
+      "label": "Use Heron and conclude",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.111 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 179, under its \"PROPERTIES OF TRIANGLES\" heading. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than being part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper. ⚠ IT CARRIES NO MARK CUT. The Star Questions Plus headings name the chapter but not the section, so this answer is classed as an SAQ on its length and shape — it is comparable to answers 80-87 in the Properties of Triangles SAQ chapter — and that classification is OURS, not the book's. Printed appearances: TS 19.  ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used in this unit are the book's own. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q17 is the Properties of Triangles slot. Together with Q24 (LAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_product",
+        "kind": "equation",
+        "label": "Write each product",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Each ex-radius is Δ over its own bracket, so each product is Δ² over a product of two brackets — and all three share Δ².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = 4(r₁r₂ + r₂r₃ + r₃r₁)",
+          "= 4[ Δ²/((s−a)(s−b)) + Δ²/((s−b)(s−c)) + Δ²/((s−c)(s−a)) ]",
+          "= 4Δ²[ (s−c) + (s−a) + (s−b) ] / [(s−a)(s−b)(s−c)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each product is Δ² over two brackets, and combining over the common denominator (s−a)(s−b)(s−c) leaves the three brackets summed on top.",
+          "accept": [
+            "each product is delta squared over two brackets so combining gives the third bracket on top each time",
+            "put them over the common denominator of all three brackets",
+            "the numerator becomes the sum of the three brackets",
+            "common denominator teeskunte numerator lo brackets sum vasthundi",
+            "combine the three products"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "delta squared",
+            "s minus a",
+            "common denominator",
+            "sum of brackets"
+          ]
+        },
+        "why": "When two of the three brackets are in a denominator, combining over all three puts the MISSING one on top — which is why the numerator ends up as their sum.",
+        "common_mistakes": [
+          "Adding the numerators without a common denominator.",
+          "Getting the wrong bracket on top of each term."
+        ]
+      },
+      {
+        "id": "s2_use_heron_and_conclude",
+        "kind": "boxed_final",
+        "label": "Use Heron and conclude",
+        "marks": 2,
+        "mark_note": "Conclusion",
+        "margin_note": "The other half. The brackets add to s, and Δ² = s(s−a)(s−b)(s−c) means the bracket product IS Δ²/s — so everything cancels down to 4s².",
+        "lines": [
+          "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
+          "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
+          "= 4Δ² s / (Δ²/s) = 4s²",
+          {
+            "text": "= (2s)² = (a + b + c)² = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Σ(s−a) = s, that (s−a)(s−b)(s−c) = Δ²/s from Heron, and that everything cancels to 4s² = (a+b+c)².",
+          "accept": [
+            "the brackets add to s and heron gives the bracket product as delta squared over s so it all cancels to four s squared which is a plus b plus c squared",
+            "use herons formula to replace the denominator",
+            "four s squared is two s all squared which is the perimeter squared",
+            "heron formula vaadi cancel cheste four s square vasthundi",
+            "everything cancels leaving four s squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four s squared",
+            "two s",
+            "heron",
+            "delta squared over s"
+          ]
+        },
+        "why": "Heron's formula read backwards gives the product of the three brackets. That substitution is what makes the Δ² cancel entirely and leaves a pure side expression.",
+        "common_mistakes": [
+          "Not recognising the bracket product in Heron's formula.",
+          "Leaving the answer as 4s² without writing (a+b+c)²."
+        ]
+      }
+    ]
+  }
+}

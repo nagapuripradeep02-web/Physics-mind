@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_lw_growth_living_vs_nonliving",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "The Living World (Botany)"
+  },
+  "chapter": "The Living World",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is growth? What is the difference between growth in living organisms and growth in non-living objects?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of growth",
+      "marks": 1
+    },
+    {
+      "label": "The difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 1 (The Living World) is sourced from the Sri Chaitanya Junior Botany Fastrack, book p.3 (VSAQ 6 of 9), which prints the question and a model answer but no star ranks and no year citations. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this chapter; 'not checked' here means exactly that, never 'checked and clean'. The 1+1 mark split is a claim until a TS IPE teacher confirms it; the question itself is sourced, not invented. The book words the contrast as 'internal'/'external' growth; the card uses the standard terms intrinsic/extrinsic with the same meaning."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Living World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "boxed_final",
+        "label": "Definition of growth",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Growth is an irreversible increase in the size,",
+          "dry weight and number of cells of an organism.",
+          {
+            "text": "Growth = irreversible increase in size and mass",
+            "style": "boxed"
+          }
+        ],
+        "why": "'Irreversible' is the load-bearing word — a temporary swelling caused by taking up water can reverse, so it is not growth.",
+        "common_mistakes": [
+          "Leaving out 'irreversible'. A reversible increase (swelling) is not growth.",
+          "Writing only 'increase in size'. Add dry weight or number of cells to show real body material increased."
+        ],
+        "memory_tip": "Growth is the increase that stays: irreversible increase in size, dry weight, cell number.",
+        "margin_note": "The definition earns this mark; keep it to one sentence."
+      },
+      {
+        "id": "s2_difference",
+        "kind": "text",
+        "label": "Living vs non-living growth",
+        "marks": 1,
+        "mark_note": "Difference",
+        "lines": [
+          "In living organisms growth is intrinsic —",
+          "it takes place from inside the body by",
+          "cell division.",
+          "In non-living objects growth is extrinsic —",
+          "material only accumulates on the outer",
+          "surface. Example: a sand mound grows."
+        ],
+        "why": "The same word 'growth' covers two different processes: living bodies add material from inside by cell division; non-living objects only collect material on the outside. The book words this as internal versus external growth — intrinsic and extrinsic are the standard terms with the same meaning.",
+        "common_mistakes": [
+          "Writing 'living things grow, non-living things do not'. Non-living objects can grow — but only by surface accumulation.",
+          "Swapping the terms. Intrinsic = from inside = living; extrinsic = on the outside = non-living."
+        ],
+        "memory_tip": "IN-trinsic = from INside (living); EX-trinsic = on the EXterior (non-living).",
+        "margin_note": "Give both sides — one line for living, one for non-living."
+      }
+    ]
+  },
+  "insider_note": "The word 'irreversible' and the inside-versus-surface contrast are the two things the examiner checks first."
+}

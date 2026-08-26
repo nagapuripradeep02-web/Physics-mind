@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cos_two_tan_seventh",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that cos(2 Tan⁻¹(1/7)) = sin(2 Tan⁻¹(3/4)).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Evaluate the left side",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the right side",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.74 — SAQ chapter 12 Inverse Trig Functions, answer 78.1. Printed appearances: AP 18. Nothing is transformed from one side into the other here. Each side is evaluated INDEPENDENTLY, and the proof is that both land on the same number — 24/25. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print 1+1+1+1 against answer 77 on book p.73, so the shape is the chapter's own, and the weightings here follow it. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. ONE PRESENTATION CHOICE, made deliberately: the book draws a small right triangle beside each answer that needs a second ratio (for example sinα = 4/5 giving cosα = 3/5). Those are authored here as the one-line algebraic step instead, with the triangle route named in the margin note — it keeps the nine answers consistent and avoids three near-identical figures where the algebra is a single line. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q16 is the Inverse Trig Functions slot. NOTE: Inverse Trigonometric Functions is an SAQ-ONLY unit — the paper gives it no Section-A and no Section-C slot, and this book has no Inverse Trig LAQ chapter (LAQ chapters are 1-6) and no VSAQ chapter (VSAQ chapters are 14-19). The same shape as Unit 7. Verified by walking to p.75, where SAQ chapter 13 Properties of Triangles begins."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trig Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_evaluate_the_left_side",
+        "kind": "equation",
+        "label": "Evaluate the left side",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. Name the inner inverse as α, so the left side is cos2α — then use the tangent form of cos2α, which is the one that takes tanα directly.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take Tan⁻¹(1/7) = α ⇒ tanα = 1/7",
+          "and Tan⁻¹(3/4) = β ⇒ tanβ = 3/4",
+          "L.H.S = cos(2Tan⁻¹(1/7)) = cos2α = (1 − tan²α)/(1 + tan²α)",
+          "= (1 − 1/49)/(1 + 1/49) = (48/49)/(50/49)",
+          "= 48/50 = 24/25   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left side is cos2α with tanα = 1/7, evaluated by (1 − tan²α)/(1 + tan²α) to give 24/25.",
+          "accept": [
+            "name tan inverse one seventh as alpha then cos two alpha is one minus tan squared over one plus tan squared giving twenty four over twenty five",
+            "the left side evaluates to twenty four twenty fifths",
+            "use the tangent form of cos two alpha",
+            "cos two alpha ki tan form vaadi twenty four by twenty five vasthundi",
+            "the left hand side is twenty four over twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two alpha",
+            "one minus tan squared",
+            "twenty four over twenty five",
+            "forty nine"
+          ]
+        },
+        "why": "cos2θ has three forms, and the tangent one is chosen because tanα is what the inverse hands you directly — no square roots needed.",
+        "common_mistakes": [
+          "Using cos2θ = 2cos²θ − 1 and having to find cosα first.",
+          "Getting (1/7)² as 1/14."
+        ]
+      },
+      {
+        "id": "s2_evaluate_the_right_side",
+        "kind": "equation",
+        "label": "Evaluate the right side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The right side is sin2β, so use the tangent form of sin2β — 2tanβ/(1+tan²β).",
+        "lines": [
+          "R.H.S = sin(2Tan⁻¹(3/4)) = sin2β = 2tanβ/(1 + tan²β)",
+          "= 2(3/4)/(1 + 9/16) = (3/2)/(25/16)",
+          "= (3/2)(16/25) = 24/25   …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side is sin2β with tanβ = 3/4, evaluated by 2tanβ/(1+tan²β) to give 24/25.",
+          "accept": [
+            "the right side is sin two beta which is two tan beta over one plus tan squared beta giving twenty four over twenty five",
+            "evaluate the right hand side to twenty four twenty fifths",
+            "use the tangent form of sin two beta",
+            "sin two beta ki tan form vaadi twenty four by twenty five vasthundi",
+            "the right hand side is also twenty four over twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two beta",
+            "two tan beta",
+            "twenty four over twenty five",
+            "sixteen"
+          ]
+        },
+        "why": "Both sin2θ and cos2θ have tangent forms, which is why this question can be done entirely without finding a single sine or cosine.",
+        "common_mistakes": [
+          "Using sin2θ = 2 sinθ cosθ and having to find both ratios.",
+          "Inverting the fraction at the end."
+        ]
+      },
+      {
+        "id": "s3_compare_the_two_sides",
+        "kind": "boxed_final",
+        "label": "Compare the two sides",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Both sides came to 24/25 independently, so they are equal. Say so — a proof by evaluation is not finished until the comparison is stated.",
+        "lines": [
+          "From (1) and (2), both sides equal 24/25.",
+          {
+            "text": "∴ cos(2Tan⁻¹(1/7)) = sin(2Tan⁻¹(3/4))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That results (1) and (2) are both 24/25, so the two sides are equal.",
+          "accept": [
+            "both sides come to twenty four over twenty five so they are equal",
+            "from one and two the two sides agree",
+            "since both equal the same number the result is proved",
+            "rendu sides twenty four by twenty five, so equal",
+            "the two sides match so it is proved"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "from one and two",
+            "both equal",
+            "twenty four over twenty five",
+            "proved"
+          ]
+        },
+        "why": "Evaluating two things is not a proof until you say they agree. That sentence is what the last mark is for.",
+        "common_mistakes": [
+          "Computing both sides and never stating they are equal.",
+          "Writing \"hence proved\" with nothing named."
+        ]
+      }
+    ]
+  }
+}

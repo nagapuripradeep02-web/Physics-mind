@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_surface_tension",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is surface tension?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The units",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): the step titled The units also instructed a second, unmarked sentence about temperature, so the write exceeded the mark it earns. The mark_note, why and margin_note now say the boxed unit line earns the mark and the temperature sentence is an unmarked extra. No marked line removed and no mark moved."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Surface tension is the force acting per unit",
+          "length, perpendicular to an imaginary line drawn",
+          "on the surface of a liquid and along the surface.",
+          "It arises because surface molecules experience a",
+          "net inward attraction from the molecules below."
+        ],
+        "why": "A molecule inside the liquid is attracted equally in all directions; a molecule at the surface has liquid on one side only, so the unbalanced attraction makes the surface behave like a stretched layer measured as force per unit length.",
+        "common_mistakes": [
+          "Saying force per unit area. Per unit area is pressure; surface tension is force per unit LENGTH.",
+          "Leaving out perpendicular to the line on the surface."
+        ],
+        "memory_tip": "Tension along a line: force per unit length, not per unit area.",
+        "margin_note": "The cause sentence (net inward attraction) shows understanding beyond the memorised line."
+      },
+      {
+        "id": "s2_units",
+        "kind": "boxed_final",
+        "label": "The units",
+        "marks": 1,
+        "mark_note": "the units, written as the boxed line N m⁻¹ — the temperature sentence below it is an unmarked extra",
+        "lines": [
+          {
+            "text": "Units of surface tension: N m⁻¹",
+            "style": "boxed"
+          },
+          "Surface tension decreases as temperature rises,",
+          "because faster molecules weaken the effect of the",
+          "attractive forces."
+        ],
+        "why": "Force per unit length is newtons divided by metres, N m⁻¹, and the boxed unit line is what earns this mark. The temperature sentence below it is not part of that mark — it is a one-line extra that connects this definition to the separate question on how temperature changes surface tension.",
+        "common_mistakes": [
+          "Writing N m⁻² — that is pressure, one power of length too many.",
+          "Writing N m (a product) instead of N per m."
+        ],
+        "memory_tip": "One metre of surface line, so the unit is newton per metre.",
+        "margin_note": "N m⁻¹ boxed is the marked unit; J m⁻² is the same unit in energy form. The temperature sentence is an unmarked extra, so write the unit first."
+      }
+    ]
+  },
+  "insider_note": "Per unit length is the tested phrase — per unit area appears in a large share of scripts and loses the definition mark outright."
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_srf_pollen_three_celled_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Sexual Reproduction in Flowering Plants (Botany)"
+  },
+  "chapter": "Sexual Reproduction in Flowering Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which are the three cells found in a pollen grain when it is shed at the three-celled stage?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three cells",
+      "marks": 1
+    },
+    {
+      "label": "Origin of the male gametes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section (book p.17, VSAQ 1). Botany holds only ONE source book — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'at the three called stage' (scan error for 'three-celled stage'); the question text is cleaned."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sexual Reproduction in Flowering Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_cells",
+        "kind": "boxed_final",
+        "label": "The three cells",
+        "marks": 1,
+        "mark_note": "Naming",
+        "lines": [
+          {
+            "text": "One vegetative cell and two male gametes.",
+            "style": "boxed"
+          }
+        ],
+        "why": "At the three-celled stage the generative cell has already divided, so the grain carries the vegetative cell plus the two male gametes it produced — that is the full count of three.",
+        "common_mistakes": [
+          "Listing the generative cell as one of the three. At this stage it no longer exists — it has divided.",
+          "Writing 'two vegetative cells and one male gamete' — the counts reversed."
+        ],
+        "memory_tip": "Three-celled = 1 + 2: one vegetative cell, two male gametes.",
+        "margin_note": "One boxed line with the exact count earns this mark."
+      },
+      {
+        "id": "s2_origin",
+        "kind": "text",
+        "label": "Origin of the male gametes",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The two male gametes are formed when the",
+          "generative cell divides by mitosis."
+        ],
+        "why": "The question hides a second point: where the two extra cells came from. Naming the generative cell's mitotic division shows you know the 2-celled to 3-celled change.",
+        "common_mistakes": [
+          "Writing meiosis instead of mitosis. Meiosis made the microspore; inside the pollen grain every division is mitosis.",
+          "Saying the vegetative cell divides — it does not; it makes the pollen tube."
+        ],
+        "memory_tip": "Generative cell → (mitosis) → 2 male gametes. Meiosis happened earlier, in the microspore mother cell.",
+        "margin_note": "One sentence naming the generative cell and mitosis completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The mark-losing answer here is 'vegetative cell, generative cell, male gamete' — at the three-celled stage the generative cell has already divided, so it is not one of the three."
+}

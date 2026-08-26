@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_friction_coefficient_weight_doubled",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens to the coefficient of friction if the weight of the body is doubled?",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 4,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 5 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "equation",
+        "label": "What doubles",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "On a horizontal surface N = mg, so",
+          "doubling the weight doubles N.",
+          {
+            "text": "f = μN doubles along with it.",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Show that BOTH f and N double. One of them alone proves nothing.",
+        "why": "The friction force really does double — that part of the student instinct is right. It is the RATIO that is being asked about.",
+        "common_mistakes": [
+          "Answering that friction stays the same. The force doubles; only the coefficient does not."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That doubling the weight doubles the normal force and doubles the friction force with it.",
+          "accept": [
+            "normal force doubles and friction doubles",
+            "N doubles so f doubles",
+            "N double aithe f kuda double avutundi"
+          ],
+          "reject": [
+            "the coefficient does not change"
+          ],
+          "heard_as": [
+            "doubles",
+            "normal force",
+            "friction force"
+          ]
+        },
+        "memory_tip": "N goes 50 → 100 N and f goes 20 → 40 N. Both numbers in the ratio double."
+      },
+      {
+        "id": "s2_conclude",
+        "kind": "boxed_final",
+        "label": "What does not change",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "μ = f / N does not change.",
+            "style": "boxed"
+          },
+          "μ depends only on the nature of the",
+          "two surfaces in contact."
+        ],
+        "margin_note": "Say what μ DOES depend on. That sentence is what separates a full answer from a bare \"no change\".",
+        "why": "Both numbers in the ratio are multiplied by two, so the ratio is untouched. μ is a property of the pair of surfaces, not of the load.",
+        "common_mistakes": [
+          "Writing \"μ doubles\" from the fact that friction doubles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient of friction is unchanged, because it depends only on the surfaces.",
+          "accept": [
+            "coefficient does not change",
+            "mu remains the same",
+            "it depends only on the surfaces",
+            "mu marade, surfaces meeda depend avutundi"
+          ],
+          "reject": [
+            "normal force doubles and friction doubles"
+          ],
+          "heard_as": [
+            "does not change",
+            "same",
+            "surfaces"
+          ]
+        },
+        "memory_tip": "20/50 = 0.4 and 40/100 = 0.4. Doubling top and bottom leaves the ratio unchanged."
+      }
+    ]
+  },
+  "insider_note": "The first mark is for showing that BOTH f and N double. An answer that goes straight to \"no change\" collects the second mark only."
+}

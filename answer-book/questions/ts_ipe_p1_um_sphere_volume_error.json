@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_sphere_volume_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The error in the measurement of the radius of a sphere is 1%. What is the error in the measurement of its volume?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation used",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation used",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Volume of a sphere V = (4/3) π r³",
+          "so V ∝ r³. For a power law the percentage",
+          "errors are related by",
+          {
+            "text": "(ΔV/V) × 100 = 3 × (Δr/r) × 100",
+            "style": "eq"
+          }
+        ],
+        "why": "A quantity raised to a power multiplies its percentage error by that power, because the relative changes add once for each factor of r.",
+        "common_mistakes": [
+          "Using the surface area formula, which gives a factor 2 instead of 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That volume is proportional to r cubed, so the percentage error is three times the percentage error in r.",
+          "accept": [
+            "r cubed",
+            "three times",
+            "proportional"
+          ],
+          "reject": [
+            "two times"
+          ],
+          "heard_as": [
+            "r cubed",
+            "three times"
+          ]
+        },
+        "memory_tip": "The power becomes the multiplier: r³ makes the error 3 times bigger.",
+        "margin_note": "Write V = (4/3)πr³ first. The 3 comes from there."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "The answer",
+        "lines": [
+          "(ΔV/V) × 100 = 3 × 1%",
+          {
+            "text": "∴ error in volume = 3%",
+            "style": "boxed"
+          }
+        ],
+        "why": "The constant (4/3)π has no error of its own, so it does not enter the percentage error at all.",
+        "common_mistakes": [
+          "Writing 1% because the constant was thought to matter.",
+          "Cubing the 1% to get 1%, instead of multiplying by 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the error in the volume is three percent.",
+          "accept": [
+            "three percent",
+            "3%"
+          ],
+          "reject": [
+            "one percent",
+            "nine percent"
+          ],
+          "heard_as": [
+            "three percent"
+          ]
+        },
+        "memory_tip": "Multiply by the power, never raise to it: 3 × 1% = 3%.",
+        "margin_note": "Two lines. Box the 3%."
+      }
+    ]
+  },
+  "insider_note": "The power 3 becomes the multiplier 3. Write the volume formula first — it is where the 3 comes from."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_mass_percent_solute",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A solution is prepared by adding 2 g of a substance A to 18 g of H₂O. Calculate the mass percentage of the solute.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round 3): the insider note claimed nothing else in the arithmetic can go wrong, while the card’s own common mistakes list three more (forgetting × 100, writing 0.1 and stopping, writing 10 with no % sign). The overclaim is removed and the insider note now names the answer-mark requirement instead. No marked line changed."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          {
+            "text": "Mass % of solute = (mass of solute / mass of solution) × 100",
+            "style": "eq"
+          },
+          "Mass of solution = mass of A + mass of water",
+          "= 2 g + 18 g = 20 g",
+          "Mass % of A = (2 / 20) × 100"
+        ],
+        "why": "The denominator is the mass of the whole SOLUTION, so the solute's own 2 g must be added to the 18 g of water before dividing.",
+        "common_mistakes": [
+          "Dividing by 18 (the solvent alone) instead of 20 (the solution) and answering 11.1%.",
+          "Forgetting to multiply by 100."
+        ],
+        "memory_tip": "Solution = solute + solvent. The bottom of the fraction is always the total 20, never the water alone.",
+        "margin_note": "The 2 + 18 = 20 line is where this mark is decided."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "= (1 / 10) × 100",
+          {
+            "text": "Mass percentage of solute = 10%",
+            "style": "boxed"
+          }
+        ],
+        "why": "2 out of 20 is one tenth, and one tenth expressed as a percentage is 10%.",
+        "common_mistakes": [
+          "Writing 0.1 and stopping. The question asks for a percentage.",
+          "Writing 10 with no % sign."
+        ],
+        "memory_tip": "2 in every 20 is the same as 10 in every 100.",
+        "margin_note": "Box 10% with the percent sign."
+      }
+    ]
+  },
+  "insider_note": "The examiner reads the denominator first: 20 earns the method mark, 18 loses it. The arithmetic after that is short, but it is not automatic: the answer mark needs the × 100 and the % sign, so 0.1 or a bare 10 does not earn it."
+}

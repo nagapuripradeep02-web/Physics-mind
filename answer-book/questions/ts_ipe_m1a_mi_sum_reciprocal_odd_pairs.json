@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_reciprocal_odd_pairs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + n terms = n/(2n+1), ∀ n ∈ N.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "nth term and the statement S(n)",
+      "marks": 1
+    },
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 3
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 2, question 7, marked by the book as a Board Model Paper question. NOTE: this page prints NO mark split. The 1+1+1+3+1 used here is the split the SAME book prints on questions 5, 6 and 8 of this chapter, applied because the answer has the identical five moves — an inference from the source, not a reading of it. Publisher's claims until a Telangana IPE teacher confirms them."
+  },
+  "recall_prompt": "Say how you would prove this by induction — the nth term, and what cancels in the third step.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mathematical Induction · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Find the nth term",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "One mark. The denominators are consecutive odd numbers, so find both sequences with the A.P. formula before writing S(n).",
+        "lines": [
+          "1, 3, 5, … is an A.P: a = 1, d = 2 ⇒ 2n − 1",
+          "3, 5, 7, … is an A.P: a = 3, d = 2 ⇒ 2n + 1",
+          "nth term = 1/((2n − 1)(2n + 1))",
+          "Let S(n): 1/(1·3) + … + 1/((2n−1)(2n+1))",
+          "        = n/(2n + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two denominators are arithmetic progressions giving 2n − 1 and 2n + 1, so the nth term is 1/((2n−1)(2n+1)).",
+          "accept": [
+            "the denominators are consecutive odd numbers so the nth term is one over two n minus one into two n plus one",
+            "both are a p s with common difference two giving two n minus one and two n plus one",
+            "use the a p formula on each factor to get the general term",
+            "odd numbers kabatti two n minus one and two n plus one vasthai"
+          ],
+          "reject": [
+            "find the nth term",
+            "the general term",
+            "look at the pattern"
+          ],
+          "heard_as": [
+            "a p",
+            "arithmetic progression",
+            "two n minus one",
+            "two n plus one",
+            "odd"
+          ]
+        },
+        "why": "Both factors move in step, two apart. Naming them with the A.P. formula is what turns a visual pattern into an expression you can add.",
+        "common_mistakes": [
+          "Writing the nth term as 1/(n(n+2)), which fits the first term by accident and fails at the second.",
+          "Taking d = 1 instead of 2 for a sequence of odd numbers."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Both sides come to one third.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1/(1·3) = 1/3",
+          "R.H.S of S(1) = 1/(2 + 1) = 1/3",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 both sides equal 1/3.",
+          "accept": [
+            "left side is one over one times three which is a third and right side is one over three",
+            "both sides are one third at n equals one",
+            "the first case gives a third on each side",
+            "n equals one ki rendu sides one by three"
+          ],
+          "reject": [
+            "s of one is true",
+            "the base case holds",
+            "check n equals one"
+          ],
+          "heard_as": [
+            "one third",
+            "l h s",
+            "r h s",
+            "s of one"
+          ]
+        },
+        "why": "A one-line check, but it is the link the whole chain hangs from, and it carries a full mark.",
+        "common_mistakes": [
+          "Writing the right side as 1/2 by forgetting to substitute n = 1 fully.",
+          "Skipping the check entirely."
+        ]
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1/(1·3) + … + 1/((2k−1)(2k+1))",
+          "        = k/(2k + 1)   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is ASSUMED true for some k in N, written out as the sum up to k terms equals k/(2k+1), and labelled (1) for later use.",
+          "accept": [
+            "assume the statement is true for k so the sum up to k terms equals k/(2k+1)",
+            "suppose s of k holds and call it equation one",
+            "take it as true for some k in the naturals and number that line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "then I assume s of k",
+            "let it be true for k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "for k in n",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the whole method rests on. It is not proved here — it is granted for ONE value, and Step 3 earns the right to pass it on.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ]
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 3,
+        "mark_note": "Step 3",
+        "margin_note": "Three marks. Add the (k+1)th term, put over a common denominator, and factorise the numerator — 2k² + 3k + 1 is the step that finishes it.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = 1/((2k+1)(2k+3))",
+          "L.H.S = k/(2k+1) + 1/((2k+1)(2k+3))",
+          "= [k(2k+3) + 1]/((2k+1)(2k+3))",
+          "= (2k² + 3k + 1)/((2k+1)(2k+3))",
+          "= (2k+1)(k+1)/((2k+1)(2k+3))",
+          "= (k+1)/(2k+3) = (k+1)/(2(k+1)+1) = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator 2k² + 3k + 1 factorises as (2k+1)(k+1), the (2k+1) cancels, and the result (k+1)/(2k+3) is the formula at k+1 because 2k+3 = 2(k+1)+1.",
+          "accept": [
+            "add the next term over a common denominator the numerator becomes two k squared plus three k plus one which factors as two k plus one into k plus one so the two k plus one cancels",
+            "after cancelling you get k plus one over two k plus three which is the formula at k plus one",
+            "two k plus three is the same as two into k plus one plus one",
+            "numerator factorise chesthe two k plus one cancel avuthundi"
+          ],
+          "reject": [
+            "add the next term",
+            "simplify it",
+            "then it follows"
+          ],
+          "heard_as": [
+            "two k plus one",
+            "two k plus three",
+            "cancel",
+            "k plus one",
+            "factorise"
+          ]
+        },
+        "why": "The cancellation is the whole step. If the numerator will not factorise to include (2k+1), the algebra has gone wrong earlier.",
+        "common_mistakes": [
+          "Not factorising 2k² + 3k + 1, so nothing cancels.",
+          "Stopping at (k+1)/(2k+3) without showing it equals the formula at k+1.",
+          "Using (2k+1)(2k+3) wrongly as the (k+1)th denominator — check by replacing n with k+1."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because S(1) is true AND S(k) implies S(k+1), the principle of mathematical induction gives the result for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k implies s of k plus one by the principle of mathematical induction it is true for all n",
+            "hence by p m i the statement holds for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two earlier parts prove single statements. Only the principle turns them into a claim about every n, so the examiner marks the sentence that names it.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ]
+      }
+    ]
+  }
+}

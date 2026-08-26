@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_um_rounding_rules",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Units and Measurements"
+  },
+  "chapter": "Units and Measurements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the rules for rounding off a measurement to the correct number of significant figures.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rules",
+      "marks": 1
+    },
+    {
+      "label": "The rule for 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Units and Measurements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rules",
+        "kind": "text",
+        "label": "The rules",
+        "marks": 1,
+        "mark_note": "The rules",
+        "lines": [
+          "If the digit to be dropped is less than 5, the",
+          "digit before it is left unchanged.",
+          "If it is more than 5, the digit before it is",
+          "raised by one."
+        ],
+        "why": "Rounding keeps the reported value as close as possible to the measured one, so the direction is decided by which side of halfway the dropped digit falls.",
+        "common_mistakes": [
+          "Rounding 3.24 up to 3.3 because the 4 was read as \"nearly 5\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a dropped digit below five leaves the previous digit unchanged, and above five raises it by one.",
+          "accept": [
+            "less than five unchanged",
+            "more than five raise by one"
+          ],
+          "reject": [
+            "always round up"
+          ],
+          "heard_as": [
+            "less than five",
+            "raise by one"
+          ]
+        },
+        "memory_tip": "Below 5 stays, above 5 rises. Exactly 5 has its own rule.",
+        "margin_note": "Two lines here, then the 5 rule below."
+      },
+      {
+        "id": "s2_five_rule",
+        "kind": "boxed_final",
+        "label": "The rule for 5",
+        "marks": 1,
+        "mark_note": "The 5 rule",
+        "lines": [
+          {
+            "text": "If the dropped digit is exactly 5, round",
+            "style": "boxed"
+          },
+          {
+            "text": "to the even digit",
+            "style": "boxed"
+          },
+          "3.25 → 3.2 and 3.35 → 3.4, so that rounding",
+          "up and down happen equally often."
+        ],
+        "why": "Always rounding a 5 upward would push a long set of results slightly high. Rounding to the even digit removes that bias. The round-to-even rule applies only when the 5 is the last digit or is followed by zeros. If non-zero digits follow the 5, the value is above halfway, so round up: 3.2501 → 3.3.",
+        "common_mistakes": [
+          "Always rounding a 5 up, which biases a series of measurements upward."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That when the dropped digit is exactly five, the preceding digit is rounded to the nearest even number.",
+          "accept": [
+            "round to even",
+            "three point two",
+            "three point four"
+          ],
+          "reject": [
+            "always round up"
+          ],
+          "heard_as": [
+            "even",
+            "exactly five"
+          ]
+        },
+        "memory_tip": "3.25 → 3.2 but 3.35 → 3.4. Land on the even digit both times.",
+        "margin_note": "Give both examples — one down, one up."
+      }
+    ]
+  },
+  "insider_note": "Two rules, then one worked pair. The examiner is checking the 5 rule, so give an example of it."
+}

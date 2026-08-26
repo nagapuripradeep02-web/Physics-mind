@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_cb_sigma_vs_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Chemical Bonding (Chemistry)"
+  },
+  "chapter": "Chemical Bonding",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the differences between σ and π bonds.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formation",
+      "marks": 1
+    },
+    {
+      "label": "Independent existence",
+      "marks": 1
+    },
+    {
+      "label": "Orbitals used",
+      "marks": 1
+    },
+    {
+      "label": "Strength",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. The book asks this SAME comparison at two lengths: VSAQ 5 (a two-row table: formation and strength) and SAQ 5 (a four-point list), so this file carries both as cuts of one answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The one-mark-per-difference splits are CLAIMS until a Telangana IPE teacher confirms them; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round): the 2-mark cut serves steps 1 and 4, so the student read 1. Formation: followed by 4. Strength:; the cut now carries a lines override renumbering that row 2. Marks, mark split and cut membership unchanged."
+  },
+  "insider_note": "The book asks this twice — a two-mark table and a four-mark list. Always write differences in matched pairs: one sentence for σ, one for π, on the same point.",
+  "cuts": [
+    {
+      "key": "saq",
+      "label": "4-mark answer",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "Formation",
+          "marks": 1
+        },
+        {
+          "label": "Independent existence",
+          "marks": 1
+        },
+        {
+          "label": "Orbitals used",
+          "marks": 1
+        },
+        {
+          "label": "Strength",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_formation": {
+          "marks": 1,
+          "mark_note": "Formation"
+        },
+        "s2_existence": {
+          "marks": 1,
+          "mark_note": "Existence"
+        },
+        "s3_orbitals": {
+          "marks": 1,
+          "mark_note": "Orbitals"
+        },
+        "s4_strength": {
+          "marks": 1,
+          "mark_note": "Strength"
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "Four differences, one mark each, is a claim until a teacher confirms the split."
+    },
+    {
+      "key": "vsaq",
+      "label": "2-mark answer",
+      "qtype": "VSAQ",
+      "marks_total": 2,
+      "paper_section": "Section A",
+      "expected_time_min": 4,
+      "mark_split": [
+        {
+          "label": "Formation",
+          "marks": 1
+        },
+        {
+          "label": "Strength",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_formation": {
+          "marks": 1,
+          "mark_note": "Formation"
+        },
+        "s4_strength": {
+          "marks": 1,
+          "mark_note": "Strength",
+          "lines": [
+            "2. Strength:",
+            {
+              "text": "σ bond is stronger than π bond",
+              "style": "boxed"
+            },
+            "The extent of overlap is greater in axial",
+            "overlap than in sidewise overlap, so the",
+            "σ bond is the stronger of the two."
+          ]
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The book's VSAQ table prints exactly these two rows: formation and strength. The strength row is renumbered 2 in this cut, because the rows numbered 2 and 3 in the 4-mark form are not served here."
+    }
+  ],
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemical Bonding · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formation",
+        "kind": "text",
+        "label": "Formation",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "1. Formation:",
+          "σ bond — formed by axial (end-to-end)",
+          "overlap of orbitals along the internuclear",
+          "axis.",
+          "π bond — formed by sidewise (lateral)",
+          "overlap of orbitals, perpendicular to the",
+          "internuclear axis."
+        ],
+        "why": "The direction of overlap is the definition of each bond type, so every other difference follows from this row.",
+        "common_mistakes": [
+          "Swapping the two: axial belongs to σ, sidewise belongs to π.",
+          "Writing overlap without naming the direction. The direction IS the difference."
+        ],
+        "memory_tip": "σ is straight along the axis; π overlaps from the side.",
+        "margin_note": "Write this pair first in both the 2-mark and the 4-mark form."
+      },
+      {
+        "id": "s2_existence",
+        "kind": "text",
+        "label": "Independent existence",
+        "marks": 1,
+        "mark_note": "Existence",
+        "lines": [
+          "2. Existence:",
+          "σ bond — can exist independently; it is",
+          "the first bond formed between two atoms.",
+          "π bond — cannot exist alone; it forms",
+          "only after a σ bond already exists."
+        ],
+        "why": "Sidewise overlap is only possible once the atoms are already held together by an axial bond, so a π bond is always the second or third bond.",
+        "common_mistakes": [
+          "Saying a π bond can form on its own. It never does; the σ bond comes first."
+        ],
+        "memory_tip": "In any double or triple bond, bond number one is always the σ bond.",
+        "margin_note": "One pair of sentences. The word independently carries the point."
+      },
+      {
+        "id": "s3_orbitals",
+        "kind": "text",
+        "label": "Orbitals used",
+        "marks": 1,
+        "mark_note": "Orbitals",
+        "lines": [
+          "3. Orbitals used:",
+          "σ bond — formed by pure orbitals or by",
+          "hybrid orbitals.",
+          "π bond — formed only by pure p (or d)",
+          "orbitals, never by hybrid orbitals."
+        ],
+        "why": "Hybrid orbitals point along bond directions, so they can only overlap axially. The sidewise overlap of a π bond needs an unhybridised p orbital standing perpendicular to the axis.",
+        "common_mistakes": [
+          "Writing that π bonds use hybrid orbitals. Hybrid orbitals give σ bonds only."
+        ],
+        "memory_tip": "Hybrid orbitals make σ bonds only. π bonds keep to pure p orbitals.",
+        "margin_note": "This is the row that links this answer to the hybridisation questions."
+      },
+      {
+        "id": "s4_strength",
+        "kind": "boxed_final",
+        "label": "Strength",
+        "marks": 1,
+        "mark_note": "Strength",
+        "lines": [
+          "4. Strength:",
+          {
+            "text": "σ bond is stronger than π bond",
+            "style": "boxed"
+          },
+          "The extent of overlap is greater in axial",
+          "overlap than in sidewise overlap, so the",
+          "σ bond is the stronger of the two."
+        ],
+        "why": "Bond strength follows the extent of orbital overlap. Axial overlap brings the orbitals together more fully than sidewise overlap does, so σ is stronger.",
+        "common_mistakes": [
+          "Stating which is stronger without the reason. The extent-of-overlap sentence is part of the mark.",
+          "Writing that π is stronger because it comes in double bonds. The double bond is strong because it has TWO bonds, not because π is strong."
+        ],
+        "memory_tip": "More overlap means a stronger bond, and axial overlap is the fuller overlap.",
+        "margin_note": "Box the comparison, then give the extent-of-overlap reason under it."
+      }
+    ]
+  }
+}

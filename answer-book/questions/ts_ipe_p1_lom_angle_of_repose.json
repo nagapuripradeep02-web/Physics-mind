@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_lom_angle_of_repose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Laws of Motion"
+  },
+  "chapter": "Laws of Motion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the angle of repose? Write its relation to the coefficient of static friction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PREDICTED — Session 89 enumeration sweep (archetype × object grid over the NCERT chapter): this question has not appeared in any paper or source book we hold, but the chapter contains it and the 2-mark/4-mark format admits it. Authored as a lean card; promote to a full card when a paper season or a Telangana IPE teacher validates the cell. Split invented, as everywhere."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Laws of Motion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The angle of repose is the smallest angle",
+          "of an inclined plane at which a body placed",
+          "on it just begins to slide down on its own."
+        ],
+        "why": "It is a way of measuring friction with nothing but a protractor — tilt the plane until the body moves.",
+        "common_mistakes": [
+          "Defining it as the angle at which the body is at rest — it is the angle at which it just STARTS to move."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is the smallest angle of an incline at which a body just begins to slide down.",
+          "accept": [
+            "angle at which the body just begins to slide",
+            "smallest angle of the incline"
+          ],
+          "reject": [
+            "tan theta equals mu"
+          ],
+          "heard_as": [
+            "angle of repose",
+            "just slides"
+          ]
+        },
+        "memory_tip": "Tilt a plank with a coin on it. The angle at the moment the coin starts to slide is θ.",
+        "margin_note": "First mark. The words \"just begins to slide\" carry it — an angle of rest is a different claim."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "At that angle the component of weight down",
+          "the slope equals the limiting friction, so",
+          {
+            "text": "tan θ = μ_s",
+            "style": "boxed"
+          },
+          "With rougher surfaces the slope must be",
+          "steeper before the body slides."
+        ],
+        "why": "Both mg terms cancel, so the angle depends only on the surfaces — the mass of the body never appears.",
+        "common_mistakes": [
+          "Writing sin θ = μ_s instead of tan θ = μ_s."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan of the angle of repose equals the coefficient of static friction.",
+          "accept": [
+            "tan theta equals mu",
+            "tan of the angle equals the coefficient of static friction"
+          ],
+          "reject": [
+            "angle at which the body just begins to slide"
+          ],
+          "heard_as": [
+            "tan theta",
+            "mu s"
+          ]
+        },
+        "memory_tip": "TAN, not sin — it is mg sin θ over mg cos θ, and the mg cancels.",
+        "margin_note": "Second mark. The boxed tan θ = μ_s, plus the line saying the mass never enters."
+      }
+    ]
+  },
+  "insider_note": "The definition is one mark, tan θ = μ_s is the other. A definition on its own answers only half of what is asked."
+}

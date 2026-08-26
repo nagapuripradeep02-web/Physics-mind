@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_st_mass_na2co3_for_normality",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Stoichiometry (Chemistry)"
+  },
+  "chapter": "Stoichiometry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Calculate the mass of Na₂CO₃ required to prepare 250 mL of 0.5 N solution.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equivalent weight and formula",
+      "marks": 1
+    },
+    {
+      "label": "The answer with its unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 5 (Stoichiometry) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.66-72), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Stoichiometry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Equivalent weight and formula",
+        "marks": 1,
+        "mark_note": "GEW and formula",
+        "lines": [
+          "GMW of Na₂CO₃ = (2 × 23) + 12 + (3 × 16)",
+          "= 46 + 12 + 48 = 106 g mol⁻¹",
+          {
+            "text": "GEW = 106 / 2 = 53",
+            "style": "eq"
+          },
+          {
+            "text": "W = N × GEW × (V in mL / 1000)",
+            "style": "eq"
+          },
+          "W = 0.5 × 53 × (250 / 1000)"
+        ],
+        "why": "This is the normality formula rearranged for weight. Na₂CO₃ reacts with two H⁺ (its acidity is 2), so its equivalent weight is 106/2 = 53.",
+        "common_mistakes": [
+          "Using GMW 106 in place of GEW 53. The question says 0.5 N, not 0.5 M.",
+          "Using 250 instead of 250/1000. The volume must be in litres inside this form."
+        ],
+        "memory_tip": "N for normality pairs with equivalent weight; M for molarity pairs with molar mass. Match the letter to the weight.",
+        "margin_note": "GEW = 53 with the division by 2 shown earns this mark."
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "The answer with its unit",
+        "marks": 1,
+        "mark_note": "Answer with unit",
+        "lines": [
+          "W = 0.5 × 53 × 0.25",
+          {
+            "text": "W = 6.625 g",
+            "style": "boxed"
+          }
+        ],
+        "why": "0.5 equivalents per litre in a quarter litre means 0.125 equivalents, and 0.125 × 53 = 6.625 g.",
+        "common_mistakes": [
+          "Answering 13.25 g by using the molar mass route for an N question.",
+          "Dropping the unit g from the final line."
+        ],
+        "memory_tip": "Half strength, quarter volume: one eighth of 53 is 6.625.",
+        "margin_note": "Box 6.625 g with the unit."
+      }
+    ]
+  },
+  "insider_note": "The N in 0.5 N is the whole question — it forces the equivalent weight 53. The doubled answer 13.25 g from using 106 is the standard lost mark."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_celsius_fahrenheit_fixed_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the lower and upper fixing points in Celsius and Fahrenheit scales?",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 7,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The Celsius values",
+      "marks": 1
+    },
+    {
+      "label": "The Fahrenheit values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2016 (Q7) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: the two fixed points are the ice point and the steam point of water at normal atmospheric pressure — Celsius 0 °C and 100 °C, Fahrenheit 32 °F and 212 °F, so 100 Celsius degrees span the same interval as 180 Fahrenheit degrees."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_celsius",
+        "kind": "equation",
+        "label": "The Celsius fixed points",
+        "marks": 1,
+        "mark_note": "Celsius",
+        "lines": [
+          "The two fixed points are the ice point and",
+          "the steam point of water at normal",
+          "atmospheric pressure.",
+          "On the Celsius scale:",
+          {
+            "text": "lower point = 0 °C,  upper point = 100 °C",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Name both fixed points and give both Celsius values.",
+        "why": "Melting ice and boiling water each stay at one temperature while the change of state goes on, so the same two marks can be reproduced in any laboratory.",
+        "common_mistakes": [
+          "Naming body temperature as a fixed point. The fixed points are the ice point and the steam point of water."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fixed points are the ice point 0 °C and the steam point 100 °C on the Celsius scale.",
+          "accept": [
+            "ice point and steam point",
+            "zero and hundred degree Celsius",
+            "melting ice and boiling water"
+          ],
+          "reject": [
+            "thirty two and two twelve"
+          ],
+          "heard_as": [
+            "ice point",
+            "steam point",
+            "zero degree Celsius"
+          ]
+        },
+        "memory_tip": "Ice point 0, steam point 100. Celsius counts 100 degrees between them."
+      },
+      {
+        "id": "s2_fahrenheit",
+        "kind": "boxed_final",
+        "label": "The Fahrenheit fixed points",
+        "marks": 1,
+        "mark_note": "Fahrenheit",
+        "lines": [
+          {
+            "text": "Fahrenheit: 32 °F lower, 212 °F upper",
+            "style": "boxed"
+          },
+          "The same two states of water are used, so",
+          "there are 100 Celsius degrees and 180",
+          "Fahrenheit degrees between the two points."
+        ],
+        "margin_note": "Second mark. Both Fahrenheit values, 32 °F and 212 °F, are needed.",
+        "why": "Fahrenheit marks the same two physical states with different numbers, so the interval is divided into 180 parts instead of 100. That is why one Celsius degree equals 1.8 Fahrenheit degrees.",
+        "common_mistakes": [
+          "Writing the steam point as 100 °F. On the Fahrenheit scale it is 212 °F."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Fahrenheit fixed points are 32 °F and 212 °F.",
+          "accept": [
+            "thirty two degree Fahrenheit",
+            "two hundred and twelve",
+            "32 and 212"
+          ],
+          "reject": [
+            "zero and hundred degree Celsius"
+          ],
+          "heard_as": [
+            "thirty two",
+            "two twelve",
+            "Fahrenheit"
+          ]
+        },
+        "memory_tip": "32 and 212: 180 Fahrenheit degrees cover the same span as 100 Celsius degrees."
+      }
+    ]
+  },
+  "insider_note": "Four numbers carry the two marks — 0 and 100 for Celsius, 32 and 212 for Fahrenheit. Writing one pair only earns one mark."
+}

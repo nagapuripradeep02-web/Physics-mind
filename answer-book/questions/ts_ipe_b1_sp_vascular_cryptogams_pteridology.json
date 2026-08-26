@@ -1,0 +1,84 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_vascular_cryptogams_pteridology",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which group of plants is called vascular cryptogams? Name the branch of Botany which deals with them.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Vascular cryptogams",
+      "marks": 1
+    },
+    {
+      "label": "The branch",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pteridophytes",
+        "kind": "text",
+        "label": "Vascular cryptogams",
+        "marks": 1,
+        "mark_note": "Group",
+        "lines": [
+          "Pteridophytes are called vascular cryptogams.",
+          "They have vascular tissue (xylem and phloem)",
+          "but form no flowers and no seeds, so they",
+          "are cryptogams."
+        ],
+        "why": "The name itself decodes the group: 'vascular' because pteridophytes carry xylem and phloem, and 'cryptogams' because they reproduce by spores with no flowers or seeds.",
+        "common_mistakes": [
+          "Answering bryophytes — bryophytes have no vascular tissue.",
+          "Writing only 'ferns' — the group name asked for is pteridophytes."
+        ],
+        "memory_tip": "Vascular rules out bryophytes; cryptogam (no seeds) rules out gymnosperms — pteridophytes are what remain.",
+        "margin_note": "Name the group, then one line on why the name fits."
+      },
+      {
+        "id": "s2_pteridology",
+        "kind": "boxed_final",
+        "label": "The branch",
+        "marks": 1,
+        "mark_note": "Pteridology",
+        "lines": [
+          {
+            "text": "Pteridophytes → Pteridology",
+            "style": "boxed"
+          }
+        ],
+        "why": "The branch name is built from the group name: pterido- plus -logy gives pteridology.",
+        "common_mistakes": [
+          "Writing 'pteridophytology' — the branch is pteridology.",
+          "Leaving the branch out after naming the group — the question asks for both."
+        ],
+        "memory_tip": "Keep pterido-, drop -phytes, add -logy: pteridology.",
+        "margin_note": "The boxed arrow line completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Group-and-branch questions repeat through this chapter (algae, fungi, bryophytes, pteridophytes, lichens); learn the five pairs as one table."
+}

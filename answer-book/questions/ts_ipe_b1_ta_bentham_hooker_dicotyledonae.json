@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_ta_bentham_hooker_dicotyledonae",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Taxonomy of Angiosperms (Botany)"
+  },
+  "chapter": "Taxonomy of Angiosperms",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a brief account on the class Dicotyledonae of Bentham and Hooker's classification.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three classes",
+      "marks": 1
+    },
+    {
+      "label": "Sub-classes and Polypetalae",
+      "marks": 1
+    },
+    {
+      "label": "Gamopetalae and Monochlamydae",
+      "marks": 1
+    },
+    {
+      "label": "Total families",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 8 is sourced from the Sri Chaitanya Junior Fastrack botany section (book pp.21-22), which prints the question and a model answer but NO star rank and NO year citation — so `stars` is 0 and `appearances` is empty by construction, not by omission. Only ONE botany source book is held: there is no TSBIE Basic Learning Material for botany (the copy in hand is physics-only) and no botany board paper in the corpus, so the two-book union check and the back-test against a real paper are STRUCTURALLY IMPOSSIBLE for this chapter. This card is NOT-CHECKED — do not read that as checked-and-clean. The mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. BOOK ERRORS: the book spells the author \"Bantham\" (correct: Bentham), writes the series as \"Bicarpellate\" with \"4 colorts\" (correct: Bicarpellatae, 4 cohorts), and says the three classes are of \"flowering plants\" — but Gymnospermae is one of the three, and gymnosperms are seed plants, not flowering plants. Written here as seed plants (Phanerogams)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Taxonomy of Angiosperms · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classes",
+        "kind": "text",
+        "label": "The three classes",
+        "marks": 1,
+        "lines": [
+          "In their book Genera Plantarum, Bentham and",
+          "Hooker divided the seed plants into three",
+          "classes:",
+          "Dicotyledonae, Gymnospermae and",
+          "Monocotyledonae.",
+          "Dicotyledonae is the largest of the three."
+        ],
+        "why": "The class asked about only makes sense inside the whole scheme, so the three classes come first.",
+        "common_mistakes": [
+          "Writing that they divided the FLOWERING plants into three classes. Gymnosperms are seed plants but not flowering plants.",
+          "Putting Gymnospermae last. Bentham and Hooker placed it between the two."
+        ],
+        "memory_tip": "Three classes in their order: Dicots, Gymnosperms, Monocots. The gymnosperms sit in the middle.",
+        "margin_note": "Name all three classes even though the question asks only about one.",
+        "mark_note": "Classes"
+      },
+      {
+        "id": "s2_subclasses",
+        "kind": "text",
+        "label": "Sub-classes and Polypetalae",
+        "marks": 1,
+        "lines": [
+          "Dicotyledonae has three sub-classes:",
+          "Polypetalae, Gamopetalae and Monochlamydae.",
+          "Polypetalae has three series —",
+          "Thalamiflorae (6 cohorts), Disciflorae (4",
+          "cohorts) and Calyciflorae (5 cohorts)."
+        ],
+        "why": "The three sub-classes are named from the corolla, so the name itself shows which one a plant belongs to.",
+        "common_mistakes": [
+          "Writing Monocotyledonae as a sub-class of Dicotyledonae. It is a separate class.",
+          "Mixing up the cohort counts. Polypetalae runs 6, 4, 5."
+        ],
+        "memory_tip": "Poly-petalae = free petals. Gamo-petalae = fused petals. Mono-chlamydae = one covering, so no separate calyx and corolla.",
+        "margin_note": "Name the three sub-classes, then the three series of Polypetalae with their cohort counts.",
+        "mark_note": "Sub-classes"
+      },
+      {
+        "id": "s3_series",
+        "kind": "text",
+        "label": "Gamopetalae and Monochlamydae",
+        "marks": 1,
+        "lines": [
+          "Gamopetalae has three series —",
+          "Inferae (3 cohorts), Heteromerae (3 cohorts)",
+          "and Bicarpellatae (4 cohorts).",
+          "Monochlamydae has 8 series and no cohorts at",
+          "all."
+        ],
+        "why": "The series are the next rank down, and the pattern is easy to hold: two sub-classes have three series each, the third has eight.",
+        "common_mistakes": [
+          "Writing that Monochlamydae has cohorts. It has none.",
+          "Spelling it Bicarpellate. The series is Bicarpellatae."
+        ],
+        "memory_tip": "Three series, three series, eight series. Only the last one has no cohorts.",
+        "margin_note": "Give the series names with their cohort counts in brackets.",
+        "mark_note": "Series"
+      },
+      {
+        "id": "s4_total",
+        "kind": "boxed_final",
+        "label": "Total families",
+        "marks": 1,
+        "lines": [
+          {
+            "text": "Dicotyledonae: 165 natural orders",
+            "style": "boxed"
+          },
+          "In this system a cohort means an order, and a",
+          "natural order means a family.",
+          "Genera Plantarum holds 202 families in all: 165",
+          "dicots, 3 gymnosperms and 34 monocots."
+        ],
+        "why": "The number is the fact examiners tick, and knowing that \"natural order\" means \"family\" stops the number from being meaningless.",
+        "common_mistakes": [
+          "Writing 165 genera. They are families.",
+          "Giving the number for the whole book instead of for Dicotyledonae alone."
+        ],
+        "memory_tip": "165 + 3 + 34 = 202. The dicots are the great majority.",
+        "margin_note": "The number 165 is the mark. The 202 total is a safe extra line.",
+        "mark_note": "Total"
+      }
+    ]
+  },
+  "insider_note": "This question is a list of names and numbers. Set it out as a branching list, not as prose; an examiner ticks names, and names are hard to find inside a paragraph."
+}

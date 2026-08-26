@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_som_critical_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "States of Matter (Chemistry)"
+  },
+  "chapter": "States of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is critical temperature? Give its value for CO₂.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The value for CO₂",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "States of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The critical temperature Tc of a gas is the",
+          "highest temperature at which the gas can be",
+          "liquefied by applying pressure.",
+          "Above Tc no amount of pressure can liquefy",
+          "the gas."
+        ],
+        "why": "Liquefaction needs the intermolecular attractions to hold the molecules together. Above the critical temperature the molecular kinetic energy is too large for that, so pressure alone can no longer produce a liquid.",
+        "common_mistakes": [
+          "Writing lowest temperature instead of highest. Tc is the upper limit for liquefaction by pressure.",
+          "Leaving out by applying pressure — cooling alone is a different route."
+        ],
+        "memory_tip": "Tc is the maximum temperature for liquefying by pressure: at or below it pressure can liquefy the gas, above it pressure cannot.",
+        "margin_note": "Both sentences together make the definition exact: the limit, and what fails above it."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value for CO₂",
+        "marks": 1,
+        "mark_note": "Value",
+        "lines": [
+          {
+            "text": "Tc of CO₂ = 31.1 °C (about 304 K)",
+            "style": "boxed"
+          },
+          "Below 31.1 °C, CO₂ gas can be liquefied by",
+          "pressure alone."
+        ],
+        "why": "CO₂ is the textbook example because its critical temperature sits just above room temperature, which is why CO₂ cylinders and fire extinguishers can hold liquid CO₂ under pressure.",
+        "common_mistakes": [
+          "Quoting 31.1 K instead of 31.1 °C. The value is in degrees Celsius.",
+          "Rounding to 31 °C is accepted; swapping digits to 13.1 is not."
+        ],
+        "memory_tip": "31.1 °C — just above a hot summer day. That is why liquid CO₂ exists in cylinders at room temperature.",
+        "margin_note": "The Celsius value is the expected answer; the kelvin form in brackets is extra."
+      }
+    ]
+  },
+  "insider_note": "The word highest is what the examiner underlines — a definition that reads as a lowest temperature is marked wrong even with the correct CO₂ value beside it."
+}

@@ -20,25 +20,80 @@
  * call, no network at runtime (Google Fonts CSS is the single exception,
  * with a cursive fallback).
  */
-import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
+import katex from 'katex';
 import { answerBookQuestionSchema, type AnswerBookQuestion } from '../schemas/answerBook';
+// The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
+// grades Vidi's replies with, so the bank and the model are held to one standard.
+import { idiomsIn } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
 const BOOK_DIR = join(ROOT, 'answer-book');
 const QUESTIONS_DIR = join(BOOK_DIR, 'questions');
-const OUT_DIR = join(BOOK_DIR, 'dist');
+// --gated (P3): the page ships the full CATALOG but answer bodies are a
+// server-side entitlement (answerbook-content). Its dist is SEPARATE so the
+// offline build, the hosted full build and every existing gate are untouched
+// by construction. Gated also writes the per-unit content bundles that
+// content:push uploads.
+const GATED = process.argv.includes('--gated');
 
 function fail(msg: string): never {
     console.error(`\n✗ build:answers failed\n${msg}`);
     process.exit(1);
 }
 
+// --stream=<name> (2026-08-26): ONE bank, one build, a subject LENS over it —
+// never a second catalog and never duplicated question files (the same doctrine
+// the board picker follows). A stream is the set of PAPERS a student actually
+// sits, so an MPC student is never shown Botany, and a BiPC student is never
+// handed a book that silently omits Zoology.
+//
+// The lens is applied SYMMETRICALLY — to the questions AND to the manifest —
+// because §1b's cross-checks run in both directions: shrink only the manifest
+// and "authored question X is not listed in any unit" fires once per dropped
+// file; shrink only the files and "question_id X has no authored file" fires.
+// Filtering both with one predicate leaves every downstream guard satisfied.
+// `label`/`blurb` are the STUDENT-FACING words for the stream and are the single
+// source for both the link-preview card and the on-page header, so the two can
+// never disagree about what the reader is holding.
+const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string; short: string }> = {
+    // Maths-1A is `mathematics` for historical reasons (see SUBJECTS below).
+    mpc: {
+        subjects: ['physics', 'chemistry', 'mathematics', 'mathematics_1b'],
+        label: 'Junior Inter MPC',
+        blurb: 'Maths, Physics and Chemistry',
+        // `short` joins the catalog eyebrow, which already carries the board and
+        // the year — so it must NOT repeat either ("Telangana IPE · First year · MPC").
+        short: 'MPC',
+    },
+};
+const streamArg = process.argv.find((a) => a.startsWith('--stream='));
+const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
+if (STREAM !== null && !STREAMS[STREAM]) {
+    // Loud, not lenient: a typo'd stream falling back to the full bank would
+    // ship Botany to an MPC student — the exact thing this flag prevents.
+    fail(`  --stream="${STREAM}" is not one of ${Object.keys(STREAMS).join('/')}`);
+}
+if (STREAM && GATED) {
+    // content:push hard-fails on an ORPHAN bundle, and a streamed gated build
+    // would leave the dropped subjects' bundles behind in answer-book/content/
+    // to serve dead content forever. Scope CONTENT_DIR per stream before
+    // lifting this.
+    fail('  --gated and --stream cannot be combined yet: the per-unit content bundles in\n' +
+         '  answer-book/content/ are not stream-scoped, so content:push would abort on the\n' +
+         "  dropped subjects' orphan bundles.");
+}
+const STREAM_SUBJECTS = STREAM ? new Set(STREAMS[STREAM].subjects) : null;
+
+const OUT_DIR = join(BOOK_DIR, GATED ? 'dist-gated' : STREAM ? `dist-${STREAM}` : 'dist');
+const CONTENT_DIR = join(BOOK_DIR, 'content');
+
 // ── 1. read + validate every question ────────────────────────────────────────
 const files = readdirSync(QUESTIONS_DIR).filter((f) => f.endsWith('.json')).sort();
 if (files.length === 0) fail(`no question JSONs found in ${QUESTIONS_DIR}`);
 
-const questions: AnswerBookQuestion[] = [];
+const allQuestions: AnswerBookQuestion[] = [];
 for (const f of files) {
     const path = join(QUESTIONS_DIR, f);
     let raw: unknown;
@@ -58,7 +113,22 @@ for (const f of files) {
     if (q.question_id !== f.replace(/\.json$/, '')) {
         fail(`${path}\n  question_id "${q.question_id}" must match the filename`);
     }
-    questions.push(q);
+    allQuestions.push(q);
+}
+
+// The stream lens, half 1 of 2 (half 2 is the manifest, below). Every file is
+// parsed and validated above FIRST, so a streamed build still proves the whole
+// bank is sound — the lens only decides what ships, never what is checked.
+//
+// This keys on the question's own `subject` field, which the schema REQUIRES on
+// every file. It deliberately does not parse the `ts_ipe_<x>_` id prefix: three
+// tools in this repo do parse it, none of them learned `ts_ipe_b1_`, and all
+// three silently file Botany as physics. A lens must not inherit that bug.
+const questions = STREAM_SUBJECTS
+    ? allQuestions.filter((q) => STREAM_SUBJECTS.has(q.subject))
+    : allQuestions;
+if (STREAM_SUBJECTS && questions.length === 0) {
+    fail(`  --stream="${STREAM}" matched no authored questions (wanted ${[...STREAM_SUBJECTS].join('/')})`);
 }
 
 // ── 1b. read + cross-check the unit manifest ─────────────────────────────────
@@ -78,7 +148,7 @@ type ManifestEntry = {
     question_id?: string;
     cut?: string;
 };
-type ManifestUnit = { number: number; name: string; questions: ManifestEntry[] };
+type ManifestUnit = { number: number; name: string; subject?: string; questions: ManifestEntry[] };
 
 const manifestPath = join(BOOK_DIR, 'units.json');
 let manifest: { units: ManifestUnit[] };
@@ -91,9 +161,53 @@ if (!Array.isArray(manifest.units) || manifest.units.length === 0) {
     fail(`${manifestPath}\n  units[] is missing or empty`);
 }
 
+// The stream lens, half 2 of 2 — the same predicate the questions were filtered
+// with, so §1b's bidirectional cross-checks below stay satisfied. Absent
+// `subject` means physics (the historical meaning), exactly as the unitKey guard
+// reads it.
+if (STREAM_SUBJECTS) {
+    manifest.units = manifest.units.filter((u) => STREAM_SUBJECTS.has(u.subject || 'physics'));
+    if (manifest.units.length === 0) {
+        fail(`${manifestPath}\n  --stream="${STREAM}" matched no units (wanted ${[...STREAM_SUBJECTS].join('/')})`);
+    }
+}
+
 const questionById = new Map(questions.map((q) => [q.question_id, q]));
 const listedIds = new Set<string>();
+// One PAPER = one subject value. Maths-1A and Maths-1B are different papers with
+// their own unit 1, so they cannot share a subject: unit numbers namespace per
+// SUBJECT, and two papers under one value would collide (see the unitKey guard
+// below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
+// same way an absent subject means physics. Physics-II will need the same
+// treatment when it opens.
+const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany'];
+// STREAMS (top of file) names subjects too. If the two lists drift — a stream
+// naming a subject that no longer exists, or a renamed subject — the lens would
+// silently drop a whole paper from a student's book rather than erroring. Cheap
+// to assert, expensive to discover in a WhatsApp group.
+for (const [name, def] of Object.entries(STREAMS)) {
+    const unknown = def.subjects.filter((s) => !SUBJECTS.includes(s));
+    if (unknown.length) {
+        fail(`  stream "${name}" names subject(s) ${unknown.join('/')} which are not in SUBJECTS (${SUBJECTS.join('/')})`);
+    }
+}
+const unitKeys = new Set<string>();
 for (const u of manifest.units) {
+    // Unit identity is subject-number EVERYWHERE (catalog chips, triage, the
+    // exam-eve route, and the study planner). Two units sharing one key silently
+    // merge into each other: on 2026-08-23 physics Unit 3 and maths Unit 3 keyed
+    // alike and Matrices' 17 LAQs were scheduled into physics study plans.
+    const key = `${u.subject || 'physics'}-${u.number}`;
+    if (unitKeys.has(key)) {
+        fail(`${manifestPath}
+  two units share the key "${key}" — unit numbers namespace per subject, so a second paper needs its own subject value (e.g. mathematics_1b)`);
+    }
+    unitKeys.add(key);
+    // Absent = physics (the historical meaning). A TYPO must fail the build: it would
+    // silently mint a fourth subject chip rather than filing the unit where it belongs.
+    if (u.subject !== undefined && !SUBJECTS.includes(u.subject)) {
+        fail(`${manifestPath}\n  unit ${u.number}: subject "${u.subject}" is not one of ${SUBJECTS.join('/')}`);
+    }
     const refs = new Set<string>();
     for (const e of u.questions) {
         if (refs.has(e.ref)) fail(`${manifestPath}\n  unit ${u.number}: duplicate ref "${e.ref}"`);
@@ -107,6 +221,13 @@ for (const u of manifest.units) {
         if (e.question_id) {
             const q = questionById.get(e.question_id);
             if (!q) fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: question_id "${e.question_id}" has no authored file`);
+            // The gated client fetches content by the key it derives from the
+            // QUESTION's own fields — so the question and its manifest unit
+            // must agree, or an unlock fetches the wrong (or no) bundle.
+            const qKey = `${q.subject}-${q.unit.number}`;
+            if (qKey !== key) {
+                fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: ${e.question_id} derives unit key "${qKey}" but is listed under "${key}" — subject/unit fields disagree with the manifest`);
+            }
             listedIds.add(e.question_id);
             if (e.cut && !(q.cuts ?? []).some((c) => c.key === e.cut)) {
                 fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: cut "${e.cut}" does not exist on ${e.question_id}`);
@@ -120,12 +241,119 @@ for (const q of questions) {
     }
 }
 
+// ── 1c. completeness + plain-language (Rule 41) ──────────────────────────────
+// Four of these fields ARE the model's grounding text (notebook.js buildVidiContext
+// emits WHY / MISTAKES / EARNS THE MARK FOR / REMEMBER / NOTE), so a gap here is
+// not cosmetic — a MISSING mark fact is what made Vidi invent a mark scheme in a
+// real chat. Everything asserted below is ALREADY true across all 157 files, so
+// this locks the floor at zero cost rather than demanding new work.
+//
+// Violations are COLLECTED and reported once: fail() exits on its first call, and
+// an authoring pass over 157 files cannot be run one abort at a time.
+{
+    const bad: string[] = [];
+
+    // Rule 41: no idioms, metaphors or personification in anything a student reads.
+    // idiomsIn() is the house list, imported — NOT copied — from vidiChecks.ts,
+    // which until now only ever graded the MODEL's replies and never the bank.
+    // Every recorded authoring session found idioms BY HAND (0.3–0.6 per new
+    // card); this is the first time the check is mechanical.
+    for (const q of questions) {
+        const where = q.question_id;
+        const strings: [string, string][] = [];
+        if (q.insider_note) strings.push(['insider_note', q.insider_note]);
+
+        let tips = 0, notes = 0;
+        for (const s of q.answer.steps) {
+            const at = `${where} / ${s.id}`;
+            // The two fields carrying every explanation Vidi gives.
+            if (!s.why) bad.push(`${at}: no \`why\` — it is the model's WHY line`);
+            if (!s.common_mistakes?.length) bad.push(`${at}: no \`common_mistakes\``);
+            // The step→mark-split mapping. The schema forbids it on a 0-mark step.
+            if (s.marks > 0 && !s.mark_note) bad.push(`${at}: no \`mark_note\` on a ${s.marks}M step`);
+            if (s.memory_tip) tips++;
+            if (s.margin_note) notes++;
+
+            if (s.why) strings.push([`${s.id}.why`, s.why]);
+            if (s.memory_tip) strings.push([`${s.id}.memory_tip`, s.memory_tip]);
+            if (s.margin_note) strings.push([`${s.id}.margin_note`, s.margin_note]);
+            for (const [i, m] of (s.common_mistakes ?? []).entries()) {
+                strings.push([`${s.id}.common_mistakes[${i}]`, m]);
+            }
+        }
+
+        // memory_tip and margin_note are authored in WHOLE-QUESTION passes — all
+        // steps or none, true for all 157 files today. Locking that keeps a partial
+        // pass from shipping a question where one step's chip works and the next
+        // silently does not.
+        const n = q.answer.steps.length;
+        if (tips > 0 && tips < n) bad.push(`${where}: \`memory_tip\` on ${tips}/${n} steps — author all or none`);
+        if (notes > 0 && notes < n) bad.push(`${where}: \`margin_note\` on ${notes}/${n} steps — author all or none`);
+
+        for (const [field, text] of strings) {
+            const hit = idiomsIn(text);
+            if (hit.length) bad.push(`${where} / ${field}: Rule 41 — "${hit.join('", "')}"`);
+        }
+    }
+
+    if (bad.length) {
+        fail(`completeness / Rule 41 — ${bad.length} problem(s):\n` + bad.map((b) => '  - ' + b).join('\n'));
+    }
+}
+
+// ── 1d. typeset every katex line AT BUILD TIME ───────────────────────────────
+// A `render: "katex"` line carries TeX source, not text. It is typeset here, never
+// in the browser: the page ships zero JS libraries and makes zero runtime decisions
+// (Rule 18), and a bad macro must fail the BUILD, loudly, naming the step — not
+// render as a red error string on a student's answer page.
+let katexLineCount = 0;
+
+type LineObj = { text: string; render?: string; html?: string };
+
+function typesetLines(lines: unknown[] | undefined, where: string): unknown[] | undefined {
+    if (!lines) return lines;
+    return lines.map((raw, i) => {
+        if (typeof raw === 'string' || (raw as LineObj).render !== 'katex') return raw;
+        const line = raw as LineObj;
+        try {
+            const html = katex.renderToString(line.text, {
+                throwOnError: true,
+                displayMode: false,
+                output: 'html',   // no MathML twin: it would land in textContent and in the reveal
+                strict: 'ignore',
+            });
+            katexLineCount++;
+            return { ...line, html };
+        } catch (e) {
+            fail(`${where} line ${i}\n  KaTeX could not typeset: ${line.text}\n  ${(e as Error).message}`);
+        }
+    });
+}
+
+// KaTeX's own stylesheet, with every @font-face rewritten to an embedded woff2 data
+// URI — the page must stay ONE self-contained file that works from file:// (same
+// constraint that forces the CSS/JS inlining below). Emitted only when a katex line
+// exists, so a book without one stays byte-for-byte as small as it was.
+function katexCss(): string {
+    const dist = join(ROOT, 'node_modules', 'katex', 'dist');
+    const raw = readFileSync(join(dist, 'katex.min.css'), 'utf8');
+    return raw.replace(/@font-face\{([^}]*)\}/g, (block, body: string) => {
+        const m = /url\(fonts\/([A-Za-z0-9_-]+\.woff2)\)/.exec(body);
+        if (!m) return '';
+        const fontPath = join(dist, 'fonts', m[1]);
+        if (!existsSync(fontPath)) return '';   // drop, never leave a dead url() behind
+        const b64 = readFileSync(fontPath).toString('base64');
+        const src = `src:url(data:font/woff2;base64,${b64}) format("woff2")`;
+        return `@font-face{${body.replace(/src:[^;]*$/, src).replace(/src:.*/, src)}}`;
+    });
+}
+
 // ── 2. read the engine files ─────────────────────────────────────────────────
 const shell = readFileSync(join(BOOK_DIR, 'shell.html'), 'utf8');
 const css = readFileSync(join(BOOK_DIR, 'notebook.css'), 'utf8');
 const js = readFileSync(join(BOOK_DIR, 'notebook.js'), 'utf8');
 
-for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_AT__-->']) {
+for (const token of ['/*__CSS__*/', '/*__JS__*/', '/*__DATA__*/', '<!--__BUILT_AT__-->', '<!--__HEAD_META__-->']) {
     if (!shell.includes(token)) fail(`shell.html is missing the token ${token}`);
 }
 
@@ -140,26 +368,175 @@ const browserQuestions = questions.map((q) => ({
         ...q.answer,
         steps: q.answer.steps.map(({ recall, ...step }) => {
             void recall;
-            return step;
+            return { ...step, lines: typesetLines(step.lines, `${q.question_id} ${step.id}`) };
         }),
     },
+    // A cut may substitute shorter `lines` for a step, so those need typesetting too —
+    // missing them would ship a cut whose matrix silently arrived as raw TeX.
+    cuts: q.cuts?.map((c) => ({
+        ...c,
+        steps: Object.fromEntries(
+            Object.entries(c.steps).map(([id, cs]) => [
+                id,
+                { ...cs, lines: typesetLines(cs.lines, `${q.question_id} cut:${c.key} ${id}`) },
+            ])
+        ),
+    })),
 }));
+
+// ── gated projection + content bundles (P3) ─────────────────────────────────
+// The gated page keeps every METADATA field (catalog, planner, search, Vidi
+// chips and exam-eve all work unmodified) and reduces the answer to a
+// boot-safe SKELETON: notebook.js reads question.answer.steps at module init
+// (applyCut(0)), so steps must EXIST — as {id, marks} only, which is exactly
+// what applyCut's filter and the cut maps need and nothing a student would
+// pay for. Cut-step override bodies reduce to {marks} the same way. The
+// `gated: true` flag is what the client's loadQuestion gate keys on.
+type AnyRec = Record<string, unknown>;
+const gatedQuestions = !GATED ? browserQuestions : browserQuestions.map((q) => ({
+    ...q,
+    gated: true,
+    answer: {
+        page_header: q.answer.page_header,
+        steps: q.answer.steps.map((s) => ({ id: (s as AnyRec).id, marks: (s as AnyRec).marks })),
+    },
+    cuts: q.cuts?.map((c) => ({
+        ...c,
+        steps: Object.fromEntries(
+            Object.entries(c.steps).map(([id, cs]) => [id, { marks: (cs as AnyRec).marks }])
+        ),
+    })),
+}));
+
+if (GATED) {
+    // The bundles the answerbook-content endpoint serves: the FULL projection
+    // (typeset, recall-stripped — byte-what the full build ships), grouped by
+    // unit key. content:push uploads these to ab_content.
+    const byId = new Map(browserQuestions.map((q) => [q.question_id, q]));
+    mkdirSync(CONTENT_DIR, { recursive: true });
+    let bundleBytes = 0;
+    for (const u of manifest.units) {
+        const key = `${u.subject || 'physics'}-${u.number}`;
+        const ids: string[] = [];
+        for (const e of u.questions) {
+            if (e.question_id && !ids.includes(e.question_id)) ids.push(e.question_id);
+        }
+        const bundle = {
+            unit_key: key,
+            name: u.name,
+            questions: ids.map((id) => byId.get(id)!),
+        };
+        const text = JSON.stringify(bundle);
+        bundleBytes += text.length;
+        writeFileSync(join(CONTENT_DIR, `${key}.json`), text, 'utf8');
+    }
+    console.log(`  content bundles: ${manifest.units.length} units → ${CONTENT_DIR} (${(bundleBytes / 1024).toFixed(0)} KB) — run npm run content:push`);
+}
 
 // The checking API is optional. Unset → the page offers neither photo nor mic and
 // makes zero network calls, exactly as it shipped (progressive enhancement, not a
 // dependency). One base; the client derives /recall-check and /photo-check.
 const apiBase = process.env.ANSWER_BOOK_API_BASE ?? '';
 
+// Vidi's live-chat endpoint — the SAME progressive-enhancement contract as the
+// checking API. Unset (the default) → the free-text ask row and the telemetry
+// flush never exist and the page stays fully offline (deterministic Vidi — the
+// chips, the verdict, the exam-eve view — works everywhere, file:// included).
+// `--hosted` bakes the deployed Edge Function base for the served copy.
+// Gated is hosted by nature — it cannot work without its endpoint, so it
+// bakes every hosted base.
+const HOSTED = process.argv.includes('--hosted') || GATED;
+const VIDI_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-vidi-chat';
+const vidiBase = HOSTED
+    ? (process.env.ANSWER_BOOK_VIDI_BASE ?? VIDI_HOSTED_BASE)
+    : (process.env.ANSWER_BOOK_VIDI_BASE ?? '');
+
+// Progress sync (P2). Same shape as the chat base and the same guarantee: unset
+// means the Sync module is inert — no device id, no timer, no request — so the
+// offline build and every zero-network gate are unaffected. The hosted default
+// is the answerbook-sync function deployed + live-verified 2026-08-23 (403 on a
+// foreign origin, earliest-tick-wins merge, 400 on a malformed device id).
+const SYNC_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-sync';
+const syncBase = HOSTED
+    ? (process.env.ANSWER_BOOK_SYNC_BASE ?? SYNC_HOSTED_BASE)
+    : '';
+
+// P3: the content endpoint. Set ONLY in the gated build — the full builds
+// carry every answer already, and an empty base keeps the client Gate module
+// inert there, the same guarantee Sync makes.
+const CONTENT_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-content';
+const contentBase = GATED
+    ? (process.env.ANSWER_BOOK_CONTENT_BASE ?? CONTENT_HOSTED_BASE)
+    : '';
+
+// P4: the payment-link endpoint. Gated builds only — and even there the sheet
+// only offers to buy when this is set AND the server quotes a price, so a build
+// can never show a pay button that leads nowhere.
+const PAY_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co/functions/v1/answerbook-pay';
+const payBase = GATED
+    ? (process.env.ANSWER_BOOK_PAY_BASE ?? PAY_HOSTED_BASE)
+    : '';
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
-    `window.PM_QUESTIONS = ${JSON.stringify(browserQuestions).replace(/</g, '\\u003c')};\n` +
+    `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
     `window.PM_UNITS = ${JSON.stringify(manifest.units).replace(/</g, '\\u003c')};\n` +
-    `window.PM_API_BASE = ${JSON.stringify(apiBase)};`;
+    `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
+    `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
+` +
+    `window.PM_SYNC_BASE = ${JSON.stringify(syncBase)};\n` +
+    `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};
+` +
+    `window.PM_PAY_BASE = ${JSON.stringify(payBase)};\n` +
+    // null on the full build — the catalog eyebrow then stays subject-neutral.
+    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};`;
+
+// ── the social-preview card ──────────────────────────────────────────────────
+// A student meets this product as a link in a WhatsApp group before they ever
+// meet the page, so the preview card is the storefront. Without og: tags the
+// link renders as a bare grey box, which reads as spam in exactly the channel
+// distribution depends on.
+//
+// og:image must be an ABSOLUTE url to a real file — WhatsApp does not fetch
+// data: URIs — so the card png is written alongside index.html and referenced
+// off PUBLIC_URL. If the png is missing the tags still degrade to a clean
+// text-only card rather than a broken image.
+const PUBLIC_URL = (process.env.ANSWER_BOOK_PUBLIC_URL ?? 'https://answers.viditra.co/').replace(/\/*$/, '/');
+const streamDef = STREAM ? STREAMS[STREAM] : null;
+const esc = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const metaTitle = streamDef ? `IPE Answer Book — ${streamDef.label}` : 'IPE Answer Book — Telangana';
+const metaDesc = streamDef
+    ? `Every Telangana IPE question answered step by step, with the marks for each step. ` +
+      `${streamDef.blurb} — first year. Free.`
+    : 'Every Telangana IPE question answered step by step, with the marks for each step. Free.';
+
+const headMeta = [
+    `<title>${esc(metaTitle)} | Viditra</title>`,
+    `<meta name="description" content="${esc(metaDesc)}">`,
+    // Viditra clay — the phone browser's chrome tints to this, so it is the
+    // first brand colour a student sees, before the page paints.
+    `<meta name="theme-color" content="#CB6843">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:site_name" content="Viditra">`,
+    `<meta property="og:title" content="${esc(metaTitle)}">`,
+    `<meta property="og:description" content="${esc(metaDesc)}">`,
+    `<meta property="og:url" content="${esc(PUBLIC_URL)}">`,
+    `<meta property="og:image" content="${esc(PUBLIC_URL + 'og.png')}">`,
+    `<meta property="og:image:width" content="1200">`,
+    `<meta property="og:image:height" content="630">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${esc(metaTitle)}">`,
+    `<meta name="twitter:description" content="${esc(metaDesc)}">`,
+    `<meta name="twitter:image" content="${esc(PUBLIC_URL + 'og.png')}">`,
+].join('\n');
 
 const html = shell
-    .replace('/*__CSS__*/', () => css)
+    .replace('/*__CSS__*/', () => (katexLineCount > 0 ? katexCss() + '\n' : '') + css)
     .replace('/*__DATA__*/', () => dataJs)
     .replace('/*__JS__*/', () => js)
+    .replace('<!--__HEAD_META__-->', () => headMeta)
     .replace('<!--__BUILT_AT__-->', () => `<!-- built ${new Date().toISOString()} -->`);
 
 mkdirSync(OUT_DIR, { recursive: true });
@@ -168,7 +545,23 @@ writeFileSync(outPath, html, 'utf8');
 
 // ── report ───────────────────────────────────────────────────────────────────
 console.log(`✓ answer-book built → ${outPath} (${(html.length / 1024).toFixed(1)} KB)`);
+// State the lens on every build. A streamed artifact and a full one are the same
+// filename in different directories; the one thing that must never be ambiguous
+// is which subjects a student is about to receive.
+if (STREAM) {
+    const dropped = SUBJECTS.filter((s) => !STREAM_SUBJECTS!.has(s));
+    console.log(`  stream:       ${STREAM.toUpperCase()} — ${[...STREAM_SUBJECTS!].join(', ')}`);
+    console.log(`                ${questions.length} of ${allQuestions.length} cards, ${manifest.units.length} units` +
+        (dropped.length ? ` (excluded: ${dropped.join(', ')})` : ''));
+} else {
+    console.log(`  stream:       (none — the FULL bank, every subject)`);
+}
 console.log(`  checking API: ${apiBase || '(unset — no photo, no mic, page stays fully offline)'}`);
+console.log(`  Vidi chat:    ${vidiBase || '(unset — deterministic Vidi only, no ask row, no telemetry)'}`);
+console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage only, zero network)'}`);
+console.log(`  content gate:  ${contentBase || '(unset — every answer embedded, Gate inert)'}${GATED ? ' [GATED — answer bodies NOT in the page]' : ''}`);
+console.log(`  payments:      ${payBase || '(unset — no pay button)'}`);
+console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
     const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';
@@ -205,5 +598,38 @@ for (const u of manifest.units) {
         ? ` (pending: ${Object.entries(bySec).map(([s, n]) => `${n} ${s}`).join(', ')})`
         : '';
     console.log(`  Unit ${u.number} — ${u.name}: ${ready}/${u.questions.length} ready${pendingTxt}`);
+}
+
+// Vidi-depth coverage. `why` / `common_mistakes` / `mark_note` are gated hard in
+// §1c, so they are not repeated here; these three are the SPARSE ones and the
+// remaining authoring work, per unit. Report-only by design — the bar is
+// complete-for-its-size, and a 2-mark VSAQ is not padded to hit a number.
+console.log('\n  Vidi depth (the sparse fields — authoring, not a gate):');
+{
+    const byId = new Map(questions.map((q) => [q.question_id, q]));
+    let gTip = 0, gNote = 0, gIns = 0, gQ = 0;
+    for (const u of manifest.units) {
+        const seen = new Set<string>();
+        let tip = 0, note = 0, ins = 0, n = 0;
+        for (const e of u.questions) {
+            if (!e.question_id || seen.has(e.question_id)) continue;
+            seen.add(e.question_id);
+            const q = byId.get(e.question_id);
+            if (!q) continue;
+            n++;
+            if (q.answer.steps.some((s) => s.memory_tip)) tip++;
+            if (q.answer.steps.some((s) => s.margin_note)) note++;
+            if (q.insider_note) ins++;
+        }
+        gTip += tip; gNote += note; gIns += ins; gQ += n;
+        const pct = (x: number) => String(Math.round((100 * x) / Math.max(1, n)) + '%').padStart(4);
+        console.log(`    Unit ${u.number}: memory_tip ${pct(tip)} (${tip}/${n})` +
+            ` · margin_note ${pct(note)} (${note}/${n})` +
+            ` · insider_note ${pct(ins)} (${ins}/${n})`);
+    }
+    const g = (x: number) => String(Math.round((100 * x) / Math.max(1, gQ)) + '%').padStart(4);
+    console.log(`    ALL    : memory_tip ${g(gTip)} (${gTip}/${gQ})` +
+        ` · margin_note ${g(gNote)} (${gNote}/${gQ})` +
+        ` · insider_note ${g(gIns)} (${gIns}/${gQ})`);
 }
 console.log(`\nNext: npm run serve:answers → http://localhost:8100  (or open ${outPath} directly)`);

@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_sp_parasara_books",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Science of Plants (Botany)"
+  },
+  "chapter": "Science of Plants",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the books written by Parasara and mention the important aspects discussed in those books.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Krishiparasaram",
+      "marks": 1
+    },
+    {
+      "label": "Vrikshayurveda",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Telangana Junior Fastrack botany guide, Chapter 3 'Science of Plants' (book pp.5-6). The botany book prints NO star ranks and NO year citations, so stars=0 and appearances=[] record absence of signal, not measured frequency. Only ONE botany source is held — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper exists in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for botany: 'unverified' means never yet checkable against a second source, not checked-and-clean. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Science of Plants · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_krishiparasaram",
+        "kind": "text",
+        "label": "Krishiparasaram",
+        "marks": 1,
+        "mark_note": "Book 1",
+        "lines": [
+          "a) Krishiparasaram — in it Parasara described",
+          "agriculture and also wrote about weeds.",
+          "It is the oldest book on agriculture."
+        ],
+        "why": "One mark per book, and each book needs its aspects: Krishiparasaram covers agriculture and weeds, and its status as the oldest book on agriculture is the marked detail.",
+        "common_mistakes": [
+          "Naming the book without its contents — the question asks for the aspects discussed.",
+          "Dropping the 'oldest book on agriculture' line — that status is part of the expected answer."
+        ],
+        "memory_tip": "Krishi means farming — Krishiparasaram is Parasara's farming book, the oldest one on agriculture.",
+        "margin_note": "Two or three lines per book, contents included."
+      },
+      {
+        "id": "s2_vrikshayurveda",
+        "kind": "boxed_final",
+        "label": "Vrikshayurveda",
+        "marks": 1,
+        "mark_note": "Book 2",
+        "lines": [
+          "b) Vrikshayurveda — in it he described the",
+          "types of forests and the external and",
+          "internal characters of plants, including",
+          "medicinal plants.",
+          {
+            "text": "Parasara wrote Krishiparasaram and Vrikshayurveda.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The second book carries its own aspects: forest types and the external and internal characters of plants — an early Indian record of plant morphology.",
+        "common_mistakes": [
+          "Attributing Vrikshayurveda to another author — both books here are Parasara's.",
+          "Writing 'about trees' alone — the book covers forests and plant characters, not trees only."
+        ],
+        "memory_tip": "Vriksha means tree — Vrikshayurveda is the tree-and-forest book; Krishiparasaram is the farm book.",
+        "margin_note": "Finish with the boxed line naming both books together."
+      }
+    ]
+  },
+  "insider_note": "'Name ... and mention ...' is a double instruction; a bare list of the two titles earns only half the marks."
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bc_dinoflagellates_account",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Biological Classification (Botany)"
+  },
+  "chapter": "Biological Classification",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give a brief account of dinoflagellates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Habitat and cell wall",
+      "marks": 1
+    },
+    {
+      "label": "Flagella",
+      "marks": 1
+    },
+    {
+      "label": "Nucleus and special members",
+      "marks": 1
+    },
+    {
+      "label": "Red tides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Junior Fastrack botany book, Biological Classification chapter (book pp.4-5), which prints the question and a model answer but NO star ranks and NO year citations. Only ONE source book is held for botany — the TSBIE Basic Learning Material in hand covers physics only, and no botany board paper is in the corpus — so the two-book union check and the past-paper back-test are both STRUCTURALLY IMPOSSIBLE for this card, not merely pending: 'not checked' must never be read as 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it. The book prints 'Red tides of mediterranean sea is due to inhabitation of Gonyaulax' — 'inhabitation' is a scan garble; the standard cause is the rapid multiplication of Gonyaulax, which this card states."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biological Classification · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_habitat_wall",
+        "kind": "text",
+        "label": "Habitat and cell wall",
+        "marks": 1,
+        "mark_note": "Marine, cellulose plates",
+        "lines": [
+          "Dinoflagellates are mostly marine and",
+          "photosynthetic.",
+          "They appear yellow, green, brown, blue or",
+          "red depending on the main pigments.",
+          "The cell wall has stiff cellulose plates",
+          "on the outer surface."
+        ],
+        "why": "Habitat, pigments and the plated cellulose wall identify the group before its movement and special members are described.",
+        "common_mistakes": [
+          "Writing silica walls here. Silica belongs to diatoms; dinoflagellates have cellulose plates.",
+          "Writing fresh water as the main habitat. They are mostly marine."
+        ],
+        "memory_tip": "Marine cells in cellulose plates, coloured by their pigments.",
+        "margin_note": "Three one-line facts open the account."
+      },
+      {
+        "id": "s2_flagella",
+        "kind": "text",
+        "label": "Flagella",
+        "marks": 1,
+        "mark_note": "Two flagella",
+        "lines": [
+          "There are two flagella: one lies",
+          "longitudinally, the other transversely,",
+          "in a furrow between the wall plates.",
+          "Their spinning movement gives the",
+          "name whirling whips."
+        ],
+        "why": "The two flagella set at right angles make the cell spin as it swims; the common name whirling whips describes exactly this movement.",
+        "common_mistakes": [
+          "Writing both flagella as longitudinal. One longitudinal plus one transverse in the furrow is the tested arrangement."
+        ],
+        "memory_tip": "One along, one across — the across one sits in the furrow.",
+        "margin_note": "The arrangement of the two flagella is the marked detail."
+      },
+      {
+        "id": "s3_nucleus_members",
+        "kind": "text",
+        "label": "Nucleus and special members",
+        "marks": 1,
+        "mark_note": "Mesokaryon, Noctiluca",
+        "lines": [
+          "The nucleus is called a mesokaryon.",
+          "Noctiluca shows bioluminescence",
+          "(it emits light)."
+        ],
+        "why": "The mesokaryon — a nucleus with condensed chromosomes even between divisions — and the light-emitting Noctiluca are the two special facts expected in a brief account.",
+        "common_mistakes": [
+          "Writing mesosome for mesokaryon. A mesosome is a bacterial membrane structure.",
+          "Attaching bioluminescence to Gonyaulax. The light emitter is Noctiluca."
+        ],
+        "memory_tip": "Meso-karyon for the nucleus; Nocti-luca, Latin for night light, for bioluminescence.",
+        "margin_note": "Two names, one line each."
+      },
+      {
+        "id": "s4_red_tides",
+        "kind": "boxed_final",
+        "label": "Red tides",
+        "marks": 1,
+        "mark_note": "Red tides",
+        "lines": [
+          "Red dinoflagellates (Gonyaulax) multiply so",
+          "rapidly that the sea appears red — red tides.",
+          "The toxins released kill fish and other",
+          "marine animals.",
+          {
+            "text": "Plates, two flagella, mesokaryon, red tides.",
+            "style": "boxed"
+          }
+        ],
+        "why": "The red tide closes the account with the group's most examined fact: rapid multiplication of Gonyaulax colours the sea, and the released toxins kill fish. (The book prints 'due to inhabitation of Gonyaulax' — a scan garble for rapid multiplication.)",
+        "common_mistakes": [
+          "Writing that the red colour itself kills the fish. The killer is the released toxins.",
+          "Naming cyanobacteria here. Red tides in this chapter are by the dinoflagellate Gonyaulax."
+        ],
+        "memory_tip": "Gonyaulax multiplies, the sea reddens, the toxins kill fish — three facts in order.",
+        "margin_note": "End with the red tide pair: cause (multiplication) and harm (toxins)."
+      }
+    ]
+  },
+  "insider_note": "A brief account is marked as four separate facts; the mesokaryon and the furrow arrangement of the flagella separate full marks from three."
+}

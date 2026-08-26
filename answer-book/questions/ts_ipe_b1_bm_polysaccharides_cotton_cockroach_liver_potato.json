@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_bm_polysaccharides_cotton_cockroach_liver_potato",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Biomolecules (Botany)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Starch, cellulose, glycogen and chitin are polysaccharides. Choose the appropriate one and write it against each of the following: cotton fibre, exoskeleton of a cockroach, liver, peeled potato.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cotton fibre and peeled potato",
+      "marks": 1
+    },
+    {
+      "label": "Cockroach exoskeleton and liver",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Botany Fastrack, Chapter 10 Biomolecules, book p.26, VSAQ 6. The book's four matches are standard and are used unchanged; the plant/animal grouping and the job each polysaccharide does are added as the reasoning. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the board-paper back-test are both structurally impossible for this card, not merely unrun; 'not checked' here means exactly that, never 'checked and clean'. The mark split is a claim until a Telangana IPE teacher confirms it; the question itself is sourced, not invented."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_plant_stores",
+        "kind": "text",
+        "label": "Cotton fibre and peeled potato",
+        "marks": 1,
+        "mark_note": "Two correct",
+        "lines": [
+          "Cotton fibre — cellulose.",
+          "Cotton fibre is almost pure cellulose, the",
+          "material of the plant cell wall.",
+          "Peeled potato — starch.",
+          "Starch is the stored food of the potato tuber."
+        ],
+        "why": "Both of these come from plants, and a plant uses cellulose for structure and starch for storage. Naming the job the polysaccharide does gives the reason for each match.",
+        "common_mistakes": [
+          "Writing starch for cotton fibre. Cotton is cell-wall material, so it is cellulose.",
+          "Writing glycogen for potato. Glycogen is an animal store, not a plant store."
+        ],
+        "memory_tip": "In plants, cellulose is the wall and starch is the store.",
+        "margin_note": "Match plus one short reason for each. Two matches carry this mark."
+      },
+      {
+        "id": "s2_animal_stores",
+        "kind": "boxed_final",
+        "label": "Cockroach exoskeleton and liver",
+        "marks": 1,
+        "mark_note": "Two correct",
+        "lines": [
+          {
+            "text": "Exoskeleton — chitin   ·   Liver — glycogen",
+            "style": "boxed"
+          },
+          "Chitin makes the hard outer covering of",
+          "insects and other arthropods.",
+          "Glycogen is the stored carbohydrate of the",
+          "animal liver and muscle."
+        ],
+        "why": "These two come from animals, and the same split applies: chitin is the structural one and glycogen is the stored one. So the four answers are two structural and two stored.",
+        "common_mistakes": [
+          "Writing cellulose for the cockroach exoskeleton. Cellulose is a plant material.",
+          "Writing starch for liver. The animal store is glycogen."
+        ],
+        "memory_tip": "Two structural, two stored: cellulose and chitin build; starch and glycogen store.",
+        "margin_note": "All four items must be answered. A missing one costs the whole mark for that pair."
+      }
+    ]
+  },
+  "insider_note": "This is a pure matching question. Write all four pairs in a list — no paragraph is needed."
+}

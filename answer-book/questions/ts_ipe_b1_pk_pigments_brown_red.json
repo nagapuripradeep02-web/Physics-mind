@@ -1,0 +1,72 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b1_pk_pigments_brown_red",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": { "number": 4, "name": "Plant Kingdom (Botany)" },
+  "chapter": "Plant Kingdom",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the pigments responsible for the brown colour of Phaeophyceae and the red colour of Rhodophyceae.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Brown colour pigment", "marks": 1 },
+    { "label": "Red colour pigment", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya Junior Fastrack botany section, Chapter 4 Plant Kingdom, book p.7, VSAQ 3. Only one source book is held for botany — the TSBIE Basic Learning Material in hand is physics-only and no botany board paper is in the corpus — so the two-book union check and the back-test are both structurally impossible for this card, not merely unrun. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Kingdom · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fucoxanthin",
+        "kind": "text",
+        "label": "Brown — fucoxanthin",
+        "marks": 1,
+        "mark_note": "Fucoxanthin",
+        "lines": [
+          "The brown colour of Phaeophyceae is due",
+          "to the xanthophyll pigment fucoxanthin."
+        ],
+        "why": "Brown algae also carry chlorophyll a and c, but the large amount of fucoxanthin masks the green and gives the brown colour.",
+        "common_mistakes": [
+          "Writing 'phycoerythrin' for brown algae — that is the red-algae pigment.",
+          "Naming chlorophyll c as the colour cause — chlorophyll is green; fucoxanthin gives the brown."
+        ],
+        "memory_tip": "Fucus is a brown alga and fucoxanthin is the brown pigment — the pigment carries the alga's name.",
+        "margin_note": "One sentence naming the pigment earns the mark."
+      },
+      {
+        "id": "s2_phycoerythrin",
+        "kind": "boxed_final",
+        "label": "Red — r-phycoerythrin",
+        "marks": 1,
+        "mark_note": "Phycoerythrin",
+        "lines": [
+          { "text": "Red colour of Rhodophyceae → r-phycoerythrin", "style": "boxed" },
+          "'Erythros' means red — the pigment's own",
+          "name says the colour."
+        ],
+        "why": "Red algae owe their colour to the dominant pigment r-phycoerythrin, which masks their chlorophyll a and d. The book writes 'phycoerythrin'; NCERT's full name is r-phycoerythrin, and either is accepted.",
+        "common_mistakes": [
+          "Swapping the two pigments between the groups.",
+          "Writing 'phycocyanin' — that pigment is blue; phycoerythrin is the red one."
+        ],
+        "memory_tip": "Erythrocytes are red blood cells — 'erythr' means red, so phycoerythrin is the red pigment.",
+        "margin_note": "Write each pigment beside its algal group, not as a bare list."
+      }
+    ]
+  },
+  "insider_note": "Write the pigment and its group in the same sentence; a bare pigment name without its group can lose the mark."
+}

@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_a_plus_transpose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (2, −4) and (−5, 3), then find A + A′ and AA′.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write A′ and add",
+      "marks": 1
+    },
+    {
+      "label": "Multiply A by A′",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 15 Matrices, answer 106. Printed appearances: AP 18,19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess, though: the same chapter DOES print 1+1 against answers 100 and 101 on book p.82, so 1+1 is the split this book uses for a 2-mark matrices VSAQ, applied here to the two steps of this question. CORRECTION TO AN EARLIER NOTE, recorded rather than quietly fixed: docs/IPE_MATHS_1A_SOURCE.md stated after Unit 1 that this book 'prints a per-step mark split on its LAQ and SAQ pages but NOT on its VSAQ pages'. That held for the Functions VSAQ pages (book pp.79-81) but is FALSE here — the Matrices VSAQ chapter prints [1 mark] tags on p.82. The doc has been corrected. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Matrices holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, ALL COMPULSORY; Q3 and Q4 are the two Matrices slots."
+  },
+  "recall_prompt": "Say how you would find both of these — say what A dash is first.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transpose",
+        "kind": "equation",
+        "label": "Write A′ and add",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A′ is the transpose: rows become columns. Then A + A′ is an ordinary entry-by-entry addition.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}, \\quad A' = \\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A + A' = \\begin{bmatrix} 4 & -9 \\\\ -9 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A′ is the transpose (rows become columns) and that A + A′ is found by adding entry by entry.",
+          "accept": [
+            "A dash is the transpose so rows become columns then add entry by entry",
+            "write the transpose by swapping rows and columns and add it to A",
+            "transpose A first then add the two matrices",
+            "A dash ante transpose, rows columns swap, tarvata add cheyyali",
+            "the transpose swaps the off diagonal entries then you add"
+          ],
+          "reject": [
+            "find A dash",
+            "transpose it"
+          ],
+          "heard_as": [
+            "transpose",
+            "A dash",
+            "rows become columns",
+            "add"
+          ]
+        },
+        "why": "Transposing reflects the matrix across its principal diagonal. The diagonal entries never move, which is why only the −4 and −5 swap here.",
+        "common_mistakes": [
+          "Transposing by reversing the rows instead of swapping rows with columns.",
+          "Changing the signs while transposing."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "boxed_final",
+        "label": "Multiply A by A′",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark, and a different operation from the first — this one is row against column, not entry by entry. Both answers come out symmetric, which is worth noticing.",
+        "lines": [
+          {
+            "text": "AA' = \\begin{bmatrix} 2 & -4 \\\\ -5 & 3 \\end{bmatrix}\\begin{bmatrix} 2 & -5 \\\\ -4 & 3 \\end{bmatrix} = \\begin{bmatrix} 20 & -22 \\\\ -22 & 34 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ A + A′ and AA′ are as above",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AA′ is a matrix MULTIPLICATION, row against column, giving rows (20, −22) and (−22, 34).",
+          "accept": [
+            "A A dash is a multiplication row into column giving twenty minus twenty two and minus twenty two thirty four",
+            "multiply A by its transpose using row into column",
+            "this one is a product not a sum so multiply row by column",
+            "A into A dash multiply cheste twenty minus twenty two vasthundi",
+            "the product of A with its transpose is a symmetric matrix"
+          ],
+          "reject": [
+            "multiply them",
+            "find A A dash"
+          ],
+          "heard_as": [
+            "A A dash",
+            "row into column",
+            "twenty",
+            "minus twenty two",
+            "multiply"
+          ]
+        },
+        "why": "The question asks for one ADDITION and one MULTIPLICATION. Doing the same operation twice is the commonest way to lose this mark.",
+        "common_mistakes": [
+          "Adding A and A′ again instead of multiplying.",
+          "Multiplying entry by entry."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_sqp_parallelogram_diagonals",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "The vectors AB = 3i − 2j + 2k and AD = i − 2k represent adjacent sides of a parallelogram ABCD. Find the angle between the diagonals.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the diagonal AC",
+      "marks": 1
+    },
+    {
+      "label": "Find the diagonal BD",
+      "marks": 1
+    },
+    {
+      "label": "Apply the cos formula",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.105 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 162. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: TS 18. Both diagonals must be written in terms of the two GIVEN sides first. In parallelogram ABCD the vertices go round in order, so BC equals AD — that is the fact that unlocks AC. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. FIGURE: the book prints one against this answer — parallelogram ABCD with arrows on the two given sides, both diagonals drawn and the angle θ marked where they cross (book p.105). It is the ONLY figure anywhere in the Star Questions Plus bank (book pp.98-111), and it is redrawn as its own step because the question asks about diagonals while the data given are sides."
+  },
+  "recall_prompt": "Say how you would do this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_diagonal_ac",
+        "kind": "equation",
+        "label": "Find the diagonal AC",
+        "marks": 1,
+        "mark_note": "First diagonal",
+        "margin_note": "First mark. AC = AB + BC, and in a parallelogram BC = AD because those two sides are equal and parallel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In parallelogram ABCD, BC = AD.",
+          "Diagonal AC = AB + BC = AB + AD",
+          "= (3i − 2j + 2k) + (i − 2k)",
+          "= 4i − 2j"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AC = AB + AD = 4i − 2j, using BC = AD.",
+          "accept": [
+            "A C is A B plus A D because B C equals A D, giving four i minus two j",
+            "the first diagonal is the sum of the two sides",
+            "A C comes to four i minus two j",
+            "A C ante A B plus A D, four i minus two j",
+            "find the first diagonal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A C",
+            "four i minus two j",
+            "B C equals A D",
+            "sum"
+          ]
+        },
+        "why": "The k components cancel exactly here (2k − 2k), so AC has no k part. Write the result as 4i − 2j rather than 4i − 2j + 0k.",
+        "common_mistakes": [
+          "Using AB + BC without noticing BC = AD.",
+          "Adding the k components instead of cancelling them."
+        ]
+      },
+      {
+        "id": "s1b_figure",
+        "kind": "diagram",
+        "label": "Draw the parallelogram",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. The two dashed lines are the DIAGONALS, AC and BD — the angle asked for is θ where they cross, not the angle between the sides AB and AD that were given.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That parallelogram ABCD is sketched with both diagonals drawn and the angle between them marked. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw the parallelogram A B C D and both its diagonals",
+            "sketch the parallelogram and mark the angle where the diagonals cross",
+            "show the diagonals AC and BD meeting at theta",
+            "parallelogram geesi rendu diagonals geeyali",
+            "draw the parallelogram with its diagonals"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "parallelogram",
+            "diagonals",
+            "angle",
+            "theta"
+          ]
+        },
+        "why": "The two vectors given are SIDES, and the answer is about diagonals. The picture is what turns the lettering into the two additions that follow — AC runs A to C across the figure, BD runs B to D the other way — so the signs in AC = AB + AD and BD = AD − AB are read, not guessed.",
+        "common_mistakes": [
+          "Taking the angle between the given sides AB and AD instead of between the diagonals.",
+          "Writing BD as AB − AD, which reverses the diagonal and flips the sign of the cosine."
+        ],
+        "figure": {
+          "id": "parallelogram_abcd_diagonals",
+          "width": 280,
+          "height": 196,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "side_ab",
+              "d": "M 36 156 L 178 156",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "side_bc",
+              "d": "M 178 156 L 238 52",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "side_dc",
+              "d": "M 96 52 L 238 52",
+              "ms": 560
+            },
+            {
+              "type": "stroke",
+              "id": "side_ad",
+              "d": "M 36 156 L 96 52",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_ab",
+              "d": "M 103 151 L 113 156 L 103 161",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_ad",
+              "d": "M 69 108 L 70 97 L 61 103",
+              "ms": 140
+            },
+            {
+              "type": "stroke",
+              "id": "diag_ac",
+              "d": "M 36 156 L 238 52",
+              "ms": 640,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "diag_bd",
+              "d": "M 178 156 L 96 52",
+              "ms": 640,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 18,
+              "y": 176,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 184,
+              "y": 176,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 244,
+              "y": 46,
+              "text": "C",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 78,
+              "y": 46,
+              "text": "D",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 146,
+              "y": 96,
+              "text": "θ",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s2_find_the_diagonal_bd",
+        "kind": "equation",
+        "label": "Find the diagonal BD",
+        "marks": 1,
+        "mark_note": "Second diagonal",
+        "margin_note": "Second mark. AB + BD = AD, so BD = AD − AB. The order matters: it is the far end minus the near end.",
+        "lines": [
+          "AB + BD = AD ⇒ BD = AD − AB",
+          "= (i − 2k) − (3i − 2j + 2k)",
+          "= −2i + 2j − 4k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That BD = AD − AB = −2i + 2j − 4k.",
+          "accept": [
+            "B D is A D minus A B which gives minus two i plus two j minus four k",
+            "the second diagonal is the difference of the two sides",
+            "B D comes to minus two i plus two j minus four k",
+            "B D ante A D minus A B",
+            "find the second diagonal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "B D",
+            "minus two i",
+            "two j",
+            "minus four k"
+          ]
+        },
+        "why": "The two diagonals are the SUM and the DIFFERENCE of the adjacent sides. Getting the difference the wrong way round reverses BD and gives the supplementary angle.",
+        "common_mistakes": [
+          "Writing BD as AB − AD.",
+          "Dropping a minus sign while subtracting."
+        ]
+      },
+      {
+        "id": "s3_apply_the_cos_formula",
+        "kind": "boxed_final",
+        "label": "Apply the cos formula",
+        "marks": 2,
+        "mark_note": "Angle",
+        "margin_note": "Half the marks. cos θ = (AC·BD)/(|AC||BD|). The dot product is negative, so the answer is an obtuse angle — that is correct, not a slip.",
+        "lines": [
+          "AC·BD = 4(−2) + (−2)(2) + 0(−4) = −8 − 4 = −12",
+          "|AC| = √(16 + 4) = √20 = 2√5",
+          "|BD| = √(4 + 4 + 16) = √24 = 2√6",
+          "cos θ = −12/(2√5 · 2√6) = −12/(4√30) = −3/√30",
+          "= −√3/√10",
+          {
+            "text": "∴ θ = Cos⁻¹(−√3/√10)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = (AC·BD)/(|AC||BD|) = −√3/√10, so θ = Cos⁻¹(−√3/√10).",
+          "accept": [
+            "the dot product is minus twelve, the lengths are two root five and two root six, giving cos theta minus root three over root ten",
+            "apply the cosine formula and simplify",
+            "theta is cos inverse of minus root three by root ten",
+            "cos theta minus root three by root ten",
+            "the angle is obtuse because the cosine is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus twelve",
+            "two root five",
+            "two root six",
+            "cos inverse",
+            "minus root three"
+          ]
+        },
+        "why": "A negative cosine means the angle between the two diagonals as written is obtuse. The acute angle between the same two lines is its supplement.",
+        "common_mistakes": [
+          "Dropping the minus sign to make the answer look tidier.",
+          "Forgetting the zero k component of AC in the dot product."
+        ]
+      }
+    ]
+  }
+}

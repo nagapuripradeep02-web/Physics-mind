@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_a_eq_b_plus_c_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If a = (b + c) cos θ, then prove that sin θ = (2√(bc)/(b+c)) cos(A/2).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Square the given relation",
+      "marks": 2
+    },
+    {
+      "label": "Expand and use the cosine rule",
+      "marks": 2
+    },
+    {
+      "label": "Introduce the half angle",
+      "marks": 2
+    },
+    {
+      "label": "Take the square root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.44 — LAQ chapter 6 Properties of Triangles, answer 33, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 19. The first of a family of three (33, 34.1, 34.2) that the book calls \"Super Twin Baby Questions\". All three run the same four moves; only which ratio is given changes. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Properties of Triangles · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square_the_given_relation",
+        "kind": "equation",
+        "label": "Square the given relation",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two of the seven marks. The target has a sine and the condition a cosine, so the bridge is sin² = 1 − cos². Square the condition first so it can be substituted.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given a = (b + c) cos θ",
+          "⇒ cos θ = a/(b + c)",
+          "⇒ cos²θ = a²/(b + c)²",
+          "∴ sin²θ = 1 − cos²θ = 1 − a²/(b+c)²",
+          "= ((b+c)² − a²)/(b+c)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is rearranged to cos θ = a/(b+c), squared, and sin²θ = 1 − cos²θ formed.",
+          "accept": [
+            "rearrange to cos theta equals a over b plus c then square and use sin squared equals one minus cos squared",
+            "square the given relation and subtract from one",
+            "get sin squared theta as b plus c squared minus a squared over b plus c squared",
+            "cos theta ni square chesi one minus cos square teeskovali",
+            "form sin squared from the given cosine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a over b plus c",
+            "one minus cos squared",
+            "sin squared"
+          ]
+        },
+        "why": "The answer is about sin θ but the condition gives cos θ. Squaring is the only route between them that stays exact.",
+        "common_mistakes": [
+          "Taking the square root too early.",
+          "Writing 1 − a²/(b+c)² as (1 − a²)/(b+c)²."
+        ]
+      },
+      {
+        "id": "s2_expand_and_use_the_cosine_",
+        "kind": "equation",
+        "label": "Expand and use the cosine rule",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Expand (b+c)², then spot b² + c² − a² inside it — that is 2bc cos A by the cosine rule, and it is what brings the angle in.",
+        "lines": [
+          "= (b² + c² + 2bc − a²)/(b+c)²",
+          "= (2bc + (b² + c² − a²))/(b+c)²",
+          "= (2bc + 2bc cos A)/(b+c)²",
+          "  [∵ (b² + c² − a²)/(2bc) = cos A]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (b+c)² is expanded and b² + c² − a² recognised as 2bc cos A by the cosine rule.",
+          "accept": [
+            "expand b plus c squared then b squared plus c squared minus a squared is two b c cos A by the cosine rule",
+            "use the cosine rule to bring the angle in",
+            "the bracket becomes two b c plus two b c cos A",
+            "cosine rule vaadi b square plus c square minus a square ni two bc cos A ga marchali",
+            "recognise the cosine rule inside the expansion"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosine rule",
+            "two b c cos A",
+            "expand",
+            "b squared plus c squared minus a squared"
+          ]
+        },
+        "why": "There is no angle anywhere until the cosine rule is used. Spotting b² + c² − a² is what turns a side identity into an angle one.",
+        "common_mistakes": [
+          "Expanding but never grouping the b² + c² − a² together.",
+          "Writing the cosine rule upside down."
+        ]
+      },
+      {
+        "id": "s3_introduce_the_half_angle",
+        "kind": "equation",
+        "label": "Introduce the half angle",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Factor 2bc out, then 1 + cos A = 2cos²(A/2) — which is where the half angle in the answer comes from.",
+        "lines": [
+          "= 2bc(1 + cos A)/(b+c)²",
+          "= 2bc · 2cos²(A/2)/(b+c)²   [∵ 1 + cosA = 2cos²(A/2)]",
+          "= 4bc cos²(A/2)/(b+c)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2bc is factored out and 1 + cos A = 2cos²(A/2) applied, giving 4bc cos²(A/2)/(b+c)².",
+          "accept": [
+            "take two b c out then one plus cos A is two cos squared half A so it becomes four b c cos squared half A over b plus c squared",
+            "use the half angle formula for one plus cos A",
+            "the four b c comes from two times two",
+            "one plus cos A ante two cos square A by two",
+            "factor and apply the half angle identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus cos A",
+            "two cos squared",
+            "half angle",
+            "four b c"
+          ]
+        },
+        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what answer 34.2 uses instead.",
+        "common_mistakes": [
+          "Using 1 − cos A = 2sin²(A/2) here, which is the wrong half of the pair.",
+          "Losing a factor of 2."
+        ]
+      },
+      {
+        "id": "s4_take_the_square_root",
+        "kind": "boxed_final",
+        "label": "Take the square root",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Everything under the root is a perfect square, so the root is exact — and sin θ is taken positive.",
+        "lines": [
+          "∴ sin θ = √(4bc cos²(A/2)/(b+c)²)",
+          {
+            "text": "= (2√(bc)/(b+c)) cos(A/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That taking the square root gives sin θ = (2√(bc)/(b+c)) cos(A/2).",
+          "accept": [
+            "take the square root, four becomes two and the cos squared becomes cos half A",
+            "the root gives two root b c over b plus c times cos half A",
+            "square rooting gives the required form",
+            "root teeste two root bc by b plus c into cos A by two vasthundi",
+            "the answer is two root bc over b plus c cos half A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "square root",
+            "two root bc",
+            "cos half A",
+            "b plus c"
+          ]
+        },
+        "why": "√(4bc) is 2√(bc), not 4√(bc) — the 4 comes out as its own root. That is the one place the last line can go wrong.",
+        "common_mistakes": [
+          "Writing √(4bc) as 4√(bc).",
+          "Leaving the answer squared."
+        ]
+      }
+    ]
+  }
+}
