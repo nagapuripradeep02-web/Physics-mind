@@ -217,6 +217,35 @@ async function main(): Promise<void> {
         console.log(`\n⊘ GATE COVERAGE — ${t.skipped} check(s) never executed (a skip is NOT evidence):`);
         for (const line of breakdown) console.log(line);
     }
+    // ── VIEW COVERAGE — a state can be more than one sandbox ──────────────
+    //   A field_3d state may partition its scene into scene_groups, which a
+    //   teacher switches with the in-sim picker (#vg_scene_group_select). THIS
+    //   CAPTURE VISITS ONLY THE AUTHORED DEFAULT: every frame, dense series and
+    //   H2 baseline below describes ONE view of such a state.
+    //
+    //   Reporting that as if it covered the state is a measured defect, not a
+    //   nicety — bug_class every_visual_gate_captures_only_the_default_scene_
+    //   group_so_a_partitioned_explore_states_other_view_is_ungated. On
+    //   lines_and_planes_in_space the unvisited view was a STILL PICTURE for its
+    //   entire life and survived three Checkpoint-B cycles, and the CRITICAL
+    //   introduced by the fix for that freeze then shipped through the same hole.
+    //
+    //   `npm run founder:drive` DOES walk every group (probe + drags per view)
+    //   and is the covering gate until per-group capture lands here. This block
+    //   exists so no reader mistakes the frames above for the whole state.
+    const groupsByState = extractSceneGroups(conceptJson);
+    const partitioned = Object.keys(groupsByState);
+    if (partitioned.length > 0) {
+        console.log(`\n⊘ VIEW COVERAGE — ${partitioned.length} state(s) declare more than one scene_group; ` +
+            `THE EYE captured ONLY the authored default of each:`);
+        for (const sid of partitioned) {
+            console.log(`  ⊘ ${sid}: views [${groupsByState[sid].join(', ')}] — ` +
+                `${groupsByState[sid].length - 1} view(s) NOT captured, NOT gated, NOT baselined here`);
+        }
+        console.log('  → run `npm run founder:drive -- --id ' + conceptId + ' --url <review-site>` for per-view');
+        console.log('    motion probes and drags. These frames are one view of each state, not the state.');
+    }
+
     const blackout = motionGateBlackout(allResults, describeScenario(conceptJson ?? cached.physics_config));
     if (blackout) console.log(`\n${blackout}`);
     console.log(verdictLine(t, '✅ Deterministic gates clean. Now Read the frames — the eye is the gate the machine cannot replace.\n'));
@@ -230,6 +259,35 @@ main().catch(err => {
     console.error('\n💥 visual:eyes crashed:', err instanceof Error ? err.stack : err);
     process.exit(2);
 });
+
+/**
+ * States that partition their scene into more than one `scene_groups` view.
+ *
+ * Returns { STATE_ID: [group, ...] } for states with 2+ declared groups only —
+ * a single-group (or group-less) state is not partitioned and is fully covered
+ * by the ordinary capture, so it is deliberately absent from the result.
+ */
+function extractSceneGroups(conceptJson: unknown): Record<string, string[]> {
+    const out: Record<string, string[]> = {};
+    const cfg = (conceptJson as { field_3d_config?: { states?: Record<string, unknown> } } | null | undefined)
+        ?.field_3d_config?.states;
+    if (!cfg || typeof cfg !== 'object') return out;
+    for (const [sid, st] of Object.entries(cfg)) {
+        const vg = (st as { vg?: { scene_groups?: unknown } } | null)?.vg;
+        const g = vg?.scene_groups;
+        if (Array.isArray(g) && g.length > 1) {
+            // Authored as [{ key, label }] on field_3d (a bare string is tolerated
+            // for any other shape). `key` is what the picker's <option> value is,
+            // so it is what founder_drive selects on — report the same token.
+            out[sid] = g.map(x => {
+                if (typeof x === 'string') return x;
+                const o = x as { key?: string; id?: string; label?: string };
+                return o?.key ?? o?.id ?? o?.label ?? JSON.stringify(x);
+            });
+        }
+    }
+    return out;
+}
 
 /**
  * Per-state `eye_capture_ms` authored on a scenario config (or on epic_l_path).
