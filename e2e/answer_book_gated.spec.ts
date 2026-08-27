@@ -526,3 +526,76 @@ test('signing in is never required — the free chapters work signed out', async
     });
     expect(st.marksEarned).toBe(st.marksTotal);
 });
+
+test('the account chip shows signed-out, then signed-in, and dismisses', async ({ page }) => {
+    // Students had no way to tell whether signing in had worked — the book looked
+    // identical either way, so the honest read was "it did nothing".
+    await bootGated(page, (body) => {
+        if (body.list) return { ok: true, unlocked: [], free_available: false, sku: FOUNDING_SKU };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const chip = await page.evaluate(() => {
+        const b = document.getElementById('btnAccount') as HTMLElement;
+        return { hidden: b.hidden, text: (b.textContent || '').trim() };
+    });
+    expect(chip.hidden).toBe(false);
+    expect(chip.text).toBe('Sign in');
+
+    await page.click('#btnAccount');
+    const card = await page.evaluate(() => ({
+        hidden: (document.getElementById('acctCard') as HTMLElement).hidden,
+        action: document.getElementById('acctAction')!.textContent,
+    }));
+    expect(card.hidden).toBe(false);
+    expect(card.action).toMatch(/Sign in with Google/);
+
+    // tapping outside dismisses it — a card only closable by its own control
+    // reads as stuck on a phone
+    await page.click('#catalogView', { position: { x: 5, y: 5 } });
+    expect(await page.evaluate(() => (document.getElementById('acctCard') as HTMLElement).hidden)).toBe(true);
+});
+
+test('signed in, the chip becomes the student\'s initial and offers sign out', async ({ page }) => {
+    await page.addInitScript(() => {
+        try {
+            localStorage.setItem('pm_ab_at', 'TOK');
+            localStorage.setItem('pm_ab_email', 'pradeep@example.com');
+        } catch { /* file:// */ }
+        // Stub the profile lookup. A fake token is correctly REJECTED and signed
+        // out — that is the behaviour, not a bug — and this test is about the
+        // chip, so it needs a server that says the session is good.
+        const orig = window.fetch;
+        window.fetch = function (input: any, init?: any) {
+            const u = typeof input === 'string' ? input : (input && input.url) || '';
+            if (u.indexOf('/auth/v1/user') >= 0) {
+                return Promise.resolve(new Response(JSON.stringify({ id: 'x', email: 'pradeep@example.com' }), { status: 200 }));
+            }
+            return orig(input, init);
+        } as typeof window.fetch;
+    });
+    await bootGated(page, (body) => {
+        if (body.list) return { ok: true, unlocked: [], free_available: false, signed_in: true, devices: 2, sku: FOUNDING_SKU };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.waitForFunction(() => (document.getElementById('btnAccount')!.textContent || '').trim() === 'P',
+        undefined, { timeout: 8000 });
+
+    const b = await page.evaluate(() => {
+        const e = document.getElementById('btnAccount') as HTMLElement;
+        return { text: (e.textContent || '').trim(), cls: e.className, title: e.title };
+    });
+    expect(b.text).toBe('P');
+    expect(b.cls).toContain('is-in');
+    expect(b.title).toBe('pradeep@example.com');
+
+    await page.click('#btnAccount');
+    const c = await page.evaluate(() => ({
+        email: document.getElementById('acctEmail')!.textContent,
+        action: document.getElementById('acctAction')!.textContent,
+    }));
+    expect(c.email).toBe('pradeep@example.com');
+    expect(c.action).toBe('Sign out');
+});
