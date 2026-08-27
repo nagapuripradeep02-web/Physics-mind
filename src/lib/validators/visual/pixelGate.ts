@@ -139,7 +139,7 @@ const DENSE_INK_MIN_CONTENT_PX = 500;     // frames with <500 ink px skip the in
 // diffPx ~0-16px (this file's measured noise ceiling), so no denominator can
 // lift it over the floor. Shrinking the denominator can only rescue a pair that
 // already moved real pixels.
-const DENSE_INK_MOVABLE_FLOOR_PX = 64;    // <64 movable ink px in the series = nothing meaningful can move; skip the lens
+const DENSE_INK_MOVABLE_FLOOR_PX = 64;    // <64 movable ink px in the series => fall back to the total-ink denominator
 const INK_BG_DELTA = 24;                  // per-pixel |ΔR|+|ΔG|+|ΔB| above this = "ink", not background
 
 // Tesseract template-leak literal characters to search for in OCR output.
@@ -399,17 +399,32 @@ async function adjacentDiffRatios(framesB64: string[]): Promise<AdjacentDiff[]> 
         const diffPx = pixelmatch(a.data, b.data, undefined, a.width, a.height, PIXELMATCH_OPTIONS);
         const avgInk = (inkCounts[i] + inkCounts[i + 1]) / 2;
         const avgMovableInk = (movableCounts[i] + movableCounts[i + 1]) / 2;
-        // Two guards, both on the ORIGINAL total ink or the movable count — never
-        // on the diff itself, so neither can be satisfied by the motion it judges:
-        //   total ink   — a near-blank/degenerate frame has no trustworthy ink at all
-        //   movable ink — a series where almost nothing can move gets no rescue lens
-        const usable = avgInk >= DENSE_INK_MIN_CONTENT_PX && avgMovableInk >= DENSE_INK_MOVABLE_FLOOR_PX;
+        // The degenerate-frame guard is unchanged: a near-blank frame has no
+        // trustworthy ink at all, and its ink lens is skipped exactly as before.
+        //
+        // THE MOVABLE COUNT FALLS BACK, IT DOES NOT DISQUALIFY. Below the floor the
+        // denominator reverts to TOTAL ink — the pre-existing behaviour — rather
+        // than nulling the lens. That distinction is what makes this change
+        // provably safe fleet-wide instead of merely tested on one concept:
+        //
+        //   movableInk <= totalInk always (movable ink is a subset of ink), so
+        //   diffPx/movable >= diffPx/total. The new ratio is >= the old ratio for
+        //   every pair, and the ink lens only ever ADDS a D5 pass path
+        //   (passed = canvasPassed || inkHit !== null). Therefore no concept that
+        //   passed D5 before can fail it now, and no fleet re-verify is needed to
+        //   establish that — it holds by construction.
+        //
+        //   Nulling below the floor, which this first did, would have REMOVED a
+        //   pass path: a concept passing via the ink lens with total ink >= 500 but
+        //   under 64px of movable ink would have newly failed, silently, on a gate
+        //   change verified against a single concept.
+        const denom = avgMovableInk >= DENSE_INK_MOVABLE_FLOOR_PX ? avgMovableInk : avgInk;
         out.push({
             diffPx,
             canvasRatio: diffPx / (a.width * a.height),
             avgInk,
             avgMovableInk,
-            inkRatio: usable ? diffPx / avgMovableInk : null,
+            inkRatio: avgInk >= DENSE_INK_MIN_CONTENT_PX ? diffPx / denom : null,
         });
     }
     return out;
