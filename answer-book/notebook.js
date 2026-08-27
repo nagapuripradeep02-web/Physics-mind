@@ -796,6 +796,9 @@
     if (askGuard()) return;
     var ee = location.hash.match(/^#\/exam-eve\/([a-z]+-\d+|\d+)$/);
     if (ee) { showExamEve(ee[1]); return; }
+    // #/pricing — reachable from a locked chapter, and a link the founder can
+    // send on its own. Renders over whatever view is behind it.
+    if (location.hash === '#/pricing') { showCatalog(); Gate.showPricing(); return; }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
     if (!m) { showCatalog(); return; }
     var id = decodeURIComponent(m[1]);
@@ -2929,7 +2932,10 @@
         over to Razorpay. The device id rides the payment, so the webhook can
         unlock this very phone seconds after the UPI confirmation. */
     function startPayment(i, cutKey) {
-      pendingUnlock = { i: i, cutKey: cutKey };
+      // From the pricing page there is no chapter to return to (i is null), so
+      // a successful payment lands on the catalog rather than trying to reopen
+      // question index null.
+      pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
       try {
@@ -2973,6 +2979,8 @@
     // ── the sheet ───────────────────────────────────────────────────────────
     function sheet(text, buttons) {
       $('lockText').textContent = text;
+      var list = $('lockList');
+      if (list) { list.innerHTML = ''; list.hidden = true; }
       var row = $('lockRow');
       row.innerHTML = '';
       for (var i = 0; i < buttons.length; i++) {
@@ -3008,22 +3016,59 @@
       loadQuestion(i, cutKey);
     }
 
+    /** The pricing page — what a pass includes, and what THIS device pays.
+        Every number comes from the server (ab_price_for); the client still
+        never names a price of its own, so a founding student and a later one
+        each read their own truth from the same code. */
+    function showPricing() {
+      var render = function () {
+        var buttons = [];
+        if (payable()) {
+          buttons.push({ label: 'Pay ₹' + priceInfo.price_inr + ' and unlock everything', primary: true,
+                         fn: function () { startPayment(null, null); } });
+        }
+        buttons.push({ label: 'Back to the book', fn: function () { location.hash = '#/'; } });
+        sheet(offerLine(), buttons);
+        var list = $('lockList');
+        if (!list) return;
+        var items = [
+          'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
+          'The answer an examiner wants, written out step by step',
+          'Diagrams that draw themselves, line by line',
+          'Vidi explains any step you are stuck on',
+          'Memory tips and insider notes on the questions that repeat',
+          'Four chapters stay free — one in each subject'
+        ];
+        for (var i = 0; i < items.length; i++) {
+          var li = document.createElement('li');
+          li.textContent = items[i];
+          list.appendChild(li);
+        }
+        list.hidden = false;
+      };
+      // The price may not have arrived yet (a cold open straight to #/pricing).
+      if (priceInfo || !BASE) { render(); return; }
+      sheet('Loading…', []);
+      post({ list: true }, function (out) { adoptStanding(out); render(); });
+    }
+
     function showLocked(i, cutKey, k) {
       var buttons = [];
-      var text;
+      // Four chapters — one per subject — are free for EVERY student since
+      // 2026-08-27. The old copy here said "you have already used your free
+      // chapter", which under this model tells a student they spent something
+      // they never had. Say what is true: some chapters are free, this one is
+      // not, and here is what the rest costs.
+      var text = 'This chapter is locked. Four chapters — one in each subject — are free to read; '
+               + 'the rest need a pass. ' + offerLine();
+      if (payable()) {
+        buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
+      }
+      buttons.push({ label: 'See what you get', fn: function () { location.hash = '#/pricing'; } });
       if (freeAvailable) {
-        text = 'This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?';
-        buttons.push({ label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } });
-        // The paid option sits BESIDE the free one: a student who already knows
-        // they want the whole book should not have to spend the gift first.
-        if (payable()) {
-          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, fn: function () { startPayment(i, cutKey); } });
-        }
-      } else {
-        text = 'This chapter is locked. You have already used your free chapter. ' + offerLine();
-        if (payable()) {
-          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
-        }
+        // Only reachable if the per-device free slot is revived server-side
+        // (free_available is false today); claimFree stays wired for that day.
+        buttons.push({ label: 'Read this chapter free', fn: function () { claimFree(i, cutKey, k); } });
       }
       buttons.push(backBtn());
       sheet(text, buttons);
@@ -3059,6 +3104,7 @@
 
     return {
       showLockFlow: showLockFlow,
+      showPricing: showPricing,
       /** True only when the LIST has answered and says this unit is locked —
           before that the catalog shows no lock cue rather than a wrong one. */
       locked: function (k) {
