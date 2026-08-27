@@ -91,13 +91,36 @@ const FNS = [
   // SR-B
   "srInvF", "srAntiInvF2", "srStackSpan", "srSpanOuterR", "srSpanInnerR",
   "srDiscSum", "srExactVolume", "srProjectPoint", "srPairwiseScreenSeparationDeg",
+  // section 14 — the CONFIG PATH, not just the arithmetic. srDomain and srOuter
+  // read live globals off `window`, and srWriteHud writes the strings a teacher
+  // actually reads through `document`. Both are shimmed below, because the whole
+  // lesson of section 14 is that a probe aimed at the pure summation could never
+  // have seen the defect this section exists for.
+  "srDomain", "srOuter", "srInner", "srSliceX", "srCapLine", "srWriteHud",
 ];
+/** The two live-global surfaces the SR block reads. Fresh per construction. */
+function makeWindowShim(): Record<string, any> {
+  return { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null, PM_srX: null, PM_srAxis: null };
+}
+/** A `document` just rich enough for srWriteHud: one element whose innerHTML we read back. */
+function makeDocShim(): { doc: any; hud: any } {
+  const hud = { innerHTML: "", style: { display: "none" } };
+  return { doc: { getElementById: (id: string) => (id === "sr_readout" ? hud : null) }, hud };
+}
+const WIN = makeWindowShim();
+const DOC = makeDocShim();
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
-const E = new Function([
+const E = new Function("window", "document", [
   ...VARS.map(grabVar),
   ...FNS.map(grabFn),
   "return { " + [...VARS, ...FNS].join(", ") + " };",
-].join("\n"))() as Record<string, any>;
+].join("\n"))(WIN, DOC.doc) as Record<string, any>;
+/** The lines srWriteHud actually rendered, split back out of the <br> join. */
+function hudLines(sr: Record<string, any>, outer: any, inner: any, x0: number, x1: number, ax: string): string[] {
+  DOC.hud.innerHTML = ""; DOC.hud.style.display = "none";
+  E.srWriteHud(sr, outer, inner, x0, x1, 1, 1, ax);
+  return DOC.hud.style.display === "none" || !DOC.hud.innerHTML ? [] : String(DOC.hud.innerHTML).split("<br>");
+}
 
 let failures = 0;
 let controlsFired = 0;
@@ -1448,8 +1471,198 @@ console.log("\n=== 13. S5's PRIMARY AHA, on the RENDERED STRINGS, EXHAUSTIVELY =
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 14. THE CONFIG PATH — a circle_arc's drawn domain, over the swept radius ===");
+// WHY THIS SECTION EXISTS, stated so it is not simplified away later. Section 13
+// asserts the disc total over all 101 reachable radii and PASSES on the source
+// that shipped before this fix — because srDiscSum coerces a non-finite radius to
+// zero, so the slabs outside the arc contribute nothing and the sum is right for a
+// reason unrelated to whether the picture is. The domain is a STATIC authored pair
+// with a live override on the HIGH end only, so an author sweeping r could not
+// move x0: at every r < the authored reach, srF returned non-finite outside the
+// arc, srWriteTube and srWriteSurface drew y = 0 there (a FLAT LINE where no curve
+// exists), and srExactVolume — the readout the state's whole claim rests on —
+// returned NaN.
+//
+// THIS IS A29's RULE APPLIED TO A GATE INSTEAD OF A RECONSTRUCTION: an exact match
+// on a quantity INVARIANT under the error you might have made is weaker evidence
+// than an approximate match on one that DISCRIMINATES. The disc total is invariant
+// here (measured below: bit-identical on both domains). The DRAWN SAMPLES and the
+// exact-volume readout discriminate. Score those.
+{
+  const R_STEP = 0.01, N_SHIP = 20000, SAMPLES = 121;
+  const radii: number[] = [];
+  for (let i = 0; i <= 100; i++) radii.push(Math.round((1 + i * R_STEP) / R_STEP) * R_STEP);
+  const S5 = { mode: "stack", outer: { family: "circle_arc", r: 2.0, x0: 0, c: 0 }, domain: [-2, 2] };
+  /** The pre-fix srDomain, reconstructed from the four lines it used to be. */
+  const preFixDomain = (sr: any): [number, number] => {
+    const d = sr.domain || [0, 1];
+    return [d[0], WIN.PM_srB != null ? WIN.PM_srB : d[1]];
+  };
+  const drawnFinite = (outer: any, x0: number, x1: number): number => {
+    let ok = 0;
+    for (let i = 0; i < SAMPLES; i++) {
+      const x = x0 + (x1 - x0) * (i / (SAMPLES - 1));
+      if (isFinite(E.srF(outer, x))) ok++;
+    }
+    return ok;
+  };
+
+  // (i) THE SHIPPED PATH — the domain IS the arc's support at every reachable r.
+  let badSpan = 0, badFinite = 0, badReadout = 0, firstBad = "";
+  for (const r of radii) {
+    WIN.PM_srR = r;
+    const [x0, x1] = E.srDomain(S5);
+    const outer = E.srOuter(S5);
+    if (Math.abs(x0 + r) > 1e-12 || Math.abs(x1 - r) > 1e-12) badSpan++;
+    if (drawnFinite(outer, x0, x1) !== SAMPLES) { badFinite++; if (!firstBad) firstBad = "r=" + r.toFixed(2); }
+    const vex = E.srExactVolume(outer, null, x0, x1, "x");
+    if (E.srFmt(vex, 4) !== E.srFmt((4 / 3) * Math.PI * r ** 3, 4)) badReadout++;
+  }
+  assertTrue("the drawn domain equals the arc's own support [-r, +r] at all 101 reachable radii ("
+    + badSpan + " wrong)", badSpan === 0);
+  assertTrue("every one of 121 drawn samples is FINITE at all 101 radii — no flat line where no "
+    + "curve exists (" + badFinite + " radii bad" + (firstBad ? ", first " + firstBad : "") + ")", badFinite === 0);
+  assertTrue("the V_exact readout formats identically to (4/3)pi r^3 at all 101 radii ("
+    + badReadout + " disagree)", badReadout === 0);
+
+  // (ii) THE NEGATIVE CONTROL THAT MATTERS — the pre-fix domain FAILS both
+  //      discriminating checks, while the disc total agrees BIT-FOR-BIT.
+  {
+    let preBadFinite = 0, preBadReadout = 0, worstSumDiff = 0, preStrBad = 0, postStrBad = 0;
+    for (const r of radii) {
+      WIN.PM_srR = r;
+      const [px0, px1] = preFixDomain(S5);
+      const [sx0, sx1] = E.srDomain(S5);
+      const outer = E.srOuter(S5);
+      if (drawnFinite(outer, px0, px1) !== SAMPLES) preBadFinite++;
+      if (!isFinite(E.srExactVolume(outer, null, px0, px1, "x"))) preBadReadout++;
+      const spec = { outer, inner: null, n: N_SHIP, axis: "x", rule: "left", kind: "disc", max_drawn: 120 };
+      const pre = E.srDiscSum({ ...spec, x0: px0, x1: px1 }).volume;
+      const post = E.srDiscSum({ ...spec, x0: sx0, x1: sx1 }).volume;
+      worstSumDiff = Math.max(worstSumDiff, Math.abs(pre - post));
+      const want4 = E.srFmt((4 / 3) * Math.PI * r ** 3, 4);
+      if (E.srFmt(pre, 4) !== want4) preStrBad++;
+      if (E.srFmt(post, 4) !== want4) postStrBad++;
+    }
+    control("the PRE-FIX domain draws a non-existent curve at " + preBadFinite + " of 101 radii and "
+      + "returns a NaN V_exact at " + preBadReadout + " of them", preBadFinite > 0 && preBadReadout > 0);
+    // ⚠ THIS CONTROL WAS WRONG WHEN FIRST WRITTEN AND IS LEFT DOCUMENTED, because
+    // it is the same mistake in miniature that the section is about. Its first
+    // draft asserted the two domains give a BIT-IDENTICAL disc total, on the
+    // strength of having watched both print the same four decimals. Measured, they
+    // differ by 3.224e-8 — small, but not zero, and "same rendered string" is not
+    // "same number". The claim that discriminates is the one section 13 actually
+    // makes: the 4-dp STRING. That is invariant under the defect, and this is the
+    // measurement rather than the assumption.
+    console.log("      raw disc totals differ by " + worstSumDiff.toExponential(3)
+      + " between the two domains — NOT zero, four orders below the 1e-4 display quantum");
+    control("SECTION 13's OWN ASSERTION CANNOT SEE THIS — it scores the 4-dp string, and both "
+      + "domains render all 101 radii correctly (" + preStrBad + " pre-fix / " + postStrBad
+      + " post-fix disagree), which is why this section scores the drawn samples and the readout",
+      preStrBad === 0 && postStrBad === 0);
+  }
+
+  // (iii) THE CLAMP INTERSECTS, IT DOES NOT REPLACE — a deliberately narrow
+  //       authored window must survive, or the fix trades one wrong picture for
+  //       another (a quarter arc silently re-widened to a full semicircle).
+  {
+    WIN.PM_srR = null;
+    const quarter = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [0, 2] };
+    const narrow = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-1, 1] };
+    const wide = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-3, 3] };
+    const eq = (g: number[], w: number[]) => Math.abs(g[0] - w[0]) < 1e-12 && Math.abs(g[1] - w[1]) < 1e-12;
+    assertTrue("a quarter arc authored [0, 2] is UNTOUCHED", eq(E.srDomain(quarter), [0, 2]));
+    assertTrue("a narrow window [-1, 1] inside the support is UNTOUCHED", eq(E.srDomain(narrow), [-1, 1]));
+    assertTrue("an over-reaching [-3, 3] is pulled back to the support [-2, 2]", eq(E.srDomain(wide), [-2, 2]));
+    control("a REPLACING clamp would widen the narrow window to [-2, 2] — the intersecting one does not",
+      !eq([-2, 2], E.srDomain(narrow)));
+  }
+
+  // (iv) THE OTHER AUTHORED FAMILY IS UNTOUCHED. power carries S1-S4 / S7-S9 and
+  //      its b ramp is the ONE live domain override that already shipped.
+  {
+    WIN.PM_srR = null; WIN.PM_srB = null;
+    const pw = { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] };
+    const d0 = E.srDomain(pw);
+    check("a power profile keeps its authored domain hi", d0[1], 4, 0);
+    WIN.PM_srB = 2.5;
+    const d1 = E.srDomain(pw);
+    check("...and S8's live b ramp still wins over the authored hi", d1[1], 2.5, 0);
+    WIN.PM_srB = null;
+  }
+}
+
+console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
+// Scored through srWriteHud itself — the function that writes what a teacher
+// reads — rather than through the quantities behind it. A30's lesson: every
+// assertion about the number can be true while the WORD beside it is wrong.
+{
+  const sqrtP = { family: "power", a: 1, p: 0.5, c: 0 };
+  const halfLine = { family: "power", a: 0.5, p: 1, c: 0 };
+  WIN.PM_srR = null; WIN.PM_srB = null; WIN.PM_srN = null; WIN.PM_srX = null; WIN.PM_srAxis = null;
+
+  // S4's shape: the ONE summation runs, publishes, and the HUD reads it.
+  E.srPubClear();
+  const res = E.srDiscSum({ outer: sqrtP, inner: null, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "disc", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = res.volume; E.SR_PUB.n_drawn = res.n_drawn;
+  E.SR_PUB.kind = "disc"; E.SR_PUB.du = res.du;
+  const s4 = hudLines({ mode: "stack", readouts: ["n", "dx", "V_n", "V_settles", "gap", "discs_drawn"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S4 HUD renders: " + JSON.stringify(s4));
+  assertTrue("V_settles renders the CORE-ring label, not the advanced-ring assertion 'V ='",
+    s4.some(l => l === "settles on = 25.1327"));
+  assertTrue("...and no line on this core state reads 'V = ' (whose account is S8, the first ring cut)",
+    !s4.some(l => l.startsWith("V = ")));
+  assertTrue("dx renders the slab width the summation PUBLISHED (4/1000 = 0.0040)",
+    s4.some(l => l === "\u0394x = 0.0040"));
+  assertTrue("the formula surface's other symbols still render beside it (n, V_n, the shortfall)",
+    s4.some(l => l === "n = 1000") && s4.some(l => l === "V\u2099 = 25.1076")
+    && s4.some(l => l === "still missing = 0.0251"));
+  control("V_settles and V_exact carry the SAME number under DIFFERENT labels — a key that merely "
+    + "aliased V_exact would render the identical string and close nothing",
+    E.srFmt(E.srExactVolume(sqrtP, null, 0, 4, "x"), 4) === "25.1327"
+    && !hudLines({ mode: "stack", readouts: ["V_exact"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x")
+        .some(l => l.startsWith("settles on")));
+
+  // dx must be SILENT where no pass placed a slab (S1 / S2 / S3 publish no du).
+  E.srPubClear();
+  const s1 = hudLines({ mode: "region", readouts: ["area", "dx"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S1 HUD renders: " + JSON.stringify(s1));
+  control("dx is SILENT when no pass has placed a slab — a width printed from an authored n the "
+    + "picture never drew is the provenance split SR-D5 exists against",
+    !s1.some(l => l.indexOf("\u0394x") >= 0));
+  assertTrue("...while the state's own area line still renders", s1.some(l => l === "area = 5.3333"));
+
+  // S3's M1 chip: the consequence of the wrong belief, SHOWN.
+  E.srPubClear();
+  const s3 = hudLines({ mode: "slice", slice_x: 1, readouts: ["x_cut", "r", "face_area", "pi_area"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S3 HUD renders: " + JSON.stringify(s3));
+  assertTrue("pi_area renders M1's consequence pi x 5.3333 = 16.7552",
+    s3.some(l => l === "\u03C0 \u00D7 area = 16.7552"));
+  assertTrue("...beside the TRUE face area at the labelled slice, so the contrast is on one screen",
+    s3.some(l => l === "face area = 3.1416"));
+  control("the two numbers are 5.3x apart, so a student cannot read the wrong one as a rounding of "
+    + "the right one", Math.abs(Math.PI * (16 / 3) - Math.PI) > 13);
+
+  // the ring state still reads its own pair through the same writer
+  E.srPubClear();
+  const ring = E.srDiscSum({ outer: sqrtP, inner: halfLine, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "ring", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = ring.volume; E.SR_PUB.n_drawn = ring.n_drawn;
+  E.SR_PUB.kind = "ring"; E.SR_PUB.du = ring.du;
+  const s6 = hudLines({ mode: "compare", slice_x: 1, readouts: ["R", "r_inner", "ring_area", "V_n", "dx"],
+    domain: [0, 4], outer: sqrtP, inner: halfLine }, sqrtP, halfLine, 0, 4, "x");
+  console.log("      S6 HUD renders: " + JSON.stringify(s6));
+  assertTrue("S6 still reads R, the inner r and the ring area at the labelled slice x = 1",
+    s6.some(l => l === "R = 1.000") && s6.some(l => l === "r = 0.500") && s6.some(l => l === "ring area = 2.3562"));
+  assertTrue("...and dx serves the SAME formula surface on the extended ring", s6.some(l => l === "\u0394x = 0.0040"));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b");
 console.log("  negative controls fired: " + controlsFired);
 console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
 console.log("  there are no frames and no baseline. This gate is the only evidence.");
