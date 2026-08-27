@@ -2,17 +2,21 @@
 
 > Student product, distinct from the teacher app's `docs/notes/PAYMENTS_RUNBOOK.md`
 > (different project, different ledger, different grant). Everything below is
-> BUILT AND DEPLOYED except the three founder steps in §2 — until those are done,
-> the pay button does not appear and the book behaves exactly as it does today.
+> BUILT AND DEPLOYED except the founder steps in §2.
+>
+> **Updated 2026-08-27 — the gate is LIVE.** answers.viditra.co serves the gated
+> build: four free chapters, 688 of 811 cards locked, Google sign-in offered.
+> Until §2 is done the pay button reaches the link step and fails honestly;
+> nothing charges.
 
 ## 1. The model (founder decision, 2026-08-24)
 
 | | |
 |---|---|
 | **Founding price** | **₹99 / 31 days**, first **500** devices |
-| **List price** | **₹249 / 31 days**, from device 501 on |
+| **List price** | **₹199 / 31 days**, from device 501 on |
 | **Grandfathering** | a device that has ever paid ₹99 renews at ₹99 **forever** |
-| **Free** | ONE chapter per device, explicit tap, never expires |
+| **Free** | FOUR fixed chapters, one per subject, free for everyone (2026-08-27) |
 | **Renewal** | pay again — no autopay mandate; extends from the later of now / current expiry |
 
 The price lives in `ab_skus` and is decided by `ab_price_for(device)` **on the
@@ -23,12 +27,43 @@ no rebuild, no deploy:
 update ab_skus set founding_price_inr = 149, founding_limit = 1000 where sku='full_book';
 ```
 
-**Why grandfathering matters:** the January step-up to ₹249 must never look like a
+**Why grandfathering matters:** the step-up to ₹199 must never look like a
 price rise. A student who joined at ₹99 keeps ₹99; only students who never saw the
 founding price pay list. The sheet says this out loud ("Once you join at this
 price, it stays yours") and a gate asserts that sentence.
 
 ## 2. FOUNDER STEPS — nothing charges until these are done
+
+Verified 2026-08-27 with `npx supabase secrets list`: **none** of the three set.
+Setting a secret restarts the functions; no redeploy needed.
+
+### 2.0 Google sign-in — the ONE thing that can silently block every student
+
+The Google provider is already enabled and the OAuth client already exists
+(client id `610762898542-….apps.googleusercontent.com`, Google project number
+**610762898542**). The redirect chain is verified working.
+
+The remaining risk is the **OAuth consent screen publishing status**.
+Google Cloud Console → **APIs & Services → OAuth consent screen**:
+
+- **"Testing"** → ONLY accounts listed under *Test users* can sign in. Everyone
+  else sees "Access blocked: this app has not completed verification". A whole
+  class locked out, and the error looks like our bug.
+- **"In production"** → any Google account works. This is what launch needs.
+
+For the scopes we request (`email`, `profile` — non-sensitive) publishing is a
+button, not a review: Google verification is only required for sensitive or
+restricted scopes. Press **Publish app**, confirm it reads *In production*.
+
+Also confirm under **Credentials → OAuth 2.0 Client**:
+- Authorised redirect URI includes
+  `https://dxwpkjfypzxrzgbevfnx.supabase.co/auth/v1/callback`
+
+And in Supabase → **Authentication → URL Configuration**:
+- **Site URL** = `https://answers.viditra.co`
+- **Redirect URLs** includes `https://answers.viditra.co/**`
+
+Console settings only — nothing to deploy.
 
 ### 2.1 Razorpay keys (~10 min, unblocks the pay button)
 Razorpay Dashboard → **Settings → API Keys → Generate Live Key**, then:
@@ -111,20 +146,32 @@ select count(*) filter (where expires_at > now()) live,
 
 - **Autopay / e-mandate.** Students renew by tapping again. Mandate friction kills
   student conversion; revisit only if renewal drops.
-- **Phone OTP + second-device restore.** The pass belongs to the device that paid.
-  A student who changes phones needs a manual grant (§3) until OTP lands — which
-  needs **SMS/DLT registration (weeks of lead time, not started)**.
+- ~~**Phone OTP + second-device restore.**~~ **SOLVED 2026-08-27 by Google
+  sign-in.** An account links devices (`ab_account_devices`) and entitlements
+  union across them at read time, so a pass bought on a phone opens the book on a
+  laptop. Entitlements stay device-keyed — nothing migrated. A student who never
+  signs in keeps the old behaviour: the pass belongs to that device.
 - **Refunds in-app.** Refund in the Razorpay dashboard, then expire the pass:
   `update ab_entitlements set expires_at = now() where device_id = '<uuid>' and source='paid';`
 - **GST invoicing.** Not required at this scale; revisit with volume.
 
 ## 6. Go-live order (when the founder is ready)
 
-1. §2.1 + §2.2 + §2.3 secrets.
-2. `npm run build:answers:gated && npm run content:push`
-3. Point `wrangler.answers.toml` `[assets] directory` at `./answer-book/dist-gated`.
-4. `npx wrangler deploy -c wrangler.answers.toml`
-5. Test with a **real ₹99 payment on your own phone** (it is the only end-to-end
-   proof that keys + webhook + grant agree), then refund it in the dashboard and
-   expire the pass per §5.
-6. Watch `ab_payments` and the function logs for the first real student.
+The build half is DONE (2026-08-27). What is left is the founder half:
+
+1. **§2.0** — publish the OAuth consent screen. Do this FIRST: it needs no keys
+   and it is the only step that silently blocks every student.
+2. **§2.1 + §2.2** — Razorpay key and webhook secret. Together or neither: keys
+   without a webhook takes money and grants nothing.
+3. **§2.3** — raise `AB_DAILY_USD_CAP` to 15.
+4. Sign in with Google on your own phone; confirm you land back signed in and
+   the four free chapters still open.
+5. A **real ₹99 payment on your own phone** — the only end-to-end proof that
+   keys + webhook + grant agree. Then sign in on a SECOND device and confirm the
+   pass follows you; that is the account layer working.
+6. Refund in the dashboard and expire the pass per §5.
+7. Watch `ab_payments` and the function logs for the first real student.
+
+Already done, for the record: `npm run build:answers:gated:mpc`,
+`npm run content:push:mpc`, `wrangler.answers.toml` → `./answer-book/dist-gated-mpc`,
+`npm run deploy:answers`.
