@@ -4085,7 +4085,13 @@
       if (plannerOn()) {
         say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
         chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+        return;
       }
+      // With the planner dormant this branch used to render NOTHING — a
+      // returning student with nothing due opened the chat to a blank thread
+      // and no chips. Whatever else changes, the home conversation always says
+      // something a student can act on.
+      say('Open any question and the answer writes itself step by step. Ask me about any step you are not sure about — that is what I am here for.');
     }
 
     function currentStep() {
