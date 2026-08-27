@@ -1,6 +1,6 @@
 {
-  "approved_at": "2026-08-26T17:37:02.713Z",
-  "source_run": "/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-fix/vg-readout-subject-label/.visual_runs/lines_and_planes_in_space/20260826-183041",
+  "approved_at": "2026-08-27T13:59:24.096Z",
+  "source_run": "/Users/karthikyerragadda/Desktop/Viditra/physics-mind/.visual_runs/lines_and_planes_in_space/20260827-110941",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
@@ -32,6 +32,10 @@
       "compare_frozen": true
     },
     "STATE_8": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_9@B": {
       "compare": false,
       "compare_frozen": true
     },

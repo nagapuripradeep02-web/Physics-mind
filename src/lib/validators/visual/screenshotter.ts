@@ -54,6 +54,11 @@ export interface CaptureRequest {
      */
     ttsMathByState?: Record<string, TtsMathStepInput[]>;
     /**
+     * Non-default scene_groups to capture per state, keyed by state id. See
+     * ExtraSceneGroups. Opt-in — absent means the previous behaviour exactly.
+     */
+    extraSceneGroupsByState?: ExtraSceneGroups;
+    /**
      * Deterministic frozen-frame capture for H2 regression baselines. For each
      * state (after dense + I2 capture, so motion analysis is unaffected) the
      * harness posts RESET_TRAJECTORY then SET_TIME_FREEZE {at_ms} — the
@@ -98,8 +103,38 @@ export interface DenseCaptureOptions {
     maxFramesPerState?: number;
 }
 
+/**
+ * NON-DEFAULT scene_groups to capture in ADDITION to the ordinary walk.
+ *
+ * A field_3d state may partition its scene into views a teacher switches with
+ * the in-sim picker. The ordinary walk sees only the authored default, so the
+ * other view was captured by nothing, gated by nothing and baselined by nothing
+ * — bug_class every_visual_gate_captures_only_the_default_scene_group_so_a_
+ * partitioned_explore_states_other_view_is_ungated. On lines_and_planes_in_space
+ * the unvisited view was a STILL PICTURE for its entire life and survived three
+ * Checkpoint-B cycles; the CRITICAL introduced by the fix for it then shipped
+ * through the same hole.
+ *
+ * Deliberately ADDITIVE: each extra view is captured under its own synthetic id
+ * `<STATE>@<group>`, so every existing state_id, gate result and approved
+ * baseline in the fleet is byte-for-byte untouched, and a concept that declares
+ * no groups takes no new code path at all.
+ */
+export type ExtraSceneGroups = Record<string, string[]>;
+
+/** Join a state and a non-default view into the id its artifacts are keyed by. */
+export function sceneGroupStateId(stateId: string, group: string): string {
+    return `${stateId}@${group}`;
+}
+
 export interface StateCapture {
+    /**
+     * `STATE_N` for the ordinary walk, or `STATE_N@<group>` for a non-default
+     * scene_group captured by the extra pass (see ExtraSceneGroups).
+     */
     state_id: string;
+    /** The non-default scene_group this capture is of, when it is one. */
+    scene_group?: string;
     panel_a_png_b64: string;
     panel_b_png_b64?: string;
     /** Side-by-side composite for Cat F vision prompts. */
@@ -567,6 +602,80 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             }
         }
 
+        // ── EXTRA PASS · the non-default scene_groups ────────────────────────
+        //   A partitioned state is more than one sandbox behind one card, and the
+        //   walk above saw only the authored default. Everything here is ADDITIVE:
+        //   each view is captured under `<STATE>@<group>`, so no existing state_id,
+        //   gate result or approved baseline moves. A concept declaring no groups
+        //   never enters this loop.
+        //
+        //   Deliberately NOT the primary path's fatal pin: a missed pin on an EXTRA
+        //   view must not abort the run and lose the ordinary capture with it. The
+        //   frozen frame keeps its own pin+drop discipline (captureFrozenFrame
+        //   returns `reached`), so a wrong-phase frame is still never stored.
+        const extraGroups = req.extraSceneGroupsByState ?? {};
+        for (const stateId of Object.keys(extraGroups)) {
+            for (const group of extraGroups[stateId] ?? []) {
+                const synthId = sceneGroupStateId(stateId, group);
+                try {
+                    consoleStateId = synthId;
+                    const t = await driveToState(page, stateId, hasPanelB, perStateTimeoutMs);
+                    if (t.timed_out) warnings.push(`STATE_REACHED timeout for ${synthId}`);
+
+                    if (!(await selectSceneGroup(page, group))) {
+                        // Never capture the default view a second time under another
+                        // name — that would manufacture coverage rather than measure it.
+                        warnings.push(
+                            `Scene group "${group}" NOT captured for ${stateId}: the sim exposes no `
+                            + `#vg_scene_group_select option for it. The view remains ungated.`,
+                        );
+                        continue;
+                    }
+                    // Same settle the primary path uses on its non-pinned branch — the
+                    // group swap re-derives the control rows and the scene re-renders.
+                    await page.waitForTimeout(1000);
+
+                    const png = await captureIframe(page, 'panel_a');
+                    stateCaptures.push({
+                        state_id: synthId,
+                        scene_group: group,
+                        panel_a_png_b64: png.toString('base64'),
+                    });
+
+                    if (req.dense) {
+                        try {
+                            denseTimeseries.push(await captureDenseSeries(page, synthId, req.dense));
+                        } catch (err) {
+                            warnings.push(`Dense capture failed for ${synthId}: ${err instanceof Error ? err.message : String(err)}`);
+                        }
+                    }
+
+                    if (req.frozenFrame) {
+                        try {
+                            const atMs = req.frozenFrame.atMsByState?.[synthId]
+                                ?? req.frozenFrame.atMsByState?.[stateId]
+                                ?? req.frozenFrame.atMs ?? 1500;
+                            const frozen = await captureFrozenFrame(page, hasPanelB, { atMs, settleMs: req.frozenFrame.settleMs });
+                            const target = stateCaptures.find(c => c.state_id === synthId);
+                            if (!frozen.reached) {
+                                warnings.push(
+                                    `Frozen frame DROPPED for ${synthId}: sim-time pin never reached `
+                                    + `(${Math.round(frozen.lastSimMs)}/${atMs}ms). Not a deterministic baseline, so discarded.`,
+                                );
+                            } else if (target) {
+                                target.frozen_png_b64 = frozen.png;
+                            }
+                        } catch (err) {
+                            warnings.push(`Frozen-frame capture failed for ${synthId}: ${err instanceof Error ? err.message : String(err)}`);
+                        }
+                    }
+                } catch (err) {
+                    // One bad view must not cost the run every other view's evidence.
+                    warnings.push(`Scene-group capture failed for ${synthId}: ${err instanceof Error ? err.message : String(err)}`);
+                }
+            }
+        }
+
         let animationTimeseries: AnimationTimeseries | undefined;
         if (animateStateId) {
             try {
@@ -692,6 +801,44 @@ async function injectPanelProbe(page: Page, frameName: PanelName, warnings: stri
         await frame.evaluate(PANEL_PROBE_SCRIPT);
     } catch (err) {
         warnings.push(`probe injection failed for ${frameName}: ${err instanceof Error ? err.message : String(err)}`);
+    }
+}
+
+/**
+ * Switch panel A to a scene_group by driving the sim's own picker.
+ *
+ * There is NO inbound message for this — field_3d emits PARAM_UPDATE outward
+ * (Rule 27) but has no handler to receive a scene_group, so postMessage cannot
+ * do it. The picker's change listener is the only path, and it is enough: it
+ * sets PM_vgSceneGroup and re-runs the two row passes (deliberately NOT a full
+ * apply, which would clear drag-seize flags — Rule 39c).
+ *
+ * MUST go through getFrame(), not the wrapper's contentDocument. The wrapper is
+ * setContent'd while the panel is served from http://__pm_validator__.local, so
+ * they are CROSS-ORIGIN: reading iframe.contentDocument from the wrapper throws,
+ * and a try/catch around it fails silently — which is exactly how the first
+ * version of this reported "the sim exposes no option for it" on a sim whose
+ * picker was present and correctly populated with ["A","B"]. It is the same
+ * reason every other panel reach-in here uses the frame handle or the
+ * __postToPanel relay.
+ *
+ * Returns false when the picker or the option is genuinely absent, so the caller
+ * can warn rather than capture the default view a second time under another name.
+ */
+async function selectSceneGroup(page: Page, group: string): Promise<boolean> {
+    const frame = getFrame(page, 'panel_a');
+    if (!frame) return false;
+    try {
+        return await frame.evaluate((g: string) => {
+            const sel = document.getElementById('vg_scene_group_select') as HTMLSelectElement | null;
+            if (!sel) return false;
+            if (!Array.from(sel.options).some((o) => o.value === g)) return false;
+            sel.value = g;
+            sel.dispatchEvent(new Event('change', { bubbles: true }));
+            return true;
+        }, group);
+    } catch {
+        return false;
     }
 }
 
