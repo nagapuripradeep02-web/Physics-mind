@@ -1466,7 +1466,7 @@
       },
       "STATE_7": {
         "label": "Measure to the normal, then subtract",
-        "caption": "Measure from the normal",
+        "caption": "Measure to the normal",
         "formula_overlay": "sin θ = |d·n| ⁄ (‖d‖‖n‖)",
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_seg", "vg_lp_arc"],
         "camera_position": [3.217652, 1.965298, -6.051547],
