@@ -32,7 +32,7 @@
     "deploy:review": "npm run deploy:app",
     "deploy:cf-site": "npx wrangler deploy",
     "deploy:app": "npx wrangler deploy -c wrangler.app.toml",
-    "deploy:answers": "npm run build:answers:mpc && npx wrangler deploy -c wrangler.answers.toml",
+    "deploy:answers": "npm run build:answers:gated:mpc && npx wrangler deploy -c wrangler.answers.toml",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "check:renderer-syntax": "npx tsx src/scripts/check-renderer-syntax.ts",
     "check:motion-registry": "npx tsx src/scripts/audit_motion_registry.ts",
@@ -89,7 +89,9 @@
     "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts",
     "backtest:physics": "npx tsx src/scripts/backtest_ipe_papers.ts",
     "tag:appearances": "npx tsx src/scripts/tag_appearances.ts",
-    "check:papers": "npx tsx src/scripts/check_ipe_papers.ts"
+    "check:papers": "npx tsx src/scripts/check_ipe_papers.ts",
+    "build:answers:gated:mpc": "npx tsx src/scripts/build_answer_book.ts --hosted --stream=mpc --gated && npx tsx src/scripts/build_og_card.ts --stream=mpc",
+    "content:push:mpc": "npx tsx --env-file=.env.local src/scripts/push_answer_content.ts --stream=mpc"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

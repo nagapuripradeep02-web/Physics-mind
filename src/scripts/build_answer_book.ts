@@ -20,7 +20,7 @@
  * call, no network at runtime (Google Fonts CSS is the single exception,
  * with a cursive fallback).
  */
-import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join } from 'path';
 import katex from 'katex';
 import { answerBookQuestionSchema, type AnswerBookQuestion } from '../schemas/answerBook';
@@ -75,19 +75,19 @@ if (STREAM !== null && !STREAMS[STREAM]) {
     // ship Botany to an MPC student — the exact thing this flag prevents.
     fail(`  --stream="${STREAM}" is not one of ${Object.keys(STREAMS).join('/')}`);
 }
-if (STREAM && GATED) {
-    // content:push hard-fails on an ORPHAN bundle, and a streamed gated build
-    // would leave the dropped subjects' bundles behind in answer-book/content/
-    // to serve dead content forever. Scope CONTENT_DIR per stream before
-    // lifting this.
-    fail('  --gated and --stream cannot be combined yet: the per-unit content bundles in\n' +
-         '  answer-book/content/ are not stream-scoped, so content:push would abort on the\n' +
-         "  dropped subjects' orphan bundles.");
-}
 const STREAM_SUBJECTS = STREAM ? new Set(STREAMS[STREAM].subjects) : null;
 
-const OUT_DIR = join(BOOK_DIR, GATED ? 'dist-gated' : STREAM ? `dist-${STREAM}` : 'dist');
-const CONTENT_DIR = join(BOOK_DIR, 'content');
+const OUT_DIR = join(
+    BOOK_DIR,
+    GATED ? (STREAM ? `dist-gated-${STREAM}` : 'dist-gated') : STREAM ? `dist-${STREAM}` : 'dist'
+);
+// Content bundles are scoped PER STREAM (2026-08-27). --gated and --stream used
+// to be refused outright: the bundles all landed in one flat answer-book/content/,
+// so a streamed gated build left the dropped subjects' bundles behind and
+// content:push either aborted on them or served dead content forever. A stream
+// gets its own directory, cleared before every write, so what is on disk is
+// exactly what this build produced — nothing inherited from a previous one.
+const CONTENT_DIR = STREAM ? join(BOOK_DIR, 'content', STREAM) : join(BOOK_DIR, 'content');
 
 // ── 1. read + validate every question ────────────────────────────────────────
 const files = readdirSync(QUESTIONS_DIR).filter((f) => f.endsWith('.json')).sort();
@@ -414,6 +414,13 @@ if (GATED) {
     // unit key. content:push uploads these to ab_content.
     const byId = new Map(browserQuestions.map((q) => [q.question_id, q]));
     mkdirSync(CONTENT_DIR, { recursive: true });
+    // Clear first: a bundle left over from an earlier build — a renamed unit, a
+    // subject since dropped from this stream — would upload as live content for
+    // a chapter this build no longer knows about, and nothing downstream would
+    // ever notice. What ships is only what this run wrote.
+    for (const stale of readdirSync(CONTENT_DIR)) {
+        if (stale.endsWith('.json')) rmSync(join(CONTENT_DIR, stale));
+    }
     let bundleBytes = 0;
     for (const u of manifest.units) {
         const key = `${u.subject || 'physics'}-${u.number}`;

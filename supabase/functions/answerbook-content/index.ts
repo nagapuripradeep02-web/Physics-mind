@@ -8,10 +8,14 @@
  * read them. The gated page carries the full catalog (question text, stars,
  * marks — the sell) and asks here the moment a student opens a question.
  *
- * Every device gets ONE free chapter, claimed by an EXPLICIT tap (founder,
- * 2026-08-23): the claim always arrives as claim_free:true from a button the
- * student pressed — this endpoint never spends the slot on a plain open. The
- * atomicity is the partial unique index behind ab_claim_free, not code.
+ * FOUR chapters are free for everyone (founder, 2026-08-27) — one per subject,
+ * marked `free` in ab_content, read live so the set changes with one UPDATE and
+ * no redeploy. They are not entitlements: no device row, nothing to spend.
+ *
+ * The older model — ONE free chapter per device, claimed by an explicit tap —
+ * is DORMANT. claim_free / ab_claim_free and its partial unique index are left
+ * in place and unused, so the per-device slot can return without a rebuild;
+ * free_available is reported false so no client offers the claim.
  *
  * Requests (POST, JSON):
  *   {device_id, list:true}                      → {ok, unlocked:[unit_keys], free_available, sku}
@@ -92,7 +96,7 @@ function live(r: EntRow): boolean {
 }
 
 /** THIS device's price: founding ₹99 while slots remain or if it already holds a
-    founding payment (grandfathered forever), list ₹249 otherwise. Computed by
+    founding payment (grandfathered forever), list price otherwise. Computed by
     ab_price_for on the server — the client never names a price. */
 async function priceFor(deviceId: string): Promise<Record<string, unknown> | null> {
     const res = await rest('rpc/ab_price_for', {
@@ -108,6 +112,18 @@ async function bundleOf(unitKey: string): Promise<unknown | null> {
     if (!res.ok) return null;
     const rows = await res.json() as { bundle: unknown }[];
     return rows[0]?.bundle ?? null;
+}
+
+/** The chapters that are free for EVERYONE (founder, 2026-08-27) — one per
+    subject, marked `free` in ab_content. Not an entitlement: no device row, no
+    claim, nothing to spend. Read live so the four can be changed with one UPDATE
+    and no redeploy. Null means the read FAILED — the caller must fail closed
+    rather than treat it as "nothing is free". */
+async function freeUnits(): Promise<Set<string> | null> {
+    const res = await rest('ab_content?select=unit_key&free=is.true');
+    if (!res.ok) return null;
+    const rows = await res.json() as { unit_key: string }[];
+    return new Set(rows.map((r) => r.unit_key));
 }
 
 Deno.serve(async (req: Request) => {
@@ -139,11 +155,25 @@ Deno.serve(async (req: Request) => {
         console.error('[answerbook-content] entitlement read failed — refusing (fail closed)');
         return reply(origin, 502, { ok: false, error: 'store' });
     }
+    const free = await freeUnits();
+    if (free === null) {
+        console.error('[answerbook-content] free-chapter read failed — refusing (fail closed)');
+        return reply(origin, 502, { ok: false, error: 'store' });
+    }
+
     const liveRows = ents.rows.filter(live);
     const unlocked = new Set(liveRows.map((r) => r.unit_key));
+    // The four free chapters are open to every device, always — they need no
+    // entitlement row, so they simply join the unlocked set before anything
+    // else looks at it.
+    for (const k of free) unlocked.add(k);
     const hasAll = unlocked.has('all');
-    // The free chapter is spent even after a paid pass lapses — it was used.
-    const freeSpent = ents.rows.some((r) => r.source === 'free_chapter');
+    // The per-device free chapter (claim_free / ab_claim_free) is DORMANT since
+    // 2026-08-27: the free content is now four FIXED chapters open to everyone,
+    // so there is no slot to spend. Reported as unavailable so the client never
+    // offers the claim button; the RPC and its partial unique index stay in
+    // place, unused, in case the per-device slot ever comes back.
+    const freeSpent = true;
     const paidRow = liveRows.find((r) => r.source === 'paid');
 
     if (body.list === true) {

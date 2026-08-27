@@ -1003,3 +1003,8 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .pm-ask-card p { margin: 0 0 14px; font: 600 15px/1.45 Inter, system-ui, sans-serif;
   color: var(--ink); }
 .pm-ask-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* The pricing page's "what you get" list, inside the gate sheet. Only the
+   #/pricing view fills it; every other sheet leaves it empty and hidden. */
+#lockList { margin: 10px 0 2px; padding: 0 0 0 18px; text-align: left; }
+#lockList li { font-size: 13px; line-height: 1.55; margin-top: 4px; }

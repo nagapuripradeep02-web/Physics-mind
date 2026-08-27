@@ -39,7 +39,13 @@ function fail(msg: string): never {
 if (!STREAM) fail('  --stream=<name> is required (e.g. --stream=mpc)');
 if (!LABELS[STREAM]) fail(`  --stream="${STREAM}" has no card copy in LABELS`);
 
-const OUT_DIR = join(BOOK_DIR, `dist-${STREAM}`);
+// The card sits beside the index.html it describes. The shipped stream build is
+// GATED since 2026-08-27 (dist-gated-<stream>), so prefer that and fall back to
+// the ungated dist-<stream> — a card written next to the wrong index.html is a
+// card that never reaches a reader.
+const GATED_OUT = join(BOOK_DIR, `dist-gated-${STREAM}`);
+const PLAIN_OUT = join(BOOK_DIR, `dist-${STREAM}`);
+const OUT_DIR = existsSync(join(GATED_OUT, 'index.html')) ? GATED_OUT : PLAIN_OUT;
 const indexPath = join(OUT_DIR, 'index.html');
 if (!existsSync(indexPath)) {
     fail(`  ${indexPath} does not exist — run the book build for this stream first`);

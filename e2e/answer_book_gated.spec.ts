@@ -17,15 +17,22 @@ import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
-const GATED_DIST = join(process.cwd(), 'answer-book', 'dist-gated', 'index.html');
+// The SHIPPED gated artifact is the MPC stream (2026-08-27) — dist-gated-mpc,
+// what wrangler.answers.toml serves. Fall back to the unstreamed dist-gated so
+// a plain `build:answers:gated` still has a spec to run against.
+const GATED_MPC = join(process.cwd(), 'answer-book', 'dist-gated-mpc', 'index.html');
+const GATED_PLAIN = join(process.cwd(), 'answer-book', 'dist-gated', 'index.html');
+const GATED_DIST = existsSync(GATED_MPC) ? GATED_MPC : GATED_PLAIN;
 const FULL_DIST = join(process.cwd(), 'answer-book', 'dist', 'index.html');
-const CONTENT_DIR = join(process.cwd(), 'answer-book', 'content');
+// Bundles are stream-scoped since 2026-08-27 — the shipped gated build is MPC.
+const CONTENT_MPC = join(process.cwd(), 'answer-book', 'content', 'mpc');
+const CONTENT_DIR = existsSync(CONTENT_MPC) ? CONTENT_MPC : join(process.cwd(), 'answer-book', 'content');
 const URL = 'file:///' + GATED_DIST.replace(/\\/g, '/');
 const CONTENT = 'https://content.test/functions/v1/answerbook-content';
 
 test.beforeAll(() => {
-    if (!existsSync(GATED_DIST)) throw new Error('answer-book/dist-gated missing — run npm run build:answers:gated first');
-    if (!existsSync(CONTENT_DIR)) throw new Error('answer-book/content missing — run npm run build:answers:gated first');
+    if (!existsSync(GATED_DIST)) throw new Error('answer-book/dist-gated-mpc missing — run npm run build:answers:gated:mpc first');
+    if (!existsSync(CONTENT_DIR)) throw new Error('answer-book/content/mpc missing — run npm run build:answers:gated:mpc first');
 });
 
 /** A real answer line from a physics file and a KaTeX TeX source from a maths
@@ -106,40 +113,36 @@ test('the gated page carries the catalog but not one answer byte', async ({ page
     expect(r.cards).toBe(r.entries);
 });
 
-test('a locked question shows the sheet, and the free-chapter tap unlocks and renders it', async ({ page }) => {
-    let claimed = false;
+test('a free chapter opens with no tap and no claim — four are free to everyone', async ({ page }) => {
+    // Since 2026-08-27 the free content is FOUR FIXED chapters, one per subject,
+    // marked `free` in ab_content and folded into `unlocked` by the server. No
+    // claim, no slot, no tap: the student simply opens it. The per-device claim
+    // (claim_free / ab_claim_free) is dormant, and this gate proves the client
+    // never reaches for it.
+    let claimAttempted = false;
     await bootGated(page, (body) => {
-        if (body.list) return { ok: true, unlocked: [], free_available: true, sku: { price_inr: null } };
-        if (body.claim_free) { claimed = true; return { ok: true, unlocked: true, bundle: bundleFor(body.unit_key) }; }
-        return { ok: true, locked: true, free_available: !claimed, sku: { price_inr: null } };
+        if (body.list) {
+            return { ok: true, unlocked: ['physics-4'], free_available: false, sku: { price_inr: null } };
+        }
+        if (body.claim_free) { claimAttempted = true; }
+        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        return { ok: true, locked: true, free_available: false, sku: { price_inr: null } };
     });
     await page.waitForSelector('#catalogView:not([hidden])');
 
-    // open a physics-4 question (a gated one)
-    const qid = 'ts_ipe_p1_vec_parallelogram_law';
+    const qid = 'ts_ipe_p1_vec_parallelogram_law';        // a physics-4 question
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
-
-    // the sheet offers the free chapter; no answer page rendered behind it
-    await page.waitForSelector('#lockOverlay:not([hidden])');
-    const sheet = await page.evaluate(() => ({
-        text: document.getElementById('lockText')!.textContent || '',
-        pages: document.querySelectorAll('.page').length,
-    }));
-    expect(sheet.text).toContain('one full chapter free'.toUpperCase().slice(0, 0) + 'ONE full chapter free');
-    expect(sheet.pages).toBe(0);
-
-    // the explicit tap — never a silent claim
-    await page.click('#lockRow .vw-btn.primary');
     await page.waitForSelector('.page', { timeout: 8000 });
-    expect(claimed).toBe(true);
 
-    // the unlocked answer is the real thing: full marks on reveal
+    expect(claimAttempted).toBe(false);                    // nothing was spent
+    expect(await page.evaluate(() => document.getElementById('lockOverlay')!.hidden)).toBe(true);
+
+    // and it is the real answer, not a skeleton
     const st = await page.evaluate(() => {
         (window as any).PM_ANSWER.revealAll();
         return (window as any).PM_ANSWER.getState();
     });
     expect(st.marksEarned).toBe(st.marksTotal);
-    expect(await page.evaluate(() => document.getElementById('lockOverlay')!.hidden)).toBe(true);
 });
 
 test('an entitled unit opens directly — no sheet at all', async ({ page }) => {
@@ -160,12 +163,13 @@ test('an entitled unit opens directly — no sheet at all', async ({ page }) => 
     expect(await page.evaluate(() => document.getElementById('lockOverlay')!.hidden)).toBe(true);
 });
 
-test('with the free chapter spent, a second locked chapter says so and leaks nothing', async ({ page }) => {
+test('a locked chapter names the free four, offers the pass, and leaks nothing', async ({ page }) => {
     const probes = leakProbes();
     await bootGated(page, (body) => {
         if (body.list) return { ok: true, unlocked: ['physics-3'], free_available: false, sku: { price_inr: null } };
         if (body.unit_key === 'physics-3') return { ok: true, unlocked: true, bundle: bundleFor('physics-3') };
-        // locked — claim_free included: the slot is spent, the server refuses
+        // locked — free_available is false everywhere now: the per-device claim
+        // is dormant, so there is nothing for the client to spend.
         return { ok: true, locked: true, free_available: false, sku: { price_inr: null } };
     });
     await page.waitForSelector('#catalogView:not([hidden])');
@@ -177,8 +181,11 @@ test('with the free chapter spent, a second locked chapter says so and leaks not
         claimBtns: document.querySelectorAll('#lockRow .vw-btn.primary').length,
         pageText: document.getElementById('notebookView')!.textContent || '',
     }));
-    expect(r.text).toContain('already used your free chapter');
-    expect(r.text).toContain('coming soon');
+    // The copy tells the truth under the fixed-free-chapters model: it must NOT
+    // say the student spent a free chapter they never had.
+    expect(r.text).toContain('Four chapters');
+    expect(r.text).not.toContain('already used your free chapter');
+    expect(r.text).toContain('coming soon');              // price_inr null = unpriced
     expect(r.claimBtns).toBe(0);                          // nothing to claim
     expect(r.pageText).not.toContain(probes.text.slice(0, 40));
 
@@ -221,7 +228,17 @@ test('the endpoint being down never breaks the catalog — the sheet says try ag
 });
 
 test('every unit has a bundle and every bundle question is the full projection', async () => {
-    const manifest = JSON.parse(readFileSync(join(process.cwd(), 'answer-book', 'units.json'), 'utf8'));
+    const raw = JSON.parse(readFileSync(join(process.cwd(), 'answer-book', 'units.json'), 'utf8'));
+    // The shipped gated build is the MPC stream, and its bundles are scoped to
+    // it (2026-08-27). Compare against the MPC units, not the whole manifest —
+    // Botany's absence from content/mpc is the point of the lens, not drift.
+    const MPC = new Set(['physics', 'chemistry', 'mathematics', 'mathematics_1b']);
+    const streamed = CONTENT_DIR.endsWith('mpc');
+    const manifest = {
+        units: streamed
+            ? raw.units.filter((u: any) => MPC.has(u.subject || 'physics'))
+            : raw.units,
+    };
     const files = readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.json'));
     expect(files.length).toBe(manifest.units.length);
     let total = 0;
@@ -287,10 +304,10 @@ async function bootPaid(page: any, contentHandler: (b: any) => any, payHandler?:
 
 const FOUNDING_SKU = {
     sku: 'full_book', label: 'Every chapter, both subjects',
-    price_inr: 99, list_price_inr: 249, founding: true, founding_locked: false,
+    price_inr: 99, list_price_inr: 199, founding: true, founding_locked: false,
     founding_slots_left: 500, period_days: 31,
 };
-const LIST_SKU = { ...FOUNDING_SKU, price_inr: 249, founding: false, founding_slots_left: 0 };
+const LIST_SKU = { ...FOUNDING_SKU, price_inr: 199, founding: false, founding_slots_left: 0 };
 const LOCKED_IN_SKU = { ...FOUNDING_SKU, founding_locked: true, founding_slots_left: 0 };
 
 test('a founding student is quoted ₹99, told places are limited, and that the price stays theirs', async ({ page }) => {
@@ -310,11 +327,11 @@ test('a founding student is quoted ₹99, told places are limited, and that the 
     expect(r.text).toContain('founding price');
     expect(r.text).toContain('500 places left');
     expect(r.text).toContain('stays yours');       // the grandfather promise, said out loud
-    expect(r.text).toContain('₹249');             // and what it costs later
+    expect(r.text).toContain('₹199');             // and what it costs later
     expect(r.buttons.some((b) => b.includes('₹99'))).toBe(true);
 });
 
-test('a later student is quoted ₹249 and never sees the founding pitch', async ({ page }) => {
+test('a later student is quoted ₹199 and never sees the founding pitch', async ({ page }) => {
     await bootPaid(page, (b) => {
         if (b.list) return { ok: true, unlocked: [], free_available: false, paid_until: null, sku: LIST_SKU };
         return { ok: true, locked: true, free_available: false, sku: LIST_SKU };
@@ -327,10 +344,10 @@ test('a later student is quoted ₹249 and never sees the founding pitch', async
         text: document.getElementById('lockText')!.textContent || '',
         buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
     }));
-    expect(r.text).toContain('₹249 for 31 days');
+    expect(r.text).toContain('₹199 for 31 days');
     expect(r.text).not.toContain('founding');
     expect(r.text).not.toContain('places left');
-    expect(r.buttons.some((b) => b.includes('₹249'))).toBe(true);
+    expect(r.buttons.some((b) => b.includes('₹199'))).toBe(true);
 });
 
 test('a renewing founder is still quoted their own ₹99', async ({ page }) => {
