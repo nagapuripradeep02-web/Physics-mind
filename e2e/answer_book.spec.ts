@@ -2285,3 +2285,27 @@ test('with the planner dormant, revision and the answer flow still work', async 
     expect(st.r).toBeTruthy();
 });
 
+
+test('the home chat is never blank: a returning student with nothing due still gets a greeting', async ({ page }) => {
+    // Regression guard. Removing the plan offer left this branch rendering
+    // NOTHING — intro seen, no plan, nothing due for revision, so the student
+    // opened the chat to an empty thread and no chips.
+    await page.addInitScript(() => {
+        try {
+            localStorage.clear();
+            localStorage.setItem('pm_today_override', '2026-09-05');
+            localStorage.setItem('pm_intro_done', '1');
+        } catch { /* file:// storage may be blocked */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    // Wait for the SETTLED text, not the typing dots — say() renders "· · ·"
+    // first, which satisfies a naive "length > 0" and reads as a blank chat.
+    await page.waitForFunction(() => /step by step/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 8000 });
+    const text = await page.locator('#vidiThread').innerText();
+    expect(text.trim().length).toBeGreaterThan(20);
+    expect(text).toMatch(/step by step/i);
+    expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+});
