@@ -17,11 +17,15 @@
 import { readFileSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import type { Frame, Page } from '@playwright/test';
+import sharp from 'sharp';
+import pixelmatch from 'pixelmatch';
 import { launchBrowser } from '../lib/validators/visual/chromiumProvider';
 
 interface Shot {
   state: number;
   action: string;
+  /** The scene_group this frame was captured in, or null on an unpartitioned state. */
+  sceneGroup: string | null;
   file: string;
   simTimeMs: number;
 }
@@ -36,6 +40,29 @@ interface SliderDrag {
   valueAfter: string; // input value ~1.2s later — a scripted ramp clobbering the drag shows here
   moved: boolean;
   reverted: boolean; // true = the sim took the drag then overwrote it (the dead-guided-slider class)
+  /** The scene_group this row was visible in. Null on an unpartitioned state. */
+  sceneGroup: string | null;
+}
+
+/**
+ * Rule-37 motion probe, ONE PER SCENE GROUP, shot BEFORE that group's drags.
+ *
+ * `changedPx` is the measurement; `bytesEqual` is kept only so an older reader
+ * does not silently lose the field it used to key on. Ordering is recorded
+ * EXPLICITLY (`shotBeforeDrags`) because the verdict is meaningless without it —
+ * see bug_class founder_drive_rule37_motion_probe_runs_after_its_own_slider_
+ * drags_so_a_drag_seized_scene_is_scored_by_noise.
+ */
+interface MotionProbe {
+  sceneGroup: string | null;
+  frameA: string;
+  frameB: string;
+  changedPx: number;
+  totalPx: number;
+  ratio: number;
+  bytesEqual: boolean;
+  shotBeforeDrags: boolean;
+  frozen: boolean;
 }
 
 interface OverlayCollision {
@@ -54,7 +81,9 @@ interface Manifest {
   shots: Shot[];
   sliderDrags: SliderDrag[];
   overlayCollisions: OverlayCollision[];
-  motionProbe: { frameA: string; frameB: string; bytesEqual: boolean } | null;
+  /** Declared scene_groups of the explore state ([] when it is not partitioned). */
+  exploreSceneGroups: string[];
+  motionProbes: MotionProbe[];
   consoleErrors: string[];
   pageErrors: string[];
   flags: string[];
@@ -98,7 +127,8 @@ async function main(): Promise<void> {
     shots: [],
     sliderDrags: [],
     overlayCollisions: [],
-    motionProbe: null,
+    exploreSceneGroups: [],
+    motionProbes: [],
     consoleErrors: [],
     pageErrors: [],
     flags: [],
@@ -111,10 +141,87 @@ async function main(): Promise<void> {
     if (m.type() === 'error') manifest.consoleErrors.push(m.text());
   });
 
+  /** Set by the explore walk so every artifact records the view it came from. */
+  let currentGroup: string | null = null;
+
   const shoot = async (state: number, action: string, name: string): Promise<void> => {
     const file = `${name}.png`;
     await page.screenshot({ path: join(outDir, file) });
-    manifest.shots.push({ state, action, file, simTimeMs: await simTime(page) });
+    manifest.shots.push({ state, action, sceneGroup: currentGroup, file, simTimeMs: await simTime(page) });
+  };
+
+  /** Decode a captured PNG to raw RGBA so two frames can be pixel-compared. */
+  const rgba = async (file: string) =>
+    sharp(join(outDir, file)).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+
+  /**
+   * Rule-37: does this view MOVE on its own? Two frames 1 s apart, compared by
+   * CHANGED-PIXEL COUNT rather than byte equality.
+   *
+   * Byte equality was the original test and it cannot fail once anything has
+   * touched a slider: field_3d's knob() permanently prefers the live value over
+   * vgAnimValue after a trusted drag (correct — a teacher who sets a value wants
+   * it held), so a post-drag scene is legitimately still and the boolean is then
+   * decided by anti-alias jitter. Measured on lines_and_planes_in_space: 838
+   * changed px per 3 s before a lambda drag, 0 px after, while byte comparison
+   * reported "not equal" (i.e. alive) both times. A count carries its own scale;
+   * a boolean does not. CALLERS MUST SHOOT THIS BEFORE ANY DRAG.
+   */
+  const motionProbe = async (label: string, shotBeforeDrags: boolean): Promise<void> => {
+    const fa = `motion_probe_${label}_a.png`;
+    const fb = `motion_probe_${label}_b.png`;
+    // CLIP TO THE SIM. A full-page shot cannot answer "did the SIM move": the
+    // player's own timeline scrubber and elapsed-time readout advance every
+    // frame on their own, so a completely frozen sim still scores hundreds of
+    // changed pixels. Measured during this fix — view B with its only animated
+    // knob REMOVED (the exact pre-F-7 defect) still read 258 px/1 s full-page
+    // and passed. Clipped to the iframe, the same scene reads ~0.
+    const simEl = await page.$('#sim');
+    const clip = (await simEl?.boundingBox()) ?? undefined;
+    await page.screenshot({ path: join(outDir, fa), clip });
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: join(outDir, fb), clip });
+
+    const bytesEqual = readFileSync(join(outDir, fa)).equals(readFileSync(join(outDir, fb)));
+    let changedPx = -1;
+    let totalPx = 0;
+    try {
+      const a = await rgba(fa);
+      const b = await rgba(fb);
+      if (a.info.width === b.info.width && a.info.height === b.info.height) {
+        totalPx = a.info.width * a.info.height;
+        changedPx = pixelmatch(a.data, b.data, undefined, a.info.width, a.info.height, { threshold: 0.1 });
+      }
+    } catch {
+      /* leave changedPx at -1 — reported as unmeasured, never as "moving" */
+    }
+    const ratio = totalPx > 0 && changedPx >= 0 ? changedPx / totalPx : 0;
+    // THE BAR IS AN ABSOLUTE PIXEL COUNT, NOT A RATIO OF THE PAGE.
+    //
+    //   A page-relative ratio is the diluted-lens mistake already on the scar
+    //   list as visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_
+    //   explore_states: this frame is 1280x800 and mostly static chrome, so a
+    //   real but slow motion scores a tiny fraction and reads as dead. Measured
+    //   The frame is CLIPPED to the sim (see above), so `ratio` is sim-relative
+    //   and meaningful — but the bar stays absolute, because the populations are
+    //   orders of magnitude apart and a ratio invites exactly the dilution this
+    //   probe just had to fix. Measured on lines_and_planes_in_space, clipped,
+    //   both views shot before any drag: several hundred to several thousand
+    //   changed px for a live view, and ~0 for a frozen one (its only animated
+    //   knob removed, or seized by a drag). 60 px sits ~10x above the
+    //   anti-alias floor and far below the slowest real motion observed.
+    const MOTION_FLOOR_PX = 60;
+    const frozen = changedPx >= 0 ? changedPx < MOTION_FLOOR_PX : bytesEqual;
+    manifest.motionProbes.push({
+      sceneGroup: currentGroup, frameA: fa, frameB: fb,
+      changedPx, totalPx, ratio, bytesEqual, shotBeforeDrags, frozen,
+    });
+    if (frozen) {
+      manifest.flags.push(
+        `EXPLORE_FROZEN${currentGroup ? ` [view: ${currentGroup}]` : ''}: ` +
+          `${changedPx < 0 ? 'frames byte-identical' : `only ${changedPx}px changed over 1s (floor ${MOTION_FLOOR_PX}px)`} (Rule 37)`,
+      );
+    }
   };
 
   try {
@@ -155,6 +262,29 @@ async function main(): Promise<void> {
 
     // Trusted drag on every visible slider of the CURRENT state (Stage-0 harness gap:
     // the dead-guided-slider class lives in scripted states, not explore — drag everywhere).
+  /**
+   * The scene_group picker (field_3d Δ10) lives INSIDE the sim iframe as
+   * #vg_scene_group_select. A state that declares no groups returns [] and every
+   * caller falls back to a single unpartitioned pass — so an ordinary concept
+   * behaves exactly as it did before this existed.
+   */
+  const sceneGroupOptions = async (): Promise<string[]> => {
+    const simFrame = findSimFrame();
+    if (!simFrame) return [];
+    const sel = simFrame.locator('#vg_scene_group_select');
+    if ((await sel.count()) === 0) return [];
+    return (await sel.locator('option').all()).length
+      ? await sel.locator('option').evaluateAll((os: Element[]) => os.map((o) => (o as HTMLOptionElement).value))
+      : [];
+  };
+
+  const selectSceneGroup = async (value: string): Promise<void> => {
+    const simFrame = findSimFrame();
+    if (!simFrame) return;
+    await simFrame.locator('#vg_scene_group_select').selectOption(value);
+    await page.waitForTimeout(1200); // let the group swap settle before measuring
+  };
+
     const dragVisibleSliders = async (stateNum: number, prefix: string): Promise<number> => {
       const simFrame = findSimFrame();
       if (!simFrame) {
@@ -199,6 +329,7 @@ async function main(): Promise<void> {
           valueAfter,
           moved: valueBefore !== valueAfter,
           reverted,
+          sceneGroup: currentGroup,
         });
       }
       return n;
@@ -287,7 +418,17 @@ async function main(): Promise<void> {
       await shoot(i + 1, 'playing_late', `S${i + 1}_late`);
     }
 
-    // ── Explore state (last card): post-narration sandbox re-drag + Rule-37 motion probe. ──
+    // ── Explore state (last card): ONCE PER SCENE GROUP. ──
+    //   A group-partitioned explore state is TWO sandboxes behind one card. This
+    //   walk used to visit only the authored default, and the non-default group's
+    //   slider rows are display:none while it is unselected — so `:visible` never
+    //   matched them and the entire other view went ungated. That blind spot hid a
+    //   frozen view through three Checkpoint-B cycles AND the CRITICAL introduced
+    //   by the fix for it (bug_class every_visual_gate_captures_only_the_default_
+    //   scene_group_so_a_partitioned_explore_states_other_view_is_ungated).
+    //
+    //   ORDER IS PART OF THE CLAIM: probe, THEN drag. Dragging first seizes the
+    //   knob, and the probe then measures a scene this harness froze itself.
     if (stateCount > 0) {
       const exploreIdx = stateCount - 1;
       await cards.nth(exploreIdx).click();
@@ -295,22 +436,35 @@ async function main(): Promise<void> {
       await page.locator('#playBtn').click();
       // Let the narration/timeline run out so we test the post-narration sandbox.
       await page.waitForTimeout(9000);
-      const dragged = await dragVisibleSliders(exploreIdx + 1, 'explore');
-      if (dragged === 0) {
+
+      const groups = await sceneGroupOptions();
+      manifest.exploreSceneGroups = groups;
+      // [] = unpartitioned: one pass with currentGroup null, exactly as before.
+      const passes: (string | null)[] = groups.length ? groups : [null];
+
+      let draggedTotal = 0;
+      for (const g of passes) {
+        currentGroup = g;
+        if (g !== null) {
+          await selectSceneGroup(g);
+          await shoot(exploreIdx + 1, `explore_view_${g}`, `explore_${g}_enter`);
+        }
+        // BEFORE any drag in this view — see motionProbe()'s contract.
+        await motionProbe(g ?? 'explore', true);
+        draggedTotal += await dragVisibleSliders(exploreIdx + 1, `explore${g ? `_${g}` : ''}`);
+      }
+      currentGroup = null;
+
+      if (draggedTotal === 0) {
         manifest.flags.push('NO_VISIBLE_SLIDERS_IN_EXPLORE: explore state exposes no sliders');
       }
-
-      // Rule-37 probe: two frames 1s apart, long after narration end. Byte-equal
-      // PNGs from a live renderer = the explore state froze (the exact pre-1d63d79
-      // failure). founder-proxy judges; we only record.
-      const fa = 'motion_probe_a.png';
-      const fb = 'motion_probe_b.png';
-      await page.screenshot({ path: join(outDir, fa) });
-      await page.waitForTimeout(1000);
-      await page.screenshot({ path: join(outDir, fb) });
-      const bytesEqual = readFileSync(join(outDir, fa)).equals(readFileSync(join(outDir, fb)));
-      manifest.motionProbe = { frameA: fa, frameB: fb, bytesEqual };
-      if (bytesEqual) manifest.flags.push('EXPLORE_FROZEN: motion probe frames are byte-identical (Rule 37)');
+      // A declared group that surfaced no control of its own is a coverage hole,
+      // not a pass: the picker promised a view this walk could not exercise.
+      for (const g of groups) {
+        if (!manifest.sliderDrags.some((d) => d.sceneGroup === g)) {
+          manifest.flags.push(`SCENE_GROUP_UNEXERCISED: view "${g}" declared but exposed no draggable control`);
+        }
+      }
     }
   } finally {
     await browser.close();
@@ -321,10 +475,18 @@ async function main(): Promise<void> {
   console.log(
     `  states=${manifest.stateCount} shots=${manifest.shots.length} drags=${manifest.sliderDrags.length} ` +
       `collisions=${manifest.overlayCollisions.length} flags=${manifest.flags.length} ` +
+      `groups=${manifest.exploreSceneGroups.length || 1} probes=${manifest.motionProbes.length} ` +
       `consoleErrors=${manifest.consoleErrors.length}`,
   );
   for (const c of manifest.overlayCollisions) {
     console.log(`  COLLISION: S${c.state} ${c.overlay} x ${c.chrome} (${c.overlapPx.w}x${c.overlapPx.h}px)`);
+  }
+  for (const mp of manifest.motionProbes) {
+    console.log(
+      `  MOTION${mp.sceneGroup ? ` [${mp.sceneGroup}]` : ''}: ` +
+        `${mp.changedPx < 0 ? 'unmeasured' : `${mp.changedPx}px (${(mp.ratio * 100).toFixed(3)}%)`} over 1s ` +
+        `— ${mp.frozen ? 'FROZEN' : 'moving'} (shot ${mp.shotBeforeDrags ? 'before' : 'AFTER'} drags)`,
+    );
   }
   for (const f of manifest.flags) console.log(`  FLAG: ${f}`);
 }
