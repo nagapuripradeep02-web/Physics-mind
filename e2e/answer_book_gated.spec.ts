@@ -319,15 +319,20 @@ test('a founding student is quoted ₹99, told places are limited, and that the 
     await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
     await page.waitForSelector('#lockOverlay:not([hidden])');
 
-    const r = await page.evaluate(() => ({
-        text: document.getElementById('lockText')!.textContent || '',
-        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
-    }));
-    expect(r.text).toContain('₹99 for 31 days');
-    expect(r.text).toContain('founding price');
-    expect(r.text).toContain('500 places left');
-    expect(r.text).toContain('stays yours');       // the grandfather promise, said out loud
-    expect(r.text).toContain('₹199');             // and what it costs later
+    const r = await page.evaluate(() => {
+        const g = (s: string) => (document.querySelector(s) || { textContent: '' }).textContent || '';
+        return {
+            text: document.getElementById('lockText')!.textContent || '',
+            was: g('#lockPrice .lp-was'), now: g('#lockPrice .lp-now'),
+            per: g('#lockPrice .lp-per'), note: g('#lockPrice .lp-note'),
+            buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+        };
+    });
+    expect(r.now).toBe('₹99');
+    expect(r.per).toContain('31 days');
+    expect(r.was).toBe('₹199');                   // what it costs later, struck through
+    expect(r.note).toContain('500');              // places left
+    expect(r.text).toContain('stays yours');      // the grandfather promise, said out loud
     expect(r.buttons.some((b) => b.includes('₹99'))).toBe(true);
 });
 
@@ -340,13 +345,21 @@ test('a later student is quoted ₹199 and never sees the founding pitch', async
     await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
     await page.waitForSelector('#lockOverlay:not([hidden])');
 
-    const r = await page.evaluate(() => ({
-        text: document.getElementById('lockText')!.textContent || '',
-        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
-    }));
-    expect(r.text).toContain('₹199 for 31 days');
+    const r = await page.evaluate(() => {
+        const g = (s: string) => (document.querySelector(s) || { textContent: '' }).textContent || '';
+        return {
+            text: document.getElementById('lockText')!.textContent || '',
+            was: document.querySelector('#lockPrice .lp-was') ? 'present' : 'absent',
+            now: g('#lockPrice .lp-now'), per: g('#lockPrice .lp-per'),
+            note: g('#lockPrice .lp-note'),
+            buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+        };
+    });
+    expect(r.now).toBe('₹199');
+    expect(r.per).toContain('31 days');
+    expect(r.was).toBe('absent');                 // nothing to strike: this IS the price
+    expect(r.note).toBe('');
     expect(r.text).not.toContain('founding');
-    expect(r.text).not.toContain('places left');
     expect(r.buttons.some((b) => b.includes('₹199'))).toBe(true);
 });
 
@@ -358,10 +371,19 @@ test('a renewing founder is still quoted their own ₹99', async ({ page }) => {
     await page.waitForSelector('#catalogView:not([hidden])');
     await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
     await page.waitForSelector('#lockOverlay:not([hidden])');
-    const text = await page.evaluate(() => document.getElementById('lockText')!.textContent || '');
-    expect(text).toContain('₹99');
-    expect(text).toContain('your founding price');
-    expect(text).not.toContain('places left');     // the slot race is over for them
+    const r = await page.evaluate(() => {
+        const g = (s: string) => (document.querySelector(s) || { textContent: '' }).textContent || '';
+        return { text: document.getElementById('lockText')!.textContent || '',
+                 now: g('#lockPrice .lp-now'), note: g('#lockPrice .lp-note'),
+                 was: document.querySelector('#lockPrice .lp-was') ? 'present' : 'absent' };
+    });
+    expect(r.now).toBe('₹99');
+    expect(r.note).toMatch(/kept for you/i);       // their price, not a countdown
+    // The strike STAYS for a grandfathered founder: 199 struck beside their 99
+    // is the whole point — it shows what they keep, every renewal.
+    expect(r.was).toBe('present');
+    expect(r.text).toContain('your own price');
+    expect(r.note).not.toContain('students');      // the slot race is over for them
 });
 
 test('the unlock tap asks the server for a link and carries the device id', async ({ page }) => {
@@ -598,4 +620,50 @@ test('signed in, the chip becomes the student\'s initial and offers sign out', a
     }));
     expect(c.email).toBe('pradeep@example.com');
     expect(c.action).toBe('Sign out');
+});
+
+test('the price shows as a price: 199 struck through, 99 big', async ({ page }) => {
+    // A sentence saying "it later costs 199" gets read past. A struck-through
+    // number does not. Values still come from the server; only the look is here.
+    await bootGated(page, (body) => {
+        if (body.list) return { ok: true, unlocked: [], free_available: false, sku: FOUNDING_SKU };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => { location.hash = '#/pricing'; });
+    await page.waitForSelector('#lockPrice:not([hidden])', { timeout: 10000 });
+
+    const p = await page.evaluate(() => {
+        const was = document.querySelector('#lockPrice .lp-was') as HTMLElement;
+        const now = document.querySelector('#lockPrice .lp-now') as HTMLElement;
+        return {
+            was: was.textContent, now: now.textContent,
+            note: (document.querySelector('#lockPrice .lp-note') || { textContent: '' }).textContent,
+            struck: getComputedStyle(was).textDecorationLine,
+            wasPx: parseFloat(getComputedStyle(was).fontSize),
+            nowPx: parseFloat(getComputedStyle(now).fontSize),
+        };
+    });
+    expect(p.was).toBe('₹199');
+    expect(p.struck).toContain('line-through');       // struck, not merely grey
+    expect(p.now).toBe('₹99');
+    expect(p.nowPx).toBeGreaterThan(p.wasPx);          // and it is the bigger number
+    expect(p.note).toMatch(/First \d+ students/);
+
+    // a student who already holds the founding price is not shown a fake discount
+    await page.evaluate(() => { location.hash = '#/'; });
+    await bootGated(page, (body) => {
+        const locked = { ...FOUNDING_SKU, founding: false, founding_locked: true };
+        if (body.list) return { ok: true, unlocked: [], free_available: false, sku: locked };
+        return { ok: true, locked: true, free_available: false, sku: locked };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.evaluate(() => { location.hash = '#/pricing'; });
+    await page.waitForSelector('#lockPrice:not([hidden])', { timeout: 10000 });
+    const q = await page.evaluate(() => ({
+        was: document.querySelector('#lockPrice .lp-was') ? 'present' : 'absent',
+        note: (document.querySelector('#lockPrice .lp-note') || { textContent: '' }).textContent,
+    }));
+    expect(q.was).toBe('absent');                      // nothing to strike through
+    expect(q.note).toMatch(/kept for you/i);
 });

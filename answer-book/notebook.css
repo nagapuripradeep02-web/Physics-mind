@@ -1037,3 +1037,15 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .acct-note { margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--chrome-dim); }
 .acct-row { margin-top: 11px; }
 .topbar { position: sticky; }
+
+/* The price block in the gate sheet: list price struck through, founding price
+   big. Values are server-decided; this only decides how they look. */
+.lock-price { margin: 12px 0 2px; display: flex; align-items: baseline;
+  gap: 10px; flex-wrap: wrap; }
+.lock-price .lp-was { font-size: 19px; font-weight: 600; color: var(--chrome-dim);
+  text-decoration: line-through; text-decoration-thickness: 2px; }
+.lock-price .lp-now { font-size: 34px; font-weight: 800; color: var(--accent);
+  line-height: 1; letter-spacing: -0.01em; }
+.lock-price .lp-per { font-size: 13px; color: var(--chrome-dim); }
+.lock-price .lp-note { flex-basis: 100%; margin-top: 5px; font-size: 12.5px;
+  font-weight: 600; color: var(--sage-deep); }

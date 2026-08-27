@@ -3077,22 +3077,43 @@
       if (out.sku) priceInfo = out.sku;
     }
 
+    /** Show the price AS a price: list price struck through, founding price big
+        beside it, and how many places are left. A sentence saying "it later
+        costs 199" is read past; a struck-through number is not.
+
+        Every number still comes from the server, so a founding student and a
+        later one each see their own truth. */
+    function paintPrice() {
+      var pb = $('lockPrice');
+      if (!pb || !priceInfo || !priceInfo.price_inr) return;
+      pb.innerHTML = '';
+      var list = priceInfo.list_price_inr;
+      // Only strike a price that is actually higher than what this student pays.
+      if (priceInfo.founding && list && list > priceInfo.price_inr) {
+        pb.appendChild(el('span', 'lp-was', '₹' + list));
+      }
+      pb.appendChild(el('span', 'lp-now', '₹' + priceInfo.price_inr));
+      pb.appendChild(el('span', 'lp-per', 'for ' + priceInfo.period_days + ' days'));
+      var left = priceInfo.founding_slots_left;
+      if (priceInfo.founding_locked) {
+        pb.appendChild(el('span', 'lp-note', 'Your founding price, kept for you.'));
+      } else if (priceInfo.founding && typeof left === 'number' && left > 0) {
+        pb.appendChild(el('span', 'lp-note', 'First ' + left + ' students. Then ₹' + list + '.'));
+      }
+      pb.hidden = false;
+    }
+
     /** The offer line. The price ALWAYS comes from the server (ab_price_for) —
         the client never names a number, so a founding student and a later one
         each see their own truth without the page knowing the rule. */
     function offerLine() {
       if (!priceInfo || !priceInfo.price_inr) return 'Unlocking every chapter is coming soon.';
-      var p = '₹' + priceInfo.price_inr + ' for ' + priceInfo.period_days + ' days';
-      if (priceInfo.founding_locked) {
-        return 'Unlock every chapter again — ' + p + ', your founding price.';
-      }
-      if (priceInfo.founding) {
-        var left = priceInfo.founding_slots_left;
-        return 'Unlock every chapter — ' + p + '. That is the founding price'
-          + (typeof left === 'number' && left > 0 ? ' (' + left + ' places left)' : '')
-          + '; it later costs ₹' + priceInfo.list_price_inr + '. Once you join at this price, it stays yours.';
-      }
-      return 'Unlock every chapter — ' + p + '.';
+      // Short on purpose. The numbers live in the price block above this line,
+      // where a struck-through price is read at a glance; repeating them here
+      // in a sentence only made the sheet longer.
+      if (priceInfo.founding_locked) return 'Unlock every chapter again at your own price.';
+      if (priceInfo.founding) return 'Unlock every chapter. This price stays yours.';
+      return 'Unlock every chapter.';
     }
 
     function payable() { return !!(PAY_BASE && priceInfo && priceInfo.price_inr); }
@@ -3151,6 +3172,8 @@
       $('lockText').textContent = text;
       var list = $('lockList');
       if (list) { list.innerHTML = ''; list.hidden = true; }
+      var pb = $('lockPrice');
+      if (pb) { pb.innerHTML = ''; pb.hidden = true; }
       var row = $('lockRow');
       row.innerHTML = '';
       for (var i = 0; i < buttons.length; i++) {
@@ -3207,6 +3230,7 @@
         }
         buttons.push({ label: 'Back to the book', fn: function () { location.hash = '#/'; } });
         sheet(offerLine(), buttons);
+        paintPrice();
         var list = $('lockList');
         if (!list) return;
         var items = [
@@ -3242,8 +3266,8 @@
       // chapter", which under this model tells a student they spent something
       // they never had. Say what is true: some chapters are free, this one is
       // not, and here is what the rest costs.
-      var text = 'This chapter is locked. Four chapters — one in each subject — are free to read; '
-               + 'the rest need a pass. ' + offerLine();
+      var text = 'This chapter is locked. Four chapters are free, one in each subject. '
+               + offerLine();
       if (payable()) {
         buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
       }
@@ -3259,6 +3283,7 @@
       }
       buttons.push(backBtn());
       sheet(text, buttons);
+      paintPrice();
     }
 
     function claimFree(i, cutKey, k) {
