@@ -484,6 +484,32 @@ const payBase = GATED
     ? (process.env.ANSWER_BOOK_PAY_BASE ?? PAY_HOSTED_BASE)
     : '';
 
+// Google sign-in (2026-08-27). The Supabase project ROOT, not a function — the
+// client redirects to /auth/v1/authorize and reads the token back off the hash,
+// so there is no SDK and no dependency added to a single-file build. Gated
+// builds only: signing in exists to carry a PASS between devices, and an
+// ungated build has nothing to carry. Unset keeps the Auth module inert — the
+// same guarantee Sync and Gate make.
+const AUTH_HOSTED_BASE = 'https://dxwpkjfypzxrzgbevfnx.supabase.co';
+const authBase = GATED
+    ? (process.env.ANSWER_BOOK_AUTH_BASE ?? AUTH_HOSTED_BASE)
+    : '';
+// Supabase Auth's REST endpoints want an `apikey` header as well as the bearer
+// token — without it /auth/v1/user answers 401 even for a perfectly valid
+// session, and the client would sign a real student straight back out. This is
+// the ANON key, which is public by design (it ships in every Supabase web app
+// and grants nothing on its own; RLS and the service key do the guarding). The
+// service key must NEVER appear here.
+// Hardcoded like the endpoint URLs above, and for the same reason: this build
+// does not read .env.local, so an env-only value bakes as an empty string and
+// then signs every student straight back out — silently, because an empty
+// apikey looks exactly like a bad token. Overridable for another project.
+const AUTH_ANON_PUBLIC = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4d3BramZ5cHp4cnpnYmV2Zm54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwMTU4MjUsImV4cCI6MjA4NzU5MTgyNX0.YaWg-pForGJOGsuoeMTT9QlfEJBLZVjeJSjgvYBf0is';
+const authAnon = GATED ? (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? AUTH_ANON_PUBLIC) : '';
+if (GATED && !authAnon) {
+    fail('  no Supabase anon key — Google sign-in would sign every student back out');
+}
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
@@ -495,6 +521,8 @@ const dataJs =
     `window.PM_CONTENT_BASE = ${JSON.stringify(contentBase)};
 ` +
     `window.PM_PAY_BASE = ${JSON.stringify(payBase)};\n` +
+    `window.PM_AUTH_BASE = ${JSON.stringify(authBase)};\n` +
+    `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
     `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};`;
 

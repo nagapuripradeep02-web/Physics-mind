@@ -81,11 +81,43 @@ async function rest(path: string, init?: RequestInit): Promise<Response> {
 
 interface EntRow { unit_key: string; source: string; expires_at: string | null }
 
-/** The device's standing: which units it may read, and whether the free slot is spent. */
-async function entitlementsOf(deviceId: string): Promise<{ rows: EntRow[] } | null> {
-    const res = await rest(`ab_entitlements?select=unit_key,source,expires_at&device_id=eq.${deviceId}`);
+/** The standing of one device — or, once a student has signed in, of EVERY
+    device their account owns. Entitlements stay device-keyed (nothing migrated
+    when accounts landed); the account is what unions them, so a pass bought on
+    a phone opens the book on a laptop. */
+async function entitlementsOf(deviceIds: string[]): Promise<{ rows: EntRow[] } | null> {
+    if (!deviceIds.length) return { rows: [] };
+    const list = deviceIds.map((d) => `"${d}"`).join(',');
+    const res = await rest(`ab_entitlements?select=unit_key,source,expires_at&device_id=in.(${list})`);
     if (!res.ok) return null;
     return { rows: await res.json() as EntRow[] };
+}
+
+/** Who is signed in, if anyone. The token is verified by asking Supabase Auth
+    itself — this function never parses or trusts a JWT it was handed. A bad or
+    expired token is simply "not signed in", never an error: the student keeps
+    the anonymous book they already had. */
+async function userOf(accessToken: string): Promise<string | null> {
+    if (!accessToken || accessToken.length > 4096) return null;
+    try {
+        const res = await fetch(SUPABASE_URL + '/auth/v1/user', {
+            headers: { apikey: SERVICE_KEY, Authorization: 'Bearer ' + accessToken },
+        });
+        if (!res.ok) return null;
+        const u = await res.json() as { id?: string };
+        return typeof u.id === 'string' && UUID_RE.test(u.id) ? u.id : null;
+    } catch { return null; }
+}
+
+/** Link this device to the account and return every device that account owns. */
+async function devicesOfUser(userId: string, deviceId: string): Promise<string[]> {
+    const res = await rest('rpc/ab_link_device', {
+        method: 'POST',
+        body: JSON.stringify({ p_user: userId, p_device: deviceId }),
+    });
+    if (!res.ok) return [deviceId];
+    const out = await res.json() as { ok?: boolean; devices?: string[] };
+    return out.ok && Array.isArray(out.devices) && out.devices.length ? out.devices : [deviceId];
 }
 
 /** A row unlocks only while it is LIVE. expires_at null = permanent (the free
@@ -150,7 +182,12 @@ Deno.serve(async (req: Request) => {
     const deviceId = typeof body.device_id === 'string' ? body.device_id : '';
     if (!UUID_RE.test(deviceId)) return reply(origin, 400, { ok: false, error: 'bad_device' });
 
-    const ents = await entitlementsOf(deviceId);
+    // Signed in? Then this device's standing is its ACCOUNT's standing.
+    const token = typeof body.access_token === 'string' ? body.access_token : '';
+    const userId = token ? await userOf(token) : null;
+    const deviceIds = userId ? await devicesOfUser(userId, deviceId) : [deviceId];
+
+    const ents = await entitlementsOf(deviceIds);
     if (ents === null) {
         console.error('[answerbook-content] entitlement read failed — refusing (fail closed)');
         return reply(origin, 502, { ok: false, error: 'store' });
@@ -182,6 +219,8 @@ Deno.serve(async (req: Request) => {
             unlocked: hasAll ? ['all'] : Array.from(unlocked),
             free_available: !freeSpent,
             paid_until: paidRow?.expires_at ?? null,
+            signed_in: !!userId,
+            devices: userId ? deviceIds.length : 1,
             sku: await priceFor(deviceId),
         });
     }
