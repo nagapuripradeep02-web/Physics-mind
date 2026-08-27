@@ -86,7 +86,15 @@ body {
   box-shadow: 0 5px 14px -5px rgba(203, 104, 67, 0.55);
 }
 .brand-mark svg { width: 18px; height: 18px; display: block; }
+/* Two lines, stacked: the BRAND in the display serif, the product beneath it in
+   quiet small caps. Same order the marketing masthead uses, so a student who
+   met us at viditra.co recognises this bar as the same company. */
+.brand-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.06; }
 .brand-name { font-family: var(--serif); font-weight: 700; font-size: 18.5px; letter-spacing: 0; }
+.brand-product {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--chrome-dim); margin-top: 2px;
+}
 .brand-sub { font-size: 12.5px; color: var(--chrome-dim); }
 .topbar-actions { display: flex; gap: 8px; }
 
@@ -984,7 +992,10 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
   .topbar { flex-wrap: wrap; gap: 8px; row-gap: 10px; }
   .topbar-actions { width: 100%; justify-content: flex-end; }
   .btn { padding: 7px 11px; font-size: 13px; }
-  .brand-sub { display: none; }        /* one line: the name IS the brand on a phone */
+  /* The board line goes on a phone — the stacked brand + product above it
+     already says what this is, and three text rows beside the mark would push
+     the controls onto a second row. */
+  .brand-sub { display: none; }
   .brand-name { white-space: nowrap; }
   .cat-hero h1 { font-size: 32px; }
   .question-text { font-size: 19px; }
