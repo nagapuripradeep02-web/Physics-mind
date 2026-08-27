@@ -264,7 +264,12 @@
     currentView = v;
     var nb = v === 'notebook';
     var ee = v === 'exam-eve';
-    $('catalogView').hidden = nb || ee;
+    var dr = v === 'door';
+    // The catalog is the fallthrough view — anything not claimed above un-hides
+    // it — so every new view has to subtract itself here or it renders UNDER the
+    // catalog rather than instead of it.
+    $('catalogView').hidden = nb || ee || dr;
+    $('doorView').hidden = !dr;
     $('notebookView').hidden = !nb;
     $('examEveView').hidden = !ee;
     $('btnCatalog').hidden = !(nb || ee);
@@ -347,6 +352,72 @@
       never the bare number. */
   function unitKey(u) { return subjectOf(u) + '-' + u.number; }
 
+  /** Chapters a student can OPEN come first (founder, 2026-08-27). The four free
+      chapters are #4, #3, #4 and #3 of their subjects — never #1 — so picking
+      Physics landed on Physical World, Units and Measurements and Motion in a
+      Straight Line, all locked, before the one chapter that would open. The
+      student met three closed doors before the product said anything at all.
+
+      A stable PARTITION, not a comparator sort: order WITHIN each half must stay
+      exactly units.json order, because a chapter list that is not in chapter
+      order is its own bug.
+
+      For a student holding a pass nothing is locked, so this is a no-op and the
+      catalog reads exactly as it always did. Same before the entitlement list
+      answers, since locked() is false until then — which is why the first paint
+      waits on Gate.whenListed rather than reshuffling under a thumb. */
+  function unitsFreeFirst(list) {
+    var open = [], shut = [];
+    for (var i = 0; i < list.length; i++) {
+      (Gate.locked(unitKey(list[i])) ? shut : open).push(list[i]);
+    }
+    return open.concat(shut);
+  }
+
+  /** Draw a lock cue only when the answer is KNOWN and MEANINGFUL: the gate is
+      live, the list has actually answered, and this student does not already
+      hold a pass. Without the middle term a server blip paints "Free" on all 38
+      chapters, which is worse than no cue at all; without the last one a paying
+      student reads a lock vocabulary that no longer applies to them. */
+  function lockCuesOn() { return Gate.on() && Gate.listed() && !Gate.hasPass(); }
+
+  /** The offer, drawn once, immediately above the first locked chapter.
+
+      Counts are WHOLE-BOOK on purpose even when the catalog is filtered to one
+      subject: the pass unlocks the book, so a physics-only student reading
+      "unlock all 38 chapters" is reading what they would actually get.
+
+      The price is the one the SERVER decided for this device (ab_price_for,
+      carried in the same list reply) — the client still never invents a number,
+      so a founding student reads ₹99 and a later one ₹199, and before the
+      server has said anything the line simply carries no number. */
+  function buildWall() {
+    var lockedQs = 0;
+    UNITS.forEach(function (u) {
+      if (Gate.locked(unitKey(u))) lockedQs += u.questions.length;
+    });
+    var price = Gate.price();
+
+    var w = document.createElement('div');
+    w.className = 'cat-wall';
+    var t = document.createElement('p');
+    t.className = 'cat-wall-title';
+    t.textContent = 'Unlock all ' + UNITS.length + ' chapters' + (price ? ' · ₹' + price : '');
+    w.appendChild(t);
+    var s = document.createElement('p');
+    s.className = 'cat-wall-sub';
+    s.textContent = lockedQs + ' more answers, each one written out step by step ' +
+      'with the marks every step earns.';
+    w.appendChild(s);
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cat-wall-btn';
+    b.textContent = 'See what you get';
+    b.addEventListener('click', function () { location.hash = '#/pricing'; });
+    w.appendChild(b);
+    return w;
+  }
+
   /** The chapter name as a student should READ it in the chapter picker.
       units.json disambiguates across papers by suffixing the subject —
       "Atomic Structure (Chemistry)", "Functions (Maths-1A)" — which exists only
@@ -426,7 +497,25 @@
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
       var base = 'Telangana IPE · First year';
-      eyebrow.textContent = base + ' · ' + window.PM_STREAM;
+      var eyeText = base + ' · ' + window.PM_STREAM;
+      if (Door.enabled()) {
+        // The eyebrow already names the board, the year and the group, so it is
+        // the honest place to change them from — no new chrome in a topbar that
+        // already carries four controls on a phone. Only the WORD is the button:
+        // wrapping the whole line made it read as one tracked small-caps label
+        // that happened to end in CHANGE, with no affordance at all.
+        eyebrow.textContent = '';
+        eyebrow.appendChild(document.createTextNode(eyeText + ' · '));
+        var chg = document.createElement('button');
+        chg.type = 'button';
+        chg.id = 'btnChangeTrack';
+        chg.className = 'cat-eyebrow-btn';
+        chg.textContent = 'Change';
+        chg.addEventListener('click', function () { location.hash = '#/choose'; });
+        eyebrow.appendChild(chg);
+      } else {
+        eyebrow.textContent = eyeText;
+      }
     }
 
     // The subject picker. Hidden while the book holds ONE subject, so a
@@ -537,11 +626,16 @@
         var o = document.createElement('option');
         o.value = unitKey(u);
         o.setAttribute('data-unit', unitKey(u));
+        // A native <option> takes text and nothing else, so the lock has to BE
+        // text. Without it the picker was the one surface carrying no lock
+        // signal: a student chose "Physical World" off a clean-looking list and
+        // learned it was locked only after tapping a card inside it.
+        var shut = lockCuesOn() && Gate.locked(unitKey(u));
         // Once the subject is known — either picked, or the optgroup heading
         // says it — a trailing "(Chemistry)" on the chapter name is noise the
         // student has to read past. Strip ONLY a known subject label, so a
         // chapter whose real name contains brackets is never mangled.
-        o.textContent = chapterLabel(u) + ' (' + u.questions.length + ')';
+        o.textContent = (shut ? '🔒 ' : '') + chapterLabel(u) + ' (' + u.questions.length + ')';
         parent.appendChild(o);
       };
 
@@ -551,11 +645,11 @@
           if (!inSubj.length) return;
           var g = document.createElement('optgroup');
           g.label = SUBJ_LABEL[sName] || sName;
-          inSubj.forEach(function (u) { addUnit(u, g); });
+          unitsFreeFirst(inSubj).forEach(function (u) { addUnit(u, g); });
           unitSel.appendChild(g);
         });
       } else {
-        scoped.forEach(function (u) { addUnit(u, unitSel); });
+        unitsFreeFirst(scoped).forEach(function (u) { addUnit(u, unitSel); });
       }
 
       // A chapter key from the previously-selected subject is not in this list;
@@ -574,14 +668,24 @@
     var sections = $('catSections');
     sections.innerHTML = '';
     var shown = 0;
+    var cues = lockCuesOn();
+    var wallPlaced = false;
 
-    UNITS.forEach(function (u) {
+    unitsFreeFirst(UNITS).forEach(function (u) {
       var visible = u.questions.filter(function (e) { return entryMatches(e, u); });
       if (!visible.length) return;
       shown += visible.length;
 
+      var uLocked = cues && Gate.locked(unitKey(u));
+      // The offer, ONCE, immediately above the first locked chapter on screen —
+      // never repeated per chapter. Everything above it opens; everything below
+      // it is what the pass buys, and it stays listed and countable because those
+      // 688 answers ARE the sell. What changed is only the order in which a
+      // student meets them.
+      if (uLocked && !wallPlaced) { sections.appendChild(buildWall()); wallPlaced = true; }
+
       var sec = document.createElement('section');
-      sec.className = 'cat-section';
+      sec.className = 'cat-section' + (uLocked ? ' locked' : '');
       var h = document.createElement('h2');
       // With a subject chosen, the "(Chemistry)" suffix is redundant and costs a
       // second line on a phone. With ALL subjects showing it is load-bearing —
@@ -589,6 +693,16 @@
       // keeps the full name plus the subject either way, so search is unaffected.
       var headName = catFilter.subject === 'ALL' ? u.name : chapterLabel(u);
       h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + headName));
+      // The lock belongs to the CHAPTER, which is the thing that is locked. It
+      // used to live as a bare emoji on every card inside it — the same fact
+      // repeated twenty-nine times, and absent from the chapter heading and the
+      // chapter picker, the two places a student actually decides from.
+      if (cues) {
+        var lockPill = document.createElement('span');
+        lockPill.className = 'cat-lock' + (uLocked ? '' : ' free');
+        lockPill.textContent = uLocked ? '🔒 Locked' : 'Free';
+        h.appendChild(lockPill);
+      }
       var pill = document.createElement('span');
       pill.className = 'cat-count';
       var uReady = u.questions.filter(function (e) { return e.question_id !== undefined; }).length;
@@ -689,15 +803,6 @@
             // says WHEN revision is due; green chip = done. Authored branch only
             // — the soon-card gate asserts its chips verbatim. A class turns the
             // red margin rule green.
-            // The chapter gate's lock cue. Only in the GATED build, only
-            // once the entitlement list has answered (no flicker), and
-            // appended after the other chips so no first-chip gate moves.
-            if (Gate.locked(unitKey(u))) {
-              var lk = document.createElement('span');
-              lk.className = 'cc-chip pm-lock';
-              lk.textContent = '🔒';
-              badges.appendChild(lk);
-            }
             var stg = Vidi.stageFor(e.question_id);
             if (stg.u || stg.r) {
               var done = stg.u && stg.r;
@@ -733,9 +838,22 @@
     renderTriage();
   }
 
+  var catalogPainted = false;          // has this session drawn the catalog once?
+
   function showCatalog() {
-    showView('catalog');
-    renderCatalog();
+    // Every paint after the first is synchronous. Only the first waits, because
+    // it is the only one that could REORDER: Gate.locked() reads false until the
+    // server answers, so painting immediately would show units.json order and
+    // then shuffle the whole list a moment later, under the student's thumb.
+    // The view stays hidden while waiting rather than flashing an empty catalog,
+    // and Gate.whenListed caps the wait so a dead endpoint costs a moment, not
+    // the page. Ungated builds never wait at all — there is nothing to ask.
+    if (catalogPainted) { showView('catalog'); renderCatalog(); return; }
+    Gate.whenListed(function () {
+      catalogPainted = true;
+      showView('catalog');
+      renderCatalog();
+    });
   }
 
   /** Keep the hash truthful after an in-notebook cut switch, so the current
@@ -799,8 +917,20 @@
     // #/pricing — reachable from a locked chapter, and a link the founder can
     // send on its own. Renders over whatever view is behind it.
     if (location.hash === '#/pricing') { showCatalog(); Gate.showPricing(); return; }
+    // #/choose — the door on demand, from the catalog eyebrow. Always available
+    // once a choice exists, so a student who tapped the wrong tile is not stuck.
+    if (location.hash === '#/choose') { Door.show(); return; }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
-    if (!m) { showCatalog(); return; }
+    if (!m) {
+      // The door only ever intercepts the BARE landing route. A link to an
+      // answer is how this product actually travels between students, and a
+      // chooser standing in front of a forwarded answer would cost us the
+      // reader we most wanted — so #/q/, #/exam-eve/ and #/pricing all pass
+      // above this line, untouched.
+      if (Door.enabled() && !Door.chosen()) { Door.show(); return; }
+      showCatalog();
+      return;
+    }
     var id = decodeURIComponent(m[1]);
     if (qIndexById[id] === undefined) { location.hash = '#/'; return; }
     var cutKey = m[2] ? decodeURIComponent(m[2]) : null;
@@ -1387,10 +1517,7 @@
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
   $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
-  $('btnPrint').addEventListener('click', function () {
-    if (!completed) renderUpTo(steps.length - 1, false);
-    window.print();
-  });
+  $('doorBack').addEventListener('click', function () { Door.show(); });
   $('catSearch').addEventListener('input', function () {
     catFilter.search = this.value.trim().toLowerCase();
     renderCatalog();
@@ -3044,6 +3171,7 @@
     var unlockedUnits = {};            // unit_key -> true
     var hasAll = false;
     var listLoaded = false;            // lock chips wait for the truth (no flicker)
+    var listWaiters = [];              // first catalog paint, held until the truth lands
     var pendingUnlock = null;          // where the student was headed before paying
     var freeAvailable = null;
     var serverSignedIn = false;        // the SERVER's view of the token we sent
@@ -3314,9 +3442,47 @@
       });
     }
 
+    /** Release whatever is waiting on the list, exactly once each. Returns true
+        if anything was waiting, so init() can skip its own repaint rather than
+        render the catalog twice in one tick. */
+    function drainList() {
+      if (!listWaiters.length) return false;
+      var w = listWaiters; listWaiters = [];
+      for (var i = 0; i < w.length; i++) w[i]();
+      return true;
+    }
+
     return {
       showLockFlow: showLockFlow,
       showPricing: showPricing,
+      /** Is the chapter gate live at all? False in every ungated build, where
+          the whole module is inert and no lock vocabulary should appear. */
+      on: function () { return !!BASE; },
+      /** Has the server actually answered? Distinguishes "nothing is locked"
+          from "we do not know yet", which locked() alone cannot express. */
+      listed: function () { return listLoaded; },
+      /** This student holds a pass covering everything. */
+      hasPass: function () { return hasAll; },
+      /** What THIS device pays, as decided by ab_price_for and carried in the
+          list reply — null until the server has said. The client still never
+          invents a number; it only repeats the one it was given, so a founding
+          student and a later one each read their own. */
+      price: function () { return priceInfo && priceInfo.price_inr ? priceInfo.price_inr : null; },
+      /** Run cb once the entitlement list has answered — immediately when there
+          is nothing to wait for (every ungated build, or a list already in), and
+          after capMs regardless, so a dead endpoint delays the catalog by a
+          moment instead of withholding it.
+
+          The catalog's FIRST paint waits on this because it now ORDERS by lock
+          state, and locked() reads false until the list lands: painting early
+          would show units.json order and then reshuffle the whole list under the
+          student's thumb. Every later render is synchronous. */
+      whenListed: function (cb, capMs) {
+        if (!BASE || listLoaded) { cb(); return; }
+        var done = false;
+        listWaiters.push(function () { if (!done) { done = true; cb(); } });
+        setTimeout(function () { if (!done) { done = true; cb(); } }, capMs || 1500);
+      },
       /** True only when the LIST has answered and says this unit is locked —
           before that the catalog shows no lock cue rather than a wrong one. */
       locked: function (k) {
@@ -3326,14 +3492,19 @@
       init: function () {
         if (!BASE) return;               // inert in every full build
         post({ list: true }, function (out) {
-          if (!out || !out.ok) return;   // no list = no chips; opens still work
+          // No list = no chips, and opens still work — but whatever is holding
+          // the first paint has to be released either way, or a server blip
+          // costs the student the catalog rather than the lock cues.
+          if (!out || !out.ok) { drainList(); return; }
           adoptStanding(out);
           var u = out.unlocked || [];
           for (var i = 0; i < u.length; i++) {
             if (u[i] === 'all') hasAll = true; else unlockedUnits[u[i]] = true;
           }
           listLoaded = true;
-          if (currentView === 'catalog') renderCatalog();
+          // A waiter IS the first paint; letting it render and then repainting
+          // here would draw the catalog twice in one tick.
+          if (!drainList() && currentView === 'catalog') renderCatalog();
           // Coming back from a successful payment: the pass is live, so drop the
           // student straight into the chapter they were trying to open.
           if (hasAll && pendingUnlock) {
@@ -3343,6 +3514,179 @@
         });
       }
     };
+  })();
+
+  // ═══ THE DOOR — group and year, before the book ═══════════════════════════
+  // (founder, 2026-08-27.) The site used to open straight on an MPC first-year
+  // catalog. A BiPC, MEC or second-year student arriving from a forwarded link
+  // found a book that was not theirs, and nothing on screen saying theirs is
+  // coming — so they left, and we never heard from them. The taps on the
+  // coming-soon control are the answer to "which group do we build next?",
+  // measured instead of guessed.
+  //
+  // Two steps, group then year, and EVERY group advances to the year step even
+  // when both of its years are unbuilt: the whole point is that a BiPC student
+  // sees first year AND second year listed for their own branch. A tile that
+  // dead-ended at step one would say "not you" and nothing more.
+  //
+  // Inert unless window.PM_TRACKS was emitted, which only a --stream build does.
+  // An unstreamed build is the whole five-subject bank and belongs to no group,
+  // so a chooser over it would be a lie — and the offline suite goes on meeting
+  // the catalog exactly as it always has.
+  var Door = (function () {
+    var TRACKS = (window.PM_TRACKS && window.PM_TRACKS.length) ? window.PM_TRACKS : null;
+    var KEY = 'pm_track_v1';
+    var SOON_KEY = 'pm_soon_asked';     // same key and shape as the website tiles
+
+    // Its own storage accessors, the way Auth and Sync each have theirs: private
+    // mode throws on every localStorage call, and a chooser that cannot remember
+    // must still open.
+    function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+    function s(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+
+    function el(cls, text) {
+      var n = document.createElement('span');
+      n.className = cls;
+      n.textContent = text;
+      return n;
+    }
+
+    function enabled() { return !!TRACKS; }
+
+    function chosen() {
+      if (!TRACKS) return null;
+      try {
+        var t = JSON.parse(g(KEY) || 'null');
+        return (t && t.group && t.year) ? t : null;
+      } catch (e) { return null; }
+    }
+
+    function trackById(id) {
+      for (var i = 0; TRACKS && i < TRACKS.length; i++) if (TRACKS[i].id === id) return TRACKS[i];
+      return null;
+    }
+
+    function liveYear(t) {
+      for (var i = 0; i < t.years.length; i++) if (t.years[i].live) return t.years[i];
+      return null;
+    }
+
+    function asked() {
+      try { return JSON.parse(g(SOON_KEY) || '{}') || {}; } catch (e) { return {}; }
+    }
+
+    function markAsked(btn) {
+      btn.textContent = 'Noted — we will tell you';
+      btn.setAttribute('disabled', '');
+      btn.className = 'door-soon-btn done';
+    }
+
+    /** Record who wants what. No new endpoint and no new table: this rides the
+        telemetry batch Vidi already flushes, so the demand signal costs nothing
+        to collect and is dropped silently in a build that has no endpoint. */
+    function ask(key, btn) {
+      var m = asked();
+      m[key] = 1;
+      s(SOON_KEY, JSON.stringify(m));
+      Vidi.log('track_interest', { track: key });
+      markAsked(btn);
+    }
+
+    function soonButton(key) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'door-soon-btn';
+      b.setAttribute('data-soon', key);
+      if (asked()[key]) { markAsked(b); return b; }
+      b.textContent = 'Tell me when it is ready';
+      b.addEventListener('click', function (ev) { ev.stopPropagation(); ask(key, b); });
+      return b;
+    }
+
+    /** Remember the choice, then go. replaceState rather than a hash write: the
+        door must not sit in history behind the catalog, where Back would drop a
+        student who just chose straight back onto the chooser. It also fires no
+        hashchange, so the catalog is shown once — here — and not again by route(). */
+    function choose(group, year) {
+      s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+      if (location.hash && location.hash !== '#/') {
+        try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
+        catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
+      }
+      showCatalog();
+    }
+
+    function renderGroups() {
+      var host = $('doorGroups');
+      host.innerHTML = '';
+      TRACKS.forEach(function (t) {
+        var live = liveYear(t);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'door-tile' + (live ? ' live' : '');
+        b.setAttribute('data-door-group', t.id);
+        b.appendChild(el('door-tile-name', t.label));
+        b.appendChild(el('door-tile-sub', t.subjects));
+        b.appendChild(el('door-pill' + (live ? ' on' : ''),
+          live ? live.questions + ' answers · ' + live.units + ' chapters' : 'Coming soon'));
+        b.addEventListener('click', function () { showYears(t.id); });
+        host.appendChild(b);
+      });
+    }
+
+    function renderYears(t) {
+      var host = $('doorYears');
+      host.innerHTML = '';
+      t.years.forEach(function (y) {
+        var key = t.id + '_' + y.id;
+        if (y.live) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'door-tile live';
+          b.setAttribute('data-door-year', y.id);
+          b.appendChild(el('door-tile-name', y.label));
+          b.appendChild(el('door-tile-sub', t.subjects));
+          b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
+          b.appendChild(el('door-go', 'Open the Answer Book →'));
+          b.addEventListener('click', function () { choose(t.id, y.id); });
+          host.appendChild(b);
+          return;
+        }
+        // A div, not a button: nothing in this tile is pressable except the one
+        // control inside it, and a dead button a student can still press reads
+        // as broken rather than as unbuilt.
+        var d = document.createElement('div');
+        d.className = 'door-tile soon';
+        d.setAttribute('data-door-year', y.id);
+        d.appendChild(el('door-tile-name', y.label));
+        d.appendChild(el('door-pill', 'Coming soon'));
+        if (y.note) d.appendChild(el('door-note', y.note));
+        d.appendChild(soonButton(key));
+        host.appendChild(d);
+      });
+    }
+
+    function showYears(id) {
+      var t = trackById(id);
+      if (!t) return;
+      $('doorTitle').textContent = t.label + ' — which year?';
+      $('doorTag').textContent = 'First year is Junior Inter. Second year is Senior Inter.';
+      renderYears(t);
+      $('doorStep1').hidden = true;
+      $('doorStep2').hidden = false;
+    }
+
+    function show() {
+      if (!TRACKS) { showCatalog(); return; }
+      $('doorTitle').textContent = 'Which group are you in?';
+      $('doorTag').textContent = 'Pick your group, then your year. We will remember it.';
+      renderGroups();
+      $('doorStep1').hidden = false;
+      $('doorStep2').hidden = true;
+      showView('door');
+    }
+
+    return { enabled: enabled, chosen: chosen, show: show };
   })();
 
   var VidiPanel = (function () {
