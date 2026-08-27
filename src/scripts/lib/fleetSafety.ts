@@ -302,6 +302,10 @@ export function classify(spec: FleetSafetySpec, r: FleetSafetyResult, strippedOv
   const strippedAdds = new Map<string, number>();
   for (const a of added) { const k = norm(a.line); strippedAdds.set(k, (strippedAdds.get(k) || 0) + 1); }
 
+  // somebody else's removals, in the same normalised space as the pairing above
+  const othersRemovedNorm = new Set<string>();
+  for (const l of r.othersRemoved) othersRemovedNorm.add(norm(l));
+
   let exemptOthers = 0, exemptNearGlue = 0, exemptPunctuation = 0;
   const strayRemoved: string[] = [];
   for (const d of removed) {
@@ -326,6 +330,28 @@ export function classify(spec: FleetSafetySpec, r: FleetSafetyResult, strippedOv
     // membership test on raw line text is only as specific as the text is.
     if (isGlue(d)) { strayRemoved.push(d); continue; }
     if (r.othersRemoved.has(d)) { exemptOthers++; continue; }
+    // ── TWO COMMITS CAN EDIT ONE LINE, AND THE SECOND ONE HIDES THE FIRST.
+    //   The raw membership test above compares somebody else's REMOVED text to
+    //   the BASELINE text, which only matches when this scenario has not also
+    //   touched that line. When a sibling lands AFTER this scenario on a line
+    //   this scenario already appended to, the sibling's diff removes the
+    //   SCENARIO-FLAVOURED line, not the baseline one — so the baseline line
+    //   matches nothing and is reported as an unexplained removal forever.
+    //   Measured on master before this fix: the two scenario_type accumulator
+    //   lines (#formula_overlay and the SET_TIME_FREEZE snap list), each edited
+    //   by solid_of_revolution and then by organic_structure a day later, giving
+    //   a PERMANENTLY RED gate whose two strays were both fully attributable.
+    //   A chronically red gate is worse than no gate: it is the one state in
+    //   which a real stray arrives and nobody looks.
+    //
+    //   The comparison is therefore made in the SAME normalised space the
+    //   rewritten-in-place pairing above already uses — this scenario's own
+    //   insertion stripped from both sides — so the sibling's removal and the
+    //   baseline line become the same key. It does NOT widen what is forgiven:
+    //   the glue precedence still runs first and still claims every line at a
+    //   site this scenario declares it modifies, which is what keeps the
+    //   glue-tamper control firing.
+    if (othersRemovedNorm.has(key)) { exemptOthers++; continue; }
     strayRemoved.push(d);
   }
   const strayAdded: string[] = [];
