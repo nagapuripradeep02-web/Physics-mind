@@ -68,6 +68,68 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
         short: 'MPC',
     },
 };
+// The DOOR (founder, 2026-08-27): the group-and-year chooser a student meets
+// before the catalog. It exists because answers.viditra.co dropped straight into
+// an MPC first-year book with nothing on screen telling a BiPC, MEC or
+// second-year student that theirs is coming — so that student bounced without
+// ever learning we are building it.
+//
+// This table is PRESENTATION ONLY and is deliberately NOT the STREAMS registry
+// above. STREAMS says what a build may contain; TRACKS says what a student may
+// be told exists. Adding `bipc` to STREAMS would make `--stream=bipc` a legal
+// build of a three-subject book (Zoology is authored but unmerged), and `mec`
+// has no economics/commerce subject anywhere in the bank — so those tiles must
+// never be able to produce an artifact.
+//
+// A year cell is LIVE only when its `stream` equals the stream being built, so
+// the door of any artifact can advertise exactly one live path — its own — and
+// a future --stream=bipc build lights BiPC's first year with no edit here.
+//
+// The notes are checked against what is on disk, not against the marketing
+// site: Botany is on master (13 chapters) and Zoology is real but on an
+// unmerged branch (8 chapters), so "written, being checked" is true of both;
+// there is not one second-year card anywhere in the repo.
+const TRACKS: {
+    id: string;
+    label: string;
+    subjects: string;
+    years: { id: string; label: string; stream: string | null; note: string }[];
+}[] = [
+    {
+        id: 'mpc',
+        label: 'MPC',
+        subjects: 'Maths 1A · Maths 1B · Physics · Chemistry',
+        years: [
+            { id: 'first_year', label: 'First year', stream: 'mpc', note: '' },
+            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+        ],
+    },
+    {
+        id: 'bipc',
+        label: 'BiPC',
+        subjects: 'Botany · Zoology · Physics · Chemistry',
+        years: [
+            {
+                id: 'first_year', label: 'First year', stream: null,
+                note: 'Botany and Zoology are written. We are checking them before we hand them to you.',
+            },
+            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+        ],
+    },
+    {
+        id: 'mec',
+        label: 'MEC',
+        subjects: 'Maths 1A · Maths 1B · Economics · Commerce',
+        years: [
+            {
+                id: 'first_year', label: 'First year', stream: null,
+                note: 'Maths 1A and 1B are written. Economics and Commerce are not started.',
+            },
+            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+        ],
+    },
+];
+
 const streamArg = process.argv.find((a) => a.startsWith('--stream='));
 const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
 if (STREAM !== null && !STREAMS[STREAM]) {
@@ -510,6 +572,36 @@ if (GATED && !authAnon) {
     fail('  no Supabase anon key — Google sign-in would sign every student back out');
 }
 
+// The door's tiles, resolved against THIS build. Counts for the live cell are
+// read off the BUILT manifest rather than typed in — the same rule the og card
+// follows, so the door can never advertise a book bigger than the file it is
+// printed on.
+const doorTracks = TRACKS.map((t) => ({
+    id: t.id,
+    label: t.label,
+    subjects: t.subjects,
+    years: t.years.map((y) => {
+        const live = !!STREAM && y.stream === STREAM;
+        return {
+            id: y.id,
+            label: y.label,
+            live,
+            note: y.note,
+            units: live ? manifest.units.length : 0,
+            questions: live ? manifest.units.reduce((n, u) => n + u.questions.length, 0) : 0,
+        };
+    }),
+}));
+// Exactly one way in, or the door is broken in a way no gate would notice: zero
+// live cells strands every student on the chooser, two lets one artifact claim
+// to be two different books.
+if (STREAM) {
+    const liveCells = doorTracks.reduce((n, t) => n + t.years.filter((y) => y.live).length, 0);
+    if (liveCells !== 1) {
+        fail(`  the door resolved ${liveCells} live cells for --stream=${STREAM} — TRACKS must name exactly one`);
+    }
+}
+
 // </script> inside any string can never break out of the data block:
 const dataJs =
     `window.PM_QUESTIONS = ${JSON.stringify(GATED ? gatedQuestions : browserQuestions).replace(/</g, '\\u003c')};\n` +
@@ -524,7 +616,13 @@ const dataJs =
     `window.PM_AUTH_BASE = ${JSON.stringify(authBase)};\n` +
     `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
-    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};`;
+    `window.PM_STREAM = ${JSON.stringify(STREAM ? STREAMS[STREAM].short : null)};
+` +
+    // null on the full build too, and that is what switches the DOOR off. An
+    // unstreamed build is the whole five-subject bank — it belongs to no group,
+    // so a chooser over it would be a lie. It also keeps the 59-gate offline
+    // suite, which runs against dist/, meeting the catalog exactly as before.
+    `window.PM_TRACKS = ${JSON.stringify(STREAM ? doorTracks : null).replace(/</g, '\u003c')};`;
 
 // ── the social-preview card ──────────────────────────────────────────────────
 // A student meets this product as a link in a WhatsApp group before they ever
@@ -544,8 +642,8 @@ const esc = (s: string) =>
 const metaTitle = streamDef ? `IPE Answer Book — ${streamDef.label}` : 'IPE Answer Book — Telangana';
 const metaDesc = streamDef
     ? `Every Telangana IPE question answered step by step, with the marks for each step. ` +
-      `${streamDef.blurb} — first year. Free.`
-    : 'Every Telangana IPE question answered step by step, with the marks for each step. Free.';
+      `${streamDef.blurb} — first year. Four chapters free.`
+    : 'Every Telangana IPE question answered step by step, with the marks for each step. Four chapters free.';
 
 const headMeta = [
     `<title>${esc(metaTitle)} | Viditra</title>`,

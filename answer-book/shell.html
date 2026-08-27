@@ -47,7 +47,17 @@
   <div class="topbar-actions">
     <a class="btn btn-ghost btn-back" id="btnCatalog" href="#/" hidden>&#8592; All questions</a>
     <button class="btn btn-ghost nb-only" id="btnRestart" type="button" hidden>Restart</button>
-    <button class="btn btn-ghost nb-only" id="btnPrint" type="button" hidden>Print</button>
+    <!-- REMOVED (founder, 2026-08-27): the Print button stood here, beside
+         Restart, and appeared the moment a student opened an answer. On a book
+         whose 688 locked cards are the thing being sold, a one-tap "put the
+         whole answer on paper" is the product walking out of the door. Deleted
+         outright rather than made dormant like #btnTest below: there is no
+         version of this we want back. Its click listener in notebook.js went in
+         the same edit - $('btnPrint') was an unguarded getElementById, so
+         removing one without the other throws and takes the page script down.
+         The @media print blocks in notebook.css STAY: deleting them cannot stop
+         Ctrl+P, it would only make an accidental print come out covered in
+         chrome. Nothing on screen points at printing any more. -->
     <!-- DORMANT (founder, 2026-08-23): "Test myself" is removed for now. The
          button keeps its markup but lost nb-only, so the view sweep never
          un-hides it; the overlay + self-check code below stay unreachable. -->
@@ -66,6 +76,45 @@
     <div class="acct-row"><button class="vw-btn" id="acctAction" type="button"></button></div>
   </div>
 </header>
+
+<!-- ═══ DOOR VIEW — the group + year chooser ════════════════════════════════
+     The first screen a new student meets (founder, 2026-08-27). Before this the
+     site opened straight on an MPC first-year catalog, so a BiPC, MEC or
+     second-year student had nothing on screen telling them their book is being
+     built — they bounced, and we never heard from them.
+
+     Two steps, group then year, because the point is not only to route the MPC
+     student in: every group advances to the year step, so a BiPC student sees
+     first year AND second year listed for their own branch. A tile that
+     dead-ended at step 1 would say "not you" and nothing else.
+
+     Shown ONCE and remembered (pm_track_v1). A deep link to an answer —
+     #/q/<id>, which is how this product actually travels between students on
+     WhatsApp — never passes through here.
+
+     Tiles are built from window.PM_TRACKS, emitted only by a --stream build, so
+     the full offline bank has no door at all. Its own classes throughout: the
+     catalog's .cat-card/.cc-chip pair carries e2e contracts about coming-soon
+     cards that a chooser tile must not accidentally satisfy. -->
+<main class="catalog" id="doorView" hidden>
+  <div class="cat-hero">
+    <p class="cat-eyebrow">Telangana IPE</p>
+    <h1 id="doorTitle">Which group are you in?</h1>
+    <p class="cat-tag" id="doorTag">Pick your group, then your year. We will remember it.</p>
+  </div>
+
+  <div class="door-step" id="doorStep1">
+    <div class="door-tiles" id="doorGroups"></div>
+  </div>
+
+  <div class="door-step" id="doorStep2" hidden>
+    <button class="door-back" id="doorBack" type="button">&#8592; All groups</button>
+    <div class="door-tiles" id="doorYears"></div>
+  </div>
+
+  <p class="door-foot">First year MPC is ready today. We build in the order students ask,
+    so tap &ldquo;Tell me when it is ready&rdquo; and yours moves up the list.</p>
+</main>
 
 <!-- ═══ CATALOG VIEW — the landing page ═════════════════════════════════════
      One self-contained file, so the catalog is a VIEW, not a second page.

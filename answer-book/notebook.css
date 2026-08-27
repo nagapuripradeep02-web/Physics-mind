@@ -344,6 +344,118 @@ body {
 
 .cat-none { text-align: center; color: var(--chrome-dim); font-size: 13.5px; margin: 34px 0; }
 
+/* ── the chapter gate, read at CHAPTER level ─────────────────────────────
+   The lock used to be a bare emoji chip repeated on every card inside a locked
+   chapter — the same fact said twenty-nine times, and absent from the two
+   places a student actually decides from: the chapter heading and the chapter
+   picker. Sage means open, clay means it is part of the pass. Both are drawn
+   only when the server has answered AND the student holds no pass, so neither
+   ever states something we do not know. */
+.cat-lock {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  border-radius: 999px; padding: 2px 9px;
+  background: var(--clay-wash); border: 1px solid rgba(203, 104, 67, 0.35); color: var(--red);
+}
+.cat-lock.free {
+  background: var(--sage-wash); border-color: rgba(116, 181, 148, 0.45); color: #41785C;
+}
+/* Quieter, never hidden: those locked answers ARE the offer, so they stay
+   listed and countable — the fix was the ORDER a student meets them in. */
+.cat-section.locked h2 { color: var(--chrome-dim); }
+
+/* ── the offer, once, above the first locked chapter ─────────────────────
+   Not a banner at the top of the page (which is read past) and not repeated per
+   chapter (which is nagging): it sits exactly at the line where the free book
+   ends, so it is read at the moment the question occurs. */
+.cat-wall {
+  margin: 34px 0 6px; padding: 18px 20px;
+  background: var(--chrome-card);
+  border: 1px solid rgba(203, 104, 67, 0.35); border-radius: 13px;
+  box-shadow: 0 2px 8px rgba(43, 38, 32, 0.06);
+}
+.cat-wall-title {
+  font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--chrome-ink);
+}
+.cat-wall-sub { font-size: 13px; color: var(--chrome-dim); margin-top: 5px; line-height: 1.5; }
+.cat-wall-btn {
+  font: inherit; font-size: 13.5px; font-weight: 600; margin-top: 12px;
+  padding: 9px 16px; border-radius: 9px; cursor: pointer;
+  background: var(--accent); color: #fff; border: 1px solid var(--accent);
+}
+.cat-wall-btn:hover { background: var(--clay-deep); border-color: var(--clay-deep); }
+
+/* The eyebrow already names board, year and group, so it is where the group is
+   changed from — no sixth control in a topbar that is full on a phone. */
+.cat-eyebrow-btn {
+  /* Sentence case and NOT the eyebrow's tracked small caps, deliberately: as
+     part of that run the word simply read as more label, and the one thing on
+     the line a student can press has to look unlike the four things they
+     cannot. */
+  font: inherit; font-size: 11.5px; font-weight: 600; letter-spacing: 0.01em;
+  text-transform: none; color: var(--accent);
+  background: none; border: 0; padding: 0; cursor: pointer;
+  text-underline-offset: 3px; text-decoration: underline;
+}
+.cat-eyebrow-btn:hover { color: var(--clay-deep); }
+
+/* ── THE DOOR — group, then year ─────────────────────────────────────────
+   Its own classes throughout. The catalog's .cat-card/.cc-chip pair carries e2e
+   contracts about what a coming-soon card says, and a chooser tile must not be
+   able to satisfy them by accident. */
+.door-step { margin-top: 22px; }
+.door-tiles { display: flex; flex-direction: column; gap: 12px; }
+.door-tile {
+  font: inherit; text-align: left; width: 100%;
+  display: flex; flex-direction: column; gap: 6px; align-items: flex-start;
+  padding: 18px 20px; border-radius: 13px;
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  color: var(--chrome-ink);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+button.door-tile { cursor: pointer; }
+.door-tile.live { border-color: rgba(203, 104, 67, 0.45); }
+button.door-tile:hover {
+  border-color: var(--accent); box-shadow: 0 3px 10px rgba(62, 50, 25, 0.09);
+}
+/* Dashed and quiet, so it reads as unbuilt rather than as broken. */
+.door-tile.soon { border-style: dashed; background: transparent; cursor: default; }
+.door-tile-name { font-family: var(--serif); font-size: 22px; font-weight: 700; }
+.door-tile.soon .door-tile-name { color: var(--chrome-dim); }
+.door-tile-sub { font-size: 13px; color: var(--chrome-dim); line-height: 1.45; }
+.door-pill {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  border-radius: 999px; padding: 3px 10px;
+  border: 1px solid var(--chrome-line); color: var(--chrome-dim);
+}
+.door-pill.on {
+  background: var(--sage-wash); border-color: rgba(116, 181, 148, 0.45); color: #41785C;
+}
+.door-note { font-size: 13px; color: var(--chrome-dim); line-height: 1.5; }
+.door-go { font-size: 14px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+.door-soon-btn {
+  font: inherit; font-size: 13px; font-weight: 600; margin-top: 4px;
+  padding: 7px 13px; border-radius: 8px; cursor: pointer;
+  background: transparent; border: 1px solid var(--chrome-line); color: var(--chrome-ink);
+}
+.door-soon-btn:hover { border-color: var(--accent); color: var(--accent); }
+/* A control that visibly does nothing reads as broken, and nobody taps it
+   twice — so the tap has to answer, even though the answer is only a promise. */
+.door-soon-btn.done {
+  background: var(--sage-wash); border-color: rgba(116, 181, 148, 0.45);
+  color: #41785C; cursor: default;
+}
+.door-back {
+  font: inherit; font-size: 13px; font-weight: 600; margin-bottom: 14px;
+  padding: 6px 12px; border-radius: 8px; cursor: pointer;
+  background: transparent; border: 1px solid var(--chrome-line); color: var(--chrome-dim);
+}
+.door-back:hover { border-color: var(--accent); color: var(--accent); }
+.door-foot {
+  font-size: 12.5px; color: var(--chrome-dim); line-height: 1.55;
+  margin-top: 22px; text-align: center;
+}
+
+
 /* ── test-yourself entry + overlay ─────────────────────────────────────── */
 
 .btn-test { background: var(--accent); color: #fff; border-color: var(--accent); }

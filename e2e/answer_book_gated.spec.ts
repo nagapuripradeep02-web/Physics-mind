@@ -35,6 +35,23 @@ test.beforeAll(() => {
     if (!existsSync(CONTENT_DIR)) throw new Error('answer-book/content/mpc missing — run npm run build:answers:gated:mpc first');
 });
 
+/** THE DOOR (2026-08-27) stands in front of the bare landing route, so every
+    gate written before it would otherwise be asserting the chooser instead of
+    the catalog. Each one is a student who has already chosen — which is what
+    they were always testing. The door's own gates below clear this key in an
+    init script of their own; init scripts run in registration order, so theirs
+    runs after this one and wins. */
+const TRACK_SEED = { group: 'mpc', year: 'first_year', at: '2026-08-27T00:00:00.000Z' };
+
+test.beforeEach(async ({ page }) => {
+    await page.addInitScript((t: unknown) => {
+        try {
+            if (localStorage.getItem('pm_door_gate') === '1') return;   // a door gate owns storage
+            localStorage.setItem('pm_track_v1', JSON.stringify(t));
+        } catch { /* file:// */ }
+    }, TRACK_SEED);
+});
+
 /** A real answer line from a physics file and a KaTeX TeX source from a maths
     file — the strings a paying student is paying for. */
 function leakProbes(): { text: string; tex: string } {
@@ -189,15 +206,21 @@ test('a locked chapter names the free four, offers the pass, and leaks nothing',
     expect(r.claimBtns).toBe(0);                          // nothing to claim
     expect(r.pageText).not.toContain(probes.text.slice(0, 40));
 
-    // locked units carry the lock cue in the catalog (physics-3 does not)
+    // The cue lives on the CHAPTER now (2026-08-27), not on every card inside
+    // it: the old .cc-chip.pm-lock said the same thing twenty-nine times over
+    // and never in the heading or the picker, which are the two places a student
+    // actually decides from.
     await page.click('#lockRow .vw-btn');                  // Back to all questions
     await page.waitForSelector('#catalogView:not([hidden])');
-    const chips = await page.evaluate(() => ({
-        locks: document.querySelectorAll('.cc-chip.pm-lock').length,
-        cards: document.querySelectorAll('.cat-card').length,
+    const cues = await page.evaluate(() => ({
+        locked: document.querySelectorAll('.cat-lock:not(.free)').length,
+        free: document.querySelectorAll('.cat-lock.free').length,
+        sections: document.querySelectorAll('.cat-section').length,
+        perCard: document.querySelectorAll('.cc-chip.pm-lock').length,
     }));
-    expect(chips.locks).toBeGreaterThan(0);
-    expect(chips.locks).toBeLessThan(chips.cards);         // the unlocked unit is unbadged
+    expect(cues.free).toBe(1);                             // physics-3, and only it
+    expect(cues.locked).toBe(cues.sections - 1);           // every other chapter says so
+    expect(cues.perCard).toBe(0);                          // the chip this replaced
 });
 
 test('the endpoint being down never breaks the catalog — the sheet says try again', async ({ page }) => {
@@ -458,7 +481,16 @@ test('a payment endpoint that is down never traps the student', async ({ page })
 test('the OAuth return is captured, stripped from the URL, and never left in history', async ({ page }) => {
     const errs: string[] = [];
     page.on('pageerror', (e) => errs.push(e.message));
-    await page.addInitScript(() => { try { localStorage.clear(); } catch { /* file:// */ } });
+    await page.addInitScript(() => {
+        // Cleared to prove a signed-OUT device, then the group choice is put
+        // back: this gate is about the OAuth return, not about the door, and a
+        // chooser standing in front of the catalog would fail it for the wrong
+        // reason.
+        try {
+            localStorage.clear();
+            localStorage.setItem('pm_track_v1', JSON.stringify({ group: 'mpc', year: 'first_year' }));
+        } catch { /* file:// */ }
+    });
     // exactly the shape Supabase sends back after Google
     await page.goto(URL + '#access_token=TOK_ABC&refresh_token=REF_XYZ&expires_in=3600&token_type=bearer');
     await page.waitForFunction(() => (window as any).PM_ANSWER, undefined, { timeout: 20000 });
@@ -469,7 +501,11 @@ test('the OAuth return is captured, stripped from the URL, and never left in his
     expect(r.href).not.toContain('access_token');
     expect(r.href).not.toContain('refresh_token');
     expect(r.hash).toBe('#/');                       // and the router got a real route
-    // the book still booted — a token blob must never break the catalog
+    // The book still booted — a token blob must never break the catalog. The
+    // wait is load-bearing since 2026-08-27: the first catalog paint is held for
+    // the entitlement list, because the chapter ORDER is a function of it, so
+    // counting cards the instant the hash settles now races the gate.
+    await page.waitForSelector('#catalogView:not([hidden])', { timeout: 10000 });
     expect(await page.evaluate(() => document.querySelectorAll('.cat-card').length)).toBeGreaterThan(400);
     expect(errs).toEqual([]);
 });
@@ -480,7 +516,11 @@ test('a token the server rejects is forgotten; a server that is merely down is n
     // come back to a paywall over a transient blip.
     for (const [status, shouldKeep] of [[401, false], [500, true]] as [number, boolean][]) {
         await page.addInitScript((code: number) => {
-            try { localStorage.clear(); localStorage.setItem('pm_ab_at', 'SOME_TOKEN'); } catch { /* file:// */ }
+            try {
+                localStorage.clear();
+                localStorage.setItem('pm_ab_at', 'SOME_TOKEN');
+                localStorage.setItem('pm_track_v1', JSON.stringify({ group: 'mpc', year: 'first_year' }));
+            } catch { /* file:// */ }
             const orig = window.fetch;
             window.fetch = function (input: any, init?: any) {
                 const u = typeof input === 'string' ? input : (input && input.url) || '';
@@ -666,4 +706,261 @@ test('the price shows as a price: 199 struck through, 99 big', async ({ page }) 
     }));
     expect(q.was).toBe('absent');                      // nothing to strike through
     expect(q.note).toMatch(/kept for you/i);
+});
+
+
+// ═══ THE DOOR, THE ORDER, AND THE PRINT BUTTON (founder, 2026-08-27) ═══════
+// Three changes to what a student meets on the other side of a WhatsApp link:
+// a group-and-year chooser in front of the bare landing route, chapters they
+// can open sorted above the ones they cannot, and no way to print a paid book.
+
+/** The four chapters flagged `free` in ab_content — one per subject, and never
+    the first chapter of any of them, which is the whole reason the order had to
+    change. */
+const FREE_UNITS = ['physics-4', 'chemistry-3', 'mathematics-4', 'mathematics_1b-3'];
+const SKU_99 = {
+    sku: 'full_book', price_inr: 99, list_price_inr: 199, founding: true,
+    founding_locked: false, founding_slots_left: 486, period_days: 31,
+};
+
+/** A student who has never chosen a group. Registered after the beforeEach
+    seed, so this wins. */
+async function forgetTrack(page: any) {
+    await page.addInitScript(() => {
+        try {
+            // Once. A reload must show what the STUDENT left behind, not what
+            // the fixture keeps re-imposing — two of these gates assert exactly
+            // that a choice and a tap survive coming back.
+            if (localStorage.getItem('pm_door_gate') === '1') return;
+            localStorage.setItem('pm_door_gate', '1');
+            localStorage.removeItem('pm_track_v1');
+            localStorage.removeItem('pm_soon_asked');
+        } catch { /* file:// */ }
+    });
+}
+
+/** Boot with the entitlement list answering `unlocked`, which is what decides
+    the catalog's ORDER now, not only its lock cues. */
+async function bootWith(page: any, unlocked: string[]) {
+    await bootGated(page, (body: any) => {
+        if (body.list) {
+            return { ok: true, unlocked, free_available: false, signed_in: false, devices: 1, sku: SKU_99 };
+        }
+        if (unlocked.indexOf(body.unit_key) >= 0 || unlocked[0] === 'all') {
+            return { ok: true, unlocked: true, bundle: bundleFor(body.unit_key) };
+        }
+        return { ok: true, locked: true, free_available: false, sku: SKU_99 };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+}
+
+const heads = (page: any) =>
+    page.$$eval('.cat-section h2', (ns: Element[]) =>
+        ns.map((n) => (n.textContent || '').replace(/\s+/g, ' ').trim()));
+
+test('a student who has never chosen meets the door, not the catalog', async ({ page }) => {
+    await forgetTrack(page);
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#doorView:not([hidden])');
+
+    expect(await page.evaluate(() => document.getElementById('catalogView')!.hidden)).toBe(true);
+    const groups = await page.$$eval('[data-door-group]', (ns: Element[]) =>
+        ns.map((n) => n.getAttribute('data-door-group')));
+    // All three groups are offered even though two are unbuilt: a BiPC student
+    // has to be able to see that theirs is coming, which is the whole point.
+    expect(groups).toEqual(['mpc', 'bipc', 'mec']);
+});
+
+test('a group, then a year, then the book — and the choice survives a reload', async ({ page }) => {
+    await forgetTrack(page);
+    // bootGated, not bootWith: the catalog is behind the door here, so waiting
+    // for it before choosing would simply time out.
+    await bootGated(page, (body: any) => (body.list
+        ? { ok: true, unlocked: FREE_UNITS, free_available: false, sku: SKU_99 }
+        : { ok: true, locked: true, sku: SKU_99 }));
+    await page.waitForSelector('#doorView:not([hidden])');
+
+    await page.click('[data-door-group="mpc"]');
+    await page.waitForSelector('#doorStep2:not([hidden])');
+    await page.click('button[data-door-year="first_year"]');
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_track_v1') || 'null'));
+    expect(saved).toMatchObject({ group: 'mpc', year: 'first_year' });
+
+    // and it is not asked again
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await page.evaluate(() => document.getElementById('doorView')!.hidden)).toBe(true);
+});
+
+test('a link to an answer never passes through the door', async ({ page }) => {
+    // The product travels between students as a link to one answer. A chooser
+    // standing in front of a forwarded answer would cost us exactly the reader
+    // it was built to keep.
+    await forgetTrack(page);
+    await bootGated(page, (body: any) => {
+        if (body.list) return { ok: true, unlocked: FREE_UNITS, free_available: false, sku: SKU_99 };
+        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        return { ok: true, locked: true, sku: SKU_99 };
+    });
+    await page.evaluate(() => { location.hash = '#/q/ts_ipe_p1_vec_parallelogram_law'; });
+    await page.waitForSelector('.page', { timeout: 10000 });
+
+    expect(await page.evaluate(() => document.getElementById('doorView')!.hidden)).toBe(true);
+    expect(await page.evaluate(() => document.getElementById('notebookView')!.hidden)).toBe(false);
+});
+
+test('every group reaches the year step, and only MPC first year opens anything', async ({ page }) => {
+    await forgetTrack(page);
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#doorView:not([hidden])');
+
+    for (const group of ['bipc', 'mec']) {
+        await page.click(`[data-door-group="${group}"]`);
+        await page.waitForSelector('#doorStep2:not([hidden])');
+        const years = await page.$$eval('[data-door-year]', (ns: Element[]) =>
+            ns.map((n) => ({ id: n.getAttribute('data-door-year'), tag: n.tagName, text: n.textContent || '' })));
+        expect(years.map((y) => y.id)).toEqual(['first_year', 'second_year']);
+        // Not one of them is pressable: a div, never a button, so nothing looks
+        // like a door that does not open.
+        expect(years.every((y) => y.tag === 'DIV')).toBe(true);
+        expect(years.every((y) => /Coming soon/.test(y.text))).toBe(true);
+        await page.click('#doorBack');
+        await page.waitForSelector('#doorStep1:not([hidden])');
+    }
+
+    await page.click('[data-door-group="mpc"]');
+    await page.waitForSelector('#doorStep2:not([hidden])');
+    const mpc = await page.$$eval('[data-door-year]', (ns: Element[]) =>
+        ns.map((n) => n.tagName + ':' + n.getAttribute('data-door-year')));
+    expect(mpc).toEqual(['BUTTON:first_year', 'DIV:second_year']);
+    // and nothing was stored by merely looking around
+    expect(await page.evaluate(() => localStorage.getItem('pm_track_v1'))).toBeNull();
+});
+
+test('the coming-soon tap answers the student, and stays answered', async ({ page }) => {
+    await forgetTrack(page);
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#doorView:not([hidden])');
+    await page.click('[data-door-group="bipc"]');
+    await page.waitForSelector('#doorStep2:not([hidden])');
+
+    const btn = page.locator('[data-soon="bipc_first_year"]');
+    await expect(btn).toHaveText(/Tell me when/i);
+    await btn.click();
+    // A control that visibly does nothing reads as broken, and is never tapped twice.
+    await expect(btn).toHaveText(/Noted/i);
+    expect(await btn.isDisabled()).toBe(true);
+
+    const asked = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_soon_asked') || '{}'));
+    expect(asked).toMatchObject({ bipc_first_year: 1 });
+
+    // still answered when they come back — the promise has to outlive the tap
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#doorView:not([hidden])');
+    await page.click('[data-door-group="bipc"]');
+    await expect(page.locator('[data-soon="bipc_first_year"]')).toHaveText(/Noted/i);
+});
+
+test('the chapters a student can open come first, in the list and in the picker', async ({ page }) => {
+    await bootWith(page, FREE_UNITS);
+    await page.selectOption('#subjectSelect', 'physics');
+
+    const h = await heads(page);
+    // physics-4 is the free one; 1, 2 and 3 are locked and used to come first.
+    expect(h[0]).toContain('Motion in a Plane');
+    expect(h[0]).toContain('Free');
+    const firstLocked = h.findIndex((s: string) => s.includes('Locked'));
+    const lastFree = h.map((s: string) => s.includes('Free')).lastIndexOf(true);
+    expect(firstLocked).toBeGreaterThan(-1);
+    expect(lastFree).toBeLessThan(firstLocked);
+
+    // The picker was the ONE surface carrying no lock signal at all — a student
+    // chose "Physical World" off a clean-looking list and only found out inside.
+    const opts = await page.$$eval('#unitSelect option', (ns: Element[]) => ns.map((n) => n.textContent || ''));
+    expect(opts[0]).toContain('All chapters');
+    expect(opts[1]).toContain('Motion in a Plane');
+    expect(opts[1]).not.toContain('🔒');
+    expect(opts.slice(2).every((o: string) => o.includes('🔒'))).toBe(true);
+
+    // the lock moved UP to the chapter; it is no longer repeated on every card
+    expect(await page.locator('.cc-chip.pm-lock').count()).toBe(0);
+});
+
+test('the offer is drawn once, immediately below the last chapter that opens', async ({ page }) => {
+    await bootWith(page, FREE_UNITS);
+    expect(await page.locator('.cat-wall').count()).toBe(1);
+
+    const shape = await page.evaluate(() => {
+        const kids = Array.from(document.getElementById('catSections')!.children);
+        const i = kids.findIndex((n) => n.classList.contains('cat-wall'));
+        const txt = (n: Element | undefined) => (n ? (n.textContent || '').replace(/\s+/g, ' ') : '');
+        return {
+            i,
+            before: txt(kids[i - 1]).slice(0, 80),
+            after: txt(kids[i + 1]).slice(0, 80),
+            title: (document.querySelector('.cat-wall-title') || { textContent: '' }).textContent,
+        };
+    });
+    expect(shape.i).toBe(4);                       // the four free chapters, then the offer
+    expect(shape.before).toContain('Free');
+    expect(shape.after).toContain('Locked');
+    // The number is the server's (ab_price_for), never one the client invented.
+    expect(shape.title).toContain('₹99');
+    expect(shape.title).toContain('38 chapters');
+});
+
+test('with a pass the order is untouched and no lock cue is drawn', async ({ page }) => {
+    await bootWith(page, ['all']);
+    const h = await heads(page);
+    expect(h[0]).toContain('Physical World');      // units.json order, exactly as before
+    expect(await page.locator('.cat-wall').count()).toBe(0);
+    expect(await page.locator('.cat-lock').count()).toBe(0);
+    const opts = await page.$$eval('#unitSelect option', (ns: Element[]) => ns.map((n) => n.textContent || ''));
+    expect(opts.some((o: string) => o.includes('🔒'))).toBe(false);
+});
+
+test('a server that never answers costs a moment, not the catalog, and invents no cue', async ({ page }) => {
+    // The order is a function of the entitlement list, so the first paint waits
+    // for it. A dead endpoint must therefore still end in a catalog — in
+    // units.json order, with nothing claimed about what is locked.
+    await page.addInitScript((base: string) => {
+        Object.defineProperty(window, 'PM_CONTENT_BASE', {
+            get: () => base, set: () => {}, configurable: true,
+        });
+    }, CONTENT);
+    await page.route('https://content.test/**', (route: any) => route.abort('failed'));
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#catalogView:not([hidden])', { timeout: 8000 });
+
+    const h = await heads(page);
+    expect(h[0]).toContain('Physical World');
+    expect(await page.locator('.cat-lock').count()).toBe(0);
+    expect(await page.locator('.cat-wall').count()).toBe(0);
+});
+
+test('an answer opens, and there is no way to print it', async ({ page }) => {
+    await bootWith(page, FREE_UNITS);
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('.page', { timeout: 8000 });
+    await page.waitForSelector('#notebookView:not([hidden])');
+
+    expect(await page.locator('#btnPrint').count()).toBe(0);
+    const visible = await page.$$eval('.topbar button, .topbar a', (ns: Element[]) =>
+        ns.filter((n) => !(n as HTMLElement).hidden).map((n) => (n.textContent || '').trim()));
+    expect(visible.join(' | ')).not.toMatch(/print/i);
+    // the answer itself still works — the listener went with the button, and an
+    // unguarded getElementById left behind would have taken the whole script down
+    const st = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        return (window as any).PM_ANSWER.getState();
+    });
+    expect(st.marksEarned).toBe(st.marksTotal);
 });
