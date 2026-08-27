@@ -1,0 +1,1644 @@
+{
+  "concept_id": "solids_of_revolution",
+  "concept_name": "Solids of Revolution: Spinning a Flat Region and Finding Its Volume",
+  "chapter": 8,
+  "section": "Volumes of solids of revolution (the disc and ring methods). NCERT Class 12 Chapter 8 'Application of Integrals' is the nearest Indian index entry and covers AREA under simple curves only -- volumes of revolution are NOT in the current CBSE Class-12 or JEE Main scope. This concept is authored for AP Calculus AB/BC, A-level Pure, IB DP AA HL and ISC, where the topic IS examined. See curriculum_tags: every cell is a CLAIM (Rule 38g).",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "source_book": "Chapter-index scope reference only (NCERT Class 12 Mathematics Ch. 8; AP Calculus AB/BC and A-level Pure topic lists for the volumes-of-revolution scope). Teaching sequence, examples and every phrasing authored first-hand -- no prose, figure or worked example is imported from any source.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "none"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "solid_of_revolution"
+    ]
+  },
+  "prerequisites": [],
+  "concept_tier": "complex",
+  "cognitive_limits": {
+    "max_primitives_per_state": 7,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 20
+  },
+  "real_world_anchor": {
+    "primary": "A drinking glass: its outside surface is one curve turned about the glass's own axis, which is exactly what this concept does. The same object in every country and every classroom, so it carries no country-specific culture (Rule 35a) and it is not lab apparatus, which gives it the widest possible syllabus overlap (Rule 38f).",
+    "secondary": "The anchor is SPOKEN and never DRAWN. The sim's curve is y = √x, not a glass profile, so no axis is labelled 'height' or 'width' and no tumbler is modelled."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "hollow": [
+      "STATE_6"
+    ],
+    "axis": [
+      "STATE_7"
+    ],
+    "notation": [
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "a": {
+        "name": "the curve's height coefficient in y = a√x (STATE_9 only)",
+        "unit": "unitless",
+        "min": 0.8,
+        "max": 1.4,
+        "default": 1.0
+      },
+      "b": {
+        "name": "the far end of the interval -- the upper limit of integration and the far end of the solid",
+        "unit": "unitless",
+        "min": 1.0,
+        "max": 4.0,
+        "default": 4.0
+      },
+      "n": {
+        "name": "number of discs in the stack (STATE_9 only; the guided states drive n from their own ramps)",
+        "unit": "unitless",
+        "min": 4,
+        "max": 120,
+        "default": 20
+      },
+      "r": {
+        "name": "the sphere's radius on STATE_5. Quantised to the slider step 0.01 on BOTH drive paths, which makes the reachable set exactly 101 values -- a finite set the gate enumerates rather than samples",
+        "unit": "unitless",
+        "min": 1.0,
+        "max": 2.0,
+        "default": 1.0
+      },
+      "x_cut": {
+        "name": "where STATE_3's single disc cuts the solid",
+        "unit": "unitless",
+        "min": 0.0,
+        "max": 4.0,
+        "default": 0.0
+      }
+    },
+    "formulas": {
+      "region_area": "A = integral of f(x) dx over [0, b]; for f = sqrt(x) on [0, 4] this is 16/3 = 5.3333",
+      "slice_face_area": "pi * f(x)^2; at x = 1 this is pi = 3.1416, at x = 4 it is 4pi = 12.5664",
+      "disc_sum": "V_n = pi * sum over i of f(x_i)^2 * dx, LEFT rule; for f = sqrt(x) on [0, 4] this is 8pi(n-1)/n exactly, because f squared is linear",
+      "exact_volume_about_x": "V = pi * integral of f(x)^2 dx = 8pi = 25.1327 on [0, 4]",
+      "gap": "V - V_n = 8pi/n exactly -- ONE term, which is why this profile was chosen",
+      "sphere": "spinning y = sqrt(r^2 - x^2) on [-r, r] gives V = 4/3 pi r^3; its LEFT disc sum is 4/3 pi r^3 (1 - 1/n^2)",
+      "ring": "V = pi * integral of (R^2 - r^2) dx; outer sqrt(x), inner x/2 on [0, 4] gives 8pi/3 = 8.3776",
+      "ring_wrong_M2": "pi * integral of (R - r)^2 dx = 0.5333pi = 1.6755 -- the misconception, built on purpose so the wrong number is reproducible rather than hand-typed",
+      "exact_volume_about_y": "V = pi * integral of (x1^2 - (f-inverse(y))^2) dy = 128pi/5 = 80.4248",
+      "limits": "V(b) = pi * integral of x dx over [0, b] = pi b^2 / 2; b = 2 gives 6.2832, b = 4 gives 25.1327"
+    },
+    "constraints": [
+      "DOMAIN FIRST. y = a*sqrt(x) is defined only for x >= 0, and every state that draws it authors a domain starting at 0 -- no caption generalises past the interval actually drawn.",
+      "The semicircle y = sqrt(r^2 - x^2) is defined ONLY on [-r, r]. STATE_5 sweeps r, and the drawn domain is DERIVED from the profile's own support rather than authored beside it, so the two are incapable of disagreeing. Authoring a fixed [-2, 2] there would draw a flat line where no curve exists and print a non-finite exact volume.",
+      "The disc rule is LEFT in every state, and midpoint is never used or mentioned. On this profile f squared is LINEAR, so the MIDPOINT rule is exact (8pi at every n) and a state teaching convergence would be showing a gap that does not exist.",
+      "STATE_5 needs n = 20000, not 1000: at n = 1000 the disc total and 4/3 pi r cubed disagree in the fourth decimal at 13 of the 101 reachable radii. At 20000 the analytic gap is at most 8.378e-8, four orders below the 1e-4 display quantum, and 0 of 101 disagree.",
+      "STATE_6 needs n >= 1000 for its two totals to print the values the lesson names: at n = 500 the ring total renders 8.3775, not 8.3776.",
+      "Volumes and areas are unitless -- they are measured in the plane's own units, and no physical unit is asserted anywhere in this concept."
+    ]
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "The disc total equals four thirds pi r cubed at every radius.",
+    "visual_confirmation": "The ball grows as r sweeps 1.00 to 2.00 and the two HUD lines print the same four decimals at all 101 radii the slider can reach -- 33.5103 against 33.5103 at r = 2.00, 14.1372 against 14.1372 at r = 1.50."
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The Flat Region",
+        "duration": 16,
+        "eye_capture_ms": 13600,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_region",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "region",
+            "id": "sr_region",
+            "label": "the region under the curve",
+            "note": "fills beneath the curve from 6000 to 13000 ms, after the curve itself has finished drawing (Rule 32a: cause before effect)",
+            "colour_role": "measured region"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "area = 5.3333",
+            "note": "value-only HUD; the live draw edge x reads while the curve and fill travel, then the region area settles at 5.3333"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A curve over an interval marks off a flat region."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "This region has an area of 5.333.",
+              "glow": "sr_region"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The outside of a drinking glass is one curve turned all the way round."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Turn It Into a Solid",
+        "duration": 26,
+        "eye_capture_ms": 20200,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_solid_outer",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "region",
+            "id": "sr_region",
+            "label": "the turning region",
+            "note": "the same flat region as STATE_1, now rotating about the axis with the sweep, so the thing that paints the surface is visibly the thing that was measured"
+          },
+          {
+            "type": "surface",
+            "id": "sr_solid_outer",
+            "label": "the swept surface",
+            "note": "the boundary paints a skin as theta runs 0 to 360 degrees over 1500-19500 ms and the solid closes"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "θ = 214°",
+            "note": "the turn angle only; no volume is shown yet, so STATE_4's answer cannot leak backwards into the state that raises the question"
+          },
+          {
+            "type": "camera",
+            "id": "sr_camera",
+            "label": "the tilt",
+            "note": "camera_steps eases from face-on to the three-quarter home pose across 2000-11000 ms. The chapter spends its tilt on one meaning: there is a dimension you have not seen yet"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now turn that flat region one full circle about the straight line below it."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The boundary paints a surface as it goes, and at 360 degrees the shape closes.",
+              "glow": "sr_solid_outer"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "A flat region has swept out a solid. To measure it, cut it open."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Every Slice Is a Circle",
+        "duration": 22,
+        "eye_capture_ms": 18800,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_disc_stack",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "disc",
+            "id": "sr_disc_stack",
+            "label": "the travelling slice",
+            "note": "ONE disc separates and slides from x = 0 to x = 4 over 2000-18000 ms; nothing else changes pose (Rule 32b)",
+            "colour_role": "measured region"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "r and face area",
+            "note": "r = 1.000 and face area = 3.1416 at x = 1; r = 2.000 and 12.5664 at the pinned frame x = 4"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout_pi_area",
+            "label": "π × area = 16.7552",
+            "note": "M1 shown as its CONSEQUENCE, not merely spoken: what spinning the AREA would give, beside what spinning the RADIUS actually gives"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Spinning a region of area A gives a volume of π times A, so the volume here is π × 5.3333 = 16.7552.",
+            "visual_counter": "The HUD carries π × area = 16.7552 beside the true face area 3.1416 at x = 1. The travelling disc's radius is marked as the curve HEIGHT, so what spins is a radius, never an area.",
+            "one_line_fix": "The curve's height is the radius, and a circle's area needs that radius squared."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "One common expectation is that spinning an area gives pi times that area."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Cut the solid across at one x instead. The face is a circle.",
+              "glow": "sr_disc_stack"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Its radius is the curve height, so the face area is pi r squared."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Stack Thin Discs",
+        "duration": 26,
+        "eye_capture_ms": 18800,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_disc_stack",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "stack",
+            "id": "sr_disc_stack",
+            "label": "n thin discs",
+            "note": "the log-n ramp runs n from 4 to 1000 over 2000-18000 ms with holds at 7000 and 13000 ms; the staircase thins and fuses into the solid"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "n, Δx, Vₙ",
+            "note": "Δx = 0.0040 defines the symbol the formula surface uses (Rule 25: no untaught term), and Vₙ = 25.1076 at the pinned frame"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout_settles",
+            "label": "settles on = 25.1327",
+            "note": "labelled by what THIS state's own picture shows -- the totals climb and level off. 'V =' would assert a value whose account is STATE_8, the advanced state the first preset cut removes (Rule 38b)"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout_cap",
+            "label": "discs drawn: 120 of 1000",
+            "note": "the cap engaging is declared on the canvas: a picture drawn at 120 beside a number computed at 1000 is a provenance split unless it says so"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Slice the solid into n thin discs stacked along the axis."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Each disc has radius r and thickness delta x, so its volume is pi r squared delta x."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "As n grows the staircase thins and the total climbs.",
+              "glow": "sr_disc_stack"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "It settles on 25.1327, and the amount still missing shrinks toward zero."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "A Sphere From a Semicircle",
+        "duration": 24,
+        "eye_capture_ms": 20800,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_readout",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "the semicircle",
+            "note": "the profile swaps to a circular arc of radius r over 0-2500 ms; the drawn domain is the arc's own support, so it grows with r and never draws a flat line where no curve exists"
+          },
+          {
+            "type": "solid",
+            "id": "sr_solid_outer",
+            "label": "the ball",
+            "note": "re-forms 2500-6000 ms, then GROWS as r sweeps 1.00 to 2.00 over 6000-20000 ms -- the only state where the solid itself changes size"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "the two totals",
+            "note": "the disc total at n = 20000 and 4/3 π r³ print the SAME four decimals at every one of the 101 radii the slider step can reach (proved exhaustively, gate section 13)"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout_cap",
+            "label": "discs drawn: 120 of 20000",
+            "note": "the cap line again, so the picture's 120 discs are never mistaken for the 20000 the number was computed at"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Swap the curve for a semicircle of radius r."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Turning it gives a ball, and the disc total is printed beside the known formula.",
+              "glow": "sr_solid_outer"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Four thirds pi r cubed. Now grow r from one to two."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The two numbers stay equal at every radius.",
+              "glow": "sr_readout"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Each Slice Is a Ring",
+        "duration": 28,
+        "eye_capture_ms": 21000,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_ring_outer",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_inner",
+            "label": "the inner curve y = x/2",
+            "note": "the second profile; the region is now bounded by two curves",
+            "colour_role": "third direction"
+          },
+          {
+            "type": "stack",
+            "id": "sr_wrong_solid",
+            "label": "the wrong solid",
+            "note": "discs of radius (R − r), built first, reading 1.6755, and DISSOLVED at 11000 ms. Only one kind is summed per frame, so the wrong total and the true total can never share a screen"
+          },
+          {
+            "type": "stack",
+            "id": "sr_ring_outer",
+            "label": "the ring stack",
+            "note": "each slice a big circle with a small one removed; sweeps closed 11000-20000 ms and reads 8.3776"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "R, r, ring area",
+            "note": "at the labelled slice x = 1.000: R = 1.000, r = 0.500, ring area = 2.3562 against the wrong 0.7854. x = 1 is where the two radii stand furthest apart, which is what M2 is an error about"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "For a region between two curves you subtract the radii and spin the difference: π ∫ (R − r)² dx, giving 1.6755.",
+            "visual_counter": "The sim BUILDS that solid first and reads 1.6755, then dissolves it and builds the ring stack, which reads 8.3776 -- five times bigger. The removed circle is not a shorter radius, it is a missing middle.",
+            "one_line_fix": "Take away the inner circle's area, not the inner radius."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "A drinking glass is hollow, so the solid part is the material between two curves."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "One wrong method subtracts the radii first and spins the difference. It reads 1.6755.",
+              "glow": "sr_wrong_solid"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Each slice is really a ring, or washer: take away the inner circle's area, not the radius.",
+              "glow": "sr_ring_outer"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The Axis Changes the Solid",
+        "duration": 24,
+        "eye_capture_ms": 19000,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_axis",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "the vertical axis",
+            "note": "the axis of revolution now stands up the y direction; this is the state's entire delta from STATE_2, its declared contrast pair",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "region",
+            "id": "sr_region",
+            "label": "the same flat region",
+            "note": "unchanged from STATE_1 -- only the line it turns about has moved"
+          },
+          {
+            "type": "solid",
+            "id": "sr_solid_inner",
+            "label": "the bowl",
+            "note": "built from RINGS (STATE_6's own stack re-used): at height y the slice runs from the curve out to the far edge, so R = 4.000 fixed and the inner radius grows as y squared"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "the two volumes",
+            "note": "about x: 25.1327 held beside about y: 80.4248 -- the same region, a different line, a different answer"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The volume depends only on the region, so turning it about the other axis must give the same answer.",
+            "visual_counter": "The previous answer 25.1327 stays on screen labelled 'about x' while the same region sweeps about y into a visibly different shape -- a bowl, not a horn -- and reads 80.4248.",
+            "one_line_fix": "The axis is part of the question -- the same region gives a different solid about a different line."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Take the same flat region, but turn it about the vertical axis instead.",
+              "glow": "sr_axis"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "The solid that forms is a bowl, not a horn.",
+              "glow": "sr_solid_inner"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Same region, different line, different volume: 80.4248 against 25.1327."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "The axis is part of the question, not just the region."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "The Integral Form",
+        "duration": 22,
+        "eye_capture_ms": 18800,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sr_formula",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "solid",
+            "id": "sr_solid_outer",
+            "label": "the smooth solid",
+            "note": "no discs are drawn here: the state's picture is the finished surface, growing along the axis as b sweeps 1.00 to 4.00 over 2500-18000 ms"
+          },
+          {
+            "type": "formula",
+            "id": "sr_formula",
+            "label": "V = π ∫₀ᵇ x dx",
+            "note": "the ONLY integral sign in the concept, on the ONLY advanced-ring state (Rule 38c notation ladder)"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "b and V",
+            "note": "b = 2.00 gives V = 6.2832; b = 4.00 gives V = 25.1327 -- the same number STATE_4's stack settled on, now with its account"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Adding thin discs is what an integral does."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Write it as V equals pi times the integral of f of x squared, dx.",
+              "glow": "sr_formula"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "The two limits are simply the two ends of the solid along the axis."
+            },
+            {
+              "id": "s8_4",
+              "text_en": "Move the far end and the volume follows."
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore: Change the Curve",
+        "duration": 0,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "sr_disc_stack",
+        "scene_composition": [
+          {
+            "type": "frame",
+            "id": "sr_frame",
+            "label": "ticked axes",
+            "note": "the two axes with integer ticks and DOM tick numbers; the persistent workspace of all nine states (Rule 32d home pose)"
+          },
+          {
+            "type": "line",
+            "id": "sr_axis",
+            "label": "axis",
+            "note": "the axis of revolution, drawn as its own brighter rod so the line the region turns about is never implied by absent geometry",
+            "colour_role": "derived object"
+          },
+          {
+            "type": "curve",
+            "id": "sr_curve_outer",
+            "label": "y = √x",
+            "note": "the profile curve, the same tube in every state that draws one",
+            "colour_role": "second direction"
+          },
+          {
+            "type": "stack",
+            "id": "sr_disc_stack",
+            "label": "the disc stack",
+            "note": "live under the teacher's hand; every slider drag rebuilds it"
+          },
+          {
+            "type": "slider",
+            "id": "sr_sliders",
+            "label": "a, b, n",
+            "note": "all three CORE-ring controls: the curve height a, the far end b, the disc count n. No axis toggle and no inner curve -- both are extended-ring lessons that a reduced preset removes (Rule 38b)"
+          },
+          {
+            "type": "readout",
+            "id": "sr_readout",
+            "label": "a, b, n, Vₙ",
+            "note": "values only. NO formula surface at all: under core_only no surviving state writes the integral sign, and Σ π r² Δx is already STATE_4's surface"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Change the curve height, the far end, and the number of discs."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can say what solid a given region sweeps out about a given line, write the slice area as pi times a radius SQUARED, recognise that a finite disc total approaches but never reaches the exact volume, subtract inner AREA rather than inner radius for a ring, and read the two limits of an integral as the two ends of the solid.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "stem": "The flat region under y = √x on [0, 4] is turned one full turn about the x-axis. What does it sweep out?",
+        "options": {
+          "A": "A solid that gets wider along the axis",
+          "B": "A flat disc -- the region simply rotated inside its own plane",
+          "C": "A hollow tube with nothing inside it",
+          "D": "A cube whose side is the region's width"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Reads the turn as a rotation WITHIN the plane, so the region never leaves two dimensions and no volume is swept.",
+          "C": "Assumes every solid of revolution is hollow, when a hole appears only if a second curve bounds the region away from the axis.",
+          "D": "Treats the sweep as an extrusion in a straight line rather than a turn about an axis."
+        },
+        "tested_idea": "turning a flat region about a line sweeps out a solid",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "The region under y = √x on [0, 9] is turned one full turn about the x-axis. What shape results?"
+      },
+      {
+        "q_id": "q2",
+        "stem": "Cut that solid across the axis at x = 4. The cut face is a circle. Its area is:",
+        "options": {
+          "A": "12.5664",
+          "B": "6.2832",
+          "C": "2.0000",
+          "D": "5.3333"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Uses 2πr instead of πr² -- the circumference formula where the area one is needed.",
+          "C": "Stops at the radius itself, √4 = 2, without turning it into an area at all.",
+          "D": "Reports the flat region's area 16/3, which is a property of the region, not of one circular slice."
+        },
+        "tested_idea": "the slice face area is pi times the radius SQUARED",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Cut the same solid at x = 1. What is the area of the circular face there?"
+      },
+      {
+        "q_id": "q3",
+        "stem": "Four left-hand discs give 18.85 and the exact volume is 25.13. One hundred discs give:",
+        "options": {
+          "A": "24.88 -- closer, and still below",
+          "B": "25.13 exactly",
+          "C": "26.02 -- closer, from above",
+          "D": "18.85 -- the disc count does not change the total"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats 'approaches' as 'reaches', so a finite sum is taken to land on the limit rather than close in on it.",
+          "C": "Assumes the left-hand sum overshoots. On an increasing radius every left disc is too small, so the total stays below.",
+          "D": "Reads the disc count as a drawing choice rather than as what the total is computed from."
+        },
+        "tested_idea": "a finite disc total approaches the exact volume from below and never reaches it",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Twenty left-hand discs give 23.88 against an exact 25.13. Do one thousand discs give more, less, or exactly 25.13?"
+      },
+      {
+        "q_id": "q4",
+        "stem": "Turn the semicircle y = √(4 − x²) on [−2, 2] about the x-axis. The volume is:",
+        "options": {
+          "A": "33.51",
+          "B": "50.27",
+          "C": "16.76",
+          "D": "25.13"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Uses 4πr², the surface area of a sphere, where the volume formula is needed.",
+          "C": "Multiplies the flat semicircle's area by π -- the same missing-square error as spinning an area.",
+          "D": "Carries over the earlier answer 8π from a different curve, as though every solid of revolution shared one volume."
+        },
+        "tested_idea": "a semicircle turned about its diameter gives a ball of volume four thirds pi r cubed",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Turn y = √(9 − x²) on [−3, 3] about the x-axis. What volume results?"
+      },
+      {
+        "q_id": "q5",
+        "stem": "The region between y = √x and y = x/2 on [0, 4] is turned about the x-axis. The volume is:",
+        "options": {
+          "A": "8.38",
+          "B": "1.68",
+          "C": "25.13",
+          "D": "33.51"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Subtracts the RADII and spins the difference, π∫(R − r)² dx, instead of subtracting the two circle AREAS.",
+          "C": "Ignores the inner curve entirely and reports the solid volume as though the region reached the axis.",
+          "D": "Substitutes the sphere answer from the previous state, which belongs to a different region and a different curve."
+        },
+        "tested_idea": "for a region between two curves each slice is a ring and the inner AREA is subtracted",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "The region between y = √x and y = x/2 on [0, 4] is turned about the x-axis. Is each slice a disc or a ring, and what is subtracted?"
+      },
+      {
+        "q_id": "q6",
+        "stem": "The same region under y = √x on [0, 4], turned about the y-axis instead, gives:",
+        "options": {
+          "A": "80.42 -- larger",
+          "B": "25.13 -- the same as before",
+          "C": "8.38 -- smaller",
+          "D": "It cannot be turned about the y-axis"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats the volume as a property of the region alone, so the choice of axis is assumed not to matter.",
+          "C": "Confuses the other-axis solid with the ring solid, since both are built from rings.",
+          "D": "Assumes a region can only be turned about the axis it was drawn against."
+        },
+        "tested_idea": "the axis of revolution is part of the question and changes the solid and its volume",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Turning the region under y = √x on [0, 4] about the y-axis instead of the x-axis gives a larger, smaller, or identical volume?"
+      },
+      {
+        "q_id": "q7",
+        "stem": "In V = π ∫₀ᵇ x dx, changing b from 4 to 2 changes the volume from 25.13 to:",
+        "options": {
+          "A": "6.28",
+          "B": "12.57",
+          "C": "25.13",
+          "D": "3.14"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Halves the volume with b, when the volume goes as b squared -- halving b quarters it.",
+          "C": "Reads the limits as labels on the picture rather than as the two ends the volume is computed between.",
+          "D": "Divides by four but starts from π rather than from πb²/2."
+        },
+        "tested_idea": "the limits of the integral are the two ends of the solid, and the volume goes as b squared",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "In V = π ∫₀ᵇ x dx, what happens to the volume when b is changed from 4 to 3?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "q1"
+      ],
+      "STATE_3": [
+        "q2"
+      ],
+      "STATE_4": [
+        "q3"
+      ],
+      "STATE_5": [
+        "q4"
+      ],
+      "STATE_6": [
+        "q5"
+      ],
+      "STATE_7": [
+        "q6"
+      ],
+      "STATE_8": [
+        "q7"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_9"
+    ]
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT",
+        "coverage": "partial",
+        "syllabus_unit": "Class 12 Mathematics, Chapter 8 -- Application of Integrals. The chapter covers AREA under simple curves only; volume of a solid of revolution is NOT in the rationalised scope.",
+        "verified": false,
+        "needs_teacher_verification": true,
+        "evidence": "Syllabus-scope reading at authoring time, not a teacher confirmation. This is a NEGATIVE claim (the topic is absent) and needs confirming exactly as much as a positive one -- see FLAG in the skeleton."
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "partial",
+        "syllabus_unit": "Integral Calculus -- 'areas of regions bounded by simple curves'. Volume of revolution is not a named topic, and no topics were deleted for 2025 or 2026, so it was never there.",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "ISC",
+        "coverage": "partial",
+        "syllabus_unit": "Section B -- Application of Integrals (volumes of revolution about the x- and y-axes).",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Analysis and Approaches HL",
+        "coverage": "full",
+        "syllabus_unit": "Topic 5 -- Calculus, volumes of revolution about the x-axis and the y-axis.",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Calculus AB",
+        "coverage": "full",
+        "syllabus_unit": "Unit 8 -- Applications of Integration: volumes with the disc and washer methods (explicitly examined).",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Calculus BC",
+        "coverage": "full",
+        "syllabus_unit": "Unit 8 -- Applications of Integration: volumes with the disc and washer methods.",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Pure Mathematics",
+        "coverage": "full",
+        "syllabus_unit": "Integration -- volumes of revolution about the x- and y-axes.",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Mathematics",
+        "coverage": "absent",
+        "syllabus_unit": "Not in scope -- IGCSE carries no integral calculus.",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "presets": {
+    "full": {
+      "label": "Full lesson",
+      "hidden_states": []
+    },
+    "no_advanced": {
+      "label": "Without the integral notation",
+      "hidden_states": [
+        "STATE_8"
+      ]
+    },
+    "core_only": {
+      "label": "Core only -- the disc method",
+      "hidden_states": [
+        "STATE_6",
+        "STATE_7",
+        "STATE_8"
+      ]
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "solid_of_revolution",
+    "explorer_id": "solid_of_revolution_explorer",
+    "slider_controls": {
+      "a": {
+        "min": 0.8,
+        "max": 1.4,
+        "step": 0.05,
+        "default": 1.0,
+        "label": "Curve height a"
+      },
+      "b": {
+        "min": 1.0,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 4.0,
+        "label": "Far end b"
+      },
+      "n": {
+        "min": 4,
+        "max": 120,
+        "step": 4,
+        "default": 20,
+        "label": "Discs n"
+      },
+      "r": {
+        "min": 1.0,
+        "max": 2.0,
+        "step": 0.01,
+        "default": 1.0,
+        "label": "Radius r"
+      },
+      "x_cut": {
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 0.0,
+        "label": "Cut at x"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The Flat Region",
+        "caption": "The flat region",
+        "formula_overlay": "y = √x",
+        "camera_position": [
+          0.0,
+          0.0,
+          5.2
+        ],
+        "sr": {
+          "mode": "region",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 1200,
+            "curve_ms": 4800,
+            "region_at_ms": 6000,
+            "region_ms": 7000
+          },
+          "controls": [],
+          "readouts": [
+            "x_edge",
+            "area"
+          ],
+          "glow_focal": "region"
+        }
+      },
+      "STATE_2": {
+        "label": "Turn It Into a Solid",
+        "caption": "Turning makes a solid",
+        "camera_position": [
+          0.0,
+          0.0,
+          5.2
+        ],
+        "sr": {
+          "mode": "sweep",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1,
+            "region_at_ms": 0,
+            "region_ms": 1200
+          },
+          "theta_ramp": {
+            "from_deg": 0,
+            "to_deg": 360,
+            "start_ms": 1500,
+            "duration_ms": 18000
+          },
+          "camera_base": {
+            "az": 0.0,
+            "el": 0.0,
+            "dist": 5.2
+          },
+          "camera_steps": [
+            {
+              "at_ms": 2000,
+              "az": 0.0,
+              "el": 0.0,
+              "dist": 5.2,
+              "ease_ms": 0
+            },
+            {
+              "at_ms": 11000,
+              "az": 41.44,
+              "el": 23.83,
+              "dist": 7.6,
+              "ease_ms": 9000
+            }
+          ],
+          "controls": [],
+          "readouts": [
+            "theta"
+          ],
+          "glow_focal": "solid"
+        }
+      },
+      "STATE_3": {
+        "label": "Every Slice Is a Circle",
+        "caption": "One slice is a circle",
+        "formula_overlay": "face area = π r²",
+        "camera_position": [
+          7.83,
+          0.8,
+          1.46
+        ],
+        "sr": {
+          "mode": "slice",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1,
+            "region_at_ms": 0,
+            "region_ms": 1
+          },
+          "slice_x": 0.0,
+          "slice_thickness": 0.12,
+          "param_ramp": {
+            "param": "x_cut",
+            "from": 0.0,
+            "to": 4.0,
+            "start_ms": 2000,
+            "duration_ms": 16000
+          },
+          "controls": [
+            "x_cut"
+          ],
+          "readouts": [
+            "x_cut",
+            "r",
+            "face_area",
+            "pi_area"
+          ],
+          "glow_focal": "disc"
+        }
+      },
+      "STATE_4": {
+        "label": "Stack Thin Discs",
+        "caption": "Many thin discs added",
+        "formula_overlay": "Vₙ = Σ π r² Δx",
+        "camera_position": [
+          4.6,
+          3.07,
+          5.21
+        ],
+        "sr": {
+          "mode": "stack",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1,
+            "region_at_ms": 0,
+            "region_ms": 1
+          },
+          "discs": {
+            "n": 4,
+            "rule": "left",
+            "max_discs_drawn": 120,
+            "n_ramp": {
+              "log10_from": 0.602,
+              "log10_to": 3.0,
+              "start_ms": 2000,
+              "duration_ms": 16000,
+              "holds": [
+                {
+                  "at_ms": 3500,
+                  "hold_ms": 2000
+                },
+                {
+                  "at_ms": 9000,
+                  "hold_ms": 2000
+                }
+              ]
+            }
+          },
+          "controls": [],
+          "readouts": [
+            "n",
+            "dx",
+            "V_n",
+            "V_settles",
+            "gap",
+            "discs_drawn"
+          ],
+          "glow_focal": "stack"
+        }
+      },
+      "STATE_5": {
+        "label": "A Sphere From a Semicircle",
+        "caption": "A sphere from a semicircle",
+        "formula_overlay": "V = 4/3 π r³",
+        "camera_position": [
+          4.6,
+          3.07,
+          5.21
+        ],
+        "sr": {
+          "mode": "stack",
+          "outer": {
+            "family": "circle_arc",
+            "r": 1.0,
+            "x0": 0.0,
+            "c": 0.0
+          },
+          "domain": [
+            -2.0,
+            2.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              -2,
+              2
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 2500,
+            "region_at_ms": 2500,
+            "region_ms": 3500
+          },
+          "slice_x": 0.0,
+          "discs": {
+            "n": 20000,
+            "rule": "left",
+            "max_discs_drawn": 120
+          },
+          "param_ramp": {
+            "param": "r",
+            "from": 1.0,
+            "to": 2.0,
+            "start_ms": 6000,
+            "duration_ms": 14000
+          },
+          "controls": [
+            "r"
+          ],
+          "readouts": [
+            "r",
+            "V_n",
+            "V_exact",
+            "discs_drawn"
+          ],
+          "glow_focal": "readout"
+        }
+      },
+      "STATE_6": {
+        "label": "Each Slice Is a Ring",
+        "caption": "Each slice is a ring",
+        "formula_overlay": "V = Σ π (R² − r²) Δx",
+        "camera_position": [
+          5.09,
+          2.39,
+          5.69
+        ],
+        "sr": {
+          "mode": "compare",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "inner": {
+            "family": "power",
+            "a": 0.5,
+            "p": 1.0,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1200,
+            "region_at_ms": 0,
+            "region_ms": 1200
+          },
+          "slice_x": 1.0,
+          "discs": {
+            "n": 1000,
+            "rule": "left",
+            "kind": "ring",
+            "max_discs_drawn": 120
+          },
+          "contrast": {
+            "kind": "radius_difference",
+            "at_ms": 1500,
+            "dissolve_at_ms": 11000
+          },
+          "theta_ramp": {
+            "from_deg": 0,
+            "to_deg": 360,
+            "start_ms": 11000,
+            "duration_ms": 9000
+          },
+          "controls": [],
+          "readouts": [
+            "R",
+            "r_inner",
+            "ring_area",
+            "V_wrong",
+            "V_n"
+          ],
+          "glow_focal": "ring_stack"
+        }
+      },
+      "STATE_7": {
+        "label": "The Axis Changes the Solid",
+        "caption": "Same region, other axis",
+        "camera_position": [
+          6.02,
+          4.89,
+          6.77
+        ],
+        "sr": {
+          "mode": "stack",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "y",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1,
+            "region_at_ms": 0,
+            "region_ms": 1200
+          },
+          "discs": {
+            "n": 1000,
+            "rule": "left",
+            "kind": "ring",
+            "max_discs_drawn": 120
+          },
+          "theta_ramp": {
+            "from_deg": 0,
+            "to_deg": 360,
+            "start_ms": 3000,
+            "duration_ms": 15000
+          },
+          "controls": [
+            "axis"
+          ],
+          "readouts": [
+            "theta",
+            "V_about_x",
+            "V_about_y"
+          ],
+          "glow_focal": "axis"
+        }
+      },
+      "STATE_8": {
+        "label": "The Integral Form",
+        "caption": "Limits are the two ends",
+        "formula_overlay": "V = π ∫₀ᵇ x dx",
+        "camera_position": [
+          4.6,
+          3.07,
+          5.21
+        ],
+        "sr": {
+          "mode": "sweep",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": {
+            "curve_at_ms": 0,
+            "curve_ms": 1,
+            "region_at_ms": 0,
+            "region_ms": 2500
+          },
+          "param_ramp": {
+            "param": "b",
+            "from": 1.0,
+            "to": 4.0,
+            "start_ms": 2500,
+            "duration_ms": 15500
+          },
+          "controls": [
+            "b"
+          ],
+          "readouts": [
+            "b",
+            "V_exact"
+          ],
+          "glow_focal": "formula"
+        }
+      },
+      "STATE_9": {
+        "label": "Explore: Change the Curve",
+        "caption": "Move the controls",
+        "camera_position": [
+          5.42,
+          3.43,
+          6.32
+        ],
+        "sr": {
+          "mode": "explore",
+          "outer": {
+            "family": "power",
+            "a": 1.0,
+            "p": 0.5,
+            "c": 0.0
+          },
+          "domain": [
+            0.0,
+            4.0
+          ],
+          "axis": "x",
+          "frame": {
+            "x_range": [
+              0,
+              4
+            ],
+            "y_range": [
+              0,
+              2
+            ],
+            "x_tick": 1,
+            "y_tick": 1,
+            "tick_decimals": 0,
+            "show_frame": true
+          },
+          "reveal": false,
+          "discs": {
+            "n": 20,
+            "rule": "left",
+            "max_discs_drawn": 120
+          },
+          "controls": [
+            "a",
+            "b",
+            "n"
+          ],
+          "readouts": [
+            "a",
+            "b",
+            "n",
+            "V_n"
+          ]
+        }
+      }
+    }
+  }
+}
