@@ -2969,9 +2969,73 @@
       } catch (e) { cb && cb(false); }
     }
 
+    /** The account chip in the top bar.
+
+        Students had no way to tell whether signing in had worked: the book looked
+        identical before and after, so the honest read was "it did nothing". The
+        chip is the whole feedback loop — signed out it invites, signed in it
+        shows who you are and what that buys you. */
+    function paintChip() {
+      var btn = $('btnAccount'), card = $('acctCard');
+      if (!btn || !card) return;
+      if (!available()) { btn.hidden = true; card.hidden = true; return; }
+      btn.hidden = false;
+      var mail = email();
+      if (signedIn()) {
+        // The initial, the way every account menu does it. Falls back to a dot
+        // when the profile has not loaded yet, never to an empty circle.
+        btn.textContent = (mail ? mail.charAt(0) : '•').toUpperCase();
+        btn.className = 'btn btn-acct is-in';
+        btn.setAttribute('aria-label', 'Account' + (mail ? ' — ' + mail : ''));
+        btn.title = mail || 'Signed in';
+      } else {
+        btn.textContent = 'Sign in';
+        btn.className = 'btn btn-acct';
+        btn.setAttribute('aria-label', 'Sign in with Google');
+        btn.title = 'Sign in with Google';
+      }
+    }
+
+    function paintCard() {
+      var card = $('acctCard');
+      if (!card) return;
+      var mailEl = $('acctEmail'), noteEl = $('acctNote'), actEl = $('acctAction');
+      if (signedIn()) {
+        mailEl.textContent = email() || 'Signed in';
+        noteEl.textContent = 'Your pass opens the book on every device you sign in on.';
+        actEl.textContent = 'Sign out';
+        actEl.onclick = function () { signOut(); location.reload(); };
+      } else {
+        mailEl.textContent = 'Not signed in';
+        noteEl.textContent = 'Sign in and a pass you buy follows you to any phone or laptop. The free chapters work either way.';
+        actEl.textContent = 'Sign in with Google';
+        actEl.onclick = function () { signIn(); };
+      }
+    }
+
+    function initChip() {
+      var btn = $('btnAccount'), card = $('acctCard');
+      if (!btn || !card) return;
+      paintChip();
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!card.hidden) { card.hidden = true; return; }
+        paintCard();
+        card.hidden = false;
+      });
+      // Tap anywhere else to dismiss — a card that can only be closed by the
+      // control that opened it reads as stuck on a phone.
+      document.addEventListener('click', function (e) {
+        if (card.hidden) return;
+        if (card.contains(e.target) || btn.contains(e.target)) return;
+        card.hidden = true;
+      });
+    }
+
     return {
       available: available, signedIn: signedIn, token: token, email: email,
-      signIn: signIn, signOut: signOut, capture: capture, loadProfile: loadProfile
+      signIn: signIn, signOut: signOut, capture: capture, loadProfile: loadProfile,
+      initChip: initChip, paintChip: paintChip
     };
   })();
 
@@ -5009,7 +5073,10 @@
     // for the standing of a device with no token attached — so a student who
     // had just signed in would land back on the paywall.
     Auth.capture();
-    Auth.loadProfile();
+    Auth.initChip();
+    // The email arrives a moment later; repaint so the chip shows the real
+    // initial rather than the placeholder dot.
+    Auth.loadProfile(function () { Auth.paintChip(); });
     Sync.init();
     Gate.init();
     route();

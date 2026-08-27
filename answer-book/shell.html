@@ -52,6 +52,18 @@
          button keeps its markup but lost nb-only, so the view sweep never
          un-hides it; the overlay + self-check code below stay unreachable. -->
     <button class="btn btn-test" id="btnTest" type="button" hidden>Test myself</button>
+    <!-- The account chip (2026-08-27). Hidden entirely when Auth is inert (every
+         ungated build), so the offline suite never sees it. Signed out it reads
+         "Sign in"; signed in it becomes the student's initial, and tapping it
+         opens a small card with the email and a sign-out. Students had no way to
+         tell whether signing in had worked. -->
+    <button class="btn btn-acct" id="btnAccount" type="button" hidden></button>
+  </div>
+  <!-- The account card, anchored under the chip. -->
+  <div class="acct-card" id="acctCard" hidden>
+    <div class="acct-email" id="acctEmail"></div>
+    <div class="acct-note" id="acctNote"></div>
+    <div class="acct-row"><button class="vw-btn" id="acctAction" type="button"></button></div>
   </div>
 </header>
 

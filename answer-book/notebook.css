@@ -1008,3 +1008,32 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
    #/pricing view fills it; every other sheet leaves it empty and hidden. */
 #lockList { margin: 10px 0 2px; padding: 0 0 0 18px; text-align: left; }
 #lockList li { font-size: 13px; line-height: 1.55; margin-top: 4px; }
+
+/* ── the account chip (2026-08-27) ──────────────────────────────────────────
+   Top-right, beside the other chrome buttons. Signed out it is a plain
+   "Sign in"; signed in it collapses to a clay initial, the way an account menu
+   reads everywhere else. Hidden entirely in ungated builds, where Auth is
+   inert — so the offline suite never sees it. */
+.btn-acct { white-space: nowrap; }
+.btn-acct.is-in {
+  width: 32px; height: 32px; padding: 0; border-radius: 50%;
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  font-weight: 700; font-size: 14px; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-acct.is-in:hover { background: var(--clay-deep); border-color: var(--clay-deep); color: #fff; }
+
+/* The card hangs under the chip. position:absolute against the sticky topbar,
+   so it travels with the bar and never lands under the page content. */
+.acct-card {
+  position: absolute; top: 56px; right: 18px; z-index: 30;
+  width: min(290px, calc(100vw - 36px));
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 12px; padding: 13px 15px;
+  box-shadow: 0 10px 28px -12px rgba(62, 50, 25, 0.4);
+  text-align: left;
+}
+.acct-email { font-size: 13.5px; font-weight: 700; word-break: break-all; }
+.acct-note { margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--chrome-dim); }
+.acct-row { margin-top: 11px; }
+.topbar { position: sticky; }
