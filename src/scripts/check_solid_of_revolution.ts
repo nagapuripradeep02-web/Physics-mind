@@ -38,7 +38,7 @@
  *   npm run check:solid-of-revolution
  */
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
@@ -1661,11 +1661,230 @@ console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper gate can reach ===");
+// WHY THIS SECTION EXISTS. Every assertion above this line runs a PURE helper
+// pulled out of the template literal by brace matching, precisely so the gate
+// needs no browser. buildSolidOfRevolution touches DOM and THREE, so it was the
+// one function the gate could NOT call — and until a concept authored the
+// scenario, nothing else called it either. It shipped through 217 assertions
+// and 32 negative controls with "ReferenceError: textColor is not defined" on
+// its first line of DOM work: the scenario never started, PM_simTimeMs stayed
+// at 0, and THE EYE aborted rather than photograph an arbitrary phase.
+//
+// So this section EXECUTES the whole shipped region under shims and asserts the
+// builder runs to completion. The shims are an ALLOWLIST, and the guard below
+// is what stops the allowlist from becoming a way to silence the next bug.
+{
+  // (i) THE ALLOWLIST GUARD, FIRST — a name may be shimmed only if it is really
+  //     declared at RENDERER scope outside this region. textColor is not: all
+  //     149 of its uses are function-locals inside individual scenario builders,
+  //     which is exactly why the SR block had to declare its own and did not.
+  // slice from the START OF THE LINE — the marker sits mid-comment, and cutting
+  // there hands the parser a bare comment tail (a SyntaxError, not a
+  // ReferenceError, which would have masked exactly what this section tests).
+  const markIdx = SRC.indexOf("solid_of_revolution — VOLUME BY INTEGRATION");
+  const startIdx = SRC.lastIndexOf("\n", markIdx) + 1;
+  const endIdx = SRC.indexOf("    function buildScenario() {", startIdx);
+  const REGION = SRC.slice(startIdx, endIdx);
+  const OUTSIDE = SRC.slice(0, startIdx) + SRC.slice(endIdx);
+  // renderer scope in this file is exactly four spaces of indent; a scenario
+  // builder's own locals sit at eight or more.
+  const declaredAtRendererScope = (n: string) =>
+    new RegExp("^ {4}(?:var|let|const|function)\\s+" + n + "\\b", "m").test(OUTSIDE);
+  const SHIMS = ["window", "document", "config", "THREE", "console", "addToScene",
+    "hexToThreeColor", "cueTriggerMs", "osCamScheduleAt", "nlbProjPx",
+    "targetSpherical", "spherical", "updateCameraFromSpherical", "animating",
+    "time", "stateStartTime"];
+  const HOST = ["window", "document", "console", "THREE", "config"];
+  const notDeclared = SHIMS.filter(n => !HOST.includes(n) && !declaredAtRendererScope(n));
+  assertTrue("every shimmed name below is really declared at RENDERER scope outside this region ("
+    + (notDeclared.length ? "MISSING: " + notDeclared.join(", ") : "all " + (SHIMS.length - HOST.length) + " checked")
+    + ")", notDeclared.length === 0);
+  control("the guard REFUSES textColor — its 149 uses are all function-locals inside individual "
+    + "scenario builders, so shimming it would have hidden the defect instead of finding it",
+    !declaredAtRendererScope("textColor"));
+  assertTrue("...and the SR region now declares its OWN textColor, like every sibling builder",
+    /\bvar\s+textColor\s*=/.test(REGION));
+
+  // (ii) EXECUTE IT. Anything the region references that is neither declared
+  //      inside it nor in the allowlist throws ReferenceError here.
+  const made: Record<string, any> = {};
+  const mkNode = (): any => {
+    const node: any = {
+      style: {}, children: [], innerHTML: "", textContent: "", value: "", step: "0",
+      setAttribute(k: string, v: string) { node["attr_" + k] = v; },
+      appendChild(c: any) { node.children.push(c); return c; },
+      addEventListener() { /* the wire() handlers are exercised in (iii) */ },
+    };
+    return node;
+  };
+  const documentShim: any = {
+    body: mkNode(),
+    createElement: () => {
+      const n = mkNode();
+      // id is assigned by the caller right after createElement; register lazily
+      Object.defineProperty(n, "id", {
+        get: () => n._id, set: (v: string) => { n._id = v; made[v] = n; }, configurable: true,
+      });
+      return n;
+    },
+    getElementById: (id: string) => made[id] || null,
+  };
+  // THREE is auto-stubbed: every property is a constructor, every instance
+  // answers any property with another stub. This can only hide a TYPE error,
+  // never a ReferenceError — and a ReferenceError is the defect class here.
+  //   `array` answers with a real Float32Array because the writers index into
+  //   it; `position`/`rotation`/`scale` answer with a settable triple. Nothing
+  //   else needs to be real — a stub can mask a TYPE error but never a
+  //   ReferenceError, and a ReferenceError is the defect class this section is
+  //   written for. The claim asserted below is therefore exactly that: the
+  //   builder resolves every name it uses and runs to the end.
+  const BIG = 400000;
+  const stub = (): any => new Proxy(function () { /* constructible */ } as any, {
+    get: (_t, k) => (k === "then" ? undefined
+      : k === "array" ? new Float32Array(BIG)
+      : k === "count" ? 0
+      : k === "userData" ? {}
+      : k === "rotation" || k === "scale"
+        ? { set: () => undefined, x: 0, y: 0, z: 0 }
+      : k === "position"
+        ? { set: () => undefined, x: 0, y: 0, z: 0, needsUpdate: false }
+        : stub()),
+    set: () => true,
+    apply: () => stub(),
+    construct: () => stub(),
+    has: () => true,
+  });
+  const CONFIG = {
+    scenario_type: "solid_of_revolution",
+    slider_controls: {
+      a: { min: 0.8, max: 1.4, step: 0.05, default: 1.0 },
+      b: { min: 1.0, max: 4.0, step: 0.05, default: 4.0 },
+      n: { min: 4, max: 120, step: 4, default: 20 },
+      r: { min: 1.0, max: 2.0, step: 0.01, default: 1.0 },
+      x_cut: { min: 0.0, max: 4.0, step: 0.05, default: 0.0 },
+    },
+    states: {
+      STATE_1: {
+        camera_position: [0, 0, 5.2], formula_overlay: "y = \u221Ax",
+        sr: { mode: "region", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+          domain: [0, 4], axis: "x",
+          frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+          reveal: { curve_at_ms: 1200, curve_ms: 4800, region_at_ms: 6000, region_ms: 7000 },
+          controls: [], readouts: ["x_edge", "area"], glow_focal: "region" },
+      },
+    },
+  };
+  const winShim: any = { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null,
+    PM_srX: null, PM_srAxis: null, PM_srSeized: {}, PM_srCamPose: null };
+  const ARGS: Record<string, any> = {
+    window: winShim, document: documentShim, config: CONFIG, THREE: stub(),
+    console: { warn: () => undefined, log: () => undefined },
+    addToScene: () => undefined, hexToThreeColor: () => ({}),
+    cueTriggerMs: (_k: string, d: number) => d, osCamScheduleAt: () => null,
+    nlbProjPx: () => null,
+    targetSpherical: { radius: 8, phi: 1, theta: 1 }, spherical: { radius: 8, phi: 1, theta: 1 },
+    updateCameraFromSpherical: () => undefined, animating: false,
+    time: 0, stateStartTime: 0,
+  };
+  const names = Object.keys(ARGS);
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const mkApi = () => new Function(...names, REGION
+    + "\nreturn { build: buildSolidOfRevolution, apply: applySolidOfRevolutionState,"
+    + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow };"
+  )(...names.map(n => ARGS[n]));
+  /** Run fn and report WHICH class of error came back. */
+  const classifyRun = (fn: () => void): { ok: boolean; ref: boolean; msg: string } => {
+    try { fn(); return { ok: true, ref: false, msg: "" }; }
+    catch (e) {
+      const ref = e instanceof ReferenceError;
+      return { ok: false, ref, msg: (e instanceof Error ? e.constructor.name + ": " + e.message : String(e)) };
+    }
+  };
+
+  // (ii-a) THE DOM HALF, with no state to apply — this path touches no geometry,
+  //        so it must complete CLEANLY, with no error of any class.
+  const domOnly = classifyRun(() => mkApi().build({ ...CONFIG, states: {} }));
+  assertTrue("with no state to apply, buildSolidOfRevolution completes CLEANLY — the DOM half of "
+    + "the builder, which is where the shipped defect was"
+    + (domOnly.ok ? "" : " — threw: " + domOnly.msg), domOnly.ok);
+
+  // (ii-b) THE FULL PATH, including the first-state apply and a frame. A stubbed
+  //        THREE can raise a TypeError that says nothing about the renderer, so
+  //        only a ReferenceError — a name the region uses and nobody declares —
+  //        fails here. That IS the shipped defect's class, and (iii) proves this
+  //        assertion catches it.
+  const full = classifyRun(() => {
+    const api = mkApi();
+    api.build(CONFIG);
+    api.apply(CONFIG.states.STATE_1);
+    api.frame(CONFIG.states.STATE_1);
+    api.glow(CONFIG.states.STATE_1);
+  });
+  assertTrue("no name used anywhere in build -> apply -> frame -> glow is undeclared"
+    + (full.ok ? "" : " (non-ReferenceError under the THREE stub, which is not evidence either way: "
+      + full.msg + ")"), !full.ref);
+  for (const id of ["sr_ticks", "sr_readout", "sr_formula", "sr_sliders"]) {
+    assertTrue("...and created the DOM surface #" + id, !!made[id]);
+  }
+  assertTrue("the HUD and the slider panel carry real ink, not the string 'undefined' "
+    + "(the shape the missing textColor would have left had it merely been undefined)",
+    !!made["sr_readout"] && made["sr_readout"].style.cssText.indexOf("undefined") < 0
+    && !!made["sr_sliders"] && made["sr_sliders"].style.cssText.indexOf("undefined") < 0);
+  assertTrue("the slider panel built all five contextual rows plus the axis toggle",
+    !!made["sr_sliders"] && ["sr_acoef_row", "sr_bend_row", "sr_radius_row", "sr_count_row",
+      "sr_cut_row", "sr_axis_row"].every(r => made["sr_sliders"].innerHTML.indexOf(r) >= 0));
+
+  // (iii) THE NEGATIVE CONTROL — reconstruct the pre-fix region by deleting the
+  //       one declaration, and watch this section fail on it.
+  {
+    const broken = REGION.replace(/^ {8}var textColor = .*$/m, "        // (declaration removed)");
+    assertTrue("the control's broken twin really differs from the shipped region",
+      broken !== REGION);
+    const brokenRun = classifyRun(() => {
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
+      const run = new Function(...names, broken + "\nreturn { b: buildSolidOfRevolution };");
+      run(...names.map(n => ARGS[n])).b({ ...CONFIG, states: {} });
+    });
+    control("removing the one declaration reproduces the SHIPPED failure exactly, and it is a "
+      + "ReferenceError — the class (ii-b) fails on — " + (brokenRun.msg || "no throw at all"),
+      brokenRun.ref && /textColor is not defined/.test(brokenRun.msg));
+    control("...and it also breaks (ii-a), the CLEAN-completion assertion, so both halves of this "
+      + "section are load-bearing rather than one carrying the other", !brokenRun.ok);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15");
 console.log("  negative controls fired: " + controlsFired);
-console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
-console.log("  there are no frames and no baseline. This gate is the only evidence.");
+// Self-correcting, because this banner was a CLAIM about the repo and claims
+// rot: the moment a concept authors the scenario, THE EYE becomes the stronger
+// evidence and this gate stops being the only kind there is.
+{
+  const roots = ["src/data/concepts", "src/data/concepts/mathematics",
+    "src/data/concepts/chemistry"];
+  let authoredBy: string | null = null;
+  for (const dir of roots) {
+    let entries: string[] = [];
+    try { entries = readdirSync(dir).filter((f) => f.endsWith(".json")); } catch { continue; }
+    for (const f of entries) {
+      try {
+        if (readFileSync(join(dir, f), "utf8").includes('"solid_of_revolution"')) {
+          authoredBy = join(dir, f); break;
+        }
+      } catch { /* unreadable file is not evidence either way */ }
+    }
+    if (authoredBy) break;
+  }
+  if (authoredBy) {
+    console.log("  THE EYE CAN run: " + authoredBy + " authors this scenario, so frames and a");
+    console.log("  baseline exist. This gate is necessary evidence, no longer the only evidence.");
+  } else {
+    console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
+    console.log("  there are no frames and no baseline. This gate is the only evidence.");
+  }
+}
 console.log("═".repeat(78));
 if (failures > 0) {
   console.log("\n❌ check:solid-of-revolution FAILED — " + failures + " assertion(s)\n");

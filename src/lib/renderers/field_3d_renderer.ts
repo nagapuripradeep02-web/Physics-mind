@@ -76622,6 +76622,23 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     function buildSolidOfRevolution(config) {
+        // The fleet's overlay ink, declared LOCALLY exactly as all 149 other uses
+        // in this renderer are — every scenario builder carries its own local
+        // textColor, because there is no shared one. This block used the name
+        // twice and declared it NOWHERE, so buildSolidOfRevolution threw
+        // "ReferenceError: textColor is not defined" on its FIRST line of DOM
+        // work and the scenario never started: PM_simTimeMs stayed at 0 and THE
+        // EYE aborted the capture rather than photograph an arbitrary phase.
+        //
+        // IT SHIPPED THROUGH 217 GATE ASSERTIONS AND 32 NEGATIVE CONTROLS,
+        // because every one of them runs the PURE helpers in node — the gate
+        // pulls function bodies out of the template literal by brace matching
+        // precisely so it needs no browser. buildSolidOfRevolution touches DOM
+        // and THREE, so it was the one function the gate could not call, and no
+        // concept authored the scenario, so nothing else ever called it either.
+        // A29's rule in a third costume: the evidence was strong about the half
+        // that could not fail this way. Section 15 now EXECUTES this function.
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
         // 1. the DOM surfaces — every one a body child with inline position:fixed,
         //    which is exactly what the generic Rule-39f widget engine discovers, so
         //    the teacher toggles cost no wiring. data-wg-label names each one.
