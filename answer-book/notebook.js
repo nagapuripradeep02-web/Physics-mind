@@ -2876,6 +2876,105 @@
   // Unlocked bundles merge into `questions` IN MEMORY only. A new session
   // re-fetches — deliberate for now: a 550 KB bundle is localStorage-quota
   // roulette, and the fetch is one fast call.
+  // ═══ Auth — Google sign-in, so a pass follows the STUDENT ════════════════
+  // Identity was an anonymous device UUID, so a student who paid ₹99 on their
+  // phone and opened the book on a laptop met the paywall again. Signing in
+  // links devices to one account; the server then unions their entitlements.
+  //
+  // NO SDK. The whole flow is a redirect to Supabase's own /auth/v1/authorize
+  // and a token read back off the URL hash — this is a single-file build with
+  // zero dependencies and it stays that way.
+  //
+  // ANONYMOUS FIRST, STILL. With no PM_AUTH_BASE the module is inert. Even
+  // hosted, a student never has to sign in: the four free chapters and the whole
+  // deterministic book work signed out, exactly as before. Signing in buys one
+  // thing — carrying a pass between devices.
+  var Auth = (function () {
+    var BASE = (window.PM_AUTH_BASE || '').trim();
+    // Supabase Auth wants apikey AND the bearer token; with only the bearer it
+    // answers 401 for a valid session. Public anon key by design.
+    var ANON = (window.PM_AUTH_ANON || '').trim();
+    var K_AT = 'pm_ab_at', K_RT = 'pm_ab_rt', K_EMAIL = 'pm_ab_email';
+
+    function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+    function s(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+    function d(k) { try { localStorage.removeItem(k); } catch (e) { /* private mode */ } }
+
+    function token() { return g(K_AT); }
+    function email() { return g(K_EMAIL); }
+    function signedIn() { return !!(BASE && token()); }
+    function available() { return !!BASE; }
+
+    /** Hand the student to Google. Comes back to this page with the token on
+        the hash, which capture() strips before anything else reads the URL. */
+    function signIn() {
+      if (!BASE) return;
+      var back = location.origin + location.pathname;
+      location.href = BASE + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
+    }
+
+    function signOut() {
+      // The DEVICE keeps whatever it owns — signing out is not giving anything
+      // back, only forgetting the account on this browser.
+      d(K_AT); d(K_RT); d(K_EMAIL);
+    }
+
+    /** Read #access_token=… on the way back from Google.
+
+        Must run BEFORE the router: what comes back is a token blob, not a
+        route, and route() would read it as a bad question id and bounce. The
+        tokens are stripped out of the URL immediately so they never sit in
+        browser history or get pasted into a WhatsApp group with the link. */
+    function capture() {
+      var h = location.hash || '';
+      if (h.indexOf('access_token=') < 0) return false;
+      var p = {};
+      h.replace(/^#/, '').split('&').forEach(function (kv) {
+        var i = kv.indexOf('=');
+        if (i > 0) {
+          try { p[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1)); }
+          catch (e) { /* a malformed pair is simply not a token */ }
+        }
+      });
+      if (!p.access_token) return false;
+      s(K_AT, p.access_token);
+      if (p.refresh_token) s(K_RT, p.refresh_token);
+      try {
+        history.replaceState(null, '', location.pathname + location.search + '#/');
+      } catch (e) { location.hash = '#/'; }
+      return true;
+    }
+
+    /** Who is signed in, for the label on screen. A failure here is never fatal
+        — the pass works off the token; the email is only a courtesy. */
+    function loadProfile(cb) {
+      if (!signedIn()) { cb && cb(false); return; }
+      try {
+        fetch(BASE + '/auth/v1/user', {
+          headers: { apikey: ANON, Authorization: 'Bearer ' + token() }
+        })
+          .then(function (r) {
+            // ONLY an auth rejection forgets the token. A 500, a rate limit or
+            // a gateway hiccup must never sign a paying student out — they
+            // would come back to a paywall over a transient blip. On anything
+            // else the token is kept and simply retried next load.
+            if (r.status === 401 || r.status === 403) { signOut(); return null; }
+            return r.ok ? r.json() : null;
+          })
+          .then(function (u) {
+            if (u && u.email) { s(K_EMAIL, u.email); cb && cb(true); return; }
+            cb && cb(false);
+          })
+          .catch(function () { cb && cb(false); });   // offline: keep the token
+      } catch (e) { cb && cb(false); }
+    }
+
+    return {
+      available: available, signedIn: signedIn, token: token, email: email,
+      signIn: signIn, signOut: signOut, capture: capture, loadProfile: loadProfile
+    };
+  })();
+
   var Gate = (function () {
     var BASE = (window.PM_CONTENT_BASE || '').trim();
     var unlockedUnits = {};            // unit_key -> true
@@ -2883,6 +2982,8 @@
     var listLoaded = false;            // lock chips wait for the truth (no flicker)
     var pendingUnlock = null;          // where the student was headed before paying
     var freeAvailable = null;
+    var serverSignedIn = false;        // the SERVER's view of the token we sent
+    var linkedDevices = 1;
     var priceInfo = null;              // what THIS device pays (server-decided)
     var paidUntil = null;
     var PAY_BASE = (window.PM_PAY_BASE || '').trim();
@@ -2891,6 +2992,8 @@
 
     function post(body, cb) {
       body.device_id = Sync.deviceId();
+      // Signed in? Then the server answers for the ACCOUNT, not just this phone.
+      if (Auth.signedIn()) body.access_token = Auth.token();
       try {
         fetch(BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -2904,6 +3007,8 @@
     function adoptStanding(out) {
       if (!out) return;
       if (typeof out.free_available === 'boolean') freeAvailable = out.free_available;
+      if (typeof out.signed_in === 'boolean') serverSignedIn = out.signed_in;
+      if (typeof out.devices === 'number') linkedDevices = out.devices;
       if (typeof out.paid_until !== 'undefined') paidUntil = out.paid_until;
       if (out.sku) priceInfo = out.sku;
     }
@@ -2938,6 +3043,7 @@
       pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
+      if (Auth.signedIn()) body.access_token = Auth.token();
       try {
         fetch(PAY_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -3027,11 +3133,24 @@
           buttons.push({ label: 'Pay ₹' + priceInfo.price_inr + ' and unlock everything', primary: true,
                          fn: function () { startPayment(null, null); } });
         }
+        // Signing in is what carries a pass to a second device. Offered, never
+        // required: paying works signed out, and the pass still opens THIS
+        // device — it just cannot follow the student anywhere else.
+        if (Auth.available()) {
+          buttons.push(Auth.signedIn()
+            ? { label: 'Sign out', fn: function () { Auth.signOut(); location.hash = '#/'; location.reload(); } }
+            : { label: 'Sign in with Google', fn: function () { Auth.signIn(); } });
+        }
         buttons.push({ label: 'Back to the book', fn: function () { location.hash = '#/'; } });
         sheet(offerLine(), buttons);
         var list = $('lockList');
         if (!list) return;
         var items = [
+          Auth.signedIn()
+            ? ('Signed in' + (Auth.email() ? ' as ' + Auth.email() : '') +
+               ' — your pass works on every device you sign in on'
+               + (linkedDevices > 1 ? ' (' + linkedDevices + ' so far)' : ''))
+            : 'Sign in with Google and your pass follows you to any phone or laptop',
           'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
           'The answer an examiner wants, written out step by step',
           'Diagrams that draw themselves, line by line',
@@ -3065,6 +3184,10 @@
         buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
       }
       buttons.push({ label: 'See what you get', fn: function () { location.hash = '#/pricing'; } });
+      if (Auth.available() && !Auth.signedIn()) {
+        // A student who already paid on another phone gets in from here.
+        buttons.push({ label: 'Already paid? Sign in', fn: function () { Auth.signIn(); } });
+      }
       if (freeAvailable) {
         // Only reachable if the per-device free slot is revived server-side
         // (free_available is false today); claimFree stays wired for that day.
@@ -4880,6 +5003,13 @@
   ]).then(function () {
     initTest();
     initVidi();
+    // BEFORE the router, and before Gate asks the server anything: coming back
+    // from Google the hash is a token blob, not a route. route() would read it
+    // as a bad question id and bounce to the catalog, and Gate.init would ask
+    // for the standing of a device with no token attached — so a student who
+    // had just signed in would land back on the paywall.
+    Auth.capture();
+    Auth.loadProfile();
     Sync.init();
     Gate.init();
     route();

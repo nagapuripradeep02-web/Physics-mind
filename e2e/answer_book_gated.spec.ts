@@ -426,3 +426,103 @@ test('a payment endpoint that is down never traps the student', async ({ page })
     await page.waitForSelector('#catalogView:not([hidden])');
     expect(errors).toEqual([]);
 });
+
+// ═══ Google accounts — a pass follows the STUDENT, not the phone ═══════════
+// Identity was an anonymous device UUID, so a student who paid on their phone
+// and opened the book on a laptop met the paywall again. These gates cover the
+// client half; the server half (union across an account's devices) is proven by
+// the ab_link_device RPC and answerbook-content.
+
+test('the OAuth return is captured, stripped from the URL, and never left in history', async ({ page }) => {
+    const errs: string[] = [];
+    page.on('pageerror', (e) => errs.push(e.message));
+    await page.addInitScript(() => { try { localStorage.clear(); } catch { /* file:// */ } });
+    // exactly the shape Supabase sends back after Google
+    await page.goto(URL + '#access_token=TOK_ABC&refresh_token=REF_XYZ&expires_in=3600&token_type=bearer');
+    await page.waitForFunction(() => (window as any).PM_ANSWER, undefined, { timeout: 20000 });
+    await page.waitForFunction(() => location.hash === '#/', undefined, { timeout: 10000 });
+
+    const r = await page.evaluate(() => ({ href: location.href, hash: location.hash }));
+    // A token sitting in the URL gets pasted into a WhatsApp group with the link.
+    expect(r.href).not.toContain('access_token');
+    expect(r.href).not.toContain('refresh_token');
+    expect(r.hash).toBe('#/');                       // and the router got a real route
+    // the book still booted — a token blob must never break the catalog
+    expect(await page.evaluate(() => document.querySelectorAll('.cat-card').length)).toBeGreaterThan(400);
+    expect(errs).toEqual([]);
+});
+
+test('a token the server rejects is forgotten; a server that is merely down is not', async ({ page }) => {
+    // The distinction that protects a paying student: 401 means this token is
+    // no good, but a 500 or a dead network must never sign them out — they would
+    // come back to a paywall over a transient blip.
+    for (const [status, shouldKeep] of [[401, false], [500, true]] as [number, boolean][]) {
+        await page.addInitScript((code: number) => {
+            try { localStorage.clear(); localStorage.setItem('pm_ab_at', 'SOME_TOKEN'); } catch { /* file:// */ }
+            const orig = window.fetch;
+            window.fetch = function (input: any, init?: any) {
+                const u = typeof input === 'string' ? input : (input && input.url) || '';
+                if (u.indexOf('/auth/v1/user') >= 0) {
+                    return Promise.resolve(new Response('{}', { status: code }));
+                }
+                return orig(input, init);
+            } as typeof window.fetch;
+        }, status);
+        await page.goto(URL);
+        await page.waitForFunction(() => (window as any).PM_ANSWER, undefined, { timeout: 20000 });
+        await page.waitForTimeout(2500);
+        const kept = await page.evaluate(() => !!localStorage.getItem('pm_ab_at'));
+        expect(kept, `status ${status} should ${shouldKeep ? 'KEEP' : 'DROP'} the token`).toBe(shouldKeep);
+    }
+});
+
+test('the pricing page offers Google sign-in signed out, and sign-out signed in', async ({ page }) => {
+    await bootGated(page, (body) => {
+        if (body.list) return { ok: true, unlocked: [], free_available: false, sku: FOUNDING_SKU };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    await page.evaluate(() => { location.hash = '#/pricing'; });
+    await page.waitForFunction(() => !document.getElementById('lockList')!.hidden, undefined, { timeout: 10000 });
+    const out = await page.evaluate(() => ({
+        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+        first: (document.querySelector('#lockList li') || { textContent: '' }).textContent || '',
+    }));
+    expect(out.buttons.some((b) => /Sign in with Google/.test(b))).toBe(true);
+    expect(out.first).toMatch(/follows you/i);
+
+    await page.evaluate(() => {
+        localStorage.setItem('pm_ab_at', 'TOK');
+        localStorage.setItem('pm_ab_email', 'student@example.com');
+        location.hash = '#/';
+    });
+    await page.waitForTimeout(400);
+    await page.evaluate(() => { location.hash = '#/pricing'; });
+    await page.waitForFunction(() => !document.getElementById('lockList')!.hidden, undefined, { timeout: 10000 });
+    const inn = await page.evaluate(() => ({
+        buttons: [...document.querySelectorAll('#lockRow .vw-btn')].map((b) => b.textContent || ''),
+        first: (document.querySelector('#lockList li') || { textContent: '' }).textContent || '',
+    }));
+    expect(inn.buttons.some((b) => /Sign out/.test(b))).toBe(true);
+    expect(inn.first).toContain('student@example.com');
+});
+
+test('signing in is never required — the free chapters work signed out', async ({ page }) => {
+    // The anonymous journey is the product's front door and must survive
+    // accounts entirely: open a link, read, never sign in.
+    await bootGated(page, (body) => {
+        if (body.list) return { ok: true, unlocked: ['physics-4'], free_available: false, sku: FOUNDING_SKU };
+        if (body.unit_key === 'physics-4') return { ok: true, unlocked: true, bundle: bundleFor('physics-4') };
+        return { ok: true, locked: true, free_available: false, sku: FOUNDING_SKU };
+    });
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await page.evaluate(() => !!localStorage.getItem('pm_ab_at'))).toBe(false);
+    await page.evaluate(() => (window as any).PM_ANSWER.openQuestion('ts_ipe_p1_vec_parallelogram_law'));
+    await page.waitForSelector('.page', { timeout: 10000 });
+    const st = await page.evaluate(() => {
+        (window as any).PM_ANSWER.revealAll();
+        return (window as any).PM_ANSWER.getState();
+    });
+    expect(st.marksEarned).toBe(st.marksTotal);
+});
