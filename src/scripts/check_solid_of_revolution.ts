@@ -980,8 +980,27 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
     hold.STATE_2 === "reveal_hold" && hold.STATE_5 === "reveal_hold" && hold.STATE_6 === "reveal_hold");
   assertTrue("S9 (mode explore) is classified interactive", hold.STATE_9 === "interactive");
   assertTrue("S9 declares STATIC motion (user-driven)", motion.STATE_9 === false);
-  assertTrue("guided states declare no motion expectation (their ramps settle)",
-    motion.STATE_1 === undefined && motion.STATE_4 === undefined && motion.STATE_5 === undefined);
+  // ⚠ THIS ASSERTION USED TO LOCK IN A BLIND SPOT, and it is left documented
+  //   rather than quietly swapped. It read "guided states declare no motion
+  //   expectation (their ramps settle)" and asserted all three were `undefined`
+  //   — i.e. it CODIFIED the absence of coverage as if it were a property worth
+  //   holding. THE EYE, on the first concept ever to author this scenario, said
+  //   what that costs in its own words: "MOTION GATE NEVER RAN — D5 skipped on
+  //   ALL 9 state(s) ... a state whose animation is dead would report exactly
+  //   the same green as one that works."
+  //   A green assertion over a skipped gate is the purest form of the vacuous
+  //   pass this whole file is written against. The guided beats DO move — every
+  //   one measured above D5's 0.1% floor on 289 dense frames — so the gate now
+  //   asserts the coverage rather than its absence.
+  assertTrue("every guided state DECLARES motion, so D5 actually runs on it",
+    motion.STATE_1 === true && motion.STATE_2 === true && motion.STATE_4 === true
+    && motion.STATE_5 === true && motion.STATE_6 === true);
+  control("a guided sr state that authors NO driver at all is still left undefined — the honest "
+    + "exception is preserved, so this is a declaration keyed on drivers and not a blanket true",
+    deriveMotionExpectations(mkConfig({
+      STATE_1: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+        domain: [0, 4], discs: { n: 20, rule: "left" } } },
+    }) as never).STATE_1 === undefined);
   assertTrue("'sr' is a recognised field_3d reveal key (a cached flattened config is not read as PCPL)",
     Object.keys(reveal).length === 6);
   // NEGATIVE CONTROL — a state whose param_ramp is NOT accounted for pins at the
