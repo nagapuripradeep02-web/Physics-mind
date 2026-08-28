@@ -1420,7 +1420,8 @@
             "curve_at_ms": 0,
             "curve_ms": 1200,
             "region_at_ms": 0,
-            "region_ms": 1200
+            "region_ms": 1200,
+            "formula_at_ms": 11000
           },
           "slice_x": 1.0,
           "discs": {
@@ -1490,7 +1491,12 @@
             "curve_at_ms": 0,
             "curve_ms": 1,
             "region_at_ms": 0,
-            "region_ms": 1200
+            "region_ms": 1200,
+            "stack_at_ms": 18000,
+            "stack_ms": 600
+          },
+          "readout_at_ms": {
+            "V_about_y": 18000
           },
           "discs": {
             "n": 1000,
