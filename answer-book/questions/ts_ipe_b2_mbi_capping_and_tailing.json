@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_capping_and_tailing",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by capping and tailing?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Capping",
+      "marks": 1
+    },
+    {
+      "label": "Tailing",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 98. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide defines tailing as adding adenylate residues \"in a template\". NCERT says \"in a template INDEPENDENT manner\", which is the point: no DNA is read to make the tail. The card restores the word."
+  },
+  "insider_note": "Which end each happens at is the mark: cap at the 5' end, tail at the 3'.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_capping",
+        "kind": "text",
+        "label": "Capping",
+        "marks": 1,
+        "mark_note": "Capping",
+        "margin_note": "The molecule, the end, and what the cap is for.",
+        "lines": [
+          "CAPPING is the addition of an unusual nucleotide,",
+          "METHYL GUANOSINE TRIPHOSPHATE, to the 5' END of",
+          "the hnRNA.",
+          "The cap protects the RNA and helps the ribosome",
+          "recognise it."
+        ],
+        "why": "The cap marks the front of the message, so the ribosome knows which end to start from.",
+        "common_mistakes": [
+          "Putting the cap at the 3' end. It goes on the 5' end.",
+          "Naming the wrong molecule. It is methyl guanosine triphosphate."
+        ],
+        "memory_tip": "A cap goes on the head: the 5' end."
+      },
+      {
+        "id": "s2_tailing",
+        "kind": "boxed_final",
+        "label": "Tailing",
+        "marks": 1,
+        "mark_note": "Tailing",
+        "margin_note": "The residues, the count, the end, and what template independent means.",
+        "lines": [
+          {
+            "text": "Cap at the 5' end, tail at the 3' end",
+            "style": "boxed"
+          },
+          "TAILING is the addition of 200 to 300 ADENYLATE",
+          "residues to the 3' END, in a TEMPLATE INDEPENDENT",
+          "manner.",
+          "This is the poly-A tail.",
+          "Template independent means no DNA is read to make",
+          "it — the adenines are simply added on."
+        ],
+        "why": "No DNA codes for the tail, so it cannot be found in the gene — which is exactly what template independent means.",
+        "common_mistakes": [
+          "Leaving out 'independent'. The guide drops it, and 'in a template' means the opposite.",
+          "Putting the tail at the 5' end. It goes on the 3' end."
+        ],
+        "memory_tip": "Tail at the tail end, and nothing is copied to make it."
+      }
+    ]
+  }
+}

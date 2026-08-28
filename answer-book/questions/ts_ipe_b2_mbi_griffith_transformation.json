@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_griffith_transformation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define transformation in Griffith's experiment. Discuss how it helps in the identification of DNA as genetic material.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What transformation is",
+      "marks": 1
+    },
+    {
+      "label": "The two strains",
+      "marks": 1
+    },
+    {
+      "label": "The four injections",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 39. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Four injections, four results. Set them out as four numbered lines — an examiner marking this looks for the fourth one, where the mice die.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "What transformation is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, the worker, the year, the organism. Seven lines.",
+        "lines": [
+          "TRANSFORMATION is the genetic alteration of a",
+          "cell caused by taking up genetic material",
+          "directly from its surroundings, through the",
+          "cell membrane.",
+          "Frederick Griffith showed it in 1928, working on",
+          "STREPTOCOCCUS PNEUMONIAE, the bacterium that",
+          "causes pneumonia."
+        ],
+        "why": "Something has to physically pass from the dead cells into the living ones, and identifying what that something is became the whole question of the next twenty years.",
+        "common_mistakes": [
+          "Saying transformation needs contact between two live cells. That is CONJUGATION.",
+          "Naming the wrong organism. Griffith worked on Streptococcus pneumoniae."
+        ],
+        "memory_tip": "Something passes from the dead cells into the living ones."
+      },
+      {
+        "id": "s2_strains",
+        "kind": "text",
+        "label": "The two strains",
+        "marks": 1,
+        "mark_note": "Two strains",
+        "margin_note": "Both strains with all three features each: colony, capsule, virulence.",
+        "lines": [
+          "Griffith grew the bacterium on a culture medium",
+          "and found TWO strains:",
+          "1. S-type: forms SMOOTH colonies, HAS a capsule,",
+          "   and is VIRULENT (it causes disease).",
+          "2. R-type: forms ROUGH colonies, has NO capsule,",
+          "   and is NON-VIRULENT."
+        ],
+        "why": "The capsule is what makes the S strain deadly, and it is also what makes the two strains tell apart by eye — so one visible difference tracks one lethal one.",
+        "common_mistakes": [
+          "Saying R-type is virulent. S-type is the virulent one.",
+          "Leaving out the capsule. It is what makes S-type smooth and virulent."
+        ],
+        "memory_tip": "Smooth has a coat and kills; rough has none and does not."
+      },
+      {
+        "id": "s3_injections",
+        "kind": "text",
+        "label": "The four injections",
+        "marks": 1,
+        "mark_note": "The experiment",
+        "margin_note": "All four injections with their results. The recovery of live S-type is the key line.",
+        "lines": [
+          "1. LIVE S-type injected: the mice got pneumonia",
+          "   and DIED.",
+          "2. LIVE R-type injected: the mice SURVIVED.",
+          "3. HEAT-KILLED S-type injected: the mice",
+          "   SURVIVED.",
+          "4. HEAT-KILLED S-type MIXED with live R-type:",
+          "   the mice DIED, and LIVE S-type bacteria were",
+          "   recovered from their bodies."
+        ],
+        "why": "Injections 2 and 3 are the controls: each alone is harmless, so only their combination can explain the death in injection 4.",
+        "common_mistakes": [
+          "Giving only the fourth injection. The first three are the controls that make it mean something.",
+          "Forgetting that LIVE S-type was recovered from the dead mice. That recovery is the whole result."
+        ],
+        "memory_tip": "Two harmless things mixed became deadly."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Name the transforming principle, say it was heritable, and credit the identification correctly. Getting that credit right is what the last mark is for.",
+        "lines": [
+          {
+            "text": "Something from the dead S cells transformed the",
+            "style": "boxed"
+          },
+          {
+            "text": "live R cells, and it was heritable",
+            "style": "boxed"
+          },
+          "Griffith concluded that the R-strain cells had",
+          "been TRANSFORMED by something released from the",
+          "heat-killed S-strain cells.",
+          "He called it the TRANSFORMING PRINCIPLE.",
+          "The transformed cells bred true, so the",
+          "transferred material was the GENETIC material.",
+          "Avery, MacLeod and McCarty later showed the",
+          "transforming principle is DNA."
+        ],
+        "why": "The transformed bacteria stayed S-type in every later generation, which is what shows the transferred material was genetic rather than a passing chemical effect.",
+        "common_mistakes": [
+          "Saying Griffith proved DNA is the genetic material. He did NOT — he showed a transforming principle existed. Avery, MacLeod and McCarty identified it as DNA.",
+          "Leaving out the heritability. It is what makes it genetic."
+        ],
+        "memory_tip": "Griffith found the parcel; Avery opened it."
+      }
+    ]
+  }
+}

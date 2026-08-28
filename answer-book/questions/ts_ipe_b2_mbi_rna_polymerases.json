@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_rna_polymerases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How many types of RNA polymerases exist in cells? Write their names and functions.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "How many, and where",
+      "marks": 1
+    },
+    {
+      "label": "RNA polymerase I",
+      "marks": 1
+    },
+    {
+      "label": "RNA polymerase II",
+      "marks": 1
+    },
+    {
+      "label": "RNA polymerase III",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.33, printed question 40. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Three enzymes, three products. Write them as a three-row table if you can — it is faster and impossible to misread.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_how_many",
+        "kind": "text",
+        "label": "How many, and where",
+        "marks": 1,
+        "mark_note": "Three",
+        "margin_note": "The number, the location, and the bacterial contrast.",
+        "lines": [
+          "In eukaryotic cells there are THREE types of",
+          "RNA polymerase.",
+          "All three are found in the NUCLEUS.",
+          "Each one transcribes a different class of RNA.",
+          "(In bacteria a SINGLE RNA polymerase makes all",
+          "three kinds.)"
+        ],
+        "why": "Eukaryotes divide the work between three enzymes where a bacterium uses one, which is the point the question is checking.",
+        "common_mistakes": [
+          "Saying there are three in bacteria. Bacteria have ONE; eukaryotes have three.",
+          "Saying they are in the cytoplasm. All three are in the NUCLEUS."
+        ],
+        "memory_tip": "Three in a eukaryote, one in a bacterium."
+      },
+      {
+        "id": "s2_pol1",
+        "kind": "text",
+        "label": "RNA polymerase I",
+        "marks": 1,
+        "mark_note": "Pol I",
+        "margin_note": "Name the three rRNAs with their S values. Three lines.",
+        "lines": [
+          "RNA POLYMERASE I transcribes the ribosomal RNAs:",
+          "28S rRNA, 18S rRNA and 5.8S rRNA.",
+          "These are the RNAs that build the ribosome."
+        ],
+        "why": "The three rRNAs it makes are needed in enormous quantity, which is why one enzyme is given over to them alone.",
+        "common_mistakes": [
+          "Saying pol I makes mRNA. That is pol II.",
+          "Leaving out the S numbers. 28S, 18S and 5.8S are what the mark is for."
+        ],
+        "memory_tip": "Pol one makes the ribosome's own RNA."
+      },
+      {
+        "id": "s3_pol2",
+        "kind": "text",
+        "label": "RNA polymerase II",
+        "marks": 1,
+        "mark_note": "Pol II",
+        "margin_note": "Say precursor, expand hnRNA, and name the processing. Five lines.",
+        "lines": [
+          "RNA POLYMERASE II transcribes the precursor of",
+          "mRNA, which is called heterogeneous nuclear RNA",
+          "(hnRNA).",
+          "hnRNA is then processed — capped, tailed and",
+          "spliced — to become mature mRNA."
+        ],
+        "why": "Pol II makes the RNA that will be translated into protein, which is why it is the enzyme most questions about gene expression concern.",
+        "common_mistakes": [
+          "Saying pol II makes mRNA directly. It makes hnRNA, the PRECURSOR of mRNA.",
+          "Not expanding hnRNA. Heterogeneous nuclear RNA is the full name."
+        ],
+        "memory_tip": "Pol two makes the message, but only a rough draft of it."
+      },
+      {
+        "id": "s4_pol3",
+        "kind": "boxed_final",
+        "label": "RNA polymerase III",
+        "marks": 1,
+        "mark_note": "Pol III",
+        "margin_note": "All three products, then one closing line. Watch 5S against 5.8S.",
+        "lines": [
+          {
+            "text": "I: rRNA. II: hnRNA (mRNA precursor). III: tRNA",
+            "style": "boxed"
+          },
+          "RNA POLYMERASE III transcribes tRNA, 5S rRNA",
+          "and the small nuclear RNAs (snRNAs).",
+          "So the three enzymes between them make every",
+          "kind of RNA the cell needs."
+        ],
+        "why": "Between the three, every class of RNA is accounted for, which is the check that the answer is complete.",
+        "common_mistakes": [
+          "Giving pol III the 5.8S rRNA. Pol III makes the 5S rRNA; 5.8S belongs to pol I.",
+          "Leaving out snRNA. It is one of pol III's named products."
+        ],
+        "memory_tip": "Pol three makes the small ones: tRNA, 5S and snRNA."
+      }
+    ]
+  }
+}

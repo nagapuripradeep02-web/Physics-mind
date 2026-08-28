@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_phenotypic_ratios",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What will be the phenotypic ratio in the offspring obtained from the following crosses: (a) Aa × aa (b) AA × aa (c) Aa × Aa (d) Aa × AA?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Parts a and b",
+      "marks": 1
+    },
+    {
+      "label": "Parts c and d",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.42, printed question 89. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Four ratios, half a mark each. Work each one on a two-second Punnett square in the margin rather than from memory.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ab",
+        "kind": "text",
+        "label": "Parts a and b",
+        "marks": 1,
+        "mark_note": "a, b",
+        "margin_note": "Both crosses with the offspring written out, then the ratio.",
+        "lines": [
+          "(a) Aa × aa  gives  Aa and aa",
+          "    Phenotypic ratio  1 : 1",
+          "(b) AA × aa  gives  all Aa",
+          "    Phenotypic ratio  1 : 0  (all dominant)"
+        ],
+        "why": "Part (a) is a test cross and part (b) is a cross of two pure lines, which is why one splits evenly and the other does not split at all.",
+        "common_mistakes": [
+          "Giving 3:1 for (a). Aa × aa is a TEST CROSS and gives 1:1.",
+          "Giving 1:1 for (b). AA × aa gives ALL dominant offspring."
+        ],
+        "memory_tip": "A test cross halves; two pure parents give one kind."
+      },
+      {
+        "id": "s2_cd",
+        "kind": "boxed_final",
+        "label": "Parts c and d",
+        "marks": 1,
+        "mark_note": "c, d",
+        "margin_note": "Both crosses, both ratios, and keep genotype separate from phenotype.",
+        "lines": [
+          {
+            "text": "Only Aa × Aa can produce a recessive offspring",
+            "style": "boxed"
+          },
+          "(c) Aa × Aa  gives  1 AA : 2 Aa : 1 aa",
+          "    Phenotypic ratio  3 : 1",
+          "(d) Aa × AA  gives  AA and Aa, all dominant",
+          "    Phenotypic ratio  1 : 0"
+        ],
+        "why": "A recessive offspring needs a recessive allele from BOTH parents, so only the cross where both parents carry one can produce it.",
+        "common_mistakes": [
+          "Giving 3:1 for (d). Aa × AA gives ALL dominant, because AA has no recessive allele.",
+          "Giving 1:2:1 as the phenotypic ratio for (c). 1:2:1 is the GENOTYPIC ratio; the phenotypic ratio is 3:1."
+        ],
+        "memory_tip": "No recessive allele in one parent means no recessive offspring."
+      }
+    ]
+  }
+}

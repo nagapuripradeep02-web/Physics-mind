@@ -10413,6 +10413,332 @@
           "question_id": "ts_ipe_b2_vi_lysozyme"
         }
       ]
+    },
+    {
+      "number": 9,
+      "name": "Principles of Inheritance and Variation (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "Mention the advantages of selecting pea plant for experiment by Mendel.",
+          "question_id": "ts_ipe_b2_piv_pea_plant_advantages"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "Differentiate between the following: (a) Dominant and Recessive (b) Homozygous and Heterozygous.",
+          "question_id": "ts_ipe_b2_piv_dominant_recessive_homozygous"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Explain the law of Dominance using a monohybrid cross.",
+          "question_id": "ts_ipe_b2_piv_law_of_dominance"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "Define and design a test-cross.",
+          "question_id": "ts_ipe_b2_piv_test_cross"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "Explain co-dominance with an example.",
+          "question_id": "ts_ipe_b2_piv_codominance"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Explain incomplete dominance with an example.",
+          "question_id": "ts_ipe_b2_piv_incomplete_dominance"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "Write a brief note on chromosomal mutations and gene mutations.",
+          "question_id": "ts_ipe_b2_piv_chromosomal_and_gene_mutations"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Define the law of Segregation and the law of Independent Assortment.",
+          "question_id": "ts_ipe_b2_piv_segregation_and_assortment"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 82,
+          "stars": 0,
+          "text": "What is the cross between the F1 progeny and the homozygous recessive parent called? How is it useful?",
+          "question_id": "ts_ipe_b2_piv_test_cross_name_and_use"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 83,
+          "stars": 0,
+          "text": "Do you think Mendel's laws of inheritance would have been different if the characters he chose were located on the same chromosome?",
+          "question_id": "ts_ipe_b2_piv_linked_genes"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 84,
+          "stars": 0,
+          "text": "Who proposed the Chromosome theory of Inheritance?",
+          "question_id": "ts_ipe_b2_piv_chromosome_theory"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 85,
+          "stars": 0,
+          "text": "Define true breeding. Mention its significance.",
+          "question_id": "ts_ipe_b2_piv_true_breeding"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 86,
+          "stars": 0,
+          "text": "Explain the terms phenotype and genotype.",
+          "question_id": "ts_ipe_b2_piv_phenotype_and_genotype"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 87,
+          "stars": 0,
+          "text": "What is point mutation? Give an example.",
+          "question_id": "ts_ipe_b2_piv_point_mutation_inheritance"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 88,
+          "stars": 0,
+          "text": "What is the genotype of the wrinkled phenotype of pea seeds?",
+          "question_id": "ts_ipe_b2_piv_wrinkled_genotype"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 89,
+          "stars": 0,
+          "text": "What will be the phenotypic ratio in the offspring obtained from the following crosses: (a) Aa × aa (b) AA × aa (c) Aa × Aa (d) Aa × AA?",
+          "question_id": "ts_ipe_b2_piv_phenotypic_ratios"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Molecular Basis of Inheritance (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "Define transformation in Griffith's experiment. Discuss how it helps in the identification of DNA as genetic material.",
+          "question_id": "ts_ipe_b2_mbi_griffith_transformation"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 40,
+          "stars": 0,
+          "text": "How many types of RNA polymerases exist in cells? Write their names and functions.",
+          "question_id": "ts_ipe_b2_mbi_rna_polymerases"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 41,
+          "stars": 0,
+          "text": "Draw the schematic diagrammatic presentation of the lac operon.",
+          "question_id": "ts_ipe_b2_mbi_lac_operon_diagram"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 42,
+          "stars": 0,
+          "text": "What are the differences between DNA and RNA?",
+          "question_id": "ts_ipe_b2_mbi_dna_vs_rna"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 43,
+          "stars": 0,
+          "text": "Write the important features of the genetic code.",
+          "question_id": "ts_ipe_b2_mbi_genetic_code_features"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 44,
+          "stars": 0,
+          "text": "Write briefly on nucleosomes.",
+          "question_id": "ts_ipe_b2_mbi_nucleosome"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 90,
+          "stars": 0,
+          "text": "Distinguish between heterochromatin and euchromatin. Which of the two is transcriptionally active?",
+          "question_id": "ts_ipe_b2_mbi_heterochromatin_vs_euchromatin"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 91,
+          "stars": 0,
+          "text": "Who proved that DNA is genetic material? What is the organism they worked on?",
+          "question_id": "ts_ipe_b2_mbi_who_proved_dna"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 92,
+          "stars": 0,
+          "text": "What is the function of DNA polymerase?",
+          "question_id": "ts_ipe_b2_mbi_dna_polymerase_function"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 93,
+          "stars": 0,
+          "text": "What are the components of a nucleotide?",
+          "question_id": "ts_ipe_b2_mbi_nucleotide_components"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 94,
+          "stars": 0,
+          "text": "Given the coding strand of DNA in a transcription unit as 5'-AATGCAGCTATTAGG-3', write the sequence of (a) its complementary strand (b) the mRNA.",
+          "question_id": "ts_ipe_b2_mbi_complementary_and_mrna"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 95,
+          "stars": 0,
+          "text": "Name any three viruses which have RNA as the genetic material.",
+          "question_id": "ts_ipe_b2_mbi_rna_viruses"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 96,
+          "stars": 0,
+          "text": "What are the components of a transcription unit?",
+          "question_id": "ts_ipe_b2_mbi_transcription_unit"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 97,
+          "stars": 0,
+          "text": "What is the difference between exons and introns?",
+          "question_id": "ts_ipe_b2_mbi_exons_and_introns"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 98,
+          "stars": 0,
+          "text": "What is meant by capping and tailing?",
+          "question_id": "ts_ipe_b2_mbi_capping_and_tailing"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 99,
+          "stars": 0,
+          "text": "What is meant by point mutation? Give an example.",
+          "question_id": "ts_ipe_b2_mbi_point_mutation_molecular"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 100,
+          "stars": 0,
+          "text": "What is meant by charging of tRNA?",
+          "question_id": "ts_ipe_b2_mbi_charging_of_trna"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 101,
+          "stars": 0,
+          "text": "What is the function of the codon AUG?",
+          "question_id": "ts_ipe_b2_mbi_codon_aug"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 102,
+          "stars": 0,
+          "text": "Define stop codon. Write the codons.",
+          "question_id": "ts_ipe_b2_mbi_stop_codons"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 103,
+          "stars": 0,
+          "text": "Write any two differences between DNA and RNA.",
+          "question_id": "ts_ipe_b2_mbi_two_dna_rna_differences"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 104,
+          "stars": 0,
+          "text": "In a typical DNA molecule the proportion of thymine is 30% of the nitrogen bases. Find the percentages of the other bases.",
+          "question_id": "ts_ipe_b2_mbi_base_percentages"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 105,
+          "stars": 0,
+          "text": "The proportion of nucleotides in a nucleic acid is: adenine 18%, guanine 30%, cytosine 42%, uracil 10%. Name the nucleic acid and state the number of strands.",
+          "question_id": "ts_ipe_b2_mbi_identify_nucleic_acid"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 106,
+          "stars": 0,
+          "text": "What is the difference between the template strand and the coding strand in a DNA molecule?",
+          "question_id": "ts_ipe_b2_mbi_template_vs_coding_strand"
+        }
+      ]
     }
   ]
 }

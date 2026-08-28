@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_charging_of_trna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by charging of tRNA?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What charging is",
+      "marks": 1
+    },
+    {
+      "label": "Why it matters",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.44, printed question 100. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Aminoacylation is the other name and it is worth writing. So is the fact that ATP is needed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What charging is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with ATP and the alternative name. Six lines.",
+        "lines": [
+          "CHARGING of tRNA is the ACTIVATION of an amino",
+          "acid, in the presence of ATP, and its linking to",
+          "the correct (cognate) tRNA.",
+          "It is also called AMINOACYLATION.",
+          "A tRNA carrying its amino acid is a CHARGED tRNA,",
+          "or aminoacyl-tRNA."
+        ],
+        "why": "An amino acid on its own cannot recognise a codon, so it has to be attached to a tRNA that can — charging is what makes the amino acid readable.",
+        "common_mistakes": [
+          "Saying charging means giving the tRNA an electrical charge. It means LOADING it with an amino acid.",
+          "Leaving out ATP. The activation step needs it."
+        ],
+        "memory_tip": "Charged means loaded, not electrified."
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it matters",
+        "marks": 1,
+        "mark_note": "Significance",
+        "margin_note": "Say what only a charged tRNA can do, and why the matching matters.",
+        "lines": [
+          {
+            "text": "Only a charged tRNA can add its amino acid",
+            "style": "boxed"
+          },
+          {
+            "text": "to the growing chain",
+            "style": "boxed"
+          },
+          "Only a CHARGED tRNA can take part in translation.",
+          "An uncharged tRNA carries nothing to add to the",
+          "protein chain.",
+          "Charging is what matches each codon to the right",
+          "amino acid."
+        ],
+        "why": "The accuracy of the whole genetic code depends on each tRNA being loaded with the correct amino acid, so charging is where translation can go wrong.",
+        "common_mistakes": [
+          "Giving only the definition. The significance is a whole mark.",
+          "Saying an uncharged tRNA still works. It cannot contribute to the chain."
+        ],
+        "memory_tip": "An empty tRNA has nothing to give."
+      }
+    ]
+  }
+}

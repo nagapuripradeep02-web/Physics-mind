@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_mbi_complementary_and_mrna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Molecular Basis of Inheritance (Botany-II)"
+  },
+  "chapter": "Molecular Basis of Inheritance",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Given the coding strand of DNA in a transcription unit as 5'-AATGCAGCTATTAGG-3', write the sequence of (a) its complementary strand (b) the mRNA.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The complementary strand",
+      "marks": 1
+    },
+    {
+      "label": "The mRNA",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.43, printed question 94. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card. The guide answers (b) with 3'-UUACGUCGAUAAUCC-5', which is simply part (a) with U for T — that is the TEMPLATE strand, not the message. The mRNA has the SAME sequence as the CODING strand, with uracil in place of thymine: 5'-AAUGCAGCUAUUAGG-3'. Part (a) as printed is correct."
+  },
+  "insider_note": "Part (b) is the trap and the guide falls into it. The mRNA copies the CODING strand, not the template. Write the coding strand out and change every T to U.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Molecular Basis of Inheritance (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_complement",
+        "kind": "text",
+        "label": "The complementary strand",
+        "marks": 1,
+        "mark_note": "Complement",
+        "margin_note": "Write both strands with their 5' and 3' ends marked. The direction is part of the mark.",
+        "lines": [
+          "Coding strand:",
+          "5'-A A T G C A G C T A T T A G G-3'",
+          "Pair A with T and G with C, and run the answer",
+          "the other way:",
+          "Complementary (template) strand:",
+          "3'-T T A C G T C G A T A A T C C-5'"
+        ],
+        "why": "The two strands are antiparallel, so the complement is written 3' to 5' when the coding strand is written 5' to 3'.",
+        "common_mistakes": [
+          "Writing the complement 5' to 3'. The two strands run in OPPOSITE directions.",
+          "Pairing A with G. A pairs with T, and G pairs with C."
+        ],
+        "memory_tip": "Swap each base for its partner, and flip the direction."
+      },
+      {
+        "id": "s2_mrna",
+        "kind": "boxed_final",
+        "label": "The mRNA",
+        "marks": 1,
+        "mark_note": "mRNA",
+        "margin_note": "Write the answer and then the one-line rule. That rule is what stops the mistake recurring.",
+        "lines": [
+          {
+            "text": "The mRNA copies the CODING strand, with U",
+            "style": "boxed"
+          },
+          {
+            "text": "in place of T",
+            "style": "boxed"
+          },
+          "mRNA:",
+          "5'-A A U G C A G C U A U U A G G-3'",
+          "It is the coding strand with every T replaced",
+          "by U.",
+          "It is NOT the complementary strand with U."
+        ],
+        "why": "RNA polymerase reads the TEMPLATE strand, so what it builds comes out matching the OTHER strand — the coding strand — which is why that strand is called coding at all.",
+        "common_mistakes": [
+          "Giving the template strand with U instead of T. That is the guide's printed answer and it is wrong.",
+          "Writing the mRNA 3' to 5'. The mRNA runs 5' to 3', like the coding strand."
+        ],
+        "memory_tip": "Coding strand, T becomes U, direction unchanged."
+      }
+    ]
+  }
+}

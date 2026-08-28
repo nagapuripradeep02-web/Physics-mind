@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_dominant_recessive_homozygous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Differentiate between the following: (a) Dominant and Recessive (b) Homozygous and Heterozygous.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Dominant",
+      "marks": 1
+    },
+    {
+      "label": "Recessive",
+      "marks": 1
+    },
+    {
+      "label": "Homozygous",
+      "marks": 1
+    },
+    {
+      "label": "Heterozygous",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 32. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Four one-line definitions. Give an example genotype with each — TT, tt, Tt — because a letter pair proves the definition faster than a sentence.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dominant",
+        "kind": "text",
+        "label": "Dominant",
+        "marks": 1,
+        "mark_note": "Dominant",
+        "margin_note": "Definition tied to F1, plus a letter example.",
+        "lines": [
+          "(a) DOMINANT character:",
+          "The character that IS EXPRESSED in the F₁",
+          "generation of a cross between two pure parents.",
+          "Example: tallness (T) in pea."
+        ],
+        "why": "Dominance is defined by what shows in the F1, so the definition has to name that generation.",
+        "common_mistakes": [
+          "Saying the dominant character is the stronger one. It is the one EXPRESSED in F1.",
+          "Saying dominant means more common. Frequency has nothing to do with dominance."
+        ],
+        "memory_tip": "Whatever shows in F1 is the dominant one."
+      },
+      {
+        "id": "s2_recessive",
+        "kind": "text",
+        "label": "Recessive",
+        "marks": 1,
+        "mark_note": "Recessive",
+        "margin_note": "Definition, the F2 return, and the both-alleles condition.",
+        "lines": [
+          "RECESSIVE character:",
+          "The character that is NOT EXPRESSED in the F₁",
+          "generation, but reappears in F₂.",
+          "Example: dwarfness (t) in pea.",
+          "A recessive character shows only when BOTH",
+          "alleles are recessive."
+        ],
+        "why": "The recessive character reappearing in F2 is what proved it had never been lost, only hidden — the single most important observation Mendel made.",
+        "common_mistakes": [
+          "Saying the recessive character disappears. It reappears in F2.",
+          "Saying it shows when one allele is recessive. BOTH must be."
+        ],
+        "memory_tip": "Hidden in F1, back in F2: never lost."
+      },
+      {
+        "id": "s3_homozygous",
+        "kind": "text",
+        "label": "Homozygous",
+        "marks": 1,
+        "mark_note": "Homozygous",
+        "margin_note": "Definition plus BOTH kinds of example. Giving only TT is half an answer.",
+        "lines": [
+          "(b) HOMOZYGOUS:",
+          "An individual carrying TWO SIMILAR alleles for",
+          "a character.",
+          "Examples: TT (homozygous dominant) and",
+          "tt (homozygous recessive).",
+          "A homozygote breeds true."
+        ],
+        "why": "Two identical alleles can only make one kind of gamete, which is why a homozygote always breeds true.",
+        "common_mistakes": [
+          "Saying homozygous means dominant. TT AND tt are both homozygous.",
+          "Leaving out 'for a character'. The term is always about one gene at a time."
+        ],
+        "memory_tip": "Homo means same: TT or tt."
+      },
+      {
+        "id": "s4_heterozygous",
+        "kind": "boxed_final",
+        "label": "Heterozygous",
+        "marks": 1,
+        "mark_note": "Heterozygous",
+        "margin_note": "Definition, example, and the consequence. The gamete point ties into the next question.",
+        "lines": [
+          {
+            "text": "TT and tt are homozygous; Tt is heterozygous",
+            "style": "boxed"
+          },
+          "HETEROZYGOUS:",
+          "An individual carrying TWO DISSIMILAR alleles",
+          "for a character.",
+          "Example: Tt.",
+          "A heterozygote makes two kinds of gamete and",
+          "does NOT breed true."
+        ],
+        "why": "Two different alleles make two kinds of gamete, which is why a heterozygote's offspring vary and a homozygote's do not.",
+        "common_mistakes": [
+          "Saying a heterozygote shows both characters. It shows the DOMINANT one only.",
+          "Confusing heterozygous with co-dominant. A heterozygote is a genotype, not a pattern of expression."
+        ],
+        "memory_tip": "Hetero means different: Tt."
+      }
+    ]
+  }
+}

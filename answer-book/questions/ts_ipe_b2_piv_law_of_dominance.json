@@ -1,0 +1,494 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_law_of_dominance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the law of Dominance using a monohybrid cross.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What a monohybrid cross is",
+      "marks": 1
+    },
+    {
+      "label": "The cross itself",
+      "marks": 1
+    },
+    {
+      "label": "The law of dominance",
+      "marks": 1
+    },
+    {
+      "label": "What the law explains",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 33. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The law has FOUR statements and the examiner is counting them. Number them, then finish with the 3:1 ratio.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What a monohybrid cross is",
+        "marks": 1,
+        "mark_note": "Monohybrid",
+        "margin_note": "Definition and the actual cross Mendel made. Five lines.",
+        "lines": [
+          "A MONOHYBRID CROSS is a cross between two",
+          "individuals differing in ONE character.",
+          "Mendel crossed a pure TALL pea plant (TT) with",
+          "a pure DWARF pea plant (tt) to study the",
+          "inheritance of one gene."
+        ],
+        "why": "Following one character at a time is what made the pattern visible; with several characters at once the ratios would have been hidden in each other.",
+        "common_mistakes": [
+          "Saying monohybrid means one parent. It means ONE CHARACTER.",
+          "Using impure parents. Both parents must be PURE (homozygous)."
+        ],
+        "memory_tip": "Mono means one: one character, followed alone."
+      },
+      {
+        "id": "s2_cross",
+        "kind": "text",
+        "label": "The cross itself",
+        "marks": 1,
+        "mark_note": "The cross",
+        "margin_note": "Write both generations with both ratios. Keep genotype and phenotype separate.",
+        "lines": [
+          "P generation:  Tall (TT)  ×  Dwarf (tt)",
+          "Gametes:  T  and  t",
+          "F₁ generation:  ALL Tt, and all TALL.",
+          "The dwarf character has disappeared.",
+          "F₁ selfed:  Tt × Tt",
+          "F₂ generation:  1 TT : 2 Tt : 1 tt",
+          "which is 3 TALL : 1 DWARF."
+        ],
+        "why": "The dwarf character vanishing in F1 and returning in exactly a quarter of F2 is the observation the law was written to explain.",
+        "common_mistakes": [
+          "Writing the F1 as a mixture of tall and dwarf. ALL of F1 is tall.",
+          "Giving the F2 phenotypic ratio as 1:2:1. That is the GENOTYPIC ratio; the phenotypic ratio is 3:1."
+        ],
+        "memory_tip": "All tall in F1, three to one in F2."
+      },
+      {
+        "id": "s3_law",
+        "kind": "text",
+        "label": "The law of dominance",
+        "marks": 1,
+        "mark_note": "The law",
+        "margin_note": "Number the statements exactly as the law is written.",
+        "lines": [
+          "The LAW OF DOMINANCE states:",
+          "1. Characters are controlled by discrete units",
+          "called FACTORS (now called genes).",
+          "2. Factors occur in PAIRS.",
+          "3. In a dissimilar pair of factors, ONE member",
+          "DOMINATES the other."
+        ],
+        "why": "The three statements together explain why one parent's character can disappear entirely in F1 without being destroyed.",
+        "common_mistakes": [
+          "Giving fewer than three statements. Each one is part of the mark.",
+          "Saying the recessive factor is destroyed. It is only DOMINATED, and it reappears in F2."
+        ],
+        "memory_tip": "Discrete, paired, one dominating: three statements."
+      },
+      {
+        "id": "s4_explains",
+        "kind": "boxed_final",
+        "label": "What the law explains",
+        "marks": 1,
+        "mark_note": "Explains",
+        "margin_note": "Close on what is explained, with the ratio named.",
+        "lines": [
+          {
+            "text": "One character in F₁, both in F₂, in 3 : 1",
+            "style": "boxed"
+          },
+          "4. The law explains why only ONE parental",
+          "character appears in the F₁ generation, and why",
+          "BOTH appear in the F₂ generation.",
+          "It also explains the 3 : 1 phenotypic ratio",
+          "obtained in F₂."
+        ],
+        "why": "A law in science is judged by what it explains, so the answer has to end with the two observations this one accounts for.",
+        "common_mistakes": [
+          "Ending at the three statements. The fourth point is what the law EXPLAINS.",
+          "Leaving out the 3:1 ratio. It is the number the law was written to account for."
+        ],
+        "memory_tip": "The law is only useful because it explains the three to one."
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "Diagram — monohybrid cross",
+        "marks": 0,
+        "margin_note": "No diagram mark — the question says 'explain'. Draw the square anyway: it is faster than writing the F2 out and it earns the ratio marks by itself.",
+        "figure": {
+          "id": "b2_piv_monohybrid_cross",
+          "width": 520,
+          "height": 448,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "mo_p1",
+              "caption": "Step 1 — the two parents and their gametes"
+            },
+            {
+              "type": "label",
+              "id": "mo_pl",
+              "x": 105,
+              "y": 40,
+              "text": "Tall (TT)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_x",
+              "x": 255,
+              "y": 40,
+              "text": "×",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_pr",
+              "x": 320,
+              "y": 40,
+              "text": "Dwarf (tt)",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_al",
+              "d": "M 150 50 L 150 72",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mo_al_h",
+              "d": "M 147 66.8 L 150 72 L 153 66.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "mo_ar",
+              "d": "M 370 50 L 370 72",
+              "ms": 310,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mo_ar_h",
+              "d": "M 367 66.8 L 370 72 L 373 66.8",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "mo_gl_o",
+              "d": "M 133 92 A 17 17 0 1 0 167 92 A 17 17 0 1 0 133 92",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "mo_gl_t",
+              "x": 145,
+              "y": 97,
+              "text": "T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "mo_gr_o",
+              "d": "M 353 92 A 17 17 0 1 0 387 92 A 17 17 0 1 0 353 92",
+              "ms": 1530,
+              "w": 1.8
+            },
+            {
+              "type": "label",
+              "id": "mo_gr_t",
+              "x": 365,
+              "y": 97,
+              "text": "t",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "mo_p2",
+              "caption": "Step 2 — the F₁ plants, all tall"
+            },
+            {
+              "type": "stroke",
+              "id": "mo_f1l",
+              "d": "M 172 104 L 234 124",
+              "ms": 930,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mo_f1l_h",
+              "d": "M 228.1 125.3 L 234 124 L 230 119.5",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "mo_f1r",
+              "d": "M 348 104 L 286 124",
+              "ms": 930,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mo_f1r_h",
+              "d": "M 290 119.5 L 286 124 L 291.9 125.3",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "mo_f1",
+              "x": 176,
+              "y": 146,
+              "text": "F₁ — Tt, all Tall",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "mo_p3",
+              "caption": "Step 3 — self the F₁"
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sd",
+              "d": "M 260 156 L 260 174",
+              "ms": 300,
+              "w": 1.6
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sd_h",
+              "d": "M 257 168.8 L 260 174 L 263 168.8",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "mo_sl",
+              "x": 140,
+              "y": 196,
+              "text": "Tt",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sx",
+              "x": 255,
+              "y": 196,
+              "text": "×",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sr",
+              "x": 360,
+              "y": 196,
+              "text": "Tt",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "mo_p4",
+              "caption": "Step 4 — the Punnett square"
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_box_t",
+              "d": "M 188 260 L 332 260",
+              "ms": 2060,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_box_b",
+              "d": "M 188 348 L 332 348",
+              "ms": 2060,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_box_l",
+              "d": "M 188 260 L 188 348",
+              "ms": 1260,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_box_r",
+              "d": "M 332 260 L 332 348",
+              "ms": 1260,
+              "w": 1.8
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_v1",
+              "d": "M 260 260 L 260 348",
+              "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "stroke",
+              "id": "mo_sq_h1",
+              "d": "M 188 304 L 332 304",
+              "ms": 2060,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_ch0",
+              "x": 219,
+              "y": 246,
+              "text": "T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_ch1",
+              "x": 291,
+              "y": 246,
+              "text": "t",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_rh0",
+              "x": 166,
+              "y": 287,
+              "text": "T",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_rh1",
+              "x": 166,
+              "y": 331,
+              "text": "t",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_c0",
+              "x": 214,
+              "y": 287,
+              "text": "TT",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_c1",
+              "x": 286,
+              "y": 287,
+              "text": "Tt",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_c2",
+              "x": 214,
+              "y": 331,
+              "text": "Tt",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_sq_c3",
+              "x": 286,
+              "y": 331,
+              "text": "tt",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "pause",
+              "id": "mo_p5",
+              "caption": "Step 5 — read the two ratios off the square"
+            },
+            {
+              "type": "label",
+              "id": "mo_r1",
+              "x": 92,
+              "y": 392,
+              "text": "Phenotypic ratio  3 Tall : 1 Dwarf",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "mo_r2",
+              "x": 131,
+              "y": 432,
+              "text": "Genotypic ratio  1 : 2 : 1",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The Punnett square is the shortest honest proof of the 3:1 ratio: four boxes, three of them tall, and the dwarf one visible in the corner.",
+        "common_mistakes": [
+          "Writing the F1 as TT. The F1 of TT × tt is Tt.",
+          "Filling the square from the wrong gametes. The heads are the F1's gametes, T and t, on BOTH sides.",
+          "Giving one ratio only. The square shows the phenotypic 3:1 AND the genotypic 1:2:1."
+        ],
+        "memory_tip": "Four boxes: three tall, one dwarf."
+      }
+    ]
+  }
+}

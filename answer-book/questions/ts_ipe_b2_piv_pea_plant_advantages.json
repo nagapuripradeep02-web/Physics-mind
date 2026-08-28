@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_piv_pea_plant_advantages",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Principles of Inheritance and Variation (Botany-II)"
+  },
+  "chapter": "Principles of Inheritance and Variation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Mention the advantages of selecting pea plant for experiment by Mendel.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Contrasting characters",
+      "marks": 1
+    },
+    {
+      "label": "Ease of crossing",
+      "marks": 1
+    },
+    {
+      "label": "Life cycle and progeny",
+      "marks": 1
+    },
+    {
+      "label": "Practical advantages",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 31. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Seven reasons in the book, four marks on the paper. The two that must appear are the seven pairs of contrasting characters and the ability to self-pollinate.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Principles of Inheritance and Variation (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_contrast",
+        "kind": "text",
+        "label": "Contrasting characters",
+        "marks": 1,
+        "mark_note": "Characters",
+        "margin_note": "Say contrasting, give the number seven, give one pair. This is the key reason.",
+        "lines": [
+          "1. The garden pea has MANY CONTRASTING",
+          "CHARACTERS, each with two clear alternatives.",
+          "Mendel used seven pairs: tall or dwarf, round or",
+          "wrinkled seed, green or yellow pod, and so on.",
+          "Each character is either one form or the other,",
+          "with nothing in between."
+        ],
+        "why": "A character with only two clear forms can be counted, and counting is what let Mendel turn breeding results into ratios.",
+        "common_mistakes": [
+          "Saying pea has many characters. It has many CONTRASTING PAIRS, which is different.",
+          "Giving no example pair. Tall and dwarf is the standard one."
+        ],
+        "memory_tip": "Two clear forms means you can count, and counting gives ratios."
+      },
+      {
+        "id": "s2_crossing",
+        "kind": "text",
+        "label": "Ease of crossing",
+        "marks": 1,
+        "mark_note": "Crossing",
+        "margin_note": "Bisexual, self pollination, hand cross pollination. Three numbered points.",
+        "lines": [
+          "2. The pea flower is BISEXUAL: it has both male",
+          "and female parts in the same flower.",
+          "3. It can be SELF POLLINATED easily, which gives",
+          "pure breeding lines.",
+          "4. It can also be CROSS POLLINATED by hand,",
+          "which lets the experimenter choose the parents."
+        ],
+        "why": "Being able to both self and cross the same plant is what let Mendel make pure lines first and then cross them in a controlled way.",
+        "common_mistakes": [
+          "Saying pea flowers are unisexual. They are BISEXUAL.",
+          "Giving only one of the two. Self AND cross pollination are both needed."
+        ],
+        "memory_tip": "Self it to make it pure, cross it to test it."
+      },
+      {
+        "id": "s3_lifecycle",
+        "kind": "text",
+        "label": "Life cycle and progeny",
+        "marks": 1,
+        "mark_note": "Life cycle",
+        "margin_note": "Three more numbered points. The large-progeny point is the statistical one.",
+        "lines": [
+          "5. It has a SHORT LIFE CYCLE, so many",
+          "generations can be raised in a few years.",
+          "6. It produces a LARGE NUMBER of offspring, so",
+          "the ratios are reliable.",
+          "7. It has a SMALL NUMBER of chromosomes (7 pairs)."
+        ],
+        "why": "A ratio measured on ten plants proves nothing; on thousands it becomes a law, so the number of offspring is as important as the plant's other qualities.",
+        "common_mistakes": [
+          "Leaving out the large number of offspring. Big numbers are why the ratios held.",
+          "Saying pea has many chromosomes. It has SEVEN pairs, which is few."
+        ],
+        "memory_tip": "Quick, plentiful, and simple to follow."
+      },
+      {
+        "id": "s4_practical",
+        "kind": "boxed_final",
+        "label": "Practical advantages",
+        "marks": 1,
+        "mark_note": "Practical",
+        "margin_note": "Close with the practical points and one line joining them.",
+        "lines": [
+          {
+            "text": "Two clear forms, easy crosses, many offspring",
+            "style": "boxed"
+          },
+          "8. It grows easily in ordinary garden conditions",
+          "and needs no special laboratory.",
+          "9. The characters are easy to see with the naked",
+          "eye, so no equipment is needed to score them.",
+          "Together these made pea the right plant for the",
+          "first experiments in heredity."
+        ],
+        "why": "Every advantage points the same way: the experiment could be run at scale, by one person, with nothing but a garden and careful records.",
+        "common_mistakes": [
+          "Listing fewer than six reasons in total. This is a list question.",
+          "Naming an advantage without saying why it helped. The reason is what earns the mark."
+        ],
+        "memory_tip": "Anyone with a garden could have run it; only Mendel counted."
+      }
+    ]
+  }
+}
