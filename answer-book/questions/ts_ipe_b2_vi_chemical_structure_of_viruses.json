@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_chemical_structure_of_viruses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the chemical structure of viruses.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The two basic components",
+      "marks": 1
+    },
+    {
+      "label": "The capsid and capsomeres",
+      "marks": 1
+    },
+    {
+      "label": "The genome",
+      "marks": 1
+    },
+    {
+      "label": "Number and form of the nucleic acid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.28, printed question 27. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the guide says the viral genome is \"either single stranded DNA (or) double stranded DNA\" and then, one line later, that plant viruses have ssRNA — which its own sentence has just excluded. A viral genome may be ssDNA, dsDNA, ssRNA or dsRNA; the card gives all four. The guide's flat claim that plant viruses have ssRNA and animal viruses dsDNA is also an over-generalisation and is written here as the usual case, not the rule."
+  },
+  "insider_note": "Core and capsid. Say those two words first, then everything else hangs off them. The capsomere is the word the examiner is scanning for.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Viruses (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two",
+        "kind": "text",
+        "label": "The two basic components",
+        "marks": 1,
+        "mark_note": "Two parts",
+        "margin_note": "Both components named and defined. Add the word virion.",
+        "lines": [
+          "Every virus consists of TWO basic components:",
+          "a) the CORE — the nucleic acid, which forms the",
+          "   genome;",
+          "b) the CAPSID — the protein coat that surrounds",
+          "   the core.",
+          "A complete virus particle is called a VIRION."
+        ],
+        "why": "A virus is nothing but genetic material in a protein box, which is why two components are enough to describe every one of them.",
+        "common_mistakes": [
+          "Saying viruses have a cell membrane and cytoplasm. They have only a core and a capsid.",
+          "Calling the capsid the genome. The CORE is the genome; the capsid is protein."
+        ],
+        "memory_tip": "Core inside, capsid outside, virion is the whole thing."
+      },
+      {
+        "id": "s2_capsid",
+        "kind": "text",
+        "label": "The capsid and capsomeres",
+        "marks": 1,
+        "mark_note": "Capsid",
+        "margin_note": "Function, the subunit name, and the fact that the count is characteristic.",
+        "lines": [
+          "The CAPSID gives the virus its shape and",
+          "protects the core.",
+          "It is made of protein subunits called",
+          "CAPSOMERES.",
+          "The NUMBER of capsomeres is a characteristic",
+          "feature of each type of virus.",
+          "In TMV there are 2,130 capsomeres."
+        ],
+        "why": "Because the capsomere count is fixed for each virus, it is one of the features used to identify and classify them.",
+        "common_mistakes": [
+          "Calling the subunits capsids. The subunits are CAPSOMERES; the whole coat is the capsid.",
+          "Saying the capsid carries the genetic information. The CORE does."
+        ],
+        "memory_tip": "Capsid is the coat; capsomeres are the bricks it is built from."
+      },
+      {
+        "id": "s3_genome",
+        "kind": "text",
+        "label": "The genome",
+        "marks": 1,
+        "mark_note": "Genome",
+        "margin_note": "All four possibilities, then the usual cases for plants and animals.",
+        "lines": [
+          "The genome of a virus may be:",
+          "single stranded DNA, double stranded DNA,",
+          "single stranded RNA, or double stranded RNA.",
+          "NO virus has both DNA and RNA.",
+          "Most PLANT viruses have single stranded RNA.",
+          "Many ANIMAL viruses have double stranded DNA."
+        ],
+        "why": "A virus carries only one kind of nucleic acid, which is the single sharpest chemical difference between a virus and a cell.",
+        "common_mistakes": [
+          "Saying a virus can have both DNA and RNA. It has ONE of them, never both.",
+          "Giving only DNA. RNA viruses include TMV, polio and HIV. The guide's own answer contradicts itself here."
+        ],
+        "memory_tip": "One virus, one kind of nucleic acid."
+      },
+      {
+        "id": "s4_form",
+        "kind": "boxed_final",
+        "label": "Number and form of the nucleic acid",
+        "marks": 1,
+        "mark_note": "Form",
+        "margin_note": "Shape, number, and the named exception. Four lines.",
+        "lines": [
+          {
+            "text": "One kind of nucleic acid, never both",
+            "style": "boxed"
+          },
+          "The nucleic acid molecule may be CIRCULAR or",
+          "LINEAR.",
+          "Most viruses have a SINGLE nucleic acid",
+          "molecule.",
+          "A few have more than one: HIV has TWO identical",
+          "molecules of RNA."
+        ],
+        "why": "HIV carrying two copies of its RNA is the standard exception, which is why the question is worth asking at all.",
+        "common_mistakes": [
+          "Saying every virus has one molecule. HIV has TWO identical RNA molecules.",
+          "Leaving out the shape. Circular or linear is part of this mark."
+        ],
+        "memory_tip": "Usually one molecule; HIV carries two."
+      }
+    ]
+  }
+}

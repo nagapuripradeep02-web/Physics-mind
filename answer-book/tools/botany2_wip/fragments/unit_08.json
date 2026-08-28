@@ -1,0 +1,71 @@
+{
+  "number": 8,
+  "name": "Viruses (Botany-II)",
+  "subject": "botany_2",
+  "questions": [
+    {
+      "ref": "saq1",
+      "section": "SAQ",
+      "number": 26,
+      "stars": 0,
+      "text": "What is ICTV? How are viruses named?",
+      "question_id": "ts_ipe_b2_vi_ictv_and_naming"
+    },
+    {
+      "ref": "saq2",
+      "section": "SAQ",
+      "number": 27,
+      "stars": 0,
+      "text": "Explain the chemical structure of viruses.",
+      "question_id": "ts_ipe_b2_vi_chemical_structure_of_viruses"
+    },
+    {
+      "ref": "saq3",
+      "section": "SAQ",
+      "number": 28,
+      "stars": 0,
+      "text": "Explain the structure of TMV.",
+      "question_id": "ts_ipe_b2_vi_tmv_structure"
+    },
+    {
+      "ref": "saq4",
+      "section": "SAQ",
+      "number": 29,
+      "stars": 0,
+      "text": "Explain the structure of T-even bacteriophages.",
+      "question_id": "ts_ipe_b2_vi_t_even_phage_structure"
+    },
+    {
+      "ref": "saq5",
+      "section": "SAQ",
+      "number": 30,
+      "stars": 0,
+      "text": "Explain the lytic cycle with reference to certain viruses.",
+      "question_id": "ts_ipe_b2_vi_lytic_cycle"
+    },
+    {
+      "ref": "vsaq1",
+      "section": "VSAQ",
+      "number": 163,
+      "stars": 0,
+      "text": "Mention the differences between virulent phages and temperate phages.",
+      "question_id": "ts_ipe_b2_vi_virulent_vs_temperate_phages"
+    },
+    {
+      "ref": "vsaq2",
+      "section": "VSAQ",
+      "number": 164,
+      "stars": 0,
+      "text": "What is the shape of TMV? What is its genetic material?",
+      "question_id": "ts_ipe_b2_vi_tmv_shape_and_genome"
+    },
+    {
+      "ref": "vsaq3",
+      "section": "VSAQ",
+      "number": 165,
+      "stars": 0,
+      "text": "What is lysozyme and what is its function?",
+      "question_id": "ts_ipe_b2_vi_lysozyme"
+    }
+  ]
+}

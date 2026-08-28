@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_virulent_vs_temperate_phages",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention the differences between virulent phages and temperate phages.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Virulent phages",
+      "marks": 1
+    },
+    {
+      "label": "Temperate phages",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 163. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "One cycle against two. That is the difference, and each half needs its named example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Viruses (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_virulent",
+        "kind": "text",
+        "label": "Virulent phages",
+        "marks": 1,
+        "mark_note": "Virulent",
+        "margin_note": "One cycle, the outcome, one example. Four lines.",
+        "lines": [
+          "VIRULENT PHAGES replicate only through the LYTIC",
+          "cycle.",
+          "They always destroy the host cell.",
+          "Example: the T-even phages (T2, T4, T6)."
+        ],
+        "why": "A phage with only one cycle available has no way to wait, so it must kill the host every time.",
+        "common_mistakes": [
+          "Saying virulent phages can go lysogenic. They cannot; only the lytic cycle is open to them.",
+          "Naming no example. The T-even phages are the standard one."
+        ],
+        "memory_tip": "Only one cycle, so the host always dies."
+      },
+      {
+        "id": "s2_temperate",
+        "kind": "boxed_final",
+        "label": "Temperate phages",
+        "marks": 1,
+        "mark_note": "Temperate",
+        "margin_note": "Both cycles, what lysogeny does, one example. The word lysogenic is the mark.",
+        "lines": [
+          {
+            "text": "Virulent phages have one cycle; temperate",
+            "style": "boxed"
+          },
+          {
+            "text": "phages have two",
+            "style": "boxed"
+          },
+          "TEMPERATE PHAGES replicate through BOTH the lytic",
+          "and the LYSOGENIC cycles.",
+          "In the lysogenic cycle the phage DNA joins the",
+          "bacterial chromosome and is copied with it, so",
+          "the host survives.",
+          "Example: coliphage lambda."
+        ],
+        "why": "Joining the host chromosome lets the phage be copied for generations without killing anything, so it can wait for better conditions before turning lytic.",
+        "common_mistakes": [
+          "Saying temperate phages never lyse the host. They CAN — they have both cycles.",
+          "Naming a T-even phage. Coliphage lambda is the temperate example."
+        ],
+        "memory_tip": "Temperate means it can wait."
+      }
+    ]
+  }
+}

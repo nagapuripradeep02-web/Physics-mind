@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_bolting",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by bolting? Which hormone causes bolting?",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What bolting is",
+      "marks": 1
+    },
+    {
+      "label": "The hormone",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 160. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Two facts and a definition that must include 'internodes'. One line each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What bolting is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition with internodes and the timing. One example helps.",
+        "lines": [
+          "Bolting is the sudden ELONGATION OF INTERNODES",
+          "just before flowering.",
+          "It is seen in rosette plants such as cabbage and",
+          "beet, whose internodes are normally very short."
+        ],
+        "why": "A rosette plant has almost no visible stem, so the sudden elongation before flowering is dramatic and easy to name.",
+        "common_mistakes": [
+          "Saying bolting is the growth of roots. It is INTERNODE elongation.",
+          "Leaving out 'just before flowering'. The timing is part of the definition."
+        ],
+        "memory_tip": "The stem shoots up right before the flower opens."
+      },
+      {
+        "id": "s2_hormone",
+        "kind": "boxed_final",
+        "label": "The hormone",
+        "marks": 1,
+        "mark_note": "Hormone",
+        "margin_note": "Name the hormone and link it to the elongation effect.",
+        "lines": [
+          {
+            "text": "Gibberellins cause bolting",
+            "style": "boxed"
+          },
+          "GIBBERELLINS are responsible for bolting.",
+          "This is the same elongation effect that lengthens",
+          "grape stalks and sugarcane stems."
+        ],
+        "why": "Bolting is internode elongation, and internode elongation is what gibberellin does everywhere else in the chapter, so it is the same effect under a different name.",
+        "common_mistakes": [
+          "Naming auxin. Bolting is a GIBBERELLIN effect.",
+          "Naming no hormone. Half the question is the hormone."
+        ],
+        "memory_tip": "Anything that gets longer is gibberellin."
+      }
+    ]
+  }
+}

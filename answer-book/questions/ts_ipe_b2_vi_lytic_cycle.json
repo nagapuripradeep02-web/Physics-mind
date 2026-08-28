@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_vi_lytic_cycle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Viruses (Botany-II)"
+  },
+  "chapter": "Viruses",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the lytic cycle with reference to certain viruses.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What the lytic cycle is",
+      "marks": 1
+    },
+    {
+      "label": "Attachment and penetration",
+      "marks": 1
+    },
+    {
+      "label": "Biosynthesis and maturation",
+      "marks": 1
+    },
+    {
+      "label": "Release",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.29, printed question 30. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the guide's release step calls lysozyme \"the HOST enzyme\". It is encoded by the PHAGE, not the host — and the guide's own Star Question 165 on p.51 calls it \"the VIRAL enzyme\", so it contradicts itself between two pages."
+  },
+  "insider_note": "Five named steps for four marks. Name all five even if two share a line — a missing step name is the commonest way marks go here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Viruses (Botany-II) · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What the lytic cycle is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Definition, the word virulent, and the five step names in order.",
+        "lines": [
+          "The LYTIC CYCLE is one of the two cycles of",
+          "viral reproduction.",
+          "It ends in the destruction, or LYSIS, of the",
+          "infected host cell.",
+          "Viruses that cause lysis are called VIRULENT",
+          "phages. Example: the T-even phages.",
+          "The cycle has FIVE steps: attachment,",
+          "penetration, biosynthesis, maturation, release."
+        ],
+        "why": "Naming all five steps in the first block means the rest of the answer only has to fill them in, and the examiner can see the shape immediately.",
+        "common_mistakes": [
+          "Confusing it with the lysogenic cycle. The LYTIC cycle destroys the host at once.",
+          "Naming fewer than five steps. All five have names and each is expected."
+        ],
+        "memory_tip": "Attach, penetrate, build, assemble, burst."
+      },
+      {
+        "id": "s2_attach",
+        "kind": "text",
+        "label": "Attachment and penetration",
+        "marks": 1,
+        "mark_note": "Attach, penetrate",
+        "margin_note": "Both steps, and the word GHOST. Seven lines.",
+        "lines": [
+          "1. ATTACHMENT: the TAIL FIBRES attach to",
+          "complementary receptor sites on the bacterial",
+          "cell wall.",
+          "2. PENETRATION: the tail core is driven through",
+          "the cell wall and the phage DNA passes into",
+          "the bacterial cell.",
+          "The phage works like a hypodermic syringe.",
+          "The empty capsid left outside is called the",
+          "GHOST."
+        ],
+        "why": "Only the DNA goes in, so the coat is left behind as a ghost — which is the observation the Hershey and Chase experiment later turned into proof.",
+        "common_mistakes": [
+          "Saying the whole virus enters the cell. Only the DNA enters; the capsid stays outside.",
+          "Leaving out the ghost. It is the named term for the empty coat."
+        ],
+        "memory_tip": "The needle goes in, the syringe stays outside."
+      },
+      {
+        "id": "s3_biosynthesis",
+        "kind": "text",
+        "label": "Biosynthesis and maturation",
+        "marks": 1,
+        "mark_note": "Build, assemble",
+        "margin_note": "Both steps, and the term ECLIPSE PERIOD. This is a named-term mark.",
+        "lines": [
+          "3. BIOSYNTHESIS: once the phage DNA reaches the",
+          "cytoplasm, the host's own machinery is used to",
+          "make many copies of phage DNA, enzymes and",
+          "capsid proteins.",
+          "During this stage no complete phage can be",
+          "found inside the cell.",
+          "4. MATURATION: the DNA and capsids are assembled",
+          "into complete VIRIONS.",
+          "The time between infection and the appearance",
+          "of mature virus is the ECLIPSE PERIOD."
+        ],
+        "why": "Parts are made separately and only assembled at the end, which is exactly why no whole virus can be found during the eclipse period.",
+        "common_mistakes": [
+          "Saying the virus builds its own machinery. It uses the HOST cell's machinery.",
+          "Leaving out the eclipse period. It is the named term for this stage."
+        ],
+        "memory_tip": "Parts first, assembly last: that is why nothing is found in between."
+      },
+      {
+        "id": "s4_release",
+        "kind": "boxed_final",
+        "label": "Release",
+        "marks": 1,
+        "mark_note": "Release",
+        "margin_note": "Name the enzyme, say whose it is, and give the burst size. That number impresses.",
+        "lines": [
+          {
+            "text": "The phage makes the enzyme that bursts the",
+            "style": "boxed"
+          },
+          {
+            "text": "cell open",
+            "style": "boxed"
+          },
+          "5. RELEASE: the phage-coded enzyme LYSOZYME",
+          "breaks down the bacterial cell wall.",
+          "The cell bursts, or LYSES, and the newly made",
+          "phage particles are set free.",
+          "About 100 to 200 phages are released from one",
+          "bacterial cell, and each can infect another."
+        ],
+        "why": "The virus destroys the cell only at the end, after it has finished using it — the machinery has to survive long enough to build the new particles.",
+        "common_mistakes": [
+          "Calling lysozyme a host enzyme. It is coded by the PHAGE. The guide says host here and viral two pages later.",
+          "Saying the cell survives. The lytic cycle ends in the DEATH of the host cell."
+        ],
+        "memory_tip": "The last thing the phage builds is the tool that lets it out."
+      }
+    ]
+  }
+}

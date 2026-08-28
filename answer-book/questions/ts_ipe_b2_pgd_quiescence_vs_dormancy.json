@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_b2_pgd_quiescence_vs_dormancy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "botany_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Plant Growth and Development (Botany-II)"
+  },
+  "chapter": "Plant Growth and Development",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the terms quiescence and dormancy.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quiescence",
+      "marks": 1
+    },
+    {
+      "label": "Dormancy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.51, printed question 161. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Outside against inside. That single contrast is the whole answer, so put it in both definitions.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Plant Growth and Development (Botany-II) · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quiescence",
+        "kind": "text",
+        "label": "Quiescence",
+        "marks": 1,
+        "mark_note": "Quiescence",
+        "margin_note": "Definition, the external cause, and how quickly it ends.",
+        "lines": [
+          "QUIESCENCE is a delayed seed germination that",
+          "happens when the EXTERNAL conditions are wrong:",
+          "too dry, too warm or too cold.",
+          "Give the seed the right conditions and it",
+          "germinates at once."
+        ],
+        "why": "Nothing is wrong with the seed, so correcting the surroundings is enough to start germination immediately.",
+        "common_mistakes": [
+          "Saying quiescence is caused by something inside the seed. That is DORMANCY.",
+          "Leaving out the named conditions. Dry, warm or cold is what the definition specifies."
+        ],
+        "memory_tip": "Quiescence is the weather's fault."
+      },
+      {
+        "id": "s2_dormancy",
+        "kind": "boxed_final",
+        "label": "Dormancy",
+        "marks": 1,
+        "mark_note": "Dormancy",
+        "margin_note": "Mirror the quiescence lines. The word 'innate' is the mark.",
+        "lines": [
+          {
+            "text": "Outside conditions cause quiescence; the seed",
+            "style": "boxed"
+          },
+          {
+            "text": "itself causes dormancy",
+            "style": "boxed"
+          },
+          "DORMANCY is the INNATE inhibition of germination,",
+          "even when the seed is placed in the most",
+          "favourable environment.",
+          "Its causes are inside the seed: a hard coat,",
+          "chemical inhibitors, or a need for chilling."
+        ],
+        "why": "The word innate is what carries the definition: the block is built into the seed, so good conditions alone cannot remove it.",
+        "common_mistakes": [
+          "Defining dormancy by bad weather. Dormancy persists in the BEST conditions.",
+          "Leaving out the word innate or internal. It is what separates the two terms."
+        ],
+        "memory_tip": "Dormancy is the seed's own fault."
+      }
+    ]
+  }
+}

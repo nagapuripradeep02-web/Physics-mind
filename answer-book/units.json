@@ -10168,6 +10168,251 @@
           "question_id": "ts_ipe_b2_rp_respiratory_quotient"
         }
       ]
+    },
+    {
+      "number": 6,
+      "name": "Plant Growth and Development (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write a note on agricultural and horticultural applications of auxins.",
+          "question_id": "ts_ipe_b2_pgd_auxin_applications"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Write the physiological responses of gibberellins in plants.",
+          "question_id": "ts_ipe_b2_pgd_gibberellin_responses"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Write any four physiological effects of cytokinins in plants.",
+          "question_id": "ts_ipe_b2_pgd_cytokinin_effects"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What are the physiological processes that are regulated by ethylene in plants?",
+          "question_id": "ts_ipe_b2_pgd_ethylene_processes"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write short notes on seed dormancy.",
+          "question_id": "ts_ipe_b2_pgd_seed_dormancy"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Which one of the plant growth regulators would you use if you are asked to (a) induce rooting in a twig (b) quickly ripen a fruit (c) delay leaf senescence (d) induce growth in axillary buds (e) bolt a rosette plant (f) induce immediate stomatal closure in leaves (g) overcome apical dominance (h) kill dicotyledonous weeds?",
+          "question_id": "ts_ipe_b2_pgd_which_growth_regulator"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 159,
+          "stars": 0,
+          "text": "What do you understand by vernalisation? Write its significance.",
+          "question_id": "ts_ipe_b2_pgd_vernalisation"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 160,
+          "stars": 0,
+          "text": "What is meant by bolting? Which hormone causes bolting?",
+          "question_id": "ts_ipe_b2_pgd_bolting"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 161,
+          "stars": 0,
+          "text": "Define the terms quiescence and dormancy.",
+          "question_id": "ts_ipe_b2_pgd_quiescence_vs_dormancy"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 162,
+          "stars": 0,
+          "text": "Define plasticity. Give an example.",
+          "question_id": "ts_ipe_b2_pgd_plasticity"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Bacteria (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 72,
+          "stars": 0,
+          "text": "Write briefly on the occurrence of micro organisms.",
+          "question_id": "ts_ipe_b2_ba_occurrence_of_microorganisms"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 73,
+          "stars": 0,
+          "text": "Define Microbiology.",
+          "question_id": "ts_ipe_b2_ba_microbiology_definition"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 74,
+          "stars": 0,
+          "text": "Name the bacteria which is a common inhabitant of the human intestine. How is it used in biotechnology?",
+          "question_id": "ts_ipe_b2_ba_ecoli_in_intestine"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 75,
+          "stars": 0,
+          "text": "What are pleomorphic bacteria? Give an example.",
+          "question_id": "ts_ipe_b2_ba_pleomorphic_bacteria"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 76,
+          "stars": 0,
+          "text": "What is sex pilus? What is its function?",
+          "question_id": "ts_ipe_b2_ba_sex_pilus"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 77,
+          "stars": 0,
+          "text": "What is a genophore?",
+          "question_id": "ts_ipe_b2_ba_genophore"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 78,
+          "stars": 0,
+          "text": "What is a plasmid? What is its significance?",
+          "question_id": "ts_ipe_b2_ba_plasmid"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 79,
+          "stars": 0,
+          "text": "What is conjugation? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_conjugation"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 80,
+          "stars": 0,
+          "text": "What is transformation? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_transformation"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 81,
+          "stars": 0,
+          "text": "What is transduction? Who discovered it and in which organism?",
+          "question_id": "ts_ipe_b2_ba_transduction"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Viruses (Botany-II)",
+      "subject": "botany_2",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What is ICTV? How are viruses named?",
+          "question_id": "ts_ipe_b2_vi_ictv_and_naming"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Explain the chemical structure of viruses.",
+          "question_id": "ts_ipe_b2_vi_chemical_structure_of_viruses"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Explain the structure of TMV.",
+          "question_id": "ts_ipe_b2_vi_tmv_structure"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "Explain the structure of T-even bacteriophages.",
+          "question_id": "ts_ipe_b2_vi_t_even_phage_structure"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "Explain the lytic cycle with reference to certain viruses.",
+          "question_id": "ts_ipe_b2_vi_lytic_cycle"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 163,
+          "stars": 0,
+          "text": "Mention the differences between virulent phages and temperate phages.",
+          "question_id": "ts_ipe_b2_vi_virulent_vs_temperate_phages"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 164,
+          "stars": 0,
+          "text": "What is the shape of TMV? What is its genetic material?",
+          "question_id": "ts_ipe_b2_vi_tmv_shape_and_genome"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 165,
+          "stars": 0,
+          "text": "What is lysozyme and what is its function?",
+          "question_id": "ts_ipe_b2_vi_lysozyme"
+        }
+      ]
     }
   ]
 }
