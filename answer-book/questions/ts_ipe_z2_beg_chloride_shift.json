@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_chloride_shift",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by chloride shift?",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What moves",
+      "marks": 1
+    },
+    {
+      "label": "Why it happens",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 58. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Name both ions and say which way each moves. 'Ions are exchanged' is not enough.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What moves",
+        "marks": 1,
+        "mark_note": "The exchange",
+        "why": "Bicarbonate made inside the red cell leaves for the plasma, and something with the same charge has to come in to keep the balance.",
+        "common_mistakes": [
+          "Writing that chloride moves out of the red cell at the tissues. It moves in.",
+          "Naming the wrong ions. It is chloride for bicarbonate."
+        ],
+        "memory_tip": "Bicarbonate out, chloride in — at the tissues.",
+        "margin_note": "Name both ions and both compartments.",
+        "lines": [
+          "Chloride shift is the exchange of chloride",
+          "and bicarbonate ions between the red blood",
+          "cells and the plasma at the tissues."
+        ]
+      },
+      {
+        "id": "s2_why",
+        "kind": "boxed_final",
+        "label": "Why it happens",
+        "marks": 1,
+        "mark_note": "Reason",
+        "why": "Charge cannot build up on one side of the membrane, so every bicarbonate that leaves is replaced by a chloride.",
+        "common_mistakes": [
+          "Leaving out the reason. The second mark is for the balance of charge.",
+          "Saying it happens at the lungs only. It reverses there."
+        ],
+        "memory_tip": "The swap keeps the electrical charge balanced.",
+        "margin_note": "One line on the reason, one on the reversal.",
+        "lines": [
+          "HCO₃⁻ leaves the red cell and Cl⁻ enters it,",
+          "which keeps the charge balanced.",
+          {
+            "text": "At the lungs the shift runs the other way",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

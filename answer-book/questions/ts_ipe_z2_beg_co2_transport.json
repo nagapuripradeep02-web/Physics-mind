@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_co2_transport",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the major transport mechanisms for CO₂? Explain.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three ways with their shares",
+      "marks": 1
+    },
+    {
+      "label": "As carbonic acid",
+      "marks": 1
+    },
+    {
+      "label": "As carbamino compound",
+      "marks": 1
+    },
+    {
+      "label": "As bicarbonate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.30, SAQ 16. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The three percentages are what separate a full answer from a half one. Write them beside each route.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Breathing and Exchange of Gases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_ways",
+        "kind": "text",
+        "label": "Three ways",
+        "marks": 1,
+        "mark_note": "The three shares",
+        "why": "The percentages are the answer: they show at once that almost all the carbon dioxide travels as bicarbonate, not as gas.",
+        "common_mistakes": [
+          "Writing that CO₂ is carried mainly by haemoglobin. Only about a quarter is.",
+          "Giving no percentages. The three shares carry this mark."
+        ],
+        "memory_tip": "7, 25, 70 — acid, carbamino, bicarbonate.",
+        "margin_note": "Open with the list, then take the three in order.",
+        "lines": [
+          "Carbon dioxide is carried to the lungs in",
+          "three ways:",
+          "1. About 7% as carbonic acid.",
+          "2. About 20 to 25% as carbamino compound.",
+          "3. About 70% as bicarbonates."
+        ]
+      },
+      {
+        "id": "s2_carbonic",
+        "kind": "text",
+        "label": "As carbonic acid",
+        "marks": 1,
+        "mark_note": "Carbonic acid",
+        "why": "A small part of the gas simply dissolves and reacts with the water of the plasma, needing no carrier at all.",
+        "common_mistakes": [
+          "Giving this route the largest share. It is the smallest.",
+          "Forgetting that the reaction runs backwards at the lungs."
+        ],
+        "memory_tip": "The smallest share travels as plain acid in the plasma.",
+        "margin_note": "Two lines. Say what forms and where it breaks up.",
+        "lines": [
+          {
+            "text": "1. As carbonic acid",
+            "style": "heading"
+          },
+          "About 7% of CO₂ combines with water to",
+          "form carbonic acid.",
+          "It is carried to the lungs, where it splits",
+          "again into water and CO₂."
+        ]
+      },
+      {
+        "id": "s3_carbamino",
+        "kind": "text",
+        "label": "As carbamino compound",
+        "marks": 1,
+        "mark_note": "Carbamino compound",
+        "why": "Carbon dioxide binds to the amino groups of the globin chains, not to the iron, which is why it does not compete with oxygen.",
+        "common_mistakes": [
+          "Writing that CO₂ binds to the iron of haem. It binds to the amino group.",
+          "Calling the reaction irreversible. It is reversible."
+        ],
+        "memory_tip": "Carbamino means it clips onto the amino group of globin.",
+        "margin_note": "The equation line is worth writing out.",
+        "lines": [
+          {
+            "text": "2. As carbamino compound",
+            "style": "heading"
+          },
+          "About 20 to 25% of CO₂ combines with the",
+          "free amino group of haemoglobin and forms",
+          "carbamino haemoglobin.",
+          "It is a reversible reaction.",
+          {
+            "text": "Hb−NH₂ + CO₂ ⇌ Hb−NHCOO⁻ + H⁺",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s4_bicarbonate",
+        "kind": "boxed_final",
+        "label": "As bicarbonate",
+        "marks": 1,
+        "mark_note": "Bicarbonate",
+        "why": "Carbonic anhydrase inside the red cell speeds the reaction thousands of times, which is what makes this the main route.",
+        "common_mistakes": [
+          "Leaving out carbonic anhydrase. Without the enzyme the route is too slow.",
+          "Writing that the reaction goes the same way at the lungs. It reverses there."
+        ],
+        "memory_tip": "Enzyme in the red cell, bicarbonate out into the plasma.",
+        "margin_note": "End with the reversal at the alveoli.",
+        "lines": [
+          {
+            "text": "3. As bicarbonate",
+            "style": "heading"
+          },
+          "About 70% of CO₂ combines with water to",
+          "form H₂CO₃ in the presence of carbonic",
+          "anhydrase inside the red blood cells.",
+          "The carbonic acid dissociates into HCO₃⁻",
+          "and H⁺.",
+          "At the alveoli, where pCO₂ is low, the",
+          "reaction runs the opposite way and gives",
+          "back CO₂ and water.",
+          {
+            "text": "Most CO₂ travels as bicarbonate",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

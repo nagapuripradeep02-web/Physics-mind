@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_conchae",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are conchae?",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What they are",
+      "marks": 1
+    },
+    {
+      "label": "Their function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.47, VSAQ 59. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Give the other name, turbinals, and the function. A definition alone earns one mark of two.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Breathing and Exchange of Gases · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What they are",
+        "marks": 1,
+        "mark_note": "What they are",
+        "why": "The twisted shape makes the air take a long slow path over a warm moist surface instead of shooting straight through.",
+        "common_mistakes": [
+          "Calling conchae cartilages. They are bones.",
+          "Giving no number. There are three on each side."
+        ],
+        "memory_tip": "Conchae are the three scroll shaped bones in the nose.",
+        "margin_note": "Give the other name, turbinals, for a safe mark.",
+        "lines": [
+          "Conchae, also called turbinals, are three",
+          "spirally twisted bones in the respiratory",
+          "part of the nasal chamber."
+        ]
+      },
+      {
+        "id": "s2_function",
+        "kind": "boxed_final",
+        "label": "Their function",
+        "marks": 1,
+        "mark_note": "Function",
+        "why": "Air reaching the alveoli must already be at body temperature, or the thin lining would be chilled and dried.",
+        "common_mistakes": [
+          "Writing that they filter dust only. They condition the air.",
+          "Leaving the function out."
+        ],
+        "memory_tip": "They warm the air before it reaches the lungs.",
+        "margin_note": "One line on the function is enough.",
+        "lines": [
+          {
+            "text": "They regulate the temperature of inhaled air",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_liver_functions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the functions of liver?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Bile secretion",
+      "marks": 1
+    },
+    {
+      "label": "Detoxification and heat",
+      "marks": 1
+    },
+    {
+      "label": "Metabolism and urea",
+      "marks": 1
+    },
+    {
+      "label": "Blood functions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.29, SAQ 14. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "A list question. Number the functions — a paragraph hides the points and the examiner cannot tick them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Digestion and Absorption · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bile",
+        "kind": "text",
+        "label": "Secretion of bile",
+        "marks": 1,
+        "mark_note": "Bile secretion",
+        "why": "Bile is the liver's only digestive secretion, so it is the function an examiner expects first.",
+        "common_mistakes": [
+          "Writing that bile contains digestive enzymes. It contains none.",
+          "Calling the liver an endocrine gland. Bile leaves through a duct."
+        ],
+        "memory_tip": "The liver is the biggest gland and bile is what it pours out.",
+        "margin_note": "Write this as a numbered list. The examiner ticks points.",
+        "lines": [
+          "The liver is the largest gland in the body.",
+          "It carries out synthesis, storage and",
+          "secretion.",
+          "It secretes bile juice, which helps in the",
+          "emulsification and digestion of fats."
+        ]
+      },
+      {
+        "id": "s2_detox",
+        "kind": "text",
+        "label": "Detoxification and heat",
+        "marks": 1,
+        "mark_note": "Detoxification, heat",
+        "why": "Everything absorbed from the gut reaches the liver first, so it is the body's filter before the blood goes anywhere else.",
+        "common_mistakes": [
+          "Naming the kidney as the chief organ of detoxification. It is the liver.",
+          "Leaving out the heat function. It is a marked point."
+        ],
+        "memory_tip": "Gut blood meets the liver first, so the liver is the filter.",
+        "margin_note": "Two short points, one line each.",
+        "lines": [
+          "The liver is the chief organ of",
+          "detoxification. It removes toxic substances",
+          "that enter the gut with food.",
+          "It acts as a thermoregulatory organ and",
+          "gives out much of the body heat."
+        ]
+      },
+      {
+        "id": "s3_metabolism",
+        "kind": "text",
+        "label": "Metabolism and urea",
+        "marks": 1,
+        "mark_note": "Metabolism, urea",
+        "why": "The liver holds the enzymes of the ornithine cycle, so ammonia from deamination is turned into urea here and nowhere else.",
+        "common_mistakes": [
+          "Saying urea is formed in the kidney. The kidney only excretes it.",
+          "Naming the wrong cycle. Urea is made in the ornithine cycle."
+        ],
+        "memory_tip": "Liver makes urea, kidney removes it.",
+        "margin_note": "Name the ornithine cycle. That word carries the mark.",
+        "lines": [
+          "It plays the key role in carbohydrate",
+          "metabolism.",
+          "It takes part in lipid metabolism, making",
+          "cholesterol and triglycerides.",
+          "Deamination and the formation of urea by",
+          "the ornithine cycle occur in the liver."
+        ]
+      },
+      {
+        "id": "s4_blood",
+        "kind": "boxed_final",
+        "label": "Blood functions",
+        "marks": 1,
+        "mark_note": "Blood functions",
+        "why": "The liver makes red cells before birth and destroys them after birth, so the same organ sits at both ends of a red cell's life.",
+        "common_mistakes": [
+          "Writing that the adult liver makes red cells. In the adult it destroys them.",
+          "Leaving out the plasma proteins. Albumin and fibrinogen are marked names."
+        ],
+        "memory_tip": "Haemopoietic in the foetus, erythroclastic in the adult.",
+        "margin_note": "Close with Kupffer cells. It is an easy extra point.",
+        "lines": [
+          "It is a haemopoietic organ in the foetus",
+          "and an erythroclastic organ in the adult,",
+          "destroying aged red blood cells.",
+          "It makes plasma proteins such as albumin,",
+          "clotting factors such as fibrinogen, and",
+          "the anticoagulant heparin.",
+          {
+            "text": "Kupffer cells remove microbes from the blood",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

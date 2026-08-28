@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_tongue_papillae",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name different types of papillae present on the tongue of man.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three types",
+      "marks": 1
+    },
+    {
+      "label": "Their locations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.46, VSAQ 52. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Half the marks are for the locations. Naming the three types alone is a half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Digestion and Absorption · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three",
+        "kind": "text",
+        "label": "The three types",
+        "marks": 1,
+        "mark_note": "The three names",
+        "why": "The papillae are the small projections that carry the taste buds, so naming them is naming the taste surface of the tongue.",
+        "common_mistakes": [
+          "Naming taste buds instead of papillae. Taste buds sit on the papillae.",
+          "Giving only two types. Three are expected."
+        ],
+        "memory_tip": "Fungiform, filiform, circumvallate — mushroom, thread, walled.",
+        "margin_note": "Name all three first, then place them.",
+        "lines": [
+          "Papillae are small projections on the upper",
+          "surface of the tongue. There are 3 types:",
+          "1. Fungiform papillae",
+          "2. Filiform papillae",
+          "3. Circumvallate papillae"
+        ]
+      },
+      {
+        "id": "s2_locations",
+        "kind": "boxed_final",
+        "label": "Their locations",
+        "marks": 1,
+        "mark_note": "Locations",
+        "why": "Each type keeps to its own zone of the tongue, so the location is what tells them apart.",
+        "common_mistakes": [
+          "Placing circumvallate papillae at the tip. They lie at the base.",
+          "Giving no locations at all. Half the marks are here."
+        ],
+        "memory_tip": "Tip and margin, whole surface, base — in that order.",
+        "margin_note": "One line each. Keep the same order as above.",
+        "lines": [
+          "Fungiform — at the margin and tip of the",
+          "tongue.",
+          "Filiform — over the upper surface.",
+          {
+            "text": "Circumvallate — at the base of the tongue",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

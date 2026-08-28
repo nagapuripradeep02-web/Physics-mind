@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_protein_digestion_stomach",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the process of digestion of proteins in the stomach.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Where it starts, gastric juice",
+      "marks": 1
+    },
+    {
+      "label": "HCl and the activation of pepsin",
+      "marks": 1
+    },
+    {
+      "label": "Action of pepsin",
+      "marks": 1
+    },
+    {
+      "label": "Rennin in infants",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.28, SAQ 12. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Write the four biochemical reactions as separate lines. Examiners give the activation mark for the arrow with HCl over it, not for the sentence.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Digestion and Absorption · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gastric_juice",
+        "kind": "text",
+        "label": "Gastric juice and chyme",
+        "marks": 1,
+        "mark_note": "Where it starts",
+        "why": "Protein digestion is the one digestion that truly begins in the stomach, so the answer has to say where it starts and where it ends.",
+        "common_mistakes": [
+          "Writing that protein digestion is completed in the stomach. It ends in the small intestine.",
+          "Calling the stomach contents chyle. The stomach forms chyme."
+        ],
+        "memory_tip": "Chyme is made in the stomach; chyle is the fatty lymph fluid.",
+        "margin_note": "Two or three lines. Name the juice and name chyme.",
+        "lines": [
+          "Digestion of proteins begins in the stomach",
+          "and ends in the small intestine.",
+          "When food enters the stomach, gastric juice",
+          "is secreted.",
+          "Food mixed with gastric juice forms a semi",
+          "fluid mass called chyme."
+        ]
+      },
+      {
+        "id": "s2_hcl",
+        "kind": "text",
+        "label": "HCl activates pepsin",
+        "marks": 1,
+        "mark_note": "HCl and activation",
+        "why": "Pepsin is secreted in an inactive form so that it cannot digest the gland that makes it; the acid is what switches it on.",
+        "common_mistakes": [
+          "Writing that the stomach secretes pepsin. It secretes pepsinogen.",
+          "Giving an alkaline pH. The stomach works at about pH 1.8."
+        ],
+        "memory_tip": "Pepsinogen is the sleeping form; HCl wakes it into pepsin.",
+        "margin_note": "Name the four contents of gastric juice, then the activation.",
+        "lines": [
+          "Gastric juice contains HCl, pepsinogen,",
+          "rennin and mucus.",
+          "HCl gives the optimal pH of about 1.8 for",
+          "the action of pepsin.",
+          "HCl converts inactive pepsinogen into",
+          "active pepsin."
+        ]
+      },
+      {
+        "id": "s3_pepsin_action",
+        "kind": "text",
+        "label": "Pepsin acts on proteins",
+        "marks": 1,
+        "mark_note": "Action of pepsin",
+        "why": "Pepsin breaks long protein chains only part of the way, which is why the products are still large fragments and not amino acids.",
+        "common_mistakes": [
+          "Writing that pepsin gives amino acids. It gives proteoses and peptones.",
+          "Leaving out autocatalysis. Pepsin also activates more pepsinogen."
+        ],
+        "memory_tip": "Pepsin stops halfway: proteins become proteoses and peptones.",
+        "margin_note": "One equation line is enough here.",
+        "lines": [
+          "Pepsin is a protein digesting enzyme.",
+          "Activated pepsin converts proteins into",
+          "proteoses and peptones.",
+          {
+            "text": "Proteins →(pepsin)→ Proteoses + Peptones",
+            "style": "eq"
+          },
+          "Pepsin also activates more pepsinogen. This",
+          "is called autocatalysis."
+        ]
+      },
+      {
+        "id": "s4_rennin",
+        "kind": "boxed_final",
+        "label": "Rennin in infants",
+        "marks": 1,
+        "mark_note": "Rennin and milk",
+        "why": "An infant lives on milk, so the stomach needs an enzyme that curdles milk protein before pepsin can work on it.",
+        "common_mistakes": [
+          "Confusing rennin with renin. Renin is a kidney enzyme that raises blood pressure.",
+          "Writing that rennin acts in adults. It is active in infants."
+        ],
+        "memory_tip": "Rennin curdles milk in infants; renin comes from the kidney.",
+        "margin_note": "Finish with the time taken. It is an easy extra mark.",
+        "lines": [
+          "In infants, HCl activates prorennin into",
+          "active rennin.",
+          "Rennin acts on casein, the milk protein, in",
+          "the presence of calcium ions and converts",
+          "it into calcium paracaseinate.",
+          "Pepsin then converts this into peptones.",
+          {
+            "text": "The whole process takes about 4 to 5 hours",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

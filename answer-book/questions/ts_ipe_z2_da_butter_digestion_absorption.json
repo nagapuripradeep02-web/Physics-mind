@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_da_butter_digestion_absorption",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Digestion and Absorption",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If you take butter in your food, how does it get digested and absorbed in the body? Explain.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Butter is a fat, digested in the small intestine",
+      "marks": 1
+    },
+    {
+      "label": "Bile salts and lipase",
+      "marks": 1
+    },
+    {
+      "label": "Micelles and chylomicrons",
+      "marks": 1
+    },
+    {
+      "label": "Lymph to blood and storage",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.29, SAQ 13. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The question has two halves and equal marks for each. Answer digestion and absorption under two headings or half the answer goes unmarked.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Digestion and Absorption · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_butter_is",
+        "kind": "text",
+        "label": "Butter is a fat",
+        "marks": 1,
+        "mark_note": "Fat, small intestine",
+        "why": "The question is a fat question in disguise, so the first line has to name butter as a lipid and place its digestion in the small intestine.",
+        "common_mistakes": [
+          "Starting the digestion in the mouth or stomach. Fat is digested only in the small intestine.",
+          "Treating butter as a protein because it comes from milk."
+        ],
+        "memory_tip": "Butter is fat, so nothing happens to it until the small intestine.",
+        "margin_note": "Two lines. Say what butter is and where it is digested.",
+        "lines": [
+          "Butter is a fat, that is, a lipid.",
+          "It is digested only in the small intestine."
+        ]
+      },
+      {
+        "id": "s2_bile_lipase",
+        "kind": "text",
+        "label": "Bile salts and lipase",
+        "marks": 1,
+        "mark_note": "Emulsification and lipase",
+        "why": "Fat does not mix with water, so it must first be broken into tiny droplets before a water-soluble enzyme can reach its surface.",
+        "common_mistakes": [
+          "Writing that bile digests fat. Bile emulsifies fat; lipase digests it.",
+          "Leaving out the products. Lipase gives fatty acids and glycerol."
+        ],
+        "memory_tip": "Bile breaks the fat into drops, lipase breaks the drops into pieces.",
+        "margin_note": "Emulsify is the marking word. Use it.",
+        "lines": [
+          "Bile juice contains bile salts. They",
+          "emulsify fats into very small micelles.",
+          "Bile also activates lipase.",
+          "Lipase converts emulsified fats into fatty",
+          "acids and glycerol."
+        ]
+      },
+      {
+        "id": "s3_micelles",
+        "kind": "text",
+        "label": "Micelles and chylomicrons",
+        "marks": 1,
+        "mark_note": "Absorption route",
+        "why": "Fatty acids cannot dissolve in blood plasma, so they are repacked twice: first as micelles to cross the cell, then as chylomicrons to travel.",
+        "common_mistakes": [
+          "Writing that fatty acids pass straight into the blood. They cannot.",
+          "Mixing up micelles and chylomicrons. Micelles come first, inside the gut."
+        ],
+        "memory_tip": "Micelle to get in, chylomicron to travel out.",
+        "margin_note": "Both names carry marks. Keep them in order.",
+        "lines": [
+          "Fatty acids and glycerol are insoluble in",
+          "water, so they cannot enter the blood",
+          "directly.",
+          "They are first modified into small micelles,",
+          "which move into intestinal mucosal cells.",
+          "There they are reformed into protein coated",
+          "fat globules called chylomicrons."
+        ]
+      },
+      {
+        "id": "s4_lymph",
+        "kind": "boxed_final",
+        "label": "Lymph to blood",
+        "marks": 1,
+        "mark_note": "Lymph and storage",
+        "why": "Fat is the one food that reaches the blood by the lymph route instead of the hepatic portal vein, and that is the point of the question.",
+        "common_mistakes": [
+          "Sending chylomicrons into blood capillaries. They enter lymph capillaries.",
+          "Stopping at the blood. Say where the fat finally goes."
+        ],
+        "memory_tip": "Fat takes the lymph road, not the blood road.",
+        "margin_note": "End with storage in adipose tissue and liver.",
+        "lines": [
+          "Chylomicrons are carried into the lymph",
+          "capillaries of the villi.",
+          "The lymph vessels release them into the",
+          "blood stream.",
+          "The enzyme lipoprotein lipase breaks them",
+          "down again to fatty acids and glycerol.",
+          {
+            "text": "Stored in adipose tissue and in the liver",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}

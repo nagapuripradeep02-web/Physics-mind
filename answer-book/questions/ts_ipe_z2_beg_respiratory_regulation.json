@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_beg_respiratory_regulation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Human Anatomy and Physiology-I (Zoology-II)"
+  },
+  "chapter": "Breathing and Exchange of Gases",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How is respiratory movements regulated in man?",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The respiratory rhythm centre",
+      "marks": 1
+    },
+    {
+      "label": "The pneumotaxic centre",
+      "marks": 1
+    },
+    {
+      "label": "The chemosensitive area",
+      "marks": 1
+    },
+    {
+      "label": "Receptors of aorta and carotid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.31, SAQ 18. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Name all four controls in the first two lines. A student who explains only the medulla caps the answer at one mark.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Breathing and Exchange of Gases · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rrc",
+        "kind": "text",
+        "label": "Respiratory rhythm centre",
+        "marks": 1,
+        "mark_note": "Rhythm centre",
+        "why": "Breathing continues in sleep, so the rhythm has to be set by a centre in the brain and not by a decision.",
+        "common_mistakes": [
+          "Placing the rhythm centre in the cerebrum. It lies in the medulla oblongata.",
+          "Writing that breathing is voluntary. Only forced breathing is."
+        ],
+        "memory_tip": "The medulla keeps the beat of breathing.",
+        "margin_note": "Name all four controls first, then explain each.",
+        "lines": [
+          "Except forced inhalation and exhalation,",
+          "respiratory movements are involuntary.",
+          "Respiration is regulated by four controls.",
+          "The respiratory rhythm centre lies in the",
+          "medulla oblongata of the brain.",
+          "It is mainly responsible for respiratory",
+          "movements."
+        ]
+      },
+      {
+        "id": "s2_pneumotaxic",
+        "kind": "text",
+        "label": "Pneumotaxic centre",
+        "marks": 1,
+        "mark_note": "Pneumotaxic centre",
+        "why": "The rhythm centre alone would breathe at one fixed rate, so a second centre is needed to change the rate when the body demands it.",
+        "common_mistakes": [
+          "Placing the pneumotaxic centre in the medulla. It lies in the pons.",
+          "Writing that it starts breathing. It only alters the rate."
+        ],
+        "memory_tip": "Pons is the pace setter; medulla is the rhythm keeper.",
+        "margin_note": "Two lines are enough for this control.",
+        "lines": [
+          "The pneumotaxic centre lies in the pons of",
+          "the brain stem.",
+          "It sends signals to the respiratory rhythm",
+          "centre and alters the respiratory rate when",
+          "necessary."
+        ]
+      },
+      {
+        "id": "s3_chemosensitive",
+        "kind": "text",
+        "label": "Chemosensitive area",
+        "marks": 1,
+        "mark_note": "Chemosensitive area",
+        "why": "The body watches carbon dioxide rather than oxygen, because carbon dioxide changes the acidity of the blood much faster.",
+        "common_mistakes": [
+          "Writing that the area is sensitive to oxygen. It responds to CO₂ and H⁺.",
+          "Leaving out what follows. The rate must increase to remove the CO₂."
+        ],
+        "memory_tip": "Carbon dioxide, not oxygen, is what the brain measures.",
+        "margin_note": "Say what it senses and what it makes the body do.",
+        "lines": [
+          "A chemosensitive area lies close to the",
+          "respiratory rhythm centre.",
+          "It is sensitive to CO₂ and H⁺ ions.",
+          "When these rise in the blood it signals the",
+          "rhythm centre, which increases the",
+          "respiratory rate to remove them."
+        ]
+      },
+      {
+        "id": "s4_receptors",
+        "kind": "boxed_final",
+        "label": "Aortic and carotid receptors",
+        "marks": 1,
+        "mark_note": "Receptors",
+        "why": "These receptors sit in the arteries leaving the heart, so they sample the blood before it reaches the rest of the body.",
+        "common_mistakes": [
+          "Placing the receptors in the lungs. They lie in the aortic arch and carotid arteries.",
+          "Leaving out the role of oxygen here. These receptors also watch it."
+        ],
+        "memory_tip": "Aortic arch and carotid: the two check posts on the way out.",
+        "margin_note": "One boxed line makes the summary clear.",
+        "lines": [
+          "Receptors lie in the aortic arch and in the",
+          "carotid arteries.",
+          "They send signals to the respiratory rhythm",
+          "centre when the CO₂ and H⁺ concentration",
+          "in the blood increases.",
+          {
+            "text": "Rising CO₂ is the main signal to breathe more",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  }
+}
