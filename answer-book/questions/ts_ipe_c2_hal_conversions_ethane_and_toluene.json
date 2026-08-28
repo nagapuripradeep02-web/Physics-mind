@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_conversions_ethane_and_toluene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How will you carry out the following conversions? (i) Ethane to bromoethane (ii) Toluene to benzyl alcohol",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ethane to bromoethane",
+      "marks": 1
+    },
+    {
+      "label": "Toluene to benzyl alcohol",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.107, VSAQ 3): the printed condition over the first arrow is \"Br₂/hμ\". The symbol for the frequency of light is the Greek nu, so it is hν, not hμ. It is written hν here. BOOK CONDITION: the printed condition over the toluene arrow is \"Cl₂ / Boil\" with \"–HCl\" written under it. Boiling is enough to send the chlorine to the side chain, and it is kept, but the card also states the condition the book leaves out: NO halogen carrier (FeCl₃ or AlCl₃) may be present, because with one the chlorine goes on to the ring instead and gives o- and p-chlorotoluene. BALANCE CHECK: C₂H₆ + Br₂ → C₂H₅Br + HBr (C 2, H 6, Br 2 each side); C₇H₈ + Cl₂ → C₇H₇Cl + HCl (C 7, H 8, Cl 2 each side); C₇H₇Cl + KOH → C₇H₇OH + KCl (C 7, H 8, O 1, Cl 1, K 1 each side). All three are balanced. NOTATION: reagents and conditions are written in square brackets immediately after the arrow, because Unicode has no over-arrow; the margin notes tell the student to write them above the arrow on the answer sheet."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ethane_to_bromoethane",
+        "kind": "text",
+        "label": "Ethane to bromoethane",
+        "marks": 1,
+        "mark_note": "Free radical bromination",
+        "lines": [
+          "i) Free radical bromination in ultraviolet",
+          "light or sunlight.",
+          {
+            "text": "CH₃–CH₃ + Br₂ →[hν] CH₃–CH₂–Br + HBr",
+            "style": "eq"
+          },
+          "One mole of Br₂ is used, so only one",
+          "hydrogen atom is replaced."
+        ],
+        "why": "Ethane has no functional group and no double bond, so substitution by a free radical route is the only way to put bromine on it. Light splits Br₂ into two bromine atoms; one of them removes a hydrogen atom from ethane to give HBr and an ethyl radical, and the ethyl radical then takes a bromine atom from another Br₂ molecule. The amount of bromine is limited to one mole, because excess bromine replaces more hydrogen atoms and gives dibromo and polybromo products.",
+        "common_mistakes": [
+          "Leaving out the light. Without hν or heat the bromine molecule does not split and the reaction does not start.",
+          "Using Br₂ with FeBr₃. A halogen carrier is the reagent for a benzene ring, not for an alkane.",
+          "Leaving HBr out of the equation. Without it the equation is not balanced."
+        ],
+        "memory_tip": "An alkane plus a halogen needs light, and the hydrogen replaced comes off as HBr.",
+        "margin_note": "Write hν or sunlight above the arrow. The examiner looks for the condition as well as the equation."
+      },
+      {
+        "id": "s2_toluene_to_benzyl_alcohol",
+        "kind": "text",
+        "label": "Toluene to benzyl alcohol",
+        "marks": 1,
+        "mark_note": "Two step conversion",
+        "lines": [
+          "ii) Two steps, through benzyl chloride.",
+          "Step 1: side chain chlorination in light,",
+          "with no halogen carrier present.",
+          {
+            "text": "C₆H₅–CH₃ + Cl₂ →[hν] C₆H₅–CH₂Cl + HCl",
+            "style": "eq"
+          },
+          "Step 2: hydrolysis with aqueous KOH.",
+          {
+            "text": "C₆H₅–CH₂Cl + KOH(aq) → C₆H₅–CH₂OH + KCl",
+            "style": "eq"
+          }
+        ],
+        "why": "The chlorine goes on to the side chain, not on to the ring, when the reaction is run in light or at boiling temperature with no halogen carrier present; that gives benzyl chloride. Boiling the benzyl chloride with aqueous KOH replaces the chlorine by –OH and gives benzyl alcohol. If FeCl₃ or AlCl₃ is added and the reaction is run in the dark, the chlorine goes on to the ring instead and the products are o- and p-chlorotoluene, which cannot be turned into benzyl alcohol.",
+        "common_mistakes": [
+          "Adding FeCl₃ as catalyst. With a halogen carrier the chlorine goes on to the ring and gives o- and p-chlorotoluene, not benzyl chloride.",
+          "Using alcoholic KOH in step 2. Alcoholic KOH removes HCl and gives an alkene; aqueous KOH gives the alcohol.",
+          "Writing the conversion in one step. Benzyl chloride is the intermediate and must be shown."
+        ],
+        "memory_tip": "In light the halogen goes to the side chain; with a halogen carrier it goes to the ring.",
+        "margin_note": "Both steps must appear with benzyl chloride named in between. One step alone does not complete this mark."
+      }
+    ]
+  },
+  "insider_note": "In both parts the condition above the arrow carries as much as the equation: hν for ethane, and light with no halogen carrier for toluene. The last step is aqueous KOH, not alcoholic — alcoholic KOH would give an alkene instead of the alcohol."
+}

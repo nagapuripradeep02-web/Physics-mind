@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_hal_wurtz_reaction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 15,
+    "name": "Halo Alkanes and Halo Arenes (Chemistry-II)"
+  },
+  "chapter": "Halo Alkanes and Halo Arenes",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is Wurtz's reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition and general equation",
+      "marks": 1
+    },
+    {
+      "label": "Example and limitations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 15 (Halo Alkanes and Halo Arenes) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.107-108, from the shaded sub-box \"HALO ALKANES & HALO ARENES\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container chapter whose four unnumbered sub-boxes each restart numbering at 1); the book prints this question on book p.107 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GRAMMAR (book p.107, VSAQ 5): the printed answer reads \"Alkyl Halides reacts with sodium metal is presence of dry ether to form Alkane\". The intended words are \"react\" and \"in presence\". The chemistry is right. BOOK EQUATION: the printed general equation is R–X + 2Na + X–R → R–R + 2NaX. It is balanced (2 R, 2 X, 2 Na each side) and is written here in the equivalent collected form 2R–X + 2Na → R–R + 2NaX. BOOK GAP: the book gives no example, no limitation and no mention of aryl halides. All three are added: the reaction cannot make an alkane with an odd number of carbon atoms from a single halide, two different halides give a mixture of three alkanes, and aryl halides do not react at all under Wurtz conditions — an aryl halide with an alkyl halide is the Wurtz–Fittig reaction and two aryl halides is the Fittig reaction. BALANCE CHECK: 2CH₃Br + 2Na → C₂H₆ + 2NaBr (C 2, H 6, Br 2, Na 2 each side). Balanced."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Halo Alkanes and Halo Arenes — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition_and_equation",
+        "kind": "text",
+        "label": "Definition and general equation",
+        "marks": 1,
+        "mark_note": "Definition and equation",
+        "lines": [
+          "Wurtz reaction: an alkyl halide heated with",
+          "sodium metal in dry ether gives an alkane",
+          "with twice the number of carbon atoms.",
+          {
+            "text": "2R–X + 2Na →[dry ether] R–R + 2NaX",
+            "style": "boxed"
+          },
+          "The two alkyl groups join through a new",
+          "carbon–carbon bond."
+        ],
+        "why": "Sodium removes the halogen from each molecule as NaX, and the two alkyl groups join through a new carbon to carbon bond. Dry ether is the solvent because sodium reacts with water and with alcohol, so any moisture would use up the sodium before the reaction takes place. The product always has an even number of carbon atoms, twice the number in the alkyl halide.",
+        "common_mistakes": [
+          "Leaving out dry ether. Sodium reacts with water, so the solvent must be free of moisture.",
+          "Writing one sodium atom. Two sodium atoms are needed, one for each halogen atom."
+        ],
+        "memory_tip": "Two halide molecules in, one alkane with double the carbon atoms out.",
+        "margin_note": "Write the general equation with dry ether named above the arrow. A worked example on the next line completes the answer."
+      },
+      {
+        "id": "s2_example_and_limits",
+        "kind": "text",
+        "label": "Example and limitations",
+        "marks": 1,
+        "mark_note": "Example and limits",
+        "lines": [
+          "Example: bromomethane gives ethane.",
+          {
+            "text": "2CH₃–Br + 2Na →[dry ether]",
+            "style": "eq"
+          },
+          {
+            "text": "      CH₃–CH₃ + 2NaBr",
+            "style": "eq"
+          },
+          "Limits: only alkanes with an even number of",
+          "carbon atoms can be made this way, and two",
+          "different halides give a mixture of three",
+          "alkanes.",
+          "Aryl halides do not react. An aryl halide",
+          "with an alkyl halide is the Wurtz–Fittig",
+          "reaction; two aryl halides is the Fittig",
+          "reaction."
+        ],
+        "why": "Bromomethane has one carbon atom, so the product ethane has two: the simplest case, and it shows the doubling clearly. The reaction cannot make an alkane with an odd number of carbon atoms from a single halide, and with two different halides R–X and R'–X three products appear, R–R, R'–R' and R–R', so it is not used to make an unsymmetrical alkane. Aryl halides have a short, strong C–X bond with partial double bond character and do not take part; the modified forms for them are Wurtz–Fittig and Fittig.",
+        "common_mistakes": [
+          "Trying to make propane by this reaction. Three is an odd number of carbon atoms and cannot come from one alkyl halide.",
+          "Using an aryl halide such as chlorobenzene. Its C–Cl bond does not break under Wurtz conditions."
+        ],
+        "memory_tip": "Wurtz joins alkyl to alkyl, Wurtz–Fittig joins aryl to alkyl, Fittig joins aryl to aryl.",
+        "margin_note": "One example with a balanced equation is enough for this mark. Add one limitation if there is room."
+      }
+    ]
+  },
+  "insider_note": "One mark for the general equation with dry ether named, one for a worked example. The usual loss is writing the reaction for an aryl halide: chlorobenzene does not undergo Wurtz, and joining two aryl halides is the Fittig reaction instead."
+}
