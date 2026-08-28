@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_amphoteric_behaviour_of_amino_acids",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you explain the amphoteric behavior of amino acids?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why they are amphoteric",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with acid and with base",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 12. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected here. The book prints the zwitterion of the closely related VSAQ 20 on book p.100 as \"H₅N⁺ – CH – COO⁻\"; the nitrogen carries three hydrogen atoms, so it is H₃N⁺. The scheme printed with this question uses H₃N⁺ correctly, so the book is inconsistent with itself on the same page."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Why they are amphoteric",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "An amino acid carries a basic –NH₂ group",
+          "and an acidic –COOH group on the same",
+          "carbon atom.",
+          "So it can accept a proton and it can also",
+          "donate one. That is why it is amphoteric.",
+          "In water it exists as the zwitterion",
+          "H₃N⁺–CHR–COO⁻."
+        ],
+        "why": "Amphoteric means the compound reacts both as an acid and as a base, and an amino acid can do this because it holds one group of each kind. In water the two groups have already reacted with each other, so the species actually present is the zwitterion, and it is the zwitterion that reacts further.",
+        "common_mistakes": [
+          "Writing only that the amino acid has two groups. The mark needs the words \"donates a proton\" and \"accepts a proton\".",
+          "Writing the neutral form H₂N–CHR–COOH as the species present in water. In water it is the zwitterion."
+        ],
+        "memory_tip": "One acidic group and one basic group on one carbon, so it works both ways.",
+        "margin_note": "Name both groups and both actions. \"Amphoteric\" restated without a reason earns nothing."
+      },
+      {
+        "id": "s2_both_ways",
+        "kind": "boxed_final",
+        "label": "Reaction with acid and with base",
+        "marks": 1,
+        "mark_note": "Both reactions",
+        "lines": [
+          {
+            "text": "With acid → cation; with base → anion",
+            "style": "boxed"
+          },
+          {
+            "text": "H₃N⁺–CHR–COO⁻ + H⁺ → H₃N⁺–CHR–COOH",
+            "style": "eq"
+          },
+          "The added proton goes to the –COO⁻ group,",
+          "giving a cation.",
+          {
+            "text": "H₃N⁺–CHR–COO⁻ + OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "H₂N–CHR–COO⁻ + H₂O",
+            "style": "eq"
+          },
+          "The base removes a proton from –NH₃⁺,",
+          "giving an anion."
+        ],
+        "why": "Writing both reactions proves the claim instead of asserting it. Which group reacts is fixed: added acid protonates the carboxylate end, and added base takes a proton off the ammonium end, so the molecule moves from cation to zwitterion to anion as the pH rises.",
+        "common_mistakes": [
+          "Writing the nitrogen as H₅N⁺. It is H₃N⁺: three hydrogen atoms and one positive charge.",
+          "Showing the acid reacting with the –NH₃⁺ group. That group is already protonated; the acid protonates –COO⁻."
+        ],
+        "memory_tip": "Acid puts a proton on the –COO⁻ end; base takes one off the –NH₃⁺ end.",
+        "margin_note": "Two short equations are faster than a paragraph and earn this mark outright."
+      }
+    ]
+  },
+  "insider_note": "Two groups, two reactions. The equations are worth writing out, because \"it accepts and donates protons\" without showing either reaction usually earns only one of the two marks."
+}

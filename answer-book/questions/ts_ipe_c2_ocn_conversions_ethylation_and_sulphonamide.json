@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_conversions_ethylation_and_sulphonamide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do you carry out the following conversions? i) N-ethylpropanamine to N,N-diethylpropanamine  ii) Aniline to benzenesulphonamide",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "N-ethylpropanamine to N,N-diethylpropanamine",
+      "marks": 2
+    },
+    {
+      "label": "Aniline to the benzenesulphonamide",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.117 as SAQ 4. The 2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK NAMING, corrected here: the printed question and answer call the product of part (ii) \"benzene sulphonamide\". The product from ANILINE and benzenesulphonyl chloride is N-phenylbenzenesulphonamide, C₆H₅SO₂NHC₆H₅ — benzenesulphonamide on its own, C₆H₅SO₂NH₂, would come from ammonia. This card writes the question in the book's words but names the product correctly in the answer and says so. BOOK STYLE: the printed answer puts \"−HCl\" over the arrow in both parts; the equations here carry HCl on the right instead, so that they balance as written."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ethylation",
+        "kind": "equation",
+        "label": "Adding the second ethyl group",
+        "marks": 2,
+        "mark_note": "Part (i)",
+        "lines": [
+          "N-ethylpropanamine is a 2° amine and still",
+          "has one hydrogen on nitrogen.",
+          "Heating it with chloroethane replaces that",
+          "hydrogen by a second ethyl group.",
+          {
+            "text": "CH₃CH₂CH₂–NH–C₂H₅ + C₂H₅Cl →",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃CH₂CH₂–N(C₂H₅)₂ + HCl",
+            "style": "indent"
+          },
+          "The HCl is taken up by an added base or by",
+          "excess amine.",
+          "The product is N,N-diethylpropanamine,",
+          "a 3° amine."
+        ],
+        "why": "The reaction is a nucleophilic substitution: the nitrogen lone pair bonds to the carbon of chloroethane and the chloride leaves. Only the one remaining N–H hydrogen can be replaced, so a single step is enough and no further alkylation is asked for.",
+        "common_mistakes": [
+          "Using ethanol or ethene as the reagent. An alkyl halide such as chloroethane is what supplies the ethyl group.",
+          "Writing the product as N,N,N-triethylpropanamine. Nitrogen already carries the propyl group, so it can take only two ethyl groups in all."
+        ],
+        "memory_tip": "Count the hydrogens left on nitrogen: one hydrogen means one more alkyl group can go on.",
+        "margin_note": "One balanced equation with a named reagent carries these two marks. Add that HCl is removed by a base."
+      },
+      {
+        "id": "s2_sulphonamide",
+        "kind": "boxed_final",
+        "label": "Aniline to the sulphonamide",
+        "marks": 2,
+        "mark_note": "Part (ii)",
+        "lines": [
+          "Aniline is treated with benzenesulphonyl",
+          "chloride, C₆H₅SO₂Cl, which is Hinsberg's",
+          "reagent.",
+          {
+            "text": "C₆H₅–NH₂ + C₆H₅–SO₂Cl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅–SO₂–NH–C₆H₅ + HCl",
+            "style": "indent"
+          },
+          {
+            "text": "Product: N-phenylbenzenesulphonamide",
+            "style": "boxed"
+          },
+          "One hydrogen is left on the nitrogen, so",
+          "the product dissolves in aqueous KOH."
+        ],
+        "why": "Aniline is a primary amine, so one of its two N–H hydrogens is replaced by the sulphonyl group and one is left behind. That remaining hydrogen is made acidic by the strongly electron-withdrawing SO₂ group, which is why the product of a primary amine dissolves in alkali while the product of a secondary amine does not.",
+        "common_mistakes": [
+          "Naming the product benzenesulphonamide. That name belongs to C₆H₅SO₂NH₂; the product from aniline carries a phenyl group on nitrogen.",
+          "Writing both N–H hydrogens as replaced. Only one is replaced, and the one left over is what makes the product soluble in alkali."
+        ],
+        "memory_tip": "Sulphonyl chloride plus a 1° amine: one hydrogen is replaced, one stays, and the one that stays is acidic.",
+        "margin_note": "Naming benzenesulphonyl chloride as Hinsberg's reagent is worth writing. The solubility line links this to the Hinsberg test question."
+      }
+    ]
+  },
+  "insider_note": "Both parts are single-arrow conversions, so the marks are on the reagent and on the correct product. In part (ii) the product from aniline is N-phenylbenzenesulphonamide — the book's shorter name, benzenesulphonamide, describes the product from ammonia instead."
+}

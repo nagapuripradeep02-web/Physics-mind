@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_types_of_rna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are different types of RNA found in the cell?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The three types",
+      "marks": 1
+    },
+    {
+      "label": "What each one does",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 17. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer gives the three names only, with no function. The one-line functions are added here because a question worth two marks is unlikely to be paid in full for three names."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three",
+        "kind": "text",
+        "label": "The three types",
+        "marks": 1,
+        "mark_note": "Three names",
+        "lines": [
+          "Three types of RNA are found in the cell:",
+          {
+            "text": "i) messenger RNA (mRNA)",
+            "style": "indent"
+          },
+          {
+            "text": "ii) ribosomal RNA (rRNA)",
+            "style": "indent"
+          },
+          {
+            "text": "iii) transfer RNA (tRNA)",
+            "style": "indent"
+          }
+        ],
+        "why": "All three are single stranded polymers of ribonucleotides; they differ in the job they do in making a protein. Writing both the full name and the short form is worth doing, because the short forms are what the rest of the chapter uses.",
+        "common_mistakes": [
+          "Listing DNA as a type of RNA. DNA is the other nucleic acid, not a kind of RNA.",
+          "Giving only the abbreviations. Write the full names as well, since the abbreviations are easy to mix up."
+        ],
+        "memory_tip": "Message, ribosome, transfer: m, r and t.",
+        "margin_note": "Three names, numbered. That is the first mark on its own."
+      },
+      {
+        "id": "s2_roles",
+        "kind": "boxed_final",
+        "label": "What each one does",
+        "marks": 1,
+        "mark_note": "Functions",
+        "lines": [
+          {
+            "text": "mRNA carries the code copied from DNA",
+            "style": "boxed"
+          },
+          "mRNA carries the code from the DNA in the",
+          "nucleus to the ribosome.",
+          "rRNA forms part of the ribosome itself,",
+          "where the protein is assembled.",
+          "tRNA brings each amino acid to the ribosome",
+          "in the order the code calls for."
+        ],
+        "why": "The three names are far easier to keep apart once each is tied to its job, and the jobs run in a clear order: the message is copied, the ribosome is assembled, the amino acids are delivered. This also answers the follow-up question about how a protein is made.",
+        "common_mistakes": [
+          "Swapping mRNA and tRNA. mRNA carries the code; tRNA carries the amino acid.",
+          "Writing that rRNA carries amino acids. rRNA is part of the structure of the ribosome."
+        ],
+        "memory_tip": "m brings the message, t brings the amino acid, r is part of the ribosome.",
+        "margin_note": "One short line per type. The names alone are usually only half the question."
+      }
+    ]
+  },
+  "insider_note": "Three names are the first mark; one line each on what they do is the second. Do not stop after the list."
+}

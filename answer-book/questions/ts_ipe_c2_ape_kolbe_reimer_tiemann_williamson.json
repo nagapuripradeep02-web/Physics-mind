@@ -1,0 +1,265 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_kolbe_reimer_tiemann_williamson",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the following reactions: a) Kolbe's reaction, b) Reimer-Tiemann reaction, c) Williamson's ether synthesis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kolbe: sodium phenoxide is formed first",
+      "marks": 1
+    },
+    {
+      "label": "Kolbe: carboxylation and salicylic acid",
+      "marks": 2
+    },
+    {
+      "label": "Reimer-Tiemann: reagents and the carbene",
+      "marks": 1
+    },
+    {
+      "label": "Reimer-Tiemann: equation and salicylaldehyde",
+      "marks": 2
+    },
+    {
+      "label": "Williamson: the general reaction",
+      "marks": 1
+    },
+    {
+      "label": "Williamson: why a tertiary halide fails",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.111 as Long Answer 1. The 1+2+1+2+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO: \"electrophic substitution\" for electrophilic substitution. BOOK GAP, Kolbe: the printed scheme gives no conditions at all — Kolbe's reaction is carried out at about 400 K under 4 to 7 atm of CO₂, and those conditions are added here. BOOK GAP, Reimer-Tiemann: the printed answer does not name the reactive species. It is dichlorocarbene, :CCl₂, made from CHCl₃ and NaOH, and without it the answer does not explain why chloroform is used at all. The book's \"65°C\" is 338 K and agrees with the usual 340 K. BOOK EQUATION UNBALANCED, CORRECTED: the printed Reimer-Tiemann scheme shows phenol + CHCl₃ + 3NaOH giving only salicylaldehyde, with no NaCl and no H₂O on the product side. The balanced overall form is C₆H₅OH + CHCl₃ + 3NaOH → C₆H₄(OH)CHO + 3NaCl + 2H₂O (C 7=7, H 10=10, O 4=4, Na 3=3, Cl 3=3). This form is the overall change AFTER the acidification: in the alkaline mixture the product is the sodium salt, and the stage equations are C₆H₅OH + CHCl₃ + 4NaOH → C₆H₄(ONa)CHO + 3NaCl + 3H₂O followed by C₆H₄(ONa)CHO + HCl → C₆H₄(OH)CHO + NaCl; adding them and cancelling one NaOH against one HCl gives back the 3NaOH form exactly. BOOK GAP, Williamson: the printed answer is one line and one equation and says nothing about WHY the alkyl halide must be primary. The tertiary case is added, with the elimination equation (CH₃)₃CBr + C₂H₅ONa → (CH₃)₂C=CH₂ + C₂H₅OH + NaBr, which balances (C 6=6, H 14=14, O 1=1, Na 1=1, Br 1=1). OTHER BALANCES CHECKED: C₆H₅OH + NaOH → C₆H₅ONa + H₂O; C₆H₅ONa + CO₂ → C₆H₄(OH)COONa; C₆H₄(OH)COONa + HCl → C₆H₄(OH)COOH + NaCl; C₂H₅ONa + C₂H₅I → C₂H₅OC₂H₅ + NaI; (CH₃)₃CONa + CH₃I → (CH₃)₃COCH₃ + NaI. TRENDS AND EXCEPTIONS, both named on the card: the –O⁻ group is an ortho and para director, but Kolbe's reaction gives mainly the ORTHO product because the sodium ion coordinates the CO₂ next to the oxygen; and Williamson's synthesis is clean with a primary halide, gives a mixture with a secondary one, fails with a tertiary one, and cannot be run with an aryl halide at all, which is why anisole is made from sodium phenoxide and methyl iodide and never from bromobenzene and sodium methoxide."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Alcohols, Phenols and Ethers — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kolbe_phenoxide",
+        "kind": "equation",
+        "label": "Kolbe: sodium phenoxide is formed first",
+        "marks": 1,
+        "mark_note": "Phenoxide",
+        "lines": [
+          "a) Kolbe's reaction.",
+          "Phenol is first treated with NaOH.",
+          {
+            "text": "C₆H₅OH + NaOH → C₆H₅ONa + H₂O",
+            "style": "eq"
+          },
+          "Sodium phenoxide is formed.",
+          "Its ring carries a full negative charge",
+          "spread from the oxygen, so it is far more",
+          "reactive towards an electrophile than",
+          "phenol itself."
+        ],
+        "why": "Phenol on its own is not reactive enough for carbon dioxide, which is a weak electrophile. Converting it to the phenoxide ion puts a full negative charge into the ring and that is what makes the next step possible, so this first equation is part of the reaction and not a preliminary.",
+        "common_mistakes": [
+          "Passing CO₂ into phenol directly. The phenoxide has to be made first.",
+          "Using Na₂CO₃ instead of NaOH. Phenol is too weak an acid to be converted by a carbonate."
+        ],
+        "memory_tip": "Alkali first, gas second. The phenoxide is the reactive form, not the phenol.",
+        "margin_note": "Head each part a, b, c. An eight-mark answer with three named reactions is marked part by part."
+      },
+      {
+        "id": "s2_kolbe_carboxylation",
+        "kind": "equation",
+        "label": "Kolbe: carboxylation and salicylic acid",
+        "marks": 2,
+        "mark_note": "Carboxylation",
+        "lines": [
+          "Sodium phenoxide is heated with CO₂ at",
+          "about 400 K under 4 to 7 atm.",
+          "CO₂ acts as the electrophile and enters at",
+          "the ortho position.",
+          {
+            "text": "C₆H₅ONa + CO₂ → C₆H₄(OH)COONa",
+            "style": "eq"
+          },
+          {
+            "text": "[400 K, 4–7 atm]",
+            "style": "indent"
+          },
+          "Acidifying the sodium salicylate gives the",
+          "free acid:",
+          {
+            "text": "C₆H₄(OH)COONa + HCl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₄(OH)COOH + NaCl",
+            "style": "boxed"
+          },
+          "The product is salicylic acid, that is",
+          "2-hydroxybenzoic acid."
+        ],
+        "why": "This is an electrophilic substitution on an activated ring, with carbon dioxide as the electrophile. The –O⁻ group is an ortho and para director, but this reaction gives mainly the ORTHO product, because the sodium ion holds the carbon dioxide next to the oxygen while the new bond is formed. Salicylic acid is the starting material for aspirin.",
+        "common_mistakes": [
+          "Giving the para product as the main one. Kolbe's reaction gives mainly the ortho product, which is the exception to the usual ortho and para mixture.",
+          "Stopping at sodium salicylate. The acidification step is needed before the product is salicylic acid."
+        ],
+        "memory_tip": "Phenoxide plus carbon dioxide, ortho position, then acid. The product is salicylic acid, the aspirin starting material.",
+        "margin_note": "Both the conditions and the acidification are marked here. Two marks means two things beyond the bare equation."
+      },
+      {
+        "id": "s3_rt_reagents",
+        "kind": "text",
+        "label": "Reimer-Tiemann: reagents and the carbene",
+        "marks": 1,
+        "mark_note": "Reagents",
+        "lines": [
+          "b) Reimer-Tiemann reaction.",
+          "Phenol is treated with chloroform and",
+          "aqueous NaOH at 340 K.",
+          "NaOH removes a hydrogen from CHCl₃ and a",
+          "chloride ion then leaves, giving",
+          "dichlorocarbene, :CCl₂.",
+          "Dichlorocarbene is the electrophile, and it",
+          "bonds to the ortho carbon of the phenoxide",
+          "ring."
+        ],
+        "why": "Naming dichlorocarbene is what explains the reaction; without it there is no reason for chloroform to be in the flask at all. It is a carbon with only six electrons, which is what makes it an electrophile, able to bond to the activated ring.",
+        "common_mistakes": [
+          "Saying chloroform reacts as such. It is the dichlorocarbene made from it that reacts.",
+          "Writing CCl₄ as the reagent. Carbon tetrachloride has no hydrogen, so no carbene can be formed from it."
+        ],
+        "memory_tip": "Chloroform plus alkali gives :CCl₂, and that carbene is the electrophile.",
+        "margin_note": "Write the formula :CCl₂ and the name dichlorocarbene. This is the mark most answers miss in this part."
+      },
+      {
+        "id": "s4_rt_equation",
+        "kind": "equation",
+        "label": "Reimer-Tiemann: equation and salicylaldehyde",
+        "marks": 2,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "C₆H₅OH + CHCl₃ + 3NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₄(OH)–CHO + 3NaCl + 2H₂O",
+            "style": "boxed"
+          },
+          {
+            "text": "[CHCl₃ and NaOH over the arrow, 340 K]",
+            "style": "indent"
+          },
+          "The product is salicylaldehyde, that is",
+          "2-hydroxybenzaldehyde.",
+          "In the alkaline mixture it is present as",
+          "its sodium salt, so dilute HCl is added at",
+          "the end to give the free aldehyde.",
+          "The –CHO group enters at the ortho",
+          "position, next to the –OH."
+        ],
+        "why": "The equation above is the overall change once the mixture has been acidified, and it balances exactly as written: 7 carbon, 10 hydrogen, 4 oxygen, 3 sodium and 3 chlorine on each side. Written stage by stage it is 4NaOH to the sodium salt and then one HCl to release the aldehyde; adding those two and cancelling one NaOH against one HCl gives back this 3NaOH form.",
+        "common_mistakes": [
+          "Leaving out NaCl and H₂O, as the book does. Three NaCl and two H₂O are formed and the equation does not balance without them.",
+          "Giving benzaldehyde as the product. The –OH stays on the ring, so the product is 2-hydroxybenzaldehyde."
+        ],
+        "memory_tip": "Chloroform gives the –CHO group, so Reimer-Tiemann makes an aldehyde. Salicylaldehyde, ortho to the –OH.",
+        "margin_note": "Write the conditions above the arrow on the answer sheet. Unicode has no over-arrow, so they are shown in brackets here."
+      },
+      {
+        "id": "s5_williamson_general",
+        "kind": "equation",
+        "label": "Williamson: the general reaction",
+        "marks": 1,
+        "mark_note": "General reaction",
+        "lines": [
+          "c) Williamson's ether synthesis.",
+          "A sodium alkoxide or phenoxide is heated",
+          "with a PRIMARY alkyl halide.",
+          "The alkoxide ion is the nucleophile and the",
+          "reaction is SN2.",
+          {
+            "text": "C₂H₅ONa + C₂H₅I → C₂H₅–O–C₂H₅ + NaI",
+            "style": "eq"
+          },
+          "A mixed ether is made the same way:",
+          {
+            "text": "C₆H₅ONa + CH₃I → C₆H₅–O–CH₃ + NaI",
+            "style": "eq"
+          },
+          "The second reaction gives anisole."
+        ],
+        "why": "The alkoxide ion carries a full negative charge on oxygen, so it is a strong nucleophile and displaces the halide in one step. This is the general method for both simple and mixed ethers, which is why the halide and the alkoxide have to be chosen the right way round.",
+        "common_mistakes": [
+          "Using an alcohol instead of its sodium salt. The neutral alcohol is too weak a nucleophile; the alkoxide ion is needed.",
+          "Using an aryl halide such as bromobenzene. The C(ring)–halogen bond does not undergo SN2, so anisole is made from sodium phenoxide and methyl iodide."
+        ],
+        "memory_tip": "Alkoxide plus primary halide gives the ether and the sodium halide. Choose the ring as the alkoxide, never as the halide.",
+        "margin_note": "Show one simple and one mixed ether. Two equations cover the whole method in one mark."
+      },
+      {
+        "id": "s6_williamson_tertiary",
+        "kind": "boxed_final",
+        "label": "Williamson: why a tertiary halide fails",
+        "marks": 1,
+        "mark_note": "Tertiary case",
+        "lines": [
+          "With a TERTIARY halide the synthesis fails.",
+          "SN2 needs the alkoxide to reach the carbon",
+          "from the side opposite the halogen, and",
+          "three alkyl groups block that side.",
+          "The alkoxide is also a strong base, so it",
+          "removes a hydrogen from the next carbon",
+          "instead and an alkene is formed:",
+          {
+            "text": "(CH₃)₃CBr + C₂H₅ONa →",
+            "style": "eq"
+          },
+          {
+            "text": "(CH₃)₂C=CH₂ + C₂H₅OH + NaBr",
+            "style": "indent"
+          },
+          {
+            "text": "Tertiary group as the ALKOXIDE,",
+            "style": "boxed"
+          },
+          {
+            "text": "primary group as the HALIDE",
+            "style": "boxed"
+          },
+          {
+            "text": "(CH₃)₃CONa + CH₃I →",
+            "style": "eq"
+          },
+          {
+            "text": "(CH₃)₃C–O–CH₃ + NaI",
+            "style": "indent"
+          }
+        ],
+        "why": "Substitution and elimination compete for the same reagents, and at a tertiary carbon the substitution path is blocked while the elimination path is not, so the alkene is the only product. The way round it is to use the tertiary group as the alkoxide and the primary group as the halide, and then the SN2 step happens at an unhindered carbon. The primary halide gives a clean ether, a secondary halide gives a mixture, and a tertiary halide gives no ether at all.",
+        "common_mistakes": [
+          "Writing (CH₃)₃C–O–C₂H₅ as the product of the tertiary bromide. The product is the alkene, not the ether.",
+          "Saying a secondary halide also fails completely. It gives a mixture of ether and alkene, not nothing."
+        ],
+        "memory_tip": "Steric hindrance at the crowded carbon blocks substitution, so elimination happens instead. Use the tertiary group as the alkoxide and the ether is obtained.",
+        "margin_note": "The book stops at the general equation. The tertiary case is the mark that separates a full answer from a copied one."
+      }
+    ]
+  },
+  "insider_note": "Three named reactions in one question, so the marks are split across all three parts and a long answer on Kolbe alone scores badly. The two details most answers miss are dichlorocarbene as the Reimer-Tiemann reagent and the reason Williamson's synthesis fails with a tertiary halide."
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_vitamin_sources_and_deficiency_diseases",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give the source of the following vitamins and name the disease caused by their deficiency.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Vitamin A",
+      "marks": 1
+    },
+    {
+      "label": "Vitamin D",
+      "marks": 1
+    },
+    {
+      "label": "Vitamin E",
+      "marks": 1
+    },
+    {
+      "label": "Vitamin K",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.103 as SAQ 10. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected here: the printed table gives the vitamin E deficiency as \"Sterility, Neurosis of heart muscles\". The word is necrosis, the death of tissue; neurosis is unrelated. The book prints this as a three-column table (Vitamin / Source / Deficiency disease); it is written here as ordinary lines because the notebook page is ruled, and a student may still lay it out as a table in the examination. The printed question ends with a question mark after a command sentence; that is dropped in question_text."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_a",
+        "kind": "text",
+        "label": "Vitamin A",
+        "marks": 1,
+        "mark_note": "Vitamin A",
+        "lines": [
+          "Vitamin A",
+          "Sources: fish liver oil, carrots, butter and",
+          "milk.",
+          "Deficiency: xerophthalmia, which is a drying",
+          "of the eye, and night blindness."
+        ],
+        "why": "Vitamin A is used to make the pigment of the retina that responds to dim light, so the earliest sign of a shortage is difficulty seeing at night. Carrots are the plant source because they contain carotene, which the body converts into vitamin A.",
+        "common_mistakes": [
+          "Naming scurvy or rickets for vitamin A. Those belong to vitamins C and D.",
+          "Writing only the disease. The question asks for the source as well, so both are needed for each mark."
+        ],
+        "memory_tip": "A is for the eye: night blindness when it is short.",
+        "margin_note": "Two items per vitamin: source and disease. Lay it out as a table if there is room on the page."
+      },
+      {
+        "id": "s2_d",
+        "kind": "text",
+        "label": "Vitamin D",
+        "marks": 1,
+        "mark_note": "Vitamin D",
+        "lines": [
+          "Vitamin D",
+          "Sources: fish, egg yolk, and the action of",
+          "sunlight on the skin.",
+          "Deficiency: rickets in children and",
+          "osteomalacia in adults."
+        ],
+        "why": "Vitamin D controls the uptake of calcium, so a shortage gives soft, weak bone. The same shortage is named differently by age: rickets while the bones are still growing, osteomalacia after they have stopped, and both names are expected.",
+        "common_mistakes": [
+          "Giving rickets for adults. In adults the disease is osteomalacia; rickets is the disease of children.",
+          "Leaving out sunlight as a source. Vitamin D is made in the skin in sunlight, and that is part of the answer."
+        ],
+        "memory_tip": "D is for bone: rickets in the child, osteomalacia in the adult.",
+        "margin_note": "Both names are wanted here, one for each age group. They are the marked part of this step."
+      },
+      {
+        "id": "s3_e",
+        "kind": "text",
+        "label": "Vitamin E",
+        "marks": 1,
+        "mark_note": "Vitamin E",
+        "lines": [
+          "Vitamin E",
+          "Sources: vegetable oils such as sunflower",
+          "oil, green leafy vegetables, egg yolk.",
+          "Deficiency: sterility, and necrosis of the",
+          "heart muscle."
+        ],
+        "why": "Vitamin E is fat soluble and is found with the fats and oils of the diet, which is why vegetable oils head its source list. The deficiency effect the board answer names is necrosis, meaning the death of tissue, in the heart muscle.",
+        "common_mistakes": [
+          "Writing neurosis for necrosis. Necrosis means the death of tissue; neurosis is a different word altogether.",
+          "Naming a bone or eye disease for vitamin E. Its deficiency effects are sterility and muscle damage."
+        ],
+        "memory_tip": "E is found in the oils; short of it comes sterility.",
+        "margin_note": "Spell necrosis carefully. It is a different word from neurosis and only one of them is right."
+      },
+      {
+        "id": "s4_k",
+        "kind": "boxed_final",
+        "label": "Vitamin K",
+        "marks": 1,
+        "mark_note": "Vitamin K",
+        "lines": [
+          {
+            "text": "A, D, E and K are the fat soluble vitamins",
+            "style": "boxed"
+          },
+          "Vitamin K",
+          "Sources: green leafy vegetables, cow milk,",
+          "cabbage.",
+          "Deficiency: increased blood clotting time."
+        ],
+        "why": "Vitamin K is needed to make several of the proteins that carry out clotting, so a shortage shows as blood that takes longer than normal to clot rather than as a named disease. All four vitamins on this list are the fat soluble group, which is why they are asked together.",
+        "common_mistakes": [
+          "Naming a disease for vitamin K. The deficiency effect is a longer clotting time, not a named disease.",
+          "Writing that vitamin K is water soluble. A, D, E and K are the fat soluble vitamins."
+        ],
+        "memory_tip": "K for koagulation; short of it, the blood is slow to clot.",
+        "margin_note": "Eight items in all, two for each of four vitamins. Count them before you move on."
+      }
+    ]
+  },
+  "insider_note": "Four vitamins, two items each, eight items in all. A table is the fastest layout and makes it obvious to the examiner that nothing is missing."
+}

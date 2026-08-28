@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_vitamin_a_and_c_sources",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are vitamin A and Vitamin C essential to us? Give their important sources.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Vitamin A",
+      "marks": 1
+    },
+    {
+      "label": "Vitamin C",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 15. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints this as a three-column table (Vitamins / Source / Function). It is written here as ordinary lines because the notebook page is ruled. \"Amla\" is kept as printed; it is the Indian gooseberry, and the answer key names it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_vitamin_a",
+        "kind": "text",
+        "label": "Vitamin A",
+        "marks": 1,
+        "mark_note": "Vitamin A",
+        "lines": [
+          "Vitamin A",
+          "Function: needed for normal vision, for",
+          "protein synthesis, and for normal growth of",
+          "the bones.",
+          "Sources: fish liver oil, carrots, butter",
+          "and milk."
+        ],
+        "why": "Vitamin A is used to make the light-sensitive pigment of the eye, which is why the first sign of shortage shows in vision. It is fat soluble, so the sources listed are oily or fatty foods, together with carrots, which supply the orange pigment the body converts into it.",
+        "common_mistakes": [
+          "Giving scurvy as the deficiency of vitamin A. Scurvy belongs to vitamin C; vitamin A gives night blindness.",
+          "Writing only the sources. The question asks why the vitamin is essential, so the function is needed too."
+        ],
+        "memory_tip": "A is for the eye: fish liver oil and carrots, night blindness if short.",
+        "margin_note": "Two parts per vitamin: what it does, and where it comes from. Head each one with the vitamin's letter."
+      },
+      {
+        "id": "s2_vitamin_c",
+        "kind": "boxed_final",
+        "label": "Vitamin C",
+        "marks": 1,
+        "mark_note": "Vitamin C",
+        "lines": [
+          {
+            "text": "Vitamin C: collagen; lack causes scurvy",
+            "style": "boxed"
+          },
+          "Vitamin C",
+          "Function: needed for the synthesis of",
+          "collagen, the protein of skin, gums and",
+          "connective tissue. It prevents scurvy.",
+          "Sources: citrus fruits, amla, green leafy",
+          "vegetables."
+        ],
+        "why": "Collagen cannot be made properly without vitamin C, and collagen holds skin, gums and blood vessel walls together, so a shortage shows as bleeding gums and slow healing, which is scurvy. Vitamin C is water soluble and is not stored, so it has to be taken regularly.",
+        "common_mistakes": [
+          "Naming rickets for vitamin C. Rickets is the vitamin D deficiency; vitamin C gives scurvy.",
+          "Calling vitamin C fat soluble. It is water soluble, and so it is not stored in the body."
+        ],
+        "memory_tip": "C makes collagen; without it, scurvy.",
+        "margin_note": "Name the disease each vitamin prevents even though the question does not ask. It is the fastest way to show the function."
+      }
+    ]
+  },
+  "insider_note": "Two vitamins, two things each: function and source. The examiner is counting four items, so lay them out as four labelled lines."
+}

@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_amines_less_acidic_than_alcohols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain why amines are less acidic than alcohols of comparable molecular masses.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "N–H is less polar than O–H",
+      "marks": 1
+    },
+    {
+      "label": "The two ionisations",
+      "marks": 1
+    },
+    {
+      "label": "Which anion is more stable",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion and its limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.117 as SAQ 7. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed answer is correct in substance and is kept — N–H is less polar than O–H, the two ionisations are written out, and R–O⁻ is more stable than R–NH⁻. BOOK GAP, filled here: the printed answer states that R–O⁻ is more stable without saying why. The reason is that oxygen is more electronegative than nitrogen (about 3.5 against 3.0), so it holds the negative charge better. The electronegativity values and the ethanol pKa of about 16 are added; the book prints no numbers. The card also names the two ends of the trend, R–O–H > R–NH₂ > R–CH₃, and the exception at an amide, where the C=O group makes an N–H far more acidic than an ordinary amine."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bond_polarity",
+        "kind": "text",
+        "label": "N–H is less polar than O–H",
+        "marks": 1,
+        "mark_note": "Bond polarity",
+        "lines": [
+          "An acid releases a proton from the bond",
+          "between hydrogen and the electronegative",
+          "atom.",
+          "In an amine that bond is N–H; in an alcohol",
+          "it is O–H.",
+          "Oxygen is more electronegative than",
+          "nitrogen, about 3.5 against 3.0.",
+          "So the O–H bond is more polar, and its",
+          "proton is released more readily than the",
+          "proton of an N–H bond."
+        ],
+        "why": "The more electronegative atom draws the shared pair of the bond further from the hydrogen, which leaves the hydrogen more positive and easier to remove as H⁺. Comparing the two electronegativities is therefore the first and simplest reason.",
+        "common_mistakes": [
+          "Comparing the strength of the two bonds instead of their polarity. It is the polarity of the O–H bond that is marked here.",
+          "Saying nitrogen is more electronegative than oxygen. Oxygen is the more electronegative of the two."
+        ],
+        "memory_tip": "Oxygen attracts the bonding electrons more strongly than nitrogen, so O–H is the more polar bond and the easier one to lose H⁺ from.",
+        "margin_note": "Give the two electronegativity values. They turn a statement into a reason."
+      },
+      {
+        "id": "s2_ionisations",
+        "kind": "equation",
+        "label": "The two ionisations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          {
+            "text": "R–NH₂ → R–NH⁻ + H⁺",
+            "style": "eq"
+          },
+          "The anion is an amide ion.",
+          {
+            "text": "R–O–H → R–O⁻ + H⁺",
+            "style": "eq"
+          },
+          "The anion is an alkoxide ion.",
+          "Both reactions release a proton, so the",
+          "acid that gives the more stable anion is",
+          "the stronger one."
+        ],
+        "why": "Writing both ionisations side by side turns the comparison into one about the two anions left behind. The acidity of a compound is determined by how well its conjugate base can carry the negative charge, so the anions are what must be compared next.",
+        "common_mistakes": [
+          "Writing the amine losing a proton from carbon. The proton comes from the N–H bond.",
+          "Naming R–NH⁻ an amine ion. It is called an amide ion, and R–O⁻ is an alkoxide ion."
+        ],
+        "memory_tip": "Write both ionisations one under the other. The comparison is then between the two anions, not the two molecules.",
+        "margin_note": "Name both anions in words beside the equations. The two names are marked wording."
+      },
+      {
+        "id": "s3_anion_stability",
+        "kind": "text",
+        "label": "Which anion is stabler",
+        "marks": 1,
+        "mark_note": "Anion stability",
+        "lines": [
+          "In R–O⁻ the negative charge sits on oxygen.",
+          "In R–NH⁻ it sits on nitrogen.",
+          "The more electronegative atom carries a",
+          "negative charge better, so R–O⁻ is the more",
+          "stable of the two anions.",
+          "The more stable the anion, the stronger the",
+          "acid that produced it."
+        ],
+        "why": "A negative charge is held more firmly by an atom that draws electrons strongly. Oxygen does this better than nitrogen, so the alkoxide ion is at lower energy than the amide ion, and the ionisation that produces it goes further.",
+        "common_mistakes": [
+          "Saying the more stable anion means the weaker acid. It is the opposite: a stable anion means a stronger acid.",
+          "Explaining the stability by size. It is electronegativity, not size, that separates these two anions."
+        ],
+        "memory_tip": "Stable anion, strong acid. Oxygen carries the negative charge better, so the alkoxide is the stabler anion and the alcohol is the stronger acid.",
+        "margin_note": "One sentence linking anion stability to acid strength is the mark. Write it in that order."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Acidity: R–O–H > R–NH₂ > R–CH₃",
+            "style": "boxed"
+          },
+          "The order follows the electronegativities",
+          "O > N > C.",
+          "Ethanol has a pKa of about 16; the N–H of",
+          "an amine is a far weaker acid than this.",
+          "So amines are only very weakly acidic,",
+          "though they are still more acidic than",
+          "alkanes.",
+          "An amide is the exception: in R–CONH₂ the",
+          "C=O group takes a share of the negative",
+          "charge, so its N–H is far more acidic than",
+          "the N–H of an amine."
+        ],
+        "why": "Setting the amine between the alcohol and the alkane shows that the whole order is one trend and not three separate facts. The amide exception then shows that the N–H bond itself is not the limit: a neighbouring carbonyl group changes the acidity a great deal without changing the bond.",
+        "common_mistakes": [
+          "Concluding that amines are not acidic at all. They are weakly acidic and react with sodium metal to give hydrogen.",
+          "Stating the order as an absolute rule for every N–H. An amide N–H is far more acidic than an amine N–H."
+        ],
+        "memory_tip": "Follow the electronegativity: O, then N, then C, and acidity falls in the same order.",
+        "margin_note": "The boxed order is the sentence the examiner scans for. Add the amide exception after it, not instead of it."
+      }
+    ]
+  },
+  "insider_note": "Four separate marks are on offer, so write four short paragraphs rather than one long one: bond polarity, the two ionisations, anion stability, then the conclusion. The answer becomes an explanation only once oxygen's higher electronegativity is stated as the reason the alkoxide is the stabler anion."
+}

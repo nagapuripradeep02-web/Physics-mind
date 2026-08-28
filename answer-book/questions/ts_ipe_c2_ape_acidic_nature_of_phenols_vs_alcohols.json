@@ -1,0 +1,147 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_acidic_nature_of_phenols_vs_alcohols",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the acidic nature of phenols and compare with that of alcohols.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Phenol as an acid",
+      "marks": 1
+    },
+    {
+      "label": "Resonance stabilisation of the phenoxide ion",
+      "marks": 2
+    },
+    {
+      "label": "Comparison with alcohols",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.110 as Short Answer 7. The 1+2+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. THE BOOK PRINTS THIS QUESTION TWICE. Short Answer 7 on book p.110 reads \"...compare with that of alcohols\" and Short Answer 9 on book p.111 reads \"...compare with that of alcohol\"; the two printed answers are different in wording but the same in content, and neither cross-refers to the other. Both are authored, as ts_ipe_c2_ape_acidic_nature_of_phenols_vs_alcohols (this card, SAQ 7) and ts_ipe_c2_ape_acidity_of_phenol_phenoxide_resonance (SAQ 9), because a ref must exist for each printed number. The duplication is the book's, not the bank's, and is recorded here so a later reader does not read it as an authoring error. BOOK WORDING, corrected here: the printed answer says phenols are acidic \"because of their affinity to produce proton\". A molecule has no affinities; the card states the reason literally, as the stability of the ion left behind. The book's own later sentence, that the phenoxide ion is more resonance stabilised than phenol because it does not involve charge separation, is correct chemistry and is kept. BOOK GAP: the printed answer gives no equation for phenol with NaOH, no pKa values, and no test that separates a phenol from a carboxylic acid; all three are added. TREND AND EXCEPTION: the card gives the order carboxylic acid > phenol > water > alcohol (pKa about 4.8, 10.0, 15.7, 15.9) and names the exception on the same card — 2,4,6-trinitrophenol, picric acid, has pKa about 0.4 and is a stronger acid than acetic acid, so the first step of that order is not universal."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Alcohols, Phenols and Ethers — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phenol_as_acid",
+        "kind": "equation",
+        "label": "Phenol as an acid",
+        "marks": 1,
+        "mark_note": "Ionisation",
+        "lines": [
+          "Phenol releases the hydrogen of its O–H",
+          "group in water, so it is a weak acid.",
+          {
+            "text": "C₆H₅OH ⇌ C₆H₅O⁻ + H⁺",
+            "style": "eq"
+          },
+          "The ion formed is the phenoxide ion.",
+          "Phenol reacts with NaOH to give a salt:",
+          {
+            "text": "C₆H₅OH + NaOH → C₆H₅ONa + H₂O",
+            "style": "eq"
+          },
+          "It does not react with NaHCO₃, which is",
+          "how a phenol is told apart from a",
+          "carboxylic acid."
+        ],
+        "why": "The reaction with NaOH is the evidence that phenol is an acid at all, and the lack of a reaction with NaHCO₃ fixes how strong an acid it is: strong enough for a strong base, not strong enough for a weak one. That single pair of tests places phenol between a carboxylic acid and an alcohol.",
+        "common_mistakes": [
+          "Saying phenol gives carbon dioxide with NaHCO₃. It does not; a carboxylic acid does, and that is the test that separates them.",
+          "Calling phenol an alcohol because it has an –OH. The –OH is attached to a ring carbon, which changes its behaviour completely."
+        ],
+        "memory_tip": "Phenol reacts with NaOH but not with NaHCO₃. That pair of results places it between a carboxylic acid and an alcohol.",
+        "margin_note": "Write both equations. The NaOH equation is what shows the acidic nature in a way an examiner can mark."
+      },
+      {
+        "id": "s2_resonance",
+        "kind": "text",
+        "label": "Resonance stabilisation of the phenoxide ion",
+        "marks": 2,
+        "mark_note": "Resonance",
+        "lines": [
+          "In the phenoxide ion a lone pair on the",
+          "oxygen moves into the ring.",
+          "The negative charge is then shared by the",
+          "oxygen and by carbons 2, 4 and 6, so four",
+          "structures contribute:",
+          {
+            "text": "C₆H₅–O⁻ ↔ charge at C-2 ↔ charge at C-4",
+            "style": "eq"
+          },
+          {
+            "text": "↔ charge at C-6",
+            "style": "eq"
+          },
+          "In phenol itself the matching structures",
+          "need charge separation, because the oxygen",
+          "becomes positive and a ring carbon",
+          "negative.",
+          "So resonance stabilises the ION more than",
+          "it stabilises the molecule, and that",
+          "difference is what makes phenol acidic."
+        ],
+        "why": "Both phenol and the phenoxide ion have resonance, so saying only that the ion has resonance does not explain anything. The point is the comparison: the ion is stabilised by structures with no charge separation, while phenol is stabilised only by structures that separate charge and therefore contribute less. The ion gains more than the molecule does, so the ionisation is easier than in an alcohol.",
+        "common_mistakes": [
+          "Saying phenol has no resonance. Phenol does have resonance; the ion simply gains more from it.",
+          "Drawing the negative charge at carbon 3. Positions 2, 4 and 6 carry it; the meta positions do not."
+        ],
+        "memory_tip": "Four structures, charge on the oxygen and on carbons 2, 4 and 6. The ion needs no charge separation; phenol does.",
+        "margin_note": "Two marks sit here. Write the contributing structures out and say in words which positions carry the charge."
+      },
+      {
+        "id": "s3_comparison_with_alcohols",
+        "kind": "boxed_final",
+        "label": "Comparison with alcohols",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "An alcohol ionises in the same way:",
+          {
+            "text": "C₂H₅OH ⇌ C₂H₅O⁻ + H⁺",
+            "style": "eq"
+          },
+          "But the ethoxide ion has no ring, so its",
+          "negative charge stays on one oxygen and",
+          "there is no resonance at all.",
+          "The alkyl group also releases electron",
+          "density towards that oxygen, which adds to",
+          "the charge.",
+          {
+            "text": "acid > phenol > water > alcohol",
+            "style": "boxed"
+          },
+          "So alcohols are weaker acids than phenols."
+        ],
+        "why": "The comparison the question asks for comes down to one structural fact: an alkoxide ion has nothing to spread its charge over. The measured pKa values run about 4.8 for acetic acid, 10.0 for phenol, 15.7 for water and 15.9 for ethanol, so an alcohol is even weaker than water. The first step of that order has an exception worth naming: 2,4,6-trinitrophenol, picric acid, has pKa about 0.4 and is a stronger acid than acetic acid.",
+        "common_mistakes": [
+          "Saying alcohols are not acids. They are, but very weak ones, weaker even than water.",
+          "Stating that every carboxylic acid is stronger than every phenol. Picric acid is stronger than acetic acid."
+        ],
+        "memory_tip": "The phenoxide ion spreads its charge over the ring; the alkoxide ion has no ring to spread it over.",
+        "margin_note": "The boxed order answers the compare part in one line. Write the alcohol ionisation equation beside it."
+      }
+    ]
+  },
+  "insider_note": "The two marks here are not for saying the phenoxide ion has resonance; phenol has resonance too. It is for the comparison — the ion is stabilised by structures with no charge separation while the molecule is not, and an alkoxide ion has no resonance at all."
+}

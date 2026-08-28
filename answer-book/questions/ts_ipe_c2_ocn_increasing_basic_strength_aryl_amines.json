@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_increasing_basic_strength_aryl_amines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Arrange the following bases in increasing order of basic strength: aniline, p-nitroaniline and p-toluidine.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The increasing order",
+      "marks": 1
+    },
+    {
+      "label": "Effect of the para substituent",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 5. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: the printed order p-nitro aniline < aniline < p-toluidinine is CORRECT and is kept. BOOK TYPOS on the same question (book p.115, VSAQ 5): \"folowing\" for \"following\" and \"p-toluidinine\" for \"p-toluidine\", which is the printed spelling in both the question and the answer. BOOK GAP: the printed answer gives the order and nothing else — no reason at all. The −I and −R effect of the nitro group and the +I and hyperconjugative effect of the methyl group are added here, with pKb values 13.0, 9.38 and 8.92 that the book does not print."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_order",
+        "kind": "boxed_final",
+        "label": "The increasing order",
+        "marks": 1,
+        "mark_note": "Order",
+        "lines": [
+          "Increasing basic strength means the weakest",
+          "base is written first.",
+          {
+            "text": "p-nitroaniline < aniline < p-toluidine",
+            "style": "boxed"
+          },
+          "pKb: 13.0 > 9.38 > 8.92",
+          "(a larger pKb goes with a weaker base)"
+        ],
+        "why": "All three molecules have the same –NH₂ group on the same benzene ring, so only the group in the para position separates them. Placing the values beside the names shows that the order is read off measured numbers, not guessed.",
+        "common_mistakes": [
+          "Writing the order backwards. The question asks for INCREASING strength, so the nitro compound, the weakest, comes first.",
+          "Assuming the pKb values run the same way as the basic strength. They run in the opposite direction: 13.0 is the weakest base here."
+        ],
+        "memory_tip": "Nitro withdraws electron density and methyl releases it, so nitro is weakest and methyl strongest.",
+        "margin_note": "Write the chain with the < signs. Adding the pKb numbers is extra but makes the direction unmistakable."
+      },
+      {
+        "id": "s2_substituent",
+        "kind": "text",
+        "label": "Effect of the para group",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "–NO₂ is electron withdrawing by both −I and",
+          "−R, so it draws the nitrogen lone pair",
+          "further into the ring.",
+          "p-nitroaniline is the weakest base.",
+          "–CH₃ releases electron density by +I and",
+          "hyperconjugation, so it makes the lone pair",
+          "more available.",
+          "p-toluidine is the strongest of the three,",
+          "and aniline, with no substituent, is between."
+        ],
+        "why": "The base uses the nitrogen lone pair to accept a proton, so anything that makes that lone pair less available weakens the base. An electron-withdrawing group in the para position does exactly that, and an electron-releasing group does the opposite.",
+        "common_mistakes": [
+          "Calling the nitro group electron releasing. It withdraws electron density by both the inductive and the resonance effect.",
+          "Assuming any methyl group raises basic strength wherever it sits. o-toluidine is a WEAKER base than p-toluidine, because a group next to the –NH₂ blocks the approach of the proton."
+        ],
+        "memory_tip": "Withdrawing group in the ring means weaker base; releasing group means stronger base. The –NH₂ group itself is the same in all three.",
+        "margin_note": "Name the effect: −I and −R for nitro, +I and hyperconjugation for methyl. Naming the effect is what is marked."
+      }
+    ]
+  },
+  "insider_note": "The whole answer turns on one comparison — an electron-withdrawing group at the para position weakens the base, an electron-releasing group strengthens it. Read the direction of the question carefully: this one asks for INCREASING strength, while the pKb question in the same set asks for DECREASING pKb."
+}

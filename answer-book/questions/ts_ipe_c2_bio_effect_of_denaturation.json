@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_effect_of_denaturation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of denaturation on the structure of proteins?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What changes and what does not",
+      "marks": 1
+    },
+    {
+      "label": "The result, with an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.100 as VSAQ 13. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book states the effect flat with no exception. This card adds one: mild denaturation of some proteins can be reversed on cooling or on restoring the pH, while the boiled egg cannot be. Naming the exception on the same card follows the standing rule for this subject."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_changes",
+        "kind": "text",
+        "label": "What changes and what does not",
+        "marks": 1,
+        "mark_note": "Structures affected",
+        "lines": [
+          "Denaturation changes the secondary and the",
+          "tertiary structure of the protein.",
+          "The primary structure, which is the order of",
+          "the amino acids, is not changed.",
+          "Only the hydrogen bonds are broken; the",
+          "peptide bonds stay intact."
+        ],
+        "why": "Denaturation unfolds the protein; it does not cut the chain. The forces that hold the folded shape are hydrogen bonds and other weak forces, and heating or a change of pH breaks those, while the peptide bonds that hold the sequence are far stronger and survive.",
+        "common_mistakes": [
+          "Writing that peptide bonds break. They do not; the sequence is unchanged.",
+          "Writing that the primary structure is destroyed. The primary structure is exactly what survives."
+        ],
+        "memory_tip": "Secondary and tertiary go; primary stays.",
+        "margin_note": "Both halves are needed: what is lost, and what is kept. Name all three structures."
+      },
+      {
+        "id": "s2_result",
+        "kind": "boxed_final",
+        "label": "The result, with an example",
+        "marks": 1,
+        "mark_note": "Result and example",
+        "lines": [
+          {
+            "text": "The protein loses its biological activity",
+            "style": "boxed"
+          },
+          "Ex: on boiling an egg, the soluble globular",
+          "protein of the white coagulates into an",
+          "insoluble fibrous form.",
+          "Mild denaturation can sometimes be reversed,",
+          "but the boiled egg cannot be."
+        ],
+        "why": "Biological activity depends on the folded shape, so once the shape is lost the protein no longer works: an enzyme stops catalysing and a hormone stops acting. The egg is the standard example because the change is visible, and it also shows the limit of the rule, since this denaturation cannot be undone.",
+        "common_mistakes": [
+          "Writing that denaturation is always irreversible. Some mild denaturation reverses; the boiled egg does not.",
+          "Giving no example. The egg white is the example the answer key prints."
+        ],
+        "memory_tip": "Shape lost, activity lost. The boiled egg is the example.",
+        "margin_note": "The words \"loses its biological activity\" and the egg example together secure this mark."
+      }
+    ]
+  },
+  "insider_note": "The answer is a contrast: two structures lost, one kept. Write the three structure names, then the activity loss, then the egg."
+}

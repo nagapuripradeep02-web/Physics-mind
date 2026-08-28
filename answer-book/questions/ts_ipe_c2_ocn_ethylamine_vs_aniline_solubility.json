@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_ethylamine_vs_aniline_solubility",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain why ethylamine is more soluble in water whereas aniline is not soluble.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ethylamine hydrogen bonds with water",
+      "marks": 1
+    },
+    {
+      "label": "Why aniline dissolves very little",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.115 as VSAQ 2. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.115, VSAQ 2): the printed answer reads \"Ethyl amine soluble in water due to the formation of Hydrogen bond. In aniline due to the Bulky hydrocarbon part the extent of hydrogen bonding is less and it is not soluble in water.\" The direction is right and is kept. Two changes are made. First, the book calls aniline \"not soluble\"; aniline is in fact slightly soluble — about 3.4 g dissolves in 100 g of water at 293 K — so this card says slightly soluble and gives the figure. Second, the book never states the general trend that solubility falls as the hydrocarbon part grows; it is added here with its two ends named."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ethylamine",
+        "kind": "text",
+        "label": "Ethylamine and water",
+        "marks": 1,
+        "mark_note": "Hydrogen bonding",
+        "lines": [
+          "Ethylamine, C₂H₅–NH₂, has two N–H bonds and",
+          "a lone pair on nitrogen, so it forms hydrogen",
+          "bonds with water molecules.",
+          "Its hydrocarbon part is only two carbons",
+          "long, so these hydrogen bonds are enough to",
+          "take the whole molecule into water.",
+          "Ethylamine is completely miscible with water."
+        ],
+        "why": "A molecule dissolves in water when the new hydrogen bonds it makes with water release at least as much energy as is needed to separate the water molecules already bonded to each other. Ethylamine makes such bonds through both an N–H hydrogen and a nitrogen lone pair, and its alkyl part is small, so that condition is easily met.",
+        "common_mistakes": [
+          "Saying ethylamine dissolves because it is polar and stopping there. The marked reason is the hydrogen bond between the N–H group and water.",
+          "Writing that the lone pair alone dissolves it. Both the N–H hydrogen and the lone pair take part in hydrogen bonding with water."
+        ],
+        "memory_tip": "Small alkyl group plus N–H means the hydrogen bonding is enough, so the amine dissolves.",
+        "margin_note": "The words hydrogen bond with water must appear. A drawing of the H-bond earns nothing extra here."
+      },
+      {
+        "id": "s2_aniline",
+        "kind": "boxed_final",
+        "label": "Aniline dissolves very little",
+        "marks": 1,
+        "mark_note": "Large hydrocarbon part",
+        "lines": [
+          "Aniline, C₆H₅–NH₂, also has N–H bonds, but",
+          "the benzene ring is a large hydrocarbon part",
+          "that cannot form hydrogen bonds with water.",
+          {
+            "text": "Hydrocarbon part large → less soluble",
+            "style": "boxed"
+          },
+          "So only about 3.4 g of aniline dissolves in",
+          "100 g of water at 293 K.",
+          "It is called slightly soluble, not miscible."
+        ],
+        "why": "The same –NH₂ group is present in both molecules, so the difference is entirely in the rest of the molecule. The bigger the hydrocarbon part, the larger the share of the molecule that water cannot hydrogen bond to, and the less soluble the amine. The trend has a clear top and a clear bottom: methylamine and ethylamine are completely miscible with water, while amines with about six or more carbons are practically insoluble.",
+        "common_mistakes": [
+          "Writing that aniline has no hydrogen bonding at all. It does hydrogen bond, but the large ring is too big a share of the molecule, so aniline is only slightly soluble.",
+          "Saying aniline is insoluble. It is slightly soluble; the printed book answer calls it not soluble, which is too strong."
+        ],
+        "memory_tip": "Compare the two hydrocarbon parts: an ethyl group is small, a benzene ring is large, so aniline dissolves far less.",
+        "margin_note": "One sentence naming the large hydrocarbon ring finishes this mark. The 3.4 g figure is extra."
+      }
+    ]
+  },
+  "insider_note": "Both molecules carry the same –NH₂ group, so an answer that only says \"hydrogen bonding\" cannot separate them. The mark comes from comparing the SIZE of the two hydrocarbon parts — small ethyl against a whole benzene ring."
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ape_benzyl_alcohol_and_phenol_bromination",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 16,
+    "name": "Alcohols, Phenols and Ethers (Chemistry-II)"
+  },
+  "chapter": "Alcohols, Phenols and Ethers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the equations for the following reactions: i) Benzyl alcohol to benzoic acid, ii) Bromination of phenol to 2,4,6-tribromophenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Benzyl alcohol to benzoic acid",
+      "marks": 1
+    },
+    {
+      "label": "Phenol to 2,4,6-tribromophenol",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 16 (Alcohols, Phenols and Ethers) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.108-112, from the shaded sub-box \"ALCOHOLS, PHENOLS AND ETHERS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\", a container of four unnumbered sub-boxes each restarting at 1). The book prints this question on book p.109 as Very Short Answer 3. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK EQUATION UNBALANCED, CORRECTED (book p.109, VSAQ 3 ii): the printed scheme is phenol \"+ Br₂(aq)\" over H₂O giving 2,4,6-tribromophenol, with no HBr on the product side. One Br₂ cannot put three bromine atoms on the ring, and three HBr are released. The balanced form C₆H₅OH + 3Br₂ → C₆H₂Br₃OH + 3HBr is written on the card (C 6=6, H 6=6 counting the 3 H of HBr, O 1=1, Br 6=6) and the book's printed form is recorded in the step's common mistakes. BOOK GAP (part i): the printed scheme writes \"Alk KMnO₄ (or) acid K₂Cr₂O₇\" over the arrow and shows benzoic acid directly. With ALKALINE KMnO₄ the immediate product is potassium benzoate and dilute acid is needed afterwards; that step is added here. The [O] form of the oxidation equation is also added, since the book shows no balance at all. TREND AND EXCEPTION: the card states that -OH activates the ring so strongly that bromine water substitutes all three of the 2, 4 and 6 positions at once, and names the exception on the same card — in a non-polar solvent such as CS₂ at about 273 K only ONE bromine enters, giving mainly 4-bromophenol."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Alcohols, Phenols and Ethers — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_benzyl_alcohol_to_benzoic_acid",
+        "kind": "equation",
+        "label": "Benzyl alcohol to benzoic acid",
+        "marks": 1,
+        "mark_note": "Oxidation",
+        "lines": [
+          "i) Benzyl alcohol is oxidised at the side",
+          "chain and the ring is untouched.",
+          {
+            "text": "C₆H₅–CH₂OH + 2[O] → C₆H₅–COOH + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[alkaline KMnO₄, then dilute H₂SO₄]",
+            "style": "indent"
+          },
+          "Acidified K₂Cr₂O₇ gives the same product",
+          "in one step."
+        ],
+        "why": "Benzyl alcohol is a primary alcohol whose carbon carries the ring, so oxidation takes the –CH₂OH group up two steps to –COOH. With alkaline KMnO₄ the product in the flask is potassium benzoate, and the dilute acid at the end is what gives the free benzoic acid.",
+        "common_mistakes": [
+          "Writing PCC as the reagent. PCC would stop at benzaldehyde; the question asks for benzoic acid.",
+          "Stopping at the potassium benzoate. Alkaline KMnO₄ needs the dilute acid step to give benzoic acid."
+        ],
+        "memory_tip": "The ring is untouched and the side chain is oxidised in two steps: –CH₂OH to –CHO to –COOH.",
+        "margin_note": "Write the reagent above the arrow and the acidification after it. Both are part of this one mark."
+      },
+      {
+        "id": "s2_bromination_of_phenol",
+        "kind": "boxed_final",
+        "label": "Phenol to 2,4,6-tribromophenol",
+        "marks": 1,
+        "mark_note": "Bromination",
+        "lines": [
+          "ii) Phenol with bromine water gives a white",
+          "precipitate of 2,4,6-tribromophenol.",
+          {
+            "text": "C₆H₅OH + 3Br₂ → C₆H₂Br₃(OH) + 3HBr",
+            "style": "boxed"
+          },
+          {
+            "text": "[Br₂ in water, room temperature]",
+            "style": "indent"
+          },
+          "Three Br₂ molecules are used and three",
+          "HBr molecules are released."
+        ],
+        "why": "The –OH group releases electron density into the ring by resonance, and in water the phenol is present partly as the phenoxide ion, which is activated even more. The ring is then reactive enough for all three free ortho and para positions to be brominated in one operation. The exception is the solvent: in a non-polar solvent such as CS₂ at about 273 K there is no phenoxide, only one bromine enters, and 4-bromophenol is the main product.",
+        "common_mistakes": [
+          "Writing one Br₂ with a tribromo product, as the book does. Three Br₂ are needed and 3HBr come out.",
+          "Leaving out HBr. Every bromine that enters the ring displaces a hydrogen, which leaves as HBr."
+        ],
+        "memory_tip": "Bromine water, three bromines, white precipitate. Bromine in CS₂ in the cold, only one.",
+        "margin_note": "Name the white precipitate. The question is a test reaction for phenol and the precipitate is what is observed."
+      }
+    ]
+  },
+  "insider_note": "The book prints the bromination with a single Br₂ and no HBr, so an answer copied from it does not balance. Write 3Br₂ on the left and 3HBr on the right; a balanced equation is what the equation mark is for."
+}

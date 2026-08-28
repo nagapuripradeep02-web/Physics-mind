@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_starch_vs_cellulose",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the basic structural difference between starch and cellulose?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the two have in common",
+      "marks": 1
+    },
+    {
+      "label": "Starch",
+      "marks": 1
+    },
+    {
+      "label": "Cellulose",
+      "marks": 1
+    },
+    {
+      "label": "The basic difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as SAQ 1. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common",
+        "kind": "text",
+        "label": "What the two have in common",
+        "marks": 1,
+        "mark_note": "Common ground",
+        "lines": [
+          "Starch and cellulose are both",
+          "polysaccharides.",
+          "Both are built from a large number of",
+          "D(+)-glucose units.",
+          "In both, one unit is joined to the next by",
+          "a glycosidic linkage between C₁ of one and",
+          "C₄ of the next."
+        ],
+        "why": "The two materials are made of the same monomer and joined at the same two carbon atoms, so almost everything about them is shared. Setting the common ground down first makes the answer sharp, because the difference then has only two places left: the form of the glucose and the type of linkage.",
+        "common_mistakes": [
+          "Writing that cellulose is made of fructose or of some other sugar. Both are glucose polymers.",
+          "Saying they are joined at different carbon atoms. Both use the C₁ to C₄ linkage."
+        ],
+        "memory_tip": "Same monomer, same two carbon atoms. Only the α or β differs.",
+        "margin_note": "Start with what is the same. It costs two lines and makes the difference obvious."
+      },
+      {
+        "id": "s2_starch",
+        "kind": "text",
+        "label": "Starch",
+        "marks": 1,
+        "mark_note": "Structure of starch",
+        "lines": [
+          "Starch is a mixture of two polymers:",
+          {
+            "text": "a) amylose, a linear polymer of α-D-glucose",
+            "style": "indent"
+          },
+          {
+            "text": "b) amylopectin, a branched polymer of the",
+            "style": "indent"
+          },
+          {
+            "text": "    same α-D-glucose unit",
+            "style": "indent"
+          },
+          "In both parts the units are joined by",
+          "α-glycosidic linkages."
+        ],
+        "why": "Starch is not one substance but two polymers stored together, and they differ in shape rather than in composition: amylose is a single unbranched chain, amylopectin is a chain with branches. Both are made of α-D-glucose, which is what puts starch on one side of the comparison.",
+        "common_mistakes": [
+          "Writing that starch is a single linear polymer. It has two components, amylose and amylopectin.",
+          "Giving the linkage as β. Starch is held by α-glycosidic linkages."
+        ],
+        "memory_tip": "Starch has two parts: amylose straight, amylopectin branched. Both α.",
+        "margin_note": "Name both components. Amylose alone is usually half this mark."
+      },
+      {
+        "id": "s3_cellulose",
+        "kind": "text",
+        "label": "Cellulose",
+        "marks": 1,
+        "mark_note": "Structure of cellulose",
+        "lines": [
+          "Cellulose has only one component.",
+          "It is a straight chain polymer of",
+          "β-D-glucose units, with no branching.",
+          "The units are joined by β-glycosidic",
+          "linkages between C₁ and C₄."
+        ],
+        "why": "A single unbranched chain of β-D-glucose can lie flat against the neighbouring chains, and many such chains packed side by side make a strong fibre, which is exactly what a cell wall needs. The absence of branching is as much a part of the answer as the β linkage.",
+        "common_mistakes": [
+          "Writing that cellulose is branched. It is a straight chain with no branches.",
+          "Giving α-D-glucose for cellulose. It is β-D-glucose; that single letter is the answer to the question."
+        ],
+        "memory_tip": "Cellulose is one straight β chain and nothing else.",
+        "margin_note": "Say both \"straight chain\" and \"β\". Those two words carry this mark."
+      },
+      {
+        "id": "s4_difference",
+        "kind": "boxed_final",
+        "label": "The basic difference",
+        "marks": 1,
+        "mark_note": "The difference stated",
+        "lines": [
+          {
+            "text": "Starch is α-linked; cellulose is β-linked",
+            "style": "boxed"
+          },
+          "The basic structural difference is the form",
+          "of the glucose unit and the type of",
+          "glycosidic linkage.",
+          "Human digestive enzymes hydrolyse the",
+          "α-linkage but not the β-linkage, so we can",
+          "digest starch and not cellulose."
+        ],
+        "why": "The question asks for the BASIC difference, so the answer has to end with one sentence naming it rather than leaving the examiner to extract it from the two descriptions. The digestion fact is the everyday consequence of that one letter and is worth a line.",
+        "common_mistakes": [
+          "Ending with the two descriptions and never stating the difference. The question asks for the difference itself.",
+          "Giving the difference as \"one is food and one is not\". That is the consequence, not the structural difference."
+        ],
+        "memory_tip": "One letter, α or β, is the whole answer.",
+        "margin_note": "Finish with a single sentence naming the difference. That sentence is this mark."
+      }
+    ]
+  },
+  "insider_note": "The examiner is looking for one letter: α for starch and β for cellulose. Build to it, then say it in a sentence of its own at the end."
+}

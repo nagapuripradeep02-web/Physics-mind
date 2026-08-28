@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_peptide_linkage_primary_structure_denaturation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the following as related to proteins: i) Peptide linkage ii) Primary structure iii) Denaturation",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "i) Peptide linkage",
+      "marks": 1
+    },
+    {
+      "label": "ii) Primary structure",
+      "marks": 1
+    },
+    {
+      "label": "iii) Denaturation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as SAQ 4. The 1+1+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The question has three equal-looking parts and four marks, so the split cannot be even. This card claims 1+1+2 and gives the extra mark to denaturation, which needs four separate facts (the cause, the structures lost, the structure kept, and an example) against one fact each for the other two parts. That is a CLAIM about the board's marking, not the board's own scheme. FIGURE SCOPE: the question says \"define\", not \"draw\", so the diagram step carries NO marks and the whole split sits on the three written steps. The book prints the same peptide-bond box on book p.101."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_peptide",
+        "kind": "text",
+        "label": "i) Peptide linkage",
+        "marks": 1,
+        "mark_note": "Peptide linkage",
+        "lines": [
+          "i) Peptide linkage",
+          "When the –COOH group of one amino acid",
+          "reacts with the –NH₂ group of the next, one",
+          "molecule of water is lost.",
+          "The –CO–NH– link that is left joins the two",
+          "amino acid units. It is the peptide linkage,",
+          "and it is an amide bond."
+        ],
+        "why": "The linkage is defined by how it forms and by what it looks like afterwards, so both belong in the answer: loss of water between an acid group and an amine group, leaving –CO–NH–. Calling it an amide bond places it in a family the student already knows from organic chemistry.",
+        "common_mistakes": [
+          "Writing the linkage as –CO–O–. That is an ester; the peptide linkage is –CO–NH–.",
+          "Leaving out the loss of water. The bond forms by losing H₂O between the two amino acids."
+        ],
+        "memory_tip": "Acid end meets amine end, water leaves, –CO–NH– is left.",
+        "margin_note": "Write the group –CO–NH– out. The formula is what the examiner reads for."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "The peptide linkage drawn",
+        "marks": 0,
+        "figure": {
+          "id": "bio_peptide_bond",
+          "width": 380,
+          "height": 240,
+          "elements": [
+            {
+              "type": "label",
+              "id": "pb_ch1",
+              "x": 52,
+              "y": 112,
+              "text": "CH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_r1",
+              "x": 56,
+              "y": 158,
+              "text": "R₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_c",
+              "x": 132,
+              "y": 112,
+              "text": "C",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_o",
+              "x": 130,
+              "y": 62,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_n",
+              "x": 200,
+              "y": 112,
+              "text": "N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_h",
+              "x": 200,
+              "y": 158,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_ch2",
+              "x": 266,
+              "y": 112,
+              "text": "CH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "pb_r2",
+              "x": 272,
+              "y": 158,
+              "text": "R₂",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "pb_bonds",
+              "d": "M 92 104 L 126 104 M 156 104 L 194 104 M 224 104 L 260 104 M 209 118 L 209 140 M 67 118 L 67 140 M 283 118 L 283 140",
+              "ms": 2400
+            },
+            {
+              "type": "stroke",
+              "id": "pb_double",
+              "d": "M 137 92 L 137 70 M 145 92 L 145 70",
+              "ms": 700
+            },
+            {
+              "type": "stroke",
+              "id": "pb_box",
+              "d": "M 116 40 L 232 40 L 232 172 L 116 172 L 116 40",
+              "ms": 5100
+            },
+            {
+              "type": "label",
+              "id": "pb_caption",
+              "x": 138,
+              "y": 212,
+              "text": "peptide linkage  –CO–NH–",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The formula –CO–NH– on its own does not show where the linkage sits, and the box does: the C=O belongs to the first amino acid and the N–H to the second, with the two side chains R₁ and R₂ left outside on either side. That is what makes it a link between two units rather than a group inside one.",
+        "common_mistakes": [
+          "Drawing the box around the C–N bond only. The peptide linkage is the whole –CO–NH– group.",
+          "Putting both R groups on the same carbon atom. Each amino acid unit carries its own side chain."
+        ],
+        "memory_tip": "The box holds C=O from one acid and N–H from the next.",
+        "margin_note": "The question says define, not draw, so this earns no marks. Sketch it only if the written parts are already complete."
+      },
+      {
+        "id": "s3_primary",
+        "kind": "text",
+        "label": "ii) Primary structure",
+        "marks": 1,
+        "mark_note": "Primary structure",
+        "lines": [
+          "ii) Primary structure",
+          "The primary structure of a protein is the",
+          "order in which the amino acids are joined",
+          "along the chain.",
+          "Every protein has its own fixed order.",
+          "Its chemical and biological functions all",
+          "follow from that order."
+        ],
+        "why": "Primary structure is a statement about sequence and nothing else, so it must not be described in terms of shape; the coiling and folding are the secondary and tertiary structures. Saying that function follows from the order is what makes the definition worth a mark rather than a phrase.",
+        "common_mistakes": [
+          "Describing the coiled shape. That is the secondary structure; the primary structure is the sequence.",
+          "Writing that all proteins have the same primary structure. Each protein has its own order of amino acids."
+        ],
+        "memory_tip": "Primary structure is the order of the amino acids, not the shape of the chain.",
+        "margin_note": "Use the word \"sequence\" or \"order\". A shape word here loses the mark."
+      },
+      {
+        "id": "s4_denaturation",
+        "kind": "boxed_final",
+        "label": "iii) Denaturation",
+        "marks": 2,
+        "mark_note": "Denaturation",
+        "lines": [
+          "iii) Denaturation",
+          "On heating, or on a change of pH, the",
+          "hydrogen bonds that hold the folded shape",
+          "are broken.",
+          "The protein loses its helical shape and its",
+          "biological activity.",
+          {
+            "text": "Secondary and tertiary lost; primary kept",
+            "style": "boxed"
+          },
+          "Ex: the white of an egg on boiling."
+        ],
+        "why": "Denaturation is the loss of shape without the loss of sequence, so the definition needs both halves: what is destroyed and what survives. Naming the cause, heat or a change of pH, and the consequence, loss of biological activity, completes it.",
+        "common_mistakes": [
+          "Writing that the peptide bonds are broken. Only hydrogen bonds and other weak forces are broken.",
+          "Giving no cause. Heating or a change of pH is part of the definition."
+        ],
+        "memory_tip": "Shape goes, sequence stays, activity goes with the shape.",
+        "margin_note": "This part carries two of the four marks, so give it the most lines: cause, what is lost, what is kept, example."
+      }
+    ]
+  },
+  "insider_note": "Three definitions, four marks. Denaturation is the part that carries the extra mark, so give it four facts: the cause, what is lost, what is kept, and the boiled egg."
+}

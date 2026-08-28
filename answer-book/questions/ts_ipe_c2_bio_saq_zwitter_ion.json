@@ -1,0 +1,268 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_zwitter_ion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is Zwitter ion? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How it forms",
+      "marks": 1
+    },
+    {
+      "label": "Its structure and charge",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    },
+    {
+      "label": "Behaviour in acid and in base",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.102 as SAQ 9. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DUPLICATION: this question is printed twice in the same chapter, as VSAQ 20 on book p.100 (2 marks) and again here as SAQ 9 on book p.102 (4 marks), with wordings that differ only in \"one example\" against \"an example\". Both are authored. The two-mark card carries the definition and the example; this four-mark card adds the acid and base reactions, the physical properties and the isoelectric point. BOOK TYPO ELSEWHERE: the printed VSAQ 20 example on book p.100 writes the nitrogen as H₅N⁺; it is H₃N⁺, and this page prints it correctly. CROSS-SUBJECT: Junior Botany carries ts_ipe_b1_bm_zwitterionic_form_amino_acid at 2 marks on the same content, using the same –NH₃⁺ and –COO⁻ notation and the same net-zero statement; the two banks agree. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks and the whole split sits on the four written steps."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formation",
+        "kind": "text",
+        "label": "How it forms",
+        "marks": 1,
+        "mark_note": "Formation",
+        "lines": [
+          "An amino acid carries an acidic –COOH group",
+          "and a basic –NH₂ group on the same carbon",
+          "atom.",
+          "In aqueous solution the –COOH group loses a",
+          "proton and the –NH₂ group of the same",
+          "molecule accepts it.",
+          "The dipolar ion so formed is the zwitterion."
+        ],
+        "why": "The proton is transferred inside one molecule, from the acidic end to the basic end, so nothing enters and nothing leaves. That internal transfer is what makes the zwitterion the normal form of an amino acid in water, rather than a species that has to be made by adding a reagent.",
+        "common_mistakes": [
+          "Writing that the proton comes from the water. It comes from the –COOH group of the same molecule.",
+          "Writing that the zwitterion forms only in acid. It is the normal form of an amino acid in neutral water."
+        ],
+        "memory_tip": "One proton moves from the acid end to the amine end of the same molecule.",
+        "margin_note": "Say the transfer is within the same molecule. That word is what makes it a zwitterion and not a salt."
+      },
+      {
+        "id": "s2_structure",
+        "kind": "text",
+        "label": "Its structure and charge",
+        "marks": 1,
+        "mark_note": "Structure and charge",
+        "lines": [
+          {
+            "text": "H₂N–CHR–COOH ⇌ H₃N⁺–CHR–COO⁻",
+            "style": "eq"
+          },
+          "The ion carries a positive charge on the",
+          "nitrogen and a negative charge on the",
+          "oxygen.",
+          "Its net charge is zero, so it is neutral",
+          "overall and yet it is an ion.",
+          "This is why amino acids are crystalline",
+          "solids with high melting points, soluble in",
+          "water but not in ether."
+        ],
+        "why": "Two opposite charges on one molecule give it the properties of a salt without giving it a net charge, and that is the whole explanation for the physical behaviour of amino acids: they melt high and dissolve in water, like ionic solids, and not in ether, unlike ordinary organic acids.",
+        "common_mistakes": [
+          "Writing the nitrogen as H₅N⁺. The nitrogen carries three hydrogen atoms, so it is H₃N⁺.",
+          "Writing that the zwitterion has a net positive or net negative charge. Its net charge is zero."
+        ],
+        "memory_tip": "Two charges, one molecule, net zero. It behaves like a salt.",
+        "margin_note": "The words \"dipolar\" and \"net charge zero\" carry this mark. The physical properties are a useful extra."
+      },
+      {
+        "id": "s3_figure",
+        "kind": "diagram",
+        "label": "The three forms drawn",
+        "marks": 0,
+        "figure": {
+          "id": "bio_zwitterion_scheme",
+          "width": 470,
+          "height": 285,
+          "elements": [
+            {
+              "type": "label",
+              "id": "zw_cation",
+              "x": 55,
+              "y": 60,
+              "text": "H₃N⁺–CHR–COOH",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zw_cap1",
+              "x": 285,
+              "y": 60,
+              "text": "cation, in acid",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "zw_zwit",
+              "x": 55,
+              "y": 150,
+              "text": "H₃N⁺–CHR–COO⁻",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "zw_cap2",
+              "x": 285,
+              "y": 150,
+              "text": "zwitterion, neutral",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "zw_anion",
+              "x": 55,
+              "y": 240,
+              "text": "H₂N–CHR–COO⁻",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "zw_cap3",
+              "x": 285,
+              "y": 240,
+              "text": "anion, in base",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "zw_arrow_up",
+              "d": "M 150 130 L 150 78 M 143 88 L 150 78 L 157 88",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "zw_arrow_dn",
+              "d": "M 150 170 L 150 222 M 143 212 L 150 222 L 157 212",
+              "ms": 900
+            },
+            {
+              "type": "label",
+              "id": "zw_h",
+              "x": 168,
+              "y": 108,
+              "text": "add H⁺",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "zw_oh",
+              "x": 168,
+              "y": 198,
+              "text": "add OH⁻",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The three species are the same molecule at three different pH values, and setting them one above the other shows that adding acid or base moves the molecule one step up or one step down the same set of three forms. Written as separate equations they read as three unconnected reactions.",
+        "common_mistakes": [
+          "Reading the three rows as three different compounds. They are one amino acid at three pH values.",
+          "Drawing the arrows in one direction only. Both changes reverse when the pH is reversed."
+        ],
+        "memory_tip": "One column of three: cation at the top, anion at the bottom, zwitterion in the middle.",
+        "margin_note": "The question says define and give an example, not draw, so this earns no marks. Sketch it only if the written steps are finished."
+      },
+      {
+        "id": "s4_example",
+        "kind": "text",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Ex: glycine, H₂N–CH₂–COOH.",
+          "In water glycine exists almost entirely as",
+          {
+            "text": "H₃N⁺–CH₂–COO⁻",
+            "style": "eq"
+          },
+          "Glycine is the simplest amino acid, with a",
+          "hydrogen atom as its side chain, so its",
+          "zwitterion is the shortest one to write."
+        ],
+        "why": "A named example with its zwitterion written out is worth more than a general formula, because it shows the student can put a real side chain into the structure. Glycine is the simplest choice and is the example the answer key gives.",
+        "common_mistakes": [
+          "Giving acetic acid or methylamine as the example. Each has only one of the two groups.",
+          "Writing the example in its neutral form only. The point of the question is the zwitterion, so write that form."
+        ],
+        "memory_tip": "Glycine: R is a hydrogen atom, so nothing else changes.",
+        "margin_note": "One named amino acid with its zwitterion written out is this whole mark."
+      },
+      {
+        "id": "s5_acid_base",
+        "kind": "boxed_final",
+        "label": "Behaviour in acid and in base",
+        "marks": 1,
+        "mark_note": "Acid and base behaviour",
+        "lines": [
+          {
+            "text": "In acid a cation; in base an anion",
+            "style": "boxed"
+          },
+          {
+            "text": "H₃N⁺–CHR–COO⁻ + H⁺ → H₃N⁺–CHR–COOH",
+            "style": "eq"
+          },
+          "In acid the –COO⁻ end takes the proton and",
+          "the ion becomes a cation.",
+          {
+            "text": "H₃N⁺–CHR–COO⁻ + OH⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "H₂N–CHR–COO⁻ + H₂O",
+            "style": "eq"
+          },
+          "In base the –NH₃⁺ end loses a proton and",
+          "the ion becomes an anion.",
+          "The pH at which the zwitterion form is",
+          "greatest is the isoelectric point."
+        ],
+        "why": "The zwitterion is the middle member of a set of three, and moving between them is what makes an amino acid amphoteric. The isoelectric point names the pH where the middle form is at its maximum, which is also the pH at which the amino acid is least soluble and does not migrate in an electric field.",
+        "common_mistakes": [
+          "Showing the acid reacting with the –NH₃⁺ group. That group is already protonated; the acid protonates –COO⁻.",
+          "Writing that the amino acid is neutral so it reacts with neither acid nor base. It reacts with both."
+        ],
+        "memory_tip": "Add acid and it goes positive; add base and it goes negative.",
+        "margin_note": "Two short equations finish this mark. The isoelectric point is a bonus line, not a requirement."
+      }
+    ]
+  },
+  "insider_note": "Four marks for what is a two-mark idea, so the extra marks are in the extras: the physical properties, the two reactions, and the isoelectric point. Write the zwitterion of glycine out in full."
+}

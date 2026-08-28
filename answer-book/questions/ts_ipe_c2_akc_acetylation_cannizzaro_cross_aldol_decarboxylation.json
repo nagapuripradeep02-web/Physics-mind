@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_acetylation_cannizzaro_cross_aldol_decarboxylation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the following. a) Acetylation b) Cannizzaro reaction c) Cross aldol condensation d) Decarboxylation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Acetylation",
+      "marks": 2
+    },
+    {
+      "label": "Cannizzaro reaction",
+      "marks": 2
+    },
+    {
+      "label": "Cross aldol condensation",
+      "marks": 2
+    },
+    {
+      "label": "Decarboxylation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"). It is the ONLY Long Answer Question in this sub-box, printed on book pp.114-115 as LAQ 1. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented, and the four equal parts follow the four parts (a)-(d) the book prints. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK DUPLICATION: parts (a) and (b) repeat the unit's SAQ 5 word for word. Both are authored, at 8 and 4 marks, and they agree; the SAQ card is ts_ipe_c2_akc_cannizzaro_and_acetylation. BOOK SPELLING: \"cannizaro\" with one z throughout, and \"2methyl pent-2-enal\" and \"2methyl but-2-enal\" without the hyphen after the 2. The names are written properly here. BOOK ERRORS AND GAPS, each corrected on this card: (1) part (a) defines acetylation as replacing an active hydrogen \"of alcohols, phenol, amines (or) benzene\" — benzene has NO active hydrogen, and putting CH₃CO– on a ring is a Friedel-Crafts acylation, a different reaction needing anhydrous AlCl₃; the two are separated here. (2) part (c) defines cross aldol condensation but never states the condition that at least one partner must have an α-hydrogen, and never says which two of the four products are the crossed ones; both are added. (3) part (d) writes CH₃COONa + NaOH → CH₄ + Na₂CO₃ with CaO over the arrow, correct and balanced at C2 H4 O3 Na2, but gives only that one case; the sodium benzoate case is added. ALL PRINTED EQUATIONS CHECKED AND BALANCED: 2HCHO + NaOH → CH₃OH + HCOONa (C2 H5 O3 Na); C₆H₆ + CH₃COCl → C₆H₅COCH₃ + HCl (C8 H9 O Cl); CH₃COONa + NaOH → CH₄ + Na₂CO₃ (C2 H4 O3 Na2). ALL FOUR CROSS ALDOL PRODUCTS CHECKED AND CORRECT: but-2-enal (acetaldehyde with itself), 2-methylpent-2-enal (propanal with itself), pent-2-enal and 2-methylbut-2-enal (the two crossed products). TRENDS AND EXCEPTIONS recorded on the card: an aldehyde with an α-hydrogen gives aldol condensation and NOT Cannizzaro; a cross aldol between two partners that both have α-hydrogens gives a four-product mixture and is only useful when one partner has none; and Kolbe electrolysis is a decarboxylation that does NOT shorten the chain by one carbon, since the two fragments join."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_acetylation",
+        "kind": "text",
+        "label": "Acetylation",
+        "marks": 2,
+        "mark_note": "Acetylation",
+        "lines": [
+          "a) Acetylation is the replacement of an",
+          "active hydrogen of an alcohol, a phenol or",
+          "an amine by the acetyl group CH₃CO–.",
+          "The reagent is acetyl chloride CH₃COCl or",
+          "acetic anhydride (CH₃CO)₂O.",
+          "With ethanol:",
+          {
+            "text": "C₂H₅OH + CH₃COCl → CH₃COOC₂H₅ + HCl",
+            "style": "eq"
+          },
+          "ethyl acetate.",
+          "With aniline:",
+          {
+            "text": "C₆H₅NH₂ + CH₃COCl →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅NHCOCH₃ + HCl",
+            "style": "indent"
+          },
+          "acetanilide.",
+          "Benzene has no active hydrogen. Putting",
+          "CH₃CO– on the ring is instead a",
+          "Friedel-Crafts acylation:",
+          {
+            "text": "C₆H₆ + CH₃COCl → C₆H₅COCH₃ + HCl",
+            "style": "eq"
+          },
+          {
+            "text": "[anhydrous AlCl₃]",
+            "style": "indent"
+          },
+          "acetophenone."
+        ],
+        "why": "An active hydrogen is one on oxygen or nitrogen, acidic enough to be replaced without a catalyst. Benzene has only C–H bonds, so its reaction needs anhydrous aluminium chloride to make the electrophile, and it belongs under a different name. Acetylation is used to protect a reactive –OH or –NH₂ group while another part of the molecule is changed.",
+        "common_mistakes": [
+          "Copying the book and listing benzene as a compound with an active hydrogen. It has none.",
+          "Leaving out anhydrous AlCl₃ on the benzene equation. Without it there is no reaction.",
+          "Writing the acetyl group as CH₃COO–. That is the acetate group; acetyl is CH₃CO–."
+        ],
+        "memory_tip": "Acetyl is CH₃CO–, and it bonds to oxygen or nitrogen. On a ring it needs AlCl₃ and a different name.",
+        "margin_note": "Write anhydrous AlCl₃ above the third arrow on your answer sheet. Two equations plus the definition secure these two marks; the third adds the ring case."
+      },
+      {
+        "id": "s2_cannizzaro",
+        "kind": "text",
+        "label": "Cannizzaro reaction",
+        "marks": 2,
+        "mark_note": "Cannizzaro",
+        "lines": [
+          "b) An aldehyde that has NO α-hydrogen,",
+          "heated with concentrated alkali, undergoes",
+          "self oxidation and reduction, that is,",
+          "disproportionation.",
+          "One molecule is reduced to the alcohol and",
+          "the other is oxidised to the salt of the",
+          "acid.",
+          "With formaldehyde:",
+          {
+            "text": "2HCHO + NaOH → CH₃OH + HCOONa",
+            "style": "eq"
+          },
+          {
+            "text": "[conc. NaOH, Δ]",
+            "style": "indent"
+          },
+          "methanol and sodium formate.",
+          "With benzaldehyde:",
+          {
+            "text": "2C₆H₅CHO + NaOH →",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅CH₂OH + C₆H₅COONa",
+            "style": "indent"
+          },
+          "benzyl alcohol and sodium benzoate.",
+          "An aldehyde WITH an α-hydrogen, such as",
+          "acetaldehyde, gives aldol condensation",
+          "instead."
+        ],
+        "why": "The absence of an α-hydrogen is the whole condition. With no α-hydrogen there is no enolate, so the alkali instead moves a hydride from one aldehyde molecule to the carbonyl carbon of a second, which oxidises one to the acid and reduces the other to the alcohol. That is also why the answer must name two products, not one.",
+        "common_mistakes": [
+          "Stating that the aldehyde must have an α-hydrogen. It must have none.",
+          "Writing formic acid instead of sodium formate. The reaction runs in alkali, so the salt is formed.",
+          "Using one molecule of aldehyde. Two are needed and the coefficient 2 is part of the equation."
+        ],
+        "memory_tip": "No α-hydrogen: one molecule is oxidised to the salt of the acid, the other is reduced to the alcohol.",
+        "margin_note": "Write conc. NaOH and Δ above the arrow on your answer sheet. The contrast line with acetaldehyde shows why the α-hydrogen matters and is worth writing."
+      },
+      {
+        "id": "s3_cross_aldol",
+        "kind": "text",
+        "label": "Cross aldol condensation",
+        "marks": 2,
+        "mark_note": "Cross aldol",
+        "lines": [
+          "c) An aldol condensation between TWO",
+          "DIFFERENT aldehydes or ketones is called a",
+          "cross aldol condensation.",
+          "At least one of them must have an",
+          "α-hydrogen.",
+          "Acetaldehyde and propanal both have one, so",
+          "each can supply the α-carbon and each can",
+          "take it, and four products are formed:",
+          {
+            "text": "CH₃CHO + CH₃CH₂CHO →",
+            "style": "eq"
+          },
+          {
+            "text": "[(i) dil. NaOH   (ii) Δ]",
+            "style": "indent"
+          },
+          {
+            "text": "1) CH₃–CH=CH–CHO   but-2-enal",
+            "style": "indent"
+          },
+          {
+            "text": "2) CH₃CH₂–CH=CH–CHO   pent-2-enal",
+            "style": "indent"
+          },
+          {
+            "text": "3) CH₃–CH=C(CH₃)–CHO",
+            "style": "indent"
+          },
+          {
+            "text": "     2-methylbut-2-enal",
+            "style": "indent"
+          },
+          {
+            "text": "4) CH₃CH₂–CH=C(CH₃)–CHO",
+            "style": "indent"
+          },
+          {
+            "text": "     2-methylpent-2-enal",
+            "style": "indent"
+          },
+          "1 and 4 are the self condensations;",
+          "2 and 3 are the crossed products.",
+          "A mixture of four is hard to separate, so a",
+          "cross aldol is only useful when one of the",
+          "two has no α-hydrogen: benzaldehyde with",
+          "acetaldehyde gives one product,",
+          "C₆H₅–CH=CH–CHO, cinnamaldehyde."
+        ],
+        "why": "In an aldol condensation the alkali removes an α-hydrogen from one molecule and the carbon left behind bonds to the carbonyl carbon of a second; heating then removes water to leave a double bond between the α and β carbons. With two different partners that both have an α-hydrogen there are four ways to pair them, which is why four products appear.",
+        "common_mistakes": [
+          "Naming only the two crossed products. All four are formed and all four are asked for.",
+          "Stopping at the aldol and not removing water. The word condensation means the α,β-unsaturated aldehyde is the product.",
+          "Using two compounds that both have α-hydrogens when a single product is wanted. One of the two must have none."
+        ],
+        "memory_tip": "Two different aldehydes, four pairings, four products. Two are self condensations and two are crossed.",
+        "margin_note": "Write dil. NaOH and Δ above the arrow on your answer sheet. Number the four products and name each one; the names are marked as well as the structures."
+      },
+      {
+        "id": "s4_decarboxylation",
+        "kind": "boxed_final",
+        "label": "Decarboxylation",
+        "marks": 2,
+        "mark_note": "Decarboxylation",
+        "lines": [
+          "d) Decarboxylation is the removal of CO₂",
+          "from the sodium salt of a carboxylic acid,",
+          "heated with soda lime, a mixture of NaOH",
+          "and CaO.",
+          "The product is a hydrocarbon with ONE",
+          "carbon atom fewer than the salt.",
+          {
+            "text": "CH₃COONa + NaOH → CH₄ + Na₂CO₃",
+            "style": "eq"
+          },
+          {
+            "text": "[CaO, Δ]",
+            "style": "indent"
+          },
+          "sodium acetate gives methane.",
+          {
+            "text": "C₆H₅COONa + NaOH → C₆H₆ + Na₂CO₃",
+            "style": "eq"
+          },
+          {
+            "text": "[CaO, Δ]",
+            "style": "indent"
+          },
+          "sodium benzoate gives benzene.",
+          {
+            "text": "Salt + soda lime → hydrocarbon + Na₂CO₃",
+            "style": "boxed"
+          },
+          "Kolbe electrolysis also removes CO₂, but",
+          "the two fragments join, so the alkane has",
+          "an EVEN number of carbon atoms and is not",
+          "one carbon shorter:",
+          {
+            "text": "2CH₃COONa + 2H₂O →",
+            "style": "eq"
+          },
+          {
+            "text": "C₂H₆ + 2CO₂ + H₂ + 2NaOH",
+            "style": "indent"
+          }
+        ],
+        "why": "The carbon that leaves is the carboxyl carbon itself, and it leaves combined with the alkali as sodium carbonate, not as free carbon dioxide gas, which is why Na₂CO₃ and not CO₂ appears in the equation. The calcium oxide is there to keep the sodium hydroxide from melting and corroding the glass, so it is written above the arrow rather than in the equation.",
+        "common_mistakes": [
+          "Writing CO₂ as a product of the soda lime reaction. There the carbon leaves as Na₂CO₃.",
+          "Putting CaO into the equation as a reactant. It is written above the arrow.",
+          "Expecting the product to have the same number of carbon atoms. It has one fewer."
+        ],
+        "memory_tip": "Soda lime removes the carboxyl carbon as sodium carbonate, leaving a hydrocarbon one carbon shorter.",
+        "margin_note": "Write CaO and Δ above the arrow on your answer sheet. The Kolbe equation is extra credit; the two soda lime equations carry these two marks."
+      }
+    ]
+  },
+  "insider_note": "This is the only 8-mark question in the chapter and it has four separate parts, so give each one a definition, one condition and at least one balanced equation before moving on. The two places marks are lost are part (c), where students name only the two crossed products instead of all four, and part (d), where they write CO₂ instead of Na₂CO₃."
+}

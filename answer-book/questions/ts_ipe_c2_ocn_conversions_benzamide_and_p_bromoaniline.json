@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_ocn_conversions_benzamide_and_p_bromoaniline",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 18,
+    "name": "Organic Compounds Containing Nitrogen (Chemistry-II)"
+  },
+  "chapter": "Organic Compounds Containing Nitrogen",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Complete the following conversions. i) Benzoic acid to benzamide  ii) Aniline to p-bromoaniline",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Benzoic acid to benzamide",
+      "marks": 1
+    },
+    {
+      "label": "Aniline to p-bromoaniline",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 18 (Organic Compounds Containing Nitrogen) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.115-120, from the shaded sub-box \"ORGANIC COMPOUNDS CONTAINING NITROGEN\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"); the book prints this question on book p.116 as VSAQ 8. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK: both printed routes are correct and are kept — benzoic acid with NH₃ to the ammonium salt then heat, and aniline through acetanilide and p-bromoacetanilide back to p-bromoaniline. BOOK GAP, filled here: the printed answer draws the three-step aniline route but never says WHY the amine is acetylated first. Without acetylation, bromine water gives 2,4,6-tribromoaniline in one step, because –NH₂ activates the ring so strongly. That reason is the whole point of the route and is added. NOTATION: the book draws benzene rings; this card writes the same compounds as linear text with the reagents in brackets after the arrow."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Organic Compounds Containing Nitrogen — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_benzamide",
+        "kind": "equation",
+        "label": "Benzoic acid to benzamide",
+        "marks": 1,
+        "mark_note": "Conversion (i)",
+        "lines": [
+          {
+            "text": "C₆H₅COOH + NH₃ → C₆H₅COONH₄",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₅COONH₄ → C₆H₅CONH₂ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[heat, Δ]",
+            "style": "indent"
+          },
+          "Benzoic acid is treated with ammonia and the",
+          "ammonium benzoate formed is then heated."
+        ],
+        "why": "An acid and ammonia react as an acid and a base, so the salt ammonium benzoate is what forms in the cold. Heating that salt removes one molecule of water and leaves the amide. The heat is therefore a required condition, not an optional one: it is the step that makes the amide.",
+        "common_mistakes": [
+          "Writing benzoic acid straight to benzamide with NH₃ alone. The salt forms first and must be heated.",
+          "Leaving out the water on the right of the second equation. The amide is one water molecule lighter than the salt."
+        ],
+        "memory_tip": "Acid plus ammonia gives the ammonium salt; heat takes out water and leaves the amide.",
+        "margin_note": "Write both equations. The Δ over the second arrow is what the examiner looks for."
+      },
+      {
+        "id": "s2_p_bromoaniline",
+        "kind": "boxed_final",
+        "label": "Aniline to p-bromoaniline",
+        "marks": 1,
+        "mark_note": "Conversion (ii)",
+        "lines": [
+          {
+            "text": "C₆H₅NH₂ → C₆H₅NHCOCH₃",
+            "style": "eq"
+          },
+          {
+            "text": "[(CH₃CO)₂O]   acetanilide",
+            "style": "indent"
+          },
+          {
+            "text": "C₆H₅NHCOCH₃ → p-Br–C₆H₄–NHCOCH₃",
+            "style": "eq"
+          },
+          {
+            "text": "[Br₂ in CH₃COOH]",
+            "style": "indent"
+          },
+          {
+            "text": "p-Br–C₆H₄–NHCOCH₃ + H₂O →",
+            "style": "eq"
+          },
+          {
+            "text": "p-Br–C₆H₄–NH₂ + CH₃COOH",
+            "style": "indent"
+          },
+          {
+            "text": "[H⁺ or OH⁻, hydrolysis]",
+            "style": "indent"
+          },
+          {
+            "text": "Acetylate, brominate, then hydrolyse",
+            "style": "boxed"
+          }
+        ],
+        "why": "The –NH₂ group activates the ring so strongly that bromine water alone puts bromine at all three of the 2, 4 and 6 positions in one step. Acetylation turns –NH₂ into –NHCOCH₃, whose lone pair is shared with the carbonyl group, so the ring is less activated and only the para position reacts. Hydrolysis then returns the –NH₂ group unchanged.",
+        "common_mistakes": [
+          "Brominating aniline directly. Bromine water gives 2,4,6-tribromoaniline, not the para product.",
+          "Stopping at p-bromoacetanilide. The last hydrolysis step is needed to get back to the amine."
+        ],
+        "memory_tip": "Protect, brominate, remove the protection: acetic anhydride on, bromine in at para, then hydrolyse the acetyl group off.",
+        "margin_note": "Three arrows, three reagents. Naming acetanilide and p-bromoacetanilide shows the route is understood."
+      }
+    ]
+  },
+  "insider_note": "Route (ii) is marked as one route, not three separate reactions, so all three arrows must be there. The reason for the first arrow is what most answers leave out: without acetylation, aniline and bromine water give 2,4,6-tribromoaniline instead of the para product."
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_akc_reagents_to_reduce_acid_to_alcohol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 17,
+    "name": "Aldehydes, Ketones and Carboxylic Acids (Chemistry-II)"
+  },
+  "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "List the reagents needed to reduce carboxylic acid to alcohol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagents",
+      "marks": 1
+    },
+    {
+      "label": "The equation and the reagent that fails",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 17 (Aldehydes, Ketones and Carboxylic Acids) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.112-115, from the shaded sub-box \"ALDEHYDES, KETONES, AND CARBOXYLIC ACIDS\" of printed chapter 12 (\"12. ORGANIC CHEMISTRY\"), which prints this question on book p.113 as VSAQ 7. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR, corrected on this card: the printed answer is \"Lithium aluminium hydride (LiAlH₄) (OR) Diborane (B₂H₆) and H₂O₂\". H₂O₂ is WRONG here. Hydrogen peroxide with alkali is the OXIDISING work-up of the hydroboration of an ALKENE; the reduction of a carboxylic acid by diborane is worked up with water or dilute acid, and adding H₂O₂ would oxidise, not hydrolyse. NCERT gives the reagents as (i) LiAlH₄/ether or B₂H₆ and (ii) H₃O⁺. This card writes H₃O⁺ and records the book's printed position here. BOOK GAP: the printed answer lists reagents with no equation at all; a balanced equation is added (CH₃COOH + 4[H] → CH₃CH₂OH + H₂O, checked at C2 H8 O2 on both sides). TREND AND EXCEPTION recorded on the card: the trend \"hydride reagents reduce carbonyl compounds\" has a standing exception — NaBH₄ reduces aldehydes and ketones easily but does NOT reduce a carboxylic acid; and diborane is the selective choice because it leaves ester, nitro and halo groups untouched."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Aldehydes, Ketones and Carboxylic Acids — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagents",
+        "kind": "text",
+        "label": "The reagents",
+        "marks": 1,
+        "mark_note": "The reagents",
+        "lines": [
+          "A carboxylic acid is reduced to a primary",
+          "alcohol by either of these:",
+          "1) Lithium aluminium hydride LiAlH₄ in dry",
+          "ether, followed by H₃O⁺.",
+          "2) Diborane B₂H₆, followed by hydrolysis",
+          "with H₃O⁺.",
+          "Diborane is the milder choice: it leaves",
+          "ester, nitro and halo groups untouched."
+        ],
+        "why": "Both reagents supply hydride to the carbonyl carbon, and both leave an aluminium or boron compound that has to be decomposed with acid or water before the alcohol is free. Naming the work-up is part of naming the reagent, because without it the product is still bound to the metal.",
+        "common_mistakes": [
+          "Writing H₂O₂ as the second reagent with diborane. H₂O₂ is the oxidising work-up used on alkenes; here the work-up is H₃O⁺.",
+          "Giving H₂ with nickel. Catalytic hydrogenation does not reduce a carboxylic acid to an alcohol.",
+          "Naming a secondary or tertiary alcohol as the product. The product is always a primary alcohol, RCH₂OH."
+        ],
+        "memory_tip": "Two reagents, each in two stages: hydride first, then acid to release the alcohol.",
+        "margin_note": "Write both reagents. Add the work-up H₃O⁺ after each of them; a reagent list with no work-up is often marked as half."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation and the reagent that fails",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "R–COOH + 4[H] → R–CH₂OH + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "[(i) LiAlH₄/ether   (ii) H₃O⁺]",
+            "style": "indent"
+          },
+          "For acetic acid:",
+          {
+            "text": "CH₃COOH + 4[H] → CH₃CH₂OH + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "Product: a primary alcohol.",
+            "style": "boxed"
+          },
+          "Exception: NaBH₄ reduces aldehydes and",
+          "ketones but does not reduce a carboxylic",
+          "acid, so it cannot be used here."
+        ],
+        "why": "Four hydrogen atoms are used: two remove the carbonyl oxygen as water and two go on to the carbon and the new oxygen. Counting them is what makes the equation balance, and the acetic acid case shows that the carbon count does not change, only the oxidation level of one carbon.",
+        "common_mistakes": [
+          "Writing 2[H] instead of 4[H]. With two the equation does not balance; a whole oxygen atom has to leave as water.",
+          "Forgetting the water on the product side. The –OH group of the acid leaves as part of that water.",
+          "Offering NaBH₄ as an alternative. It is not strong enough to reduce a carboxylic acid."
+        ],
+        "memory_tip": "Four hydrogen atoms in, one water out, and the carbon count stays the same.",
+        "margin_note": "Write the reagents above the arrow on your answer sheet, numbered (i) and (ii). The NaBH₄ line is extra credit, not required."
+      }
+    ]
+  },
+  "insider_note": "The book prints H₂O₂ as the second reagent with diborane. That is the alkene work-up, not this one; write H₃O⁺. The reagent mark asks for both routes, so name LiAlH₄ and diborane, each with its H₃O⁺ work-up."
+}

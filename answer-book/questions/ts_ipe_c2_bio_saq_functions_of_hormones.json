@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_functions_of_hormones",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write notes on the function of different hormones in the body.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Thyroxine",
+      "marks": 1
+    },
+    {
+      "label": "Insulin",
+      "marks": 1
+    },
+    {
+      "label": "Testosterone",
+      "marks": 1
+    },
+    {
+      "label": "Progesterone",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.104 as SAQ 13. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The book prints this as a four-column table (Hormone / Source / Chemical Nature / Function) with four rows: thyroxine, insulin, testosterone and progesterone. It is written here as ordinary lines because the notebook page is ruled; a student may still lay it out as a table. The printed question ends with a question mark after a command sentence; that is dropped in question_text, and \"in body\" is written \"in the body\". The scan of book p.104 has a torn bottom-left corner that hides its printed page number; the number is read from the run 99-100-101-102-103 on the preceding pages, and every line of content on the page is legible."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_thyroxine",
+        "kind": "text",
+        "label": "Thyroxine",
+        "marks": 1,
+        "mark_note": "Thyroxine",
+        "lines": [
+          "Thyroxine",
+          "Source: the thyroid gland.",
+          "Chemical nature: an amino acid derivative.",
+          "Function: it regulates the rate of",
+          "metabolism in the body."
+        ],
+        "why": "Thyroxine sets the speed at which the body uses energy, so too little of it slows everything down and too much speeds it up. It is made from the amino acid tyrosine and contains iodine, which is why iodine in the diet matters for the thyroid gland.",
+        "common_mistakes": [
+          "Calling thyroxine a steroid. It is derived from a single amino acid.",
+          "Giving only the function. Each hormone here needs its source and its chemical nature as well."
+        ],
+        "memory_tip": "Thyroxine sets the speed of the body's chemistry.",
+        "margin_note": "Three items per hormone: source, chemical nature, function. Keep the same three rows throughout."
+      },
+      {
+        "id": "s2_insulin",
+        "kind": "text",
+        "label": "Insulin",
+        "marks": 1,
+        "mark_note": "Insulin",
+        "lines": [
+          "Insulin",
+          "Source: the pancreas.",
+          "Chemical nature: a peptide.",
+          "Function: it decreases the blood glucose",
+          "level.",
+          "A shortage of insulin causes diabetes",
+          "mellitus."
+        ],
+        "why": "Insulin is the hormone that moves glucose out of the blood and into the cells, so without enough of it the blood glucose stays high, which is diabetes mellitus. It is a peptide, so it is destroyed by digestion and has to be injected rather than swallowed.",
+        "common_mistakes": [
+          "Writing that insulin raises the blood glucose level. It lowers it; glucagon raises it.",
+          "Calling insulin a steroid. It is a peptide, a chain of amino acids."
+        ],
+        "memory_tip": "Insulin brings the glucose level down; too little of it is diabetes.",
+        "margin_note": "Add the disease name. It costs one line and shows the function is understood."
+      },
+      {
+        "id": "s3_testosterone",
+        "kind": "text",
+        "label": "Testosterone",
+        "marks": 1,
+        "mark_note": "Testosterone",
+        "lines": [
+          "Testosterone",
+          "Source: the testes.",
+          "Chemical nature: a steroid.",
+          "Function: it controls the normal working of",
+          "the male sex organs and the male secondary",
+          "characters."
+        ],
+        "why": "Testosterone is a steroid, so it is built on the same four-ring skeleton as progesterone and is fat soluble. Being fat soluble it passes through cell membranes and acts inside the cell, which is how the steroid hormones differ in action from the peptide ones.",
+        "common_mistakes": [
+          "Calling testosterone a peptide hormone. It is a steroid.",
+          "Naming the pancreas or the thyroid as its source. Testosterone is made in the testes."
+        ],
+        "memory_tip": "Testosterone and progesterone are the two steroids on this list.",
+        "margin_note": "Keep the layout the same for all four. A ragged answer costs time and loses items."
+      },
+      {
+        "id": "s4_progesterone",
+        "kind": "boxed_final",
+        "label": "Progesterone",
+        "marks": 1,
+        "mark_note": "Progesterone",
+        "lines": [
+          {
+            "text": "Four hormones, four glands, four functions",
+            "style": "boxed"
+          },
+          "Progesterone",
+          "Source: the ovary.",
+          "Chemical nature: a steroid.",
+          "Function: it prepares the uterus for",
+          "pregnancy."
+        ],
+        "why": "Progesterone and testosterone are both steroids from the sex glands, and setting them side by side shows that the same chemical class can carry two quite different functions. What a hormone does is fixed by the target organ, not by the class it belongs to.",
+        "common_mistakes": [
+          "Naming the pituitary as the source of progesterone. It is made in the ovary.",
+          "Writing three hormones only. The answer key lists four, and each is a separate mark."
+        ],
+        "memory_tip": "Ovary, steroid, prepares the uterus.",
+        "margin_note": "Four hormones, twelve items in all. Count them before you close the answer."
+      }
+    ]
+  },
+  "insider_note": "Four hormones and three items for each: source, chemical nature, function. Twelve items in all, and the examiner is counting them, so lay it out as a table."
+}

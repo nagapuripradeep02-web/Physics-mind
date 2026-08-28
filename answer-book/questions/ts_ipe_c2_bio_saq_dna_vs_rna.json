@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_saq_dna_vs_rna",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the important structural and functional difference between DNA and RNA.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The sugar",
+      "marks": 1
+    },
+    {
+      "label": "The bases",
+      "marks": 1
+    },
+    {
+      "label": "The number of strands",
+      "marks": 1
+    },
+    {
+      "label": "The functional difference",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.102 as SAQ 8. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SPELLING: the printed answer writes \"Piramidine base thymine\"; the word is pyrimidine, and it is written correctly here. EXCEPTION NAMED: the printed answer states flat that \"DNA has the property of replication\" and RNA does not. In the cell that is right, but some viruses carry RNA as their genetic material and replicate it, so the exception is recorded on the card as a common mistake rather than left silent."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Biomolecules — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sugar",
+        "kind": "text",
+        "label": "The sugar",
+        "marks": 1,
+        "mark_note": "Sugar",
+        "lines": [
+          "Structural differences",
+          "1. The sugar.",
+          "DNA contains 2-deoxy-D-ribose.",
+          "RNA contains D-ribose, which carries an",
+          "extra –OH group at carbon 2."
+        ],
+        "why": "The two names differ by the prefix deoxy, which means exactly one oxygen atom fewer, at carbon 2 of the sugar. That missing –OH is what the letter D in DNA stands for, and it makes DNA the more stable of the two molecules.",
+        "common_mistakes": [
+          "Writing that DNA has ribose. DNA has deoxyribose; RNA has ribose.",
+          "Saying the two sugars are different sugars altogether. They differ by one oxygen atom at carbon 2."
+        ],
+        "memory_tip": "Deoxy means one oxygen less, and the D in DNA is that word.",
+        "margin_note": "Number the structural differences. Numbered points read faster than a paragraph."
+      },
+      {
+        "id": "s2_bases",
+        "kind": "text",
+        "label": "The bases",
+        "marks": 1,
+        "mark_note": "Bases",
+        "lines": [
+          "2. The bases.",
+          "The pyrimidine base thymine occurs in DNA",
+          "only.",
+          "Uracil takes its place in RNA.",
+          "Adenine, guanine and cytosine occur in both",
+          "DNA and RNA."
+        ],
+        "why": "Only one base out of four differs, so the answer should say which three are shared as well as which one is not; a student who writes only \"thymine and uracil\" has not shown that the other three are common. Uracil is thymine without its methyl group.",
+        "common_mistakes": [
+          "Writing that all four bases are different. Only one differs: thymine in DNA, uracil in RNA.",
+          "Putting uracil in DNA. Uracil belongs to RNA; thymine belongs to DNA."
+        ],
+        "memory_tip": "One base swaps: thymine in DNA becomes uracil in RNA.",
+        "margin_note": "Name the three shared bases too. It takes one line and proves the point."
+      },
+      {
+        "id": "s3_strands",
+        "kind": "text",
+        "label": "The number of strands",
+        "marks": 1,
+        "mark_note": "Strands",
+        "lines": [
+          "3. The number of strands.",
+          "DNA is a double stranded helix.",
+          "RNA is normally a single strand.",
+          "DNA is the longer molecule and is found",
+          "mainly in the nucleus; RNA is shorter and",
+          "is found mainly in the cytoplasm."
+        ],
+        "why": "Being double stranded is what allows DNA to hold a spare copy of its own information, and being single stranded is what allows RNA to fold into the shapes its different jobs need. The word normally is deliberate: a single RNA strand can fold back on itself and pair with its own bases.",
+        "common_mistakes": [
+          "Writing that RNA can never be double stranded. A single strand of tRNA folds back and pairs with itself in places.",
+          "Writing that both are double stranded. DNA is double stranded; RNA is normally single."
+        ],
+        "memory_tip": "Two strands for storage, one strand for work.",
+        "margin_note": "Say \"normally\" for RNA. It is accurate and costs nothing."
+      },
+      {
+        "id": "s4_function",
+        "kind": "boxed_final",
+        "label": "The functional difference",
+        "marks": 1,
+        "mark_note": "Function",
+        "lines": [
+          {
+            "text": "DNA stores and copies; RNA makes protein",
+            "style": "boxed"
+          },
+          "Functional difference",
+          "DNA can replicate itself, stores the",
+          "hereditary characters and passes them on",
+          "to the next generation.",
+          "RNA controls the synthesis of proteins in",
+          "the cell and does not normally replicate."
+        ],
+        "why": "The question asks for a functional difference as well as a structural one, so this step is not optional. The division is clean: DNA is the stored original, RNA is the working copy that is made from that store and then used to build a protein.",
+        "common_mistakes": [
+          "Giving only the structural differences. The question asks for the functional difference as well.",
+          "Writing that RNA carries heredity in every organism. In some viruses RNA does carry the genetic material, but in the cell that is DNA's role."
+        ],
+        "memory_tip": "DNA is the stored original; RNA is the working copy.",
+        "margin_note": "Head the last part \"Functional difference\" so the examiner sees you answered both halves."
+      }
+    ]
+  },
+  "insider_note": "Three structural points and one functional point. Head the last part \"Functional difference\" in so many words, because the question names both and students routinely answer only the first."
+}

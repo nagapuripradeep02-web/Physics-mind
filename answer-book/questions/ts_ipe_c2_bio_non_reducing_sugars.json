@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_bio_non_reducing_sugars",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 13,
+    "name": "Biomolecules (Chemistry-II)"
+  },
+  "chapter": "Biomolecules",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are non-reducing sugars?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition and example",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.101 as VSAQ 21. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed answer gives the definition and \"Ex: sucrose\" with no reason. The reason is added here because it is the standard follow-up: sucrose is non-reducing because BOTH anomeric carbon atoms are consumed by the glycosidic linkage, not because it is a disaccharide."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Biomolecules — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition and example",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A non-reducing sugar is a carbohydrate that",
+          "does not reduce Tollens' reagent or",
+          "Fehling's solution.",
+          "It gives no silver mirror and no red",
+          "precipitate of Cu₂O.",
+          "Ex: sucrose."
+        ],
+        "why": "The class is the negative of the reducing sugars and is tested with exactly the same two reagents, so the definition has to name them. Sucrose is the standard example and is the only common disaccharide in the class.",
+        "common_mistakes": [
+          "Giving maltose or lactose as a non-reducing sugar. Both are disaccharides and both are reducing.",
+          "Naming only one reagent. Both Tollens' reagent and Fehling's solution belong in the definition."
+        ],
+        "memory_tip": "Same two tests as before, but both come out negative.",
+        "margin_note": "Name both reagents and give sucrose as the example. That is this mark."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          {
+            "text": "Both anomeric carbons are in the linkage",
+            "style": "boxed"
+          },
+          "In sucrose the C₁ of glucose is joined to",
+          "the C₂ of fructose.",
+          "Both anomeric carbon atoms are used in the",
+          "glycosidic linkage, so no free aldehyde or",
+          "keto group is left.",
+          "With nothing to be oxidised, the sugar",
+          "cannot reduce either reagent."
+        ],
+        "why": "Being a disaccharide is not the reason: maltose and lactose are disaccharides and both reduce the reagents, because in each of them one anomeric carbon is still free. Sucrose is different because its linkage uses both, so no ring can open to give a free carbonyl group.",
+        "common_mistakes": [
+          "Writing that sucrose is non-reducing because it is a disaccharide. Maltose and lactose are disaccharides and are reducing.",
+          "Saying sucrose has no carbonyl group at all. It has none that is free; both are used in the linkage."
+        ],
+        "memory_tip": "Sucrose uses both anomeric carbons, so neither ring can open.",
+        "margin_note": "Write \"both anomeric carbon atoms are used\". That single phrase is the second mark."
+      }
+    ]
+  },
+  "insider_note": "The trap is answering \"because it is a disaccharide\". Maltose and lactose are disaccharides and both reduce Fehling's solution. The real reason is that sucrose uses both anomeric carbon atoms."
+}
