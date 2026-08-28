@@ -38,7 +38,7 @@
  *   npm run check:solid-of-revolution
  */
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
@@ -91,13 +91,36 @@ const FNS = [
   // SR-B
   "srInvF", "srAntiInvF2", "srStackSpan", "srSpanOuterR", "srSpanInnerR",
   "srDiscSum", "srExactVolume", "srProjectPoint", "srPairwiseScreenSeparationDeg",
+  // section 14 — the CONFIG PATH, not just the arithmetic. srDomain and srOuter
+  // read live globals off `window`, and srWriteHud writes the strings a teacher
+  // actually reads through `document`. Both are shimmed below, because the whole
+  // lesson of section 14 is that a probe aimed at the pure summation could never
+  // have seen the defect this section exists for.
+  "srDomain", "srOuter", "srInner", "srSliceX", "srCapLine", "srWriteHud",
 ];
+/** The two live-global surfaces the SR block reads. Fresh per construction. */
+function makeWindowShim(): Record<string, any> {
+  return { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null, PM_srX: null, PM_srAxis: null };
+}
+/** A `document` just rich enough for srWriteHud: one element whose innerHTML we read back. */
+function makeDocShim(): { doc: any; hud: any } {
+  const hud = { innerHTML: "", style: { display: "none" } };
+  return { doc: { getElementById: (id: string) => (id === "sr_readout" ? hud : null) }, hud };
+}
+const WIN = makeWindowShim();
+const DOC = makeDocShim();
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
-const E = new Function([
+const E = new Function("window", "document", [
   ...VARS.map(grabVar),
   ...FNS.map(grabFn),
   "return { " + [...VARS, ...FNS].join(", ") + " };",
-].join("\n"))() as Record<string, any>;
+].join("\n"))(WIN, DOC.doc) as Record<string, any>;
+/** The lines srWriteHud actually rendered, split back out of the <br> join. */
+function hudLines(sr: Record<string, any>, outer: any, inner: any, x0: number, x1: number, ax: string): string[] {
+  DOC.hud.innerHTML = ""; DOC.hud.style.display = "none";
+  E.srWriteHud(sr, outer, inner, x0, x1, 1, 1, ax);
+  return DOC.hud.style.display === "none" || !DOC.hud.innerHTML ? [] : String(DOC.hud.innerHTML).split("<br>");
+}
 
 let failures = 0;
 let controlsFired = 0;
@@ -957,8 +980,27 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
     hold.STATE_2 === "reveal_hold" && hold.STATE_5 === "reveal_hold" && hold.STATE_6 === "reveal_hold");
   assertTrue("S9 (mode explore) is classified interactive", hold.STATE_9 === "interactive");
   assertTrue("S9 declares STATIC motion (user-driven)", motion.STATE_9 === false);
-  assertTrue("guided states declare no motion expectation (their ramps settle)",
-    motion.STATE_1 === undefined && motion.STATE_4 === undefined && motion.STATE_5 === undefined);
+  // ⚠ THIS ASSERTION USED TO LOCK IN A BLIND SPOT, and it is left documented
+  //   rather than quietly swapped. It read "guided states declare no motion
+  //   expectation (their ramps settle)" and asserted all three were `undefined`
+  //   — i.e. it CODIFIED the absence of coverage as if it were a property worth
+  //   holding. THE EYE, on the first concept ever to author this scenario, said
+  //   what that costs in its own words: "MOTION GATE NEVER RAN — D5 skipped on
+  //   ALL 9 state(s) ... a state whose animation is dead would report exactly
+  //   the same green as one that works."
+  //   A green assertion over a skipped gate is the purest form of the vacuous
+  //   pass this whole file is written against. The guided beats DO move — every
+  //   one measured above D5's 0.1% floor on 289 dense frames — so the gate now
+  //   asserts the coverage rather than its absence.
+  assertTrue("every guided state DECLARES motion, so D5 actually runs on it",
+    motion.STATE_1 === true && motion.STATE_2 === true && motion.STATE_4 === true
+    && motion.STATE_5 === true && motion.STATE_6 === true);
+  control("a guided sr state that authors NO driver at all is still left undefined — the honest "
+    + "exception is preserved, so this is a declaration keyed on drivers and not a blanket true",
+    deriveMotionExpectations(mkConfig({
+      STATE_1: { sr: { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+        domain: [0, 4], discs: { n: 20, rule: "left" } } },
+    }) as never).STATE_1 === undefined);
   assertTrue("'sr' is a recognised field_3d reveal key (a cached flattened config is not read as PCPL)",
     Object.keys(reveal).length === 6);
   // NEGATIVE CONTROL — a state whose param_ramp is NOT accounted for pins at the
@@ -1448,11 +1490,420 @@ console.log("\n=== 13. S5's PRIMARY AHA, on the RENDERED STRINGS, EXHAUSTIVELY =
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 14. THE CONFIG PATH — a circle_arc's drawn domain, over the swept radius ===");
+// WHY THIS SECTION EXISTS, stated so it is not simplified away later. Section 13
+// asserts the disc total over all 101 reachable radii and PASSES on the source
+// that shipped before this fix — because srDiscSum coerces a non-finite radius to
+// zero, so the slabs outside the arc contribute nothing and the sum is right for a
+// reason unrelated to whether the picture is. The domain is a STATIC authored pair
+// with a live override on the HIGH end only, so an author sweeping r could not
+// move x0: at every r < the authored reach, srF returned non-finite outside the
+// arc, srWriteTube and srWriteSurface drew y = 0 there (a FLAT LINE where no curve
+// exists), and srExactVolume — the readout the state's whole claim rests on —
+// returned NaN.
+//
+// THIS IS A29's RULE APPLIED TO A GATE INSTEAD OF A RECONSTRUCTION: an exact match
+// on a quantity INVARIANT under the error you might have made is weaker evidence
+// than an approximate match on one that DISCRIMINATES. The disc total is invariant
+// here (measured below: bit-identical on both domains). The DRAWN SAMPLES and the
+// exact-volume readout discriminate. Score those.
+{
+  const R_STEP = 0.01, N_SHIP = 20000, SAMPLES = 121;
+  const radii: number[] = [];
+  for (let i = 0; i <= 100; i++) radii.push(Math.round((1 + i * R_STEP) / R_STEP) * R_STEP);
+  const S5 = { mode: "stack", outer: { family: "circle_arc", r: 2.0, x0: 0, c: 0 }, domain: [-2, 2] };
+  /** The pre-fix srDomain, reconstructed from the four lines it used to be. */
+  const preFixDomain = (sr: any): [number, number] => {
+    const d = sr.domain || [0, 1];
+    return [d[0], WIN.PM_srB != null ? WIN.PM_srB : d[1]];
+  };
+  const drawnFinite = (outer: any, x0: number, x1: number): number => {
+    let ok = 0;
+    for (let i = 0; i < SAMPLES; i++) {
+      const x = x0 + (x1 - x0) * (i / (SAMPLES - 1));
+      if (isFinite(E.srF(outer, x))) ok++;
+    }
+    return ok;
+  };
+
+  // (i) THE SHIPPED PATH — the domain IS the arc's support at every reachable r.
+  let badSpan = 0, badFinite = 0, badReadout = 0, firstBad = "";
+  for (const r of radii) {
+    WIN.PM_srR = r;
+    const [x0, x1] = E.srDomain(S5);
+    const outer = E.srOuter(S5);
+    if (Math.abs(x0 + r) > 1e-12 || Math.abs(x1 - r) > 1e-12) badSpan++;
+    if (drawnFinite(outer, x0, x1) !== SAMPLES) { badFinite++; if (!firstBad) firstBad = "r=" + r.toFixed(2); }
+    const vex = E.srExactVolume(outer, null, x0, x1, "x");
+    if (E.srFmt(vex, 4) !== E.srFmt((4 / 3) * Math.PI * r ** 3, 4)) badReadout++;
+  }
+  assertTrue("the drawn domain equals the arc's own support [-r, +r] at all 101 reachable radii ("
+    + badSpan + " wrong)", badSpan === 0);
+  assertTrue("every one of 121 drawn samples is FINITE at all 101 radii — no flat line where no "
+    + "curve exists (" + badFinite + " radii bad" + (firstBad ? ", first " + firstBad : "") + ")", badFinite === 0);
+  assertTrue("the V_exact readout formats identically to (4/3)pi r^3 at all 101 radii ("
+    + badReadout + " disagree)", badReadout === 0);
+
+  // (ii) THE NEGATIVE CONTROL THAT MATTERS — the pre-fix domain FAILS both
+  //      discriminating checks, while the disc total agrees BIT-FOR-BIT.
+  {
+    let preBadFinite = 0, preBadReadout = 0, worstSumDiff = 0, preStrBad = 0, postStrBad = 0;
+    for (const r of radii) {
+      WIN.PM_srR = r;
+      const [px0, px1] = preFixDomain(S5);
+      const [sx0, sx1] = E.srDomain(S5);
+      const outer = E.srOuter(S5);
+      if (drawnFinite(outer, px0, px1) !== SAMPLES) preBadFinite++;
+      if (!isFinite(E.srExactVolume(outer, null, px0, px1, "x"))) preBadReadout++;
+      const spec = { outer, inner: null, n: N_SHIP, axis: "x", rule: "left", kind: "disc", max_drawn: 120 };
+      const pre = E.srDiscSum({ ...spec, x0: px0, x1: px1 }).volume;
+      const post = E.srDiscSum({ ...spec, x0: sx0, x1: sx1 }).volume;
+      worstSumDiff = Math.max(worstSumDiff, Math.abs(pre - post));
+      const want4 = E.srFmt((4 / 3) * Math.PI * r ** 3, 4);
+      if (E.srFmt(pre, 4) !== want4) preStrBad++;
+      if (E.srFmt(post, 4) !== want4) postStrBad++;
+    }
+    control("the PRE-FIX domain draws a non-existent curve at " + preBadFinite + " of 101 radii and "
+      + "returns a NaN V_exact at " + preBadReadout + " of them", preBadFinite > 0 && preBadReadout > 0);
+    // ⚠ THIS CONTROL WAS WRONG WHEN FIRST WRITTEN AND IS LEFT DOCUMENTED, because
+    // it is the same mistake in miniature that the section is about. Its first
+    // draft asserted the two domains give a BIT-IDENTICAL disc total, on the
+    // strength of having watched both print the same four decimals. Measured, they
+    // differ by 3.224e-8 — small, but not zero, and "same rendered string" is not
+    // "same number". The claim that discriminates is the one section 13 actually
+    // makes: the 4-dp STRING. That is invariant under the defect, and this is the
+    // measurement rather than the assumption.
+    console.log("      raw disc totals differ by " + worstSumDiff.toExponential(3)
+      + " between the two domains — NOT zero, four orders below the 1e-4 display quantum");
+    control("SECTION 13's OWN ASSERTION CANNOT SEE THIS — it scores the 4-dp string, and both "
+      + "domains render all 101 radii correctly (" + preStrBad + " pre-fix / " + postStrBad
+      + " post-fix disagree), which is why this section scores the drawn samples and the readout",
+      preStrBad === 0 && postStrBad === 0);
+  }
+
+  // (iii) THE CLAMP INTERSECTS, IT DOES NOT REPLACE — a deliberately narrow
+  //       authored window must survive, or the fix trades one wrong picture for
+  //       another (a quarter arc silently re-widened to a full semicircle).
+  {
+    WIN.PM_srR = null;
+    const quarter = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [0, 2] };
+    const narrow = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-1, 1] };
+    const wide = { mode: "stack", outer: { family: "circle_arc", r: 2, x0: 0, c: 0 }, domain: [-3, 3] };
+    const eq = (g: number[], w: number[]) => Math.abs(g[0] - w[0]) < 1e-12 && Math.abs(g[1] - w[1]) < 1e-12;
+    assertTrue("a quarter arc authored [0, 2] is UNTOUCHED", eq(E.srDomain(quarter), [0, 2]));
+    assertTrue("a narrow window [-1, 1] inside the support is UNTOUCHED", eq(E.srDomain(narrow), [-1, 1]));
+    assertTrue("an over-reaching [-3, 3] is pulled back to the support [-2, 2]", eq(E.srDomain(wide), [-2, 2]));
+    control("a REPLACING clamp would widen the narrow window to [-2, 2] — the intersecting one does not",
+      !eq([-2, 2], E.srDomain(narrow)));
+  }
+
+  // (iv) THE OTHER AUTHORED FAMILY IS UNTOUCHED. power carries S1-S4 / S7-S9 and
+  //      its b ramp is the ONE live domain override that already shipped.
+  {
+    WIN.PM_srR = null; WIN.PM_srB = null;
+    const pw = { mode: "stack", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4] };
+    const d0 = E.srDomain(pw);
+    check("a power profile keeps its authored domain hi", d0[1], 4, 0);
+    WIN.PM_srB = 2.5;
+    const d1 = E.srDomain(pw);
+    check("...and S8's live b ramp still wins over the authored hi", d1[1], 2.5, 0);
+    WIN.PM_srB = null;
+  }
+}
+
+console.log("\n=== 14b. THE THREE READOUT KEYS, ON THE RENDERED STRINGS ===");
+// Scored through srWriteHud itself — the function that writes what a teacher
+// reads — rather than through the quantities behind it. A30's lesson: every
+// assertion about the number can be true while the WORD beside it is wrong.
+{
+  const sqrtP = { family: "power", a: 1, p: 0.5, c: 0 };
+  const halfLine = { family: "power", a: 0.5, p: 1, c: 0 };
+  WIN.PM_srR = null; WIN.PM_srB = null; WIN.PM_srN = null; WIN.PM_srX = null; WIN.PM_srAxis = null;
+
+  // S4's shape: the ONE summation runs, publishes, and the HUD reads it.
+  E.srPubClear();
+  const res = E.srDiscSum({ outer: sqrtP, inner: null, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "disc", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = res.volume; E.SR_PUB.n_drawn = res.n_drawn;
+  E.SR_PUB.kind = "disc"; E.SR_PUB.du = res.du;
+  const s4 = hudLines({ mode: "stack", readouts: ["n", "dx", "V_n", "V_settles", "gap", "discs_drawn"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S4 HUD renders: " + JSON.stringify(s4));
+  assertTrue("V_settles renders the CORE-ring label, not the advanced-ring assertion 'V ='",
+    s4.some(l => l === "settles on = 25.1327"));
+  assertTrue("...and no line on this core state reads 'V = ' (whose account is S8, the first ring cut)",
+    !s4.some(l => l.startsWith("V = ")));
+  assertTrue("dx renders the slab width the summation PUBLISHED (4/1000 = 0.0040)",
+    s4.some(l => l === "\u0394x = 0.0040"));
+  assertTrue("the formula surface's other symbols still render beside it (n, V_n, the shortfall)",
+    s4.some(l => l === "n = 1000") && s4.some(l => l === "V\u2099 = 25.1076")
+    && s4.some(l => l === "still missing = 0.0251"));
+  control("V_settles and V_exact carry the SAME number under DIFFERENT labels — a key that merely "
+    + "aliased V_exact would render the identical string and close nothing",
+    E.srFmt(E.srExactVolume(sqrtP, null, 0, 4, "x"), 4) === "25.1327"
+    && !hudLines({ mode: "stack", readouts: ["V_exact"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x")
+        .some(l => l.startsWith("settles on")));
+
+  // dx must be SILENT where no pass placed a slab (S1 / S2 / S3 publish no du).
+  E.srPubClear();
+  const s1 = hudLines({ mode: "region", readouts: ["area", "dx"], domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S1 HUD renders: " + JSON.stringify(s1));
+  control("dx is SILENT when no pass has placed a slab — a width printed from an authored n the "
+    + "picture never drew is the provenance split SR-D5 exists against",
+    !s1.some(l => l.indexOf("\u0394x") >= 0));
+  assertTrue("...while the state's own area line still renders", s1.some(l => l === "area = 5.3333"));
+
+  // S3's M1 chip: the consequence of the wrong belief, SHOWN.
+  E.srPubClear();
+  const s3 = hudLines({ mode: "slice", slice_x: 1, readouts: ["x_cut", "r", "face_area", "pi_area"],
+    domain: [0, 4], outer: sqrtP }, sqrtP, null, 0, 4, "x");
+  console.log("      S3 HUD renders: " + JSON.stringify(s3));
+  assertTrue("pi_area renders M1's consequence pi x 5.3333 = 16.7552",
+    s3.some(l => l === "\u03C0 \u00D7 area = 16.7552"));
+  assertTrue("...beside the TRUE face area at the labelled slice, so the contrast is on one screen",
+    s3.some(l => l === "face area = 3.1416"));
+  control("the two numbers are 5.3x apart, so a student cannot read the wrong one as a rounding of "
+    + "the right one", Math.abs(Math.PI * (16 / 3) - Math.PI) > 13);
+
+  // the ring state still reads its own pair through the same writer
+  E.srPubClear();
+  const ring = E.srDiscSum({ outer: sqrtP, inner: halfLine, x0: 0, x1: 4, n: 1000, axis: "x",
+    rule: "left", kind: "ring", max_drawn: 120 });
+  E.SR_PUB.n = 1000; E.SR_PUB.volume = ring.volume; E.SR_PUB.n_drawn = ring.n_drawn;
+  E.SR_PUB.kind = "ring"; E.SR_PUB.du = ring.du;
+  const s6 = hudLines({ mode: "compare", slice_x: 1, readouts: ["R", "r_inner", "ring_area", "V_n", "dx"],
+    domain: [0, 4], outer: sqrtP, inner: halfLine }, sqrtP, halfLine, 0, 4, "x");
+  console.log("      S6 HUD renders: " + JSON.stringify(s6));
+  assertTrue("S6 still reads R, the inner r and the ring area at the labelled slice x = 1",
+    s6.some(l => l === "R = 1.000") && s6.some(l => l === "r = 0.500") && s6.some(l => l === "ring area = 2.3562"));
+  assertTrue("...and dx serves the SAME formula surface on the extended ring", s6.some(l => l === "\u0394x = 0.0040"));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 15. THE BUILDER ACTUALLY EXECUTES — the half no pure-helper gate can reach ===");
+// WHY THIS SECTION EXISTS. Every assertion above this line runs a PURE helper
+// pulled out of the template literal by brace matching, precisely so the gate
+// needs no browser. buildSolidOfRevolution touches DOM and THREE, so it was the
+// one function the gate could NOT call — and until a concept authored the
+// scenario, nothing else called it either. It shipped through 217 assertions
+// and 32 negative controls with "ReferenceError: textColor is not defined" on
+// its first line of DOM work: the scenario never started, PM_simTimeMs stayed
+// at 0, and THE EYE aborted rather than photograph an arbitrary phase.
+//
+// So this section EXECUTES the whole shipped region under shims and asserts the
+// builder runs to completion. The shims are an ALLOWLIST, and the guard below
+// is what stops the allowlist from becoming a way to silence the next bug.
+{
+  // (i) THE ALLOWLIST GUARD, FIRST — a name may be shimmed only if it is really
+  //     declared at RENDERER scope outside this region. textColor is not: all
+  //     149 of its uses are function-locals inside individual scenario builders,
+  //     which is exactly why the SR block had to declare its own and did not.
+  // slice from the START OF THE LINE — the marker sits mid-comment, and cutting
+  // there hands the parser a bare comment tail (a SyntaxError, not a
+  // ReferenceError, which would have masked exactly what this section tests).
+  const markIdx = SRC.indexOf("solid_of_revolution — VOLUME BY INTEGRATION");
+  const startIdx = SRC.lastIndexOf("\n", markIdx) + 1;
+  const endIdx = SRC.indexOf("    function buildScenario() {", startIdx);
+  const REGION = SRC.slice(startIdx, endIdx);
+  const OUTSIDE = SRC.slice(0, startIdx) + SRC.slice(endIdx);
+  // renderer scope in this file is exactly four spaces of indent; a scenario
+  // builder's own locals sit at eight or more.
+  const declaredAtRendererScope = (n: string) =>
+    new RegExp("^ {4}(?:var|let|const|function)\\s+" + n + "\\b", "m").test(OUTSIDE);
+  const SHIMS = ["window", "document", "config", "THREE", "console", "addToScene",
+    "hexToThreeColor", "cueTriggerMs", "osCamScheduleAt", "nlbProjPx",
+    "targetSpherical", "spherical", "updateCameraFromSpherical", "animating",
+    "time", "stateStartTime"];
+  const HOST = ["window", "document", "console", "THREE", "config"];
+  const notDeclared = SHIMS.filter(n => !HOST.includes(n) && !declaredAtRendererScope(n));
+  assertTrue("every shimmed name below is really declared at RENDERER scope outside this region ("
+    + (notDeclared.length ? "MISSING: " + notDeclared.join(", ") : "all " + (SHIMS.length - HOST.length) + " checked")
+    + ")", notDeclared.length === 0);
+  control("the guard REFUSES textColor — its 149 uses are all function-locals inside individual "
+    + "scenario builders, so shimming it would have hidden the defect instead of finding it",
+    !declaredAtRendererScope("textColor"));
+  assertTrue("...and the SR region now declares its OWN textColor, like every sibling builder",
+    /\bvar\s+textColor\s*=/.test(REGION));
+
+  // (ii) EXECUTE IT. Anything the region references that is neither declared
+  //      inside it nor in the allowlist throws ReferenceError here.
+  const made: Record<string, any> = {};
+  const mkNode = (): any => {
+    const node: any = {
+      style: {}, children: [], innerHTML: "", textContent: "", value: "", step: "0",
+      setAttribute(k: string, v: string) { node["attr_" + k] = v; },
+      appendChild(c: any) { node.children.push(c); return c; },
+      addEventListener() { /* the wire() handlers are exercised in (iii) */ },
+    };
+    return node;
+  };
+  const documentShim: any = {
+    body: mkNode(),
+    createElement: () => {
+      const n = mkNode();
+      // id is assigned by the caller right after createElement; register lazily
+      Object.defineProperty(n, "id", {
+        get: () => n._id, set: (v: string) => { n._id = v; made[v] = n; }, configurable: true,
+      });
+      return n;
+    },
+    getElementById: (id: string) => made[id] || null,
+  };
+  // THREE is auto-stubbed: every property is a constructor, every instance
+  // answers any property with another stub. This can only hide a TYPE error,
+  // never a ReferenceError — and a ReferenceError is the defect class here.
+  //   `array` answers with a real Float32Array because the writers index into
+  //   it; `position`/`rotation`/`scale` answer with a settable triple. Nothing
+  //   else needs to be real — a stub can mask a TYPE error but never a
+  //   ReferenceError, and a ReferenceError is the defect class this section is
+  //   written for. The claim asserted below is therefore exactly that: the
+  //   builder resolves every name it uses and runs to the end.
+  const BIG = 400000;
+  const stub = (): any => new Proxy(function () { /* constructible */ } as any, {
+    get: (_t, k) => (k === "then" ? undefined
+      : k === "array" ? new Float32Array(BIG)
+      : k === "count" ? 0
+      : k === "userData" ? {}
+      : k === "rotation" || k === "scale"
+        ? { set: () => undefined, x: 0, y: 0, z: 0 }
+      : k === "position"
+        ? { set: () => undefined, x: 0, y: 0, z: 0, needsUpdate: false }
+        : stub()),
+    set: () => true,
+    apply: () => stub(),
+    construct: () => stub(),
+    has: () => true,
+  });
+  const CONFIG = {
+    scenario_type: "solid_of_revolution",
+    slider_controls: {
+      a: { min: 0.8, max: 1.4, step: 0.05, default: 1.0 },
+      b: { min: 1.0, max: 4.0, step: 0.05, default: 4.0 },
+      n: { min: 4, max: 120, step: 4, default: 20 },
+      r: { min: 1.0, max: 2.0, step: 0.01, default: 1.0 },
+      x_cut: { min: 0.0, max: 4.0, step: 0.05, default: 0.0 },
+    },
+    states: {
+      STATE_1: {
+        camera_position: [0, 0, 5.2], formula_overlay: "y = \u221Ax",
+        sr: { mode: "region", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+          domain: [0, 4], axis: "x",
+          frame: { x_range: [0, 4], y_range: [0, 2], x_tick: 1, y_tick: 1, tick_decimals: 0, show_frame: true },
+          reveal: { curve_at_ms: 1200, curve_ms: 4800, region_at_ms: 6000, region_ms: 7000 },
+          controls: [], readouts: ["x_edge", "area"], glow_focal: "region" },
+      },
+    },
+  };
+  const winShim: any = { PM_srA: null, PM_srB: null, PM_srR: null, PM_srN: null,
+    PM_srX: null, PM_srAxis: null, PM_srSeized: {}, PM_srCamPose: null };
+  const ARGS: Record<string, any> = {
+    window: winShim, document: documentShim, config: CONFIG, THREE: stub(),
+    console: { warn: () => undefined, log: () => undefined },
+    addToScene: () => undefined, hexToThreeColor: () => ({}),
+    cueTriggerMs: (_k: string, d: number) => d, osCamScheduleAt: () => null,
+    nlbProjPx: () => null,
+    targetSpherical: { radius: 8, phi: 1, theta: 1 }, spherical: { radius: 8, phi: 1, theta: 1 },
+    updateCameraFromSpherical: () => undefined, animating: false,
+    time: 0, stateStartTime: 0,
+  };
+  const names = Object.keys(ARGS);
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const mkApi = () => new Function(...names, REGION
+    + "\nreturn { build: buildSolidOfRevolution, apply: applySolidOfRevolutionState,"
+    + " frame: updateSolidOfRevolutionFrame, glow: applySolidOfRevolutionGlow };"
+  )(...names.map(n => ARGS[n]));
+  /** Run fn and report WHICH class of error came back. */
+  const classifyRun = (fn: () => void): { ok: boolean; ref: boolean; msg: string } => {
+    try { fn(); return { ok: true, ref: false, msg: "" }; }
+    catch (e) {
+      const ref = e instanceof ReferenceError;
+      return { ok: false, ref, msg: (e instanceof Error ? e.constructor.name + ": " + e.message : String(e)) };
+    }
+  };
+
+  // (ii-a) THE DOM HALF, with no state to apply — this path touches no geometry,
+  //        so it must complete CLEANLY, with no error of any class.
+  const domOnly = classifyRun(() => mkApi().build({ ...CONFIG, states: {} }));
+  assertTrue("with no state to apply, buildSolidOfRevolution completes CLEANLY — the DOM half of "
+    + "the builder, which is where the shipped defect was"
+    + (domOnly.ok ? "" : " — threw: " + domOnly.msg), domOnly.ok);
+
+  // (ii-b) THE FULL PATH, including the first-state apply and a frame. A stubbed
+  //        THREE can raise a TypeError that says nothing about the renderer, so
+  //        only a ReferenceError — a name the region uses and nobody declares —
+  //        fails here. That IS the shipped defect's class, and (iii) proves this
+  //        assertion catches it.
+  const full = classifyRun(() => {
+    const api = mkApi();
+    api.build(CONFIG);
+    api.apply(CONFIG.states.STATE_1);
+    api.frame(CONFIG.states.STATE_1);
+    api.glow(CONFIG.states.STATE_1);
+  });
+  assertTrue("no name used anywhere in build -> apply -> frame -> glow is undeclared"
+    + (full.ok ? "" : " (non-ReferenceError under the THREE stub, which is not evidence either way: "
+      + full.msg + ")"), !full.ref);
+  for (const id of ["sr_ticks", "sr_readout", "sr_formula", "sr_sliders"]) {
+    assertTrue("...and created the DOM surface #" + id, !!made[id]);
+  }
+  assertTrue("the HUD and the slider panel carry real ink, not the string 'undefined' "
+    + "(the shape the missing textColor would have left had it merely been undefined)",
+    !!made["sr_readout"] && made["sr_readout"].style.cssText.indexOf("undefined") < 0
+    && !!made["sr_sliders"] && made["sr_sliders"].style.cssText.indexOf("undefined") < 0);
+  assertTrue("the slider panel built all five contextual rows plus the axis toggle",
+    !!made["sr_sliders"] && ["sr_acoef_row", "sr_bend_row", "sr_radius_row", "sr_count_row",
+      "sr_cut_row", "sr_axis_row"].every(r => made["sr_sliders"].innerHTML.indexOf(r) >= 0));
+
+  // (iii) THE NEGATIVE CONTROL — reconstruct the pre-fix region by deleting the
+  //       one declaration, and watch this section fail on it.
+  {
+    const broken = REGION.replace(/^ {8}var textColor = .*$/m, "        // (declaration removed)");
+    assertTrue("the control's broken twin really differs from the shipped region",
+      broken !== REGION);
+    const brokenRun = classifyRun(() => {
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
+      const run = new Function(...names, broken + "\nreturn { b: buildSolidOfRevolution };");
+      run(...names.map(n => ARGS[n])).b({ ...CONFIG, states: {} });
+    });
+    control("removing the one declaration reproduces the SHIPPED failure exactly, and it is a "
+      + "ReferenceError — the class (ii-b) fails on — " + (brokenRun.msg || "no throw at all"),
+      brokenRun.ref && /textColor is not defined/.test(brokenRun.msg));
+    control("...and it also breaks (ii-a), the CLEAN-completion assertion, so both halves of this "
+      + "section are load-bearing rather than one carrying the other", !brokenRun.ok);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13, 14, 14b, 15");
 console.log("  negative controls fired: " + controlsFired);
-console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
-console.log("  there are no frames and no baseline. This gate is the only evidence.");
+// Self-correcting, because this banner was a CLAIM about the repo and claims
+// rot: the moment a concept authors the scenario, THE EYE becomes the stronger
+// evidence and this gate stops being the only kind there is.
+{
+  const roots = ["src/data/concepts", "src/data/concepts/mathematics",
+    "src/data/concepts/chemistry"];
+  let authoredBy: string | null = null;
+  for (const dir of roots) {
+    let entries: string[] = [];
+    try { entries = readdirSync(dir).filter((f) => f.endsWith(".json")); } catch { continue; }
+    for (const f of entries) {
+      try {
+        if (readFileSync(join(dir, f), "utf8").includes('"solid_of_revolution"')) {
+          authoredBy = join(dir, f); break;
+        }
+      } catch { /* unreadable file is not evidence either way */ }
+    }
+    if (authoredBy) break;
+  }
+  if (authoredBy) {
+    console.log("  THE EYE CAN run: " + authoredBy + " authors this scenario, so frames and a");
+    console.log("  baseline exist. This gate is necessary evidence, no longer the only evidence.");
+  } else {
+    console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
+    console.log("  there are no frames and no baseline. This gate is the only evidence.");
+  }
+}
 console.log("═".repeat(78));
 if (failures > 0) {
   console.log("\n❌ check:solid-of-revolution FAILED — " + failures + " assertion(s)\n");

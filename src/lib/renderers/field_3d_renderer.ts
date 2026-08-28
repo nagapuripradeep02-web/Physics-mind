@@ -75709,7 +75709,27 @@ export const FIELD_3D_RENDERER_CODE = `
     var SR_READOUTS = {
         area: 1, x_edge: 1, a: 1, b: 1, n: 1, V_exact: 1,
         theta: 1, x_cut: 1, r: 1, face_area: 1, R: 1, r_inner: 1, ring_area: 1,
-        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1
+        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1,
+        // Three keys the nine authored states need and the first pass did not
+        // carry. Each is a LABEL over a quantity this scenario already computes;
+        // none adds a second implementation of a drawn number (SR-D3).
+        //   V_settles — the SAME value as V_exact under the name the picture on a
+        //     CORE state accounts for. Rule 38b: S4 is core and shows a stack
+        //     climbing and levelling off, so "settles on" is what its own picture
+        //     earns; "V =" asserts a value whose provenance is pi times the
+        //     integral, and that lives on S8 — the ADVANCED state the first preset
+        //     cut removes. A core state must not print a number whose only account
+        //     is in a ring that can be hidden.
+        //   dx — Rule 25 no-untaught-term, on the concept's most-used equation.
+        //     S4 and S6 both carry a formula surface reading Sigma pi r squared
+        //     dx, and nothing on screen said what dx WAS. It reads the slab width
+        //     the ONE summation already published; it is not recomputed here.
+        //   pi_area — M1 made visible instead of merely spoken. The wrong belief
+        //     is that spinning an area gives pi times that area; Rule 16a wants
+        //     the wrong expectation shown as its CONSEQUENCE before the real
+        //     mathematics, and a consequence that exists only in narration is not
+        //     shown at all.
+        V_settles: 1, dx: 1, pi_area: 1
     };
     var SR_GLOW_KEYS = {
         region: 1, curve: 1, inner_curve: 1, axis: 1, frame: 1, readout: 1, formula: 1,
@@ -76208,6 +76228,39 @@ export const FIELD_3D_RENDERER_CODE = `
         // (a frame that reads the authored value while the picker moved the global
         // is the explore-picker scar).
         if (window.PM_srB != null) hi = window.PM_srB;
+        // ── A CIRCLE_ARC DOES NOT EXIST OUTSIDE ITS OWN RADIUS, SO ITS DRAWN
+        //   DOMAIN IS DERIVED FROM THE PROFILE AND NEVER TAKEN ON TRUST.
+        //   S5 (the PRIMARY AHA) sweeps r from 1.00 to 2.00 while the domain is a
+        //   static authored pair, and only the HIGH end has a live override
+        //   (PM_srB) — so no authorable domain tracks a swept radius. Authored at
+        //   the widest reach [-2, 2], every r < 2 put the sampler outside the arc,
+        //   where srF returns NON-FINITE by design. Both consumers coerce that to
+        //   zero (srWriteTube and srWriteSurface, "if (!isFinite(R)) R = 0"), so
+        //   the state rendered a FLAT LINE running out to +/-2 where no curve
+        //   exists — a drawn claim that is false — while srExactVolume returned
+        //   NaN and the comparison readout the whole state exists for printed the
+        //   em-dash placeholder. THE NUMBER SURVIVED AND THE PICTURE DID NOT:
+        //   measured over all 101 reachable radii at the authored n = 20 000, the
+        //   disc total still matched (4/3)pi r cubed to 8.378e-8 on BOTH domains.
+        //   An assertion on the sum can therefore never see this defect, which is
+        //   why the gate section paired with this fix scores the DRAWN SAMPLES and
+        //   the exact-volume readout instead.
+        //
+        //   DERIVED, NOT AUTHORED, for the reason the vg cross-label fix chose:
+        //   a domain and a profile that are authored independently are one slip
+        //   apart from disagreeing, and taking the intersection makes them
+        //   incapable of it. It CLAMPS rather than replaces, so a deliberately
+        //   narrow authored window (a quarter arc) survives untouched and only an
+        //   over-reaching one is pulled back to the support [x0 - r, x0 + r].
+        var op = sr.outer;
+        if (op && op.family === "circle_arc") {
+            var lr = srOuter(sr);                        // the LIVE radius, not the authored one
+            var cx = (lr.x0 != null) ? lr.x0 : 0, rr = lr.r;
+            if (isFinite(rr) && rr > 0) {
+                if (lo < cx - rr) lo = cx - rr;
+                if (hi > cx + rr) hi = cx + rr;
+            }
+        }
         return [lo, hi];
     }
     function srOuter(sr) {
@@ -76569,6 +76622,23 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     function buildSolidOfRevolution(config) {
+        // The fleet's overlay ink, declared LOCALLY exactly as all 149 other uses
+        // in this renderer are — every scenario builder carries its own local
+        // textColor, because there is no shared one. This block used the name
+        // twice and declared it NOWHERE, so buildSolidOfRevolution threw
+        // "ReferenceError: textColor is not defined" on its FIRST line of DOM
+        // work and the scenario never started: PM_simTimeMs stayed at 0 and THE
+        // EYE aborted the capture rather than photograph an arbitrary phase.
+        //
+        // IT SHIPPED THROUGH 217 GATE ASSERTIONS AND 32 NEGATIVE CONTROLS,
+        // because every one of them runs the PURE helpers in node — the gate
+        // pulls function bodies out of the template literal by brace matching
+        // precisely so it needs no browser. buildSolidOfRevolution touches DOM
+        // and THREE, so it was the one function the gate could not call, and no
+        // concept authored the scenario, so nothing else ever called it either.
+        // A29's rule in a third costume: the evidence was strong about the half
+        // that could not fail this way. Section 15 now EXECUTES this function.
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
         // 1. the DOM surfaces — every one a body child with inline position:fixed,
         //    which is exactly what the generic Rule-39f widget engine discovers, so
         //    the teacher toggles cost no wiring. data-wg-label names each one.
@@ -76896,6 +76966,9 @@ export const FIELD_3D_RENDERER_CODE = `
             SR_PUB.volume = res.volume;
             SR_PUB.n_drawn = res.n_drawn;
             SR_PUB.kind = kind;
+            // the slab width, PUBLISHED by the pass that placed the slabs rather
+            // than re-divided by the HUD — the same SR-D3 property as the total.
+            SR_PUB.du = res.du;
         } else if (sr.mode === "slice") {
             // S3's ONE travelling disc. It is a placement, not a sum: the state
             // teaches what a single face IS and publishes no volume at all, so a
@@ -77023,6 +77096,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 lines.push("n = " + String(SR_PUB.n != null ? SR_PUB.n : 0));
             } else if (k === "V_exact") {
                 lines.push("V = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "V_settles") {
+                lines.push("settles on = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "pi_area") {
+                var Aw = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
+                lines.push("\\u03C0 \\u00D7 area = " + srFmt(Math.PI * Aw, 4));
+            } else if (k === "dx") {
+                // no slab exists until a pass has placed one, and a width printed
+                // from an authored n the picture never drew is the provenance
+                // split SR-D5 exists against. Silent until published.
+                if (SR_PUB.du != null) lines.push("\\u0394x = " + srFmt(SR_PUB.du, 4));
             } else if (k === "theta") {
                 lines.push("\\u03B8 = " + srFmt(SR_PUB.theta_deg != null ? SR_PUB.theta_deg : 0, 0) + "\\u00B0");
             } else if (k === "x_cut") {

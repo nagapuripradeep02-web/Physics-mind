@@ -337,7 +337,41 @@ export function deriveMotionExpectations(
             const srMotion = state ? asObj(state.sr) : null;
             if (srMotion) {
                 if (srMotion.mode === 'explore') { out[stateId] = false; continue; }
-                // guided: fall through to the reveal_hold classification.
+                // ── THE GUIDED BEATS ARE NOW DECLARED, because "fall through" left
+                //   D5 skipped on ALL of them and THE EYE said so in its own words:
+                //   "MOTION GATE NEVER RAN ... ZERO automated motion coverage: a
+                //   state whose animation is dead would report exactly the same
+                //   green as one that works." The original note feared D5
+                //   false-failing a settled beat for standing still — but D5 reads
+                //   the DENSE series from a fresh live t=0, not the settled reveal
+                //   pin, so a state that ramps really does move pixels.
+                //
+                //   MEASURED before declaring, on solids_of_revolution's first run
+                //   (289 dense frames), as max adjacent canvas diff against D5's
+                //   0.1% floor:
+                //     S1 1.15%  S2 6.47%  S3 1.39%  S4 0.47%  S5 0.59%
+                //     S6 4.65%  S7 2.46%  S8 1.12%   — tightest is S4 at 4.7x the
+                //   floor; the explore sandbox measures 0.00% and stays declared
+                //   static. Nothing here is a guess about what the pixels do.
+                //
+                //   Keyed on the DRIVERS rather than blanket-true, mirroring the vg
+                //   branch above: a future sr state that authors no driver at all
+                //   still falls through to reveal_hold instead of being asserted to
+                //   move. The reveal counts only when its window is long enough to
+                //   BE a beat — S1's curve draw is 4800ms and its region fill
+                //   7000ms, while S3-S8 author curve_ms: 1 as an instant show and
+                //   carry their motion in a ramp instead.
+                const srDiscs = asObj(srMotion.discs);
+                const srCam = Array.isArray(srMotion.camera_steps) ? srMotion.camera_steps : [];
+                const srRv = asObj(srMotion.reveal);
+                const revealIsABeat = !!srRv && ['frame', 'curve', 'region']
+                    .some(k => asNum(srRv[k + '_ms'], 0) >= 250);
+                if (srMotion.theta_ramp || srMotion.param_ramp || srMotion.contrast
+                    || (srDiscs && srDiscs.n_ramp) || srCam.length > 1 || revealIsABeat) {
+                    out[stateId] = true; continue;
+                }
+                // a guided beat that authors no driver at all: fall through to the
+                // reveal_hold classification, the same honest exception vg keeps.
             }
             // vector_geometry_3d (MATHEMATICS, prefix `vg`). The scenario had NO
             // entry here at all, so every one of its states resolved to
