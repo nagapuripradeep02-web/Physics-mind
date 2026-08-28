@@ -82,7 +82,7 @@
               "type": "stroke",
               "id": "sf4_back_bond",
               "d": "M 163 113 L 209 93",
-              "ms": 715,
+              "ms": 720,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -90,7 +90,7 @@
               "type": "stroke",
               "id": "sf4_lone_pair",
               "d": "M 106 109 L 109 112 L 106 115 L 103 112 Z M 106 123 L 109 126 L 106 129 L 103 126 Z",
-              "ms": 490
+              "ms": 480
             },
             {
               "type": "label",
@@ -211,7 +211,7 @@
               "type": "stroke",
               "id": "sf6_back_bond",
               "d": "M 160 107 L 183 86",
-              "ms": 445,
+              "ms": 440,
               "pen": "pencil",
               "wipe": "x"
             },

@@ -176,19 +176,19 @@
               "type": "stroke",
               "id": "cat_axes",
               "d": "M 75 25 L 75 200 L 400 200",
-              "ms": 7150
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cat_curve_without",
               "d": "M 100 125 L 135 125 C 170 125 195 48 225 45 C 258 42 275 170 310 170 L 370 170",
-              "ms": 5360
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "cat_curve_with",
               "d": "M 100 125 L 135 125 C 168 125 193 88 225 85 C 260 82 275 170 310 170 L 370 170",
-              "ms": 4930,
+              "ms": 4500,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -196,7 +196,7 @@
               "type": "stroke",
               "id": "cat_level_reactants",
               "d": "M 77 125 L 470 125",
-              "ms": 5620,
+              "ms": 4500,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -220,13 +220,13 @@
               "type": "stroke",
               "id": "cat_arrow_without",
               "d": "M 460 125 L 460 45 M 456 51 L 460 45 L 464 51 M 456 119 L 460 125 L 464 119",
-              "ms": 1540
+              "ms": 1550
             },
             {
               "type": "stroke",
               "id": "cat_arrow_with",
               "d": "M 430 125 L 430 85 M 426 91 L 430 85 L 434 91 M 426 119 L 430 125 L 434 119",
-              "ms": 970
+              "ms": 980
             },
             {
               "type": "label",
