@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antimicrobials",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are antimicrobials?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and the three sub-classes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 5. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 5): the printed answer defines antimicrobials and gives salvarsan and prontosil, but never says that antimicrobial is the umbrella class and that antibiotics, antiseptics and disinfectants are all antimicrobials. Without that sentence a student cannot tell this question apart from the antibiotic question printed one item later, and the two answers read the same. The sentence is added here. The card also names the boundary the book leaves out: an antibacterial acts on bacteria only, while an antimicrobial covers bacteria, fungi and viruses."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An antimicrobial is a drug that kills a",
+          "micro-organism, stops its growth, or",
+          "stops its harmful action.",
+          "The micro-organisms covered are bacteria,",
+          "fungi, viruses and other parasites."
+        ],
+        "why": "The definition has to name all three actions, because a drug that only stops growth is still an antimicrobial. It also has to name more than bacteria: a drug that acts on bacteria alone is an antibacterial, and antimicrobial is the wider word.",
+        "common_mistakes": [
+          "Writing that an antimicrobial acts only on bacteria. It covers fungi and viruses as well.",
+          "Writing only that it kills. Stopping the growth is enough to make a drug an antimicrobial."
+        ],
+        "memory_tip": "Anti plus microbe: the widest word of the group, wider than antibacterial.",
+        "margin_note": "Name at least two kinds of micro-organism. A definition that says bacteria only is incomplete."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and the three sub-classes",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: salvarsan, prontosil, penicillin,",
+          "0.2% phenol and formalin.",
+          {
+            "text": "Antibiotics, antiseptics and disinfectants",
+            "style": "boxed"
+          },
+          "are all antimicrobials.",
+          "So an antimicrobial answer should name",
+          "these three sub-classes, not just drugs."
+        ],
+        "why": "Antimicrobial is the class name; antibiotic, antiseptic and disinfectant are the three groups inside it. Writing the three groups is what separates this answer from the antibiotic answer, because the examiner is looking for the wider word here.",
+        "common_mistakes": [
+          "Naming only antibiotics. Antiseptics and disinfectants are antimicrobials too.",
+          "Confusing this with the antibiotic question. An antibiotic acts in low concentration and is only one sub-class; antimicrobial is the whole class."
+        ],
+        "memory_tip": "One class, three groups: antibiotic, antiseptic, disinfectant.",
+        "margin_note": "Naming the three sub-classes is worth more here than a long list of drugs."
+      }
+    ]
+  },
+  "insider_note": "This question and the antibiotic question look alike, and answers get swapped. The second mark here is for the wider word: name the three sub-classes, antibiotic, antiseptic and disinfectant."
+}

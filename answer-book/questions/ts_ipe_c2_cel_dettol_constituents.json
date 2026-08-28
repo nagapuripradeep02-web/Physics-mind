@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_dettol_constituents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the main constituents in dettol?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two constituents",
+      "marks": 1
+    },
+    {
+      "label": "What they are and what dettol is",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 13, worded \"What are the main constituent in dettol?\" The singular \"constituent\" against a two-part answer is the book's slip and the question text here is tidied to \"constituents\". Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 13): the printed answer names chloroxylenol and terpineol but never says what chloroxylenol is or what class dettol belongs to. Chloroxylenol is 4-chloro-3,5-dimethylphenol, a chlorine substituted phenol, and dettol is an antiseptic; both are added, and the antiseptic statement keeps this card consistent with ts_ipe_c2_cel_antiseptics, which lists dettol as an example. PRODUCT NAME: dettol is a trade name and is used here only because the printed question asks for it by name."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constituents",
+        "kind": "text",
+        "label": "The two constituents",
+        "marks": 1,
+        "mark_note": "The two names",
+        "lines": [
+          "The main constituents of dettol are",
+          "chloroxylenol and terpineol,",
+          "dissolved in a suitable solvent."
+        ],
+        "why": "The question asks for the constituents, so the two names are the whole of the first mark. The solvent is part of the answer because dettol is sold as a solution and not as either compound on its own.",
+        "common_mistakes": [
+          "Naming only chloroxylenol. Terpineol is the second constituent and both are wanted.",
+          "Writing phenol instead of chloroxylenol. Chloroxylenol is a chlorine substituted phenol, not phenol itself."
+        ],
+        "memory_tip": "Two names and a solvent: chloroxylenol and terpineol.",
+        "margin_note": "Both names are needed for this mark. Add the words in a suitable solvent."
+      },
+      {
+        "id": "s2_what_they_are",
+        "kind": "boxed_final",
+        "label": "What they are and what dettol is",
+        "marks": 1,
+        "mark_note": "Their nature and class",
+        "lines": [
+          "Chloroxylenol is 4-chloro-3,5-dimethyl",
+          "phenol, a chlorine substituted phenol.",
+          {
+            "text": "Dettol is an antiseptic.",
+            "style": "boxed"
+          },
+          "It is applied on skin, cuts and wounds.",
+          "It is not a disinfectant, because a",
+          "disinfectant goes on a non-living surface."
+        ],
+        "why": "Chloroxylenol is a phenol with a chlorine atom and two methyl groups on the ring, and phenols in low concentration are antiseptics, so the chemical name explains why dettol acts the way it does. Naming the class also answers the follow-up question the examiner asks next.",
+        "common_mistakes": [
+          "Calling dettol a disinfectant. It is applied on living tissue, so it is an antiseptic.",
+          "Writing the chemical name with the wrong numbers. It is 4-chloro-3,5-dimethylphenol."
+        ],
+        "memory_tip": "A phenol with one chlorine and two methyl groups, used on skin, so it is an antiseptic.",
+        "margin_note": "The word antiseptic finishes this mark. The full chemical name is extra and is not needed for it."
+      }
+    ]
+  },
+  "insider_note": "The two names are the first mark and are easy. The second mark is for the class: dettol is an antiseptic, because it is applied on living tissue."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_tranquilisers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are tranquilizers? Give an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 3. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 3): the printed answer gives \"Ex: Valium and serotonin\". Valium is a genuine tranquilliser. Serotonin is not a drug at all; it is a neurotransmitter the body itself produces, and a low level of it is one cause of depression, so the drugs used are the ones that raise its level. The card keeps valium, adds equanil, chlordiazepoxide and meprobamate, and states plainly what serotonin is. The book itself prints the structure of serotonin in SAQ 3 of this same unit without ever calling it a drug there either, so the two places disagree. SPELLING: the book prints \"tranquilizers\" in the question and \"traquilizers\" (a typo, one letter missing) in the answer; the question text on this card keeps the book's spelling of the question, and the answer uses tranquilisers throughout."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Tranquilisers are drugs used to treat",
+          "stress, anxiety and mental illness.",
+          "They act on the central nervous system.",
+          "Some of them also produce sleep."
+        ],
+        "why": "The mark is for naming what the drug treats and where it acts. Stress and mental illness name the use; the central nervous system names the site. Not every tranquilliser produces sleep, so that part is written as \"some of them\" and not as part of the definition.",
+        "common_mistakes": [
+          "Confusing a tranquilliser with an analgesic. A tranquilliser treats stress; an analgesic reduces pain.",
+          "Writing that all tranquillisers produce sleep. Only the hypnotic ones, such as the barbiturates, do."
+        ],
+        "memory_tip": "Tranquil means calm: these drugs treat stress, not pain.",
+        "margin_note": "Name the use and the site of action. Both together are what earns this mark."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "Ex: valium (diazepam)",
+            "style": "boxed"
+          },
+          "Others are equanil, chlordiazepoxide",
+          "and meprobamate.",
+          "The barbiturates veronal, amytal and",
+          "luminal are also tranquilisers.",
+          "Serotonin is a neurotransmitter the body",
+          "produces. It is not a manufactured drug."
+        ],
+        "why": "The question asks for one example, so valium alone is enough for the mark. The extra names are written because the same list is asked for in the barbiturate question of this unit. Serotonin is corrected here: it is a substance the body produces, and the drugs used raise its level rather than being serotonin itself.",
+        "common_mistakes": [
+          "Writing serotonin as an example of a tranquilliser drug. It is a neurotransmitter the body produces.",
+          "Writing a brand name with no chemical name. Valium is the common name for diazepam; give one of the two."
+        ],
+        "memory_tip": "Valium is the one name to remember; the barbiturates are the sleep producing members of the same class.",
+        "margin_note": "The question asks for one example, so valium alone finishes this mark."
+      }
+    ]
+  },
+  "insider_note": "The question asks for one example, so valium is enough. Do not write serotonin as the drug; it is a substance the body produces, and writing it costs the example mark."
+}

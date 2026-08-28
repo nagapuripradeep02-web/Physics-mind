@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antiseptics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are antiseptics? Give example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and the concentration boundary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 7. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 7 and VSAQ 8): the two printed answers are almost the same sentence. VSAQ 7 gives \"These are chemical compounds that kill (or) prevent the growth of micro-organisms. Dettol, Iodoform. etc.\" and VSAQ 8 gives \"Chemical compounds used for killing (or) preventing the growth of micro-organisms. Ex: Formalin and 1% Phenol solution.\" Nothing in either definition separates the two classes, so a student who learns them cannot answer either question correctly. The distinction is where the chemical is used: an antiseptic goes on living tissue, a disinfectant on a non-living surface. The book prints \"1% Phenol\" under disinfectants without ever saying that 0.2% phenol is an antiseptic, which is the one example that shows the same compound changing class with its concentration. Both facts are added, on this card and on ts_ipe_c2_cel_disinfectants, and the two cards are written to agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Antiseptics are chemicals that kill",
+          "micro-organisms or stop their growth.",
+          "They are applied on living tissue such as",
+          "skin, wounds and cuts.",
+          "They are not taken by mouth."
+        ],
+        "why": "The action of an antiseptic and of a disinfectant is the same, so the action alone cannot earn the mark. What separates them is where the chemical is applied, and \"living tissue\" is the phrase that makes this definition an antiseptic definition and not a disinfectant one.",
+        "common_mistakes": [
+          "Writing the definition without saying where it is applied. That same sentence also defines a disinfectant.",
+          "Writing that an antiseptic is swallowed. It is applied on the skin, not taken by mouth."
+        ],
+        "memory_tip": "Antiseptic goes on living tissue; disinfectant goes on a non-living surface.",
+        "margin_note": "The words living tissue are the whole mark. Without them this reads as a disinfectant answer."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and the concentration boundary",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Ex: dettol, iodoform, bithionol,",
+          "tincture of iodine, 0.2% phenol solution.",
+          {
+            "text": "Phenol: 0.2% antiseptic, 1% disinfectant",
+            "style": "boxed"
+          },
+          "So the same compound changes class with",
+          "its concentration.",
+          "Bithionol is added to soaps to give them",
+          "antiseptic properties."
+        ],
+        "why": "Phenol is the standard example asked in both questions, because a dilute solution is safe enough for skin while a stronger one is not. Writing the two concentrations side by side answers the antiseptic question and the disinfectant question at the same time.",
+        "common_mistakes": [
+          "Giving formalin as an antiseptic. Formalin is a disinfectant; it is too harmful for living tissue.",
+          "Writing phenol as an antiseptic with no concentration. The concentration is what makes the statement true."
+        ],
+        "memory_tip": "Phenol at 0.2 per cent is an antiseptic; at 1 per cent it is a disinfectant.",
+        "margin_note": "One example finishes this mark. The 0.2% and 1% phenol line is the one worth writing."
+      }
+    ]
+  },
+  "insider_note": "The antiseptic and disinfectant questions are marked against each other. Write where the chemical is applied, living tissue here, and give the 0.2% and 1% phenol pair; that one line answers both questions."
+}

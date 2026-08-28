@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antifertility_drugs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are anti fertility drugs? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples and what they are",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 9. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 9): the printed answer gives \"Norethindrone, Ethynylestradiol. Etc.\" with no statement of what either compound is. Norethindrone is a synthetic derivative of progesterone and ethynylestradiol, also called novestrol, is a synthetic derivative of oestrogen, and a birth control pill is a mixture of the two. Those facts are added, because without them the two names are only spellings to memorise and the examiner's follow-up question cannot be answered."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Antifertility drugs are chemical",
+          "substances used to prevent pregnancy",
+          "in women.",
+          "They are synthetic compounds that change",
+          "the balance of the natural hormones."
+        ],
+        "why": "The mark is for saying what the drug prevents and how. Preventing pregnancy names the use; changing the hormone balance names the way it works, and it is the sentence that leads into the two examples.",
+        "common_mistakes": [
+          "Writing that an antifertility drug ends a pregnancy. It prevents one from starting.",
+          "Leaving out the word synthetic. The drugs are made in a laboratory, not taken from the body."
+        ],
+        "memory_tip": "Anti plus fertility: synthetic hormones used to prevent pregnancy.",
+        "margin_note": "Write prevent pregnancy and the word hormones. Both together finish this mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples and what they are",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: norethindrone and ethynylestradiol",
+            "style": "boxed"
+          },
+          "Ethynylestradiol is also called novestrol.",
+          "Norethindrone is a synthetic derivative",
+          "of progesterone.",
+          "Ethynylestradiol is a synthetic derivative",
+          "of oestrogen.",
+          "A birth control pill contains both."
+        ],
+        "why": "The two examples are not two drugs of the same kind. One is a progesterone derivative and the other an oestrogen derivative, and a pill contains the two together because the pair is what changes the hormone balance. Writing which parent hormone each comes from is the line that finishes the answer.",
+        "common_mistakes": [
+          "Writing that norethindrone is an oestrogen derivative. It comes from progesterone; ethynylestradiol comes from oestrogen.",
+          "Giving only one example when the question says give examples. Both names are short and both should be written."
+        ],
+        "memory_tip": "One from progesterone, one from oestrogen, and the pill contains both.",
+        "margin_note": "Both names are wanted here because the question says examples. Naming the parent hormone secures the mark."
+      }
+    ]
+  },
+  "insider_note": "Two names alone usually earn the mark, but the follow-up question is what each one is. Write that norethindrone comes from progesterone and ethynylestradiol from oestrogen; it costs one line."
+}

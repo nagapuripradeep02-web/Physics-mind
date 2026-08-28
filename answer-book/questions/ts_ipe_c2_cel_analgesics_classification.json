@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_analgesics_classification",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are analgesics? How are they classified? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two types named",
+      "marks": 1
+    },
+    {
+      "label": "Narcotic analgesics",
+      "marks": 1
+    },
+    {
+      "label": "Non-narcotic analgesics",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.106 as SAQ 1. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK WORDING (book p.106, SAQ 1): the printed answer reads \"The drugs which reduce pain without causing disturbances of nervous system\". The standard wording is longer and is used here: without causing loss of consciousness, mental confusion, loss of coordination or any other disturbance of the nervous system. BOOK ERROR: the printed answer says \"Narcotic means drowsiness\". Narcotic comes from a word meaning to benumb; in medicinal doses these drugs relieve pain and produce sleep, and in large doses they produce stupor, coma and even death. The card gives the effect rather than the false word origin. BOOK SLIP: the printed answer calls heroin an alkaloid along with morphine and codeine. Morphine and codeine are alkaloids obtained from the opium poppy; heroin is diacetylmorphine, made from morphine in the laboratory, so it is a derivative of an alkaloid and not one itself. The card writes them as a group of morphine and its derivatives. BOOK GAP: the book never separates an analgesic from an antipyretic, although aspirin and paracetamol are both. That boundary is added on the last step."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemistry in Everyday Life — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Analgesics are drugs that reduce or",
+          "remove pain without causing loss of",
+          "consciousness, mental confusion, loss of",
+          "coordination, or any other disturbance",
+          "of the nervous system.",
+          "Ex: morphine, aspirin, paracetamol."
+        ],
+        "why": "The whole definition rests on the second half. Any strong drug can stop pain by putting a patient to sleep; an analgesic is defined by removing the pain while leaving the patient awake and able to think and move. That is why the list of things it must not cause is written out.",
+        "common_mistakes": [
+          "Writing only that it reduces pain. The words without disturbing the nervous system are half of this mark.",
+          "Confusing an analgesic with a tranquilliser. An analgesic reduces pain; a tranquilliser treats stress."
+        ],
+        "memory_tip": "Pain gone, patient awake: that pair of facts is the definition.",
+        "margin_note": "Write both halves of the definition. Reduce pain alone is usually half this mark."
+      },
+      {
+        "id": "s2_classification",
+        "kind": "text",
+        "label": "The two types named",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Analgesics are of two types.",
+          {
+            "text": "1) Narcotic analgesics (addictive)",
+            "style": "indent"
+          },
+          {
+            "text": "2) Non-narcotic analgesics (not addictive)",
+            "style": "indent"
+          },
+          "The two are separated by whether the",
+          "drug is habit forming."
+        ],
+        "why": "The question says \"how are they classified\", so the two names and the basis of the classification are a mark on their own. The basis is whether the drug is habit forming, and stating it is what turns two labels into a classification.",
+        "common_mistakes": [
+          "Giving the two names with no basis of classification. The words habit forming or addictive are what earn this mark.",
+          "Writing three or four types. There are two."
+        ],
+        "memory_tip": "Two types, one test: is the drug habit forming or not?",
+        "margin_note": "Number the two types and write the basis in one line. The examiner counts two headings here."
+      },
+      {
+        "id": "s3_narcotic",
+        "kind": "text",
+        "label": "Narcotic analgesics",
+        "marks": 1,
+        "mark_note": "Narcotic type",
+        "lines": [
+          "Narcotic analgesics: these slow down the",
+          "central nervous system.",
+          "In medicinal doses they relieve pain and",
+          "produce sleep; in large doses they",
+          "produce stupor, coma and even death.",
+          "They are habit forming, so they are given",
+          "only under medical control.",
+          "Ex: morphine and its derivatives, heroin",
+          "and codeine."
+        ],
+        "why": "Morphine is an alkaloid obtained from the opium poppy, and heroin and codeine are made from it, so the whole group is written as morphine and its derivatives. The doses matter: the same compound relieves pain in a small dose and causes coma in a large one, and that is why these drugs are controlled.",
+        "common_mistakes": [
+          "Writing aspirin here. Aspirin is a non-narcotic analgesic.",
+          "Writing that narcotic means drowsiness. It means to benumb; the drowsiness is one effect, not the meaning."
+        ],
+        "memory_tip": "Morphine, heroin, codeine: one parent and its two derivatives, all habit forming.",
+        "margin_note": "Two examples and the words habit forming finish this mark."
+      },
+      {
+        "id": "s4_non_narcotic",
+        "kind": "boxed_final",
+        "label": "Non-narcotic analgesics",
+        "marks": 1,
+        "mark_note": "Non-narcotic type",
+        "lines": [
+          "Non-narcotic analgesics: these are not",
+          "habit forming and are used for mild pain",
+          "such as headache and backache.",
+          {
+            "text": "Ex: aspirin and paracetamol",
+            "style": "boxed"
+          },
+          "Aspirin also brings a high temperature",
+          "down, so it is an antipyretic as well.",
+          "An analgesic reduces pain; an antipyretic",
+          "reduces fever. Morphine does only the",
+          "first, aspirin does both."
+        ],
+        "why": "Aspirin and paracetamol are the two names every paper expects here. The closing lines separate two classes that students often confuse: an analgesic acts on pain and an antipyretic acts on a raised body temperature. Aspirin belongs to both classes, morphine only to the first, and that pair of facts is what makes the boundary clear.",
+        "common_mistakes": [
+          "Writing that every analgesic reduces fever. Morphine does not; aspirin does.",
+          "Writing paracetamol as a narcotic. It is non-narcotic and is not habit forming."
+        ],
+        "memory_tip": "Aspirin does two jobs, pain and fever; morphine does only pain.",
+        "margin_note": "Two examples finish this mark. The antipyretic line is the one that answers the follow-up question."
+      }
+    ]
+  },
+  "insider_note": "Four parts, one mark each: the definition, the two types with the basis, the narcotic group with examples, the non-narcotic group with examples. A student who writes the definition and a list of drug names usually earns two of the four, because the basis of the classification is missing."
+}

@@ -1,0 +1,511 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_drug_structures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Draw the structures of the following: i) Serotonin ii) Bithionol iii) Chloramphenicol iv) Saccharin",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Serotonin",
+      "marks": 1
+    },
+    {
+      "label": "Bithionol",
+      "marks": 1
+    },
+    {
+      "label": "Chloramphenicol",
+      "marks": 1
+    },
+    {
+      "label": "Saccharin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.106 as SAQ 3, with the four structures drawn beside it. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. FIGURE SCOPE: the printed question says \"Draw the structures\", so the drawings ARE the marked work and each diagram step carries one mark. The names written in words carry none and the first step is therefore marks 0. All four structures are drawn: each is a single ring or a fused pair of rings with substituents, and each fits inside the sixteen element limit with room to spare, so none of them had to be written as a named description instead. The renderer draws outlines only, so every ring is given its own clear lane and no bond passes behind a label. BOOK STRUCTURE CHECKED (book p.106): serotonin is drawn by the book with the OH on the benzene ring and CH2CH2NH2 on the five membered ring, with N-H at the bottom, which is correct for 5-hydroxytryptamine; bithionol is drawn as two dichlorophenol rings joined by one sulphur atom, which is correct for 2,2'-thiobis(4,6-dichlorophenol); chloramphenicol is drawn as O2N-C6H4-CH(OH)-CH(NHCOCHCl2)-CH2OH, which is correct; saccharin is drawn as a benzene ring fused to a five membered ring carrying C=O, NH and SO2, which is correct. No error was found in the four printed structures. SPELLING RECORDED: NCERT prints this antiseptic as \"bithional\"; the accepted name is bithionol, which is what this book prints and what the card uses. The book gives no chemical name for any of them; the names are added in the first step and in the figure captions so the drawings can be checked against something."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Chemistry in Everyday Life — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The four compounds in words",
+        "marks": 0,
+        "lines": [
+          "The four structures are drawn below.",
+          "In words:",
+          {
+            "text": "Serotonin: an indole ring, with OH at",
+            "style": "indent"
+          },
+          {
+            "text": "position 5 and CH₂CH₂NH₂ at position 3.",
+            "style": "indent"
+          },
+          {
+            "text": "Bithionol: two 4,6-dichlorophenol rings",
+            "style": "indent"
+          },
+          {
+            "text": "joined at position 2 by one S atom.",
+            "style": "indent"
+          },
+          {
+            "text": "Chloramphenicol: O₂N–C₆H₄–CH(OH)–",
+            "style": "indent"
+          },
+          {
+            "text": "CH(NHCOCHCl₂)–CH₂OH",
+            "style": "indent"
+          },
+          {
+            "text": "Saccharin: a benzene ring fused to a",
+            "style": "indent"
+          },
+          {
+            "text": "five membered C(=O)–NH–SO₂ ring.",
+            "style": "indent"
+          }
+        ],
+        "why": "The question asks for drawings, so these lines earn nothing on their own. They are written first because a structure drawn from a description is far easier to check than one drawn from memory, and because a student who runs out of time can still show the examiner that the compound was known.",
+        "common_mistakes": [
+          "Spending the whole answer on words. The question says draw, and only the drawings are marked.",
+          "Writing a molecular formula in place of a structure. C₇H₅NO₃S tells the examiner nothing about how the atoms are joined."
+        ],
+        "memory_tip": "Two of the four are fused ring systems, serotonin and saccharin; the other two are a single ring or a pair of rings joined by one atom.",
+        "margin_note": "These lines earn no marks. All four marks sit on the four drawings, so keep this part short."
+      },
+      {
+        "id": "s2_serotonin",
+        "kind": "diagram",
+        "label": "Serotonin",
+        "marks": 1,
+        "mark_note": "Structure",
+        "figure": {
+          "id": "cel_serotonin",
+          "width": 380,
+          "height": 250,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "ser_benzene",
+              "d": "M 140 85 L 105 65 L 70 85 L 70 125 L 105 145 L 140 125 Z",
+              "ms": 1600
+            },
+            {
+              "type": "stroke",
+              "id": "ser_benzene_doubles",
+              "d": "M 131 88 L 107 74 M 77 91 L 77 119 M 107 136 L 131 122",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "ser_five_ring",
+              "d": "M 140 85 L 178 73 M 178 73 L 201 105 M 201 105 L 186 126 M 166 133 L 140 125",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "ser_ring_double",
+              "d": "M 177 82 L 192 103",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "ser_nh_bond",
+              "d": "M 178 151 L 178 176",
+              "ms": 350
+            },
+            {
+              "type": "stroke",
+              "id": "ser_oh_bond",
+              "d": "M 66 86 L 48 88",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "ser_chain_bond",
+              "d": "M 179 70 L 194 55",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "ser_ho",
+              "x": 18,
+              "y": 90,
+              "text": "HO",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "ser_n",
+              "x": 172,
+              "y": 144,
+              "text": "N",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "ser_h",
+              "x": 172,
+              "y": 190,
+              "text": "H",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "ser_chain",
+              "x": 196,
+              "y": 46,
+              "text": "CH₂CH₂NH₂",
+              "ms": 600
+            },
+            {
+              "type": "label",
+              "id": "ser_caption",
+              "x": 30,
+              "y": 232,
+              "text": "Serotonin — OH at 5, side chain at 3",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Serotonin is 5-hydroxytryptamine. The skeleton is indole: a benzene ring fused to a five membered ring that carries the nitrogen atom. The OH goes on the benzene ring at position 5 and the CH₂CH₂NH₂ side chain goes on the five membered ring at position 3, next to the fused edge. Getting those two positions right is the whole of this mark.",
+        "common_mistakes": [
+          "Drawing a single benzene ring. Serotonin has two fused rings, and the nitrogen sits in the smaller one.",
+          "Putting the side chain on the benzene ring. It is attached to the five membered ring, at the carbon next to the fused edge."
+        ],
+        "memory_tip": "Indole plus one OH plus one CH₂CH₂NH₂: two rings, two substituents, nothing else.",
+        "margin_note": "Draw the fused pair of rings first, then add the N–H, then the two substituents. Label them; an unlabelled ring earns nothing."
+      },
+      {
+        "id": "s3_bithionol",
+        "kind": "diagram",
+        "label": "Bithionol",
+        "marks": 1,
+        "mark_note": "Structure",
+        "figure": {
+          "id": "cel_bithionol",
+          "width": 400,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "bit_rings",
+              "d": "M 100 72 L 135 92 L 135 132 L 100 152 L 65 132 L 65 92 Z M 296 72 L 331 92 L 331 132 L 296 152 L 261 132 L 261 92 Z",
+              "ms": 2800
+            },
+            {
+              "type": "stroke",
+              "id": "bit_doubles",
+              "d": "M 103 82 L 125 94 M 125 130 L 103 142 M 72 125 L 72 99 M 293 82 L 271 94 M 271 130 L 293 142 M 324 125 L 324 99",
+              "ms": 1700
+            },
+            {
+              "type": "stroke",
+              "id": "bit_bonds",
+              "d": "M 135 92 L 185 76 M 211 76 L 261 92 M 100 68 L 100 54 M 296 68 L 296 54 M 61 92 L 48 92 M 335 92 L 344 92 M 100 156 L 100 176 M 296 156 L 296 176",
+              "ms": 2300
+            },
+            {
+              "type": "label",
+              "id": "bit_oh_left",
+              "x": 88,
+              "y": 46,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_s",
+              "x": 192,
+              "y": 78,
+              "text": "S",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_oh_right",
+              "x": 284,
+              "y": 46,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_cl_left_up",
+              "x": 20,
+              "y": 98,
+              "text": "Cl",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_cl_left_low",
+              "x": 88,
+              "y": 196,
+              "text": "Cl",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_cl_right_up",
+              "x": 352,
+              "y": 98,
+              "text": "Cl",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_cl_right_low",
+              "x": 284,
+              "y": 196,
+              "text": "Cl",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "bit_caption",
+              "x": 40,
+              "y": 240,
+              "text": "Bithionol — two rings joined by one S",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Bithionol is 2,2'-thiobis(4,6-dichlorophenol). Each ring is a phenol: the OH is position 1, the sulphur bridge is at position 2 beside it, and the two chlorine atoms are at positions 4 and 6. The two rings are identical and are joined by one sulphur atom, so the picture is a mirror image about the sulphur.",
+        "common_mistakes": [
+          "Joining the two rings by an oxygen atom. The bridge is sulphur; the name begins with thio.",
+          "Drawing one chlorine atom per ring. Each ring carries two, at positions 4 and 6."
+        ],
+        "memory_tip": "Two of everything: two rings, two OH groups, four Cl atoms, one S in the middle.",
+        "margin_note": "Draw one ring completely, then copy it as a mirror image. Two OH and four Cl labels must all appear."
+      },
+      {
+        "id": "s4_chloramphenicol",
+        "kind": "diagram",
+        "label": "Chloramphenicol",
+        "marks": 1,
+        "mark_note": "Structure",
+        "figure": {
+          "id": "cel_chloramphenicol",
+          "width": 380,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "chl_ring",
+              "d": "M 148 110 L 129 77 L 91 77 L 72 110 L 91 143 L 129 143 Z",
+              "ms": 1700
+            },
+            {
+              "type": "stroke",
+              "id": "chl_ring_doubles",
+              "d": "M 139 107 L 127 86 M 93 86 L 81 107 M 98 137 L 122 137",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "chl_chain_bonds",
+              "d": "M 68 110 L 46 110 M 152 110 L 163 110 M 193 110 L 222 110 M 251 110 L 280 110",
+              "ms": 1400
+            },
+            {
+              "type": "stroke",
+              "id": "chl_side_bonds",
+              "d": "M 178 124 L 178 146 M 236 98 L 236 72",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "chl_no2",
+              "x": 12,
+              "y": 116,
+              "text": "O₂N",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "chl_ch1",
+              "x": 170,
+              "y": 116,
+              "text": "CH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "chl_ch2",
+              "x": 228,
+              "y": 116,
+              "text": "CH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "chl_ch2oh",
+              "x": 286,
+              "y": 116,
+              "text": "CH₂OH",
+              "ms": 500
+            },
+            {
+              "type": "label",
+              "id": "chl_oh",
+              "x": 170,
+              "y": 168,
+              "text": "OH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "chl_amide",
+              "x": 212,
+              "y": 64,
+              "text": "NHCOCHCl₂",
+              "ms": 600
+            },
+            {
+              "type": "label",
+              "id": "chl_caption",
+              "x": 40,
+              "y": 212,
+              "text": "Chloramphenicol — nitro group para",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Chloramphenicol is one benzene ring carrying a nitro group, joined to a three carbon chain. The nitro group and the chain are para to each other, at opposite corners of the ring. The middle carbon of the chain carries the NHCOCHCl₂ group, the first carbon carries OH and the last is CH₂OH. Two chlorine atoms are on the acid part of the amide, which is what the name records.",
+        "common_mistakes": [
+          "Putting the nitro group ortho or meta to the chain. It is para, at the opposite corner.",
+          "Writing NHCOCH₂Cl with one chlorine. There are two chlorine atoms: NHCOCHCl₂."
+        ],
+        "memory_tip": "Nitro at one end, CH₂OH at the other, and the two chlorine atoms on the amide in the middle.",
+        "margin_note": "The three carbon chain must show all three carbons with their own groups. Count the chlorine atoms before finishing."
+      },
+      {
+        "id": "s5_saccharin",
+        "kind": "diagram",
+        "label": "Saccharin",
+        "marks": 1,
+        "mark_note": "Structure",
+        "figure": {
+          "id": "cel_saccharin",
+          "width": 380,
+          "height": 275,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "sac_benzene",
+              "d": "M 146 89 L 110 68 L 74 89 L 74 131 L 110 152 L 146 131 Z",
+              "ms": 1700
+            },
+            {
+              "type": "stroke",
+              "id": "sac_benzene_doubles",
+              "d": "M 136 91 L 113 78 M 81 97 L 81 123 M 113 142 L 136 129",
+              "ms": 900
+            },
+            {
+              "type": "stroke",
+              "id": "sac_five_ring",
+              "d": "M 146 89 L 196 68 M 196 68 L 220 96 M 221 123 L 206 141 M 146 131 L 185 147",
+              "ms": 1500
+            },
+            {
+              "type": "stroke",
+              "id": "sac_carbonyl",
+              "d": "M 193 62 L 193 42 M 200 62 L 200 42",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "sac_sulphonyl",
+              "d": "M 187 164 L 159 190 M 183 160 L 155 186 M 205 165 L 231 190 M 209 160 L 235 185",
+              "ms": 1700
+            },
+            {
+              "type": "label",
+              "id": "sac_o_top",
+              "x": 192,
+              "y": 34,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "sac_nh",
+              "x": 225,
+              "y": 116,
+              "text": "NH",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "sac_s",
+              "x": 192,
+              "y": 158,
+              "text": "S",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "sac_o_left",
+              "x": 142,
+              "y": 204,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "sac_o_right",
+              "x": 240,
+              "y": 204,
+              "text": "O",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "sac_caption",
+              "x": 30,
+              "y": 248,
+              "text": "Saccharin — C(=O), NH and SO₂ ring",
+              "ms": 500,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Saccharin is a benzene ring fused to a five membered ring. Going round the small ring from the top fused carbon: a carbon carrying the double bonded oxygen, then NH, then the sulphur with its two double bonded oxygen atoms, and back to the lower fused carbon. The three oxygen atoms, one on carbon and two on sulphur, are what a student most often leaves out.",
+        "common_mistakes": [
+          "Drawing only one oxygen atom on the sulphur. There are two, and the group is SO₂.",
+          "Putting the NH next to the benzene ring. The order round the small ring is C(=O), then NH, then SO₂."
+        ],
+        "memory_tip": "Three oxygen atoms in all: one on the carbon, two on the sulphur, with the NH between them.",
+        "margin_note": "Count three oxygen atoms and one NH before finishing. That count is what the examiner checks first."
+      }
+    ]
+  },
+  "insider_note": "All four marks sit on the four drawings, one each, so draw before writing. Label every atom that is not a plain ring carbon; an unlabelled ring earns nothing, and the oxygen count on saccharin and the chlorine count on bithionol and chloramphenicol are what the examiner checks first."
+}

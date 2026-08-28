@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_soap_vs_synthetic_detergent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the difference between a soap and a synthetic detergent?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What each one is",
+      "marks": 1
+    },
+    {
+      "label": "The difference in hard water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 15. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 15): the printed answer gives only the hard water difference and never says what either substance is, so a student cannot say why the difference exists. What each one is chemically is added here, together with the reason: the calcium and magnesium salts of a soap are insoluble and form a scum, while the corresponding salts of a detergent are soluble. CROSS-CARD BOUNDARY: ts_ipe_c2_sc_micelle_cleaning_action, in unit 5 Surface Chemistry of this same subject, carries the micelle mechanism of cleaning. This card deliberately does not restate that mechanism; it stays on composition and hard water, which is what this question asks."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_each_is",
+        "kind": "text",
+        "label": "What each one is",
+        "marks": 1,
+        "mark_note": "Composition",
+        "lines": [
+          "A soap is the sodium or potassium salt of",
+          "a long chain fatty acid.",
+          "A synthetic detergent is the sodium salt",
+          "of a long chain alkyl hydrogen sulphate",
+          "or of an alkyl benzene sulphonate."
+        ],
+        "why": "The two substances clean in the same way, so the difference has to start from what they are made of. A soap carries a carboxylate head, and a detergent carries a sulphate or a sulphonate head; that one change of head group is the reason for every difference that follows.",
+        "common_mistakes": [
+          "Writing that a detergent is a kind of soap. The head group is different, so it is a different class.",
+          "Leaving out the words long chain. Both molecules need a long hydrocarbon chain to clean."
+        ],
+        "memory_tip": "Soap has a carboxylate head; a detergent has a sulphate or sulphonate head.",
+        "margin_note": "Naming the two head groups is what earns this mark. The chain is the same in both."
+      },
+      {
+        "id": "s2_hard_water",
+        "kind": "boxed_final",
+        "label": "The difference in hard water",
+        "marks": 1,
+        "mark_note": "The difference",
+        "lines": [
+          "Soap can be used for washing only in",
+          "soft water.",
+          "In hard water the Ca²⁺ and Mg²⁺ ions form",
+          "an insoluble scum with the soap.",
+          {
+            "text": "Detergents clean in soft and hard water",
+            "style": "boxed"
+          },
+          "because their calcium and magnesium salts",
+          "are soluble. They also clean in acid water."
+        ],
+        "why": "Hard water contains calcium and magnesium ions. With a soap these form calcium and magnesium salts of the fatty acid, which are insoluble and separate as a scum, so the soap is used up and does not clean. The corresponding sulphonate salts are soluble, so a detergent still cleans. A soap is also decomposed in acidic water, and a detergent is not.",
+        "common_mistakes": [
+          "Writing that a soap does not dissolve in hard water. The soap dissolves; it is the calcium and magnesium salt formed from it that is insoluble.",
+          "Naming the difference with no reason. The scum is what earns this mark."
+        ],
+        "memory_tip": "Hard water plus soap gives an insoluble scum; hard water plus detergent gives a soluble salt.",
+        "margin_note": "Write the words scum and Ca²⁺ and Mg²⁺. That is the difference the examiner marks."
+      }
+    ]
+  },
+  "insider_note": "The book's answer is only the hard water line. Add one sentence saying that calcium and magnesium ions form an insoluble scum with soap; that reason is what turns a stated difference into an explained one."
+}

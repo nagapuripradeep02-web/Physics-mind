@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_artificial_sweetening_agents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are artificial sweetening agents? Give examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 10. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.105, VSAQ 10): the printed answer says these substances \"have no calories\". That is true of saccharin and of sucralose, which leave the body unchanged, but it is not true of aspartame, which is a methyl ester of a dipeptide and is digested like any other peptide. Aspartame is about a hundred times sweeter than sugar, so the amount used is very small and the food energy it adds is negligible; the correct statement is little or no food energy, not none, and that is what this card writes. BOOK GAP: the book does not say that aspartame breaks down on heating, which is why it is limited to cold food and soft drinks, and it does not give the sweetness of any of the three. Both are added."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Artificial sweetening agents are chemical",
+          "substances used in place of sugar to make",
+          "food and drink sweet.",
+          "They add little or no food energy, so they",
+          "are used by patients with diabetes and by",
+          "people controlling body weight."
+        ],
+        "why": "Two things carry the definition: the substance replaces sugar, and it adds almost no food energy. The second point is the reason the class exists. Saccharin and sucralose leave the body unchanged and add none at all; aspartame is digested, but so little is used that the energy added is negligible.",
+        "common_mistakes": [
+          "Writing that every artificial sweetener gives no food energy at all. Aspartame is digested; the amount used is what makes the energy negligible.",
+          "Writing that they are natural sugars. They are synthetic compounds, not sugars."
+        ],
+        "memory_tip": "Sweet taste without the food energy: that is the whole reason for the class.",
+        "margin_note": "Write in place of sugar and little or no food energy. Those two phrases are the mark."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          {
+            "text": "Ex: saccharin, aspartame, sucralose",
+            "style": "boxed"
+          },
+          "Alitame is a fourth one.",
+          "Saccharin is about 550 times sweeter than",
+          "sugar and leaves the body unchanged.",
+          "Aspartame breaks down on heating, so it is",
+          "used in cold food and soft drinks only.",
+          "Sucralose is stable at cooking heat."
+        ],
+        "why": "The three examples are not interchangeable. Saccharin passes through the body unchanged, which is why it is given to patients with diabetes. Aspartame breaks down when it is heated, so it cannot be used in cooked food. Sucralose stays unchanged at cooking heat, which is why it replaces aspartame in baked food.",
+        "common_mistakes": [
+          "Writing that aspartame can be used in cooking. It breaks down on heating.",
+          "Writing sugar or honey as an example. Those are natural sweeteners, not artificial ones."
+        ],
+        "memory_tip": "Saccharin passes through unchanged, aspartame breaks down on heating, sucralose is unchanged by heating.",
+        "margin_note": "Two names finish this mark. Adding the heating point about aspartame costs one line and is often the follow-up question."
+      }
+    ]
+  },
+  "insider_note": "Do not write that these substances have no calories at all. Saccharin and sucralose add none, but aspartame is digested; the safe wording is little or no food energy."
+}

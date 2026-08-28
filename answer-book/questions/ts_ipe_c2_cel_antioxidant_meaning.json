@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_cel_antioxidant_meaning",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 14,
+    "name": "Chemistry in Everyday Life (Chemistry-II)"
+  },
+  "chapter": "Chemistry in Everyday Life",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is meant by antioxidant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How it acts, with examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Unit 14 (Chemistry in Everyday Life) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.105-106, printed chapter \"11. CHEMISTRY IN EVERYDAY LIFE\"; the book prints this question on book p.105 as VSAQ 12. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK GAP (book p.105, VSAQ 12): the printed answer says an antioxidant \"retard the action of oxygen on the food\" but does not say how, and it gives BHA and BHT without their full names. An antioxidant is more reactive towards oxygen than the food is, so it is oxidised first and the food is oxidised later; that mechanism is the mark at four marks and is written here. OVERLAP INSIDE THE UNIT: VSAQ 16 of this same unit asks for the names of the two most familiar antioxidants used as food additives, and it is authored as ts_ipe_c2_cel_two_familiar_antioxidants. The two cards are deliberately split: this one carries the definition and the mechanism, that one carries the two names in full with what they do. Neither restates the other's marked lines. BOUNDARY: a preservative acts against micro-organisms, an antioxidant against oxygen; the same sentence is on ts_ipe_c2_cel_food_preservatives."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Chemistry in Everyday Life — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An antioxidant is a chemical added to",
+          "food to slow down the action of oxygen",
+          "on it.",
+          "It keeps fats and oils from turning",
+          "rancid, so the food can be stored longer."
+        ],
+        "why": "Oxygen in the air oxidises the fat in food, and the products of that oxidation are what make the food rancid. An antioxidant slows that reaction down. Saying which part of the food is protected, the fats and oils, is what makes the definition specific.",
+        "common_mistakes": [
+          "Writing that an antioxidant kills bacteria. That is a preservative; an antioxidant acts against oxygen.",
+          "Writing that an antioxidant removes all the oxygen from the packet. It slows the reaction; it does not empty the packet."
+        ],
+        "memory_tip": "Anti plus oxidation: it slows the reaction of oxygen with the fat in the food.",
+        "margin_note": "Name oxygen and name fats and oils. Those two together are the mark."
+      },
+      {
+        "id": "s2_mechanism",
+        "kind": "boxed_final",
+        "label": "How it acts, with examples",
+        "marks": 1,
+        "mark_note": "Mechanism and examples",
+        "lines": [
+          {
+            "text": "It reacts with oxygen faster than the",
+            "style": "boxed"
+          },
+          "food does, so the food is oxidised later.",
+          "Ex: BHA and BHT.",
+          "Sulphur dioxide and the sulphite salts",
+          "are also antioxidants.",
+          "A preservative acts against microbes;",
+          "an antioxidant acts against oxygen."
+        ],
+        "why": "The antioxidant is more reactive towards oxygen than the fat is, so the oxygen reacts with the antioxidant first. The food is oxidised only after the antioxidant has been used up, which is why a small amount extends the storage life so much. Sulphur dioxide and the sulphite salts act in both ways, as preservatives against micro-organisms and as antioxidants against oxygen; they are the one overlap between the two classes.",
+        "common_mistakes": [
+          "Writing sodium benzoate or salt as an antioxidant. Those are preservatives.",
+          "Giving only the names with no mechanism. The words reacts with oxygen first are what earn this mark."
+        ],
+        "memory_tip": "The antioxidant is oxidised first, so the food is oxidised later.",
+        "margin_note": "Write the mechanism line and one example. The mechanism is the half that students leave out."
+      }
+    ]
+  },
+  "insider_note": "The definition alone is one mark. The second mark is for saying that the antioxidant reacts with oxygen before the food does, so write that line even when the question looks short."
+}
