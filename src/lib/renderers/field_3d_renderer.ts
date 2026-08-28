@@ -75729,7 +75729,14 @@ export const FIELD_3D_RENDERER_CODE = `
         //     the wrong expectation shown as its CONSEQUENCE before the real
         //     mathematics, and a consequence that exists only in narration is not
         //     shown at all.
-        V_settles: 1, dx: 1, pi_area: 1
+        V_settles: 1, dx: 1, pi_area: 1,
+        //   ring_area_wrong — M2 as a NUMBER instead of only a sentence. The
+        //     design asked for the true ring area to stand AGAINST the wrong one
+        //     (pi (R - r) squared, 3.0x too small at the labelled slice) and no
+        //     key computed that at all, so the contrast existed only in
+        //     narration. It computes directly from the geometry, like V_about_x,
+        //     which is what lets it share a frame with the value it refutes.
+        ring_area_wrong: 1
     };
     var SR_GLOW_KEYS = {
         region: 1, curve: 1, inner_curve: 1, axis: 1, frame: 1, readout: 1, formula: 1,
@@ -75784,6 +75791,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                     // bowl the y-axis revolution leaves
     var srDiscPool = null;          // capped cylinders — solid discs
     var srRingOutPool = null;       // open cylinders — a ring's outer wall
+    var srSliceRing = null;         // the ONE labelled annular slab (caps + walls)
     var srRingInPool = null;        // open cylinders — a ring's inner wall
 
     function srWarnStage(mode) {
@@ -76640,6 +76648,151 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < pool.meshes.length; i++) pool.meshes[i].visible = false;
     }
 
+    // ── THE LABELLED SLICE, DRAWN AS THE ANNULUS IT IS NAMED AS. ────────────
+    //   MEASURED DEFECT: on a compare state with an inner profile, the state
+    //   said "each slice is a ring" on its caption, its formula surface, its HUD
+    //   ring-area line and its narration, and drew a CLOSED SHELL plus a pooled
+    //   stack of open walls at every t. The annulus itself was on no frame.
+    //   It was not an authoring miss either. SR_MODES is one mode per state and
+    //   CLOSED (SR-D8), so "slice" and "compare" cannot be combined; and when the
+    //   two bounding curves MEET at both ends of the domain — which they do on
+    //   the concept that ships this — the closed solid exposes no ring at an end
+    //   face either. The named object was unreachable by every authored
+    //   combination, which is why the fix is here and not in the JSON.
+    //   So: no new mode and no new enum member. It is the ALREADY AUTHORED
+    //   slice_x, drawn, on the states that already carry an inner curve.
+    //   WHY IT CARRIES CAPS WHEN THE POOLED STACK DELIBERATELY DOES NOT. The
+    //   stack omits annular end caps because 240 more meshes buy a surface its
+    //   own neighbours occlude everywhere but the two ends. Here there is ONE
+    //   slab and the cap IS the point: a flat annular FACE with the hole punched
+    //   through it is what makes the word "ring" true on screen. The hole is
+    //   drawn by drawing nothing there, so what shows through it is the axis rod
+    //   and the tunnel behind it — which is how an eye reads a hole as a hole.
+
+    //   THE PURE HALF, so the gate can run it with no browser: does this state
+    //   draw a labelled annulus this frame, and with which radii? It returns
+    //   null for every state that does not, and that null IS the absent-field
+    //   identity — a compare or stack state with no slice_x takes the null path
+    //   and its frame is byte-identical to the one before this landed.
+    function srSliceRingPlan(sr, outer, inner, x0, x1, stackShow, wrongOn) {
+        if (!sr || !inner) return null;
+        if (sr.mode !== "compare" && sr.mode !== "stack") return null;
+        if (sr.slice_x == null) return null;
+        // the SAME beat the true stack rides, and never during the wrong-kind
+        // window: the ring must not appear beside the solid the state is still
+        // refuting, because it is the answer to that refutation.
+        if (!stackShow || wrongOn) return null;
+        var u = srClamp(srSliceX(sr, x0, x1), x0, x1);
+        var R = srF(outer, u), r = srF(inner, u);
+        if (!isFinite(R) || !isFinite(r)) return null;
+        if (r < 0) r = 0;
+        // where the two radii have MET there is no ring, and an annulus drawn
+        // there would claim a hole the solid does not have.
+        if (R - r <= 1e-6) return null;
+        var th = (sr.slice_thickness != null) ? sr.slice_thickness : 0.12;
+        return { u: u, R: R, r: r, th: th };
+    }
+
+    // A flat annulus whose two rims are REWRITTEN per frame (SR-D2): a
+    // RingGeometry fixes its radius RATIO at construction, and the ratio is
+    // exactly the quantity that has to move.
+    function srMakeAnnulus(color, opacity) {
+        var seg = SR_DISC_SEG, i;
+        var pos = new Float32Array((seg + 1) * 2 * 3);
+        var idx = [];
+        for (i = 0; i < seg; i++) {
+            var a = i * 2;
+            idx.push(a, a + 1, a + 3, a, a + 3, a + 2);
+        }
+        var g = new THREE.BufferGeometry();
+        g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        g.setIndex(idx);
+        var m = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        // the vertex array travels WITH the mesh, so the writer never goes back
+        // through the geometry to find the buffer it already owns.
+        return { mesh: new THREE.Mesh(g, m), pos: pos, material: m };
+    }
+    // vertex 2i is the inner rim and 2i+1 the outer rim of the SAME theta, so
+    // one expression drives the pair and a hole can never be written wider than
+    // the ring it is a hole in.
+    function srWriteAnnulus(an, R, r) {
+        var seg = SR_DISC_SEG, p = an.pos, i, th, cs, sn, o;
+        for (i = 0; i <= seg; i++) {
+            th = (i / seg) * Math.PI * 2;
+            cs = Math.cos(th); sn = Math.sin(th);
+            o = i * 6;
+            p[o] = r * cs; p[o + 1] = r * sn; p[o + 2] = 0;
+            p[o + 3] = R * cs; p[o + 4] = R * sn; p[o + 5] = 0;
+        }
+        var at = (an.mesh.geometry && an.mesh.geometry.attributes)
+            ? an.mesh.geometry.attributes.position : null;
+        if (at) at.needsUpdate = true;
+        if (an.mesh.geometry && an.mesh.geometry.computeBoundingSphere) an.mesh.geometry.computeBoundingSphere();
+    }
+    function srMakeSliceRing() {
+        var capA = srMakeAnnulus(SR_COLORS.disc, 0.92);
+        var capB = srMakeAnnulus(SR_COLORS.disc, 0.92);
+        var wallGeo = new THREE.CylinderGeometry(1, 1, 1, SR_DISC_SEG, 1, true);
+        var wallMat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(SR_COLORS.disc), transparent: true, opacity: 0.75,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        var wallOut = new THREE.Mesh(wallGeo, wallMat);
+        var wallIn = new THREE.Mesh(wallGeo, wallMat);
+        var grp = new THREE.Group();
+        grp.add(capA.mesh); grp.add(capB.mesh); grp.add(wallOut); grp.add(wallIn);
+        // DRAWN LAST, over the 0.60 stack it sits inside. Every SR mesh is
+        // transparent with depthWrite off, so an object left at renderOrder 0
+        // inside 120 ring walls composites away to almost nothing — the same
+        // saturation the explore region hit, answered the same way it was.
+        // renderOrder is NOT inherited from a group, so each mesh carries it.
+        capA.mesh.renderOrder = 6; capB.mesh.renderOrder = 6;
+        wallOut.renderOrder = 6; wallIn.renderOrder = 6;
+        grp.visible = false;
+        return {
+            group: grp, capA: capA, capB: capB, wallOut: wallOut, wallIn: wallIn,
+            wallMat: wallMat, baseCap: 0.92, baseWall: 0.75
+        };
+    }
+    // The slab is CENTRED on the labelled x, exactly as the slice mode centres
+    // its one travelling face, so the ring the HUD measures at x and the ring
+    // the eye sees at x are the same object.
+    function srPlaceSliceRing(sl, plan, ax, shiftX, fade) {
+        var f = srClamp01(fade), h = plan.th / 2;
+        sl.capA.material.opacity = sl.baseCap * f;
+        sl.capB.material.opacity = sl.baseCap * f;
+        sl.wallMat.opacity = sl.baseWall * f;
+        srWriteAnnulus(sl.capA, plan.R, plan.r);
+        srWriteAnnulus(sl.capB, plan.R, plan.r);
+        if (ax === "y") {
+            sl.capA.mesh.rotation.set(-Math.PI / 2, 0, 0);
+            sl.capB.mesh.rotation.set(-Math.PI / 2, 0, 0);
+            sl.capA.mesh.position.set(shiftX, plan.u - h, 0);
+            sl.capB.mesh.position.set(shiftX, plan.u + h, 0);
+            sl.wallOut.rotation.set(0, 0, 0);
+            sl.wallIn.rotation.set(0, 0, 0);
+            sl.wallOut.position.set(shiftX, plan.u, 0);
+            sl.wallIn.position.set(shiftX, plan.u, 0);
+        } else {
+            sl.capA.mesh.rotation.set(0, Math.PI / 2, 0);
+            sl.capB.mesh.rotation.set(0, Math.PI / 2, 0);
+            sl.capA.mesh.position.set(shiftX + plan.u - h, 0, 0);
+            sl.capB.mesh.position.set(shiftX + plan.u + h, 0, 0);
+            sl.wallOut.rotation.set(0, 0, Math.PI / 2);
+            sl.wallIn.rotation.set(0, 0, Math.PI / 2);
+            sl.wallOut.position.set(shiftX + plan.u, 0, 0);
+            sl.wallIn.position.set(shiftX + plan.u, 0, 0);
+        }
+        sl.wallOut.scale.set(plan.R, plan.th, plan.R);
+        sl.wallIn.scale.set(plan.r, plan.th, plan.r);
+        sl.wallIn.visible = (plan.r > 1e-9);
+        sl.group.visible = true;
+    }
+    function srHideSliceRing(sl) { if (sl) sl.group.visible = false; }
+
     // ── SR3 — THE TICKED FRAME as flat 3D geometry, in the revolution plane. ──
     //   It is NOT the cartesian_plane duplicate: in a 3D scene the mathematics
     //   coordinates ARE the world coordinates (one graph unit = one world unit,
@@ -76930,6 +77083,9 @@ export const FIELD_3D_RENDERER_CODE = `
         srRingInPool = srMakeDiscPool(SR_COLORS.inner, true, 0.60);
         srRingInPool.group.userData = { elementType: "sr_stack", id: "sr_ring_inner" };
         addToScene(srRingInPool.group);
+        srSliceRing = srMakeSliceRing();
+        srSliceRing.group.userData = { elementType: "sr_stack", id: "sr_slice_ring" };
+        addToScene(srSliceRing.group);
 
         var first = config.states && config.states[Object.keys(config.states)[0]];
         if (first && first.sr) applySolidOfRevolutionState(first);
@@ -77181,6 +77337,27 @@ export const FIELD_3D_RENDERER_CODE = `
             srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
         }
 
+        // ── THE LABELLED SLICE, on the same beat as the stack it belongs to.
+        var slPlan = srSliceRing
+            ? srSliceRingPlan(sr, outer, inner, x0, x1, srStk.show, wrongOn || kind === "radius_difference")
+            : null;
+        if (slPlan) {
+            srPlaceSliceRing(srSliceRing, slPlan, ax, srShiftX, srStk.fade);
+            // SR-D3 — the pass that PLACES the annulus publishes its radii and
+            // the HUD reads them, rather than evaluating the profile a second
+            // time: the ring on screen and the ring area printed beside it can
+            // never be taken at two different x.
+            SR_PUB.slice_x = slPlan.u;
+            SR_PUB.slice_R = slPlan.R;
+            SR_PUB.slice_r = slPlan.r;
+        } else {
+            srHideSliceRing(srSliceRing);
+        }
+        // PUBLISHED like every other live SR value, so a headless probe can read
+        // the drawn annulus with no scene handle (the convention of this block).
+        window.PM_srSliceRing = slPlan
+            ? { x: slPlan.u, R: slPlan.R, r: slPlan.r, th: slPlan.th } : null;
+
         // ── SR14 — THE MID-STATE CAMERA SCHEDULE. It is a straight REUSE of the
         //   shipped osCamScheduleAt (:62279 — declared @60714, implemented for
         //   orbital_shapes), not a clone: that function reads nothing but
@@ -77329,7 +77506,12 @@ export const FIELD_3D_RENDERER_CODE = `
             return tMs >= cueTriggerMs("sr_readout_" + k, rat[k]);
         }
         var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
-        var Rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+        // SR-D3 — when the frame has PLACED a labelled annulus, its radii are
+        // READ from that placement instead of evaluated a second time here.
+        // Identical numbers by construction, and structurally so rather than
+        // coincidentally: the drawn ring and the printed ring area cannot split.
+        var Rc = (SR_PUB.slice_R != null) ? SR_PUB.slice_R : srF(outer, xc);
+        var ric = (SR_PUB.slice_r != null) ? SR_PUB.slice_r : (inner ? srF(inner, xc) : 0);
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i];
             if (SR_READOUTS[k] !== 1) {
@@ -77353,8 +77535,14 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (k === "V_settles") {
                 lines.push("settles on = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
             } else if (k === "pi_area") {
+                // LABELLED AS THE BELIEF IT IS. Printed neutrally it read as an
+                // ordinary quantity standing beside a true face area, and with
+                // the sound off a student had no way to tell which of the two
+                // was being refuted — with the units silently disagreeing on top
+                // of that, since pi times an area is a VOLUME, not an area. The
+                // label now says both, in the vocabulary V_wrong already uses.
                 var Aw = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
-                lines.push("\\u03C0 \\u00D7 area = " + srFmt(Math.PI * Aw, 4));
+                lines.push("wrong volume (\\u03C0 \\u00D7 area) = " + srFmt(Math.PI * Aw, 4));
             } else if (k === "dx") {
                 // no slab exists until a pass has placed one, and a width printed
                 // from an authored n the picture never drew is the provenance
@@ -77374,6 +77562,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 lines.push("r = " + srFmt(ric, 3));
             } else if (k === "ring_area") {
                 lines.push("ring area = " + srFmt(Math.PI * (Rc * Rc - ric * ric), 4));
+            } else if (k === "ring_area_wrong") {
+                // WHY THIS ONE MAY STAND BESIDE WHAT IT REFUTES, WHEN V_n AND
+                // V_wrong MAY NOT. The mutual exclusion below exists for the
+                // contrast-ghost-co-resident scar: there the WRONG total reached
+                // Vn, a TRUE-LOOKING readout, and nothing on screen said which
+                // sum had produced it. That is a defect of the LABEL, not of
+                // co-residence. A key whose own label says "wrong" cannot be read
+                // as the true one, so the refutation and the thing it refutes may
+                // share a frame — which is the only way a contrast is a contrast
+                // at all. It is self-computing (like V_about_x) and never reads
+                // SR_PUB.volume, so no published total can leak into it.
+                lines.push("wrong ring area = " + srFmt(Math.PI * (Rc - ric) * (Rc - ric), 4));
             } else if (k === "V_n") {
                 // the PUBLISHED total — never a second sum. It prints only when the
                 // frame actually summed the TRUE slice, so the wrong-solid window
@@ -77453,7 +77653,8 @@ export const FIELD_3D_RENDERER_CODE = `
             [srSurfOuter, "solid", true], [srSurfInner, "solid", true],
             [srDiscPool ? srDiscPool.group : null, stackFocal ? focal : "stack", true],
             [srRingOutPool ? srRingOutPool.group : null, stackFocal ? focal : "stack", true],
-            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true]
+            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true],
+            [srSliceRing ? srSliceRing.group : null, stackFocal ? focal : "stack", true]
         ];
         for (var i = 0; i < map.length; i++) {
             if (!map[i][0]) continue;
