@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_aqua_regia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is aqua regia? Write its equation with gold and platinum.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What aqua regia is",
+      "marks": 1
+    },
+    {
+      "label": "The two equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO (book p.86, VSAQ 6): the question and answer print \"Aquaregia\" as one word; it is written \"aqua regia\" here. BOOK NOTATION CORRECTED: the platinum complex is printed \"3PtCl₆⁻²\", with the charge before the number. The charge is written after the subscript, so PtCl₆²⁻ is written here. BOOK GAP: the printed answer gives the ratio as \"3 : 1\" without saying by volume, and never says why the mixture dissolves a metal that neither acid dissolves alone; both are written here. Both printed equations were checked for atoms AND charge and balance as printed (gold: 4 H, 1 N, 3 O, 4 Cl and charge −1 on each side; platinum: 3 Pt, 16 H, 4 N, 12 O, 18 Cl and charge −6 on each side)."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What aqua regia is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Aqua regia is a freshly made mixture of",
+          "concentrated HCl and concentrated HNO₃ in",
+          "the ratio 3 : 1 by volume.",
+          "It dissolves noble metals such as gold and",
+          "platinum, which neither acid dissolves on",
+          "its own."
+        ],
+        "why": "The nitric acid oxidises the metal to its ion, and the chloride ion from the hydrochloric acid then binds that ion as a stable complex, AuCl₄⁻ or PtCl₆²⁻. Taking the metal ion out of solution in this way is what lets the oxidation continue, and it is why the mixture works when neither acid works alone.",
+        "common_mistakes": [
+          "Writing the ratio as 1 : 3. Aqua regia is three parts concentrated HCl to one part concentrated HNO₃.",
+          "Writing that it is a mixture of HCl and H₂SO₄. The oxidising acid in aqua regia is HNO₃."
+        ],
+        "memory_tip": "Three parts hydrochloric to one part nitric: the larger number goes with the longer name, HCl three.",
+        "margin_note": "Both acids, the 3 : 1 ratio and the word concentrated are needed for this mark."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "equation",
+        "label": "The two equations",
+        "marks": 1,
+        "mark_note": "Equations",
+        "lines": [
+          {
+            "text": "Au + 4H⁺ + NO₃⁻ + 4Cl⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "AuCl₄⁻ + NO + 2H₂O",
+            "style": "indent"
+          },
+          {
+            "text": "3Pt + 16H⁺ + 4NO₃⁻ + 18Cl⁻ →",
+            "style": "eq"
+          },
+          {
+            "text": "3PtCl₆²⁻ + 4NO + 8H₂O",
+            "style": "indent"
+          },
+          "Gold goes to +3 and platinum to +4."
+        ],
+        "why": "Both equations balance in atoms and in charge, and the charge check is the one students skip: the gold line carries −1 on each side and the platinum line −6 on each side. The nitrate is reduced to NO in both, which is the sign that HNO₃ is doing the oxidising.",
+        "common_mistakes": [
+          "Writing the complex as PtCl₆⁻². The charge is written after the subscript: PtCl₆²⁻.",
+          "Balancing the atoms but not the charge. Both sides of each equation must carry the same total charge."
+        ],
+        "memory_tip": "Gold takes four chlorides, platinum takes six. Both give NO, never NO₂.",
+        "margin_note": "One correct equation usually earns this mark; write the gold one first, it is the shorter."
+      }
+    ]
+  },
+  "insider_note": "The definition mark is the one worth protecting: name both acids, say concentrated, and give the ratio 3 : 1 by volume. The equations are long and are marked generously."
+}

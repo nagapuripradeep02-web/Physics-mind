@@ -1,0 +1,396 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_oxoacids_of_chlorine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the name and formulae of the oxoacids of chlorine. Explain their structures and relative acidic nature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Names and formulae",
+      "marks": 1
+    },
+    {
+      "label": "Structures of HOCl and HClO₂",
+      "marks": 1
+    },
+    {
+      "label": "Structures of HClO₃ and HClO₄",
+      "marks": 1
+    },
+    {
+      "label": "Relative acidic nature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK SHAPE CLARIFIED (book p.87, SAQ 1): the printed answer gives the shape of HOCl as \"linear\". That is true of the chlorine atom, which has only one atom joined to it and therefore no bond angle, but the MOLECULE is bent at the oxygen, with H-O-Cl close to 103 degrees. Both statements are written on this card so a student is not left with a straight H-O-Cl picture. The other three printed shapes (angular, pyramidal, tetrahedral) and the printed acidic order HClO4 > HClO3 > HClO2 > HOCl are correct and are kept. BOOK NOTATION: the printed answer writes hybridisation as \"SP3\"; it is written sp3 here. The printed \"ground state / first / second / third excited state\" wording is dropped in favour of the lone-pair count, which is what actually fixes the shape. FIGURE SCOPE: the question says \"explain\", not \"draw\", so both diagram steps carry NO marks and the whole split sits on the four written steps. The structures are drawn because the question is about structure and four shapes cannot be compared from words alone; they are split across two figures to keep each one under the 16-element limit."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "VIIA Group Elements — 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "Names and formulae",
+        "marks": 1,
+        "mark_note": "Names and formulae",
+        "lines": [
+          "Chlorine forms four oxoacids.",
+          {
+            "text": "1. Hypochlorous acid — HOCl (Cl is +1)",
+            "style": "indent"
+          },
+          {
+            "text": "2. Chlorous acid — HClO₂ (Cl is +3)",
+            "style": "indent"
+          },
+          {
+            "text": "3. Chloric acid — HClO₃ (Cl is +5)",
+            "style": "indent"
+          },
+          {
+            "text": "4. Perchloric acid — HClO₄ (Cl is +7)",
+            "style": "indent"
+          },
+          "Each acid has one O–H bond. The other",
+          "oxygen atoms are joined to chlorine only."
+        ],
+        "why": "The four acids differ only in the number of oxygen atoms on chlorine, and the oxidation state rises by two each time: +1, +3, +5, +7. Writing the oxidation state beside each formula sets up both the structure answer and the acidity answer, because both follow the same count. Hypochlorous acid is written HOCl here and HClO in some books; the two are the same molecule, H–O–Cl.",
+        "common_mistakes": [
+          "Mixing up chloric and chlorous acid. Chloric acid, HClO₃, has one oxygen atom more than chlorous acid, HClO₂.",
+          "Giving only the names or only the formulae. The question asks for both, and both are needed for this mark."
+        ],
+        "memory_tip": "One extra oxygen each time, so the oxidation state climbs +1, +3, +5, +7 down the list.",
+        "margin_note": "All four names with their formulae are needed for this mark. Number them so the examiner can count them."
+      },
+      {
+        "id": "s2_structures_1",
+        "kind": "text",
+        "label": "Structures of HOCl and HClO₂",
+        "marks": 1,
+        "mark_note": "First two structures",
+        "lines": [
+          "In all four acids chlorine is sp³ hybridised.",
+          "HOCl: chlorine has one bond pair and three",
+          "lone pairs, so no bond angle exists at the",
+          "chlorine atom.",
+          "The molecule is bent at the oxygen atom,",
+          "with H–O–Cl close to 103°.",
+          "HClO₂: chlorine has two bond pairs and two",
+          "lone pairs, so the shape at chlorine is",
+          "angular."
+        ],
+        "why": "The lone-pair count is what fixes the shape. Chlorine has seven valence electrons, and each oxygen atom joined to it uses another pair, so the lone pairs left on chlorine fall 3, 2, 1, 0 across the four acids while the hybridisation stays sp³ throughout. The book prints the shape of HOCl as linear; that is right at the chlorine atom, which has only one atom joined to it, but the molecule as a whole is bent at the oxygen.",
+        "common_mistakes": [
+          "Writing that HOCl is a straight H–O–Cl molecule. It is bent at the oxygen atom.",
+          "Giving different hybridisations for the four acids. Chlorine is sp³ in all of them; only the lone-pair count changes."
+        ],
+        "memory_tip": "Same sp³ every time; only the number of lone pairs on chlorine changes, 3, 2, 1, 0.",
+        "margin_note": "Say sp³ once for all four acids, then give the lone-pair count and the shape for each. That wording earns both structure marks."
+      },
+      {
+        "id": "s3_figure_1",
+        "kind": "diagram",
+        "label": "HOCl and HClO₂ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "oxoacids_hocl_hclo2",
+          "width": 520,
+          "height": 200,
+          "elements": [
+            {
+              "type": "label",
+              "id": "ox1_h",
+              "x": 70,
+              "y": 140,
+              "text": "H",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox1_o",
+              "x": 112,
+              "y": 104,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox1_cl",
+              "x": 154,
+              "y": 140,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ox1_bonds",
+              "d": "M 84 132 L 108 112 M 130 112 L 148 130",
+              "ms": 890
+            },
+            {
+              "type": "label",
+              "id": "ox1_caption",
+              "x": 58,
+              "y": 184,
+              "text": "HOCl — bent at the O atom",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ox2_ho",
+              "x": 286,
+              "y": 140,
+              "text": "HO",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox2_cl",
+              "x": 350,
+              "y": 104,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox2_o",
+              "x": 410,
+              "y": 140,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ox2_bonds",
+              "d": "M 316 132 L 346 114 M 376 112 L 404 128 M 372 118 L 400 134",
+              "ms": 1410
+            },
+            {
+              "type": "label",
+              "id": "ox2_caption",
+              "x": 300,
+              "y": 184,
+              "text": "HClO₂ — angular at Cl",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two pictures show what the words mean: in HOCl the bend is at the oxygen, and in HClO₂ the bend is at the chlorine, which also carries one double bond to the second oxygen. Seeing them side by side is what stops the two being written the same way.",
+        "common_mistakes": [
+          "Drawing HOCl as a straight line of three atoms. The bend at the oxygen is the point of the drawing.",
+          "Drawing a single line for the Cl–O bond in HClO₂. That oxygen is joined by a double bond."
+        ],
+        "memory_tip": "HOCl bends at the oxygen; HClO₂ bends at the chlorine.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. All four marks sit on the written steps; sketch these only if there is time."
+      },
+      {
+        "id": "s4_structures_2",
+        "kind": "text",
+        "label": "Structures of HClO₃ and HClO₄",
+        "marks": 1,
+        "mark_note": "Last two structures",
+        "lines": [
+          "HClO₃: chlorine has three bond pairs and",
+          "one lone pair, so the shape is pyramidal.",
+          "HClO₄: chlorine has four bond pairs and no",
+          "lone pair, so the shape is tetrahedral.",
+          "The lone pairs on chlorine fall 3, 2, 1, 0",
+          "across the four acids, and the shape",
+          "changes with them."
+        ],
+        "why": "Four bond pairs and no lone pair give the regular tetrahedron of HClO₄; taking one bond pair away and putting a lone pair in its place pushes the remaining bonds down into the pyramid of HClO₃. The same argument, applied twice more, gives the angular HClO₂ and then HOCl.",
+        "common_mistakes": [
+          "Calling HClO₃ tetrahedral. Four electron pairs around chlorine are arranged tetrahedrally, but one of them is a lone pair, so the SHAPE is pyramidal.",
+          "Writing that HClO₄ is pyramidal. A pyramidal shape needs a lone pair on chlorine, and HClO₄ has none, so it is tetrahedral."
+        ],
+        "memory_tip": "No lone pair gives a tetrahedron; each lone pair added takes one arm away, giving pyramidal, then angular.",
+        "margin_note": "Name the two shapes in the same words the question uses: pyramidal and tetrahedral."
+      },
+      {
+        "id": "s5_figure_2",
+        "kind": "diagram",
+        "label": "HClO₃ and HClO₄ drawn",
+        "marks": 0,
+        "figure": {
+          "id": "oxoacids_hclo3_hclo4",
+          "width": 520,
+          "height": 235,
+          "elements": [
+            {
+              "type": "label",
+              "id": "ox3_cl",
+              "x": 130,
+              "y": 105,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox3_o_left",
+              "x": 70,
+              "y": 140,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox3_o_right",
+              "x": 196,
+              "y": 140,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox3_oh",
+              "x": 120,
+              "y": 176,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ox3_doubles",
+              "d": "M 126 112 L 96 130 M 130 118 L 100 136 M 154 112 L 186 130 M 150 118 L 182 136",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "ox3_oh_bond",
+              "d": "M 140 112 L 138 154",
+              "ms": 600
+            },
+            {
+              "type": "label",
+              "id": "ox3_caption",
+              "x": 60,
+              "y": 218,
+              "text": "HClO₃ — pyramidal",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "ox4_o_top",
+              "x": 378,
+              "y": 56,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox4_cl",
+              "x": 380,
+              "y": 105,
+              "text": "Cl",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox4_o_left",
+              "x": 320,
+              "y": 140,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox4_o_right",
+              "x": 446,
+              "y": 140,
+              "text": "O",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "ox4_oh",
+              "x": 370,
+              "y": 176,
+              "text": "OH",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ox4_doubles",
+              "d": "M 381 84 L 381 66 M 387 84 L 387 66 M 376 112 L 346 130 M 380 118 L 350 136 M 406 112 L 436 130 M 402 118 L 432 136",
+              "ms": 2570
+            },
+            {
+              "type": "stroke",
+              "id": "ox4_oh_bond",
+              "d": "M 390 112 L 388 154",
+              "ms": 600
+            },
+            {
+              "type": "label",
+              "id": "ox4_caption",
+              "x": 330,
+              "y": 218,
+              "text": "HClO₄ — tetrahedral",
+              "ms": 450,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Both pictures put the O–H group at the bottom and the doubly bonded oxygen atoms around the chlorine, so the only difference a reader has to see is the number of those oxygen atoms: two for HClO₃ with a lone pair in the fourth position, three for HClO₄ with none.",
+        "common_mistakes": [
+          "Drawing all the oxygen atoms with an H attached. Only one oxygen carries the hydrogen; that is why there is one acidic proton.",
+          "Drawing the same number of oxygen atoms on both structures. HClO₃ has three and HClO₄ has four; that extra doubly bonded oxygen is the only difference."
+        ],
+        "memory_tip": "The O–H group always sits at the bottom; count the doubly bonded oxygen atoms above it, two then three.",
+        "margin_note": "The question says explain, not draw, so this earns no marks. Sketch it only after the written steps are complete."
+      },
+      {
+        "id": "s6_acidic",
+        "kind": "boxed_final",
+        "label": "Relative acidic nature",
+        "marks": 1,
+        "mark_note": "Acidic order",
+        "lines": [
+          "Acidic strength rises with the number of",
+          "oxygen atoms joined to chlorine.",
+          {
+            "text": "HClO₄ > HClO₃ > HClO₂ > HOCl",
+            "style": "boxed"
+          },
+          "The extra oxygen atoms pull electron",
+          "density away from the O–H bond, so the",
+          "proton is released more easily.",
+          "They also spread the negative charge of the",
+          "anion left behind, which makes it stable.",
+          "Oxidising power runs the other way: HOCl is",
+          "the strongest oxidising agent of the four."
+        ],
+        "why": "Two effects point the same way. More oxygen atoms on chlorine pull electron density out of the O–H bond, so the proton leaves more easily; and the anion left behind spreads its negative charge over more oxygen atoms, so ClO₄⁻ is far more stable than ClO⁻. The oxidising order is the reverse, and writing it down stops the acid order being copied onto the wrong property.",
+        "common_mistakes": [
+          "Writing HOCl as the strongest acid because it is the strongest oxidising agent. The two properties run in opposite directions.",
+          "Giving the order with no reason. The mark is for the order together with the words about the oxygen atoms pulling electron density away."
+        ],
+        "memory_tip": "More oxygen atoms, stronger acid. Fewer oxygen atoms, stronger oxidising agent.",
+        "margin_note": "Box the order and write one sentence of reason under it. The order alone is usually half this mark."
+      }
+    ]
+  },
+  "insider_note": "Answer this in the order the question asks: names with formulae, then shapes, then the acidic order. The two structure marks are earned by the lone-pair count on chlorine, 3, 2, 1, 0, not by the drawings."
+}

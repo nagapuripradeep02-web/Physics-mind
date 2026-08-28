@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c2_viia_f2_cl2_with_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "VIIA Group Elements (Chemistry-II)"
+  },
+  "chapter": "VIIA Group Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the reactions of F₂ and Cl₂ with water.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Fluorine with water",
+      "marks": 1
+    },
+    {
+      "label": "Chlorine with water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Unit 9 (VIIA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.86-89, the sub-box \"VIIA GROUP ELEMENTS\" of printed chapter 7, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ARROW CORRECTED (book p.86, VSAQ 3): the printed answer writes the chlorine reaction as Cl₂ + H₂O → HCl + HClO with a single arrow. That reaction is reversible and is written here with ⇌. All four printed equations were atom-counted and balance as printed. NOTATION: the book writes the same acid as HClO in the equation and the oxoacid section prints it as HOCl; HOCl is used throughout this unit. PRINTED WORDING: the question is printed \"Write the reactions F₂ and Cl₂ with water?\"; the word \"of\" is added and the question mark replaced by a full stop, because the printed line is not a question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "VIIA Group Elements — 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fluorine",
+        "kind": "equation",
+        "label": "Fluorine with water",
+        "marks": 1,
+        "mark_note": "Fluorine",
+        "lines": [
+          "Fluorine oxidises water and sets oxygen free.",
+          {
+            "text": "2F₂ + 2H₂O → 4HF + O₂",
+            "style": "eq"
+          },
+          "With a small amount of water, ozone is",
+          "formed instead of oxygen.",
+          {
+            "text": "3F₂ + 3H₂O → 6HF + O₃",
+            "style": "eq"
+          }
+        ],
+        "why": "Fluorine is the strongest oxidising agent of the halogens, so it takes electrons from the oxygen of water and sets that oxygen free. Both equations balance: the first has 4 F, 4 H and 2 O on each side, the second 6 F, 6 H and 3 O.",
+        "common_mistakes": [
+          "Writing the product as HF₂ or F₂H. The product is hydrogen fluoride, HF.",
+          "Writing F₂ + H₂O → HF + O₂ without coefficients. That line does not balance; 2F₂ + 2H₂O is needed for 4HF and one O₂."
+        ],
+        "memory_tip": "Fluorine takes the oxygen out of water: plenty of water gives O₂, little water gives O₃.",
+        "margin_note": "One balanced fluorine equation earns this mark. The ozone equation is the extra line that shows the reaction is understood."
+      },
+      {
+        "id": "s2_chlorine",
+        "kind": "equation",
+        "label": "Chlorine with water",
+        "marks": 1,
+        "mark_note": "Chlorine",
+        "lines": [
+          "Chlorine reacts with water only partly, and",
+          "the reaction is reversible.",
+          {
+            "text": "Cl₂ + H₂O ⇌ HCl + HOCl",
+            "style": "eq"
+          },
+          "In sunlight the HOCl decomposes and gives",
+          "nascent oxygen.",
+          {
+            "text": "Cl₂ + H₂O → 2HCl + [O]",
+            "style": "eq"
+          },
+          {
+            "text": "2Cl₂ + 2H₂O → 4HCl + O₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Chlorine is a weaker oxidising agent than fluorine, so it does not set oxygen free from water at once. It disproportionates: one chlorine atom goes to −1 in HCl and the other to +1 in HOCl. Only when the HOCl decomposes in sunlight is oxygen released. The oxidising order F₂ > Cl₂ > Br₂ > I₂ has no exception, and it is why the two halogens behave differently here.",
+        "common_mistakes": [
+          "Writing Cl₂ + H₂O → HCl + HOCl with a single arrow. That reaction is reversible, so the sign is ⇌; the sunlight decomposition after it is not reversible.",
+          "Writing that chlorine releases O₂ from water directly, as fluorine does. Chlorine gives HCl and HOCl first."
+        ],
+        "memory_tip": "Fluorine takes the oxygen; chlorine only splits into HCl and HOCl.",
+        "margin_note": "The reversible equation is the marked line. Add the sunlight line only if there is room."
+      }
+    ]
+  },
+  "insider_note": "Most marks are lost by giving chlorine the fluorine answer. Fluorine releases oxygen from water; chlorine disproportionates into HCl and HOCl."
+}
