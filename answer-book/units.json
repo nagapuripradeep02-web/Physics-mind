@@ -10051,6 +10051,157 @@
           "question_id": "ts_ipe_z2_exc_cortical_vs_juxtamedullary"
         }
       ]
+    },
+    {
+      "subject": "zoology_2",
+      "number": 3,
+      "name": "Human Anatomy and Physiology-III (Zoology-II)",
+      "questions": [
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 2,
+          "text": "Describe the structure of a synovial joint with the help of a neat labelled diagram.",
+          "question_id": "ts_ipe_z2_msk_synovial_joint"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 1,
+          "text": "Draw a neat labelled diagram of pelvic girdle.",
+          "question_id": "ts_ipe_z2_msk_pelvic_girdle_diagram"
+        },
+        {
+          "ref": "saq21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 2,
+          "text": "Give an account of synaptic transmission.",
+          "question_id": "ts_ipe_z2_ncc_synaptic_transmission"
+        },
+        {
+          "ref": "saq22",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 1,
+          "text": "Give an account of the retina of the human eye.",
+          "question_id": "ts_ipe_z2_ncc_retina_account"
+        },
+        {
+          "ref": "vsaq75",
+          "section": "VSAQ",
+          "number": 75,
+          "stars": 3,
+          "text": "What is triad system?",
+          "question_id": "ts_ipe_z2_msk_triad_system"
+        },
+        {
+          "ref": "vsaq76",
+          "section": "VSAQ",
+          "number": 76,
+          "stars": 2,
+          "text": "Write the difference between actin and myosin.",
+          "question_id": "ts_ipe_z2_msk_actin_vs_myosin"
+        },
+        {
+          "ref": "vsaq77",
+          "section": "VSAQ",
+          "number": 77,
+          "stars": 1,
+          "text": "Distinguish between red muscle fibers and white muscle fibers.",
+          "question_id": "ts_ipe_z2_msk_red_vs_white_fibres"
+        },
+        {
+          "ref": "vsaq78",
+          "section": "VSAQ",
+          "number": 78,
+          "stars": 0,
+          "text": "What is a 'motor unit' with reference to muscle and nerve?",
+          "question_id": "ts_ipe_z2_msk_motor_unit"
+        },
+        {
+          "ref": "vsaq79",
+          "section": "VSAQ",
+          "number": 79,
+          "stars": 2,
+          "text": "Name the ear ossicles and their evolutionary origin in human beings.",
+          "question_id": "ts_ipe_z2_msk_ear_ossicles"
+        },
+        {
+          "ref": "vsaq80",
+          "section": "VSAQ",
+          "number": 80,
+          "stars": 2,
+          "text": "Name two cranial sutures and their locations.",
+          "question_id": "ts_ipe_z2_msk_cranial_sutures"
+        },
+        {
+          "ref": "vsaq81",
+          "section": "VSAQ",
+          "number": 81,
+          "stars": 2,
+          "text": "Name the keystone bone of the cranium. Where is it located?",
+          "question_id": "ts_ipe_z2_msk_keystone_bone"
+        },
+        {
+          "ref": "vsaq82",
+          "section": "VSAQ",
+          "number": 82,
+          "stars": 2,
+          "text": "Name the cranial meninges covering the brain of man.",
+          "question_id": "ts_ipe_z2_ncc_cranial_meninges"
+        },
+        {
+          "ref": "vsaq83",
+          "section": "VSAQ",
+          "number": 83,
+          "stars": 2,
+          "text": "What is corpus callosum?",
+          "question_id": "ts_ipe_z2_ncc_corpus_callosum"
+        },
+        {
+          "ref": "vsaq84",
+          "section": "VSAQ",
+          "number": 84,
+          "stars": 2,
+          "text": "Why is the sympathetic division called thoraco-lumbar division?",
+          "question_id": "ts_ipe_z2_ncc_sympathetic_thoracolumbar"
+        },
+        {
+          "ref": "vsaq85",
+          "section": "VSAQ",
+          "number": 85,
+          "stars": 2,
+          "text": "What do you know about arbor vitae?",
+          "question_id": "ts_ipe_z2_ncc_arbor_vitae"
+        },
+        {
+          "ref": "vsaq86",
+          "section": "VSAQ",
+          "number": 86,
+          "stars": 1,
+          "text": "What is all-or-none principle?",
+          "question_id": "ts_ipe_z2_ncc_all_or_none_principle"
+        },
+        {
+          "ref": "vsaq87",
+          "section": "VSAQ",
+          "number": 87,
+          "stars": 1,
+          "text": "Distinguish between the blind spot and the yellow spot.",
+          "question_id": "ts_ipe_z2_ncc_blind_spot_vs_yellow_spot"
+        },
+        {
+          "ref": "vsaq88",
+          "section": "VSAQ",
+          "number": 88,
+          "stars": 2,
+          "text": "What is organ of Corti?",
+          "question_id": "ts_ipe_z2_ncc_organ_of_corti"
+        }
+      ]
     }
   ]
 }

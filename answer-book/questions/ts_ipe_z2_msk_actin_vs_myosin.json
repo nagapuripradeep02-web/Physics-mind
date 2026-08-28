@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_actin_vs_myosin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the difference between actin and myosin.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Actin",
+      "marks": 1
+    },
+    {
+      "label": "Myosin",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 76. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_actin",
+        "kind": "text",
+        "label": "Actin",
+        "marks": 1,
+        "mark_note": "Actin",
+        "why": "The thin filament is anchored at the Z line, which is why the light band is where actin alone lies.",
+        "common_mistakes": [
+          "Calling actin the thick filament. It is thin.",
+          "Attaching actin to the M line. It attaches to the Z line."
+        ],
+        "memory_tip": "Actin is thin, in the light band, tied to the Z line.",
+        "margin_note": "Three points each, written side by side.",
+        "lines": [
+          "Actin is a thin contractile protein.",
+          "It lies in the light band, the isotropic",
+          "band.",
+          "Actin filaments are attached to the Z line."
+        ]
+      },
+      {
+        "id": "s2_myosin",
+        "kind": "boxed_final",
+        "label": "Myosin",
+        "marks": 1,
+        "mark_note": "Myosin",
+        "why": "The thick filament fills the dark band, so the band looks dark exactly where myosin lies.",
+        "common_mistakes": [
+          "Putting myosin in the light band. It is in the dark band.",
+          "Attaching myosin to the Z line. It attaches to the M line."
+        ],
+        "memory_tip": "Myosin is thick, in the dark band, tied to the M line.",
+        "margin_note": "Keep the same order of points as for actin.",
+        "lines": [
+          "Myosin is a thick contractile protein.",
+          "It lies in the dark band, the anisotropic",
+          "band.",
+          {
+            "text": "Myosin filaments are attached to the M line",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Write it as two columns. A difference question answered as a paragraph is hard to mark and usually loses one of the two marks."
+}

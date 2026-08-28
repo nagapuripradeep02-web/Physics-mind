@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_msk_cranial_sutures",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Musculo-Skeletal System",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two cranial sutures and their locations.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Coronal suture",
+      "marks": 1
+    },
+    {
+      "label": "Lambdoid suture",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.50, VSAQ 80. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Musculo-Skeletal System · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_coronal",
+        "kind": "text",
+        "label": "Coronal suture",
+        "marks": 1,
+        "mark_note": "Coronal",
+        "why": "A suture is an immovable joint, so naming it means naming the two skull bones locked together there.",
+        "common_mistakes": [
+          "Naming the suture without its location.",
+          "Calling a suture a movable joint. Sutures are fixed."
+        ],
+        "memory_tip": "Coronal is like a crown across the front of the head.",
+        "margin_note": "One line each, with the bones named.",
+        "lines": [
+          "The coronal suture lies between the",
+          "frontal bone and the parietal bones."
+        ]
+      },
+      {
+        "id": "s2_lambdoid",
+        "kind": "boxed_final",
+        "label": "Lambdoid suture",
+        "marks": 1,
+        "mark_note": "Lambdoid",
+        "why": "It is named for the Greek letter lambda, whose shape it makes at the back of the skull.",
+        "common_mistakes": [
+          "Placing the lambdoid suture at the front. It is at the back.",
+          "Giving only one suture when two are asked."
+        ],
+        "memory_tip": "Lambdoid is at the back, shaped like the letter lambda.",
+        "margin_note": "The second line completes the answer.",
+        "lines": [
+          {
+            "text": "Lambdoid — between parietals and occipital",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "A suture is named by the two bones it joins, so every name must be followed by those two bones."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_blind_spot_vs_yellow_spot",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between the blind spot and the yellow spot.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Blind spot",
+      "marks": 1
+    },
+    {
+      "label": "Yellow spot",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 87. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Neural Control and Coordination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_blind",
+        "kind": "text",
+        "label": "Blind spot",
+        "marks": 1,
+        "mark_note": "Blind spot",
+        "why": "Where the optic nerve leaves there is no room for receptor cells, so that patch of retina cannot see.",
+        "common_mistakes": [
+          "Writing that the blind spot has few receptors. It has none.",
+          "Placing it at the centre of the retina."
+        ],
+        "memory_tip": "Where the nerve leaves, nothing is seen.",
+        "margin_note": "Write the two spots as two rows.",
+        "lines": [
+          "The blind spot is the site of the retina",
+          "where the optic nerve exits the eyeball.",
+          "It has no photoreceptor cells, so no image",
+          "is formed there."
+        ]
+      },
+      {
+        "id": "s2_yellow",
+        "kind": "boxed_final",
+        "label": "Yellow spot",
+        "marks": 1,
+        "mark_note": "Yellow spot",
+        "why": "Cones packed close together at one point give the sharpest and most detailed vision.",
+        "common_mistakes": [
+          "Giving the yellow spot rods. It contains only cones.",
+          "Leaving out that it gives sharp vision."
+        ],
+        "memory_tip": "Yellow spot has only cones, so it sees sharpest.",
+        "margin_note": "Mirror the structure of the first row.",
+        "lines": [
+          "The yellow spot is the posterior portion",
+          "of the retina.",
+          {
+            "text": "Only cones, so it gives sharp central vision",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "One spot has no photoreceptors and one has only cones. Say which cells each has — that is the difference being marked."
+}

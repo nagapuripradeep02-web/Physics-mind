@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_organ_of_corti",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is organ of Corti?",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is and where",
+      "marks": 1
+    },
+    {
+      "label": "What it contains",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 88. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Neural Control and Coordination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What and where",
+        "why": "It sits on the membrane that vibrates with sound, so it is placed exactly where movement can be detected.",
+        "common_mistakes": [
+          "Placing it in the middle ear. It lies in the cochlea of the inner ear.",
+          "Calling it a bone."
+        ],
+        "memory_tip": "A sensory ridge riding on the basilar membrane.",
+        "margin_note": "Say what it is and where it sits.",
+        "lines": [
+          "The organ of Corti is the sensory ridge",
+          "formed by the cochlear epithelium on the",
+          "basilar membrane."
+        ]
+      },
+      {
+        "id": "s2_hair_cells",
+        "kind": "boxed_final",
+        "label": "What it contains",
+        "marks": 1,
+        "mark_note": "Hair cells",
+        "why": "The hair cells turn the movement of the membrane into nerve impulses, which is how sound becomes a signal.",
+        "common_mistakes": [
+          "Naming rods and cones. Those are in the eye.",
+          "Leaving out the hair cells."
+        ],
+        "memory_tip": "Hair cells are the ear's receptors.",
+        "margin_note": "One line names the receptor cells.",
+        "lines": [
+          {
+            "text": "Its hair cells act as auditory receptors",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Name the basilar membrane and the hair cells. Both are marked, and an answer with only 'it is in the ear' earns nothing."
+}

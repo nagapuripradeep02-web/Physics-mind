@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_z2_ncc_arbor_vitae",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "zoology_2",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Human Anatomy and Physiology-III (Zoology-II)"
+  },
+  "chapter": "Neural Control and Coordination",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What do you know about arbor vitae?",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Where it is",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.51, VSAQ 85. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Neural Control and Coordination · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "why": "The white matter branches into every fold of the cerebellum, so a cut section looks like a tree.",
+        "common_mistakes": [
+          "Calling it grey matter. Arbor vitae is white matter.",
+          "Placing it in the cerebrum. It is in the cerebellum."
+        ],
+        "memory_tip": "Arbor means tree: white matter branching like a tree.",
+        "margin_note": "Name the tissue and the shape.",
+        "lines": [
+          "Arbor vitae is the arrangement of white",
+          "matter in the form of a tree in the",
+          "cerebellum of the human brain."
+        ]
+      },
+      {
+        "id": "s2_where",
+        "kind": "boxed_final",
+        "label": "Where it is",
+        "marks": 1,
+        "mark_note": "Surroundings",
+        "why": "The grey matter lies on the outside of the cerebellum, so the white tree is enclosed by it.",
+        "common_mistakes": [
+          "Writing that grey matter lies inside it. The grey cortex is outside.",
+          "Leaving the cerebellar cortex out."
+        ],
+        "memory_tip": "White tree inside, grey cortex outside.",
+        "margin_note": "One line for the surroundings.",
+        "lines": [
+          {
+            "text": "Grey matter, the cerebellar cortex, surrounds it",
+            "style": "boxed"
+          }
+        ]
+      }
+    ]
+  },
+  "insider_note": "Two marks for two facts: the tree-shaped white matter, and that it sits inside the cerebellum surrounded by grey matter."
+}
